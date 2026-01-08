@@ -1,30 +1,29 @@
 /* 
   STYLE.CSS
   Refined Premium Dark Theme
-  v2.0 - Visual Polish & Motion
+  v2.1 - Ambient Glow & Visual Polish
 */
 
 /* --- 1. DESIGN TOKENS --- */
 :root {
   /* Palette */
-  --bg-root: #050505;
-  --bg-surface: #0E0E0E;
-  --bg-card: #111111;
+  --bg-root: #020202; /* Deep Void Black */
+  --bg-surface: #0A0A0A;
+  --bg-card: #0F0F0F;
   
   /* Text */
-  --text-primary: #F2F2F2;
-  --text-secondary: #A1A1A1;
+  --text-primary: #F0F0F0;
+  --text-secondary: #999999;
   --text-tertiary: #555555;
   
   /* Accent & Borders */
   --accent-color: #333333;
-  --border-faint: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.15);
+  --border-faint: rgba(255, 255, 255, 0.06);
+  --border-light: rgba(255, 255, 255, 0.12);
   
   /* Effects */
   --shadow-soft: 0px 20px 40px rgba(0,0,0,0.6);
-  --glow-radial: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.09) 0%, transparent 70%);
-  --bg-gradient: radial-gradient(ellipse at top center, #141414 0%, #050505 80%);
+  --glow-ambient: radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.08) 0%, rgba(5, 5, 5, 0) 50%);
 
   /* Typography */
   --font-serif: "Playfair Display", serif;
@@ -57,9 +56,7 @@ html {
 }
 
 body {
-  background: var(--bg-root);
-  background-image: var(--bg-gradient);
-  background-attachment: fixed;
+  background-color: var(--bg-root);
   color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -68,15 +65,36 @@ body {
   min-height: 100vh;
 }
 
-/* Noise Overlay */
+/* 
+   Noise Overlay 
+   Refined to be finer and less intrusive 
+*/
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: var(--z-noise);
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.025; /* Reduced from 0.04 */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* 
+   Ambient Glow (Replaces old gradient)
+   Fixed position ensures smoothness and eliminates banding
+*/
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--glow-ambient);
+  pointer-events: none;
+  z-index: -1;
+  /* Will-change helps rendering performance */
+  will-change: transform; 
 }
 
 a { text-decoration: none; color: inherit; cursor: pointer; }
@@ -101,12 +119,13 @@ h1, h2, h3, h4, h5 {
   font-size: clamp(3.5rem, 6vw, 6rem);
   line-height: 1.05;
   margin-bottom: 24px;
-  text-shadow: 0 0 40px rgba(255,255,255,0.1);
+  /* Subtle text shadow for depth */
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 .section-title {
   font-size: clamp(2.5rem, 4vw, 3.5rem);
-  margin-bottom: 0; /* Handled by container */
+  margin-bottom: 0; 
   line-height: 1.1;
 }
 
@@ -114,12 +133,11 @@ h1, h2, h3, h4, h5 {
 .text-reveal-wrap {
   position: relative;
   display: inline-block;
-  /* Ensure height is reserved */
 }
 
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
   position: relative;
   z-index: 1;
 }
@@ -130,8 +148,7 @@ h1, h2, h3, h4, h5 {
   left: 0;
   color: var(--text-primary);
   z-index: 2;
-  clip-path: inset(0 100% 0 0); /* Hidden initially (clipped from right) */
-  /* JS will animate clip-path to inset(0 0% 0 0) */
+  clip-path: inset(0 100% 0 0); 
 }
 
 .body-large {
@@ -163,15 +180,15 @@ h1, h2, h3, h4, h5 {
 .nav-pill {
   position: relative;
   pointer-events: auto;
-  background: rgba(15, 15, 15, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-pill);
   padding: 6px;
   display: flex;
   gap: 4px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .nav-link {
@@ -187,17 +204,16 @@ h1, h2, h3, h4, h5 {
 
 .nav-link:hover { color: var(--text-primary); }
 
-/* Active State High Contrast */
 .nav-link.active {
   color: var(--text-primary);
-  text-shadow: 0 0 12px rgba(255,255,255,0.4);
+  text-shadow: 0 0 12px rgba(255,255,255,0.3);
 }
 
 .nav-glider {
   position: absolute;
   top: 6px; left: 6px;
   height: calc(100% - 12px);
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-pill);
   z-index: 1;
   pointer-events: none;
@@ -236,8 +252,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .pill-item.accent {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
   color: var(--text-primary);
   font-weight: 500;
 }
@@ -263,23 +279,25 @@ h1, h2, h3, h4, h5 {
 .btn-primary {
   background: var(--text-primary);
   color: var(--bg-root);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .btn-primary:hover {
   background: #FFFFFF;
+  color: #000;
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(255,255,255,0.2);
+  box-shadow: 0 4px 20px rgba(255,255,255,0.15);
 }
 
 .btn-secondary {
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.2); /* Lighter border for visibility */
+  border: 1px solid rgba(255,255,255,0.15);
   color: var(--text-primary);
 }
 
 .btn-secondary:hover {
   border-color: var(--text-primary);
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.03);
 }
 
 /* --- 6. PROJECT CARDS (Refined) --- */
@@ -300,7 +318,7 @@ h1, h2, h3, h4, h5 {
 
 .card-media-wrap {
   width: 100%;
-  aspect-ratio: 16/10; /* Consistent Ratio */
+  aspect-ratio: 16/10; 
   border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
@@ -317,14 +335,14 @@ h1, h2, h3, h4, h5 {
   height: 100%;
   object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-  opacity: 0.9;
+  opacity: 0.85; /* Slightly lower initial opacity for focus effect */
 }
 
 /* Hover Effects */
 .project-card:hover .card-media-wrap {
   transform: translateY(-8px);
-  box-shadow: 0 24px 48px rgba(0,0,0,0.6);
-  border-color: rgba(255,255,255,0.25);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  border-color: rgba(255,255,255,0.15);
 }
 
 .project-card:hover .card-media-wrap img {
@@ -335,7 +353,7 @@ h1, h2, h3, h4, h5 {
 .card-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -455,7 +473,7 @@ h1, h2, h3, h4, h5 {
   border-radius: 50%;
 }
 
-/* --- 8. TESTIMONIALS (Featured + Compact) --- */
+/* --- 8. TESTIMONIALS --- */
 .testimonials-grid {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
@@ -465,7 +483,7 @@ h1, h2, h3, h4, h5 {
 
 .testi-card-lg {
   padding: 48px;
-  background: rgba(20, 20, 20, 0.4);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-faint);
   border-radius: var(--radius-md);
   position: relative;
@@ -542,7 +560,7 @@ h1, h2, h3, h4, h5 {
 
 .writing-card:hover {
   transform: translateY(-6px);
-  border-color: var(--text-secondary);
+  border-color: var(--border-light);
   background: var(--bg-surface);
 }
 
@@ -555,7 +573,7 @@ h1, h2, h3, h4, h5 {
 .badge {
   font-size: 0.7rem;
   padding: 4px 12px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.06);
   border-radius: var(--radius-pill);
   color: var(--text-primary);
   text-transform: uppercase;
@@ -576,7 +594,7 @@ h1, h2, h3, h4, h5 {
 .w-summary {
   font-size: 0.9rem;
   color: var(--text-secondary);
-  margin-bottom: auto; /* Pushes bottom meta down if needed */
+  margin-bottom: auto; 
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -646,7 +664,7 @@ h1, h2, h3, h4, h5 {
   line-height: 1.7;
 }
 
-/* --- 11. CONTACT FORM (Refined) --- */
+/* --- 11. CONTACT FORM --- */
 .contact-container {
   max-width: 540px;
   margin: 0 auto;
@@ -680,7 +698,7 @@ h1, h2, h3, h4, h5 {
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
   outline: none;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.04);
   border-color: var(--text-primary);
 }
 
@@ -711,7 +729,6 @@ main {
   margin-bottom: 60px;
 }
 
-/* Reveal Animation Base State (Opacity 1 for JS fallback) */
 .reveal-on-scroll { 
   opacity: 1; 
   transform: translateY(0);
@@ -721,7 +738,7 @@ main {
 .site-footer {
   border-top: 1px solid var(--border-faint);
   padding: 80px 0 40px;
-  background: #030303;
+  background: #000;
 }
 
 .footer-grid {
