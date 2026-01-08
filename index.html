@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=2.8">
+    <link rel="stylesheet" href="style.css?v=3.0">
     
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -20,9 +20,8 @@
   </head>
   <body>
 
-    <!-- Background Elements -->
-    <div class="site-grid-overlay"></div>
-    <div class="grid-scanner"></div>
+    <!-- Canvas Grid System (Background) -->
+    <canvas id="grid-canvas"></canvas>
     
     <!-- Custom Cursor -->
     <div class="custom-cursor-dot"></div>
@@ -32,10 +31,10 @@
     <nav class="nav-wrapper fade-in">
       <div class="nav-pill">
         <div class="nav-glider"></div>
-        <a href="/index.html" class="nav-link">Home</a>
-        <a href="/projects.html" class="nav-link">Work</a>
-        <a href="/about.html" class="nav-link">About</a>
-        <a href="/blog.html" class="nav-link">Writing</a>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="projects.html" class="nav-link">Work</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="blog.html" class="nav-link">Writing</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
     </nav>
@@ -45,7 +44,7 @@
       <!-- 1. Hero Section -->
       <section id="home" class="hero-section">
         
-        <!-- Infinite Ticker (Seamless Loop requires 2 sets of exact content) -->
+        <!-- Centered Infinite Ticker -->
         <div class="ticker-container fade-in">
           <div class="ticker-track">
              <!-- Set 1 -->
@@ -55,16 +54,14 @@
              <div class="ticker-item">Web3 & DeFi</div>
              <div class="ticker-item">Based in Kathmandu</div>
              <div class="ticker-item">Strategy</div>
-             <div class="ticker-item">Prototyping</div>
              
-             <!-- Set 2 (Exact Duplicate) -->
+             <!-- Set 2 (Exact Duplicate for Loop) -->
              <div class="ticker-item accent">Product Designer</div>
              <div class="ticker-item">Enterprise UX</div>
              <div class="ticker-item">Design Systems</div>
              <div class="ticker-item">Web3 & DeFi</div>
              <div class="ticker-item">Based in Kathmandu</div>
              <div class="ticker-item">Strategy</div>
-             <div class="ticker-item">Prototyping</div>
           </div>
         </div>
 
@@ -78,7 +75,7 @@
         </p>
 
         <div class="hero-actions fade-in">
-          <a href="/projects.html" class="btn btn-primary">View Selected Work</a>
+          <a href="projects.html" class="btn btn-primary">View Selected Work</a>
           <a href="#contact" class="btn btn-secondary">Get in Touch</a>
         </div>
         
@@ -94,12 +91,12 @@
               <span class="text-outline">Selected Work</span>
               <span class="text-fill">Selected Work</span>
           </h2>
-          <a href="/projects.html" class="btn btn-secondary">View All</a>
+          <a href="projects.html" class="btn btn-secondary">View All</a>
         </div>
 
         <div class="project-grid">
            <!-- Project 1 -->
-           <a href="/project-detail.html" class="project-card reveal-on-scroll">
+           <a href="project-detail.html" class="project-card reveal-on-scroll">
                <div class="card-media-wrap">
                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2400" loading="lazy" alt="MAS DataHub Dashboard">
                    <div class="card-overlay"><span class="view-case-btn">View Case Study →</span></div>
@@ -115,7 +112,7 @@
            </a>
 
            <!-- Project 2 -->
-           <a href="/project-detail.html" class="project-card reveal-on-scroll">
+           <a href="project-detail.html" class="project-card reveal-on-scroll">
                 <div class="card-media-wrap">
                     <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200" loading="lazy" alt="Yarsha Web3 Interface">
                     <div class="card-overlay"><span class="view-case-btn">View Case Study →</span></div>
@@ -181,35 +178,44 @@
         </div>
       </section>
 
-      <!-- 4. Endorsements -->
+      <!-- 4. Endorsements (Redesigned) -->
       <section id="testimonials" class="section-container">
         <div class="section-header reveal-on-scroll">
            <h2 class="section-title text-reveal-wrap">
-               <span class="text-outline">Endorsements</span>
-               <span class="text-fill">Endorsements</span>
+               <span class="text-outline">Kind Words</span>
+               <span class="text-fill">Kind Words</span>
            </h2>
         </div>
         
-        <div class="endorsements-grid reveal-on-scroll">
-            <div class="endorsement-card">
+        <div class="endorsements-masonry reveal-on-scroll">
+            <div class="endorsement-tile large">
                 <p class="e-quote">"Nischhal transformed our vague product idea into a world-class interface. His ability to balance aesthetic polish with complex functionality is rare."</p>
-                <div class="e-author">
-                    <h5>Sarah Jenkins</h5>
-                    <span>CTO, Nova Financial</span>
+                <div class="e-meta">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Jenkins">
+                    <div>
+                        <h5>Sarah Jenkins</h5>
+                        <span>CTO, Nova Financial</span>
+                    </div>
                 </div>
             </div>
-            <div class="endorsement-card">
-                <p class="e-quote">"Saved us weeks of engineering time. The design system he built was scalable, accessible, and remarkably well-documented."</p>
-                <div class="e-author">
-                    <h5>David Chen</h5>
-                    <span>Product Lead, Orbit SaaS</span>
+            <div class="endorsement-tile">
+                <p class="e-quote">"Saved us weeks of engineering time. The design system was scalable and remarkably well-documented."</p>
+                <div class="e-meta">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Chen">
+                    <div>
+                        <h5>David Chen</h5>
+                        <span>Product Lead, Orbit</span>
+                    </div>
                 </div>
             </div>
-            <div class="endorsement-card">
-                <p class="e-quote">"Working with Nischhal felt less like hiring a freelancer and more like adding a senior partner to our leadership team."</p>
-                <div class="e-author">
-                    <h5>Elena Rodriguez</h5>
-                    <span>Founder, Ether Flow</span>
+            <div class="endorsement-tile">
+                <p class="e-quote">"Felt less like hiring a freelancer and more like adding a senior partner."</p>
+                <div class="e-meta">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Elena Rodriguez">
+                    <div>
+                        <h5>Elena Rodriguez</h5>
+                        <span>Founder, Ether Flow</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -222,23 +228,23 @@
                   <span class="text-outline">Writing</span>
                   <span class="text-fill">Writing</span>
               </h2>
-              <a href="/blog.html" class="btn btn-secondary">Read All</a>
+              <a href="blog.html" class="btn btn-secondary">Read All</a>
           </div>
           
           <div class="writing-list reveal-on-scroll">
-              <a href="/blog-detail.html" class="writing-item">
+              <a href="blog-detail.html" class="writing-item">
                   <div class="w-left">
                       <span class="w-date">Oct 2025</span>
                       <h4 class="w-title">The future of Design Systems</h4>
                   </div>
               </a>
-              <a href="/blog-detail.html" class="writing-item">
+              <a href="blog-detail.html" class="writing-item">
                   <div class="w-left">
                       <span class="w-date">Sep 2025</span>
                       <h4 class="w-title">Bridging gap between Design and Code</h4>
                   </div>
               </a>
-              <a href="/blog-detail.html" class="writing-item">
+              <a href="blog-detail.html" class="writing-item">
                   <div class="w-left">
                       <span class="w-date">Aug 2025</span>
                       <h4 class="w-title">Inclusive by default: A guide</h4>
@@ -247,52 +253,31 @@
           </div>
       </section>
 
-      <!-- 6. FAQ -->
+      <!-- 6. FAQ (Redesigned) -->
       <section id="faq" class="section-container">
         <div class="section-header reveal-on-scroll">
            <h2 class="section-title text-reveal-wrap">
-               <span class="text-outline">FAQ</span>
-               <span class="text-fill">FAQ</span>
+               <span class="text-outline">Q&A</span>
+               <span class="text-fill">Q&A</span>
            </h2>
         </div>
-        <div class="faq-list reveal-on-scroll">
-            <div class="faq-item">
-                <button class="faq-trigger">
-                    <h4>What is your typical project timeline?</h4>
-                    <div class="icon-plus"></div>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-inner">
-                        Most end-to-end product design projects take between 4-8 weeks. Design system projects vary based on complexity but typically start at 6 weeks for a comprehensive v1 release.
-                    </div>
-                </div>
+        <div class="faq-modern-grid reveal-on-scroll">
+            <div class="faq-card">
+                <h4>What is your typical project timeline?</h4>
+                <p>Most end-to-end product design projects take between 4-8 weeks. Design system projects vary based on complexity but typically start at 6 weeks for a comprehensive v1 release.</p>
             </div>
-            <div class="faq-item">
-                <button class="faq-trigger">
-                    <h4>Do you handle development?</h4>
-                    <div class="icon-plus"></div>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-inner">
-                        My core expertise is design. However, I am proficient in HTML/CSS and Webflow for marketing sites. For complex web apps, I partner with trusted engineering teams or work alongside your in-house developers.
-                    </div>
-                </div>
+            <div class="faq-card">
+                <h4>Do you handle development?</h4>
+                <p>My core expertise is design. However, I am proficient in HTML/CSS and Webflow. For complex web apps, I partner with trusted engineering teams or work alongside your developers.</p>
             </div>
-            <div class="faq-item">
-                <button class="faq-trigger">
-                    <h4>How do you handle revisions?</h4>
-                    <div class="icon-plus"></div>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-inner">
-                        I work in weekly sprints with frequent check-ins, which minimizes the need for massive "revisions" at the end. Feedback is incorporated continuously throughout the process.
-                    </div>
-                </div>
+            <div class="faq-card">
+                <h4>How do you handle revisions?</h4>
+                <p>I work in weekly sprints with frequent check-ins (Async or Sync), which minimizes the need for massive "revisions" at the end. Feedback is incorporated continuously.</p>
             </div>
         </div>
       </section>
 
-      <!-- 7. Contact (REDESIGNED) -->
+      <!-- 7. Contact -->
       <section id="contact" class="section-container">
           <div class="contact-container reveal-on-scroll">
               <div class="contact-card">
@@ -321,30 +306,52 @@
 
     </main>
 
-    <!-- FOOTER (Restored Faint Blue + Portrait) -->
+    <!-- FOOTER (Redesigned: Centered Stack) -->
     <footer class="site-footer">
       <div class="footer-container">
         
-        <div class="footer-content reveal-on-scroll">
-           <!-- Portrait -->
-           <div class="footer-portrait-wrapper">
-              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" class="footer-portrait" alt="Nischhal Raj Subba">
-           </div>
-           
-           <!-- Navigation Links -->
-           <nav class="footer-nav">
-              <a href="/index.html">Home</a>
-              <a href="/projects.html">Work</a>
-              <a href="/about.html">About</a>
-              <a href="/blog.html">Writing</a>
-              <a href="https://linkedin.com">LinkedIn</a>
-              <a href="mailto:hello@nischhal.design">Email</a>
-           </nav>
+        <div class="footer-hero reveal-on-scroll">
+            <h2>Let's create something<br><span class="text-serif-italic">awesome together.</span></h2>
+            
+            <div class="footer-socials-row">
+                <a href="#" class="f-social-icon">𝕏</a>
+                <a href="#" class="f-social-icon">in</a>
+                <a href="#" class="f-social-icon">Be</a>
+                <a href="#" class="f-social-icon">Dr</a>
+            </div>
+
+            <div class="footer-center-img">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Nischhal">
+            </div>
+        </div>
+
+        <div class="footer-links-layout reveal-on-scroll">
+            <div class="fl-col">
+                <h5>Pages</h5>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Work</a>
+                <a href="about.html">About</a>
+                <a href="blog.html">Writing</a>
+            </div>
+            <div class="fl-col">
+                <h5>Work</h5>
+                <a href="projects.html">MAS DataHub</a>
+                <a href="projects.html">Yarsha</a>
+                <a href="projects.html">Morajaa</a>
+                <a href="projects.html">Zapp Today</a>
+            </div>
+            <div class="fl-col">
+                <h5>Products</h5>
+                <a href="#">UI Kit</a>
+                <a href="#">Design System</a>
+                <a href="#">Icons</a>
+            </div>
         </div>
 
         <div class="footer-bottom reveal-on-scroll">
            <span>Built by Nischhal Raj Subba</span>
            <span>© 2026 Refined. All rights reserved.</span>
+           <button class="btn-sm" onclick="window.scrollTo(0,0)">Back to Top ↑</button>
         </div>
 
       </div>

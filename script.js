@@ -3,49 +3,145 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURATION ---
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // --- 1. SCANNER BEAM INTERACTION (Refined) ---
-    const scanner = document.querySelector('.grid-scanner');
-    if (scanner && !REDUCED_MOTION) {
-        let scannerY = 0;
-        let direction = 1;
-        let baseSpeed = 1.0; 
-        let currentSpeed = baseSpeed;
+    // --- 1. CANVAS GRID PARTICLE SYSTEM ---
+    // A glowing particle moving on grid lines that leaves a trail and flees mouse.
+    const canvas = document.getElementById('grid-canvas');
+    if (canvas && !REDUCED_MOTION) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        const gridSize = 60; // Size of grid cells
         
-        let mouseX = 0;
-        let mouseY = 0;
+        // Particle State
+        let p = {
+            x: 0, y: 0,
+            vx: 0, vy: 0,
+            speed: 2,
+            trail: [] // Stores last positions for corntail
+        };
+
+        let mouse = { x: -1000, y: -1000 };
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            // Snap starting pos to grid
+            p.x = Math.floor(width / 2 / gridSize) * gridSize;
+            p.y = Math.floor(height / 2 / gridSize) * gridSize;
+            p.vx = p.speed; // Start moving right
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
         window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
         });
 
-        function animateScanner() {
-            const windowHeight = window.innerHeight;
+        function drawGrid() {
+            ctx.strokeStyle = 'rgba(59, 130, 246, 0.03)';
+            ctx.lineWidth = 1;
             
-            // Interaction: If mouse is close vertically, "glitch" direction or speed
-            const distY = Math.abs(mouseY - scannerY);
-            if (distY < 60) {
-                 if (Math.random() > 0.92) direction *= -1; // Random direction flip
-                 currentSpeed = 4.0; // Speed up near mouse
-            } else {
-                 currentSpeed += (baseSpeed - currentSpeed) * 0.1; // Ease back to normal
+            // Draw Vertical Lines
+            for (let x = 0; x <= width; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+                ctx.stroke();
             }
-
-            scannerY += currentSpeed * direction;
-
-            // Bounce at edges
-            if (scannerY > windowHeight) {
-                scannerY = windowHeight;
-                direction = -1;
-            } else if (scannerY < 0) {
-                scannerY = 0;
-                direction = 1;
+            // Draw Horizontal Lines
+            for (let y = 0; y <= height; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
             }
-
-            scanner.style.transform = `translateY(${scannerY}px)`;
-            requestAnimationFrame(animateScanner);
         }
 
-        requestAnimationFrame(animateScanner);
+        function updateParticle() {
+            // 1. Record trail
+            p.trail.push({ x: p.x, y: p.y, alpha: 1.0 });
+            if (p.trail.length > 20) p.trail.shift();
+
+            // 2. Flee Mouse Logic
+            // If mouse is close (radius 150), force move away
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            
+            if (dist < 150) {
+                // If moving towards mouse, reverse immediately
+                // Simple logic: if dx is negative (mouse is right of particle) and moving right, reverse.
+                if (Math.abs(dx) > Math.abs(dy)) {
+                   // Horizontal conflict
+                   if (dx < 0 && p.vx > 0) p.vx = -p.speed;
+                   if (dx > 0 && p.vx < 0) p.vx = p.speed;
+                } else {
+                   // Vertical conflict
+                   if (dy < 0 && p.vy > 0) p.vy = -p.speed;
+                   if (dy > 0 && p.vy < 0) p.vy = p.speed;
+                }
+            }
+
+            // 3. Move
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // 4. Grid Intersection Logic
+            // If we hit a grid intersection (modulo gridSize is near 0)
+            // Note: Use a small threshold because floating point math
+            const atX = Math.abs(p.x % gridSize) < p.speed;
+            const atY = Math.abs(p.y % gridSize) < p.speed;
+
+            if (atX && atY) {
+                // We are at an intersection. 10% chance to turn.
+                if (Math.random() < 0.1) {
+                    const dirs = [
+                        { vx: p.speed, vy: 0 },
+                        { vx: -p.speed, vy: 0 },
+                        { vx: 0, vy: p.speed },
+                        { vx: 0, vy: -p.speed }
+                    ];
+                    // Pick random valid direction (stay on screen)
+                    const next = dirs[Math.floor(Math.random() * dirs.length)];
+                    p.vx = next.vx;
+                    p.vy = next.vy;
+                }
+            }
+
+            // 5. Bounds Check (Wrap around or Bounce)
+            if (p.x < 0) { p.x = 0; p.vx = p.speed; }
+            if (p.x > width) { p.x = width; p.vx = -p.speed; }
+            if (p.y < 0) { p.y = 0; p.vy = p.speed; }
+            if (p.y > height) { p.y = height; p.vy = -p.speed; }
+        }
+
+        function drawParticle() {
+            // Draw Trail
+            p.trail.forEach((pos, i) => {
+                const ratio = i / p.trail.length; // 0 to 1
+                ctx.fillStyle = `rgba(59, 130, 246, ${ratio * 0.4})`;
+                ctx.fillRect(pos.x - 1, pos.y - 1, 3, 3);
+            });
+
+            // Draw Head
+            ctx.fillStyle = '#3B82F6';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#3B82F6';
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            drawGrid();
+            updateParticle();
+            drawParticle();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
     }
 
     // --- 2. CUSTOM CURSOR ---
@@ -78,28 +174,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 cursorOutline.style.width = '60px';
                 cursorOutline.style.height = '60px';
                 cursorOutline.style.background = 'rgba(255, 255, 255, 0.05)';
-                cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.5)';
             });
             el.addEventListener('mouseleave', () => {
                 cursorOutline.style.width = '40px';
                 cursorOutline.style.height = '40px';
                 cursorOutline.style.background = 'transparent';
-                cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.2)';
             });
         });
     }
 
-    // --- 3. NAV GLIDER ---
+    // --- 3. NAV GLIDER (Fix) ---
     const navLinks = document.querySelectorAll('.nav-link');
     const glider = document.querySelector('.nav-glider');
     const navPill = document.querySelector('.nav-pill');
-    const currentPath = window.location.pathname;
     
+    // Helper to get relative path filename
+    const getPageName = (path) => path.split('/').pop() || 'index.html';
+    const currentName = getPageName(window.location.pathname);
+
     // Set Active Class
     navLinks.forEach(link => {
         link.classList.remove('active');
-        const href = link.getAttribute('href');
-        if (href === currentPath || (currentPath === '/' && href === '/index.html')) {
+        const linkName = getPageName(link.getAttribute('href'));
+        if (linkName === currentName) {
             link.classList.add('active');
         }
     });
@@ -110,9 +207,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = element.getBoundingClientRect();
             const parentRect = navPill.getBoundingClientRect();
             
+            // Calculate relative position carefully
+            const x = rect.left - parentRect.left;
+            const y = rect.top - parentRect.top;
+            
             gsap.to(glider, {
-                x: rect.left - parentRect.left,
-                y: rect.top - parentRect.top,
+                x: x,
+                y: y,
                 width: rect.width,
                 height: rect.height,
                 opacity: 1,
@@ -123,48 +224,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navLinks.forEach(link => {
             link.addEventListener('mouseenter', () => moveGlider(link));
+            // On mouse leave, return to active link or hide
             link.addEventListener('mouseleave', () => {
-                const active = document.querySelector('.nav-link.active');
-                if (active) moveGlider(active);
-                else gsap.to(glider, { opacity: 0 });
+                 const active = document.querySelector('.nav-link.active');
+                 if (active) moveGlider(active);
+                 else gsap.to(glider, { opacity: 0 });
             });
         });
 
+        // Initialize position on active link
         const initialActive = document.querySelector('.nav-link.active');
-        if (initialActive) setTimeout(() => moveGlider(initialActive), 100);
+        if (initialActive) setTimeout(() => moveGlider(initialActive), 200);
     }
 
-    // --- 4. FAQ ACCORDION (Fixed) ---
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const trigger = item.querySelector('.faq-trigger');
-        const answer = item.querySelector('.faq-answer');
-        
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isActive = item.classList.contains('active');
-            
-            // Close others
-            faqItems.forEach(other => {
-                if (other !== item && other.classList.contains('active')) {
-                    other.classList.remove('active');
-                    gsap.to(other.querySelector('.faq-answer'), { height: 0, duration: 0.3, ease: "power2.out" });
-                }
-            });
-
-            if (!isActive) {
-                item.classList.add('active');
-                // Use 'auto' to let GSAP calculate height
-                gsap.to(answer, { height: "auto", duration: 0.3, ease: "power2.out" });
-            } else {
-                item.classList.remove('active');
-                gsap.to(answer, { height: 0, duration: 0.3, ease: "power2.out" });
-            }
-        });
-    });
-
-    // --- 5. ANIMATIONS (GSAP) ---
+    // --- 4. ANIMATIONS (GSAP) ---
     if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -188,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
 
-        // C. Text Reveal (Scrub Fix)
+        // C. Text Reveal
         document.querySelectorAll(".text-reveal-wrap").forEach(title => {
             const fill = title.querySelector(".text-fill");
             if (fill) {
@@ -199,8 +272,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         ease: "none",
                         scrollTrigger: {
                             trigger: title,
-                            start: "top 90%", // Trigger earlier
-                            end: "top 40%",   // End later
+                            start: "top 90%",
+                            end: "top 40%",
                             scrub: 1
                         }
                     }
@@ -209,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 6. CONTACT FORM ---
+    // --- 5. CONTACT FORM ---
     const form = document.getElementById('contact-form');
     if (form) {
         form.addEventListener('submit', (e) => {
