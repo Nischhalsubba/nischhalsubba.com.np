@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Main CSS (v=2 forces browser to reload styles) -->
+    <link rel="stylesheet" href="style.css?v=2">
     
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -25,8 +25,8 @@
       <div class="nav-dock-inner">
         <a href="#home" class="nav-item active" aria-label="Home"><i data-lucide="home"></i></a>
         <a href="#work" class="nav-item" aria-label="Work"><i data-lucide="briefcase"></i></a>
-        <a href="#goods" class="nav-item" aria-label="Digital Goods"><i data-lucide="shopping-bag"></i></a>
-        <a href="#blog" class="nav-item" aria-label="Blog"><i data-lucide="pen-tool"></i></a>
+        <a href="#solutions" class="nav-item" aria-label="Solutions"><i data-lucide="layers"></i></a>
+        <a href="#pricing" class="nav-item" aria-label="Pricing"><i data-lucide="credit-card"></i></a>
         <a href="#contact" class="nav-item" aria-label="Contact"><i data-lucide="mail"></i></a>
       </div>
     </nav>
@@ -57,7 +57,7 @@
         <!-- Actions -->
         <div class="hero-actions fade-in">
           <a href="#work" class="btn btn-primary">See work</a>
-          <a href="#goods" class="btn btn-secondary">Shop products</a>
+          <a href="#pricing" class="btn btn-secondary">Shop products</a>
         </div>
 
         <!-- Hero Image (Portrait) -->
@@ -173,46 +173,6 @@
         </div>
       </section>
 
-      <!-- Digital Goods (Missing from previous version) -->
-      <section id="goods" class="section-container">
-        <div class="section-header">
-            <h2 class="section-title">Digital goods <sup class="count">(6)</sup></h2>
-            <a href="#" class="link-subtle">See all</a>
-        </div>
-
-        <div class="project-grid">
-            <!-- Item 1 -->
-            <article class="project-card reveal-on-scroll">
-                <div class="card-media">
-                  <img src="https://images.unsplash.com/photo-1626785774573-4b7993143a2d?q=80&w=800" alt="Guidy">
-                  <div class="card-price">$99</div>
-                  <div class="card-center-logo">
-                    <span class="font-serif text-3xl font-bold italic">BRAND<br>BOOK</span>
-                  </div>
-                </div>
-                <div class="card-content mt-4">
-                  <h3>Guidy</h3>
-                  <p>Brand Book Template</p>
-                </div>
-            </article>
-
-            <!-- Item 2 -->
-            <article class="project-card reveal-on-scroll">
-                <div class="card-media">
-                  <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800" alt="Feature">
-                  <div class="card-price">Free</div>
-                  <div class="card-center-logo">
-                    <span class="text-2xl font-bold">Turn data<br><span class="text-serif-italic">into decisions</span></span>
-                  </div>
-                </div>
-                <div class="card-content mt-4">
-                  <h3>Feature</h3>
-                  <p>SaaS template</p>
-                </div>
-            </article>
-        </div>
-      </section>
-
       <!-- Logo Wall -->
       <section class="logo-wall reveal-on-scroll">
           <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Mailchimp_Logo.svg" alt="Mailchimp" class="client-logo">
@@ -255,7 +215,7 @@
         </div>
       </section>
 
-      <!-- Testimonials (What others say) -->
+      <!-- Testimonials -->
       <section id="testimonials" class="section-container">
         <div class="section-header">
             <h2 class="section-title">What others say <sup class="count">(6)</sup></h2>
@@ -338,7 +298,6 @@
          </div>
          
          <div class="footer-socials">
-             <!-- Social Icons using Lucide -->
              <a href="#"><i data-lucide="twitter"></i></a>
              <a href="#"><i data-lucide="youtube"></i></a>
              <a href="#"><i data-lucide="instagram"></i></a>
@@ -383,7 +342,7 @@
 
     </main>
     
-    <!-- Inline script to ensure execution order -->
+    <!-- Inline script -->
     <script src="script.js"></script>
   </body>
 </html>
