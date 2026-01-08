@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. TESTIMONIAL CAROUSEL ---
     const track = document.querySelector('.testimonial-track');
+    const slides = document.querySelectorAll('.t-slide');
     const dots = document.querySelectorAll('.t-dot');
     
     if (track && dots.length > 0) {
@@ -118,14 +119,25 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const updateSlide = (index) => {
             currentSlide = index;
-            const offset = currentSlide * -33.333; // Assuming 3 slides = 100% width each roughly
+            const offset = currentSlide * -33.333; 
+            
+            // Move Track
             track.style.transform = `translateX(${offset}%)`;
             
+            // Update Active Classes
+            slides.forEach((slide, i) => {
+                if(i === currentSlide) slide.classList.add('active-slide');
+                else slide.classList.remove('active-slide');
+            });
+
             dots.forEach((dot, i) => {
                 if (i === currentSlide) dot.classList.add('active');
                 else dot.classList.remove('active');
             });
         };
+
+        // Initialize First Slide
+        updateSlide(0);
 
         dots.forEach(dot => {
             dot.addEventListener('click', () => {
@@ -134,11 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Auto play (optional, slow)
+        // Auto play
         setInterval(() => {
             const next = (currentSlide + 1) % totalSlides;
             updateSlide(next);
-        }, 6000);
+        }, 5000);
     }
 
     // --- 5. FAQ ACCORDION ---
@@ -147,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     faqItems.forEach(item => {
         const trigger = item.querySelector('.faq-trigger');
         const answer = item.querySelector('.faq-answer');
+        const inner = item.querySelector('.faq-inner');
         
         trigger.addEventListener('click', (e) => {
             e.preventDefault();
@@ -162,7 +175,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!isActive) {
                 item.classList.add('active');
-                gsap.to(answer, { height: "auto", duration: 0.3, ease: "power2.out" });
+                // Calculate height dynamically
+                const height = inner.offsetHeight;
+                gsap.to(answer, { height: height, duration: 0.3, ease: "power2.out" });
             } else {
                 item.classList.remove('active');
                 gsap.to(answer, { height: 0, duration: 0.3, ease: "power2.out" });
@@ -234,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
+    
     // --- 7. TIME DISPLAY ---
     const timeDisplay = document.getElementById('time-display');
     if (timeDisplay) {
