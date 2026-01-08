@@ -105,30 +105,36 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.forEach(link => {
         link.classList.remove('active');
         const href = link.getAttribute('href');
-        let isActive = false;
-        const cleanHref = href.split('#')[0]; 
-
-        if (cleanHref === 'index.html') {
-             if (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) {
-                 isActive = true;
-             }
-        } else if (cleanHref) {
-             if (currentPath.endsWith(cleanHref)) {
-                 isActive = true;
-             }
-        }
-
-        if (isActive) {
-            link.classList.add('active');
+        
+        if (href && href !== '#') {
+            const cleanHref = href.split('#')[0];
+            
+            // Special case for Home: matches root "/" or "/index.html"
+            if (cleanHref === '/index.html' || cleanHref === '/') {
+                if (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) {
+                    link.classList.add('active');
+                }
+            } 
+            // Other pages: ensure partial match is valid (e.g. /projects.html matches in current path)
+            // We check if currentPath includes the cleaned href string to account for potential deployment subpaths
+            else if (cleanHref.length > 1 && currentPath.includes(cleanHref)) {
+                 link.classList.add('active');
+            }
         }
         
+        // Hash link handling for smooth scroll behavior if on same page
         if(href.includes('#')) {
              link.addEventListener('click', (e) => {
                  const targetId = href.split('#')[1];
                  const targetEl = document.getElementById(targetId);
                  if(targetEl) {
-                     navLinks.forEach(l => l.classList.remove('active'));
-                     link.classList.add('active');
+                     // Only prevent default if we are on the page that has the anchor
+                     // otherwise let it navigate
+                     if(window.location.pathname.includes(href.split('#')[0]) || (href.startsWith('/index.html') && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')))) {
+                        // e.preventDefault(); // Optional: enable if you want smooth scroll without reload
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                     }
                  }
              });
         }
