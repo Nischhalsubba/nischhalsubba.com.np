@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
     <title>Nischhal Raj Subba | Product Designer</title>
     <meta name="description" content="Portfolio of Nischhal Raj Subba - Product Designer crafting refined digital experiences.">
     
@@ -13,22 +12,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=7">
     
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body>
 
-    <!-- Top Navigation Dock -->
-    <nav class="nav-dock">
-      <div class="nav-dock-inner">
-        <a href="./index.html" class="nav-item active" aria-label="Home"><i data-lucide="home"></i></a>
-        <a href="./projects.html" class="nav-item" aria-label="Projects"><i data-lucide="layers"></i></a>
-        <a href="./blog.html" class="nav-item" aria-label="Insights"><i data-lucide="pen-tool"></i></a>
-        <a href="#contact" class="nav-item" aria-label="Contact"><i data-lucide="mail"></i></a>
+    <!-- Redesigned Navigation -->
+    <nav class="nav-wrapper">
+      <div class="nav-pill">
+        <a href="./index.html" class="nav-link active">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="./projects.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span>Work</span>
+        </a>
+        <a href="./blog.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+            <span>Insights</span>
+        </a>
+        <a href="#contact" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>Contact</span>
+        </a>
       </div>
     </nav>
 
@@ -37,26 +47,21 @@
       <!-- Hero Section -->
       <section id="home" class="hero-section">
         
-        <!-- Infinite Ticker (Marquee) -->
         <div class="ticker-wrap fade-in">
              <div class="ticker">
                   <span class="ticker-item">Product Design</span>
                   <span class="ticker-item">Design Systems</span>
                   <span class="ticker-item">Web3 / DeFi</span>
-                  <span class="ticker-item">Prototyping</span>
                   <span class="ticker-item">Kathmandu</span>
                   <span class="ticker-item">User Research</span>
-                  <!-- Duplicate for infinite loop illusion -->
                   <span class="ticker-item">Product Design</span>
                   <span class="ticker-item">Design Systems</span>
                   <span class="ticker-item">Web3 / DeFi</span>
-                  <span class="ticker-item">Prototyping</span>
                   <span class="ticker-item">Kathmandu</span>
                   <span class="ticker-item">User Research</span>
              </div>
         </div>
 
-        <!-- Headline -->
         <h1 class="hero-title fade-in">
           <span>Bold thinking,</span>
           <span class="text-serif-italic">Better design.</span>
@@ -66,15 +71,9 @@
             Nischhal Raj Subba is a Product Designer crafting refined digital experiences and scalable design systems for worldwide brands.
         </p>
 
-        <!-- Actions -->
         <div class="hero-actions fade-in">
-          <a href="./projects.html" class="btn btn-primary clickable">See work</a>
-          <a href="#contact" class="btn btn-dark clickable">Get in touch</a>
-        </div>
-
-        <!-- Hero Image -->
-        <div class="hero-image-wrapper fade-in">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop" alt="Portrait" class="hero-img">
+          <a href="./projects.html" class="btn btn-primary clickable">View Projects</a>
+          <a href="#contact" class="btn btn-dark clickable">Contact Me</a>
         </div>
 
       </section>
@@ -82,42 +81,42 @@
       <!-- Selected Work -->
       <section id="work" class="section-container">
         <div class="section-header">
-          <h2 class="section-title">Projects <sup>(03)</sup></h2>
-          <a href="./projects.html" class="btn btn-dark clickable" style="padding: 10px 20px; font-size: 14px;">View all</a>
+          <h2 class="section-title">Selected Work <sup>(03)</sup></h2>
+          <a href="./projects.html" class="btn btn-dark clickable" style="padding: 10px 20px; font-size: 14px;">View all projects</a>
         </div>
 
         <div class="project-grid">
            <!-- Large Feature -->
            <a href="./project-detail.html" class="project-card large reveal-on-scroll clickable">
                <div class="card-media">
-                   <img src="https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=2000" alt="Nova Financial">
+                   <img src="https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=2400" alt="Nova Financial">
                    <div class="card-badge">Fintech App</div>
                </div>
-               <div class="card-content">
+               <div class="card-meta">
                    <h3>Nova Financial</h3>
                    <p>Redesigning the mobile banking experience for 2M+ users.</p>
                </div>
            </a>
 
-           <!-- Standard Card 1 -->
+           <!-- Card 2 -->
            <a href="./project-detail.html" class="project-card reveal-on-scroll clickable">
                 <div class="card-media">
                     <img src="https://images.unsplash.com/photo-1620641788427-7e9643a200a5?q=80&w=1200" alt="Orbit System">
                     <div class="card-badge">Design System</div>
                 </div>
-                <div class="card-content">
+                <div class="card-meta">
                     <h3>Orbit System</h3>
                     <p>Enterprise component library for SaaS.</p>
                 </div>
            </a>
           
-           <!-- Standard Card 2 -->
+           <!-- Card 3 -->
            <a href="./project-detail.html" class="project-card reveal-on-scroll clickable">
                 <div class="card-media">
                     <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1200" alt="Ether Flow">
                     <div class="card-badge">Web3 / DeFi</div>
                 </div>
-                <div class="card-content">
+                <div class="card-meta">
                     <h3>Ether Flow</h3>
                     <p>Simplifying complex decentralized exchange workflows.</p>
                 </div>
@@ -125,132 +124,83 @@
         </div>
       </section>
 
-      <!-- Solutions -->
-      <section class="section-container">
-        <div class="section-header">
-          <h2 class="section-title">Expertise</h2>
-        </div>
+      <!-- Form Section -->
+      <section id="contact" class="section-container">
+          <div class="form-grid">
+              <div class="form-info reveal-on-scroll">
+                  <h3>Let's start a project together.</h3>
+                  <p>I'm currently available for freelance projects and open to full-time opportunities.</p>
+                  
+                  <div class="contact-list">
+                      <div class="contact-item">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                          <span>hello@nischhal.design</span>
+                      </div>
+                      <div class="contact-item">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                          <span>Kathmandu, Nepal</span>
+                      </div>
+                  </div>
+              </div>
 
-        <div class="solutions-grid">
-           <div class="solution-card reveal-on-scroll">
-              <div class="sol-header">
-                <span class="sol-num">01.</span>
-                <div class="sol-icon"><i data-lucide="layout-template"></i></div>
+              <div class="form-wrapper reveal-on-scroll">
+                  <form>
+                      <div class="form-group">
+                          <label class="form-label">Name</label>
+                          <input type="text" class="form-input" placeholder="Your name">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Email</label>
+                          <input type="email" class="form-input" placeholder="Your email address">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Message</label>
+                          <textarea class="form-textarea" rows="4" placeholder="Tell me about your project..."></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-full clickable">Send Message</button>
+                  </form>
               </div>
-              <div class="sol-body">
-                 <h3>Product Design</h3>
-                 <p>Transforming ambiguous problems into elegant, user-centric solutions through research and high-fidelity prototyping.</p>
-              </div>
-           </div>
-
-           <div class="solution-card reveal-on-scroll">
-              <div class="sol-header">
-                <span class="sol-num">02.</span>
-                <div class="sol-icon"><i data-lucide="component"></i></div>
-              </div>
-              <div class="sol-body">
-                 <h3>Design Systems</h3>
-                 <p>Building scalable, accessible component libraries in Figma and code to ensure consistency across products.</p>
-              </div>
-           </div>
-        </div>
+          </div>
       </section>
-
-      <!-- Blog -->
-      <section class="section-container">
-        <div class="section-header">
-            <h2 class="section-title">Insights <sup>(03)</sup></h2>
-            <a href="./blog.html" class="btn btn-dark clickable" style="padding: 10px 20px; font-size: 14px;">Read all</a>
-        </div>
-        
-        <div class="blog-list">
-            <a href="./blog-detail.html" class="blog-row clickable">
-                <div class="blog-info">
-                    <h3>The future of Design Systems</h3>
-                    <div class="blog-meta">Oct 24, 2025 • 5 min read</div>
-                </div>
-                <div class="blog-arrow"><i data-lucide="arrow-up-right"></i></div>
-            </a>
-            
-            <a href="./blog-detail.html" class="blog-row clickable">
-                <div class="blog-info">
-                    <h3>Bridging Design & Engineering</h3>
-                    <div class="blog-meta">Oct 10, 2025 • 4 min read</div>
-                </div>
-                <div class="blog-arrow"><i data-lucide="arrow-up-right"></i></div>
-            </a>
-
-            <a href="./blog-detail.html" class="blog-row clickable">
-                <div class="blog-info">
-                    <h3>Accessibility First</h3>
-                    <div class="blog-meta">Sep 15, 2025 • 3 min read</div>
-                </div>
-                <div class="blog-arrow"><i data-lucide="arrow-up-right"></i></div>
-            </a>
-        </div>
-      </section>
-
-      <!-- Testimonials -->
-      <section class="section-container">
-        <div class="section-header">
-            <h2 class="section-title">What others say</h2>
-        </div>
-
-        <div class="testimonials-wrapper reveal-on-scroll">
-            <div class="testimonial-slide active">
-                <div class="testi-card">
-                    <div class="testi-user">
-                        <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100" alt="James">
-                        <div>
-                            <h4>James R.</h4>
-                            <span class="text-muted">CTO @ FinTech Corp</span>
-                        </div>
-                    </div>
-                    <div class="testi-content">
-                        <p>“Nischhal is a rare breed of designer who understands code. His design system handover was flawless, saving our dev team weeks of work.”</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-slide">
-                <div class="testi-card">
-                    <div class="testi-user">
-                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" alt="Sarah">
-                        <div>
-                            <h4>Sarah L.</h4>
-                            <span class="text-muted">Product Manager</span>
-                        </div>
-                    </div>
-                    <div class="testi-content">
-                        <p>“The UX improvements Nischhal implemented increased our conversion rate by 30%. He is strategic, thoughtful, and incredible to work with.”</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testi-dots"></div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer id="contact" class="site-footer reveal-on-scroll">
-         <div class="footer-cta">
-            <h2>Let's create something<br><span class="text-serif-italic" style="color: #666;">awesome together.</span></h2>
-         </div>
-         
-         <div class="footer-socials">
-             <a href="https://www.linkedin.com/in/nischhal/" class="clickable"><i data-lucide="linkedin"></i></a>
-             <a href="https://dribbble.com/Nischhal" class="clickable"><i data-lucide="dribbble"></i></a>
-             <a href="https://github.com/Nischhalsubba" class="clickable"><i data-lucide="github"></i></a>
-             <a href="https://www.instagram.com/nischhalsubba" class="clickable"><i data-lucide="instagram"></i></a>
-         </div>
-
-         <div class="footer-bottom">
-             <span>Built by Nischhal Raj Subba.</span>
-             <span>© 2026. Kathmandu, Nepal.</span>
-         </div>
-      </footer>
 
     </main>
+
+    <!-- Redesigned Footer -->
+    <footer class="site-footer reveal-on-scroll">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>NRS.</h2>
+                    <p>Designing interfaces that are as functional as they are beautiful.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Sitemap</h4>
+                    <div class="footer-links">
+                        <a href="./index.html" class="footer-link clickable">Home</a>
+                        <a href="./projects.html" class="footer-link clickable">Work</a>
+                        <a href="./blog.html" class="footer-link clickable">Insights</a>
+                        <a href="#contact" class="footer-link clickable">Contact</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Socials</h4>
+                    <div class="footer-links">
+                        <a href="https://linkedin.com" target="_blank" class="footer-link clickable">LinkedIn</a>
+                        <a href="https://twitter.com" target="_blank" class="footer-link clickable">Twitter / X</a>
+                        <a href="https://instagram.com" target="_blank" class="footer-link clickable">Instagram</a>
+                        <a href="https://dribbble.com" target="_blank" class="footer-link clickable">Dribbble</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Nischhal Raj Subba. All Rights Reserved.</span>
+                <span>Time in Kathmandu: <span id="time-display">00:00</span></span>
+            </div>
+        </div>
+    </footer>
     
     <!-- Script -->
     <script src="script.js"></script>

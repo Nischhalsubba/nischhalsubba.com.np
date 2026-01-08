@@ -1,11 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Initialize Icons
-    if (window.lucide) {
-        lucide.createIcons();
-    }
-
-    // --- CUSTOM CURSOR LOGIC ---
+    // --- 1. CUSTOM CURSOR (Redesigned for Smoothness) ---
     const cursorDot = document.createElement('div');
     const cursorOutline = document.createElement('div');
     cursorDot.className = 'cursor-dot';
@@ -13,150 +8,115 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(cursorDot);
     document.body.appendChild(cursorOutline);
 
+    // Initial position to avoid jump
+    gsap.set(cursorDot, {xPercent: -50, yPercent: -50});
+    gsap.set(cursorOutline, {xPercent: -50, yPercent: -50});
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
     window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
         // Dot follows instantly
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
+        gsap.to(cursorDot, {
+            x: mouseX, 
+            y: mouseY, 
+            duration: 0.01, 
+            overwrite: true
+        });
 
-        // Outline follows with lag via GSAP
-        if (window.gsap) {
-            window.gsap.to(cursorOutline, {
-                x: posX,
-                y: posY,
-                duration: 0.1,
-                ease: "power2.out"
-            });
-        }
+        // Outline follows with smooth lag
+        gsap.to(cursorOutline, {
+            x: mouseX,
+            y: mouseY,
+            duration: 0.15,
+            ease: "power2.out",
+            overwrite: true
+        });
     });
 
-    // General Clickable Hover
-    const clickables = document.querySelectorAll('a, button, .clickable, .nav-item');
+    // Hover Scaling logic
+    const clickables = document.querySelectorAll('a, button, input, textarea, .clickable');
     clickables.forEach(el => {
         el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
         el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
     });
 
-    // Project Card Specific Hover (Requirement 1 & 5)
+    // Card Specific Hover
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         card.addEventListener('mouseenter', () => document.body.classList.add('hovering-card'));
         card.addEventListener('mouseleave', () => document.body.classList.remove('hovering-card'));
     });
 
-
-    // --- GSAP ANIMATIONS ---
-    const gsap = window.gsap;
+    // --- 2. GSAP SCROLL ANIMATIONS ---
     const ScrollTrigger = window.ScrollTrigger;
-    
-    if (gsap && ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Reveal
-        const tl = gsap.timeline();
-        tl.to(".fade-in", {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            stagger: 0.1,
-            ease: "power3.out",
-            delay: 0.2
-        });
+    // Hero Fade In sequence
+    const tl = gsap.timeline();
+    tl.to(".fade-in", {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power3.out",
+        onStart: () => {
+            gsap.set(".fade-in", {y: 30});
+        }
+    });
 
-        // Parallax
-        const heroImg = document.querySelector('.hero-img');
-        if (heroImg) {
-            gsap.to(heroImg, {
-                yPercent: 15,
-                ease: "none",
+    // Scroll Reveal Elements
+    const revealElements = document.querySelectorAll(".reveal-on-scroll");
+    revealElements.forEach((element) => {
+        gsap.fromTo(element, 
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out",
                 scrollTrigger: {
-                    trigger: ".hero-image-wrapper",
-                    start: "top top", 
-                    end: "bottom top",
-                    scrub: true
+                    trigger: element,
+                    start: "top 85%",
                 }
-            });
-        }
+            }
+        );
+    });
 
-        // Scroll Reveals
-        const revealElements = document.querySelectorAll(".reveal-on-scroll");
-        revealElements.forEach((element) => {
-            gsap.fromTo(element, 
-                { y: 40, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 85%",
-                    }
-                }
-            );
-        });
+    // --- 3. TIME DISPLAY ---
+    const timeDisplay = document.getElementById('time-display');
+    if (timeDisplay) {
+        const updateTime = () => {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', hour12: true };
+            timeDisplay.textContent = now.toLocaleTimeString('en-US', options);
+        };
+        updateTime();
+        setInterval(updateTime, 1000);
     }
 
-    // --- TESTIMONIAL CAROUSEL ---
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dotsContainer = document.querySelector('.testi-dots');
-    
-    if (slides.length > 0 && dotsContainer) {
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-        let slideInterval;
-
-        slides.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (index === 0) dot.classList.add('active');
-            
-            dot.addEventListener('click', () => {
-                goToSlide(index);
-                resetTimer();
-            });
-            dotsContainer.appendChild(dot);
-        });
-
-        const dots = document.querySelectorAll('.dot');
-
-        function goToSlide(index) {
-            slides.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            let next = (currentSlide + 1) % totalSlides;
-            goToSlide(next);
-        }
-
-        function startTimer() {
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-
-        function resetTimer() {
-            clearInterval(slideInterval);
-            startTimer();
-        }
-
-        startTimer();
-    }
-
-    // --- NAV ACTIVE STATE ---
-    const navItems = document.querySelectorAll(".nav-item");
+    // --- 4. NAVIGATION ACTIVE STATE ---
+    const navLinks = document.querySelectorAll('.nav-link');
     const currentPath = window.location.pathname;
     
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        const href = item.getAttribute('href').replace('./', '');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href').replace('./', '');
         
+        // Exact match for non-home pages or home page
         if (currentPath.endsWith(href) || (href === 'index.html' && currentPath === '/')) {
-            item.classList.add('active');
+            link.classList.add('active');
+        }
+        
+        // Hash link check
+        if(href.startsWith('#')) {
+             link.addEventListener('click', () => {
+                 navLinks.forEach(l => l.classList.remove('active'));
+                 link.classList.add('active');
+             });
         }
     });
 
