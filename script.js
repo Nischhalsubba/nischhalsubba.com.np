@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animateCursor();
 
     // Hover Scaling logic
-    const clickables = document.querySelectorAll('a, button, input, textarea, select, .clickable');
+    const clickables = document.querySelectorAll('a, button, input, textarea, select, .clickable, .faq-question');
     clickables.forEach(el => {
         el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
         el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
@@ -193,6 +193,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.classList.add('active');
                 }
             });
+        });
+    }
+
+    // --- 7. FAQ ACCORDION ---
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            // Close others (optional - can keep multiple open)
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) otherItem.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        });
+    });
+
+    // --- 8. FORM SUCCESS SIMULATION ---
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const successOverlay = document.getElementById('form-success');
+            if (successOverlay) {
+                successOverlay.classList.add('visible');
+                contactForm.reset();
+            }
         });
     }
 

@@ -1,6 +1,6 @@
 /* 
   STYLE.CSS
-  Refined Portfolio Theme v4
+  Refined Portfolio Theme v5
 */
 
 /* --- 1. TOKENS --- */
@@ -72,6 +72,12 @@ a, button, input, textarea, select {
 img {
   max-width: 100%;
   display: block;
+}
+
+/* Focus States for Accessibility */
+:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 4px;
 }
 
 /* --- 3. CUSTOM CURSOR --- */
@@ -258,6 +264,16 @@ main {
 .section-title {
     font-size: 3rem;
     line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.section-title svg {
+    width: 36px;
+    height: 36px;
+    color: var(--text-secondary);
+    opacity: 0.7;
 }
 
 .section-title sup {
@@ -276,7 +292,6 @@ main {
     align-items: center;
     text-align: center;
     padding-top: 100px;
-    /* Subtle radial gradient as requested */
     background: radial-gradient(circle at 50% 30%, #111111 0%, #050505 60%);
 }
 
@@ -401,7 +416,7 @@ main {
     font-size: 1.1rem;
 }
 
-/* --- 10. PRINCIPLES GRID (NEW) --- */
+/* --- 10. PRINCIPLES GRID --- */
 .principles-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -469,7 +484,7 @@ main {
     font-size: 0.85rem;
 }
 
-/* --- 12. SKILLS MATRIX (NEW) --- */
+/* --- 12. SKILLS MATRIX --- */
 .skills-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -594,7 +609,7 @@ main {
     transform: scale(1.2);
 }
 
-/* --- 14. RESOURCES (NEW) --- */
+/* --- 14. RESOURCES --- */
 .resources-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -640,7 +655,68 @@ main {
     gap: 6px;
 }
 
-/* --- 15. FORM SECTION --- */
+/* --- 15. FAQ (NEW) --- */
+.faq-grid {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 0;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.2s;
+}
+
+.faq-question:hover {
+    color: var(--accent-primary);
+}
+
+.faq-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+    color: var(--accent-primary);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding-right: 40px;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    margin-bottom: 32px;
+}
+
+.faq-answer p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* --- 16. FORM SECTION --- */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -677,6 +753,8 @@ main {
     padding: 40px;
     border-radius: var(--radius-card);
     border: 1px solid var(--border-subtle);
+    position: relative;
+    overflow: hidden;
 }
 
 .form-group {
@@ -716,7 +794,38 @@ select.form-input {
     border-color: var(--text-secondary);
 }
 
-/* --- 16. CASE STUDY LAYOUT (NEW) --- */
+.form-success {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.form-success.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.success-icon {
+    width: 64px;
+    height: 64px;
+    color: var(--accent-primary);
+    margin-bottom: 24px;
+}
+
+/* --- 17. CASE STUDY LAYOUT --- */
 .case-study-grid {
     display: grid;
     grid-template-columns: 240px 1fr;
@@ -772,7 +881,7 @@ select.form-input {
     font-size: 1.1rem;
 }
 
-/* --- 17. TIMELINE (NEW - About Page) --- */
+/* --- 18. TIMELINE --- */
 .timeline {
     position: relative;
     padding-left: 40px;
@@ -825,7 +934,7 @@ select.form-input {
     max-width: 600px;
 }
 
-/* --- 18. FOOTER --- */
+/* --- 19. FOOTER --- */
 .site-footer {
     padding: 100px 0 40px;
     background: var(--bg-surface);
@@ -883,7 +992,7 @@ select.form-input {
     font-size: 0.9rem;
 }
 
-/* --- 19. RESPONSIVE --- */
+/* --- 20. RESPONSIVE --- */
 @media (max-width: 1024px) {
     .project-card, .project-card.large { grid-column: span 12; }
     .principles-grid, .skills-container { grid-template-columns: 1fr; gap: 40px;}
@@ -900,6 +1009,7 @@ select.form-input {
     .stats-grid { grid-template-columns: 1fr; }
     .hero-title { font-size: 3rem; }
     .resources-grid { grid-template-columns: 1fr; }
+    .faq-question { font-size: 1.1rem; }
 }
 
 /* Detail Page Specific */
