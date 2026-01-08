@@ -3,15 +3,64 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURATION ---
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // --- 1. CUSTOM CURSOR ---
+    // --- 1. SCANNER BEAM INTERACTION ---
+    const scanner = document.querySelector('.grid-scanner');
+    if (scanner && !REDUCED_MOTION) {
+        let scannerY = 0;
+        let direction = 1;
+        let speed = 1.5; // Base speed
+        let frameId;
+
+        // Track Mouse
+        let mouseX = 0;
+        let mouseY = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateScanner() {
+            const windowHeight = window.innerHeight;
+            
+            // Move Scanner
+            scannerY += speed * direction;
+
+            // Bounce at edges
+            if (scannerY > windowHeight) {
+                scannerY = windowHeight;
+                direction = -1;
+            } else if (scannerY < 0) {
+                scannerY = 0;
+                direction = 1;
+            }
+
+            // Mouse Interaction: "Glitch" if cursor is near
+            // If the mouse Y is close to the scanner Y (within 50px)
+            if (Math.abs(mouseY - scannerY) < 50) {
+                // Randomly flip direction or speed up momentarily
+                if (Math.random() > 0.8) {
+                    direction *= -1; 
+                }
+                // Push away slightly to avoid getting stuck
+                scannerY += (direction * 10); 
+            }
+
+            scanner.style.transform = `translateY(${scannerY}px)`;
+            frameId = requestAnimationFrame(animateScanner);
+        }
+
+        frameId = requestAnimationFrame(animateScanner);
+    }
+
+    // --- 2. CUSTOM CURSOR ---
     const cursorDot = document.querySelector('.custom-cursor-dot');
     const cursorOutline = document.querySelector('.custom-cursor-outline');
     
     if (!REDUCED_MOTION && window.matchMedia('(pointer: fine)').matches && cursorDot) {
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let outlineX = mouseX;
-        let outlineY = mouseY;
+        let outlineX = window.innerWidth / 2;
+        let outlineY = window.innerHeight / 2;
+        let mouseX = outlineX;
+        let mouseY = outlineY;
 
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
@@ -32,29 +81,35 @@ document.addEventListener('DOMContentLoaded', () => {
             el.addEventListener('mouseenter', () => {
                 cursorOutline.style.width = '60px';
                 cursorOutline.style.height = '60px';
-                cursorOutline.style.background = 'rgba(255,255,255,0.05)';
+                cursorOutline.style.background = 'rgba(59, 130, 246, 0.1)'; // Blue tint
+                cursorOutline.style.borderColor = 'var(--accent-blue)';
             });
             el.addEventListener('mouseleave', () => {
                 cursorOutline.style.width = '40px';
                 cursorOutline.style.height = '40px';
                 cursorOutline.style.background = 'transparent';
+                cursorOutline.style.borderColor = 'rgba(255,255,255,0.2)';
             });
         });
     }
 
-    // --- 2. CAPABILITIES HOVER EFFECT ---
+    // --- 3. CAPABILITIES HOVER ---
     const capCards = document.querySelectorAll('.cap-card');
     capCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
+            card.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(255,255,255,0.06), rgba(255,255,255,0.01))`;
+            card.style.borderColor = 'rgba(255,255,255,0.15)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.background = '';
+            card.style.borderColor = '';
         });
     });
 
-    // --- 3. NAV ACTIVE STATE & GLIDER ---
+    // --- 4. NAV ACTIVE STATE & GLIDER ---
     const navLinks = document.querySelectorAll('.nav-link');
     const glider = document.querySelector('.nav-glider');
     const navPill = document.querySelector('.nav-pill');
@@ -108,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 4. TESTIMONIAL CAROUSEL ---
+    // --- 5. TESTIMONIAL CAROUSEL ---
     const track = document.querySelector('.testimonial-track');
     const slides = document.querySelectorAll('.t-slide');
     const dots = document.querySelectorAll('.t-dot');
@@ -119,15 +174,19 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const updateSlide = (index) => {
             currentSlide = index;
+            // 3 slides = 100% / 3 = 33.333%
             const offset = currentSlide * -33.333; 
             
-            // Move Track
             track.style.transform = `translateX(${offset}%)`;
             
-            // Update Active Classes
             slides.forEach((slide, i) => {
-                if(i === currentSlide) slide.classList.add('active-slide');
-                else slide.classList.remove('active-slide');
+                if(i === currentSlide) {
+                    slide.classList.add('active-slide');
+                    gsap.to(slide, {opacity: 1, scale: 1, duration: 0.5});
+                } else {
+                    slide.classList.remove('active-slide');
+                    gsap.to(slide, {opacity: 0.3, scale: 0.95, duration: 0.5});
+                }
             });
 
             dots.forEach((dot, i) => {
@@ -153,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
-    // --- 5. FAQ ACCORDION ---
+    // --- 6. FAQ ACCORDION ---
     const faqItems = document.querySelectorAll('.faq-item');
     
     faqItems.forEach(item => {
@@ -185,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 6. ANIMATIONS (GSAP) ---
+    // --- 7. ANIMATIONS (GSAP) ---
     if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
         const gsap = window.gsap;
         const ScrollTrigger = window.ScrollTrigger;
@@ -218,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
 
-        // C. Outline-to-Fill Text Animation (SCRUBBED)
+        // C. Text Reveal
         document.querySelectorAll(".text-reveal-wrap").forEach(title => {
             const fill = title.querySelector(".text-fill");
             if (fill) {
@@ -231,40 +290,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             trigger: title,
                             start: "top 80%",
                             end: "top 30%", 
-                            scrub: 1 // Scrubbing tied to scroll
+                            scrub: 1
                         }
                     }
                 );
             }
         });
-
-        // D. Image Hover Parallax
-        document.querySelectorAll('.project-card').forEach(card => {
-            const img = card.querySelector('img');
-            card.addEventListener('mouseenter', () => {
-                gsap.to(img, { scale: 1.05, duration: 0.6, ease: "power2.out" });
-            });
-            card.addEventListener('mouseleave', () => {
-                gsap.to(img, { scale: 1, duration: 0.6, ease: "power2.out" });
-            });
-        });
-    }
-    
-    // --- 7. TIME DISPLAY ---
-    const timeDisplay = document.getElementById('time-display');
-    if (timeDisplay) {
-        const updateTime = () => {
-            const now = new Date();
-            try {
-                const options = { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', hour12: true };
-                const timeString = now.toLocaleTimeString('en-US', options);
-                timeDisplay.textContent = `${timeString} Kathmandu`;
-            } catch (e) {
-                timeDisplay.textContent = "Kathmandu";
-            }
-        };
-        updateTime();
-        setInterval(updateTime, 1000);
     }
     
     // --- 8. FORM SUBMISSION ---
