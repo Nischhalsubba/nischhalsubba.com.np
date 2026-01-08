@@ -1,57 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. VANILLA JS CUSTOM CURSOR (No GSAP dependency) ---
-    const cursorDot = document.createElement('div');
-    const cursorOutline = document.createElement('div');
-    cursorDot.className = 'cursor-dot';
-    cursorOutline.className = 'cursor-outline';
-    document.body.appendChild(cursorDot);
-    document.body.appendChild(cursorOutline);
-
-    // Enable custom cursor styles via class
-    document.body.classList.add('custom-cursor-enabled');
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
+    // --- 1. FAQ ACCORDION LOGIC ---
+    const faqItems = document.querySelectorAll('.faq-item');
     
-    // Smoothness config
-    let outlineX = mouseX;
-    let outlineY = mouseY;
-    
-    // Track mouse position
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+    faqItems.forEach(item => {
+        const trigger = item.querySelector('.faq-trigger');
+        const content = item.querySelector('.faq-content');
         
-        // Dot follows instantly
-        cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-    });
+        trigger.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all others
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                const otherContent = otherItem.querySelector('.faq-content');
+                if(otherContent) otherContent.style.maxHeight = null;
+            });
 
-    // Animation Loop for smooth outline
-    const animateCursor = () => {
-        // Linear interpolation for smooth lag
-        const speed = 0.15;
-        outlineX += (mouseX - outlineX) * speed;
-        outlineY += (mouseY - outlineY) * speed;
-        
-        cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
-        
-        requestAnimationFrame(animateCursor);
-    };
-    animateCursor();
-
-    // Hover Scaling logic
-    const clickables = document.querySelectorAll('a, button, input, textarea, select, .clickable, .faq-question');
-    clickables.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-    });
-
-    // Card Specific Hover
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', () => document.body.classList.add('hovering-card'));
-        card.addEventListener('mouseleave', () => document.body.classList.remove('hovering-card'));
+            // Toggle current
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                item.classList.remove('active');
+                content.style.maxHeight = null;
+            }
+        });
     });
 
     // --- 2. GSAP SCROLL ANIMATIONS ---
@@ -60,29 +34,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const ScrollTrigger = window.ScrollTrigger;
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Fade In
-        gsap.from(".fade-in", {
-            y: 50,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.1,
-            ease: "power3.out",
-            delay: 0.2
-        });
+        // Hero Fade In sequence
+        const heroElements = document.querySelectorAll(".hero-section .fade-in");
+        if(heroElements.length > 0) {
+            gsap.from(heroElements, {
+                y: 30,
+                opacity: 0,
+                duration: 1.2,
+                stagger: 0.15,
+                ease: "power3.out",
+                delay: 0.2
+            });
+        }
 
-        // Scroll Reveal Elements
+        // General Scroll Reveal
         const revealElements = document.querySelectorAll(".reveal-on-scroll");
         revealElements.forEach((element) => {
-            gsap.from(element, {
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 85%",
+            gsap.fromTo(element, 
+                { y: 40, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                    }
                 }
-            });
+            );
         });
     }
 
@@ -92,140 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const updateTime = () => {
             const now = new Date();
             const options = { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', hour12: true };
-            timeDisplay.textContent = now.toLocaleTimeString('en-US', options);
+            timeDisplay.textContent = now.toLocaleTimeString('en-US', options) + " KTH";
         };
         updateTime();
         setInterval(updateTime, 1000);
     }
-
-    // --- 4. NAVIGATION ACTIVE STATE ---
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentPath = window.location.pathname;
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        const href = link.getAttribute('href');
-        
-        if (href && href !== '#') {
-            const cleanHref = href.split('#')[0];
-            
-            // Special case for Home: matches root "/" or "/index.html"
-            if (cleanHref === '/index.html' || cleanHref === '/') {
-                if (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) {
-                    link.classList.add('active');
-                }
-            } 
-            // Other pages: ensure partial match is valid (e.g. /projects.html matches in current path)
-            // We check if currentPath includes the cleaned href string to account for potential deployment subpaths
-            else if (cleanHref.length > 1 && currentPath.includes(cleanHref)) {
-                 link.classList.add('active');
-            }
-        }
-        
-        // Hash link handling for smooth scroll behavior if on same page
-        if(href.includes('#')) {
-             link.addEventListener('click', (e) => {
-                 const targetId = href.split('#')[1];
-                 const targetEl = document.getElementById(targetId);
-                 if(targetEl) {
-                     // Only prevent default if we are on the page that has the anchor
-                     // otherwise let it navigate
-                     if(window.location.pathname.includes(href.split('#')[0]) || (href.startsWith('/index.html') && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')))) {
-                        // e.preventDefault(); // Optional: enable if you want smooth scroll without reload
-                        navLinks.forEach(l => l.classList.remove('active'));
-                        link.classList.add('active');
-                     }
-                 }
-             });
-        }
-    });
-
-    // --- 5. TESTIMONIAL CAROUSEL ---
-    const slides = document.querySelectorAll('.testimonial-slide');
-    if (slides.length > 0) {
-        let currentSlide = 0;
-        const dots = document.querySelectorAll('.t-dot');
-        const totalSlides = slides.length;
-        let slideInterval;
-
-        const showSlide = (index) => {
-            slides.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-        };
-
-        const startSlideTimer = () => {
-            slideInterval = setInterval(() => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                showSlide(currentSlide);
-            }, 6000); 
-        };
-
-        dots.forEach((dot) => {
-            dot.addEventListener('click', (e) => {
-                clearInterval(slideInterval);
-                const index = parseInt(e.target.getAttribute('data-index'));
-                currentSlide = index;
-                showSlide(currentSlide);
-                startSlideTimer();
-            });
-        });
-
-        startSlideTimer();
-    }
-
-    // --- 6. CASE STUDY SIDEBAR SCROLL SPY ---
-    const tocLinks = document.querySelectorAll('.toc-link');
-    if (tocLinks.length > 0) {
-        window.addEventListener('scroll', () => {
-            let current = "";
-            const sections = ['challenge', 'approach', 'process', 'outcome'];
-            
-            sections.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    const top = el.offsetTop;
-                    if (window.scrollY >= top - 200) {
-                        current = id;
-                    }
-                }
-            });
-
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('onclick').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    }
-
-    // --- 7. FAQ ACCORDION ---
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            // Close others (optional - can keep multiple open)
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) otherItem.classList.remove('active');
-            });
-            item.classList.toggle('active');
-        });
-    });
-
-    // --- 8. FORM SUCCESS SIMULATION ---
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const successOverlay = document.getElementById('form-success');
-            if (successOverlay) {
-                successOverlay.classList.add('visible');
-                contactForm.reset();
-            }
-        });
-    }
-
 });

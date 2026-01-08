@@ -8,108 +8,53 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=13">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
   <body>
 
-    <!-- Navigation -->
     <nav class="nav-wrapper">
       <div class="nav-pill">
-        <a href="/index.html" class="nav-link">
-            <span>Home</span>
-        </a>
-        <a href="/projects.html" class="nav-link">
-            <span>Case Studies</span>
-        </a>
-        <a href="/about.html" class="nav-link">
-            <span>About</span>
-        </a>
-        <a href="/blog.html" class="nav-link active">
-            <span>Writing</span>
-        </a>
-        <a href="/index.html#contact" class="nav-link">
-            <span>Contact</span>
-        </a>
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/projects.html" class="nav-link">Work</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/blog.html" class="nav-link active">Writing</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </div>
     </nav>
 
     <main>
-      <section class="hero-section" style="min-height: 50vh;">
+      <section class="hero-section" style="min-height: 40vh;">
         <h1 class="hero-title fade-in">Writing</h1>
-        <p class="hero-subtitle fade-in">Thoughts on Design Systems, Product Strategy, and the future of digital interfaces.</p>
+        <p class="body-large fade-in">Thoughts on Design Systems, Product Strategy, and the future of digital interfaces.</p>
       </section>
 
       <section class="section-container">
-        <div class="blog-list">
-            <a href="/blog-detail.html" class="blog-row clickable">
-                <div class="blog-info">
-                    <h3>The future of Design Systems in 2026</h3>
-                    <div class="blog-meta">Oct 24, 2025 • 5 min read</div>
-                </div>
-                <div class="blog-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                </div>
-            </a>
-            
-            <a href="/blog-detail.html" class="blog-row clickable">
-                <div class="blog-info">
-                    <h3>Bridging the gap between Design and Engineering</h3>
-                    <div class="blog-meta">Oct 10, 2025 • 4 min read</div>
-                </div>
-                <div class="blog-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                </div>
-            </a>
-
-            <a href="/blog-detail.html" class="blog-row clickable">
-                <div class="blog-info">
-                    <h3>Accessibility is not an afterthought</h3>
-                    <div class="blog-meta">Sep 15, 2025 • 3 min read</div>
-                </div>
-                <div class="blog-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                </div>
-            </a>
+        <div class="writing-grid">
+            <a href="/blog-detail.html" class="writing-card reveal-on-scroll">
+                  <div>
+                      <span class="w-badge">Strategy</span>
+                      <h4 class="w-title">The future of Design Systems in 2026</h4>
+                  </div>
+                  <div class="w-meta">5 min read • Oct 2025</div>
+              </a>
+              <!-- More cards -->
         </div>
       </section>
 
     </main>
-
-    <!-- Footer -->
-    <footer class="site-footer reveal-on-scroll">
-        <div style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h2>NRS.</h2>
-                    <p>Designing interfaces that are as functional as they are beautiful.</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Navigate</h4>
-                    <div class="footer-links">
-                        <a href="/index.html" class="footer-link clickable">Home</a>
-                        <a href="/projects.html" class="footer-link clickable">Case Studies</a>
-                        <a href="/about.html" class="footer-link clickable">About</a>
-                        <a href="/blog.html" class="footer-link clickable">Writing</a>
-                    </div>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Connect</h4>
-                    <div class="footer-links">
-                        <a href="https://www.linkedin.com/in/nischhal/" target="_blank" class="footer-link clickable">LinkedIn ↗</a>
-                        <a href="https://dribbble.com/Nischhal" target="_blank" class="footer-link clickable">Dribbble ↗</a>
-                        <a href="https://www.instagram.com/nischhalsubba" target="_blank" class="footer-link clickable">Instagram ↗</a>
-                    </div>
+    
+    <footer class="site-footer">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+            <div class="footer-inner">
+                <div class="footer-group">
+                    <h5 style="font-size: 1.25rem; font-family: var(--font-serif);">NRS.</h5>
                 </div>
             </div>
-
-            <div class="footer-bottom">
-                <span>© 2026 Nischhal Raj Subba. All Rights Reserved.</span>
-                <span>Kathmandu, Nepal</span>
+             <div style="margin-top: 60px; pt: 20px; border-top: 1px solid var(--border-subtle); color: var(--text-tertiary); font-size: 0.8rem;">
+                <span>© 2026 Nischhal Raj Subba</span>
             </div>
         </div>
     </footer>
