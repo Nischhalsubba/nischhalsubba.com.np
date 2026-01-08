@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="style.css?v=2.0">
     
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -24,11 +24,11 @@
     <div class="custom-cursor-dot"></div>
     <div class="custom-cursor-outline"></div>
 
-    <!-- Navigation (Floating Pill with Glider) -->
+    <!-- Navigation -->
     <nav class="nav-wrapper fade-in">
-      <div class="nav-pill" id="nav-pill">
-        <div class="nav-glider"></div> <!-- Animated background -->
-        <a href="/index.html" class="nav-link active">Home</a>
+      <div class="nav-pill">
+        <div class="nav-glider"></div>
+        <a href="/index.html" class="nav-link">Home</a>
         <a href="/projects.html" class="nav-link">Work</a>
         <a href="/about.html" class="nav-link">About</a>
         <a href="/blog.html" class="nav-link">Writing</a>
@@ -41,18 +41,16 @@
       <!-- 1. Hero Section -->
       <section id="home" class="hero-section">
         
-        <!-- Hero Pills -->
         <div class="hero-pills-row fade-in">
              <div class="pill-item accent">Product Designer</div>
              <div class="pill-item">Enterprise UX</div>
              <div class="pill-item">Design Systems</div>
              <div class="pill-item">Based in Kathmandu</div>
-             <div class="pill-item">Available for 2026</div>
         </div>
 
         <h1 class="hero-title fade-in">
           Systems thinker,<br />
-          <span class="text-serif-italic">Product crafter.</span>
+          <span class="text-serif-italic" style="font-style: italic;">Product crafter.</span>
         </h1>
 
         <p class="body-large fade-in" style="margin-bottom: 40px;">
@@ -69,15 +67,18 @@
       <!-- 2. Selected Work -->
       <section id="work" class="section-container">
         <div class="section-header reveal-on-scroll">
-          <h2 class="section-title">Selected Work</h2>
+          <h2 class="section-title text-reveal-wrap">
+              <span class="text-outline">Selected Work</span>
+              <span class="text-fill">Selected Work</span>
+          </h2>
           <a href="/projects.html" class="btn btn-secondary">View All</a>
         </div>
 
         <div class="project-grid">
-           <!-- Project 1: MAS DataHub -->
+           <!-- Project 1 -->
            <a href="/project-detail.html" class="project-card reveal-on-scroll">
                <div class="card-media-wrap">
-                   <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2400" loading="lazy" alt="MAS DataHub">
+                   <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2400" loading="lazy" alt="MAS DataHub Dashboard">
                    <div class="card-overlay"><span class="view-case-btn">View Case Study →</span></div>
                </div>
                <div class="card-content">
@@ -90,10 +91,10 @@
                </div>
            </a>
 
-           <!-- Project 2: Yarsha -->
+           <!-- Project 2 -->
            <a href="/project-detail.html" class="project-card reveal-on-scroll">
                 <div class="card-media-wrap">
-                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200" loading="lazy" alt="Yarsha">
+                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200" loading="lazy" alt="Yarsha Web3 Interface">
                     <div class="card-overlay"><span class="view-case-btn">View Case Study →</span></div>
                 </div>
                 <div class="card-content">
@@ -106,10 +107,10 @@
                 </div>
            </a>
           
-           <!-- Project 3: Morajaa -->
+           <!-- Project 3 -->
            <a href="/project-detail.html" class="project-card reveal-on-scroll">
                 <div class="card-media-wrap">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200" loading="lazy" alt="Morajaa">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200" loading="lazy" alt="Morajaa Platform">
                     <div class="card-overlay"><span class="view-case-btn">View Case Study →</span></div>
                 </div>
                 <div class="card-content">
@@ -122,10 +123,10 @@
                 </div>
            </a>
 
-           <!-- Project 4: Zapp Today -->
+           <!-- Project 4 -->
            <a href="/project-detail.html" class="project-card reveal-on-scroll">
                 <div class="card-media-wrap">
-                    <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1200" loading="lazy" alt="Zapp Today">
+                    <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1200" loading="lazy" alt="Zapp Today Mobile App">
                     <div class="card-overlay"><span class="view-case-btn">View Case Study →</span></div>
                 </div>
                 <div class="card-content">
@@ -140,26 +141,42 @@
         </div>
       </section>
 
-      <!-- 3. Principles -->
-      <section id="principles" class="section-container reveal-on-scroll">
-        <div class="section-header">
-           <h2 class="section-title">Approach</h2>
+      <!-- 3. Principles & Competencies -->
+      <section id="approach" class="section-container">
+        <div class="section-header reveal-on-scroll">
+           <h2 class="section-title text-reveal-wrap">
+               <span class="text-outline">Capabilities</span>
+               <span class="text-fill">Capabilities</span>
+           </h2>
         </div>
-        <div class="principles-grid">
-            <div class="principle-card">
-                <svg class="principle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
-                <h4>Systems over Pages</h4>
-                <p class="body-large" style="font-size: 1rem; margin-top: 12px;">Building interconnected patterns that scale, not isolated screens.</p>
+        
+        <div class="competencies-grid reveal-on-scroll">
+            <div class="comp-col">
+                <h4>Strategy & Product</h4>
+                <ul class="comp-list">
+                    <li>Design Systems Architecture</li>
+                    <li>Information Architecture</li>
+                    <li>User Research & Testing</li>
+                    <li>Product Strategy</li>
+                </ul>
             </div>
-            <div class="principle-card">
-                <svg class="principle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                <h4>Design with Code</h4>
-                <p class="body-large" style="font-size: 1rem; margin-top: 12px;">Designs that are technically feasible and developer-friendly from day one.</p>
+            <div class="comp-col">
+                <h4>Design & Prototyping</h4>
+                <ul class="comp-list">
+                    <li>UI/Visual Design</li>
+                    <li>Interactive Prototyping</li>
+                    <li>Motion Design</li>
+                    <li>Design Handoff</li>
+                </ul>
             </div>
-            <div class="principle-card">
-                <svg class="principle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                <h4>Speed & Rigor</h4>
-                <p class="body-large" style="font-size: 1rem; margin-top: 12px;">Balancing rapid exploration with rigorous documentation.</p>
+            <div class="comp-col">
+                <h4>Technical</h4>
+                <ul class="comp-list">
+                    <li>HTML/CSS</li>
+                    <li>Figma Variables</li>
+                    <li>Accessibility (WCAG)</li>
+                    <li>Basic React/JS</li>
+                </ul>
             </div>
         </div>
       </section>
@@ -169,19 +186,19 @@
           <div class="metrics-grid">
               <div class="metric-item">
                   <span class="metric-val">6+</span>
-                  <span class="metric-label">Years Experience</span>
+                  <span class="metric-label">Years Exp</span>
               </div>
               <div class="metric-item">
                   <span class="metric-val">30+</span>
-                  <span class="metric-label">Products Shipped</span>
+                  <span class="metric-label">Shipped</span>
               </div>
               <div class="metric-item">
                   <span class="metric-val">2M+</span>
-                  <span class="metric-label">Users Impacted</span>
+                  <span class="metric-label">Users</span>
               </div>
               <div class="metric-item">
                   <span class="metric-val">100%</span>
-                  <span class="metric-label">Job Success</span>
+                  <span class="metric-label">Success</span>
               </div>
           </div>
       </section>
@@ -189,10 +206,14 @@
       <!-- 5. Testimonials -->
       <section id="testimonials" class="section-container">
         <div class="section-header reveal-on-scroll">
-           <h2 class="section-title">Endorsements</h2>
+           <h2 class="section-title text-reveal-wrap">
+               <span class="text-outline">Endorsements</span>
+               <span class="text-fill">Endorsements</span>
+           </h2>
         </div>
         
         <div class="testimonials-grid reveal-on-scroll">
+            <!-- Featured -->
             <div class="testi-card-lg">
                 <p class="quote-lg">"Nischhal transformed our vague product idea into a world-class interface. His ability to balance aesthetic polish with complex functionality is rare."</p>
                 <div class="author-block">
@@ -201,6 +222,7 @@
                 </div>
             </div>
 
+            <!-- Compact Column -->
             <div class="compact-col">
                 <div class="testi-card-sm">
                     <p class="quote-sm">"Saved us weeks of engineering time. The design system he built was scalable and well-documented."</p>
@@ -223,30 +245,36 @@
       <!-- 6. Writing -->
       <section id="writing" class="section-container">
           <div class="section-header reveal-on-scroll">
-              <h2 class="section-title">Writing</h2>
+              <h2 class="section-title text-reveal-wrap">
+                  <span class="text-outline">Writing</span>
+                  <span class="text-fill">Writing</span>
+              </h2>
               <a href="/blog.html" class="btn btn-secondary">Read All</a>
           </div>
           <div class="writing-grid reveal-on-scroll">
               <a href="/blog-detail.html" class="writing-card">
-                  <div>
+                  <div class="w-meta-top">
                       <span class="badge">Strategy</span>
-                      <h4 class="w-title">The future of Design Systems in 2026</h4>
+                      <span class="read-time">5 min read</span>
                   </div>
-                  <div class="w-meta">5 min read • Oct 2025</div>
+                  <h4 class="w-title">The future of Design Systems in 2026</h4>
+                  <p class="w-summary">Exploring how AI and token automation are shifting the role of system designers from builders to curators.</p>
               </a>
               <a href="/blog-detail.html" class="writing-card">
-                  <div>
+                  <div class="w-meta-top">
                       <span class="badge">Process</span>
-                      <h4 class="w-title">Bridging the gap between Design and Code</h4>
+                      <span class="read-time">4 min read</span>
                   </div>
-                  <div class="w-meta">4 min read • Sep 2025</div>
+                  <h4 class="w-title">Bridging the gap between Design and Code</h4>
+                  <p class="w-summary">Why designers need to think in components and how to improve developer handoff workflows.</p>
               </a>
               <a href="/blog-detail.html" class="writing-card">
-                  <div>
+                  <div class="w-meta-top">
                       <span class="badge">Resources</span>
-                      <h4 class="w-title">Orbit UI Kit (Free)</h4>
+                      <span class="read-time">Free</span>
                   </div>
-                  <div class="w-meta">Figma Resource</div>
+                  <h4 class="w-title">Orbit UI Kit (Figma)</h4>
+                  <p class="w-summary">A comprehensive, accessible Figma UI kit for enterprise dashboards. Duplicate for free.</p>
               </a>
           </div>
       </section>
@@ -254,7 +282,10 @@
       <!-- 7. FAQ -->
       <section id="faq" class="section-container">
         <div class="section-header reveal-on-scroll">
-           <h2 class="section-title">Common Questions</h2>
+           <h2 class="section-title text-reveal-wrap">
+               <span class="text-outline">FAQ</span>
+               <span class="text-fill">FAQ</span>
+           </h2>
         </div>
         <div class="faq-list reveal-on-scroll">
             <div class="faq-item">
@@ -263,7 +294,9 @@
                     <div class="icon-plus"></div>
                 </button>
                 <div class="faq-answer">
-                    <p>Most end-to-end product design projects take between 4-8 weeks. Design system projects vary based on complexity but typically start at 6 weeks for a comprehensive v1 release.</p>
+                    <div class="faq-inner">
+                        Most end-to-end product design projects take between 4-8 weeks. Design system projects vary based on complexity but typically start at 6 weeks for a comprehensive v1 release.
+                    </div>
                 </div>
             </div>
             <div class="faq-item">
@@ -272,7 +305,9 @@
                     <div class="icon-plus"></div>
                 </button>
                 <div class="faq-answer">
-                    <p>My core expertise is design. However, I am proficient in HTML/CSS and Webflow for marketing sites. For complex web apps, I partner with trusted engineering teams or work alongside your in-house developers.</p>
+                    <div class="faq-inner">
+                        My core expertise is design. However, I am proficient in HTML/CSS and Webflow for marketing sites. For complex web apps, I partner with trusted engineering teams or work alongside your in-house developers.
+                    </div>
                 </div>
             </div>
             <div class="faq-item">
@@ -281,14 +316,16 @@
                     <div class="icon-plus"></div>
                 </button>
                 <div class="faq-answer">
-                    <p>I work in weekly sprints with frequent check-ins, which minimizes the need for massive "revisions" at the end. Feedback is incorporated continuously throughout the process.</p>
+                    <div class="faq-inner">
+                        I work in weekly sprints with frequent check-ins, which minimizes the need for massive "revisions" at the end. Feedback is incorporated continuously throughout the process.
+                    </div>
                 </div>
             </div>
         </div>
       </section>
 
       <!-- 8. Contact -->
-      <section id="contact" class="section-container" style="padding-bottom: 120px;">
+      <section id="contact" class="section-container">
           <div class="contact-container reveal-on-scroll">
               <h2 class="section-title" style="text-align: center; margin-bottom: 16px;">Let's build something refined.</h2>
               <p class="body-large" style="text-align: center; margin-bottom: 48px;">I'm opening my schedule for Q1 2026.</p>
@@ -296,11 +333,11 @@
               <form id="contact-form">
                   <div class="form-group">
                       <label class="form-label">Name</label>
-                      <input type="text" class="form-input" placeholder="Your name" required>
+                      <input type="text" class="form-input" placeholder="Enter your name" required>
                   </div>
                   <div class="form-group">
                       <label class="form-label">Email</label>
-                      <input type="email" class="form-input" placeholder="name@example.com" required>
+                      <input type="email" class="form-input" placeholder="name@company.com" required>
                   </div>
                   <div class="form-group">
                       <label class="form-label">Project Type</label>
@@ -313,9 +350,10 @@
                   </div>
                   <div class="form-group">
                       <label class="form-label">Message</label>
-                      <textarea class="form-textarea" rows="4" placeholder="How can I help?" required></textarea>
+                      <textarea class="form-textarea" rows="4" placeholder="Tell me about your project..." required></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                  <div class="form-success-msg">Message Sent! I'll get back to you shortly.</div>
               </form>
           </div>
       </section>
@@ -326,24 +364,38 @@
     <footer class="site-footer reveal-on-scroll">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
             <div class="footer-grid">
-                <div>
-                    <h5 style="font-size: 1.25rem; font-family: var(--font-serif); margin-bottom: 12px;">NRS.</h5>
-                    <p class="body-large" style="font-size: 0.9rem;">Kathmandu, Nepal</p>
+                <div class="footer-col">
+                    <h5 style="color: #fff; font-size: 1.25rem; font-family: var(--font-serif); text-transform: none; margin-bottom: 16px;">NRS.</h5>
+                    <p class="body-large" style="font-size: 0.9rem; max-width: 250px;">
+                        Product Designer based in Kathmandu. Crafting software that feels inevitable.
+                    </p>
                 </div>
-                <div>
+                <div class="footer-col">
+                    <h5>Sitemap</h5>
                     <a href="/index.html" class="footer-link">Home</a>
                     <a href="/projects.html" class="footer-link">Work</a>
                     <a href="/about.html" class="footer-link">About</a>
+                    <a href="/blog.html" class="footer-link">Writing</a>
                 </div>
-                <div>
-                    <a href="https://linkedin.com" target="_blank" class="footer-link">LinkedIn ↗</a>
-                    <a href="https://dribbble.com" target="_blank" class="footer-link">Dribbble ↗</a>
-                    <a href="mailto:hello@nischhal.design" class="footer-link">Email ↗</a>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <a href="https://linkedin.com" target="_blank" class="footer-link">
+                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                         LinkedIn
+                    </a>
+                    <a href="https://dribbble.com" target="_blank" class="footer-link">
+                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.628 0-12 5.373-12 12s5.372 12 12 12 12-5.373 12-12-5.372-12-12-12zm9.841 13.29c-.046.332-.122.657-.221.974-2.827-.721-6.223-.746-8.583.585.344.821.728 1.637 1.144 2.434 3.737-1.22 6.786-2.903 7.66-3.993zm-13.673 7.828c-1.352-1.396-2.39-3.085-2.996-4.965 2.502-.821 5.328-.501 7.636.564-.492.839-1.018 1.696-1.583 2.569-1.077 1.258-2.073 1.803-3.057 1.832zm-2.008-8.293c.007-.107.018-.214.032-.319 2.593-.655 5.513-.374 7.558.487-.393.882-.824 1.748-1.285 2.59-2.348-.92-4.577-.852-6.305 2.758zm12.339-4.802c-1.251-1.378-2.91-2.365-4.786-2.748.423 1.154.76 2.346 1.002 3.559 1.487.272 2.872.43 4.102.396.42.753.796 1.554 1.109 2.404-.794-.96-1.125-2.475-1.427-3.611zm-5.733 3.978c-.223-1.129-.533-2.239-.92-3.321-3.636 1.006-6.425 3.869-7.446 7.471 2.221-1.341 5.329-1.396 8.366.15zm-8.232-2.146c1.178-3.328 4.204-5.836 7.857-6.196-.454.203-.895.426-1.32.668-2.254 1.282-4.591 3.208-6.537 5.528z"/></svg>
+                         Dribbble
+                    </a>
+                    <a href="mailto:hello@nischhal.design" class="footer-link">
+                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-11.174l4.623 5.462zm2.157-1.222l-6.78-8.009h20.025l-6.766 7.989-3.235 3.864-3.244-3.844zm-3.15 1.514l-2.673 3.239-2.957-3.653 5.63 4.14zm4.97 6.095l-3.242-3.881 1.649-1.968 1.593 1.903 1.593-1.903 1.649 1.968-3.242 3.881zm6.753-4.185l-4.639-5.465 4.639 5.465zm-1.841-1.91l2.673 3.239 2.957-3.653-5.63 4.14z"/></svg>
+                         Email
+                    </a>
                 </div>
             </div>
             <div class="footer-bottom">
                 <span>© 2026 Nischhal Raj Subba</span>
-                <span id="time-display">00:00 KTH</span>
+                <span id="time-display">Kathmandu</span>
             </div>
         </div>
     </footer>

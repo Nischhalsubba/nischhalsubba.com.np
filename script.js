@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURATION ---
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // --- 1. CUSTOM CURSOR (Refined) ---
+    // --- 1. CUSTOM CURSOR ---
     const cursorDot = document.querySelector('.custom-cursor-dot');
     const cursorOutline = document.querySelector('.custom-cursor-outline');
     
@@ -16,11 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-            // Dot moves instantly
             cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
         });
 
-        // Loop for smooth outline following
         const animateCursor = () => {
             outlineX += (mouseX - outlineX) * 0.15;
             outlineY += (mouseY - outlineY) * 0.15;
@@ -29,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         animateCursor();
 
-        // Hover states
         const clickables = document.querySelectorAll('a, button, input, select, textarea');
         clickables.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -50,29 +47,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const glider = document.querySelector('.nav-glider');
     const navPill = document.querySelector('.nav-pill');
     
-    // Set Active Link based on URL
     const currentPath = window.location.pathname;
+    
+    // Set active class based on path
     navLinks.forEach(link => {
         link.classList.remove('active');
         const href = link.getAttribute('href');
-        if (href === currentPath || (href !== '/index.html' && currentPath.includes(href))) {
+        // Check for exact match or root match
+        if (href === currentPath) {
             link.classList.add('active');
         } else if (currentPath === '/' && href === '/index.html') {
-            link.classList.add('active');
+             link.classList.add('active');
+        } else if (href !== '/index.html' && currentPath.includes(href)) {
+             link.classList.add('active');
         }
     });
 
     if (glider && navPill) {
         function moveGlider(element) {
             if (!element) return;
-            // Calculate relative position inside the nav-pill
             const rect = element.getBoundingClientRect();
             const parentRect = navPill.getBoundingClientRect();
             
             const relLeft = rect.left - parentRect.left;
-            const relTop = rect.top - parentRect.top; // Should be consistent usually
+            const relTop = rect.top - parentRect.top; 
             
-            // Animate using GSAP for smoothness
             gsap.to(glider, {
                 x: relLeft,
                 y: relTop,
@@ -86,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navLinks.forEach(link => {
             link.addEventListener('mouseenter', () => moveGlider(link));
-            // On mouse leave, return to active link if it exists inside
             link.addEventListener('mouseleave', () => {
                 const active = document.querySelector('.nav-link.active');
                 if (active) moveGlider(active);
@@ -94,10 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Initialize on Active
+        // Initialize position on active element
         const initialActive = document.querySelector('.nav-link.active');
         if (initialActive) {
-            // Small timeout to wait for layout
             setTimeout(() => moveGlider(initialActive), 100);
         }
     }
@@ -114,39 +111,40 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Close others
             faqItems.forEach(other => {
-                other.classList.remove('active');
-                gsap.to(other.querySelector('.faq-answer'), { height: 0, duration: 0.3 });
+                if (other !== item) {
+                    other.classList.remove('active');
+                    gsap.to(other.querySelector('.faq-answer'), { height: 0, duration: 0.3 });
+                }
             });
 
             if (!isActive) {
                 item.classList.add('active');
                 gsap.set(answer, { height: "auto" });
                 gsap.from(answer, { height: 0, duration: 0.3, ease: "power2.out" });
+            } else {
+                item.classList.remove('active');
+                gsap.to(answer, { height: 0, duration: 0.3 });
             }
         });
     });
 
     // --- 4. ANIMATIONS (GSAP) ---
-    // Ensure content is visible if JS/GSAP fails by setting opacity:1 in CSS.
-    // We use .fromTo here to handle the "hidden" start state programmatically.
     if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
         const gsap = window.gsap;
         const ScrollTrigger = window.ScrollTrigger;
         gsap.registerPlugin(ScrollTrigger);
 
-        // Page Load Sequence (Hero)
+        // A. Hero Sequence
         const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
         
-        // Use fromTo to strictly define start and end states
         timeline.fromTo(".nav-wrapper", { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 })
                 .fromTo(".hero-pills-row", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.6")
                 .fromTo(".hero-title", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, "-=0.6")
                 .fromTo(".body-large.fade-in", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
                 .fromTo(".hero-actions", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8");
 
-        // Scroll Reveals
-        const revealElements = document.querySelectorAll(".reveal-on-scroll");
-        revealElements.forEach(el => {
+        // B. Standard Scroll Reveal
+        document.querySelectorAll(".reveal-on-scroll").forEach(el => {
             gsap.fromTo(el, 
                 { y: 40, opacity: 0 },
                 {
@@ -159,30 +157,46 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
 
-        // Project Card Hover Effect (subtle parallax on image)
-        const cards = document.querySelectorAll('.project-card');
-        cards.forEach(card => {
+        // C. Outline-to-Fill Text Animation
+        document.querySelectorAll(".text-reveal-wrap").forEach(title => {
+            const fill = title.querySelector(".text-fill");
+            if (fill) {
+                gsap.to(fill, {
+                    clipPath: "inset(0 0% 0 0)",
+                    duration: 1.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: title,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            }
+        });
+
+        // D. Image Hover Parallax
+        document.querySelectorAll('.project-card').forEach(card => {
             const img = card.querySelector('img');
             card.addEventListener('mouseenter', () => {
-                gsap.to(img, { scale: 1.05, duration: 0.5, ease: "power2.out" });
+                gsap.to(img, { scale: 1.05, duration: 0.6, ease: "power2.out" });
             });
             card.addEventListener('mouseleave', () => {
-                gsap.to(img, { scale: 1, duration: 0.5, ease: "power2.out" });
+                gsap.to(img, { scale: 1, duration: 0.6, ease: "power2.out" });
             });
         });
 
-    } 
-    // Fallback handled by CSS opacity: 1
+    }
 
     // --- 5. TIME DISPLAY ---
     const timeDisplay = document.getElementById('time-display');
     if (timeDisplay) {
         const updateTime = () => {
             const now = new Date();
-            const options = { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', hour12: true };
+            // Use try-catch to handle environments without timezone support
             try {
+                const options = { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', hour12: true };
                 const timeString = now.toLocaleTimeString('en-US', options);
-                timeDisplay.textContent = `${timeString} KTH`;
+                timeDisplay.textContent = `${timeString} Kathmandu`;
             } catch (e) {
                 timeDisplay.textContent = "Kathmandu";
             }
@@ -191,27 +205,29 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(updateTime, 1000);
     }
     
-    // --- 6. FORM SUBMIT SIMULATION ---
+    // --- 6. FORM SUBMISSION ---
     const form = document.getElementById('contact-form');
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const btn = form.querySelector('button');
+            const successMsg = form.querySelector('.form-success-msg');
             const originalText = btn.textContent;
             
             btn.textContent = "Sending...";
             btn.style.opacity = "0.7";
             
             setTimeout(() => {
-                btn.textContent = "Message Sent!";
-                btn.style.background = "#ffffff";
-                btn.style.color = "#000000";
+                btn.textContent = "Sent";
                 btn.style.opacity = "1";
                 form.reset();
+                
+                // Show success message
+                if(successMsg) successMsg.classList.add('visible');
+
                 setTimeout(() => {
                     btn.textContent = originalText;
-                    btn.style.background = "";
-                    btn.style.color = "";
+                    if(successMsg) successMsg.classList.remove('visible');
                 }, 3000);
             }, 1500);
         });
