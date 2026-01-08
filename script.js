@@ -42,18 +42,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. NAV ACTIVE STATE & GLIDER ---
+    // --- 2. CAPABILITIES HOVER EFFECT ---
+    const capCards = document.querySelectorAll('.cap-card');
+    capCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
+    // --- 3. NAV ACTIVE STATE & GLIDER ---
     const navLinks = document.querySelectorAll('.nav-link');
     const glider = document.querySelector('.nav-glider');
     const navPill = document.querySelector('.nav-pill');
     
     const currentPath = window.location.pathname;
     
-    // Set active class based on path
     navLinks.forEach(link => {
         link.classList.remove('active');
         const href = link.getAttribute('href');
-        // Check for exact match or root match
         if (href === currentPath) {
             link.classList.add('active');
         } else if (currentPath === '/' && href === '/index.html') {
@@ -92,15 +102,48 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Initialize position on active element
         const initialActive = document.querySelector('.nav-link.active');
         if (initialActive) {
             setTimeout(() => moveGlider(initialActive), 100);
         }
     }
 
-    // --- 3. FAQ ACCORDION ---
+    // --- 4. TESTIMONIAL CAROUSEL ---
+    const track = document.querySelector('.testimonial-track');
+    const dots = document.querySelectorAll('.t-dot');
+    
+    if (track && dots.length > 0) {
+        let currentSlide = 0;
+        const totalSlides = dots.length;
+        
+        const updateSlide = (index) => {
+            currentSlide = index;
+            const offset = currentSlide * -33.333; // Assuming 3 slides = 100% width each roughly
+            track.style.transform = `translateX(${offset}%)`;
+            
+            dots.forEach((dot, i) => {
+                if (i === currentSlide) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+        };
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-index'));
+                updateSlide(index);
+            });
+        });
+
+        // Auto play (optional, slow)
+        setInterval(() => {
+            const next = (currentSlide + 1) % totalSlides;
+            updateSlide(next);
+        }, 6000);
+    }
+
+    // --- 5. FAQ ACCORDION ---
     const faqItems = document.querySelectorAll('.faq-item');
+    
     faqItems.forEach(item => {
         const trigger = item.querySelector('.faq-trigger');
         const answer = item.querySelector('.faq-answer');
@@ -109,26 +152,25 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const isActive = item.classList.contains('active');
             
-            // Close others
+            // Close all others
             faqItems.forEach(other => {
-                if (other !== item) {
+                if (other !== item && other.classList.contains('active')) {
                     other.classList.remove('active');
-                    gsap.to(other.querySelector('.faq-answer'), { height: 0, duration: 0.3 });
+                    gsap.to(other.querySelector('.faq-answer'), { height: 0, duration: 0.3, ease: "power2.out" });
                 }
             });
 
             if (!isActive) {
                 item.classList.add('active');
-                gsap.set(answer, { height: "auto" });
-                gsap.from(answer, { height: 0, duration: 0.3, ease: "power2.out" });
+                gsap.to(answer, { height: "auto", duration: 0.3, ease: "power2.out" });
             } else {
                 item.classList.remove('active');
-                gsap.to(answer, { height: 0, duration: 0.3 });
+                gsap.to(answer, { height: 0, duration: 0.3, ease: "power2.out" });
             }
         });
     });
 
-    // --- 4. ANIMATIONS (GSAP) ---
+    // --- 6. ANIMATIONS (GSAP) ---
     if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
         const gsap = window.gsap;
         const ScrollTrigger = window.ScrollTrigger;
@@ -138,10 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
         
         timeline.fromTo(".nav-wrapper", { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 })
-                .fromTo(".hero-pills-row", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.6")
+                .fromTo(".pill-item", 
+                    { y: 20, opacity: 0 }, 
+                    { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 }, 
+                    "-=0.6") 
                 .fromTo(".hero-title", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, "-=0.6")
                 .fromTo(".body-large.fade-in", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
-                .fromTo(".hero-actions", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8");
+                .fromTo(".hero-actions", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
+                .fromTo(".hero-visual", { opacity: 0, scale: 0.95 }, { opacity: 0.9, scale: 1, duration: 1.2 }, "-=0.5");
 
         // B. Standard Scroll Reveal
         document.querySelectorAll(".reveal-on-scroll").forEach(el => {
@@ -157,20 +203,23 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
 
-        // C. Outline-to-Fill Text Animation
+        // C. Outline-to-Fill Text Animation (SCRUBBED)
         document.querySelectorAll(".text-reveal-wrap").forEach(title => {
             const fill = title.querySelector(".text-fill");
             if (fill) {
-                gsap.to(fill, {
-                    clipPath: "inset(0 0% 0 0)",
-                    duration: 1.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: title,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
+                gsap.fromTo(fill, 
+                    { clipPath: "inset(0 100% 0 0)" },
+                    {
+                        clipPath: "inset(0 0% 0 0)",
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: title,
+                            start: "top 80%",
+                            end: "top 30%", 
+                            scrub: 1 // Scrubbing tied to scroll
+                        }
                     }
-                });
+                );
             }
         });
 
@@ -184,15 +233,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 gsap.to(img, { scale: 1, duration: 0.6, ease: "power2.out" });
             });
         });
-
     }
 
-    // --- 5. TIME DISPLAY ---
+    // --- 7. TIME DISPLAY ---
     const timeDisplay = document.getElementById('time-display');
     if (timeDisplay) {
         const updateTime = () => {
             const now = new Date();
-            // Use try-catch to handle environments without timezone support
             try {
                 const options = { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', hour12: true };
                 const timeString = now.toLocaleTimeString('en-US', options);
@@ -205,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(updateTime, 1000);
     }
     
-    // --- 6. FORM SUBMISSION ---
+    // --- 8. FORM SUBMISSION ---
     const form = document.getElementById('contact-form');
     if (form) {
         form.addEventListener('submit', (e) => {
@@ -221,8 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.textContent = "Sent";
                 btn.style.opacity = "1";
                 form.reset();
-                
-                // Show success message
                 if(successMsg) successMsg.classList.add('visible');
 
                 setTimeout(() => {

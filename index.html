@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=2.3">
     
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -61,6 +61,9 @@
           <a href="/projects.html" class="btn btn-primary">View Selected Work</a>
           <a href="#contact" class="btn btn-secondary">Get in Touch</a>
         </div>
+        
+        <!-- NEW: Hero Blended Image -->
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2400" alt="Abstract Product Visual" class="hero-visual fade-in" />
 
       </section>
 
@@ -141,7 +144,7 @@
         </div>
       </section>
 
-      <!-- 3. Principles & Competencies -->
+      <!-- 3. Capabilities (Redesigned) -->
       <section id="approach" class="section-container">
         <div class="section-header reveal-on-scroll">
            <h2 class="section-title text-reveal-wrap">
@@ -150,28 +153,28 @@
            </h2>
         </div>
         
-        <div class="competencies-grid reveal-on-scroll">
-            <div class="comp-col">
+        <div class="capabilities-grid reveal-on-scroll">
+            <div class="cap-card">
                 <h4>Strategy & Product</h4>
-                <ul class="comp-list">
+                <ul class="cap-list">
                     <li>Design Systems Architecture</li>
                     <li>Information Architecture</li>
                     <li>User Research & Testing</li>
                     <li>Product Strategy</li>
                 </ul>
             </div>
-            <div class="comp-col">
+            <div class="cap-card">
                 <h4>Design & Prototyping</h4>
-                <ul class="comp-list">
+                <ul class="cap-list">
                     <li>UI/Visual Design</li>
                     <li>Interactive Prototyping</li>
                     <li>Motion Design</li>
                     <li>Design Handoff</li>
                 </ul>
             </div>
-            <div class="comp-col">
+            <div class="cap-card">
                 <h4>Technical</h4>
-                <ul class="comp-list">
+                <ul class="cap-list">
                     <li>HTML/CSS</li>
                     <li>Figma Variables</li>
                     <li>Accessibility (WCAG)</li>
@@ -203,7 +206,7 @@
           </div>
       </section>
 
-      <!-- 5. Testimonials -->
+      <!-- 5. Testimonials (Carousel) -->
       <section id="testimonials" class="section-container">
         <div class="section-header reveal-on-scroll">
            <h2 class="section-title text-reveal-wrap">
@@ -212,32 +215,39 @@
            </h2>
         </div>
         
-        <div class="testimonials-grid reveal-on-scroll">
-            <!-- Featured -->
-            <div class="testi-card-lg">
-                <p class="quote-lg">"Nischhal transformed our vague product idea into a world-class interface. His ability to balance aesthetic polish with complex functionality is rare."</p>
-                <div class="author-block">
-                    <h5>Sarah Jenkins</h5>
-                    <span>CTO, Nova Financial</span>
+        <div class="testimonial-section reveal-on-scroll">
+            <div class="testimonial-track-wrapper">
+                <div class="testimonial-track">
+                    <!-- Slide 1 -->
+                    <div class="t-slide">
+                        <p class="t-quote">"Nischhal transformed our vague product idea into a world-class interface. His ability to balance aesthetic polish with complex functionality is rare."</p>
+                        <div class="t-author">
+                            <h5>Sarah Jenkins</h5>
+                            <span>CTO, Nova Financial</span>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="t-slide">
+                        <p class="t-quote">"Saved us weeks of engineering time. The design system he built was scalable, accessible, and remarkably well-documented."</p>
+                        <div class="t-author">
+                            <h5>David Chen</h5>
+                            <span>Product Lead, Orbit SaaS</span>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="t-slide">
+                        <p class="t-quote">"Working with Nischhal felt less like hiring a freelancer and more like adding a senior partner to our leadership team."</p>
+                        <div class="t-author">
+                            <h5>Elena Rodriguez</h5>
+                            <span>Founder, Ether Flow</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- Compact Column -->
-            <div class="compact-col">
-                <div class="testi-card-sm">
-                    <p class="quote-sm">"Saved us weeks of engineering time. The design system he built was scalable and well-documented."</p>
-                    <div class="author-block">
-                        <h5>David Chen</h5>
-                        <span>Product Lead, Orbit SaaS</span>
-                    </div>
-                </div>
-                <div class="testi-card-sm">
-                    <p class="quote-sm">"Working with Nischhal felt less like hiring a freelancer and more like adding a senior partner."</p>
-                    <div class="author-block">
-                        <h5>Elena Rodriguez</h5>
-                        <span>Founder, Ether Flow</span>
-                    </div>
-                </div>
+            <div class="t-controls">
+                <div class="t-dot active" data-index="0"></div>
+                <div class="t-dot" data-index="1"></div>
+                <div class="t-dot" data-index="2"></div>
             </div>
         </div>
       </section>
@@ -327,7 +337,10 @@
       <!-- 8. Contact -->
       <section id="contact" class="section-container">
           <div class="contact-container reveal-on-scroll">
-              <h2 class="section-title" style="text-align: center; margin-bottom: 16px;">Let's build something refined.</h2>
+              <h2 class="section-title text-reveal-wrap" style="text-align: center; margin-bottom: 16px; display: block;">
+                  <span class="text-outline">Let's build something refined.</span>
+                  <span class="text-fill">Let's build something refined.</span>
+              </h2>
               <p class="body-large" style="text-align: center; margin-bottom: 48px;">I'm opening my schedule for Q1 2026.</p>
               
               <form id="contact-form">
