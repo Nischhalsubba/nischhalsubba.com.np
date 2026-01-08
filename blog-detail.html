@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2.8">
+    <link rel="stylesheet" href="style.css?v=3.2">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -22,11 +22,11 @@
     <nav class="nav-wrapper fade-in">
       <div class="nav-pill">
         <div class="nav-glider"></div>
-        <a href="/index.html" class="nav-link">Home</a>
-        <a href="/projects.html" class="nav-link">Work</a>
-        <a href="/about.html" class="nav-link">About</a>
-        <a href="/blog.html" class="nav-link active">Writing</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="projects.html" class="nav-link">Work</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="blog.html" class="nav-link active">Writing</a>
+        <a href="contact.html" class="nav-link">Contact</a>
       </div>
     </nav>
 
@@ -54,34 +54,56 @@
       </article>
 
       <div class="section-container" style="text-align: center;">
-          <a href="/blog.html" class="btn btn-secondary">Back to Writing</a>
+          <a href="blog.html" class="btn btn-secondary">Back to Writing</a>
       </div>
 
     </main>
+    
+    <a href="#" class="floating-resume-btn" download>Download Resume</a>
 
     <footer class="site-footer">
       <div class="footer-container">
-        
-        <div class="footer-content reveal-on-scroll">
-           <div class="footer-portrait-wrapper">
-              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" class="footer-portrait" alt="Nischhal Raj Subba">
-           </div>
-           
-           <nav class="footer-nav">
-              <a href="/index.html">Home</a>
-              <a href="/projects.html">Work</a>
-              <a href="/about.html">About</a>
-              <a href="/blog.html">Writing</a>
-              <a href="https://linkedin.com">LinkedIn</a>
-              <a href="mailto:hello@nischhal.design">Email</a>
-           </nav>
+        <div class="footer-hero reveal-on-scroll">
+            <h2>Let's create something<br><span class="text-serif-italic">awesome together.</span></h2>
+            <div class="footer-socials-row">
+                <a href="https://linkedin.com/in/nischhal/" class="f-social-icon">in</a>
+                <a href="https://behance.net/nischhal" class="f-social-icon">Be</a>
+                <a href="https://dribbble.com/Nischhal" class="f-social-icon">Dr</a>
+                <a href="https://github.com/Nischhalsubba" class="f-social-icon">Gh</a>
+            </div>
+            <div class="footer-center-img">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Nischhal">
+            </div>
+        </div>
+
+        <div class="footer-links-layout reveal-on-scroll">
+            <div class="fl-col">
+                <h5>Pages</h5>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Work</a>
+                <a href="about.html">About</a>
+                <a href="blog.html">Writing</a>
+            </div>
+            <div class="fl-col">
+                <h5>Work</h5>
+                <a href="project-detail.html">MAS DataHub</a>
+                <a href="project-detail.html">Yarsha</a>
+                <a href="project-detail.html">Morajaa</a>
+                <a href="project-detail.html">Zapp Today</a>
+            </div>
+            <div class="fl-col">
+                <h5>Products</h5>
+                <a href="products.html">UI Kit</a>
+                <a href="products.html">Design System</a>
+                <a href="products.html">Icons</a>
+            </div>
         </div>
 
         <div class="footer-bottom reveal-on-scroll">
            <span>Built by Nischhal Raj Subba</span>
            <span>© 2026 Refined. All rights reserved.</span>
+           <button class="btn-sm" onclick="window.scrollTo(0,0)">Back to Top ↑</button>
         </div>
-
       </div>
     </footer>
     

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nova Financial - Case Study | Nischhal Raj Subba</title>
+    <title>Contact | Nischhal Raj Subba</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,65 +14,56 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
   <body>
-    
-    <!-- Custom Cursor -->
+
     <div class="custom-cursor-dot"></div>
     <div class="custom-cursor-outline"></div>
 
-    <!-- Navigation -->
     <nav class="nav-wrapper fade-in">
       <div class="nav-pill">
         <div class="nav-glider"></div>
         <a href="index.html" class="nav-link">Home</a>
-        <a href="projects.html" class="nav-link active">Work</a>
+        <a href="projects.html" class="nav-link">Work</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="blog.html" class="nav-link">Writing</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
       </div>
     </nav>
 
     <main>
-      <article>
-        <header class="hero-section" style="min-height: 50vh; padding-bottom: 40px;">
-            <div style="margin-bottom: 24px;">
-                 <span style="border: 1px solid var(--border-faint); padding: 6px 16px; border-radius: 99px; font-size: 0.85rem; color: var(--text-secondary); margin-right: 8px;">Fintech</span>
-                 <span style="border: 1px solid var(--border-faint); padding: 6px 16px; border-radius: 99px; font-size: 0.85rem; color: var(--text-secondary);">Mobile App</span>
-            </div>
-            <h1 class="hero-title fade-in" style="font-size: clamp(3rem, 5vw, 4.5rem);">Nova Financial</h1>
-            <p class="body-large fade-in" style="max-width: 500px;">Redefining the mobile banking experience for a new generation of investors.</p>
-        </header>
+      <section class="hero-section" style="min-height: 40vh;">
+        <h1 class="hero-title fade-in">Get in Touch</h1>
+        <p class="body-large fade-in">Have a project in mind or just want to say hi?</p>
+      </section>
 
-        <section class="reveal-on-scroll" style="margin: 0 auto; max-width: 840px; margin-bottom: 80px;">
-             <img src="https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=2000" alt="Nova App Hero Image" style="border-radius: 12px; border: 1px solid var(--border-faint);">
-        </section>
-
-        <section class="section-container" style="padding-top: 0;">
-             <div class="body-large reveal-on-scroll" style="max-width: 600px; margin: 0 auto;">
-                <h3 style="margin-bottom: 16px; color: var(--text-primary); font-size: 1.5rem;">The Challenge</h3>
-                <p style="margin-bottom: 40px; color: var(--text-secondary);">Nova Financial wanted to expand their user base to include Gen Z investors. However, their legacy application was cluttered, slow, and full of financial jargon that intimidated new users. The drop-off rate during onboarding was nearly 60%.</p>
-                
-                <h3 style="margin-bottom: 16px; color: var(--text-primary); font-size: 1.5rem;">My Approach</h3>
-                <ul style="margin-bottom: 40px; color: var(--text-secondary); list-style-type: disc; padding-left: 20px;">
-                    <li style="margin-bottom: 8px;">Conducted user interviews with 15 participants aged 18-25.</li>
-                    <li style="margin-bottom: 8px;">Analyzed key competitors to identify UX gaps.</li>
-                    <li>Proposed a "Progressive Disclosure" model.</li>
-                </ul>
-
-                <h3 style="margin-bottom: 16px; color: var(--text-primary); font-size: 1.5rem;">The Outcome</h3>
-                <p style="color: var(--text-secondary);">After a 3-month redesign and development cycle, we launched the V2 app to a test group of 10,000 users. Retention increased by 15%.</p>
-             </div>
-        </section>
-
-      </article>
-
-      <div class="section-container" style="text-align: center;">
-          <a href="projects.html" class="btn btn-secondary">View Next Project</a>
-      </div>
-
+      <section class="section-container">
+          <div class="contact-container reveal-on-scroll">
+              <div class="contact-card">
+                  <h2 class="contact-title">Let's build something refined.</h2>
+                  <p class="contact-subtitle">Available for new projects in late 2026.</p>
+                  
+                  <form id="contact-form">
+                      <div class="form-group">
+                          <label class="form-label">Name</label>
+                          <input type="text" class="form-input" required>
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Email</label>
+                          <input type="email" class="form-input" required>
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Message</label>
+                          <textarea class="form-textarea" rows="4" required></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+                      <div class="form-success-msg">Message Sent! I'll get back to you shortly.</div>
+                  </form>
+              </div>
+          </div>
+      </section>
     </main>
-    
-    <a href="#" class="floating-resume-btn" download>Download Resume</a>
 
+    <a href="#" class="floating-resume-btn" download>Download Resume</a>
+    
     <footer class="site-footer">
       <div class="footer-container">
         <div class="footer-hero reveal-on-scroll">

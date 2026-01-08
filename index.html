@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=3.0">
+    <link rel="stylesheet" href="style.css?v=3.2">
     
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -31,11 +31,11 @@
     <nav class="nav-wrapper fade-in">
       <div class="nav-pill">
         <div class="nav-glider"></div>
-        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html" class="nav-link active">Home</a>
         <a href="projects.html" class="nav-link">Work</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="blog.html" class="nav-link">Writing</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="contact.html" class="nav-link">Contact</a>
       </div>
     </nav>
 
@@ -76,7 +76,7 @@
 
         <div class="hero-actions fade-in">
           <a href="projects.html" class="btn btn-primary">View Selected Work</a>
-          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
         </div>
         
         <!-- Hero Blended Image -->
@@ -178,7 +178,7 @@
         </div>
       </section>
 
-      <!-- 4. Endorsements (Redesigned) -->
+      <!-- 4. Endorsements -->
       <section id="testimonials" class="section-container">
         <div class="section-header reveal-on-scroll">
            <h2 class="section-title text-reveal-wrap">
@@ -253,7 +253,7 @@
           </div>
       </section>
 
-      <!-- 6. FAQ (Redesigned) -->
+      <!-- 6. FAQ -->
       <section id="faq" class="section-container">
         <div class="section-header reveal-on-scroll">
            <h2 class="section-title text-reveal-wrap">
@@ -277,36 +277,17 @@
         </div>
       </section>
 
-      <!-- 7. Contact -->
-      <section id="contact" class="section-container">
-          <div class="contact-container reveal-on-scroll">
-              <div class="contact-card">
-                  <h2 class="contact-title">Let's build something refined.</h2>
-                  <p class="contact-subtitle">Available for new projects in late 2026.</p>
-                  
-                  <form id="contact-form">
-                      <div class="form-group">
-                          <label class="form-label">Name</label>
-                          <input type="text" class="form-input" required>
-                      </div>
-                      <div class="form-group">
-                          <label class="form-label">Email</label>
-                          <input type="email" class="form-input" required>
-                      </div>
-                      <div class="form-group">
-                          <label class="form-label">Message</label>
-                          <textarea class="form-textarea" rows="4" required></textarea>
-                      </div>
-                      <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
-                      <div class="form-success-msg">Message Sent! I'll get back to you shortly.</div>
-                  </form>
-              </div>
-          </div>
+      <!-- 7. Contact (Removed form, links to page) -->
+      <section class="section-container" style="text-align: center;">
+          <h2 class="section-title" style="margin-bottom: 24px;">Ready to start?</h2>
+          <a href="contact.html" class="btn btn-primary">Go to Contact Page</a>
       </section>
 
     </main>
 
-    <!-- FOOTER (Redesigned: Centered Stack) -->
+    <a href="#" class="floating-resume-btn" download>Download Resume</a>
+
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-container">
         
@@ -314,10 +295,10 @@
             <h2>Let's create something<br><span class="text-serif-italic">awesome together.</span></h2>
             
             <div class="footer-socials-row">
-                <a href="#" class="f-social-icon">𝕏</a>
-                <a href="#" class="f-social-icon">in</a>
-                <a href="#" class="f-social-icon">Be</a>
-                <a href="#" class="f-social-icon">Dr</a>
+                <a href="https://linkedin.com/in/nischhal/" class="f-social-icon">in</a>
+                <a href="https://behance.net/nischhal" class="f-social-icon">Be</a>
+                <a href="https://dribbble.com/Nischhal" class="f-social-icon">Dr</a>
+                <a href="https://github.com/Nischhalsubba" class="f-social-icon">Gh</a>
             </div>
 
             <div class="footer-center-img">
@@ -335,16 +316,16 @@
             </div>
             <div class="fl-col">
                 <h5>Work</h5>
-                <a href="projects.html">MAS DataHub</a>
-                <a href="projects.html">Yarsha</a>
-                <a href="projects.html">Morajaa</a>
-                <a href="projects.html">Zapp Today</a>
+                <a href="project-detail.html">MAS DataHub</a>
+                <a href="project-detail.html">Yarsha</a>
+                <a href="project-detail.html">Morajaa</a>
+                <a href="project-detail.html">Zapp Today</a>
             </div>
             <div class="fl-col">
                 <h5>Products</h5>
-                <a href="#">UI Kit</a>
-                <a href="#">Design System</a>
-                <a href="#">Icons</a>
+                <a href="products.html">UI Kit</a>
+                <a href="products.html">Design System</a>
+                <a href="products.html">Icons</a>
             </div>
         </div>
 
