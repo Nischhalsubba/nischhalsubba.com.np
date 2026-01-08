@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=3.2">
+    <link rel="stylesheet" href="style.css?v=3.3">
     
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -31,7 +31,7 @@
     <nav class="nav-wrapper fade-in">
       <div class="nav-pill">
         <div class="nav-glider"></div>
-        <a href="index.html" class="nav-link active">Home</a>
+        <a href="index.html" class="nav-link">Home</a>
         <a href="projects.html" class="nav-link">Work</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="blog.html" class="nav-link">Writing</a>
@@ -47,15 +47,13 @@
         <!-- Centered Infinite Ticker -->
         <div class="ticker-container fade-in">
           <div class="ticker-track">
-             <!-- Set 1 -->
              <div class="ticker-item accent">Product Designer</div>
              <div class="ticker-item">Enterprise UX</div>
              <div class="ticker-item">Design Systems</div>
              <div class="ticker-item">Web3 & DeFi</div>
              <div class="ticker-item">Based in Kathmandu</div>
              <div class="ticker-item">Strategy</div>
-             
-             <!-- Set 2 (Exact Duplicate for Loop) -->
+             <!-- Duplicate -->
              <div class="ticker-item accent">Product Designer</div>
              <div class="ticker-item">Enterprise UX</div>
              <div class="ticker-item">Design Systems</div>
@@ -79,12 +77,38 @@
           <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
         </div>
         
-        <!-- Hero Blended Image -->
         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2400" alt="Abstract Product Visual" class="hero-visual fade-in" />
-
       </section>
 
-      <!-- 2. Selected Work -->
+      <!-- 2. Capabilities (Redesigned: Bento Grid) -->
+      <section id="approach" class="section-container">
+        <div class="section-header reveal-on-scroll">
+           <h2 class="section-title text-reveal-wrap">
+               <span class="text-outline">My Approach</span>
+               <span class="text-fill">My Approach</span>
+           </h2>
+        </div>
+        
+        <div class="bento-grid reveal-on-scroll">
+            <div class="bento-card wide">
+                <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg></div>
+                <h3>Scalable Systems</h3>
+                <p>I don't just design screens; I build atomic systems. From token structure to component APIs, I ensure your product scales without technical debt.</p>
+            </div>
+            <div class="bento-card">
+                <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+                <h3>Complex Problem Solving</h3>
+                <p>I thrive on complexity. Whether it's a multi-step fintech flow or a data-heavy dashboard, I simplify without oversimplifying.</p>
+            </div>
+            <div class="bento-card">
+                <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/></svg></div>
+                <h3>Interaction & Motion</h3>
+                <p>Motion isn't decoration; it's communication. I use animation to guide attention and provide feedback, not just to look pretty.</p>
+            </div>
+        </div>
+      </section>
+
+      <!-- 3. Selected Work -->
       <section id="work" class="section-container">
         <div class="section-header reveal-on-scroll">
           <h2 class="section-title text-reveal-wrap">
@@ -103,14 +127,9 @@
                </div>
                <div class="card-content">
                    <h3>MAS DataHub</h3>
-                   <div class="card-meta-line">
-                       <span>Enterprise Data</span>
-                       <span>2024</span>
-                       <span>Web App</span>
-                   </div>
+                   <div class="card-meta-line"><span>Enterprise Data</span><span>2024</span></div>
                </div>
            </a>
-
            <!-- Project 2 -->
            <a href="project-detail.html" class="project-card reveal-on-scroll">
                 <div class="card-media-wrap">
@@ -119,109 +138,13 @@
                 </div>
                 <div class="card-content">
                     <h3>Yarsha</h3>
-                    <div class="card-meta-line">
-                        <span>Web3 Chat + Wallet</span>
-                        <span>2023</span>
-                        <span>Mobile</span>
-                    </div>
+                    <div class="card-meta-line"><span>Web3 Chat + Wallet</span><span>2023</span></div>
                 </div>
            </a>
         </div>
       </section>
 
-      <!-- 3. Capabilities -->
-      <section id="approach" class="section-container">
-        <div class="section-header reveal-on-scroll">
-           <h2 class="section-title text-reveal-wrap">
-               <span class="text-outline">Capabilities</span>
-               <span class="text-fill">Capabilities</span>
-           </h2>
-        </div>
-        
-        <div class="capabilities-grid reveal-on-scroll">
-            <div class="cap-card">
-                <div class="cap-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                </div>
-                <h4>Strategy & Product</h4>
-                <ul class="cap-list">
-                    <li>Design Systems</li>
-                    <li>Information Architecture</li>
-                    <li>User Research</li>
-                    <li>Product Strategy</li>
-                </ul>
-            </div>
-            <div class="cap-card">
-                <div class="cap-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-                </div>
-                <h4>Design & Prototyping</h4>
-                <ul class="cap-list">
-                    <li>UI/Visual Design</li>
-                    <li>Prototyping</li>
-                    <li>Motion Design</li>
-                    <li>Design Handoff</li>
-                </ul>
-            </div>
-            <div class="cap-card">
-                <div class="cap-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                </div>
-                <h4>Technical</h4>
-                <ul class="cap-list">
-                    <li>HTML/CSS</li>
-                    <li>Figma Variables</li>
-                    <li>WCAG Accessibility</li>
-                    <li>Basic React/JS</li>
-                </ul>
-            </div>
-        </div>
-      </section>
-
-      <!-- 4. Endorsements -->
-      <section id="testimonials" class="section-container">
-        <div class="section-header reveal-on-scroll">
-           <h2 class="section-title text-reveal-wrap">
-               <span class="text-outline">Kind Words</span>
-               <span class="text-fill">Kind Words</span>
-           </h2>
-        </div>
-        
-        <div class="endorsements-masonry reveal-on-scroll">
-            <div class="endorsement-tile large">
-                <p class="e-quote">"Nischhal transformed our vague product idea into a world-class interface. His ability to balance aesthetic polish with complex functionality is rare."</p>
-                <div class="e-meta">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Jenkins">
-                    <div>
-                        <h5>Sarah Jenkins</h5>
-                        <span>CTO, Nova Financial</span>
-                    </div>
-                </div>
-            </div>
-            <div class="endorsement-tile">
-                <p class="e-quote">"Saved us weeks of engineering time. The design system was scalable and remarkably well-documented."</p>
-                <div class="e-meta">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Chen">
-                    <div>
-                        <h5>David Chen</h5>
-                        <span>Product Lead, Orbit</span>
-                    </div>
-                </div>
-            </div>
-            <div class="endorsement-tile">
-                <p class="e-quote">"Felt less like hiring a freelancer and more like adding a senior partner."</p>
-                <div class="e-meta">
-                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Elena Rodriguez">
-                    <div>
-                        <h5>Elena Rodriguez</h5>
-                        <span>Founder, Ether Flow</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </section>
-
-      <!-- 5. Writing -->
+      <!-- 4. Writing (Redesigned with Images) -->
       <section id="writing" class="section-container">
           <div class="section-header reveal-on-scroll">
               <h2 class="section-title text-reveal-wrap">
@@ -232,28 +155,24 @@
           </div>
           
           <div class="writing-list reveal-on-scroll">
-              <a href="blog-detail.html" class="writing-item">
-                  <div class="w-left">
-                      <span class="w-date">Oct 2025</span>
-                      <h4 class="w-title">The future of Design Systems</h4>
+              <a href="blog-detail.html" class="writing-card">
+                  <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=200" alt="Code" class="wc-img">
+                  <div class="wc-content">
+                      <span class="wc-date">Oct 2025</span>
+                      <h4 class="wc-title">The future of Design Systems</h4>
                   </div>
               </a>
-              <a href="blog-detail.html" class="writing-item">
-                  <div class="w-left">
-                      <span class="w-date">Sep 2025</span>
-                      <h4 class="w-title">Bridging gap between Design and Code</h4>
-                  </div>
-              </a>
-              <a href="blog-detail.html" class="writing-item">
-                  <div class="w-left">
-                      <span class="w-date">Aug 2025</span>
-                      <h4 class="w-title">Inclusive by default: A guide</h4>
+              <a href="blog-detail.html" class="writing-card">
+                  <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=200" alt="Structure" class="wc-img">
+                  <div class="wc-content">
+                      <span class="wc-date">Sep 2025</span>
+                      <h4 class="wc-title">Bridging gap between Design and Code</h4>
                   </div>
               </a>
           </div>
       </section>
 
-      <!-- 6. FAQ -->
+      <!-- 5. FAQ (Carousel + Accordion) -->
       <section id="faq" class="section-container">
         <div class="section-header reveal-on-scroll">
            <h2 class="section-title text-reveal-wrap">
@@ -261,26 +180,53 @@
                <span class="text-fill">Q&A</span>
            </h2>
         </div>
-        <div class="faq-modern-grid reveal-on-scroll">
-            <div class="faq-card">
-                <h4>What is your typical project timeline?</h4>
-                <p>Most end-to-end product design projects take between 4-8 weeks. Design system projects vary based on complexity but typically start at 6 weeks for a comprehensive v1 release.</p>
+        
+        <div class="faq-carousel-wrapper reveal-on-scroll">
+            <div class="faq-track">
+                
+                <!-- Slide 1 -->
+                <div class="faq-slide">
+                    <div class="faq-accordion-group">
+                        <div class="faq-item">
+                            <button class="faq-question">What is your typical timeline?<span class="faq-icon"></span></button>
+                            <div class="faq-answer"><p>Most end-to-end product design projects take between 4-8 weeks. Design system projects vary based on complexity but typically start at 6 weeks for a comprehensive v1 release.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Do you handle development?<span class="faq-icon"></span></button>
+                            <div class="faq-answer"><p>My core expertise is design. However, I am proficient in HTML/CSS and Webflow. For complex web apps, I partner with trusted engineering teams or work alongside your developers.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">How do revisions work?<span class="faq-icon"></span></button>
+                            <div class="faq-answer"><p>I work in weekly sprints with frequent check-ins, which minimizes the need for massive "revisions" at the end. Feedback is incorporated continuously throughout the process.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="faq-slide">
+                    <div class="faq-accordion-group">
+                        <div class="faq-item">
+                            <button class="faq-question">What tools do you use?<span class="faq-icon"></span></button>
+                            <div class="faq-answer"><p>I primarily use Figma for design and prototyping. For motion, I use After Effects or Rive. For documentation, I use Notion or Zeroheight.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Are you available for freelance?<span class="faq-icon"></span></button>
+                            <div class="faq-answer"><p>Yes, I am currently accepting new projects for Q3 2026. Please reach out via the contact form to discuss availability.</p></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Do you work with startups?<span class="faq-icon"></span></button>
+                            <div class="faq-answer"><p>Absolutely. I love the energy of early-stage startups and helping them define their MVP and product vision.</p></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="faq-card">
-                <h4>Do you handle development?</h4>
-                <p>My core expertise is design. However, I am proficient in HTML/CSS and Webflow. For complex web apps, I partner with trusted engineering teams or work alongside your developers.</p>
-            </div>
-            <div class="faq-card">
-                <h4>How do you handle revisions?</h4>
-                <p>I work in weekly sprints with frequent check-ins (Async or Sync), which minimizes the need for massive "revisions" at the end. Feedback is incorporated continuously.</p>
+            
+            <div class="faq-controls">
+                <button id="faq-prev" class="faq-btn" disabled>←</button>
+                <button id="faq-next" class="faq-btn">→</button>
             </div>
         </div>
-      </section>
-
-      <!-- 7. Contact (Removed form, links to page) -->
-      <section class="section-container" style="text-align: center;">
-          <h2 class="section-title" style="margin-bottom: 24px;">Ready to start?</h2>
-          <a href="contact.html" class="btn btn-primary">Go to Contact Page</a>
       </section>
 
     </main>
@@ -293,14 +239,12 @@
         
         <div class="footer-hero reveal-on-scroll">
             <h2>Let's create something<br><span class="text-serif-italic">awesome together.</span></h2>
-            
             <div class="footer-socials-row">
-                <a href="https://linkedin.com/in/nischhal/" class="f-social-icon">in</a>
-                <a href="https://behance.net/nischhal" class="f-social-icon">Be</a>
-                <a href="https://dribbble.com/Nischhal" class="f-social-icon">Dr</a>
-                <a href="https://github.com/Nischhalsubba" class="f-social-icon">Gh</a>
+                <a href="#" class="f-social-icon">in</a>
+                <a href="#" class="f-social-icon">Be</a>
+                <a href="#" class="f-social-icon">Dr</a>
+                <a href="#" class="f-social-icon">Gh</a>
             </div>
-
             <div class="footer-center-img">
                 <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Nischhal">
             </div>
