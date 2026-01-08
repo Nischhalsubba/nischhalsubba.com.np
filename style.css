@@ -1,7 +1,7 @@
 /* 
   STYLE.CSS
   Refined Premium Dark Theme
-  v3.0 - Canvas Grid, Masonry Layouts, Flicker Fixes
+  v3.1 - Canvas Grid, Masonry Layouts, Flicker & Layout Shift Fixes
 */
 
 /* --- 1. DESIGN TOKENS --- */
@@ -48,6 +48,8 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  /* CRITICAL FIX: Forces scrollbar to always exist to prevent layout shift on hover */
+  overflow-y: scroll; 
 }
 
 body {
@@ -74,10 +76,11 @@ ul { list-style: none; }
 img { display: block; max-width: 100%; }
 
 /* Fix Flickering on Hardware Accelerated Elements */
-.btn, .nav-pill, .card-media-wrap, .contact-card {
+/* Refined: Use will-change instead of translateZ globally to avoid coordinate snapping */
+.btn, .card-media-wrap, .contact-card {
+  will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transform: translateZ(0); 
 }
 
 /* --- 3. TYPOGRAPHY --- */
@@ -120,6 +123,8 @@ h1, h2, h3, h4, h5 {
   position: fixed; top: 24px; left: 0; right: 0;
   display: flex; justify-content: center;
   z-index: var(--z-nav); pointer-events: none;
+  /* Ensure fixed position is stable */
+  transform: translateZ(0);
 }
 
 .nav-pill {
@@ -131,6 +136,7 @@ h1, h2, h3, h4, h5 {
   border-radius: 9999px;
   padding: 6px; display: flex; gap: 4px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  /* Removed translateZ here to prevent nested stacking context issues */
 }
 
 .nav-link {
@@ -173,7 +179,6 @@ h1, h2, h3, h4, h5 {
 .ticker-track {
   display: flex; gap: 16px; width: max-content;
   animation: tickerScroll 40s linear infinite; 
-  /* Visual Alignment Trick: Shift left slightly to start balanced */
   transform: translateX(-10%); 
 }
 
