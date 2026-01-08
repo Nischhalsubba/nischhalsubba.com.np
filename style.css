@@ -11,8 +11,8 @@
   --bg-card: #141414;
   
   --text-primary: #EDEDED;
-  --text-secondary: #A1A1A1;
-  --text-tertiary: #555555;
+  --text-secondary: #B0B0B0; /* Increased brightness for contrast */
+  --text-tertiary: #666666;
   
   /* Accents */
   --accent-primary: #CAE8BD; /* Pale Matcha */
@@ -20,8 +20,8 @@
   --accent-hover: #b8d6ab;
   
   /* Borders */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.15);
+  --border-subtle: rgba(255, 255, 255, 0.1); /* Increased visibility */
+  --border-light: rgba(255, 255, 255, 0.18);
   
   /* Dimensions */
   --container-width: 1400px;
@@ -44,7 +44,8 @@
 body.custom-cursor-enabled,
 body.custom-cursor-enabled *, 
 body.custom-cursor-enabled a, 
-body.custom-cursor-enabled button {
+body.custom-cursor-enabled button,
+body.custom-cursor-enabled select {
   cursor: none !important;
 }
 
@@ -57,12 +58,12 @@ body {
   background-color: var(--bg-body);
   color: var(--text-primary);
   font-family: 'Inter', sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-a, button, input, textarea {
+a, button, input, textarea, select {
   text-decoration: none;
   color: inherit;
   font-family: inherit;
@@ -217,12 +218,6 @@ h1, h2, h3, h4 {
   cursor: pointer;
 }
 
-.nav-link svg {
-    width: 16px;
-    height: 16px;
-    opacity: 0.7;
-}
-
 .nav-link:hover {
   color: white;
   background: rgba(255,255,255,0.05);
@@ -233,11 +228,8 @@ h1, h2, h3, h4 {
   color: white;
 }
 
-.nav-link.active svg { opacity: 1; }
-
 @media (max-width: 768px) {
-    .nav-link span { display: none; }
-    .nav-link { padding: 12px; }
+    .nav-link { padding: 10px 14px; font-size: 0.8rem; }
 }
 
 /* --- 7. LAYOUT & SECTIONS --- */
@@ -328,7 +320,7 @@ main {
 .hero-subtitle {
     color: var(--text-secondary);
     font-size: 1.25rem;
-    max-width: 600px;
+    max-width: 640px;
     margin-bottom: 48px;
 }
 
@@ -406,7 +398,7 @@ main {
     font-size: 1.1rem;
 }
 
-/* --- 10. PROCESS SECTION (NEW) --- */
+/* --- 10. PROCESS SECTION --- */
 .process-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -445,7 +437,7 @@ main {
     line-height: 1.6;
 }
 
-/* --- 11. ACHIEVEMENTS SECTION (NEW) --- */
+/* --- 11. ACHIEVEMENTS SECTION --- */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -474,13 +466,13 @@ main {
     font-size: 0.85rem;
 }
 
-/* --- 12. TOOLS (NEW) --- */
+/* --- 12. TOOLS --- */
 .tools-section {
     padding: 40px 0;
     overflow: hidden;
 }
 
-/* --- 13. TESTIMONIALS (NEW) --- */
+/* --- 13. TESTIMONIALS --- */
 .testimonial-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -503,6 +495,11 @@ main {
     font-style: italic;
 }
 
+.testimonial-text strong {
+    color: white;
+    font-weight: 500;
+}
+
 .testimonial-author h5 {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
@@ -515,7 +512,7 @@ main {
     font-size: 0.9rem;
 }
 
-/* --- 14. BLOG LIST (NEW) --- */
+/* --- 14. BLOG LIST --- */
 .blog-list {
     display: flex;
     flex-direction: column;
@@ -622,6 +619,15 @@ main {
     font-size: 1rem;
     transition: border-color 0.2s;
     font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+select.form-input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
 }
 
 .form-input:focus, .form-textarea:focus {
@@ -697,8 +703,7 @@ main {
 }
 
 @media (max-width: 768px) {
-    .nav-link span { display: none; }
-    .nav-link { padding: 12px; }
+    .nav-link { font-size: 0.8rem; padding: 10px 12px;}
     .process-grid { grid-template-columns: 1fr; }
     .testimonial-grid { grid-template-columns: 1fr; }
     .stats-grid { grid-template-columns: 1fr; }
