@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work | Nischhal Raj Subba</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+
+    <nav class="nav-dock">
+      <div class="nav-dock-inner">
+        <a href="index.html" class="nav-item" aria-label="Home"><i data-lucide="home"></i></a>
+        <a href="projects.html" class="nav-item active" aria-label="Work"><i data-lucide="layers"></i></a>
+        <a href="blog.html" class="nav-item" aria-label="Blog"><i data-lucide="pen-tool"></i></a>
+        <a href="index.html#contact" class="nav-item" aria-label="Contact"><i data-lucide="mail"></i></a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero-section" style="min-height: 50vh;">
+        <h1 class="hero-title fade-in">Selected Work</h1>
+        <p class="hero-subtitle fade-in">A collection of case studies in Fintech, SaaS, and Design Systems.</p>
+      </section>
+
+      <section class="section-container">
+        <div class="project-grid">
+           <!-- Project 1 -->
+           <a href="project-detail.html" class="project-card large reveal-on-scroll clickable">
+            <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=2000" alt="Fintech">
+                <div class="card-badge">Fintech</div>
+            </div>
+            <div class="card-content mt-4">
+                <h3>Nova Financial</h3>
+                <p>Mobile banking redesign.</p>
+            </div>
+           </a>
+
+           <!-- Project 2 -->
+           <a href="project-detail.html" class="project-card reveal-on-scroll clickable">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1620641788427-7e9643a200a5?q=80&w=1200" alt="System">
+              <div class="card-badge">Design System</div>
+            </div>
+            <div class="card-content mt-4">
+              <h3>Orbit System</h3>
+              <p>Enterprise component library.</p>
+            </div>
+          </a>
+          
+          <!-- Project 3 -->
+           <a href="project-detail.html" class="project-card reveal-on-scroll clickable">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1200" alt="Web3">
+              <div class="card-badge">Web3</div>
+            </div>
+            <div class="card-content mt-4">
+              <h3>Ether Flow</h3>
+              <p>DeFi Dashboard.</p>
+            </div>
+          </a>
+
+          <!-- Project 4 -->
+          <a href="project-detail.html" class="project-card reveal-on-scroll clickable">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800" alt="E-com">
+              <div class="card-badge">E-commerce</div>
+            </div>
+            <div class="card-content mt-4">
+              <h3>Meridian Shop</h3>
+              <p>High conversion checkout flow.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+         <div class="footer-bottom">
+             <span>Built by Nischhal Raj Subba.</span>
+             <span>© 2026. Kathmandu, Nepal.</span>
+         </div>
+      </footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
     
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -23,10 +23,9 @@
     <!-- Top Navigation Dock -->
     <nav class="nav-dock">
       <div class="nav-dock-inner">
-        <a href="#home" class="nav-item active" aria-label="Home"><i data-lucide="home"></i></a>
-        <a href="#work" class="nav-item" aria-label="Work"><i data-lucide="shopping-bag"></i></a>
-        <a href="#solutions" class="nav-item" aria-label="Solutions"><i data-lucide="briefcase"></i></a>
-        <a href="#blog" class="nav-item" aria-label="Blog"><i data-lucide="pen-tool"></i></a>
+        <a href="index.html" class="nav-item active" aria-label="Home"><i data-lucide="home"></i></a>
+        <a href="projects.html" class="nav-item" aria-label="Work"><i data-lucide="layers"></i></a>
+        <a href="blog.html" class="nav-item" aria-label="Blog"><i data-lucide="pen-tool"></i></a>
         <a href="#contact" class="nav-item" aria-label="Contact"><i data-lucide="mail"></i></a>
       </div>
     </nav>
@@ -38,416 +37,226 @@
         
         <!-- Tags -->
         <div class="hero-tags fade-in">
-          <span class="pill">UI/UX Design</span>
-          <span class="pill">Branding</span>
-          <span class="pill">Web Design</span>
-          <span class="pill">3D Design</span>
+          <span class="pill">Product Design</span>
+          <span class="pill">Design Systems</span>
+          <span class="pill">Web3</span>
+          <span class="pill">Kathmandu</span>
         </div>
 
         <!-- Headline -->
         <h1 class="hero-title fade-in">
-          <span>Bold thinking,</span>
-          <span class="text-serif-italic">Better design.</span>
+          <span>Designing for</span>
+          <span class="text-serif-italic">impact & scale.</span>
         </h1>
 
         <p class="hero-subtitle fade-in">
-          Amsterdam-based digital storyteller for worldwide brands.
+            Nischhal Raj Subba is a Product Designer crafting refined digital experiences and scalable design systems.
         </p>
 
         <!-- Actions -->
         <div class="hero-actions fade-in">
-          <a href="#work" class="btn btn-white">See work</a>
-          <a href="#goods" class="btn btn-dark">Shop products</a>
+          <a href="projects.html" class="btn btn-white clickable">View Projects</a>
+          <a href="#contact" class="btn btn-dark clickable">Get in Touch</a>
         </div>
 
-        <!-- Hero Image (Portrait) -->
+        <!-- Hero Image (Parallax Target) -->
         <div class="hero-image-wrapper fade-in">
-             <!-- Using a gradient placeholder that looks like the reference's moody lighting if image fails -->
-            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Portrait" class="hero-img">
-            <div class="hero-gradient-overlay"></div>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Nischhal Raj Subba" class="hero-img">
         </div>
 
       </section>
 
-      <!-- Projects Grid -->
+      <!-- Selected Work -->
       <section id="work" class="section-container">
         <div class="section-header">
-          <h2 class="section-title">Projects <sup class="count">(7)</sup></h2>
-          <a href="#" class="link-subtle">See all</a>
+          <h2 class="section-title">Selected Work <sup class="count">(3)</sup></h2>
+          <a href="projects.html" class="link-subtle clickable">See all projects</a>
         </div>
 
         <!-- Large Feature Project -->
-        <article class="project-card large reveal-on-scroll">
+        <a href="project-detail.html" class="project-card large reveal-on-scroll clickable">
            <div class="card-media">
-               <img src="https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=2000" alt="Halo">
-               <div class="card-badge">Identity, Development</div>
+               <img src="https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=2000" alt="Fintech App">
+               <div class="card-badge">Fintech, Mobile App</div>
                <div class="card-center-logo">
-                   <i data-lucide="flower-2" size="64" color="white"></i>
-                   <span class="font-serif text-3xl ml-3 text-white">Halo</span>
+                   <i data-lucide="wallet" size="64" color="white"></i>
+                   <span class="font-serif text-3xl ml-3 text-white">Nova</span>
                </div>
            </div>
            <div class="card-content mt-4">
-               <h3>Halo</h3>
-               <p>Reworking a brand and building a website that grows with it.</p>
+               <h3>Nova Financial</h3>
+               <p>Redesigning the mobile banking experience for 2M+ users.</p>
            </div>
-        </article>
+        </a>
 
         <!-- Standard Grid -->
         <div class="project-grid mt-10">
            <!-- Meridian -->
-           <article class="project-card reveal-on-scroll">
+           <a href="project-detail.html" class="project-card reveal-on-scroll clickable">
             <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1620641788427-7e9643a200a5?q=80&w=1200" alt="Meridian">
-              <div class="card-badge">Web Design</div>
+              <img src="https://images.unsplash.com/photo-1620641788427-7e9643a200a5?q=80&w=1200" alt="Design System">
+              <div class="card-badge">Design System</div>
                <div class="card-center-logo">
-                   <i data-lucide="aperture" size="48" color="white"></i>
+                   <i data-lucide="grid" size="48" color="white"></i>
                </div>
             </div>
             <div class="card-content mt-4">
-              <h3>Meridian</h3>
-              <p>A fresh identity for a brand that needed clarity.</p>
+              <h3>Orbit System</h3>
+              <p>A comprehensive design language for enterprise SaaS.</p>
             </div>
-          </article>
+          </a>
           
           <!-- Voxel -->
-           <article class="project-card reveal-on-scroll">
+           <a href="project-detail.html" class="project-card reveal-on-scroll clickable">
             <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1200" alt="Voxel">
-              <div class="card-badge">Web3 Product</div>
+              <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1200" alt="Web3">
+              <div class="card-badge">Web3 / DeFi</div>
                <div class="card-center-logo">
-                   <i data-lucide="box" size="48" color="white"></i>
+                   <i data-lucide="blocks" size="48" color="white"></i>
                </div>
             </div>
             <div class="card-content mt-4">
-              <h3>Voxel</h3>
-              <p>Designing trustless transaction flows for DeFi.</p>
+              <h3>Ether Flow</h3>
+              <p>Simplifying decentralized exchange interfaces.</p>
             </div>
-          </article>
+          </a>
         </div>
       </section>
 
-      <!-- Solutions (Grid of 4) -->
+      <!-- Services / Solutions -->
       <section id="solutions" class="section-container">
         <div class="section-header">
-          <h2 class="section-title">Solutions <sup class="count">(4)</sup></h2>
+          <h2 class="section-title">Expertise</h2>
         </div>
 
         <div class="solutions-grid">
            <div class="solution-card reveal-on-scroll">
               <div class="sol-header">
                 <span class="sol-num">01.</span>
-                <div class="sol-icon"><i data-lucide="aperture"></i></div>
+                <div class="sol-icon"><i data-lucide="layout"></i></div>
               </div>
               <div class="sol-body">
-                 <h3>Logos and brand identity</h3>
-                 <p>Creating visual identities that make your brand memorable.</p>
+                 <h3>Product Design (UI/UX)</h3>
+                 <p>End-to-end product design from user research and wireframing to high-fidelity prototyping.</p>
               </div>
            </div>
 
            <div class="solution-card reveal-on-scroll">
               <div class="sol-header">
                 <span class="sol-num">02.</span>
-                <div class="sol-icon"><i data-lucide="box"></i></div>
+                <div class="sol-icon"><i data-lucide="component"></i></div>
               </div>
               <div class="sol-body">
-                 <h3>3D Product Design</h3>
-                 <p>Turning complex ideas into 3D digital products people love.</p>
-              </div>
-           </div>
-
-           <div class="solution-card reveal-on-scroll">
-              <div class="sol-header">
-                <span class="sol-num">03.</span>
-                <div class="sol-icon"><i data-lucide="monitor"></i></div>
-              </div>
-              <div class="sol-body">
-                 <h3>Websites</h3>
-                 <p>Strategic, beautiful websites that achieve your business goals.</p>
-              </div>
-           </div>
-
-           <div class="solution-card reveal-on-scroll">
-              <div class="sol-header">
-                <span class="sol-num">04.</span>
-                <div class="sol-icon"><i data-lucide="camera"></i></div>
-              </div>
-              <div class="sol-body">
-                 <h3>Photography</h3>
-                 <p>Building scalable design foundations consistent across devices.</p>
+                 <h3>Design Systems</h3>
+                 <p>Building scalable component libraries in Figma to ensure consistency and speed up development.</p>
               </div>
            </div>
         </div>
       </section>
 
-      <!-- Digital Goods -->
-      <section id="goods" class="section-container">
-        <div class="section-header">
-            <h2 class="section-title">Digital goods <sup class="count">(2)</sup></h2>
-            <a href="#" class="link-subtle">See all</a>
-        </div>
-
-        <div class="project-grid">
-            <!-- Guidy -->
-            <article class="project-card reveal-on-scroll">
-                <div class="card-media">
-                  <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200" alt="Guidy">
-                  <div class="card-price-pill">$99</div>
-                  <div class="card-center-logo text-center">
-                    <h3 class="font-serif text-3xl italic">BRAND<br>BOOK</h3>
-                  </div>
-                </div>
-                <div class="card-content mt-4">
-                  <div class="flex justify-between">
-                      <h3>Guidy</h3>
-                  </div>
-                  <p>Brand Book Template</p>
-                </div>
-            </article>
-
-            <!-- Feature -->
-            <article class="project-card reveal-on-scroll">
-                <div class="card-media">
-                  <img src="https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1200" alt="Feature">
-                  <div class="card-price-pill">Free</div>
-                   <div class="card-center-logo text-center">
-                    <h3 class="text-2xl font-bold">Turn data<br><span class="text-serif-italic font-normal">into decisions</span></h3>
-                  </div>
-                </div>
-                <div class="card-content mt-4">
-                  <div class="flex justify-between">
-                      <h3>Feature</h3>
-                  </div>
-                  <p>SaaS template</p>
-                </div>
-            </article>
-        </div>
-      </section>
-
-      <!-- Logo Wall -->
-      <section class="logo-wall reveal-on-scroll">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Mailchimp_Logo.svg" alt="Mailchimp" class="client-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" class="client-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="Spotify" class="client-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Booking.com_logo.svg" alt="Booking" class="client-logo">
-      </section>
-
-      <!-- Blog -->
+      <!-- Insights / Blog -->
       <section id="blog" class="section-container">
         <div class="section-header">
-            <h2 class="section-title">From the blog <sup class="count">(5)</sup></h2>
-            <a href="#" class="link-subtle">See all</a>
+            <h2 class="section-title">Insights <sup class="count">(3)</sup></h2>
+            <a href="blog.html" class="link-subtle clickable">Read all</a>
         </div>
         
         <div class="blog-list">
-            <a href="#" class="blog-row reveal-on-scroll">
+            <a href="blog-detail.html" class="blog-row clickable">
                 <div class="blog-info">
-                    <h3>Turning critique into creative opportunities</h3>
-                    <div class="blog-meta">Oct 24, 2025 • 2 min</div>
+                    <h3>The future of Design Systems in 2026</h3>
+                    <div class="blog-meta">Oct 24, 2025 • 5 min read</div>
                 </div>
                 <div class="blog-arrow"><i data-lucide="corner-down-right"></i></div>
             </a>
             
-            <a href="#" class="blog-row reveal-on-scroll">
+            <a href="blog-detail.html" class="blog-row clickable">
                 <div class="blog-info">
-                    <h3>Creating compelling narratives through design</h3>
-                    <div class="blog-meta">Oct 20, 2025 • 4 min</div>
+                    <h3>Bridging the gap between Design and Engineering</h3>
+                    <div class="blog-meta">Oct 10, 2025 • 4 min read</div>
                 </div>
                 <div class="blog-arrow"><i data-lucide="corner-down-right"></i></div>
             </a>
 
-            <a href="#" class="blog-row reveal-on-scroll">
+            <a href="blog-detail.html" class="blog-row clickable">
                 <div class="blog-info">
-                    <h3>Tools and techniques for better productivity</h3>
-                    <div class="blog-meta">Oct 8, 2025 • 1 min</div>
-                </div>
-                <div class="blog-arrow"><i data-lucide="corner-down-right"></i></div>
-            </a>
-            
-            <a href="#" class="blog-row reveal-on-scroll">
-                <div class="blog-info">
-                    <h3>Choosing the right fonts for your design projects</h3>
-                    <div class="blog-meta">Sep 24, 2025 • 2 min</div>
+                    <h3>Accessibility is not an afterthought</h3>
+                    <div class="blog-meta">Sep 15, 2025 • 3 min read</div>
                 </div>
                 <div class="blog-arrow"><i data-lucide="corner-down-right"></i></div>
             </a>
         </div>
       </section>
 
-      <!-- Testimonials -->
+      <!-- Testimonials Carousel -->
       <section id="testimonials" class="section-container">
         <div class="section-header">
-            <h2 class="section-title">What others say <sup class="count">(6)</sup></h2>
+            <h2 class="section-title">What others say</h2>
         </div>
 
-        <div class="testimonials-grid">
-            <div class="testi-card reveal-on-scroll">
-                <div class="testi-user">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100" alt="Jordan">
-                    <div>
-                        <h4>Juno C. <i data-lucide="badge-check" size="14" fill="#0C8CE9" class="inline-icon"></i></h4>
-                        <span>@juno123</span>
+        <div class="testimonials-wrapper reveal-on-scroll">
+            
+            <div class="testimonial-slide active">
+                <div class="testi-card">
+                    <div class="testi-user">
+                        <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100" alt="Client 1">
+                        <div>
+                            <h4>James R.</h4>
+                            <span>CTO @ FinTech Corp</span>
+                        </div>
                     </div>
+                    <p>Nischhal is a rare breed of designer who understands code. His design system handover was flawless, saving our dev team weeks of work.</p>
                 </div>
-                <p>Alex just gets it. Clean design, smart structure, and an eye for detail that makes everything feel intentional.</p>
             </div>
 
-            <div class="testi-card reveal-on-scroll">
-                <div class="testi-user">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" alt="Marc">
-                    <div>
-                        <h4>Nina S. <i data-lucide="badge-check" size="14" fill="#0C8CE9" class="inline-icon"></i></h4>
-                        <span>@ninas95</span>
+            <div class="testimonial-slide">
+                <div class="testi-card">
+                    <div class="testi-user">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" alt="Client 2">
+                        <div>
+                            <h4>Sarah L.</h4>
+                            <span>Product Manager</span>
+                        </div>
                     </div>
+                    <p>The UX improvements Nischhal implemented increased our conversion rate by 30%. He is strategic, thoughtful, and incredible to work with.</p>
                 </div>
-                <p>Working with Alex was one of the best creative decisions we made this year. He took our scattered ideas and turned them into a cohesive digital experience.</p>
             </div>
-            
-            <div class="testi-card reveal-on-scroll">
-                <div class="testi-user">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Lucas">
-                    <div>
-                        <h4>Lucas M. <i data-lucide="badge-check" size="14" fill="#0C8CE9" class="inline-icon"></i></h4>
-                        <span>@lucasm</span>
+
+            <div class="testimonial-slide">
+                <div class="testi-card">
+                    <div class="testi-user">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Client 3">
+                        <div>
+                            <h4>David K.</h4>
+                            <span>Founder @ Web3 Startup</span>
+                        </div>
                     </div>
+                    <p>He took our complex blockchain concepts and turned them into a simple, beautiful interface. Highly recommended for any Web3 projects.</p>
                 </div>
-                <p>Found Alex through one of his Framer templates and was instantly impressed. The final site he built for us feels effortless.</p>
             </div>
-            
-             <div class="testi-card reveal-on-scroll">
-                <div class="testi-user">
-                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100" alt="Marc">
-                    <div>
-                        <h4>Marc K. <i data-lucide="badge-check" size="14" fill="#0C8CE9" class="inline-icon"></i></h4>
-                        <span>@kuipermarc</span>
-                    </div>
-                </div>
-                <p>Our website used to feel clunky and outdated. Alex gave it a total transformation — cleaner layout, faster load time, and a much better mobile experience.</p>
-            </div>
+
+            <div class="testi-dots"></div>
         </div>
-      </section>
-
-      <!-- Pricing -->
-      <section id="pricing" class="section-container">
-          <div class="section-header">
-              <h2 class="section-title">Pricing</h2>
-          </div>
-
-          <div class="pricing-grid">
-              <!-- Per Project -->
-              <div class="pricing-card reveal-on-scroll">
-                  <div class="pricing-header">
-                      <h3>Per project</h3>
-                      <p>For clients seeking a professionally designed website with no recurring costs.</p>
-                  </div>
-                  <div class="price-tag">
-                      <span class="label">From</span>
-                      <span class="amount">$5000</span><span class="period">/project</span>
-                  </div>
-                  <a href="#contact" class="btn btn-primary full-width">Book a call</a>
-                  <ul class="pricing-features">
-                      <li><i data-lucide="check"></i> One-time investment</li>
-                      <li><i data-lucide="check"></i> Full ownership</li>
-                      <li><i data-lucide="check"></i> Get all the design files</li>
-                  </ul>
-              </div>
-
-              <!-- Monthly -->
-              <div class="pricing-card reveal-on-scroll">
-                <div class="pricing-header">
-                    <h3>Monthly</h3>
-                    <p>For clients who want ongoing design updates and support.</p>
-                </div>
-                <div class="price-tag">
-                    <span class="label">From</span>
-                    <span class="amount">$2500</span><span class="period">/month</span>
-                </div>
-                <a href="#contact" class="btn btn-primary full-width">Book a call</a>
-                <ul class="pricing-features">
-                    <li><i data-lucide="check"></i> Lower upfront cost</li>
-                    <li><i data-lucide="check"></i> Monthly updates and support</li>
-                    <li><i data-lucide="check"></i> Easily add new features</li>
-                </ul>
-            </div>
-          </div>
-      </section>
-      
-      <!-- FAQ -->
-      <section class="section-container">
-           <div class="section-header">
-              <h2 class="section-title">Most asked questions <sup class="count">(6)</sup></h2>
-          </div>
-          <div class="faq-list">
-              <div class="faq-item reveal-on-scroll">
-                  <span>What types of digital products do you design?</span>
-                  <i data-lucide="plus"></i>
-              </div>
-               <div class="faq-item reveal-on-scroll">
-                  <span>What is your design process like?</span>
-                  <i data-lucide="plus"></i>
-              </div>
-               <div class="faq-item reveal-on-scroll">
-                  <span>What is your typical timeline for projects?</span>
-                  <i data-lucide="plus"></i>
-              </div>
-              <div class="faq-item reveal-on-scroll">
-                  <span>What do you need from me to get started?</span>
-                  <i data-lucide="plus"></i>
-              </div>
-              <div class="faq-item reveal-on-scroll">
-                  <span>How do you handle revisions and feedback?</span>
-                  <i data-lucide="plus"></i>
-              </div>
-          </div>
       </section>
 
       <!-- Footer -->
       <footer id="contact" class="site-footer reveal-on-scroll">
          <div class="footer-cta">
-            <h2>Let's create something<br><span class="text-serif-italic text-muted">awesome together.</span></h2>
+            <h2>Let's build something<br><span class="text-serif-italic text-muted">meaningful.</span></h2>
          </div>
          
          <div class="footer-socials">
-             <a href="#"><i data-lucide="twitter"></i></a>
-             <a href="#"><i data-lucide="youtube"></i></a>
-             <a href="#"><i data-lucide="instagram"></i></a>
-         </div>
-
-         <div class="footer-links-grid">
-            <div class="col">
-                <h4>Pages</h4>
-                <a href="#work">Work</a>
-                <a href="#solutions">Solutions</a>
-                <a href="#blog">Blog</a>
-                <a href="#contact">Contact</a>
-            </div>
-             <div class="col">
-                 <h4>Work</h4>
-                 <a href="#">Halo</a>
-                 <a href="#">Meridian</a>
-                 <a href="#">Atlas</a>
-                 <a href="#">Voxel</a>
-             </div>
-             <div class="col">
-                 <h4>Products</h4>
-                 <a href="#">Guidy</a>
-                 <a href="#">Feature</a>
-                 <a href="#">Keynote</a>
-                 <a href="#">Enroll</a>
-             </div>
+             <a href="https://www.linkedin.com/in/nischhal/" class="clickable"><i data-lucide="linkedin"></i></a>
+             <a href="https://dribbble.com/Nischhal" class="clickable"><i data-lucide="dribbble"></i></a>
+             <a href="https://github.com/Nischhalsubba" class="clickable"><i data-lucide="github"></i></a>
+             <a href="https://www.instagram.com/nischhalsubba" class="clickable"><i data-lucide="instagram"></i></a>
          </div>
 
          <div class="footer-bottom">
-             <span>Built by Nischhal.</span>
-             <span>© Refined. All rights reserved.</span>
+             <span>Built by Nischhal Raj Subba.</span>
+             <span>© 2026. Kathmandu, Nepal.</span>
          </div>
       </footer>
-
-      <!-- Floating Get Template Button -->
-      <div class="floating-cta">
-          <a href="#" class="btn-pill-white">
-              <i data-lucide="download" width="16"></i> Get template
-          </a>
-      </div>
 
     </main>
     

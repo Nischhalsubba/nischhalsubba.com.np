@@ -28,7 +28,7 @@
   --font-sans: 'Inter', sans-serif;
   
   /* Dimensions */
-  --container-width: 1040px; /* Tighter container */
+  --container-width: 1040px;
   --radius-lg: 20px;
   --radius-md: 12px;
   --radius-pill: 999px;
@@ -39,6 +39,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  cursor: none; /* Hide default cursor */
 }
 
 html {
@@ -52,9 +53,15 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  opacity: 0; /* For Page Transition */
+  transition: opacity 0.5s ease-in-out;
 }
 
-a {
+body.loaded {
+  opacity: 1;
+}
+
+a, button, .clickable {
   text-decoration: none;
   color: inherit;
   transition: opacity 0.2s;
@@ -69,11 +76,45 @@ ul {
   list-style: none;
 }
 
-/* --- 3. TYPOGRAPHY --- */
-h1, h2, h3, h4 {
+/* --- 3. CUSTOM CURSOR --- */
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+/* Hover state for cursor */
+body.hovering .cursor-outline {
+  width: 60px;
+  height: 60px;
+  border-color: var(--accent-green);
+  background-color: rgba(212, 232, 194, 0.1);
+}
+
+/* --- 4. TYPOGRAPHY --- */
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 400;
   color: var(--text-primary);
+  line-height: 1.2;
 }
 
 .text-serif-italic {
@@ -92,7 +133,31 @@ h1, h2, h3, h4 {
 .text-center { text-align: center; }
 .ml-3 { margin-left: 12px; }
 
-/* --- 4. BUTTONS --- */
+/* Content Typography */
+.prose p {
+    margin-bottom: 24px;
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
+.prose h3 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.prose ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 24px;
+    color: #ccc;
+}
+
+.prose li {
+    margin-bottom: 10px;
+}
+
+/* --- 5. BUTTONS --- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -101,7 +166,6 @@ h1, h2, h3, h4 {
   border-radius: var(--radius-pill);
   font-weight: 500;
   font-size: 14px;
-  cursor: pointer;
   transition: all 0.2s;
   text-decoration: none;
   font-family: var(--font-sans);
@@ -151,7 +215,7 @@ h1, h2, h3, h4 {
   background: #f0f0f0;
 }
 
-/* --- 5. NAV DOCK --- */
+/* --- 6. NAV DOCK --- */
 .nav-dock {
   position: fixed;
   top: 24px;
@@ -167,6 +231,7 @@ h1, h2, h3, h4 {
   pointer-events: auto;
   background: rgba(20, 20, 20, 0.7);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 6px 6px;
   border-radius: var(--radius-pill);
   display: flex;
@@ -182,8 +247,13 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: #666;
+  color: #888; /* Explicit color */
   transition: all 0.2s;
+}
+
+.nav-item svg {
+    stroke: currentColor;
+    stroke-width: 2px;
 }
 
 .nav-item:hover {
@@ -196,12 +266,7 @@ h1, h2, h3, h4 {
   color: white;
 }
 
-.nav-item svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* --- 6. LAYOUT --- */
+/* --- 7. LAYOUT --- */
 main {
   max-width: var(--container-width);
   margin: 0 auto;
@@ -241,9 +306,9 @@ main {
 
 .link-subtle:hover { color: white; }
 
-/* --- 7. HERO --- */
+/* --- 8. HERO --- */
 .hero-section {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -281,7 +346,7 @@ main {
 
 .hero-subtitle {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.1rem;
   max-width: 480px;
   margin-bottom: 40px;
 }
@@ -296,6 +361,7 @@ main {
   max-width: 600px;
   width: 100%;
   position: relative;
+  overflow: hidden; /* For Parallax */
   /* Simple fade mask at the bottom */
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
@@ -303,9 +369,38 @@ main {
 
 .hero-img {
     filter: grayscale(10%) contrast(1.1);
+    width: 100%;
 }
 
-/* --- 8. GRIDS & CARDS --- */
+/* Detail Page Hero */
+.detail-hero {
+    padding-top: 160px;
+    padding-bottom: 80px;
+}
+
+.detail-meta {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.meta-item span {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.meta-item p {
+    font-size: 1.1rem;
+    color: white;
+}
+
+/* --- 9. GRIDS & CARDS --- */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -321,6 +416,15 @@ main {
   .project-card.large { grid-column: span 1; }
 }
 
+/* Project Card Hover Effect (Requested) */
+.project-card {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s;
+}
+
+.project-card:hover {
+    transform: scale(1.02);
+}
+
 .card-media {
   position: relative;
   border-radius: var(--radius-lg);
@@ -328,6 +432,12 @@ main {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   aspect-ratio: 16/10;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: box-shadow 0.4s ease;
+}
+
+.project-card:hover .card-media {
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
 }
 
 .project-card.large .card-media {
@@ -359,20 +469,6 @@ main {
   color: #eee;
 }
 
-.card-price-pill {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(8px);
-  padding: 6px 12px;
-  border-radius: var(--radius-pill);
-  font-size: 11px;
-  border: 1px solid rgba(255,255,255,0.2);
-  z-index: 2;
-  color: #fff;
-}
-
 .card-center-logo {
   position: absolute;
   inset: 0;
@@ -386,11 +482,7 @@ main {
 .card-content h3 { font-size: 1.25rem; margin-bottom: 4px; font-weight: 400; font-family: var(--font-sans); }
 .card-content p { color: var(--text-secondary); font-size: 0.9rem; }
 
-.flex { display: flex; }
-.justify-between { justify-content: space-between; }
-.mt-10 { margin-top: 40px; }
-
-/* --- 9. SOLUTIONS GRID --- */
+/* --- 10. SOLUTIONS GRID --- */
 .solutions-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -436,8 +528,6 @@ main {
   justify-content: center;
 }
 
-.sol-icon svg { width: 18px; height: 18px; }
-
 .sol-body h3 {
   font-size: 1.1rem;
   margin-bottom: 8px;
@@ -450,7 +540,7 @@ main {
   line-height: 1.5;
 }
 
-/* --- 10. PRICING --- */
+/* --- 11. PRICING --- */
 .pricing-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -520,12 +610,17 @@ main {
 }
 
 .pricing-features li svg {
-    color: white; /* White checkmarks as per ref? or green? Ref shows white ticks */
+    color: white;
     width: 16px;
     height: 16px;
 }
 
-/* --- 11. BLOG & FAQ --- */
+/* --- 12. BLOG & FAQ --- */
+.blog-list {
+    display: flex;
+    flex-direction: column;
+}
+
 .blog-row {
   display: flex;
   justify-content: space-between;
@@ -534,6 +629,7 @@ main {
   border-bottom: 1px solid var(--border-subtle);
   cursor: pointer;
   group: hover;
+  opacity: 0; /* For staggered animation */
 }
 
 .blog-row:first-child { border-top: 1px solid var(--border-subtle); }
@@ -560,70 +656,70 @@ main {
     transition: transform 0.2s, color 0.2s;
 }
 
-.faq-list {
-    display: flex;
-    flex-direction: column;
+/* --- 13. TESTIMONIALS CAROUSEL --- */
+.testimonials-wrapper {
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
 }
 
-.faq-item {
-    padding: 24px;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: border-color 0.2s;
+.testimonial-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
 }
 
-.faq-item:hover { border-color: var(--border-focus); }
-.faq-item svg { color: var(--text-secondary); width: 18px; height: 18px;}
-
-/* --- 12. LOGO WALL --- */
-.logo-wall {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  opacity: 0.4;
-  padding: 80px 0;
-  flex-wrap: wrap;
+.testimonial-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative; /* Takes up space */
 }
 
-.client-logo {
-  height: 22px;
-  filter: invert(1);
-}
-
-/* --- 13. TESTIMONIALS --- */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
 .testi-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     padding: 32px;
     border-radius: var(--radius-lg);
+    max-width: 600px;
 }
+
 .testi-user {
     display: flex;
     gap: 12px;
     margin-bottom: 16px;
     align-items: center;
 }
+
 .testi-user img {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
 }
-.testi-user h4 { font-size: 0.95rem; font-family: var(--font-sans); font-weight: 600; margin: 0;}
-.testi-user span { font-size: 0.85rem; color: var(--text-secondary); }
+
+.testi-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: var(--accent-green);
+}
+
 .inline-icon { display: inline-block; vertical-align: middle; margin-left: 4px; }
-.testi-card p { font-size: 0.95rem; color: #ccc; line-height: 1.6; }
 
 /* --- 14. FOOTER --- */
 .site-footer {
@@ -671,7 +767,7 @@ main {
   font-size: 0.8rem;
 }
 
-/* --- 15. FLOATING CTA --- */
+/* --- 15. UTILS --- */
 .floating-cta {
   position: fixed;
   bottom: 32px;
@@ -679,10 +775,12 @@ main {
   z-index: 900;
 }
 
-/* VISIBILITY (Progressive Enhancement) */
 .fade-in, .reveal-on-scroll { 
     visibility: visible;
 }
 
 .spacer-80 { height: 80px; }
 .mt-4 { margin-top: 16px; }
+.mt-10 { margin-top: 40px; }
+.flex { display: flex; }
+.justify-between { justify-content: space-between; }

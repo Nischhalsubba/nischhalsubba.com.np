@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Financial | Nischhal Raj Subba</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+
+    <nav class="nav-dock">
+      <div class="nav-dock-inner">
+        <a href="index.html" class="nav-item" aria-label="Home"><i data-lucide="home"></i></a>
+        <a href="projects.html" class="nav-item active" aria-label="Work"><i data-lucide="layers"></i></a>
+        <a href="blog.html" class="nav-item" aria-label="Blog"><i data-lucide="pen-tool"></i></a>
+        <a href="index.html#contact" class="nav-item" aria-label="Contact"><i data-lucide="mail"></i></a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="detail-hero">
+        <div class="hero-tags fade-in">
+             <span class="pill">Fintech</span>
+             <span class="pill">Mobile App</span>
+        </div>
+        <h1 class="hero-title fade-in" style="font-size: 4rem;">Nova Financial</h1>
+        <p class="hero-subtitle fade-in">Redefining the mobile banking experience for a new generation of investors.</p>
+        
+        <div class="detail-meta fade-in">
+            <div class="meta-item">
+                <span>Role</span>
+                <p>Lead Product Designer</p>
+            </div>
+            <div class="meta-item">
+                <span>Timeline</span>
+                <p>3 Months</p>
+            </div>
+            <div class="meta-item">
+                <span>Client</span>
+                <p>Nova Corp</p>
+            </div>
+        </div>
+      </section>
+
+      <section class="hero-image-wrapper reveal-on-scroll">
+         <img src="https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=2000" alt="Hero" class="hero-img">
+      </section>
+
+      <section class="section-container">
+          <div class="prose reveal-on-scroll" style="max-width: 700px; margin: 0 auto;">
+              <h3>The Challenge</h3>
+              <p>Nova Financial wanted to expand their user base to include Gen Z investors. However, their legacy application was cluttered, slow, and full of financial jargon that intimidated new users. The goal was to simplify the interface without losing advanced functionality.</p>
+              
+              <h3>My Approach</h3>
+              <ul>
+                  <li>Conducted user interviews with 15 participants aged 18-25.</li>
+                  <li>Audit of competitors (Robinhood, Revolut, Monzo).</li>
+                  <li>Created low-fidelity wireframes focusing on "One action per screen".</li>
+                  <li>Developed a dark-mode first UI system to align with modern trends.</li>
+              </ul>
+
+              <h3>The Solution</h3>
+              <p>I designed a dashboard that prioritizes net worth visualization and quick actions. We moved complex trading tools to a secondary layer, keeping the primary interface clean. We also introduced "Nova Academy", a gamified learning hub.</p>
+          </div>
+      </section>
+
+      <section class="section-container">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000" class="reveal-on-scroll" style="border-radius: 20px;">
+      </section>
+
+      <div class="section-container text-center">
+          <a href="projects.html" class="btn btn-white clickable">Next Project</a>
+      </div>
+
+      <footer class="site-footer">
+         <div class="footer-bottom">
+             <span>Built by Nischhal Raj Subba.</span>
+             <span>© 2026. Kathmandu, Nepal.</span>
+         </div>
+      </footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
