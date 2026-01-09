@@ -1,7 +1,7 @@
 /* 
   STYLE.CSS
   Refined Premium Theme (Dark/Light)
-  v7.0 - Mobile Menu & Visual Overhaul
+  v7.1 - Visual Consistency & Socials
 */
 
 /* --- 1. DESIGN TOKENS --- */
@@ -419,8 +419,16 @@ body.custom-cursor-active .custom-cursor-outline {
   font-weight: 500; font-size: 1rem;
   transition: all 0.3s ease; border: 1px solid transparent; cursor: pointer;
 }
-.btn-primary { background: #CAE8BD; color: #000000; border: 1px solid #CAE8BD; } /* Light Green Accent from image */
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(202, 232, 189, 0.3); }
+/* Updated to High Contrast (White/Black) to match premium feel */
+.btn-primary { 
+    background: var(--text-primary); 
+    color: var(--bg-root); 
+    border: 1px solid var(--text-primary); 
+}
+.btn-primary:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 0 20px rgba(255,255,255,0.2); 
+}
 
 .btn-secondary { background: #1A1A1A; border: 1px solid var(--border-light); color: var(--text-primary); }
 .btn-secondary:hover { border-color: var(--text-primary); background: var(--bg-card); }
@@ -564,7 +572,7 @@ body.custom-cursor-active .custom-cursor-outline {
 .fl-col a:hover { color: var(--text-primary); }
 .footer-bottom { position: absolute; bottom: 32px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 40px; color: var(--text-tertiary); font-size: 0.85rem; }
 
-.footer-social-icons { display: flex; gap: 12px; }
+.footer-social-icons { display: flex; gap: 12px; flex-wrap: wrap; }
 .social-icon-btn {
     width: 44px; height: 44px;
     display: flex; align-items: center; justify-content: center;
@@ -837,6 +845,11 @@ body.custom-cursor-active .custom-cursor-outline {
   }
   .hero-actions .btn { 
       width: 100%; 
+  }
+
+  /* Footer Mobile Centering */
+  .footer-social-icons {
+      justify-content: center;
   }
 
   /* Writing Items */
