@@ -1,14 +1,14 @@
 /* 
   STYLE.CSS
   Refined Premium Theme (Dark/Light)
-  v7.3 - SEO, Contrast Fixes, & New Achievements
+  v7.4 - Container 840px & Footer Alignment
 */
 
 /* --- 1. DESIGN TOKENS --- */
 :root {
   /* Dimensions */
-  --max-width: 1100px;
-  --section-gap: 140px; /* Increased for breathing room */
+  --max-width: 840px; /* Updated strict container size */
+  --section-gap: 140px; 
   
   /* --- DARK THEME DEFAULTS (High Contrast) --- */
   --bg-root: #050505;
@@ -17,7 +17,7 @@
   --bg-nav: rgba(5, 5, 5, 0.85);
   
   --text-primary: #FFFFFF;
-  --text-secondary: #A1A1AA; /* Lightened for better contrast on black (WCAG AA) */
+  --text-secondary: #A1A1AA; /* WCAG AA */
   --text-tertiary: #71717A;
   
   /* Accent */
@@ -25,7 +25,7 @@
   --accent-glow: rgba(59, 130, 246, 0.2);
   
   /* Borders & Outlines */
-  --border-faint: rgba(255, 255, 255, 0.12); /* Increased visibility */
+  --border-faint: rgba(255, 255, 255, 0.12);
   --border-light: rgba(255, 255, 255, 0.25);
   --stroke-color: rgba(255, 255, 255, 0.3);
   
@@ -65,7 +65,7 @@
   --bg-nav: rgba(255, 255, 255, 0.90);
   
   --text-primary: #000000;
-  --text-secondary: #4B5563; /* Darkened for readability */
+  --text-secondary: #4B5563;
   --text-tertiary: #6B7280;
   
   --border-faint: rgba(0, 0, 0, 0.1);
@@ -211,7 +211,7 @@ h1, h2, h3, h4, h5 {
   white-space: nowrap;
   position: relative;
   margin-bottom: 48px;
-  max-width: 800px; 
+  max-width: 100%; /* Allows it to fill the container */
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
@@ -384,7 +384,7 @@ body.menu-open .mobile-nav-links a:nth-child(5) { transition-delay: 0.3s; }
 body.custom-cursor-active, body.custom-cursor-active a, body.custom-cursor-active button, body.custom-cursor-active input { cursor: none; }
 body.custom-cursor-active .custom-cursor-dot, body.custom-cursor-active .custom-cursor-outline { display: block; }
 
-/* --- 7. BUTTONS (FIXED CONTRAST) --- */
+/* --- 7. BUTTONS --- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 16px 36px; border-radius: 9999px;
@@ -393,7 +393,6 @@ body.custom-cursor-active .custom-cursor-dot, body.custom-cursor-active .custom-
   letter-spacing: 0.02em;
 }
 
-/* Primary: Always Black on White or White on Black (Max Contrast) */
 .btn-primary { 
     background: var(--text-primary); 
     color: var(--bg-root); 
@@ -406,7 +405,6 @@ body.custom-cursor-active .custom-cursor-dot, body.custom-cursor-active .custom-
 }
 [data-theme="light"] .btn-primary:hover { box-shadow: 0 0 25px rgba(0,0,0,0.15); }
 
-/* Secondary: Outline with auto-adjusting color */
 .btn-secondary { 
     background: transparent; 
     border: 1px solid var(--border-light); 
@@ -495,7 +493,6 @@ body.custom-cursor-active .custom-cursor-dot, body.custom-cursor-active .custom-
     z-index: 1;
 }
 
-/* Subtle glow behind numbers on hover */
 .achieve-number::before {
     content: "";
     position: absolute;
@@ -570,7 +567,11 @@ body.custom-cursor-active .custom-cursor-dot, body.custom-cursor-active .custom-
   padding: 80px 0;
   transition: background-color 0.3s;
 }
-.footer-content { position: relative; z-index: 10; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 60px; }
+.footer-content { 
+    position: relative; z-index: 10; text-align: center; 
+    display: flex; flex-direction: column; align-items: center; gap: 60px;
+    max-width: var(--max-width); margin: 0 auto; width: 100%; padding: 0 24px;
+}
 .footer-hero-text h2 { font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 24px; }
 .footer-portrait-container { width: 120px; height: 120px; margin: 0 auto; position: relative; }
 .footer-portrait-img { 
@@ -585,7 +586,14 @@ body.custom-cursor-active .custom-cursor-dot, body.custom-cursor-active .custom-
 .fl-col h5 { font-size: 0.8rem; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; letter-spacing: 0.05em; }
 .fl-col a { display: block; margin-bottom: 12px; color: var(--text-secondary); font-size: 1rem; transition: 0.2s; }
 .fl-col a:hover { color: var(--text-primary); }
-.footer-bottom { position: absolute; bottom: 32px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 40px; color: var(--text-tertiary); font-size: 0.85rem; }
+
+.footer-bottom { 
+    position: absolute; bottom: 32px; 
+    left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: var(--max-width);
+    display: flex; justify-content: space-between; padding: 0 24px; 
+    color: var(--text-tertiary); font-size: 0.85rem; 
+}
 
 .footer-social-icons { display: flex; gap: 12px; flex-wrap: wrap; }
 .social-icon-btn {
@@ -724,5 +732,9 @@ body.custom-cursor-active .custom-cursor-dot, body.custom-cursor-active .custom-
   .writing-item .w-arrow { opacity: 1; transform: translateX(0); margin-top: 12px; display: inline-block; }
   .floating-resume-btn { display: none; }
   .hero-portrait-container { height: 350px; margin-top: 40px; }
-  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; position: relative; bottom: auto; padding: 40px 0; }
+  .footer-bottom { 
+      flex-direction: column; gap: 12px; 
+      text-align: center; position: relative; bottom: auto; padding: 40px 0; 
+      left: 0; transform: none; max-width: 100%;
+  }
 }
