@@ -1,6 +1,6 @@
 /* 
   STYLE.CSS
-  Premium Design Engine v11.0
+  Premium Design Engine v12.0
   Nischhal Raj Subba Portfolio
   -----------------------------------------
   Typography: Playfair Display (Serif) & Inter (Sans)
@@ -277,30 +277,102 @@ h1, h2, h3, h4, h5 {
     transition: all 0.5s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
-/* Mobile Toggle & Logo */
+/* --- MOBILE NAVIGATION --- */
 .mobile-nav-toggle {
-    display: none; position: fixed; top: 24px; left: 24px; z-index: var(--z-menu-btn);
-    width: 48px; height: 48px; background: var(--bg-nav); border-radius: 50%;
-    border: 1px solid var(--border-faint); cursor: pointer; align-items: center; justify-content: center; flex-direction: column; gap: 4px;
+    display: none; /* Hidden on desktop */
+    position: fixed; 
+    top: 24px; 
+    left: 24px; 
+    z-index: var(--z-menu-btn);
+    width: 52px; 
+    height: 52px; 
+    background: var(--bg-nav); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 50%;
+    border: 1px solid var(--border-faint); 
+    cursor: pointer; 
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column; 
+    gap: 5px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: transform 0.3s var(--ease-spring);
 }
-.mobile-nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--text-primary); transition: 0.3s; }
-body.menu-open .mobile-nav-toggle span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
-body.menu-open .mobile-nav-toggle span:nth-child(2) { transform: rotate(-45deg) translate(0, 0); }
+
+.mobile-nav-toggle:active { transform: scale(0.9); }
+
+.mobile-nav-toggle span { 
+    display: block; 
+    width: 22px; 
+    height: 1.5px; 
+    background: var(--text-primary); 
+    transition: 0.4s var(--ease-spring); 
+    transform-origin: center;
+}
+
+/* Hamburger Animation */
+body.menu-open .mobile-nav-toggle span:nth-child(1) { transform: translateY(3px) rotate(45deg); }
+body.menu-open .mobile-nav-toggle span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
 
 .mobile-logo {
-    display: none; position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
-    z-index: var(--z-mobile-logo); font-family: var(--font-serif); font-weight: 600;
-    padding: 8px 20px; background: var(--bg-nav); border-radius: 99px; border: 1px solid var(--border-faint);
+    display: none; 
+    position: fixed; 
+    top: 32px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    z-index: var(--z-mobile-logo); 
+    font-family: var(--font-serif); 
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 8px 24px; 
+    background: var(--bg-nav); 
+    backdrop-filter: blur(12px);
+    border-radius: 99px; 
+    border: 1px solid var(--border-faint);
+    color: var(--text-primary);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
 
 .mobile-nav-overlay {
-    position: fixed; inset: 0; background: var(--bg-root); z-index: var(--z-menu-overlay);
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+    position: fixed; 
+    inset: 0; 
+    background: var(--bg-root); 
+    z-index: var(--z-menu-overlay);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    opacity: 0; 
+    pointer-events: none; 
+    transition: opacity 0.5s var(--ease-standard);
+    backdrop-filter: blur(20px); /* Premium depth */
 }
+
+/* Deep blur background when open */
 body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
-.mobile-nav-links a { font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 24px; color: var(--text-secondary); }
-.mobile-nav-links a.active { color: var(--text-primary); }
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.mobile-nav-links a { 
+    font-family: var(--font-serif); 
+    font-size: clamp(2.5rem, 8vw, 3.5rem); 
+    color: var(--text-secondary); 
+    text-decoration: none;
+    transition: color 0.3s;
+    opacity: 0; /* Hidden for GSAP */
+    transform: translateY(20px);
+}
+
+.mobile-nav-links a.active, .mobile-nav-links a:active { 
+    color: var(--text-primary); 
+    font-style: italic;
+}
 
 /* Theme Toggle */
 .theme-toggle-btn {
@@ -815,41 +887,94 @@ body.custom-cursor-active .custom-cursor-outline { display: block; }
 .contact-detail-item h5 { font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em;}
 .contact-detail-item p, .contact-detail-item a { font-size: 1.2rem; color: var(--text-primary); display: block; }
 
-/* --- 11. RESPONSIVE REFINEMENTS --- */
+/* --- 11. RESPONSIVE REFINEMENTS & OPTIMIZATIONS --- */
 @media (max-width: 1024px) {
     :root { --container-padding: 32px; }
 }
 
 @media (max-width: 850px) {
+    /* Layout & Navigation */
     .nav-wrapper { display: none; }
     .mobile-nav-toggle { display: flex; }
     .mobile-logo { display: block; }
+    
+    /* Optimized Typography & Spacing */
+    :root { 
+        --section-gap: 80px; 
+        --container-padding: 24px; 
+    }
+    
+    .hero-title { 
+        font-size: 3rem; 
+        line-height: 1.15; 
+        margin-bottom: 24px;
+    }
+    
+    .section-title { 
+        font-size: 2.2rem; 
+        line-height: 1.2;
+    }
+    
+    .body-large {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* Components */
     .achievements-strip { flex-direction: column; gap: 60px; padding: 60px 0; }
     .achieve-item::after { display: none; }
     .writing-item { grid-template-columns: 1fr; gap: 16px; }
-    .search-input { font-size: 1.1rem; padding: 20px 60px 20px 24px; }
-    .filter-row { gap: 8px; }
+    .writing-item:hover { padding-left: 0; background: transparent; } /* Disable hover slide on touch */
+    .w-arrow { display: none; }
+    
+    .search-input { font-size: 1rem; padding: 20px 50px 20px 24px; }
+    .filter-row { gap: 8px; justify-content: flex-start; overflow-x: auto; padding-bottom: 12px; -webkit-overflow-scrolling: touch; }
+    .filter-btn { white-space: nowrap; font-size: 0.85rem; padding: 8px 18px; }
     
     /* Footer Mobile */
     .footer-links-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .footer-col { align-items: center; }
-    .footer-portrait-wrapper { width: 80%; }
+    .footer-portrait-wrapper { width: 90%; opacity: 0.4; }
     .footer-copyright { flex-direction: column; align-items: center; text-align: center; }
+    .site-footer { justify-content: center; min-height: auto; padding-top: 100px;}
     
-    .hero-section { align-items: center; text-align: center; }
+    /* Layout Adjustments */
+    .hero-section { align-items: center; text-align: center; padding-top: 140px; min-height: auto; }
     .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+    .about-grid { grid-template-columns: 1fr; gap: 60px; }
+    .about-sidebar { position: static; order: -1; }
+    
+    /* Timeline optimization */
+    .timeline-list { padding-left: 24px; }
+    .timeline-item::before { left: -29px; }
+    .timeline-role { font-size: 1.25rem; }
+    
+    /* Project Cards */
+    .project-grid { gap: 60px; }
+    .card-content h3 { font-size: 1.8rem; }
 }
 
 @media (max-width: 600px) {
-    :root { --section-gap: 80px; --container-padding: 24px; }
-    .hero-title { font-size: 3rem; line-height: 1.1; }
-    .section-title { font-size: 2.2rem; }
-    .t-quote { font-size: 1.5rem; }
+    :root { 
+        --section-gap: 60px; 
+        --container-padding: 20px; 
+    }
+    
+    .hero-title { font-size: 2.5rem; }
+    .t-quote { font-size: 1.35rem; }
+    
+    /* Buttons full width on small screens */
     .btn { width: 100%; }
-    .hero-actions { flex-direction: column; width: 100%; align-items: center;}
+    .hero-actions { flex-direction: column; width: 100%; align-items: center; gap: 12px; }
+    
     .t-controls { gap: 16px; }
     .t-btn { width: 56px; height: 56px; }
-    .footer-hero-text h2 { font-size: 2.5rem; margin-bottom: 32px; }
-    .timeline-list { padding-left: 24px; }
-    .timeline-item::before { left: -29px; }
+    
+    .footer-hero-text h2 { font-size: 2.2rem; margin-bottom: 32px; }
+    .footer-socials-row { gap: 16px; }
+    .social-icon-link { width: 52px; height: 52px; padding: 12px; }
+    
+    /* Adjust hamburger position if needed */
+    .mobile-nav-toggle { top: 20px; left: 20px; width: 48px; height: 48px; }
+    .theme-toggle-btn { top: 20px; right: 20px; width: 48px; height: 48px; }
 }

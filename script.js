@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Check for touch device to optimize performance
+    const IS_TOUCH = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
     // --- 0. THEME HANDLING ---
     const themeBtn = document.getElementById('theme-toggle');
@@ -57,14 +59,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- MOBILE MENU TOGGLE ---
     const mobileBtn = document.querySelector('.mobile-nav-toggle');
     const body = document.body;
+    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
 
     if (mobileBtn) {
         mobileBtn.addEventListener('click', () => {
-            body.classList.toggle('menu-open');
+            const isOpen = body.classList.toggle('menu-open');
+            
+            if (isOpen && window.gsap) {
+                // Staggered animation for links opening
+                gsap.fromTo(mobileLinks, 
+                    { y: 30, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", delay: 0.1 }
+                );
+            }
         });
 
         // Close menu when a link is clicked
-        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 body.classList.remove('menu-open');
@@ -73,8 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 1. SPOTLIGHT GRID CANVAS ---
+    // DISABLED ON MOBILE/TOUCH FOR PERFORMANCE OPTIMIZATION
     const canvas = document.getElementById('grid-canvas');
-    if (canvas && !REDUCED_MOTION) {
+    if (canvas && !REDUCED_MOTION && !IS_TOUCH) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let mouse = { x: -1000, y: -1000 };
@@ -143,7 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorOutline = document.querySelector('.custom-cursor-outline');
 
     // Only enable if pointer is fine (mouse) and elements exist
-    if (!REDUCED_MOTION && window.matchMedia('(pointer: fine)').matches && cursorDot) {
+    // DISABLED ON TOUCH DEVICES
+    if (!REDUCED_MOTION && window.matchMedia('(pointer: fine)').matches && !IS_TOUCH && cursorDot) {
 
         // Add class to body to hide default cursor ONLY when this logic is active
         document.body.classList.add('custom-cursor-active');
@@ -247,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (homeLink) homeLink.classList.add('active');
     }
 
-    if (glider) {
+    if (glider && !IS_TOUCH) { // Disable glider hover effect on touch
         const moveGlider = (el) => {
             // Use offsetLeft/Width which are relative to the parent (.nav-pill)
             // This is safer than getBoundingClientRect regarding padding.
