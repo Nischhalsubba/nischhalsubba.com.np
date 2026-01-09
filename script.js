@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. TITLE SCROLL REVEAL ---
+    // --- 3. TITLE SCROLL REVEAL (Outline to Fill) ---
     if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
         gsap.registerPlugin(ScrollTrigger);
         
@@ -137,9 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     ease: 'none',
                     scrollTrigger: {
                         trigger: title,
-                        start: 'top 80%',
-                        end: 'bottom 50%',
-                        scrub: 1
+                        start: 'top 85%', // Start filling when top of title hits 85% of viewport
+                        end: 'bottom 45%', // Finish filling when bottom hits 45%
+                        scrub: 1 // Link animation to scroll bar
                     }
                 });
             }

@@ -1,7 +1,7 @@
 /* 
   STYLE.CSS
   Refined Premium Dark Theme
-  v5.6 - Audit Fixes & Polish
+  v5.7 - Restored Visual Effects & Sizing
 */
 
 /* --- 1. DESIGN TOKENS --- */
@@ -92,7 +92,7 @@ img { display: block; max-width: 100%; }
   padding: var(--section-gap) 0;
 }
 
-/* --- 3. TYPOGRAPHY --- */
+/* --- 3. TYPOGRAPHY & TEXT REVEAL --- */
 h1, h2, h3, h4, h5 {
   font-family: var(--font-serif);
   font-weight: 400;
@@ -115,13 +115,39 @@ h1, h2, h3, h4, h5 {
     display: block;
 }
 
-/* Section Titles (Simplified for Contrast & Accessibility) */
+/* Section Title - Text Reveal Effect */
 .section-title {
     font-family: var(--font-serif);
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     line-height: 1.1;
     margin: 0;
+    position: relative;
+    display: inline-block;
+}
+
+.text-reveal-wrap {
+    position: relative;
+    display: inline-block;
+    /* Ensure the wrapper takes space */
+}
+
+.text-outline {
+    position: relative;
+    z-index: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+    display: block;
+}
+
+.text-fill {
+    position: absolute;
+    top: 0; left: 0;
     color: var(--text-primary);
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    clip-path: inset(0 100% 0 0); /* Hidden initially */
+    -webkit-text-stroke: 0;
 }
 
 .body-large { font-size: 1.15rem; line-height: 1.6; color: var(--text-secondary); max-width: 60ch; }
@@ -235,8 +261,9 @@ h1, h2, h3, h4, h5 {
 }
 .hero-actions { display: flex; gap: 16px; margin-top: 40px; }
 
+/* UPDATED: Larger Size */
 .hero-portrait-container {
-  margin-top: 60px; width: 100%; max-width: 500px; height: 500px;
+  margin-top: 60px; width: 100%; max-width: 650px; height: 650px;
   position: relative; z-index: 0;
 }
 .hero-portrait-img {
