@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -98,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateCursor();
 
         // Hover Effect Logic
-        const interactiveSelectors = 'a, button, input, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn, .award-item, .t-btn';
+        const interactiveSelectors = 'a, button, input, textarea, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn, .award-item, .t-btn';
         
         document.querySelectorAll(interactiveSelectors).forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -209,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 items.forEach(el => {
                     const tags = el.getAttribute(attrName);
-                    if (category === 'all' || tags.includes(category)) {
+                    if (category === 'all' || (tags && tags.includes(category))) {
                         el.classList.remove('hidden');
                         gsap.fromTo(el, {y: 20, opacity:0}, {y:0, opacity:1, duration: 0.4});
                     } else {
@@ -249,5 +250,34 @@ document.addEventListener('DOMContentLoaded', () => {
             updateT();
         });
         updateT();
+    }
+
+    // --- 7. CONTACT FORM HANDLER ---
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Sending...';
+            btn.style.opacity = '0.7';
+            
+            // Simulate sending
+            setTimeout(() => {
+                btn.innerText = 'Message Sent!';
+                btn.style.background = '#4CAF50';
+                btn.style.color = '#fff';
+                btn.style.opacity = '1';
+                contactForm.reset();
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = ''; // Revert to CSS default
+                    btn.style.color = '';
+                }, 3000);
+            }, 1500);
+        });
     }
 });
