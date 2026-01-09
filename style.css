@@ -1,7 +1,7 @@
 /* 
   STYLE.CSS
   Refined Premium Dark Theme
-  v5.1 - Hero Portrait Update (PNG Reference)
+  v5.2 - Other Cases Redesign & Home CTA
 */
 
 /* --- 1. DESIGN TOKENS --- */
@@ -220,7 +220,6 @@ h1, h2, h3, h4, h5 {
   width: 100%; height: 100%; object-fit: contain; object-position: bottom;
   mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-  /* Removed grayscale to keep the reference blue tint */
   filter: contrast(1.1) brightness(1.1);
   transition: transform 0.5s ease-out;
 }
@@ -421,7 +420,7 @@ h1, h2, h3, h4, h5 {
 .t-btn svg { width: 24px; height: 24px; fill: currentColor; }
 .t-btn:hover { background: var(--text-primary); color: #000; border-color: var(--text-primary); transform: scale(1.1); }
 
-/* --- 14. OTHER CASES (Redesigned Nav) --- */
+/* --- 14. OTHER CASES (Redesigned - Halo/Atlas Style) --- */
 .other-cases-section {
     margin-top: 120px;
     padding-bottom: 80px;
@@ -452,14 +451,17 @@ h1, h2, h3, h4, h5 {
 
 .other-cases-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Strict 2 columns */
     gap: 40px;
 }
 
 .case-nav-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     text-decoration: none;
     position: relative;
+    group: true;
 }
 
 .case-image-wrap {
@@ -467,7 +469,7 @@ h1, h2, h3, h4, h5 {
     border-radius: 24px;
     overflow: hidden;
     aspect-ratio: 16/10;
-    margin-bottom: 24px;
+    margin-bottom: 0;
     background: var(--bg-card);
     border: 1px solid var(--border-faint);
 }
@@ -476,30 +478,47 @@ h1, h2, h3, h4, h5 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s;
     opacity: 0.9;
 }
 
 .case-nav-card:hover .case-image-wrap img {
     transform: scale(1.05);
-    opacity: 1;
+    opacity: 0.7;
 }
 
+/* Tag Top Right */
 .case-tag {
     position: absolute;
-    top: 24px;
-    right: 24px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 8px 16px;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 16px;
     border-radius: 99px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 3;
+    letter-spacing: 0.02em;
 }
 
+/* Center Overlay Title (Halo/Atlas style) */
+.case-overlay-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    color: white;
+    z-index: 2;
+    pointer-events: none;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Arrow Overlay */
 .case-arrow-overlay {
     position: absolute;
     top: 50%;
@@ -507,7 +526,7 @@ h1, h2, h3, h4, h5 {
     transform: translate(-50%, -50%) scale(0.8);
     width: 64px;
     height: 64px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -517,7 +536,7 @@ h1, h2, h3, h4, h5 {
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 3;
+    z-index: 4;
 }
 
 .case-nav-card:hover .case-arrow-overlay {
@@ -525,16 +544,23 @@ h1, h2, h3, h4, h5 {
     transform: translate(-50%, -50%) scale(1);
 }
 
+/* Bottom Info */
+.case-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .case-info h3 {
     font-family: var(--font-serif);
-    font-size: 2rem;
-    margin-bottom: 12px;
+    font-size: 2.2rem;
+    margin: 0;
     color: var(--text-primary);
     transition: color 0.3s;
 }
 
 .case-nav-card:hover .case-info h3 {
-    color: #fff;
+    color: white;
 }
 
 .case-info p {
@@ -542,12 +568,43 @@ h1, h2, h3, h4, h5 {
     color: var(--text-secondary);
     line-height: 1.5;
     max-width: 90%;
+    font-family: var(--font-sans);
+}
+
+/* --- 15. HOME CTA SECTION --- */
+.home-cta-section {
+    padding: 140px 0 100px;
+    text-align: center;
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.02) 100%);
+    border-top: 1px solid var(--border-faint);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.home-cta-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    color: var(--text-primary);
+}
+
+.home-cta-sub {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin-bottom: 8px;
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 800px) {
   .section-header-row { flex-direction: row; flex-wrap: wrap; gap: 20px; }
-  .footer-links-row, .about-grid, .contact-split { grid-template-columns: 1fr; }
+  
+  /* Contact page responsive stack */
+  .contact-split { grid-template-columns: 1fr; gap: 60px; }
+  
+  .footer-links-row, .about-grid { grid-template-columns: 1fr; }
   .writing-item { grid-template-columns: 1fr; gap: 8px; }
   
   .other-cases-grid { grid-template-columns: 1fr; gap: 60px; }
