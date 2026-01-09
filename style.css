@@ -1,7 +1,7 @@
 /* 
   STYLE.CSS
   Refined Premium Theme (Dark/Light)
-  v6.1 - Cursor Fix & Light Mode Image Support
+  v6.2 - Cursor Visibility & Z-Index Fixes
 */
 
 /* --- 1. DESIGN TOKENS --- */
@@ -34,7 +34,10 @@
   --border-pill: rgba(255, 255, 255, 0.1);
   --bg-glider: rgba(255, 255, 255, 0.12);
   --hover-bg: rgba(255, 255, 255, 0.08);
-  --cursor-outline: rgba(255, 255, 255, 0.5);
+  
+  /* Cursor */
+  --cursor-color: #FFFFFF;
+  --cursor-border: rgba(255, 255, 255, 0.5);
   
   /* Canvas */
   --grid-line: rgba(255, 255, 255, 0.05);
@@ -47,6 +50,7 @@
   --z-canvas: 0; 
   --z-content: 10;
   --z-nav: 1000;
+  --z-toggle: 1002; /* Above Nav */
   --z-cursor: 9999;
 }
 
@@ -69,7 +73,10 @@
   --border-pill: rgba(0, 0, 0, 0.08);
   --bg-glider: rgba(0, 0, 0, 0.08);
   --hover-bg: rgba(0, 0, 0, 0.05);
-  --cursor-outline: rgba(0, 0, 0, 0.5);
+  
+  /* Cursor (Black for visibility on white) */
+  --cursor-color: #000000;
+  --cursor-border: rgba(0, 0, 0, 0.5);
   
   --grid-line: rgba(0, 0, 0, 0.05);
 }
@@ -86,7 +93,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   overflow-y: scroll;
-  cursor: none; /* Hide default cursor globally if custom is active */
+  cursor: auto; /* Default, overridden by JS/Media Query */
 }
 
 body {
@@ -260,7 +267,7 @@ h1, h2, h3, h4, h5 {
     position: fixed;
     top: 24px;
     right: 24px;
-    z-index: var(--z-nav);
+    z-index: var(--z-toggle); /* Explicitly higher than nav */
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -290,24 +297,28 @@ h1, h2, h3, h4, h5 {
 /* --- 6. CUSTOM CURSOR --- */
 .custom-cursor-dot {
     position: fixed; top: 0; left: 0; width: 10px; height: 10px;
-    background-color: white; /* Always white so difference blend mode works on both BGs */
+    background-color: var(--cursor-color); /* Explicit variable */
     border-radius: 50%;
     pointer-events: none; z-index: var(--z-cursor);
     transform: translate(-50%, -50%); 
-    mix-blend-mode: difference;
-    transition: transform 0.1s;
+    transition: transform 0.1s, background-color 0.2s;
+    /* Removed blend mode to ensure visibility on white theme */
 }
 
 .custom-cursor-outline {
     position: fixed; top: 0; left: 0; width: 40px; height: 40px;
-    border: 1px solid white; /* Always white for difference mode */
+    border: 1px solid var(--cursor-border); /* Explicit variable */
     border-radius: 50%;
     pointer-events: none; z-index: var(--z-cursor);
     transform: translate(-50%, -50%); 
     transition: width 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
                 height 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
-                background-color 0.2s;
-    mix-blend-mode: difference;
+                background-color 0.2s, border-color 0.2s;
+}
+
+/* Hide default cursor only if on desktop */
+@media (hover: hover) and (pointer: fine) {
+    html, body, a, button, input { cursor: none; }
 }
 
 /* --- 7. BUTTONS & UI --- */
@@ -334,14 +345,11 @@ h1, h2, h3, h4, h5 {
 /* --- 8. HERO & PORTRAIT --- */
 .hero-section {
   position: relative; 
-  /* Removing min-height: 100vh to rely on explicit padding for exact spacing */
   display: flex; 
   flex-direction: column; 
-  /* Use flex-start instead of center to start content from strict top padding */
   justify-content: flex-start; 
   align-items: center;
   text-align: center; 
-  /* 200px Top Padding = 80px (Nav Area) + 120px (Visual Gap) */
   padding-top: 200px; 
   padding-bottom: 0;
   overflow: hidden;

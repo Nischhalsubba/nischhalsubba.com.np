@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     width: 40, 
                     height: 40, 
                     backgroundColor: 'transparent', 
-                    borderColor: 'var(--cursor-outline)', // Use variable
+                    borderColor: 'var(--cursor-border)', // Use variable
                     duration: 0.3 
                 });
                 gsap.to(cursorDot, { scale: 1, duration: 0.3 });
