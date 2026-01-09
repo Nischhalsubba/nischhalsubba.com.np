@@ -826,6 +826,7 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
 .footer-socials {
     display: flex;
     gap: 24px;
+    flex-wrap: wrap;
 }
 
 .footer-social-link {
@@ -932,8 +933,21 @@ body.custom-cursor-active .custom-cursor-outline { display: block; }
 }
 
 @media (max-width: 900px) {
-    .about-grid { grid-template-columns: 1fr; gap: 60px; }
-    .about-sidebar { position: static; order: -1; }
+    /* Blog Details & About Layout Force Vertical Stack */
+    .about-grid, .blog-layout { 
+        grid-template-columns: 1fr !important; 
+        gap: 40px; 
+    }
+    
+    /* Reorder sidebars: About uses sticky profile (top), Blog uses related (bottom preferred, or logic) */
+    /* For About, we usually want bio first on mobile, then timeline/skills. But sidebar has image. */
+    /* Let's put sidebar (Image) first for About, and content after? Or standard flow */
+    /* The user asked for "optimized". Usually image first is good for personality */
+    .about-sidebar { order: -1; margin-bottom: 2rem; position: static !important; }
+    
+    /* For Blog, main content first, sidebar (share/tags) after */
+    .blog-sidebar { margin-top: 40px; position: static !important; }
+    
     .footer-top-grid { grid-template-columns: 1fr; gap: 60px; }
 }
 
@@ -952,24 +966,33 @@ body.custom-cursor-active .custom-cursor-outline { display: block; }
     /* Font Size Verification & Reduction - Hero Mobile Only */
     .hero-title { 
         font-size: clamp(2.8rem, 11vw, 3.8rem); /* Larger as requested */
-        line-height: 1.05; /* Tighter line height */
+        line-height: 1.1; /* Adjusted as requested */
         margin-bottom: 24px;
     }
+    
+    /* Hide hero portrait on mobile to reduce scroll */
+    .hero-portrait-container { display: none; }
     
     .section-title { 
         font-size: 2rem; 
         line-height: 1.2;
+        margin-bottom: 32px; /* Tighter spacing */
     }
+    
+    /* Ensure overall hierarchy */
+    h1, h2, h3 { margin-bottom: 16px; }
+    p { margin-bottom: 24px; }
     
     .body-large {
         font-size: 1.05rem;
         line-height: 1.6;
+        margin-bottom: 32px; /* Reduced bottom margin */
     }
 
     /* Components */
     .achievements-strip { flex-direction: column; gap: 60px; padding: 60px 0; }
     .achieve-item::after { display: none; }
-    .writing-item { grid-template-columns: 1fr; gap: 16px; }
+    .writing-item { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
     .writing-item:hover { padding-left: 0; background: transparent; }
     .w-arrow { display: none; }
     
