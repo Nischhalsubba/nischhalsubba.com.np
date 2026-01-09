@@ -34,8 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             for(let y=0; y<=height; y+=gridSize) { ctx.moveTo(0,y); ctx.lineTo(width,y); }
             ctx.stroke();
 
+            // Reduced opacity from 0.6 to 0.15 for better readability
             const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, spotlightRadius);
-            grad.addColorStop(0, 'rgba(59, 130, 246, 0.6)'); 
+            grad.addColorStop(0, 'rgba(59, 130, 246, 0.15)'); 
             grad.addColorStop(1, 'rgba(59, 130, 246, 0)');
 
             ctx.strokeStyle = grad;
@@ -97,8 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateCursor();
 
         // Hover Effect Logic
-        // Select all interactive elements
-        const interactiveSelectors = 'a, button, input, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn';
+        const interactiveSelectors = 'a, button, input, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn, .award-item, .t-btn';
         
         document.querySelectorAll(interactiveSelectors).forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 5. FILTER LOGIC (Projects & Blog) ---
+    // --- 5. FILTER LOGIC ---
     const setupFilters = (btnClass, itemClass, attrName) => {
         const filterBtns = document.querySelectorAll(btnClass);
         const items = document.querySelectorAll(itemClass);
@@ -220,9 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Initialize Project Filters
     setupFilters('.filter-btn', '.project-card', 'data-category');
-    // Initialize Blog Filters
     setupFilters('.blog-filter-btn', '.writing-item', 'data-category');
 
 

@@ -1,7 +1,7 @@
 /* 
   STYLE.CSS
   Refined Premium Dark Theme
-  v4.1 - Cursor Fix, Writing Redesign, Footer Icons
+  v4.2 - Resume Integration, Fixed Arrows, Subtle Grid
 */
 
 /* --- 1. DESIGN TOKENS --- */
@@ -169,7 +169,7 @@ h1, h2, h3, h4, h5 {
     background-color: white; border-radius: 50%;
     pointer-events: none; z-index: var(--z-cursor);
     transform: translate(-50%, -50%); 
-    mix-blend-mode: difference; /* BLEND MODE FIX */
+    mix-blend-mode: difference;
 }
 
 .custom-cursor-outline {
@@ -180,7 +180,7 @@ h1, h2, h3, h4, h5 {
     transition: width 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
                 height 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
                 background-color 0.2s;
-    mix-blend-mode: difference; /* BLEND MODE FIX */
+    mix-blend-mode: difference;
 }
 
 /* --- 6. BUTTONS & UI --- */
@@ -250,7 +250,7 @@ h1, h2, h3, h4, h5 {
 .card-content h3 { font-size: 1.8rem; margin-bottom: 8px; color: var(--text-primary); }
 .card-meta-line { display: flex; gap: 12px; color: var(--text-secondary); font-size: 1rem; }
 
-/* --- 9. WRITING LIST (Redesigned) --- */
+/* --- 9. WRITING LIST --- */
 .writing-list { 
     display: flex; flex-direction: column; 
     border-top: 1px solid var(--border-faint); 
@@ -267,7 +267,7 @@ h1, h2, h3, h4, h5 {
     text-decoration: none;
 }
 .writing-item:hover { 
-    padding-left: 16px; /* Subtle shift */
+    padding-left: 16px; 
     background: rgba(255,255,255,0.02);
 }
 .w-date { 
@@ -281,9 +281,7 @@ h1, h2, h3, h4, h5 {
     line-height: 1.2;
     transition: color 0.3s;
 }
-.writing-item:hover .w-title {
-    color: white;
-}
+.writing-item:hover .w-title { color: white; }
 .w-arrow { 
     font-size: 1.2rem; 
     color: var(--text-secondary);
@@ -291,10 +289,7 @@ h1, h2, h3, h4, h5 {
     transform: translateX(-10px); 
     transition: all 0.3s ease; 
 }
-.writing-item:hover .w-arrow { 
-    opacity: 1; 
-    transform: translateX(0); 
-}
+.writing-item:hover .w-arrow { opacity: 1; transform: translateX(0); }
 .writing-item.hidden { display: none; }
 
 /* --- 10. FOOTER --- */
@@ -316,11 +311,7 @@ h1, h2, h3, h4, h5 {
 .fl-col a:hover { color: white; }
 .footer-bottom { position: absolute; bottom: 40px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 40px; color: var(--text-tertiary); font-size: 0.85rem; }
 
-/* Footer Social Icons */
-.footer-social-icons {
-    display: flex;
-    gap: 16px;
-}
+.footer-social-icons { display: flex; gap: 16px; }
 .social-icon-btn {
     width: 40px; height: 40px;
     display: flex; align-items: center; justify-content: center;
@@ -336,36 +327,96 @@ h1, h2, h3, h4, h5 {
 }
 .social-icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
 
-
-/* --- 11. ABOUT & CONTACT --- */
+/* --- 11. ABOUT PAGE STYLES --- */
 .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: start; }
 .about-bio h3 { font-size: 2rem; margin-bottom: 24px; }
 .about-bio p { color: var(--text-secondary); margin-bottom: 24px; font-size: 1.1rem; }
-.timeline-list { border-left: 1px solid var(--border-faint); padding-left: 40px; margin-top: 60px; }
+
+/* Experience Timeline */
+.timeline-list { border-left: 1px solid var(--border-faint); padding-left: 40px; margin-top: 40px; }
 .timeline-item { position: relative; padding-bottom: 60px; }
+.timeline-item:last-child { padding-bottom: 0; }
 .timeline-item::before {
     content: ""; position: absolute; left: -45px; top: 0; width: 9px; height: 9px;
     background: var(--bg-root); border: 2px solid var(--text-secondary); border-radius: 50%;
 }
-.services-list { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
-.service-card { padding: 24px; border: 1px solid var(--border-faint); border-radius: 12px; background: var(--bg-surface); }
-.stack-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-.stack-tag { padding: 8px 16px; border: 1px solid var(--border-faint); border-radius: 6px; font-size: 0.9rem; color: var(--text-secondary); }
+.timeline-date { font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 8px; display: block; }
+.timeline-role { font-size: 1.2rem; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+.timeline-company { font-size: 1rem; color: var(--text-secondary); margin-bottom: 16px; }
+.timeline-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
 
+/* Skills Grid */
+.skills-category { margin-bottom: 40px; }
+.skills-category h4 { font-size: 1rem; color: var(--text-primary); margin-bottom: 12px; border-bottom: 1px solid var(--border-faint); padding-bottom: 8px;}
+.skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.skill-tag { 
+    background: rgba(255,255,255,0.03); 
+    border: 1px solid var(--border-faint);
+    padding: 6px 12px; 
+    border-radius: 6px; 
+    font-size: 0.9rem; 
+    color: var(--text-secondary); 
+}
+
+/* Awards & Certs */
+.award-item { 
+    margin-bottom: 24px; 
+    padding: 24px; 
+    border: 1px solid var(--border-faint); 
+    border-radius: 12px; 
+    background: var(--bg-surface);
+}
+.award-title { font-size: 1.1rem; color: var(--text-primary); margin-bottom: 4px; display: block; font-weight: 500;}
+.award-meta { font-size: 0.9rem; color: var(--text-tertiary); }
+.award-link { font-size: 0.85rem; color: var(--accent-blue); margin-top: 8px; display: inline-block; }
+
+/* Education */
+.edu-item { margin-bottom: 24px; }
+.edu-degree { font-size: 1.1rem; color: var(--text-primary); font-weight: 500; }
+.edu-school { font-size: 1rem; color: var(--text-secondary); }
+.edu-year { font-size: 0.9rem; color: var(--text-tertiary); }
+
+/* --- 12. CONTACT PAGE STYLES --- */
 .contact-split { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; }
+.contact-detail-group { margin-bottom: 40px; }
+.contact-detail-label { display: block; font-size: 0.8rem; text-transform: uppercase; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 8px; }
+.contact-detail-value { font-size: 1.2rem; color: var(--text-primary); }
+
 .form-input, .form-textarea {
     width: 100%; padding: 16px; background: var(--bg-surface);
     border: 1px solid var(--border-faint); border-radius: 8px;
     color: var(--text-primary); font-family: var(--font-sans); font-size: 1rem;
+    transition: border-color 0.3s;
 }
 .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--text-primary); }
 
-/* --- 12. TESTIMONIALS & NAV PREV/NEXT --- */
+/* --- 13. TESTIMONIALS & ARROWS --- */
 .testimonial-section { position: relative; overflow: hidden; padding: 0 0 100px; }
 .t-track { display: flex; transition: transform 0.5s ease; width: 100%; }
 .t-slide { min-width: 100%; padding: 0 10%; text-align: center; opacity: 0.4; transform: scale(0.95); transition: all 0.5s; }
 .t-slide.active { opacity: 1; transform: scale(1); }
-.t-controls { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+.t-quote { font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 40px; color: var(--text-primary); line-height: 1.4; }
+.t-author img { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 16px; border: 1px solid var(--border-faint); }
+.t-author h5 { font-size: 1.1rem; margin-bottom: 4px; }
+.t-author span { color: var(--text-secondary); font-size: 0.9rem; }
+
+.t-controls { display: flex; justify-content: center; gap: 24px; margin-top: 40px; }
+.t-btn { 
+    width: 56px; height: 56px; 
+    border-radius: 50%; 
+    border: 1px solid var(--border-faint); 
+    background: transparent; 
+    color: var(--text-secondary); 
+    cursor: pointer; 
+    transition: 0.3s; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.t-btn svg { width: 24px; height: 24px; fill: currentColor; }
+.t-btn:hover { background: var(--text-primary); color: #000; border-color: var(--text-primary); transform: scale(1.1); }
+
+/* --- 14. PROJECT NAV --- */
 .project-nav-container {
     display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
     margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border-faint);
