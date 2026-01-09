@@ -54,6 +54,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- MOBILE MENU TOGGLE ---
+    const mobileBtn = document.querySelector('.mobile-nav-toggle');
+    const body = document.body;
+    
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', () => {
+            body.classList.toggle('menu-open');
+        });
+        
+        // Close menu when a link is clicked
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                body.classList.remove('menu-open');
+            });
+        });
+    }
+
     // --- 1. SPOTLIGHT GRID CANVAS ---
     const canvas = document.getElementById('grid-canvas');
     if (canvas && !REDUCED_MOTION) {
@@ -157,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateCursor();
 
         // Hover Effect Logic
-        const interactiveSelectors = 'a, button, input, textarea, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn, .award-item, .t-btn, .theme-toggle-btn';
+        const interactiveSelectors = 'a, button, input, textarea, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn, .award-item, .t-btn, .theme-toggle-btn, .mobile-nav-toggle';
         
         document.querySelectorAll(interactiveSelectors).forEach(el => {
             el.addEventListener('mouseenter', () => {
