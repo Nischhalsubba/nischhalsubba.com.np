@@ -3,6 +3,38 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // --- 0. THEME HANDLING ---
+    const themeBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+    const sunIcon = `<svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.29-1.29zm1.41-13.78c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.29-1.29zM7.28 17.28c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.29-1.29z"/></svg>`;
+    const moonIcon = `<svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>`;
+
+    function setTheme(theme) {
+        htmlEl.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (themeBtn) themeBtn.innerHTML = theme === 'light' ? moonIcon : sunIcon;
+    }
+
+    // Initialize Theme
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else if (systemPrefersLight) {
+        setTheme('light');
+    } else {
+        setTheme('dark');
+    }
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+    }
+
     // --- 1. SPOTLIGHT GRID CANVAS ---
     const canvas = document.getElementById('grid-canvas');
     if (canvas && !REDUCED_MOTION) {
@@ -25,20 +57,25 @@ document.addEventListener('DOMContentLoaded', () => {
         function drawGrid() {
             ctx.clearRect(0, 0, width, height);
             
+            const isLight = htmlEl.getAttribute('data-theme') === 'light';
             const gridSize = 60; 
             const spotlightRadius = 400;
 
+            // Theme-aware colors
+            const gridColor = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)';
+            const spotlightColorStart = isLight ? 'rgba(37, 99, 235, 0.15)' : 'rgba(59, 130, 246, 0.15)'; // Darker blue for light mode
+            const spotlightColorEnd = isLight ? 'rgba(37, 99, 235, 0)' : 'rgba(59, 130, 246, 0)';
+
             ctx.lineWidth = 1;
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'; 
+            ctx.strokeStyle = gridColor; 
             ctx.beginPath();
             for(let x=0; x<=width; x+=gridSize) { ctx.moveTo(x,0); ctx.lineTo(x,height); }
             for(let y=0; y<=height; y+=gridSize) { ctx.moveTo(0,y); ctx.lineTo(width,y); }
             ctx.stroke();
 
-            // Reduced opacity from 0.6 to 0.15 for better readability
             const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, spotlightRadius);
-            grad.addColorStop(0, 'rgba(59, 130, 246, 0.15)'); 
-            grad.addColorStop(1, 'rgba(59, 130, 246, 0)');
+            grad.addColorStop(0, spotlightColorStart); 
+            grad.addColorStop(1, spotlightColorEnd);
 
             ctx.strokeStyle = grad;
             ctx.beginPath();
@@ -99,14 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
         animateCursor();
 
         // Hover Effect Logic
-        const interactiveSelectors = 'a, button, input, textarea, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn, .award-item, .t-btn';
+        const interactiveSelectors = 'a, button, input, textarea, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn, .award-item, .t-btn, .theme-toggle-btn';
         
         document.querySelectorAll(interactiveSelectors).forEach(el => {
             el.addEventListener('mouseenter', () => {
                 gsap.to(cursorOutline, { 
                     width: 60, 
                     height: 60, 
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)', 
+                    backgroundColor: 'rgba(128, 128, 128, 0.1)', 
                     borderColor: 'transparent',
                     duration: 0.3 
                 });
@@ -117,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     width: 40, 
                     height: 40, 
                     backgroundColor: 'transparent', 
-                    borderColor: 'rgba(255, 255, 255, 0.5)',
+                    borderColor: 'var(--cursor-outline)', // Use variable
                     duration: 0.3 
                 });
                 gsap.to(cursorDot, { scale: 1, duration: 0.3 });

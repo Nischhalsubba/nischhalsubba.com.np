@@ -1,7 +1,7 @@
 /* 
   STYLE.CSS
-  Refined Premium Dark Theme
-  v5.8 - SEO & Layout Precision
+  Refined Premium Theme (Dark/Light)
+  v6.0 - Theming & SEO
 */
 
 /* --- 1. DESIGN TOKENS --- */
@@ -10,12 +10,12 @@
   --max-width: 1100px;
   --section-gap: 120px;
   
-  /* Palette */
+  /* --- DARK THEME DEFAULTS --- */
   --bg-root: #050505;
   --bg-surface: #0f0f0f;
   --bg-card: #141414;
+  --bg-nav: rgba(10, 10, 10, 0.85);
   
-  /* Text */
   --text-primary: #F5F5F5;
   --text-secondary: #A3A3A3; 
   --text-tertiary: #525252;
@@ -24,9 +24,20 @@
   --accent-blue: #3B82F6;
   --accent-glow: rgba(59, 130, 246, 0.15);
   
-  /* Borders */
+  /* Borders & Outlines */
   --border-faint: rgba(255, 255, 255, 0.08);
   --border-light: rgba(255, 255, 255, 0.15);
+  --stroke-color: rgba(255, 255, 255, 0.25);
+  
+  /* UI Elements */
+  --bg-pill: rgba(255, 255, 255, 0.05);
+  --border-pill: rgba(255, 255, 255, 0.1);
+  --bg-glider: rgba(255, 255, 255, 0.12);
+  --hover-bg: rgba(255, 255, 255, 0.08);
+  --cursor-outline: rgba(255, 255, 255, 0.5);
+  
+  /* Canvas */
+  --grid-line: rgba(255, 255, 255, 0.05);
   
   /* Typography */
   --font-serif: "Playfair Display", serif;
@@ -37,6 +48,30 @@
   --z-content: 10;
   --z-nav: 1000;
   --z-cursor: 9999;
+}
+
+/* --- LIGHT THEME OVERRIDES --- */
+[data-theme="light"] {
+  --bg-root: #FAFAFA;
+  --bg-surface: #FFFFFF;
+  --bg-card: #F0F0F0;
+  --bg-nav: rgba(255, 255, 255, 0.85);
+  
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-tertiary: #999999;
+  
+  --border-faint: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.15);
+  --stroke-color: rgba(0, 0, 0, 0.2);
+  
+  --bg-pill: rgba(0, 0, 0, 0.04);
+  --border-pill: rgba(0, 0, 0, 0.08);
+  --bg-glider: rgba(0, 0, 0, 0.08);
+  --hover-bg: rgba(0, 0, 0, 0.05);
+  --cursor-outline: rgba(0, 0, 0, 0.5);
+  
+  --grid-line: rgba(0, 0, 0, 0.05);
 }
 
 /* --- 2. RESET & BASE --- */
@@ -62,6 +97,7 @@ body {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Canvas Background */
@@ -72,6 +108,9 @@ body {
   z-index: var(--z-canvas);
   pointer-events: none;
   mix-blend-mode: screen; 
+}
+[data-theme="light"] #grid-canvas {
+    mix-blend-mode: multiply;
 }
 
 a { text-decoration: none; color: inherit; cursor: pointer; }
@@ -110,7 +149,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .hero-highlight {
-    color: #FFFFFF;
+    color: var(--text-primary);
     font-style: italic;
     display: block;
 }
@@ -135,8 +174,9 @@ h1, h2, h3, h4, h5 {
     position: relative;
     z-index: 1;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+    -webkit-text-stroke: 1px var(--stroke-color);
     display: block;
+    transition: -webkit-text-stroke 0.3s;
 }
 
 .text-fill {
@@ -176,13 +216,14 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   padding: 8px 24px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-pill);
+  border: 1px solid var(--border-pill);
   color: var(--text-secondary);
   font-size: 0.9rem;
   backdrop-filter: blur(10px);
   margin-right: 12px;
   user-select: none;
+  transition: all 0.3s;
 }
 
 @keyframes ticker-scroll {
@@ -190,7 +231,7 @@ h1, h2, h3, h4, h5 {
   100% { transform: translateX(-50%); }
 }
 
-/* --- 5. NAVIGATION --- */
+/* --- 5. NAVIGATION & THEME TOGGLE --- */
 .nav-wrapper {
   position: fixed; top: 24px; left: 0; right: 0;
   display: flex; justify-content: center;
@@ -198,9 +239,10 @@ h1, h2, h3, h4, h5 {
 }
 .nav-pill {
   position: relative; pointer-events: auto;
-  background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(16px);
+  background: var(--bg-nav); backdrop-filter: blur(16px);
   border: 1px solid var(--border-faint); border-radius: 9999px; padding: 4px; display: flex;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: background-color 0.3s;
 }
 .nav-link {
   position: relative; z-index: 2; padding: 10px 24px; font-size: 0.9rem; font-weight: 500;
@@ -209,26 +251,60 @@ h1, h2, h3, h4, h5 {
 .nav-link:hover, .nav-link.active { color: var(--text-primary); }
 .nav-glider {
   position: absolute; top: 4px; left: 4px; height: calc(100% - 8px);
-  background: rgba(255, 255, 255, 0.12); border-radius: 9999px; z-index: 1; pointer-events: none; opacity: 0;
+  background: var(--bg-glider); border-radius: 9999px; z-index: 1; pointer-events: none; opacity: 0;
+  transition: background-color 0.3s;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: var(--z-nav);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-faint);
+    background: var(--bg-nav);
+    backdrop-filter: blur(16px);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+    background: var(--bg-surface);
+    border-color: var(--text-primary);
+}
+.theme-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* --- 6. CUSTOM CURSOR --- */
 .custom-cursor-dot {
     position: fixed; top: 0; left: 0; width: 10px; height: 10px;
-    background-color: white; border-radius: 50%;
+    background-color: var(--text-primary); border-radius: 50%;
     pointer-events: none; z-index: var(--z-cursor);
     transform: translate(-50%, -50%); 
     mix-blend-mode: difference;
+    transition: background-color 0.3s;
 }
 
 .custom-cursor-outline {
     position: fixed; top: 0; left: 0; width: 40px; height: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 50%;
+    border: 1px solid var(--cursor-outline); border-radius: 50%;
     pointer-events: none; z-index: var(--z-cursor);
     transform: translate(-50%, -50%); 
     transition: width 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
                 height 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
-                background-color 0.2s;
+                background-color 0.2s, border-color 0.3s;
     mix-blend-mode: difference;
 }
 
@@ -239,19 +315,19 @@ h1, h2, h3, h4, h5 {
   font-weight: 500; font-size: 0.95rem;
   transition: all 0.3s ease; border: 1px solid transparent; cursor: pointer;
 }
-.btn-primary { background: var(--text-primary); color: #000; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+.btn-primary { background: var(--text-primary); color: var(--bg-root); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(100,100,100,0.2); }
 .btn-secondary { border: 1px solid var(--border-light); color: var(--text-primary); }
-.btn-secondary:hover { border-color: var(--text-primary); background: rgba(255,255,255,0.05); }
+.btn-secondary:hover { border-color: var(--text-primary); background: var(--hover-bg); }
 
 .floating-resume-btn {
   position: fixed; bottom: 32px; right: 32px; z-index: 1001;
   background: var(--bg-surface); border: 1px solid var(--border-light);
   color: var(--text-primary); padding: 12px 24px; border-radius: 999px;
   font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 8px;
-  transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
-.floating-resume-btn:hover { background: var(--text-primary); color: #000; transform: translateY(-4px); }
+.floating-resume-btn:hover { background: var(--text-primary); color: var(--bg-root); transform: translateY(-4px); }
 
 /* --- 8. HERO & PORTRAIT --- */
 .hero-section {
@@ -299,7 +375,7 @@ h1, h2, h3, h4, h5 {
 }
 .filter-btn:hover, .filter-btn.active {
   border-color: var(--text-primary); color: var(--text-primary);
-  background: rgba(255,255,255,0.08);
+  background: var(--hover-bg);
 }
 .project-grid { display: grid; grid-template-columns: 1fr; gap: 100px; } /* Increased gap for cleanliness */
 .project-card { display: flex; flex-direction: column; gap: 24px; text-decoration: none; transition: opacity 0.4s; }
@@ -333,15 +409,16 @@ h1, h2, h3, h4, h5 {
 }
 .writing-item:hover { 
     padding-left: 16px; 
-    background: rgba(255,255,255,0.02);
+    background: var(--hover-bg);
 }
 .w-date { font-size: 0.9rem; color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
 .w-title { 
     font-size: 1.5rem; font-family: var(--font-serif); line-height: 1.2;
     transition: color 0.3s;
 }
-.writing-item:hover .w-title { color: white; }
-.w-summary { display: none; } /* Hidden on preview, visible if detailed */
+/* No explicit hover color change for title needed if text-primary handles it, but let's ensure contrast */
+.writing-item:hover .w-title { color: var(--text-primary); }
+.w-summary { display: none; } 
 .w-arrow { 
     font-size: 1.2rem; color: var(--text-secondary); opacity: 0; 
     transform: translateX(-10px); transition: all 0.3s ease; 
@@ -352,11 +429,12 @@ h1, h2, h3, h4, h5 {
 /* --- 11. FOOTER --- */
 .site-footer {
   border-top: 1px solid var(--border-faint);
-  background: #000;
+  background: var(--bg-surface); /* Changed from #000 to match theme */
   min-height: 80vh;
   display: flex; flex-direction: column; justify-content: center;
   position: relative; overflow: hidden;
   padding: 80px 0;
+  transition: background-color 0.3s;
 }
 .footer-content { position: relative; z-index: 10; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 60px; }
 .footer-hero-text h2 { font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 24px; }
@@ -373,7 +451,7 @@ h1, h2, h3, h4, h5 {
 .footer-links-row { display: flex; gap: 100px; text-align: left; flex-wrap: wrap; justify-content: center; }
 .fl-col h5 { font-size: 0.8rem; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; letter-spacing: 0.05em; }
 .fl-col a { display: block; margin-bottom: 12px; color: var(--text-secondary); font-size: 1rem; transition: 0.2s; }
-.fl-col a:hover { color: white; }
+.fl-col a:hover { color: var(--text-primary); }
 .footer-bottom { position: absolute; bottom: 32px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 40px; color: var(--text-tertiary); font-size: 0.85rem; }
 
 .footer-social-icons { display: flex; gap: 12px; }
@@ -388,7 +466,7 @@ h1, h2, h3, h4, h5 {
 }
 .social-icon-btn:hover {
     background: var(--text-primary);
-    color: #000;
+    color: var(--bg-root);
     transform: translateY(-2px);
 }
 .social-icon-btn svg { width: 20px; height: 20px; fill: currentColor; }
@@ -406,6 +484,7 @@ h1, h2, h3, h4, h5 {
 .timeline-item::before {
     content: ""; position: absolute; left: -45px; top: 6px; width: 9px; height: 9px;
     background: var(--bg-root); border: 2px solid var(--text-secondary); border-radius: 50%;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 .timeline-date { font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 4px; display: block; }
 .timeline-role { font-size: 1.2rem; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
@@ -417,7 +496,7 @@ h1, h2, h3, h4, h5 {
 .skills-category h4 { font-size: 0.9rem; color: var(--text-primary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
 .skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
 .skill-tag { 
-    background: rgba(255,255,255,0.03); 
+    background: var(--bg-pill); 
     border: 1px solid var(--border-faint);
     padding: 6px 14px; 
     border-radius: 6px; 
@@ -455,10 +534,10 @@ h1, h2, h3, h4, h5 {
     width: 100%; padding: 16px; background: var(--bg-surface);
     border: 1px solid var(--border-faint); border-radius: 8px;
     color: var(--text-primary); font-family: var(--font-sans); font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
 }
 .form-input:focus, .form-textarea:focus, .form-select:focus { 
-    outline: none; border-color: var(--text-primary); background: rgba(255,255,255,0.02);
+    outline: none; border-color: var(--text-primary); background: var(--hover-bg);
 }
 .select-wrapper { position: relative; }
 .select-arrow { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--text-secondary); }
@@ -485,7 +564,7 @@ h1, h2, h3, h4, h5 {
     transition: 0.3s; 
     display: flex; align-items: center; justify-content: center;
 }
-.t-btn:hover { background: var(--text-primary); color: #000; border-color: var(--text-primary); transform: scale(1.1); }
+.t-btn:hover { background: var(--text-primary); color: var(--bg-root); border-color: var(--text-primary); transform: scale(1.1); }
 
 /* --- 15. HOME CTA SECTION --- */
 .home-cta-section {
@@ -517,4 +596,5 @@ h1, h2, h3, h4, h5 {
   .project-grid { gap: 60px; }
   .hero-portrait-container { height: 350px; }
   .custom-cursor-dot, .custom-cursor-outline { display: none; }
+  .theme-toggle-btn { top: 16px; right: 16px; width: 40px; height: 40px; }
 }
