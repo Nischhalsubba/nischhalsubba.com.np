@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // --- 1. SPOTLIGHT GRID CANVAS (Enhanced Brightness & Visibility) ---
+    // --- 1. SPOTLIGHT GRID CANVAS ---
     const canvas = document.getElementById('grid-canvas');
     if (canvas && !REDUCED_MOTION) {
         const ctx = canvas.getContext('2d');
@@ -25,27 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.clearRect(0, 0, width, height);
             
             const gridSize = 60; 
-            const spotlightRadius = 400; // Radius of light
+            const spotlightRadius = 400;
 
             ctx.lineWidth = 1;
-
-            // 1. Draw base very faint grid (Always visible but dim)
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'; 
             ctx.beginPath();
             for(let x=0; x<=width; x+=gridSize) { ctx.moveTo(x,0); ctx.lineTo(x,height); }
             for(let y=0; y<=height; y+=gridSize) { ctx.moveTo(0,y); ctx.lineTo(width,y); }
             ctx.stroke();
 
-            // 2. Draw Spotlight (Brighter now)
-            // Create a radial gradient at mouse position
             const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, spotlightRadius);
-            grad.addColorStop(0, 'rgba(59, 130, 246, 0.6)'); // Increased opacity for better visibility
+            grad.addColorStop(0, 'rgba(59, 130, 246, 0.6)'); 
             grad.addColorStop(1, 'rgba(59, 130, 246, 0)');
 
             ctx.strokeStyle = grad;
             ctx.beginPath();
             
-            // Only draw lines near mouse to save perf
             const startX = Math.floor((mouse.x - spotlightRadius)/gridSize) * gridSize;
             const endX = Math.floor((mouse.x + spotlightRadius)/gridSize) * gridSize;
             const startY = Math.floor((mouse.y - spotlightRadius)/gridSize) * gridSize;
@@ -68,59 +63,76 @@ document.addEventListener('DOMContentLoaded', () => {
         drawGrid();
     }
 
-    // --- 2. CUSTOM CURSOR (Robust Implementation) ---
+    // --- 2. CUSTOM CURSOR (Fixed & Smooth) ---
     const cursorDot = document.querySelector('.custom-cursor-dot');
     const cursorOutline = document.querySelector('.custom-cursor-outline');
     
-    // Check if device supports fine pointer (mouse)
+    // Only enable if pointer is fine (mouse) and elements exist
     if (!REDUCED_MOTION && window.matchMedia('(pointer: fine)').matches && cursorDot) {
         
-        document.body.classList.add('has-custom-cursor');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let outlineX = mouseX;
+        let outlineY = mouseY;
         
-        // Show cursor elements
-        gsap.set([cursorDot, cursorOutline], { opacity: 1 });
-
-        let mouseX = -100, mouseY = -100;
-        let outlineX = -100, outlineY = -100;
+        // Initial setup
+        gsap.set([cursorDot, cursorOutline], { xPercent: -50, yPercent: -50, opacity: 1 });
 
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            
+            // Dot follows instantly
+            gsap.to(cursorDot, { x: mouseX, y: mouseY, duration: 0 });
         });
 
+        // Smooth outline loop
         const animateCursor = () => {
-            outlineX += (mouseX - outlineX) * 0.15; // Smooth lag
+            outlineX += (mouseX - outlineX) * 0.15;
             outlineY += (mouseY - outlineY) * 0.15;
-            cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+            
+            gsap.set(cursorOutline, { x: outlineX, y: outlineY });
             requestAnimationFrame(animateCursor);
         };
         animateCursor();
 
-        // Hover Effects
-        const interactiveEls = document.querySelectorAll('a, button, input, .project-card, .nav-pill');
-        interactiveEls.forEach(el => {
+        // Hover Effect Logic
+        // Select all interactive elements
+        const interactiveSelectors = 'a, button, input, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn';
+        
+        document.querySelectorAll(interactiveSelectors).forEach(el => {
             el.addEventListener('mouseenter', () => {
-                gsap.to(cursorOutline, { scale: 1.5, borderColor: '#fff', duration: 0.3 });
+                gsap.to(cursorOutline, { 
+                    width: 60, 
+                    height: 60, 
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)', 
+                    borderColor: 'transparent',
+                    duration: 0.3 
+                });
                 gsap.to(cursorDot, { scale: 0.5, duration: 0.3 });
             });
             el.addEventListener('mouseleave', () => {
-                gsap.to(cursorOutline, { scale: 1, borderColor: 'rgba(255,255,255,0.2)', duration: 0.3 });
+                gsap.to(cursorOutline, { 
+                    width: 40, 
+                    height: 40, 
+                    backgroundColor: 'transparent', 
+                    borderColor: 'rgba(255, 255, 255, 0.5)',
+                    duration: 0.3 
+                });
                 gsap.to(cursorDot, { scale: 1, duration: 0.3 });
             });
         });
     }
 
-    // --- 3. TITLE SCROLL REVEAL (Outline to Fill) ---
+    // --- 3. TITLE SCROLL REVEAL ---
     if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
         gsap.registerPlugin(ScrollTrigger);
         
-        // Target all section titles with the specific structure
         document.querySelectorAll('.text-reveal-wrap').forEach(title => {
             const fillText = title.querySelector('.text-fill');
             if(fillText) {
                 gsap.to(fillText, {
-                    clipPath: 'inset(0 0% 0 0)', // Reveal fully
+                    clipPath: 'inset(0 0% 0 0)',
                     ease: 'none',
                     scrollTrigger: {
                         trigger: title,
@@ -132,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // General Fade Up
         document.querySelectorAll(".reveal-on-scroll").forEach(el => {
             gsap.fromTo(el, {y:40, opacity:0}, {
                 y:0, opacity:1, duration:0.8,
@@ -182,28 +193,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 5. FILTER LOGIC ---
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projects = document.querySelectorAll('.project-card');
+    // --- 5. FILTER LOGIC (Projects & Blog) ---
+    const setupFilters = (btnClass, itemClass, attrName) => {
+        const filterBtns = document.querySelectorAll(btnClass);
+        const items = document.querySelectorAll(itemClass);
+        
+        if(filterBtns.length === 0) return;
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const category = btn.getAttribute('data-filter');
-            
-            projects.forEach(card => {
-                const tags = card.getAttribute('data-category');
-                if (category === 'all' || tags.includes(category)) {
-                    card.classList.remove('hidden');
-                    gsap.fromTo(card, {y: 20, opacity:0}, {y:0, opacity:1, duration: 0.4});
-                } else {
-                    card.classList.add('hidden');
-                }
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.getAttribute('data-filter');
+                
+                items.forEach(el => {
+                    const tags = el.getAttribute(attrName);
+                    if (category === 'all' || tags.includes(category)) {
+                        el.classList.remove('hidden');
+                        gsap.fromTo(el, {y: 20, opacity:0}, {y:0, opacity:1, duration: 0.4});
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                });
             });
         });
-    });
+    };
+
+    // Initialize Project Filters
+    setupFilters('.filter-btn', '.project-card', 'data-category');
+    // Initialize Blog Filters
+    setupFilters('.blog-filter-btn', '.writing-item', 'data-category');
+
 
     // --- 6. TESTIMONIAL CAROUSEL ---
     const tTrack = document.querySelector('.t-track');
