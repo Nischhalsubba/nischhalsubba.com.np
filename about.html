@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About | Nischhal Raj Subba</title>
-    <link rel="stylesheet" href="style.css?v=3.4">
+    <link rel="stylesheet" href="style.css?v=4.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
@@ -27,54 +27,114 @@
 
     <main class="container">
       
-      <section class="hero-section" style="min-height: 40vh;">
-        <h1 class="hero-title fade-in">Nischhal Raj Subba</h1>
+      <section class="hero-section" style="min-height: 50vh;">
+        <h1 class="hero-title fade-in text-reveal-wrap">
+            <span class="text-outline">About Me</span>
+            <span class="text-fill">About Me</span>
+        </h1>
         <p class="body-large fade-in">Product Designer • Systems Thinker • Builder</p>
       </section>
 
-      <section class="section-container">
+      <section class="section-container" style="padding-top: 0;">
           <div class="about-grid reveal-on-scroll">
               
+              <!-- LEFT COLUMN: Content -->
               <div class="about-bio">
-                  <h3>A little about me</h3>
+                  <h3 class="text-reveal-wrap">
+                      <span class="text-outline">My Story</span>
+                      <span class="text-fill">My Story</span>
+                  </h3>
                   <p>I am a Product Designer based in Kathmandu, Nepal, with over 5 years of experience in crafting digital products. I specialize in bridging the gap between design vision and engineering reality, ensuring that what we design is scalable, accessible, and performant.</p>
-                  <p>My journey began with front-end development, which gives me a unique perspective on design constraints and feasibility. Today, I lead design initiatives for Fintech and Enterprise SaaS companies, helping them simplify complex workflows.</p>
-                  <p>When I'm not designing, you can find me exploring the Himalayas, reading about behavioral psychology, or tinkering with new frontend frameworks.</p>
+                  <p>My journey began with front-end development, which gives me a unique perspective on design constraints and feasibility. I realized that the most frustrating part of development was often ambiguous design. I decided to move upstream to fix that.</p>
+                  <p>Today, I lead design initiatives for Fintech and Enterprise SaaS companies, helping them simplify complex workflows into intuitive experiences. I believe in "systems over screens" — thinking about how a component lives, scales, and breaks before it ever hits the canvas.</p>
                   
-                  <div style="margin-top: 40px;">
-                      <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000" style="width:100%; border-radius:16px; border:1px solid var(--border-faint);" alt="Workspace">
+                  <!-- EXPERIENCE TIMELINE -->
+                  <div style="margin-top: 80px;">
+                      <h3 class="text-reveal-wrap">
+                          <span class="text-outline">Experience</span>
+                          <span class="text-fill">Experience</span>
+                      </h3>
+                      <div class="timeline-list">
+                          <div class="timeline-item">
+                              <span class="timeline-date">2024 — Present</span>
+                              <h4 class="timeline-role">Senior Product Designer</h4>
+                              <div class="timeline-company">Fintech Global • Remote</div>
+                              <p class="timeline-desc">Leading the design system overhaul for a trading platform used by 50k+ daily users. Reducing technical debt by bridging design and React components.</p>
+                          </div>
+                          <div class="timeline-item">
+                              <span class="timeline-date">2022 — 2024</span>
+                              <h4 class="timeline-role">Product Designer</h4>
+                              <div class="timeline-company">Yarsha Tech • Kathmandu</div>
+                              <p class="timeline-desc">Designed end-to-end flows for Web3 wallets and DeFi dashboards. Collaborated closely with smart contract engineers to ensure transaction clarity.</p>
+                          </div>
+                          <div class="timeline-item">
+                              <span class="timeline-date">2020 — 2022</span>
+                              <h4 class="timeline-role">UI/UX Designer</h4>
+                              <div class="timeline-company">Freelance</div>
+                              <p class="timeline-desc">Worked with early-stage startups to define their MVP. Delivered high-fidelity prototypes and basic frontend implementation.</p>
+                          </div>
+                      </div>
                   </div>
+
+                  <!-- SERVICES -->
+                  <div style="margin-top: 80px;">
+                      <h3 class="text-reveal-wrap">
+                          <span class="text-outline">What I Do</span>
+                          <span class="text-fill">What I Do</span>
+                      </h3>
+                      <div class="services-list">
+                          <div class="service-card">
+                              <h4>Product Strategy</h4>
+                              <p>Discovery, User Research, MVP Definition, Roadmapping.</p>
+                          </div>
+                          <div class="service-card">
+                              <h4>UI/UX Design</h4>
+                              <p>Wireframing, High-Fidelity Prototyping, Interaction Design.</p>
+                          </div>
+                          <div class="service-card">
+                              <h4>Design Systems</h4>
+                              <p>Token Architecture, Component Libraries, Documentation.</p>
+                          </div>
+                          <div class="service-card">
+                              <h4>Frontend Dev</h4>
+                              <p>React, CSS/SASS, Tailwind, GSAP Implementation.</p>
+                          </div>
+                      </div>
+                  </div>
+
               </div>
 
+              <!-- RIGHT COLUMN: Sticky Sidebar -->
               <div class="about-sidebar">
-                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800" class="profile-img" alt="Nischhal Portrait">
-                  
-                  <div class="about-stats-card">
-                      <div class="stat-row">
-                          <span class="stat-label">Location</span>
-                          <span class="stat-value">Kathmandu, Nepal</span>
+                  <div style="position: sticky; top: 120px;">
+                      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800" class="profile-img" style="width: 100%; border-radius: 16px; margin-bottom: 24px; border: 1px solid var(--border-faint); filter: grayscale(100%); transition: 0.5s;" alt="Nischhal Portrait" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+                      
+                      <div style="background: var(--bg-surface); padding: 32px; border-radius: 16px; border: 1px solid var(--border-faint);">
+                          <div style="display:flex; justify-content:space-between; margin-bottom: 16px; border-bottom: 1px solid var(--border-faint); padding-bottom: 16px;">
+                              <span style="color: var(--text-secondary);">Location</span>
+                              <span>Kathmandu, Nepal</span>
+                          </div>
+                          <div style="display:flex; justify-content:space-between; margin-bottom: 16px; border-bottom: 1px solid var(--border-faint); padding-bottom: 16px;">
+                              <span style="color: var(--text-secondary);">Experience</span>
+                              <span>5+ Years</span>
+                          </div>
+                          <div style="display:flex; justify-content:space-between;">
+                              <span style="color: var(--text-secondary);">Status</span>
+                              <span style="color: #4ADE80;">Open for Q3</span>
+                          </div>
                       </div>
-                      <div class="stat-row">
-                          <span class="stat-label">Experience</span>
-                          <span class="stat-value">5+ Years</span>
-                      </div>
-                      <div class="stat-row">
-                          <span class="stat-label">Focus</span>
-                          <span class="stat-value">Fintech / Web3</span>
-                      </div>
-                      <div class="stat-row">
-                          <span class="stat-label">Status</span>
-                          <span class="stat-value" style="color: #4ADE80;">Available Q3 2026</span>
-                      </div>
-                  </div>
 
-                  <div class="about-stats-card" style="margin-top: 24px;">
-                      <h4 style="margin-bottom:16px;">Expertise</h4>
-                      <div style="display:flex; flex-wrap:wrap; gap:8px;">
-                          <span style="padding:6px 12px; border-radius:99px; background:rgba(255,255,255,0.05); font-size:0.8rem;">Design Systems</span>
-                          <span style="padding:6px 12px; border-radius:99px; background:rgba(255,255,255,0.05); font-size:0.8rem;">Figma</span>
-                          <span style="padding:6px 12px; border-radius:99px; background:rgba(255,255,255,0.05); font-size:0.8rem;">React</span>
-                          <span style="padding:6px 12px; border-radius:99px; background:rgba(255,255,255,0.05); font-size:0.8rem;">Prototyping</span>
+                      <div style="margin-top: 24px;">
+                          <h4 style="margin-bottom: 16px; color: var(--text-primary);">Tech Stack</h4>
+                          <div class="stack-tags">
+                              <span class="stack-tag">Figma</span>
+                              <span class="stack-tag">React</span>
+                              <span class="stack-tag">TypeScript</span>
+                              <span class="stack-tag">Tailwind</span>
+                              <span class="stack-tag">GSAP</span>
+                              <span class="stack-tag">Rive</span>
+                              <span class="stack-tag">Notion</span>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -85,11 +145,36 @@
     </main>
     
     <a href="#" class="floating-resume-btn" download>Download Resume</a>
+    
     <footer class="site-footer">
-        <!-- Footer content injected via JS or consistent HTML structure -->
-        <div class="container">
-            <div class="footer-bottom"><span>© 2026 Nischhal Raj Subba.</span></div>
-        </div>
+        <div class="footer-content">
+          <div class="footer-portrait-container">
+             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000" alt="Nischhal Raj Subba" class="footer-portrait-img" />
+          </div>
+          <div class="footer-hero-text">
+            <h2>Let's create something<br><span class="text-serif-italic">awesome together.</span></h2>
+          </div>
+          <div class="footer-links-row">
+              <div class="fl-col">
+                  <h5>Sitemap</h5>
+                  <a href="index.html">Home</a>
+                  <a href="projects.html">Work</a>
+                  <a href="about.html">About</a>
+              </div>
+              <div class="fl-col">
+                  <h5>Socials</h5>
+                  <a href="https://linkedin.com/in/nischhal/">LinkedIn</a>
+                  <a href="https://behance.net/nischhal">Behance</a>
+              </div>
+              <div class="fl-col">
+                  <h5>Contact</h5>
+                  <a href="mailto:hello@example.com">hello@example.com</a>
+              </div>
+          </div>
+      </div>
+      <div class="footer-bottom">
+         <span>© 2026 Nischhal Raj Subba.</span>
+      </div>
     </footer>
     <script src="script.js"></script>
   </body>

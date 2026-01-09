@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Halo - Case Study | Nischhal Raj Subba</title>
-    <link rel="stylesheet" href="style.css?v=3.4">
+    <link rel="stylesheet" href="style.css?v=4.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
@@ -20,6 +20,7 @@
         <a href="index.html" class="nav-link">Home</a>
         <a href="projects.html" class="nav-link active">Work</a>
         <a href="about.html" class="nav-link">About</a>
+        <a href="blog.html" class="nav-link">Writing</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </div>
     </nav>
@@ -27,7 +28,7 @@
     <main class="container">
       
       <!-- 1. HERO -->
-      <div class="hero-section" style="padding-bottom: 40px; min-height: auto;">
+      <div class="hero-section" style="padding-bottom: 40px; min-height: auto; padding-top: 120px;">
          <a href="projects.html" style="margin-bottom: 24px; color: var(--text-secondary);">← Back to Work</a>
       </div>
 
@@ -40,75 +41,88 @@
       </div>
 
       <!-- 2. CHALLENGE -->
-      <div class="case-split-section reveal-on-scroll">
-          <div class="case-label">Challenge</div>
+      <div class="case-split-section reveal-on-scroll" style="margin-top: 80px;">
+          <div class="case-label" style="font-size:0.9rem; color:var(--text-tertiary); margin-bottom:16px;">CHALLENGE</div>
           <div class="case-body">
-              <h3>Give the brand a clear style and make sure the website supports it.</h3>
-              <p>The visuals were outdated and scattered. Every page looked different, which made the brand feel smaller than it actually was. The team needed something simple they could keep using as they expanded.</p>
+              <h3 style="font-size:2rem; margin-bottom:24px;">Give the brand a clear style and make sure the website supports it.</h3>
+              <p style="color:var(--text-secondary);">The visuals were outdated and scattered. Every page looked different, which made the brand feel smaller than it actually was. The team needed something simple they could keep using as they expanded.</p>
           </div>
       </div>
 
       <!-- 3. PROCESS -->
-      <div class="case-split-section reveal-on-scroll">
-          <div class="case-label">Process</div>
+      <div class="case-split-section reveal-on-scroll" style="margin-top: 80px;">
+          <div class="case-label" style="font-size:0.9rem; color:var(--text-tertiary); margin-bottom:16px;">PROCESS</div>
           <div class="case-body">
-              <h3>Create a straightforward identity and a website that’s easy to build on.</h3>
-              <p>We refined their visuals, wrote easy instructions for using them, and built a site that can grow over time — without constant redesigns or complicated updates.</p>
+              <h3 style="font-size:2rem; margin-bottom:24px;">Create a straightforward identity and a website that’s easy to build on.</h3>
+              <p style="color:var(--text-secondary);">We refined their visuals, wrote easy instructions for using them, and built a site that can grow over time — without constant redesigns or complicated updates.</p>
           </div>
       </div>
 
       <!-- 4. METRICS -->
-      <div class="metrics-grid reveal-on-scroll">
-          <div class="metric-card">
-              <div class="metric-val">+65%</div>
-              <div class="metric-label">Engagement</div>
+      <div class="metrics-grid reveal-on-scroll" style="margin-top: 80px; display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+          <div class="metric-card" style="background:var(--bg-surface); padding:32px; border-radius:16px; border:1px solid var(--border-faint);">
+              <div class="metric-val" style="font-size:2.5rem; font-family:var(--font-serif);">+65%</div>
+              <div class="metric-label" style="color:var(--text-secondary);">Engagement</div>
           </div>
-          <div class="metric-card">
-              <div class="metric-val">+45%</div>
-              <div class="metric-label">Sign-ups</div>
+          <div class="metric-card" style="background:var(--bg-surface); padding:32px; border-radius:16px; border:1px solid var(--border-faint);">
+              <div class="metric-val" style="font-size:2.5rem; font-family:var(--font-serif);">+45%</div>
+              <div class="metric-label" style="color:var(--text-secondary);">Sign-ups</div>
           </div>
-          <div class="metric-card">
-              <div class="metric-val">+31%</div>
-              <div class="metric-label">Campaign saves</div>
+          <div class="metric-card" style="background:var(--bg-surface); padding:32px; border-radius:16px; border:1px solid var(--border-faint);">
+              <div class="metric-val" style="font-size:2.5rem; font-family:var(--font-serif);">+31%</div>
+              <div class="metric-label" style="color:var(--text-secondary);">Campaign saves</div>
           </div>
       </div>
 
-      <!-- 5. OTHER CASES -->
-      <h3 class="section-title" style="margin-bottom: 40px;">Other cases</h3>
-      <div class="project-grid reveal-on-scroll">
-          <a href="project-detail.html" class="project-card">
-               <div class="card-media-wrap">
-                   <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200" alt="Atlas">
-               </div>
-               <div class="card-content">
-                   <h3>Atlas</h3>
-                   <div class="card-meta-line"><span>Identity, Design</span></div>
-               </div>
+      <!-- 5. PROJECT NAVIGATION (Replacing Other Cases) -->
+      <div class="project-nav-container reveal-on-scroll">
+          
+          <!-- Previous Project -->
+          <a href="project-detail.html" class="project-nav-card prev">
+              <div class="nav-arrow-overlay">←</div>
+              <span class="nav-label">Previous Case</span>
+              <h3 class="nav-project-title">Meridian</h3>
           </a>
-          <a href="project-detail.html" class="project-card">
-               <div class="card-media-wrap">
-                   <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1200" alt="Meridian">
-               </div>
-               <div class="card-content">
-                   <h3>Meridian</h3>
-                   <div class="card-meta-line"><span>Development + Design</span></div>
-               </div>
+
+          <!-- Next Project -->
+          <a href="project-detail.html" class="project-nav-card next">
+              <div class="nav-arrow-overlay">→</div>
+              <span class="nav-label">Next Case</span>
+              <h3 class="nav-project-title">Atlas</h3>
           </a>
+
       </div>
       
-      <!-- CTA -->
-      <div class="section-container" style="text-align: center; margin-top: 80px;">
-          <div class="contact-card">
-              <h2>Are you ready to take the next step?</h2>
-              <a href="contact.html" class="btn btn-primary" style="margin-top: 24px;">Start a Project</a>
-          </div>
-      </div>
-
     </main>
 
     <footer class="site-footer">
-      <div class="container">
-          <div class="footer-bottom"><span>© 2026 Refined.</span></div>
+      <div class="footer-content">
+          <div class="footer-portrait-container">
+             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000" alt="Nischhal Raj Subba" class="footer-portrait-img" />
+          </div>
+          <div class="footer-hero-text">
+            <h2>Let's create something<br><span class="text-serif-italic">awesome together.</span></h2>
+          </div>
+          <div class="footer-links-row">
+              <div class="fl-col">
+                  <h5>Sitemap</h5>
+                  <a href="index.html">Home</a>
+                  <a href="projects.html">Work</a>
+                  <a href="about.html">About</a>
+              </div>
+              <div class="fl-col">
+                  <h5>Socials</h5>
+                  <a href="https://linkedin.com/in/nischhal/">LinkedIn</a>
+                  <a href="https://behance.net/nischhal">Behance</a>
+              </div>
+              <div class="fl-col">
+                  <h5>Contact</h5>
+                  <a href="mailto:hello@example.com">hello@example.com</a>
+              </div>
+          </div>
+      </div>
+      <div class="footer-bottom">
+         <span>© 2026 Nischhal Raj Subba.</span>
       </div>
     </footer>
     <script src="script.js"></script>

@@ -4,18 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Writing | Nischhal Raj Subba</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3.2">
-    
+    <link rel="stylesheet" href="style.css?v=4.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
   <body>
 
-    <!-- Custom Cursor -->
+    <canvas id="grid-canvas"></canvas>
     <div class="custom-cursor-dot"></div>
     <div class="custom-cursor-outline"></div>
 
@@ -30,32 +25,42 @@
       </div>
     </nav>
 
-    <main>
+    <main class="container">
       <section class="hero-section" style="min-height: 40vh;">
-        <h1 class="hero-title fade-in">Writing</h1>
+        <h1 class="hero-title fade-in text-reveal-wrap">
+            <span class="text-outline">Writing</span>
+            <span class="text-fill">Writing</span>
+        </h1>
         <p class="body-large fade-in">Thoughts on Design Systems, Product Strategy, and the future of digital interfaces.</p>
       </section>
 
-      <section class="section-container">
-          <div class="writing-list reveal-on-scroll">
-              <a href="blog-detail.html" class="writing-item">
-                  <div class="w-left">
-                      <span class="w-date">Oct 2025</span>
-                      <h4 class="w-title">The future of Design Systems</h4>
-                  </div>
+      <section class="section-container" style="padding-top: 0;">
+          <div class="blog-list reveal-on-scroll">
+              
+              <a href="blog-detail.html" class="blog-item">
+                  <span class="blog-date">Oct 24, 2025</span>
+                  <h3 class="blog-title">The future of Design Systems</h3>
+                  <div class="blog-arrow">→</div>
               </a>
-              <a href="blog-detail.html" class="writing-item">
-                  <div class="w-left">
-                      <span class="w-date">Sep 2025</span>
-                      <h4 class="w-title">Bridging gap between Design and Code</h4>
-                  </div>
+              
+              <a href="blog-detail.html" class="blog-item">
+                  <span class="blog-date">Sep 12, 2025</span>
+                  <h3 class="blog-title">Bridging the gap between Design and Code</h3>
+                  <div class="blog-arrow">→</div>
               </a>
-              <a href="blog-detail.html" class="writing-item">
-                  <div class="w-left">
-                      <span class="w-date">Aug 2025</span>
-                      <h4 class="w-title">Inclusive by default: A guide</h4>
-                  </div>
+              
+              <a href="blog-detail.html" class="blog-item">
+                  <span class="blog-date">Aug 05, 2025</span>
+                  <h3 class="blog-title">Inclusive by default: An Accessibility Guide</h3>
+                  <div class="blog-arrow">→</div>
               </a>
+
+              <a href="blog-detail.html" class="blog-item">
+                  <span class="blog-date">Jul 19, 2025</span>
+                  <h3 class="blog-title">Why "Move Fast and Break Things" is dead</h3>
+                  <div class="blog-arrow">→</div>
+              </a>
+
           </div>
       </section>
 
@@ -64,48 +69,33 @@
     <a href="#" class="floating-resume-btn" download>Download Resume</a>
 
     <footer class="site-footer">
-      <div class="footer-container">
-        <div class="footer-hero reveal-on-scroll">
+      <div class="footer-content">
+          <div class="footer-portrait-container">
+             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000" alt="Nischhal Raj Subba" class="footer-portrait-img" />
+          </div>
+          <div class="footer-hero-text">
             <h2>Let's create something<br><span class="text-serif-italic">awesome together.</span></h2>
-            <div class="footer-socials-row">
-                <a href="https://linkedin.com/in/nischhal/" class="f-social-icon">in</a>
-                <a href="https://behance.net/nischhal" class="f-social-icon">Be</a>
-                <a href="https://dribbble.com/Nischhal" class="f-social-icon">Dr</a>
-                <a href="https://github.com/Nischhalsubba" class="f-social-icon">Gh</a>
-            </div>
-            <div class="footer-center-img">
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Nischhal">
-            </div>
-        </div>
-
-        <div class="footer-links-layout reveal-on-scroll">
-            <div class="fl-col">
-                <h5>Pages</h5>
-                <a href="index.html">Home</a>
-                <a href="projects.html">Work</a>
-                <a href="about.html">About</a>
-                <a href="blog.html">Writing</a>
-            </div>
-            <div class="fl-col">
-                <h5>Work</h5>
-                <a href="project-detail.html">MAS DataHub</a>
-                <a href="project-detail.html">Yarsha</a>
-                <a href="project-detail.html">Morajaa</a>
-                <a href="project-detail.html">Zapp Today</a>
-            </div>
-            <div class="fl-col">
-                <h5>Products</h5>
-                <a href="products.html">UI Kit</a>
-                <a href="products.html">Design System</a>
-                <a href="products.html">Icons</a>
-            </div>
-        </div>
-
-        <div class="footer-bottom reveal-on-scroll">
-           <span>Built by Nischhal Raj Subba</span>
-           <span>© 2026 Refined. All rights reserved.</span>
-           <button class="btn-sm" onclick="window.scrollTo(0,0)">Back to Top ↑</button>
-        </div>
+          </div>
+          <div class="footer-links-row">
+              <div class="fl-col">
+                  <h5>Sitemap</h5>
+                  <a href="index.html">Home</a>
+                  <a href="projects.html">Work</a>
+                  <a href="about.html">About</a>
+              </div>
+              <div class="fl-col">
+                  <h5>Socials</h5>
+                  <a href="https://linkedin.com/in/nischhal/">LinkedIn</a>
+                  <a href="https://behance.net/nischhal">Behance</a>
+              </div>
+              <div class="fl-col">
+                  <h5>Contact</h5>
+                  <a href="mailto:hello@example.com">hello@example.com</a>
+              </div>
+          </div>
+      </div>
+      <div class="footer-bottom">
+         <span>© 2026 Nischhal Raj Subba.</span>
       </div>
     </footer>
     

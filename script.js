@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // --- 1. SPOTLIGHT GRID CANVAS ---
+    // --- 1. SPOTLIGHT GRID CANVAS (Enhanced Brightness & Visibility) ---
     const canvas = document.getElementById('grid-canvas');
     if (canvas && !REDUCED_MOTION) {
         const ctx = canvas.getContext('2d');
@@ -25,45 +25,26 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.clearRect(0, 0, width, height);
             
             const gridSize = 60; 
-            const spotlightRadius = 300; // Radius of light
+            const spotlightRadius = 400; // Radius of light
 
             ctx.lineWidth = 1;
 
-            // Helper to draw line
-            const drawLine = (x1, y1, x2, y2) => {
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.stroke();
-            };
-
-            // We only need to draw lines relative to mouse for performance, 
-            // but for simple grid, drawing all with distance calc is fine for modern PCs.
-            
-            for (let x = 0; x <= width; x += gridSize) {
-                // Calculate distance from mouse to this vertical line (approx)
-                // For a vertical line, distance is primarily |x - mouse.x| but we want radial.
-                // Simpler: iterate segments or just use a mask.
-                // Best visual: Draw full dark grid, then draw bright grid with mask.
-            }
-
-            // Efficient Approach:
-            // 1. Draw base very faint grid
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+            // 1. Draw base very faint grid (Always visible but dim)
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'; 
             ctx.beginPath();
             for(let x=0; x<=width; x+=gridSize) { ctx.moveTo(x,0); ctx.lineTo(x,height); }
             for(let y=0; y<=height; y+=gridSize) { ctx.moveTo(0,y); ctx.lineTo(width,y); }
             ctx.stroke();
 
-            // 2. Draw Spotlight
+            // 2. Draw Spotlight (Brighter now)
             // Create a radial gradient at mouse position
             const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, spotlightRadius);
-            grad.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
+            grad.addColorStop(0, 'rgba(59, 130, 246, 0.6)'); // Increased opacity for better visibility
             grad.addColorStop(1, 'rgba(59, 130, 246, 0)');
 
             ctx.strokeStyle = grad;
             ctx.beginPath();
-            // Draw lines again, but this time they will take the gradient stroke
+            
             // Only draw lines near mouse to save perf
             const startX = Math.floor((mouse.x - spotlightRadius)/gridSize) * gridSize;
             const endX = Math.floor((mouse.x + spotlightRadius)/gridSize) * gridSize;
@@ -87,11 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
         drawGrid();
     }
 
-    // --- 2. CUSTOM CURSOR ---
+    // --- 2. CUSTOM CURSOR (Robust Implementation) ---
     const cursorDot = document.querySelector('.custom-cursor-dot');
     const cursorOutline = document.querySelector('.custom-cursor-outline');
     
+    // Check if device supports fine pointer (mouse)
     if (!REDUCED_MOTION && window.matchMedia('(pointer: fine)').matches && cursorDot) {
+        
+        document.body.classList.add('has-custom-cursor');
+        
+        // Show cursor elements
+        gsap.set([cursorDot, cursorOutline], { opacity: 1 });
+
         let mouseX = -100, mouseY = -100;
         let outlineX = -100, outlineY = -100;
 
@@ -102,19 +90,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const animateCursor = () => {
-            outlineX += (mouseX - outlineX) * 0.2;
-            outlineY += (mouseY - outlineY) * 0.2;
+            outlineX += (mouseX - outlineX) * 0.15; // Smooth lag
+            outlineY += (mouseY - outlineY) * 0.15;
             cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
             requestAnimationFrame(animateCursor);
         };
         animateCursor();
+
+        // Hover Effects
+        const interactiveEls = document.querySelectorAll('a, button, input, .project-card, .nav-pill');
+        interactiveEls.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursorOutline, { scale: 1.5, borderColor: '#fff', duration: 0.3 });
+                gsap.to(cursorDot, { scale: 0.5, duration: 0.3 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursorOutline, { scale: 1, borderColor: 'rgba(255,255,255,0.2)', duration: 0.3 });
+                gsap.to(cursorDot, { scale: 1, duration: 0.3 });
+            });
+        });
     }
 
-    // --- 3. NAV GLIDER & LOGIC ---
+    // --- 3. TITLE SCROLL REVEAL (Outline to Fill) ---
+    if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Target all section titles with the specific structure
+        document.querySelectorAll('.text-reveal-wrap').forEach(title => {
+            const fillText = title.querySelector('.text-fill');
+            if(fillText) {
+                gsap.to(fillText, {
+                    clipPath: 'inset(0 0% 0 0)', // Reveal fully
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 80%',
+                        end: 'bottom 50%',
+                        scrub: 1
+                    }
+                });
+            }
+        });
+
+        // General Fade Up
+        document.querySelectorAll(".reveal-on-scroll").forEach(el => {
+            gsap.fromTo(el, {y:40, opacity:0}, {
+                y:0, opacity:1, duration:0.8,
+                scrollTrigger: { trigger: el, start: "top 85%" }
+            });
+        });
+    }
+
+    // --- 4. NAV GLIDER LOGIC ---
     const navLinks = document.querySelectorAll('.nav-link');
     const glider = document.querySelector('.nav-glider');
     
-    // Fix: Highlight active based on URL
     const page = window.location.pathname.split('/').pop() || 'index.html';
     let activeFound = false;
     navLinks.forEach(link => {
@@ -124,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
             activeFound = true;
         }
     });
-    // Fallback for root
     if (!activeFound && page === 'index.html') {
          const homeLink = document.querySelector('a[href="index.html"]');
          if(homeLink) homeLink.classList.add('active');
@@ -153,13 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. PROJECT FILTERING ---
+    // --- 5. FILTER LOGIC ---
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projects = document.querySelectorAll('.project-card');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
@@ -177,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 5. TESTIMONIAL CAROUSEL ---
+    // --- 6. TESTIMONIAL CAROUSEL ---
     const tTrack = document.querySelector('.t-track');
     const tPrev = document.getElementById('t-prev');
     const tNext = document.getElementById('t-next');
@@ -201,31 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tIndex = (tIndex < tSlides.length - 1) ? tIndex + 1 : 0;
             updateT();
         });
-        
-        // Auto play
-        setInterval(() => {
-           // tIndex = (tIndex < tSlides.length - 1) ? tIndex + 1 : 0;
-           // updateT(); 
-        }, 6000);
         updateT();
-    }
-
-    // --- 6. FAQ ACCORDION ---
-    document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const item = btn.parentElement;
-            item.classList.toggle('active');
-        });
-    });
-
-    // --- 7. GSAP ---
-    if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
-        gsap.registerPlugin(ScrollTrigger);
-        document.querySelectorAll(".reveal-on-scroll").forEach(el => {
-            gsap.fromTo(el, {y:30, opacity:0}, {
-                y:0, opacity:1, duration:0.8,
-                scrollTrigger: { trigger: el, start: "top 85%" }
-            });
-        });
     }
 });
