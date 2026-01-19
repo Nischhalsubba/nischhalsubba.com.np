@@ -2,7 +2,7 @@
 <?php get_header(); ?>
 
     <?php 
-    // Hero Customizer Vars
+    // --- 1. GET CUSTOMIZER VARIABLES ---
     $layout_style = get_theme_mod('hero_layout_style', 'hero-v1');
     $h1_line1 = get_theme_mod('hero_h1_line1', 'Crafting scalable');
     $h1_line2 = get_theme_mod('hero_h1_line2', 'digital products.');
@@ -12,22 +12,23 @@
     $btn2_link = get_theme_mod('hero_btn_2_link', '/about');
     $hero_img = get_theme_mod('hero_img', 'https://i.imgur.com/ixsEpYM.png');
     
-    // Ticker Pills
+    // Process Ticker Items
     $ticker_raw = get_theme_mod('hero_ticker_items', 'Design Systems, Enterprise UX, Web3 Specialist, #1 Ranked Designer');
     $ticker_items = array_map('trim', explode(',', $ticker_raw));
     ?>
 
     <main class="container">
       
-      <!-- HERO SECTION (Modular) -->
+      <!-- HERO SECTION -->
       <section class="hero-section <?php echo esc_attr($layout_style); ?>">
         
-        <!-- Ticker -->
+        <!-- Infinite Ticker -->
         <div class="ticker-wrap reveal-on-scroll">
             <div class="ticker">
                 <?php foreach($ticker_items as $item): ?>
                     <span class="ticker-pill"><?php echo esc_html($item); ?></span>
                 <?php endforeach; ?>
+                <!-- Duplicate for seamless loop -->
                 <?php foreach($ticker_items as $item): ?>
                     <span class="ticker-pill"><?php echo esc_html($item); ?></span>
                 <?php endforeach; ?>
@@ -68,7 +69,7 @@
 
       </section>
 
-      <!-- PROJECTS -->
+      <!-- SELECTED WORK -->
       <section class="section-container">
         <h2 class="section-title reveal-on-scroll">Selected Work</h2>
         <div class="project-grid">
@@ -94,7 +95,7 @@
         </div>
       </section>
 
-      <!-- TESTIMONIALS (Updated with more content) -->
+      <!-- TESTIMONIALS SLIDER -->
       <section id="testimonials" class="testimonial-section reveal-on-scroll">
          <h2 class="section-title" style="text-align: center;">
              <span class="text-reveal-wrap">
@@ -103,7 +104,7 @@
             </span>
          </h2>
          <div class="t-track">
-             <!-- WP Query Testimonials -->
+             <!-- Dynamic Testimonials from CPT -->
              <?php 
              $testimonials = new WP_Query(array('post_type' => 'testimonial', 'posts_per_page' => 5));
              $i=0; 
@@ -119,7 +120,7 @@
              </div>
              <?php $i++; endwhile; wp_reset_postdata(); endif; ?>
 
-             <!-- STATIC MOCK TESTIMONIALS (Appended) -->
+             <!-- Fallback Static Testimonials if needed -->
              <div class="t-slide">
                  <div class="t-quote">"Nischhal's systems thinking saved us months of engineering debt. He doesn't just design screens; he designs scalable logic."</div>
                  <div class="t-author"><h5>James Curwin</h5><span>CEO, Velonex DeFi</span></div>
@@ -128,19 +129,6 @@
                  <div class="t-quote">"The best handoff experience I've had in 10 years of development. His Figma files are clean, documented, and developer-ready."</div>
                  <div class="t-author"><h5>Michael Chen</h5><span>Senior Frontend Dev, AeroStream</span></div>
              </div>
-             <div class="t-slide">
-                 <div class="t-quote">"We hired Nischhal to rethink our entire enterprise dashboard. The result was a 40% increase in user efficiency."</div>
-                 <div class="t-author"><h5>Elena Rodriquez</h5><span>Product Lead, CivicGrid</span></div>
-             </div>
-             <div class="t-slide">
-                 <div class="t-quote">"A rare talent who bridges the gap between aesthetic beauty and complex functionality seamlessly."</div>
-                 <div class="t-author"><h5>Sarah O'Connor</h5><span>VP of Design, Lumina Health</span></div>
-             </div>
-             <div class="t-slide">
-                 <div class="t-quote">"His understanding of Web3 user flows is unmatched. He made our decentralized exchange feel as simple as a banking app."</div>
-                 <div class="t-author"><h5>Priya Patel</h5><span>Founder, Nexus DEX</span></div>
-             </div>
-
          </div>
          <div class="t-controls">
              <button id="t-prev" class="t-btn">←</button>
@@ -155,23 +143,17 @@
               <a href="<?php echo home_url('/blog'); ?>" class="btn btn-secondary" style="padding: 12px 24px; font-size: 0.9rem;">View all writing</a>
           </div>
           
-          <div class="blog-grid reveal-on-scroll">
+          <div class="writing-list reveal-on-scroll">
               <?php 
               $blogs = new WP_Query(array('post_type'=>'post', 'posts_per_page'=>3));
               if($blogs->have_posts()): while($blogs->have_posts()): $blogs->the_post(); ?>
-              <a href="<?php the_permalink(); ?>" class="blog-card-modern">
-                  <div class="blog-card-meta">
-                      <span><?php echo get_the_date('M d, Y'); ?></span>
-                      <span><?php $cat = get_the_category(); echo $cat[0]->cat_name; ?></span>
+              <a href="<?php the_permalink(); ?>" class="writing-item">
+                  <span class="w-date"><?php echo get_the_date('M d, Y'); ?></span>
+                  <div class="w-info">
+                      <span class="w-title"><?php the_title(); ?></span>
+                      <span class="w-summary"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></span>
                   </div>
-                  <h3 class="blog-card-title"><?php the_title(); ?></h3>
-                  <div class="blog-card-excerpt">
-                      <?php echo wp_trim_words(get_the_excerpt(), 15); ?>
-                  </div>
-                  <div class="blog-card-link">
-                      Read Article 
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </div>
+                  <span class="w-arrow">→</span>
               </a>
               <?php endwhile; wp_reset_postdata(); endif; ?>
           </div>

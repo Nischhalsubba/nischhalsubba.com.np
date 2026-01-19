@@ -1,51 +1,64 @@
 
 /* 
-  STYLE.CSS
-  Premium Design Engine v15.6
-  Nischhal Raj Subba Portfolio
-  -----------------------------------------
-  Typography: Playfair Display (Serif) & Inter (Sans)
-  Animation: GSAP + Custom Canvas Grid
+Theme Name: Nischhal Pro
+Theme URI: https://nischhal.com
+Author: Nischhal Raj Subba
+Author URI: https://nischhal.com
+Description: A high-performance, GSAP-powered portfolio theme for elite product designers. Features a custom cursor engine, dynamic customizer, and Web3 aesthetic.
+Version: 9.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: portfolio, dark-mode, grid-layout, gsap-animation, custom-cursor
 */
 
-/* --- 1. DESIGN TOKENS --- */
+/* -------------------------------------------------------------------------- */
+/*	1. DESIGN TOKENS & VARIABLES
+/* -------------------------------------------------------------------------- */
+/* 
+   These variables are the DNA of the theme. 
+   They are overridden by the WordPress Customizer settings in functions.php.
+*/
 :root {
-    /* Fluid Spacing & Sizing */
+    /* --- Layout & Spacing --- */
     --max-width: 1200px;
-    --section-gap: clamp(80px, 12vw, 160px);
+    /* Fluid clamp for consistent vertical rhythm across devices */
+    --section-gap: clamp(80px, 10vh, 160px); 
     --container-padding: clamp(24px, 5vw, 40px);
 
-    /* Dark Theme Palette (Base) */
+    /* --- Default Dark Theme Palette (Fallback) --- */
     --bg-root: #050505;
     --bg-surface: #0a0a0a;
     --bg-card: #111111;
     --bg-nav: rgba(5, 5, 5, 0.8);
     --bg-nav-blur: 24px;
     
+    /* --- Typography Colors --- */
     --text-primary: #FFFFFF;
-    --text-secondary: #D4D4D8;
-    --text-tertiary: #A1A1AA;
+    --text-secondary: #D4D4D8; /* Zinc-300 */
+    --text-tertiary: #A1A1AA;  /* Zinc-400 */
     
+    /* --- Accents --- */
     --accent-blue: #3B82F6;
     
+    /* --- Borders & Outlines --- */
     --border-faint: rgba(255, 255, 255, 0.08);
     --border-light: rgba(255, 255, 255, 0.15);
-    
-    /* Outline Stroke - Increased visibility */
     --stroke-color: rgba(255, 255, 255, 0.4); 
     
+    /* --- UI Components --- */
     --bg-pill: rgba(255, 255, 255, 0.05);
     --bg-glider: rgba(255, 255, 255, 0.1);
     --hover-overlay: rgba(255, 255, 255, 0.03);
     
+    /* --- Cursor System (Overridden by Customizer) --- */
     --cursor-color: #FFFFFF;
     --cursor-outline: rgba(255, 255, 255, 0.3);
     
-    /* Fonts */
+    /* --- Typography Families --- */
     --font-serif: "Playfair Display", serif;
     --font-sans: "Inter", sans-serif;
     
-    /* Layering - Fix Z-Indices */
+    /* --- Z-Index Layering System --- */
     --z-canvas: 0;
     --z-content: 10;
     --z-nav: 1000;
@@ -54,13 +67,15 @@
     --z-menu-overlay: 1999;
     --z-mobile-logo: 2000;
     --z-floating-btn: 900;
-    --z-cursor: 2147483647; /* Maximum Safe Integer */
+    /* Highest possible integer to ensure visibility over everything */
+    --z-cursor: 2147483647; 
     
-    /* Transitions */
+    /* --- Animations --- */
     --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
 }
 
+/* Light Mode Overrides (Toggled via JS attribute on HTML tag) */
 [data-theme="light"] {
     --bg-root: #FFFFFF;
     --bg-surface: #F8FAFC;
@@ -73,7 +88,7 @@
     
     --border-faint: rgba(0, 0, 0, 0.08);
     --border-light: rgba(0, 0, 0, 0.15);
-    --stroke-color: rgba(15, 23, 42, 0.25); /* Darker stroke for light mode */
+    --stroke-color: rgba(15, 23, 42, 0.25);
     
     --bg-pill: rgba(0, 0, 0, 0.04);
     --bg-glider: rgba(0, 0, 0, 0.07);
@@ -83,7 +98,9 @@
     --cursor-outline: rgba(0, 0, 0, 0.2);
 }
 
-/* --- 2. BASE RESET --- */
+/* -------------------------------------------------------------------------- */
+/*	2. RESET & BASE
+/* -------------------------------------------------------------------------- */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -110,9 +127,9 @@ body {
     transition: background-color 0.5s var(--ease-standard);
 }
 
-body.menu-open { overflow: hidden; }
+body.menu-open { overflow: hidden; /* Lock scroll when menu is open */ }
 
-/* Interactive Grid Canvas */
+/* Background Grid Canvas */
 #grid-canvas {
     position: fixed;
     inset: 0;
@@ -128,6 +145,9 @@ body.menu-open { overflow: hidden; }
 a { text-decoration: none; color: inherit; transition: color 0.3s var(--ease-standard), opacity 0.3s; }
 img { display: block; max-width: 100%; }
 
+/* -------------------------------------------------------------------------- */
+/*	3. LAYOUT UTILITIES
+/* -------------------------------------------------------------------------- */
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -142,41 +162,67 @@ img { display: block; max-width: 100%; }
     position: relative;
 }
 
-/* --- HERO SECTION LAYOUT FIX --- */
-.hero-section {
-    padding-top: 140px;
-    padding-bottom: 80px;
-    min-height: 90vh; /* Taller viewport presence */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
+/* -------------------------------------------------------------------------- */
+/*	4. CUSTOM CURSOR (Fixed)
+/* -------------------------------------------------------------------------- */
+/* 
+   We default to opacity: 0 instead of display: none.
+   Display: none can sometimes cause JS position calculation errors.
+   Opacity allows element existence but invisibility until JS kicks in.
+*/
+.custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--cursor-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    transform: translate(-50%, -50%); /* Center on coords */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease, transform 0.1s linear;
 }
 
-/* Center Aligned Variation */
-.center-aligned-hero {
-    align-items: center;
-    text-align: center;
+.custom-cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--cursor-outline);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    transform: translate(-50%, -50%); /* Center on coords */
+    opacity: 0; /* Hidden by default */
+    transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                border-color 0.3s,
+                opacity 0.3s ease;
 }
 
-.center-aligned-hero .hero-content-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* 
+   When JS detects mouse movement, it adds 'cursor-visible' class.
+   We then hide the system cursor and show our custom elements.
+*/
+body.cursor-visible {
+    cursor: none !important;
+}
+body.cursor-visible a, 
+body.cursor-visible button, 
+body.cursor-visible input {
+    cursor: none !important;
+}
+body.cursor-visible .custom-cursor-dot, 
+body.cursor-visible .custom-cursor-outline {
+    opacity: 1 !important;
 }
 
-/* --- IMAGE BLENDING UTILITY --- */
-.img-blend-gradient {
-    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-/* --- 3. TYPOGRAPHY & OUTLINE EFFECT --- */
+/* -------------------------------------------------------------------------- */
+/*	5. TYPOGRAPHY
+/* -------------------------------------------------------------------------- */
 h1, h2, h3, h4, h5 {
     font-family: var(--font-serif);
     font-weight: 400;
@@ -185,7 +231,6 @@ h1, h2, h3, h4, h5 {
     margin-top: 0;
 }
 
-/* Base Heading Sizes */
 .hero-title {
     font-size: clamp(3rem, 9vw, 6.5rem);
     line-height: 1.05;
@@ -208,16 +253,16 @@ h1, h2, h3, h4, h5 {
     margin-bottom: 48px;
 }
 
-/* --- THE OUTLINE REVEAL ENGINE --- */
-/* The wrapper ensures correct stacking context */
+/* -------------------------------------------------------------------------- */
+/*	6. TEXT REVEAL ENGINE
+/* -------------------------------------------------------------------------- */
 .text-reveal-wrap {
     position: relative;
-    display: inline-block; /* Keeps word structure */
+    display: inline-block;
     line-height: 1.1;
-    color: transparent; /* Hide original text, show layers */
+    color: transparent; /* Hide original text */
 }
 
-/* The Outline Layer (Always Visible) */
 .text-outline {
     position: relative;
     z-index: 1;
@@ -225,10 +270,9 @@ h1, h2, h3, h4, h5 {
     -webkit-text-stroke: 1px var(--stroke-color);
     display: block;
     pointer-events: none;
-    white-space: pre-wrap; /* Preserve spaces/breaks */
+    white-space: pre-wrap;
 }
 
-/* The Fill Layer (Revealed via Clip-Path) */
 .text-fill {
     position: absolute;
     top: 0;
@@ -237,16 +281,16 @@ h1, h2, h3, h4, h5 {
     color: var(--text-primary);
     width: 100%;
     height: 100%;
-    
-    /* Default state: Completely hidden (clipped from right) */
-    clip-path: inset(0 100% 0 0);
-    
+    clip-path: inset(0 100% 0 0); /* Revealer mask */
     -webkit-text-stroke: 0;
-    white-space: pre-wrap; /* Match outline structure */
-    pointer-events: auto; /* Allow text selection on filled text */
+    white-space: pre-wrap;
+    pointer-events: auto;
 }
 
-/* --- 4. NAVIGATION --- */
+/* -------------------------------------------------------------------------- */
+/*	7. NAVIGATION SYSTEM
+/* -------------------------------------------------------------------------- */
+/* Floating Desktop Nav */
 .nav-wrapper {
     position: fixed;
     top: 32px;
@@ -301,7 +345,7 @@ h1, h2, h3, h4, h5 {
     transition: all 0.5s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
-/* --- MOBILE NAVIGATION --- */
+/* Mobile Nav Toggle */
 .mobile-nav-toggle {
     display: none;
     position: fixed; 
@@ -312,7 +356,6 @@ h1, h2, h3, h4, h5 {
     height: 52px; 
     background: var(--bg-nav); 
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border-radius: 50%;
     border: 1px solid var(--border-faint); 
     cursor: pointer; 
@@ -320,11 +363,8 @@ h1, h2, h3, h4, h5 {
     justify-content: center; 
     flex-direction: column; 
     gap: 5px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-.mobile-nav-toggle:active { transform: scale(0.9); }
 
 .mobile-nav-toggle span { 
     display: block; 
@@ -337,25 +377,6 @@ h1, h2, h3, h4, h5 {
 
 body.menu-open .mobile-nav-toggle span:nth-child(1) { transform: translateY(3px) rotate(45deg); }
 body.menu-open .mobile-nav-toggle span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
-
-.mobile-logo {
-    display: none; 
-    position: fixed; 
-    top: 32px; 
-    left: 50%; 
-    transform: translateX(-50%);
-    z-index: var(--z-mobile-logo); 
-    font-family: var(--font-serif); 
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 8px 24px; 
-    background: var(--bg-nav); 
-    backdrop-filter: blur(12px);
-    border-radius: 99px; 
-    border: 1px solid var(--border-faint);
-    color: var(--text-primary);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-}
 
 .mobile-nav-overlay {
     position: fixed; 
@@ -385,14 +406,31 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     font-family: var(--font-serif); 
     font-size: clamp(2.5rem, 8vw, 3.5rem); 
     color: var(--text-secondary); 
-    text-decoration: none;
-    transition: color 0.3s;
-    opacity: 0;
+    opacity: 0; /* Animated in by JS */
     transform: translateY(20px);
 }
 
 .mobile-nav-links a.active { color: var(--text-primary); font-style: italic; }
 
+.mobile-logo {
+    display: none; 
+    position: fixed; 
+    top: 32px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    z-index: var(--z-mobile-logo); 
+    font-family: var(--font-serif); 
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 8px 24px; 
+    background: var(--bg-nav); 
+    backdrop-filter: blur(12px);
+    border-radius: 99px; 
+    border: 1px solid var(--border-faint);
+    color: var(--text-primary);
+}
+
+/* Theme Toggle Button */
 .theme-toggle-btn {
     position: fixed;
     top: 32px;
@@ -409,185 +447,32 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     transition: all 0.3s var(--ease-standard);
 }
 .theme-toggle-btn:hover { transform: scale(1.1); background: var(--bg-surface); }
 .theme-toggle-btn svg { width: 22px; height: 22px; fill: currentColor; }
 
-/* --- 5. FLOATING RESUME BUTTON --- */
-.floating-resume-btn {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    z-index: var(--z-floating-btn);
-    background: var(--text-primary);
-    color: var(--bg-root);
-    padding: 14px 28px;
-    border-radius: 99px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
-    display: flex;
+/* -------------------------------------------------------------------------- */
+/*	8. COMPONENTS
+/* -------------------------------------------------------------------------- */
+
+/* Buttons */
+.btn {
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-}
-.floating-resume-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.3);
-}
-.floating-resume-btn .btn-icon { display: none; }
-.floating-resume-btn .btn-icon svg { width: 24px; height: 24px; stroke-width: 2; }
-
-/* --- 6. UTILITIES & COMPONENTS --- */
-.search-wrapper {
-    width: 100%;
-    position: relative;
-    margin-bottom: 40px;
-    z-index: 100;
-}
-
-.search-input {
-    width: 100%;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-faint);
-    color: var(--text-primary);
-    padding: 26px 72px 26px 36px;
-    border-radius: 24px;
-    font-size: 1.2rem;
-    outline: none;
-    transition: all 0.3s var(--ease-standard);
-    font-family: var(--font-sans);
-}
-
-.search-input:focus {
-    border-color: var(--text-primary);
-    box-shadow: 0 0 0 1px var(--text-primary), 0 10px 40px rgba(0,0,0,0.1);
-}
-
-.search-clear {
-    position: absolute;
-    right: 32px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--text-tertiary);
-    cursor: pointer;
-    display: none;
-    font-size: 1.5rem;
-    padding: 10px;
-    transition: color 0.2s;
-}
-.search-clear.visible { display: block; }
-.search-clear:hover { color: var(--text-primary); }
-
-.filter-row {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 60px;
-    flex-wrap: wrap;
     justify-content: center;
+    padding: 18px 48px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
 }
+.btn-primary { background: var(--text-primary); color: var(--bg-root); }
+.btn-secondary { background: transparent; border-color: var(--border-light); color: var(--text-primary); }
+.btn-secondary:hover { background: var(--bg-pill); border-color: var(--text-primary); }
 
-.filter-btn {
-    background: transparent;
-    border: 1px solid var(--border-faint);
-    color: var(--text-secondary);
-    padding: 10px 24px;
-    border-radius: 99px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    border-color: var(--text-primary);
-    color: var(--text-primary);
-    background: var(--bg-pill);
-}
-
-/* --- ABOUT GRID LAYOUT --- */
-.about-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 80px;
-}
-
-/* --- TICKER & ACHIEVEMENTS --- */
-.ticker-wrap {
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 100px;
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-}
-.ticker {
-    display: flex;
-    gap: 24px;
-    animation: ticker-scroll 60s linear infinite;
-    width: max-content;
-}
-.ticker-pill {
-    padding: 10px 28px;
-    border-radius: 99px;
-    background: var(--bg-pill);
-    border: 1px solid var(--border-faint);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--text-tertiary);
-    white-space: nowrap;
-}
-@keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-.achievements-strip {
-    display: flex;
-    width: 100%;
-    padding: 80px 0;
-    border-top: 1px solid var(--border-faint);
-    border-bottom: 1px solid var(--border-faint);
-}
-.achieve-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0 24px;
-    position: relative;
-    text-decoration: none;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.achieve-item:hover { transform: translateY(-8px); }
-.achieve-item:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 10%;
-    height: 80%;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, var(--border-light), transparent);
-}
-.achieve-number {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 1;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-}
-.achieve-label {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
-/* --- WORK GRID --- */
+/* Project Cards */
 .project-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -643,7 +528,7 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     color: var(--text-tertiary);
 }
 
-/* --- TESTIMONIALS --- */
+/* Testimonials (Fixed Spacing) */
 .testimonial-section {
     position: relative;
     overflow: hidden;
@@ -657,10 +542,14 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
 }
 .t-slide {
     min-width: 100%;
-    padding: 0 5%;
+    padding: 0 20px; /* Prevent text touching edges */
     opacity: 0.2;
     transform: scale(0.85);
     transition: all 0.9s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .t-slide.active {
     opacity: 1;
@@ -671,7 +560,10 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     font-size: clamp(1.8rem, 4vw, 3rem);
     color: var(--text-primary);
     margin-bottom: 48px;
-    line-height: 1.3;
+    line-height: 1.4; /* Improved readability */
+    max-width: 900px; /* Prevent lines from getting too long on wide screens */
+    margin-left: auto;
+    margin-right: auto;
 }
 .t-author h5 { font-size: 1.2rem; margin-bottom: 4px; }
 .t-author span { color: var(--text-secondary); font-size: 0.95rem; }
@@ -695,18 +587,15 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     justify-content: center;
     font-size: 1.2rem;
     transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
 }
 .t-btn:hover { transform: scale(1.18); }
 [data-theme="light"] .t-btn { background: #000000; color: #FFFFFF; }
 
-/* --- FOOTER --- */
+/* Footer */
 .site-footer {
     padding: 100px 0 40px;
     background: var(--bg-surface);
     border-top: 1px solid var(--border-faint);
-    position: relative;
-    overflow: hidden;
 }
 
 .footer-top-grid {
@@ -720,15 +609,6 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     font-size: clamp(3rem, 6vw, 4.5rem);
     line-height: 1.1;
     margin-bottom: 32px;
-    font-family: var(--font-serif);
-    letter-spacing: -0.02em;
-}
-
-.footer-cta p {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 400px;
-    margin-bottom: 40px;
 }
 
 .footer-email-btn {
@@ -737,17 +617,11 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     gap: 12px;
     font-size: 1.2rem;
     color: var(--text-primary);
-    text-decoration: none;
     border-bottom: 1px solid var(--border-light);
     padding-bottom: 4px;
     transition: all 0.3s;
 }
-
-.footer-email-btn:hover {
-    color: var(--accent-blue);
-    border-color: var(--accent-blue);
-    padding-bottom: 8px;
-}
+.footer-email-btn:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
 
 .footer-nav-grid {
     display: grid;
@@ -768,14 +642,9 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     font-size: 1rem;
     color: var(--text-secondary);
     margin-bottom: 16px;
-    transition: color 0.2s;
     width: fit-content;
 }
-
-.footer-col a:hover {
-    color: var(--text-primary);
-    transform: translateX(4px);
-}
+.footer-col a:hover { color: var(--text-primary); transform: translateX(4px); }
 
 .footer-bottom-bar {
     display: flex;
@@ -789,127 +658,30 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     gap: 20px;
 }
 
-.footer-socials {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-}
-
-.footer-social-link {
-    color: var(--text-secondary);
-    transition: 0.3s;
-}
-.footer-social-link:hover { color: var(--text-primary); transform: translateY(-2px); }
-.footer-social-link svg { width: 20px; height: 20px; fill: currentColor; }
-
-/* --- 10. CUSTOM CURSOR --- */
-.custom-cursor-dot {
+/* Floating Resume Button */
+.floating-resume-btn {
     position: fixed;
-    width: 10px;
-    height: 10px;
-    background: var(--cursor-color);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: var(--z-cursor);
-    transform: translate(-50%, -50%);
-    display: none; /* Hidden by default to prevent flicker */
-}
-.custom-cursor-outline {
-    position: fixed;
-    width: 44px;
-    height: 44px;
-    border: 2px solid var(--cursor-outline);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: var(--z-cursor);
-    transform: translate(-50%, -50%);
-    display: none; /* Hidden by default */
-    transition: width 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
-}
-
-/* 
-   FORCE VISIBILITY WHEN ACTIVE 
-   We add 'custom-cursor-active' class via JS if it's a non-touch device.
-   This ensures it overrides any default hidden state.
-*/
-body.custom-cursor-active { 
-    cursor: none !important; 
-}
-body.custom-cursor-active a, 
-body.custom-cursor-active button, 
-body.custom-cursor-active input { 
-    cursor: none !important; 
-}
-
-body.custom-cursor-active .custom-cursor-dot, 
-body.custom-cursor-active .custom-cursor-outline { 
-    display: block !important; /* Force show */
-}
-
-/* Utilities */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px 48px;
-    border-radius: 9999px;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid transparent;
-}
-.btn-primary { background: var(--text-primary); color: var(--bg-root); }
-.btn-secondary { background: transparent; border-color: var(--border-light); color: var(--text-primary); }
-.btn-secondary:hover { background: var(--bg-pill); border-color: var(--text-primary); }
-
-.badge-pill {
-    padding: 6px 16px;
-    background: var(--bg-pill);
-    border: 1px solid var(--border-faint);
+    bottom: 32px;
+    right: 32px;
+    z-index: var(--z-floating-btn);
+    background: var(--text-primary);
+    color: var(--bg-root);
+    padding: 14px 28px;
     border-radius: 99px;
-    font-size: 0.8rem;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-/* Writing List */
-.writing-list { display: flex; flex-direction: column; border-top: 1px solid var(--border-faint); }
-.writing-item {
-    display: grid;
-    grid-template-columns: 140px 1fr auto;
-    gap: 32px;
-    padding: 48px 0;
-    border-bottom: 1px solid var(--border-faint);
-    transition: 0.4s var(--ease-standard);
+    font-weight: 600;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    display: flex;
     align-items: center;
-    text-decoration: none;
+    gap: 8px;
+    transition: transform 0.3s;
 }
-.writing-item:hover {
-    background: var(--hover-overlay);
-    padding-left: 24px;
-}
-.w-date { font-variant-numeric: tabular-nums; color: var(--text-tertiary); font-size: 0.95rem; }
-.w-title { font-family: var(--font-serif); font-size: 1.8rem; transition: transform 0.4s; color: var(--text-primary); }
-.w-summary { color: var(--text-secondary); margin-top: 8px; display: block; font-size: 1rem; }
-.w-arrow { font-size: 1.2rem; opacity: 0; transform: translateX(-20px); transition: 0.4s; color: var(--text-primary); }
-.writing-item:hover .w-arrow { opacity: 1; transform: translateX(0); }
+.floating-resume-btn:hover { transform: translateY(-4px); }
+.floating-resume-btn .btn-icon { display: none; }
 
-/* About Timeline */
-.timeline-list { border-left: 1px solid var(--border-faint); padding-left: 40px; margin-left: 8px; }
-.timeline-item { position: relative; margin-bottom: 60px; }
-.timeline-item::before { content: ""; position: absolute; left: -45px; top: 8px; width: 9px; height: 9px; background: var(--bg-surface); border: 2px solid var(--text-tertiary); border-radius: 50%; }
-.timeline-date { font-size: 0.9rem; color: var(--text-tertiary); display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;}
-.timeline-role { font-size: 1.4rem; font-family: var(--font-serif); color: var(--text-primary); margin-bottom: 4px; }
-.timeline-company { font-size: 1.1rem; color: var(--text-secondary); }
+/* -------------------------------------------------------------------------- */
+/*	9. RESPONSIVE BREAKPOINTS
+/* -------------------------------------------------------------------------- */
 
-/* Contact Specifics */
-.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
-.contact-details { display: flex; flex-direction: column; gap: 32px; }
-.contact-detail-item h5 { font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em;}
-.contact-detail-item p, .contact-detail-item a { font-size: 1.2rem; color: var(--text-primary); display: block; }
-
-/* --- 11. RESPONSIVE REFINEMENTS & OPTIMIZATIONS --- */
 @media (max-width: 1024px) {
     :root { --container-padding: 32px; }
 }
@@ -925,12 +697,12 @@ body.custom-cursor-active .custom-cursor-outline {
 }
 
 @media (max-width: 850px) {
-    /* Layout & Navigation */
+    /* Hide Desktop Nav */
     .nav-wrapper { display: none; }
+    /* Show Mobile Controls */
     .mobile-nav-toggle { display: flex; }
     .mobile-logo { display: block; }
     
-    /* Optimized Typography & Spacing */
     :root { 
         --section-gap: 80px; 
         --container-padding: 24px; 
@@ -938,64 +710,19 @@ body.custom-cursor-active .custom-cursor-outline {
     
     .hero-title { 
         font-size: clamp(2.8rem, 11vw, 3.8rem);
-        line-height: 1.1; 
         margin-bottom: 24px;
     }
     
-    /* Ensure hero image is visible on mobile if needed, or hidden */
-    .hero-portrait-container { display: none; }
-    
-    .section-title { 
-        font-size: 2rem; 
-        line-height: 1.2;
-        margin-bottom: 32px;
-    }
-    
-    h1, h2, h3 { margin-bottom: 16px; }
-    p { margin-bottom: 24px; }
-    
-    .body-large {
-        font-size: 1.05rem;
-        line-height: 1.6;
-        margin-bottom: 32px;
-    }
-
-    .achievements-strip { flex-direction: column; gap: 60px; padding: 60px 0; }
-    .achieve-item::after { display: none; }
-    .writing-item { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
-    .writing-item:hover { padding-left: 0; background: transparent; }
-    .w-arrow { display: none; }
-    
-    .search-input { font-size: 1rem; padding: 20px 50px 20px 24px; }
-    .filter-row { gap: 8px; justify-content: flex-start; overflow-x: auto; padding-bottom: 12px; -webkit-overflow-scrolling: touch; }
-    .filter-btn { white-space: nowrap; font-size: 0.85rem; padding: 8px 18px; }
-    
+    /* Layouts */
     .hero-section { align-items: center; text-align: center; padding-top: 120px; min-height: auto; }
     .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+    .achievements-strip { flex-direction: column; gap: 60px; padding: 60px 0; }
+    .achieve-item::after { display: none; }
     
-    .timeline-list { padding-left: 24px; }
-    .timeline-item::before { left: -29px; }
-    .timeline-role { font-size: 1.25rem; }
-    
-    .project-grid { gap: 60px; }
-    .card-content h3 { font-size: 1.8rem; }
-
-    .other-cases-grid {
-        grid-template-columns: 1fr 1fr; 
-        gap: 16px;
-    }
-    .case-nav-content h3 { font-size: 1rem; }
-    .case-nav-content h4 { font-size: 0.7rem; }
-    .case-nav-card { min-height: 150px; }
-
+    /* Resume Button Icon Only */
     .floating-resume-btn {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        padding: 0;
-        justify-content: center;
-        bottom: 24px;
-        right: 24px;
+        width: 56px; height: 56px; border-radius: 50%; padding: 0; justify-content: center;
+        bottom: 24px; right: 24px;
     }
     .floating-resume-btn .btn-text { display: none; }
     .floating-resume-btn .btn-icon { display: block; }
@@ -1007,16 +734,9 @@ body.custom-cursor-active .custom-cursor-outline {
         --container-padding: 20px; 
     }
     .hero-title { font-size: 2.25rem; }
-    .t-quote { font-size: 1.25rem; }
     
     .btn { width: 100%; }
     .hero-actions { flex-direction: column; width: 100%; align-items: center; gap: 12px; }
-    
-    .t-controls { gap: 16px; }
-    .t-btn { width: 56px; height: 56px; }
-    
-    .mobile-nav-toggle { top: 20px; left: 20px; width: 48px; height: 48px; }
-    .theme-toggle-btn { top: 20px; right: 20px; width: 48px; height: 48px; }
     
     .site-footer { padding: 60px 0 32px; }
     .footer-nav-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
