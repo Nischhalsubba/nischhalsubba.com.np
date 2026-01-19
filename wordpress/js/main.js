@@ -10,19 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
         enableCursor: true,
         cursorStyle: 'classic', 
         gridHighlight: true,
-        gridOpacity: 0.05
+        gridOpacity: 0.05,
+        transStyle: 'fade'
     };
     const config = typeof themeConfig !== 'undefined' ? { ...defaultConfig, ...themeConfig } : defaultConfig;
 
     // --- 0. THEME TOGGLE ---
     const themeBtn = document.getElementById('theme-toggle');
     const htmlEl = document.documentElement;
-    const sunIcon = `<svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.29-1.29zm1.41-13.78c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.29-1.29zM7.28 17.28c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.29-1.29z"/></svg>`;
-    const moonIcon = `<svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>`;
-
     const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     htmlEl.setAttribute('data-theme', savedTheme);
-    if(themeBtn) themeBtn.innerHTML = savedTheme === 'light' ? moonIcon : sunIcon;
 
     if (themeBtn) {
         themeBtn.addEventListener('click', () => {
@@ -30,37 +27,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const next = current === 'light' ? 'dark' : 'light';
             htmlEl.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
-            themeBtn.innerHTML = next === 'light' ? moonIcon : sunIcon;
         });
     }
 
     // --- 1. AUTOMATIC HEADING WRAPPER ---
-    const headings = document.querySelectorAll('h1, h2, h3');
-    headings.forEach(heading => {
-        if(heading.classList.contains('text-reveal-wrap') || 
-           heading.querySelector('.text-outline') ||
-           heading.closest('.no-reveal') || 
-           heading.textContent.trim() === '') return;
-
+    document.querySelectorAll('h1, h2, h3').forEach(heading => {
+        if(heading.classList.contains('text-reveal-wrap') || heading.querySelector('.text-outline') || heading.textContent.trim() === '') return;
         const originalText = heading.textContent;
         heading.classList.add('text-reveal-wrap');
         heading.innerHTML = ''; 
-        
-        const outlineSpan = document.createElement('span');
-        outlineSpan.className = 'text-outline';
-        outlineSpan.textContent = originalText;
-        
-        const fillSpan = document.createElement('span');
-        fillSpan.className = 'text-fill';
-        fillSpan.textContent = originalText;
-        
-        heading.appendChild(outlineSpan);
-        heading.appendChild(fillSpan);
+        const outlineSpan = document.createElement('span'); outlineSpan.className = 'text-outline'; outlineSpan.textContent = originalText;
+        const fillSpan = document.createElement('span'); fillSpan.className = 'text-fill'; fillSpan.textContent = originalText;
+        heading.appendChild(outlineSpan); heading.appendChild(fillSpan);
     });
 
-    // --- 2. SCROLL ANIMATIONS ---
+    // --- 2. SCROLL ANIMATIONS (Controlled by Customizer) ---
     if(window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
         gsap.registerPlugin(ScrollTrigger);
+        const speed = parseFloat(config.animSpeed) || 1.0;
 
         document.querySelectorAll('.text-reveal-wrap').forEach(el => {
             const fill = el.querySelector('.text-fill');
@@ -70,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ease: "none",
                     scrollTrigger: { 
                         trigger: el, 
-                        start: "top 85%", 
+                        start: "top 90%", 
                         end: "center 45%", 
                         scrub: 0.5 
                     }
@@ -80,14 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('.reveal-on-scroll').forEach(el => {
             gsap.fromTo(el, { y: 40, opacity: 0 }, {
-                y: 0, opacity: 1, duration: 0.8 * config.animSpeed,
+                y: 0, opacity: 1, duration: 0.8 * speed,
                 scrollTrigger: { trigger: el, start: "top 90%" }
             });
         });
     }
 
-    // --- 3. PREMIUM CUSTOM CURSOR ENGINE ---
-    if (!REDUCED_MOTION && !IS_TOUCH && config.enableCursor) {
+    // --- 3. CUSTOM CURSOR (10 Styles) ---
+    if (!REDUCED_MOTION && !IS_TOUCH && config.cursorEnable) {
         const cursorContainer = document.createElement('div');
         cursorContainer.id = 'cursor-container';
         document.body.appendChild(cursorContainer);
@@ -97,82 +81,37 @@ document.addEventListener('DOMContentLoaded', () => {
         let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
         window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 
-        // Hover State Detection
         let isHover = false;
-        document.querySelectorAll('a, button, input, .project-card, .blog-card-modern').forEach(el => {
+        document.querySelectorAll('a, button, input, .project-card').forEach(el => {
             el.addEventListener('mouseenter', () => isHover = true);
             el.addEventListener('mouseleave', () => isHover = false);
         });
 
-        // Initialize Elements
         const dot = document.createElement('div'); dot.className = 'custom-cursor-dot';
         const ring = document.createElement('div'); ring.className = 'custom-cursor-outline';
         
-        // Add to DOM based on style needs
         if(['classic', 'dot', 'blend', 'trail', 'magnetic', 'fluid', 'glitch'].includes(config.cursorStyle)) cursorContainer.appendChild(dot);
         if(['classic', 'outline', 'blend', 'magnetic', 'fluid', 'focus', 'spotlight'].includes(config.cursorStyle)) cursorContainer.appendChild(ring);
 
-        // --- STYLE LOGIC ---
-        let rx = mouse.x, ry = mouse.y; // Ring coords
-        let dx = mouse.x, dy = mouse.y; // Dot coords (for trailing)
-
+        let rx = mouse.x, ry = mouse.y;
         const renderCursor = () => {
-            
             switch(config.cursorStyle) {
-                case 'classic':
-                case 'outline':
-                case 'blend':
-                    gsap.set(dot, { x: mouse.x, y: mouse.y });
-                    rx += (mouse.x - rx) * 0.15; ry += (mouse.y - ry) * 0.15;
-                    gsap.set(ring, { x: rx, y: ry });
-                    if(isHover) { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.opacity = 0.5; }
-                    else { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.opacity = 1; }
-                    break;
-
                 case 'dot':
                     gsap.set(dot, { x: mouse.x, y: mouse.y });
-                    if(isHover) gsap.to(dot, { scale: 3, duration: 0.2 });
-                    else gsap.to(dot, { scale: 1, duration: 0.2 });
+                    gsap.to(dot, { scale: isHover ? 2 : 1, duration: 0.2 });
                     break;
-
-                case 'trail':
-                    dx += (mouse.x - dx) * 0.2; dy += (mouse.y - dy) * 0.2;
-                    gsap.set(dot, { x: dx, y: dy });
-                    // Add tail logic here if needed, but basic lag acts as trail
-                    break;
-
-                case 'magnetic':
-                    // Magnetic requires calculating button positions, simplifed here:
-                    rx += (mouse.x - rx) * 0.1; ry += (mouse.y - ry) * 0.1;
-                    gsap.set(dot, { x: mouse.x, y: mouse.y });
-                    gsap.set(ring, { x: rx, y: ry });
-                    if(isHover) { ring.style.width = '50px'; ring.style.height = '50px'; ring.style.borderColor = 'var(--accent-color)'; }
-                    else { ring.style.width = '30px'; ring.style.height = '30px'; ring.style.borderColor = 'var(--cursor-color)'; }
-                    break;
-
-                case 'fluid':
-                    rx += (mouse.x - rx) * 0.08; ry += (mouse.y - ry) * 0.08;
-                    gsap.set(ring, { x: rx, y: ry });
-                    // Scale distortion based on velocity could go here
-                    gsap.set(dot, { x: mouse.x, y: mouse.y });
-                    break;
-
-                case 'glitch':
-                    gsap.set(dot, { x: mouse.x + (Math.random()*4-2), y: mouse.y + (Math.random()*4-2) });
-                    break;
-
-                case 'focus':
-                    gsap.set(ring, { x: mouse.x, y: mouse.y });
-                    ring.style.border = '2px dashed var(--accent-color)';
-                    if(isHover) ring.style.animation = 'spin 2s linear infinite';
-                    else ring.style.animation = 'none';
-                    break;
-                
                 case 'spotlight':
                     gsap.set(ring, { x: mouse.x, y: mouse.y });
                     ring.style.width = '300px'; ring.style.height = '300px';
                     ring.style.background = 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)';
                     ring.style.border = 'none';
+                    break;
+                default: // Classic & Outline
+                    gsap.set(dot, { x: mouse.x, y: mouse.y });
+                    rx += (mouse.x - rx) * 0.15; ry += (mouse.y - ry) * 0.15;
+                    gsap.set(ring, { x: rx, y: ry });
+                    if(isHover) { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.opacity = 0.5; }
+                    else { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.opacity = 1; }
                     break;
             }
             requestAnimationFrame(renderCursor);
@@ -182,10 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. GRID HIGHLIGHT ---
     const gridCanvas = document.getElementById('grid-canvas');
-    if (gridCanvas && !REDUCED_MOTION && config.enableGrid) {
+    if (gridCanvas && !REDUCED_MOTION && config.gridEnable) {
         const ctx = gridCanvas.getContext('2d');
         let w, h, mouse = { x: -500, y: -500 };
-        const gridSize = parseInt(config.gridSize) || 60;
+        const gridSize = 60;
 
         window.addEventListener('resize', () => { w = gridCanvas.width = window.innerWidth; h = gridCanvas.height = window.innerHeight; });
         window.dispatchEvent(new Event('resize'));
@@ -203,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
             for(let y=0; y<=h; y+=gridSize) { ctx.moveTo(0,y); ctx.lineTo(w,y); }
             ctx.stroke();
             
-            // Spotlight
             if(config.gridSpotlight) {
                 const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 300);
                 const accent = getComputedStyle(document.body).getPropertyValue('--accent-color').trim() || '#3B82F6';
@@ -222,22 +160,5 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(drawGrid);
         };
         drawGrid();
-    }
-
-    // --- 5. TESTIMONIAL CAROUSEL (Updated) ---
-    const tTrack = document.querySelector('.t-track');
-    if(tTrack) {
-        let idx = 0;
-        const slides = document.querySelectorAll('.t-slide');
-        const prev = document.getElementById('t-prev');
-        const next = document.getElementById('t-next');
-        
-        const update = () => {
-            tTrack.style.transform = `translateX(-${idx * 100}%)`;
-            slides.forEach((s,i) => s.classList.toggle('active', i===idx));
-        }
-        
-        if(next) next.addEventListener('click', () => { idx = (idx < slides.length-1) ? idx+1 : 0; update(); });
-        if(prev) prev.addEventListener('click', () => { idx = (idx > 0) ? idx-1 : slides.length-1; update(); });
     }
 });

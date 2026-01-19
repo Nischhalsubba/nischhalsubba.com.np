@@ -2,55 +2,32 @@
 Theme Name: Nischhal Portfolio
 Theme URI: https://nischhal.com
 Author: Nischhal Raj Subba
-Version: 6.0
-Description: High-performance portfolio theme with 20+ custom block patterns and premium cursor engine.
+Version: 7.0
+Description: Ultimate customizable portfolio theme with comprehensive design tokens.
 */
 
 /* =========================================
-   1. DESIGN TOKENS (CSS VARIABLES)
+   1. DESIGN TOKENS (Base defaults, overridden by PHP)
    ========================================= */
 :root {
-    /* --- Layout & Spacing --- */
     --max-width: 1200px;
-    --header-height: 80px;
-    --section-gap: clamp(80px, 12vh, 160px);
+    --section-gap: 120px;
     --container-padding: clamp(24px, 5vw, 60px);
     
-    /* --- Colors (Defaults) --- */
     --bg-root: #050505;
     --bg-surface: #0a0a0a;
-    --bg-card: #111111;
-    --bg-nav: rgba(5, 5, 5, 0.7);
-    --bg-nav-blur: 20px;
-    
     --text-primary: #FFFFFF;
     --text-secondary: #A1A1AA;
-    --text-tertiary: #52525B;
-    
     --accent-color: #3B82F6;
+    --border-faint: rgba(255, 255, 255, 0.1);
     
-    --border-faint: rgba(255, 255, 255, 0.08);
-    --border-light: rgba(255, 255, 255, 0.15);
-    --stroke-color: rgba(255, 255, 255, 0.2);
-    
-    --bg-pill: rgba(255, 255, 255, 0.05);
-    --bg-overlay: rgba(0, 0, 0, 0.6);
-    
-    /* --- Cursor --- */
     --cursor-size: 20px;
     --cursor-color: #FFFFFF;
-    --cursor-mix-mode: normal;
     
-    /* --- Z-Index Layering --- */
+    --anim-speed: 1;
+    
+    /* Layering */
     --z-canvas: 0; --z-base: 1; --z-card: 10; --z-nav: 900; --z-overlay: 950; --z-cursor: 9999;
-}
-
-[data-theme="light"] {
-    --bg-root: #FFFFFF; --bg-surface: #F8FAFC; --bg-card: #FFFFFF; --bg-nav: rgba(255, 255, 255, 0.8);
-    --text-primary: #0f172a; --text-secondary: #475569; --text-tertiary: #94a3b8;
-    --border-faint: rgba(0, 0, 0, 0.06); --border-light: rgba(0, 0, 0, 0.12); --stroke-color: rgba(0, 0, 0, 0.15);
-    --bg-pill: rgba(0, 0, 0, 0.04); --bg-overlay: rgba(255, 255, 255, 0.8);
-    --cursor-color: #000000;
 }
 
 /* =========================================
@@ -58,201 +35,100 @@ Description: High-performance portfolio theme with 20+ custom block patterns and
    ========================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
 html { font-size: 16px; scroll-behavior: smooth; width: 100%; overflow-x: hidden; }
-body { background-color: var(--bg-root); color: var(--text-primary); font-family: var(--font-sans, sans-serif); line-height: 1.6; overflow-x: hidden; min-height: 100vh; transition: background-color 0.4s ease, color 0.4s ease; }
+body { 
+    background-color: var(--bg-root); 
+    color: var(--text-primary); 
+    font-family: var(--font-sans, sans-serif); 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+    min-height: 100vh; 
+    transition: background-color 0.4s ease, color 0.4s ease; 
+}
 body.menu-open { overflow: hidden; }
 a { text-decoration: none; color: inherit; transition: opacity 0.3s; cursor: pointer; }
 img { display: block; max-width: 100%; height: auto; }
 #grid-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: var(--z-canvas); pointer-events: none; }
 
 /* =========================================
-   3. TYPOGRAPHY & TEXT REVEAL
+   3. TYPOGRAPHY
    ========================================= */
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif, serif); font-weight: 400; color: var(--text-primary); line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
 h1 { font-size: clamp(3rem, 7vw, 5rem); }
 h2 { font-size: clamp(2.5rem, 5vw, 4rem); }
 h3 { font-size: clamp(2rem, 4vw, 3rem); }
-h4 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
-h5 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
-p { font-family: var(--font-sans, sans-serif); margin-bottom: 1.5rem; }
 .body-large { font-size: clamp(1.15rem, 2vw, 1.35rem); color: var(--text-secondary); font-weight: 300; line-height: 1.6; }
 
-/* FIXED: Text Reveal (Prevents Double Text) */
-.text-reveal-wrap { 
-    position: relative; 
-    display: inline-block; 
-    white-space: normal;
-    color: transparent !important; /* Force hide original */
-}
-.text-reveal-wrap .text-outline {
-    position: relative;
-    z-index: 1;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--stroke-color);
-    display: block;
-    pointer-events: none;
-}
-.text-reveal-wrap .text-fill {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    color: var(--text-primary);
-    -webkit-text-stroke: 0;
-    z-index: 2;
-    clip-path: inset(0 100% 0 0);
-    will-change: clip-path;
-}
+/* Text Reveal */
+.text-reveal-wrap { position: relative; display: inline-block; white-space: normal; color: transparent !important; }
+.text-reveal-wrap .text-outline { position: relative; z-index: 1; color: transparent; -webkit-text-stroke: 1px var(--border-faint); display: block; pointer-events: none; }
+.text-reveal-wrap .text-fill { position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: var(--text-primary); -webkit-text-stroke: 0; z-index: 2; clip-path: inset(0 100% 0 0); will-change: clip-path; }
 
 /* =========================================
    4. NAVIGATION
    ========================================= */
 .nav-wrapper { position: fixed; top: 32px; left: 50%; transform: translateX(-50%); z-index: var(--z-nav); pointer-events: none; }
-.nav-pill { pointer-events: auto; background: var(--bg-nav); backdrop-filter: blur(var(--bg-nav-blur)); border: 1px solid var(--border-faint); border-radius: 999px; padding: 6px; display: flex; gap: 4px; box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+.nav-pill { pointer-events: auto; background: var(--bg-nav, rgba(10,10,10,0.8)); backdrop-filter: blur(20px); border: 1px solid var(--border-faint); border-radius: 999px; padding: 6px; display: flex; gap: 4px; box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
 .nav-link { padding: 10px 24px; font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); border-radius: 99px; transition: 0.3s ease; }
-.nav-link:hover, .nav-link.active { color: var(--text-primary); background: var(--bg-pill); }
-.mobile-nav-toggle { display: none; position: fixed; top: 24px; left: 24px; z-index: 2001; width: 48px; height: 48px; background: var(--bg-nav); border: 1px solid var(--border-faint); border-radius: 50%; align-items: center; justify-content: center; flex-direction: column; gap: 6px; backdrop-filter: blur(12px); }
+.nav-link:hover, .nav-link.active { color: var(--text-primary); background: var(--border-faint); }
+.mobile-nav-toggle { display: none; position: fixed; top: 24px; left: 24px; z-index: 2001; width: 48px; height: 48px; background: var(--bg-root); border: 1px solid var(--border-faint); border-radius: 50%; align-items: center; justify-content: center; flex-direction: column; gap: 6px; backdrop-filter: blur(12px); }
 .mobile-nav-toggle span { width: 22px; height: 2px; background: var(--text-primary); transition: 0.3s; }
 @media (max-width: 768px) { .nav-wrapper { display: none; } .mobile-nav-toggle { display: flex; } }
 
 /* =========================================
-   5. LAYOUT & HERO
+   5. LAYOUT COMPONENTS
    ========================================= */
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--container-padding); width: 100%; position: relative; z-index: var(--z-base); }
+.section-container { padding: var(--section-gap) 0; }
+
 .hero-section { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding-top: 140px; position: relative; width: 100%; }
-.hero-portrait-container { margin-top: 60px; max-width: 600px; width: 100%; position: relative; z-index: 1; }
+.hero-v1 { text-align: center; align-items: center; }
+.hero-v1 .hero-content-wrapper { max-width: 800px; }
+.hero-v2 { flex-direction: row; align-items: center; gap: 60px; }
 .hero-portrait-img { width: 100%; border-radius: 20px; opacity: 0.9; }
-.hero-actions { display: flex; gap: 16px; margin-top: 32px; }
+
 .ticker-wrap { width: 100%; overflow: hidden; margin-bottom: 40px; mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent); }
 .ticker { display: flex; gap: 32px; width: max-content; animation: scroll 40s linear infinite; }
-.ticker-pill { padding: 8px 16px; border: 1px solid var(--border-faint); border-radius: 99px; font-size: 0.8rem; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap; }
+.ticker-pill { padding: 8px 16px; border: 1px solid var(--border-faint); border-radius: 99px; font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); white-space: nowrap; }
 @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* Hero Variations */
-.hero-v1 { text-align: center; align-items: center; }
-.hero-v1 .hero-content-wrapper { margin: 0 auto; max-width: 800px; }
-.hero-v1 .hero-actions { justify-content: center; }
-.hero-v2 { flex-direction: row; align-items: center; gap: 60px; }
-.hero-v2 .hero-content-wrapper { flex: 1; }
-.hero-v2 .hero-portrait-container { flex: 1; margin-top: 0; }
-@media(max-width:900px){ .hero-v2 { flex-direction: column; text-align: center; } }
-
-/* =========================================
-   6. COMPONENTS & BLOCKS
-   ========================================= */
-.btn { font-family: var(--font-btn, sans-serif); display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; border-radius: 99px; font-weight: 500; font-size: 1rem; transition: 0.3s; cursor: pointer; }
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; border-radius: 99px; font-weight: 500; font-size: 1rem; transition: 0.3s; cursor: pointer; }
 .btn-primary { background: var(--text-primary); color: var(--bg-root); border: 1px solid var(--text-primary); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 .btn-secondary { background: transparent; border: 1px solid var(--border-faint); color: var(--text-primary); }
-.btn-secondary:hover { border-color: var(--text-primary); background: var(--bg-pill); }
+.btn-secondary:hover { border-color: var(--text-primary); background: var(--border-faint); }
 
-/* Project Card */
-.project-grid { display: grid; grid-template-columns: 1fr; gap: clamp(60px, 10vw, 120px); }
-.project-card { display: flex; flex-direction: column; gap: 24px; group: hover; position: relative; }
-.card-media-wrap { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-faint); position: relative; }
+/* Projects */
+.project-grid { display: grid; grid-template-columns: 1fr; gap: 80px; }
+.project-card { display: flex; flex-direction: column; gap: 24px; transition: transform 0.3s; }
+.card-media-wrap { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; background: var(--bg-surface); border: 1px solid var(--border-faint); position: relative; }
 .card-media-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
 .project-card:hover .card-media-wrap img { transform: scale(1.05); }
-.card-content h3 { font-size: 1.75rem; margin-bottom: 8px; }
-.card-meta-line { display: flex; gap: 16px; font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+.project-card:hover { transform: translateY(-5px); }
 
-/* NEW: Modern Blog Cards (Grid) */
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
-}
-.blog-card-modern {
-    display: flex;
-    flex-direction: column;
-    padding: 32px;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-faint);
-    border-radius: 20px;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    height: 100%;
-}
-.blog-card-modern:hover {
-    transform: translateY(-8px);
-    border-color: var(--border-light);
-    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
-}
-.blog-card-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: var(--text-tertiary);
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-.blog-card-title {
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-    margin-bottom: 12px;
-    line-height: 1.2;
-}
-.blog-card-excerpt {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    margin-bottom: 24px;
-    flex-grow: 1;
-}
-.blog-card-link {
-    color: var(--accent-color);
-    font-weight: 500;
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.blog-card-link svg { transition: transform 0.3s; }
-.blog-card-modern:hover .blog-card-link svg { transform: translateX(6px); }
-
-/* Block Patterns Styles */
-.wp-block-group.section-container { padding: var(--section-gap) 0; }
-.has-secondary-color { color: var(--text-secondary); }
-
-/* Testimonials */
-.testimonial-section {
-    padding: 120px 0;
-    overflow: hidden;
-    text-align: center;
-}
-.t-track { display: flex; transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1); width: 100%; }
-.t-slide { min-width: 100%; padding: 0 20px; opacity: 0.3; transform: scale(0.9); transition: 0.6s; }
-.t-slide.active { opacity: 1; transform: scale(1); }
-.t-quote { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 40px; }
-.t-controls { display: flex; justify-content: center; gap: 24px; margin-top: 40px; }
-.t-btn { width: 56px; height: 56px; border-radius: 50%; background: var(--text-primary); color: var(--bg-root); border: none; cursor: pointer; transition: 0.3s; }
-.t-btn:hover { transform: scale(1.1); }
-
-/* Footer */
-.site-footer { padding: 100px 0 40px; background: var(--bg-surface); border-top: 1px solid var(--border-faint); margin-top: 100px; }
-.footer-top-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; margin-bottom: 80px; }
-@media (max-width: 768px) { .footer-top-grid { grid-template-columns: 1fr; gap: 40px; } }
-.floating-resume-btn { position: fixed; bottom: 32px; right: 32px; z-index: var(--z-cursor); background: var(--text-primary); color: var(--bg-root); padding: 14px 28px; border-radius: 99px; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; transition: transform 0.3s; }
-.floating-resume-btn:hover { transform: translateY(-4px); }
-.page-transition-curtain { position: fixed; top: 0; left: 0; width: 100%; height: 0; background: var(--bg-root); z-index: 9998; pointer-events: none; }
-
-/* --- 10. CUSTOM CURSOR STYLES (Supports all 10 types) --- */
+/* =========================================
+   6. INTERACTION ELEMENTS
+   ========================================= */
 .custom-cursor-dot {
-    position: fixed; width: 10px; height: 10px; background: var(--cursor-color); border-radius: 50%; 
+    position: fixed; width: var(--cursor-size); height: var(--cursor-size); background: var(--cursor-color); border-radius: 50%; 
     pointer-events: none; z-index: var(--z-cursor); transform: translate(-50%, -50%); display: none;
-    mix-blend-mode: var(--cursor-mix-mode);
+    mix-blend-mode: var(--cursor-mix-mode, normal);
 }
 .custom-cursor-outline {
-    position: fixed; width: 44px; height: 44px; border: 1px solid var(--cursor-color); border-radius: 50%; 
+    position: fixed; width: calc(var(--cursor-size) * 2.5); height: calc(var(--cursor-size) * 2.5); 
+    border: 1px solid var(--cursor-color); border-radius: 50%; 
     pointer-events: none; z-index: var(--z-cursor); transform: translate(-50%, -50%); display: none;
-    transition: width 0.35s ease-out, height 0.35s ease-out, border-color 0.3s;
-    mix-blend-mode: var(--cursor-mix-mode);
+    transition: width 0.35s ease-out, height 0.35s ease-out;
+    mix-blend-mode: var(--cursor-mix-mode, normal);
 }
 body.custom-cursor-active { cursor: none !important; }
 body.custom-cursor-active a, body.custom-cursor-active button { cursor: none !important; }
 body.custom-cursor-active .custom-cursor-dot, 
 body.custom-cursor-active .custom-cursor-outline { display: block; }
 
-/* Styles specific to modes */
-body.cursor-blend .custom-cursor-dot, body.cursor-blend .custom-cursor-outline {
-    mix-blend-mode: difference;
-    background: #fff; border-color: #fff;
-}
+/* Page Transition */
+.page-transition-curtain { position: fixed; top: 0; left: 0; width: 100%; height: 0; background: var(--text-primary); z-index: 9998; pointer-events: none; }
+
+/* Footer */
+.site-footer { padding: 100px 0 40px; background: var(--bg-surface); border-top: 1px solid var(--border-faint); margin-top: 100px; }
+.footer-top-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; margin-bottom: 80px; }
+.floating-resume-btn { position: fixed; bottom: 32px; right: 32px; z-index: var(--z-cursor); background: var(--text-primary); color: var(--bg-root); padding: 14px 28px; border-radius: 99px; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
