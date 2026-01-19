@@ -2,7 +2,7 @@
 <?php
 /**
  * Nischhal Portfolio - Core Functions
- * Version: 8.1 (Admin Dashboard + Customizer)
+ * Version: 16.0 (Admin Dashboard + Customizer)
  */
 
 // --- 1. SETUP & SUPPORT ---
@@ -15,7 +15,12 @@ function nischhal_theme_setup() {
     add_theme_support( 'editor-styles' );
     add_theme_support( 'responsive-embeds' );
     add_editor_style( 'style.css' );
-    register_nav_menus( array( 'primary' => 'Primary Menu' ) );
+    
+    // Register Menus
+    register_nav_menus( array( 
+        'primary' => 'Primary Menu',
+        'footer'  => 'Footer Menu'
+    ) );
 }
 add_action( 'after_setup_theme', 'nischhal_theme_setup' );
 
@@ -56,7 +61,7 @@ function nischhal_register_post_types() {
         'public' => true
     ));
 
-    // TESTIMONIALS
+    // TESTIMONIALS (Updated support)
     register_post_type('testimonial', array(
         'labels' => array(
             'name' => 'Testimonials',
@@ -66,10 +71,10 @@ function nischhal_register_post_types() {
             'menu_name' => '💬 Testimonials'
         ),
         'public' => true,
-        'publicly_queryable' => false, // No single page for testimonials usually
+        'publicly_queryable' => false, 
         'show_ui' => true,
         'menu_icon' => 'dashicons-format-quote',
-        'supports' => array('title', 'editor'), // Title = Person Name, Editor = Quote
+        'supports' => array('title', 'editor', 'thumbnail'), // Added Thumbnail support for Author Image
         'show_in_rest' => true,
     ));
 }
@@ -135,14 +140,19 @@ function nischhal_render_project_meta($post) {
     <?php
 }
 
-// Render Testimonial Meta
+// Render Testimonial Meta (Enhanced)
 function nischhal_render_testimonial_meta($post) {
     wp_nonce_field('nischhal_save_testimonial_meta', 'nischhal_testimonial_nonce');
     $role = get_post_meta($post->ID, 'testimonial_role', true);
+    $link = get_post_meta($post->ID, 'testimonial_link', true);
     ?>
-    <div style="margin-top: 10px;">
-        <label style="font-weight:600; display:block; margin-bottom:5px;">Role / Company</label>
+    <div style="margin-top: 10px; margin-bottom: 15px;">
+        <label style="font-weight:600; display:block; margin-bottom:5px;">Role / Designation</label>
         <input type="text" name="testimonial_role" value="<?php echo esc_attr($role); ?>" style="width:100%; padding:8px;" placeholder="e.g. CTO at FinTech Co.">
+    </div>
+    <div style="margin-top: 10px;">
+        <label style="font-weight:600; display:block; margin-bottom:5px;">Link (LinkedIn/Company)</label>
+        <input type="url" name="testimonial_link" value="<?php echo esc_attr($link); ?>" style="width:100%; padding:8px;" placeholder="https://linkedin.com/in/...">
     </div>
     <?php
 }
@@ -162,6 +172,7 @@ function nischhal_save_meta_data($post_id) {
     
     if (isset($_POST['nischhal_testimonial_nonce']) && wp_verify_nonce($_POST['nischhal_testimonial_nonce'], 'nischhal_save_testimonial_meta')) {
         if (isset($_POST['testimonial_role'])) update_post_meta($post_id, 'testimonial_role', sanitize_text_field($_POST['testimonial_role']));
+        if (isset($_POST['testimonial_link'])) update_post_meta($post_id, 'testimonial_link', esc_url_raw($_POST['testimonial_link']));
     }
 }
 add_action('save_post', 'nischhal_save_meta_data');
@@ -177,12 +188,12 @@ function nischhal_enqueue_scripts() {
     wp_enqueue_style( 'nischhal-google-fonts', $fonts_url, array(), null );
 
     // Core
-    wp_enqueue_style( 'main-style', get_stylesheet_uri(), array(), '8.1' );
+    wp_enqueue_style( 'main-style', get_stylesheet_uri(), array(), '16.0' );
     wp_enqueue_script( 'gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', array(), null, true );
     wp_enqueue_script( 'gsap-st', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js', array('gsap'), null, true );
-    wp_enqueue_script( 'theme-js', get_template_directory_uri() . '/js/main.js', array('gsap'), '8.1', true );
+    wp_enqueue_script( 'theme-js', get_template_directory_uri() . '/js/main.js', array('gsap'), '16.0', true );
 
-    // Pass Config to JS (Restored full config)
+    // Pass Config to JS
     wp_localize_script( 'theme-js', 'themeConfig', array(
         'animSpeed' => get_theme_mod('anim_speed_multiplier', 1.0),
         'animEasing' => get_theme_mod('anim_easing', 'power2.out'),
@@ -277,7 +288,7 @@ function nischhal_register_patterns() {
 }
 add_action( 'init', 'nischhal_register_patterns' );
 
-// --- 8. THEME CUSTOMIZER (RESTORED v7.0) ---
+// --- 8. THEME CUSTOMIZER (ENHANCED) ---
 function nischhal_customize_register( $wp_customize ) {
     
     // --- PANEL: INTERACTION & CURSORS ---
@@ -308,7 +319,7 @@ function nischhal_customize_register( $wp_customize ) {
     $wp_customize->add_setting('cursor_size', array('default'=>20));
     $wp_customize->add_control('cursor_size', array('label'=>'Cursor Size (px)', 'section'=>'sec_cursor', 'type'=>'number'));
 
-    // --- PANEL: DESIGN COLORS (RESTORED) ---
+    // --- PANEL: DESIGN COLORS ---
     $wp_customize->add_panel( 'panel_colors', array( 'title' => '🎨 Design: Colors', 'priority' => 21 ) );
 
     // Theme Mode
@@ -347,7 +358,7 @@ function nischhal_customize_register( $wp_customize ) {
     $wp_customize->add_setting('bg_spotlight', array('default'=>true));
     $wp_customize->add_control('bg_spotlight', array('label'=>'Enable Spotlight', 'section'=>'sec_grid_overlay', 'type'=>'checkbox'));
 
-    // --- PANEL: TYPOGRAPHY (RESTORED) ---
+    // --- PANEL: TYPOGRAPHY ---
     $wp_customize->add_panel( 'panel_typography', array( 'title' => 'Aa Design: Typography', 'priority' => 22 ) );
     $wp_customize->add_section( 'sec_fonts', array( 'title' => 'Font Families', 'panel' => 'panel_typography' ) );
     
@@ -357,7 +368,7 @@ function nischhal_customize_register( $wp_customize ) {
     $wp_customize->add_setting('typo_body_family', array('default'=>'Inter'));
     $wp_customize->add_control('typo_body_family', array('label'=>'Body Font', 'section'=>'sec_fonts', 'type'=>'text'));
 
-    // --- PANEL: LAYOUT (RESTORED) ---
+    // --- PANEL: LAYOUT ---
     $wp_customize->add_panel( 'panel_layout', array( 'title' => 'Design: Layout', 'priority' => 23 ) );
     $wp_customize->add_section( 'sec_layout_dims', array( 'title' => 'Dimensions', 'panel' => 'panel_layout' ) );
     
@@ -367,31 +378,64 @@ function nischhal_customize_register( $wp_customize ) {
     $wp_customize->add_setting('section_gap', array('default'=>'120px'));
     $wp_customize->add_control('section_gap', array('label'=>'Section Gap', 'section'=>'sec_layout_dims', 'type'=>'text'));
 
-    // --- HOMEPAGE SETTINGS (RESTORED) ---
+    // --- HOMEPAGE SETTINGS (ENHANCED) ---
     $wp_customize->add_section('sec_hero', array('title'=>'🏠 Home: Hero', 'priority'=>30));
     $wp_customize->add_setting('hero_layout_style', array('default'=>'hero-v1'));
     $wp_customize->add_control('hero_layout_style', array('label'=>'Layout', 'section'=>'sec_hero', 'type'=>'select', 'choices'=>array('hero-v1'=>'Center', 'hero-v2'=>'Split')));
+    
     $wp_customize->add_setting('hero_h1_line1', array('default'=>'Crafting scalable'));
     $wp_customize->add_control('hero_h1_line1', array('label'=>'H1 Line 1', 'section'=>'sec_hero', 'type'=>'text'));
+    
     $wp_customize->add_setting('hero_h1_line2', array('default'=>'digital products.'));
     $wp_customize->add_control('hero_h1_line2', array('label'=>'H1 Line 2', 'section'=>'sec_hero', 'type'=>'text'));
+    
+    // New Comprehensive Description Field
+    $wp_customize->add_setting('hero_desc', array('default'=>"I’m Nischhal Raj Subba, a Product Designer focusing on complex enterprise software and living design systems. Bridging design vision with engineering reality."));
+    $wp_customize->add_control('hero_desc', array('label'=>'Hero Bio / Description', 'section'=>'sec_hero', 'type'=>'textarea'));
+
+    // Buttons
+    $wp_customize->add_setting('hero_btn_1_text', array('default'=>'View Projects'));
+    $wp_customize->add_control('hero_btn_1_text', array('label'=>'Primary Button Text', 'section'=>'sec_hero', 'type'=>'text'));
+    $wp_customize->add_setting('hero_btn_1_link', array('default'=>'/work'));
+    $wp_customize->add_control('hero_btn_1_link', array('label'=>'Primary Button Link', 'section'=>'sec_hero', 'type'=>'text'));
+
+    $wp_customize->add_setting('hero_btn_2_text', array('default'=>'Read Bio'));
+    $wp_customize->add_control('hero_btn_2_text', array('label'=>'Secondary Button Text', 'section'=>'sec_hero', 'type'=>'text'));
+    $wp_customize->add_setting('hero_btn_2_link', array('default'=>'/about'));
+    $wp_customize->add_control('hero_btn_2_link', array('label'=>'Secondary Button Link', 'section'=>'sec_hero', 'type'=>'text'));
+
     $wp_customize->add_setting('hero_img', array('default'=>'https://i.imgur.com/ixsEpYM.png'));
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_img', array('label'=>'Portrait', 'section'=>'sec_hero')));
+    
     $wp_customize->add_setting('hero_ticker_items', array('default'=>'Design Systems, Enterprise UX, Web3 Specialist'));
     $wp_customize->add_control('hero_ticker_items', array('label'=>'Ticker Items', 'section'=>'sec_hero', 'type'=>'text'));
     
-    // --- FOOTER SETTINGS (RESTORED) ---
+    // --- FOOTER SETTINGS (ENHANCED) ---
     $wp_customize->add_section('sec_footer', array('title'=>'Footer', 'priority'=>31));
     $wp_customize->add_setting('footer_email', array('default'=>'hinischalsubba@gmail.com'));
     $wp_customize->add_control('footer_email', array('label'=>'Email Address', 'section'=>'sec_footer', 'type'=>'text'));
-    $wp_customize->add_setting('social_linkedin', array('default'=>''));
+    
+    $wp_customize->add_setting('social_linkedin', array('default'=>'https://linkedin.com/in/nischhal/'));
     $wp_customize->add_control('social_linkedin', array('label'=>'LinkedIn URL', 'section'=>'sec_footer', 'type'=>'url'));
-    $wp_customize->add_setting('social_behance', array('default'=>''));
+    
+    $wp_customize->add_setting('social_behance', array('default'=>'https://behance.net/nischhal'));
     $wp_customize->add_control('social_behance', array('label'=>'Behance URL', 'section'=>'sec_footer', 'type'=>'url'));
+
+    $wp_customize->add_setting('social_dribbble', array('default'=>''));
+    $wp_customize->add_control('social_dribbble', array('label'=>'Dribbble URL', 'section'=>'sec_footer', 'type'=>'url'));
+
+    $wp_customize->add_setting('social_uxcel', array('default'=>'https://app.uxcel.com/ux/nischhal'));
+    $wp_customize->add_control('social_uxcel', array('label'=>'Uxcel URL', 'section'=>'sec_footer', 'type'=>'url'));
+    
+    $wp_customize->add_setting('social_figma', array('default'=>''));
+    $wp_customize->add_control('social_figma', array('label'=>'Figma URL', 'section'=>'sec_footer', 'type'=>'url'));
+    
+    $wp_customize->add_setting('social_x', array('default'=>''));
+    $wp_customize->add_control('social_x', array('label'=>'X (Twitter) URL', 'section'=>'sec_footer', 'type'=>'url'));
 }
 add_action( 'customize_register', 'nischhal_customize_register' );
 
-// --- 9. CSS VARIABLES INJECTION (RESTORED) ---
+// --- 9. CSS VARIABLES INJECTION ---
 function nischhal_customizer_css() {
     ?>
     <style>

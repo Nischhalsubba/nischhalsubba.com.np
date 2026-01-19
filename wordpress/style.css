@@ -1,8 +1,17 @@
 
+/* 
+Theme Name: Nischhal Portfolio Premium
+Theme URI: https://nischhal.com
+Author: Nischhal Raj Subba
+Author URI: https://nischhal.com
+Description: A premium, high-performance portfolio theme for Product Designers. Features fluid typography, GSAP animations, dynamic customizer options, and specialized case study layouts.
+Version: 16.0
+Text Domain: nischhal
+*/
 
 /* 
   STYLE.CSS
-  Premium Design Engine v15.6
+  Premium Design Engine v16.0
   Nischhal Raj Subba Portfolio
   -----------------------------------------
   Typography: Playfair Display (Serif) & Inter (Sans)
@@ -662,6 +671,10 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     opacity: 0.2;
     transform: scale(0.85);
     transition: all 0.9s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 .t-slide.active {
     opacity: 1;
@@ -671,11 +684,25 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     font-family: var(--font-serif);
     font-size: clamp(1.8rem, 4vw, 3rem);
     color: var(--text-primary);
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     line-height: 1.3;
+}
+.t-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.t-author-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    object-fit: cover;
+    border: 1px solid var(--border-light);
 }
 .t-author h5 { font-size: 1.2rem; margin-bottom: 4px; }
 .t-author span { color: var(--text-secondary); font-size: 0.95rem; }
+.t-link { font-size: 0.85rem; color: var(--accent-blue); margin-top: 4px; display: inline-block; text-transform: uppercase; letter-spacing: 0.05em; }
 
 .t-controls {
     display: flex;

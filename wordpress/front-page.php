@@ -7,10 +7,13 @@
     $layout_style = get_theme_mod('hero_layout_style', 'hero-v1');
     $h1_line1 = get_theme_mod('hero_h1_line1', 'Crafting scalable');
     $h1_line2 = get_theme_mod('hero_h1_line2', 'digital products.');
+    $hero_desc = get_theme_mod('hero_desc', "I’m Nischhal Raj Subba, a Product Designer focusing on complex enterprise software and living design systems. Bridging design vision with engineering reality.");
+    
     $btn1_text = get_theme_mod('hero_btn_1_text', 'View Projects');
     $btn1_link = get_theme_mod('hero_btn_1_link', '/work');
     $btn2_text = get_theme_mod('hero_btn_2_text', 'Read Bio');
     $btn2_link = get_theme_mod('hero_btn_2_link', '/about');
+    
     $hero_img = get_theme_mod('hero_img', 'https://i.imgur.com/ixsEpYM.png');
     
     // Ticker Pills
@@ -47,16 +50,17 @@
               </span>
             </h1>
 
+            <!-- Hero Paragraph Added Here -->
             <p class="body-large reveal-on-scroll">
-                <?php echo get_bloginfo('description'); ?>
+                <?php echo nl2br(esc_html($hero_desc)); ?>
             </p>
             
             <div class="hero-actions reveal-on-scroll">
               <?php if($btn1_text): ?>
-                <a href="<?php echo home_url($btn1_link); ?>" class="btn btn-primary"><?php echo esc_html($btn1_text); ?></a>
+                <a href="<?php echo esc_url(home_url($btn1_link)); ?>" class="btn btn-primary"><?php echo esc_html($btn1_text); ?></a>
               <?php endif; ?>
               <?php if($btn2_text): ?>
-                <a href="<?php echo home_url($btn2_link); ?>" class="btn btn-secondary"><?php echo esc_html($btn2_text); ?></a>
+                <a href="<?php echo esc_url(home_url($btn2_link)); ?>" class="btn btn-secondary"><?php echo esc_html($btn2_text); ?></a>
               <?php endif; ?>
             </div>
         </div>
@@ -95,7 +99,7 @@
         </div>
       </section>
 
-      <!-- TESTIMONIALS (Updated with more content) -->
+      <!-- TESTIMONIALS (Refined) -->
       <section id="testimonials" class="testimonial-section reveal-on-scroll">
          <h2 class="section-title" style="text-align: center;">
              <span class="text-reveal-wrap">
@@ -110,38 +114,23 @@
              $i=0; 
              if($testimonials->have_posts()): while($testimonials->have_posts()): $testimonials->the_post(); 
                 $role = get_post_meta(get_the_ID(), 'testimonial_role', true);
+                $link = get_post_meta(get_the_ID(), 'testimonial_link', true);
+                $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
              ?>
              <div class="t-slide <?php echo $i===0 ? 'active' : ''; ?>">
                  <div class="t-quote">"<?php echo strip_tags(get_the_content()); ?>"</div>
                  <div class="t-author">
+                     <?php if($thumb_url): ?>
+                        <img src="<?php echo esc_url($thumb_url); ?>" alt="<?php the_title(); ?>" class="t-author-img">
+                     <?php endif; ?>
                      <h5><?php the_title(); ?></h5>
                      <span><?php echo esc_html($role); ?></span>
+                     <?php if($link): ?>
+                        <a href="<?php echo esc_url($link); ?>" target="_blank" class="t-link">View Profile</a>
+                     <?php endif; ?>
                  </div>
              </div>
              <?php $i++; endwhile; wp_reset_postdata(); endif; ?>
-
-             <!-- STATIC MOCK TESTIMONIALS (Appended) -->
-             <div class="t-slide">
-                 <div class="t-quote">"Nischhal's systems thinking saved us months of engineering debt. He doesn't just design screens; he designs scalable logic."</div>
-                 <div class="t-author"><h5>James Curwin</h5><span>CEO, Velonex DeFi</span></div>
-             </div>
-             <div class="t-slide">
-                 <div class="t-quote">"The best handoff experience I've had in 10 years of development. His Figma files are clean, documented, and developer-ready."</div>
-                 <div class="t-author"><h5>Michael Chen</h5><span>Senior Frontend Dev, AeroStream</span></div>
-             </div>
-             <div class="t-slide">
-                 <div class="t-quote">"We hired Nischhal to rethink our entire enterprise dashboard. The result was a 40% increase in user efficiency."</div>
-                 <div class="t-author"><h5>Elena Rodriquez</h5><span>Product Lead, CivicGrid</span></div>
-             </div>
-             <div class="t-slide">
-                 <div class="t-quote">"A rare talent who bridges the gap between aesthetic beauty and complex functionality seamlessly."</div>
-                 <div class="t-author"><h5>Sarah O'Connor</h5><span>VP of Design, Lumina Health</span></div>
-             </div>
-             <div class="t-slide">
-                 <div class="t-quote">"His understanding of Web3 user flows is unmatched. He made our decentralized exchange feel as simple as a banking app."</div>
-                 <div class="t-author"><h5>Priya Patel</h5><span>Founder, Nexus DEX</span></div>
-             </div>
-
          </div>
          <div class="t-controls">
              <button id="t-prev" class="t-btn">←</button>

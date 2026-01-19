@@ -22,24 +22,66 @@
     
     <a href="<?php echo home_url(); ?>" class="mobile-logo">NRS</a>
 
+    <?php 
+    // Fetch menu items for dynamic rendering
+    $menu_items = [];
+    $locations = get_nav_menu_locations();
+    if ( isset( $locations['primary'] ) ) {
+        $menu_obj = wp_get_nav_menu_object( $locations['primary'] );
+        if($menu_obj) {
+            $menu_items = wp_get_nav_menu_items( $menu_obj->term_id );
+        }
+    }
+    
+    // Fallback if no menu assigned
+    if ( empty( $menu_items ) ) {
+        // Fallback array for demo purposes if menu isn't set up in WP yet
+        $fallback_items = [
+            (object)['url' => home_url(), 'title' => 'Home', 'object_id' => get_option('page_on_front'), 'object' => 'page', 'type' => 'post_type_archive'],
+            (object)['url' => home_url('/work'), 'title' => 'Work', 'object_id' => 0, 'object' => 'custom', 'type' => 'custom'],
+            (object)['url' => home_url('/about'), 'title' => 'About', 'object_id' => 0, 'object' => 'custom', 'type' => 'custom'],
+            (object)['url' => home_url('/blog'), 'title' => 'Writing', 'object_id' => 0, 'object' => 'custom', 'type' => 'custom'],
+            (object)['url' => home_url('/contact'), 'title' => 'Contact', 'object_id' => 0, 'object' => 'custom', 'type' => 'custom'],
+        ];
+        $menu_items = $fallback_items;
+    }
+    ?>
+
+    <!-- Mobile Menu Overlay -->
     <div class="mobile-nav-overlay">
         <nav class="mobile-nav-links">
-            <a href="<?php echo home_url(); ?>">Home</a>
-            <a href="<?php echo home_url('/work'); ?>">Work</a>
-            <a href="<?php echo home_url('/about'); ?>">About</a>
-            <a href="<?php echo home_url('/blog'); ?>">Writing</a>
-            <a href="<?php echo home_url('/products'); ?>">Products</a>
-            <a href="<?php echo home_url('/contact'); ?>">Contact</a>
+            <?php foreach($menu_items as $item): 
+                $active_class = '';
+                // Simple active check logic
+                if ( (is_front_page() && $item->url == home_url('/')) || 
+                     (trim($item->url, '/') == trim("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", '/')) ) {
+                    $active_class = 'active';
+                }
+            ?>
+                <a href="<?php echo esc_url($item->url); ?>" class="<?php echo esc_attr($active_class); ?>">
+                    <?php echo esc_html($item->title); ?>
+                </a>
+            <?php endforeach; ?>
         </nav>
     </div>
 
+    <!-- Desktop Nav Pill -->
     <nav class="nav-wrapper">
       <div class="nav-pill">
-        <a href="<?php echo home_url(); ?>" class="nav-link <?php echo is_front_page() ? 'active' : ''; ?>">Home</a>
-        <a href="<?php echo home_url('/work'); ?>" class="nav-link <?php echo is_page('work') || is_page('projects') || is_post_type_archive('project') ? 'active' : ''; ?>">Work</a>
-        <a href="<?php echo home_url('/about'); ?>" class="nav-link <?php echo is_page('about') ? 'active' : ''; ?>">About</a>
-        <a href="<?php echo home_url('/blog'); ?>" class="nav-link <?php echo is_home() || is_page('blog') ? 'active' : ''; ?>">Writing</a>
-        <a href="<?php echo home_url('/products'); ?>" class="nav-link <?php echo is_page('products') ? 'active' : ''; ?>">Products</a>
-        <a href="<?php echo home_url('/contact'); ?>" class="nav-link <?php echo is_page('contact') ? 'active' : ''; ?>">Contact</a>
+        <div class="nav-glider"></div>
+        <?php foreach($menu_items as $item): 
+            $active_class = '';
+            // Logic to check active state more robustly
+            $current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            if ( $item->url == home_url('/') && is_front_page() ) {
+                $active_class = 'active';
+            } elseif ( $item->url != home_url('/') && strpos($current_url, $item->url) !== false ) {
+                $active_class = 'active';
+            }
+        ?>
+            <a href="<?php echo esc_url($item->url); ?>" class="nav-link <?php echo esc_attr($active_class); ?>">
+                <?php echo esc_html($item->title); ?>
+            </a>
+        <?php endforeach; ?>
       </div>
     </nav>
