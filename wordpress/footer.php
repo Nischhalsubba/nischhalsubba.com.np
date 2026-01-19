@@ -5,7 +5,7 @@
     </a>
 
     <footer class="site-footer">
-        <div class="footer-container">
+        <div class="container">
             <div class="footer-top-grid">
                 <div class="footer-cta">
                     <h2>Let's create<br>something<br><span style="font-style: italic;">awesome.</span></h2>
@@ -22,6 +22,7 @@
                         <a href="<?php echo home_url('/work'); ?>">Work</a>
                         <a href="<?php echo home_url('/about'); ?>">About</a>
                         <a href="<?php echo home_url('/blog'); ?>">Writing</a>
+                        <a href="<?php echo home_url('/contact'); ?>">Contact</a>
                     </div>
                     <div class="footer-col">
                         <h5>Socials</h5>

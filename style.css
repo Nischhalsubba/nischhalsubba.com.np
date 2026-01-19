@@ -1,6 +1,6 @@
 /* 
   STYLE.CSS
-  Premium Design Engine v15.0
+  Premium Design Engine v15.2
   Nischhal Raj Subba Portfolio
   -----------------------------------------
   Typography: Playfair Display (Serif) & Inter (Sans)
@@ -10,7 +10,7 @@
 /* --- 1. DESIGN TOKENS --- */
 :root {
     /* Fluid Spacing & Sizing */
-    --max-width: 840px;
+    --max-width: 1200px; /* Standard wide container */
     --section-gap: clamp(80px, 12vw, 160px);
     --container-padding: clamp(24px, 5vw, 40px);
 
@@ -137,6 +137,14 @@ img { display: block; max-width: 100%; }
     width: 100%;
     position: relative;
     z-index: var(--z-content);
+}
+
+/* Footer container inherits main container properties for alignment */
+.footer-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    width: 100%;
 }
 
 .section-container {
@@ -735,12 +743,6 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     border-top: 1px solid var(--border-faint);
     position: relative;
     overflow: hidden;
-}
-
-.footer-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
 }
 
 .footer-top-grid {

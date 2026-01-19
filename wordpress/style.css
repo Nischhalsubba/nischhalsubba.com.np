@@ -2,7 +2,7 @@
 Theme Name: Nischhal Portfolio
 Theme URI: https://nischhal.com
 Author: Nischhal Raj Subba
-Version: 4.1
+Version: 4.2
 Description: High-performance portfolio theme with fluid design system, premium cursor engine, and dynamic theming.
 */
 
@@ -391,11 +391,6 @@ body.custom-cursor-active, body.custom-cursor-active a, body.custom-cursor-activ
     background: var(--bg-surface);
     border-top: 1px solid var(--border-faint);
     margin-top: 100px;
-}
-.footer-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
 }
 .footer-top-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; margin-bottom: 80px; }
 @media (max-width: 768px) { .footer-top-grid { grid-template-columns: 1fr; gap: 40px; } }

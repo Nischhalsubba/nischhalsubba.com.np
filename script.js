@@ -241,31 +241,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. NAV GLIDER LOGIC (Fixed) ---
+    // --- 4. NAV GLIDER & ACTIVE STATE LOGIC (Refined) ---
     const navLinks = document.querySelectorAll('.nav-link');
     const glider = document.querySelector('.nav-glider');
+    
+    // Get the current page filename from the URL, defaulting to 'index.html' for root
+    const currentPath = window.location.pathname;
+    const pageName = currentPath.split('/').pop() || 'index.html';
 
-    const page = window.location.pathname.split('/').pop() || 'index.html';
-    let activeFound = false;
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === page) {
+        const href = link.getAttribute('href');
+        
+        // Exact match or root/index aliases
+        if (href === pageName || (pageName === 'index.html' && (href === './' || href === '/'))) {
             link.classList.add('active');
-            activeFound = true;
         }
     });
-    if (!activeFound && page === 'index.html') {
-        const homeLink = document.querySelector('a[href="index.html"]');
-        if (homeLink) homeLink.classList.add('active');
-    }
 
-    if (glider && !IS_TOUCH) { // Disable glider hover effect on touch
+    if (glider && !IS_TOUCH) { 
         const moveGlider = (el) => {
-            // Use offsetLeft/Width which are relative to the parent (.nav-pill)
-            // This is safer than getBoundingClientRect regarding padding.
+            if (!el) return;
             gsap.to(glider, {
-                x: el.offsetLeft, // Positions glider at exact start of link
-                width: el.offsetWidth, // Matches link width (including padding)
+                x: el.offsetLeft, 
+                width: el.offsetWidth, 
                 opacity: 1,
                 duration: 0.3,
                 ease: "power2.out"
