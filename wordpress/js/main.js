@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const IS_TOUCH = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     
-    // Default Config (Merged with PHP localize)
+    // Default Config
     const defaultConfig = { 
         animSpeed: 1.0, 
         enableCursor: true,
@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileOverlay.classList.toggle('active');
             body.classList.toggle('menu-open');
             
-            // Animate links if GSAP exists
             if(mobileOverlay.classList.contains('active') && window.gsap) {
                 gsap.fromTo('.mobile-nav-links a', 
                     { y: 40, opacity: 0 },
@@ -57,22 +56,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. AUTOMATIC HEADING WRAPPER ---
-    document.querySelectorAll('h1, .h1').forEach(heading => {
-        if(heading.classList.contains('text-reveal-wrap') || heading.querySelector('.text-outline') || heading.textContent.trim() === '') return;
-        const originalText = heading.textContent;
-        heading.classList.add('text-reveal-wrap');
-        heading.innerHTML = ''; 
-        const outlineSpan = document.createElement('span'); outlineSpan.className = 'text-outline'; outlineSpan.textContent = originalText;
-        const fillSpan = document.createElement('span'); fillSpan.className = 'text-fill'; fillSpan.textContent = originalText;
-        heading.appendChild(outlineSpan); heading.appendChild(fillSpan);
-    });
-
-    // --- 3. SCROLL ANIMATIONS ---
+    // --- 2. AUTOMATIC OUTLINE-TO-FILL ANIMATION ---
     if(window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
         gsap.registerPlugin(ScrollTrigger);
-        const speed = parseFloat(config.animSpeed) || 1.0;
 
+        // Select all major headings that should have the outline effect
+        const targets = document.querySelectorAll('h1, h2, h3, .hero-title, .section-title, .project-card h3');
+
+        targets.forEach(heading => {
+            // Avoid double wrapping if already applied
+            if(heading.classList.contains('text-reveal-wrap') || heading.querySelector('.text-outline') || heading.textContent.trim() === '') return;
+            
+            // Skip tiny headings or those explicitly excluded
+            if(heading.classList.contains('no-reveal')) return;
+
+            const originalText = heading.innerHTML; // Use innerHTML to preserve line breaks if any, though plain text is safer
+            const cleanText = heading.textContent; // Using textContent allows safe re-wrapping
+
+            // Clear and restructure
+            heading.classList.add('text-reveal-wrap');
+            heading.innerHTML = ''; 
+
+            // Create structure: Relative Parent -> Absolute Fill + Relative Outline
+            const outlineSpan = document.createElement('span'); 
+            outlineSpan.className = 'text-outline'; 
+            outlineSpan.innerHTML = originalText; // Preserve markup like <br>
+
+            const fillSpan = document.createElement('span'); 
+            fillSpan.className = 'text-fill'; 
+            fillSpan.innerHTML = originalText;
+
+            heading.appendChild(outlineSpan); 
+            heading.appendChild(fillSpan);
+
+            // Animate the fill layer
+            gsap.to(fillSpan, {
+                clipPath: "inset(0 0% 0 0)",
+                ease: "none",
+                scrollTrigger: { 
+                    trigger: heading, 
+                    start: "top 85%", // Start filling when heading enters bottom of screen
+                    end: "center 45%", // Finish filling when heading is near center
+                    scrub: 0.6 // Smooth follow
+                }
+            });
+        });
+
+        // Also animate specifically pre-wrapped elements if any exist from PHP
         document.querySelectorAll('.text-reveal-wrap').forEach(el => {
             const fill = el.querySelector('.text-fill');
             if(fill) {
@@ -82,20 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     scrollTrigger: { 
                         trigger: el, 
                         start: "top 85%", 
-                        end: "bottom 35%", 
-                        scrub: 0.5 
+                        end: "center 45%", 
+                        scrub: 0.6 
                     }
                 });
             }
         });
 
-        // Generic reveal
-        const revealElements = document.querySelectorAll('.reveal-on-scroll, .project-card, .metric-item');
+        // Generic fade-up reveal for body text, cards, etc.
+        const revealElements = document.querySelectorAll('.reveal-on-scroll, .project-card, .metric-item, .body-large');
         revealElements.forEach(el => {
+            // Avoid double animating if it's also a heading we just wrapped
+            if(el.classList.contains('text-reveal-wrap')) return;
+
             gsap.fromTo(el, 
                 { y: 40, opacity: 0 }, 
                 {
-                    y: 0, opacity: 1, duration: 0.8 * speed,
+                    y: 0, opacity: 1, duration: 0.8,
                     ease: "power2.out",
                     scrollTrigger: { trigger: el, start: "top 90%" }
                 }
@@ -103,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. PREMIUM CUSTOM CURSOR ENGINE (ALL 10 STYLES) ---
+    // --- 3. CUSTOM CURSOR ENGINE ---
     if (!REDUCED_MOTION && !IS_TOUCH && config.cursorEnable) {
         const cursorContainer = document.createElement('div');
         cursorContainer.id = 'cursor-container';
@@ -111,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('custom-cursor-active');
         
         let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
-        let lastMouse = { x: window.innerWidth/2, y: window.innerHeight/2 }; 
         
         window.addEventListener('mousemove', e => { 
             mouse.x = e.clientX; 
@@ -130,8 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const dot = document.createElement('div'); dot.className = 'custom-cursor-dot';
         const ring = document.createElement('div'); ring.className = 'custom-cursor-outline';
         
-        if(['classic', 'dot', 'blend', 'trail', 'magnetic', 'fluid', 'glitch'].includes(config.cursorStyle)) cursorContainer.appendChild(dot);
-        if(['classic', 'outline', 'blend', 'magnetic', 'fluid', 'focus', 'spotlight'].includes(config.cursorStyle)) cursorContainer.appendChild(ring);
+        cursorContainer.appendChild(dot);
+        cursorContainer.appendChild(ring);
 
         // Physics State
         let rx = mouse.x, ry = mouse.y; 
@@ -143,28 +175,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Direct follow for dot
             gsap.set(dot, { x: mouse.x, y: mouse.y });
+            gsap.set(ring, { x: rx, y: ry });
             
-            // Default ring behavior
-            if (config.cursorStyle === 'classic' || config.cursorStyle === 'outline') {
-                gsap.set(ring, { x: rx, y: ry });
-                
-                const size = isHover ? 60 : 40;
-                gsap.to(ring, { 
-                    width: size, height: size, 
-                    opacity: isHover ? 0.5 : 1,
-                    backgroundColor: isHover ? 'rgba(255,255,255,0.1)' : 'transparent',
-                    duration: 0.3 
-                });
-                gsap.to(dot, { scale: isHover ? 0.5 : 1, duration: 0.3 });
-            } 
-            // Add other cases here if needed, keeping it simple for stability
+            // Hover State Animation
+            if(isHover) {
+                gsap.to(ring, { width: 60, height: 60, opacity: 0.5, duration: 0.3 });
+                gsap.to(dot, { scale: 0.5, duration: 0.3 });
+            } else {
+                gsap.to(ring, { width: 44, height: 44, opacity: 1, duration: 0.3 });
+                gsap.to(dot, { scale: 1, duration: 0.3 });
+            }
             
             requestAnimationFrame(renderCursor);
         };
         renderCursor();
     }
 
-    // --- 5. GRID HIGHLIGHT ---
+    // --- 4. GRID HIGHLIGHT ---
     const gridCanvas = document.getElementById('grid-canvas');
     if (gridCanvas && !REDUCED_MOTION && config.gridEnable) {
         const ctx = gridCanvas.getContext('2d');
@@ -189,14 +216,14 @@ document.addEventListener('DOMContentLoaded', () => {
             for(let y=0; y<=h; y+=gridSize) { ctx.moveTo(0,y); ctx.lineTo(w,y); }
             ctx.stroke();
             
-            if(config.gridSpotlight) {
+            if(config.gridHighlight) {
                 const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 300);
                 const accent = getComputedStyle(document.body).getPropertyValue('--accent-color').trim() || '#3B82F6';
-                grad.addColorStop(0, accent + '33'); // ~20% opacity hex
+                grad.addColorStop(0, accent + '33'); 
                 grad.addColorStop(1, 'transparent');
                 ctx.strokeStyle = grad;
                 ctx.beginPath();
-                // Optimization: Only draw lines near mouse
+                
                 const region = 300;
                 const startX = Math.floor((mouse.x - region)/gridSize)*gridSize;
                 const endX = Math.ceil((mouse.x + region)/gridSize)*gridSize;
@@ -212,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawGrid();
     }
     
-    // --- 6. TESTIMONIAL CAROUSEL ---
+    // --- 5. TESTIMONIAL CAROUSEL ---
     const tTracks = document.querySelectorAll('.t-track');
     tTracks.forEach(track => {
         let idx = 0;
