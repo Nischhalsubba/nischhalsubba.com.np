@@ -2,7 +2,7 @@
 <?php
 /**
  * Nischhal Portfolio - Core Functions
- * Version: 16.0 (Admin Dashboard + Customizer)
+ * Version: 16.1 (SEO + Image Optimization)
  */
 
 // --- 1. SETUP & SUPPORT ---
@@ -16,6 +16,12 @@ function nischhal_theme_setup() {
     add_theme_support( 'responsive-embeds' );
     add_editor_style( 'style.css' );
     
+    // 1.1 Image Sizes (Upscaling Targets)
+    // Registers a large size. WP will create this if the uploaded image is large enough.
+    // If smaller, CSS will handle the "upscale" to fill container.
+    add_image_size( 'hero-ultra', 1920, 1080, false ); // Full HD, Soft Crop
+    add_image_size( 'project-card', 800, 600, true );  // Hard Crop for Grid
+    
     // Register Menus
     register_nav_menus( array( 
         'primary' => 'Primary Menu',
@@ -23,6 +29,67 @@ function nischhal_theme_setup() {
     ) );
 }
 add_action( 'after_setup_theme', 'nischhal_theme_setup' );
+
+// --- 1.2 IMAGE COMPRESSION & OPTIMIZATION ---
+// Set JPEG Quality to 85 (High detail, decent compression)
+add_filter( 'jpeg_quality', function($arg){ return 85; } );
+add_filter( 'wp_editor_set_quality', function($arg){ return 85; } );
+
+// Enable Big Image Uploads (don't scale down immediately, let us handle it)
+add_filter( 'big_image_size_threshold', '__return_false' );
+
+// --- 1.3 SEO AUTOMATION (No Visual Changes) ---
+function nischhal_seo_meta_tags() {
+    global $post;
+    
+    // Default Description
+    $excerpt = "Portfolio of Nischhal Raj Subba, a #1 Ranked Product Designer specializing in Design Systems, Enterprise UX, and Web3 Product Design.";
+    
+    if ( is_single() || is_page() ) {
+        if ( has_excerpt( $post->ID ) ) {
+            $excerpt = strip_tags( get_the_excerpt( $post->ID ) );
+        } elseif ( !empty($post->post_content) ) {
+            $excerpt = wp_trim_words( strip_tags( $post->post_content ), 25 );
+        }
+    }
+    
+    // Default Image
+    $img_url = get_theme_mod('hero_img', 'https://i.imgur.com/ixsEpYM.png');
+    if ( has_post_thumbnail( $post->ID ) ) {
+        $img_url = get_the_post_thumbnail_url( $post->ID, 'large' );
+    }
+    
+    ?>
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="<?php echo esc_attr($excerpt); ?>">
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="<?php echo (is_single() ? 'article' : 'website'); ?>" />
+    <meta property="og:title" content="<?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?>" />
+    <meta property="og:description" content="<?php echo esc_attr($excerpt); ?>" />
+    <meta property="og:url" content="<?php echo esc_url( get_permalink() ); ?>" />
+    <meta property="og:site_name" content="<?php bloginfo('name'); ?>" />
+    <meta property="og:image" content="<?php echo esc_url($img_url); ?>" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Schema.org (Person/Portfolio) -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Nischhal Raj Subba",
+      "url": "<?php echo home_url(); ?>",
+      "jobTitle": "Product Designer",
+      "sameAs": [
+        "https://linkedin.com/in/nischhal/",
+        "https://behance.net/nischhal",
+        "https://dribbble.com/Nischhal"
+      ]
+    }
+    </script>
+    <?php
+}
+add_action('wp_head', 'nischhal_seo_meta_tags', 5);
+
 
 // --- 2. CUSTOM POST TYPES (ADMIN MENUS) ---
 function nischhal_register_post_types() {
@@ -188,10 +255,10 @@ function nischhal_enqueue_scripts() {
     wp_enqueue_style( 'nischhal-google-fonts', $fonts_url, array(), null );
 
     // Core
-    wp_enqueue_style( 'main-style', get_stylesheet_uri(), array(), '16.0' );
+    wp_enqueue_style( 'main-style', get_stylesheet_uri(), array(), '16.1' );
     wp_enqueue_script( 'gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', array(), null, true );
     wp_enqueue_script( 'gsap-st', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js', array('gsap'), null, true );
-    wp_enqueue_script( 'theme-js', get_template_directory_uri() . '/js/main.js', array('gsap'), '16.0', true );
+    wp_enqueue_script( 'theme-js', get_template_directory_uri() . '/js/main.js', array('gsap'), '16.1', true );
 
     // Pass Config to JS
     wp_localize_script( 'theme-js', 'themeConfig', array(
@@ -404,8 +471,16 @@ function nischhal_customize_register( $wp_customize ) {
     $wp_customize->add_setting('hero_btn_2_link', array('default'=>'/about'));
     $wp_customize->add_control('hero_btn_2_link', array('label'=>'Secondary Button Link', 'section'=>'sec_hero', 'type'=>'text'));
 
+    // Updated Image Control: Cropped Image for Crop/Adjustment support
     $wp_customize->add_setting('hero_img', array('default'=>'https://i.imgur.com/ixsEpYM.png'));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_img', array('label'=>'Portrait', 'section'=>'sec_hero')));
+    $wp_customize->add_control(new WP_Customize_Cropped_Image_Control($wp_customize, 'hero_img', array(
+        'label'=>'Portrait (Crop/Adjust)', 
+        'section'=>'sec_hero',
+        'height'=>800,
+        'width'=>800,
+        'flex_width'=>true,
+        'flex_height'=>true,
+    )));
     
     $wp_customize->add_setting('hero_ticker_items', array('default'=>'Design Systems, Enterprise UX, Web3 Specialist'));
     $wp_customize->add_control('hero_ticker_items', array('label'=>'Ticker Items', 'section'=>'sec_hero', 'type'=>'text'));

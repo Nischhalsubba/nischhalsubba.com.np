@@ -35,7 +35,6 @@
     
     // Fallback if no menu assigned
     if ( empty( $menu_items ) ) {
-        // Fallback array for demo purposes if menu isn't set up in WP yet
         $fallback_items = [
             (object)['url' => home_url(), 'title' => 'Home', 'object_id' => get_option('page_on_front'), 'object' => 'page', 'type' => 'post_type_archive'],
             (object)['url' => home_url('/work'), 'title' => 'Work', 'object_id' => 0, 'object' => 'custom', 'type' => 'custom'],
@@ -45,6 +44,9 @@
         ];
         $menu_items = $fallback_items;
     }
+
+    // Get current queried object ID for robust active checking
+    $queried_object_id = get_queried_object_id();
     ?>
 
     <!-- Mobile Menu Overlay -->
@@ -52,9 +54,10 @@
         <nav class="mobile-nav-links">
             <?php foreach($menu_items as $item): 
                 $active_class = '';
-                // Simple active check logic
-                if ( (is_front_page() && $item->url == home_url('/')) || 
-                     (trim($item->url, '/') == trim("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", '/')) ) {
+                // Robust Active Check: Object ID matching or URL fallback
+                if ( $item->object_id == $queried_object_id || 
+                   (is_front_page() && $item->url == home_url('/')) ||
+                   ($item->url != home_url('/') && strpos("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", $item->url) !== false) ) {
                     $active_class = 'active';
                 }
             ?>
@@ -71,11 +74,10 @@
         <div class="nav-glider"></div>
         <?php foreach($menu_items as $item): 
             $active_class = '';
-            // Logic to check active state more robustly
-            $current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            if ( $item->url == home_url('/') && is_front_page() ) {
-                $active_class = 'active';
-            } elseif ( $item->url != home_url('/') && strpos($current_url, $item->url) !== false ) {
+            // Robust Active Check: Object ID matching or URL fallback
+            if ( $item->object_id == $queried_object_id || 
+               (is_front_page() && $item->url == home_url('/')) ||
+               ($item->url != home_url('/') && strpos("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", $item->url) !== false) ) {
                 $active_class = 'active';
             }
         ?>
