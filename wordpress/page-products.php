@@ -15,41 +15,33 @@ get_header(); ?>
 
       <section class="section-container">
         <div class="project-grid">
-           <!-- UI Kit -->
-           <a href="#" class="project-card reveal-on-scroll">
+           <?php 
+           $products = new WP_Query(array('post_type'=>'product', 'posts_per_page'=>-1));
+           if($products->have_posts()): while($products->have_posts()): $products->the_post(); 
+                $price = get_post_meta(get_the_ID(), 'product_price', true);
+                $format = get_post_meta(get_the_ID(), 'product_format', true);
+                $thumb = get_the_post_thumbnail_url(get_the_ID(), 'large');
+           ?>
+           <a href="<?php the_permalink(); ?>" class="project-card reveal-on-scroll">
                <div class="card-media-wrap">
-                   <img src="<?php echo get_template_directory_uri(); ?>/assets/images/product-ui-kit.svg" loading="lazy" alt="Refined UI Kit">
+                   <?php if($thumb): ?>
+                    <img src="<?php echo esc_url($thumb); ?>" loading="lazy" alt="<?php the_title(); ?>">
+                   <?php else: ?>
+                    <div style="height:100%; background:var(--bg-surface);"></div>
+                   <?php endif; ?>
                    <div class="card-overlay"><span class="view-case-btn">View Product →</span></div>
                </div>
                <div class="card-content">
-                   <h3>Refined UI Kit</h3>
-                   <div class="card-meta-line"><span>Figma</span><span>$49</span></div>
+                   <h3><?php the_title(); ?></h3>
+                   <div class="card-meta-line">
+                       <span><?php echo $format ? esc_html($format) : 'Digital'; ?></span>
+                       <span><?php echo $price ? esc_html($price) : 'Free'; ?></span>
+                   </div>
                </div>
            </a>
-           
-           <!-- Design System -->
-           <a href="#" class="project-card reveal-on-scroll">
-               <div class="card-media-wrap">
-                   <img src="<?php echo get_template_directory_uri(); ?>/assets/images/product-system.svg" loading="lazy" alt="System 2.0">
-                   <div class="card-overlay"><span class="view-case-btn">View Product →</span></div>
-               </div>
-               <div class="card-content">
-                   <h3>System 2.0</h3>
-                   <div class="card-meta-line"><span>React + Figma</span><span>$129</span></div>
-               </div>
-           </a>
-
-           <!-- Icons -->
-           <a href="#" class="project-card reveal-on-scroll">
-               <div class="card-media-wrap">
-                   <img src="<?php echo get_template_directory_uri(); ?>/assets/images/product-icons.svg" loading="lazy" alt="Neon Icons">
-                   <div class="card-overlay"><span class="view-case-btn">View Product →</span></div>
-               </div>
-               <div class="card-content">
-                   <h3>Neon Icons</h3>
-                   <div class="card-meta-line"><span>SVG</span><span>Free</span></div>
-               </div>
-           </a>
+           <?php endwhile; wp_reset_postdata(); else: ?>
+               <p>No products found.</p>
+           <?php endif; ?>
         </div>
       </section>
     </main>

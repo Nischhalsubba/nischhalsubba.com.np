@@ -93,10 +93,10 @@
         </div>
       </section>
 
-      <!-- TESTIMONIALS (Restored) -->
+      <!-- TESTIMONIALS (From CPT) -->
       <?php 
-        $t1_q = get_theme_mod('testi_1_quote');
-        if($t1_q): 
+        $testimonials = new WP_Query(array('post_type' => 'testimonial', 'posts_per_page' => 5));
+        if($testimonials->have_posts()): 
       ?>
       <section id="testimonials" class="testimonial-section reveal-on-scroll">
          <h2 class="section-title" style="text-align: center;">
@@ -106,20 +106,17 @@
             </span>
          </h2>
          <div class="t-track">
-             <?php for($i=1; $i<=3; $i++): 
-                $q = get_theme_mod("testi_{$i}_quote");
-                $a = get_theme_mod("testi_{$i}_author");
-                $r = get_theme_mod("testi_{$i}_role");
-                if($q):
+             <?php $i=0; while($testimonials->have_posts()): $testimonials->the_post(); 
+                $role = get_post_meta(get_the_ID(), 'testimonial_role', true);
              ?>
-             <div class="t-slide <?php echo $i===1 ? 'active' : ''; ?>">
-                 <p class="t-quote">"<?php echo esc_html($q); ?>"</p>
+             <div class="t-slide <?php echo $i===0 ? 'active' : ''; ?>">
+                 <div class="t-quote">"<?php echo strip_tags(get_the_content()); ?>"</div>
                  <div class="t-author">
-                     <h5><?php echo esc_html($a); ?></h5>
-                     <span><?php echo esc_html($r); ?></span>
+                     <h5><?php the_title(); ?></h5>
+                     <span><?php echo esc_html($role); ?></span>
                  </div>
              </div>
-             <?php endif; endfor; ?>
+             <?php $i++; endwhile; wp_reset_postdata(); ?>
          </div>
          <div class="t-controls">
              <button id="t-prev" class="t-btn">←</button>

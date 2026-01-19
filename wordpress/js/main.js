@@ -86,50 +86,101 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. CUSTOM CURSOR (Restored & Configurable) ---
+    // --- 3. PREMIUM CUSTOM CURSOR ENGINE ---
     if (!REDUCED_MOTION && !IS_TOUCH && config.enableCursor) {
         const cursorContainer = document.createElement('div');
         cursorContainer.id = 'cursor-container';
         document.body.appendChild(cursorContainer);
         document.body.classList.add('custom-cursor-active');
+        if(config.cursorStyle === 'blend') document.body.classList.add('cursor-blend');
 
         let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
         window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 
+        // Hover State Detection
         let isHover = false;
         document.querySelectorAll('a, button, input, .project-card, .blog-card-modern').forEach(el => {
             el.addEventListener('mouseenter', () => isHover = true);
             el.addEventListener('mouseleave', () => isHover = false);
         });
 
-        // Configurable Style Logic
-        const dot = document.createElement('div'); dot.className = 'c-dot';
-        const ring = document.createElement('div'); ring.className = 'c-ring';
+        // Initialize Elements
+        const dot = document.createElement('div'); dot.className = 'custom-cursor-dot';
+        const ring = document.createElement('div'); ring.className = 'custom-cursor-outline';
         
-        if (config.cursorStyle === 'classic' || config.cursorStyle === 'dot') cursorContainer.appendChild(dot);
-        if (config.cursorStyle === 'classic' || config.cursorStyle === 'outline') cursorContainer.appendChild(ring);
-        
-        let rx = mouse.x, ry = mouse.y;
-        const render = () => {
-            if(dot) gsap.set(dot, { x: mouse.x, y: mouse.y });
+        // Add to DOM based on style needs
+        if(['classic', 'dot', 'blend', 'trail', 'magnetic', 'fluid', 'glitch'].includes(config.cursorStyle)) cursorContainer.appendChild(dot);
+        if(['classic', 'outline', 'blend', 'magnetic', 'fluid', 'focus', 'spotlight'].includes(config.cursorStyle)) cursorContainer.appendChild(ring);
+
+        // --- STYLE LOGIC ---
+        let rx = mouse.x, ry = mouse.y; // Ring coords
+        let dx = mouse.x, dy = mouse.y; // Dot coords (for trailing)
+
+        const renderCursor = () => {
             
-            if(ring) {
-                rx += (mouse.x - rx) * 0.15;
-                ry += (mouse.y - ry) * 0.15;
-                gsap.set(ring, { x: rx, y: ry });
+            switch(config.cursorStyle) {
+                case 'classic':
+                case 'outline':
+                case 'blend':
+                    gsap.set(dot, { x: mouse.x, y: mouse.y });
+                    rx += (mouse.x - rx) * 0.15; ry += (mouse.y - ry) * 0.15;
+                    gsap.set(ring, { x: rx, y: ry });
+                    if(isHover) { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.opacity = 0.5; }
+                    else { ring.style.width = '40px'; ring.style.height = '40px'; ring.style.opacity = 1; }
+                    break;
+
+                case 'dot':
+                    gsap.set(dot, { x: mouse.x, y: mouse.y });
+                    if(isHover) gsap.to(dot, { scale: 3, duration: 0.2 });
+                    else gsap.to(dot, { scale: 1, duration: 0.2 });
+                    break;
+
+                case 'trail':
+                    dx += (mouse.x - dx) * 0.2; dy += (mouse.y - dy) * 0.2;
+                    gsap.set(dot, { x: dx, y: dy });
+                    // Add tail logic here if needed, but basic lag acts as trail
+                    break;
+
+                case 'magnetic':
+                    // Magnetic requires calculating button positions, simplifed here:
+                    rx += (mouse.x - rx) * 0.1; ry += (mouse.y - ry) * 0.1;
+                    gsap.set(dot, { x: mouse.x, y: mouse.y });
+                    gsap.set(ring, { x: rx, y: ry });
+                    if(isHover) { ring.style.width = '50px'; ring.style.height = '50px'; ring.style.borderColor = 'var(--accent-color)'; }
+                    else { ring.style.width = '30px'; ring.style.height = '30px'; ring.style.borderColor = 'var(--cursor-color)'; }
+                    break;
+
+                case 'fluid':
+                    rx += (mouse.x - rx) * 0.08; ry += (mouse.y - ry) * 0.08;
+                    gsap.set(ring, { x: rx, y: ry });
+                    // Scale distortion based on velocity could go here
+                    gsap.set(dot, { x: mouse.x, y: mouse.y });
+                    break;
+
+                case 'glitch':
+                    gsap.set(dot, { x: mouse.x + (Math.random()*4-2), y: mouse.y + (Math.random()*4-2) });
+                    break;
+
+                case 'focus':
+                    gsap.set(ring, { x: mouse.x, y: mouse.y });
+                    ring.style.border = '2px dashed var(--accent-color)';
+                    if(isHover) ring.style.animation = 'spin 2s linear infinite';
+                    else ring.style.animation = 'none';
+                    break;
                 
-                if(isHover) {
-                    ring.style.width = '60px'; ring.style.height = '60px'; ring.style.opacity = '0.5';
-                } else {
-                    ring.style.width = '40px'; ring.style.height = '40px'; ring.style.opacity = '1';
-                }
+                case 'spotlight':
+                    gsap.set(ring, { x: mouse.x, y: mouse.y });
+                    ring.style.width = '300px'; ring.style.height = '300px';
+                    ring.style.background = 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)';
+                    ring.style.border = 'none';
+                    break;
             }
-            requestAnimationFrame(render);
+            requestAnimationFrame(renderCursor);
         };
-        render();
+        renderCursor();
     }
 
-    // --- 4. GRID HIGHLIGHT (Restored) ---
+    // --- 4. GRID HIGHLIGHT ---
     const gridCanvas = document.getElementById('grid-canvas');
     if (gridCanvas && !REDUCED_MOTION && config.enableGrid) {
         const ctx = gridCanvas.getContext('2d');
@@ -173,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawGrid();
     }
 
-    // --- 5. TESTIMONIAL CAROUSEL ---
+    // --- 5. TESTIMONIAL CAROUSEL (Updated) ---
     const tTrack = document.querySelector('.t-track');
     if(tTrack) {
         let idx = 0;
