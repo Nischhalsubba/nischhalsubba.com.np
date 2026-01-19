@@ -1,26 +1,19 @@
-<?php
-/* Template Name: Work Page */
-get_header(); ?>
+<?php get_header(); ?>
 
     <main class="container">
       <section class="hero-section" style="min-height: 40vh;">
         <h1 class="hero-title reveal-on-scroll">
             <span class="text-reveal-wrap">
-                <span class="text-outline">Selected Work</span>
-                <span class="text-fill">Selected Work</span>
+                <span class="text-outline">Work Archive</span>
+                <span class="text-fill">Work Archive</span>
             </span>
         </h1>
-        <p class="body-large reveal-on-scroll">A curated showcase of design systems, complex products, and interaction design.</p>
+        <p class="body-large reveal-on-scroll">A complete history of selected projects and design experiments.</p>
       </section>
-
-      <div class="search-wrapper reveal-on-scroll">
-          <input type="text" id="search-work" class="search-input" placeholder="Search by title, industry, or year...">
-          <button id="clear-work" class="search-clear" aria-label="Clear">✕</button>
-      </div>
 
       <!-- FILTER PILLS -->
       <div class="filter-row reveal-on-scroll">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <a href="<?php echo home_url('/work'); ?>" class="filter-btn active">All Projects</a>
           <?php 
             $cats = get_terms( array(
                 'taxonomy' => 'project_category',
@@ -28,7 +21,7 @@ get_header(); ?>
             ) );
             if ( ! empty( $cats ) && ! is_wp_error( $cats ) ) {
                 foreach ( $cats as $cat ) {
-                    echo '<button class="filter-btn" data-filter="' . esc_attr( $cat->slug ) . '">' . esc_html( $cat->name ) . '</button>';
+                    echo '<a href="' . get_term_link($cat) . '" class="filter-btn">' . esc_html( $cat->name ) . '</a>';
                 }
             }
           ?>
@@ -37,13 +30,8 @@ get_header(); ?>
       <section class="section-container" style="padding-top: 0;">
         <div class="project-grid">
            <?php 
-           $args = array(
-               'post_type' => 'project',
-               'posts_per_page' => -1, // Show all
-           );
-           $projects = new WP_Query($args);
-           if($projects->have_posts()):
-               while($projects->have_posts()): $projects->the_post();
+           if(have_posts()):
+               while(have_posts()): the_post();
                    $cats_slug = get_project_cat_slugs(get_the_ID());
                    $year = get_post_meta(get_the_ID(), 'project_year', true);
                    $industry = get_post_meta(get_the_ID(), 'project_industry', true);
@@ -65,8 +53,8 @@ get_header(); ?>
                    </div>
                </div>
            </a>
-           <?php endwhile; wp_reset_postdata(); else: ?>
-               <p style="color: var(--text-secondary);">No projects found. Please add some via WordPress Admin.</p>
+           <?php endwhile; else: ?>
+               <p style="color: var(--text-secondary);">No projects found.</p>
            <?php endif; ?>
         </div>
       </section>

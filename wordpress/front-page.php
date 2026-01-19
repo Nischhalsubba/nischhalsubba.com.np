@@ -66,28 +66,41 @@
             </span>
         </h2>
 
-        <!-- Added Filter Pills for Home -->
+        <!-- Filter Pills (Links to Archive or JS Filter) - Keeping simple links here or static for home -->
         <div class="filter-row reveal-on-scroll">
-            <button class="filter-btn active" data-filter="all">All Projects</button>
-            <button class="filter-btn" data-filter="fintech">Fintech</button>
-            <button class="filter-btn" data-filter="web3">Web3</button>
-            <button class="filter-btn" data-filter="system">Design Systems</button>
+            <a href="<?php echo home_url('/work'); ?>" class="filter-btn active">All Projects</a>
+            <!-- Simple links to work page for filtering context if needed, or static pills -->
+            <span class="filter-btn">Fintech</span>
+            <span class="filter-btn">Web3</span>
+            <span class="filter-btn">System</span>
         </div>
 
         <div class="project-grid">
-           <!-- Placeholder Projects - In a real WP theme, use WP_Query for custom post types -->
-           <a href="<?php echo home_url('/project-detail'); // Replace with the_permalink() in loop ?>" class="project-card reveal-on-scroll" data-category="fintech enterprise">
-               <div class="card-media-wrap"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" alt="MAS DataHub"></div>
-               <div class="card-content"><h3>MAS DataHub</h3><div class="card-meta-line"><span>Enterprise Automation</span><span>2025</span></div></div>
+           <?php 
+           $args = array(
+               'post_type' => 'project',
+               'posts_per_page' => 3, // Selected work
+           );
+           $projects = new WP_Query($args);
+           if($projects->have_posts()):
+               while($projects->have_posts()): $projects->the_post();
+                   $year = get_post_meta(get_the_ID(), 'project_year', true);
+                   $industry = get_post_meta(get_the_ID(), 'project_industry', true);
+                   $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+           ?>
+           <a href="<?php the_permalink(); ?>" class="project-card reveal-on-scroll">
+               <div class="card-media-wrap">
+                   <?php if($thumb_url): ?>
+                    <img src="<?php echo esc_url($thumb_url); ?>" alt="<?php the_title(); ?>">
+                   <?php else: ?>
+                    <div style="width:100%; height:100%; background: #1a1a1a;"></div>
+                   <?php endif; ?>
+               </div>
+               <div class="card-content"><h3><?php the_title(); ?></h3><div class="card-meta-line"><span><?php echo $industry ? esc_html($industry) : 'Design'; ?></span><span><?php echo $year ? esc_html($year) : get_the_date('Y'); ?></span></div></div>
            </a>
-           <a href="#" class="project-card reveal-on-scroll" data-category="web3 banking">
-               <div class="card-media-wrap"><img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200&auto=format&fit=crop" alt="Yarsha Wallet"></div>
-               <div class="card-content"><h3>Yarsha Wallet</h3><div class="card-meta-line"><span>Web3 Banking</span><span>2024</span></div></div>
-           </a>
-           <a href="#" class="project-card reveal-on-scroll" data-category="system">
-               <div class="card-media-wrap"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1200&auto=format&fit=crop" alt="Orbit System"></div>
-               <div class="card-content"><h3>Orbit System</h3><div class="card-meta-line"><span>Design System</span><span>2023</span></div></div>
-           </a>
+           <?php endwhile; wp_reset_postdata(); else: ?>
+               <p style="color: var(--text-secondary);">No projects found.</p>
+           <?php endif; ?>
         </div>
         <div style="margin-top: 60px; text-align: center;">
             <a href="<?php echo home_url('/work'); ?>" class="btn btn-secondary reveal-on-scroll">View All Projects</a>
@@ -130,23 +143,20 @@
               <a href="<?php echo home_url('/blog'); ?>" class="btn btn-secondary" style="padding: 12px 24px; font-size: 0.9rem;">View all writing</a>
           </div>
           <div class="writing-list reveal-on-scroll">
-              <!-- Using single.php template link for demo -->
-              <a href="<?php echo home_url('/the-future-of-design-systems'); // Example slug ?>" class="writing-item">
-                  <span class="w-date">Oct 24, 2025</span>
+              <?php 
+              $blog_query = new WP_Query(array('posts_per_page' => 2));
+              if($blog_query->have_posts()):
+                  while($blog_query->have_posts()): $blog_query->the_post();
+              ?>
+              <a href="<?php the_permalink(); ?>" class="writing-item">
+                  <span class="w-date"><?php echo get_the_date('M d, Y'); ?></span>
                   <div class="w-info">
-                      <span class="w-title">The future of Design Systems</span>
-                      <span class="w-summary">From static libraries to living code.</span>
+                      <span class="w-title"><?php the_title(); ?></span>
+                      <span class="w-summary"><?php echo get_the_excerpt(); ?></span>
                   </div>
                   <span class="w-arrow">→</span>
               </a>
-              <a href="#" class="writing-item">
-                  <span class="w-date">Sep 12, 2025</span>
-                  <div class="w-info">
-                      <span class="w-title">Bridging Design & Code</span>
-                      <span class="w-summary">Better developer handoff strategies.</span>
-                  </div>
-                  <span class="w-arrow">→</span>
-              </a>
+              <?php endwhile; wp_reset_postdata(); endif; ?>
           </div>
       </section>
 

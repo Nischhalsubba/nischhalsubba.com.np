@@ -14,7 +14,17 @@
     <div class="custom-cursor-outline"></div>
 
     <button class="mobile-nav-toggle" aria-label="Menu"><span></span><span></span></button>
-    <a href="<?php echo home_url(); ?>" class="mobile-logo">NRS</a>
+    
+    <!-- Dynamic Logo -->
+    <a href="<?php echo home_url(); ?>" class="mobile-logo">
+        <?php if ( has_custom_logo() ) : 
+            $custom_logo_id = get_theme_mod( 'custom_logo' );
+            $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+            echo '<img src="' . esc_url( $logo[0] ) . '" alt="' . get_bloginfo( 'name' ) . '">';
+        else : ?>
+            NRS
+        <?php endif; ?>
+    </a>
 
     <div class="mobile-nav-overlay">
         <nav class="mobile-nav-links">
