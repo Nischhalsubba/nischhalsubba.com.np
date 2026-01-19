@@ -17,7 +17,10 @@
 
       <section class="section-container" style="padding-top: 0;">
           <div class="writing-list reveal-on-scroll">
-              <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+              <?php 
+              // Set main query to 6 posts
+              query_posts('posts_per_page=6');
+              if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                   <a href="<?php the_permalink(); ?>" class="writing-item" data-category="<?php echo strtolower(strip_tags(get_the_category_list(' '))); ?>">
                       <span class="w-date"><?php echo get_the_date('M d, Y'); ?></span>
                       <div class="w-info">

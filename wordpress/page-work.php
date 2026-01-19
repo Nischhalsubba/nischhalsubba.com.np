@@ -36,7 +36,7 @@ get_header(); ?>
            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
            $args = array(
                'post_type' => 'project',
-               'posts_per_page' => 10,
+               'posts_per_page' => 6, // Increased to 6
                'paged' => $paged
            );
            $projects = new WP_Query($args);
