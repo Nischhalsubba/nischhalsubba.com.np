@@ -1,4 +1,4 @@
-
+﻿
 /* 
 Theme Name: Nischhal Portfolio Premium
 Theme URI: https://nischhal.com
@@ -606,7 +606,7 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     align-items: center;
 }
 .card-meta-line span:not(:last-child)::after {
-    content: "•";
+    content: "-";
     margin-left: 16px;
     color: var(--text-tertiary);
 }

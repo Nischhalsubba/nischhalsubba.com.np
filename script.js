@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Only enable if pointer is fine (mouse) and elements exist
     // DISABLED ON TOUCH DEVICES
-    if (!REDUCED_MOTION && window.matchMedia('(pointer: fine)').matches && !IS_TOUCH && cursorDot) {
+    if (window.gsap && !REDUCED_MOTION && window.matchMedia('(pointer: fine)').matches && !IS_TOUCH && cursorDot) {
 
         // Add class to body to hide default cursor ONLY when this logic is active
         document.body.classList.add('custom-cursor-active');
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    if (glider && !IS_TOUCH) { 
+    if (glider && !IS_TOUCH && window.gsap) { 
         const moveGlider = (el) => {
             if (!el) return;
             gsap.to(glider, {
@@ -304,11 +304,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (matchesCategory && matchesSearch) {
                     el.classList.remove('hidden');
-                    // Reset animation trigger if hidden
-                    gsap.to(el, { opacity: 1, y: 0, duration: 0.4, display: 'flex' }); // Flex or Grid depending on CSS
+                    if (window.gsap) {
+                        // Reset animation trigger if hidden
+                        gsap.to(el, { opacity: 1, y: 0, duration: 0.4, display: 'flex' }); // Flex or Grid depending on CSS
+                    } else {
+                        el.style.display = '';
+                        el.style.opacity = '1';
+                        el.style.transform = '';
+                    }
                 } else {
                     el.classList.add('hidden');
-                    gsap.to(el, { opacity: 0, display: 'none', duration: 0 });
+                    if (window.gsap) {
+                        gsap.to(el, { opacity: 0, display: 'none', duration: 0 });
+                    } else {
+                        el.style.display = 'none';
+                        el.style.opacity = '0';
+                    }
                 }
             });
         };
@@ -335,6 +346,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply to Work and Writing pages if present
     setupFilters('.filter-btn', '.project-card', 'data-category', 'search-work');
     setupFilters('.blog-filter-btn', '.writing-item', 'data-category', 'search-blog');
+
+    const clearWorkBtn = document.getElementById('clear-work');
+    if (clearWorkBtn) {
+        clearWorkBtn.addEventListener('click', () => {
+            const input = document.getElementById('search-work');
+            if (!input) return;
+            input.value = '';
+            input.dispatchEvent(new Event('input'));
+            input.focus();
+        });
+    }
 
 
     // --- 6. TESTIMONIAL CAROUSEL ---

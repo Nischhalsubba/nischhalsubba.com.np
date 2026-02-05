@@ -219,6 +219,18 @@ npm install
 npm run dev
 ```
 
+### Quick static preview (no build)
+
+```bash
+npm run preview:static
+```
+
+### Validate links/assets (static HTML)
+
+```bash
+npm run check:links
+```
+
 ### Build and preview
 
 ```bash
