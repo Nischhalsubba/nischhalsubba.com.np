@@ -1,1 +1,0 @@
-<?php // Moved to wordpress/functions.php ?>
