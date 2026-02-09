@@ -252,9 +252,21 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.forEach(link => {
         link.classList.remove('active');
         const href = link.getAttribute('href');
-        
-        // Exact match or root/index aliases
-        if (href === pageName || (pageName === 'index.html' && (href === './' || href === '/'))) {
+        const isHome = pageName === 'index.html';
+        const isWork = pageName.startsWith('project') || pageName === 'projects.html';
+        const isWriting = pageName.startsWith('blog');
+
+        if (href === pageName || (isHome && (href === './' || href === '/'))) {
+            link.classList.add('active');
+            return;
+        }
+
+        if (href === 'projects.html' && isWork) {
+            link.classList.add('active');
+            return;
+        }
+
+        if (href === 'blog.html' && isWriting) {
             link.classList.add('active');
         }
     });
@@ -412,6 +424,55 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.style.color = '';
                 }, 3000);
             }, 1500);
+        });
+    }
+
+    // --- 8. SHARE BUTTONS ---
+    const shareButtons = document.querySelectorAll('[data-share]');
+    if (shareButtons.length > 0) {
+        const pageUrl = encodeURIComponent(window.location.href);
+        const pageTitle = encodeURIComponent(document.title);
+        const pageText = encodeURIComponent(document.querySelector('h1')?.innerText || document.title);
+
+        const shareUrls = {
+            x: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageText}`,
+            linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`
+        };
+
+        shareButtons.forEach((btn) => {
+            if (btn.tagName === 'BUTTON' && !btn.getAttribute('type')) {
+                btn.setAttribute('type', 'button');
+            }
+            btn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const platform = btn.getAttribute('data-share');
+
+                if (platform === 'native' && navigator.share) {
+                    try {
+                        await navigator.share({ title: document.title, url: window.location.href });
+                    } catch (_) {}
+                    return;
+                }
+
+                if (platform === 'copy' && navigator.clipboard) {
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        const previous = btn.getAttribute('aria-label') || '';
+                        btn.setAttribute('aria-label', 'Link copied');
+                        btn.classList.add('copied');
+                        setTimeout(() => {
+                            btn.setAttribute('aria-label', previous);
+                            btn.classList.remove('copied');
+                        }, 2000);
+                    } catch (_) {}
+                    return;
+                }
+
+                const shareUrl = shareUrls[platform];
+                if (shareUrl) {
+                    window.open(shareUrl, '_blank', 'noopener,noreferrer');
+                }
+            });
         });
     }
 });
