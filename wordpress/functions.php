@@ -26,6 +26,17 @@ function nischhal_theme_setup() {
 }
 add_action( 'after_setup_theme', 'nischhal_theme_setup' );
 
+function nischhal_maybe_flush_rewrite_rules() {
+    $theme = wp_get_theme();
+    $version = $theme ? $theme->get( 'Version' ) : '1.0';
+    $stored = get_option( 'nischhal_theme_version' );
+    if ( $stored !== $version ) {
+        flush_rewrite_rules();
+        update_option( 'nischhal_theme_version', $version );
+    }
+}
+add_action( 'after_setup_theme', 'nischhal_maybe_flush_rewrite_rules' );
+
 // Allow SVG Uploads
 function nischhal_mime_types($mimes) {
   $mimes['svg'] = 'image/svg+xml';
@@ -44,6 +55,37 @@ function get_project_cat_slugs($post_id) {
         return implode(' ', $slugs);
     }
     return '';
+}
+
+function nischhal_build_menu_item($title, $url, $object_id = 0) {
+    return (object) array(
+        'url' => $url,
+        'title' => $title,
+        'object_id' => $object_id,
+        'object' => 'page',
+        'type' => 'custom'
+    );
+}
+
+function nischhal_get_default_menu_items() {
+    $items = array();
+    $front_id = (int) get_option('page_on_front');
+    $about_page = get_page_by_path('about');
+    $contact_page = get_page_by_path('contact');
+    $posts_page_id = (int) get_option('page_for_posts');
+
+    $work_url = get_post_type_archive_link('project');
+    if ( ! $work_url ) {
+        $work_url = home_url('/work');
+    }
+
+    $items[] = nischhal_build_menu_item('Home', home_url('/'), $front_id);
+    $items[] = nischhal_build_menu_item('Work', $work_url);
+    $items[] = nischhal_build_menu_item('About', $about_page ? get_permalink($about_page->ID) : home_url('/about'), $about_page ? $about_page->ID : 0);
+    $items[] = nischhal_build_menu_item('Writing', $posts_page_id ? get_permalink($posts_page_id) : home_url('/blog'), $posts_page_id);
+    $items[] = nischhal_build_menu_item('Contact', $contact_page ? get_permalink($contact_page->ID) : home_url('/contact'), $contact_page ? $contact_page->ID : 0);
+
+    return $items;
 }
 
 // --- 2. ENQUEUE SCRIPTS & STYLES ---
@@ -77,6 +119,36 @@ function nischhal_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'nischhal_scripts' );
 
+function nischhal_create_page_if_missing($title, $slug, $template = '') {
+    $existing = get_page_by_path($slug);
+    if ( $existing ) {
+        return $existing->ID;
+    }
+    $page_id = wp_insert_post(array(
+        'post_title' => $title,
+        'post_name' => $slug,
+        'post_status' => 'publish',
+        'post_type' => 'page'
+    ));
+    if ( $page_id && $template ) {
+        update_post_meta($page_id, '_wp_page_template', $template);
+    }
+    return $page_id;
+}
+
+function nischhal_on_theme_activation() {
+    nischhal_create_page_if_missing('About', 'about', 'page-about.php');
+    nischhal_create_page_if_missing('Contact', 'contact', 'page-contact.php');
+
+    $writing_id = nischhal_create_page_if_missing('Writing', 'writing', '');
+    if ( $writing_id && ! get_option('page_for_posts') ) {
+        update_option('page_for_posts', $writing_id);
+    }
+
+    flush_rewrite_rules();
+}
+add_action('after_switch_theme', 'nischhal_on_theme_activation');
+
 // --- 3. SEO & SCHEMA ---
 function nischhal_seo_schema() {
     global $post;
@@ -107,6 +179,54 @@ function nischhal_seo_schema() {
     echo '<script type="application/ld+json">' . json_encode($schema) . '</script>';
 }
 add_action('wp_head', 'nischhal_seo_schema');
+
+function nischhal_output_meta_tags() {
+    if ( defined('WPSEO_VERSION') || class_exists('RankMath') || class_exists('All_in_One_SEO_Pack') ) {
+        return;
+    }
+
+    global $post, $wp;
+    $default_desc = 'Product designer specializing in design systems, enterprise UX, and Web3 product design.';
+    $title = wp_get_document_title();
+    $description = $default_desc;
+
+    if ( is_singular() && $post ) {
+        if ( has_excerpt( $post->ID ) ) {
+            $description = get_the_excerpt( $post );
+        } else {
+            $description = wp_trim_words( wp_strip_all_tags( $post->post_content ), 28 );
+        }
+    } elseif ( is_post_type_archive( 'project' ) ) {
+        $description = 'Selected product design and Web3 case studies by Nischhal Raj Subba.';
+    } elseif ( is_post_type_archive( 'product' ) ) {
+        $description = 'Digital products, UI kits, and design system assets by Nischhal Raj Subba.';
+    } elseif ( is_home() || is_archive() ) {
+        $description = 'Writing on design systems, product strategy, and Web3 UX by Nischhal Raj Subba.';
+    } elseif ( is_front_page() ) {
+        $description = get_bloginfo( 'description' ) ? get_bloginfo( 'description' ) : $default_desc;
+    }
+
+    $url = is_singular() && $post ? get_permalink( $post ) : home_url( add_query_arg( array(), $wp->request ) );
+    $image = get_theme_mod( 'hero_img', 'https://i.imgur.com/ixsEpYM.png' );
+    if ( is_singular() && $post && has_post_thumbnail( $post->ID ) ) {
+        $image = get_the_post_thumbnail_url( $post->ID, 'large' );
+    }
+
+    echo '<meta name="description" content="' . esc_attr( $description ) . '" />' . "\n";
+    echo '<link rel="canonical" href="' . esc_url( $url ) . '" />' . "\n";
+    echo '<meta property="og:type" content="' . ( is_singular() ? 'article' : 'website' ) . '" />' . "\n";
+    echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
+    echo '<meta property="og:description" content="' . esc_attr( $description ) . '" />' . "\n";
+    echo '<meta property="og:url" content="' . esc_url( $url ) . '" />' . "\n";
+    if ( $image ) {
+        echo '<meta property="og:image" content="' . esc_url( $image ) . '" />' . "\n";
+        echo '<meta name="twitter:image" content="' . esc_url( $image ) . '" />' . "\n";
+    }
+    echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
+    echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '" />' . "\n";
+    echo '<meta name="twitter:description" content="' . esc_attr( $description ) . '" />' . "\n";
+}
+add_action('wp_head', 'nischhal_output_meta_tags', 5);
 
 // --- 4. CUSTOM POST TYPES ---
 function nischhal_register_post_types() {
@@ -465,18 +585,18 @@ function nischhal_generate_demo_content() {
     if (isset($_GET['nrs_generate_demo']) && current_user_can('manage_options')) {
         // Create a Sample Project
         $post_id = wp_insert_post(array(
-            'post_title' => 'Demo Project: Fintech Dashboard',
-            'post_content' => '<!-- wp:paragraph --><p>This is a generated demo project showing the structure of a case study.</p><!-- /wp:paragraph -->',
+            'post_title' => 'Mokshya Protocol',
+            'post_content' => '<!-- wp:paragraph --><p>Case study summary: product design for an open-source Web3 protocol with trust-first onboarding and governance clarity.</p><!-- /wp:paragraph -->',
             'post_status' => 'publish',
             'post_type' => 'project'
         ));
-        update_post_meta($post_id, 'project_role', 'Lead Designer');
-        update_post_meta($post_id, 'project_year', '2025');
+        update_post_meta($post_id, 'project_role', 'Lead Product Designer');
+        update_post_meta($post_id, 'project_year', '2024');
         
         // Create a Sample Blog Post
         wp_insert_post(array(
-            'post_title' => 'The Future of Design Systems',
-            'post_content' => '<!-- wp:paragraph --><p>Design systems are evolving from static libraries to living code...</p><!-- /wp:paragraph -->',
+            'post_title' => 'Design Systems That Survive Scale',
+            'post_content' => '<!-- wp:paragraph --><p>Governance, tokens, and release cadence are what keep systems alive at enterprise scale.</p><!-- /wp:paragraph -->',
             'post_status' => 'publish',
             'post_type' => 'post'
         ));

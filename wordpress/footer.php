@@ -44,8 +44,13 @@
                         if($products->have_posts()): while($products->have_posts()): $products->the_post(); ?>
                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                         <?php endwhile; wp_reset_postdata(); else: ?>
-                            <a href="#">UI Kit</a>
-                            <a href="#">System 2.0</a>
+                            <?php 
+                                $products_url = get_post_type_archive_link('product');
+                                if(!$products_url) $products_url = home_url('/products');
+                            ?>
+                            <a href="<?php echo esc_url($products_url); ?>">Products</a>
+                            <a href="<?php echo esc_url($products_url); ?>">UI Kit</a>
+                            <a href="<?php echo esc_url($products_url); ?>">System 2.0</a>
                         <?php endif; ?>
                     </div>
                 </div>

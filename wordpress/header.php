@@ -38,15 +38,8 @@
     
     // Auto-populate if no menu is assigned yet
     if ( empty( $menu_items ) ) {
-        $pages = get_pages(array('sort_column' => 'menu_order'));
-        foreach($pages as $p) {
-            $menu_items[] = (object)[
-                'url' => get_permalink($p->ID),
-                'title' => $p->post_title,
-                'object_id' => $p->ID,
-                'object' => 'page',
-                'type' => 'post_type'
-            ];
+        if ( function_exists( 'nischhal_get_default_menu_items' ) ) {
+            $menu_items = nischhal_get_default_menu_items();
         }
     }
 
