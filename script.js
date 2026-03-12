@@ -32,7 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function setTheme(theme) {
         htmlEl.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
-        if (themeBtn) themeBtn.innerHTML = theme === 'light' ? moonIcon : sunIcon;
+        if (themeBtn) {
+            themeBtn.innerHTML = theme === 'light' ? moonIcon : sunIcon;
+            themeBtn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+        }
         updateImages(theme);
     }
 
@@ -60,10 +63,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileBtn = document.querySelector('.mobile-nav-toggle');
     const body = document.body;
     const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+    const mobileOverlay = document.querySelector('.mobile-nav-overlay');
 
     if (mobileBtn) {
+        if (mobileOverlay && !mobileOverlay.id) {
+            mobileOverlay.id = 'mobile-nav-overlay';
+        }
+        if (mobileOverlay) {
+            mobileBtn.setAttribute('aria-controls', mobileOverlay.id);
+        }
+        mobileBtn.setAttribute('aria-expanded', 'false');
+
         mobileBtn.addEventListener('click', () => {
             const isOpen = body.classList.toggle('menu-open');
+            mobileBtn.setAttribute('aria-expanded', String(isOpen));
             
             if (isOpen && window.gsap) {
                 // Staggered animation for links opening
@@ -78,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 body.classList.remove('menu-open');
+                mobileBtn.setAttribute('aria-expanded', 'false');
             });
         });
     }
@@ -205,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     width: 40,
                     height: 40,
                     backgroundColor: 'transparent',
-                    borderColor: 'var(--cursor-border)',
+                    borderColor: 'var(--cursor-outline)',
                     duration: 0.3
                 });
                 gsap.to(cursorDot, { scale: 1, duration: 0.3 });
@@ -373,6 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 6. TESTIMONIAL CAROUSEL ---
     const tTrack = document.querySelector('.t-track');
+    const tSection = document.querySelector('.testimonial-section');
     const tPrev = document.getElementById('t-prev');
     const tNext = document.getElementById('t-next');
     const tSlides = document.querySelectorAll('.t-slide');
@@ -382,19 +397,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const updateT = () => {
             tTrack.style.transform = `translateX(-${tIndex * 100}%)`;
             tSlides.forEach((s, i) => {
-                s.classList.toggle('active', i === tIndex);
+                const isActive = i === tIndex;
+                s.classList.toggle('active', isActive);
+                s.setAttribute('aria-hidden', String(!isActive));
+                s.tabIndex = isActive ? 0 : -1;
             });
         };
 
-        if (tPrev) tPrev.addEventListener('click', () => {
-            tIndex = (tIndex > 0) ? tIndex - 1 : tSlides.length - 1;
+        const goToSlide = (nextIndex) => {
+            tIndex = nextIndex;
             updateT();
+        };
+
+        if (tPrev) tPrev.addEventListener('click', () => {
+            goToSlide((tIndex > 0) ? tIndex - 1 : tSlides.length - 1);
         });
 
         if (tNext) tNext.addEventListener('click', () => {
-            tIndex = (tIndex < tSlides.length - 1) ? tIndex + 1 : 0;
-            updateT();
+            goToSlide((tIndex < tSlides.length - 1) ? tIndex + 1 : 0);
         });
+
+        if (tSection) {
+            tSection.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    goToSlide((tIndex > 0) ? tIndex - 1 : tSlides.length - 1);
+                }
+                if (event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    goToSlide((tIndex < tSlides.length - 1) ? tIndex + 1 : 0);
+                }
+            });
+        }
         updateT();
     }
 

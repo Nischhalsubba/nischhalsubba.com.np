@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accessibility in Fintech: Building for Trust | Nischhal Raj Subba</title>
-    <meta name="description" content="Accessibility practices that improve trust and usability in financial products." />
+    <meta name="description" content="Accessibility practices for fintech UX: clear language, recoverable errors, readable transaction reviews, and trust-building flows." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://nischhalsubba.com.np/blog-accessibility-fintech.html" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Accessibility in Fintech: Building for Trust | Nischhal Raj Subba" />
-    <meta property="og:description" content="Accessibility practices that improve trust and usability in financial products." />
+    <meta property="og:description" content="Accessibility practices for fintech UX: clear language, recoverable errors, readable transaction reviews, and trust-building flows." />
     <meta property="og:url" content="https://nischhalsubba.com.np/blog-accessibility-fintech.html" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Accessibility in Fintech: Building for Trust | Nischhal Raj Subba" />
-    <meta name="twitter:description" content="Accessibility practices that improve trust and usability in financial products." />
+    <meta name="twitter:description" content="Accessibility practices for fintech UX: clear language, recoverable errors, readable transaction reviews, and trust-building flows." />
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop" />
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +34,8 @@
     "name": "Nischhal Raj Subba"
   },
   "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop",
-  "description": "Accessibility practices that improve trust and usability in financial products.",
+  "dateModified": "2026-03-12",
+  "description": "Accessibility practices for fintech UX: clear language, recoverable errors, readable transaction reviews, and trust-building flows.",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://nischhalsubba.com.np/blog-accessibility-fintech.html"
@@ -80,11 +81,13 @@
                 <div class="container">
                     <div style="margin-bottom: 24px; color: var(--accent-blue); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; border: 1px solid var(--accent-blue); padding: 4px 12px; border-radius: 99px;">Fintech</div>
                     <h1 class="hero-title fade-in" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 32px;">Accessibility in Fintech: Building for Trust</h1>
-                    <div class="meta-text fade-in" style="display: flex; gap: 24px; color: var(--text-secondary); border-top: 1px solid var(--border-faint); padding-top: 24px; width: 100%;">
-                        <span>May 20, 2025</span>
-                        <span>-</span>
-                        <span>5 min read</span>
-                        <span>-</span>
+                    <p class="section-lead fade-in" style="margin-bottom: 32px; max-width: 760px;">
+                        In fintech, accessibility is not a compliance afterthought. It is part of how users judge safety, interpret risk, and decide whether to complete a transaction.
+                    </p>
+                    <div class="blog-meta-row fade-in">
+                        <span>Published May 20, 2025</span>
+                        <span>Updated March 12, 2026</span>
+                        <span>7 min read</span>
                         <span>By Nischhal Raj Subba</span>
                     </div>
                 </div>
@@ -93,25 +96,92 @@
             <section class="section-container" style="padding-top: 0;">
                 <div class="container">
                     <div class="blog-layout" style="display: grid; grid-template-columns: 1fr 300px; gap: 80px;">
-                        <div class="body-large reveal-on-scroll" style="color: var(--text-secondary); font-size: 1.15rem; line-height: 1.8;">
-                            <p style="margin-bottom: 32px;">Accessibility is a trust feature in finance. If users cannot read, understand, or complete a transaction, the product fails.</p>
+                        <div class="blog-prose reveal-on-scroll">
+                            <div class="blog-toc">
+                                <h2 style="font-size: 1.3rem; margin: 0;">Table of contents</h2>
+                                <ul>
+                                    <li><a href="#trust-layer">Why accessibility is a trust layer</a></li>
+                                    <li><a href="#plain-language">Write the action, not the policy</a></li>
+                                    <li><a href="#risky-moments">Design the risky moments first</a></li>
+                                    <li><a href="#recoverable-errors">Make errors recoverable</a></li>
+                                    <li><a href="#audit-checklist">A practical fintech audit checklist</a></li>
+                                </ul>
+                            </div>
 
-                            <h3 style="margin: 60px 0 24px; color: var(--text-primary); font-size: 2rem; font-family: var(--font-serif);">1. Contrast and clarity</h3>
-                            <p style="margin-bottom: 32px;">High-contrast labels, large tap targets, and clear error states reduce risk during high-stakes actions.</p>
+                            <figure class="blog-figure">
+                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop" alt="Desk scene representing financial product planning and accessibility review" loading="lazy" />
+                                <figcaption>Fintech UX needs to communicate risk, timing, and next steps clearly enough that users with different reading, vision, and motor needs can still complete the flow with confidence.</figcaption>
+                            </figure>
 
-                            <h3 style="margin: 60px 0 24px; color: var(--text-primary); font-size: 2rem; font-family: var(--font-serif);">2. Language beats legalese</h3>
-                            <p style="margin-bottom: 32px;">Explain fees and outcomes in plain language. Users should not need a glossary to move money.</p>
+                            <p>Accessibility is a trust feature in finance. If a person cannot read the label, understand the fee, recover from an error, or review a transaction comfortably, the product feels unsafe even when the backend is technically secure.</p>
 
-                            <blockquote style="border-left: 4px solid var(--accent-blue); padding-left: 24px; margin: 40px 0; color: var(--text-primary); font-style: italic; font-size: 1.4rem; font-family: var(--font-serif);">"Accessible finance is safer finance."</blockquote>
+                            <div class="blog-note">
+                                <h3 style="margin-top: 0;">What this article covers</h3>
+                                <p style="margin-bottom: 0;">The focus here is practical: readable hierarchy, plain language, clear review states, accessible error recovery, and one real example from a Web3 transfer flow.</p>
+                            </div>
+
+                            <h2 id="trust-layer">Why accessibility is a trust layer in fintech</h2>
+                            <p>Financial products ask people to take irreversible actions. They connect accounts, move money, sign wallet transactions, and share personal information. In that environment, accessibility failures are not small usability issues. They become trust failures.</p>
+                            <p>High contrast, adequate spacing, descriptive form labels, and predictable focus order help all users. They matter even more when someone is stressed, in a hurry, or dealing with unfamiliar terminology.</p>
+
+                            <blockquote>"Accessible finance is safer finance."</blockquote>
+
+                            <h2 id="plain-language">Write the action, not the policy</h2>
+                            <p>Fintech teams often hide behind legal language. The result is UI copy that protects the company but leaves the person guessing. Good accessibility writing says what will happen, when it will happen, and what the user should do next.</p>
+                            <ul>
+                                <li>Replace vague labels like "Proceed" with action labels like "Review transfer details" or "Confirm bank account".</li>
+                                <li>Explain fees in context: "Network fee deducted from your wallet balance" is easier to parse than a floating tooltip.</li>
+                                <li>Show outcomes before commitment: what amount arrives, what fee is charged, and whether the action is reversible.</li>
+                            </ul>
+
+                            <h2 id="risky-moments">Design the risky moments first</h2>
+                            <p>Most fintech flows feel usable until the user reaches a risky step. That is where accessibility work should start: review screens, signing screens, pricing breakdowns, account verification, and failure states.</p>
+                            <div class="blog-note">
+                                <h3 style="margin-top: 0;">Example from Yarsha</h3>
+                                <p style="margin-bottom: 0;">On Yarsha, the transaction review screen was redesigned so network fee, recipient details, and expected outcome were visible before the signing prompt. That changed the role of the wallet confirmation from explanation to confirmation.</p>
+                            </div>
+                            <p>That same principle applies to banking, lending, or investment products. If the critical information is only visible after the person has already committed attention and effort, the product is increasing anxiety instead of reducing it.</p>
+
+                            <h2 id="recoverable-errors">Make errors recoverable</h2>
+                            <p>An accessible error state does more than announce failure. It explains what went wrong, what the consequence is, and what the next step should be. In finance, that might mean clarifying whether the payment failed, is pending, or needs a different account.</p>
+                            <ul>
+                                <li>Use inline errors tied to the relevant field, not a generic message at the top of the page.</li>
+                                <li>Preserve entered data whenever possible so people do not have to repeat long forms.</li>
+                                <li>Explain how to fix the issue in plain language, not in system language.</li>
+                                <li>Differentiate "pending" from "failed" so users do not retry an action that is already in progress.</li>
+                            </ul>
+
+                            <h2 id="audit-checklist">A practical fintech audit checklist</h2>
+                            <p>When reviewing a fintech flow, I usually start with five questions:</p>
+                            <ol>
+                                <li>Can someone understand the action and consequence without opening extra help text?</li>
+                                <li>Is every input labeled clearly for screen readers and visual scanning?</li>
+                                <li>Can keyboard users move through the flow in a predictable order?</li>
+                                <li>Do success, pending, and failure states explain what to expect next?</li>
+                                <li>Would the flow still feel safe if the user were tired, distracted, or using assistive technology?</li>
+                            </ol>
+                            <p>If the answer is no to any of those, the flow is not ready. Accessibility work is not separate from product quality in this category. It is one of the clearest signals that the product respects the user's money and attention.</p>
+
+                            <div class="blog-author-card">
+                                <h2 style="font-size: 1.4rem; margin: 0 0 12px;">About the author</h2>
+                                <p style="margin-bottom: 0;">Nischhal Raj Subba is a product designer focused on design systems, enterprise UX, and trust-sensitive Web3 and fintech flows. He writes about clarity, handoff quality, and making complex products easier to use.</p>
+                            </div>
                         </div>
 
                         <aside class="blog-sidebar" style="position: sticky; top: 120px; height: fit-content;">
-                            <div style="background: var(--bg-surface); border: 1px solid var(--border-faint); padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+                            <div class="blog-share-card" style="margin-bottom: 24px;">
                                 <h5 style="color: var(--text-primary); margin-bottom: 16px;">Share this article</h5>
-                                <div style="display: flex; gap: 12px;">
-                                    <button class="social-icon-btn" data-share="linkedin" aria-label="Share on LinkedIn" style="width: 32px; height: 32px; border: 1px solid var(--border-faint); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); cursor: pointer;"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg></button>
-                                    <button class="social-icon-btn" data-share="x" aria-label="Share on X" style="width: 32px; height: 32px; border: 1px solid var(--border-faint); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); cursor: pointer;"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></button>
+                                <div class="blog-share-actions">
+                                    <button class="social-icon-btn" data-share="linkedin" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg></button>
+                                    <button class="social-icon-btn" data-share="x" aria-label="Share on X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></button>
+                                    <button class="social-icon-btn" data-share="copy" aria-label="Copy article link"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                                 </div>
+                            </div>
+                            <div class="blog-share-card">
+                                <h5 style="color: var(--text-primary); margin-bottom: 16px;">Article facts</h5>
+                                <p style="color: var(--text-secondary); font-size: 0.98rem; margin-bottom: 12px;">Topic: Accessibility, fintech UX, trust.</p>
+                                <p style="color: var(--text-secondary); font-size: 0.98rem; margin-bottom: 12px;">Useful for: product designers, content designers, fintech teams, and UX writers.</p>
+                                <p style="color: var(--text-secondary); font-size: 0.98rem; margin-bottom: 0;">Related case study: Yarsha Web3 App.</p>
                             </div>
                         </aside>
                     </div>
