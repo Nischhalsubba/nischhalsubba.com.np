@@ -228,6 +228,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 3. TITLE SCROLL REVEAL (Outline to Fill) ---
+    document.querySelectorAll('.text-reveal-wrap').forEach((wrap) => {
+        const outline = wrap.querySelector('.text-outline');
+        const fill = wrap.querySelector('.text-fill');
+
+        if (!outline || !fill) return;
+
+        const text = (outline.textContent || fill.textContent || '').trim();
+        if (!text) return;
+
+        outline.setAttribute('data-text', text);
+        fill.setAttribute('data-text', text);
+        outline.setAttribute('aria-hidden', 'true');
+        fill.setAttribute('aria-hidden', 'true');
+        outline.textContent = '';
+        fill.textContent = '';
+
+        if (!wrap.querySelector('.sr-only')) {
+            const srOnly = document.createElement('span');
+            srOnly.className = 'sr-only';
+            srOnly.textContent = text;
+            wrap.appendChild(srOnly);
+        }
+    });
+
     if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
         gsap.registerPlugin(ScrollTrigger);
 

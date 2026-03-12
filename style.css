@@ -219,6 +219,9 @@ h1, h2, h3, h4, h5 {
     -webkit-text-stroke: 1.2px var(--stroke-color);
     display: block;
 }
+.text-outline::before {
+    content: attr(data-text);
+}
 .text-fill {
     position: absolute;
     top: 0;
@@ -228,6 +231,9 @@ h1, h2, h3, h4, h5 {
     height: 100%;
     clip-path: inset(0 100% 0 0);
     -webkit-text-stroke: 0;
+}
+.text-fill::before {
+    content: attr(data-text);
 }
 
 /* --- 4. NAVIGATION --- */
