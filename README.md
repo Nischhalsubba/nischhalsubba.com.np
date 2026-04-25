@@ -1,231 +1,460 @@
 # Nischhal Raj Subba Portfolio Website
 
-Designed and developed by **Nischhal Raj Subba**.
+> A premium personal portfolio platform for **Nischhal Raj Subba** — designed from a product designer's perspective and implemented as both a static front-end website and a WordPress theme system.
 
-This repository contains the full source of my personal portfolio platform: a premium, dark-first, animation-rich website built to showcase product design work, writing, background, and contact channels.  
-The codebase supports **two modes**:
-
-1. **Static multi-page portfolio** (direct HTML/CSS/JS)
-2. **WordPress theme version** (`wordpress/`) for CMS-driven publishing
-
----
-
-## 1) Project Vision
-
-This site is intentionally crafted as both a personal brand experience and a design-system-driven product:
-
-- Communicate credibility in enterprise UX, design systems, and Web3 product design
-- Keep visual quality high without sacrificing performance
-- Preserve editorial clarity for case studies and long-form writing
-- Ensure consistent behavior across desktop and mobile
-- Maintain a scalable structure that can run as static pages or as a WordPress theme
+[![Static HTML](https://img.shields.io/badge/Static-HTML%20%2B%20CSS%20%2B%20JS-111111?style=for-the-badge)](#technical-stack)
+[![Vite](https://img.shields.io/badge/Tooling-Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](#local-development)
+[![WordPress Theme](https://img.shields.io/badge/CMS-WordPress%20Theme-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](#wordpress-theme-capabilities)
+[![GSAP](https://img.shields.io/badge/Motion-GSAP-88CE02?style=for-the-badge)](#motion-and-interaction-system)
 
 ---
 
-## 2) Design Direction
+## Table of Contents
 
-### Core Principles
-
-- **Clarity over decoration**: strong hierarchy, clean spacing, readable typography
-- **Premium motion**: animation is used for storytelling, not just effects
-- **System-first styling**: reusable tokens and component-level consistency
-- **Dark-first with light-mode parity**: both themes are designed, not inverted
-- **Human interaction details**: micro-interactions, cursor states, hover behaviors, smooth transitions
-
-### Visual Language
-
-- Serif + sans pairing for editorial and product-like contrast
-- High-contrast headlines with outline-to-fill reveal treatment
-- Frosted/glass navigation pill and floating utility controls
-- Grid/spotlight background layer for depth
-- Refined card system for projects, writing, testimonials, and content modules
-
-### Typography
-
-- Headings: `Playfair Display`
-- Body/UI text: `Inter`
-- Loaded from Google Fonts in the static version and dynamically via Customizer in WordPress
+- [Overview](#overview)
+- [Project Vision](#project-vision)
+- [Designer's Perspective](#designers-perspective)
+- [Experience Architecture](#experience-architecture)
+- [Technical Stack](#technical-stack)
+- [Repository Structure](#repository-structure)
+- [Static Website Mode](#static-website-mode)
+- [WordPress Theme Mode](#wordpress-theme-mode)
+- [Design System](#design-system)
+- [Motion and Interaction System](#motion-and-interaction-system)
+- [Content Strategy](#content-strategy)
+- [SEO and Metadata](#seo-and-metadata)
+- [Accessibility and UX Notes](#accessibility-and-ux-notes)
+- [Local Development](#local-development)
+- [WordPress Installation](#wordpress-installation)
+- [Deployment Options](#deployment-options)
+- [Quality Checklist](#quality-checklist)
+- [Roadmap](#roadmap)
+- [Ownership](#ownership)
 
 ---
 
-## 3) Experience Architecture (Pages)
+## Overview
 
-The static site includes the following pages:
+This repository contains the source code for **Nischhal Raj Subba's personal portfolio website**. The project is not only a simple personal homepage. It is structured as a broader portfolio platform that supports two implementation modes:
 
-- `index.html` - home, hero, achievements, selected work, testimonials, insights, CTA
-- `projects.html` - full project listing with filters and search
-- `project-detail.html` - case study layout with role, process, and outcomes
-- `about.html` - background, experience timeline, education, awards, skills
-- `blog.html` - writing index
-- `blog-detail.html` - article detail
-- `products.html` - digital products section
-- `contact.html` - contact details + message form UI
+1. **Static multi-page portfolio** using direct HTML, CSS, and JavaScript.
+2. **WordPress theme version** inside the `wordpress/` directory for CMS-driven publishing.
 
-WordPress template equivalents are available under `wordpress/` (e.g., `front-page.php`, `page-about.php`, `archive-project.php`, `single-project.php`).
+The site is designed to communicate Nischhal's professional identity as a product designer with strengths in product design, design systems, enterprise UX, Web3 interfaces, fintech problem spaces, visual storytelling, and front-end-aware design execution.
+
+The project uses a premium dark-first visual system, animation-rich interactions, editorial content structure, case-study pages, writing sections, products/digital-offer pages, contact UI, and a WordPress theme layer for dynamic content management.
 
 ---
 
-## 4) Technical Stack
+## Project Vision
 
-### Core
+The vision of this portfolio is to feel like a professional design product, not only a personal web page.
 
-- **HTML5**
-- **CSS3** (custom properties, responsive layouts, utility patterns)
-- **JavaScript (ES2022)** for interactions and UI state
+The design direction aims to:
 
-### Motion & Interaction
+- communicate high visual taste
+- show front-end awareness
+- support case-study storytelling
+- make the portfolio feel credible for international design opportunities
+- keep the experience polished on desktop and mobile
+- support both static and CMS-managed publishing
+- maintain a strong personal brand language
+- support long-form writing, selected work, testimonials, and digital products
 
-- **GSAP** (`gsap.min.js`)
-- **GSAP ScrollTrigger** for scroll-linked reveals and sequence timing
+From a design point of view, the website is built around the idea that a portfolio should show how a designer thinks before the visitor even opens a case study. The layout, spacing, type choices, interaction details, and content structure are all part of the professional signal.
 
-### Build/Tooling
+---
 
-- **Node.js**
-- **Vite** (dev server, build, preview)
-- **TypeScript config** present for modern bundler/compiler setup
+## Designer's Perspective
+
+This project is written and maintained from the perspective of a designer who understands code enough to control the final experience.
+
+That means the repository values:
+
+- visual hierarchy
+- spacing discipline
+- responsive behavior
+- content structure
+- motion timing
+- accessibility considerations
+- maintainable CSS tokens
+- clear page architecture
+- clean handoff between design and development
+
+The static version gives full control over the visual experience. The WordPress version makes the same system more flexible for publishing and content management.
+
+This dual-mode approach is useful because it allows the portfolio to work as a handcrafted static site while also exploring a scalable CMS-driven version for future updates.
+
+---
+
+## Experience Architecture
+
+The static site includes multiple pages that together form a complete personal portfolio system.
+
+| Page | Purpose | UX Role |
+|---|---|---|
+| `index.html` | Homepage with hero, achievements, selected work, testimonials, insights, and CTA | First impression and conversion path |
+| `projects.html` | Full project listing with filters and search | Work discovery |
+| `project-detail.html` | Case-study layout with role, process, and outcomes | Deep project storytelling |
+| `about.html` | Background, experience timeline, education, awards, and skills | Personal credibility |
+| `blog.html` | Writing index | Thought leadership |
+| `blog-detail.html` | Article detail page | Long-form reading |
+| `products.html` | Digital products or offer section | Business/product expansion |
+| `contact.html` | Contact details and message form UI | Lead conversion |
+
+The WordPress theme mirrors this content model using templates such as:
+
+- `front-page.php`
+- `page-about.php`
+- `archive-project.php`
+- `single-project.php`
+- `header.php`
+- `footer.php`
+- `functions.php`
+
+---
+
+## Technical Stack
+
+### Core Frontend
+
+- HTML5
+- CSS3
+- JavaScript / ES2022
+- CSS custom properties
+- responsive layout patterns
+- static page templates
+
+### Tooling
+
+- Node.js
+- Vite
+- TypeScript configuration
+- npm scripts
+
+### Motion and Interaction
+
+- GSAP
+- GSAP ScrollTrigger
+- custom JavaScript interactions
+- theme toggle behavior
+- mobile navigation behavior
+- cursor behavior
+- scroll-triggered reveals
 
 ### CMS Layer
 
-- **WordPress custom theme** implementation in `wordpress/`
-- Dynamic menus, custom post types, custom fields, Customizer controls, schema output
+- WordPress custom theme
+- custom post types
+- custom taxonomy
+- custom meta fields
+- WordPress Customizer controls
+- JSON-LD schema output
 
 ---
 
-## 5) Repository Structure
+## Repository Structure
 
 ```text
 .
-|-- about.html
-|-- blog.html
-|-- blog-detail.html
-|-- contact.html
-|-- index.html
-|-- projects.html
-|-- project-detail.html
-|-- products.html
-|-- style.css
-|-- script.js
-|-- assets/
-|   |-- resume.pdf
-|   |-- images/
-|   |-- scripts/
-|   `-- styles/
-|-- wordpress/
-|   |-- functions.php
-|   |-- front-page.php
-|   |-- header.php
-|   |-- footer.php
-|   |-- style.css
-|   `-- js/main.js
-|-- package.json
-|-- vite.config.ts
-`-- tsconfig.json
+├── about.html
+├── blog.html
+├── blog-detail.html
+├── contact.html
+├── index.html
+├── projects.html
+├── project-detail.html
+├── products.html
+├── style.css
+├── script.js
+├── assets/
+│   ├── resume.pdf
+│   ├── images/
+│   ├── scripts/
+│   └── styles/
+├── wordpress/
+│   ├── functions.php
+│   ├── front-page.php
+│   ├── header.php
+│   ├── footer.php
+│   ├── style.css
+│   └── js/main.js
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+└── README.md
 ```
 
----
-
-## 6) Key Frontend Features
-
-- Theme toggle (dark/light) with persistent preference (`localStorage`)
-- Dynamic image swapping per theme for portrait assets
-- Animated mobile navigation overlay
-- Active navigation glider behavior
-- Scroll-triggered reveal animations
-- Title outline-to-fill transition
-- Interactive custom cursor (desktop/fine pointer only)
-- Grid spotlight canvas background effect
-- Category filtering for projects
-- Search UI in work listing
-- Floating resume download CTA
-
-Performance safeguards:
-
-- Reduced effects on touch devices
-- `prefers-reduced-motion` support
-- Conditional activation of heavier interactions
+This structure shows that the repository is not only a single landing page. It is a full personal website system with static pages, a theme implementation, assets, scripts, styling, and project documentation.
 
 ---
 
-## 7) WordPress Theme Capabilities
+## Static Website Mode
 
-The `wordpress/` folder extends the same design language into a CMS-managed theme with:
+The static version is useful for fast deployment, direct control, and portfolio presentation without backend complexity.
 
-- Theme supports: thumbnails, custom logo, HTML5 features, responsive embeds, editor styles
-- Registered menus: primary + footer
-- Custom post types:
-  - `project`
-  - `product`
-  - `testimonial`
-- Custom taxonomy:
-  - `project_category`
-- Custom meta fields for project, product, writing, and testimonial content
-- Extensive **Customizer** controls for:
-  - Typography
-  - Dark/light color tokens
-  - Hero text/buttons/ticker
-  - Interaction settings (cursor, animation speed, performance mode)
-  - Footer content and social links
-- JSON-LD schema output (Person / BlogPosting context)
+### Static Mode Strengths
 
----
+- simple hosting
+- direct HTML editing
+- fast page loads
+- clear content control
+- easy visual QA
+- no database dependency
+- portable to Netlify, Vercel, Cloudflare Pages, GitHub Pages, or standard hosting
 
-## 8) Design System Notes
+### Main Editable Areas
 
-Main design tokens live in CSS variables (`:root` and `[data-theme="light"]`) and cover:
-
-- Color palette (backgrounds, text tiers, borders, accents)
-- Typography families
-- Layer/z-index strategy
-- Motion easings
-- Spacing, container sizes, and responsive clamps
-
-This creates consistent visual behavior across static and WordPress implementations.
+| Area | File |
+|---|---|
+| Homepage content | `index.html` |
+| About content | `about.html` |
+| Project listing | `projects.html` |
+| Case-study content | `project-detail.html` |
+| Blog listing | `blog.html` |
+| Article detail | `blog-detail.html` |
+| Product/offer content | `products.html` |
+| Contact UI | `contact.html` |
+| Global style | `style.css` |
+| Main interaction logic | `script.js` |
 
 ---
 
-## 9) Personal Branding & Content Focus
+## WordPress Theme Mode
 
-The portfolio emphasizes:
+The `wordpress/` directory extends the same design system into a CMS-managed theme.
+
+### WordPress Capabilities
+
+The theme supports:
+
+- custom logo
+- thumbnails
+- HTML5 features
+- responsive embeds
+- editor styles
+- primary and footer menus
+- project content management
+- product content management
+- testimonial content management
+- custom fields
+- custom taxonomy
+- Customizer controls
+- schema output
+
+### Custom Post Types
+
+| Post Type | Purpose |
+|---|---|
+| `project` | Portfolio and case-study content |
+| `product` | Digital product or offer content |
+| `testimonial` | Social proof and credibility content |
+
+### Custom Taxonomy
+
+| Taxonomy | Purpose |
+|---|---|
+| `project_category` | Categorizes portfolio projects |
+
+### Customizer Direction
+
+The WordPress implementation includes or is intended to support Customizer controls for:
+
+- typography
+- dark and light color tokens
+- hero content
+- buttons
+- ticker/marquee content
+- cursor behavior
+- animation speed
+- performance mode
+- footer content
+- social links
+
+This makes the theme more flexible without requiring direct code edits for every content or design change.
+
+---
+
+## Design System
+
+The visual system is dark-first and built around a premium editorial portfolio style.
+
+### Core Principles
+
+- clarity over decoration
+- premium motion
+- readable long-form content
+- strong case-study hierarchy
+- personal brand consistency
+- reusable design tokens
+- light-mode parity, not simple inversion
+- responsive behavior across devices
+
+### Visual Language
+
+The site uses:
+
+- serif and sans-serif pairing
+- strong heading scale
+- dark backgrounds
+- glass/frosted navigation styling
+- refined card systems
+- high-contrast text treatment
+- subtle spotlight/grid background layers
+- smooth transitions and hover states
+
+### Typography
+
+The static version references:
+
+- `Playfair Display` for expressive headings
+- `Inter` for body and UI text
+
+This pairing gives the site a mix of editorial confidence and product-interface readability.
+
+---
+
+## Motion and Interaction System
+
+The portfolio uses interaction and motion as part of the brand experience.
+
+### Key Interactions
+
+- dark/light theme toggle with persistent preference
+- dynamic image swapping between themes
+- mobile navigation overlay
+- active navigation glider
+- scroll-triggered reveal animations
+- title outline-to-fill transitions
+- custom cursor for desktop/fine-pointer devices
+- grid spotlight canvas background effect
+- project category filtering
+- project search UI
+- floating resume download CTA
+
+### Motion Philosophy
+
+The motion direction should feel premium but not overwhelming.
+
+Good motion in this project should:
+
+- guide attention
+- improve hierarchy
+- support storytelling
+- feel smooth and intentional
+- respect reduced-motion preferences
+- avoid slowing down the page
+
+---
+
+## Content Strategy
+
+The portfolio content focuses on Nischhal's professional positioning.
+
+Core themes include:
 
 - Product Design
 - Design Systems
 - Enterprise UX
-- Web3 interfaces
-- Fintech problem spaces
+- Web3 Interfaces
+- Fintech UX
+- Website Design
+- Branding and Strategy
+- Case-study storytelling
 
-Public-facing channels integrated in the website:
+The site is designed to work as both:
 
-- LinkedIn
-- Behance
-- Uxcel
-- Dribbble
-- Figma
-- X (Twitter)
-- Email contact
+1. a personal brand website
+2. a professional proof-of-work system
+
+This means every page should communicate clearly and truthfully. Case studies should describe actual contribution, design process, decisions, constraints, and outcomes without exaggeration.
 
 ---
 
-## 10) Local Development
+## SEO and Metadata
+
+The static version includes page-level metadata, while the WordPress version supports more dynamic metadata and schema output.
+
+### Recommended SEO Enhancements
+
+- unique title and meta description per page
+- Open Graph images
+- Twitter/X card metadata
+- structured data for person/profile context
+- structured data for blog posts
+- sitemap generation
+- robots.txt
+- canonical URLs
+- optimized image alt text
+- internal linking between homepage, projects, writing, and contact pages
+
+### Portfolio SEO Focus
+
+Useful keyword themes include:
+
+- Product Designer Nepal
+- UX Designer Nepal
+- UI/UX Designer Nepal
+- Product Design Portfolio
+- Web3 Product Designer
+- Fintech Product Designer
+- Design Systems Designer
+- Front-end aware Product Designer
+
+These keywords should be used naturally in page copy, not forced.
+
+---
+
+## Accessibility and UX Notes
+
+The project includes accessibility-minded decisions such as:
+
+- semantic page structure
+- theme preference support
+- reduced-motion support
+- responsive layouts
+- mobile-specific interaction handling
+- clear hierarchy and contrast-forward design
+
+### Accessibility Checklist
+
+- [ ] All images have meaningful alt text.
+- [ ] Navigation works with keyboard.
+- [ ] Focus states are visible.
+- [ ] Theme toggle is accessible.
+- [ ] Motion respects `prefers-reduced-motion`.
+- [ ] Forms have labels and validation messaging.
+- [ ] Contrast is tested in both dark and light modes.
+- [ ] Hover-only behavior has a non-hover fallback.
+
+---
+
+## Local Development
 
 ### Prerequisites
 
-- Node.js (LTS recommended)
+- Node.js LTS
 - npm
 
-### Run in development
+### Install dependencies
 
 ```bash
 npm install
+```
+
+### Start development server
+
+```bash
 npm run dev
 ```
 
-### Quick static preview (no build)
+### Preview static pages quickly
 
 ```bash
 npm run preview:static
 ```
 
-### Validate links/assets (static HTML)
+### Check links/assets
 
 ```bash
 npm run check:links
@@ -238,89 +467,116 @@ npm run build
 npm run preview
 ```
 
-### Available scripts
+---
 
-- `npm run dev` - start Vite dev server
-- `npm run build` - production build
-- `npm run preview` - preview production build locally
+## WordPress Installation
+
+1. Copy the `wordpress/` directory into `wp-content/themes/`.
+2. Rename the folder if needed, for example `nischhal-portfolio`.
+3. Activate the theme from WordPress admin.
+4. Configure menus.
+5. Add project, product, and testimonial content.
+6. Update Customizer settings.
+7. Confirm assets are correctly referenced.
+8. Test pages, archives, and single templates.
+
+Reference file:
+
+```text
+wordpress/README.txt
+```
 
 ---
 
-## 11) WordPress Installation (Theme Mode)
+## Deployment Options
 
-1. Copy the `wordpress/` directory into `wp-content/themes/`
-2. Rename folder if needed (example: `nischhal-portfolio`)
-3. Ensure `assets/` resources are present and correctly referenced
-4. Activate theme in **Appearance > Themes**
-5. Configure content through:
-   - Projects / Products / Testimonials post types
-   - Posts (writing/blog)
-   - Customizer sections for design and homepage controls
-   - Menus for navigation
+This project can be deployed in two ways.
 
-Reference: `wordpress/README.txt`
+### Static Hosting
 
----
+Suitable for:
 
-## 12) Content Editing Guide (Static Mode)
+- Vercel
+- Netlify
+- Cloudflare Pages
+- GitHub Pages
+- shared hosting
 
-- Homepage hero and featured areas: `index.html`
-- About timeline and profile narrative: `about.html`
-- Work cards/filters: `projects.html`
-- Case-study detail content: `project-detail.html`
-- Writing archive and article detail: `blog.html`, `blog-detail.html`
-- Contact info and form UI: `contact.html`
-- Global styling: `style.css`
-- Interaction/motion logic: `script.js`
+Typical settings:
 
----
+```text
+Build command: npm run build
+Output directory: dist
+```
 
-## 13) Asset Notes
+### WordPress Hosting
 
-- Resume file: `assets/resume.pdf`
-- Local image assets are in `assets/images/`
-- Some demo visuals are remote-hosted image URLs (Unsplash / Imgur) in HTML content
+Suitable for:
 
-If you move to full self-hosting/CDN, replace external URLs with local or managed asset paths.
+- managed WordPress hosting
+- self-hosted WordPress
+- local WordPress development environment
+- staging/production WordPress workflow
 
 ---
 
-## 14) SEO & Metadata
+## Quality Checklist
 
-Static version includes page-level titles/descriptions.  
-WordPress version adds structured data output via `nischhal_seo_schema()` and customizable content through theme options.
+### Design QA
 
----
+- [ ] Homepage hero communicates role clearly.
+- [ ] Typography feels balanced across pages.
+- [ ] Dark and light modes both feel designed.
+- [ ] Project cards are scannable.
+- [ ] Case-study pages support long-form reading.
+- [ ] Contact CTA is visible and clear.
+- [ ] Mobile menu works smoothly.
 
-## 15) Accessibility & UX Considerations
+### Content QA
 
-- Semantic HTML structure and descriptive links
-- Theme toggle for user preference
-- Motion reduction path for accessibility/performance
-- Mobile-specific interaction handling
-- Clear text hierarchy and contrast-forward palette
+- [ ] All project claims are accurate.
+- [ ] Case studies describe real contribution.
+- [ ] Social links are correct.
+- [ ] Resume file is updated.
+- [ ] Contact details are correct.
+- [ ] Blog/article content has proper metadata.
 
----
+### Technical QA
 
-## 16) Deployment Options
-
-This project can be deployed as:
-
-1. **Static website** (Netlify, Vercel, GitHub Pages, traditional hosting)
-2. **WordPress theme** on managed or self-hosted WordPress infrastructure
-
----
-
-## 17) Roadmap (Practical Next Enhancements)
-
-- Form backend integration for `contact.html`
-- Image optimization pipeline (WebP/AVIF + responsive `srcset`)
-- Optional analytics/events instrumentation
-- Internationalization-ready content structure
-- Automated accessibility and performance audits in CI
+- [ ] `npm install` works.
+- [ ] `npm run dev` works.
+- [ ] `npm run build` works.
+- [ ] No console errors appear.
+- [ ] Theme toggle persists correctly.
+- [ ] Project filtering works.
+- [ ] Search UI behaves as expected.
+- [ ] WordPress templates render correctly if using theme mode.
 
 ---
 
-## 18) Ownership
+## Roadmap
 
-This website and its portfolio system are designed and developed by **Nischhal Raj Subba**.
+- Add real backend handling for contact form.
+- Add image optimization workflow.
+- Add WebP/AVIF responsive images.
+- Add automated accessibility audits.
+- Add performance budget checks.
+- Add analytics/event tracking.
+- Add CI workflow for link and build checks.
+- Expand WordPress documentation.
+- Create full project-specific case-study content.
+- Improve asset self-hosting and CDN strategy.
+
+---
+
+## Ownership
+
+Designed and developed by **Nischhal Raj Subba**.
+
+GitHub: [@Nischhalsubba](https://github.com/Nischhalsubba)
+
+---
+
+## License and Usage
+
+This repository contains a personal portfolio system. The code may be referenced for learning, but the brand, content, design direction, case-study copy, assets, and identity-specific material should not be reused without permission.
