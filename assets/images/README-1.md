@@ -1,77 +1,51 @@
 # Image Assets
 
-Upload real project and blog images here. Avoid NDA/confidential client material. Do not upload MAS DataHub or any private enterprise screenshots.
+This folder stores local, public-safe portfolio graphics.
+
+## Important
+
+Do not upload NDA/confidential enterprise screenshots or MAS DataHub assets here.
 
 ## Identity
-- `portrait.jpg` — profile photo for hero/about/footer
-- `favicon.svg` — browser icon
+- `portrait.png` — profile portrait used on homepage/about pages
+- `portrait.svg` — fallback/profile illustration
+- `favicon.svg` — browser favicon
 
-## Project Thumbnails
-- `project-yarsha-cover.webp`
-- `project-mokshya-cover.webp`
-- `project-hamro-idea-cover.webp`
-- `project-morajaa-cover.webp`
-- `project-neverwinter-parser-cover.webp`
-- `project-orkest-cover.webp`
-- `project-splashnode-cover.webp`
-- `project-zapp-cover.webp`
-- `project-masteriyo-cover.webp`
-- `project-pihub-cover.webp`
-- `project-grid-labs-cover.webp`
-- `project-zakra-furniture-cover.webp`
-- `project-designerex-cover.webp`
-- `project-sassboilerplate-cover.webp`
+## Project Thumbnail Assets
+- `project-yarsha-cover.svg`
+- `project-mokshya-cover.svg`
+- `project-hamro-idea-cover.svg`
+- `project-morajaa-cover.svg`
+- `project-neverwinter-parser-cover.svg`
+- `project-orkest-cover.svg`
+- `project-splashnode-cover.svg`
+- `project-zapp-cover.svg`
+- `project-masteriyo-cover.svg`
+- `project-pihub-cover.svg`
+- `project-grid-labs-cover.svg`
+- `project-zakra-furniture-cover.svg`
+- `project-designerex-cover.svg`
+- `project-sassboilerplate-cover.svg`
 
-## Project Detail Images
+## Blog Cover Assets
+- `blog-web3-products.svg`
+- `blog-good-handoff.svg`
+- `blog-portfolio-product.svg`
+- `blog-service-websites.svg`
+- `blog-gaming-interface-clarity.svg`
+- `blog-design-systems-front-end.svg`
 
-### Yarsha
-- `yarsha-mobile-screens.webp`
-- `yarsha-onboarding-flow.webp`
-- `yarsha-chat-blink-flow.webp`
-- `yarsha-wallet-review.webp`
+## Product Assets
+- `product-ui-kit.svg`
+- `product-system.svg`
+- `product-icons.svg`
 
-### Mokshya.io
-- `mokshya-homepage.webp`
-- `mokshya-product-section.webp`
-- `mokshya-developer-section.webp`
-- `mokshya-responsive-preview.webp`
+## Avatar Assets
+- `avatar-sarah.svg`
+- `avatar-david.svg`
 
-### Hamro Idea
-- `hamro-idea-logo-evolution.webp`
-- `hamro-idea-brand-system.webp`
-- `hamro-idea-homepage.webp`
-- `hamro-idea-services-page.webp`
-
-### Morajaa
-- `morajaa-homepage.webp`
-- `morajaa-service-page.webp`
-- `morajaa-area-focus-page.webp`
-- `morajaa-get-in-touch-flow.webp`
-
-### Neverwinter Live Parser
-- `neverwinter-live-dashboard.webp`
-- `neverwinter-session-review.webp`
-- `neverwinter-damage-chart.webp`
-- `neverwinter-overlay-widget.webp`
-
-### Orkest HQ
-- `orkest-module-map.webp`
-- `orkest-crm-dashboard.webp`
-- `orkest-opportunity-flow.webp`
-
-## Blog Images
-- `blog-web3-products.webp`
-- `blog-good-handoff.webp`
-- `blog-portfolio-product.webp`
-- `blog-service-websites.webp`
-- `blog-gaming-interface-clarity.webp`
-- `blog-design-systems-front-end.webp`
-
-## Image Rules
-
-- Use real screenshots or Figma exports where available.
-- If the project was a contribution, add a caption explaining the contribution.
-- If the project is in progress, label the image as concept, prototype, or exploration.
-- Do not use confidential, NDA, private dashboard, client data, or unreleased screenshots without permission.
-- Prefer `.webp` for performance and SEO.
+## Rules
+- Use local SVG or optimized public-safe assets.
 - Use descriptive alt text in HTML.
+- Avoid fake screenshots. If a project is conceptual or in progress, use clearly illustrative graphics.
+- Replace SVG mockups with real Figma exports only when the image is approved for public use.
