@@ -1,11 +1,19 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig, loadEnv, type Plugin } from 'vite';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const page = (filePath: string) => path.resolve(__dirname, filePath);
+
+const detailNavigationInjector = (): Plugin => ({
+  name: 'inject-detail-navigation-enhancement',
+  transformIndexHtml(html) {
+    if (html.includes('/detail-navigation.js')) return html;
+    return html.replace('</body>', '  <script src="/detail-navigation.js?v=20260427" defer></script>\n  </body>');
+  }
+});
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
@@ -52,7 +60,7 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       host: '0.0.0.0'
     },
-    plugins: [],
+    plugins: [detailNavigationInjector()],
     define: {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
