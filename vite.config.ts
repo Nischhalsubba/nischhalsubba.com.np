@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
         input: {
           index: page('index.html'),
           home: page('home.html'),
+          homeV2: page('home-v2.html'),
           about: page('about.html'),
           contact: page('contact.html'),
           projects: page('projects.html'),
