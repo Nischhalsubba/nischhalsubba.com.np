@@ -1,0 +1,17 @@
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/blog/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/*.js
+  Cache-Control: public, max-age=300, must-revalidate
+
+/detail-navigation.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/sitemap.xml
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/robots.txt
+  Cache-Control: no-cache, no-store, must-revalidate
