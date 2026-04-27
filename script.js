@@ -1,536 +1,520 @@
+/*
+ * Nischhal Portfolio Global UI
+ * Handles theme, navigation, search/filter, page transitions, skeleton loading,
+ * resume download, share actions, and project/blog detail navigation.
+ */
 
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // Check for touch device to optimize performance
-    const IS_TOUCH = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  const routes = {
+    projects: [
+      { title: 'Yarsha', type: 'Web3 Messaging App', url: '/project-yarsha.html' },
+      { title: 'Mokshya.io', type: 'Web3 Protocol Website', url: '/project-mokshya.html' },
+      { title: 'Hamro Idea', type: 'Brand + Website', url: '/project-hamro-idea.html' },
+      { title: 'Morajaa', type: 'B2B Consulting Website', url: '/project-morajaa.html' },
+      { title: 'piHub', type: 'Fintech App Experience', url: '/project-pihub.html' },
+      { title: 'Masteriyo LMS', type: 'EdTech Design Contribution', url: '/project-masteriyo.html' },
+      { title: 'Zapp Today', type: 'Logistics Mobile App', url: '/project-zapp.html' },
+      { title: 'Orkest HQ', type: 'Modular SaaS UX', url: '/project-orkest.html' },
+      { title: 'Splashnode', type: 'Website Design + Front-End', url: '/project-splashnode.html' },
+      { title: 'Neverwinter Live Parser', type: 'Gaming UX + Desktop Tool', url: '/project-neverwinter-parser.html' },
+      { title: 'Grid Labs Hosting', type: 'Hosting Landing Page', url: '/project-grid-labs.html' },
+      { title: 'Zakra Furniture', type: 'WordPress Starter Website', url: '/project-zakra-furniture.html' },
+      { title: 'Designerex', type: 'Marketplace Design Contribution', url: '/project-designerex.html' },
+      { title: 'sassBoilerplate', type: 'Front-End Workflow Toolkit', url: '/project-sassboilerplate.html' }
+    ],
+    blogs: [
+      { title: 'Designing Web3 Products Without Making Users Feel Lost', type: 'Web3 UX', url: '/blog/blog-web3-products.html' },
+      { title: 'Why Good Handoff Matters More Than Perfect Screens', type: 'Design Handoff', url: '/blog/blog-good-handoff.html' },
+      { title: 'What I Learned Designing My Portfolio Like a Product', type: 'Portfolio Strategy', url: '/blog/blog-portfolio-product.html' },
+      { title: 'Designing Service Websites That Explain the Business Clearly', type: 'Website UX', url: '/blog/blog-service-websites.html' },
+      { title: 'What Gaming Taught Me About Interface Clarity', type: 'Gaming UX', url: '/blog/blog-gaming-interface-clarity.html' },
+      { title: 'How I Think About Design Systems as a Front-End-Aware Designer', type: 'Design Systems', url: '/blog/blog-design-systems-front-end.html' }
+    ]
+  };
 
-    // --- 0. THEME HANDLING ---
-    const themeBtn = document.getElementById('theme-toggle');
-    const htmlEl = document.documentElement;
-
-    // Images
-    const DARK_IMG = "https://i.imgur.com/ixsEpYM.png";
-    const LIGHT_IMG = "https://i.imgur.com/oFHdPUS.png";
-
-    const sunIcon = `<svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.29-1.29zm1.41-13.78c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.29-1.29zM7.28 17.28c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.29 1.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.29-1.29z"/></svg>`;
-    const moonIcon = `<svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>`;
-
-    function updateImages(theme) {
-        const targetSrc = theme === 'light' ? LIGHT_IMG : DARK_IMG;
-
-        const heroImg = document.querySelector('.hero-portrait-img');
-        if (heroImg) heroImg.src = targetSrc;
-
-        const footerImg = document.querySelector('.footer-portrait-img');
-        if (footerImg) footerImg.src = targetSrc;
-
-        const aboutImg = document.querySelector('.profile-img');
-        if (aboutImg) aboutImg.src = targetSrc;
+  const enhancementStyles = `
+    .page-skeleton {
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      display: grid;
+      place-items: center;
+      background: var(--bg-root, #050505);
+      transition: opacity .45s ease, visibility .45s ease;
     }
-
-    function setTheme(theme) {
-        htmlEl.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        if (themeBtn) {
-            themeBtn.innerHTML = theme === 'light' ? moonIcon : sunIcon;
-            themeBtn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
-        }
-        updateImages(theme);
+    .page-skeleton.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .skeleton-card { width: min(720px, calc(100vw - 48px)); }
+    .skeleton-line, .skeleton-block {
+      display: block;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.14), rgba(255,255,255,.06));
+      background-size: 240% 100%;
+      animation: skeleton-pulse 1.1s linear infinite;
     }
+    [data-theme="light"] .skeleton-line,
+    [data-theme="light"] .skeleton-block { background: linear-gradient(90deg, rgba(0,0,0,.05), rgba(0,0,0,.12), rgba(0,0,0,.05)); background-size: 240% 100%; }
+    .skeleton-line { height: 18px; margin: 14px auto; }
+    .skeleton-line.wide { width: 78%; }
+    .skeleton-line.medium { width: 56%; }
+    .skeleton-line.short { width: 34%; }
+    .skeleton-block { width: 100%; height: 220px; border-radius: 28px; margin-top: 32px; }
+    @keyframes skeleton-pulse { from { background-position: 200% 0; } to { background-position: -200% 0; } }
 
-    // Initialize Theme
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-
-    if (savedTheme) {
-        setTheme(savedTheme);
-    } else if (systemPrefersLight) {
-        setTheme('light');
-    } else {
-        setTheme('dark');
+    .page-transition-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 99997;
+      background: var(--bg-root, #050505);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity .28s ease, transform .28s ease, visibility .28s ease;
     }
+    body.page-is-leaving .page-transition-overlay { opacity: 1; visibility: visible; transform: translateY(0); }
+    body.page-is-leaving main,
+    body.page-is-leaving .site-footer { opacity: .08; transform: translateY(-8px); transition: opacity .22s ease, transform .22s ease; }
 
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            setTheme(newTheme);
-        });
+    .detail-continuation {
+      position: relative;
+      z-index: var(--z-content, 10);
+      padding: clamp(72px, 10vw, 120px) var(--container-padding, 32px);
+      border-top: 1px solid var(--border-faint, rgba(255,255,255,.08));
     }
-
-    // --- MOBILE MENU TOGGLE ---
-    const mobileBtn = document.querySelector('.mobile-nav-toggle');
-    const body = document.body;
-    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
-    const mobileOverlay = document.querySelector('.mobile-nav-overlay');
-
-    if (mobileBtn) {
-        if (mobileOverlay && !mobileOverlay.id) {
-            mobileOverlay.id = 'mobile-nav-overlay';
-        }
-        if (mobileOverlay) {
-            mobileBtn.setAttribute('aria-controls', mobileOverlay.id);
-        }
-        mobileBtn.setAttribute('aria-expanded', 'false');
-
-        mobileBtn.addEventListener('click', () => {
-            const isOpen = body.classList.toggle('menu-open');
-            mobileBtn.setAttribute('aria-expanded', String(isOpen));
-            
-            if (isOpen && window.gsap) {
-                // Staggered animation for links opening
-                gsap.fromTo(mobileLinks, 
-                    { y: 30, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", delay: 0.1 }
-                );
-            }
-        });
-
-        // Close menu when a link is clicked
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                body.classList.remove('menu-open');
-                mobileBtn.setAttribute('aria-expanded', 'false');
-            });
-        });
+    .detail-continuation-inner { max-width: var(--max-width, 1200px); margin: 0 auto; }
+    .detail-continuation-eyebrow { color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; margin-bottom: 16px; }
+    .detail-continuation-title { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 32px; }
+    .detail-nav-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .detail-nav-card {
+      min-height: 180px;
+      padding: clamp(24px, 4vw, 40px);
+      border: 1px solid var(--border-faint, rgba(255,255,255,.08));
+      border-radius: 24px;
+      background: var(--bg-surface, #0a0a0a);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .3s ease, border-color .3s ease, background .3s ease;
     }
+    .detail-nav-card:hover { transform: translateY(-6px); border-color: var(--border-light, rgba(255,255,255,.18)); }
+    .detail-nav-kicker { color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; margin-bottom: 18px; }
+    .detail-nav-card h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); margin: 0 0 12px; }
+    .detail-nav-type { color: var(--text-secondary); margin: 0; }
+    .detail-nav-arrow { margin-top: 24px; color: var(--accent-blue, #3B82F6); font-weight: 700; }
 
-    // --- 1. SPOTLIGHT GRID CANVAS ---
-    // DISABLED ON MOBILE/TOUCH FOR PERFORMANCE OPTIMIZATION
-    const canvas = document.getElementById('grid-canvas');
-    if (canvas && !REDUCED_MOTION && !IS_TOUCH) {
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let mouse = { x: -1000, y: -1000 };
+    .site-footer.auto-footer { margin-top: 0; }
+    .footer-mini-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
+    .footer-mini-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .footer-mini-links a { display: block; color: var(--text-secondary); margin-bottom: 12px; }
+    .footer-mini-links a:hover { color: var(--text-primary); }
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-
-        function drawGrid() {
-            ctx.clearRect(0, 0, width, height);
-
-            const isLight = htmlEl.getAttribute('data-theme') === 'light';
-            const gridSize = 60;
-            const spotlightRadius = 400;
-
-            const gridColor = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)';
-            const spotlightColorStart = isLight ? 'rgba(37, 99, 235, 0.15)' : 'rgba(59, 130, 246, 0.15)';
-            const spotlightColorEnd = isLight ? 'rgba(37, 99, 235, 0)' : 'rgba(59, 130, 246, 0)';
-
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = gridColor;
-            ctx.beginPath();
-            for (let x = 0; x <= width; x += gridSize) { ctx.moveTo(x, 0); ctx.lineTo(x, height); }
-            for (let y = 0; y <= height; y += gridSize) { ctx.moveTo(0, y); ctx.lineTo(width, y); }
-            ctx.stroke();
-
-            const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, spotlightRadius);
-            grad.addColorStop(0, spotlightColorStart);
-            grad.addColorStop(1, spotlightColorEnd);
-
-            ctx.strokeStyle = grad;
-            ctx.beginPath();
-
-            const startX = Math.floor((mouse.x - spotlightRadius) / gridSize) * gridSize;
-            const endX = Math.floor((mouse.x + spotlightRadius) / gridSize) * gridSize;
-            const startY = Math.floor((mouse.y - spotlightRadius) / gridSize) * gridSize;
-            const endY = Math.floor((mouse.y + spotlightRadius) / gridSize) * gridSize;
-
-            for (let x = startX; x <= endX; x += gridSize) {
-                if (x < 0 || x > width) continue;
-                ctx.moveTo(x, Math.max(0, mouse.y - spotlightRadius));
-                ctx.lineTo(x, Math.min(height, mouse.y + spotlightRadius));
-            }
-            for (let y = startY; y <= endY; y += gridSize) {
-                if (y < 0 || y > height) continue;
-                ctx.moveTo(Math.max(0, mouse.x - spotlightRadius), y);
-                ctx.lineTo(Math.min(width, mouse.x + spotlightRadius), y);
-            }
-            ctx.stroke();
-
-            requestAnimationFrame(drawGrid);
-        }
-        drawGrid();
+    @media (max-width: 768px) {
+      .detail-nav-grid, .footer-mini-grid, .footer-mini-links { grid-template-columns: 1fr; }
+      .detail-nav-card { min-height: 150px; }
+      .page-transition-overlay, .page-skeleton { display: none; }
     }
+  `;
 
-    // --- 2. CUSTOM CURSOR (Fixed & Safe) ---
-    const cursorDot = document.querySelector('.custom-cursor-dot');
-    const cursorOutline = document.querySelector('.custom-cursor-outline');
+  function injectGlobalStyles() {
+    if (document.getElementById('nrs-enhancement-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'nrs-enhancement-styles';
+    style.textContent = enhancementStyles;
+    document.head.appendChild(style);
+  }
 
-    // Only enable if pointer is fine (mouse) and elements exist
-    // DISABLED ON TOUCH DEVICES
-    if (window.gsap && !REDUCED_MOTION && window.matchMedia('(pointer: fine)').matches && !IS_TOUCH && cursorDot) {
-
-        // Add class to body to hide default cursor ONLY when this logic is active
-        document.body.classList.add('custom-cursor-active');
-
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let outlineX = mouseX;
-        let outlineY = mouseY;
-
-        // Initial setup
-        gsap.set([cursorDot, cursorOutline], { xPercent: -50, yPercent: -50, opacity: 1 });
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-
-            // Dot follows instantly
-            gsap.to(cursorDot, { x: mouseX, y: mouseY, duration: 0 });
-        });
-
-        // Smooth outline loop
-        const animateCursor = () => {
-            outlineX += (mouseX - outlineX) * 0.15;
-            outlineY += (mouseY - outlineY) * 0.15;
-
-            gsap.set(cursorOutline, { x: outlineX, y: outlineY });
-            requestAnimationFrame(animateCursor);
-        };
-        animateCursor();
-
-        // Hover Effect Logic
-        const interactiveSelectors = 'a, button, input, textarea, .project-card, .nav-pill, .writing-item, .project-nav-card, .social-icon-btn, .award-item, .t-btn, .theme-toggle-btn, .mobile-nav-toggle';
-
-        document.querySelectorAll(interactiveSelectors).forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                gsap.to(cursorOutline, {
-                    width: 60,
-                    height: 60,
-                    backgroundColor: 'rgba(128, 128, 128, 0.1)',
-                    borderColor: 'transparent',
-                    duration: 0.3
-                });
-                gsap.to(cursorDot, { scale: 0.5, duration: 0.3 });
-            });
-            el.addEventListener('mouseleave', () => {
-                gsap.to(cursorOutline, {
-                    width: 40,
-                    height: 40,
-                    backgroundColor: 'transparent',
-                    borderColor: 'var(--cursor-outline)',
-                    duration: 0.3
-                });
-                gsap.to(cursorDot, { scale: 1, duration: 0.3 });
-            });
-        });
-    }
-
-    // --- 3. TITLE SCROLL REVEAL (Outline to Fill) ---
-    document.querySelectorAll('.text-reveal-wrap').forEach((wrap) => {
-        const outline = wrap.querySelector('.text-outline');
-        const fill = wrap.querySelector('.text-fill');
-
-        if (!outline || !fill) return;
-
-        const text = (outline.textContent || fill.textContent || '').trim();
-        if (!text) return;
-
-        outline.setAttribute('data-text', text);
-        fill.setAttribute('data-text', text);
-        outline.setAttribute('aria-hidden', 'true');
-        fill.setAttribute('aria-hidden', 'true');
-        outline.textContent = '';
-        fill.textContent = '';
-
-        if (!wrap.querySelector('.sr-only')) {
-            const srOnly = document.createElement('span');
-            srOnly.className = 'sr-only';
-            srOnly.textContent = text;
-            wrap.appendChild(srOnly);
-        }
-    });
-
-    if (window.gsap && window.ScrollTrigger && !REDUCED_MOTION) {
-        gsap.registerPlugin(ScrollTrigger);
-
-        document.querySelectorAll('.text-reveal-wrap').forEach(title => {
-            const fillText = title.querySelector('.text-fill');
-            if (fillText) {
-                gsap.to(fillText, {
-                    clipPath: 'inset(0 0% 0 0)',
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: title,
-                        start: 'top 90%', // Earlier start for mobile
-                        end: 'bottom 20%', // Earlier end for mobile
-                        scrub: 0.5 // Smoother scrubbing
-                    }
-                });
-            }
-        });
-
-        document.querySelectorAll(".reveal-on-scroll").forEach(el => {
-            gsap.fromTo(el, { y: 40, opacity: 0 }, {
-                y: 0, opacity: 1, duration: 0.8,
-                scrollTrigger: { trigger: el, start: "top 85%" }
-            });
-        });
-    }
-
-    // --- 4. NAV GLIDER & ACTIVE STATE LOGIC (Refined) ---
-    const navLinks = document.querySelectorAll('.nav-link');
-    const glider = document.querySelector('.nav-glider');
-    
-    // Get the current page filename from the URL, defaulting to 'index.html' for root
-    const currentPath = window.location.pathname;
-    const pageName = currentPath.split('/').pop() || 'index.html';
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        const href = link.getAttribute('href');
-        const isHome = pageName === 'index.html';
-        const isWork = pageName.startsWith('project') || pageName === 'projects.html';
-        const isWriting = pageName.startsWith('blog');
-
-        if (href === pageName || (isHome && (href === './' || href === '/'))) {
-            link.classList.add('active');
-            return;
-        }
-
-        if (href === 'projects.html' && isWork) {
-            link.classList.add('active');
-            return;
-        }
-
-        if (href === 'blog.html' && isWriting) {
-            link.classList.add('active');
-        }
-    });
-
-    if (glider && !IS_TOUCH && window.gsap) { 
-        const moveGlider = (el) => {
-            if (!el) return;
-            gsap.to(glider, {
-                x: el.offsetLeft, 
-                width: el.offsetWidth, 
-                opacity: 1,
-                duration: 0.3,
-                ease: "power2.out"
-            });
-        };
-        const activeLink = document.querySelector('.nav-link.active');
-        if (activeLink) setTimeout(() => moveGlider(activeLink), 100);
-
-        navLinks.forEach(link => {
-            link.addEventListener('mouseenter', () => moveGlider(link));
-            link.addEventListener('mouseleave', () => {
-                if (activeLink) moveGlider(activeLink);
-                else gsap.to(glider, { opacity: 0 });
-            });
-        });
-    }
-
-    // --- 5. FILTER & SEARCH LOGIC ---
-    const setupFilters = (btnClass, itemClass, attrName, searchId) => {
-        const filterBtns = document.querySelectorAll(btnClass);
-        const items = document.querySelectorAll(itemClass);
-        const searchInput = document.getElementById(searchId);
-
-        if (filterBtns.length === 0 && !searchInput) return;
-
-        let currentCategory = 'all';
-        let currentSearch = '';
-
-        const filterItems = () => {
-            items.forEach(el => {
-                const tags = el.getAttribute(attrName);
-                // For text search, we look at the entire text content of the card/item
-                const textContent = el.innerText.toLowerCase();
-
-                const matchesCategory = currentCategory === 'all' || (tags && tags.includes(currentCategory));
-                const matchesSearch = currentSearch === '' || textContent.includes(currentSearch);
-
-                if (matchesCategory && matchesSearch) {
-                    el.classList.remove('hidden');
-                    if (window.gsap) {
-                        // Reset animation trigger if hidden
-                        gsap.to(el, { opacity: 1, y: 0, duration: 0.4, display: 'flex' }); // Flex or Grid depending on CSS
-                    } else {
-                        el.style.display = '';
-                        el.style.opacity = '1';
-                        el.style.transform = '';
-                    }
-                } else {
-                    el.classList.add('hidden');
-                    if (window.gsap) {
-                        gsap.to(el, { opacity: 0, display: 'none', duration: 0 });
-                    } else {
-                        el.style.display = 'none';
-                        el.style.opacity = '0';
-                    }
-                }
-            });
-        };
-
-        // Button Clicks
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentCategory = btn.getAttribute('data-filter');
-                filterItems();
-            });
-        });
-
-        // Search Input
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                currentSearch = e.target.value.toLowerCase();
-                filterItems();
-            });
-        }
+  function showSkeleton() {
+    if (reducedMotion || isTouch || document.getElementById('page-skeleton')) return;
+    const skeleton = document.createElement('div');
+    skeleton.id = 'page-skeleton';
+    skeleton.className = 'page-skeleton';
+    skeleton.setAttribute('aria-hidden', 'true');
+    skeleton.innerHTML = `<div class="skeleton-card"><span class="skeleton-line short"></span><span class="skeleton-line wide"></span><span class="skeleton-line medium"></span><span class="skeleton-block"></span></div>`;
+    document.body.appendChild(skeleton);
+    const hide = () => {
+      skeleton.classList.add('is-hidden');
+      setTimeout(() => skeleton.remove(), 480);
     };
+    window.addEventListener('load', hide, { once: true });
+    setTimeout(hide, 900);
+  }
 
-    // Apply to Work and Writing pages if present
-    setupFilters('.filter-btn', '.project-card', 'data-category', 'search-work');
-    setupFilters('.blog-filter-btn', '.writing-item', 'data-category', 'search-blog');
+  function initPageTransition() {
+    if (reducedMotion || isTouch || document.getElementById('page-transition-overlay')) return;
+    const overlay = document.createElement('div');
+    overlay.id = 'page-transition-overlay';
+    overlay.className = 'page-transition-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(overlay);
 
-    const clearWorkBtn = document.getElementById('clear-work');
-    if (clearWorkBtn) {
-        clearWorkBtn.addEventListener('click', () => {
-            const input = document.getElementById('search-work');
-            if (!input) return;
-            input.value = '';
-            input.dispatchEvent(new Event('input'));
-            input.focus();
-        });
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+      if (link.target === '_blank' || link.hasAttribute('download')) return;
+
+      const url = new URL(href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (url.pathname === window.location.pathname && url.hash) return;
+
+      event.preventDefault();
+      document.body.classList.add('page-is-leaving');
+      setTimeout(() => { window.location.href = url.href; }, 240);
+    });
+  }
+
+  function initTheme() {
+    const button = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const theme = saved || (prefersLight ? 'light' : 'dark');
+
+    function setTheme(next) {
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      if (button) button.setAttribute('aria-label', next === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
     }
 
+    setTheme(theme);
+    if (button) button.addEventListener('click', () => setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
+  }
 
-    // --- 6. TESTIMONIAL CAROUSEL ---
-    const tTrack = document.querySelector('.t-track');
-    const tSection = document.querySelector('.testimonial-section');
-    const tPrev = document.getElementById('t-prev');
-    const tNext = document.getElementById('t-next');
-    const tSlides = document.querySelectorAll('.t-slide');
+  function initMobileMenu() {
+    const button = document.querySelector('.mobile-nav-toggle');
+    if (!button) return;
+    const overlay = document.querySelector('.mobile-nav-overlay');
+    if (overlay && !overlay.id) overlay.id = 'mobile-nav-overlay';
+    if (overlay) button.setAttribute('aria-controls', overlay.id);
+    button.setAttribute('aria-expanded', 'false');
+    button.addEventListener('click', () => {
+      const open = document.body.classList.toggle('menu-open');
+      button.setAttribute('aria-expanded', String(open));
+    });
+    document.querySelectorAll('.mobile-nav-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+        button.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
-    if (tTrack && tSlides.length > 0) {
-        let tIndex = 0;
-        const updateT = () => {
-            tTrack.style.transform = `translateX(-${tIndex * 100}%)`;
-            tSlides.forEach((s, i) => {
-                const isActive = i === tIndex;
-                s.classList.toggle('active', isActive);
-                s.setAttribute('aria-hidden', String(!isActive));
-                s.tabIndex = isActive ? 0 : -1;
-            });
-        };
+  function initGridCanvas() {
+    const canvas = document.getElementById('grid-canvas');
+    if (!canvas || reducedMotion || isTouch) return;
+    const ctx = canvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let mouse = { x: -1000, y: -1000 };
 
-        const goToSlide = (nextIndex) => {
-            tIndex = nextIndex;
-            updateT();
-        };
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
 
-        if (tPrev) tPrev.addEventListener('click', () => {
-            goToSlide((tIndex > 0) ? tIndex - 1 : tSlides.length - 1);
-        });
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      const light = document.documentElement.getAttribute('data-theme') === 'light';
+      const grid = 60;
+      ctx.strokeStyle = light ? 'rgba(0,0,0,.05)' : 'rgba(255,255,255,.05)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let x = 0; x <= width; x += grid) { ctx.moveTo(x, 0); ctx.lineTo(x, height); }
+      for (let y = 0; y <= height; y += grid) { ctx.moveTo(0, y); ctx.lineTo(width, y); }
+      ctx.stroke();
 
-        if (tNext) tNext.addEventListener('click', () => {
-            goToSlide((tIndex < tSlides.length - 1) ? tIndex + 1 : 0);
-        });
+      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 380);
+      gradient.addColorStop(0, light ? 'rgba(12,140,233,.14)' : 'rgba(59,130,246,.16)');
+      gradient.addColorStop(1, 'rgba(59,130,246,0)');
+      ctx.strokeStyle = gradient;
+      ctx.beginPath();
+      for (let x = 0; x <= width; x += grid) { ctx.moveTo(x, Math.max(0, mouse.y - 380)); ctx.lineTo(x, Math.min(height, mouse.y + 380)); }
+      for (let y = 0; y <= height; y += grid) { ctx.moveTo(Math.max(0, mouse.x - 380), y); ctx.lineTo(Math.min(width, mouse.x + 380), y); }
+      ctx.stroke();
+      requestAnimationFrame(draw);
+    }
 
-        if (tSection) {
-            tSection.addEventListener('keydown', (event) => {
-                if (event.key === 'ArrowLeft') {
-                    event.preventDefault();
-                    goToSlide((tIndex > 0) ? tIndex - 1 : tSlides.length - 1);
-                }
-                if (event.key === 'ArrowRight') {
-                    event.preventDefault();
-                    goToSlide((tIndex < tSlides.length - 1) ? tIndex + 1 : 0);
-                }
-            });
+    resize();
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', (event) => { mouse = { x: event.clientX, y: event.clientY }; });
+    draw();
+  }
+
+  function initActiveNavigation() {
+    const path = window.location.pathname;
+    document.querySelectorAll('.nav-link, .mobile-nav-links a').forEach((link) => {
+      const href = new URL(link.getAttribute('href'), window.location.origin).pathname;
+      const active = (path === '/' && href === '/') ||
+        (path.startsWith('/project-') && href.includes('projects')) ||
+        (path.includes('/blog') && href.includes('blog')) ||
+        (path === href);
+      link.classList.toggle('active', active);
+    });
+  }
+
+  function initFilters() {
+    const searchWork = document.getElementById('search-work');
+    const searchBlog = document.getElementById('search-blog');
+    const filterButtons = document.querySelectorAll('.filter-btn, .blog-filter-btn');
+
+    function apply(scope = document) {
+      const activeFilter = document.querySelector('.filter-btn.active, .blog-filter-btn.active')?.dataset.filter || 'all';
+      const query = (searchWork?.value || searchBlog?.value || '').toLowerCase().trim();
+      scope.querySelectorAll('.project-card, .writing-item').forEach((item) => {
+        const tags = (item.dataset.category || '').toLowerCase();
+        const text = item.textContent.toLowerCase();
+        const matchesFilter = activeFilter === 'all' || tags.includes(activeFilter);
+        const matchesQuery = !query || text.includes(query);
+        item.style.display = matchesFilter && matchesQuery ? '' : 'none';
+      });
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const group = button.classList.contains('blog-filter-btn') ? '.blog-filter-btn' : '.filter-btn';
+        document.querySelectorAll(group).forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+        apply();
+      });
+    });
+    [searchWork, searchBlog].filter(Boolean).forEach((input) => input.addEventListener('input', () => apply()));
+    document.getElementById('clear-work')?.addEventListener('click', () => {
+      if (searchWork) { searchWork.value = ''; apply(); searchWork.focus(); }
+    });
+  }
+
+  function escapePdfText(value) {
+    return String(value).replace(/[\\()]/g, '\\$&').replace(/[\r\n]+/g, ' ');
+  }
+
+  function buildResumePdf() {
+    const lines = [
+      { text: 'Nischhal Raj Subba', size: 22 },
+      { text: 'Senior UI/Product Designer | Consumer Mobile Apps + Design Systems', size: 12 },
+      { text: 'Lalitpur (Kathmandu Valley), Nepal | hinischalsubba@gmail.com | +977 9842552348', size: 10 },
+      { text: 'Uxcel: https://app.uxcel.com/ux/nischhal | GitHub: https://github.com/Nischhalsubba | Behance: https://www.behance.net/nischhal', size: 9 },
+      { text: '', size: 8 },
+      { text: 'SUMMARY', size: 13 },
+      { text: 'Senior UI/Product Designer with 6+ years of experience designing consumer mobile apps, product-led experiences, and scalable design systems.', size: 10 },
+      { text: 'Strong in original visual direction, high-fidelity mobile UI, component systems, interactive prototypes, and developer-ready handoffs.', size: 10 },
+      { text: '', size: 8 },
+      { text: 'CORE SKILLS', size: 13 },
+      { text: 'Product Design (UI/UX), Design Systems, Enterprise & Dashboard UX, Prototyping, Developer Handoff, Design QA, Cross-functional Collaboration.', size: 10 },
+      { text: '', size: 8 },
+      { text: 'AWARDS', size: 13 },
+      { text: 'Ranked #1 Designer - Uxcel Global Rankings 2024', size: 10 },
+      { text: '#1 Product Designer - Uxcel Global Rankings 2024', size: 10 },
+      { text: 'Top 10 Product Designer - Uxcel Global Rankings 2023', size: 10 },
+      { text: '', size: 8 },
+      { text: 'SELECTED PROJECTS', size: 13 },
+      { text: 'Yarsha - Web3 Chat + Transfers: designed messaging and transfer flows under Web3 constraints.', size: 10 },
+      { text: 'Morajaa - Consulting Website + Lead Collection Flow: designed service/sector page architecture and segmented inquiry flows.', size: 10 },
+      { text: 'Zapp Today - Delivery + Scheduling Mobile App: owned mobile app UX/UI for on-demand delivery and scheduled bookings.', size: 10 },
+      { text: 'MAS DataHub - Enterprise Data Integration Platform: designed workflow-heavy UX for enterprise data integration and automation.', size: 10 },
+      { text: '', size: 8 },
+      { text: 'EXPERIENCE', size: 13 },
+      { text: 'Idealaya - Product Designer, Aug 2025 - Dec 2025', size: 10 },
+      { text: 'Mokshya Protocol - Product Designer, Mar 2024 - Jul 2025', size: 10 },
+      { text: 'Tegzy - Lead User Experience Designer, Feb 2023 - Nov 2023', size: 10 },
+      { text: 'ESR Tech - Senior UI/UX Designer, Oct 2021 - Feb 2023', size: 10 },
+      { text: 'ThemeGrill - Senior UI/UX Designer, Apr 2021 - Sep 2021', size: 10 },
+      { text: 'Gurzu - UI/UX Designer, Jul 2019 - Jan 2021', size: 10 },
+      { text: 'Diagonal Softwares - User Experience Designer (Part-time), Apr 2019 - Sep 2020', size: 10 },
+      { text: '', size: 8 },
+      { text: 'CERTIFICATIONS', size: 13 },
+      { text: 'Uxcel UI Designer, Product Designer, UX Designer, UX Writer, and UX Researcher certifications.', size: 10 },
+      { text: 'BA (Hons) Business Management - University of Wolverhampton, 2014 - 2018.', size: 10 }
+    ];
+
+    const pageWidth = 612;
+    const pageHeight = 792;
+    const marginX = 48;
+    const startY = 744;
+    const lineGap = 16;
+    let objects = [];
+    let pageIds = [];
+
+    function addObject(content) {
+      const id = objects.length + 1;
+      objects.push(`${id} 0 obj\n${content}\nendobj\n`);
+      return id;
+    }
+
+    const catalogId = addObject('<< /Type /Catalog /Pages 2 0 R >>');
+    const pagesPlaceholderId = addObject('PAGES_PLACEHOLDER');
+    const fontId = addObject('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
+
+    let currentLines = [];
+    let y = startY;
+    const pages = [];
+    lines.forEach((line) => {
+      const size = line.size || 10;
+      if (y < 72) {
+        pages.push(currentLines);
+        currentLines = [];
+        y = startY;
+      }
+      currentLines.push({ ...line, y });
+      y -= line.text ? lineGap + Math.max(0, size - 10) : 8;
+    });
+    if (currentLines.length) pages.push(currentLines);
+
+    pages.forEach((pageLines) => {
+      const commands = pageLines.map((line) => {
+        if (!line.text) return '';
+        return `BT /F1 ${line.size || 10} Tf ${marginX} ${line.y} Td (${escapePdfText(line.text)}) Tj ET`;
+      }).join('\n');
+      const contentId = addObject(`<< /Length ${commands.length} >>\nstream\n${commands}\nendstream`);
+      const pageId = addObject(`<< /Type /Page /Parent ${pagesPlaceholderId} 0 R /MediaBox [0 0 ${pageWidth} ${pageHeight}] /Resources << /Font << /F1 ${fontId} 0 R >> >> /Contents ${contentId} 0 R >>`);
+      pageIds.push(pageId);
+    });
+
+    objects[pagesPlaceholderId - 1] = `${pagesPlaceholderId} 0 obj\n<< /Type /Pages /Kids [${pageIds.map((id) => `${id} 0 R`).join(' ')}] /Count ${pageIds.length} >>\nendobj\n`;
+
+    let pdf = '%PDF-1.4\n';
+    const offsets = [0];
+    objects.forEach((obj) => {
+      offsets.push(pdf.length);
+      pdf += obj;
+    });
+    const xrefOffset = pdf.length;
+    pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+    offsets.slice(1).forEach((offset) => { pdf += `${String(offset).padStart(10, '0')} 00000 n \n`; });
+    pdf += `trailer\n<< /Size ${objects.length + 1} /Root ${catalogId} 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
+    return new Blob([pdf], { type: 'application/pdf' });
+  }
+
+  function initResumeDownload() {
+    const resumeLinks = document.querySelectorAll('a[href$="resume.pdf"], .floating-resume-btn');
+    resumeLinks.forEach((link) => {
+      link.setAttribute('download', 'Nischhal-Raj-Subba-Resume-2026.pdf');
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const blob = buildResumePdf();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Nischhal-Raj-Subba-Resume-2026.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 500);
+      });
+    });
+  }
+
+  function createAutoFooter() {
+    const footer = document.createElement('footer');
+    footer.className = 'site-footer auto-footer';
+    footer.innerHTML = `
+      <div class="container footer-mini-grid">
+        <div>
+          <h2 style="font-size:clamp(2.4rem,5vw,4rem);margin-bottom:20px;">Let's design something clear.</h2>
+          <p style="color:var(--text-secondary);max-width:560px;">Open for product design, Web3 UX, SaaS dashboards, service websites, design systems, and developer-ready handoff.</p>
+          <a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a>
+        </div>
+        <div class="footer-mini-links">
+          <div><h5>Sitemap</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div>
+          <div><h5>Focus</h5><a href="/project-yarsha.html">Web3 UX</a><a href="/project-orkest.html">SaaS UX</a><a href="/project-pihub.html">Fintech UX</a><a href="/blog/blog-good-handoff.html">Design Handoff</a></div>
+        </div>
+      </div>
+      <div class="container footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba. Product Designer in Nepal.</span></div>`;
+    return footer;
+  }
+
+  function initDetailContinuation() {
+    const path = window.location.pathname;
+    const isProject = path.includes('/project-');
+    const isBlog = path.includes('/blog/blog-');
+    if (!isProject && !isBlog) return;
+
+    const collection = isProject ? routes.projects : routes.blogs;
+    const index = collection.findIndex((item) => item.url === path || path.endsWith(item.url));
+    if (index === -1 || document.querySelector('.detail-continuation')) return;
+
+    const previous = collection[(index - 1 + collection.length) % collection.length];
+    const next = collection[(index + 1) % collection.length];
+    const label = isProject ? 'case study' : 'article';
+    const section = document.createElement('section');
+    section.className = 'detail-continuation';
+    section.innerHTML = `
+      <div class="detail-continuation-inner">
+        <p class="detail-continuation-eyebrow">Continue exploring</p>
+        <h2 class="detail-continuation-title">Read the previous or next ${label}.</h2>
+        <div class="detail-nav-grid">
+          <a class="detail-nav-card" href="${previous.url}"><div><span class="detail-nav-kicker">Previous ${label}</span><h3>${previous.title}</h3><p class="detail-nav-type">${previous.type}</p></div><span class="detail-nav-arrow">← View previous</span></a>
+          <a class="detail-nav-card" href="${next.url}"><div><span class="detail-nav-kicker">Next ${label}</span><h3>${next.title}</h3><p class="detail-nav-type">${next.type}</p></div><span class="detail-nav-arrow">View next →</span></a>
+        </div>
+      </div>`;
+
+    let footer = document.querySelector('.site-footer');
+    if (!footer) {
+      footer = createAutoFooter();
+      document.body.appendChild(section);
+      document.body.appendChild(footer);
+      return;
+    }
+    footer.parentNode.insertBefore(section, footer);
+  }
+
+  function initShareButtons() {
+    document.querySelectorAll('[data-share]').forEach((button) => {
+      button.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const platform = button.dataset.share;
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent(document.querySelector('h1')?.innerText || document.title);
+        if (platform === 'copy' && navigator.clipboard) {
+          await navigator.clipboard.writeText(window.location.href);
+          button.classList.add('copied');
+          setTimeout(() => button.classList.remove('copied'), 1600);
+          return;
         }
-        updateT();
-    }
-
-    // --- 7. CONTACT FORM HANDLER ---
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = contactForm.querySelector('button');
-            const originalText = btn.innerText;
-
-            btn.innerText = 'Sending...';
-            btn.style.opacity = '0.7';
-
-            // Simulate sending
-            setTimeout(() => {
-                btn.innerText = 'Message Sent!';
-                btn.style.background = '#4CAF50';
-                btn.style.color = '#fff';
-                btn.style.opacity = '1';
-                contactForm.reset();
-
-                // Reset button after 3 seconds
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.background = ''; // Revert to CSS default
-                    btn.style.color = '';
-                }, 3000);
-            }, 1500);
-        });
-    }
-
-    // --- 8. SHARE BUTTONS ---
-    const shareButtons = document.querySelectorAll('[data-share]');
-    if (shareButtons.length > 0) {
-        const pageUrl = encodeURIComponent(window.location.href);
-        const pageTitle = encodeURIComponent(document.title);
-        const pageText = encodeURIComponent(document.querySelector('h1')?.innerText || document.title);
-
-        const shareUrls = {
-            x: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageText}`,
-            linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`
+        if (platform === 'native' && navigator.share) {
+          await navigator.share({ title: document.title, url: window.location.href }).catch(() => {});
+          return;
+        }
+        const targets = {
+          x: `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
+          linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
         };
+        if (targets[platform]) window.open(targets[platform], '_blank', 'noopener,noreferrer');
+      });
+    });
+  }
 
-        shareButtons.forEach((btn) => {
-            if (btn.tagName === 'BUTTON' && !btn.getAttribute('type')) {
-                btn.setAttribute('type', 'button');
-            }
-            btn.addEventListener('click', async (e) => {
-                e.preventDefault();
-                const platform = btn.getAttribute('data-share');
+  function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const button = form.querySelector('button[type="submit"], button');
+      const name = form.querySelector('[name="name"]')?.value || '';
+      const email = form.querySelector('[name="email"]')?.value || '';
+      const message = form.querySelector('[name="message"]')?.value || '';
+      const subject = encodeURIComponent(`Portfolio inquiry from ${name || 'website visitor'}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject brief:\n${message}`);
+      if (button) button.textContent = 'Opening email...';
+      window.location.href = `mailto:hinischalsubba@gmail.com?subject=${subject}&body=${body}`;
+    });
+  }
 
-                if (platform === 'native' && navigator.share) {
-                    try {
-                        await navigator.share({ title: document.title, url: window.location.href });
-                    } catch (_) {}
-                    return;
-                }
-
-                if (platform === 'copy' && navigator.clipboard) {
-                    try {
-                        await navigator.clipboard.writeText(window.location.href);
-                        const previous = btn.getAttribute('aria-label') || '';
-                        btn.setAttribute('aria-label', 'Link copied');
-                        btn.classList.add('copied');
-                        setTimeout(() => {
-                            btn.setAttribute('aria-label', previous);
-                            btn.classList.remove('copied');
-                        }, 2000);
-                    } catch (_) {}
-                    return;
-                }
-
-                const shareUrl = shareUrls[platform];
-                if (shareUrl) {
-                    window.open(shareUrl, '_blank', 'noopener,noreferrer');
-                }
-            });
-        });
-    }
-});
+  document.addEventListener('DOMContentLoaded', () => {
+    injectGlobalStyles();
+    showSkeleton();
+    initTheme();
+    initMobileMenu();
+    initGridCanvas();
+    initActiveNavigation();
+    initFilters();
+    initPageTransition();
+    initResumeDownload();
+    initDetailContinuation();
+    initShareButtons();
+    initContactForm();
+  });
+})();
