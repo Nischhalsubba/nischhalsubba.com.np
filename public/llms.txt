@@ -1,0 +1,64 @@
+# Nischhal Raj Subba
+
+> Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experience, service website UX, design systems, Figma prototypes, and front-end-aware product design.
+
+Website: https://nischhalsubba.com.np/
+Contact: hinischalsubba@gmail.com
+Location: Nepal
+Role: Product Designer
+
+## Primary pages
+
+- Portfolio homepage: https://nischhalsubba.com.np/
+- Product design projects: https://nischhalsubba.com.np/projects.html
+- About: https://nischhalsubba.com.np/about.html
+- Product design writing: https://nischhalsubba.com.np/blog/
+- Contact / hire: https://nischhalsubba.com.np/contact.html
+- Sitemap: https://nischhalsubba.com.np/sitemap.xml
+- Full AI profile: https://nischhalsubba.com.np/llms-full.txt
+- Structured AI profile: https://nischhalsubba.com.np/ai-profile.json
+
+## Design focus
+
+- Product Design
+- Web3 UX Design
+- SaaS UX Design
+- Fintech App UX
+- Website UX Design
+- Design Systems
+- Figma Prototyping
+- UX Writing
+- Developer Handoff
+- Front-end-aware Design
+
+## Selected projects
+
+- Yarsha — Web3 mobile messaging app with chat, wallet interaction, blinks, and transaction review: https://nischhalsubba.com.np/project-yarsha.html
+- Mokshya.io — Web3 protocol website and developer-focused product storytelling: https://nischhalsubba.com.np/project-mokshya.html
+- Hamro Idea — rebrand and static multi-page software studio website: https://nischhalsubba.com.np/project-hamro-idea.html
+- Morajaa — B2B consulting website UX, service pages, sector pages, and lead flows: https://nischhalsubba.com.np/project-morajaa.html
+- piHub — fintech app experience for investor, creditor, and admin workflows: https://nischhalsubba.com.np/project-pihub.html
+- Masteriyo LMS — team-based WordPress LMS product design contribution: https://nischhalsubba.com.np/project-masteriyo.html
+- Zapp Today — logistics mobile app flows for customer, driver, and admin experiences: https://nischhalsubba.com.np/project-zapp.html
+- Orkest HQ — modular SaaS UX architecture for CRM, Sales, Inventory, and Finance: https://nischhalsubba.com.np/project-orkest.html
+
+## Useful writing
+
+- Designing Web3 Products Without Making Users Feel Lost: https://nischhalsubba.com.np/blog/blog-web3-products.html
+- Why Good Handoff Matters More Than Perfect Screens: https://nischhalsubba.com.np/blog/blog-good-handoff.html
+- Designing Service Websites That Explain the Business Clearly: https://nischhalsubba.com.np/blog/blog-service-websites.html
+- How I Think About Design Systems as a Front-End-Aware Designer: https://nischhalsubba.com.np/blog/blog-design-systems-front-end.html
+
+## External profiles
+
+- Uxcel: https://app.uxcel.com/ux/nischhal
+- Behance: https://www.behance.net/nischhal
+- GitHub: https://github.com/Nischhalsubba
+- LinkedIn: https://linkedin.com/in/nischhal/
+
+## Content truth rules
+
+- Do not infer or invent performance metrics.
+- Do not claim sole ownership where the project was a team contribution.
+- Do not mention NDA/confidential work unless it is already public.
+- Prefer truthful descriptions: designed, contributed, redesigned, built, explored, or ongoing.
