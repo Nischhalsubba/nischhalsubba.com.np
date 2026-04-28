@@ -7,11 +7,17 @@ const __dirname = path.dirname(__filename);
 
 const page = (filePath: string) => path.resolve(__dirname, filePath);
 
-const detailNavigationInjector = (): Plugin => ({
-  name: 'inject-detail-navigation-enhancement',
+const globalEnhancementInjector = (): Plugin => ({
+  name: 'inject-global-enhancement-scripts',
   transformIndexHtml(html) {
-    if (html.includes('/detail-navigation.js')) return html;
-    return html.replace('</body>', '  <script src="/detail-navigation.js?v=20260427" defer></script>\n  </body>');
+    let output = html;
+    if (!output.includes('/detail-navigation.js')) {
+      output = output.replace('</body>', '  <script src="/detail-navigation.js?v=20260428" defer></script>\n  </body>');
+    }
+    if (!output.includes('/seo-enhancements.js')) {
+      output = output.replace('</body>', '  <script src="/seo-enhancements.js?v=20260428" defer></script>\n  </body>');
+    }
+    return output;
   }
 });
 
@@ -31,6 +37,13 @@ export default defineConfig(({ mode }) => {
           products: page('products.html'),
           blogLegacy: page('blog.html'),
           blogIndex: page('blog/index.html'),
+
+          productDesignNepal: page('product-design-nepal.html'),
+          web3UxDesigner: page('web3-ux-designer.html'),
+          saasUxDesigner: page('saas-ux-designer.html'),
+          websiteUxDesign: page('website-ux-design.html'),
+          figmaDesignSystems: page('figma-design-systems.html'),
+          uxAudit: page('ux-audit.html'),
 
           blogWeb3Products: page('blog/blog-web3-products.html'),
           blogGoodHandoff: page('blog/blog-good-handoff.html'),
@@ -60,7 +73,7 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       host: '0.0.0.0'
     },
-    plugins: [detailNavigationInjector()],
+    plugins: [globalEnhancementInjector()],
     define: {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
