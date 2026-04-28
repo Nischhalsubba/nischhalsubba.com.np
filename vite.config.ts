@@ -17,6 +17,9 @@ const globalEnhancementInjector = (): Plugin => ({
     if (!output.includes('/seo-enhancements.js')) {
       output = output.replace('</body>', '  <script src="/seo-enhancements.js?v=20260428" defer></script>\n  </body>');
     }
+    if (!output.includes('/site-polish.js')) {
+      output = output.replace('</body>', '  <script src="/site-polish.js?v=20260428" defer></script>\n  </body>');
+    }
     return output;
   }
 });
