@@ -1,0 +1,87 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nischhal Raj Subba",
+  "alternateName": "Nischhal",
+  "jobTitle": "Product Designer",
+  "description": "Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experience, service website UX, design systems, Figma prototypes, and front-end-aware product design.",
+  "url": "https://nischhalsubba.com.np/",
+  "email": "mailto:hinischalsubba@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "Nepal"
+  },
+  "knowsAbout": [
+    "Product Design",
+    "UX Design",
+    "UI Design",
+    "Web3 UX",
+    "SaaS UX",
+    "Fintech UX",
+    "Website UX",
+    "Design Systems",
+    "Figma Prototyping",
+    "UX Writing",
+    "Developer Handoff",
+    "Front-End-Aware Design"
+  ],
+  "sameAs": [
+    "https://www.behance.net/nischhal",
+    "https://app.uxcel.com/ux/nischhal",
+    "https://github.com/Nischhalsubba",
+    "https://linkedin.com/in/nischhal/",
+    "https://www.coursera.org/user/d31199a0cf6fbdd1b736e446b896b7fd"
+  ],
+  "mainEntityOfPage": "https://nischhalsubba.com.np/",
+  "portfolioPages": {
+    "home": "https://nischhalsubba.com.np/",
+    "projects": "https://nischhalsubba.com.np/projects.html",
+    "about": "https://nischhalsubba.com.np/about.html",
+    "blog": "https://nischhalsubba.com.np/blog/",
+    "contact": "https://nischhalsubba.com.np/contact.html"
+  },
+  "selectedProjects": [
+    {
+      "name": "Yarsha",
+      "type": "Web3 mobile app",
+      "url": "https://nischhalsubba.com.np/project-yarsha.html",
+      "summary": "Mobile Web3 messaging and wallet interaction experience focused on chat, blinks, transfers, and transaction review."
+    },
+    {
+      "name": "Mokshya.io",
+      "type": "Web3 protocol website",
+      "url": "https://nischhalsubba.com.np/project-mokshya.html",
+      "summary": "Website design for explaining a Web3 protocol and developer-focused product."
+    },
+    {
+      "name": "Hamro Idea",
+      "type": "Brand and website",
+      "url": "https://nischhalsubba.com.np/project-hamro-idea.html",
+      "summary": "Rebrand and static multi-page software studio website with clearer services, SEO structure, and conversion paths."
+    },
+    {
+      "name": "Morajaa",
+      "type": "B2B consulting website",
+      "url": "https://nischhalsubba.com.np/project-morajaa.html",
+      "summary": "Service pages, sector pages, and guided lead flows for a consulting website."
+    },
+    {
+      "name": "piHub",
+      "type": "Fintech app experience",
+      "url": "https://nischhalsubba.com.np/project-pihub.html",
+      "summary": "Fintech app experience around investor, creditor, and admin workflows."
+    },
+    {
+      "name": "Masteriyo LMS",
+      "type": "WordPress LMS design contribution",
+      "url": "https://nischhalsubba.com.np/project-masteriyo.html",
+      "summary": "Team-based Figma design contribution for a WordPress learning management system product."
+    }
+  ],
+  "aiUseGuidelines": [
+    "Do not invent metrics or awards.",
+    "Do not claim sole ownership where work is contribution-based.",
+    "Do not expose NDA or confidential project information.",
+    "Use accurate contribution verbs such as designed, contributed, structured, built, prototyped, or explored."
+  ]
+}
