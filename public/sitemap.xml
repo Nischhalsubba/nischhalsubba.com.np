@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nischhalsubba.com.np/</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://nischhalsubba.com.np/projects.html</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://nischhalsubba.com.np/about.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nischhalsubba.com.np/blog/</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://nischhalsubba.com.np/contact.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-yarsha.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-mokshya.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-hamro-idea.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-morajaa.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-pihub.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-masteriyo.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-zapp.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-neverwinter-parser.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-orkest.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-splashnode.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-grid-labs.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-zakra-furniture.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-designerex.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.76</priority></url>
-  <url><loc>https://nischhalsubba.com.np/project-sassboilerplate.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.76</priority></url>
-  <url><loc>https://nischhalsubba.com.np/blog/blog-web3-products.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nischhalsubba.com.np/blog/blog-good-handoff.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
-  <url><loc>https://nischhalsubba.com.np/blog/blog-portfolio-product.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
-  <url><loc>https://nischhalsubba.com.np/blog/blog-service-websites.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
-  <url><loc>https://nischhalsubba.com.np/blog/blog-gaming-interface-clarity.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
-  <url><loc>https://nischhalsubba.com.np/blog/blog-design-systems-front-end.html</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://nischhalsubba.com.np/</loc><lastmod>2026-04-28</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://nischhalsubba.com.np/projects.html</loc><lastmod>2026-04-28</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://nischhalsubba.com.np/about.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/</loc><lastmod>2026-04-28</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nischhalsubba.com.np/contact.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
+
+  <url><loc>https://nischhalsubba.com.np/product-design-nepal.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nischhalsubba.com.np/web3-ux-designer.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nischhalsubba.com.np/saas-ux-designer.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
+  <url><loc>https://nischhalsubba.com.np/website-ux-design.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
+  <url><loc>https://nischhalsubba.com.np/figma-design-systems.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
+  <url><loc>https://nischhalsubba.com.np/ux-audit.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
+
+  <url><loc>https://nischhalsubba.com.np/project-yarsha.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-mokshya.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-hamro-idea.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-morajaa.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-pihub.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-masteriyo.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-zapp.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-neverwinter-parser.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-orkest.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-splashnode.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-grid-labs.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-zakra-furniture.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-designerex.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.76</priority></url>
+  <url><loc>https://nischhalsubba.com.np/project-sassboilerplate.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.76</priority></url>
+
+  <url><loc>https://nischhalsubba.com.np/blog/blog-web3-products.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/blog-good-handoff.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/blog-portfolio-product.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/blog-service-websites.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/blog-gaming-interface-clarity.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/blog-design-systems-front-end.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+
+  <url><loc>https://nischhalsubba.com.np/llms.txt</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://nischhalsubba.com.np/llms-full.txt</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://nischhalsubba.com.np/ai-profile.json</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>
