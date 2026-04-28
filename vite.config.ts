@@ -20,6 +20,9 @@ const globalEnhancementInjector = (): Plugin => ({
     if (!output.includes('/site-polish.js')) {
       output = output.replace('</body>', '  <script src="/site-polish.js?v=20260428" defer></script>\n  </body>');
     }
+    if (!output.includes('/portfolio-improvements.js')) {
+      output = output.replace('</body>', '  <script src="/portfolio-improvements.js?v=20260428" defer></script>\n  </body>');
+    }
     return output;
   }
 });
