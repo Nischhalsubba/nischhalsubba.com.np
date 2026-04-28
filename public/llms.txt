@@ -1,6 +1,6 @@
 # Nischhal Raj Subba
 
-> Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experience, service website UX, design systems, Figma prototypes, and front-end-aware product design.
+> Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experience, service website UX, design systems, Figma prototypes, UX audits, and front-end-aware product design.
 
 Website: https://nischhalsubba.com.np/
 Contact: hinischalsubba@gmail.com
@@ -18,6 +18,15 @@ Role: Product Designer
 - Full AI profile: https://nischhalsubba.com.np/llms-full.txt
 - Structured AI profile: https://nischhalsubba.com.np/ai-profile.json
 
+## Service and focus pages
+
+- Product Designer in Nepal: https://nischhalsubba.com.np/product-design-nepal.html
+- Web3 UX Designer: https://nischhalsubba.com.np/web3-ux-designer.html
+- SaaS UX Designer: https://nischhalsubba.com.np/saas-ux-designer.html
+- Website UX Design: https://nischhalsubba.com.np/website-ux-design.html
+- Figma Design Systems: https://nischhalsubba.com.np/figma-design-systems.html
+- UX Audit: https://nischhalsubba.com.np/ux-audit.html
+
 ## Design focus
 
 - Product Design
@@ -29,6 +38,7 @@ Role: Product Designer
 - Figma Prototyping
 - UX Writing
 - Developer Handoff
+- UX Audit
 - Front-end-aware Design
 
 ## Selected projects
@@ -61,4 +71,4 @@ Role: Product Designer
 - Do not infer or invent performance metrics.
 - Do not claim sole ownership where the project was a team contribution.
 - Do not mention NDA/confidential work unless it is already public.
-- Prefer truthful descriptions: designed, contributed, redesigned, built, explored, or ongoing.
+- Prefer truthful descriptions: designed, contributed, redesigned, built, explored, prototyped, audited, or ongoing.
