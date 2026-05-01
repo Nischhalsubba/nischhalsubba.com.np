@@ -1,17 +1,32 @@
 /*.html
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /blog/*
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /*.js
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: public, max-age=86400, must-revalidate
 
 /detail-navigation.js
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: public, max-age=300, must-revalidate
+
+/seo-enhancements.js
+  Cache-Control: public, max-age=300, must-revalidate
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
 
 /sitemap.xml
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /robots.txt
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
+
+/llms.txt
+  Cache-Control: public, max-age=0, must-revalidate
+
+/llms-full.txt
+  Cache-Control: public, max-age=0, must-revalidate
+
+/ai-profile.json
+  Cache-Control: public, max-age=0, must-revalidate
