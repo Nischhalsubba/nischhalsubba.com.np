@@ -19,6 +19,12 @@
 
   const BLOGS = [
     ['Designing Web3 Products Without Making Users Feel Lost', 'Web3 UX', '/blog/blog-web3-products.html'],
+    ['Web3 Wallet UX Checklist for First-Time Users', 'Web3 Wallet UX', '/blog/web3-wallet-ux-checklist.html'],
+    ['How to Design Transaction Review Screens for Crypto Apps', 'Crypto Transaction UX', '/blog/transaction-review-ux-crypto-apps.html'],
+    ['SaaS Dashboard UX Checklist for Complex Workflows', 'SaaS Dashboard UX', '/blog/saas-dashboard-ux-checklist.html'],
+    ['Website UX Checklist for Software Companies', 'Website UX', '/blog/website-ux-checklist-software-companies.html'],
+    ['UX Audit Checklist Before Redesigning a Website', 'UX Audit', '/blog/ux-audit-checklist-before-redesign.html'],
+    ['How to Write Developer Handoff Notes in Figma', 'Figma Handoff', '/blog/figma-handoff-notes-for-developers.html'],
     ['Why Good Handoff Matters More Than Perfect Screens', 'Design Handoff', '/blog/blog-good-handoff.html'],
     ['What I Learned Designing My Portfolio Like a Product', 'Portfolio Strategy', '/blog/blog-portfolio-product.html'],
     ['Designing Service Websites That Explain the Business Clearly', 'Website UX', '/blog/blog-service-websites.html'],
@@ -62,7 +68,7 @@
   function getCollection() {
     const path = window.location.pathname;
     if (path.includes('/project-')) return { items: PROJECTS, label: 'case study' };
-    if (path.includes('/blog/blog-')) return { items: BLOGS, label: 'article' };
+    if (path.includes('/blog/')) return { items: BLOGS, label: 'article' };
     return null;
   }
 
@@ -73,18 +79,18 @@
       <div class="nrs-auto-footer__inner">
         <div>
           <h2>Let's design something clear.</h2>
-          <p>Open for product design, Web3 UX, SaaS dashboards, service websites, design systems, and developer-ready handoff.</p>
+          <p>Open for product design, Web3 UX, SaaS dashboards, service websites, design systems, UX audits, and developer-ready handoff.</p>
           <a href="mailto:hinischalsubba@gmail.com">hinischalsubba@gmail.com</a>
         </div>
         <div class="nrs-auto-footer__links">
           <div><h5>Sitemap</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div>
-          <div><h5>Focus</h5><a href="/project-yarsha.html">Web3 UX</a><a href="/project-pihub.html">Fintech UX</a><a href="/project-orkest.html">SaaS UX</a><a href="/blog/blog-good-handoff.html">Design Handoff</a></div>
+          <div><h5>Focus</h5><a href="/web3-ux-designer.html">Web3 UX</a><a href="/saas-ux-designer.html">SaaS UX</a><a href="/website-ux-design.html">Website UX</a><a href="/figma-design-systems.html">Figma Systems</a><a href="/ux-audit.html">UX Audit</a></div>
         </div>
       </div>`;
     return footer;
   }
 
-  function buildContinuation(item, previous, next, label) {
+  function buildContinuation(previous, next, label) {
     const section = document.createElement('section');
     section.className = 'nrs-detail-continuation';
     section.innerHTML = `
@@ -116,7 +122,7 @@
 
     const previous = collection.items[(index - 1 + collection.items.length) % collection.items.length];
     const next = collection.items[(index + 1) % collection.items.length];
-    const section = buildContinuation(collection.items[index], previous, next, collection.label);
+    const section = buildContinuation(previous, next, collection.label);
 
     const footer = document.querySelector('footer.site-footer, footer.nrs-auto-footer');
     if (footer) {
@@ -130,7 +136,7 @@
   function enhanceResumeDownload() {
     document.querySelectorAll('a[href$="resume.pdf"], .floating-resume-btn').forEach((link) => {
       link.setAttribute('href', '/assets/resume.pdf');
-      link.setAttribute('download', 'Nischhal-Raj-Subba-Resume-2026.pdf');
+      link.setAttribute('download', 'Nischhal-Raj-Subba-Resume.pdf');
     });
   }
 
