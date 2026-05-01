@@ -7,22 +7,30 @@ const __dirname = path.dirname(__filename);
 
 const page = (filePath: string) => path.resolve(__dirname, filePath);
 
-const globalEnhancementInjector = (): Plugin => ({
-  name: 'inject-global-enhancement-scripts',
+/**
+ * Build-time HTML polish.
+ *
+ * Keep runtime scripts lean:
+ * - detail-navigation.js: only previous/next + footer fallback on detail pages.
+ * - seo-enhancements.js: schema/FAQ/performance safety layer while static pages mature.
+ *
+ * Heavy animation libraries are deferred so mobile rendering starts earlier.
+ */
+const htmlEnhancementInjector = (): Plugin => ({
+  name: 'nrs-html-enhancement-injector',
   transformIndexHtml(html) {
-    let output = html;
+    let output = html
+      .replace(/<script src="https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/gsap\/3\.12\.2\/gsap\.min\.js"><\/script>/g, '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>')
+      .replace(/<script src="https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/gsap\/3\.12\.2\/ScrollTrigger\.min\.js"><\/script>/g, '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>');
+
     if (!output.includes('/detail-navigation.js')) {
-      output = output.replace('</body>', '  <script src="/detail-navigation.js?v=20260428" defer></script>\n  </body>');
+      output = output.replace('</body>', '  <script src="/detail-navigation.js?v=20260429" defer></script>\n  </body>');
     }
+
     if (!output.includes('/seo-enhancements.js')) {
-      output = output.replace('</body>', '  <script src="/seo-enhancements.js?v=20260428" defer></script>\n  </body>');
+      output = output.replace('</body>', '  <script src="/seo-enhancements.js?v=20260429" defer></script>\n  </body>');
     }
-    if (!output.includes('/site-polish.js')) {
-      output = output.replace('</body>', '  <script src="/site-polish.js?v=20260428" defer></script>\n  </body>');
-    }
-    if (!output.includes('/portfolio-improvements.js')) {
-      output = output.replace('</body>', '  <script src="/portfolio-improvements.js?v=20260428" defer></script>\n  </body>');
-    }
+
     return output;
   }
 });
@@ -40,7 +48,6 @@ export default defineConfig(({ mode }) => {
           about: page('about.html'),
           contact: page('contact.html'),
           projects: page('projects.html'),
-          products: page('products.html'),
           blogLegacy: page('blog.html'),
           blogIndex: page('blog/index.html'),
 
@@ -79,7 +86,7 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       host: '0.0.0.0'
     },
-    plugins: [globalEnhancementInjector()],
+    plugins: [htmlEnhancementInjector()],
     define: {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
