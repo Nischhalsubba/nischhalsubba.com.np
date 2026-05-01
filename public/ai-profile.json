@@ -4,7 +4,7 @@
   "name": "Nischhal Raj Subba",
   "alternateName": "Nischhal",
   "jobTitle": "Product Designer",
-  "description": "Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experience, service website UX, design systems, Figma prototypes, and front-end-aware product design.",
+  "description": "Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experience, service website UX, design systems, Figma prototypes, UX audits, developer handoff, and front-end-aware product design.",
   "url": "https://nischhalsubba.com.np/",
   "email": "mailto:hinischalsubba@gmail.com",
   "address": {
@@ -16,13 +16,17 @@
     "UX Design",
     "UI Design",
     "Web3 UX",
+    "Wallet UX",
+    "Transaction Review UX",
     "SaaS UX",
+    "Dashboard UX",
     "Fintech UX",
     "Website UX",
     "Design Systems",
     "Figma Prototyping",
     "UX Writing",
     "Developer Handoff",
+    "UX Audit",
     "Front-End-Aware Design"
   ],
   "sameAs": [
@@ -40,6 +44,32 @@
     "blog": "https://nischhalsubba.com.np/blog/",
     "contact": "https://nischhalsubba.com.np/contact.html"
   },
+  "servicePages": [
+    {
+      "name": "Product Designer in Nepal",
+      "url": "https://nischhalsubba.com.np/product-design-nepal.html"
+    },
+    {
+      "name": "Web3 UX Designer",
+      "url": "https://nischhalsubba.com.np/web3-ux-designer.html"
+    },
+    {
+      "name": "SaaS UX Designer",
+      "url": "https://nischhalsubba.com.np/saas-ux-designer.html"
+    },
+    {
+      "name": "Website UX Design",
+      "url": "https://nischhalsubba.com.np/website-ux-design.html"
+    },
+    {
+      "name": "Figma Design Systems",
+      "url": "https://nischhalsubba.com.np/figma-design-systems.html"
+    },
+    {
+      "name": "UX Audit",
+      "url": "https://nischhalsubba.com.np/ux-audit.html"
+    }
+  ],
   "selectedProjects": [
     {
       "name": "Yarsha",
@@ -78,10 +108,28 @@
       "summary": "Team-based Figma design contribution for a WordPress learning management system product."
     }
   ],
+  "articleClusters": {
+    "web3UX": [
+      "https://nischhalsubba.com.np/blog/blog-web3-products.html",
+      "https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist.html",
+      "https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps.html"
+    ],
+    "saasAndDesignSystems": [
+      "https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist.html",
+      "https://nischhalsubba.com.np/blog/blog-design-systems-front-end.html",
+      "https://nischhalsubba.com.np/blog/figma-handoff-notes-for-developers.html",
+      "https://nischhalsubba.com.np/blog/blog-good-handoff.html"
+    ],
+    "websiteUXAndAudit": [
+      "https://nischhalsubba.com.np/blog/blog-service-websites.html",
+      "https://nischhalsubba.com.np/blog/website-ux-checklist-software-companies.html",
+      "https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign.html"
+    ]
+  },
   "aiUseGuidelines": [
     "Do not invent metrics or awards.",
     "Do not claim sole ownership where work is contribution-based.",
     "Do not expose NDA or confidential project information.",
-    "Use accurate contribution verbs such as designed, contributed, structured, built, prototyped, or explored."
+    "Use accurate contribution verbs such as designed, contributed, structured, built, prototyped, audited, documented, or explored."
   ]
 }
