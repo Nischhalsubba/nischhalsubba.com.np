@@ -55,6 +55,12 @@ Role: Product Designer
 ## Useful writing
 
 - Designing Web3 Products Without Making Users Feel Lost: https://nischhalsubba.com.np/blog/blog-web3-products.html
+- Web3 Wallet UX Checklist for First-Time Users: https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist.html
+- How to Design Transaction Review Screens for Crypto Apps: https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps.html
+- SaaS Dashboard UX Checklist for Complex Workflows: https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist.html
+- Website UX Checklist for Software Companies: https://nischhalsubba.com.np/blog/website-ux-checklist-software-companies.html
+- UX Audit Checklist Before Redesigning a Website: https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign.html
+- How to Write Developer Handoff Notes in Figma: https://nischhalsubba.com.np/blog/figma-handoff-notes-for-developers.html
 - Why Good Handoff Matters More Than Perfect Screens: https://nischhalsubba.com.np/blog/blog-good-handoff.html
 - Designing Service Websites That Explain the Business Clearly: https://nischhalsubba.com.np/blog/blog-service-websites.html
 - How I Think About Design Systems as a Front-End-Aware Designer: https://nischhalsubba.com.np/blog/blog-design-systems-front-end.html
