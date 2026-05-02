@@ -10,6 +10,7 @@
   "mainEntityOfPage": "https://nischhalsubba.com.np/nischhal-raj-subba.html",
   "image": "https://i.imgur.com/ixsEpYM.png",
   "email": "mailto:hinischalsubba@gmail.com",
+  "telephone": "+9779842552348",
   "nationality": {
     "@type": "Country",
     "name": "Nepal"
@@ -37,13 +38,39 @@
     "Front-End-Aware Design"
   ],
   "sameAs": [
-    "https://linktr.ee/nischhalsubba",
+    "https://www.linkedin.com/in/nischhal",
     "https://www.behance.net/nischhal",
     "https://app.uxcel.com/ux/nischhal",
     "https://github.com/Nischhalsubba",
-    "https://linkedin.com/in/nischhal/",
-    "https://www.coursera.org/user/d31199a0cf6fbdd1b736e446b896b7fd"
+    "https://www.coursera.org/user/d31199a0cf6fbdd1b736e446b896b7fd",
+    "https://www.facebook.com/officialnischhalsubba",
+    "https://www.threads.com/@nischhalsubba",
+    "https://instagram.com/nischhalsubba",
+    "https://www.youtube.com/@Nischhal",
+    "https://tiktok.com/@nischhalsubba",
+    "https://www.snapchat.com/add/nischhalsubba",
+    "https://x.com/Nischhalsubba",
+    "https://bsky.app/profile/nischhal.bsky.social",
+    "https://www.twitch.tv/mrsubba"
   ],
+  "socialProfiles": {
+    "linkedin": "https://www.linkedin.com/in/nischhal",
+    "uxcelProfile": "https://app.uxcel.com/ux/nischhal",
+    "uxcelRankings": "https://uxcel.com/uxcel-rankings",
+    "behance": "https://www.behance.net/nischhal",
+    "github": "https://github.com/Nischhalsubba",
+    "coursera": "https://www.coursera.org/user/d31199a0cf6fbdd1b736e446b896b7fd",
+    "facebook": "https://www.facebook.com/officialnischhalsubba",
+    "instagram": "https://instagram.com/nischhalsubba",
+    "threads": "https://www.threads.com/@nischhalsubba",
+    "x": "https://x.com/Nischhalsubba",
+    "bluesky": "https://bsky.app/profile/nischhal.bsky.social",
+    "youtube": "https://www.youtube.com/@Nischhal",
+    "tiktok": "https://tiktok.com/@nischhalsubba",
+    "twitch": "https://www.twitch.tv/mrsubba",
+    "snapchat": "https://www.snapchat.com/add/nischhalsubba",
+    "whatsapp": "https://api.whatsapp.com/send?phone=9779842552348"
+  },
   "portfolioPages": {
     "officialEntityPage": "https://nischhalsubba.com.np/nischhal-raj-subba.html",
     "home": "https://nischhalsubba.com.np/",
@@ -61,42 +88,12 @@
     { "name": "UX Audit", "url": "https://nischhalsubba.com.np/ux-audit.html" }
   ],
   "selectedProjects": [
-    {
-      "name": "Yarsha",
-      "type": "Web3 mobile app",
-      "url": "https://nischhalsubba.com.np/project-yarsha.html",
-      "summary": "Mobile Web3 messaging and wallet interaction experience focused on chat, blinks, transfers, and transaction review."
-    },
-    {
-      "name": "Mokshya.io",
-      "type": "Web3 protocol website",
-      "url": "https://nischhalsubba.com.np/project-mokshya.html",
-      "summary": "Website design for explaining a Web3 protocol and developer-focused product."
-    },
-    {
-      "name": "Hamro Idea",
-      "type": "Brand and website",
-      "url": "https://nischhalsubba.com.np/project-hamro-idea.html",
-      "summary": "Rebrand and static multi-page software studio website with clearer services, SEO structure, and conversion paths."
-    },
-    {
-      "name": "Morajaa",
-      "type": "B2B consulting website",
-      "url": "https://nischhalsubba.com.np/project-morajaa.html",
-      "summary": "Service pages, sector pages, and guided lead flows for a consulting website."
-    },
-    {
-      "name": "piHub",
-      "type": "Fintech app experience",
-      "url": "https://nischhalsubba.com.np/project-pihub.html",
-      "summary": "Fintech app experience around investor, creditor, and admin workflows."
-    },
-    {
-      "name": "Masteriyo LMS",
-      "type": "WordPress LMS design contribution",
-      "url": "https://nischhalsubba.com.np/project-masteriyo.html",
-      "summary": "Team-based Figma design contribution for a WordPress learning management system product."
-    }
+    { "name": "Yarsha", "type": "Web3 mobile app", "url": "https://nischhalsubba.com.np/project-yarsha.html", "summary": "Mobile Web3 messaging and wallet interaction experience focused on chat, blinks, transfers, and transaction review." },
+    { "name": "Mokshya.io", "type": "Web3 protocol website", "url": "https://nischhalsubba.com.np/project-mokshya.html", "summary": "Website design for explaining a Web3 protocol and developer-focused product." },
+    { "name": "Hamro Idea", "type": "Brand and website", "url": "https://nischhalsubba.com.np/project-hamro-idea.html", "summary": "Rebrand and static multi-page software studio website with clearer services, SEO structure, and conversion paths." },
+    { "name": "Morajaa", "type": "B2B consulting website", "url": "https://nischhalsubba.com.np/project-morajaa.html", "summary": "Service pages, sector pages, and guided lead flows for a consulting website." },
+    { "name": "piHub", "type": "Fintech app experience", "url": "https://nischhalsubba.com.np/project-pihub.html", "summary": "Fintech app experience around investor, creditor, and admin workflows." },
+    { "name": "Masteriyo LMS", "type": "WordPress LMS design contribution", "url": "https://nischhalsubba.com.np/project-masteriyo.html", "summary": "Team-based Figma design contribution for a WordPress learning management system product." }
   ],
   "articleClusters": {
     "web3UX": [
