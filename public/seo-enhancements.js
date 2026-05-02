@@ -16,12 +16,20 @@
   const UPDATED = '2026-05-02';
 
   const profileLinks = [
-    'https://linktr.ee/nischhalsubba',
+    'https://www.linkedin.com/in/nischhal',
     'https://www.behance.net/nischhal',
     'https://app.uxcel.com/ux/nischhal',
     'https://github.com/Nischhalsubba',
-    'https://linkedin.com/in/nischhal/',
-    'https://www.coursera.org/user/d31199a0cf6fbdd1b736e446b896b7fd'
+    'https://www.coursera.org/user/d31199a0cf6fbdd1b736e446b896b7fd',
+    'https://www.facebook.com/officialnischhalsubba',
+    'https://www.threads.com/@nischhalsubba',
+    'https://instagram.com/nischhalsubba',
+    'https://www.youtube.com/@Nischhal',
+    'https://tiktok.com/@nischhalsubba',
+    'https://www.snapchat.com/add/nischhalsubba',
+    'https://x.com/Nischhalsubba',
+    'https://bsky.app/profile/nischhal.bsky.social',
+    'https://www.twitch.tv/mrsubba'
   ];
 
   const serviceContent = {
@@ -120,6 +128,7 @@
       mainEntityOfPage: `${SITE}/nischhal-raj-subba.html`,
       image: 'https://i.imgur.com/ixsEpYM.png',
       email: 'mailto:hinischalsubba@gmail.com',
+      telephone: '+9779842552348',
       nationality: { '@type': 'Country', name: 'Nepal' },
       address: { '@type': 'PostalAddress', addressCountry: 'Nepal' },
       knowsAbout: ['Product Design', 'UX Design', 'UI Design', 'Web3 UX', 'Wallet UX', 'Transaction Review UX', 'SaaS UX', 'Dashboard UX', 'Fintech UX', 'Website UX', 'Design Systems', 'Figma Prototyping', 'UX Writing', 'Developer Handoff', 'UX Audit', 'Front-End-Aware Design'],
@@ -159,7 +168,7 @@
           <p class="eyebrow" style="margin-bottom:8px;">Written by</p>
           <h2 style="margin:0 0 8px;font-size:clamp(1.4rem,3vw,2rem);">Nischhal Raj Subba</h2>
           <p style="margin:0 0 16px;color:var(--text-secondary);line-height:1.7;">Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experiences, website UX, design systems, UX audits, and front-end-aware product design.</p>
-          <div class="support-links"><a class="link-pill" href="/nischhal-raj-subba.html">Author profile</a><a class="link-pill" href="/projects.html">View projects</a><a class="link-pill" href="https://linktr.ee/nischhalsubba" target="_blank" rel="noopener noreferrer">Social links</a></div>
+          <div class="support-links"><a class="link-pill" href="/nischhal-raj-subba.html">Author profile</a><a class="link-pill" href="/projects.html">View projects</a><a class="link-pill" href="https://www.linkedin.com/in/nischhal" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
         </div>
       </div>`;
     if (hero && hero.parentNode) hero.insertAdjacentElement('afterend', block);
