@@ -1,9 +1,11 @@
 /*
  * Lightweight runtime polish for Nischhal Raj Subba portfolio.
  *
- * Build-time SEO now handles static FAQ/context/schema for project and blog pages.
- * This file only handles safe runtime enhancements:
- * - service page FAQ/depth sections when missing
+ * Build-time SEO handles static FAQ/context/schema for project and blog pages.
+ * This file handles safe runtime enhancements:
+ * - service page depth sections when missing
+ * - author/entity profile visibility on blog pages
+ * - stronger Person schema on key profile pages
  * - iframe click-to-load for performance
  * - media performance attributes
  * - canonical cleanup
@@ -11,7 +13,16 @@
  */
 (() => {
   const SITE = 'https://nischhalsubba.com.np';
-  const UPDATED = '2026-05-01';
+  const UPDATED = '2026-05-02';
+
+  const profileLinks = [
+    'https://linktr.ee/nischhalsubba',
+    'https://www.behance.net/nischhal',
+    'https://app.uxcel.com/ux/nischhal',
+    'https://github.com/Nischhalsubba',
+    'https://linkedin.com/in/nischhal/',
+    'https://www.coursera.org/user/d31199a0cf6fbdd1b736e446b896b7fd'
+  ];
 
   const serviceContent = {
     '/product-design-nepal.html': {
@@ -96,6 +107,26 @@
     document.head.appendChild(script);
   }
 
+  function personSchema() {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      '@id': `${SITE}/#nischhal-raj-subba`,
+      name: 'Nischhal Raj Subba',
+      alternateName: 'Nischhal',
+      jobTitle: 'Product Designer',
+      description: 'Nischhal Raj Subba is a Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experiences, website UX, design systems, UX audits, Figma prototypes, and front-end-aware product design.',
+      url: `${SITE}/`,
+      mainEntityOfPage: `${SITE}/nischhal-raj-subba.html`,
+      image: 'https://i.imgur.com/ixsEpYM.png',
+      email: 'mailto:hinischalsubba@gmail.com',
+      nationality: { '@type': 'Country', name: 'Nepal' },
+      address: { '@type': 'PostalAddress', addressCountry: 'Nepal' },
+      knowsAbout: ['Product Design', 'UX Design', 'UI Design', 'Web3 UX', 'Wallet UX', 'Transaction Review UX', 'SaaS UX', 'Dashboard UX', 'Fintech UX', 'Website UX', 'Design Systems', 'Figma Prototyping', 'UX Writing', 'Developer Handoff', 'UX Audit', 'Front-End-Aware Design'],
+      sameAs: profileLinks
+    };
+  }
+
   function ensureCanonical() {
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -105,6 +136,44 @@
     }
     const path = currentPath();
     canonical.href = `${SITE}${path === '/home-v2.html' ? '/' : path}`;
+  }
+
+  function addEntitySchemaOnKeyPages() {
+    const path = currentPath();
+    if (path === '/' || path === '/home-v2.html' || path === '/about.html' || path === '/nischhal-raj-subba.html') {
+      addJsonLd('nrs-entity-person-schema', personSchema());
+    }
+  }
+
+  function addAuthorBlockToBlogs() {
+    const path = currentPath();
+    if (!path.includes('/blog/') || path === '/blog/' || document.querySelector('.nrs-author-block')) return;
+    const main = document.querySelector('main') || document.body;
+    const hero = document.querySelector('.hero-section, article.section-container, main > section');
+    const block = document.createElement('section');
+    block.className = 'section-container nrs-author-block';
+    block.innerHTML = `
+      <div style="max-width:980px;margin:0 auto;border:1px solid var(--border-faint);border-radius:24px;background:var(--bg-surface);padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:96px 1fr;gap:24px;align-items:center;">
+        <img src="https://i.imgur.com/ixsEpYM.png" alt="Nischhal Raj Subba, Product Designer in Nepal" width="96" height="96" loading="lazy" decoding="async" style="width:96px;height:96px;border-radius:20px;object-fit:cover;" />
+        <div>
+          <p class="eyebrow" style="margin-bottom:8px;">Written by</p>
+          <h2 style="margin:0 0 8px;font-size:clamp(1.4rem,3vw,2rem);">Nischhal Raj Subba</h2>
+          <p style="margin:0 0 16px;color:var(--text-secondary);line-height:1.7;">Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experiences, website UX, design systems, UX audits, and front-end-aware product design.</p>
+          <div class="support-links"><a class="link-pill" href="/nischhal-raj-subba.html">Author profile</a><a class="link-pill" href="/projects.html">View projects</a><a class="link-pill" href="https://linktr.ee/nischhalsubba" target="_blank" rel="noopener noreferrer">Social links</a></div>
+        </div>
+      </div>`;
+    if (hero && hero.parentNode) hero.insertAdjacentElement('afterend', block);
+    else main.prepend(block);
+
+    addJsonLd('nrs-blog-author-schema', {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: document.querySelector('h1')?.innerText || document.title,
+      author: personSchema(),
+      publisher: personSchema(),
+      mainEntityOfPage: `${SITE}${path}`,
+      dateModified: UPDATED
+    });
   }
 
   function addServiceDepthAndFaq() {
@@ -220,6 +289,8 @@
 
   function run() {
     ensureCanonical();
+    addEntitySchemaOnKeyPages();
+    addAuthorBlockToBlogs();
     addServiceDepthAndFaq();
     addServiceBreadcrumbSchema();
     convertIframesToClickToLoad();
