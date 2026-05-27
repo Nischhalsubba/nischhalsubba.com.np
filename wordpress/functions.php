@@ -109,8 +109,8 @@ function nischhal_scripts() {
     
     // 5. Pass PHP vars to JS
     $theme_config = array(
-        'imgDark' => get_theme_mod('hero_img', 'https://i.imgur.com/ixsEpYM.png'),
-        'imgLight' => get_theme_mod('hero_img_light', 'https://i.imgur.com/oFHdPUS.png'),
+        'imgDark' => get_theme_mod('hero_img', get_template_directory_uri() . '/assets/images/portrait.svg'),
+        'imgLight' => get_theme_mod('hero_img_light', get_template_directory_uri() . '/assets/images/portrait.svg'),
         'animSpeed' => get_theme_mod('anim_speed', 1.0),
         'cursorEnable' => get_theme_mod('cursor_enable', true),
         'perfMode' => get_theme_mod('perf_mode', false)
@@ -157,7 +157,7 @@ function nischhal_seo_schema() {
         '@type' => 'Person',
         'name' => get_bloginfo('name'),
         'url' => home_url(),
-        'image' => get_theme_mod('hero_img', 'https://i.imgur.com/ixsEpYM.png'),
+        'image' => get_theme_mod('hero_img', get_template_directory_uri() . '/assets/images/portrait.svg'),
         'jobTitle' => 'Product Designer',
         'sameAs' => [
             get_theme_mod('social_linkedin'),
@@ -207,7 +207,7 @@ function nischhal_output_meta_tags() {
     }
 
     $url = is_singular() && $post ? get_permalink( $post ) : home_url( add_query_arg( array(), $wp->request ) );
-    $image = get_theme_mod( 'hero_img', 'https://i.imgur.com/ixsEpYM.png' );
+    $image = get_theme_mod( 'hero_img', get_template_directory_uri() . '/assets/images/portrait.svg' );
     if ( is_singular() && $post && has_post_thumbnail( $post->ID ) ) {
         $image = get_the_post_thumbnail_url( $post->ID, 'large' );
     }
@@ -418,10 +418,10 @@ function nischhal_customize_register( $wp_customize ) {
     $wp_customize->add_setting('hero_btn_2_page');
     $wp_customize->add_control('hero_btn_2_page', array('section'=>'sec_hero', 'label'=>'Secondary Button Link', 'type'=>'dropdown-pages'));
 
-    $wp_customize->add_setting('hero_img', array('default'=>'https://i.imgur.com/ixsEpYM.png'));
+    $wp_customize->add_setting('hero_img', array('default'=>get_template_directory_uri() . '/assets/images/portrait.svg'));
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_img', array('label'=>'Portrait Image (Dark Mode)', 'section'=>'sec_hero')));
 
-    $wp_customize->add_setting('hero_img_light', array('default'=>'https://i.imgur.com/oFHdPUS.png'));
+    $wp_customize->add_setting('hero_img_light', array('default'=>get_template_directory_uri() . '/assets/images/portrait.svg'));
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_img_light', array('label'=>'Portrait Image (Light Mode)', 'section'=>'sec_hero')));
 
     $wp_customize->add_setting('hero_ticker_items', array('default'=>'Design Systems, Enterprise UX, Web3 Specialist'));

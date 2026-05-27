@@ -1215,6 +1215,24 @@ body.custom-cursor-active .custom-cursor-outline { display: block; }
     width: 100%;
 }
 
+.blog-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+    width: 100%;
+}
+
+.blog-layout .body-large,
+.blog-prose {
+    max-width: none;
+    min-width: 0;
+}
+
+.blog-sidebar {
+    min-width: 0;
+}
+
 .blog-share-actions {
     display: flex;
     flex-wrap: wrap;
@@ -1283,7 +1301,10 @@ body.custom-cursor-active .custom-cursor-outline { display: block; }
         line-height: 1.1;
         margin-bottom: 24px;
     }
-    .hero-portrait-container { display: none; }
+    .hero-portrait-container {
+        max-width: 360px !important;
+        margin-top: 40px !important;
+    }
     
     .section-title { 
         font-size: 2rem; 

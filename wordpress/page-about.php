@@ -106,7 +106,7 @@ get_header(); ?>
               <div class="about-sidebar">
                   <div style="position: sticky; top: 120px;">
                     <!-- Dynamic Image -->
-                    <img src="https://i.imgur.com/ixsEpYM.png" class="profile-img" style="width: 100%; border-radius: 20px; margin-bottom: 24px; opacity: 0.9;" alt="Nischhal Portrait">
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/portrait.svg' ); ?>" class="profile-img" style="width: 100%; border-radius: 20px; margin-bottom: 24px; opacity: 0.9;" alt="Nischhal Portrait">
                     
                     <h5 style="margin-bottom: 16px; font-size: 0.9rem; text-transform: uppercase; color: var(--text-tertiary); letter-spacing: 0.1em;">Skills</h5>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px;">

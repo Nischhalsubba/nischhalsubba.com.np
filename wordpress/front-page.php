@@ -17,7 +17,7 @@
     $btn2_page = get_theme_mod('hero_btn_2_page');
     $btn2_link = $btn2_page ? get_permalink($btn2_page) : home_url('/about');
 
-    $hero_img = get_theme_mod('hero_img', 'https://i.imgur.com/ixsEpYM.png');
+    $hero_img = get_theme_mod('hero_img', get_template_directory_uri() . '/assets/images/portrait.svg');
     
     $ticker_raw = get_theme_mod('hero_ticker_items', 'Design Systems, Enterprise UX, Web3 Specialist');
     $ticker_items = array_map('trim', explode(',', $ticker_raw));

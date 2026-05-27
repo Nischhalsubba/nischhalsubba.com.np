@@ -60,6 +60,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    document.querySelectorAll('a[href$="assets/resume.pdf"]').forEach((link) => {
+        link.setAttribute('download', 'Nischhal-Raj-Subba-Resume.pdf');
+        link.setAttribute('type', 'application/pdf');
+
+        link.addEventListener('click', async (event) => {
+            if (!window.URL || !window.fetch) return;
+
+            event.preventDefault();
+            try {
+                const response = await fetch(link.href, { cache: 'no-store' });
+                if (!response.ok) throw new Error(`Resume request failed: ${response.status}`);
+                const blob = await response.blob();
+                const objectUrl = URL.createObjectURL(blob);
+                const downloadLink = document.createElement('a');
+                downloadLink.href = objectUrl;
+                downloadLink.download = 'Nischhal-Raj-Subba-Resume.pdf';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                downloadLink.remove();
+                URL.revokeObjectURL(objectUrl);
+            } catch {
+                window.location.href = link.href;
+            }
+        });
+    });
+
     // --- MOBILE MENU ---
     const mobileBtn = document.querySelector('.mobile-nav-toggle');
     const body = document.body;
