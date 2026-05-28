@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/copy-static-assets.cjs && node scripts/generate-resume-pdf.cjs",
-    "postinstall": "node scripts/install-next-build-shim.cjs",
+    "build": "vite build && node scripts/copy-static-assets.cjs && node scripts/generate-resume-pdf.cjs && node scripts/audit-build.cjs",
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 .",
-    "check:links": "node scripts/check-links.js"
+    "check:links": "node scripts/check-links.js",
+    "audit:build": "node scripts/audit-build.cjs"
   },
   "dependencies": {},
   "devDependencies": {
