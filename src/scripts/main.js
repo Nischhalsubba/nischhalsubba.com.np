@@ -2,6 +2,7 @@ import { onReady } from './utils/dom.js';
 import { injectGlobalStyles } from './features/global-styles.js';
 import { normalizeArticleLayout } from './features/article-layout.js';
 import { initActiveNavigation } from './features/navigation.js';
+import { applyPortfolioUpgrades } from './features/portfolio-upgrades.js';
 import { initContactForm } from './features/contact-form.js';
 import { polishContent } from './features/content-polish.js';
 import { initFilters } from './features/filters.js';
@@ -18,6 +19,7 @@ onReady(() => {
   injectGlobalStyles();
   normalizeArticleLayout();
   polishContent();
+  applyPortfolioUpgrades();
   initTheme();
   initMobileMenu();
   initGridCanvas();
