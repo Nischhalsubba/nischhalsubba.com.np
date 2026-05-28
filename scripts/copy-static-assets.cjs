@@ -2,8 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const rootDir = path.resolve(__dirname, '..');
-const sourceDir = path.join(rootDir, 'assets');
-const targetDir = path.join(rootDir, 'dist', 'assets');
+const distDir = path.join(rootDir, 'dist');
 
 function copyDirectory(source, target) {
   if (!fs.existsSync(source)) return;
@@ -23,5 +22,14 @@ function copyDirectory(source, target) {
   }
 }
 
-copyDirectory(sourceDir, targetDir);
-console.log('Copied static assets to dist/assets.');
+function copyFile(source, target) {
+  if (!fs.existsSync(source)) return;
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.copyFileSync(source, target);
+}
+
+copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
+copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
+copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
+
+console.log('Copied static assets and runtime compatibility files into dist.');
