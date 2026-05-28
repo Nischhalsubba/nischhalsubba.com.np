@@ -11,6 +11,95 @@ export function injectGlobalStyles() {
     .menu-open { overflow: hidden; }
     .copied::after { content: 'Copied'; margin-left: .5rem; font-size: .85em; }
     :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+    .hero-portrait-container {
+      width: min(560px, 92vw);
+      margin: clamp(48px, 7vw, 88px) auto 0;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid var(--border-faint, rgba(255,255,255,.1));
+      background: radial-gradient(circle at 50% 15%, rgba(59,130,246,.22), transparent 58%), var(--bg-surface, #0a0a0a);
+      box-shadow: 0 28px 90px rgba(0,0,0,.28);
+    }
+
+    .hero-portrait-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      opacity: .96;
+    }
+
+    .nrs-home-hero .body-large {
+      max-width: 820px;
+    }
+
+    .nrs-article-main {
+      padding-top: clamp(112px, 12vw, 172px);
+      padding-bottom: clamp(72px, 10vw, 128px);
+    }
+
+    .nrs-article-main > article,
+    .nrs-article {
+      width: min(100%, 980px);
+      margin-inline: auto;
+    }
+
+    .nrs-article-header {
+      min-height: auto !important;
+      padding: 0 0 clamp(40px, 6vw, 72px) !important;
+      align-items: flex-start !important;
+      text-align: left !important;
+    }
+
+    .nrs-article-section {
+      padding-block: clamp(32px, 5vw, 72px) !important;
+    }
+
+    .nrs-article img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 24px;
+      border: 1px solid var(--border-faint, rgba(255,255,255,.1));
+      margin: 0 0 clamp(32px, 5vw, 56px);
+    }
+
+    .nrs-article p,
+    .nrs-article li {
+      color: var(--text-secondary, #d4d4d8);
+      font-size: clamp(1.03rem, 1.5vw, 1.16rem);
+      line-height: 1.85;
+    }
+
+    .nrs-article p {
+      margin-bottom: 1.35em;
+    }
+
+    .nrs-article h1 {
+      max-width: 980px;
+    }
+
+    .nrs-article h2,
+    .nrs-article h3 {
+      margin-top: clamp(40px, 6vw, 72px);
+      margin-bottom: 18px;
+    }
+
+    .nrs-article blockquote {
+      margin: clamp(36px, 6vw, 64px) 0;
+      padding-left: 24px;
+      border-left: 4px solid var(--accent-blue, #3B82F6);
+      color: var(--text-primary, #fff);
+      font-family: var(--font-serif, serif);
+      font-size: clamp(1.25rem, 2vw, 1.65rem);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 760px) {
+      .nrs-article-main { padding-top: 104px; }
+      .nrs-article-header { text-align: left !important; }
+      .nrs-article .hero-title { font-size: clamp(2.15rem, 12vw, 3.1rem); }
+    }
   `;
   document.head.appendChild(style);
 }
