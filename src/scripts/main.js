@@ -8,6 +8,7 @@ import { initMobileMenu } from './features/mobile-menu.js';
 import { initPageTransitions } from './features/page-transitions.js';
 import { initResumeDownload } from './features/resume.js';
 import { initShareButtons } from './features/share.js';
+import { ensureSiteFooter } from './features/site-footer.js';
 import { initTheme } from './features/theme.js';
 
 onReady(() => {
@@ -21,4 +22,5 @@ onReady(() => {
   initResumeDownload();
   initShareButtons();
   initContactForm();
+  ensureSiteFooter();
 });
