@@ -6,16 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postinstall": "node scripts/install-next-build-shim.cjs",
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 .",
     "check:links": "node scripts/check-links.js"
   },
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^22.14.0",
-    
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }
