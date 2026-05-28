@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/copy-static-assets.cjs",
     "postinstall": "node scripts/install-next-build-shim.cjs",
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 .",
