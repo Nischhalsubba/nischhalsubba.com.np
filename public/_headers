@@ -1,11 +1,23 @@
+/
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+
+/index.html
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+
+/home-v2
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+
+/home-v2.html
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+
 /*.html
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /blog/*
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /*.js
-  Cache-Control: public, max-age=86400, must-revalidate
+  Cache-Control: public, max-age=300, must-revalidate
 
 /detail-navigation.js
   Cache-Control: public, max-age=300, must-revalidate
@@ -16,22 +28,22 @@
 /assets/resume.pdf
   Content-Type: application/pdf
   Content-Disposition: attachment; filename="Nischhal-Raj-Subba-Resume.pdf"
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
 /sitemap.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /robots.txt
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /llms.txt
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /llms-full.txt
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /ai-profile.json
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
