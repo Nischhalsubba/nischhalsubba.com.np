@@ -1,6 +1,8 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "nischhal-raj-subba-portfolio",
+  "name": "portfolio-website-2026",
   "compatibility_date": "2026-02-05",
-  "pages_build_output_dir": "./dist"
+  "assets": {
+    "directory": "./dist"
+  }
 }
