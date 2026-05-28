@@ -1,5 +1,6 @@
 import { onReady } from './utils/dom.js';
 import { injectGlobalStyles } from './features/global-styles.js';
+import { normalizeArticleLayout } from './features/article-layout.js';
 import { initActiveNavigation } from './features/navigation.js';
 import { initContactForm } from './features/contact-form.js';
 import { initFilters } from './features/filters.js';
@@ -13,6 +14,7 @@ import { initTheme } from './features/theme.js';
 
 onReady(() => {
   injectGlobalStyles();
+  normalizeArticleLayout();
   initTheme();
   initMobileMenu();
   initGridCanvas();
