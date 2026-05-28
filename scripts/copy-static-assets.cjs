@@ -28,8 +28,46 @@ function copyFile(source, target) {
   fs.copyFileSync(source, target);
 }
 
+function walkFiles(directory, matcher, files = []) {
+  if (!fs.existsSync(directory)) return files;
+
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const fullPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      walkFiles(fullPath, matcher, files);
+      continue;
+    }
+    if (matcher(fullPath)) files.push(fullPath);
+  }
+
+  return files;
+}
+
+function stripVisibleSeoHelperBlocks() {
+  const helperBlockClasses = [
+    'nrs-static-project-context',
+    'nrs-static-related-links',
+    'nrs-static-faq',
+  ];
+
+  for (const filePath of walkFiles(distDir, (file) => file.endsWith('.html'))) {
+    let html = fs.readFileSync(filePath, 'utf8');
+    const original = html;
+
+    for (const className of helperBlockClasses) {
+      const pattern = new RegExp(`<section[^>]*\\b${className}\\b[^>]*>[\\s\\S]*?<\\/section>`, 'g');
+      html = html.replace(pattern, '');
+    }
+
+    if (html !== original) {
+      fs.writeFileSync(filePath, html, 'utf8');
+    }
+  }
+}
+
 copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
+stripVisibleSeoHelperBlocks();
 
-console.log('Copied static assets and runtime compatibility files into dist.');
+console.log('Copied static assets/runtime files and removed visible SEO helper blocks from dist.');
