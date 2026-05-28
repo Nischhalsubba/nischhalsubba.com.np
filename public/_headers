@@ -13,6 +13,11 @@
 /seo-enhancements.js
   Cache-Control: public, max-age=300, must-revalidate
 
+/assets/resume.pdf
+  Content-Type: application/pdf
+  Content-Disposition: attachment; filename="Nischhal-Raj-Subba-Resume.pdf"
+  Cache-Control: public, max-age=300, must-revalidate
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
