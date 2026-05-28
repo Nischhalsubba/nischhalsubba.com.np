@@ -24,13 +24,13 @@ The website is designed as a product-design portfolio, not only a personal homep
 The current production route for the homepage is handled by Cloudflare Pages redirects:
 
 ```txt
-/ → /home-v2.html
+/ -> /home-v2.html
 ```
 
 The current production blog route is handled as a physical public route:
 
 ```txt
-/blog/ → public/blog/index.html
+/blog/ -> public/blog/index.html
 ```
 
 ---
@@ -46,27 +46,31 @@ The current production blog route is handled as a physical public route:
 ├── projects.html                    # Project listing page
 ├── blog.html                        # Blog listing fallback page
 ├── blog/                            # Source blog detail pages included in Vite build
-│   ├── index.html
-│   ├── blog-web3-products.html
-│   ├── blog-good-handoff.html
-│   ├── blog-portfolio-product.html
-│   ├── blog-service-websites.html
-│   ├── blog-gaming-interface-clarity.html
-│   └── blog-design-systems-front-end.html
 ├── project-*.html                   # Project detail pages
 ├── public/                          # Files copied directly into Vite dist
 │   ├── _redirects
 │   ├── robots.txt
 │   ├── sitemap.xml
-│   └── blog/index.html              # Physical /blog/ route for Cloudflare Pages
+│   ├── detail-navigation.js
+│   ├── seo-enhancements.js
+│   └── blog/index.html
+├── src/
+│   └── scripts/
+│       ├── main.js                  # Browser runtime entrypoint
+│       ├── features/                # Focused UI behavior modules
+│       └── utils/                   # Shared runtime helpers
 ├── assets/
 │   ├── images/
 │   └── js/project-data.js
-├── script.js
+├── docs/codebase-structure.md       # Maintainer guide
+├── script.js                        # Compatibility wrapper for old HTML references
 ├── style.css
 ├── vite.config.ts
+├── wrangler.jsonc
 └── package.json
 ```
+
+The browser runtime is no longer kept in one large file. Existing HTML pages still load `script.js`, but that file now imports the modular runtime from `src/scripts/main.js`.
 
 ---
 
@@ -74,7 +78,7 @@ The current production blog route is handled as a physical public route:
 
 ### Main pages
 
-- `/` → routed to `/home-v2.html`
+- `/` -> routed to `/home-v2.html`
 - `/projects.html`
 - `/about.html`
 - `/blog/`
@@ -130,6 +134,12 @@ Preview production build:
 npm run preview
 ```
 
+Check local links:
+
+```bash
+npm run check:links
+```
+
 ---
 
 ## Deployment
@@ -140,6 +150,8 @@ Recommended Cloudflare Pages settings:
 Build command: npm run build
 Output directory: dist
 ```
+
+This repository also includes a temporary compatibility shim because Cloudflare was previously configured to run `npx next build`. The shim redirects that command to `npm run build`, but the dashboard setting should still be changed to the Vite build command above.
 
 Important deployment files live in `public/` because Vite copies that folder directly into the final `dist/` build.
 
