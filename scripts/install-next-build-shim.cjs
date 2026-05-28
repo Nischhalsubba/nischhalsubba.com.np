@@ -3,6 +3,7 @@ const path = require('node:path');
 
 const rootDir = path.resolve(__dirname, '..');
 const binDir = path.join(rootDir, 'node_modules', '.bin');
+const cloudflareProjectName = 'portfolio-website-2026';
 
 function writeExecutable(filePath, body) {
   fs.writeFileSync(filePath, body, 'utf8');
@@ -37,6 +38,7 @@ const { spawnSync } = require('node:child_process');
 const args = process.argv.slice(2);
 const rootDir = path.resolve(__dirname, '..', '..');
 const distDir = path.join(rootDir, 'dist');
+const cloudflareProjectName = '${cloudflareProjectName}';
 
 function findRealWrangler() {
   const pathEntries = (process.env.PATH || '').split(path.delimiter);
@@ -55,7 +57,7 @@ function findRealWrangler() {
 }
 
 if (args[0] === 'deploy') {
-  console.log('Cloudflare Pages compatibility: redirecting wrangler deploy to wrangler pages deploy dist.');
+  console.log('Cloudflare Pages compatibility: redirecting wrangler deploy to wrangler pages deploy dist for ' + cloudflareProjectName + '.');
 
   const realWrangler = findRealWrangler();
   if (!realWrangler) {
@@ -63,7 +65,7 @@ if (args[0] === 'deploy') {
     process.exit(0);
   }
 
-  const pagesArgs = ['pages', 'deploy', distDir, '--project-name', 'nischhal-raj-subba-portfolio'];
+  const pagesArgs = ['pages', 'deploy', distDir, '--project-name', cloudflareProjectName];
   const result = spawnSync(realWrangler, pagesArgs, { stdio: 'inherit' });
   process.exit(result.status ?? 1);
 }
