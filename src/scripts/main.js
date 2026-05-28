@@ -6,6 +6,7 @@ import { initContactForm } from './features/contact-form.js';
 import { initFilters } from './features/filters.js';
 import { initGridCanvas } from './features/grid-canvas.js';
 import { initMobileMenu } from './features/mobile-menu.js';
+import { initMotionEnhancements } from './features/motion.js';
 import { initPageTransitions } from './features/page-transitions.js';
 import { initResumeDownload } from './features/resume.js';
 import { initShareButtons } from './features/share.js';
@@ -20,6 +21,7 @@ onReady(() => {
   initGridCanvas();
   initActiveNavigation();
   initFilters();
+  initMotionEnhancements();
   initPageTransitions();
   initResumeDownload();
   initShareButtons();
