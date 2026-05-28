@@ -10,6 +10,7 @@ import { initGridCanvas } from './features/grid-canvas.js';
 import { initMobileMenu } from './features/mobile-menu.js';
 import { initMotionEnhancements } from './features/motion.js';
 import { initPageTransitions } from './features/page-transitions.js';
+import { useProjectDetailImages } from './features/project-images.js';
 import { initResumeDownload } from './features/resume.js';
 import { initShareButtons } from './features/share.js';
 import { ensureSiteFooter } from './features/site-footer.js';
@@ -20,6 +21,7 @@ onReady(() => {
   normalizeArticleLayout();
   polishContent();
   applyPortfolioUpgrades();
+  useProjectDetailImages();
   initTheme();
   initMobileMenu();
   initGridCanvas();
