@@ -12,6 +12,12 @@ export function injectGlobalStyles() {
     .copied::after { content: 'Copied'; margin-left: .5rem; font-size: .85em; }
     :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
+    .nrs-static-project-context,
+    .nrs-static-related-links,
+    .nrs-static-faq {
+      display: none !important;
+    }
+
     .hero-portrait-container {
       width: min(560px, 92vw);
       margin: clamp(48px, 7vw, 88px) auto 0;
@@ -36,6 +42,9 @@ export function injectGlobalStyles() {
     .nrs-article-main {
       padding-top: clamp(112px, 12vw, 172px);
       padding-bottom: clamp(72px, 10vw, 128px);
+      width: min(100%, var(--max-width, 1200px));
+      margin-inline: auto;
+      padding-inline: var(--container-padding, 40px);
     }
 
     .nrs-article-main > article,
