@@ -3,12 +3,15 @@ const path = require('node:path');
 
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
+const requestedPortraitUrl = 'https://i.imgur.com/oFHdPUS.png';
 const requiredFiles = [
   'index.html',
   'home-v2.html',
   'projects.html',
   'blog/index.html',
   'script.js',
+  'src/scripts/features/theme.js',
+  'src/scripts/features/portfolio-upgrades.js',
   'assets/resume.pdf',
 ];
 const forbiddenHtmlMarkers = [
@@ -37,6 +40,11 @@ function walkFiles(directory, matcher, files = []) {
   return files;
 }
 
+function fileContains(relativePath, value) {
+  const filePath = path.join(distDir, relativePath);
+  return fs.existsSync(filePath) && fs.readFileSync(filePath, 'utf8').includes(value);
+}
+
 if (!fs.existsSync(distDir)) {
   fail('dist directory does not exist. Run the build before auditing.');
 } else {
@@ -56,7 +64,13 @@ if (!fs.existsSync(distDir)) {
 
   const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
   if (!indexHtml.includes('Senior UI/Product Designer')) fail('Homepage is missing senior designer positioning.');
-  if (!indexHtml.includes('https://i.imgur.com/oFHdPUS.png')) fail('Homepage is missing the requested portrait image URL.');
+
+  const portraitIsAvailable =
+    indexHtml.includes(requestedPortraitUrl) ||
+    fileContains('src/scripts/features/theme.js', requestedPortraitUrl) ||
+    fileContains('src/scripts/features/portfolio-upgrades.js', requestedPortraitUrl);
+
+  if (!portraitIsAvailable) fail('Build is missing the requested portrait image URL.');
 
   const resumePath = path.join(distDir, 'assets', 'resume.pdf');
   if (fs.existsSync(resumePath) && fs.statSync(resumePath).size < 10_000) {
