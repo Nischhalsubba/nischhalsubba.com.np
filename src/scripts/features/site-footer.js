@@ -7,13 +7,13 @@ function buildFooter() {
     <div class="container">
       <div class="footer-top-grid">
         <div class="footer-cta">
-          <h2>Let's design<br>something<br><span style="font-style:italic;">clear.</span></h2>
-          <p>Available for product design, Web3 UX, SaaS dashboards, service websites, Figma design systems, UX audits, and developer-ready handoff.</p>
+          <h2>Available for<br>senior product<br><span style="font-style:italic;">design work.</span></h2>
+          <p>Mobile apps, Web3 UX, SaaS dashboards, websites, design systems, prototypes, design QA, and developer-ready handoff.</p>
           <a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a>
         </div>
         <div class="footer-nav-grid">
           <div class="footer-col">
-            <h5>Sitemap</h5>
+            <h5>Pages</h5>
             <a href="/">Home</a>
             <a href="/projects.html">Work</a>
             <a href="/about.html">About</a>
@@ -21,18 +21,16 @@ function buildFooter() {
             <a href="/contact.html">Contact</a>
           </div>
           <div class="footer-col">
-            <h5>Services</h5>
-            <a href="/product-design-nepal.html">Product Design</a>
-            <a href="/web3-ux-designer.html">Web3 UX</a>
-            <a href="/saas-ux-designer.html">SaaS UX</a>
-            <a href="/website-ux-design.html">Website UX</a>
-            <a href="/figma-design-systems.html">Figma Systems</a>
-            <a href="/ux-audit.html">UX Audit</a>
+            <h5>Links</h5>
+            <a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a>
+            <a href="https://github.com/Nischhalsubba" target="_blank" rel="noopener">GitHub</a>
+            <a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom-bar">
-        <span>(c) 2026 Nischhal Raj Subba. Product Designer in Nepal.</span>
+        <span>(c) 2026 Nischhal Raj Subba.</span>
       </div>
     </div>`;
   return footer;
