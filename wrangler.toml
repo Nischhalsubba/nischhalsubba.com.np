@@ -1,0 +1,3 @@
+# Cloudflare Pages configuration
+# This repository is a static/Vite site, not a Next.js app.
+pages_build_output_dir = "dist"
