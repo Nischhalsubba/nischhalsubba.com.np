@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap');
+
+:root {
+  --wc-bg: #050509;
+  --wc-ink: #f8f7f2;
+  --wc-muted: #a7a2b6;
+  --wc-card: rgba(255,255,255,.075);
+  --wc-card-strong: rgba(255,255,255,.13);
+  --wc-line: rgba(255,255,255,.14);
+  --wc-accent: #ff6b35;
+  --wc-accent-2: #7c5cff;
+  --wc-accent-3: #19d3ff;
+  --wc-lime: #dcff57;
+}
+
+html[data-theme='light'] {
+  --wc-bg: #f7f4ec;
+  --wc-ink: #0b0b0f;
+  --wc-muted: #625f6d;
+  --wc-card: rgba(255,255,255,.74);
+  --wc-card-strong: rgba(255,255,255,.92);
+  --wc-line: rgba(10,10,14,.12);
+  --wc-accent: #ec4e20;
+  --wc-accent-2: #341cff;
+  --wc-accent-3: #008eb8;
+  --wc-lime: #b8d800;
+}
+
+body {
+  background: var(--wc-bg) !important;
+  overflow-x: hidden;
+}
+
+body::before {
+  inset: -20% !important;
+  background:
+    radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--wc-accent-2) 34%, transparent), transparent 30%),
+    radial-gradient(circle at 88% 18%, color-mix(in srgb, var(--wc-accent) 28%, transparent), transparent 28%),
+    radial-gradient(circle at 56% 86%, color-mix(in srgb, var(--wc-accent-3) 24%, transparent), transparent 34%),
+    linear-gradient(90deg, color-mix(in srgb, var(--wc-ink) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(180deg, color-mix(in srgb, var(--wc-ink) 4%, transparent) 1px, transparent 1px) !important;
+  background-size: auto, auto, auto, 80px 80px, 80px 80px !important;
+}
+
+.wc-hero {
+  padding-top: clamp(150px, 16vw, 224px) !important;
+}
+
+.wc-hero-grid {
+  position: relative;
+  border: 1px solid var(--wc-line);
+  border-radius: clamp(34px, 5vw, 62px);
+  padding: clamp(24px, 4vw, 62px);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--wc-card-strong) 70%, transparent), color-mix(in srgb, var(--wc-card) 70%, transparent));
+  box-shadow: 0 44px 160px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.11);
+  backdrop-filter: blur(22px) saturate(150%);
+  overflow: hidden;
+}
+
+.wc-hero-grid::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 22% 0%, color-mix(in srgb, var(--wc-lime) 18%, transparent), transparent 32%),
+    radial-gradient(circle at 100% 18%, color-mix(in srgb, var(--wc-accent-2) 20%, transparent), transparent 32%);
+}
+
+.wc-hero-grid > * {
+  position: relative;
+  z-index: 1;
+}
+
+.wc-eyebrow::before {
+  background: var(--wc-lime) !important;
+  box-shadow: 0 0 28px color-mix(in srgb, var(--wc-lime) 58%, transparent);
+}
+
+.wc-title em {
+  color: transparent !important;
+  background: linear-gradient(110deg, var(--wc-lime), var(--wc-accent-3), var(--wc-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.wc-portrait::before {
+  background: conic-gradient(from 90deg, var(--wc-accent), var(--wc-accent-2), var(--wc-accent-3), var(--wc-lime), var(--wc-accent)) !important;
+  filter: blur(30px) !important;
+  opacity: .34 !important;
+}
+
+.wc-proof {
+  border: 1px solid var(--wc-line) !important;
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--wc-bg) 22%, transparent);
+  overflow: hidden;
+}
+
+.wc-card,
+.project-card,
+.impact-card,
+.writing-item {
+  background: linear-gradient(145deg, var(--wc-card-strong), var(--wc-card)) !important;
+  backdrop-filter: blur(16px) saturate(140%);
+}
+
+.wc-btn-primary,
+.btn-primary {
+  box-shadow: 0 18px 60px color-mix(in srgb, var(--wc-ink) 22%, transparent) !important;
+}
+
+@media (max-width: 640px) {
+  .wc-hero-grid { border-radius: 28px; padding: 20px; }
+}
