@@ -1,9 +1,14 @@
-function ensureAtelierStylesheet() {
-  if (document.querySelector('link[href*="atelier-zero.css"]')) return;
+function ensureStylesheet(href, marker) {
+  if (document.querySelector(`link[href*="${marker}"]`)) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = '/atelier-zero.css?v=1.1';
+  link.href = href;
   document.head.appendChild(link);
+}
+
+function ensureAtelierStylesheet() {
+  ensureStylesheet('/atelier-zero.css?v=1.1', 'atelier-zero.css');
+  ensureStylesheet('/atelier-fixes.css?v=1.0', 'atelier-fixes.css');
 }
 
 function isHomePage() {
@@ -91,7 +96,7 @@ function normalizeArticleAndProjectImages() {
   document.querySelectorAll('.case-hero-img-container, .project-detail-hero, .nrs-project-image-container').forEach((container) => {
     container.classList.add('az-feature-media');
   });
-  document.querySelectorAll('.case-hero-img, .nrs-project-detail-image, article img').forEach((image) => {
+  document.querySelectorAll('.case-hero-img, .nrs-project-detail-image, .project-detail-hero img, article img').forEach((image) => {
     image.classList.add('az-media-img');
   });
 }
