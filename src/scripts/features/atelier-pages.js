@@ -11,6 +11,7 @@ function ensureAtelierStylesheet() {
   ensureStylesheet('/atelier-fixes.css?v=1.0', 'atelier-fixes.css');
   ensureStylesheet('/apple-atelier.css?v=1.0', 'apple-atelier.css');
   ensureStylesheet('/apple-pages.css?v=1.0', 'apple-pages.css');
+  ensureStylesheet('/apple-system-final.css?v=1.0', 'apple-system-final.css');
 }
 
 function isHomePage() {
