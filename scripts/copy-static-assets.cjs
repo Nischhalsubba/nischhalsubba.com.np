@@ -3,6 +3,13 @@ const path = require('node:path');
 
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
+const designStylesheets = [
+  'atelier-zero.css',
+  'atelier-fixes.css',
+  'apple-atelier.css',
+  'apple-pages.css',
+  'apple-system-final.css',
+];
 
 function copyDirectory(source, target) {
   if (!fs.existsSync(source)) return;
@@ -68,6 +75,11 @@ function stripVisibleSeoHelperBlocks() {
 copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
+
+for (const stylesheet of designStylesheets) {
+  copyFile(path.join(rootDir, stylesheet), path.join(distDir, stylesheet));
+}
+
 stripVisibleSeoHelperBlocks();
 
-console.log('Copied static assets/runtime files and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets/runtime/design files and removed visible SEO helper blocks from dist.');
