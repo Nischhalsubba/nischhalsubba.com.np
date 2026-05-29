@@ -10,14 +10,31 @@ const requiredFiles = [
   'projects.html',
   'blog/index.html',
   'script.js',
-  'src/scripts/features/theme.js',
-  'src/scripts/features/portfolio-upgrades.js',
+  'atelier-zero.css',
+  'atelier-fixes.css',
+  'apple-atelier.css',
+  'apple-pages.css',
+  'apple-system-final.css',
+  'src/scripts/features/atelier-pages.js',
   'assets/resume.pdf',
+];
+const requiredHomepageMarkers = [
+  'Senior UI/Product Designer',
+  'atelier-zero.css',
+  'atelier-fixes.css',
+  'Product Design',
+];
+const requiredRuntimeMarkers = [
+  'apple-system-final.css',
+  'atelier-pages.js',
 ];
 const forbiddenHtmlMarkers = [
   'nrs-static-project-context',
   'nrs-static-related-links',
   'nrs-static-faq',
+  'worldclass.css',
+  'open-design-overrides.css',
+  'Products</h5><a href="/products/ui-kit.html"',
 ];
 
 function fail(message) {
@@ -40,9 +57,13 @@ function walkFiles(directory, matcher, files = []) {
   return files;
 }
 
-function fileContains(relativePath, value) {
+function readDistFile(relativePath) {
   const filePath = path.join(distDir, relativePath);
-  return fs.existsSync(filePath) && fs.readFileSync(filePath, 'utf8').includes(value);
+  return fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : '';
+}
+
+function fileContains(relativePath, value) {
+  return readDistFile(relativePath).includes(value);
 }
 
 if (!fs.existsSync(distDir)) {
@@ -57,18 +78,25 @@ if (!fs.existsSync(distDir)) {
     const html = fs.readFileSync(htmlFile, 'utf8');
     for (const marker of forbiddenHtmlMarkers) {
       if (html.includes(marker)) {
-        fail(`Visible SEO helper marker found in ${path.relative(distDir, htmlFile)}: ${marker}`);
+        fail(`Forbidden or obsolete marker found in ${path.relative(distDir, htmlFile)}: ${marker}`);
       }
     }
   }
 
-  const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
-  if (!indexHtml.includes('Senior UI/Product Designer')) fail('Homepage is missing senior designer positioning.');
+  const indexHtml = readDistFile('index.html');
+  for (const marker of requiredHomepageMarkers) {
+    if (!indexHtml.includes(marker)) fail(`Homepage is missing required marker: ${marker}`);
+  }
+
+  const runtime = readDistFile('script.js');
+  for (const marker of requiredRuntimeMarkers) {
+    if (!runtime.includes(marker)) fail(`Runtime is missing required marker: ${marker}`);
+  }
 
   const portraitIsAvailable =
     indexHtml.includes(requestedPortraitUrl) ||
     fileContains('src/scripts/features/theme.js', requestedPortraitUrl) ||
-    fileContains('src/scripts/features/portfolio-upgrades.js', requestedPortraitUrl);
+    fileContains('src/scripts/features/atelier-pages.js', requestedPortraitUrl);
 
   if (!portraitIsAvailable) fail('Build is missing the requested portrait image URL.');
 
@@ -82,4 +110,4 @@ if (process.exitCode) {
   process.exit(process.exitCode);
 }
 
-console.log('[build-audit] Build output checks passed.');
+console.log('[build-audit] Apple/Open Design build output checks passed.');
