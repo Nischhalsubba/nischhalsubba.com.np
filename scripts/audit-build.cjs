@@ -24,9 +24,10 @@ const requiredHomepageMarkers = [
   'atelier-fixes.css',
   'Product Design',
 ];
-const requiredRuntimeMarkers = [
+const requiredAtelierRuntimeMarkers = [
   'apple-system-final.css',
-  'atelier-pages.js',
+  'atelier-zero.css',
+  'apple-pages.css',
 ];
 const forbiddenHtmlMarkers = [
   'nrs-static-project-context',
@@ -88,9 +89,14 @@ if (!fs.existsSync(distDir)) {
     if (!indexHtml.includes(marker)) fail(`Homepage is missing required marker: ${marker}`);
   }
 
-  const runtime = readDistFile('script.js');
-  for (const marker of requiredRuntimeMarkers) {
-    if (!runtime.includes(marker)) fail(`Runtime is missing required marker: ${marker}`);
+  const compatibilityEntrypoint = readDistFile('script.js');
+  if (!compatibilityEntrypoint.includes('./src/scripts/main.js')) {
+    fail('Compatibility script.js is not importing the runtime entrypoint.');
+  }
+
+  const atelierRuntime = readDistFile('src/scripts/features/atelier-pages.js');
+  for (const marker of requiredAtelierRuntimeMarkers) {
+    if (!atelierRuntime.includes(marker)) fail(`Atelier runtime is missing required marker: ${marker}`);
   }
 
   const portraitIsAvailable =
