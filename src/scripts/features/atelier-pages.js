@@ -10,6 +10,7 @@ function ensureAtelierStylesheet() {
   ensureStylesheet('/atelier-zero.css?v=1.1', 'atelier-zero.css');
   ensureStylesheet('/atelier-fixes.css?v=1.0', 'atelier-fixes.css');
   ensureStylesheet('/apple-atelier.css?v=1.0', 'apple-atelier.css');
+  ensureStylesheet('/apple-pages.css?v=1.0', 'apple-pages.css');
 }
 
 function isHomePage() {
