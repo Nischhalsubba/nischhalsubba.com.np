@@ -1,0 +1,375 @@
+/* Final QA polish: cursor visibility, project sections, work page, and button contrast. */
+
+/* 1. Restore the native cursor. The old custom cursor hid the OS cursor on desktop. */
+html,
+body,
+body * {
+  cursor: auto !important;
+}
+
+a,
+button,
+[role='button'],
+input[type='button'],
+input[type='submit'],
+.nav-cta,
+.btn,
+.az-btn,
+.work-card,
+.project-card,
+.az-card[href],
+.email-pill,
+.footer-email-btn {
+  cursor: pointer !important;
+}
+
+input,
+textarea,
+select,
+.search-input {
+  cursor: text !important;
+}
+
+.custom-cursor-dot,
+.custom-cursor-outline {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* 2. Button contrast hardening across light and dark sections. */
+.btn,
+.az-btn,
+.nav-cta,
+.email-pill,
+.footer-email-btn,
+.filter-btn {
+  min-height: 44px;
+  border-radius: 980px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.btn-primary,
+.az-btn-primary,
+.nav-cta:not(.ghost),
+.footer-email-btn {
+  color: #ffffff !important;
+  background: #005bb5 !important;
+  border: 1px solid #005bb5 !important;
+}
+
+.btn-primary:hover,
+.az-btn-primary:hover,
+.nav-cta:not(.ghost):hover,
+.footer-email-btn:hover {
+  color: #ffffff !important;
+  background: #004f9f !important;
+  border-color: #004f9f !important;
+}
+
+.btn-secondary,
+.btn-ghost,
+.az-btn-ghost,
+.nav-cta.ghost,
+.email-pill,
+.filter-btn {
+  color: #1d1d1f !important;
+  background: #ffffff !important;
+  border: 1px solid #b8b8bd !important;
+}
+
+.btn-secondary:hover,
+.btn-ghost:hover,
+.az-btn-ghost:hover,
+.nav-cta.ghost:hover,
+.email-pill:hover,
+.filter-btn:hover,
+.filter-btn.active {
+  color: #000000 !important;
+  background: #f5f5f7 !important;
+  border-color: #86868b !important;
+}
+
+.work .btn-secondary,
+.work .btn-ghost,
+.work .az-btn-ghost,
+.atelier-subpage .hero-section .btn-secondary,
+.atelier-subpage .hero-section .btn-ghost,
+.atelier-subpage .hero-section .az-btn-ghost {
+  color: #ffffff !important;
+  background: #1d1d1f !important;
+  border-color: #86868b !important;
+}
+
+.work .btn-primary,
+.work .az-btn-primary,
+.atelier-subpage .hero-section .btn-primary,
+.atelier-subpage .hero-section .az-btn-primary {
+  color: #ffffff !important;
+  background: #006edb !important;
+  border-color: #006edb !important;
+}
+
+:focus-visible {
+  outline: 3px solid #005bb5 !important;
+  outline-offset: 4px !important;
+}
+
+.work :focus-visible,
+.atelier-subpage .hero-section :focus-visible {
+  outline-color: #6bb7ff !important;
+}
+
+/* 3. Homepage selected-work section: wide Apple-style showcase, never a narrow phone card. */
+.tight {
+  width: 100% !important;
+  padding: clamp(28px, 5vw, 72px) 0 !important;
+}
+
+.work {
+  width: min(100% - clamp(24px, 4vw, 64px), 1680px) !important;
+  max-width: 1680px !important;
+  margin: 0 auto !important;
+  padding: clamp(44px, 7vw, 112px) clamp(22px, 5vw, 96px) !important;
+  border-radius: clamp(28px, 3vw, 44px) !important;
+  background:
+    radial-gradient(circle at 86% 10%, rgba(41, 151, 255, .22), transparent 34%),
+    radial-gradient(circle at 16% 86%, rgba(107, 183, 255, .12), transparent 36%),
+    #000000 !important;
+  color: #f5f5f7 !important;
+  overflow: hidden !important;
+}
+
+.work-rule {
+  color: #c7c7cc !important;
+  border-top-color: rgba(255, 255, 255, .24) !important;
+  margin-bottom: clamp(36px, 5vw, 72px) !important;
+}
+
+.work-grid {
+  display: grid !important;
+  grid-template-columns: minmax(320px, .92fr) minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: clamp(18px, 3.2vw, 48px) !important;
+  align-items: stretch !important;
+}
+
+.work-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  min-height: clamp(440px, 42vw, 680px) !important;
+  padding-right: clamp(0px, 2vw, 24px) !important;
+}
+
+.work-copy .label {
+  color: #6bb7ff !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+
+.work-copy h2 {
+  color: #f5f5f7 !important;
+  max-width: 13.6ch !important;
+  font-size: clamp(46px, 6.2vw, 112px) !important;
+  line-height: .96 !important;
+  letter-spacing: -.064em !important;
+  margin: clamp(20px, 3vw, 40px) 0 clamp(24px, 4vw, 52px) !important;
+}
+
+.work-link {
+  align-self: flex-start !important;
+  color: #6bb7ff !important;
+  border: 0 !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  padding-bottom: 0 !important;
+}
+
+.work-link::after {
+  content: '→';
+  margin-left: 10px;
+}
+
+.work-card,
+.work-card.alt {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: clamp(460px, 42vw, 680px) !important;
+  padding: clamp(20px, 2.6vw, 36px) !important;
+  border-radius: clamp(24px, 2.4vw, 36px) !important;
+  background: #1d1d1f !important;
+  color: #f5f5f7 !important;
+  border: 1px solid rgba(255, 255, 255, .12) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.work-card:hover,
+.work-card.alt:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(107, 183, 255, .44) !important;
+}
+
+.work-card .label-row {
+  margin-bottom: clamp(18px, 2vw, 28px) !important;
+}
+
+.work-card .small-label,
+.work-card .year {
+  color: #6bb7ff !important;
+  font-weight: 700 !important;
+}
+
+.work-card .index,
+.work-card .meta-row {
+  color: #c7c7cc !important;
+}
+
+.work-card h3 {
+  color: #ffffff !important;
+  font-size: clamp(34px, 3.2vw, 56px) !important;
+  line-height: 1 !important;
+  letter-spacing: -.055em !important;
+  margin-bottom: 14px !important;
+}
+
+.work-card p {
+  color: #c7c7cc !important;
+  max-width: 34ch !important;
+  font-size: 16.5px !important;
+  line-height: 1.48 !important;
+}
+
+.work-card .img {
+  margin-top: auto !important;
+  margin-bottom: clamp(18px, 2vw, 28px) !important;
+  border-radius: 24px !important;
+  background: #2c2c2e !important;
+  aspect-ratio: 16 / 10 !important;
+  overflow: hidden !important;
+}
+
+.work-card .img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.work-card .meta-row {
+  border-top-color: rgba(255, 255, 255, .28) !important;
+}
+
+/* 4. Work page redesign: image-led, uniform with homepage, enough width. */
+.projects-page main,
+body:has(.project-grid) main {
+  background: #f5f5f7 !important;
+}
+
+.az-grid-3.project-grid,
+.project-grid {
+  width: 100% !important;
+  max-width: 1520px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(16px, 2.2vw, 28px) !important;
+}
+
+.az-grid-3.project-grid .az-card,
+.project-grid .az-card {
+  min-height: clamp(320px, 28vw, 460px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: clamp(24px, 3vw, 44px) !important;
+  border-radius: 34px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.92)) !important;
+  border: 1px solid rgba(0,0,0,.08) !important;
+  color: #1d1d1f !important;
+}
+
+.az-grid-3.project-grid .az-card:nth-child(1),
+.az-grid-3.project-grid .az-card:nth-child(2),
+.project-grid .az-card:nth-child(1),
+.project-grid .az-card:nth-child(2) {
+  background: #000000 !important;
+  color: #f5f5f7 !important;
+}
+
+.az-grid-3.project-grid .az-card:nth-child(1) h3,
+.az-grid-3.project-grid .az-card:nth-child(2) h3,
+.project-grid .az-card:nth-child(1) h3,
+.project-grid .az-card:nth-child(2) h3 {
+  color: #f5f5f7 !important;
+}
+
+.az-grid-3.project-grid .az-card:nth-child(1) p,
+.az-grid-3.project-grid .az-card:nth-child(2) p,
+.project-grid .az-card:nth-child(1) p,
+.project-grid .az-card:nth-child(2) p {
+  color: #c7c7cc !important;
+}
+
+.az-grid-3.project-grid .az-card h3,
+.project-grid .az-card h3 {
+  font-size: clamp(30px, 3.2vw, 52px) !important;
+  line-height: 1 !important;
+  letter-spacing: -.055em !important;
+}
+
+.az-grid-3.project-grid .az-card p,
+.project-grid .az-card p {
+  font-size: 17px !important;
+  line-height: 1.48 !important;
+}
+
+.az-grid-3.project-grid .az-card .num,
+.project-grid .az-card .num {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #005bb5 !important;
+}
+
+.az-grid-3.project-grid .az-card:nth-child(1) .num,
+.az-grid-3.project-grid .az-card:nth-child(2) .num,
+.project-grid .az-card:nth-child(1) .num,
+.project-grid .az-card:nth-child(2) .num {
+  color: #6bb7ff !important;
+}
+
+@media (max-width: 1160px) {
+  .work-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .work-copy,
+  .work-card,
+  .work-card.alt {
+    min-height: auto !important;
+  }
+
+  .work-copy h2 {
+    max-width: 14ch !important;
+  }
+
+  .az-grid-3.project-grid,
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .work {
+    width: calc(100% - 20px) !important;
+    border-radius: 28px !important;
+  }
+
+  .az-grid-3.project-grid,
+  .project-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
