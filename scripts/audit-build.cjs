@@ -20,13 +20,13 @@ const requiredFiles = [
 ];
 const requiredHomepageMarkers = [
   'Senior UI/Product Designer',
-  'atelier-zero.css',
-  'atelier-fixes.css',
   'Product Design',
 ];
 const requiredAtelierRuntimeMarkers = [
   'apple-system-final.css',
   'atelier-zero.css',
+  'atelier-fixes.css',
+  'apple-atelier.css',
   'apple-pages.css',
 ];
 const forbiddenHtmlMarkers = [
