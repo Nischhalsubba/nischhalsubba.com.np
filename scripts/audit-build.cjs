@@ -16,6 +16,7 @@ const requiredFiles = [
   'apple-pages.css',
   'apple-system-final.css',
   'contrast-qa.css',
+  'site-qa-fixes.css',
   'src/scripts/features/atelier-pages.js',
   'assets/resume.pdf',
 ];
@@ -30,6 +31,14 @@ const requiredAtelierRuntimeMarkers = [
   'apple-atelier.css',
   'apple-pages.css',
   'contrast-qa.css',
+  'site-qa-fixes.css',
+];
+const requiredFinalQaMarkers = [
+  'cursor: auto',
+  'cursor: pointer',
+  '.work-grid',
+  '.project-grid',
+  '#005bb5',
 ];
 const forbiddenHtmlMarkers = [
   'nrs-static-project-context',
@@ -99,6 +108,11 @@ if (!fs.existsSync(distDir)) {
   const atelierRuntime = readDistFile('src/scripts/features/atelier-pages.js');
   for (const marker of requiredAtelierRuntimeMarkers) {
     if (!atelierRuntime.includes(marker)) fail(`Atelier runtime is missing required marker: ${marker}`);
+  }
+
+  const finalQaCss = readDistFile('site-qa-fixes.css');
+  for (const marker of requiredFinalQaMarkers) {
+    if (!finalQaCss.includes(marker)) fail(`site-qa-fixes.css is missing required marker: ${marker}`);
   }
 
   const portraitIsAvailable =
