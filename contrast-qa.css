@@ -1,0 +1,296 @@
+/* Contrast QA pass: WCAG AA-safe overrides for the Apple/Open Design system. */
+:root {
+  --apple-body: #55555a;
+  --apple-muted: #55555a;
+  --apple-faint: #5f5f66;
+  --apple-link: #005bb5;
+  --apple-link-hover: #004f9f;
+  --apple-link-dark: #6bb7ff;
+  --apple-blue: #006edb;
+  --ink-faint: #5f5f66;
+  --ink-mute: #55555a;
+}
+
+html,
+body {
+  color: #1d1d1f !important;
+  background: #f5f5f7 !important;
+}
+
+p,
+li,
+.body-large,
+.section-lead,
+.lead,
+.w-summary,
+.card-summary,
+.az-card p,
+.impact-card p,
+.writing-item p,
+article p {
+  color: #55555a !important;
+}
+
+a:not(.btn):not(.az-btn):not(.nav-cta):not(.brand):not(.work-card):not(.project-card):not(.az-card),
+.work-link,
+.email-pill {
+  color: #005bb5 !important;
+}
+
+a:not(.btn):not(.az-btn):not(.nav-cta):not(.brand):not(.work-card):not(.project-card):not(.az-card):hover,
+.work-link:hover,
+.email-pill:hover {
+  color: #004f9f !important;
+}
+
+.label,
+.eyebrow,
+.case-label,
+.meta,
+.coord,
+.sec-rule,
+.topbar-inner,
+.brand-meta,
+.stat-label,
+.wire-title span,
+.wire-coord,
+.wire-role,
+.az-nav-links a .num,
+.annot,
+.side-rail .rail-text {
+  color: #5f5f66 !important;
+}
+
+.az-nav-links a,
+.brand,
+.footer-col a,
+.mobile-nav-links a {
+  color: #1d1d1f !important;
+}
+
+.az-nav-links a:hover,
+.footer-col a:hover,
+.mobile-nav-links a:hover {
+  color: #005bb5 !important;
+}
+
+.btn-primary,
+.az-btn-primary,
+.nav-cta:not(.ghost) {
+  background: #006edb !important;
+  border-color: #006edb !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover,
+.az-btn-primary:hover,
+.nav-cta:not(.ghost):hover {
+  background: #005bb5 !important;
+  border-color: #005bb5 !important;
+  color: #ffffff !important;
+}
+
+.btn-secondary,
+.btn-ghost,
+.az-btn-ghost,
+.nav-cta.ghost,
+.email-pill {
+  color: #1d1d1f !important;
+  background: #ffffff !important;
+  border-color: #c7c7cc !important;
+}
+
+/* Dark chapters */
+.work,
+.atelier-subpage .hero-section,
+.atelier-subpage main > .hero-section:first-child,
+blockquote,
+.quote-card {
+  background: #000000 !important;
+  color: #f5f5f7 !important;
+}
+
+.work h1,
+.work h2,
+.work h3,
+.work .display,
+.work-copy h2,
+.atelier-subpage .hero-section h1,
+.atelier-subpage .hero-section h2,
+.atelier-subpage .hero-section .hero-title,
+.atelier-subpage .hero-section .display,
+blockquote h2,
+blockquote h3,
+.quote-card h2,
+.quote-card h3 {
+  color: #f5f5f7 !important;
+}
+
+.work p,
+.work-card p,
+.work-rule,
+.work-card .meta-row,
+.work-card .index,
+.atelier-subpage .hero-section p,
+.atelier-subpage .hero-section .lead,
+.atelier-subpage .hero-section .body-large,
+blockquote p,
+.quote-card p {
+  color: #c7c7cc !important;
+}
+
+.work .label,
+.work-link,
+.work-card .small-label,
+.work-card .year,
+.atelier-subpage .hero-section a:not(.btn):not(.nav-cta),
+blockquote a,
+.quote-card a {
+  color: #6bb7ff !important;
+}
+
+.work-link:hover,
+.atelier-subpage .hero-section a:not(.btn):not(.nav-cta):hover,
+blockquote a:hover,
+.quote-card a:hover {
+  color: #9dccff !important;
+}
+
+.work-card,
+.work-card.alt {
+  background: #1d1d1f !important;
+  color: #f5f5f7 !important;
+}
+
+.work-card h3 {
+  color: #f5f5f7 !important;
+}
+
+.work-card .img {
+  background: #2c2c2e !important;
+}
+
+.work-card .meta-row {
+  border-top-color: rgba(255, 255, 255, .24) !important;
+}
+
+.atelier-subpage .badge-pill,
+.atelier-subpage .hero-section .badge-pill {
+  color: #ffffff !important;
+  background: #2c2c2e !important;
+  border-color: #6e6e73 !important;
+}
+
+/* White/gray card surfaces */
+.az-card,
+.impact-card,
+.writing-item,
+.project-card,
+.atelier-subpage .snapshot-grid > div,
+.atelier-subpage .metric-card,
+.atelier-subpage .journey-card,
+.atelier-subpage .impact-card,
+.atelier-subpage .writing-item,
+.atelier-subpage .az-card {
+  background: #ffffff !important;
+  color: #1d1d1f !important;
+  border-color: rgba(0, 0, 0, .1) !important;
+}
+
+.az-card h3,
+.impact-card h3,
+.writing-item h3,
+.project-card h3,
+.w-title,
+.card-content h3,
+.atelier-subpage h2,
+.atelier-subpage h3,
+.atelier-subpage .metric-val {
+  color: #1d1d1f !important;
+}
+
+.az-card p,
+.impact-card p,
+.writing-item p,
+.project-card p,
+.w-summary,
+.card-summary,
+.atelier-subpage .snapshot-grid p,
+.atelier-subpage .metric-card p,
+.atelier-subpage .journey-card p {
+  color: #55555a !important;
+}
+
+.badge-pill,
+.tag,
+.card-meta-line,
+.w-date,
+.eyebrow {
+  color: #5f5f66 !important;
+}
+
+/* Header/footer/readability cleanup */
+.site-footer,
+footer {
+  background: #f5f5f7 !important;
+  color: #1d1d1f !important;
+}
+
+.site-footer p,
+.site-footer span,
+footer p,
+footer span {
+  color: #55555a !important;
+}
+
+.site-footer a,
+footer a {
+  color: #005bb5 !important;
+}
+
+.footer-cta h2,
+.foot-mega .word {
+  color: #1d1d1f !important;
+}
+
+.az-index {
+  color: #55555a !important;
+  background: rgba(255, 255, 255, .88) !important;
+  border-color: rgba(0, 0, 0, .16) !important;
+}
+
+.az-index .on,
+.az-index .n {
+  color: #1d1d1f !important;
+}
+
+:focus-visible {
+  outline: 3px solid #005bb5 !important;
+  outline-offset: 3px !important;
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --apple-body: #424245;
+    --apple-muted: #424245;
+    --apple-faint: #424245;
+    --apple-link: #004f9f;
+  }
+
+  p,
+  li,
+  .lead,
+  .body-large,
+  .section-lead,
+  .az-card p,
+  article p {
+    color: #424245 !important;
+  }
+
+  .work p,
+  .work-card p,
+  .work-rule,
+  .atelier-subpage .hero-section p {
+    color: #e8e8ed !important;
+  }
+}
