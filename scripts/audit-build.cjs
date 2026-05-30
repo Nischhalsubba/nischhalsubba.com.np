@@ -15,6 +15,7 @@ const requiredFiles = [
   'apple-atelier.css',
   'apple-pages.css',
   'apple-system-final.css',
+  'contrast-qa.css',
   'src/scripts/features/atelier-pages.js',
   'assets/resume.pdf',
 ];
@@ -28,6 +29,7 @@ const requiredAtelierRuntimeMarkers = [
   'atelier-fixes.css',
   'apple-atelier.css',
   'apple-pages.css',
+  'contrast-qa.css',
 ];
 const forbiddenHtmlMarkers = [
   'nrs-static-project-context',
