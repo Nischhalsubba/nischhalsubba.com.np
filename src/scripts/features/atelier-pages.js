@@ -13,6 +13,7 @@ function ensureAtelierStylesheet() {
   ensureStylesheet('/apple-pages.css?v=1.0', 'apple-pages.css');
   ensureStylesheet('/apple-system-final.css?v=1.0', 'apple-system-final.css');
   ensureStylesheet('/contrast-qa.css?v=1.0', 'contrast-qa.css');
+  ensureStylesheet('/site-qa-fixes.css?v=1.0', 'site-qa-fixes.css');
 }
 
 function isHomePage() {
