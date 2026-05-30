@@ -10,6 +10,7 @@ const designStylesheets = [
   'apple-pages.css',
   'apple-system-final.css',
   'contrast-qa.css',
+  'site-qa-fixes.css',
 ];
 
 function copyDirectory(source, target) {
