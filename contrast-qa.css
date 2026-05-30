@@ -7,6 +7,7 @@
   --apple-link-hover: #004f9f;
   --apple-link-dark: #6bb7ff;
   --apple-blue: #006edb;
+  --apple-dark-border: #86868b;
   --ink-faint: #5f5f66;
   --ink-mute: #55555a;
 }
@@ -171,14 +172,14 @@ blockquote a:hover,
 }
 
 .work-card .meta-row {
-  border-top-color: rgba(255, 255, 255, .24) !important;
+  border-top-color: rgba(255, 255, 255, .32) !important;
 }
 
 .atelier-subpage .badge-pill,
 .atelier-subpage .hero-section .badge-pill {
   color: #ffffff !important;
   background: #2c2c2e !important;
-  border-color: #6e6e73 !important;
+  border-color: #86868b !important;
 }
 
 /* White/gray card surfaces */
@@ -275,6 +276,7 @@ footer a {
     --apple-muted: #424245;
     --apple-faint: #424245;
     --apple-link: #004f9f;
+    --apple-dark-border: #a1a1a6;
   }
 
   p,
@@ -292,5 +294,10 @@ footer a {
   .work-rule,
   .atelier-subpage .hero-section p {
     color: #e8e8ed !important;
+  }
+
+  .atelier-subpage .badge-pill,
+  .atelier-subpage .hero-section .badge-pill {
+    border-color: #a1a1a6 !important;
   }
 }
