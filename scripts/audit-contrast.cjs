@@ -15,7 +15,7 @@ const checks = [
   ['White card body', '#55555a', '#ffffff', 4.5],
   ['White card metadata', '#5f5f66', '#ffffff', 4.5],
   ['Focus ring on white', '#005bb5', '#ffffff', 3],
-  ['Border on dark interactive pill', '#6e6e73', '#2c2c2e', 3],
+  ['Border on dark interactive pill', '#86868b', '#2c2c2e', 3],
 ];
 
 const requiredFiles = [
@@ -67,7 +67,7 @@ const contrastCss = fs.existsSync(path.join(distDir, 'contrast-qa.css'))
   ? fs.readFileSync(path.join(distDir, 'contrast-qa.css'), 'utf8')
   : '';
 
-for (const requiredToken of ['#55555a', '#c7c7cc', '#6bb7ff', ':focus-visible', 'prefers-contrast']) {
+for (const requiredToken of ['#55555a', '#c7c7cc', '#6bb7ff', '#86868b', ':focus-visible', 'prefers-contrast']) {
   if (!contrastCss.includes(requiredToken)) {
     fail(`contrast-qa.css is missing required token or selector: ${requiredToken}`);
   }
