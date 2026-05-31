@@ -69,10 +69,11 @@ copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
 copyFile(path.join(rootDir, 'assets', 'styles', 'portfolio-system.css'), path.join(distDir, 'assets', 'styles', 'portfolio-system.css'));
+copyFile(path.join(rootDir, 'assets', 'styles', 'page-redesign.css'), path.join(distDir, 'assets', 'styles', 'page-redesign.css'));
 copyFile(path.join(rootDir, 'llms.txt'), path.join(distDir, 'llms.txt'));
 copyFile(path.join(rootDir, 'ai-index.json'), path.join(distDir, 'ai-index.json'));
 copyFile(path.join(rootDir, 'sitemap.xml'), path.join(distDir, 'sitemap.xml'));
 
 stripVisibleSeoHelperBlocks();
 
-console.log('Copied static assets, runtime, portfolio system, SEO/AI files, and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, runtime, portfolio/page systems, SEO/AI files, and removed visible SEO helper blocks from dist.');
