@@ -1,0 +1,82 @@
+{
+  "name": "Nischhal Raj Subba",
+  "url": "https://nischhalsubba.com.np/",
+  "type": "Person",
+  "role": "Senior UI/Product Designer",
+  "location": "Nepal",
+  "availableFor": [
+    "Senior Product Designer roles",
+    "Product UX/UI consulting",
+    "Web3 UX design",
+    "SaaS dashboard design",
+    "Mobile app design",
+    "Design systems",
+    "Developer handoff and design QA"
+  ],
+  "summary": "Nischhal Raj Subba is a senior UI/Product Designer from Nepal focused on clear product flows, polished interfaces, mobile app UX, Web3 product design, SaaS dashboards, design systems, prototypes, and developer-ready handoff.",
+  "expertise": [
+    "Product design",
+    "UI design",
+    "UX strategy",
+    "Mobile app UX",
+    "Web3 UX",
+    "SaaS dashboards",
+    "Design systems",
+    "Figma prototypes",
+    "Developer handoff",
+    "Design QA",
+    "Responsive websites"
+  ],
+  "primaryPages": {
+    "home": "https://nischhalsubba.com.np/",
+    "work": "https://nischhalsubba.com.np/projects.html",
+    "about": "https://nischhalsubba.com.np/about.html",
+    "writing": "https://nischhalsubba.com.np/blog/",
+    "contact": "https://nischhalsubba.com.np/contact.html",
+    "resume": "https://nischhalsubba.com.np/assets/resume.pdf"
+  },
+  "projects": [
+    {
+      "name": "Yarsha",
+      "url": "https://nischhalsubba.com.np/project-yarsha.html",
+      "category": "Web3 mobile product design",
+      "summary": "Mobile product flows for messaging, wallet context, signing clarity, and transaction review."
+    },
+    {
+      "name": "Mokshya.io",
+      "url": "https://nischhalsubba.com.np/project-mokshya.html",
+      "category": "Web3 protocol website UX",
+      "summary": "Protocol website structure focused on explanation, credibility, developer context, and clearer next steps."
+    },
+    {
+      "name": "Hamro Idea",
+      "url": "https://nischhalsubba.com.np/project-hamro-idea.html",
+      "category": "Website UX and front-end",
+      "summary": "Software studio website with clearer services, SEO structure, and lead paths."
+    },
+    {
+      "name": "piHub",
+      "url": "https://nischhalsubba.com.np/project-pihub.html",
+      "category": "Fintech UX",
+      "summary": "Investor-facing workflows for applications, credit requests, verification, and profile-management states."
+    },
+    {
+      "name": "Zapp Today",
+      "url": "https://nischhalsubba.com.np/project-zapp.html",
+      "category": "Mobile app UX",
+      "summary": "Delivery and scheduling flows from wireframes into customer and driver app screens."
+    },
+    {
+      "name": "Neverwinter Live Parser",
+      "url": "https://nischhalsubba.com.np/project-neverwinter-parser.html",
+      "category": "Data-heavy interface design",
+      "summary": "Windows tool concept for turning combat logs into readable encounter insights."
+    }
+  ],
+  "contact": {
+    "email": "hinischalsubba@gmail.com",
+    "linkedin": "https://linkedin.com/in/nischhal/",
+    "behance": "https://www.behance.net/nischhal",
+    "github": "https://github.com/Nischhalsubba"
+  }
+}
