@@ -1,0 +1,453 @@
+/* Final polish requested after visual QA: readable text, professional project sections, visible buttons, and a safe custom cursor. */
+
+:root {
+  --nrs-blue: #005bb5;
+  --nrs-blue-strong: #004f9f;
+  --nrs-blue-dark: #6bb7ff;
+  --nrs-text: #1d1d1f;
+  --nrs-body: #4f4f55;
+  --nrs-muted: #5b5b62;
+  --nrs-dark-body: #d7d7dc;
+  --nrs-dark-muted: #b8b8bf;
+  --nrs-dark-card: #171719;
+  --nrs-dark-card-2: #202023;
+}
+
+/* Readability pass */
+body,
+html {
+  color: var(--nrs-text) !important;
+}
+
+p,
+li,
+.lead,
+.body-large,
+.section-lead,
+.az-card p,
+.impact-card p,
+.writing-item p,
+.project-card p,
+article p,
+.w-summary,
+.card-summary {
+  color: var(--nrs-body) !important;
+}
+
+.meta,
+.coord,
+.label,
+.eyebrow,
+.case-label,
+.sec-rule,
+.topbar-inner,
+.brand-meta,
+.stat-label,
+.card-meta-line,
+.w-date,
+.tag {
+  color: var(--nrs-muted) !important;
+}
+
+h1,
+h2,
+h3,
+.display,
+.hero-title,
+.section-title,
+.az-card h3,
+.project-card h3,
+.w-title {
+  color: var(--nrs-text) !important;
+}
+
+a:not(.brand):not(.nav-cta):not(.btn):not(.az-btn):not(.work-card):not(.az-card):not(.project-card),
+.work-link,
+.email-pill {
+  color: var(--nrs-blue) !important;
+}
+
+a:not(.brand):not(.nav-cta):not(.btn):not(.az-btn):not(.work-card):not(.az-card):not(.project-card):hover,
+.work-link:hover,
+.email-pill:hover {
+  color: var(--nrs-blue-strong) !important;
+}
+
+/* Button contrast and visible label fix */
+.btn,
+.az-btn,
+.nav-cta,
+.email-pill,
+.footer-email-btn,
+.filter-btn,
+button,
+input[type='submit'] {
+  min-height: 44px;
+  color: var(--nrs-text) !important;
+  -webkit-text-fill-color: currentColor !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.btn-primary,
+.az-btn-primary,
+.nav-cta:not(.ghost),
+.footer-email-btn,
+button[type='submit'],
+input[type='submit'] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: var(--nrs-blue) !important;
+  border-color: var(--nrs-blue) !important;
+}
+
+.btn-primary:hover,
+.az-btn-primary:hover,
+.nav-cta:not(.ghost):hover,
+.footer-email-btn:hover,
+button[type='submit']:hover,
+input[type='submit']:hover {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: var(--nrs-blue-strong) !important;
+  border-color: var(--nrs-blue-strong) !important;
+}
+
+.btn-secondary,
+.btn-ghost,
+.az-btn-ghost,
+.nav-cta.ghost,
+.email-pill,
+.filter-btn {
+  color: var(--nrs-text) !important;
+  -webkit-text-fill-color: var(--nrs-text) !important;
+  background: #ffffff !important;
+  border-color: #9d9da3 !important;
+}
+
+.btn-secondary:hover,
+.btn-ghost:hover,
+.az-btn-ghost:hover,
+.nav-cta.ghost:hover,
+.email-pill:hover,
+.filter-btn:hover,
+.filter-btn.active {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  background: #f5f5f7 !important;
+  border-color: #707078 !important;
+}
+
+.work .btn,
+.work .nav-cta,
+.work .email-pill,
+.atelier-subpage .hero-section .btn,
+.atelier-subpage .hero-section .email-pill {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Custom cursor: visible follower, never hides the native OS cursor. */
+.nrs-cursor-dot,
+.nrs-cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 2147483647;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  transition: opacity .18s ease, width .18s ease, height .18s ease, border-color .18s ease, background .18s ease;
+  mix-blend-mode: difference;
+}
+
+.nrs-cursor-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.nrs-cursor-ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, .82);
+}
+
+body.nrs-cursor-ready .nrs-cursor-dot,
+body.nrs-cursor-ready .nrs-cursor-ring {
+  opacity: 1;
+}
+
+body.nrs-cursor-hover .nrs-cursor-dot {
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+}
+
+body.nrs-cursor-hover .nrs-cursor-ring {
+  width: 54px;
+  height: 54px;
+  border-color: rgba(107, 183, 255, .98);
+  background: rgba(107, 183, 255, .08);
+}
+
+body.nrs-cursor-text .nrs-cursor-ring {
+  width: 22px;
+  height: 42px;
+  border-radius: 14px;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .nrs-cursor-dot,
+  .nrs-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Redesign the homepage selected-work block into a polished showcase. */
+.tight {
+  padding: clamp(42px, 6vw, 90px) 0 !important;
+}
+
+.work {
+  width: min(100% - clamp(24px, 5vw, 96px), 1640px) !important;
+  max-width: 1640px !important;
+  margin: 0 auto !important;
+  padding: clamp(36px, 6vw, 96px) !important;
+  border-radius: clamp(28px, 3vw, 44px) !important;
+  background:
+    radial-gradient(circle at 80% 4%, rgba(0, 113, 227, .24), transparent 34%),
+    linear-gradient(135deg, #000 0%, #05070a 52%, #07111c 100%) !important;
+  color: #f5f5f7 !important;
+}
+
+.work-rule {
+  color: var(--nrs-dark-muted) !important;
+  border-top-color: rgba(255, 255, 255, .24) !important;
+  margin-bottom: clamp(28px, 4vw, 58px) !important;
+}
+
+.work-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.2fr) !important;
+  grid-template-areas:
+    'copy feature'
+    'copy secondary' !important;
+  gap: clamp(20px, 3vw, 42px) !important;
+  align-items: stretch !important;
+}
+
+.work-copy {
+  grid-area: copy !important;
+  min-height: auto !important;
+  padding: clamp(6px, 1vw, 14px) clamp(10px, 2vw, 28px) clamp(6px, 1vw, 14px) 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.work-copy .label {
+  color: var(--nrs-blue-dark) !important;
+  font-weight: 800 !important;
+}
+
+.work-copy h2 {
+  max-width: 11.5ch !important;
+  color: #ffffff !important;
+  font-size: clamp(48px, 6.2vw, 108px) !important;
+  line-height: .96 !important;
+  letter-spacing: -.065em !important;
+  margin: clamp(18px, 3vw, 34px) 0 clamp(24px, 3vw, 44px) !important;
+}
+
+.work-link {
+  align-self: flex-start !important;
+  color: var(--nrs-blue-dark) !important;
+  font-weight: 700 !important;
+  border: 0 !important;
+}
+
+.work-link::after {
+  content: '→';
+  margin-left: 10px;
+}
+
+.work-card,
+.work-card.alt {
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, .8fr) minmax(280px, .9fr) !important;
+  gap: clamp(22px, 3vw, 42px) !important;
+  align-items: center !important;
+  padding: clamp(24px, 3vw, 44px) !important;
+  border-radius: 34px !important;
+  border: 1px solid rgba(255, 255, 255, .16) !important;
+  background: rgba(29, 29, 31, .92) !important;
+  color: #f5f5f7 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.work-card:first-of-type {
+  grid-area: feature !important;
+}
+
+.work-card.alt {
+  grid-area: secondary !important;
+}
+
+.work-card:hover,
+.work-card.alt:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(107, 183, 255, .55) !important;
+}
+
+.work-card h3 {
+  color: #ffffff !important;
+  font-size: clamp(36px, 4.4vw, 72px) !important;
+  line-height: .96 !important;
+  letter-spacing: -.06em !important;
+  margin: 0 0 14px !important;
+}
+
+.work-card p {
+  color: var(--nrs-dark-body) !important;
+  font-size: 17px !important;
+  line-height: 1.48 !important;
+  max-width: 34ch !important;
+}
+
+.work-card .label-row {
+  grid-column: 1 / -1 !important;
+  margin: 0 !important;
+  align-self: start !important;
+}
+
+.work-card .small-label,
+.work-card .year {
+  color: var(--nrs-blue-dark) !important;
+  font-weight: 800 !important;
+}
+
+.work-card .index,
+.work-card .meta-row {
+  color: var(--nrs-dark-muted) !important;
+}
+
+.work-card .img {
+  grid-column: 2 !important;
+  grid-row: 2 / span 3 !important;
+  width: 100% !important;
+  min-height: 220px !important;
+  aspect-ratio: 16 / 10 !important;
+  margin: 0 !important;
+  border-radius: 26px !important;
+  background: #2c2c2e !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, .12) !important;
+}
+
+.work-card .img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.work-card .meta-row {
+  grid-column: 1 / -1 !important;
+  border-top-color: rgba(255, 255, 255, .24) !important;
+}
+
+/* Work page cards: more premium and easier to scan. */
+.az-grid-3.project-grid,
+.project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: clamp(18px, 2.6vw, 34px) !important;
+  max-width: 1480px !important;
+}
+
+.az-grid-3.project-grid .az-card,
+.project-grid .az-card {
+  min-height: 360px !important;
+  border-radius: 34px !important;
+  padding: clamp(26px, 3.2vw, 48px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, .1) !important;
+}
+
+.az-grid-3.project-grid .az-card:nth-child(1),
+.az-grid-3.project-grid .az-card:nth-child(2),
+.project-grid .az-card:nth-child(1),
+.project-grid .az-card:nth-child(2) {
+  background: #000000 !important;
+  color: #f5f5f7 !important;
+}
+
+.az-grid-3.project-grid .az-card:nth-child(1) h3,
+.az-grid-3.project-grid .az-card:nth-child(2) h3,
+.project-grid .az-card:nth-child(1) h3,
+.project-grid .az-card:nth-child(2) h3 {
+  color: #ffffff !important;
+}
+
+.az-grid-3.project-grid .az-card:nth-child(1) p,
+.az-grid-3.project-grid .az-card:nth-child(2) p,
+.project-grid .az-card:nth-child(1) p,
+.project-grid .az-card:nth-child(2) p {
+  color: var(--nrs-dark-body) !important;
+}
+
+.az-grid-3.project-grid .az-card h3,
+.project-grid .az-card h3 {
+  font-size: clamp(34px, 4vw, 64px) !important;
+  line-height: .98 !important;
+  letter-spacing: -.06em !important;
+}
+
+.az-grid-3.project-grid .az-card p,
+.project-grid .az-card p {
+  font-size: 17px !important;
+  line-height: 1.48 !important;
+  max-width: 44ch !important;
+}
+
+@media (max-width: 1120px) {
+  .work-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      'copy'
+      'feature'
+      'secondary' !important;
+  }
+
+  .work-copy h2 {
+    max-width: 12ch !important;
+  }
+
+  .work-card,
+  .work-card.alt {
+    grid-template-columns: 1fr !important;
+  }
+
+  .work-card .img {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .work {
+    width: calc(100% - 20px) !important;
+    border-radius: 28px !important;
+  }
+
+  .az-grid-3.project-grid,
+  .project-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
