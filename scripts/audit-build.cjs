@@ -10,52 +10,45 @@ const requiredFiles = [
   'projects.html',
   'blog/index.html',
   'script.js',
-  'atelier-zero.css',
-  'atelier-fixes.css',
-  'apple-atelier.css',
-  'apple-pages.css',
-  'apple-system-final.css',
-  'contrast-qa.css',
-  'site-qa-fixes.css',
-  'final-polish.css',
+  'assets/styles/portfolio-system.css',
   'src/scripts/features/atelier-pages.js',
   'src/scripts/features/custom-cursor.js',
   'assets/resume.pdf',
+  'llms.txt',
+  'ai-index.json',
+  'sitemap.xml',
 ];
 const requiredHomepageMarkers = [
   'Senior UI/Product Designer',
   'Product Design',
 ];
-const requiredAtelierRuntimeMarkers = [
-  'apple-system-final.css',
-  'atelier-zero.css',
-  'atelier-fixes.css',
-  'apple-atelier.css',
-  'apple-pages.css',
-  'contrast-qa.css',
-  'site-qa-fixes.css',
-  'final-polish.css',
+const requiredRuntimeMarkers = [
+  'portfolio-system.css',
+  'Senior Product Designer',
+  'Email me',
 ];
-const requiredFinalQaMarkers = [
-  'cursor: auto',
-  'cursor: pointer',
+const requiredSystemMarkers = [
+  '--ratio: 1.618',
+  '--space-xl',
   '.work-grid',
   '.project-grid',
-  '#005bb5',
-];
-const requiredPolishMarkers = [
+  '.writing-grid',
   '.nrs-cursor-dot',
-  '.nrs-cursor-ring',
-  '--nrs-dark-body',
-  'grid-template-areas',
-  '.work-card',
-  '#004f9f',
+  '#005bb5',
 ];
 const requiredCursorMarkers = [
   'initCustomCursor',
   'nrs-cursor-ready',
   'nrs-cursor-hover',
   'requestAnimationFrame',
+];
+const requiredAiMarkers = [
+  'Senior UI/Product Designer',
+  'Web3 UX',
+  'SaaS dashboards',
+  'Design systems',
+  'Yarsha',
+  'Mokshya.io',
 ];
 const forbiddenHtmlMarkers = [
   'nrs-static-project-context',
@@ -123,23 +116,24 @@ if (!fs.existsSync(distDir)) {
   }
 
   const atelierRuntime = readDistFile('src/scripts/features/atelier-pages.js');
-  for (const marker of requiredAtelierRuntimeMarkers) {
+  for (const marker of requiredRuntimeMarkers) {
     if (!atelierRuntime.includes(marker)) fail(`Atelier runtime is missing required marker: ${marker}`);
   }
 
-  const finalQaCss = readDistFile('site-qa-fixes.css');
-  for (const marker of requiredFinalQaMarkers) {
-    if (!finalQaCss.includes(marker)) fail(`site-qa-fixes.css is missing required marker: ${marker}`);
-  }
-
-  const polishCss = readDistFile('final-polish.css');
-  for (const marker of requiredPolishMarkers) {
-    if (!polishCss.includes(marker)) fail(`final-polish.css is missing required marker: ${marker}`);
+  const systemCss = readDistFile('assets/styles/portfolio-system.css');
+  for (const marker of requiredSystemMarkers) {
+    if (!systemCss.includes(marker)) fail(`portfolio-system.css is missing required marker: ${marker}`);
   }
 
   const cursorRuntime = readDistFile('src/scripts/features/custom-cursor.js');
   for (const marker of requiredCursorMarkers) {
     if (!cursorRuntime.includes(marker)) fail(`custom-cursor.js is missing required marker: ${marker}`);
+  }
+
+  const llms = readDistFile('llms.txt');
+  const aiIndex = readDistFile('ai-index.json');
+  for (const marker of requiredAiMarkers) {
+    if (!llms.includes(marker) && !aiIndex.includes(marker)) fail(`AI/SEO discovery files are missing required marker: ${marker}`);
   }
 
   const portraitIsAvailable =
@@ -159,4 +153,4 @@ if (process.exitCode) {
   process.exit(process.exitCode);
 }
 
-console.log('[build-audit] Apple/Open Design build output checks passed.');
+console.log('[build-audit] Portfolio system, SEO, AI, and accessibility output checks passed.');
