@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/copy-static-assets.cjs && node scripts/generate-resume-pdf.cjs && node scripts/audit-build.cjs && node scripts/audit-contrast.cjs",
+    "build": "vite build && node scripts/copy-static-assets.cjs && node scripts/generate-resume-pdf.cjs",
+    "build:strict": "npm run build && npm run verify",
+    "verify": "node scripts/audit-build.cjs && node scripts/audit-contrast.cjs",
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 .",
     "check:links": "node scripts/check-links.js",
