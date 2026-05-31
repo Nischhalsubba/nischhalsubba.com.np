@@ -15,46 +15,42 @@
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
     <link rel="stylesheet" href="/style.css?v=20.0" />
     <link rel="stylesheet" href="/assets/styles/portfolio-system.css?v=1.1" />
-    <link rel="stylesheet" href="/assets/styles/page-redesign.css?v=1.0" />
+    <link rel="stylesheet" href="/assets/styles/page-redesign.css?v=2.0" />
+    <link rel="stylesheet" href="/assets/styles/responsive-foundation.css?v=1.0" />
   </head>
   <body class="blog-page">
-    <main class="page-shell">
-      <section class="page-hero page-hero--dark blog-hero">
-        <div class="page-kicker">Writing / Product Design Notes</div>
-        <h1>Practical notes on making complex interfaces easier to understand.</h1>
-        <p>
-          Writing from my design practice across Web3 UX, mobile apps, SaaS dashboards, service websites, design systems, gaming interfaces, and developer handoff. Less theory, more decisions teams can use.
-        </p>
-        <div class="page-actions">
-          <a class="btn btn-primary" href="/projects.html">View selected work</a>
-          <a class="btn btn-ghost" href="/contact.html">Contact me</a>
+    <main class="nrs-page">
+      <section class="nrs-hero dark">
+        <div>
+          <span class="nrs-kicker">Writing / Product design notes</span>
+          <h1>Notes on making complex interfaces easier to understand.</h1>
+          <p class="nrs-lead">Practical writing from my work across Web3 UX, mobile apps, SaaS dashboards, service websites, gaming interfaces, design systems, and developer handoff.</p>
+          <div class="nrs-actions"><a class="btn btn-primary" href="/projects.html">View selected work</a><a class="btn btn-ghost" href="/contact.html">Contact me</a></div>
         </div>
+        <aside class="nrs-hero-aside">
+          <div class="nrs-fact"><strong>06</strong><span>articles on UX clarity, systems, Web3, handoff, and portfolio thinking.</span></div>
+          <div class="nrs-fact"><strong>Focus</strong><span>Short, practical essays tied to real design decisions and product contexts.</span></div>
+          <div class="nrs-fact"><strong>Goal</strong><span>Show how I think about interfaces, not just how the finished UI looks.</span></div>
+        </aside>
       </section>
 
-      <section class="page-section writing-intro">
-        <div class="section-heading-row">
-          <div><span class="section-eyebrow">Articles</span><h2>Design thinking with product context.</h2></div>
-          <p>Each article connects a design principle to real portfolio work: onboarding, handoff, interface clarity, content structure, and design systems.</p>
-        </div>
+      <section class="nrs-section">
+        <div class="nrs-section-head"><div><span class="nrs-kicker">Articles</span><h2 class="nrs-section-title">Design thinking with product context.</h2></div><p>Each article connects a principle to real portfolio work: wallet flows, handoff, interface clarity, service pages, data-heavy UI, and scalable systems.</p></div>
         <div class="search-wrapper"><input type="search" id="search-blog" class="search-input" placeholder="Search product design articles..." aria-label="Search articles" /></div>
       </section>
 
-      <section class="page-section page-section--tight">
-        <div class="article-grid writing-list">
-          <a href="/blog/blog-web3-products.html" class="article-card writing-item" data-category="web3 ux product design"><span class="w-date">Apr 26, 2026</span><h3>Designing Web3 Products Without Making Users Feel Lost</h3><p>Wallet clarity, transaction review, trust language, and product education from Yarsha and Mokshya.</p><span class="article-link">Read article →</span></a>
-          <a href="/blog/blog-good-handoff.html" class="article-card writing-item" data-category="handoff development figma ux process"><span class="w-date">Apr 25, 2026</span><h3>Why Good Handoff Matters More Than Perfect Screens</h3><p>Strong handoff explains behavior, states, responsive rules, edge cases, and design intent.</p><span class="article-link">Read article →</span></a>
-          <a href="/blog/blog-portfolio-product.html" class="article-card writing-item" data-category="portfolio product design career"><span class="w-date">Apr 24, 2026</span><h3>What I Learned Designing My Portfolio Like a Product</h3><p>A portfolio should show contribution, context, decisions, constraints, and honest project framing.</p><span class="article-link">Read article →</span></a>
-          <a href="/blog/blog-service-websites.html" class="article-card writing-item" data-category="website ux business service design seo"><span class="w-date">Apr 18, 2026</span><h3>Designing Service Websites That Explain the Business Clearly</h3><p>How broad service offerings become clearer website journeys, stronger SEO, and better lead paths.</p><span class="article-link">Read article →</span></a>
-          <a href="/blog/blog-gaming-interface-clarity.html" class="article-card writing-item" data-category="gaming ux interface data visualization"><span class="w-date">Apr 12, 2026</span><h3>What Gaming Taught Me About Interface Clarity</h3><p>Combat logs, real-time feedback, status states, and decision-making lessons for product UI.</p><span class="article-link">Read article →</span></a>
-          <a href="/blog/blog-design-systems-front-end.html" class="article-card writing-item" data-category="design systems frontend product design"><span class="w-date">Apr 08, 2026</span><h3>How I Think About Design Systems as a Front-End-Aware Designer</h3><p>Reusable components work when design behavior, content, accessibility, and implementation constraints align.</p><span class="article-link">Read article →</span></a>
+      <section class="nrs-section" style="padding-top:clamp(28px,4vw,58px);">
+        <div class="nrs-blog-grid writing-list">
+          <a href="/blog/blog-web3-products.html" class="nrs-blog-card" data-category="web3 ux product design"><span class="nrs-card-label">Web3 UX · Apr 26, 2026</span><h3>Designing Web3 Products Without Making Users Feel Lost</h3><p>Wallet clarity, transaction review, trust language, and product education from Yarsha and Mokshya.</p><span class="nrs-read">Read article →</span></a>
+          <a href="/blog/blog-good-handoff.html" class="nrs-blog-card" data-category="handoff development figma ux process"><span class="nrs-card-label">Handoff · Apr 25, 2026</span><h3>Why Good Handoff Matters More Than Perfect Screens</h3><p>Strong handoff explains behavior, states, responsive rules, edge cases, and design intent.</p><span class="nrs-read">Read article →</span></a>
+          <a href="/blog/blog-portfolio-product.html" class="nrs-blog-card" data-category="portfolio product design career"><span class="nrs-card-label">Portfolio · Apr 24, 2026</span><h3>What I Learned Designing My Portfolio Like a Product</h3><p>A portfolio should show contribution, context, decisions, constraints, and honest project framing.</p><span class="nrs-read">Read article →</span></a>
+          <a href="/blog/blog-service-websites.html" class="nrs-blog-card" data-category="website ux business service design seo"><span class="nrs-card-label">Website UX · Apr 18, 2026</span><h3>Designing Service Websites That Explain the Business Clearly</h3><p>How broad service offerings become clearer website journeys, stronger SEO, and better lead paths.</p><span class="nrs-read">Read article →</span></a>
+          <a href="/blog/blog-gaming-interface-clarity.html" class="nrs-blog-card" data-category="gaming ux interface data visualization"><span class="nrs-card-label">Interface clarity · Apr 12, 2026</span><h3>What Gaming Taught Me About Interface Clarity</h3><p>Combat logs, real-time feedback, status states, and decision-making lessons for product UI.</p><span class="nrs-read">Read article →</span></a>
+          <a href="/blog/blog-design-systems-front-end.html" class="nrs-blog-card" data-category="design systems frontend product design"><span class="nrs-card-label">Systems · Apr 08, 2026</span><h3>How I Think About Design Systems as a Front-End-Aware Designer</h3><p>Reusable components work when behavior, content, accessibility, and implementation constraints align.</p><span class="nrs-read">Read article →</span></a>
         </div>
       </section>
 
-      <section class="page-section cta-panel">
-        <span class="section-eyebrow">Need this thinking on your product?</span>
-        <h2>I help teams turn messy flows into clear, usable, production-ready interfaces.</h2>
-        <div class="page-actions"><a class="btn btn-primary" href="mailto:hinischalsubba@gmail.com">Email me</a><a class="btn btn-ghost" href="/projects.html">View work</a></div>
-      </section>
+      <section class="nrs-section"><div class="nrs-cta dark"><span class="nrs-kicker">Need this thinking on your product?</span><h2 class="nrs-section-title">I help teams turn messy flows into clear, usable, production-ready interfaces.</h2><div class="nrs-actions"><a class="btn btn-primary" href="mailto:hinischalsubba@gmail.com">Email me</a><a class="btn btn-ghost" href="/projects.html">View work</a></div></div></section>
     </main>
     <script type="module" src="/script.js?v=20.0"></script>
   </body>
