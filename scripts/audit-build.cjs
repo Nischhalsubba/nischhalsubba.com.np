@@ -17,7 +17,9 @@ const requiredFiles = [
   'apple-system-final.css',
   'contrast-qa.css',
   'site-qa-fixes.css',
+  'final-polish.css',
   'src/scripts/features/atelier-pages.js',
+  'src/scripts/features/custom-cursor.js',
   'assets/resume.pdf',
 ];
 const requiredHomepageMarkers = [
@@ -32,6 +34,7 @@ const requiredAtelierRuntimeMarkers = [
   'apple-pages.css',
   'contrast-qa.css',
   'site-qa-fixes.css',
+  'final-polish.css',
 ];
 const requiredFinalQaMarkers = [
   'cursor: auto',
@@ -39,6 +42,20 @@ const requiredFinalQaMarkers = [
   '.work-grid',
   '.project-grid',
   '#005bb5',
+];
+const requiredPolishMarkers = [
+  '.nrs-cursor-dot',
+  '.nrs-cursor-ring',
+  '--nrs-dark-body',
+  'grid-template-areas',
+  'Mokshya',
+  '#004f9f',
+];
+const requiredCursorMarkers = [
+  'initCustomCursor',
+  'nrs-cursor-ready',
+  'nrs-cursor-hover',
+  'requestAnimationFrame',
 ];
 const forbiddenHtmlMarkers = [
   'nrs-static-project-context',
@@ -113,6 +130,16 @@ if (!fs.existsSync(distDir)) {
   const finalQaCss = readDistFile('site-qa-fixes.css');
   for (const marker of requiredFinalQaMarkers) {
     if (!finalQaCss.includes(marker)) fail(`site-qa-fixes.css is missing required marker: ${marker}`);
+  }
+
+  const polishCss = readDistFile('final-polish.css');
+  for (const marker of requiredPolishMarkers) {
+    if (!polishCss.includes(marker)) fail(`final-polish.css is missing required marker: ${marker}`);
+  }
+
+  const cursorRuntime = readDistFile('src/scripts/features/custom-cursor.js');
+  for (const marker of requiredCursorMarkers) {
+    if (!cursorRuntime.includes(marker)) fail(`custom-cursor.js is missing required marker: ${marker}`);
   }
 
   const portraitIsAvailable =
