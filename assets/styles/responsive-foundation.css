@@ -1,0 +1,517 @@
+/*
+  Responsive foundation hotfix
+  Purpose: one stable navbar, no horizontal overflow, predictable tablet/mobile layouts.
+*/
+
+html,
+body {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+body {
+  padding-top: 76px !important;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100% !important;
+}
+
+/* Kill every legacy nav so it cannot fight the injected stable nav. */
+.nav-wrapper,
+.nav-pill,
+.nav-glider,
+.mobile-nav-toggle,
+.mobile-logo,
+.mobile-nav-overlay,
+.topbar,
+.side-rail,
+.theme-toggle-btn,
+canvas#grid-canvas,
+.custom-cursor-dot,
+.custom-cursor-outline {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Stable responsive navbar */
+.az-nav[data-stable-nav],
+.az-nav {
+  position: fixed !important;
+  top: 14px !important;
+  left: 50% !important;
+  right: auto !important;
+  width: min(calc(100% - 32px), 1180px) !important;
+  transform: translateX(-50%) !important;
+  z-index: 99999 !important;
+  padding: 8px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(0, 0, 0, .1) !important;
+  background: rgba(255, 255, 255, .88) !important;
+  color: #1d1d1f !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .08) !important;
+  backdrop-filter: saturate(180%) blur(22px) !important;
+}
+
+.az-nav .container,
+.az-nav-inner {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) auto !important;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+.az-nav .brand {
+  min-width: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  padding: 8px 10px !important;
+  color: #1d1d1f !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.az-nav .brand-mark {
+  width: 30px !important;
+  height: 30px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  border-radius: 50% !important;
+  background: #000 !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  flex: 0 0 auto !important;
+}
+
+.az-nav .brand-meta {
+  display: none !important;
+}
+
+.az-nav nav {
+  min-width: 0 !important;
+}
+
+.az-nav-links {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  overflow: hidden !important;
+}
+
+.az-nav-links li {
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.az-nav-links a {
+  display: inline-flex !important;
+  min-height: 38px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 14px !important;
+  border-radius: 999px !important;
+  color: #1d1d1f !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 680 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.az-nav-links a.active,
+.az-nav-links a:hover {
+  background: #f5f5f7 !important;
+  color: #005bb5 !important;
+}
+
+.az-nav-links .num {
+  display: none !important;
+}
+
+.nav-side {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+
+.nav-cta {
+  min-height: 38px !important;
+  padding: 0 14px !important;
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-weight: 720 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+}
+
+.nav-cta:not(.ghost) {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  background: #005bb5 !important;
+  border: 1px solid #005bb5 !important;
+}
+
+.nav-cta.ghost {
+  color: #1d1d1f !important;
+  -webkit-text-fill-color: #1d1d1f !important;
+  background: #fff !important;
+  border: 1px solid #9d9da3 !important;
+}
+
+/* Global responsive containers */
+.container,
+.az-container,
+.page-hero,
+.page-section,
+.cta-panel,
+.work,
+.az-feature-media,
+.case-hero-img-container,
+.project-detail-hero,
+.nrs-project-image-container {
+  max-width: min(100%, 1520px) !important;
+}
+
+main,
+.page-shell,
+.az-page-main,
+section,
+article,
+footer {
+  max-width: 100% !important;
+}
+
+/* Desktop/tablet grid safety */
+.az-hero-grid,
+.work-grid,
+.about-split,
+.contact-layout,
+.section-heading-row,
+.recognition-band,
+.case-split-section,
+.project-detail-grid,
+.about-grid {
+  display: grid !important;
+  min-width: 0 !important;
+}
+
+.az-grid-3,
+.project-grid,
+.writing-grid,
+.blog-grid,
+.articles-grid,
+.article-grid,
+.proof-grid,
+.capability-grid,
+.contact-cards,
+.recognition-grid,
+.impact-summary-grid,
+.about-story-grid,
+.quote-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: clamp(16px, 2.4vw, 28px) !important;
+}
+
+.az-card,
+.project-card,
+.writing-item,
+.article-card,
+.capability-card,
+.proof-card,
+.contact-card,
+.impact-card,
+.quote-card,
+.story-card,
+.timeline-item {
+  min-width: 0 !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Prevent huge text from breaking mobile. */
+h1,
+.hero-title,
+.display,
+.page-hero h1,
+.work-copy h2 {
+  overflow-wrap: balance !important;
+  word-break: normal !important;
+}
+
+p,
+li,
+a,
+span,
+h2,
+h3,
+h4 {
+  overflow-wrap: anywhere !important;
+}
+
+/* Project/home sections */
+.work {
+  width: min(calc(100% - 32px), 1520px) !important;
+}
+
+.work-card,
+.work-card.alt {
+  min-width: 0 !important;
+}
+
+/* Article/detail page safety */
+article,
+.az-article-card,
+.blog-article,
+.article-content {
+  width: min(calc(100% - 32px), 980px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (max-width: 980px) {
+  body {
+    padding-top: 72px !important;
+  }
+
+  .az-nav[data-stable-nav],
+  .az-nav {
+    top: 10px !important;
+    width: calc(100% - 20px) !important;
+    border-radius: 28px !important;
+  }
+
+  .az-nav-inner {
+    grid-template-columns: 1fr auto !important;
+    gap: 8px !important;
+  }
+
+  .az-nav .brand {
+    padding-left: 8px !important;
+  }
+
+  .az-nav nav {
+    grid-column: 1 / -1 !important;
+    order: 3 !important;
+    width: 100% !important;
+  }
+
+  .az-nav-links {
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    padding: 2px !important;
+  }
+
+  .az-nav-links::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .nav-side {
+    justify-self: end !important;
+  }
+
+  .nav-side .nav-cta.ghost {
+    display: none !important;
+  }
+
+  .nav-cta {
+    min-height: 36px !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+  }
+
+  .page-shell {
+    padding-top: 118px !important;
+  }
+
+  .az-hero-grid,
+  .work-grid,
+  .about-split,
+  .contact-layout,
+  .section-heading-row,
+  .recognition-band,
+  .case-split-section,
+  .project-detail-grid,
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: none !important;
+  }
+
+  .work-copy,
+  .work-card,
+  .work-card.alt {
+    grid-area: auto !important;
+  }
+
+  .work-card,
+  .work-card.alt {
+    grid-template-columns: 1fr !important;
+  }
+
+  .work-card .img {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-height: 220px !important;
+  }
+
+  .page-hero,
+  .page-section,
+  .cta-panel,
+  .work,
+  .az-feature-media,
+  .case-hero-img-container,
+  .project-detail-hero,
+  .nrs-project-image-container {
+    width: calc(100% - 24px) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  body {
+    padding-top: 118px !important;
+  }
+
+  .az-nav[data-stable-nav],
+  .az-nav {
+    padding: 7px !important;
+  }
+
+  .az-nav .brand span:not(.brand-mark):not(.brand-meta) {
+    font-size: 14px !important;
+  }
+
+  .nav-side .nav-cta:not(.ghost) {
+    padding: 0 10px !important;
+  }
+
+  .az-nav-links a {
+    min-height: 34px !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+  }
+
+  .page-shell {
+    padding-top: 126px !important;
+  }
+
+  .page-hero,
+  .page-section,
+  .cta-panel,
+  .work {
+    width: calc(100% - 18px) !important;
+    border-radius: 26px !important;
+  }
+
+  .page-hero,
+  .page-section,
+  .cta-panel,
+  .work,
+  .az-card,
+  .project-card,
+  .article-card,
+  .capability-card,
+  .proof-card,
+  .contact-card,
+  .impact-card {
+    padding: clamp(22px, 6vw, 34px) !important;
+  }
+
+  .az-grid-3,
+  .project-grid,
+  .writing-grid,
+  .blog-grid,
+  .articles-grid,
+  .article-grid,
+  .proof-grid,
+  .capability-grid,
+  .contact-cards,
+  .recognition-grid,
+  .impact-summary-grid,
+  .about-story-grid,
+  .quote-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  h1,
+  .hero-title,
+  .display,
+  .page-hero h1,
+  .work-copy h2 {
+    font-size: clamp(38px, 12vw, 58px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.055em !important;
+  }
+
+  h2,
+  .page-section h2,
+  .section-title {
+    font-size: clamp(30px, 9vw, 44px) !important;
+    line-height: 1.05 !important;
+  }
+
+  p,
+  li,
+  .lead,
+  .body-large,
+  .section-lead,
+  .page-hero p,
+  .article-card p,
+  .capability-card p,
+  .contact-card p {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+
+  .page-actions {
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .page-actions .btn,
+  .page-actions .az-btn,
+  .page-actions .nav-cta {
+    width: 100% !important;
+  }
+
+  .contact-email {
+    font-size: clamp(18px, 6vw, 24px) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .az-nav-inner {
+    grid-template-columns: 1fr !important;
+  }
+
+  .nav-side {
+    display: none !important;
+  }
+
+  .az-nav nav {
+    grid-column: auto !important;
+  }
+
+  body,
+  .page-shell {
+    padding-top: 116px !important;
+  }
+}
