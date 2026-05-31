@@ -9,6 +9,7 @@ function ensureStylesheet(href, marker) {
 function ensureAtelierStylesheet() {
   ensureStylesheet('/assets/styles/portfolio-system.css?v=1.0', 'portfolio-system.css');
   ensureStylesheet('/assets/styles/page-redesign.css?v=1.1', 'page-redesign.css');
+  ensureStylesheet('/assets/styles/responsive-foundation.css?v=1.0', 'responsive-foundation.css');
 }
 
 function isHomePage() {
