@@ -3,16 +3,6 @@ const path = require('node:path');
 
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
-const designStylesheets = [
-  'atelier-zero.css',
-  'atelier-fixes.css',
-  'apple-atelier.css',
-  'apple-pages.css',
-  'apple-system-final.css',
-  'contrast-qa.css',
-  'site-qa-fixes.css',
-  'final-polish.css',
-];
 
 function copyDirectory(source, target) {
   if (!fs.existsSync(source)) return;
@@ -78,11 +68,11 @@ function stripVisibleSeoHelperBlocks() {
 copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
-
-for (const stylesheet of designStylesheets) {
-  copyFile(path.join(rootDir, stylesheet), path.join(distDir, stylesheet));
-}
+copyFile(path.join(rootDir, 'assets', 'styles', 'portfolio-system.css'), path.join(distDir, 'assets', 'styles', 'portfolio-system.css'));
+copyFile(path.join(rootDir, 'llms.txt'), path.join(distDir, 'llms.txt'));
+copyFile(path.join(rootDir, 'ai-index.json'), path.join(distDir, 'ai-index.json'));
+copyFile(path.join(rootDir, 'sitemap.xml'), path.join(distDir, 'sitemap.xml'));
 
 stripVisibleSeoHelperBlocks();
 
-console.log('Copied static assets/runtime/design files and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, runtime, portfolio system, SEO/AI files, and removed visible SEO helper blocks from dist.');
