@@ -4,6 +4,7 @@ import { normalizeArticleLayout } from './features/article-layout.js';
 import { initActiveNavigation } from './features/navigation.js';
 import { initAtelierPages } from './features/atelier-pages.js';
 import { initContactForm } from './features/contact-form.js';
+import { initCustomCursor } from './features/custom-cursor.js';
 import { initFilters } from './features/filters.js';
 import { initMobileMenu } from './features/mobile-menu.js';
 import { initMotionEnhancements } from './features/motion.js';
@@ -22,5 +23,6 @@ onReady(() => {
   initMotionEnhancements();
   initResumeDownload();
   initContactForm();
+  initCustomCursor();
   ensureSiteFooter();
 });
