@@ -11,6 +11,7 @@ const designStylesheets = [
   'apple-system-final.css',
   'contrast-qa.css',
   'site-qa-fixes.css',
+  'final-polish.css',
 ];
 
 function copyDirectory(source, target) {
