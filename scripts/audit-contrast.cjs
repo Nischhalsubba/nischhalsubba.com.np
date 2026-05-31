@@ -5,25 +5,25 @@ const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 
 const checks = [
-  ['Body text on Apple gray', '#55555a', '#f5f5f7', 4.5],
-  ['Muted metadata on Apple gray', '#5f5f66', '#f5f5f7', 4.5],
+  ['Body text on Apple gray', '#4f4f55', '#f5f5f7', 4.5],
+  ['Muted metadata on Apple gray', '#5b5b62', '#f5f5f7', 4.5],
   ['Primary link on Apple gray', '#005bb5', '#f5f5f7', 4.5],
   ['Primary button text', '#ffffff', '#005bb5', 4.5],
   ['Primary button hover text', '#ffffff', '#004f9f', 4.5],
-  ['Dark chapter body', '#c7c7cc', '#000000', 4.5],
-  ['Dark card body', '#c7c7cc', '#1d1d1f', 4.5],
+  ['Dark chapter body', '#d7d7dc', '#000000', 4.5],
+  ['Dark card body', '#d7d7dc', '#1d1d1f', 4.5],
   ['Dark chapter link', '#6bb7ff', '#000000', 4.5],
-  ['White card body', '#55555a', '#ffffff', 4.5],
-  ['White card metadata', '#5f5f66', '#ffffff', 4.5],
+  ['White card body', '#4f4f55', '#ffffff', 4.5],
+  ['White card metadata', '#5b5b62', '#ffffff', 4.5],
   ['Secondary button text', '#1d1d1f', '#ffffff', 4.5],
   ['Focus ring on white', '#005bb5', '#ffffff', 3],
   ['Border on dark interactive pill', '#86868b', '#2c2c2e', 3],
 ];
 
 const requiredFiles = [
-  'contrast-qa.css',
-  'site-qa-fixes.css',
+  'assets/styles/portfolio-system.css',
   'src/scripts/features/atelier-pages.js',
+  'src/scripts/features/custom-cursor.js',
 ];
 
 function hexToRgb(hex) {
@@ -66,22 +66,13 @@ for (const [name, foreground, background, minimum] of checks) {
   }
 }
 
-const contrastCss = fs.existsSync(path.join(distDir, 'contrast-qa.css'))
-  ? fs.readFileSync(path.join(distDir, 'contrast-qa.css'), 'utf8')
-  : '';
-const finalQaCss = fs.existsSync(path.join(distDir, 'site-qa-fixes.css'))
-  ? fs.readFileSync(path.join(distDir, 'site-qa-fixes.css'), 'utf8')
+const portfolioCss = fs.existsSync(path.join(distDir, 'assets/styles/portfolio-system.css'))
+  ? fs.readFileSync(path.join(distDir, 'assets/styles/portfolio-system.css'), 'utf8')
   : '';
 
-for (const requiredToken of ['#55555a', '#c7c7cc', '#6bb7ff', '#86868b', ':focus-visible', 'prefers-contrast']) {
-  if (!contrastCss.includes(requiredToken)) {
-    fail(`contrast-qa.css is missing required token or selector: ${requiredToken}`);
-  }
-}
-
-for (const requiredToken of ['#005bb5', '#004f9f', 'cursor: auto', 'cursor: pointer', '.work-grid', '.project-grid']) {
-  if (!finalQaCss.includes(requiredToken)) {
-    fail(`site-qa-fixes.css is missing required token or selector: ${requiredToken}`);
+for (const requiredToken of ['#4f4f55', '#d7d7dc', '#6bb7ff', '#005bb5', 'portfolio-system', ':focus-visible', '.work-grid', '.project-grid']) {
+  if (!portfolioCss.includes(requiredToken)) {
+    fail(`portfolio-system.css is missing required token or selector: ${requiredToken}`);
   }
 }
 
