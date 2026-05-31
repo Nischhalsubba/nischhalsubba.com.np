@@ -8,6 +8,7 @@ function ensureStylesheet(href, marker) {
 
 function ensureAtelierStylesheet() {
   ensureStylesheet('/assets/styles/portfolio-system.css?v=1.0', 'portfolio-system.css');
+  ensureStylesheet('/assets/styles/page-redesign.css?v=1.1', 'page-redesign.css');
 }
 
 function isHomePage() {
@@ -28,30 +29,21 @@ function ensureAtelierChrome() {
   if (document.querySelector('.az-nav')) return;
 
   document.body.insertAdjacentHTML('afterbegin', `
-    <div class="side-rail right"><span class="rail-text">Nischhal Raj Subba — Product Design · Systems · Handoff</span></div>
-    <div class="side-rail left"><span class="rail-text">Senior UI/Product Designer · Nepal / Remote</span></div>
-    <div class="topbar">
-      <div class="container topbar-inner">
-        <span><b>NRS / 2026</b> · Portfolio Nº 01</span>
-        <span class="mid"><span>Filed under <b class="coral">Product · Interface</b></span><span>Lalitpur · Nepal · Remote</span></span>
-        <span class="right"><span><span class="pulse"></span>Available for selected work</span><span><b>EN</b> · Product Design</span></span>
-      </div>
-    </div>
-    <header class="az-nav">
+    <header class="az-nav" data-stable-nav>
       <div class="container az-nav-inner">
-        <a href="/" class="brand"><span class="brand-mark">N</span><span>Nischhal</span><span class="brand-meta"><b>Senior Product Designer</b>UX · UI · Systems</span></a>
+        <a href="/" class="brand" aria-label="Nischhal Raj Subba home"><span class="brand-mark">N</span><span>Nischhal</span><span class="brand-meta"><b>Senior Product Designer</b>UX · UI · Systems</span></a>
         <nav aria-label="Primary navigation">
           <ul class="az-nav-links">
+            <li><a href="/" data-az-nav="Home">Home</a></li>
             <li><a href="/projects.html" data-az-nav="Work">Work<span class="num">06</span></a></li>
-            <li><a href="/about.html" data-az-nav="About">About<span class="num">01</span></a></li>
-            <li><a href="/blog/" data-az-nav="Writing">Writing<span class="num">05</span></a></li>
+            <li><a href="/about.html" data-az-nav="About">About</a></li>
+            <li><a href="/blog/" data-az-nav="Writing">Writing</a></li>
             <li><a href="/contact.html" data-az-nav="Contact">Contact</a></li>
           </ul>
         </nav>
         <div class="nav-side">
           <a class="nav-cta ghost" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a>
           <a class="nav-cta" href="mailto:hinischalsubba@gmail.com">Email me</a>
-          <span class="status-dot" aria-hidden="true"></span>
         </div>
       </div>
     </header>
