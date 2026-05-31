@@ -7,14 +7,7 @@ function ensureStylesheet(href, marker) {
 }
 
 function ensureAtelierStylesheet() {
-  ensureStylesheet('/atelier-zero.css?v=1.1', 'atelier-zero.css');
-  ensureStylesheet('/atelier-fixes.css?v=1.0', 'atelier-fixes.css');
-  ensureStylesheet('/apple-atelier.css?v=1.0', 'apple-atelier.css');
-  ensureStylesheet('/apple-pages.css?v=1.0', 'apple-pages.css');
-  ensureStylesheet('/apple-system-final.css?v=1.0', 'apple-system-final.css');
-  ensureStylesheet('/contrast-qa.css?v=1.0', 'contrast-qa.css');
-  ensureStylesheet('/site-qa-fixes.css?v=1.0', 'site-qa-fixes.css');
-  ensureStylesheet('/final-polish.css?v=1.0', 'final-polish.css');
+  ensureStylesheet('/assets/styles/portfolio-system.css?v=1.0', 'portfolio-system.css');
 }
 
 function isHomePage() {
@@ -46,7 +39,7 @@ function ensureAtelierChrome() {
     </div>
     <header class="az-nav">
       <div class="container az-nav-inner">
-        <a href="/" class="brand"><span class="brand-mark">N</span><span>Nischhal</span><span class="brand-meta"><b>Studio Practice</b>Product UX / UI</span></a>
+        <a href="/" class="brand"><span class="brand-mark">N</span><span>Nischhal</span><span class="brand-meta"><b>Senior Product Designer</b>UX · UI · Systems</span></a>
         <nav aria-label="Primary navigation">
           <ul class="az-nav-links">
             <li><a href="/projects.html" data-az-nav="Work">Work<span class="num">06</span></a></li>
@@ -57,7 +50,7 @@ function ensureAtelierChrome() {
         </nav>
         <div class="nav-side">
           <a class="nav-cta ghost" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a>
-          <a class="nav-cta" href="mailto:hinischalsubba@gmail.com">Hire / Email</a>
+          <a class="nav-cta" href="mailto:hinischalsubba@gmail.com">Email me</a>
           <span class="status-dot" aria-hidden="true"></span>
         </div>
       </div>
@@ -74,10 +67,10 @@ function addSectionRules() {
   if (!main || main.querySelector('.sec-rule')) return;
 
   const label = getActiveLabel();
-  const title = label === 'Work' ? 'Case Study / Detail' : label === 'Writing' ? 'Article / Note' : `${label} / Page`;
+  const title = label === 'Work' ? 'Case Study / Detail' : label === 'Writing' ? 'Article / Insight' : `${label} / Page`;
   main.insertAdjacentHTML('afterbegin', `
     <div class="container az-subpage-rule">
-      <div class="sec-rule"><span class="roman">I.</span><span class="meta-grp"><span>${title}</span><span class="dot-mark">•</span><span>Senior Designer Portfolio</span></span><span>001 / 001</span></div>
+      <div class="sec-rule"><span class="roman">I.</span><span class="meta-grp"><span>${title}</span><span class="dot-mark">•</span><span>Nischhal Raj Subba Portfolio</span></span><span>001 / 001</span></div>
     </div>
   `);
 }
