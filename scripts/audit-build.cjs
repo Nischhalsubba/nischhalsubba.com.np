@@ -48,7 +48,7 @@ const requiredPolishMarkers = [
   '.nrs-cursor-ring',
   '--nrs-dark-body',
   'grid-template-areas',
-  'Mokshya',
+  '.work-card',
   '#004f9f',
 ];
 const requiredCursorMarkers = [
