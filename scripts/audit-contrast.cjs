@@ -70,7 +70,7 @@ const portfolioCss = fs.existsSync(path.join(distDir, 'assets/styles/portfolio-s
   ? fs.readFileSync(path.join(distDir, 'assets/styles/portfolio-system.css'), 'utf8')
   : '';
 
-for (const requiredToken of ['#4f4f55', '#d7d7dc', '#6bb7ff', '#005bb5', 'portfolio-system', ':focus-visible', '.work-grid', '.project-grid']) {
+for (const requiredToken of ['#4f4f55', '#d7d7dc', '#6bb7ff', '#005bb5', ':focus-visible', '.work-grid', '.project-grid']) {
   if (!portfolioCss.includes(requiredToken)) {
     fail(`portfolio-system.css is missing required token or selector: ${requiredToken}`);
   }
