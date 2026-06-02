@@ -169,7 +169,7 @@ window.NRS_PROJECTS = [
     alt: "Grid Labs Hosting landing page mockup with domain search pricing tabs and service cards",
     category: "website frontend",
     meta: ["Hosting Landing Page", "Static Front-End"],
-    summary: "Created a Bootstrap-based static landing page with domain search, hosting service cards, pricing tabs, testimonials, and contact UI.",
+    summary: "Created a Bootstrap-based static landing page with domain search, hosting service cards, pricing tabs, service sections, and contact UI.",
     links: []
   },
   {

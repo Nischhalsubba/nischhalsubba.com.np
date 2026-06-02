@@ -52,7 +52,7 @@ const projectCopy = {
   '/project-grid-labs.html': {
     title: 'Grid Labs Hosting',
     meta: ['Hosting landing page', 'Static front-end'],
-    summary: 'Created a static landing page with domain search, service cards, pricing states, testimonial sections, and contact UI for a hosting concept.',
+    summary: 'Created a static landing page with domain search, service cards, pricing states, service sections, and contact UI for a hosting concept.',
   },
   '/project-zakra-furniture.html': {
     title: 'Zakra Furniture',
