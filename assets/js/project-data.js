@@ -11,7 +11,13 @@ window.NRS_PROJECTS = [
     category: "web3 mobile fintech product",
     meta: ["Web3 Messaging App", "Product Design"],
     summary: "Designed a mobile Web3 chat experience focused on messaging, blinks, wallet interaction, and clear transaction review.",
-    links: []
+    links: [
+      {
+        label: "Yarsha Figma Design",
+        type: "design",
+        url: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FpYismUGSJo9vLjViMjZENz%2FYarsha%3Fnode-id%3D2379-17138%26m%3Ddev"
+      }
+    ]
   },
   {
     id: "mokshya",
