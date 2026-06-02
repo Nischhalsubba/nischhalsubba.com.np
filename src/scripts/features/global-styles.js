@@ -6,18 +6,16 @@ export function injectGlobalStyles() {
   const style = document.createElement('style');
   style.id = 'nrs-runtime-base-styles';
   style.textContent = `
-    .js-enabled .reveal-on-scroll,
-    .js-enabled .project-card,
-    .js-enabled .impact-card,
-    .js-enabled .writing-item,
-    .js-enabled .achieve-item {
-      opacity: 0;
-      transform: translate3d(0, 28px, 0);
-      transition: opacity .7s var(--ease-out, cubic-bezier(0, 0, .2, 1)) var(--reveal-delay, 0ms), transform .7s var(--ease-out, cubic-bezier(0, 0, .2, 1)) var(--reveal-delay, 0ms), border-color .35s ease, background-color .35s ease, box-shadow .35s ease;
+    .motion-ready .reveal-on-scroll,
+    .motion-ready .project-card,
+    .motion-ready .impact-card,
+    .motion-ready .writing-item,
+    .motion-ready .achieve-item {
+      transition: border-color .35s ease, background-color .35s ease, box-shadow .35s ease;
       will-change: transform, opacity;
     }
 
-    .js-enabled .is-visible {
+    .is-visible {
       opacity: 1;
       transform: translate3d(0, 0, 0);
     }
@@ -83,52 +81,10 @@ export function injectGlobalStyles() {
       max-width: 820px;
     }
 
-    .project-card,
-    .impact-card,
-    .blog-card-modern {
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-    }
-
-    .project-card.is-tilting,
-    .impact-card.is-tilting,
-    .blog-card-modern.is-tilting {
-      transform: perspective(1100px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-8px) !important;
-      box-shadow: 0 24px 90px rgba(0,0,0,.22);
-      border-color: color-mix(in srgb, var(--accent-blue, #3B82F6) 42%, var(--border-light, rgba(255,255,255,.15)));
-    }
-
     .project-card:hover,
     .impact-card:hover,
     .writing-item:hover {
       border-color: color-mix(in srgb, var(--accent-blue, #3B82F6) 28%, var(--border-light, rgba(255,255,255,.15)));
-    }
-
-    .custom-cursor-dot,
-    .custom-cursor-outline {
-      left: 0;
-      top: 0;
-    }
-
-    .custom-cursor-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--text-primary, #fff);
-      opacity: .92;
-    }
-
-    .custom-cursor-outline {
-      width: 44px;
-      height: 44px;
-      border-color: color-mix(in srgb, var(--accent-blue, #3B82F6) 46%, transparent);
-      transition: width .28s ease, height .28s ease, border-color .28s ease, background-color .28s ease;
-    }
-
-    body.cursor-hover .custom-cursor-outline {
-      width: 68px;
-      height: 68px;
-      background: color-mix(in srgb, var(--accent-blue, #3B82F6) 10%, transparent);
-      border-color: color-mix(in srgb, var(--accent-blue, #3B82F6) 72%, transparent);
     }
 
     .nrs-article-main {
@@ -188,11 +144,11 @@ export function injectGlobalStyles() {
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .js-enabled .reveal-on-scroll,
-      .js-enabled .project-card,
-      .js-enabled .impact-card,
-      .js-enabled .writing-item,
-      .js-enabled .achieve-item {
+      .reveal-on-scroll,
+      .project-card,
+      .impact-card,
+      .writing-item,
+      .achieve-item {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
