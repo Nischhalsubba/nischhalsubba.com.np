@@ -8,8 +8,9 @@ function ensureStylesheet(href, marker) {
 
 function ensureAtelierStylesheet() {
   ensureStylesheet('/assets/styles/portfolio-system.css?v=1.0', 'portfolio-system.css');
-  ensureStylesheet('/assets/styles/page-redesign.css?v=1.1', 'page-redesign.css');
+  ensureStylesheet('/assets/styles/page-redesign.css?v=2.0', 'page-redesign.css');
   ensureStylesheet('/assets/styles/responsive-foundation.css?v=1.0', 'responsive-foundation.css');
+  ensureStylesheet('/assets/styles/web-friendly-system.css?v=1.0', 'web-friendly-system.css');
 }
 
 function isHomePage() {
@@ -57,7 +58,7 @@ function ensureAtelierChrome() {
 function addSectionRules() {
   if (isHomePage()) return;
   const main = document.querySelector('main');
-  if (!main || main.querySelector('.sec-rule')) return;
+  if (!main || main.querySelector('.sec-rule') || main.classList.contains('nrs-page')) return;
 
   const label = getActiveLabel();
   const title = label === 'Work' ? 'Case Study / Detail' : label === 'Writing' ? 'Article / Insight' : `${label} / Page`;
@@ -72,6 +73,8 @@ function normalizeSubpageLayout() {
   if (isHomePage()) return;
   document.documentElement.classList.add('atelier-subpage');
   document.body.classList.add('atelier-subpage-body');
+
+  if (document.querySelector('main.nrs-page')) return;
 
   document.querySelectorAll('.hero-title, h1').forEach((heading) => heading.classList.add('display'));
   document.querySelectorAll('.body-large, .section-lead, article p').forEach((text) => text.classList.add('lead'));
