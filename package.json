@@ -11,7 +11,6 @@
     "check:links": "node scripts/check-links.js",
     "audit:build": "node scripts/audit-build.cjs"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^22.14.0",
     "typescript": "~5.8.2",

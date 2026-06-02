@@ -607,6 +607,69 @@ body.menu-open .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
     background: var(--bg-pill);
 }
 
+.contact-form {
+    display: grid;
+    gap: 22px;
+    max-width: 860px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-field {
+    display: grid;
+    gap: 10px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    min-height: 54px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-faint);
+    color: var(--text-primary);
+    border-radius: 16px;
+    padding: 16px 18px;
+    font: inherit;
+    font-weight: 400;
+    outline: none;
+    transition: border-color 0.2s var(--ease-standard), box-shadow 0.2s var(--ease-standard);
+}
+
+.form-field textarea {
+    min-height: 180px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: var(--text-primary);
+    box-shadow: 0 0 0 1px var(--text-primary);
+}
+
+.form-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.form-note {
+    color: var(--text-tertiary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
 /* --- ABOUT GRID LAYOUT --- */
 .about-grid {
     display: grid;
@@ -1343,6 +1406,9 @@ body.custom-cursor-active .custom-cursor-outline { display: block; }
     .search-input { font-size: 1rem; padding: 20px 50px 20px 24px; }
     .filter-row { gap: 8px; justify-content: flex-start; overflow-x: auto; padding-bottom: 12px; -webkit-overflow-scrolling: touch; }
     .filter-btn { white-space: nowrap; font-size: 0.85rem; padding: 8px 18px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-actions { align-items: stretch; flex-direction: column; }
+    .form-actions .btn { width: 100%; justify-content: center; }
     
     .hero-section { align-items: center; text-align: center; padding-top: 120px; min-height: auto; }
     .contact-grid { grid-template-columns: 1fr; gap: 60px; }

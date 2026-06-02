@@ -6,7 +6,7 @@
  * - service page depth sections when missing
  * - author/entity profile visibility on blog pages
  * - stronger Person schema on key profile pages
- * - iframe click-to-load for performance
+ * - iframe hardening for embedded prototypes
  * - media performance attributes
  * - canonical cleanup
  * - external link hardening
@@ -250,30 +250,11 @@
     });
   }
 
-  function convertIframesToClickToLoad() {
+  function prepareEmbeddedIframes() {
     document.querySelectorAll('iframe[src]').forEach((iframe) => {
-      if (iframe.dataset.clickLoaded === 'true') return;
-      const src = iframe.getAttribute('src');
-      const title = iframe.getAttribute('title') || 'embedded prototype';
-      const wrapper = document.createElement('div');
-      wrapper.className = 'nrs-iframe-loader';
-      wrapper.style.cssText = 'position:relative;display:grid;place-items:center;min-height:320px;border:1px solid var(--border-faint);border-radius:24px;background:var(--bg-surface);padding:32px;text-align:center;';
-      wrapper.innerHTML = `
-        <div>
-          <p class="eyebrow">Prototype embed</p>
-          <h3 style="margin:8px 0 14px;color:var(--text-primary);">Load ${title}</h3>
-          <p style="color:var(--text-secondary);max-width:520px;margin:0 auto 20px;">This embed is loaded only when requested to improve mobile performance and reduce initial page weight.</p>
-          <button type="button" class="btn btn-primary">Load prototype</button>
-        </div>`;
-      iframe.parentNode.insertBefore(wrapper, iframe);
-      iframe.removeAttribute('src');
-      iframe.loading = 'lazy';
+      iframe.loading = 'eager';
       iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-      iframe.dataset.clickLoaded = 'true';
-      wrapper.querySelector('button')?.addEventListener('click', () => {
-        iframe.setAttribute('src', src);
-        wrapper.replaceWith(iframe);
-      });
+      if (!iframe.title) iframe.title = 'Embedded product design prototype';
     });
   }
 
@@ -302,7 +283,7 @@
     addAuthorBlockToBlogs();
     addServiceDepthAndFaq();
     addServiceBreadcrumbSchema();
-    convertIframesToClickToLoad();
+    prepareEmbeddedIframes();
     improveMediaPerformance();
     hardenExternalLinks();
   }

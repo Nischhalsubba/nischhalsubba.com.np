@@ -26,6 +26,52 @@ function initRevealObserver() {
   });
 }
 
+function initGsapReveals() {
+  if (prefersReducedMotion()) return false;
+
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  if (!gsap) return false;
+  if (ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  const elements = $$('.reveal-on-scroll, .project-card, .impact-card, .writing-item, .journey-card, .prototype-link-card');
+  if (!elements.length) return true;
+
+  gsap.set(elements, { autoAlpha: 0, y: 28 });
+
+  elements.forEach((element, index) => {
+    gsap.to(element, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.7,
+      delay: Math.min(index % 6, 5) * 0.04,
+      ease: 'power3.out',
+      scrollTrigger: ScrollTrigger
+        ? {
+            trigger: element,
+            start: 'top 88%',
+            once: true,
+          }
+        : undefined,
+      onComplete: () => element.classList.add('is-visible'),
+    });
+  });
+
+  const heroTitle = document.querySelector('.hero-title');
+  const heroCopy = document.querySelector('.hero-section .body-large');
+  const heroActions = document.querySelector('.hero-actions');
+
+  gsap.from([heroTitle, heroCopy, heroActions].filter(Boolean), {
+    autoAlpha: 0,
+    y: 22,
+    duration: 0.85,
+    stagger: 0.1,
+    ease: 'power3.out',
+  });
+
+  return true;
+}
+
 function initMagneticCards() {
   if (prefersReducedMotion() || isTouchDevice()) return;
 
@@ -98,7 +144,7 @@ function initCustomCursor() {
 }
 
 export function initMotionEnhancements() {
-  initRevealObserver();
+  if (!initGsapReveals()) initRevealObserver();
   initMagneticCards();
   initCustomCursor();
 }
