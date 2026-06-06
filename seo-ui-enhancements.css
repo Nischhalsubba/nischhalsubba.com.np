@@ -1,0 +1,117 @@
+/* Homepage polish layer. */
+:root {
+  --max-width: 1320px;
+}
+
+.hero-proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px auto 0;
+  max-width: 860px;
+}
+
+.hero-proof-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-faint);
+  border-radius: 999px;
+  background: var(--bg-pill);
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.work-intent {
+  margin-top: 18px;
+  max-width: 780px;
+}
+
+.selected-work-intro {
+  align-items: flex-start !important;
+}
+
+.project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 44px);
+}
+
+.project-card {
+  padding: clamp(14px, 2vw, 18px);
+  border: 1px solid var(--border-faint);
+  border-radius: 32px;
+  background: var(--bg-surface);
+  transition: transform 0.36s var(--ease-spring), border-color 0.24s var(--ease-standard), background 0.24s var(--ease-standard);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-light);
+  background: var(--bg-card);
+}
+
+.project-card:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 6px;
+}
+
+.project-card .card-media-wrap {
+  border-radius: 24px;
+}
+
+.project-card .card-content {
+  padding: 4px clamp(4px, 1vw, 10px) 8px;
+}
+
+.card-content .eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.card-summary {
+  margin-top: 14px;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.footer-email-btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@media (max-width: 920px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selected-work-intro {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-proof-strip {
+    justify-content: flex-start;
+  }
+
+  .hero-proof-strip span {
+    font-size: 0.82rem;
+  }
+
+  .project-card {
+    border-radius: 24px;
+  }
+}
