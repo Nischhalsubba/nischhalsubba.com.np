@@ -28,6 +28,10 @@ function copyFile(source, target) {
   fs.copyFileSync(source, target);
 }
 
+function copyRootFile(fileName) {
+  copyFile(path.join(rootDir, fileName), path.join(distDir, fileName));
+}
+
 function walkFiles(directory, matcher, files = []) {
   if (!fs.existsSync(directory)) return files;
 
@@ -68,6 +72,17 @@ function stripVisibleSeoHelperBlocks() {
 copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
+
+for (const fileName of [
+  'robots.txt',
+  'sitemap.xml',
+  'llms.txt',
+  'ai-profile.json',
+  'seo-ui-enhancements.css',
+]) {
+  copyRootFile(fileName);
+}
+
 stripVisibleSeoHelperBlocks();
 
-console.log('Copied static assets/runtime files and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, AI discovery files, runtime files, and removed visible SEO helper blocks from dist.');
