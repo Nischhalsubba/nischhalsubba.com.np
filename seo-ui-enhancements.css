@@ -1,15 +1,22 @@
 /* Shared visual polish layer for homepage and subpages. */
 :root {
   --max-width: min(1760px, calc(100vw - 64px));
+  --site-blue-glow: rgba(59, 130, 246, 0.16);
+  --site-blue-glow-soft: rgba(96, 165, 250, 0.075);
 }
 
 html,
 body {
   width: 100%;
   min-width: 100%;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.105), transparent 34%),
-    #050505;
+  min-height: 100%;
+  background-color: #050505 !important;
+  background-image:
+    radial-gradient(ellipse at 12% 10%, rgba(59, 130, 246, 0.14), transparent 38%),
+    radial-gradient(ellipse at 50% 8%, rgba(96, 165, 250, 0.18), transparent 46%),
+    radial-gradient(ellipse at 88% 14%, rgba(59, 130, 246, 0.13), transparent 40%),
+    linear-gradient(180deg, #07101d 0%, #05070b 58%, #050505 100%) !important;
+  background-attachment: fixed;
 }
 
 body::before {
@@ -21,9 +28,11 @@ body::before {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.034) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.034) 1px, transparent 1px),
-    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.13), transparent 40%);
-  background-size: 72px 72px, 72px 72px, 100% 100%;
-  opacity: 0.84;
+    radial-gradient(ellipse at 18% 8%, rgba(59, 130, 246, 0.12), transparent 36%),
+    radial-gradient(ellipse at 50% 10%, rgba(96, 165, 250, 0.18), transparent 46%),
+    radial-gradient(ellipse at 84% 12%, rgba(59, 130, 246, 0.12), transparent 38%);
+  background-size: 72px 72px, 72px 72px, 100% 100%, 100% 100%, 100% 100%;
+  opacity: 0.88;
 }
 
 body::after {
@@ -33,8 +42,8 @@ body::after {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.5)),
-    radial-gradient(circle at 50% 22%, rgba(7, 13, 24, 0.35), transparent 45%);
+    radial-gradient(ellipse at 50% 28%, rgba(96, 165, 250, 0.075), transparent 56%),
+    linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, 0.2) 76%, rgba(5, 5, 5, 0.72) 100%);
 }
 
 body > * {
@@ -289,23 +298,28 @@ main.container {
 
 [data-theme="light"] html,
 [data-theme="light"] body {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.14), transparent 38%),
-    #ffffff;
+  background-color: #ffffff !important;
+  background-image:
+    radial-gradient(ellipse at 12% 10%, rgba(59, 130, 246, 0.13), transparent 38%),
+    radial-gradient(ellipse at 50% 8%, rgba(96, 165, 250, 0.18), transparent 46%),
+    radial-gradient(ellipse at 88% 14%, rgba(59, 130, 246, 0.13), transparent 40%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 62%, #f8fafc 100%) !important;
 }
 
 [data-theme="light"] body::before {
   background-image:
     linear-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px),
     linear-gradient(90deg, rgba(15, 23, 42, 0.055) 1px, transparent 1px),
-    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.13), transparent 42%);
+    radial-gradient(ellipse at 18% 8%, rgba(59, 130, 246, 0.12), transparent 36%),
+    radial-gradient(ellipse at 50% 10%, rgba(96, 165, 250, 0.16), transparent 46%),
+    radial-gradient(ellipse at 84% 12%, rgba(59, 130, 246, 0.12), transparent 38%);
   opacity: 0.58;
 }
 
 [data-theme="light"] body::after {
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.44), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.44)),
-    radial-gradient(circle at 50% 22%, rgba(59, 130, 246, 0.08), transparent 45%);
+    radial-gradient(ellipse at 50% 28%, rgba(59, 130, 246, 0.07), transparent 56%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.24) 76%, rgba(255, 255, 255, 0.72) 100%);
 }
 
 [data-theme="light"] .project-card {
@@ -348,7 +362,7 @@ main.container {
 
 @media (max-width: 640px) {
   body::before {
-    background-size: 48px 48px, 48px 48px, 100% 100%;
+    background-size: 48px 48px, 48px 48px, 100% 100%, 100% 100%, 100% 100%;
   }
 
   .hero-proof-strip {
