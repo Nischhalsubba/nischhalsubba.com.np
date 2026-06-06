@@ -13,6 +13,11 @@ const requiredFiles = [
   'src/scripts/features/theme.js',
   'src/scripts/features/portfolio-upgrades.js',
   'assets/resume.pdf',
+  'robots.txt',
+  'sitemap.xml',
+  'llms.txt',
+  'ai-profile.json',
+  'seo-ui-enhancements.css',
 ];
 const forbiddenHtmlMarkers = [
   'nrs-static-project-context',
@@ -63,7 +68,19 @@ if (!fs.existsSync(distDir)) {
   }
 
   const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
-  if (!indexHtml.includes('Senior UI/Product Designer')) fail('Homepage is missing senior designer positioning.');
+  const homepagePositioningChecks = [
+    'Product Designer',
+    'Web3',
+    'SaaS',
+    'fintech',
+    'developer-ready handoff',
+    'llms.txt',
+    'ai-profile.json',
+  ];
+
+  for (const phrase of homepagePositioningChecks) {
+    if (!indexHtml.includes(phrase)) fail(`Homepage is missing positioning phrase: ${phrase}`);
+  }
 
   const portraitIsAvailable =
     indexHtml.includes(requestedPortraitUrl) ||
