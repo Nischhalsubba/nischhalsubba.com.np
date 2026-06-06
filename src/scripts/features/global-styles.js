@@ -3,7 +3,7 @@ function ensureSharedDesignStylesheet() {
 
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = '/seo-ui-enhancements.css?v=1.2';
+  link.href = '/seo-ui-enhancements.css?v=1.3';
   document.head.appendChild(link);
 }
 
@@ -16,6 +16,52 @@ export function injectGlobalStyles() {
   const style = document.createElement('style');
   style.id = 'nrs-runtime-base-styles';
   style.textContent = `
+    html,
+    body {
+      background-color: #050505 !important;
+      background-image:
+        radial-gradient(ellipse 76% 46% at 50% -8%, rgba(74, 116, 165, .026), rgba(28, 48, 76, .014) 36%, rgba(5, 5, 5, 0) 72%),
+        linear-gradient(90deg, #050505 0%, #050607 16%, #06080b 50%, #050607 84%, #050505 100%) !important;
+      background-attachment: fixed !important;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .018) 1px, transparent 1px),
+        radial-gradient(ellipse 62% 38% at 50% 0%, rgba(74, 116, 165, .026), transparent 74%) !important;
+      background-size: 72px 72px, 72px 72px, 100% 100% !important;
+      opacity: .48 !important;
+    }
+
+    body::after {
+      background:
+        linear-gradient(90deg, #050505 0%, rgba(5, 5, 5, .94) 8%, rgba(5, 5, 5, .58) 20%, rgba(5, 5, 5, .16) 35%, rgba(5, 5, 5, 0) 50%, rgba(5, 5, 5, .16) 65%, rgba(5, 5, 5, .58) 80%, rgba(5, 5, 5, .94) 92%, #050505 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, .12) 62%, rgba(5, 5, 5, .68) 100%) !important;
+    }
+
+    [data-theme="light"] html,
+    [data-theme="light"] body {
+      background-color: #ffffff !important;
+      background-image:
+        radial-gradient(ellipse 74% 44% at 50% -8%, rgba(74, 116, 165, .032), transparent 72%),
+        linear-gradient(90deg, #ffffff 0%, #fbfdff 50%, #ffffff 100%) !important;
+    }
+
+    [data-theme="light"] body::before {
+      background-image:
+        linear-gradient(rgba(15, 23, 42, .026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, .026) 1px, transparent 1px),
+        radial-gradient(ellipse 62% 38% at 50% 0%, rgba(59, 130, 246, .032), transparent 74%) !important;
+      opacity: .36 !important;
+    }
+
+    [data-theme="light"] body::after {
+      background:
+        linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, .92) 10%, rgba(255, 255, 255, .48) 22%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, .48) 78%, rgba(255, 255, 255, .92) 90%, #ffffff 100%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .68) 100%) !important;
+    }
+
     .motion-ready .reveal-on-scroll,
     .motion-ready .project-card,
     .motion-ready .impact-card,
@@ -75,7 +121,7 @@ export function injectGlobalStyles() {
       border-radius: 32px;
       overflow: hidden;
       border: 1px solid var(--border-faint, rgba(255,255,255,.1));
-      background: radial-gradient(circle at 50% 15%, rgba(59,130,246,.22), transparent 58%), var(--bg-surface, #0a0a0a);
+      background: radial-gradient(circle at 50% 15%, rgba(59,130,246,.12), transparent 58%), var(--bg-surface, #0a0a0a);
       box-shadow: 0 28px 90px rgba(0,0,0,.28);
       transform-style: preserve-3d;
     }
