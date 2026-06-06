@@ -6,6 +6,7 @@ import { initContactForm } from './features/contact-form.js';
 import { initFilters } from './features/filters.js';
 import { initMobileMenu } from './features/mobile-menu.js';
 import { initMotionEnhancements } from './features/motion.js';
+import { initPointerGlow } from './features/pointer-glow.js';
 import { useProjectDetailImages } from './features/project-images.js';
 import { initResumeDownload } from './features/resume.js';
 import { ensureSiteFooter } from './features/site-footer.js';
@@ -20,6 +21,7 @@ onReady(() => {
   initActiveNavigation();
   initFilters();
   initMotionEnhancements();
+  initPointerGlow();
   initResumeDownload();
   initContactForm();
   ensureSiteFooter();
