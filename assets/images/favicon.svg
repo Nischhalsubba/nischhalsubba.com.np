@@ -1,4 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#0C8CE9"/>
-  <text x="16" y="22" font-family="sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">N</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Nischhal Raj Subba favicon">
+  <defs>
+    <linearGradient id="bg" x1="12" y1="6" x2="54" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(46 18) rotate(124) scale(44)">
+      <stop stop-color="#60A5FA" stop-opacity="0.92"/>
+      <stop offset="0.58" stop-color="#2563EB" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="url(#glow)"/>
+  <path d="M18 46V18h7.1l14.1 17.8V18H46v28h-6.7L24.9 27.7V46H18Z" fill="#FFFFFF"/>
+  <path d="M18 46h28" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
 </svg>
