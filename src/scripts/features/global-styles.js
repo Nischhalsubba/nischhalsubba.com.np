@@ -1,5 +1,15 @@
+function ensureSharedDesignStylesheet() {
+  if (document.querySelector('link[href^="/seo-ui-enhancements.css"]')) return;
+
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/seo-ui-enhancements.css?v=1.2';
+  document.head.appendChild(link);
+}
+
 export function injectGlobalStyles() {
   document.documentElement.classList.add('js-enabled');
+  ensureSharedDesignStylesheet();
 
   if (document.getElementById('nrs-runtime-base-styles')) return;
 
