@@ -79,10 +79,11 @@ for (const fileName of [
   'llms.txt',
   'ai-profile.json',
   'seo-ui-enhancements.css',
+  'site.webmanifest',
 ]) {
   copyRootFile(fileName);
 }
 
 stripVisibleSeoHelperBlocks();
 
-console.log('Copied static assets, AI discovery files, runtime files, and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, AI discovery files, runtime files, manifest, and removed visible SEO helper blocks from dist.');
