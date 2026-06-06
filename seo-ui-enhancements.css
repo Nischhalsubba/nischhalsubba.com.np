@@ -1,8 +1,6 @@
-/* Homepage polish layer. */
+/* Shared visual polish layer for homepage and subpages. */
 :root {
   --max-width: 1320px;
-  --pointer-x: 50vw;
-  --pointer-y: 26vh;
 }
 
 body::before {
@@ -18,26 +16,18 @@ body::before {
   background-size: 72px 72px, 72px 72px, 100% 100%;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.28) 58%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.28) 58%, transparent 100%);
-  opacity: 0.78;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(520px circle at var(--pointer-x) var(--pointer-y), rgba(59, 130, 246, 0.16), rgba(59, 130, 246, 0.05) 28%, transparent 62%);
-  opacity: 0;
-  transition: opacity 0.32s var(--ease-standard);
-}
-
-body.pointer-glow-active::after {
-  opacity: 1;
+  opacity: 0.72;
 }
 
 body > * {
   position: relative;
+}
+
+.hero-section,
+.section-container,
+.nrs-article-main,
+.site-footer {
+  isolation: isolate;
 }
 
 .hero-proof-strip {
@@ -95,6 +85,25 @@ body > * {
   gap: clamp(24px, 4vw, 44px);
 }
 
+.project-card,
+.impact-card,
+.journey-card,
+.comparison-card,
+.metric-plan-card,
+.story-card,
+.quote-card,
+.blog-card-modern,
+.blog-note,
+.blog-author-card,
+.blog-share-card,
+.blog-toc,
+.contact-form,
+.search-input,
+.filter-btn,
+.link-pill {
+  border-color: var(--border-faint);
+}
+
 .project-card {
   padding: clamp(14px, 2vw, 18px);
   border: 1px solid var(--border-faint);
@@ -111,7 +120,23 @@ body > * {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055), 0 28px 92px rgba(59, 130, 246, 0.16), 0 18px 70px rgba(0, 0, 0, 0.34);
 }
 
-.project-card:focus-visible {
+.impact-card:hover,
+.journey-card:hover,
+.comparison-card:hover,
+.metric-plan-card:hover,
+.story-card:hover,
+.quote-card:hover,
+.blog-card-modern:hover,
+.link-pill:hover {
+  border-color: rgba(59, 130, 246, 0.34);
+  box-shadow: 0 18px 54px rgba(59, 130, 246, 0.08);
+}
+
+.project-card:focus-visible,
+.btn:focus-visible,
+.link-pill:focus-visible,
+.filter-btn:focus-visible,
+.search-input:focus-visible {
   outline: 2px solid var(--accent-blue);
   outline-offset: 6px;
 }
@@ -149,16 +174,30 @@ body > * {
   transform: translateY(0) scale(0.98);
 }
 
+.nrs-article-main,
+.blog-prose,
+.case-content-body {
+  position: relative;
+}
+
+.nrs-article-main::before,
+.case-content-body::before,
+.blog-prose::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  z-index: -1;
+  border-radius: 32px;
+  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.055), transparent 42%);
+  pointer-events: none;
+}
+
 [data-theme="light"] body::before {
   background-image:
     linear-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px),
     linear-gradient(90deg, rgba(15, 23, 42, 0.055) 1px, transparent 1px),
     radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.13), transparent 42%);
-  opacity: 0.62;
-}
-
-[data-theme="light"] body::after {
-  background: radial-gradient(520px circle at var(--pointer-x) var(--pointer-y), rgba(59, 130, 246, 0.14), rgba(59, 130, 246, 0.04) 30%, transparent 64%);
+  opacity: 0.58;
 }
 
 [data-theme="light"] .project-card {
@@ -219,14 +258,18 @@ body > * {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body::after {
-    display: none;
-  }
-
   .project-card,
   .btn-primary,
   .btn-secondary,
-  .footer-email-btn {
+  .footer-email-btn,
+  .impact-card,
+  .journey-card,
+  .comparison-card,
+  .metric-plan-card,
+  .story-card,
+  .quote-card,
+  .blog-card-modern,
+  .link-pill {
     transition: none;
   }
 }
