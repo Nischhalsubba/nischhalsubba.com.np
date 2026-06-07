@@ -4,6 +4,14 @@ const path = require('node:path');
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const requestedPortraitUrl = 'https://i.imgur.com/oFHdPUS.png';
+
+/**
+ * Files that must exist in the final Cloudflare Pages output.
+ *
+ * This list protects the site from silent regressions where Vite builds but
+ * important static files, runtime modules, resume assets, or AI/search discovery
+ * files are missing from dist. Silent success is how websites become haunted.
+ */
 const requiredFiles = [
   'index.html',
   'home-v2.html',
@@ -19,6 +27,11 @@ const requiredFiles = [
   'ai-profile.json',
   'seo-ui-enhancements.css',
 ];
+
+/**
+ * Build-time SEO helper sections should not be visible in rendered pages.
+ * The JSON-LD/schema can stay, but the helper UI blocks must be stripped.
+ */
 const forbiddenHtmlMarkers = [
   'nrs-static-project-context',
   'nrs-static-related-links',
@@ -53,11 +66,13 @@ function fileContains(relativePath, value) {
 if (!fs.existsSync(distDir)) {
   fail('dist directory does not exist. Run the build before auditing.');
 } else {
+  // Required output contract for deployment.
   for (const relativePath of requiredFiles) {
     const filePath = path.join(distDir, relativePath);
     if (!fs.existsSync(filePath)) fail(`Missing required build output: ${relativePath}`);
   }
 
+  // Keep build-time helper content from leaking into the visible UI.
   for (const htmlFile of walkFiles(distDir, (file) => file.endsWith('.html'))) {
     const html = fs.readFileSync(htmlFile, 'utf8');
     for (const marker of forbiddenHtmlMarkers) {
@@ -67,6 +82,7 @@ if (!fs.existsSync(distDir)) {
     }
   }
 
+  // Homepage positioning must remain clear for humans, search engines, and AI agents.
   const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
   const homepagePositioningChecks = [
     'Product Designer',
@@ -82,6 +98,7 @@ if (!fs.existsSync(distDir)) {
     if (!indexHtml.includes(phrase)) fail(`Homepage is missing positioning phrase: ${phrase}`);
   }
 
+  // The portrait can be present directly in HTML or injected by runtime modules.
   const portraitIsAvailable =
     indexHtml.includes(requestedPortraitUrl) ||
     fileContains('src/scripts/features/theme.js', requestedPortraitUrl) ||
