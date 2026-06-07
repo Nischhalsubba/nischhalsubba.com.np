@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 .",
     "check:links": "node scripts/check-links.js",
-    "audit:build": "node scripts/audit-build.cjs"
+    "audit:build": "node scripts/audit-build.cjs",
+    "audit:structure": "node scripts/audit-content-structure.cjs",
+    "validate": "npm run audit:structure && npm run check:links && npm run build"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
