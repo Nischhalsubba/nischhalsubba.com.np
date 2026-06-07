@@ -12,17 +12,32 @@ import { initResumeDownload } from './features/resume.js';
 import { ensureSiteFooter } from './features/site-footer.js';
 import { initTheme } from './features/theme.js';
 
+/**
+ * Site runtime entrypoint.
+ *
+ * Root HTML files keep loading `/script.js` for backward compatibility. That
+ * file imports this module, which then initializes focused feature modules in a
+ * predictable order. Keep new browser behavior in `src/scripts/features/` and
+ * wire it here instead of scattering inline scripts across static HTML pages.
+ */
 onReady(() => {
+  // 1. Shared visual/runtime foundations first.
   injectGlobalStyles();
   normalizeArticleLayout();
   useProjectDetailImages();
   initTheme();
+
+  // 2. Navigation and page-level interaction.
   initMobileMenu();
   initActiveNavigation();
   initFilters();
+
+  // 3. Progressive enhancements. These should fail silently if unavailable.
   initMotionEnhancements();
   initPointerGlow();
   initResumeDownload();
   initContactForm();
+
+  // 4. Ensure older/static pages still have a consistent footer.
   ensureSiteFooter();
 });
