@@ -4,6 +4,14 @@ const path = require('node:path');
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 
+/**
+ * Recursively copy a directory into dist.
+ *
+ * Vite handles bundled assets, but this site also serves several root-level
+ * runtime and discovery files directly. Keeping this copy layer explicit makes
+ * the final Cloudflare output predictable instead of relying on accidental
+ * bundler behavior. Thrilling, I know.
+ */
 function copyDirectory(source, target) {
   if (!fs.existsSync(source)) return;
 
@@ -22,16 +30,19 @@ function copyDirectory(source, target) {
   }
 }
 
+/** Copy a single file if it exists. Missing optional files are ignored. */
 function copyFile(source, target) {
   if (!fs.existsSync(source)) return;
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.copyFileSync(source, target);
 }
 
+/** Copy a file that must be served from the web root, for example /robots.txt. */
 function copyRootFile(fileName) {
   copyFile(path.join(rootDir, fileName), path.join(distDir, fileName));
 }
 
+/** Walk files under a directory and return only the files accepted by matcher. */
 function walkFiles(directory, matcher, files = []) {
   if (!fs.existsSync(directory)) return files;
 
@@ -47,6 +58,12 @@ function walkFiles(directory, matcher, files = []) {
   return files;
 }
 
+/**
+ * Remove build-time SEO helper sections from visible HTML output.
+ *
+ * The Vite HTML plugin injects static context/schema for crawlers. The schema
+ * should remain, but the visible helper sections should not appear in the UI.
+ */
 function stripVisibleSeoHelperBlocks() {
   const helperBlockClasses = [
     'nrs-static-project-context',
@@ -69,10 +86,13 @@ function stripVisibleSeoHelperBlocks() {
   }
 }
 
+// Copy source assets and runtime modules needed by root-level HTML files.
 copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
 
+// Copy root-served discovery and metadata files. These are intentionally kept
+// at repository root because their public URLs are root URLs.
 for (const fileName of [
   'robots.txt',
   'sitemap.xml',
