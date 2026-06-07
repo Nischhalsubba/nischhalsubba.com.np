@@ -3,16 +3,49 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
+const ignoredDirs = new Set([".git", "node_modules", "dist", ".wrangler"]);
+const existingRedirects = readRedirects();
+
+function walk(dir = root, files = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (ignoredDirs.has(entry.name)) continue;
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      walk(fullPath, files);
+      continue;
+    }
+    if (entry.isFile() && entry.name.endsWith(".html")) {
+      files.push(path.relative(root, fullPath).replaceAll(path.sep, "/"));
+    }
+  }
+  return files;
+}
 
 function listHtmlFiles() {
-  return fs
-    .readdirSync(root, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith(".html"))
-    .map((entry) => entry.name);
+  return walk().sort();
 }
 
 function readFile(relPath) {
   return fs.readFileSync(path.join(root, relPath), "utf8");
+}
+
+function readRedirects() {
+  const files = ["_redirects", "public/_redirects"];
+  const redirects = new Map();
+
+  for (const file of files) {
+    const filePath = path.join(root, file);
+    if (!fs.existsSync(filePath)) continue;
+    const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
+    for (const line of lines) {
+      const clean = line.trim();
+      if (!clean || clean.startsWith("#")) continue;
+      const [from, to] = clean.split(/\s+/);
+      if (from && to) redirects.set(from, to);
+    }
+  }
+
+  return redirects;
 }
 
 function extractIds(html) {
@@ -25,24 +58,22 @@ function extractIds(html) {
   return ids;
 }
 
-function extractHrefs(html) {
-  const hrefs = [];
-  const re = /\bhref="([^"]+)"/g;
+function extractAttributes(html, attributeName) {
+  const values = [];
+  const re = new RegExp(`\\b${attributeName}="([^"]+)"`, "g");
   let m;
   while ((m = re.exec(html))) {
-    hrefs.push(m[1]);
+    values.push(m[1]);
   }
-  return hrefs;
+  return values;
+}
+
+function extractHrefs(html) {
+  return extractAttributes(html, "href");
 }
 
 function extractSrcs(html) {
-  const srcs = [];
-  const re = /\bsrc="([^"]+)"/g;
-  let m;
-  while ((m = re.exec(html))) {
-    srcs.push(m[1]);
-  }
-  return srcs;
+  return extractAttributes(html, "src");
 }
 
 function extractNavLinks(html, className) {
@@ -75,6 +106,38 @@ function stripQuery(url) {
   return clean;
 }
 
+function normalizeInternalPath(url, sourceFile) {
+  const clean = stripQuery(url).split("#")[0];
+  if (!clean || clean === "/") return "index.html";
+
+  if (clean.startsWith("/")) {
+    const withoutSlash = clean.slice(1);
+    if (!withoutSlash) return "index.html";
+    if (withoutSlash.endsWith("/")) return `${withoutSlash}index.html`;
+    return withoutSlash;
+  }
+
+  const sourceDir = path.dirname(sourceFile);
+  const relative = path.normalize(path.join(sourceDir === "." ? "" : sourceDir, clean));
+  return relative.replaceAll(path.sep, "/");
+}
+
+function existsAsFileOrDirectoryIndex(relativePath) {
+  const filePath = path.join(root, relativePath);
+  if (fs.existsSync(filePath)) return true;
+  const indexPath = path.join(root, relativePath, "index.html");
+  if (fs.existsSync(indexPath)) return true;
+  return false;
+}
+
+function hasRedirect(url) {
+  const clean = stripQuery(url).split("#")[0];
+  if (!clean) return false;
+  if (existingRedirects.has(clean)) return true;
+  if (!clean.startsWith("/") && existingRedirects.has(`/${clean}`)) return true;
+  return false;
+}
+
 function checkLinks() {
   const htmlFiles = listHtmlFiles();
   const byFile = new Map();
@@ -104,25 +167,25 @@ function checkLinks() {
       }
 
       const [targetFileRaw, anchor] = href.split("#");
-      const targetFile = stripQuery(targetFileRaw);
-      const targetPath = path.join(root, targetFile);
-      if (!fs.existsSync(targetPath)) {
+      const normalizedTarget = normalizeInternalPath(targetFileRaw, file);
+
+      if (!existsAsFileOrDirectoryIndex(normalizedTarget) && !hasRedirect(targetFileRaw)) {
         issues.push(`${file}: missing target ${href}`);
         continue;
       }
+
       if (anchor) {
-        const target = byFile.get(targetFile);
-        if (!target || !target.ids.has(anchor)) {
-          issues.push(`${file}: missing anchor ${targetFile}#${anchor}`);
+        const target = byFile.get(normalizedTarget);
+        if (target && !target.ids.has(anchor)) {
+          issues.push(`${file}: missing anchor ${normalizedTarget}#${anchor}`);
         }
       }
     }
 
     for (const src of srcs) {
       if (isExternal(src)) continue;
-      const clean = stripQuery(src);
-      const srcPath = path.join(root, clean);
-      if (!fs.existsSync(srcPath)) {
+      const normalizedSrc = normalizeInternalPath(src, file);
+      if (!existsAsFileOrDirectoryIndex(normalizedSrc)) {
         issues.push(`${file}: missing asset ${src}`);
       }
     }
@@ -151,6 +214,8 @@ function checkNavConsistency(htmlFiles) {
     const mobileLinks = extractNavLinks(html, "mobile-nav-links").filter(
       (h) => !isExternal(h)
     );
+
+    if (desktopLinks.length === 0 && mobileLinks.length === 0) continue;
 
     const desktopSet = new Set(desktopLinks);
     const mobileSet = new Set(mobileLinks);
