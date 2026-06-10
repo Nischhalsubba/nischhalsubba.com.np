@@ -3,6 +3,7 @@ function applyConsistencyPageClasses() {
   const fileName = path.split('/').filter(Boolean).pop() || 'index.html';
 
   document.body.classList.toggle('nrs-contact-page', fileName === 'contact.html');
+  document.body.classList.toggle('nrs-about-page', fileName === 'about.html');
   document.body.classList.toggle('nrs-work-page', fileName === 'projects.html');
 }
 
@@ -77,7 +78,6 @@ function injectConsistencyStyles() {
       padding-bottom: clamp(40px, 6vw, 76px) !important;
     }
 
-    /* Active nav should feel intentional in both desktop and mobile menus. */
     .nav-link.active,
     .mobile-nav-links a.active {
       color: var(--text-primary, #fff) !important;
@@ -88,118 +88,200 @@ function injectConsistencyStyles() {
       font-weight: 700;
     }
 
-    /* Contact page: make it useful, calm, and conversion-focused. */
-    .nrs-contact-page .hero-section {
+    .nrs-clarity-page .clarity-hero {
       display: grid !important;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-      gap: clamp(28px, 6vw, 72px);
-      align-items: end !important;
+      gap: clamp(18px, 3vw, 30px) !important;
       border-bottom: 1px solid var(--nrs-divider, rgba(255,255,255,.09)) !important;
+      padding-bottom: clamp(34px, 5vw, 64px) !important;
     }
 
-    .nrs-contact-page .hero-section::after {
+    .nrs-clarity-page .clarity-hero::after {
       display: none !important;
     }
 
-    .nrs-contact-page .hero-section .hero-title {
-      max-width: 760px !important;
-      font-size: clamp(3.2rem, 7.2vw, 6.2rem) !important;
+    .nrs-clarity-page .hero-title {
+      max-width: 980px !important;
+      font-size: clamp(3rem, 7.4vw, 6.35rem) !important;
+      line-height: .98 !important;
+      letter-spacing: -.058em !important;
     }
 
-    .nrs-contact-page .impact-summary-grid {
-      display: grid !important;
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-      gap: 0 !important;
+    .nrs-clarity-page .body-large {
+      max-width: 780px !important;
+      font-size: clamp(1.05rem, 1.5vw, 1.22rem) !important;
+      line-height: 1.72 !important;
+    }
+
+    .clarity-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .clarity-snapshot {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      margin: clamp(24px, 4vw, 44px) 0 0;
+      padding: 0;
       border-top: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
+      border-bottom: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
     }
 
-    .nrs-contact-page .impact-card {
-      padding: clamp(22px, 3vw, 34px) clamp(18px, 3vw, 28px) !important;
-      border: 0 !important;
-      border-right: 1px solid var(--nrs-divider, rgba(255,255,255,.09)) !important;
-      border-bottom: 1px solid var(--nrs-divider, rgba(255,255,255,.09)) !important;
-      border-radius: 0 !important;
-      background: transparent !important;
-      box-shadow: none !important;
+    .clarity-snapshot div {
+      padding: clamp(16px, 2.4vw, 26px) clamp(14px, 2vw, 22px);
+      border-right: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
     }
 
-    .nrs-contact-page .impact-card:last-child {
-      border-right: 0 !important;
+    .clarity-snapshot div:last-child {
+      border-right: 0;
     }
 
-    .nrs-contact-page .contact-form {
-      display: grid !important;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 20px;
-      max-width: 860px;
-      border-top: 1px solid var(--nrs-divider, rgba(255,255,255,.09)) !important;
-      border-bottom: 1px solid var(--nrs-divider, rgba(255,255,255,.09)) !important;
-      padding: clamp(30px, 5vw, 56px) 0 !important;
+    .clarity-snapshot dt {
+      margin: 0 0 8px;
+      color: var(--text-tertiary, #8d93a1);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
     }
 
-    .nrs-contact-page .form-grid {
-      display: grid !important;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .nrs-contact-page .form-field {
-      display: grid !important;
-      gap: 10px;
-      color: var(--text-secondary, #d1d5db);
-      font-size: .9rem;
+    .clarity-snapshot dd {
+      margin: 0;
+      color: var(--text-primary, #fff);
+      font-size: clamp(.98rem, 1.4vw, 1.12rem);
+      line-height: 1.35;
       font-weight: 700;
     }
 
-    .nrs-contact-page .form-field input,
-    .nrs-contact-page .form-field select,
-    .nrs-contact-page .form-field textarea {
-      color: var(--text-primary, #fff);
-      border: 1px solid rgba(255,255,255,.13) !important;
-      background: rgba(255,255,255,.035) !important;
-      transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    .clarity-snapshot a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .nrs-contact-page .form-field input:focus,
-    .nrs-contact-page .form-field select:focus,
-    .nrs-contact-page .form-field textarea:focus {
-      border-color: rgba(96,165,250,.72) !important;
-      box-shadow: 0 0 0 4px rgba(96,165,250,.08);
-      outline: none;
+    .clarity-section {
+      display: grid !important;
+      grid-template-columns: minmax(120px, 190px) minmax(0, 1fr);
+      gap: clamp(24px, 5vw, 76px);
+      align-items: start;
+      border-top: 1px solid var(--nrs-divider, rgba(255,255,255,.09)) !important;
     }
 
-    .nrs-contact-page .form-status {
-      min-height: 1.4em;
+    .clarity-section-label {
+      position: sticky;
+      top: 112px;
+    }
+
+    .clarity-section-body {
+      display: grid;
+      gap: clamp(20px, 3vw, 34px);
+      min-width: 0;
+    }
+
+    .clarity-section .section-title {
+      max-width: 820px;
+      font-size: clamp(2rem, 4vw, 3.7rem) !important;
+      line-height: 1.02 !important;
+      letter-spacing: -.044em !important;
       margin: 0 !important;
-      color: var(--text-secondary, #d1d5db);
-      font-size: .92rem;
     }
 
-    .nrs-contact-page .form-status[data-tone='success'] {
-      color: #86efac;
-    }
-
-    .nrs-contact-page .form-status[data-tone='error'] {
-      color: #fca5a5;
-    }
-
-    .nrs-contact-page .writing-list {
+    .clarity-row-list {
+      display: grid;
       border-top: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
     }
 
-    .nrs-contact-page .writing-item {
-      display: grid !important;
-      grid-template-columns: minmax(92px, 140px) minmax(0, 1fr);
-      gap: clamp(18px, 4vw, 52px);
-      padding: clamp(20px, 3.5vw, 34px) 0 !important;
-      border: 0 !important;
-      border-bottom: 1px solid var(--nrs-divider, rgba(255,255,255,.09)) !important;
-      border-radius: 0 !important;
-      background: transparent !important;
-      box-shadow: none !important;
+    .clarity-row-list article {
+      display: grid;
+      grid-template-columns: minmax(56px, 88px) minmax(0, 1fr);
+      gap: clamp(18px, 4vw, 48px);
+      padding: clamp(20px, 3.6vw, 34px) 0;
+      border-bottom: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
     }
 
-    /* Project detail: cleaner case-study reading flow. */
+    .clarity-row-list article > span,
+    .clarity-steps article > span {
+      color: var(--text-tertiary, #8d93a1);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .clarity-row-list h3,
+    .clarity-steps h3,
+    .clarity-pill-grid span,
+    .contact-fit-grid h3,
+    .principle-grid h3 {
+      margin: 0 0 8px;
+      color: var(--text-primary, #fff);
+      font-family: var(--font-serif, serif);
+      font-size: clamp(1.25rem, 2vw, 1.72rem);
+      line-height: 1.18;
+      letter-spacing: -.025em;
+    }
+
+    .clarity-row-list p,
+    .clarity-steps p,
+    .principle-grid p,
+    .contact-fit-grid p {
+      margin: 0;
+      max-width: 680px;
+      color: var(--text-secondary, #d1d5db);
+      line-height: 1.72;
+    }
+
+    .clarity-pill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
+    }
+
+    .clarity-pill-grid span {
+      display: flex;
+      align-items: center;
+      min-height: 84px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
+      border-right: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
+    }
+
+    .clarity-pill-grid span:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .clarity-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
+    }
+
+    .clarity-steps article {
+      padding: clamp(20px, 3vw, 32px);
+      border-right: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
+      border-bottom: 1px solid var(--nrs-divider, rgba(255,255,255,.09));
+    }
+
+    .clarity-steps article:last-child {
+      border-right: 0;
+    }
+
+    .nrs-contact-page .contact-form {
+      max-width: 860px !important;
+      margin-top: 0;
+    }
+
+    .nrs-contact-page .form-note {
+      display: none;
+    }
+
+    .nrs-contact-page .contact-priority .clarity-row-list h3 {
+      font-size: clamp(1.22rem, 1.8vw, 1.55rem);
+    }
+
     .nrs-project-detail-page .hero-section {
       display: grid !important;
       grid-template-columns: minmax(0, 1fr);
@@ -292,8 +374,9 @@ function injectConsistencyStyles() {
         --nrs-site-width: calc(100vw - 40px);
       }
 
-      .nrs-contact-page .hero-section,
-      .nrs-contact-page .impact-summary-grid,
+      .clarity-snapshot,
+      .clarity-steps,
+      .clarity-pill-grid,
       .nrs-contact-page .form-grid,
       .nrs-project-detail-page .section-container,
       .nrs-project-detail-page .snapshot-grid,
@@ -302,8 +385,19 @@ function injectConsistencyStyles() {
         grid-template-columns: 1fr !important;
       }
 
-      .nrs-contact-page .impact-card {
-        border-right: 0 !important;
+      .clarity-section {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+
+      .clarity-section-label {
+        position: static;
+      }
+
+      .clarity-snapshot div,
+      .clarity-pill-grid span,
+      .clarity-steps article {
+        border-right: 0;
       }
 
       .nrs-project-detail-page .section-container > .case-label,
@@ -337,8 +431,8 @@ function injectConsistencyStyles() {
         --nrs-site-width: calc(100vw - 40px);
       }
 
-      .nrs-inner-page .hero-title,
-      .nrs-contact-page .hero-section .hero-title {
+      .nrs-clarity-page .hero-title,
+      .nrs-inner-page .hero-title {
         font-size: clamp(2.2rem, 12vw, 3.35rem) !important;
       }
 
@@ -346,9 +440,23 @@ function injectConsistencyStyles() {
         padding-top: 94px !important;
       }
 
-      .nrs-contact-page .writing-item {
+      .clarity-row-list article {
         grid-template-columns: 1fr !important;
-        gap: 10px;
+        gap: 8px;
+      }
+
+      .clarity-actions,
+      .hero-actions,
+      .form-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+      }
+
+      .clarity-actions .btn,
+      .hero-actions .btn,
+      .form-actions .btn {
+        width: 100% !important;
       }
 
       .nrs-project-detail-page iframe {
