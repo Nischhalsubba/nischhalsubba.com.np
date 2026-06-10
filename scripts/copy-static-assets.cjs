@@ -64,24 +64,43 @@ function walkFiles(directory, matcher, files = []) {
  * The Vite HTML plugin injects static context/schema for crawlers. The schema
  * should remain, but the visible helper sections should not appear in the UI.
  */
-function stripVisibleSeoHelperBlocks() {
+function stripVisibleSeoHelperBlocks(html) {
   const helperBlockClasses = [
     'nrs-static-project-context',
     'nrs-static-related-links',
     'nrs-static-faq',
   ];
 
+  let output = html;
+  for (const className of helperBlockClasses) {
+    const pattern = new RegExp(`<section[^>]*\\b${className}\\b[^>]*>[\\s\\S]*?<\\/section>`, 'g');
+    output = output.replace(pattern, '');
+  }
+
+  return output;
+}
+
+/**
+ * Remove legacy GSAP vendor script tags from production HTML.
+ *
+ * The runtime motion module already falls back to native IntersectionObserver.
+ * Keeping these non-module vendor scripts in every HTML file adds network cost,
+ * causes Vite bundling warnings, and hurts mobile performance. Little scripts,
+ * enormous opinions.
+ */
+function stripUnusedVendorScripts(html) {
+  return html
+    .replace(/\s*<script\s+src="\/assets\/vendor\/gsap\.min\.js"\s+defer><\/script>/g, '')
+    .replace(/\s*<script\s+src="\/assets\/vendor\/ScrollTrigger\.min\.js"\s+defer><\/script>/g, '');
+}
+
+function optimizeHtmlOutput() {
   for (const filePath of walkFiles(distDir, (file) => file.endsWith('.html'))) {
-    let html = fs.readFileSync(filePath, 'utf8');
-    const original = html;
+    const original = fs.readFileSync(filePath, 'utf8');
+    const optimized = stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original));
 
-    for (const className of helperBlockClasses) {
-      const pattern = new RegExp(`<section[^>]*\\b${className}\\b[^>]*>[\\s\\S]*?<\\/section>`, 'g');
-      html = html.replace(pattern, '');
-    }
-
-    if (html !== original) {
-      fs.writeFileSync(filePath, html, 'utf8');
+    if (optimized !== original) {
+      fs.writeFileSync(filePath, optimized, 'utf8');
     }
   }
 }
@@ -104,6 +123,6 @@ for (const fileName of [
   copyRootFile(fileName);
 }
 
-stripVisibleSeoHelperBlocks();
+optimizeHtmlOutput();
 
-console.log('Copied static assets, AI discovery files, runtime files, manifest, and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, AI discovery files, runtime files, manifest, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
