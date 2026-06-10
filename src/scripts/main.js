@@ -1,6 +1,7 @@
 import { onReady } from './utils/dom.js';
 import { injectGlobalStyles } from './features/global-styles.js';
 import { stabilizeLayout } from './features/layout-rescue.js';
+import { polishSiteConsistency } from './features/site-consistency.js';
 import { normalizeArticleLayout } from './features/article-layout.js';
 import { initActiveNavigation } from './features/navigation.js';
 import { initContactForm } from './features/contact-form.js';
@@ -25,6 +26,7 @@ onReady(() => {
   // 1. Shared visual/runtime foundations first.
   injectGlobalStyles();
   stabilizeLayout();
+  polishSiteConsistency();
   normalizeArticleLayout();
   useProjectDetailImages();
   initTheme();
