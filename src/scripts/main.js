@@ -2,6 +2,7 @@ import { onReady } from './utils/dom.js';
 import { injectGlobalStyles } from './features/global-styles.js';
 import { stabilizeLayout } from './features/layout-rescue.js';
 import { polishSiteConsistency } from './features/site-consistency.js';
+import { applyViewportResponsivePolish } from './features/viewport-responsive-polish.js';
 import { normalizeArticleLayout } from './features/article-layout.js';
 import { initActiveNavigation } from './features/navigation.js';
 import { initContactForm } from './features/contact-form.js';
@@ -27,6 +28,7 @@ onReady(() => {
   injectGlobalStyles();
   stabilizeLayout();
   polishSiteConsistency();
+  applyViewportResponsivePolish();
   normalizeArticleLayout();
   useProjectDetailImages();
   initTheme();
