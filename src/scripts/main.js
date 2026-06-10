@@ -1,6 +1,5 @@
 import { onReady } from './utils/dom.js';
 import { injectGlobalStyles } from './features/global-styles.js';
-import { refineEditorialDesign } from './features/editorial-design.js';
 import { normalizeArticleLayout } from './features/article-layout.js';
 import { initActiveNavigation } from './features/navigation.js';
 import { initContactForm } from './features/contact-form.js';
@@ -24,7 +23,6 @@ import { initTheme } from './features/theme.js';
 onReady(() => {
   // 1. Shared visual/runtime foundations first.
   injectGlobalStyles();
-  refineEditorialDesign();
   normalizeArticleLayout();
   useProjectDetailImages();
   initTheme();
