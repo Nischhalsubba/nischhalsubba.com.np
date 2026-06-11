@@ -207,125 +207,125 @@ const projectSeo: Record<string, SeoEntry> = {
     schemaType: 'CreativeWork',
     related: [['Website UX service', '/website-ux-design.html'], ['Product Design Nepal', '/product-design-nepal.html'], ['All projects', '/projects.html']],
     faqs: [
-      ['What is Zakra Furniture?', 'Zakra Furniture is a WordPress starter website for a furniture business experience.'],
-      ['What was Nischhal’s role?', 'Nischhal designed and built the starter website using Zakra and Elementor.'],
-      ['What was the UX focus?', 'The focus was clean product presentation, reusable business sections, and a polished website layout.'],
-      ['Why is it relevant?', 'It shows practical website design and WordPress implementation experience.']
+      ['What is Zakra Furniture?', 'Zakra Furniture is a WordPress starter website project for furniture product presentation.'],
+      ['What tools were used?', 'The project used WordPress, the Zakra theme, and Elementor for page building.'],
+      ['What was the design focus?', 'The design focused on clean product sections, reusable business layouts, and simple furniture website structure.'],
+      ['Why is this relevant?', 'It shows practical WordPress website setup, starter template thinking, and small-business page structure.']
     ]
   },
   '/project-designerex.html': {
-    name: 'Designerex',
-    type: 'Marketplace design contribution case study',
-    focus: 'Luxury fashion rental marketplace experience and product design contribution.',
-    role: 'Design contribution to a broader marketplace product design effort. This is intentionally not framed as sole ownership.',
+    name: 'Designerex WordPress Exploration',
+    type: 'WordPress theme adaptation and website exploration',
+    focus: 'WordPress portfolio exploration, theme customization, layout adaptation, and implementation learning.',
+    role: 'Theme adaptation and layout exploration using WordPress, Zakra, Elementor, and Tutor LMS Pro.',
     parentName: 'Projects',
     parentUrl: '/projects.html',
     schemaType: 'CreativeWork',
-    related: [['Product Design Nepal', '/product-design-nepal.html'], ['Portfolio article', '/blog/blog-portfolio-product.html'], ['All projects', '/projects.html']],
+    related: [['Website UX service', '/website-ux-design.html'], ['Figma Design Systems', '/figma-design-systems.html'], ['All projects', '/projects.html']],
     faqs: [
-      ['What is Designerex?', 'Designerex is a luxury fashion rental marketplace.'],
-      ['What was Nischhal’s role?', 'Nischhal contributed design work as part of a broader product design effort.'],
-      ['Why is this framed as a contribution?', 'The page avoids overclaiming and presents the work as contribution-based.'],
-      ['What is the relevant UX theme?', 'Marketplace UX involves product discovery, listing clarity, trust, and transaction confidence.']
+      ['What is Designerex?', 'Designerex is a WordPress exploration focused on portfolio layout adaptation and theme customization.'],
+      ['What tools were used?', 'WordPress, Zakra, Elementor, Tutor LMS Pro, WP Portfolio, WPForms, Fluent Forms, Easy Table of Contents, and SureCart were used.'],
+      ['What was the purpose?', 'The project explored how WordPress theme systems and plugin stacks can support portfolio-style websites.'],
+      ['Is Designerex a full product case study?', 'It is best understood as an implementation and theme-adaptation exploration rather than a full product case study.']
     ]
   },
   '/project-sassboilerplate.html': {
-    name: 'sassBoilerplate',
-    type: 'Front-end workflow toolkit case study',
-    focus: 'Static website development workflow, styling organization, and front-end starter structure.',
-    role: 'Created a front-end starter workflow to speed up and organize static website development.',
+    name: 'Sass Boilerplate',
+    type: 'Front-end starter architecture exploration',
+    focus: 'SCSS folder structure, tokens, variables, component partials, and maintainable front-end organization.',
+    role: 'Front-end architecture exploration for scalable SCSS starter structure.',
     parentName: 'Projects',
     parentUrl: '/projects.html',
     schemaType: 'CreativeWork',
     related: [['Figma Design Systems', '/figma-design-systems.html'], ['Good handoff article', '/blog/blog-good-handoff.html'], ['All projects', '/projects.html']],
     faqs: [
-      ['What is sassBoilerplate?', 'sassBoilerplate is a front-end starter project for organizing static website development.'],
-      ['Why did Nischhal create it?', 'It was created to improve styling organization and speed up repeatable front-end work.'],
-      ['How is it relevant to product design?', 'It shows front-end-aware design thinking and practical understanding of design-to-code constraints.'],
-      ['What does it connect to?', 'It connects to design systems, developer handoff, and reusable front-end workflows.']
+      ['What is Sass Boilerplate?', 'Sass Boilerplate is a front-end starter architecture exploration for organizing SCSS projects.'],
+      ['What does it include?', 'It includes folder structure, variables, token thinking, component partials, and maintainable SCSS conventions.'],
+      ['Why is it relevant to design systems?', 'Design systems need consistent implementation rules, and a Sass architecture helps translate UI decisions into maintainable styles.'],
+      ['Is this a user-facing product?', 'No. It is a front-end architecture exploration rather than a user-facing product.']
     ]
   }
 };
 
 const blogSeo: Record<string, SeoEntry> = {
   '/blog/blog-web3-products.html': {
-    name: 'Designing Web3 Products Without Making Users Feel Lost',
+    name: 'Why Web3 Products Need Better UX, Not More Explanations',
     type: 'Web3 UX article',
-    focus: 'Wallet clarity, transaction review, trust language, and Web3 product education.',
-    role: 'Product design writing based on Web3 UX patterns and portfolio experience with Yarsha and Mokshya.io.',
+    focus: 'Wallet interactions, transaction review, permissions, onboarding, trust states, and product clarity for Web3 apps.',
+    role: 'Product design writing about Web3 UX clarity, based on interface and transaction-flow thinking.',
     parentName: 'Writing',
     parentUrl: '/blog/',
     schemaType: 'Article',
-    related: [['Yarsha case study', '/project-yarsha.html'], ['Mokshya.io case study', '/project-mokshya.html'], ['Web3 UX service', '/web3-ux-designer.html']],
+    related: [['Web3 UX service', '/web3-ux-designer.html'], ['Yarsha case study', '/project-yarsha.html'], ['Mokshya case study', '/project-mokshya.html']],
     faqs: [
-      ['What is Web3 UX?', 'Web3 UX is the design of wallet, signing, transaction, and protocol experiences so users understand what will happen before they act.'],
-      ['Why is wallet clarity important?', 'Wallet clarity is important because signing or transferring assets can feel risky when users do not understand fees, recipients, and outcomes.'],
-      ['Which projects relate to this article?', 'The article relates most closely to Yarsha and Mokshya.io.'],
-      ['What is the main takeaway?', 'Good Web3 UX should explain complexity at the right time instead of hiding it or exposing it too late.']
+      ['Why do Web3 products need better UX?', 'Because many Web3 products ask users to approve complex wallet, token, and permission actions without enough context.'],
+      ['What should transaction review show?', 'Transaction review should show what changes, what leaves the wallet, network fees, destination, risk, and confirmation states.'],
+      ['What is wallet UX?', 'Wallet UX covers connection, permissions, signing, transaction review, status feedback, errors, and trust-building around asset actions.'],
+      ['What is the main idea of the article?', 'Better Web3 UX means making decisions easier before, during, and after wallet or transaction actions.']
     ]
   },
   '/blog/blog-good-handoff.html': {
-    name: 'Why Good Handoff Matters More Than Perfect Screens',
+    name: 'What Good Design Handoff Looks Like',
     type: 'Design handoff article',
-    focus: 'States, edge cases, responsive rules, interaction notes, acceptance criteria, and developer-ready design communication.',
-    role: 'Product design writing about making design work easier to implement without guessing.',
+    focus: 'Responsive states, component behavior, edge cases, design notes, QA, and developer-ready Figma files.',
+    role: 'Product design writing about practical handoff and front-end-aware collaboration.',
     parentName: 'Writing',
     parentUrl: '/blog/',
     schemaType: 'Article',
-    related: [['Figma Design Systems', '/figma-design-systems.html'], ['sassBoilerplate case study', '/project-sassboilerplate.html'], ['UX Audit service', '/ux-audit.html']],
+    related: [['Figma Design Systems', '/figma-design-systems.html'], ['Sass Boilerplate project', '/project-sassboilerplate.html'], ['UX audit service', '/ux-audit.html']],
     faqs: [
-      ['What is design handoff?', 'Design handoff is the process of communicating UI behavior, states, responsive rules, and acceptance criteria to developers.'],
-      ['Why is handoff more than a Figma file?', 'A Figma file shows layout, but handoff explains intent, edge cases, state behavior, and implementation expectations.'],
-      ['Who benefits from better handoff?', 'Designers, developers, product managers, QA teams, and AI coding agents all benefit from clear handoff documentation.'],
-      ['What is the main takeaway?', 'Good handoff reduces guessing and protects design intent during implementation.']
+      ['What is design handoff?', 'Design handoff is the process of giving developers the layout, states, behavior, content rules, and assets needed to build the interface.'],
+      ['What makes handoff good?', 'Good handoff includes responsive rules, component states, interaction notes, empty states, error states, and QA expectations.'],
+      ['Why does handoff matter?', 'Poor handoff creates guesswork, rework, inconsistent UI, and implementation delays.'],
+      ['What is the main takeaway?', 'A good handoff reduces ambiguity before engineering starts building.']
     ]
   },
   '/blog/blog-portfolio-product.html': {
-    name: 'What I Learned Designing My Portfolio Like a Product',
+    name: 'Treating a Portfolio Like a Product',
     type: 'Portfolio strategy article',
-    focus: 'Portfolio UX, truthful contribution framing, SEO structure, case-study hierarchy, and recruiter/client decision paths.',
-    role: 'Product design writing about treating a personal portfolio like a usable product.',
+    focus: 'Portfolio UX, recruiter journeys, case study structure, positioning, proof, and conversion paths.',
+    role: 'Product design writing about treating a portfolio as a user journey rather than a static gallery.',
     parentName: 'Writing',
     parentUrl: '/blog/',
     schemaType: 'Article',
-    related: [['Product Design Nepal', '/product-design-nepal.html'], ['Projects page', '/projects.html'], ['About page', '/about.html']],
+    related: [['Product Design Nepal', '/product-design-nepal.html'], ['All projects', '/projects.html'], ['About Nischhal', '/about.html']],
     faqs: [
-      ['Why design a portfolio like a product?', 'A portfolio has users, goals, content hierarchy, trust signals, and conversion paths like any other digital product.'],
-      ['What makes a portfolio trustworthy?', 'Clear contribution framing, real project context, truthful outcomes, and specific design decisions make a portfolio more trustworthy.'],
-      ['Should every portfolio claim metrics?', 'No. Metrics should only be used when they are verified. Otherwise, design intent and contribution should be explained honestly.'],
-      ['What is the main takeaway?', 'A strong portfolio should be visually polished and truthful enough to survive questions.']
+      ['Why treat a portfolio like a product?', 'Because hiring managers, collaborators, and clients each arrive with different questions and need clear proof quickly.'],
+      ['What should a portfolio explain?', 'A portfolio should explain role, problem, process, decisions, constraints, outcome, and fit for future work.'],
+      ['What is portfolio UX?', 'Portfolio UX is the structure, navigation, content, and proof that help visitors understand a designer’s work quickly.'],
+      ['What is the main takeaway?', 'A portfolio should guide visitors through evidence, not just display attractive screens.']
     ]
   },
   '/blog/blog-service-websites.html': {
-    name: 'Designing Service Websites That Explain the Business Clearly',
+    name: 'Why Service Websites Fail Before the Hero Section Ends',
     type: 'Website UX article',
-    focus: 'Service page structure, business positioning, SEO headings, trust signals, conversion paths, and clear website storytelling.',
-    role: 'Product design writing connected to service website work such as Hamro Idea, Morajaa, Splashnode, and Grid Labs.',
+    focus: 'Service website positioning, hero clarity, proof, service pages, conversion paths, and inquiry flow design.',
+    role: 'Product design writing about website UX for service businesses, software companies, and consulting websites.',
     parentName: 'Writing',
     parentUrl: '/blog/',
     schemaType: 'Article',
     related: [['Website UX service', '/website-ux-design.html'], ['Hamro Idea case study', '/project-hamro-idea.html'], ['Morajaa case study', '/project-morajaa.html']],
     faqs: [
-      ['What is service website UX?', 'Service website UX is the design of pages that clearly explain what a business offers, who it helps, and what the visitor should do next.'],
-      ['Why do service websites need strong content structure?', 'Good content structure helps visitors understand the business quickly and helps search engines interpret the page topic.'],
-      ['Which projects relate to this article?', 'Hamro Idea, Morajaa, Splashnode, and Grid Labs relate to this topic.'],
-      ['What is the main takeaway?', 'A service website is not only a brochure; it is a decision path.']
+      ['Why do service websites fail?', 'Many fail because visitors cannot quickly understand what the company does, who it helps, why it is credible, and what to do next.'],
+      ['What should a hero section explain?', 'A strong hero should explain the service, audience, value, proof, and next action without vague language.'],
+      ['What makes service website UX better?', 'Clear service pages, proof, comparison, process, FAQs, and inquiry flows help visitors decide faster.'],
+      ['What is the main takeaway?', 'Service websites need clarity and trust before visual decoration.']
     ]
   },
   '/blog/blog-gaming-interface-clarity.html': {
-    name: 'What Gaming Taught Me About Interface Clarity',
-    type: 'Gaming UX article',
-    focus: 'Real-time feedback, combat logs, status states, information density, dashboards, and fast decision-making.',
-    role: 'Product design writing connected to Neverwinter Live Parser and gaming-interface clarity.',
+    name: 'What Gaming Interfaces Teach About Product Clarity',
+    type: 'Gaming interface UX article',
+    focus: 'Real-time feedback, dense information design, status states, prioritization, and decision support in gaming UI.',
+    role: 'Product design writing about lessons from gaming interfaces and information-dense tools.',
     parentName: 'Writing',
     parentUrl: '/blog/',
     schemaType: 'Article',
-    related: [['Neverwinter Live Parser case study', '/project-neverwinter-parser.html'], ['UX Audit service', '/ux-audit.html'], ['Product Design Nepal', '/product-design-nepal.html']],
+    related: [['Neverwinter Live Parser project', '/project-neverwinter-parser.html'], ['UX audit service', '/ux-audit.html'], ['Product Design Nepal', '/product-design-nepal.html']],
     faqs: [
-      ['What can gaming teach product designers?', 'Gaming interfaces teach designers about real-time feedback, status clarity, information density, and fast decision-making.'],
-      ['Why are combat logs a UX problem?', 'Raw combat logs are difficult to read, so good UX turns them into understandable performance insights.'],
-      ['Which project relates to this article?', 'The article relates to the Neverwinter Live Parser project.'],
-      ['What is the main takeaway?', 'A good interface helps people act confidently while the situation is changing.']
+      ['Why are gaming interfaces useful for product design?', 'Gaming interfaces often handle dense information, fast feedback, status changes, and decision-making under pressure.'],
+      ['What can apps learn from games?', 'Apps can learn better feedback, prioritization, visual hierarchy, progressive disclosure, and state clarity.'],
+      ['What is the UX challenge in gaming UI?', 'The challenge is showing important information without overwhelming the player or hiding critical status changes.'],
+      ['What is the main takeaway?', 'Good interfaces help users understand what is happening and what action matters next.']
     ]
   },
   '/blog/blog-design-systems-front-end.html': {
@@ -349,8 +349,6 @@ const blogSeo: Record<string, SeoEntry> = {
 const staticSeoEntries: Record<string, SeoEntry> = { ...projectSeo, ...blogSeo };
 
 function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
-  const faqHtml = data.faqs.map(([q, a]) => `<details class="impact-card"><summary>${q}</summary><p>${a}</p></details>`).join('');
-  const relatedHtml = data.related.map(([label, url]) => `<a class="writing-item" href="${url}"><span class="w-date">Related</span><div class="w-info"><span class="w-title">${label}</span><span class="w-summary">Continue with topic-specific context for ${data.name}.</span></div><span class="w-arrow">→</span></a>`).join('');
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -381,36 +379,16 @@ function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
     ]
   };
 
-  return `
-    <section class="section-container nrs-static-project-context">
-      <p class="eyebrow">Static SEO context</p>
-      <h2 class="section-title">What this ${data.type} focuses on</h2>
-      <div class="impact-summary-grid">
-        <div class="impact-card"><span class="eyebrow">Focus</span><h3>${data.name}</h3><p>${data.focus}</p></div>
-        <div class="impact-card"><span class="eyebrow">Role</span><h3>Truthful contribution</h3><p>${data.role}</p></div>
-        <div class="impact-card"><span class="eyebrow">SEO note</span><h3>Subject-specific framing</h3><p>This section is rendered at build time so search engines and AI crawlers can read the page context without relying only on client-side JavaScript.</p></div>
-      </div>
-    </section>
-    <section class="section-container nrs-static-related-links">
-      <p class="eyebrow">Related paths</p>
-      <h2 class="section-title">Continue with related work and writing</h2>
-      <div class="writing-list">${relatedHtml}</div>
-    </section>
-    <section class="section-container nrs-static-faq">
-      <p class="eyebrow">Frequently asked questions</p>
-      <h2 class="section-title">Questions this page answers</h2>
-      <div style="display:grid;gap:16px;">${faqHtml}</div>
-    </section>
-    <script type="application/ld+json">${JSON.stringify(schema)}</script>
-  `;
+  return `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
 }
 
 /**
  * Build-time HTML polish.
  *
  * Heavy animation libraries are deferred so mobile rendering starts earlier.
- * Static context/schema is injected for every project and blog detail page so SEO
- * does not depend only on client-side JavaScript.
+ * JSON-LD schema is injected for every project and blog detail page so SEO does
+ * not depend only on client-side JavaScript. Visible helper blocks are avoided
+ * intentionally because they can leak into production UI and fail the build audit.
  */
 const htmlEnhancementInjector = (): Plugin => ({
   name: 'nrs-html-enhancement-injector',
@@ -421,7 +399,7 @@ const htmlEnhancementInjector = (): Plugin => ({
 
     const pagePath = ctx.path;
     const staticData = staticSeoEntries[pagePath];
-    if (staticData && !output.includes('nrs-static-project-context')) {
+    if (staticData && !output.includes('"@type":"BreadcrumbList"')) {
       output = output.replace('</main>', `${makeStaticSeoSection(pagePath, staticData)}\n    </main>`);
     }
 
