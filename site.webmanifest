@@ -1,18 +1,20 @@
 {
-  "name": "Nischhal Raj Subba Portfolio",
+  "name": "Nischhal Raj Subba - Product Designer",
   "short_name": "Nischhal",
-  "description": "Product design portfolio by Nischhal Raj Subba, focused on Web3, SaaS, fintech, website UX, design systems and developer-ready handoff.",
+  "description": "Product design portfolio by Nischhal Raj Subba, focused on Web3 UX, SaaS dashboards, fintech flows, website UX, design systems, UX audits and developer-ready handoff.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#050505",
-  "theme_color": "#050505",
+  "background_color": "#f7fbff",
+  "theme_color": "#1d4ed8",
   "icons": [
     {
       "src": "/assets/images/favicon.svg",
-      "sizes": "64x64",
+      "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": ["portfolio", "design", "productivity"],
+  "lang": "en"
 }
