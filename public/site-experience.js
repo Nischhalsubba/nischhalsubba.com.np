@@ -5,6 +5,38 @@
     return strings.join('');
   }
 
+  function injectGlobalPolish() {
+    if (document.querySelector('[data-site-experience-polish]')) return;
+
+    const style = document.createElement('style');
+    style.setAttribute('data-site-experience-polish', 'true');
+    style.textContent = [
+      '.site-footer{padding:clamp(48px,7vw,84px) 0;border-top:1px solid var(--border-faint);background:radial-gradient(circle at 70% 12%,rgba(245,158,11,.08),transparent 28%),rgba(0,0,0,.12)}',
+      '.footer-top-grid{display:grid;grid-template-columns:minmax(260px,.9fr) 1.1fr;gap:clamp(28px,6vw,80px);align-items:start}',
+      '.footer-cta h2{margin:0 0 18px;color:var(--text-primary);font-size:clamp(1.7rem,3.8vw,3.7rem);line-height:1.05}',
+      '.footer-cta p{max-width:720px;color:var(--text-secondary);line-height:1.7}',
+      '.footer-email-btn{display:inline-flex;margin-top:14px;word-break:break-word}',
+      '.footer-nav-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}',
+      '.footer-col{display:grid;gap:12px;align-content:start}',
+      '.footer-col h5{margin:0 0 6px;color:var(--text-tertiary);font-size:.78rem;text-transform:uppercase;letter-spacing:.14em}',
+      '.footer-col a{display:block;width:max-content;max-width:100%;color:var(--text-secondary);text-decoration:none;line-height:1.35}',
+      '.footer-col a:hover{color:var(--text-primary);text-decoration:underline;text-underline-offset:4px}',
+      '.footer-bottom-bar{margin-top:42px;color:var(--text-tertiary);font-size:.92rem}',
+      '.nav-wrapper + a,.nav-wrapper ~ a[href="/"],body>a[href="/"]{display:none!important}',
+      '.badge-pill{display:inline-flex;align-items:center;gap:8px;width:max-content;text-decoration:none}',
+      '@media(max-width:850px){.footer-top-grid,.footer-nav-grid{grid-template-columns:1fr}.footer-col a{width:auto}.site-footer{padding-bottom:96px}}'
+    ].join('');
+    document.head.appendChild(style);
+  }
+
+  function normalizeBlogLinks() {
+    document.querySelectorAll('a[href^="/blog/"]').forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href || href === '/blog/' || href.endsWith('/')) return;
+      link.setAttribute('href', href.replace(/\.html$/, ''));
+    });
+  }
+
   function enhanceBlogIndex() {
     if (path !== '/blog/') return;
     const hero = document.querySelector('.hero-section');
@@ -33,7 +65,7 @@
     ]);
     list.closest('.section-container')?.insertAdjacentElement('beforebegin', controls);
 
-    fetch('/data/blog-posts.json?v=20260611')
+    fetch('/data/blog-posts.json?v=20260612')
       .then((response) => response.ok ? response.json() : Promise.reject())
       .then((posts) => renderBlogPosts(posts, list, controls))
       .catch(() => {
@@ -74,6 +106,7 @@
         return tagOk && (!query || haystack.includes(query));
       });
       list.innerHTML = filtered.map(postCard).join('');
+      normalizeBlogLinks();
     }
 
     filters.addEventListener('click', (event) => {
@@ -121,6 +154,8 @@
   }
 
   function run() {
+    injectGlobalPolish();
+    normalizeBlogLinks();
     enhanceBlogIndex();
     enhanceBlogDetail();
     addUxcelProof();
