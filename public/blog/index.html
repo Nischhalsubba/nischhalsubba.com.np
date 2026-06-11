@@ -15,7 +15,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/style.css?v=16.2" />
+    <link rel="stylesheet" href="/style.css?v=20260612" />
+    <link rel="stylesheet" href="/blog-experience.css?v=20260612" />
   </head>
   <body>
     <canvas id="grid-canvas"></canvas>
@@ -24,29 +25,29 @@
     <div class="mobile-nav-overlay"><nav class="mobile-nav-links"><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/" class="active">Writing</a><a href="/contact.html">Contact</a></nav></div>
     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
     <nav class="nav-wrapper"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects.html" class="nav-link">Work</a><a href="/about.html" class="nav-link">About</a><a href="/blog/" class="nav-link active">Writing</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
-    <main class="container">
-      <section class="hero-section" style="min-height:42vh;">
-        <h1 class="hero-title reveal-on-scroll"><span class="text-reveal-wrap"><span class="text-outline" aria-hidden="true" data-text="Product Design Writing"></span><span class="text-fill" aria-hidden="true" data-text="Product Design Writing"></span><span class="sr-only">Product Design Writing</span></span></h1>
-        <p class="body-large reveal-on-scroll">Subject-focused notes on hiring product designers, Web3 wallet UX, SaaS dashboards, website UX, UX audits, Figma handoff, gaming interface clarity, portfolio strategy, and front-end-aware design systems.</p>
+    <main class="container nrs-blog-hub">
+      <section class="hero-section nrs-blog-hub-shell" style="min-height:42vh;">
+        <p class="nrs-blog-hub-kicker">Writing for product teams</p>
+        <h1 class="hero-title nrs-blog-hub-title reveal-on-scroll">Product Design Writing</h1>
+        <p class="body-large nrs-blog-hub-copy reveal-on-scroll">Subject-focused notes on hiring product designers, Web3 wallet UX, SaaS dashboards, website UX, UX audits, Figma handoff, gaming interface clarity, portfolio strategy, and front-end-aware design systems.</p>
+        <div class="nrs-blog-proof-grid">
+          <article><span>01</span><strong>Hiring intent</strong><p>Guides for teams looking for product design help.</p></article>
+          <article><span>02</span><strong>Complex UX</strong><p>Wallets, dashboards, verification, states, and product flows.</p></article>
+          <article><span>03</span><strong>Build clarity</strong><p>Figma systems, handoff, QA, and developer context.</p></article>
+        </div>
+      </section>
+      <section class="section-container nrs-blog-controls-panel" aria-label="Search and filter writing">
+        <div class="search-wrapper"><input class="search-input" data-blog-search type="search" placeholder="Search by Web3, SaaS, UX audit, handoff..." aria-label="Search writing" /></div>
+        <div class="filter-row" data-blog-filters></div>
       </section>
       <section class="section-container" style="padding-top:0;">
-        <div class="writing-list reveal-on-scroll">
-          <a href="/blog/hire-product-designer-nepal-saas-web3.html" class="writing-item" data-category="hire product designer nepal saas web3 ux"><span class="w-date">Jun 11, 2026</span><div class="w-info"><span class="w-title">Hire a Product Designer in Nepal for SaaS and Web3 Products</span><span class="w-summary">A practical hiring guide for startups and software teams that need clearer product flows, polished UI, design systems, UX audits, and developer-ready handoff.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/web3-wallet-ux-checklist.html" class="writing-item" data-category="web3 wallet ux"><span class="w-date">May 01, 2026</span><div class="w-info"><span class="w-title">Web3 Wallet UX Checklist for First-Time Users</span><span class="w-summary">A practical checklist for wallet onboarding, signing clarity, transaction review, fees, recovery, and trust-focused Web3 design.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/transaction-review-ux-crypto-apps.html" class="writing-item" data-category="web3 crypto transaction ux"><span class="w-date">May 01, 2026</span><div class="w-info"><span class="w-title">How to Design Transaction Review Screens for Crypto Apps</span><span class="w-summary">Recipient clarity, amount, network, fees, signing context, status states, and recovery paths for crypto transaction UX.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/saas-dashboard-ux-checklist.html" class="writing-item" data-category="saas dashboard ux"><span class="w-date">May 01, 2026</span><div class="w-info"><span class="w-title">SaaS Dashboard UX Checklist for Complex Workflows</span><span class="w-summary">Navigation, role-based workflows, tables, filters, status states, empty states, and decision clarity for SaaS products.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/website-ux-checklist-software-companies.html" class="writing-item" data-category="website seo ux"><span class="w-date">May 01, 2026</span><div class="w-info"><span class="w-title">Website UX Checklist for Software Companies</span><span class="w-summary">Positioning, service pages, SEO structure, case studies, trust signals, CTAs, and conversion paths for software websites.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/ux-audit-checklist-before-redesign.html" class="writing-item" data-category="ux audit website"><span class="w-date">May 01, 2026</span><div class="w-info"><span class="w-title">UX Audit Checklist Before Redesigning a Website</span><span class="w-summary">Usability, hierarchy, content, accessibility, conversion, performance, and handoff checks before redesigning.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/figma-handoff-notes-for-developers.html" class="writing-item" data-category="figma handoff systems"><span class="w-date">May 01, 2026</span><div class="w-info"><span class="w-title">How to Write Developer Handoff Notes in Figma</span><span class="w-summary">States, breakpoints, interactions, content rules, accessibility, and acceptance criteria for developer handoff.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/blog-web3-products.html" class="writing-item" data-category="web3 product ux"><span class="w-date">Apr 26, 2026</span><div class="w-info"><span class="w-title">Designing Web3 Products Without Making Users Feel Lost</span><span class="w-summary">Wallet connection, transaction review, signing clarity, trust language, Yarsha, Mokshya, and Web3 product education.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/blog-good-handoff.html" class="writing-item" data-category="handoff figma systems"><span class="w-date">Apr 25, 2026</span><div class="w-info"><span class="w-title">Why Good Handoff Matters More Than Perfect Screens</span><span class="w-summary">States, edge cases, responsive rules, interaction notes, acceptance criteria, and design-to-development clarity.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/blog-portfolio-product.html" class="writing-item" data-category="portfolio product strategy"><span class="w-date">Apr 24, 2026</span><div class="w-info"><span class="w-title">What I Learned Designing My Portfolio Like a Product</span><span class="w-summary">Portfolio UX, truthful project framing, SEO structure, case-study hierarchy, contribution clarity, and recruiter/client decision paths.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/blog-service-websites.html" class="writing-item" data-category="website service seo"><span class="w-date">Apr 18, 2026</span><div class="w-info"><span class="w-title">Designing Service Websites That Explain the Business Clearly</span><span class="w-summary">Service page structure, business positioning, SEO headings, trust signals, conversion paths, and clear website storytelling.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/blog-gaming-interface-clarity.html" class="writing-item" data-category="gaming ux interface"><span class="w-date">Apr 12, 2026</span><div class="w-info"><span class="w-title">What Gaming Taught Me About Interface Clarity</span><span class="w-summary">Real-time feedback, combat logs, status states, information density, dashboards, and decision-making in fast-changing interfaces.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/blog-design-systems-front-end.html" class="writing-item" data-category="design systems frontend"><span class="w-date">Apr 08, 2026</span><div class="w-info"><span class="w-title">How I Think About Design Systems as a Front-End-Aware Designer</span><span class="w-summary">Tokens, reusable components, interaction states, accessibility notes, responsive behavior, and practical design-to-code thinking.</span></div><span class="w-arrow">&rarr;</span></a>
+        <div class="writing-list reveal-on-scroll" data-blog-posts>
+          <a href="/blog/hire-product-designer-nepal-saas-web3" class="writing-item nrs-blog-index-card" data-category="hire product designer nepal saas web3 ux"><span class="w-date">Jun 11, 2026</span><div class="w-info"><span class="w-title">Hire a Product Designer in Nepal for SaaS and Web3 Products</span><span class="w-summary">A practical hiring guide for startups and software teams that need clearer product flows, polished UI, design systems, UX audits, and developer-ready handoff.</span></div><span class="w-arrow">&rarr;</span></a>
         </div>
       </section>
     </main>
+    <script src="/blog-index.js?v=20260612" defer></script>
     <script type="module" src="/script.js?v=16.2"></script>
+    <script src="/site-experience.js?v=20260612" defer></script>
   </body>
 </html>
