@@ -73,7 +73,7 @@ function stripVisibleSeoHelperBlocks(html) {
 
   let output = html;
   for (const className of helperBlockClasses) {
-    const pattern = new RegExp(`<section[^>]*\\b${className}\\b[^>]*>[\\s\\S]*?<\\/section>`, 'g');
+    const pattern = new RegExp(`<section[^>]*\b${className}\b[^>]*>[\s\S]*?<\/section>`, 'g');
     output = output.replace(pattern, '');
   }
 
@@ -108,6 +108,7 @@ function optimizeHtmlOutput() {
 // Copy source assets and runtime modules needed by root-level HTML files.
 copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
+copyDirectory(path.join(rootDir, 'public'), distDir);
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
 
 // Copy root-served discovery and metadata files. These are intentionally kept
@@ -125,4 +126,4 @@ for (const fileName of [
 
 optimizeHtmlOutput();
 
-console.log('Copied static assets, AI discovery files, runtime files, manifest, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, public files, AI discovery files, runtime files, manifest, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
