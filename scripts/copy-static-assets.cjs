@@ -73,7 +73,7 @@ function stripVisibleSeoHelperBlocks(html) {
 
   let output = html;
   for (const className of helperBlockClasses) {
-    const pattern = new RegExp(`<section[^>]*\b${className}\b[^>]*>[\s\S]*?<\/section>`, 'g');
+    const pattern = new RegExp(`<section[^>]*\\b${className}\\b[^>]*>[\\s\\S]*?<\\/section>`, 'g');
     output = output.replace(pattern, '');
   }
 
@@ -94,10 +94,31 @@ function stripUnusedVendorScripts(html) {
     .replace(/\s*<script\s+src="\/assets\/vendor\/ScrollTrigger\.min\.js"\s+defer><\/script>/g, '');
 }
 
+/**
+ * Ensure late-stage experience assets are present in every built HTML page.
+ *
+ * This protects pages that are still static HTML from missing the newer blog
+ * redesign and Uxcel proof runtime. Because naturally the file existing in the
+ * repo was not enough. Websites enjoy being dramatic.
+ */
+function injectExperienceAssets(html) {
+  let output = html;
+
+  if (!output.includes('/blog-experience.css')) {
+    output = output.replace('</head>', '  <link rel="stylesheet" href="/blog-experience.css?v=20260611" />\n  </head>');
+  }
+
+  if (!output.includes('/site-experience.js')) {
+    output = output.replace('</body>', '  <script src="/site-experience.js?v=20260611" defer></script>\n  </body>');
+  }
+
+  return output;
+}
+
 function optimizeHtmlOutput() {
   for (const filePath of walkFiles(distDir, (file) => file.endsWith('.html'))) {
     const original = fs.readFileSync(filePath, 'utf8');
-    const optimized = stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original));
+    const optimized = injectExperienceAssets(stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original)));
 
     if (optimized !== original) {
       fs.writeFileSync(filePath, optimized, 'utf8');
@@ -126,4 +147,4 @@ for (const fileName of [
 
 optimizeHtmlOutput();
 
-console.log('Copied static assets, public files, AI discovery files, runtime files, manifest, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, public files, AI discovery files, runtime files, manifest, injected site experience assets, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
