@@ -2,13 +2,18 @@
  * Compatibility entrypoint for existing HTML files.
  * Runtime modules live in src/scripts/ for maintainability.
  */
-const productionFixesHref = '/production-fixes.css?v=20260611';
+const runtimeStylesheets = [
+  '/production-fixes.css?v=20260611',
+  '/light-theme-polish.css?v=20260611',
+];
 
-if (!document.querySelector(`link[href^="${productionFixesHref.split('?')[0]}"]`)) {
-  const productionFixes = document.createElement('link');
-  productionFixes.rel = 'stylesheet';
-  productionFixes.href = productionFixesHref;
-  document.head.appendChild(productionFixes);
-}
+runtimeStylesheets.forEach((href) => {
+  if (document.querySelector(`link[href^="${href.split('?')[0]}"]`)) return;
+
+  const stylesheet = document.createElement('link');
+  stylesheet.rel = 'stylesheet';
+  stylesheet.href = href;
+  document.head.appendChild(stylesheet);
+});
 
 import './src/scripts/main.js';
