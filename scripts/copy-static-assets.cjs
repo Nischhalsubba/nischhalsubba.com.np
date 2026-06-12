@@ -98,8 +98,8 @@ function stripUnusedVendorScripts(html) {
  * Ensure late-stage experience assets are present in every built HTML page.
  *
  * This protects pages that are still static HTML from missing the newer blog
- * redesign and Uxcel proof runtime. Because naturally the file existing in the
- * repo was not enough. Websites enjoy being dramatic.
+ * redesign, Uxcel proof runtime, and global design-system repair layer. Because
+ * naturally the file existing in the repo was not enough. Websites enjoy being dramatic.
  */
 function injectExperienceAssets(html) {
   let output = html;
@@ -108,8 +108,12 @@ function injectExperienceAssets(html) {
     output = output.replace('</head>', '  <link rel="stylesheet" href="/blog-experience.css?v=20260611" />\n  </head>');
   }
 
+  if (!output.includes('/design-system-repair.css')) {
+    output = output.replace('</head>', '  <link rel="stylesheet" href="/design-system-repair.css?v=20260612" />\n  </head>');
+  }
+
   if (!output.includes('/site-experience.js')) {
-    output = output.replace('</body>', '  <script src="/site-experience.js?v=20260611" defer></script>\n  </body>');
+    output = output.replace('</body>', '  <script src="/site-experience.js?v=20260612" defer></script>\n  </body>');
   }
 
   return output;
@@ -147,4 +151,4 @@ for (const fileName of [
 
 optimizeHtmlOutput();
 
-console.log('Copied static assets, public files, AI discovery files, runtime files, manifest, injected site experience assets, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, public files, AI discovery files, runtime files, manifest, injected site experience and design repair assets, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
