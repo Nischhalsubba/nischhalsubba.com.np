@@ -1,8 +1,15 @@
 import { $$ } from '../utils/dom.js';
 
 function normalizePath(pathname) {
-  if (pathname === '/home-v2.html' || pathname === '/home.html' || pathname === '/index.html') return '/';
-  return pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+  const path = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+
+  if (path === '/home-v2' || path === '/home-v2.html' || path === '/home' || path === '/home.html' || path === '/index.html') return '/';
+  if (path === '/projects') return '/projects.html';
+  if (path === '/about') return '/about.html';
+  if (path === '/contact') return '/contact.html';
+  if (path === '/blog.html') return '/blog';
+
+  return path;
 }
 
 function getActiveSection(pathname) {
@@ -13,7 +20,7 @@ function getActiveSection(pathname) {
   if (path === '/projects.html' || file.startsWith('project-')) return 'work';
   if (path === '/about.html') return 'about';
   if (path === '/contact.html') return 'contact';
-  if (path === '/blog' || path.startsWith('/blog') || file.startsWith('blog-')) return 'writing';
+  if (path === '/blog' || path.startsWith('/blog/') || file.startsWith('blog-')) return 'writing';
 
   const servicePages = new Set([
     'product-design-nepal.html',
@@ -30,11 +37,13 @@ function getActiveSection(pathname) {
 
 function getLinkSection(href) {
   const path = normalizePath(new URL(href, window.location.origin).pathname);
+
   if (path === '/') return 'home';
   if (path === '/projects.html') return 'work';
   if (path === '/about.html') return 'about';
   if (path === '/contact.html') return 'contact';
   if (path === '/blog') return 'writing';
+
   return '';
 }
 
