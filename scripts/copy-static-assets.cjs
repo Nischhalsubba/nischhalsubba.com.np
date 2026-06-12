@@ -4,14 +4,6 @@ const path = require('node:path');
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 
-/**
- * Recursively copy a directory into dist.
- *
- * Vite handles bundled assets, but this site also serves several root-level
- * runtime and discovery files directly. Keeping this copy layer explicit makes
- * the final Cloudflare output predictable instead of relying on accidental
- * bundler behavior. Thrilling, I know.
- */
 function copyDirectory(source, target) {
   if (!fs.existsSync(source)) return;
 
@@ -30,19 +22,16 @@ function copyDirectory(source, target) {
   }
 }
 
-/** Copy a single file if it exists. Missing optional files are ignored. */
 function copyFile(source, target) {
   if (!fs.existsSync(source)) return;
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.copyFileSync(source, target);
 }
 
-/** Copy a file that must be served from the web root, for example /robots.txt. */
 function copyRootFile(fileName) {
   copyFile(path.join(rootDir, fileName), path.join(distDir, fileName));
 }
 
-/** Walk files under a directory and return only the files accepted by matcher. */
 function walkFiles(directory, matcher, files = []) {
   if (!fs.existsSync(directory)) return files;
 
@@ -58,12 +47,6 @@ function walkFiles(directory, matcher, files = []) {
   return files;
 }
 
-/**
- * Remove build-time SEO helper sections from visible HTML output.
- *
- * The Vite HTML plugin injects static context/schema for crawlers. The schema
- * should remain, but the visible helper sections should not appear in the UI.
- */
 function stripVisibleSeoHelperBlocks(html) {
   const helperBlockClasses = [
     'nrs-static-project-context',
@@ -80,49 +63,29 @@ function stripVisibleSeoHelperBlocks(html) {
   return output;
 }
 
-/**
- * Remove legacy GSAP vendor script tags from production HTML.
- *
- * The runtime motion module already falls back to native IntersectionObserver.
- * Keeping these non-module vendor scripts in every HTML file adds network cost,
- * causes Vite bundling warnings, and hurts mobile performance. Little scripts,
- * enormous opinions.
- */
 function stripUnusedVendorScripts(html) {
   return html
     .replace(/\s*<script\s+src="\/assets\/vendor\/gsap\.min\.js"\s+defer><\/script>/g, '')
     .replace(/\s*<script\s+src="\/assets\/vendor\/ScrollTrigger\.min\.js"\s+defer><\/script>/g, '');
 }
 
-/**
- * Ensure late-stage experience assets are present in every built HTML page.
- *
- * This protects pages that are still static HTML from missing the newer blog
- * redesign, Uxcel proof runtime, and global design-system repair layer. Because
- * naturally the file existing in the repo was not enough. Websites enjoy being dramatic.
- */
-function injectExperienceAssets(html) {
-  let output = html;
+function removeLegacyPatchAssets(html) {
+  return html
+    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/production-fixes\.css[^\"]*"\s*\/?>/g, '')
+    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/light-theme-polish\.css[^\"]*"\s*\/?>/g, '')
+    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/blog-experience\.css[^\"]*"\s*\/?>/g, '')
+    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/design-system-repair\.css[^\"]*"\s*\/?>/g, '');
+}
 
-  if (!output.includes('/blog-experience.css')) {
-    output = output.replace('</head>', '  <link rel="stylesheet" href="/blog-experience.css?v=20260611" />\n  </head>');
-  }
-
-  if (!output.includes('/design-system-repair.css')) {
-    output = output.replace('</head>', '  <link rel="stylesheet" href="/design-system-repair.css?v=20260612" />\n  </head>');
-  }
-
-  if (!output.includes('/site-experience.js')) {
-    output = output.replace('</body>', '  <script src="/site-experience.js?v=20260612" defer></script>\n  </body>');
-  }
-
-  return output;
+function ensureRuntimeScript(html) {
+  if (html.includes('/site-experience.js')) return html;
+  return html.replace('</body>', '  <script src="/site-experience.js?v=20260612" defer></script>\n  </body>');
 }
 
 function optimizeHtmlOutput() {
   for (const filePath of walkFiles(distDir, (file) => file.endsWith('.html'))) {
     const original = fs.readFileSync(filePath, 'utf8');
-    const optimized = injectExperienceAssets(stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original)));
+    const optimized = ensureRuntimeScript(removeLegacyPatchAssets(stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original))));
 
     if (optimized !== original) {
       fs.writeFileSync(filePath, optimized, 'utf8');
@@ -130,14 +93,12 @@ function optimizeHtmlOutput() {
   }
 }
 
-// Copy source assets and runtime modules needed by root-level HTML files.
 copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyDirectory(path.join(rootDir, 'public'), distDir);
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
+copyFile(path.join(rootDir, 'style.css'), path.join(distDir, 'style.css'));
 
-// Copy root-served discovery and metadata files. These are intentionally kept
-// at repository root because their public URLs are root URLs.
 for (const fileName of [
   'robots.txt',
   'sitemap.xml',
@@ -151,4 +112,4 @@ for (const fileName of [
 
 optimizeHtmlOutput();
 
-console.log('Copied static assets, public files, AI discovery files, runtime files, manifest, injected site experience and design repair assets, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, public files, root stylesheet, discovery files, runtime files, manifest, stripped legacy patch CSS, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
