@@ -5,30 +5,6 @@
     return strings.join('');
   }
 
-  function injectGlobalPolish() {
-    if (document.querySelector('[data-site-experience-polish]')) return;
-
-    const style = document.createElement('style');
-    style.setAttribute('data-site-experience-polish', 'true');
-    style.textContent = [
-      '.site-footer{padding:clamp(48px,7vw,84px) 0;border-top:1px solid var(--border-faint);background:radial-gradient(circle at 70% 12%,rgba(245,158,11,.08),transparent 28%),rgba(0,0,0,.12)}',
-      '.footer-top-grid{display:grid;grid-template-columns:minmax(260px,.9fr) 1.1fr;gap:clamp(28px,6vw,80px);align-items:start}',
-      '.footer-cta h2{margin:0 0 18px;color:var(--text-primary);font-size:clamp(1.7rem,3.8vw,3.7rem);line-height:1.05}',
-      '.footer-cta p{max-width:720px;color:var(--text-secondary);line-height:1.7}',
-      '.footer-email-btn{display:inline-flex;margin-top:14px;word-break:break-word}',
-      '.footer-nav-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}',
-      '.footer-col{display:grid;gap:12px;align-content:start}',
-      '.footer-col h5{margin:0 0 6px;color:var(--text-tertiary);font-size:.78rem;text-transform:uppercase;letter-spacing:.14em}',
-      '.footer-col a{display:block;width:max-content;max-width:100%;color:var(--text-secondary);text-decoration:none;line-height:1.35}',
-      '.footer-col a:hover{color:var(--text-primary);text-decoration:underline;text-underline-offset:4px}',
-      '.footer-bottom-bar{margin-top:42px;color:var(--text-tertiary);font-size:.92rem}',
-      '.nav-wrapper + a,.nav-wrapper ~ a[href="/"],body>a[href="/"]{display:none!important}',
-      '.badge-pill{display:inline-flex;align-items:center;gap:8px;width:max-content;text-decoration:none}',
-      '@media(max-width:850px){.footer-top-grid,.footer-nav-grid{grid-template-columns:1fr}.footer-col a{width:auto}.site-footer{padding-bottom:96px}}'
-    ].join('');
-    document.head.appendChild(style);
-  }
-
   function normalizeBlogLinks() {
     document.querySelectorAll('a[href^="/blog/"]').forEach((link) => {
       const href = link.getAttribute('href');
@@ -51,16 +27,16 @@
     const proof = document.createElement('div');
     proof.className = 'nrs-blog-proof-grid';
     proof.innerHTML = html([
-      '<article><span>01</span><strong>Hiring intent</strong><p>Guides for teams looking for product design help.</p></article>',
-      '<article><span>02</span><strong>Complex UX</strong><p>Wallets, dashboards, verification, states, and flows.</p></article>',
-      '<article><span>03</span><strong>Build clarity</strong><p>Figma systems, handoff, QA, and developer context.</p></article>'
+      '<article><span>01</span><strong>Useful for hiring</strong><p>Articles shaped around decisions product teams actually need to make.</p></article>',
+      '<article><span>02</span><strong>Complex UX</strong><p>Wallets, dashboards, verification, states, handoff, and product flows.</p></article>',
+      '<article><span>03</span><strong>Build clarity</strong><p>Writing that connects interface decisions with engineering reality.</p></article>'
     ]);
     hero.appendChild(proof);
 
     const controls = document.createElement('section');
     controls.className = 'section-container nrs-blog-controls-panel';
     controls.innerHTML = html([
-      '<div class="search-wrapper"><input class="search-input" type="search" data-blog-search placeholder="Search by Web3, SaaS, UX audit, handoff..." aria-label="Search writing"></div>',
+      '<div class="search-wrapper"><input class="search-input" type="search" data-blog-search placeholder="Search Web3, SaaS, audits, handoff..." aria-label="Search writing"></div>',
       '<div class="filter-row" data-blog-filters></div>'
     ]);
     list.closest('.section-container')?.insertAdjacentElement('beforebegin', controls);
@@ -150,14 +126,73 @@
     if (!path.startsWith('/blog/') || path === '/blog/') return;
     document.body.classList.add('nrs-enhanced-blog-detail');
     const article = document.querySelector('article, main .section-container');
-    if (article) article.classList.add('nrs-blog-detail-surface');
+    if (!article) return;
+
+    article.classList.add('nrs-blog-detail-surface');
+
+    const title = article.querySelector('h1, .hero-title');
+    const lead = article.querySelector('.body-large, .section-lead, p');
+    if (title && !document.querySelector('.nrs-article-frame')) {
+      const frame = document.createElement('div');
+      frame.className = 'nrs-article-frame';
+      title.parentElement?.insertBefore(frame, title);
+      frame.appendChild(title);
+      if (lead && lead.parentElement === article) frame.appendChild(lead);
+    }
+  }
+
+  function enhanceProjectDetail() {
+    if (!/\/project-[^/]+\.html$/.test(path)) return;
+
+    document.body.classList.add('nrs-case-study-page');
+    const main = document.querySelector('main.container');
+    if (!main) return;
+    main.classList.add('nrs-case-study');
+
+    const hero = main.querySelector('.hero-section');
+    const image = main.querySelector('.case-hero-img-container');
+    const snapshot = main.querySelector('.snapshot-grid')?.closest('.section-container');
+
+    if (hero) hero.classList.add('nrs-case-hero');
+    if (image) image.classList.add('nrs-case-visual');
+    if (snapshot) snapshot.classList.add('nrs-case-snapshot-section');
+
+    const sections = [...main.querySelectorAll('.section-container.reveal-on-scroll')].filter((section) => !section.matches('#proof'));
+    sections.forEach((section, index) => {
+      section.classList.add('nrs-case-section');
+      const title = section.querySelector('.section-title, h2');
+      const label = section.querySelector('.case-label, .eyebrow');
+      const body = section.querySelector('.body-large, .section-lead');
+      const cards = section.querySelector('.journey-grid, .case-list, .prototype-link-list, .case-callout');
+
+      if (!section.querySelector('.nrs-case-section-head') && (title || label || body)) {
+        const head = document.createElement('div');
+        head.className = 'nrs-case-section-head';
+        if (label) head.appendChild(label);
+        if (title) head.appendChild(title);
+        if (body) head.appendChild(body);
+        section.insertBefore(head, section.firstChild);
+      }
+
+      if (cards && !cards.closest('.nrs-case-section-body')) {
+        const sectionBody = document.createElement('div');
+        sectionBody.className = 'nrs-case-section-body';
+        cards.parentElement?.insertBefore(sectionBody, cards);
+        sectionBody.appendChild(cards);
+      }
+
+      section.dataset.caseStep = String(index + 1).padStart(2, '0');
+    });
+
+    const proof = main.querySelector('#proof');
+    if (proof) proof.classList.add('nrs-case-proof');
   }
 
   function run() {
-    injectGlobalPolish();
     normalizeBlogLinks();
     enhanceBlogIndex();
     enhanceBlogDetail();
+    enhanceProjectDetail();
     addUxcelProof();
   }
 
