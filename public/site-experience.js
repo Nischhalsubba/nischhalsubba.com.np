@@ -122,6 +122,28 @@
     target.insertAdjacentElement('afterend', section);
   }
 
+  function enhanceRelatedPages(article) {
+    const headings = [...article.querySelectorAll('h2')];
+    const heading = headings.find((item) => item.textContent.trim().toLowerCase() === 'related pages');
+    if (!heading || heading.closest('.nrs-related-pages')) return;
+
+    const list = heading.nextElementSibling?.classList?.contains('writing-list') ? heading.nextElementSibling : null;
+    if (!list) return;
+
+    const section = document.createElement('section');
+    section.className = 'nrs-related-pages';
+    const intro = document.createElement('div');
+    intro.className = 'nrs-related-pages-intro';
+    const copy = document.createElement('p');
+    copy.textContent = 'Useful next pages if you want to check project proof, services, or start a design conversation.';
+
+    heading.parentElement.insertBefore(section, heading);
+    section.appendChild(intro);
+    intro.appendChild(heading);
+    intro.appendChild(copy);
+    section.appendChild(list);
+  }
+
   function enhanceBlogDetail() {
     if (!path.startsWith('/blog/') || path === '/blog/') return;
     document.body.classList.add('nrs-enhanced-blog-detail');
@@ -139,6 +161,8 @@
       frame.appendChild(title);
       if (lead && lead.parentElement === article) frame.appendChild(lead);
     }
+
+    enhanceRelatedPages(article);
   }
 
   function enhanceProjectDetail() {
