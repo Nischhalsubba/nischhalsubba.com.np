@@ -11,6 +11,10 @@ export function initGridCanvas() {
   let height = 0;
   let mouse = { x: -1000, y: -1000 };
 
+  function isLightTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light';
+  }
+
   function resize() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
@@ -18,10 +22,17 @@ export function initGridCanvas() {
 
   function draw() {
     context.clearRect(0, 0, width, height);
-    const light = document.documentElement.getAttribute('data-theme') === 'light';
+
+    if (isLightTheme()) {
+      canvas.style.opacity = '0';
+      window.requestAnimationFrame(draw);
+      return;
+    }
+
+    canvas.style.opacity = '1';
     const grid = 60;
 
-    context.strokeStyle = light ? 'rgba(0,0,0,.045)' : 'rgba(255,255,255,.045)';
+    context.strokeStyle = 'rgba(255,255,255,.045)';
     context.lineWidth = 1;
     context.beginPath();
 
@@ -38,7 +49,7 @@ export function initGridCanvas() {
     context.stroke();
 
     const gradient = context.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 320);
-    gradient.addColorStop(0, light ? 'rgba(12,140,233,.12)' : 'rgba(59,130,246,.14)');
+    gradient.addColorStop(0, 'rgba(59,130,246,.14)');
     gradient.addColorStop(1, 'rgba(59,130,246,0)');
 
     context.strokeStyle = gradient;
