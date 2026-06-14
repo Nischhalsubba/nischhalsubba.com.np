@@ -305,6 +305,119 @@ function injectConsistencyStyles() {
       display: none;
     }
 
+    .nrs-blog-detail-page main.container {
+      width: min(980px, calc(100vw - 48px)) !important;
+      max-width: min(980px, calc(100vw - 48px)) !important;
+      padding-top: clamp(112px, 10vw, 152px) !important;
+    }
+
+    .nrs-blog-detail-page article.section-container,
+    .nrs-blog-detail-page .nrs-article-frame,
+    .nrs-blog-detail-page .nrs-article.blog-prose,
+    .nrs-blog-detail-page .blog-prose,
+    .nrs-blog-detail-page .blog-note,
+    .nrs-blog-detail-page .blog-toc,
+    .nrs-blog-detail-page .blog-author-card,
+    .nrs-blog-detail-page .blog-share-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+    }
+
+    .nrs-blog-detail-page article.section-container {
+      display: block !important;
+      padding-top: clamp(24px, 4vw, 44px) !important;
+      padding-bottom: clamp(72px, 9vw, 118px) !important;
+    }
+
+    .nrs-blog-detail-page article.section-container > .badge-pill:first-child,
+    .nrs-blog-detail-page .nrs-article-frame > .badge-pill:first-child {
+      display: inline-flex !important;
+      min-height: 0 !important;
+      width: auto !important;
+      margin: 0 0 clamp(28px, 4vw, 48px) !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: var(--text-tertiary, #8d93a1) !important;
+      font-size: .72rem !important;
+      font-weight: 850 !important;
+      letter-spacing: .14em !important;
+      text-transform: uppercase !important;
+    }
+
+    .nrs-blog-detail-page article.section-container > .hero-title,
+    .nrs-blog-detail-page article.section-container > h1,
+    .nrs-blog-detail-page .nrs-article-frame > .hero-title,
+    .nrs-blog-detail-page .nrs-article-frame > h1 {
+      max-width: 920px !important;
+      margin: 0 0 clamp(24px, 4vw, 42px) !important;
+      font-size: clamp(3.2rem, 7vw, 6.2rem) !important;
+      line-height: .96 !important;
+      letter-spacing: -.06em !important;
+    }
+
+    .nrs-blog-detail-page article.section-container > .body-large,
+    .nrs-blog-detail-page article.section-container > p,
+    .nrs-blog-detail-page article.section-container > h2,
+    .nrs-blog-detail-page article.section-container > ul,
+    .nrs-blog-detail-page article.section-container > ol,
+    .nrs-blog-detail-page article.section-container > blockquote {
+      max-width: var(--nrs-readable-width) !important;
+    }
+
+    .nrs-blog-detail-page article.section-container > p,
+    .nrs-blog-detail-page article.section-container > li {
+      font-size: clamp(1rem, 1.25vw, 1.12rem) !important;
+      line-height: 1.82 !important;
+    }
+
+    .nrs-blog-detail-page article.section-container > h2 {
+      margin-top: clamp(42px, 6vw, 72px) !important;
+      margin-bottom: clamp(14px, 2vw, 22px) !important;
+      font-size: clamp(1.7rem, 3.2vw, 2.7rem) !important;
+      line-height: 1.12 !important;
+    }
+
+    .nrs-blog-detail-page .writing-list {
+      max-width: var(--nrs-readable-width) !important;
+      margin-top: clamp(20px, 3vw, 34px) !important;
+    }
+
+    .nrs-blog-detail-page .writing-item {
+      border-radius: 0 !important;
+      border-left: 0 !important;
+      border-right: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    [data-theme='light'] .nrs-blog-detail-page article.section-container,
+    [data-theme='light'] .nrs-blog-detail-page .nrs-article-frame,
+    [data-theme='light'] .nrs-blog-detail-page .nrs-article.blog-prose,
+    [data-theme='light'] .nrs-blog-detail-page .blog-prose,
+    [data-theme='light'] .nrs-blog-detail-page .blog-note,
+    [data-theme='light'] .nrs-blog-detail-page .blog-toc,
+    [data-theme='light'] .nrs-blog-detail-page .blog-author-card,
+    [data-theme='light'] .nrs-blog-detail-page .blog-share-card,
+    [data-theme='light'] .nrs-blog-detail-page .writing-item {
+      background: transparent !important;
+      border-color: var(--nrs-divider) !important;
+      box-shadow: none !important;
+    }
+
     .nrs-project-detail-page .hero-section {
       display: grid !important;
       grid-template-columns: minmax(0, 1fr);
@@ -524,6 +637,19 @@ function injectConsistencyStyles() {
         gap: 12px !important;
         padding: clamp(22px, 6vw, 30px) !important;
         min-height: auto !important;
+      }
+
+      .nrs-blog-detail-page main.container {
+        width: calc(100vw - 40px) !important;
+        max-width: calc(100vw - 40px) !important;
+        padding-top: 96px !important;
+      }
+
+      .nrs-blog-detail-page article.section-container > .hero-title,
+      .nrs-blog-detail-page article.section-container > h1,
+      .nrs-blog-detail-page .nrs-article-frame > .hero-title,
+      .nrs-blog-detail-page .nrs-article-frame > h1 {
+        font-size: clamp(2.45rem, 12vw, 3.6rem) !important;
       }
 
       .nrs-project-detail-page .journey-grid {
