@@ -396,9 +396,54 @@ function injectConsistencyStyles() {
       gap: 0 !important;
     }
 
+    .nrs-project-detail-page .journey-grid {
+      gap: clamp(18px, 2.6vw, 28px) !important;
+      align-items: stretch !important;
+    }
+
     .nrs-project-detail-page .journey-card,
     .nrs-project-detail-page .prototype-link-card {
-      grid-template-columns: minmax(110px, 160px) minmax(0, 1fr) !important;
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      align-content: start !important;
+      gap: var(--nrs-card-gap) !important;
+      min-width: 0 !important;
+      min-height: clamp(210px, 20vw, 260px) !important;
+      padding: clamp(28px, 3vw, 40px) !important;
+      border: 1px solid rgba(147,197,253,.22) !important;
+      border-radius: var(--radius-xl, 30px) !important;
+      background: linear-gradient(135deg, rgba(96,165,250,.12), transparent 38%), linear-gradient(180deg, rgba(255,255,255,.105), rgba(255,255,255,.038)) !important;
+      box-shadow: none !important;
+      overflow: hidden !important;
+    }
+
+    .nrs-project-detail-page .journey-card::before {
+      position: static !important;
+      margin: 0 0 clamp(8px, 1vw, 12px) 0 !important;
+      align-self: start !important;
+      justify-self: start !important;
+    }
+
+    .nrs-project-detail-page .journey-card h3,
+    .nrs-project-detail-page .prototype-link-card h3 {
+      margin: 0 !important;
+      max-width: 100% !important;
+      overflow-wrap: anywhere;
+      line-height: 1.16 !important;
+    }
+
+    .nrs-project-detail-page .journey-card p,
+    .nrs-project-detail-page .prototype-link-card p {
+      margin: 0 !important;
+      max-width: 66ch !important;
+      line-height: 1.68 !important;
+    }
+
+    [data-theme='light'] .nrs-project-detail-page .journey-card,
+    [data-theme='light'] .nrs-project-detail-page .prototype-link-card {
+      background: #ffffff !important;
+      border-color: rgba(23,70,200,.18) !important;
+      box-shadow: none !important;
     }
 
     .nrs-project-detail-page iframe {
@@ -481,10 +526,13 @@ function injectConsistencyStyles() {
 
       .clarity-row-list article,
       .clarity-row-list article.nrs-article.blog-prose,
-      .nrs-article.blog-prose {
+      .nrs-article.blog-prose,
+      .nrs-project-detail-page .journey-card,
+      .nrs-project-detail-page .prototype-link-card {
         grid-template-columns: 1fr !important;
         gap: 12px !important;
         padding: clamp(22px, 6vw, 30px) !important;
+        min-height: auto !important;
       }
 
       .clarity-actions,
