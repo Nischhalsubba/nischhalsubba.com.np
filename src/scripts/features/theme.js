@@ -5,6 +5,26 @@ const FALLBACK_PORTRAIT_IMG = '/assets/images/portrait.svg';
 const sunIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 const moonIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 109 9 7 7 0 01-9-9z"/></svg>';
 
+function loadRequestedFonts() {
+  if (document.getElementById('nrs-requested-fonts')) return;
+
+  const preconnectFonts = document.createElement('link');
+  preconnectFonts.rel = 'preconnect';
+  preconnectFonts.href = 'https://fonts.googleapis.com';
+
+  const preconnectStatic = document.createElement('link');
+  preconnectStatic.rel = 'preconnect';
+  preconnectStatic.href = 'https://fonts.gstatic.com';
+  preconnectStatic.crossOrigin = '';
+
+  const fontLink = document.createElement('link');
+  fontLink.id = 'nrs-requested-fonts';
+  fontLink.rel = 'stylesheet';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap';
+
+  document.head.append(preconnectFonts, preconnectStatic, fontLink);
+}
+
 function injectRequestedThemePalette() {
   if (document.getElementById('nrs-requested-theme-palette')) return;
 
@@ -12,6 +32,8 @@ function injectRequestedThemePalette() {
   style.id = 'nrs-requested-theme-palette';
   style.textContent = `
     :root {
+      --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif !important;
+      --font-sans: 'Roboto', Arial, Helvetica, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
       --bg-page: #121212 !important;
       --bg-surface: #121212 !important;
       --bg-surface-2: #444444 !important;
@@ -58,6 +80,7 @@ function injectRequestedThemePalette() {
       background-color: var(--bg-page) !important;
       background-image: none !important;
       color: var(--text-primary) !important;
+      font-family: var(--font-sans) !important;
     }
 
     body::before,
@@ -81,15 +104,62 @@ function injectRequestedThemePalette() {
       text-shadow: none !important;
     }
 
-    body,
     h1,
     h2,
+    .hero-title,
+    .section-title,
+    .w-title,
+    .card-content h3,
+    .footer-cta h2,
+    .nrs-related-pages h2,
+    .nrs-blog-detail-page article.section-container > h1,
+    .nrs-blog-detail-page article.section-container > .hero-title {
+      font-family: var(--font-serif) !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.045em !important;
+      color: var(--text-primary) !important;
+    }
+
     h3,
     h4,
     h5,
     h6,
-    .hero-title,
-    .section-title,
+    p,
+    li,
+    label,
+    small,
+    strong,
+    em,
+    button,
+    input,
+    select,
+    textarea,
+    .body-large,
+    .section-lead,
+    .card-summary,
+    .w-summary,
+    .nav-link,
+    .btn,
+    .filter-btn,
+    .badge-pill,
+    .link-pill,
+    .case-label,
+    .eyebrow,
+    .meta-text,
+    .w-date,
+    .card-meta-line,
+    .nrs-card-kicker,
+    .journey-card h3,
+    .clarity-row-list h3,
+    .clarity-steps h3 {
+      font-family: var(--font-sans) !important;
+    }
+
+    body,
+    h3,
+    h4,
+    h5,
+    h6,
     .nav-link,
     .btn {
       color: var(--text-primary) !important;
@@ -274,6 +344,7 @@ function injectRequestedThemePalette() {
       border-color: var(--border-faint) !important;
       color: var(--text-primary) !important;
       box-shadow: none !important;
+      font-family: var(--font-sans) !important;
     }
 
     input::placeholder,
@@ -355,6 +426,7 @@ function setTheme(theme, button, storage) {
 }
 
 export function initTheme() {
+  loadRequestedFonts();
   injectRequestedThemePalette();
 
   const button = $('#theme-toggle');
