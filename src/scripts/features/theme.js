@@ -41,22 +41,13 @@ function injectRequestedThemePalette() {
       --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif !important;
       --font-sans: 'Roboto', Arial, Helvetica, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
       --bg-page: #121212 !important;
-      --bg-surface: #121212 !important;
-      --bg-surface-2: #444444 !important;
-      --bg-pill: #121212 !important;
-      --bg-nav: #121212 !important;
       --text-primary: #E0E0E0 !important;
       --text-secondary: #B0B0B0 !important;
       --text-tertiary: #888888 !important;
-      --text-soft: #888888 !important;
-      --accent-blue: #888888 !important;
-      --accent-cyan: #B0B0B0 !important;
-      --accent-gold: #E0E0E0 !important;
+      --accent: #888888 !important;
       --border-faint: #444444 !important;
       --border-strong: #888888 !important;
       --nrs-divider: #444444 !important;
-      --shadow-card: none !important;
-      --shadow-soft: none !important;
       --motion-ease: cubic-bezier(.2, .8, .2, 1);
       --motion-ease-out: cubic-bezier(.16, 1, .3, 1);
       --motion-fast: 180ms;
@@ -66,17 +57,10 @@ function injectRequestedThemePalette() {
 
     html[data-theme='light'] {
       --bg-page: #FFFFFF !important;
-      --bg-surface: #F7F7F7 !important;
-      --bg-surface-2: #E5E5E5 !important;
-      --bg-pill: #F7F7F7 !important;
-      --bg-nav: #F7F7F7 !important;
       --text-primary: #1A1A1A !important;
       --text-secondary: #555555 !important;
       --text-tertiary: #555555 !important;
-      --text-soft: #555555 !important;
-      --accent-blue: #444444 !important;
-      --accent-cyan: #555555 !important;
-      --accent-gold: #444444 !important;
+      --accent: #444444 !important;
       --border-faint: #E5E5E5 !important;
       --border-strong: #444444 !important;
       --nrs-divider: #E5E5E5 !important;
@@ -84,32 +68,16 @@ function injectRequestedThemePalette() {
     }
 
     html,
-    body,
-    html[data-theme='dark'],
-    html[data-theme='dark'] body {
-      background: #121212 !important;
-      background-color: #121212 !important;
+    body {
+      background: var(--bg-page) !important;
+      background-color: var(--bg-page) !important;
       background-image: none !important;
-      color: #E0E0E0 !important;
+      color: var(--text-primary) !important;
       font-family: var(--font-sans) !important;
-    }
-
-    html[data-theme='light'],
-    html[data-theme='light'] body,
-    html[data-theme='light'] body.nrs-uniform-shell,
-    html[data-theme='light'] .nrs-uniform-shell,
-    html[data-theme='light'] main,
-    html[data-theme='light'] main.container {
-      background: #FFFFFF !important;
-      background-color: #FFFFFF !important;
-      background-image: none !important;
-      color: #1A1A1A !important;
     }
 
     body::before,
     body::after,
-    html[data-theme='light'] body::before,
-    html[data-theme='light'] body::after,
     #grid-canvas,
     .background-grid,
     .ambient-glow,
@@ -120,6 +88,7 @@ function injectRequestedThemePalette() {
       opacity: 0 !important;
       visibility: hidden !important;
       background: transparent !important;
+      background-color: transparent !important;
       background-image: none !important;
       box-shadow: none !important;
       filter: none !important;
@@ -181,7 +150,6 @@ function injectRequestedThemePalette() {
       font-family: var(--font-sans) !important;
     }
 
-    body,
     h3,
     h4,
     h5,
@@ -221,14 +189,97 @@ function injectRequestedThemePalette() {
 
     a:hover { color: var(--text-tertiary) !important; }
 
+    main,
+    main.container,
+    .container,
+    section,
+    article,
+    footer,
+    header,
+    .hero-section,
+    .section-container,
+    .nrs-inner-page .hero-section,
+    .nrs-inner-page .section-container,
+    .nrs-project-detail-page .section-container,
+    .nrs-blog-detail-page .section-container,
+    .nrs-service-page .section-container,
+    .nrs-case-hero,
+    .case-hero,
+    .case-hero-container,
+    .case-hero-panel,
+    .project-hero,
+    .project-hero-inner,
+    .nrs-blog-detail-surface,
+    .nrs-article-frame,
+    .nrs-blog-hub-shell,
+    .clarity-hero,
+    .impact-card,
+    .project-card,
+    .writing-item,
+    .journey-card,
+    .comparison-card,
+    .metric-plan-card,
+    .story-card,
+    .quote-card,
+    .contact-form,
+    .blog-note,
+    .blog-toc,
+    .blog-author-card,
+    .blog-share-card,
+    .nrs-uxcel-proof,
+    .prototype-link-card,
+    .embed-frame-wrapper,
+    .nrs-case-proof,
+    .snapshot-grid,
+    .snapshot-grid > div,
+    .case-list li,
+    .nrs-blog-proof-grid article,
+    .clarity-row-list article,
+    .clarity-steps article,
+    .stat-card,
+    .service-card,
+    .related-card,
+    .nrs-related-card,
+    .blog-card-modern,
+    .achieve-item,
+    .case-hero-img-container,
+    .blog-hero-img-container,
+    .case-hero-img,
+    .nrs-article img,
+    .site-footer {
+      background: transparent !important;
+      background-color: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      filter: none !important;
+      border-color: var(--border-faint) !important;
+    }
+
+    main::before,
+    main::after,
+    section::before,
+    section::after,
+    article::before,
+    article::after,
+    .hero-section::before,
+    .hero-section::after,
+    .section-container::before,
+    .section-container::after {
+      background: transparent !important;
+      background-color: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      filter: none !important;
+      opacity: 0 !important;
+    }
+
     .nav-pill,
     .theme-toggle-btn,
     .mobile-logo,
     .mobile-nav-toggle,
-    .mobile-nav-overlay,
-    .site-footer {
-      background: var(--bg-nav) !important;
-      background-color: var(--bg-nav) !important;
+    .mobile-nav-overlay {
+      background: transparent !important;
+      background-color: transparent !important;
       border-color: var(--border-faint) !important;
       color: var(--text-primary) !important;
       box-shadow: none !important;
@@ -249,19 +300,27 @@ function injectRequestedThemePalette() {
     .mobile-nav-links a:hover,
     .mobile-nav-links a.active,
     .mobile-nav-links a[aria-current='page'] {
-      background: var(--accent-blue) !important;
+      background: var(--accent) !important;
+      background-color: var(--accent) !important;
       color: var(--bg-page) !important;
-      border-color: var(--border-strong) !important;
+      border-color: var(--accent) !important;
       box-shadow: none !important;
       filter: none !important;
     }
 
     .btn-primary,
     .footer-email-btn,
-    .floating-resume-btn {
-      background: var(--text-primary) !important;
-      background-color: var(--text-primary) !important;
-      border-color: var(--text-primary) !important;
+    .floating-resume-btn,
+    .btn:hover,
+    .footer-email-btn:hover,
+    .floating-resume-btn:hover,
+    .filter-btn:hover,
+    .filter-btn.active,
+    .badge-pill:hover,
+    .link-pill:hover {
+      background: var(--accent) !important;
+      background-color: var(--accent) !important;
+      border-color: var(--accent) !important;
       color: var(--bg-page) !important;
       box-shadow: none !important;
       filter: none !important;
@@ -278,62 +337,12 @@ function injectRequestedThemePalette() {
     .journey-card::before,
     .clarity-row-list article > span,
     .clarity-steps article > span {
-      background: var(--bg-page) !important;
-      background-color: var(--bg-page) !important;
+      background: transparent !important;
+      background-color: transparent !important;
       border-color: var(--border-faint) !important;
       color: var(--text-tertiary) !important;
       box-shadow: none !important;
       filter: none !important;
-    }
-
-    .btn:hover,
-    .footer-email-btn:hover,
-    .floating-resume-btn:hover,
-    .filter-btn:hover,
-    .filter-btn.active,
-    .badge-pill:hover,
-    .link-pill:hover {
-      background: var(--accent-blue) !important;
-      background-color: var(--accent-blue) !important;
-      border-color: var(--accent-blue) !important;
-      color: var(--bg-page) !important;
-      box-shadow: none !important;
-      filter: none !important;
-    }
-
-    .impact-card,
-    .project-card,
-    .writing-item,
-    .journey-card,
-    .comparison-card,
-    .metric-plan-card,
-    .story-card,
-    .quote-card,
-    .contact-form,
-    .blog-note,
-    .blog-toc,
-    .blog-author-card,
-    .blog-share-card,
-    .nrs-uxcel-proof,
-    .prototype-link-card,
-    .embed-frame-wrapper,
-    .nrs-case-proof,
-    .snapshot-grid,
-    .case-list li,
-    .nrs-blog-proof-grid article,
-    .clarity-row-list article,
-    .clarity-steps article,
-    .stat-card,
-    .service-card,
-    .related-card,
-    .nrs-related-card {
-      background: var(--bg-surface) !important;
-      background-color: var(--bg-surface) !important;
-      background-image: none !important;
-      border-color: var(--border-faint) !important;
-      box-shadow: none !important;
-      filter: none !important;
-      color: var(--text-primary) !important;
     }
 
     .project-card:hover,
@@ -346,8 +355,8 @@ function injectRequestedThemePalette() {
     .service-card:hover,
     .related-card:hover,
     .nrs-related-card:hover {
-      background: var(--bg-surface-2) !important;
-      background-color: var(--bg-surface-2) !important;
+      background: transparent !important;
+      background-color: transparent !important;
       background-image: none !important;
       border-color: var(--border-strong) !important;
       color: var(--text-primary) !important;
@@ -355,172 +364,12 @@ function injectRequestedThemePalette() {
       filter: none !important;
     }
 
-    html[data-theme='light'] .nrs-inner-page .hero-section,
-    html[data-theme='light'] body.nrs-inner-page .hero-section,
-    html[data-theme='light'] .nrs-inner-page main.container > .hero-section,
-    html[data-theme='light'] body.nrs-inner-page main.container > .hero-section,
-    html[data-theme='light'] main.container > .hero-section,
-    html[data-theme='light'] body.nrs-uniform-shell main.container > .hero-section,
-    html[data-theme='light'] .nrs-project-detail-page .section-container,
-    html[data-theme='light'] body.nrs-project-detail-page .section-container,
-    html[data-theme='light'] .nrs-blog-detail-page .section-container,
-    html[data-theme='light'] body.nrs-blog-detail-page .section-container,
-    html[data-theme='light'] .nrs-service-page .section-container,
-    html[data-theme='light'] body.nrs-service-page .section-container,
-    html[data-theme='light'] .nrs-inner-page .section-container,
-    html[data-theme='light'] body.nrs-inner-page .section-container,
-    html[data-theme='light'] main.container > section,
-    html[data-theme='light'] body.nrs-uniform-shell main.container > section,
-    html[data-theme='light'] article.section-container,
-    html[data-theme='light'] body.nrs-uniform-shell article.section-container,
-    html[data-theme='light'] .nrs-case-hero,
-    html[data-theme='light'] .case-hero,
-    html[data-theme='light'] .case-hero-container,
-    html[data-theme='light'] .case-hero-panel,
-    html[data-theme='light'] .project-hero,
-    html[data-theme='light'] .project-hero-inner,
-    html[data-theme='light'] .nrs-blog-detail-surface,
-    html[data-theme='light'] .nrs-article-frame,
-    html[data-theme='light'] .nrs-blog-hub-shell,
-    html[data-theme='light'] .clarity-hero {
-      background: #F7F7F7 !important;
-      background-color: #F7F7F7 !important;
-      background-image: none !important;
-      border-color: #E5E5E5 !important;
-      box-shadow: none !important;
-      filter: none !important;
-      color: #1A1A1A !important;
-    }
-
-    html[data-theme='light'] .nrs-inner-page .hero-section::before,
-    html[data-theme='light'] .hero-section::before,
-    html[data-theme='light'] .section-container::before,
-    html[data-theme='light'] main.container > section::before {
-      background: transparent !important;
-      background-image: none !important;
-      opacity: 0 !important;
-      box-shadow: none !important;
-      filter: none !important;
-    }
-
-    html[data-theme='light'] .snapshot-grid > div,
-    html[data-theme='light'] .journey-card,
-    html[data-theme='light'] .comparison-card,
-    html[data-theme='light'] .metric-plan-card,
-    html[data-theme='light'] .story-card,
-    html[data-theme='light'] .quote-card,
-    html[data-theme='light'] .prototype-link-card,
-    html[data-theme='light'] .blog-card-modern,
-    html[data-theme='light'] .writing-item,
-    html[data-theme='light'] .achieve-item,
-    html[data-theme='light'] .impact-card,
-    html[data-theme='light'] .contact-form,
-    html[data-theme='light'] .blog-note,
-    html[data-theme='light'] .blog-author-card,
-    html[data-theme='light'] .blog-share-card,
-    html[data-theme='light'] .blog-toc,
-    html[data-theme='light'] .link-pill,
-    html[data-theme='light'] .filter-btn,
-    html[data-theme='light'] .case-list li,
-    html[data-theme='light'] .nrs-blog-proof-grid article,
-    html[data-theme='light'] .clarity-row-list article,
-    html[data-theme='light'] .clarity-steps article,
-    html[data-theme='light'] .stat-card,
-    html[data-theme='light'] .service-card,
-    html[data-theme='light'] .related-card,
-    html[data-theme='light'] .nrs-related-card,
-    html[data-theme='light'] .case-hero-img-container,
-    html[data-theme='light'] .blog-hero-img-container,
-    html[data-theme='light'] .embed-frame-wrapper,
-    html[data-theme='light'] .case-hero-img,
-    html[data-theme='light'] .case-hero-img-container img,
-    html[data-theme='light'] .nrs-inner-page .section-container > .container > img,
-    html[data-theme='light'] .nrs-article img {
-      background: #F7F7F7 !important;
-      background-color: #F7F7F7 !important;
-      background-image: none !important;
-      border-color: #E5E5E5 !important;
-      box-shadow: none !important;
-      filter: none !important;
-      color: #1A1A1A !important;
-    }
-
-    html[data-theme='light'] *,
-    html[data-theme='light'] *::before,
-    html[data-theme='light'] *::after {
-      text-shadow: none !important;
-      filter: none !important;
-    }
-
-    html[data-theme='light'] h1,
-    html[data-theme='light'] h2,
-    html[data-theme='light'] h3,
-    html[data-theme='light'] h4,
-    html[data-theme='light'] h5,
-    html[data-theme='light'] h6,
-    html[data-theme='light'] a,
-    html[data-theme='light'] button,
-    html[data-theme='light'] .btn,
-    html[data-theme='light'] .nav-link,
-    html[data-theme='light'] .hero-title,
-    html[data-theme='light'] .section-title {
-      color: #1A1A1A !important;
-    }
-
-    html[data-theme='light'] p,
-    html[data-theme='light'] li,
-    html[data-theme='light'] label,
-    html[data-theme='light'] .body-large,
-    html[data-theme='light'] .section-lead,
-    html[data-theme='light'] .card-summary,
-    html[data-theme='light'] .w-summary {
-      color: #555555 !important;
-    }
-
-    html[data-theme='light'] .eyebrow,
-    html[data-theme='light'] .meta-text,
-    html[data-theme='light'] .w-date,
-    html[data-theme='light'] .case-label,
-    html[data-theme='light'] .badge-pill,
-    html[data-theme='light'] .link-pill,
-    html[data-theme='light'] .tag,
-    html[data-theme='light'] .pill {
-      color: #555555 !important;
-    }
-
-    html[data-theme='light'] .nav-link:hover,
-    html[data-theme='light'] .nav-link:focus-visible,
-    html[data-theme='light'] .nav-link.active,
-    html[data-theme='light'] .nav-link[aria-current='page'],
-    html[data-theme='light'] .btn-primary,
-    html[data-theme='light'] .btn:hover,
-    html[data-theme='light'] .filter-btn:hover,
-    html[data-theme='light'] .filter-btn.active {
-      background: #444444 !important;
-      background-color: #444444 !important;
-      border-color: #444444 !important;
-      color: #FFFFFF !important;
-    }
-
-    html[data-theme='light'] .btn-secondary,
-    html[data-theme='light'] .badge-pill,
-    html[data-theme='light'] .link-pill,
-    html[data-theme='light'] .filter-btn,
-    html[data-theme='light'] .tag,
-    html[data-theme='light'] .pill,
-    html[data-theme='light'] .hero-proof-strip span {
-      background: #F7F7F7 !important;
-      background-color: #F7F7F7 !important;
-      border-color: #E5E5E5 !important;
-      color: #555555 !important;
-    }
-
     input,
     select,
     textarea,
     .search-input {
-      background: var(--bg-page) !important;
-      background-color: var(--bg-page) !important;
+      background: transparent !important;
+      background-color: transparent !important;
       border-color: var(--border-faint) !important;
       color: var(--text-primary) !important;
       box-shadow: none !important;
@@ -528,23 +377,9 @@ function injectRequestedThemePalette() {
       font-family: var(--font-sans) !important;
     }
 
-    html[data-theme='light'] input,
-    html[data-theme='light'] select,
-    html[data-theme='light'] textarea,
-    html[data-theme='light'] .search-input {
-      background: #F7F7F7 !important;
-      background-color: #F7F7F7 !important;
-      border-color: #E5E5E5 !important;
-      color: #1A1A1A !important;
-    }
-
     input::placeholder,
     textarea::placeholder,
     .search-input::placeholder { color: var(--text-tertiary) !important; }
-
-    html[data-theme='light'] input::placeholder,
-    html[data-theme='light'] textarea::placeholder,
-    html[data-theme='light'] .search-input::placeholder { color: #555555 !important; }
 
     input:focus,
     select:focus,
@@ -552,23 +387,11 @@ function injectRequestedThemePalette() {
     .search-input:focus {
       outline: 3px solid var(--border-faint) !important;
       border-color: var(--border-strong) !important;
-      background: var(--bg-page) !important;
+      background: transparent !important;
       color: var(--text-primary) !important;
     }
 
-    html[data-theme='light'] input:focus,
-    html[data-theme='light'] select:focus,
-    html[data-theme='light'] textarea:focus,
-    html[data-theme='light'] .search-input:focus {
-      outline-color: #E5E5E5 !important;
-      border-color: #444444 !important;
-      background: #F7F7F7 !important;
-      color: #1A1A1A !important;
-    }
-
     option { background: var(--bg-page) !important; color: var(--text-primary) !important; }
-    html[data-theme='light'] option { background: #FFFFFF !important; color: #1A1A1A !important; }
-
     hr,
     .section-divider,
     .clarity-section,
@@ -576,44 +399,26 @@ function injectRequestedThemePalette() {
     .nrs-project-detail-page .hero-section,
     .site-footer { border-color: var(--nrs-divider) !important; }
 
-    html[data-theme='light'] hr,
-    html[data-theme='light'] .section-divider,
-    html[data-theme='light'] .clarity-section,
-    html[data-theme='light'] .nrs-project-detail-page .section-container,
-    html[data-theme='light'] .nrs-project-detail-page .hero-section,
-    html[data-theme='light'] .site-footer { border-color: #E5E5E5 !important; }
-
     .w-arrow,
     .nrs-cursor-ring {
       background: transparent !important;
-      border-color: var(--accent-blue) !important;
+      border-color: var(--accent) !important;
       box-shadow: none !important;
       filter: none !important;
     }
 
-    .w-arrow::before { border-color: var(--accent-blue) !important; }
+    .w-arrow::before { border-color: var(--accent) !important; }
 
     .w-arrow::after,
     .nrs-cursor-dot {
-      background: var(--accent-blue) !important;
-      background-color: var(--accent-blue) !important;
+      background: var(--accent) !important;
+      background-color: var(--accent) !important;
       box-shadow: none !important;
       filter: none !important;
     }
 
-    html[data-theme='light'] .w-arrow,
-    html[data-theme='light'] .nrs-cursor-ring { border-color: #444444 !important; }
-    html[data-theme='light'] .w-arrow::before { border-color: #444444 !important; }
-    html[data-theme='light'] .w-arrow::after,
-    html[data-theme='light'] .nrs-cursor-dot { background: #444444 !important; background-color: #444444 !important; }
-
     @keyframes nrsPageEnter {
       from { opacity: 0; transform: translate3d(0, 18px, 0); }
-      to { opacity: 1; transform: translate3d(0, 0, 0); }
-    }
-
-    @keyframes nrsRevealUp {
-      from { opacity: 0; transform: translate3d(0, 28px, 0); }
       to { opacity: 1; transform: translate3d(0, 0, 0); }
     }
 
@@ -634,7 +439,6 @@ function injectRequestedThemePalette() {
         opacity var(--motion-slow) var(--motion-ease-out),
         transform var(--motion-slow) var(--motion-ease-out),
         border-color var(--motion-base) var(--motion-ease),
-        background-color var(--motion-base) var(--motion-ease),
         color var(--motion-base) var(--motion-ease) !important;
       will-change: opacity, transform;
     }
