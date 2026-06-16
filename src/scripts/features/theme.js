@@ -60,14 +60,14 @@ function injectRequestedThemePalette() {
       --bg-surface-2: #CCCBCA !important;
       --bg-pill: #F2F0EF !important;
       --bg-nav: #F2F0EF !important;
-      --text-primary: #807E7E !important;
-      --text-secondary: #807E7E !important;
-      --text-tertiary: #A6A4A4 !important;
-      --text-soft: #A6A4A4 !important;
-      --accent-blue: #807E7E !important;
-      --accent-cyan: #A6A4A4 !important;
-      --accent-gold: #807E7E !important;
-      --accent-glow: #A6A4A4 !important;
+      --text-primary: #121212 !important;
+      --text-secondary: #444444 !important;
+      --text-tertiary: #807E7E !important;
+      --text-soft: #807E7E !important;
+      --accent-blue: #444444 !important;
+      --accent-cyan: #807E7E !important;
+      --accent-gold: #121212 !important;
+      --accent-glow: #807E7E !important;
       --border-faint: #CCCBCA !important;
       --border-strong: #807E7E !important;
       --nrs-divider: #CCCBCA !important;
@@ -328,7 +328,11 @@ function injectRequestedThemePalette() {
     [data-theme='light'] .hero-section,
     [data-theme='light'] .section-container,
     [data-theme='light'] .nrs-case-hero,
+    [data-theme='light'] .case-hero,
     [data-theme='light'] .case-hero-container,
+    [data-theme='light'] .case-hero-panel,
+    [data-theme='light'] .project-hero,
+    [data-theme='light'] .project-hero-inner,
     [data-theme='light'] .nrs-blog-detail-surface,
     [data-theme='light'] .nrs-article-frame,
     [data-theme='light'] .nrs-blog-hub-shell,
