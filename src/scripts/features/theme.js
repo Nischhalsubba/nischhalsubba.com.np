@@ -52,7 +52,6 @@ function injectRequestedThemePalette() {
       --accent-blue: #888888 !important;
       --accent-cyan: #B0B0B0 !important;
       --accent-gold: #E0E0E0 !important;
-      --accent-glow: #888888 !important;
       --border-faint: #444444 !important;
       --border-strong: #888888 !important;
       --nrs-divider: #444444 !important;
@@ -73,7 +72,6 @@ function injectRequestedThemePalette() {
       --accent-blue: #444444 !important;
       --accent-cyan: #807E7E !important;
       --accent-gold: #121212 !important;
-      --accent-glow: #807E7E !important;
       --border-faint: #CCCBCA !important;
       --border-strong: #807E7E !important;
       --nrs-divider: #CCCBCA !important;
@@ -84,6 +82,7 @@ function injectRequestedThemePalette() {
     body,
     html[data-theme='dark'],
     html[data-theme='dark'] body {
+      background: #121212 !important;
       background-color: #121212 !important;
       background-image: none !important;
       color: #E0E0E0 !important;
@@ -96,8 +95,8 @@ function injectRequestedThemePalette() {
     html[data-theme='light'] .nrs-uniform-shell,
     html[data-theme='light'] main,
     html[data-theme='light'] main.container {
-      background-color: #F2F0EF !important;
       background: #F2F0EF !important;
+      background-color: #F2F0EF !important;
       background-image: none !important;
       color: #121212 !important;
     }
@@ -117,6 +116,8 @@ function injectRequestedThemePalette() {
       visibility: hidden !important;
       background: transparent !important;
       background-image: none !important;
+      box-shadow: none !important;
+      filter: none !important;
     }
 
     body *:not(img):not(video):not(canvas):not(svg):not(path) {
@@ -226,6 +227,7 @@ function injectRequestedThemePalette() {
       border-color: var(--border-faint) !important;
       color: var(--text-primary) !important;
       box-shadow: none !important;
+      filter: none !important;
     }
 
     .nav-link,
@@ -246,6 +248,7 @@ function injectRequestedThemePalette() {
       color: var(--bg-page) !important;
       border-color: var(--border-strong) !important;
       box-shadow: none !important;
+      filter: none !important;
     }
 
     .btn-primary,
@@ -256,6 +259,7 @@ function injectRequestedThemePalette() {
       border-color: var(--text-primary) !important;
       color: var(--bg-page) !important;
       box-shadow: none !important;
+      filter: none !important;
     }
 
     .btn-secondary,
@@ -274,6 +278,7 @@ function injectRequestedThemePalette() {
       border-color: var(--border-faint) !important;
       color: var(--text-tertiary) !important;
       box-shadow: none !important;
+      filter: none !important;
     }
 
     .btn:hover,
@@ -288,6 +293,7 @@ function injectRequestedThemePalette() {
       border-color: var(--accent-blue) !important;
       color: var(--bg-page) !important;
       box-shadow: none !important;
+      filter: none !important;
     }
 
     .impact-card,
@@ -321,6 +327,7 @@ function injectRequestedThemePalette() {
       background-image: none !important;
       border-color: var(--border-faint) !important;
       box-shadow: none !important;
+      filter: none !important;
       color: var(--text-primary) !important;
     }
 
@@ -340,17 +347,27 @@ function injectRequestedThemePalette() {
       border-color: var(--border-strong) !important;
       color: var(--text-primary) !important;
       box-shadow: none !important;
+      filter: none !important;
     }
 
     html[data-theme='light'] .nrs-inner-page .hero-section,
+    html[data-theme='light'] body.nrs-inner-page .hero-section,
     html[data-theme='light'] .nrs-inner-page main.container > .hero-section,
+    html[data-theme='light'] body.nrs-inner-page main.container > .hero-section,
     html[data-theme='light'] main.container > .hero-section,
+    html[data-theme='light'] body.nrs-uniform-shell main.container > .hero-section,
     html[data-theme='light'] .nrs-project-detail-page .section-container,
+    html[data-theme='light'] body.nrs-project-detail-page .section-container,
     html[data-theme='light'] .nrs-blog-detail-page .section-container,
+    html[data-theme='light'] body.nrs-blog-detail-page .section-container,
     html[data-theme='light'] .nrs-service-page .section-container,
+    html[data-theme='light'] body.nrs-service-page .section-container,
     html[data-theme='light'] .nrs-inner-page .section-container,
+    html[data-theme='light'] body.nrs-inner-page .section-container,
     html[data-theme='light'] main.container > section,
+    html[data-theme='light'] body.nrs-uniform-shell main.container > section,
     html[data-theme='light'] article.section-container,
+    html[data-theme='light'] body.nrs-uniform-shell article.section-container,
     html[data-theme='light'] .nrs-case-hero,
     html[data-theme='light'] .case-hero,
     html[data-theme='light'] .case-hero-container,
@@ -365,16 +382,19 @@ function injectRequestedThemePalette() {
       background-color: #F2F0EF !important;
       background-image: none !important;
       border-color: #CCCBCA !important;
-      box-shadow: 0 20px 70px rgba(204, 203, 202, .28), inset 0 1px 0 #F2F0EF !important;
+      box-shadow: none !important;
       filter: none !important;
     }
 
     html[data-theme='light'] .nrs-inner-page .hero-section::before,
     html[data-theme='light'] .hero-section::before,
-    html[data-theme='light'] .section-container::before {
+    html[data-theme='light'] .section-container::before,
+    html[data-theme='light'] main.container > section::before {
       background: transparent !important;
       background-image: none !important;
       opacity: 0 !important;
+      box-shadow: none !important;
+      filter: none !important;
     }
 
     html[data-theme='light'] .snapshot-grid > div,
@@ -402,12 +422,27 @@ function injectRequestedThemePalette() {
     html[data-theme='light'] .stat-card,
     html[data-theme='light'] .service-card,
     html[data-theme='light'] .related-card,
-    html[data-theme='light'] .nrs-related-card {
+    html[data-theme='light'] .nrs-related-card,
+    html[data-theme='light'] .case-hero-img-container,
+    html[data-theme='light'] .blog-hero-img-container,
+    html[data-theme='light'] .embed-frame-wrapper,
+    html[data-theme='light'] .case-hero-img,
+    html[data-theme='light'] .case-hero-img-container img,
+    html[data-theme='light'] .nrs-inner-page .section-container > .container > img,
+    html[data-theme='light'] .nrs-article img {
       background: #F2F0EF !important;
       background-color: #F2F0EF !important;
       background-image: none !important;
       border-color: #CCCBCA !important;
-      box-shadow: 0 14px 46px rgba(204, 203, 202, .20), inset 0 1px 0 #F2F0EF !important;
+      box-shadow: none !important;
+      filter: none !important;
+    }
+
+    html[data-theme='light'] *,
+    html[data-theme='light'] *::before,
+    html[data-theme='light'] *::after {
+      text-shadow: none !important;
+      filter: none !important;
     }
 
     input,
@@ -419,6 +454,7 @@ function injectRequestedThemePalette() {
       border-color: var(--border-faint) !important;
       color: var(--text-primary) !important;
       box-shadow: none !important;
+      filter: none !important;
       font-family: var(--font-sans) !important;
     }
 
@@ -450,6 +486,7 @@ function injectRequestedThemePalette() {
       background: transparent !important;
       border-color: var(--accent-blue) !important;
       box-shadow: none !important;
+      filter: none !important;
     }
 
     .w-arrow::before { border-color: var(--accent-blue) !important; }
@@ -459,6 +496,7 @@ function injectRequestedThemePalette() {
       background: var(--accent-blue) !important;
       background-color: var(--accent-blue) !important;
       box-shadow: none !important;
+      filter: none !important;
     }
   `);
 }
@@ -467,6 +505,7 @@ function reinforceThemePalette() {
   requestAnimationFrame(injectRequestedThemePalette);
   window.setTimeout(injectRequestedThemePalette, 0);
   window.setTimeout(injectRequestedThemePalette, 250);
+  window.setTimeout(injectRequestedThemePalette, 700);
 }
 
 function updatePortraitImages() {
