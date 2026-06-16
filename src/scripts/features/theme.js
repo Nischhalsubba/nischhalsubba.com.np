@@ -25,12 +25,18 @@ function loadRequestedFonts() {
   document.head.append(preconnectFonts, preconnectStatic, fontLink);
 }
 
-function injectRequestedThemePalette() {
-  if (document.getElementById('nrs-requested-theme-palette')) return;
+function ensureThemeStyle(id, css) {
+  let style = document.getElementById(id);
+  if (!style) {
+    style = document.createElement('style');
+    style.id = id;
+    document.head.appendChild(style);
+  }
+  style.textContent = css;
+}
 
-  const style = document.createElement('style');
-  style.id = 'nrs-requested-theme-palette';
-  style.textContent = `
+function injectRequestedThemePalette() {
+  ensureThemeStyle('nrs-requested-theme-palette', `
     :root {
       --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif !important;
       --font-sans: 'Roboto', Arial, Helvetica, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
@@ -54,7 +60,7 @@ function injectRequestedThemePalette() {
       --shadow-soft: none !important;
     }
 
-    [data-theme='light'] {
+    html[data-theme='light'] {
       --bg-page: #F2F0EF !important;
       --bg-surface: #F2F0EF !important;
       --bg-surface-2: #CCCBCA !important;
@@ -75,16 +81,31 @@ function injectRequestedThemePalette() {
     }
 
     html,
-    body {
-      background: var(--bg-page) !important;
-      background-color: var(--bg-page) !important;
+    body,
+    html[data-theme='dark'],
+    html[data-theme='dark'] body {
+      background-color: #121212 !important;
       background-image: none !important;
-      color: var(--text-primary) !important;
+      color: #E0E0E0 !important;
       font-family: var(--font-sans) !important;
+    }
+
+    html[data-theme='light'],
+    html[data-theme='light'] body,
+    html[data-theme='light'] body.nrs-uniform-shell,
+    html[data-theme='light'] .nrs-uniform-shell,
+    html[data-theme='light'] main,
+    html[data-theme='light'] main.container {
+      background-color: #F2F0EF !important;
+      background: #F2F0EF !important;
+      background-image: none !important;
+      color: #121212 !important;
     }
 
     body::before,
     body::after,
+    html[data-theme='light'] body::before,
+    html[data-theme='light'] body::after,
     #grid-canvas,
     .background-grid,
     .ambient-glow,
@@ -321,21 +342,25 @@ function injectRequestedThemePalette() {
       box-shadow: none !important;
     }
 
-    [data-theme='light'] main.container,
-    [data-theme='light'] main.container > section,
-    [data-theme='light'] article.section-container,
-    [data-theme='light'] .hero-section,
-    [data-theme='light'] .section-container,
-    [data-theme='light'] .nrs-case-hero,
-    [data-theme='light'] .case-hero,
-    [data-theme='light'] .case-hero-container,
-    [data-theme='light'] .case-hero-panel,
-    [data-theme='light'] .project-hero,
-    [data-theme='light'] .project-hero-inner,
-    [data-theme='light'] .nrs-blog-detail-surface,
-    [data-theme='light'] .nrs-article-frame,
-    [data-theme='light'] .nrs-blog-hub-shell,
-    [data-theme='light'] .clarity-hero {
+    html[data-theme='light'] .nrs-inner-page .hero-section,
+    html[data-theme='light'] .nrs-inner-page main.container > .hero-section,
+    html[data-theme='light'] main.container > .hero-section,
+    html[data-theme='light'] .nrs-project-detail-page .section-container,
+    html[data-theme='light'] .nrs-blog-detail-page .section-container,
+    html[data-theme='light'] .nrs-service-page .section-container,
+    html[data-theme='light'] .nrs-inner-page .section-container,
+    html[data-theme='light'] main.container > section,
+    html[data-theme='light'] article.section-container,
+    html[data-theme='light'] .nrs-case-hero,
+    html[data-theme='light'] .case-hero,
+    html[data-theme='light'] .case-hero-container,
+    html[data-theme='light'] .case-hero-panel,
+    html[data-theme='light'] .project-hero,
+    html[data-theme='light'] .project-hero-inner,
+    html[data-theme='light'] .nrs-blog-detail-surface,
+    html[data-theme='light'] .nrs-article-frame,
+    html[data-theme='light'] .nrs-blog-hub-shell,
+    html[data-theme='light'] .clarity-hero {
       background: #F2F0EF !important;
       background-color: #F2F0EF !important;
       background-image: none !important;
@@ -344,40 +369,43 @@ function injectRequestedThemePalette() {
       filter: none !important;
     }
 
-    [data-theme='light'] .hero-section,
-    [data-theme='light'] .section-container,
-    [data-theme='light'] article.section-container {
-      border-color: var(--nrs-divider) !important;
+    html[data-theme='light'] .nrs-inner-page .hero-section::before,
+    html[data-theme='light'] .hero-section::before,
+    html[data-theme='light'] .section-container::before {
+      background: transparent !important;
+      background-image: none !important;
+      opacity: 0 !important;
     }
 
-    [data-theme='light'] .impact-card,
-    [data-theme='light'] .project-card,
-    [data-theme='light'] .writing-item,
-    [data-theme='light'] .journey-card,
-    [data-theme='light'] .comparison-card,
-    [data-theme='light'] .metric-plan-card,
-    [data-theme='light'] .story-card,
-    [data-theme='light'] .quote-card,
-    [data-theme='light'] .contact-form,
-    [data-theme='light'] .blog-note,
-    [data-theme='light'] .blog-toc,
-    [data-theme='light'] .blog-author-card,
-    [data-theme='light'] .blog-share-card,
-    [data-theme='light'] .nrs-uxcel-proof,
-    [data-theme='light'] .prototype-link-card,
-    [data-theme='light'] .embed-frame-wrapper,
-    [data-theme='light'] .nrs-case-proof,
-    [data-theme='light'] .snapshot-grid,
-    [data-theme='light'] .case-list li,
-    [data-theme='light'] .nrs-blog-proof-grid article,
-    [data-theme='light'] .clarity-row-list article,
-    [data-theme='light'] .clarity-steps article,
-    [data-theme='light'] .stat-card,
-    [data-theme='light'] .service-card,
-    [data-theme='light'] .related-card,
-    [data-theme='light'] .nrs-related-card {
+    html[data-theme='light'] .snapshot-grid > div,
+    html[data-theme='light'] .journey-card,
+    html[data-theme='light'] .comparison-card,
+    html[data-theme='light'] .metric-plan-card,
+    html[data-theme='light'] .story-card,
+    html[data-theme='light'] .quote-card,
+    html[data-theme='light'] .prototype-link-card,
+    html[data-theme='light'] .blog-card-modern,
+    html[data-theme='light'] .writing-item,
+    html[data-theme='light'] .achieve-item,
+    html[data-theme='light'] .impact-card,
+    html[data-theme='light'] .contact-form,
+    html[data-theme='light'] .blog-note,
+    html[data-theme='light'] .blog-author-card,
+    html[data-theme='light'] .blog-share-card,
+    html[data-theme='light'] .blog-toc,
+    html[data-theme='light'] .link-pill,
+    html[data-theme='light'] .filter-btn,
+    html[data-theme='light'] .case-list li,
+    html[data-theme='light'] .nrs-blog-proof-grid article,
+    html[data-theme='light'] .clarity-row-list article,
+    html[data-theme='light'] .clarity-steps article,
+    html[data-theme='light'] .stat-card,
+    html[data-theme='light'] .service-card,
+    html[data-theme='light'] .related-card,
+    html[data-theme='light'] .nrs-related-card {
       background: #F2F0EF !important;
       background-color: #F2F0EF !important;
+      background-image: none !important;
       border-color: #CCCBCA !important;
       box-shadow: 0 14px 46px rgba(204, 203, 202, .20), inset 0 1px 0 #F2F0EF !important;
     }
@@ -432,9 +460,13 @@ function injectRequestedThemePalette() {
       background-color: var(--accent-blue) !important;
       box-shadow: none !important;
     }
-  `;
+  `);
+}
 
-  document.head.appendChild(style);
+function reinforceThemePalette() {
+  requestAnimationFrame(injectRequestedThemePalette);
+  window.setTimeout(injectRequestedThemePalette, 0);
+  window.setTimeout(injectRequestedThemePalette, 250);
 }
 
 function updatePortraitImages() {
@@ -460,6 +492,7 @@ function setTheme(theme, button, storage) {
     button.setAttribute('aria-label', nextTheme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
   }
 
+  reinforceThemePalette();
   updatePortraitImages();
 }
 
