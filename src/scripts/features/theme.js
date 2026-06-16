@@ -57,6 +57,11 @@ function injectRequestedThemePalette() {
       --nrs-divider: #444444 !important;
       --shadow-card: none !important;
       --shadow-soft: none !important;
+      --motion-ease: cubic-bezier(.2, .8, .2, 1);
+      --motion-ease-out: cubic-bezier(.16, 1, .3, 1);
+      --motion-fast: 180ms;
+      --motion-base: 340ms;
+      --motion-slow: 620ms;
     }
 
     html[data-theme='light'] {
@@ -65,13 +70,13 @@ function injectRequestedThemePalette() {
       --bg-surface-2: #CCCBCA !important;
       --bg-pill: #F2F0EF !important;
       --bg-nav: #F2F0EF !important;
-      --text-primary: #121212 !important;
-      --text-secondary: #444444 !important;
-      --text-tertiary: #807E7E !important;
-      --text-soft: #807E7E !important;
-      --accent-blue: #444444 !important;
-      --accent-cyan: #807E7E !important;
-      --accent-gold: #121212 !important;
+      --text-primary: #807E7E !important;
+      --text-secondary: #807E7E !important;
+      --text-tertiary: #A6A4A4 !important;
+      --text-soft: #A6A4A4 !important;
+      --accent-blue: #807E7E !important;
+      --accent-cyan: #A6A4A4 !important;
+      --accent-gold: #CCCBCA !important;
       --border-faint: #CCCBCA !important;
       --border-strong: #807E7E !important;
       --nrs-divider: #CCCBCA !important;
@@ -98,7 +103,7 @@ function injectRequestedThemePalette() {
       background: #F2F0EF !important;
       background-color: #F2F0EF !important;
       background-image: none !important;
-      color: #121212 !important;
+      color: #807E7E !important;
     }
 
     body::before,
@@ -182,7 +187,8 @@ function injectRequestedThemePalette() {
     h5,
     h6,
     .nav-link,
-    .btn {
+    .btn,
+    a {
       color: var(--text-primary) !important;
     }
 
@@ -213,7 +219,6 @@ function injectRequestedThemePalette() {
       color: var(--text-tertiary) !important;
     }
 
-    a { color: var(--text-primary) !important; }
     a:hover { color: var(--text-tertiary) !important; }
 
     .nav-pill,
@@ -384,6 +389,7 @@ function injectRequestedThemePalette() {
       border-color: #CCCBCA !important;
       box-shadow: none !important;
       filter: none !important;
+      color: #807E7E !important;
     }
 
     html[data-theme='light'] .nrs-inner-page .hero-section::before,
@@ -436,6 +442,7 @@ function injectRequestedThemePalette() {
       border-color: #CCCBCA !important;
       box-shadow: none !important;
       filter: none !important;
+      color: #807E7E !important;
     }
 
     html[data-theme='light'] *,
@@ -443,6 +450,51 @@ function injectRequestedThemePalette() {
     html[data-theme='light'] *::after {
       text-shadow: none !important;
       filter: none !important;
+    }
+
+    html[data-theme='light'] h1,
+    html[data-theme='light'] h2,
+    html[data-theme='light'] h3,
+    html[data-theme='light'] h4,
+    html[data-theme='light'] h5,
+    html[data-theme='light'] h6,
+    html[data-theme='light'] p,
+    html[data-theme='light'] li,
+    html[data-theme='light'] a,
+    html[data-theme='light'] label,
+    html[data-theme='light'] button,
+    html[data-theme='light'] .btn,
+    html[data-theme='light'] .nav-link,
+    html[data-theme='light'] .hero-title,
+    html[data-theme='light'] .section-title,
+    html[data-theme='light'] .body-large,
+    html[data-theme='light'] .section-lead {
+      color: #807E7E !important;
+    }
+
+    html[data-theme='light'] .eyebrow,
+    html[data-theme='light'] .meta-text,
+    html[data-theme='light'] .w-date,
+    html[data-theme='light'] .case-label,
+    html[data-theme='light'] .badge-pill,
+    html[data-theme='light'] .link-pill,
+    html[data-theme='light'] .tag,
+    html[data-theme='light'] .pill {
+      color: #A6A4A4 !important;
+    }
+
+    html[data-theme='light'] .nav-link:hover,
+    html[data-theme='light'] .nav-link:focus-visible,
+    html[data-theme='light'] .nav-link.active,
+    html[data-theme='light'] .nav-link[aria-current='page'],
+    html[data-theme='light'] .btn-primary,
+    html[data-theme='light'] .btn:hover,
+    html[data-theme='light'] .filter-btn:hover,
+    html[data-theme='light'] .filter-btn.active {
+      background: #807E7E !important;
+      background-color: #807E7E !important;
+      border-color: #807E7E !important;
+      color: #F2F0EF !important;
     }
 
     input,
@@ -458,9 +510,23 @@ function injectRequestedThemePalette() {
       font-family: var(--font-sans) !important;
     }
 
+    html[data-theme='light'] input,
+    html[data-theme='light'] select,
+    html[data-theme='light'] textarea,
+    html[data-theme='light'] .search-input {
+      background: #F2F0EF !important;
+      background-color: #F2F0EF !important;
+      border-color: #CCCBCA !important;
+      color: #807E7E !important;
+    }
+
     input::placeholder,
     textarea::placeholder,
     .search-input::placeholder { color: var(--text-tertiary) !important; }
+
+    html[data-theme='light'] input::placeholder,
+    html[data-theme='light'] textarea::placeholder,
+    html[data-theme='light'] .search-input::placeholder { color: #A6A4A4 !important; }
 
     input:focus,
     select:focus,
@@ -472,7 +538,18 @@ function injectRequestedThemePalette() {
       color: var(--text-primary) !important;
     }
 
+    html[data-theme='light'] input:focus,
+    html[data-theme='light'] select:focus,
+    html[data-theme='light'] textarea:focus,
+    html[data-theme='light'] .search-input:focus {
+      outline-color: #CCCBCA !important;
+      border-color: #807E7E !important;
+      background: #F2F0EF !important;
+      color: #807E7E !important;
+    }
+
     option { background: var(--bg-page) !important; color: var(--text-primary) !important; }
+    html[data-theme='light'] option { background: #F2F0EF !important; color: #807E7E !important; }
 
     hr,
     .section-divider,
@@ -480,6 +557,13 @@ function injectRequestedThemePalette() {
     .nrs-project-detail-page .section-container,
     .nrs-project-detail-page .hero-section,
     .site-footer { border-color: var(--nrs-divider) !important; }
+
+    html[data-theme='light'] hr,
+    html[data-theme='light'] .section-divider,
+    html[data-theme='light'] .clarity-section,
+    html[data-theme='light'] .nrs-project-detail-page .section-container,
+    html[data-theme='light'] .nrs-project-detail-page .hero-section,
+    html[data-theme='light'] .site-footer { border-color: #CCCBCA !important; }
 
     .w-arrow,
     .nrs-cursor-ring {
@@ -497,6 +581,111 @@ function injectRequestedThemePalette() {
       background-color: var(--accent-blue) !important;
       box-shadow: none !important;
       filter: none !important;
+    }
+
+    html[data-theme='light'] .w-arrow,
+    html[data-theme='light'] .nrs-cursor-ring { border-color: #807E7E !important; }
+    html[data-theme='light'] .w-arrow::before { border-color: #807E7E !important; }
+    html[data-theme='light'] .w-arrow::after,
+    html[data-theme='light'] .nrs-cursor-dot { background: #807E7E !important; background-color: #807E7E !important; }
+
+    @keyframes nrsPageEnter {
+      from { opacity: 0; transform: translate3d(0, 18px, 0); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    @keyframes nrsRevealUp {
+      from { opacity: 0; transform: translate3d(0, 28px, 0); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    body.page-ready main,
+    body.js-enabled main {
+      animation: nrsPageEnter var(--motion-slow) var(--motion-ease-out) both;
+    }
+
+    .reveal-on-scroll,
+    .project-card,
+    .writing-item,
+    .impact-card,
+    .journey-card,
+    .clarity-row-list article,
+    .clarity-steps article,
+    .nrs-blog-proof-grid article {
+      transition:
+        opacity var(--motion-slow) var(--motion-ease-out),
+        transform var(--motion-slow) var(--motion-ease-out),
+        border-color var(--motion-base) var(--motion-ease),
+        background-color var(--motion-base) var(--motion-ease),
+        color var(--motion-base) var(--motion-ease) !important;
+      will-change: opacity, transform;
+    }
+
+    .motion-ready .reveal-on-scroll:not(.is-visible) {
+      opacity: 0;
+      transform: translate3d(0, 28px, 0);
+    }
+
+    .motion-ready .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .project-card:hover,
+    .writing-item:hover,
+    .impact-card:hover,
+    .journey-card:hover,
+    .clarity-row-list article:hover,
+    .clarity-steps article:hover,
+    .nrs-blog-proof-grid article:hover,
+    .btn:hover,
+    .filter-btn:hover,
+    .nav-link:hover,
+    .link-pill:hover {
+      transform: translate3d(0, -4px, 0) !important;
+    }
+
+    .btn:active,
+    .filter-btn:active,
+    .nav-link:active,
+    .project-card:active,
+    .writing-item:active,
+    .journey-card:active {
+      transform: translate3d(0, -1px, 0) scale(.985) !important;
+      transition-duration: 90ms !important;
+    }
+
+    .btn,
+    .filter-btn,
+    .nav-link,
+    .link-pill,
+    .badge-pill,
+    .theme-toggle-btn,
+    .mobile-nav-toggle,
+    input,
+    select,
+    textarea,
+    .search-input {
+      transition:
+        background-color var(--motion-fast) var(--motion-ease),
+        border-color var(--motion-fast) var(--motion-ease),
+        color var(--motion-fast) var(--motion-ease),
+        transform var(--motion-fast) var(--motion-ease) !important;
+    }
+
+    :focus-visible {
+      transition: outline-color var(--motion-fast) var(--motion-ease), outline-offset var(--motion-fast) var(--motion-ease) !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
+      }
     }
   `);
 }
