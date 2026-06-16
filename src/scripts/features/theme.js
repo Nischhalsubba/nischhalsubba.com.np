@@ -100,7 +100,6 @@ function injectRequestedThemePalette() {
 
     body *:not(img):not(video):not(canvas):not(svg):not(path) {
       background-image: none !important;
-      box-shadow: none !important;
       text-shadow: none !important;
     }
 
@@ -337,12 +336,11 @@ function injectRequestedThemePalette() {
     [data-theme='light'] .nrs-article-frame,
     [data-theme='light'] .nrs-blog-hub-shell,
     [data-theme='light'] .clarity-hero {
-      background: transparent !important;
-      background-color: transparent !important;
+      background: #F2F0EF !important;
+      background-color: #F2F0EF !important;
       background-image: none !important;
-      border-left: 0 !important;
-      border-right: 0 !important;
-      box-shadow: none !important;
+      border-color: #CCCBCA !important;
+      box-shadow: 0 20px 70px rgba(204, 203, 202, .28), inset 0 1px 0 #F2F0EF !important;
       filter: none !important;
     }
 
@@ -378,10 +376,10 @@ function injectRequestedThemePalette() {
     [data-theme='light'] .service-card,
     [data-theme='light'] .related-card,
     [data-theme='light'] .nrs-related-card {
-      background: transparent !important;
-      background-color: transparent !important;
-      border-color: var(--border-faint) !important;
-      box-shadow: none !important;
+      background: #F2F0EF !important;
+      background-color: #F2F0EF !important;
+      border-color: #CCCBCA !important;
+      box-shadow: 0 14px 46px rgba(204, 203, 202, .20), inset 0 1px 0 #F2F0EF !important;
     }
 
     input,
