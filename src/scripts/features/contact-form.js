@@ -1,12 +1,14 @@
 import { $ } from '../utils/dom.js';
 
 const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
+const CONTACT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
 function encodeEmailBody(form) {
   const data = new FormData(form);
   const name = data.get('name') || '';
   const email = data.get('email') || '';
   const need = data.get('need') || '';
+  const timeline = data.get('timeline') || '';
   const message = data.get('message') || '';
 
   return {
@@ -15,7 +17,8 @@ function encodeEmailBody(form) {
       [
         `Name: ${name}`,
         `Email: ${email}`,
-        `Need: ${need}`,
+        `Project type: ${need}`,
+        `Timeline: ${timeline}`,
         '',
         'Project brief:',
         message,
@@ -29,9 +32,30 @@ function openEmailFallback(form) {
   window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
 }
 
+function buildSubmissionPayload(form) {
+  const payload = new FormData(form);
+  const visitorEmail = payload.get('email');
+
+  payload.set('_subject', 'Portfolio inquiry from nischhalsubba.com.np');
+  payload.set('_template', 'table');
+  payload.set('_captcha', 'false');
+
+  if (visitorEmail) {
+    payload.set('_replyto', visitorEmail);
+  }
+
+  payload.set('source_page', window.location.href);
+  payload.set('submitted_at', new Date().toISOString());
+
+  return payload;
+}
+
 export function initContactForm() {
   const form = $('#contact-form');
   if (!form) return;
+
+  form.setAttribute('action', `https://formsubmit.co/${CONTACT_EMAIL}`);
+  form.setAttribute('method', 'POST');
 
   const status = $('#contact-form-status') || form.querySelector('[role="status"]');
   const submitButton = form.querySelector('button[type="submit"]');
@@ -56,38 +80,28 @@ export function initContactForm() {
       return;
     }
 
-    const hasExternalAction = /^https?:\/\//.test(form.getAttribute('action') || '');
-
     if (submitButton) {
       submitButton.disabled = true;
-      submitButton.textContent = hasExternalAction ? 'Sending...' : 'Opening email...';
+      submitButton.textContent = 'Sending...';
     }
 
-    setStatus('Sending your message...', 'neutral');
-
-    if (!hasExternalAction) {
-      openEmailFallback(form);
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-      }
-      setStatus('Your email app should open with the message filled in.', 'success');
-      return;
-    }
+    setStatus('Sending your message to hinischalsubba@gmail.com...', 'neutral');
 
     try {
-      const response = await fetch(form.action, {
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
-        body: new FormData(form),
+        body: buildSubmissionPayload(form),
         headers: { Accept: 'application/json' },
       });
 
-      if (!response.ok) throw new Error(`FormSubmit returned ${response.status}`);
+      if (!response.ok) {
+        throw new Error(`Form endpoint returned ${response.status}`);
+      }
 
       form.reset();
-      setStatus('Thanks. Your message was sent successfully.', 'success');
+      setStatus('Thanks. Your message was sent to hinischalsubba@gmail.com.', 'success');
     } catch (error) {
-      setStatus('The direct form send was blocked. Opening your email app instead.', 'error');
+      setStatus('Direct send was blocked. Opening your email app with the same message.', 'error');
       openEmailFallback(form);
     } finally {
       if (submitButton) {
