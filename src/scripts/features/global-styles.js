@@ -469,8 +469,6 @@ export function injectGlobalStyles() {
     [data-theme="light"] .link-pill,
     [data-theme="light"] .filter-btn {
       border-color: rgba(15, 23, 42, .08) !important;
-      background: rgba(255, 255, 255, .78) !important;
-      box-shadow: 0 20px 70px rgba(15, 23, 42, .07), inset 0 1px 0 rgba(255, 255, 255, .9) !important;
     }
 
     @media (prefers-reduced-motion: reduce) {
