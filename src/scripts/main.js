@@ -4,6 +4,7 @@ import { stabilizeLayout } from './features/layout-rescue.js';
 import { polishSiteConsistency } from './features/site-consistency.js';
 import { applyViewportResponsivePolish } from './features/viewport-responsive-polish.js';
 import { normalizeArticleLayout } from './features/article-layout.js';
+import { polishContactPage } from './features/contact-page-polish.js';
 import { initActiveNavigation } from './features/navigation.js';
 import { initContactForm } from './features/contact-form.js';
 import { initFilters } from './features/filters.js';
@@ -11,6 +12,7 @@ import { lockLightThemePalette } from './features/light-palette-lock.js';
 import { polishListSpacing } from './features/list-spacing.js';
 import { initMobileMenu } from './features/mobile-menu.js';
 import { initMotionEnhancements } from './features/motion.js';
+import { initPageExperience } from './features/page-experience.js';
 import { initPointerGlow } from './features/pointer-glow.js';
 import { useProjectDetailImages } from './features/project-images.js';
 import { initResumeDownload } from './features/resume.js';
@@ -35,6 +37,8 @@ onReady(() => {
   useProjectDetailImages();
   initTheme();
   polishListSpacing();
+  polishContactPage();
+  initPageExperience();
 
   // 2. Navigation and page-level interaction.
   initMobileMenu();
