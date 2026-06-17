@@ -9,8 +9,8 @@ function ensureContactPagePolishStyle() {
   style.textContent = `
     .contact-layout {
       display: grid !important;
-      grid-template-columns: minmax(170px, 0.28fr) minmax(0, 1fr) !important;
-      column-gap: clamp(28px, 5vw, 82px) !important;
+      grid-template-columns: minmax(120px, 0.22fr) minmax(0, 1fr) !important;
+      column-gap: clamp(24px, 5vw, 76px) !important;
       align-items: start !important;
       width: 100% !important;
     }
@@ -21,10 +21,11 @@ function ensureContactPagePolishStyle() {
 
     .contact-layout .clarity-section-body {
       display: grid !important;
-      grid-template-columns: minmax(260px, 0.82fr) minmax(560px, 1.18fr) !important;
-      column-gap: clamp(34px, 5vw, 78px) !important;
+      grid-template-columns: minmax(260px, 0.62fr) minmax(460px, 0.9fr) !important;
+      column-gap: clamp(36px, 6vw, 92px) !important;
       row-gap: clamp(22px, 3vw, 34px) !important;
       align-items: start !important;
+      justify-content: space-between !important;
       width: 100% !important;
       min-width: 0 !important;
     }
@@ -32,12 +33,12 @@ function ensureContactPagePolishStyle() {
     .contact-layout .clarity-section-body > .section-title,
     .contact-layout .clarity-section-body > .section-lead {
       grid-column: 1 !important;
-      max-width: 380px !important;
+      max-width: 390px !important;
       margin-inline: 0 !important;
     }
 
     .contact-layout .clarity-section-body > .section-title {
-      margin-bottom: clamp(16px, 2.4vw, 28px) !important;
+      margin-bottom: clamp(18px, 2.6vw, 30px) !important;
       text-wrap: balance !important;
     }
 
@@ -49,11 +50,14 @@ function ensureContactPagePolishStyle() {
     .contact-layout .contact-form {
       grid-column: 2 !important;
       grid-row: 1 / span 3 !important;
-      width: 100% !important;
-      max-width: none !important;
+      display: grid !important;
+      gap: clamp(20px, 2.4vw, 28px) !important;
+      width: min(100%, 620px) !important;
+      max-width: 620px !important;
       min-width: 0 !important;
+      justify-self: end !important;
       margin: 0 !important;
-      padding: clamp(34px, 4.4vw, 58px) !important;
+      padding: clamp(30px, 4vw, 50px) !important;
       border: 1px solid var(--border-faint) !important;
       border-radius: clamp(22px, 2.8vw, 34px) !important;
       background: transparent !important;
@@ -65,31 +69,31 @@ function ensureContactPagePolishStyle() {
 
     .contact-form .form-grid {
       display: grid !important;
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-      gap: clamp(20px, 2.4vw, 32px) !important;
-      margin: 0 0 clamp(22px, 2.8vw, 34px) !important;
+      grid-template-columns: 1fr !important;
+      gap: clamp(18px, 2.2vw, 26px) !important;
+      margin: 0 !important;
       width: 100% !important;
     }
 
-    .contact-form .form-field {
+    .contact-form .form-field,
+    .contact-form > .form-field {
       display: grid !important;
-      gap: 11px !important;
+      gap: 10px !important;
       min-width: 0 !important;
+      margin: 0 !important;
       color: var(--text-secondary) !important;
       font-weight: 750 !important;
       line-height: 1.35 !important;
     }
 
-    .contact-form > .form-field {
-      margin-top: 0 !important;
-    }
-
     .contact-form input,
     .contact-form select,
     .contact-form textarea {
+      display: block !important;
       width: 100% !important;
       max-width: 100% !important;
       min-width: 0 !important;
+      min-height: 58px !important;
       border: 1px solid var(--border-faint) !important;
       border-radius: 999px !important;
       padding: 16px 22px !important;
@@ -115,9 +119,9 @@ function ensureContactPagePolishStyle() {
     }
 
     .contact-form textarea {
-      min-height: clamp(220px, 25vw, 320px) !important;
+      min-height: clamp(220px, 28vw, 330px) !important;
       resize: vertical !important;
-      border-radius: 26px !important;
+      border-radius: 28px !important;
       padding: 22px 24px !important;
     }
 
@@ -130,20 +134,25 @@ function ensureContactPagePolishStyle() {
     }
 
     .contact-form .form-actions {
-      display: flex !important;
-      flex-wrap: wrap !important;
+      display: grid !important;
+      grid-template-columns: 1fr !important;
       gap: 14px !important;
-      align-items: center !important;
-      margin-top: clamp(22px, 3vw, 34px) !important;
+      align-items: stretch !important;
+      margin-top: 0 !important;
+      width: 100% !important;
     }
 
-    .contact-form .form-actions .btn {
-      min-width: 170px !important;
+    .contact-form .form-actions .btn,
+    .contact-form .form-actions a.btn,
+    .contact-form .form-actions button.btn {
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 54px !important;
     }
 
     .contact-form .form-status {
       min-height: 1.4em !important;
-      margin-top: 18px !important;
+      margin-top: 0 !important;
       color: var(--text-secondary) !important;
       font-weight: 700 !important;
     }
@@ -194,21 +203,15 @@ function ensureContactPagePolishStyle() {
       }
 
       .contact-layout .contact-form {
-        max-width: 100% !important;
+        width: 100% !important;
+        max-width: 760px !important;
+        justify-self: stretch !important;
       }
     }
 
     @media (max-width: 720px) {
-      .contact-form .form-grid {
-        grid-template-columns: 1fr !important;
-      }
-
       .contact-layout .contact-form {
         padding: 24px !important;
-      }
-
-      .contact-form .form-actions .btn {
-        width: 100% !important;
       }
     }
   `;
