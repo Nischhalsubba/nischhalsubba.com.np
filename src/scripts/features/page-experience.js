@@ -24,8 +24,14 @@ function ensurePageExperienceStyle() {
       pointer-events: none;
       transform: scaleX(0);
       transform-origin: left center;
+      opacity: 0;
       background: var(--accent, #888888);
-      transition: transform 90ms linear, background-color 180ms ease;
+      transition: opacity 160ms ease, background-color 180ms ease;
+      will-change: transform, opacity;
+    }
+
+    #${SCROLL_BAR_ID}.is-active {
+      opacity: 1;
     }
 
     html[data-theme='light'] #${SCROLL_BAR_ID} {
@@ -89,6 +95,7 @@ function updateScrollProgress() {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
   const progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
   bar.style.transform = `scaleX(${progress})`;
+  bar.classList.toggle('is-active', progress > 0.01 && progress < 0.995);
 }
 
 function initPageTransitions() {
