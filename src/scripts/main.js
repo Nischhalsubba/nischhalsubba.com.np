@@ -7,6 +7,7 @@ import { normalizeArticleLayout } from './features/article-layout.js';
 import { initActiveNavigation } from './features/navigation.js';
 import { initContactForm } from './features/contact-form.js';
 import { initFilters } from './features/filters.js';
+import { polishListSpacing } from './features/list-spacing.js';
 import { initMobileMenu } from './features/mobile-menu.js';
 import { initMotionEnhancements } from './features/motion.js';
 import { initPointerGlow } from './features/pointer-glow.js';
@@ -32,6 +33,7 @@ onReady(() => {
   normalizeArticleLayout();
   useProjectDetailImages();
   initTheme();
+  polishListSpacing();
 
   // 2. Navigation and page-level interaction.
   initMobileMenu();
