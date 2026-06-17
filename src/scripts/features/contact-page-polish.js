@@ -9,9 +9,10 @@ function ensureContactPagePolishStyle() {
   style.textContent = `
     .contact-layout {
       display: grid !important;
-      grid-template-columns: minmax(220px, .82fr) minmax(0, 1.28fr) !important;
-      gap: clamp(36px, 6vw, 86px) !important;
+      grid-template-columns: minmax(170px, 0.28fr) minmax(0, 1fr) !important;
+      column-gap: clamp(28px, 5vw, 82px) !important;
       align-items: start !important;
+      width: 100% !important;
     }
 
     .contact-layout .clarity-section-label {
@@ -20,37 +21,41 @@ function ensureContactPagePolishStyle() {
 
     .contact-layout .clarity-section-body {
       display: grid !important;
-      grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr) !important;
-      gap: clamp(36px, 5.4vw, 76px) !important;
+      grid-template-columns: minmax(260px, 0.82fr) minmax(560px, 1.18fr) !important;
+      column-gap: clamp(34px, 5vw, 78px) !important;
+      row-gap: clamp(22px, 3vw, 34px) !important;
       align-items: start !important;
       width: 100% !important;
+      min-width: 0 !important;
     }
 
     .contact-layout .clarity-section-body > .section-title,
     .contact-layout .clarity-section-body > .section-lead {
       grid-column: 1 !important;
-      max-width: 330px !important;
+      max-width: 380px !important;
       margin-inline: 0 !important;
     }
 
     .contact-layout .clarity-section-body > .section-title {
-      margin-bottom: clamp(18px, 2.8vw, 28px) !important;
+      margin-bottom: clamp(16px, 2.4vw, 28px) !important;
+      text-wrap: balance !important;
     }
 
     .contact-layout .clarity-section-body > .section-lead {
       margin-top: 0 !important;
-      line-height: 1.7 !important;
+      line-height: 1.72 !important;
     }
 
     .contact-layout .contact-form {
       grid-column: 2 !important;
       grid-row: 1 / span 3 !important;
       width: 100% !important;
-      max-width: 720px !important;
+      max-width: none !important;
+      min-width: 0 !important;
       margin: 0 !important;
-      padding: clamp(30px, 4vw, 54px) !important;
+      padding: clamp(34px, 4.4vw, 58px) !important;
       border: 1px solid var(--border-faint) !important;
-      border-radius: clamp(20px, 2.6vw, 32px) !important;
+      border-radius: clamp(22px, 2.8vw, 34px) !important;
       background: transparent !important;
       background-color: transparent !important;
       background-image: none !important;
@@ -61,27 +66,33 @@ function ensureContactPagePolishStyle() {
     .contact-form .form-grid {
       display: grid !important;
       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-      gap: clamp(18px, 2.2vw, 28px) !important;
-      margin-bottom: clamp(18px, 2.2vw, 28px) !important;
+      gap: clamp(20px, 2.4vw, 32px) !important;
+      margin: 0 0 clamp(22px, 2.8vw, 34px) !important;
+      width: 100% !important;
     }
 
     .contact-form .form-field {
       display: grid !important;
-      gap: 10px !important;
+      gap: 11px !important;
       min-width: 0 !important;
       color: var(--text-secondary) !important;
-      font-weight: 700 !important;
+      font-weight: 750 !important;
       line-height: 1.35 !important;
+    }
+
+    .contact-form > .form-field {
+      margin-top: 0 !important;
     }
 
     .contact-form input,
     .contact-form select,
     .contact-form textarea {
       width: 100% !important;
+      max-width: 100% !important;
       min-width: 0 !important;
       border: 1px solid var(--border-faint) !important;
       border-radius: 999px !important;
-      padding: 15px 20px !important;
+      padding: 16px 22px !important;
       background: transparent !important;
       background-color: transparent !important;
       color: var(--text-primary) !important;
@@ -91,15 +102,23 @@ function ensureContactPagePolishStyle() {
       filter: none !important;
     }
 
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      white-space: normal !important;
+      text-overflow: clip !important;
+    }
+
     .contact-form select {
-      padding-right: 44px !important;
+      padding-right: 46px !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
     }
 
     .contact-form textarea {
-      min-height: clamp(190px, 24vw, 280px) !important;
+      min-height: clamp(220px, 25vw, 320px) !important;
       resize: vertical !important;
-      border-radius: 24px !important;
-      padding: 20px 22px !important;
+      border-radius: 26px !important;
+      padding: 22px 24px !important;
     }
 
     .contact-form input:focus,
@@ -115,7 +134,11 @@ function ensureContactPagePolishStyle() {
       flex-wrap: wrap !important;
       gap: 14px !important;
       align-items: center !important;
-      margin-top: clamp(20px, 2.6vw, 30px) !important;
+      margin-top: clamp(22px, 3vw, 34px) !important;
+    }
+
+    .contact-form .form-actions .btn {
+      min-width: 170px !important;
     }
 
     .contact-form .form-status {
@@ -152,8 +175,12 @@ function ensureContactPagePolishStyle() {
       outline-color: #E5E5E5 !important;
     }
 
-    @media (max-width: 980px) {
-      .contact-layout,
+    @media (max-width: 1120px) {
+      .contact-layout {
+        grid-template-columns: 1fr !important;
+        row-gap: 18px !important;
+      }
+
       .contact-layout .clarity-section-body {
         grid-template-columns: 1fr !important;
       }
@@ -171,13 +198,17 @@ function ensureContactPagePolishStyle() {
       }
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 720px) {
       .contact-form .form-grid {
         grid-template-columns: 1fr !important;
       }
 
       .contact-layout .contact-form {
         padding: 24px !important;
+      }
+
+      .contact-form .form-actions .btn {
+        width: 100% !important;
       }
     }
   `;
@@ -187,4 +218,5 @@ export function polishContactPage() {
   ensureContactPagePolishStyle();
   requestAnimationFrame(ensureContactPagePolishStyle);
   window.setTimeout(ensureContactPagePolishStyle, 250);
+  window.setTimeout(ensureContactPagePolishStyle, 700);
 }
