@@ -38,7 +38,8 @@ export function initPointerGlow() {
   let ringY = mouseY;
   let frame = 0;
 
-  document.body.classList.add('nrs-premium-cursor');
+  // Keep the real browser cursor visible. The custom cursor is only decorative.
+  document.body.classList.remove('nrs-premium-cursor');
 
   function animate() {
     ringX += (mouseX - ringX) * 0.18;
@@ -62,6 +63,10 @@ export function initPointerGlow() {
     if (event.pointerType && event.pointerType !== 'mouse') return;
     mouseX = event.clientX;
     mouseY = event.clientY;
+    showCursor();
+  }, { passive: true });
+
+  window.addEventListener('scroll', () => {
     showCursor();
   }, { passive: true });
 
