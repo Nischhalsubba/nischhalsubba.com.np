@@ -7,6 +7,7 @@ import { normalizeArticleLayout } from './features/article-layout.js';
 import { initActiveNavigation } from './features/navigation.js';
 import { initContactForm } from './features/contact-form.js';
 import { initFilters } from './features/filters.js';
+import { lockLightThemePalette } from './features/light-palette-lock.js';
 import { polishListSpacing } from './features/list-spacing.js';
 import { initMobileMenu } from './features/mobile-menu.js';
 import { initMotionEnhancements } from './features/motion.js';
@@ -48,4 +49,7 @@ onReady(() => {
 
   // 4. Ensure older/static pages still have a consistent footer.
   ensureSiteFooter();
+
+  // 5. Final palette guard so older runtime styles cannot reintroduce blue in light mode.
+  lockLightThemePalette();
 });
