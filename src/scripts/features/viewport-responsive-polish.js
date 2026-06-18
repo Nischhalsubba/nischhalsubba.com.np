@@ -7,8 +7,8 @@ function injectViewportResponsivePolish() {
     :root {
       --nrs-site-width: min(1200px, calc(100vw - 48px));
       --max-width: var(--nrs-site-width) !important;
-      --nrs-blue-wash: rgba(100, 149, 214, .34);
-      --nrs-blue-wash-soft: rgba(100, 149, 214, .12);
+      --nrs-blue-wash: rgba(255, 255, 255, .06);
+      --nrs-blue-wash-soft: rgba(255, 255, 255, .025);
     }
 
     html,
@@ -16,26 +16,19 @@ function injectViewportResponsivePolish() {
       width: 100% !important;
       min-width: 100% !important;
       overflow-x: clip !important;
-      background-color: #050505 !important;
-      background-image:
-        radial-gradient(ellipse 115% 72% at 50% -8%, var(--nrs-blue-wash), var(--nrs-blue-wash-soft) 45%, rgba(5, 5, 5, 0) 82%),
-        linear-gradient(180deg, #06080b 0%, #050505 78%, #050505 100%) !important;
+      background-color: var(--bg-page, #121212) !important;
+      background-image: none !important;
       background-attachment: fixed !important;
     }
 
     body.nrs-uniform-shell::before {
-      background-image:
-        linear-gradient(rgba(255, 255, 255, .018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .018) 1px, transparent 1px),
-        radial-gradient(ellipse 120% 64% at 50% 0%, rgba(100, 149, 214, .2), transparent 70%) !important;
-      background-size: 72px 72px, 72px 72px, 100% 100% !important;
-      opacity: .68 !important;
+      background-image: none !important;
+      opacity: 0 !important;
     }
 
     body.nrs-uniform-shell::after {
-      background:
-        linear-gradient(90deg, rgba(5,5,5,.62) 0%, rgba(5,5,5,.2) 18%, rgba(5,5,5,0) 50%, rgba(5,5,5,.2) 82%, rgba(5,5,5,.62) 100%),
-        linear-gradient(180deg, rgba(5,5,5,0) 0%, rgba(5,5,5,.18) 66%, rgba(5,5,5,.72) 100%) !important;
+      background: none !important;
+      opacity: 0 !important;
     }
 
     .nrs-article-main::before,
@@ -95,7 +88,7 @@ function injectViewportResponsivePolish() {
     .nav-link[aria-current='page'] {
       color: #fff !important;
       background: rgba(255,255,255,.105) !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 0 24px rgba(100,149,214,.16) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 0 20px rgba(255,255,255,.08) !important;
     }
 
     .nav-link.active::after,
@@ -218,9 +211,7 @@ function injectViewportResponsivePolish() {
         pointer-events: none;
         transform: translateY(-10px);
         transition: opacity .24s ease, visibility .24s ease, transform .24s ease;
-        background:
-          radial-gradient(ellipse at 50% 0%, rgba(100,149,214,.24), transparent 52%),
-          rgba(5,5,5,.94) !important;
+        background: rgba(5,5,5,.94) !important;
         backdrop-filter: blur(22px) saturate(1.1);
         -webkit-backdrop-filter: blur(22px) saturate(1.1);
       }
@@ -268,7 +259,7 @@ function injectViewportResponsivePolish() {
       .mobile-nav-links a[aria-current='page'] {
         border-color: rgba(255,255,255,.18) !important;
         color: #fff !important;
-        background: rgba(100,149,214,.14) !important;
+        background: rgba(255,255,255,.11) !important;
       }
 
       .theme-toggle-btn {

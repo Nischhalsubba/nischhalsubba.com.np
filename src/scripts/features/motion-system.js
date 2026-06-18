@@ -66,7 +66,7 @@ function ensureMotionStyle() {
     .nrs-motion-ready .case-list li:hover,
     .nrs-motion-ready .clarity-row-list article:hover,
     .nrs-motion-ready .clarity-steps article:hover {
-      transform: translate3d(0, -5px, 0) !important;
+      transform: translate3d(0, -3px, 0) !important;
     }
 
     .nrs-motion-ready .btn,
@@ -123,26 +123,20 @@ function runGsapMotion(elements) {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.fromTo(
-    'main',
-    { autoAlpha: 0, y: 18 },
-    { autoAlpha: 1, y: 0, duration: 0.72, ease: 'power3.out', clearProps: 'transform,opacity,visibility' }
-  );
-
   elements.forEach((element, index) => {
     gsap.fromTo(
       element,
-      { autoAlpha: 0, y: 28 },
+      { autoAlpha: 0, y: 14 },
       {
         autoAlpha: 1,
         y: 0,
-        duration: 0.72,
-        delay: Math.min(index * 0.015, 0.12),
-        ease: 'power3.out',
+        duration: 0.52,
+        delay: Math.min(index * 0.01, 0.08),
+        ease: 'power2.out',
         clearProps: 'transform,opacity,visibility',
         scrollTrigger: {
           trigger: element,
-          start: 'top 88%',
+          start: 'top 90%',
           once: true,
         },
       }
@@ -161,7 +155,7 @@ function runFallbackMotion(elements) {
           { opacity: 0, transform: 'translate3d(0, 28px, 0)' },
           { opacity: 1, transform: 'translate3d(0, 0, 0)' },
         ],
-        { duration: 620, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'both' }
+        { duration: 480, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'both' }
       );
       observer.unobserve(entry.target);
     });

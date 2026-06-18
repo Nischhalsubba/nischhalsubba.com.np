@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { EARLY_THEME_BOOTSTRAP } = require("./early-theme-bootstrap.cjs");
 
 const root = path.resolve(__dirname, "..");
 const sandbox = { window: {} };
@@ -46,8 +47,7 @@ const head = ({ title, description, canonical, image = "/assets/images/portrait.
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="/assets/vendor/gsap.min.js" defer></script>
-    <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+    ${EARLY_THEME_BOOTSTRAP}
     <link rel="stylesheet" href="/style.css?v=21.0" />
   </head>`;
 const footer = `<footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>`;

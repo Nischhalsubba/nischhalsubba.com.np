@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
 
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
@@ -82,10 +83,16 @@ function ensureRuntimeScript(html) {
   return html.replace('</body>', '  <script src="/site-experience.js?v=20260612" defer></script>\n  </body>');
 }
 
+function ensureEarlyThemeBootstrap(html) {
+  const cleaned = html.replace(/\s*<script id="nrs-early-theme-bootstrap">[\s\S]*?<\/script>/, '');
+  if (!cleaned.includes('</head>')) return html;
+  return cleaned.replace('</head>', `    ${EARLY_THEME_BOOTSTRAP}\n  </head>`);
+}
+
 function optimizeHtmlOutput() {
   for (const filePath of walkFiles(distDir, (file) => file.endsWith('.html'))) {
     const original = fs.readFileSync(filePath, 'utf8');
-    const optimized = ensureRuntimeScript(removeLegacyPatchAssets(stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original))));
+    const optimized = ensureRuntimeScript(ensureEarlyThemeBootstrap(removeLegacyPatchAssets(stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original)))));
 
     if (optimized !== original) {
       fs.writeFileSync(filePath, optimized, 'utf8');

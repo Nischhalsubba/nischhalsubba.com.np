@@ -12,9 +12,7 @@ import { lockLightThemePalette } from './features/light-palette-lock.js';
 import { polishListSpacing } from './features/list-spacing.js';
 import { initMobileMenu } from './features/mobile-menu.js';
 import { polishMicrocopy } from './features/microcopy-polish.js';
-import { initMotionEnhancements } from './features/motion.js';
 import { initPageExperience } from './features/page-experience.js';
-import { initPointerGlow } from './features/pointer-glow.js';
 import { initProfessionalMotionSystem } from './features/motion-system.js';
 import { useProjectDetailImages } from './features/project-images.js';
 import { initResumeDownload } from './features/resume.js';
@@ -49,9 +47,7 @@ onReady(() => {
   initFilters();
 
   // 3. Progressive enhancements. These should fail silently if unavailable.
-  initMotionEnhancements();
   initProfessionalMotionSystem();
-  initPointerGlow();
   initResumeDownload();
   initContactForm();
 

@@ -33,8 +33,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="/assets/vendor/gsap.min.js" defer></script>
-    <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
     <link rel="stylesheet" href="/style.css?v=22.0" />
     <link rel="stylesheet" href="/seo-ui-enhancements.css?v=1.1" />
     <script type="application/ld+json">
@@ -140,6 +138,57 @@
         ]
       }
     </script>
+      <script id="nrs-early-theme-bootstrap">
+(function () {
+  var storageKey = "theme";
+  var root = document.documentElement;
+  var theme = "dark";
+  try {
+    var saved = localStorage.getItem(storageKey);
+    if (saved === "light" || saved === "dark") {
+      theme = saved;
+    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+      theme = "light";
+    }
+  } catch (error) {}
+  root.setAttribute("data-theme", theme);
+  root.style.colorScheme = theme;
+
+  var style = document.createElement("style");
+  style.id = "nrs-first-paint-theme";
+  style.textContent = [
+    ":root{--nrs-first-bg:#111111;--nrs-first-text:#f2f2f2;--nrs-progress:#eeeeee;color-scheme:dark;}",
+    "html[data-theme='light']{--nrs-first-bg:#ffffff;--nrs-first-text:#171717;--nrs-progress:#171717;color-scheme:light;}",
+    "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;background-image:none!important;color:var(--nrs-first-text)!important;}",
+    "body::before,body::after{background:none!important;opacity:0!important;}",
+    "#nrs-scroll-progress{position:fixed;top:0;left:0;width:100%;height:4px;z-index:2147483647;pointer-events:none;background:transparent!important;opacity:1!important;transform:none!important;}",
+    "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress);transform:scaleX(var(--nrs-scroll-progress-scale,0.015));transform-origin:left center;transition:transform 80ms linear;}",
+    "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}"
+  ].join("");
+  document.head.appendChild(style);
+
+  function ensureProgressBar() {
+    if (document.getElementById("nrs-scroll-progress")) return;
+    var bar = document.createElement("div");
+    bar.id = "nrs-scroll-progress";
+    bar.setAttribute("aria-hidden", "true");
+    if (document.body) document.body.prepend(bar);
+    else document.addEventListener("DOMContentLoaded", ensureProgressBar, { once: true });
+  }
+
+  function updateProgress() {
+    var scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var value = Math.max(0.015, Math.min(1, window.scrollY / scrollable));
+    root.style.setProperty("--nrs-scroll-progress-scale", String(value));
+  }
+
+  ensureProgressBar();
+  updateProgress();
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress);
+  window.addEventListener("pageshow", updateProgress);
+})();
+</script>
   </head>
   <body>
     <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/" class="active">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></nav></div><button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button><nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link active">Home</a><a href="/projects.html" class="nav-link">Work</a><a href="/about.html" class="nav-link">About</a><a href="/blog/" class="nav-link">Writing</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
@@ -155,7 +204,7 @@
       <section class="section-container reveal-on-scroll" style="padding-top:36px;"><div class="impact-summary-grid" aria-label="Quick proof"><article class="impact-card"><span class="eyebrow">Experience</span><h3>6+ years</h3><p>Product teams, agencies, Web3 products, fintech flows, SaaS dashboards, WordPress products and service-business websites.</p></article><article class="impact-card"><span class="eyebrow">Best fit</span><h3>Messy flows</h3><p>Onboarding, dashboards, transaction review, forms, verification, admin tools, mobile journeys and conversion-focused websites.</p></article><article class="impact-card"><span class="eyebrow">Handoff</span><h3>Build-ready</h3><p>State-complete Figma files, responsive decisions, UX notes, component guidance and UI QA that reduce engineering guesswork.</p></article></div></section>
       <section class="section-container" aria-labelledby="selected-work-heading"><div style="display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:34px;" class="reveal-on-scroll selected-work-intro"><div><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Selected work</p><h2 id="selected-work-heading" class="section-title" style="margin-bottom:0;">Case studies that show product thinking, not just pretty rectangles.</h2><p class="section-lead work-intent">A few public projects across Web3, fintech, logistics, service websites and product dashboards. The useful part is the thinking: hierarchy, trust, states, handoff and tradeoffs.</p></div><a href="/projects.html" class="btn btn-secondary">Browse all work</a></div><div class="project-grid"><a href="/project-yarsha.html" class="project-card reveal-on-scroll" data-category="web3 mobile fintech product"><div class="card-media-wrap"><img src="/assets/images/project-yarsha-cover.svg" alt="Yarsha mobile app screens showing Solana-based chat, groups, settings, payments, and AI bots interface" loading="lazy" decoding="async"></div><div class="card-content"><span class="eyebrow">Web3 Messaging App</span><h3>Yarsha</h3><div class="card-meta-line"><span>Product Design</span><span>2024</span></div><p class="card-summary">Designed a mobile Web3 chat experience where messaging, wallet actions, blinks and transaction review feel understandable instead of alarmingly mysterious.</p></div></a><a href="/project-mokshya.html" class="project-card reveal-on-scroll" data-category="web3 website product"><div class="card-media-wrap"><img src="/assets/images/project-mokshya-cover.svg" alt="Mokshya website hero section showing AI-native Web3 branding and dark futuristic interface" loading="lazy" decoding="async"></div><div class="card-content"><span class="eyebrow">Web3 Protocol Website</span><h3>Mokshya.io</h3><div class="card-meta-line"><span>Website Design</span><span>2024-2025</span></div><p class="card-summary">Structured a protocol website around clearer hierarchy, sharper product explanation and trust signals for technical visitors.</p></div></a><a href="/project-hamro-idea.html" class="project-card reveal-on-scroll" data-category="website frontend branding seo"><div class="card-media-wrap"><img src="/assets/images/project-hamro-idea-cover.svg" alt="Hamro Idea website homepage showing dark blue service-business hero section" loading="lazy" decoding="async"></div><div class="card-content"><span class="eyebrow">Brand + Website</span><h3>Hamro Idea</h3><div class="card-meta-line"><span>Design &amp; Development</span><span>2025</span></div><p class="card-summary">Rebranded and built a static multi-page website for a Nepal-based software studio with clearer service positioning, SEO structure and lead paths.</p></div></a><a href="/project-pihub.html" class="project-card reveal-on-scroll" data-category="fintech saas product"><div class="card-media-wrap"><img src="/assets/images/project-pihub-cover.svg" alt="PiHub product screens showing creditor investor and admin dashboard flows" loading="lazy" decoding="async"></div><div class="card-content"><span class="eyebrow">Fintech</span><h3>piHub</h3><div class="card-meta-line"><span>App Experience</span><span>2024</span></div><p class="card-summary">Worked through fintech product flows for investor journeys, credit requests, verification, profile management and dashboard clarity.</p></div></a><a href="/project-zapp.html" class="project-card reveal-on-scroll" data-category="mobile logistics product"><div class="card-media-wrap"><img src="/assets/images/project-zapp-cover.svg" alt="Zapp product interfaces for customer app, driver app, and super admin dashboard" loading="lazy" decoding="async"></div><div class="card-content"><span class="eyebrow">Logistics App</span><h3>Zapp Today</h3><div class="card-meta-line"><span>Mobile Product Design</span><span>2024</span></div><p class="card-summary">Designed customer and driver app flows from wireframes to prototype for delivery tasks, status visibility and operational control.</p></div></a><a href="/project-morajaa.html" class="project-card reveal-on-scroll" data-category="website b2b ux content"><div class="card-media-wrap"><img src="/assets/images/project-morajaa-cover.svg" alt="Morajaa website hero section showing Saudi government contract consulting website design" loading="lazy" decoding="async"></div><div class="card-content"><span class="eyebrow">B2B Consulting Website</span><h3>Morajaa</h3><div class="card-meta-line"><span>UX &amp; Content Structure</span><span>2025</span></div><p class="card-summary">Designed service pages, sector pages and guided inquiry paths for a consulting website that needed premium communication and less brochure fog.</p></div></a></div></section>
       <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);border-bottom:1px solid var(--border-faint);"><div style="max-width:940px;margin:0 auto;text-align:center;"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">How I help</p><h2 class="section-title">Clearer product decisions before prettier screens.</h2><p class="section-lead" style="margin:18px auto 0;">I clarify user journeys, hierarchy, language, interaction states and responsive behavior first. Then I push the UI until it feels polished enough for a portfolio and practical enough for engineering.</p></div></section>
-      <section class="section-container reveal-on-scroll" style="text-align:center;padding-bottom:110px;"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Availability</p><h2 class="section-title">Hiring a product designer?</h2><p class="body-large" style="margin:16px auto 30px;max-width:760px;">Send the product, role, timeline and the flow that currently hurts. I will reply with fit, availability and the most useful next step. Revolutionary concept: useful emails.</p><a href="/contact.html" class="btn btn-primary">Start a conversation</a></section>
+      <section class="section-container reveal-on-scroll" style="text-align:center;padding-bottom:110px;"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Availability</p><h2 class="section-title">Hiring a product designer?</h2><p class="body-large" style="margin:16px auto 30px;max-width:760px;">Send the product, role, timeline and the flow that currently hurts. I will reply with fit, availability and the most useful next step. </p><a href="/contact.html" class="btn btn-primary">Start a conversation</a></section>
     </main>
     <a href="/assets/resume.pdf" class="floating-resume-btn" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download aria-label="Download Resume"><span class="btn-text">Download Resume</span></a>
     <footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, polish interfaces, document systems and hand off work engineers can actually build.</p><a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div><div class="footer-col"><h5>For agents</h5><a href="/llms.txt">LLMs.txt</a><a href="/ai-profile.json">AI profile</a><a href="/sitemap.xml">Sitemap</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>

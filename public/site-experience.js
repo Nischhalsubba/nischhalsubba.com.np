@@ -107,12 +107,12 @@
     section.className = 'nrs-uxcel-proof reveal-on-scroll';
     section.innerHTML = html([
       '<p class="eyebrow">External proof</p>',
-      '<h2>Recognized by Uxcel among top product designers globally.</h2>',
-      '<p>Uxcel recognized Nischhal Raj Subba in its designer rankings, including a #1 Product Designer placement and global ranking context across its design community. This is shown here as hiring proof, not random badge confetti.</p>',
+      '<h2>Uxcel recognition and continuing design practice.</h2>',
+      '<p>Uxcel recognition is included as supporting context alongside project work, prototypes, and resume details. It is useful proof, but the portfolio is still centered on actual design decisions and project constraints.</p>',
       '<div class="nrs-uxcel-proof-metrics">',
-      '<div><strong>#1</strong><span>Product Designer ranking mentioned in Uxcel recognition.</span></div>',
-      '<div><strong>Top 10</strong><span>Global designer recognition context from Uxcel award assets.</span></div>',
-      '<div><strong>500K+</strong><span>Product professionals referenced on Uxcel Rankings.</span></div>',
+      '<div><strong>Uxcel</strong><span>Recognition and profile context from the design learning platform.</span></div>',
+      '<div><strong>Practice</strong><span>Certifications and ongoing learning across UI, UX, product design, research, and writing.</span></div>',
+      '<div><strong>Proof</strong><span>Best read together with real project pages, Figma links, and resume history.</span></div>',
       '</div>',
       '<div class="nrs-featured-actions" style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">',
       '<a class="btn btn-primary" href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener noreferrer">View Uxcel profile</a>',
@@ -223,7 +223,7 @@
       focus: [
         ['Sass organization', 'Created a starter structure for cleaner static website styling and repeatable front-end setup.'],
         ['Developer workflow', 'Reduced setup repetition for small sites by packaging common front-end patterns.'],
-        ['Static site speed', 'Kept the project lightweight and practical instead of turning a starter into a framework circus.'],
+        ['Static site speed', 'Kept the project lightweight and practical instead of turning a starter into a heavier framework than the project needed.'],
         ['Reusable foundation', 'Made the tool useful as a base for future static builds and experiments.']
       ]
     },

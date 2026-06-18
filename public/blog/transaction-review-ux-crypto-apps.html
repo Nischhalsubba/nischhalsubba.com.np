@@ -1,1 +1,52 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to Design Transaction Review Screens for Crypto Apps | Nischhal Raj Subba</title><meta name="description" content="How to design crypto transaction review screens with recipient clarity, amount, network, fees, signing context, status states, and recovery paths."><meta name="robots" content="index,follow"><link rel="canonical" href="https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps.html"><meta property="og:type" content="article"><meta property="og:title" content="How to Design Transaction Review Screens for Crypto Apps"><meta property="og:description" content="A practical UX guide for crypto transaction review, signing clarity, and trust-focused Web3 flows."><link rel="stylesheet" href="/style.css?v=16.1"><link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Design Transaction Review Screens for Crypto Apps","author":{"@type":"Person","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/"},"datePublished":"2026-05-01","dateModified":"2026-05-01","mainEntityOfPage":"https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps.html"}</script></head><body><nav class="nav-wrapper"><div class="nav-pill"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/projects.html">Work</a><a class="nav-link active" href="/blog/">Writing</a><a class="nav-link" href="/contact.html">Contact</a></div></nav><main class="container"><article class="section-container" style="max-width:980px;margin:0 auto;"><a class="badge-pill" href="/blog/">← Back to writing</a><h1 class="hero-title">How to Design Transaction Review Screens for Crypto Apps</h1><p class="body-large">A transaction review screen is not just a confirmation screen. In a crypto product, it is a trust checkpoint where users decide whether they understand the action enough to continue.</p><h2>1. Put the recipient first</h2><p>Show who or what the user is sending to. Use readable names when possible, but keep the full address accessible for verification.</p><h2>2. Separate amount, fee, and final cost</h2><p>Users should not have to calculate what they are spending. Show the transfer amount, network fee, and total clearly.</p><h2>3. Explain the network</h2><p>Network mismatch is a common source of confusion. Show the selected network, warning states, and whether the recipient or asset supports it.</p><h2>4. Prepare users for the wallet prompt</h2><p>Tell users what the wallet will ask them to do before the wallet opens. Reduce surprise at the signing moment.</p><h2>5. Design post-transaction states</h2><p>Pending, confirmed, failed, delayed, and rejected states all need clear copy and useful next steps.</p><h2>Related work</h2><div class="writing-list"><a class="writing-item" href="/project-yarsha.html"><span class="w-date">Case study</span><div class="w-info"><span class="w-title">Yarsha Web3 App</span><span class="w-summary">Mobile Web3 messaging, wallet interaction, blinks, and transaction review.</span></div><span class="w-arrow">→</span></a><a class="writing-item" href="/web3-ux-designer.html"><span class="w-date">Service</span><div class="w-info"><span class="w-title">Web3 UX Designer</span><span class="w-summary">Wallet, signing, protocol, and transaction-heavy product design.</span></div><span class="w-arrow">→</span></a></div></article></main><script type="module" src="/script.js?v=16.1"></script><script src="/detail-navigation.js?v=20260501" defer></script></body></html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to Design Transaction Review Screens for Crypto Apps | Nischhal Raj Subba</title><meta name="description" content="How to design crypto transaction review screens with recipient clarity, amount, network, fees, signing context, status states, and recovery paths."><meta name="robots" content="index,follow"><link rel="canonical" href="https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps.html"><meta property="og:type" content="article"><meta property="og:title" content="How to Design Transaction Review Screens for Crypto Apps"><meta property="og:description" content="A practical UX guide for crypto transaction review, signing clarity, and trust-focused Web3 flows."><link rel="stylesheet" href="/style.css?v=16.1"><link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Design Transaction Review Screens for Crypto Apps","author":{"@type":"Person","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/"},"datePublished":"2026-05-01","dateModified":"2026-05-01","mainEntityOfPage":"https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps.html"}</script>    <script id="nrs-early-theme-bootstrap">
+(function () {
+  var storageKey = "theme";
+  var root = document.documentElement;
+  var theme = "dark";
+  try {
+    var saved = localStorage.getItem(storageKey);
+    if (saved === "light" || saved === "dark") {
+      theme = saved;
+    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+      theme = "light";
+    }
+  } catch (error) {}
+  root.setAttribute("data-theme", theme);
+  root.style.colorScheme = theme;
+
+  var style = document.createElement("style");
+  style.id = "nrs-first-paint-theme";
+  style.textContent = [
+    ":root{--nrs-first-bg:#111111;--nrs-first-text:#f2f2f2;--nrs-progress:#eeeeee;color-scheme:dark;}",
+    "html[data-theme='light']{--nrs-first-bg:#ffffff;--nrs-first-text:#171717;--nrs-progress:#171717;color-scheme:light;}",
+    "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;background-image:none!important;color:var(--nrs-first-text)!important;}",
+    "body::before,body::after{background:none!important;opacity:0!important;}",
+    "#nrs-scroll-progress{position:fixed;top:0;left:0;width:100%;height:4px;z-index:2147483647;pointer-events:none;background:transparent!important;opacity:1!important;transform:none!important;}",
+    "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress);transform:scaleX(var(--nrs-scroll-progress-scale,0.015));transform-origin:left center;transition:transform 80ms linear;}",
+    "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}"
+  ].join("");
+  document.head.appendChild(style);
+
+  function ensureProgressBar() {
+    if (document.getElementById("nrs-scroll-progress")) return;
+    var bar = document.createElement("div");
+    bar.id = "nrs-scroll-progress";
+    bar.setAttribute("aria-hidden", "true");
+    if (document.body) document.body.prepend(bar);
+    else document.addEventListener("DOMContentLoaded", ensureProgressBar, { once: true });
+  }
+
+  function updateProgress() {
+    var scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var value = Math.max(0.015, Math.min(1, window.scrollY / scrollable));
+    root.style.setProperty("--nrs-scroll-progress-scale", String(value));
+  }
+
+  ensureProgressBar();
+  updateProgress();
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress);
+  window.addEventListener("pageshow", updateProgress);
+})();
+</script>
+  </head><body><nav class="nav-wrapper"><div class="nav-pill"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/projects.html">Work</a><a class="nav-link active" href="/blog/">Writing</a><a class="nav-link" href="/contact.html">Contact</a></div></nav><main class="container"><article class="section-container" style="max-width:980px;margin:0 auto;"><a class="badge-pill" href="/blog/">← Back to writing</a><h1 class="hero-title">How to Design Transaction Review Screens for Crypto Apps</h1><p class="body-large">A transaction review screen is not just a confirmation screen. In a crypto product, it is a trust checkpoint where users decide whether they understand the action enough to continue.</p><h2>1. Put the recipient first</h2><p>Show who or what the user is sending to. Use readable names when possible, but keep the full address accessible for verification.</p><h2>2. Separate amount, fee, and final cost</h2><p>Users should not have to calculate what they are spending. Show the transfer amount, network fee, and total clearly.</p><h2>3. Explain the network</h2><p>Network mismatch is a common source of confusion. Show the selected network, warning states, and whether the recipient or asset supports it.</p><h2>4. Prepare users for the wallet prompt</h2><p>Tell users what the wallet will ask them to do before the wallet opens. Reduce surprise at the signing moment.</p><h2>5. Design post-transaction states</h2><p>Pending, confirmed, failed, delayed, and rejected states all need clear copy and useful next steps.</p><h2>Related work</h2><div class="writing-list"><a class="writing-item" href="/project-yarsha.html"><span class="w-date">Case study</span><div class="w-info"><span class="w-title">Yarsha Web3 App</span><span class="w-summary">Mobile Web3 messaging, wallet interaction, blinks, and transaction review.</span></div><span class="w-arrow">→</span></a><a class="writing-item" href="/web3-ux-designer.html"><span class="w-date">Service</span><div class="w-info"><span class="w-title">Web3 UX Designer</span><span class="w-summary">Wallet, signing, protocol, and transaction-heavy product design.</span></div><span class="w-arrow">→</span></a></div></article></main><script type="module" src="/script.js?v=16.1"></script><script src="/detail-navigation.js?v=20260501" defer></script></body></html>

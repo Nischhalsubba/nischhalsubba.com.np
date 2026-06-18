@@ -59,7 +59,7 @@ function injectUpgradeStyles() {
     .nrs-process-card:hover,
     .nrs-hiring-card:hover,
     .nrs-case-study-card:hover {
-      border-color: color-mix(in srgb, var(--accent-blue, #3B82F6) 45%, var(--border-faint, rgba(255,255,255,.1)));
+      border-color: color-mix(in srgb, var(--accent-blue, #e8e8e8) 45%, var(--border-faint, rgba(255,255,255,.1)));
       transform: translateY(-4px);
     }
 

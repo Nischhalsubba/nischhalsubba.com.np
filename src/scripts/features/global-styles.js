@@ -44,48 +44,35 @@ export function injectGlobalStyles() {
   style.textContent = `
     html,
     body {
-      background-color: #050505 !important;
-      background-image:
-        radial-gradient(ellipse 76% 46% at 50% -8%, rgba(74, 116, 165, .026), rgba(28, 48, 76, .014) 36%, rgba(5, 5, 5, 0) 72%),
-        linear-gradient(90deg, #050505 0%, #050607 16%, #06080b 50%, #050607 84%, #050505 100%) !important;
+      background-color: var(--bg-page, #111111) !important;
+      background-image: none !important;
       background-attachment: fixed !important;
     }
 
     body::before {
-      background-image:
-        linear-gradient(rgba(255, 255, 255, .018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .018) 1px, transparent 1px),
-        radial-gradient(ellipse 62% 38% at 50% 0%, rgba(74, 116, 165, .026), transparent 74%) !important;
-      background-size: 72px 72px, 72px 72px, 100% 100% !important;
-      opacity: .48 !important;
+      background-image: none !important;
+      opacity: 0 !important;
     }
 
     body::after {
-      background:
-        linear-gradient(90deg, #050505 0%, rgba(5, 5, 5, .94) 8%, rgba(5, 5, 5, .58) 20%, rgba(5, 5, 5, .16) 35%, rgba(5, 5, 5, 0) 50%, rgba(5, 5, 5, .16) 65%, rgba(5, 5, 5, .58) 80%, rgba(5, 5, 5, .94) 92%, #050505 100%),
-        linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, .12) 62%, rgba(5, 5, 5, .68) 100%) !important;
+      background: none !important;
+      opacity: 0 !important;
     }
 
-    [data-theme="light"] html,
-    [data-theme="light"] body {
+    html[data-theme="light"],
+    html[data-theme="light"] body {
       background-color: #ffffff !important;
-      background-image:
-        radial-gradient(ellipse 74% 44% at 50% -8%, rgba(74, 116, 165, .032), transparent 72%),
-        linear-gradient(90deg, #ffffff 0%, #fbfdff 50%, #ffffff 100%) !important;
+      background-image: none !important;
     }
 
-    [data-theme="light"] body::before {
-      background-image:
-        linear-gradient(rgba(15, 23, 42, .026) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(15, 23, 42, .026) 1px, transparent 1px),
-        radial-gradient(ellipse 62% 38% at 50% 0%, rgba(59, 130, 246, .032), transparent 74%) !important;
-      opacity: .36 !important;
+    html[data-theme="light"] body::before {
+      background-image: none !important;
+      opacity: 0 !important;
     }
 
-    [data-theme="light"] body::after {
-      background:
-        linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, .92) 10%, rgba(255, 255, 255, .48) 22%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, .48) 78%, rgba(255, 255, 255, .92) 90%, #ffffff 100%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .68) 100%) !important;
+    html[data-theme="light"] body::after {
+      background: none !important;
+      opacity: 0 !important;
     }
 
     .motion-ready .reveal-on-scroll,
@@ -173,9 +160,7 @@ export function injectGlobalStyles() {
       text-align: left !important;
       border: 1px solid rgba(255, 255, 255, .09);
       border-radius: clamp(26px, 4vw, 44px);
-      background:
-        radial-gradient(ellipse at 16% 0%, rgba(96, 165, 250, .1), transparent 34%),
-        linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .014));
+      background: rgba(255, 255, 255, .035);
       box-shadow: 0 26px 100px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .05);
     }
 
@@ -186,10 +171,9 @@ export function injectGlobalStyles() {
       pointer-events: none;
       background-image:
         linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px),
-        radial-gradient(ellipse at 50% 0%, rgba(96,165,250,.08), transparent 52%);
-      background-size: 52px 52px, 52px 52px, 100% 100%;
-      opacity: .82;
+        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+      background-size: 52px 52px, 52px 52px;
+      opacity: .44;
     }
 
     .nrs-inner-page .hero-section > * {
@@ -241,9 +225,7 @@ export function injectGlobalStyles() {
       padding: clamp(10px, 1.5vw, 16px);
       border: 1px solid rgba(255, 255, 255, .08) !important;
       border-radius: clamp(24px, 3vw, 36px) !important;
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(96, 165, 250, .08), transparent 50%),
-        rgba(255, 255, 255, .026) !important;
+      background: rgba(255, 255, 255, .026) !important;
       box-shadow: 0 28px 110px rgba(0, 0, 0, .26), inset 0 1px 0 rgba(255, 255, 255, .04);
     }
 
@@ -349,14 +331,14 @@ export function injectGlobalStyles() {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--accent-blue, #60a5fa);
+      background: var(--accent-blue, #e8e8e8);
       box-shadow: 0 0 18px rgba(96, 165, 250, .42);
     }
 
     .case-callout,
     blockquote {
       border: 1px solid rgba(96, 165, 250, .18) !important;
-      border-left: 4px solid var(--accent-blue, #60a5fa) !important;
+      border-left: 4px solid var(--accent-blue, #e8e8e8) !important;
       border-radius: 20px !important;
       padding: clamp(20px, 3vw, 30px) !important;
       background: rgba(96, 165, 250, .045) !important;
@@ -412,7 +394,7 @@ export function injectGlobalStyles() {
       border-radius: 32px;
       overflow: hidden;
       border: 1px solid var(--border-faint, rgba(255,255,255,.1));
-      background: radial-gradient(circle at 50% 15%, rgba(59,130,246,.12), transparent 58%), var(--bg-surface, #0a0a0a);
+      background: var(--bg-surface, #0a0a0a);
       box-shadow: 0 28px 90px rgba(0,0,0,.28);
       transform-style: preserve-3d;
     }
@@ -434,16 +416,14 @@ export function injectGlobalStyles() {
     .journey-card:hover,
     .prototype-link-card:hover,
     .blog-card-modern:hover {
-      border-color: color-mix(in srgb, var(--accent-blue, #3B82F6) 28%, var(--border-light, rgba(255,255,255,.15))) !important;
-      box-shadow: 0 22px 70px rgba(59, 130, 246, .1), inset 0 1px 0 rgba(255, 255, 255, .055) !important;
+      border-color: color-mix(in srgb, var(--accent-blue, #e8e8e8) 28%, var(--border-light, rgba(255,255,255,.15))) !important;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, .16), inset 0 1px 0 rgba(255, 255, 255, .055) !important;
     }
 
     .site-footer {
       margin-top: clamp(44px, 8vw, 96px);
       border-top: 1px solid rgba(255, 255, 255, .08);
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(96, 165, 250, .045), transparent 48%),
-        rgba(5, 5, 5, .72);
+      background: rgba(5, 5, 5, .72);
     }
 
     [data-theme="light"] .nrs-inner-page .hero-section,

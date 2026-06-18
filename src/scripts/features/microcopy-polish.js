@@ -1,8 +1,8 @@
 const PAGE_COPY = {
   '/': {
-    eyebrow: 'Product designer for Web3, SaaS, fintech and service teams',
-    title: 'I clarify complex product flows so people can understand, trust, and use them.',
-    lead: 'I design mobile apps, dashboards, Web3 experiences, websites, design systems and Figma prototypes for teams that need sharper decisions before engineering starts.',
+    eyebrow: 'Product designer for digital product teams',
+    title: 'I design clearer product flows, interfaces, and handoff for teams that need practical design support.',
+    lead: 'I work across mobile apps, dashboards, Web3 experiences, websites, design systems, and Figma prototypes. The focus is straightforward: understand the problem, reduce interface confusion, and prepare work that teams can review and build.',
     primaryCta: 'View selected work',
     secondaryCta: 'Discuss a project',
     proof: ['Product strategy', 'Interface systems', 'UX writing', 'Developer handoff', 'Prototype clarity'],
@@ -10,13 +10,13 @@ const PAGE_COPY = {
   '/index.html': null,
   '/projects.html': {
     eyebrow: 'Selected work',
-    title: 'Product design case studies with context, constraints, and outcomes.',
-    lead: 'A focused archive of product, website, and interface work across Web3, fintech, SaaS, mobile apps, and service teams. Each project highlights the design decisions behind the final interface.',
+    title: 'Product design work with context, constraints, and visible decisions.',
+    lead: 'A focused archive of product, website, and interface work across Web3, fintech, SaaS, mobile apps, and service teams. Each project is framed around role, scope, available proof, and the design decisions behind the interface.',
   },
   '/contact.html': {
-    eyebrow: 'Project inquiry',
-    title: 'Send a clear brief.',
-    lead: 'Share what you are building, who it is for, what feels unclear, and when you need help. I will reply with fit, availability, and the next useful step.',
+    eyebrow: 'Contact',
+    title: 'Send the product, role, or design problem.',
+    lead: 'Share what you are building, who it is for, what feels unclear, and when you need help. I will reply with fit, availability, and a practical next step.',
   },
 };
 
@@ -24,15 +24,15 @@ PAGE_COPY['/index.html'] = PAGE_COPY['/'];
 
 const PROJECT_DETAIL_COPY = {
   eyebrow: 'Product design case study',
-  leadSuffix: 'The focus was clearer hierarchy, stronger trust signals, practical interaction states, and handoff decisions that engineers could use.',
-  outcomeTitle: 'What became easier to understand',
-  processTitle: 'How I approached the work',
+  leadSuffix: 'The focus was clearer hierarchy, practical interaction states, and handoff decisions that could be reviewed with product and engineering.',
+  outcomeTitle: 'What the design clarified',
+  processTitle: 'Design decisions',
 };
 
 const BLOG_COPY = {
   eyebrow: 'Design writing',
-  title: 'Notes on product clarity, interface decisions, and better handoff.',
-  lead: 'Short, practical writing on UX patterns, Web3 product flows, dashboards, design systems, and the small decisions that make interfaces easier to build and use.',
+  title: 'Notes on product clarity, interface decisions, and handoff.',
+  lead: 'Short, practical writing on UX patterns, Web3 product flows, dashboards, design systems, and the small decisions that make interfaces easier to review, build, and use.',
 };
 
 function setText(element, text) {

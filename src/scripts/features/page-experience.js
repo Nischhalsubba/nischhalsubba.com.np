@@ -22,26 +22,36 @@ function ensurePageExperienceStyle() {
       width: 100%;
       height: 4px;
       pointer-events: none;
-      transform: scaleX(0);
-      transform-origin: left center;
       opacity: 1 !important;
-      background: var(--accent, #888888);
-      transition: background-color 180ms ease;
+      background: transparent !important;
+      transform: none !important;
+      overflow: hidden;
+    }
+
+    #${SCROLL_BAR_ID}::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform: scaleX(var(--nrs-scroll-progress-scale, .015));
+      transform-origin: left center;
+      background: #eeeeee;
+      transition: transform 80ms linear, background-color 180ms ease;
       will-change: transform;
     }
 
-    html[data-theme='light'] #${SCROLL_BAR_ID} {
+    html[data-theme='light'] #${SCROLL_BAR_ID}::before {
       background: #444444 !important;
     }
 
-    html[data-theme='dark'] #${SCROLL_BAR_ID} {
-      background: #E0E0E0 !important;
+    html[data-theme='dark'] #${SCROLL_BAR_ID}::before,
+    html:not([data-theme='light']) #${SCROLL_BAR_ID}::before {
+      background: #eeeeee !important;
     }
 
     body {
-      opacity: 0;
-      transform: translate3d(0, 14px, 0);
-      transition: opacity 520ms cubic-bezier(.16, 1, .3, 1), transform 520ms cubic-bezier(.16, 1, .3, 1);
+      opacity: 1;
+      transform: none;
     }
 
     body.nrs-page-visible {
@@ -71,6 +81,10 @@ function ensurePageExperienceStyle() {
       #${SCROLL_BAR_ID} {
         transition: none !important;
       }
+
+      #${SCROLL_BAR_ID}::before {
+        transition: none !important;
+      }
     }
   `;
 }
@@ -87,10 +101,9 @@ function ensureScrollProgressBar() {
 }
 
 function updateScrollProgress() {
-  const bar = ensureScrollProgressBar();
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
-  bar.style.transform = `scaleX(${progress})`;
+  const progress = scrollable > 0 ? Math.min(1, Math.max(0.015, window.scrollY / scrollable)) : 1;
+  document.documentElement.style.setProperty('--nrs-scroll-progress-scale', String(progress));
 }
 
 function initPageTransitions() {

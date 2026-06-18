@@ -59,10 +59,10 @@ function injectConsistencyStyles() {
       --text-secondary: #d8d1c4;
       --text-tertiary: #9fa8b3;
       --text-soft: #7b8491;
-      --accent-blue: #8fb4ff;
-      --accent-cyan: #9ee7ff;
-      --accent-gold: #d7b46a;
-      --accent-glow: rgba(143, 180, 255, 0.18);
+      --accent-blue: #e8e8e8;
+      --accent-cyan: #d6d6d6;
+      --accent-gold: #c8c8c8;
+      --accent-glow: rgba(232, 232, 232, 0.12);
       --border-faint: rgba(238, 232, 220, 0.13);
       --border-strong: rgba(143, 180, 255, 0.30);
       --radius-md: 14px;
@@ -84,10 +84,10 @@ function injectConsistencyStyles() {
       --text-secondary: #314055;
       --text-tertiary: #627085;
       --text-soft: #7d8795;
-      --accent-blue: #1d4ed8;
-      --accent-cyan: #0f7490;
-      --accent-gold: #946b2d;
-      --accent-glow: rgba(29, 78, 216, 0.13);
+      --accent-blue: #171717;
+      --accent-cyan: #2f2f2f;
+      --accent-gold: #555555;
+      --accent-glow: rgba(23, 23, 23, 0.10);
       --border-faint: rgba(20, 28, 40, 0.13);
       --border-strong: rgba(29, 78, 216, 0.28);
       color-scheme: light;
@@ -99,29 +99,24 @@ function injectConsistencyStyles() {
       color: var(--text-primary) !important;
       font-family: var(--font-sans) !important;
       font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
-      background:
-        radial-gradient(circle at 50% -12%, rgba(143, 180, 255, 0.18), transparent 34%),
-        radial-gradient(circle at 78% 12%, rgba(215, 180, 106, 0.055), transparent 26%),
-        linear-gradient(180deg, #121923 0%, #050607 54%, #020303 100%) !important;
+      background: var(--bg-page) !important;
+      background-image: none !important;
     }
 
     [data-theme='light'] body {
-      background:
-        radial-gradient(circle at 48% -8%, rgba(29, 78, 216, 0.09), transparent 30%),
-        linear-gradient(180deg, #fffdf7 0%, #f7f3ea 56%, #f1eadf 100%) !important;
+      background: var(--bg-page) !important;
+      background-image: none !important;
       color: var(--text-primary) !important;
     }
 
     body::before {
-      opacity: 0.18 !important;
-      background-size: 84px 84px !important;
-      background-image:
-        linear-gradient(rgba(238,232,220,0.026) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(238,232,220,0.026) 1px, transparent 1px) !important;
+      opacity: 0 !important;
+      background-image: none !important;
     }
 
     body::after {
-      background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.42) 70%, rgba(0,0,0,0.90) 100%) !important;
+      background: none !important;
+      opacity: 0 !important;
     }
 
     [data-theme='light'] body::before,
@@ -245,7 +240,7 @@ function injectConsistencyStyles() {
 
     .btn-primary, .footer-email-btn, .floating-resume-btn {
       border: 1px solid rgba(238,232,220,.28) !important;
-      background: linear-gradient(135deg, #f7f1e7 0%, #ddd1bc 100%) !important;
+      background: #f2f2f2 !important;
       color: #111820 !important;
       box-shadow: 0 18px 46px rgba(0,0,0,.24), 0 0 0 1px rgba(255,255,255,.03) !important;
     }
@@ -265,10 +260,10 @@ function injectConsistencyStyles() {
     [data-theme='light'] .btn-primary,
     [data-theme='light'] .footer-email-btn,
     [data-theme='light'] .floating-resume-btn {
-      background: linear-gradient(135deg, #121820 0%, #1d4ed8 100%) !important;
+      background: #171717 !important;
       color: #fffdf7 !important;
-      border-color: rgba(29,78,216,.30) !important;
-      box-shadow: 0 18px 42px rgba(29, 78, 216, .14) !important;
+      border-color: rgba(23,23,23,.30) !important;
+      box-shadow: 0 18px 42px rgba(23, 23, 23, .12) !important;
     }
 
     [data-theme='light'] .btn-secondary,
@@ -306,7 +301,7 @@ function injectConsistencyStyles() {
     .clarity-row-list article:hover, .clarity-steps article:hover {
       border-color: rgba(143, 180, 255, .34) !important;
       background:
-        linear-gradient(145deg, rgba(143,180,255,.10), rgba(238,232,220,.038)) !important;
+        linear-gradient(145deg, rgba(255,255,255,.08), rgba(238,232,220,.038)) !important;
       box-shadow: 0 26px 76px rgba(0,0,0,.34) !important;
     }
 
@@ -344,15 +339,15 @@ function injectConsistencyStyles() {
     [data-theme='light'] .nrs-blog-proof-grid article:hover,
     [data-theme='light'] .clarity-row-list article:hover,
     [data-theme='light'] .clarity-steps article:hover {
-      border-color: rgba(29,78,216,.24) !important;
+      border-color: rgba(23,23,23,.24) !important;
       background: #fffdf7 !important;
-      box-shadow: 0 22px 54px rgba(29,78,216,.08) !important;
+      box-shadow: 0 22px 54px rgba(23,23,23,.08) !important;
     }
 
     .hero-proof-strip span, .tag, .pill, .nrs-blog-tags b,
     .journey-card::before, .clarity-row-list article > span, .clarity-steps article > span {
-      border-color: rgba(143,180,255,.28) !important;
-      background: rgba(143,180,255,.10) !important;
+      border-color: rgba(232,232,232,.28) !important;
+      background: rgba(232,232,232,.08) !important;
       color: var(--accent-blue) !important;
       font-family: var(--font-sans) !important;
       font-weight: 820 !important;
@@ -365,9 +360,9 @@ function injectConsistencyStyles() {
     [data-theme='light'] .journey-card::before,
     [data-theme='light'] .clarity-row-list article > span,
     [data-theme='light'] .clarity-steps article > span {
-      border-color: rgba(29,78,216,.20) !important;
-      background: rgba(29,78,216,.075) !important;
-      color: #1d4ed8 !important;
+      border-color: rgba(23,23,23,.18) !important;
+      background: rgba(23,23,23,.055) !important;
+      color: #171717 !important;
     }
 
     .search-input, input, select, textarea {
@@ -394,19 +389,19 @@ function injectConsistencyStyles() {
 
     .w-arrow {
       border-color: var(--border-faint) !important;
-      background: rgba(143,180,255,.07) !important;
+      background: rgba(232,232,232,.06) !important;
     }
 
     .w-arrow::before { border-color: var(--accent-blue) !important; }
     .w-arrow::after { background: var(--accent-blue) !important; }
 
     .site-footer {
-      background: linear-gradient(180deg, rgba(238,232,220,.025), rgba(0,0,0,.12)) !important;
+      background: rgba(0,0,0,.10) !important;
       border-top-color: var(--border-faint) !important;
     }
 
     [data-theme='light'] .site-footer {
-      background: linear-gradient(180deg, rgba(255,253,247,.58), #f1eadf) !important;
+      background: #f1eadf !important;
       border-top-color: rgba(20,28,40,.10) !important;
     }
 

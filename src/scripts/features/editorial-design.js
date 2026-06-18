@@ -223,7 +223,7 @@ function injectEditorialDesignStyles() {
       top: clamp(28px, 4vw, 40px) !important;
       width: 7px !important;
       height: 7px !important;
-      background: var(--accent-blue, #60a5fa) !important;
+      background: var(--accent-blue, #e8e8e8) !important;
       box-shadow: 0 0 18px rgba(96,165,250,.38) !important;
     }
 
