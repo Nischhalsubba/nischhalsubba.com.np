@@ -12,6 +12,7 @@ import { lockLightThemePalette } from './features/light-palette-lock.js';
 import { polishListSpacing } from './features/list-spacing.js';
 import { initMobileMenu } from './features/mobile-menu.js';
 import { polishMicrocopy } from './features/microcopy-polish.js';
+import { polishPortfolioCaseStudies } from './features/portfolio-case-studies.js';
 import { initPageExperience } from './features/page-experience.js';
 import { initProfessionalMotionSystem } from './features/motion-system.js';
 import { useProjectDetailImages } from './features/project-images.js';
@@ -39,6 +40,7 @@ onReady(() => {
   polishListSpacing();
   polishContactPage();
   polishMicrocopy();
+  polishPortfolioCaseStudies();
   initPageExperience();
 
   // 2. Navigation and page-level interaction.
