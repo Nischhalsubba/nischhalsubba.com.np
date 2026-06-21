@@ -20,12 +20,13 @@ function ensurePageExperienceStyle() {
       left: 0;
       z-index: 2147483647;
       width: 100%;
-      height: 4px;
+      height: 6px;
       pointer-events: none;
       opacity: 1 !important;
-      background: transparent !important;
+      background: rgba(255, 255, 255, 0.16) !important;
       transform: none !important;
       overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     #${SCROLL_BAR_ID}::before {
@@ -33,11 +34,16 @@ function ensurePageExperienceStyle() {
       display: block;
       width: 100%;
       height: 100%;
-      transform: scaleX(var(--nrs-scroll-progress-scale, .015));
+      transform: scaleX(var(--nrs-scroll-progress-scale, .02));
       transform-origin: left center;
-      background: #eeeeee;
+      background: #E0E0E0;
       transition: transform 80ms linear, background-color 180ms ease;
       will-change: transform;
+    }
+
+    html[data-theme='light'] #${SCROLL_BAR_ID} {
+      background: rgba(68, 68, 68, 0.16) !important;
+      border-bottom-color: rgba(68, 68, 68, 0.08) !important;
     }
 
     html[data-theme='light'] #${SCROLL_BAR_ID}::before {
@@ -46,7 +52,7 @@ function ensurePageExperienceStyle() {
 
     html[data-theme='dark'] #${SCROLL_BAR_ID}::before,
     html:not([data-theme='light']) #${SCROLL_BAR_ID}::before {
-      background: #eeeeee !important;
+      background: #E0E0E0 !important;
     }
 
     body {
@@ -61,8 +67,14 @@ function ensurePageExperienceStyle() {
 
     body.nrs-page-exiting {
       opacity: 0;
-      transform: translate3d(0, -10px, 0);
-      transition-duration: 220ms;
+      transform: translate3d(0, -8px, 0);
+      transition-duration: 180ms;
+    }
+
+    @media (max-width: 760px) {
+      #${SCROLL_BAR_ID} {
+        height: 5px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -78,10 +90,7 @@ function ensurePageExperienceStyle() {
         transition: none !important;
       }
 
-      #${SCROLL_BAR_ID} {
-        transition: none !important;
-      }
-
+      #${SCROLL_BAR_ID},
       #${SCROLL_BAR_ID}::before {
         transition: none !important;
       }
@@ -102,7 +111,7 @@ function ensureScrollProgressBar() {
 
 function updateScrollProgress() {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = scrollable > 0 ? Math.min(1, Math.max(0.015, window.scrollY / scrollable)) : 1;
+  const progress = scrollable > 0 ? Math.min(1, Math.max(0.02, window.scrollY / scrollable)) : 1;
   document.documentElement.style.setProperty('--nrs-scroll-progress-scale', String(progress));
 }
 
@@ -132,7 +141,7 @@ function initPageTransitions() {
     document.body.classList.add('nrs-page-exiting');
     window.setTimeout(() => {
       window.location.href = url.href;
-    }, 180);
+    }, 160);
   });
 }
 
