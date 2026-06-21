@@ -13,12 +13,14 @@ import { polishListSpacing } from './features/list-spacing.js';
 import { initMobileMenu } from './features/mobile-menu.js';
 import { polishMicrocopy } from './features/microcopy-polish.js';
 import { polishPortfolioCaseStudies } from './features/portfolio-case-studies.js';
+import { addRemainingCaseStudyCoverage } from './features/portfolio-case-study-coverage.js';
 import { initPageExperience } from './features/page-experience.js';
 import { initProfessionalMotionSystem } from './features/motion-system.js';
 import { useProjectDetailImages } from './features/project-images.js';
 import { initResumeDownload } from './features/resume.js';
 import { ensureSiteFooter } from './features/site-footer.js';
 import { initTheme } from './features/theme.js';
+import { resolveUiAuditIssues } from './features/ui-audit-resolutions.js';
 
 /**
  * Site runtime entrypoint.
@@ -41,7 +43,9 @@ onReady(() => {
   polishContactPage();
   polishMicrocopy();
   polishPortfolioCaseStudies();
+  addRemainingCaseStudyCoverage();
   initPageExperience();
+  resolveUiAuditIssues();
 
   // 2. Navigation and page-level interaction.
   initMobileMenu();
@@ -58,4 +62,5 @@ onReady(() => {
 
   // 5. Final palette guard so older runtime styles cannot reintroduce blue in light mode.
   lockLightThemePalette();
+  resolveUiAuditIssues();
 });
