@@ -31,6 +31,12 @@ The repository root has many `.html` files because those files are public routes
 
 ---
 
+## Deployment note
+
+Cloudflare Pages deploys the latest `main` branch build. Documentation-only commits may be used to trigger a fresh Pages rebuild when the previous deployment failed after a build-script or audit change.
+
+---
+
 ## Structure
 
 ```txt
@@ -118,136 +124,3 @@ npm run check:links
 ```
 
 ---
-
-## Build pipeline
-
-`npm run build` runs:
-
-```txt
-vite build
-node scripts/copy-static-assets.cjs
-node scripts/generate-resume-pdf.cjs
-node scripts/audit-build.cjs
-```
-
-The custom build steps exist because Vite does not automatically place every required root-served runtime, SEO, AI discovery, or generated file exactly where Cloudflare needs it.
-
-Important files copied into `dist/` after the Vite build include:
-
-```txt
-robots.txt
-sitemap.xml
-llms.txt
-ai-profile.json
-seo-ui-enhancements.css
-site.webmanifest
-script.js
-src/scripts/
-assets/
-```
-
----
-
-## Deployment
-
-Recommended Cloudflare Pages settings:
-
-```txt
-Build command: npm run build
-Output directory: dist
-```
-
-This is a Vite static site, not a Next.js app.
-
----
-
-## SEO and AI discovery
-
-The site includes:
-
-- title tags and meta descriptions
-- canonical URLs
-- Open Graph/Twitter metadata
-- JSON-LD structured data
-- sitemap at `/sitemap.xml`
-- robots file at `/robots.txt`
-- LLM summary at `/llms.txt`
-- machine-readable profile at `/ai-profile.json`
-- web manifest at `/site.webmanifest`
-
-Primary SEO topics:
-
-- Product Designer in Nepal
-- UI UX Designer Nepal
-- Web3 UX Designer
-- SaaS UX Designer
-- Fintech Product Designer
-- Website UX Designer
-- UX Audit
-- Figma Design Systems
-- Front-end-aware Product Designer
-
----
-
-## Runtime architecture
-
-Browser behavior starts at:
-
-```txt
-script.js -> src/scripts/main.js
-```
-
-Feature modules live in:
-
-```txt
-src/scripts/features/
-```
-
-Shared DOM helpers live in:
-
-```txt
-src/scripts/utils/
-```
-
-Add new behavior as a focused feature module and import it from `src/scripts/main.js`. Avoid sprinkling inline scripts across HTML pages unless there is a very good reason and a small apology note.
-
----
-
-## Content rules
-
-Portfolio copy should stay truthful and specific.
-
-- Do not invent metrics, awards, rankings, or outcomes.
-- Mark team contributions clearly.
-- Separate designed, developed, contributed, explored, and ongoing work.
-- Keep NDA projects private or anonymized.
-- Use real prototype links only where they belong.
-- Keep each blog and project page focused on its subject.
-
----
-
-## Maintenance checklist
-
-Before deploying major changes:
-
-- [ ] `npm run build` succeeds.
-- [ ] `/` loads the current homepage.
-- [ ] `/projects.html` loads.
-- [ ] `/about.html` loads.
-- [ ] `/contact.html` loads.
-- [ ] `/blog/` loads.
-- [ ] `/sitemap.xml` loads.
-- [ ] `/robots.txt` loads.
-- [ ] `/llms.txt` loads.
-- [ ] `/ai-profile.json` loads.
-- [ ] Project cards link to valid detail pages.
-- [ ] Blog cards link to valid detail pages.
-- [ ] The resume download points to `/assets/resume.pdf`.
-
----
-
-## Ownership
-
-Designed, written, and maintained by **Nischhal Raj Subba**.
-
-GitHub: [@Nischhalsubba](https://github.com/Nischhalsubba)
