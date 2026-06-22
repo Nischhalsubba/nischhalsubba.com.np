@@ -23,6 +23,7 @@ import { initTheme } from './features/theme.js';
 import { resolveUiAuditIssues } from './features/ui-audit-resolutions.js';
 import { applyDesignSystemStandards } from './features/design-system-standards.js';
 import { applyAboutContactStandards } from './features/about-contact-standards.js';
+import { applyFinalSpacingNavProof } from './features/final-spacing-nav-proof.js';
 
 /**
  * Site runtime entrypoint.
@@ -67,4 +68,5 @@ onReady(() => {
   resolveUiAuditIssues();
   applyDesignSystemStandards();
   applyAboutContactStandards();
+  applyFinalSpacingNavProof();
 });
