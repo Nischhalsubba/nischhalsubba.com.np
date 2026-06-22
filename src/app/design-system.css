@@ -1,0 +1,140 @@
+:root {
+  --font-body: "Inter", "Atkinson Hyperlegible", "SF Pro Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Nunito Sans", "Inter", "SF Pro Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --radius: 1.35rem;
+  --background: #f7faff;
+  --foreground: #172033;
+  --card: #ffffff;
+  --card-foreground: #172033;
+  --popover: #ffffff;
+  --popover-foreground: #172033;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #eef6ff;
+  --secondary-foreground: #172033;
+  --muted: #eef3fb;
+  --muted-foreground: #667085;
+  --accent: #ecfdf5;
+  --accent-foreground: #0f3f33;
+  --destructive: #ef4444;
+  --border: #d9e4f2;
+  --input: #c9d7ea;
+  --ring: #2563eb;
+  --success: #22c55e;
+  --warning: #fbbf24;
+  --play-blue: #2563eb;
+  --play-teal: #14b8a6;
+  --play-yellow: #fbbf24;
+  --play-purple: #7c3aed;
+  --play-green: #22c55e;
+  --tile-text: #1e293b;
+  --tile-surface: #ffffff;
+  --surface-soft: rgba(238, 246, 255, 0.86);
+  --surface-glass: rgba(255, 255, 255, 0.92);
+  --shadow-product: 0 18px 48px rgba(23, 32, 51, 0.11);
+  --shadow-card: 0 10px 26px rgba(23, 32, 51, 0.08);
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(37, 99, 235, 0.13), transparent 23rem),
+    radial-gradient(circle at 88% 15%, rgba(20, 184, 166, 0.13), transparent 25rem),
+    radial-gradient(circle at 52% 96%, rgba(251, 191, 36, 0.12), transparent 24rem),
+    linear-gradient(135deg, #f7faff 0%, #ffffff 50%, #eef6ff 100%);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  letter-spacing: -0.006em;
+}
+
+h1,
+h2,
+h3,
+[data-slot="card-title"] {
+  font-family: var(--font-display);
+}
+
+[data-slot="card"] {
+  border-color: var(--border);
+}
+
+.design-shell {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.hero-copy {
+  color: var(--muted-foreground);
+  line-height: 1.72;
+}
+
+.glass-panel {
+  border: 1px solid rgba(217, 228, 242, 0.94);
+  background: var(--surface-glass);
+  box-shadow: var(--shadow-product);
+  backdrop-filter: blur(16px);
+}
+
+.soft-panel {
+  border: 1px solid rgba(217, 228, 242, 0.95);
+  background: var(--surface-soft);
+  box-shadow: var(--shadow-card);
+}
+
+.section-after-rule {
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.flow-pill {
+  border: 1px solid rgba(201, 215, 234, 0.95);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.mode-intent-card {
+  border: 1px solid rgba(217, 228, 242, 0.95);
+  background: #ffffff;
+  box-shadow: var(--shadow-card);
+}
+
+.target-number {
+  font-family: var(--font-display);
+  color: #102a56;
+}
+
+.target-hidden {
+  color: #7c8da8;
+}
+
+.target-pulse {
+  color: #102a56;
+  text-shadow: 0 18px 42px rgba(37, 99, 235, 0.20);
+}
+
+.number-tile {
+  border-radius: clamp(0.6rem, 1vw, 1rem);
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--tile-text);
+  background: var(--tile-surface);
+}
+
+.number-tile:not(:disabled):hover {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.22), 0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
+.number-tile:focus-visible {
+  outline-color: var(--ring);
+  box-shadow: 0 0 0 7px rgba(37, 99, 235, 0.16);
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    letter-spacing: -0.045em;
+  }
+}
