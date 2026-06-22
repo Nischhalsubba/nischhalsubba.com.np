@@ -225,6 +225,30 @@ function renamePublicCaseStudyPlaceholders() {
   });
 }
 
+function softenUnlinkedProofClaims() {
+  if (window.location.pathname !== '/about.html') return;
+
+  document.querySelectorAll('.journey-card').forEach((card) => {
+    const heading = card.querySelector('h3');
+    const body = card.querySelector('p');
+    if (!heading || !body) return;
+
+    if (heading.textContent?.includes('UX/UI, product design')) {
+      body.textContent = 'Completed multiple Uxcel tracks and keep public proof links available for review instead of relying on unsupported claims.';
+
+      if (!card.querySelector('.nrs-proof-link')) {
+        const link = document.createElement('a');
+        link.className = 'link-pill nrs-proof-link';
+        link.href = 'https://app.uxcel.com/ux/nischhal';
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = 'View Uxcel profile';
+        card.appendChild(link);
+      }
+    }
+  });
+}
+
 function tagProjectCardsByDepth() {
   document.querySelectorAll('.project-card').forEach((card) => {
     const href = card.getAttribute('href') || '';
@@ -259,6 +283,7 @@ export function resolveUiAuditIssues() {
   normalizeNavigationA11y();
   improveContactTrustCopy();
   renamePublicCaseStudyPlaceholders();
+  softenUnlinkedProofClaims();
   tagProjectCardsByDepth();
 
   requestAnimationFrame(() => {
@@ -267,6 +292,7 @@ export function resolveUiAuditIssues() {
     normalizeNavigationA11y();
     improveContactTrustCopy();
     renamePublicCaseStudyPlaceholders();
+    softenUnlinkedProofClaims();
     tagProjectCardsByDepth();
   });
 }
