@@ -21,6 +21,7 @@ import { initResumeDownload } from './features/resume.js';
 import { ensureSiteFooter } from './features/site-footer.js';
 import { initTheme } from './features/theme.js';
 import { resolveUiAuditIssues } from './features/ui-audit-resolutions.js';
+import { applyDesignSystemStandards } from './features/design-system-standards.js';
 
 /**
  * Site runtime entrypoint.
@@ -60,7 +61,8 @@ onReady(() => {
   // 4. Ensure older/static pages still have a consistent footer.
   ensureSiteFooter();
 
-  // 5. Final palette guard so older runtime styles cannot reintroduce blue in light mode.
+  // 5. Final guards. These run last because older CSS/runtime modules still exist.
   lockLightThemePalette();
   resolveUiAuditIssues();
+  applyDesignSystemStandards();
 });
