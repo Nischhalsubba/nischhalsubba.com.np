@@ -1,20 +1,24 @@
 const MOTION_STYLE_ID = 'nrs-professional-motion-style';
-const MOTION_SELECTOR = [
-  '.hero-section > *',
-  '.section-container',
+const REVEAL_SELECTOR = [
+  '.hero-section > .eyebrow',
+  '.hero-section > .hero-title',
+  '.hero-section > .body-large',
+  '.hero-actions',
   '.project-card',
-  '.impact-card',
   '.writing-item',
-  '.blog-card-modern',
+  '.contact-form',
+  '.nrs-case-study-snapshot',
+].join(',');
+
+const HOVER_SELECTOR = [
+  '.project-card',
+  '.writing-item',
+  '.impact-card',
   '.journey-card',
   '.comparison-card',
   '.metric-plan-card',
   '.story-card',
   '.quote-card',
-  '.case-list li',
-  '.clarity-row-list article',
-  '.clarity-steps article',
-  '.contact-form',
 ].join(',');
 
 function prefersReducedMotion() {
@@ -30,42 +34,19 @@ function ensureMotionStyle() {
   }
 
   style.textContent = `
-    .nrs-motion-ready ${MOTION_SELECTOR} {
+    .nrs-motion-ready ${REVEAL_SELECTOR} {
       will-change: transform, opacity;
     }
 
-    .nrs-motion-ready .project-card,
-    .nrs-motion-ready .impact-card,
-    .nrs-motion-ready .writing-item,
-    .nrs-motion-ready .blog-card-modern,
-    .nrs-motion-ready .journey-card,
-    .nrs-motion-ready .comparison-card,
-    .nrs-motion-ready .metric-plan-card,
-    .nrs-motion-ready .story-card,
-    .nrs-motion-ready .quote-card,
-    .nrs-motion-ready .case-list li,
-    .nrs-motion-ready .clarity-row-list article,
-    .nrs-motion-ready .clarity-steps article,
-    .nrs-motion-ready .contact-form {
+    .nrs-motion-ready ${HOVER_SELECTOR} {
       transition:
-        transform 320ms cubic-bezier(.16, 1, .3, 1),
-        border-color 220ms ease,
-        color 220ms ease,
-        opacity 420ms cubic-bezier(.16, 1, .3, 1) !important;
+        transform 260ms cubic-bezier(.16, 1, .3, 1),
+        border-color 180ms ease,
+        color 180ms ease,
+        opacity 320ms cubic-bezier(.16, 1, .3, 1) !important;
     }
 
-    .nrs-motion-ready .project-card:hover,
-    .nrs-motion-ready .impact-card:hover,
-    .nrs-motion-ready .writing-item:hover,
-    .nrs-motion-ready .blog-card-modern:hover,
-    .nrs-motion-ready .journey-card:hover,
-    .nrs-motion-ready .comparison-card:hover,
-    .nrs-motion-ready .metric-plan-card:hover,
-    .nrs-motion-ready .story-card:hover,
-    .nrs-motion-ready .quote-card:hover,
-    .nrs-motion-ready .case-list li:hover,
-    .nrs-motion-ready .clarity-row-list article:hover,
-    .nrs-motion-ready .clarity-steps article:hover {
+    .nrs-motion-ready ${HOVER_SELECTOR}:hover {
       transform: translate3d(0, -3px, 0) !important;
     }
 
@@ -76,10 +57,10 @@ function ensureMotionStyle() {
     .nrs-motion-ready .badge-pill,
     .nrs-motion-ready .theme-toggle-btn {
       transition:
-        transform 180ms cubic-bezier(.16, 1, .3, 1),
-        background-color 180ms ease,
-        border-color 180ms ease,
-        color 180ms ease !important;
+        transform 160ms cubic-bezier(.16, 1, .3, 1),
+        background-color 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease !important;
     }
 
     .nrs-motion-ready .btn:hover,
@@ -113,7 +94,7 @@ function ensureMotionStyle() {
 }
 
 function getRevealElements() {
-  return Array.from(document.querySelectorAll(MOTION_SELECTOR)).filter((element) => element instanceof HTMLElement);
+  return Array.from(document.querySelectorAll(REVEAL_SELECTOR)).filter((element) => element instanceof HTMLElement);
 }
 
 function runGsapMotion(elements) {
@@ -126,17 +107,17 @@ function runGsapMotion(elements) {
   elements.forEach((element, index) => {
     gsap.fromTo(
       element,
-      { autoAlpha: 0, y: 14 },
+      { autoAlpha: 0, y: 12 },
       {
         autoAlpha: 1,
         y: 0,
-        duration: 0.52,
-        delay: Math.min(index * 0.01, 0.08),
+        duration: 0.46,
+        delay: Math.min(index * 0.008, 0.06),
         ease: 'power2.out',
         clearProps: 'transform,opacity,visibility',
         scrollTrigger: {
           trigger: element,
-          start: 'top 90%',
+          start: 'top 92%',
           once: true,
         },
       }
@@ -152,14 +133,14 @@ function runFallbackMotion(elements) {
       if (!entry.isIntersecting) return;
       entry.target.animate(
         [
-          { opacity: 0, transform: 'translate3d(0, 28px, 0)' },
+          { opacity: 0, transform: 'translate3d(0, 20px, 0)' },
           { opacity: 1, transform: 'translate3d(0, 0, 0)' },
         ],
-        { duration: 480, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'both' }
+        { duration: 420, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'both' }
       );
       observer.unobserve(entry.target);
     });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
 
   elements.forEach((element) => observer.observe(element));
 }
