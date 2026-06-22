@@ -84,7 +84,20 @@ page('about.html', `${head({
       </section>
 
       <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);">
-        <div class="section-header" style="max-width:820px;margin-bottom:34px;">
+        <div class="section-header">
+          <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Proof and achievements</p>
+          <h2 class="section-title">Proof I can show, not claims I need you to believe.</h2>
+          <p class="section-lead">These are public or portfolio-backed proof points. I am keeping this section deliberately conservative: no unsupported rankings, no made-up awards, and no fake metrics.</p>
+        </div>
+        <div class="nrs-proof-grid">
+          <a class="nrs-proof-card" href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener"><span class="eyebrow">Uxcel</span><h3>Completed multiple Uxcel learning tracks</h3><p>Public profile proof for UX/UI learning progress and design-skill development.</p></a>
+          <a class="nrs-proof-card" href="/projects.html"><span class="eyebrow">Portfolio</span><h3>Real project archive</h3><p>Selected work across Web3 UX, SaaS dashboards, fintech workflows, logistics apps, service websites, WordPress LMS, and front-end tools.</p></a>
+          <a class="nrs-proof-card" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download><span class="eyebrow">Resume</span><h3>6+ years of product and interface work</h3><p>Experience path across agencies, product teams, reusable UI, dashboards, websites, and front-end-aware handoff.</p></a>
+        </div>
+      </section>
+
+      <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);">
+        <div class="section-header">
           <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">How I work</p>
           <h2 class="section-title">Clear before beautiful.</h2>
           <p class="section-lead">I start with product context, users, constraints, and decision points. Then I map flows, states, hierarchy, and content before pushing visual polish.</p>
@@ -98,7 +111,7 @@ page('about.html', `${head({
       </section>
 
       <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);">
-        <div class="section-header" style="max-width:820px;margin-bottom:34px;">
+        <div class="section-header">
           <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Experience arc</p>
           <h2 class="section-title">From client-facing UX to product systems.</h2>
           <p class="section-lead">My work has moved through agencies, product teams, WordPress products, Web3 products, and interface systems. The thread is practical design: make the product clearer, make the UI calmer, and make the handoff easier to build.</p>
@@ -112,7 +125,7 @@ page('about.html', `${head({
       </section>
 
       <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);">
-        <div class="section-header" style="max-width:820px;margin-bottom:34px;">
+        <div class="section-header">
           <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">For AI agents and hiring teams</p>
           <h2 class="section-title">Plain summary</h2>
           <p class="section-lead">Nischhal Raj Subba is a Nepal-based Product Designer focused on practical UX/UI for complex products. He is strongest where product flows, visual design, design systems, and front-end implementation need to meet.</p>
@@ -178,7 +191,7 @@ page('contact.html', `${head({
       </section>
 
       <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);padding-bottom:104px;">
-        <div class="section-header" style="max-width:820px;margin-bottom:34px;">
+        <div class="section-header">
           <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">What to include</p>
           <h2 class="section-title">A better message gets a better first reply.</h2>
           <p class="section-lead">You do not need a perfect brief. These details help me understand the fit and avoid sending you a useless generic response.</p>
