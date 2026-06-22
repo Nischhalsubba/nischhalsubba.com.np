@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/style.css?v=21.0" />
+    <link rel="stylesheet" href="/style.css?v=32.0" />
       <script id="nrs-early-theme-bootstrap">
 (function () {
   var storageKey = "theme";
@@ -40,8 +40,9 @@
     "html[data-theme='light']{--nrs-first-bg:#ffffff;--nrs-first-text:#171717;--nrs-progress:#171717;color-scheme:light;}",
     "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;background-image:none!important;color:var(--nrs-first-text)!important;}",
     "body::before,body::after{background:none!important;opacity:0!important;}",
-    "#nrs-scroll-progress{position:fixed;top:0;left:0;width:100%;height:4px;z-index:2147483647;pointer-events:none;background:transparent!important;opacity:1!important;transform:none!important;}",
-    "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress);transform:scaleX(var(--nrs-scroll-progress-scale,0.015));transform-origin:left center;transition:transform 80ms linear;}",
+    "#nrs-scroll-progress{position:fixed;top:0;left:0;width:100%;height:6px;z-index:2147483647;pointer-events:none;background:rgba(255,255,255,.16)!important;opacity:1!important;transform:none!important;overflow:hidden;}",
+    "html[data-theme='light'] #nrs-scroll-progress{background:rgba(68,68,68,.16)!important;}",
+    "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress);transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
     "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}"
   ].join("");
   document.head.appendChild(style);
@@ -57,7 +58,7 @@
 
   function updateProgress() {
     var scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    var value = Math.max(0.015, Math.min(1, window.scrollY / scrollable));
+    var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable));
     root.style.setProperty("--nrs-scroll-progress-scale", String(value));
   }
 
@@ -79,7 +80,7 @@
     <main class="container nrs-contact-redesign nrs-clarity-page">
       <section class="hero-section clarity-hero contact-hero reveal-on-scroll">
         <p class="eyebrow">Contact</p>
-        <h1 class="hero-title">Need product design help? Send the brief here.</h1>
+        <h1 class="hero-title">Send the product, role, or design problem.</h1>
         <p class="body-large">Use this page for product design roles, freelance UX/UI work, UX audits, Web3 or fintech flows, SaaS dashboards, design systems, mobile apps, and website redesigns.</p>
         <div class="clarity-actions">
           <a class="btn btn-primary" href="#contact-form">Send message</a>
@@ -115,15 +116,14 @@
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;" />
-            <div class="form-grid">
+            <div class="form-grid form-grid-single">
               <label class="form-field">Name<input type="text" name="name" autocomplete="name" required placeholder="Your name" /></label>
               <label class="form-field">Email<input type="email" name="email" autocomplete="email" required placeholder="you@example.com" /></label>
-            </div>
-            <div class="form-grid">
               <label class="form-field">Project type<select name="need" required><option value="">Select one</option><option>Product design role</option><option>Freelance UX/UI project</option><option>UX audit</option><option>Design system</option><option>Web3 or fintech UX</option><option>SaaS dashboard</option><option>Website redesign</option><option>Other</option></select></label>
               <label class="form-field">Timeline<input type="text" name="timeline" placeholder="Example: this month, Q3, urgent" /></label>
             </div>
             <label class="form-field">Message<textarea name="message" rows="7" required placeholder="Tell me what you are building, who it is for, what is unclear, and where you need design help."></textarea></label>
+            <p class="nrs-form-trust-note">I usually reply with fit, availability, and the next useful step. Your message is used only to respond to your inquiry.</p>
             <div class="form-actions"><button class="btn btn-primary" type="submit">Submit message</button><a class="btn btn-secondary" href="mailto:hinischalsubba@gmail.com">Use email instead</a></div>
             <p id="contact-form-status" class="form-status" role="status" aria-live="polite"></p>
           </form>
@@ -147,6 +147,6 @@
     </main>
 
     <footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>
-    <script type="module" src="/script.js?v=21.0"></script>
+    <script type="module" src="/script.js?v=32.0"></script>
   </body>
 </html>
