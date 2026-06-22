@@ -15,35 +15,50 @@ function ensurePageExperienceStyle() {
     }
 
     #${SCROLL_BAR_ID} {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 2147483647;
-      width: 100%;
-      height: 6px;
-      pointer-events: none;
+      position: fixed !important;
+      inset: 0 auto auto 0 !important;
+      z-index: 2147483647 !important;
+      display: block !important;
+      width: 100vw !important;
+      height: 6px !important;
+      min-height: 6px !important;
+      max-height: 6px !important;
+      pointer-events: none !important;
       opacity: 1 !important;
-      background: rgba(255, 255, 255, 0.16) !important;
+      visibility: visible !important;
+      background: rgba(255, 255, 255, 0.18) !important;
       transform: none !important;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      translate: none !important;
+      scale: none !important;
+      rotate: none !important;
+      overflow: hidden !important;
+      contain: paint !important;
+      isolation: isolate !important;
+      border: 0 !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
     }
 
     #${SCROLL_BAR_ID}::before {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 100%;
-      transform: scaleX(var(--nrs-scroll-progress-scale, .02));
-      transform-origin: left center;
-      background: #E0E0E0;
-      transition: transform 80ms linear, background-color 180ms ease;
-      will-change: transform;
+      content: '' !important;
+      position: absolute !important;
+      inset: 0 auto 0 0 !important;
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+      transform: scaleX(var(--nrs-scroll-progress-scale, .02)) !important;
+      transform-origin: left center !important;
+      background: #E0E0E0 !important;
+      transition: transform 80ms linear, background-color 180ms ease !important;
+      will-change: transform !important;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
 
     html[data-theme='light'] #${SCROLL_BAR_ID} {
-      background: rgba(68, 68, 68, 0.16) !important;
-      border-bottom-color: rgba(68, 68, 68, 0.08) !important;
+      background: rgba(68, 68, 68, 0.18) !important;
+      border-bottom-color: rgba(68, 68, 68, 0.10) !important;
     }
 
     html[data-theme='light'] #${SCROLL_BAR_ID}::before {
@@ -57,23 +72,25 @@ function ensurePageExperienceStyle() {
 
     body {
       opacity: 1;
-      transform: none;
+      transform: none !important;
     }
 
     body.nrs-page-visible {
       opacity: 1;
-      transform: translate3d(0, 0, 0);
+      transform: none !important;
     }
 
     body.nrs-page-exiting {
       opacity: 0;
-      transform: translate3d(0, -8px, 0);
-      transition-duration: 180ms;
+      transform: none !important;
+      transition: opacity 180ms ease;
     }
 
     @media (max-width: 760px) {
       #${SCROLL_BAR_ID} {
-        height: 5px;
+        height: 5px !important;
+        min-height: 5px !important;
+        max-height: 5px !important;
       }
     }
 
@@ -98,21 +115,56 @@ function ensurePageExperienceStyle() {
   `;
 }
 
+function forceProgressBarStyles(bar) {
+  const isMobile = window.matchMedia('(max-width: 760px)').matches;
+  Object.assign(bar.style, {
+    position: 'fixed',
+    top: '0px',
+    left: '0px',
+    right: 'auto',
+    bottom: 'auto',
+    zIndex: '2147483647',
+    display: 'block',
+    width: '100vw',
+    height: isMobile ? '5px' : '6px',
+    minHeight: isMobile ? '5px' : '6px',
+    maxHeight: isMobile ? '5px' : '6px',
+    pointerEvents: 'none',
+    opacity: '1',
+    visibility: 'visible',
+    transform: 'none',
+    overflow: 'hidden',
+    borderRadius: '0',
+    border: '0',
+    background: document.documentElement.dataset.theme === 'light'
+      ? 'rgba(68, 68, 68, 0.18)'
+      : 'rgba(255, 255, 255, 0.18)',
+  });
+}
+
 function ensureScrollProgressBar() {
   let bar = document.getElementById(SCROLL_BAR_ID);
   if (!bar) {
     bar = document.createElement('div');
     bar.id = SCROLL_BAR_ID;
     bar.setAttribute('aria-hidden', 'true');
-    document.body.prepend(bar);
   }
+
+  if (bar.parentElement !== document.documentElement) {
+    document.documentElement.prepend(bar);
+  }
+
+  forceProgressBarStyles(bar);
   return bar;
 }
 
 function updateScrollProgress() {
+  ensurePageExperienceStyle();
+  const bar = ensureScrollProgressBar();
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
   const progress = scrollable > 0 ? Math.min(1, Math.max(0.02, window.scrollY / scrollable)) : 1;
   document.documentElement.style.setProperty('--nrs-scroll-progress-scale', String(progress));
+  forceProgressBarStyles(bar);
 }
 
 function initPageTransitions() {
@@ -145,17 +197,38 @@ function initPageTransitions() {
   });
 }
 
+function keepProgressBarAlive() {
+  const observer = new MutationObserver(() => {
+    updateScrollProgress();
+  });
+
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: false,
+    attributes: true,
+    attributeFilter: ['data-theme', 'style', 'class'],
+  });
+
+  window.setInterval(updateScrollProgress, 1000);
+}
+
 export function initPageExperience() {
   ensurePageExperienceStyle();
   ensureScrollProgressBar();
   updateScrollProgress();
   initPageTransitions();
+  keepProgressBarAlive();
 
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
   window.addEventListener('resize', updateScrollProgress);
+  window.addEventListener('visibilitychange', updateScrollProgress);
   window.addEventListener('pageshow', () => {
     document.body.classList.remove('nrs-page-exiting');
     document.body.classList.add('nrs-page-visible');
     updateScrollProgress();
   });
+
+  requestAnimationFrame(updateScrollProgress);
+  window.setTimeout(updateScrollProgress, 250);
+  window.setTimeout(updateScrollProgress, 1000);
 }
