@@ -24,6 +24,7 @@ import { resolveUiAuditIssues } from './features/ui-audit-resolutions.js';
 import { applyDesignSystemStandards } from './features/design-system-standards.js';
 import { applyAboutContactStandards } from './features/about-contact-standards.js';
 import { applyFinalSpacingNavProof } from './features/final-spacing-nav-proof.js';
+import { fixSectionRhythm } from './features/section-rhythm-fix.js';
 
 /**
  * Site runtime entrypoint.
@@ -69,4 +70,5 @@ onReady(() => {
   applyDesignSystemStandards();
   applyAboutContactStandards();
   applyFinalSpacingNavProof();
+  fixSectionRhythm();
 });
