@@ -22,6 +22,7 @@ import { ensureSiteFooter } from './features/site-footer.js';
 import { initTheme } from './features/theme.js';
 import { resolveUiAuditIssues } from './features/ui-audit-resolutions.js';
 import { applyDesignSystemStandards } from './features/design-system-standards.js';
+import { applyAboutContactStandards } from './features/about-contact-standards.js';
 
 /**
  * Site runtime entrypoint.
@@ -65,4 +66,5 @@ onReady(() => {
   lockLightThemePalette();
   resolveUiAuditIssues();
   applyDesignSystemStandards();
+  applyAboutContactStandards();
 });
