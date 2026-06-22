@@ -1,9 +1,17 @@
 function ensureListSpacingStyle() {
-  if (document.getElementById('nrs-list-spacing-polish')) return;
+  let style = document.getElementById('nrs-list-spacing-polish');
+  if (!style) {
+    style = document.createElement('style');
+    style.id = 'nrs-list-spacing-polish';
+    document.head.appendChild(style);
+  }
 
-  const style = document.createElement('style');
-  style.id = 'nrs-list-spacing-polish';
   style.textContent = `
+    :root {
+      --nrs-section-content-gap: clamp(38px, 5.4vw, 72px);
+      --nrs-section-content-gap-compact: clamp(24px, 3.4vw, 44px);
+    }
+
     .case-list,
     .outcome-list,
     .nrs-outcome-list {
@@ -11,8 +19,41 @@ function ensureListSpacingStyle() {
       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
       gap: clamp(16px, 2.4vw, 30px) !important;
       padding: 0 !important;
-      margin-top: clamp(26px, 4vw, 42px) !important;
+      margin: 0 !important;
+      margin-top: var(--nrs-section-content-gap) !important;
       list-style: none !important;
+    }
+
+    .section-container > :where(.case-list, .outcome-list, .nrs-outcome-list, .journey-grid, .prototype-link-list, .clarity-row-list, .writing-list),
+    .section-title + :where(.case-list, .outcome-list, .nrs-outcome-list, .journey-grid, .prototype-link-list, .clarity-row-list, .writing-list),
+    .body-large + :where(.case-list, .outcome-list, .nrs-outcome-list, .journey-grid, .prototype-link-list, .clarity-row-list, .writing-list),
+    .section-lead + :where(.case-list, .outcome-list, .nrs-outcome-list, .journey-grid, .prototype-link-list, .clarity-row-list, .writing-list) {
+      margin-top: var(--nrs-section-content-gap) !important;
+    }
+
+    .section-container > .section-header + :where(.case-list, .outcome-list, .nrs-outcome-list, .journey-grid, .prototype-link-list, .clarity-row-list, .writing-list),
+    .case-label + .section-title + :where(.case-list, .outcome-list, .nrs-outcome-list, .journey-grid, .prototype-link-list, .clarity-row-list, .writing-list) {
+      margin-top: var(--nrs-section-content-gap) !important;
+    }
+
+    main:has(.case-hero-img-container) .section-container {
+      scroll-margin-top: 120px;
+    }
+
+    main:has(.case-hero-img-container) .section-container > .section-title,
+    .nrs-project-detail-page .section-container > .section-title {
+      margin-bottom: 0 !important;
+    }
+
+    main:has(.case-hero-img-container) .section-container > .body-large,
+    .nrs-project-detail-page .section-container > .body-large {
+      margin-top: var(--space-5) !important;
+      margin-bottom: 0 !important;
+    }
+
+    main:has(.case-hero-img-container) .section-container > .body-large + :where(.case-list, .journey-grid, .prototype-link-list),
+    .nrs-project-detail-page .section-container > .body-large + :where(.case-list, .journey-grid, .prototype-link-list) {
+      margin-top: var(--nrs-section-content-gap-compact) !important;
     }
 
     .case-list li,
@@ -52,7 +93,25 @@ function ensureListSpacingStyle() {
       margin-bottom: 0 !important;
     }
 
+    .prototype-link-list,
+    main:has(.case-hero-img-container) .journey-grid,
+    .nrs-project-detail-page .journey-grid,
+    .clarity-row-list,
+    .writing-list {
+      padding: 0 !important;
+    }
+
+    main:has(.case-hero-img-container) .journey-grid,
+    .nrs-project-detail-page .journey-grid {
+      margin-top: var(--nrs-section-content-gap) !important;
+    }
+
     @media (max-width: 860px) {
+      :root {
+        --nrs-section-content-gap: clamp(26px, 7vw, 42px);
+        --nrs-section-content-gap-compact: clamp(20px, 6vw, 32px);
+      }
+
       .case-list,
       .outcome-list,
       .nrs-outcome-list {
@@ -74,8 +133,6 @@ function ensureListSpacingStyle() {
       }
     }
   `;
-
-  document.head.appendChild(style);
 }
 
 export function polishListSpacing() {
