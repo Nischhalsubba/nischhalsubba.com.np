@@ -1,11 +1,58 @@
-/home / 301
-/home.html / 301
-/home-v2 / 301
-/home-v2.html / 301
-/products.html /figma-design-systems.html 301
-/products /figma-design-systems.html 301
-/blog /blog/ 301
-/blog.html /blog/ 301
-/project-detail.html /projects.html 301
-/project-jeweltrek.html /projects.html 301
-/blog-detail.html /blog/ 301
+# Legacy homepage experiments and index duplicates
+/index.html  /  301
+/home  /  301
+/home.html  /  301
+/home-v2  /  301
+/home-v2.html  /  301
+
+# Canonical writing index
+/blog  /blog/  301
+/blog.html  /blog/  301
+
+# HTML duplicates redirect to clean canonical routes
+/services.html  /services  301
+/nischhal-raj-subba.html  /nischhal-raj-subba  301
+/about.html  /about  301
+/contact.html  /contact  301
+/projects.html  /projects  301
+/product-design-nepal.html  /product-design-nepal  301
+/web3-ux-designer.html  /web3-ux-designer  301
+/saas-ux-designer.html  /saas-ux-designer  301
+/website-ux-design.html  /website-ux-design  301
+/figma-design-systems.html  /figma-design-systems  301
+/ux-audit.html  /ux-audit  301
+/media-kit.html  /media-kit  301
+/project-yarsha.html  /project-yarsha  301
+/project-mokshya.html  /project-mokshya  301
+/project-hamro-idea.html  /project-hamro-idea  301
+/project-morajaa.html  /project-morajaa  301
+/project-pihub.html  /project-pihub  301
+/project-masteriyo.html  /project-masteriyo  301
+/project-zapp.html  /project-zapp  301
+/project-neverwinter-parser.html  /project-neverwinter-parser  301
+/project-orkest.html  /project-orkest  301
+/project-splashnode.html  /project-splashnode  301
+/project-grid-labs.html  /project-grid-labs  301
+/project-zakra-furniture.html  /project-zakra-furniture  301
+/project-designerex.html  /project-designerex  301
+/project-sassboilerplate.html  /project-sassboilerplate  301
+/blog/blog-web3-products.html  /blog/blog-web3-products  301
+/blog/blog-good-handoff.html  /blog/blog-good-handoff  301
+/blog/blog-portfolio-product.html  /blog/blog-portfolio-product  301
+/blog/blog-service-websites.html  /blog/blog-service-websites  301
+/blog/blog-gaming-interface-clarity.html  /blog/blog-gaming-interface-clarity  301
+/blog/blog-design-systems-front-end.html  /blog/blog-design-systems-front-end  301
+/blog/web3-wallet-ux-checklist.html  /blog/web3-wallet-ux-checklist  301
+/blog/transaction-review-ux-crypto-apps.html  /blog/transaction-review-ux-crypto-apps  301
+/blog/saas-dashboard-ux-checklist.html  /blog/saas-dashboard-ux-checklist  301
+/blog/website-ux-checklist-software-companies.html  /blog/website-ux-checklist-software-companies  301
+/blog/ux-audit-checklist-before-redesign.html  /blog/ux-audit-checklist-before-redesign  301
+/blog/figma-handoff-notes-for-developers.html  /blog/figma-handoff-notes-for-developers  301
+/blog/hire-product-designer-nepal-saas-web3.html  /blog/hire-product-designer-nepal-saas-web3  301
+
+# Old placeholders
+/products.html  /figma-design-systems  301
+/products  /figma-design-systems  301
+/project-detail.html  /projects  301
+/project-jeweltrek.html  /projects  301
+/blog-detail.html  /blog/  301

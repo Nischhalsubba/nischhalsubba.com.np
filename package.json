@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/update-portfolio-content.cjs && node scripts/generate-about-contact-pages.cjs && node scripts/ensure-homepage-audit-copy.cjs && node scripts/ensure-entity-proof-signals.cjs && node scripts/ensure-seo-growth-assets.cjs && node scripts/ensure-search-intents.cjs && node scripts/normalize-html-runtime.cjs && vite build && node scripts/copy-static-assets.cjs && node scripts/generate-resume-pdf.cjs && node scripts/audit-build.cjs",
+    "build": "node scripts/update-portfolio-content.cjs && node scripts/generate-about-contact-pages.cjs && node scripts/ensure-homepage-audit-copy.cjs && node scripts/ensure-entity-proof-signals.cjs && node scripts/ensure-seo-growth-assets.cjs && node scripts/ensure-search-intents.cjs && node scripts/ensure-seo-code-fixes.cjs && node scripts/normalize-html-runtime.cjs && vite build && node scripts/copy-static-assets.cjs && node scripts/generate-resume-pdf.cjs && node scripts/audit-build.cjs",
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 .",
     "check:links": "node scripts/check-links.js",
