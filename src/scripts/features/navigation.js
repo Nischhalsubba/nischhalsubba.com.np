@@ -5,6 +5,7 @@ function normalizePath(pathname) {
 
   if (path === '/home-v2' || path === '/home-v2.html' || path === '/home' || path === '/home.html' || path === '/index.html') return '/';
   if (path === '/projects') return '/projects.html';
+  if (path === '/services') return '/services.html';
   if (path === '/about') return '/about.html';
   if (path === '/contact') return '/contact.html';
   if (path === '/blog.html') return '/blog';
@@ -18,6 +19,7 @@ function getActiveSection(pathname) {
 
   if (path === '/') return 'home';
   if (path === '/projects.html' || file.startsWith('project-')) return 'work';
+  if (path === '/services.html') return 'services';
   if (path === '/about.html') return 'about';
   if (path === '/contact.html') return 'contact';
   if (path === '/blog' || path.startsWith('/blog/') || file.startsWith('blog-')) return 'writing';
@@ -31,7 +33,7 @@ function getActiveSection(pathname) {
     'ux-audit.html',
   ]);
 
-  if (servicePages.has(file)) return 'work';
+  if (servicePages.has(file)) return 'services';
   return '';
 }
 
@@ -40,6 +42,7 @@ function getLinkSection(href) {
 
   if (path === '/') return 'home';
   if (path === '/projects.html') return 'work';
+  if (path === '/services.html') return 'services';
   if (path === '/about.html') return 'about';
   if (path === '/contact.html') return 'contact';
   if (path === '/blog') return 'writing';
