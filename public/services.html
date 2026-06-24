@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/style.css?v=32.0" />
     <link rel="stylesheet" href="/seo-ui-enhancements.css?v=1.1" />
+    <link rel="stylesheet" href="/services-redesign.css?v=1.0" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -60,52 +61,79 @@
       }
     </script>
   </head>
-  <body class="nrs-service-page nrs-inner-page">
+  <body class="nrs-services-redesign nrs-service-page">
     <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html" class="active" aria-current="page">Services</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></nav></div><button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button><nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects.html" class="nav-link">Work</a><a href="/services.html" class="nav-link active" aria-current="page">Services</a><a href="/about.html" class="nav-link">About</a><a href="/blog/" class="nav-link">Writing</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
 
     <main class="container">
-      <section class="hero-section center-aligned-hero" style="min-height:auto;padding-top:160px;padding-bottom:78px;">
-        <p class="eyebrow reveal-on-scroll" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;margin-bottom:22px;">Product design services</p>
-        <h1 class="hero-title reveal-on-scroll" style="max-width:1080px;margin-left:auto;margin-right:auto;">Design support for complex products, messy flows, and teams tired of guessing.</h1>
-        <p class="body-large reveal-on-scroll" style="margin:28px auto 0;max-width:860px;">I help Web3, SaaS, fintech and software teams clarify product journeys, polish interfaces, document systems, and hand off work engineers can actually build without summoning a committee of confused rectangles.</p>
-        <div class="hero-actions reveal-on-scroll cta-group" style="margin-top:40px;justify-content:center;"><a href="/contact.html" class="btn btn-primary">Discuss a project</a><a href="/projects.html" class="btn btn-secondary">See product work</a></div>
-        <div class="hero-proof-strip reveal-on-scroll" aria-label="Service strengths"><span>UX strategy</span><span>Interface design</span><span>Design systems</span><span>UX audits</span><span>Developer handoff</span></div>
-      </section>
-
-      <section class="section-container reveal-on-scroll" style="padding-top:36px;">
-        <div class="impact-summary-grid" aria-label="Service summary">
-          <article class="impact-card"><span class="eyebrow">Best fit</span><h3>Complex flows</h3><p>Onboarding, forms, dashboards, permissions, transaction review, verification and product states that need sharper hierarchy.</p></article>
-          <article class="impact-card"><span class="eyebrow">Output</span><h3>Build-ready UI</h3><p>High-fidelity screens, responsive decisions, component rules, UX notes, edge cases and handoff guidance.</p></article>
-          <article class="impact-card"><span class="eyebrow">Proof</span><h3>Real work context</h3><p>Service pages are connected to case studies and writing so visitors can understand both the offer and the design thinking.</p></article>
+      <section class="nrs-services-shell" aria-labelledby="services-title">
+        <div class="nrs-services-hero">
+          <div>
+            <p class="nrs-services-kicker reveal-on-scroll">Product design services</p>
+            <h1 id="services-title" class="nrs-services-title reveal-on-scroll">Design for products that need clarity before polish.</h1>
+            <p class="nrs-services-lead reveal-on-scroll">I help Web3, SaaS, fintech and software teams turn complicated product ideas into usable flows, sharp interfaces, design-system decisions and handoff notes that engineering can actually use.</p>
+            <div class="nrs-services-actions reveal-on-scroll"><a href="/contact.html" class="btn btn-primary">Discuss a project</a><a href="/projects.html" class="btn btn-secondary">View case studies</a></div>
+          </div>
+          <aside class="nrs-services-panel reveal-on-scroll" aria-label="Service overview">
+            <div class="nrs-services-panel-top"><span class="nrs-services-status">Available for selected work</span></div>
+            <h2>Useful when the product is clear to the team but confusing to everyone else.</h2>
+            <p>Bring me in before build, during redesign, or before launch to clarify hierarchy, flows, content, states and handoff.</p>
+            <div class="nrs-services-proof" aria-label="Design strengths">
+              <div><strong>6+</strong><span>years across product, websites and systems</span></div>
+              <div><strong>Web3</strong><span>wallets, protocol pages and trust-heavy flows</span></div>
+              <div><strong>SaaS</strong><span>dashboards, admin workflows and data UI</span></div>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <section class="section-container" aria-labelledby="service-list-heading">
-        <div class="section-header reveal-on-scroll" style="max-width:940px;margin-bottom:34px;"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">What I help with</p><h2 id="service-list-heading" class="section-title">Focused services, same design system.</h2><p class="section-lead">Every service points to a concrete product problem: clarity, trust, conversion, handoff, or maintainability. Revolutionary idea, apparently.</p></div>
-        <div class="impact-summary-grid">
-          <a class="impact-card reveal-on-scroll" href="/web3-ux-designer.html"><span class="eyebrow">Web3 UX</span><h3>Wallet and transaction clarity</h3><p>Signing context, permissions, transaction review, risk language, loading states, confirmation states and product trust.</p></a>
-          <a class="impact-card reveal-on-scroll" href="/saas-ux-designer.html"><span class="eyebrow">SaaS UX</span><h3>Dashboards and admin workflows</h3><p>Tables, filters, role-based views, empty states, metrics, alerts, onboarding and operational workflows.</p></a>
-          <a class="impact-card reveal-on-scroll" href="/product-design-nepal.html"><span class="eyebrow">Product design</span><h3>Mobile apps and product flows</h3><p>Journey mapping, screen hierarchy, interaction states, prototypes and high-fidelity product UI.</p></a>
-          <a class="impact-card reveal-on-scroll" href="/website-ux-design.html"><span class="eyebrow">Website UX</span><h3>Service and software company websites</h3><p>Positioning, page hierarchy, service pages, conversion paths, proof placement and responsive sections.</p></a>
-          <a class="impact-card reveal-on-scroll" href="/figma-design-systems.html"><span class="eyebrow">Design systems</span><h3>Figma systems and handoff</h3><p>Reusable components, variants, tokens, responsive rules, interaction states and developer-ready notes.</p></a>
-          <a class="impact-card reveal-on-scroll" href="/ux-audit.html"><span class="eyebrow">UX audit</span><h3>Prioritized product review</h3><p>Hierarchy, accessibility, flow friction, content clarity, conversion paths and implementation risk.</p></a>
+      <section class="nrs-services-section" aria-labelledby="services-list-title">
+        <div class="nrs-services-section-head">
+          <span class="nrs-services-label">Services</span>
+          <div><h2 id="services-list-title">The work I am useful for.</h2><p>Each service maps to a real product problem: users getting lost, screens lacking hierarchy, teams arguing over unclear flows, or engineers receiving Figma files that explain absolutely nothing. A rich tradition, sadly.</p></div>
+        </div>
+        <div class="nrs-services-grid">
+          <a class="nrs-service-card" data-index="01" href="/web3-ux-designer.html"><small>Web3 UX</small><div><h3>Wallet and transaction clarity</h3><p>Signing context, permissions, transaction review, risk language, loading states and confirmation feedback.</p></div><span>Explore Web3 UX</span></a>
+          <a class="nrs-service-card" data-index="02" href="/saas-ux-designer.html"><small>SaaS UX</small><div><h3>Dashboards and admin workflows</h3><p>Tables, filters, role-based views, empty states, metrics, alerts, onboarding and operational workflows.</p></div><span>Explore SaaS UX</span></a>
+          <a class="nrs-service-card" data-index="03" href="/product-design-nepal.html"><small>Product design</small><div><h3>Mobile apps and product flows</h3><p>Journey mapping, screen hierarchy, interaction states, prototypes and polished product UI.</p></div><span>Explore product design</span></a>
+          <a class="nrs-service-card" data-index="04" href="/website-ux-design.html"><small>Website UX</small><div><h3>Software and service websites</h3><p>Positioning, page hierarchy, service pages, conversion paths, proof placement and responsive sections.</p></div><span>Explore website UX</span></a>
+          <a class="nrs-service-card" data-index="05" href="/figma-design-systems.html"><small>Design systems</small><div><h3>Figma systems and handoff</h3><p>Reusable components, variants, tokens, responsive rules, interaction states and developer-ready notes.</p></div><span>Explore systems</span></a>
+          <a class="nrs-service-card" data-index="06" href="/ux-audit.html"><small>UX audit</small><div><h3>Prioritized product review</h3><p>Hierarchy, accessibility, flow friction, content clarity, conversion paths and implementation risk.</p></div><span>Explore UX audit</span></a>
         </div>
       </section>
 
-      <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);border-bottom:1px solid var(--border-faint);">
-        <div style="max-width:940px;margin:0 auto;text-align:center;"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">How I work</p><h2 class="section-title">Clearer decisions before prettier screens.</h2><p class="section-lead" style="margin:18px auto 0;">I clarify user journeys, hierarchy, language, states and responsive behavior first. Then I push the interface until it feels polished enough for the portfolio and practical enough for engineering.</p></div>
-      </section>
-
-      <section class="section-container reveal-on-scroll">
-        <div class="journey-grid">
-          <article class="journey-card"><span class="eyebrow">01</span><h3>Audit the current experience</h3><p>Find where users lose context, confidence, or momentum across flows, content and interface states.</p></article>
-          <article class="journey-card"><span class="eyebrow">02</span><h3>Structure the product story</h3><p>Turn broad product ideas into clearer journeys, sections, screens and decisions that teams can align around.</p></article>
-          <article class="journey-card"><span class="eyebrow">03</span><h3>Design the interface system</h3><p>Create polished UI using reusable cards, buttons, grids, typography, spacing and interaction patterns.</p></article>
-          <article class="journey-card"><span class="eyebrow">04</span><h3>Prepare handoff</h3><p>Document states, responsive rules, edge cases, priorities and QA notes so engineering gets useful context.</p></article>
+      <section class="nrs-services-section" aria-labelledby="process-title">
+        <div class="nrs-services-section-head">
+          <span class="nrs-services-label">Process</span>
+          <div><h2 id="process-title">A simple way to reduce product fog.</h2><p>The point is not to make more screens. The point is to make better decisions before those screens become someone else's engineering problem.</p></div>
+        </div>
+        <div class="nrs-services-process">
+          <article class="nrs-services-step"><span>01</span><h3>Audit the product context</h3><p>Understand users, business goals, current friction, flows, content, data and technical constraints.</p></article>
+          <article class="nrs-services-step"><span>02</span><h3>Structure the experience</h3><p>Define page hierarchy, screen flow, navigation, states, labels and the decisions users need to make.</p></article>
+          <article class="nrs-services-step"><span>03</span><h3>Design the interface</h3><p>Create polished UI using reusable patterns, responsive rules, component states and practical interaction behavior.</p></article>
+          <article class="nrs-services-step"><span>04</span><h3>Prepare handoff</h3><p>Document edge cases, QA notes, implementation priorities and Figma context so the work survives development.</p></article>
         </div>
       </section>
 
-      <section class="section-container reveal-on-scroll" style="text-align:center;padding-bottom:110px;border-top:1px solid var(--border-faint);"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Availability</p><h2 class="section-title">Need design support for a product or website?</h2><p class="body-large" style="margin:16px auto 30px;max-width:760px;">Send the product, role, timeline and the part of the experience that currently hurts. I will reply with fit, availability and the cleanest next step.</p><a href="/contact.html" class="btn btn-primary">Start a conversation</a></section>
+      <section class="nrs-services-section" aria-labelledby="fit-title">
+        <div class="nrs-services-fit">
+          <div class="nrs-services-fit-card"><p class="nrs-services-kicker">Best fit</p><h2 id="fit-title">Bring me in when clarity is the bottleneck.</h2><p>I am most useful when the product exists in everyone's head but not yet in a form users, stakeholders or engineers can understand without interpretive dance.</p></div>
+          <ul class="nrs-services-list">
+            <li><strong>Before build</strong><span>Clarify the journey, content, responsive rules and component behavior before engineering starts.</span></li>
+            <li><strong>During redesign</strong><span>Separate surface-level UI problems from deeper flow, hierarchy and messaging problems.</span></li>
+            <li><strong>Before launch</strong><span>Review edge cases, states, accessibility basics, handoff quality and conversion paths.</span></li>
+            <li><strong>For proof</strong><span>Turn real product work into case studies that explain scope, constraints and decisions honestly.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="nrs-services-section" style="border-top:0;padding-top:0;">
+        <div class="nrs-services-cta">
+          <p class="nrs-services-kicker">Next step</p>
+          <h2>Send the product, timeline and the part that feels messy.</h2>
+          <p>I will look for the clearest starting point: audit, flow cleanup, interface design, system work, handoff or a focused page redesign.</p>
+          <div class="nrs-services-actions"><a href="/contact.html" class="btn btn-primary">Start a conversation</a><a href="/assets/resume.pdf" class="btn btn-secondary" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download resume</a></div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, polish interfaces, document systems and hand off work engineers can actually build.</p><a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div><div class="footer-col"><h5>For agents</h5><a href="/llms.txt">LLMs.txt</a><a href="/ai-profile.json">AI profile</a><a href="/sitemap.xml">Sitemap</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>
