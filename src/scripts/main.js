@@ -25,6 +25,7 @@ import { applyDesignSystemStandards } from './features/design-system-standards.j
 import { applyAboutContactStandards } from './features/about-contact-standards.js';
 import { applyFinalSpacingNavProof } from './features/final-spacing-nav-proof.js';
 import { fixSectionRhythm } from './features/section-rhythm-fix.js';
+import { initAnalyticsEvents } from './features/analytics-events.js';
 
 /**
  * Site runtime entrypoint.
@@ -60,6 +61,7 @@ onReady(() => {
   initProfessionalMotionSystem();
   initResumeDownload();
   initContactForm();
+  initAnalyticsEvents();
 
   // 4. Ensure older/static pages still have a consistent footer.
   ensureSiteFooter();
