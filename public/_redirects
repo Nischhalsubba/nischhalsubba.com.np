@@ -1,11 +1,58 @@
-/home / 301
-/home.html / 301
-/home-v2 / 301
-/home-v2.html / 301
-/products.html /figma-design-systems.html 301
-/products /figma-design-systems.html 301
-/blog /blog/ 301
-/blog.html /blog/ 301
-/project-detail.html /projects.html 301
-/project-jeweltrek.html /projects.html 301
-/blog-detail.html /blog/ 301
+# Canonical host and protocol
+http://nischhalsubba.com.np/*  https://nischhalsubba.com.np/:splat  301
+http://www.nischhalsubba.com.np/*  https://nischhalsubba.com.np/:splat  301
+https://www.nischhalsubba.com.np/*  https://nischhalsubba.com.np/:splat  301
+
+# Legacy homepage experiments and index duplicates
+/index.html  /  301
+/home  /  301
+/home.html  /  301
+/home-v2  /  301
+/home-v2.html  /  301
+
+# Canonical writing index
+/blog  /blog/  301
+/blog.html  /blog/  301
+
+# Extensionless aliases created by crawlers or shared links
+/services  /services.html  301
+/nischhal-raj-subba  /nischhal-raj-subba.html  301
+/about  /about.html  301
+/contact  /contact.html  301
+/projects  /projects.html  301
+/product-design-nepal  /product-design-nepal.html  301
+/web3-ux-designer  /web3-ux-designer.html  301
+/saas-ux-designer  /saas-ux-designer.html  301
+/website-ux-design  /website-ux-design.html  301
+/figma-design-systems  /figma-design-systems.html  301
+/ux-audit  /ux-audit.html  301
+/media-kit  /media-kit.html  301
+
+/project-yarsha  /project-yarsha.html  301
+/project-mokshya  /project-mokshya.html  301
+/project-hamro-idea  /project-hamro-idea.html  301
+/project-morajaa  /project-morajaa.html  301
+/project-pihub  /project-pihub.html  301
+/project-masteriyo  /project-masteriyo.html  301
+/project-zapp  /project-zapp.html  301
+/project-neverwinter-parser  /project-neverwinter-parser.html  301
+/project-orkest  /project-orkest.html  301
+/project-splashnode  /project-splashnode.html  301
+/project-grid-labs  /project-grid-labs.html  301
+/project-zakra-furniture  /project-zakra-furniture.html  301
+/project-designerex  /project-designerex.html  301
+/project-sassboilerplate  /project-sassboilerplate.html  301
+
+/blog/blog-web3-products  /blog/blog-web3-products.html  301
+/blog/blog-good-handoff  /blog/blog-good-handoff.html  301
+/blog/blog-portfolio-product  /blog/blog-portfolio-product.html  301
+/blog/blog-service-websites  /blog/blog-service-websites.html  301
+/blog/blog-gaming-interface-clarity  /blog/blog-gaming-interface-clarity.html  301
+/blog/blog-design-systems-front-end  /blog/blog-design-systems-front-end.html  301
+/blog/web3-wallet-ux-checklist  /blog/web3-wallet-ux-checklist.html  301
+/blog/transaction-review-ux-crypto-apps  /blog/transaction-review-ux-crypto-apps.html  301
+/blog/saas-dashboard-ux-checklist  /blog/saas-dashboard-ux-checklist.html  301
+/blog/website-ux-checklist-software-companies  /blog/website-ux-checklist-software-companies.html  301
+/blog/ux-audit-checklist-before-redesign  /blog/ux-audit-checklist-before-redesign.html  301
+/blog/figma-handoff-notes-for-developers  /blog/figma-handoff-notes-for-developers.html  301
+/blog/hire-product-designer-nepal-saas-web3  /blog/hire-product-designer-nepal-saas-web3.html  301
