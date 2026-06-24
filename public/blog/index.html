@@ -71,11 +71,11 @@
   </head>
   <body>
     <canvas id="grid-canvas"></canvas>
-    <button class="mobile-nav-toggle" aria-label="Menu"><span></span><span></span></button>
+    <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button>
     <a href="/" class="mobile-logo">NRS</a>
-    <div class="mobile-nav-overlay"><nav class="mobile-nav-links"><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/" class="active">Writing</a><a href="/contact.html">Contact</a></nav></div>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/blog/" class="active" aria-current="page">Writing</a><a href="/contact.html">Contact</a></nav></div>
     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
-    <nav class="nav-wrapper"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects.html" class="nav-link">Work</a><a href="/about.html" class="nav-link">About</a><a href="/blog/" class="nav-link active">Writing</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
+    <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects.html" class="nav-link">Work</a><a href="/services.html" class="nav-link">Services</a><a href="/about.html" class="nav-link">About</a><a href="/blog/" class="nav-link active" aria-current="page">Writing</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
     <main class="container nrs-blog-hub">
       <section class="hero-section nrs-blog-hub-shell" style="min-height:42vh;">
         <p class="nrs-blog-hub-kicker">Writing for product teams</p>
