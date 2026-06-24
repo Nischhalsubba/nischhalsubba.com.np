@@ -1,0 +1,249 @@
+const fs = require('fs');
+const path = require('path');
+
+const root = path.resolve(__dirname, '..');
+const SITE = 'https://nischhalsubba.com.np';
+
+const htmlTargets = [
+  'index.html',
+  'home.html',
+  'home-v2.html',
+  'projects.html',
+  'about.html',
+  'contact.html',
+  'blog.html',
+  'blog/index.html',
+  'product-design-nepal.html',
+  'web3-ux-designer.html',
+  'saas-ux-designer.html',
+  'website-ux-design.html',
+  'figma-design-systems.html',
+  'ux-audit.html',
+  'project-yarsha.html',
+  'project-mokshya.html',
+  'project-hamro-idea.html',
+  'project-morajaa.html',
+  'project-pihub.html',
+  'project-masteriyo.html',
+  'project-zapp.html',
+  'project-neverwinter-parser.html',
+  'project-orkest.html',
+  'project-splashnode.html',
+  'project-grid-labs.html',
+  'project-zakra-furniture.html',
+  'project-designerex.html',
+  'project-sassboilerplate.html',
+  'blog/blog-web3-products.html',
+  'blog/blog-good-handoff.html',
+  'blog/blog-portfolio-product.html',
+  'blog/blog-service-websites.html',
+  'blog/blog-gaming-interface-clarity.html',
+  'blog/blog-design-systems-front-end.html',
+  'blog/web3-wallet-ux-checklist.html',
+  'blog/transaction-review-ux-crypto-apps.html',
+  'blog/saas-dashboard-ux-checklist.html',
+  'blog/website-ux-checklist-software-companies.html',
+  'blog/ux-audit-checklist-before-redesign.html',
+  'blog/figma-handoff-notes-for-developers.html',
+  'blog/hire-product-designer-nepal-saas-web3.html',
+  'media-kit.html',
+  'public/nischhal-raj-subba.html',
+  'public/services.html',
+];
+
+const seoOverrides = {
+  'index.html': {
+    title: 'Product Designer in Nepal for Web3, SaaS & Fintech UX | Nischhal Raj Subba',
+    description: 'Nischhal Raj Subba is a Product Designer in Nepal helping Web3, SaaS, fintech and software teams design clearer flows, polished UI, design systems and developer-ready handoff.',
+    canonical: '/',
+    type: 'website',
+  },
+  'blog/index.html': {
+    title: 'UX Writing on Web3, SaaS Dashboards & Design Handoff | Nischhal Raj Subba',
+    description: 'Practical product design articles on Web3 wallet UX, SaaS dashboard UX, fintech verification, website UX, Figma handoff, design systems and UX audits.',
+    canonical: '/blog/',
+    type: 'website',
+  },
+  'blog.html': {
+    title: 'Product Design Writing | Nischhal Raj Subba',
+    description: 'Legacy writing index for Nischhal Raj Subba. The canonical writing page is the product design blog at /blog/.',
+    canonical: '/blog/',
+    robots: 'noindex, follow, max-image-preview:large',
+    type: 'website',
+  },
+  'home.html': {
+    title: 'Nischhal Raj Subba | Product Designer in Nepal',
+    description: 'Legacy homepage path for Nischhal Raj Subba. The canonical homepage is nischhalsubba.com.np.',
+    canonical: '/',
+    robots: 'noindex, follow, max-image-preview:large',
+    type: 'website',
+  },
+  'home-v2.html': {
+    title: 'Nischhal Raj Subba | Product Designer in Nepal',
+    description: 'Legacy homepage experiment for Nischhal Raj Subba. The canonical homepage is nischhalsubba.com.np.',
+    canonical: '/',
+    robots: 'noindex, follow, max-image-preview:large',
+    type: 'website',
+  },
+  'project-morajaa.html': {
+    title: 'Morajaa B2B Consulting Website UX Case Study: Services & Lead Flow | Nischhal Raj Subba',
+    description: 'Morajaa case study on B2B consulting website UX, including service pages, sector pages, inquiry paths, content hierarchy and premium responsive presentation.',
+    canonical: '/project-morajaa.html',
+    type: 'article',
+  },
+  'project-mokshya.html': {
+    title: 'Mokshya Web3 Protocol Website UX Case Study: Storytelling & Trust | Nischhal Raj Subba',
+    description: 'Mokshya case study on designing a clearer Web3 protocol website with product storytelling, technical explanation, trust signals and responsive page hierarchy.',
+    canonical: '/project-mokshya.html',
+    type: 'article',
+  },
+  'blog/saas-dashboard-ux-checklist.html': {
+    title: 'SaaS Dashboard UX Checklist: Tables, States, Filters & Handoff | Nischhal Raj Subba',
+    description: 'A practical SaaS dashboard UX checklist for B2B product teams covering tables, filters, role-based views, empty states, metrics, alerts and developer handoff.',
+    canonical: '/blog/saas-dashboard-ux-checklist.html',
+    type: 'article',
+  },
+  'blog/web3-wallet-ux-checklist.html': {
+    title: 'Web3 Wallet UX Checklist: Signing, Permissions & Transaction Review | Nischhal Raj Subba',
+    description: 'A Web3 wallet UX checklist for safer signing flows, permissions, transaction review, fee clarity, risk language, loading states and confirmation feedback.',
+    canonical: '/blog/web3-wallet-ux-checklist.html',
+    type: 'article',
+  },
+  'blog/figma-handoff-notes-for-developers.html': {
+    title: 'Figma Handoff Notes for Developers: States, Responsive Rules & QA | Nischhal Raj Subba',
+    description: 'A practical guide to developer-ready Figma handoff notes covering component states, responsive behavior, edge cases, accessibility checks, QA and implementation context.',
+    canonical: '/blog/figma-handoff-notes-for-developers.html',
+    type: 'article',
+  },
+  'public/nischhal-raj-subba.html': {
+    title: 'Nischhal Raj Subba | Product Designer in Nepal for Web3, SaaS & Fintech UX',
+    description: 'Official profile for Nischhal Raj Subba, a Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app workflows, website UX, design systems and handoff.',
+    canonical: '/nischhal-raj-subba.html',
+    type: 'profile',
+  },
+  'public/services.html': {
+    title: 'Product Design Services for Web3, SaaS, UX Audits & Handoff | Nischhal Raj Subba',
+    description: 'Product design services by Nischhal Raj Subba for Web3 UX, SaaS dashboards, fintech workflows, website UX, design systems, Figma handoff and UX audits.',
+    canonical: '/services.html',
+    type: 'website',
+  },
+};
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function absoluteUrl(canonical) {
+  if (canonical === '/') return `${SITE}/`;
+  return `${SITE}${canonical}`;
+}
+
+function upsertTitle(html, title) {
+  const tag = `<title>${escapeHtml(title)}</title>`;
+  return /<title>[\s\S]*?<\/title>/i.test(html)
+    ? html.replace(/<title>[\s\S]*?<\/title>/i, tag)
+    : html.replace(/<head[^>]*>/i, (match) => `${match}\n    ${tag}`);
+}
+
+function upsertMetaName(html, name, content) {
+  const tag = `<meta name="${name}" content="${escapeHtml(content)}" />`;
+  const regex = new RegExp(`<meta\\s+name=["']${name}["'][^>]*>`, 'i');
+  return regex.test(html)
+    ? html.replace(regex, tag)
+    : html.replace(/<meta\s+name="viewport"[^>]*>/i, (match) => `${match}\n    ${tag}`);
+}
+
+function upsertMetaProperty(html, property, content) {
+  const tag = `<meta property="${property}" content="${escapeHtml(content)}" />`;
+  const regex = new RegExp(`<meta\\s+property=["']${property}["'][^>]*>`, 'i');
+  return regex.test(html)
+    ? html.replace(regex, tag)
+    : html.replace(/<\/title>/i, (match) => `${match}\n    ${tag}`);
+}
+
+function upsertCanonical(html, canonical) {
+  const tag = `<link rel="canonical" href="${absoluteUrl(canonical)}" />`;
+  return /<link\s+rel="canonical"[^>]*>/i.test(html)
+    ? html.replace(/<link\s+rel="canonical"[^>]*>/i, tag)
+    : html.replace(/<\/title>/i, (match) => `${match}\n    ${tag}`);
+}
+
+function stripMetaKeywords(html) {
+  return html.replace(/\s*<meta\s+name=["']keywords["'][^>]*>/gi, '');
+}
+
+function ensureServicesNav(html) {
+  let output = html;
+
+  output = output.replace(
+    /<a href="\/projects\.html" class="nav-link([^"/]*)">Work<\/a><a href="\/about\.html"/g,
+    '<a href="/projects.html" class="nav-link$1">Work</a><a href="/services.html" class="nav-link">Services</a><a href="/about.html"'
+  );
+
+  output = output.replace(
+    /<a href="\/projects\.html"([^>]*)>Work<\/a><a href="\/about\.html"/g,
+    '<a href="/projects.html"$1>Work</a><a href="/services.html">Services</a><a href="/about.html"'
+  );
+
+  output = output.replace(
+    /<h5>Pages<\/h5><a href="\/">Home<\/a><a href="\/projects\.html">Work<\/a><a href="\/about\.html">About<\/a>/g,
+    '<h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a>'
+  );
+
+  return output;
+}
+
+function addHomepageServiceBlock(html) {
+  if (!html.includes('nrs-home-services')) {
+    const block = `
+      <section class="section-container reveal-on-scroll nrs-home-services" style="border-top:1px solid var(--border-faint);">
+        <div class="section-header"><p class="eyebrow">Services</p><h2 class="section-title">The pages Google and humans both need.</h2><p class="section-lead">Focused service paths for Web3 UX, SaaS dashboards, fintech flows, website UX, Figma systems, audits, and implementation-ready handoff.</p></div>
+        <div class="impact-summary-grid">
+          <a class="impact-card" href="/web3-ux-designer.html"><span class="eyebrow">Web3 UX</span><h3>Wallet and transaction clarity</h3><p>Signing context, permissions, transaction review, loading, failure, and trust states.</p></a>
+          <a class="impact-card" href="/saas-ux-designer.html"><span class="eyebrow">SaaS UX</span><h3>Dashboards and workflows</h3><p>Tables, filters, role-based views, empty states, admin flows, and practical handoff.</p></a>
+          <a class="impact-card" href="/services.html"><span class="eyebrow">All services</span><h3>Pick the right design support</h3><p>Compare product design, UX audit, website UX, design systems, and handoff support.</p></a>
+        </div>
+      </section>`;
+    return html.replace(/(<section class="section-container reveal-on-scroll" style="border-top:1px solid var\(--border-faint\);border-bottom:1px solid var\(--border-faint\);">[\s\S]*?<\/section>)/, `$1${block}`);
+  }
+  return html;
+}
+
+function applySeoOverride(html, config) {
+  let output = html;
+  output = upsertTitle(output, config.title);
+  output = upsertMetaName(output, 'description', config.description);
+  output = upsertMetaName(output, 'robots', config.robots || 'index, follow, max-image-preview:large');
+  output = upsertCanonical(output, config.canonical);
+  output = upsertMetaProperty(output, 'og:title', config.title);
+  output = upsertMetaProperty(output, 'og:description', config.description);
+  output = upsertMetaProperty(output, 'og:url', absoluteUrl(config.canonical));
+  if (config.type) output = upsertMetaProperty(output, 'og:type', config.type);
+  output = upsertMetaName(output, 'twitter:title', config.title);
+  output = upsertMetaName(output, 'twitter:description', config.description);
+  return output;
+}
+
+let touched = 0;
+
+for (const relativePath of htmlTargets) {
+  const filePath = path.join(root, relativePath);
+  if (!fs.existsSync(filePath)) continue;
+
+  const before = fs.readFileSync(filePath, 'utf8');
+  let after = stripMetaKeywords(before);
+  after = ensureServicesNav(after);
+  if (relativePath === 'index.html') after = addHomepageServiceBlock(after);
+  if (seoOverrides[relativePath]) after = applySeoOverride(after, seoOverrides[relativePath]);
+
+  if (after !== before) {
+    fs.writeFileSync(filePath, after, 'utf8');
+    touched += 1;
+  }
+}
+
+console.log(`Applied durable SEO code fixes to ${touched} HTML source files.`);
