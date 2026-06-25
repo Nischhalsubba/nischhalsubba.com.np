@@ -26,6 +26,10 @@ function stylesheetHrefs(html) {
   return Array.from(html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)).map((match) => match[1]);
 }
 
+function scriptSrcs(html) {
+  return Array.from(html.matchAll(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/gi)).map((match) => match[1]);
+}
+
 function hasRuntimeScript(html) {
   return html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"]+\.js["'][^>]*><\/script>/i.test(html);
 }
@@ -34,15 +38,23 @@ walk(targetRoot);
 
 const issues = [];
 const forbiddenCss = /(site-design-system|contact-redesign|services-redesign|services-process-redesign|seo-ui-enhancements|style-1|blog-experience)\.css/i;
+const forbiddenJs = /(blog-index|site-experience|portfolio-improvements)\.js/i;
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   const rel = relative(file);
   const cssLinks = stylesheetHrefs(html);
+  const scripts = scriptSrcs(html);
 
   if (cssLinks.length === 0) issues.push(`${rel}: missing stylesheet link`);
   for (const href of cssLinks) {
     if (forbiddenCss.test(href)) issues.push(`${rel}: links removed CSS file ${href}`);
+  }
+
+  for (const src of scripts) {
+    const isAllowedRuntime = src.includes('/script.js') || /\/assets\/.+\.js$/i.test(src);
+    if (src.startsWith('/') && src.endsWith('.js') && !isAllowedRuntime) issues.push(`${rel}: links extra website JS ${src}`);
+    if (forbiddenJs.test(src)) issues.push(`${rel}: links removed website JS ${src}`);
   }
 
   if (!hasRuntimeScript(html)) issues.push(`${rel}: missing runtime script`);
