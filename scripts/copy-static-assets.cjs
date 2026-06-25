@@ -4,6 +4,8 @@ const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
 
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
+const styleHref = '/style.css?v=33.0';
+const scriptSrc = '/script.js?v=32.0';
 
 function copyDirectory(source, target) {
   if (!fs.existsSync(source)) return;
@@ -73,12 +75,18 @@ function stripUnusedVendorScripts(html) {
 function removeLegacyPatchAssets(html) {
   return html
     .replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css)[^"]+\.css[^"]*"\s*\/?>/g, '')
-    .replace(/\s*<script\s+src="\/(?!script\.js)[^"]+\.js[^"]*"(?:\s+defer)?><\/script>/g, '');
+    .replace(/\s*<script\s+src="\/(?!script\.js|assets\/)[^"]+\.js[^"]*"(?:\s+defer)?><\/script>/g, '');
+}
+
+function ensureStylesheet(html) {
+  if (html.includes('/style.css')) return html.replace(/\/style\.css\?v=[0-9.]+/g, styleHref);
+  if (!html.includes('</head>')) return html;
+  return html.replace('</head>', `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
 }
 
 function ensureRuntimeScript(html) {
-  if (html.includes('/script.js')) return html;
-  return html.replace('</body>', '  <script type="module" src="/script.js?v=32.0"></script>\n  </body>');
+  if (html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"]+\.js["'][^>]*><\/script>/i.test(html)) return html;
+  return html.replace('</body>', `  <script type="module" src="${scriptSrc}"></script>\n  </body>`);
 }
 
 function ensureEarlyThemeBootstrap(html) {
@@ -90,7 +98,7 @@ function ensureEarlyThemeBootstrap(html) {
 function optimizeHtmlOutput() {
   for (const filePath of walkFiles(distDir, (file) => file.endsWith('.html'))) {
     const original = fs.readFileSync(filePath, 'utf8');
-    const optimized = ensureRuntimeScript(ensureEarlyThemeBootstrap(removeLegacyPatchAssets(stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original)))));
+    const optimized = ensureRuntimeScript(ensureStylesheet(ensureEarlyThemeBootstrap(removeLegacyPatchAssets(stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original))))));
 
     if (optimized !== original) {
       fs.writeFileSync(filePath, optimized, 'utf8');
@@ -100,6 +108,7 @@ function optimizeHtmlOutput() {
 
 copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'public'), distDir);
+copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
 copyFile(path.join(rootDir, 'style.css'), path.join(distDir, 'style.css'));
 
@@ -115,4 +124,4 @@ for (const fileName of [
 
 optimizeHtmlOutput();
 
-console.log('Copied static assets, public files, root stylesheet, discovery files, runtime file, manifest, stripped legacy CSS/JS assets, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, public files, source runtime modules, root stylesheet, discovery files, runtime entry, manifest, stripped legacy CSS/JS assets, preserved Vite bundles, and removed visible SEO helper blocks from dist.');
