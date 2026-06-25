@@ -24,8 +24,6 @@ const requiredFiles = [
   'assets/resume.pdf',
   'robots.txt',
   'sitemap.xml',
-  'llms.txt',
-  'ai-profile.json',
   'site.webmanifest',
 ];
 
@@ -117,9 +115,12 @@ if (!fs.existsSync(distDir)) {
     }
 
     if (html.includes('Playfair Display') || html.includes('Playfair+Display')) fail(`${rel} contains legacy Playfair font reference`);
+    if (/\bAI\b/.test(html)) fail(`${rel} contains visible AI wording`);
     if (html.includes('/seo-ui-enhancements.css')) fail(`${rel} links removed SEO UI stylesheet`);
     if (!html.includes('/style.css')) fail(`${rel} is missing the single stylesheet /style.css`);
     if (!htmlUsesAllowedRuntime(html)) fail(`${rel} is missing the website runtime script`);
+    if (!html.includes('class="site-footer"')) fail(`${rel} is missing the site footer`);
+    if (!html.includes('floating-resume-btn')) fail(`${rel} is missing the floating resume button`);
   }
 
   const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
@@ -129,8 +130,6 @@ if (!fs.existsSync(distDir)) {
     'SaaS',
     'fintech',
     'developer-ready handoff',
-    'llms.txt',
-    'ai-profile.json',
   ];
 
   for (const phrase of homepagePositioningChecks) {
