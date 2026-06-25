@@ -72,15 +72,13 @@ function stripUnusedVendorScripts(html) {
 
 function removeLegacyPatchAssets(html) {
   return html
-    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/production-fixes\.css[^\"]*"\s*\/?>/g, '')
-    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/light-theme-polish\.css[^\"]*"\s*\/?>/g, '')
-    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/blog-experience\.css[^\"]*"\s*\/?>/g, '')
-    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/design-system-repair\.css[^\"]*"\s*\/?>/g, '');
+    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css)[^"]+\.css[^"]*"\s*\/?>/g, '')
+    .replace(/\s*<script\s+src="\/(?!script\.js)[^"]+\.js[^"]*"(?:\s+defer)?><\/script>/g, '');
 }
 
 function ensureRuntimeScript(html) {
-  if (html.includes('/site-experience.js')) return html;
-  return html.replace('</body>', '  <script src="/site-experience.js?v=20260612" defer></script>\n  </body>');
+  if (html.includes('/script.js')) return html;
+  return html.replace('</body>', '  <script type="module" src="/script.js?v=32.0"></script>\n  </body>');
 }
 
 function ensureEarlyThemeBootstrap(html) {
@@ -101,7 +99,6 @@ function optimizeHtmlOutput() {
 }
 
 copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
-copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyDirectory(path.join(rootDir, 'public'), distDir);
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
 copyFile(path.join(rootDir, 'style.css'), path.join(distDir, 'style.css'));
@@ -111,7 +108,6 @@ for (const fileName of [
   'sitemap.xml',
   'llms.txt',
   'ai-profile.json',
-  'seo-ui-enhancements.css',
   'site.webmanifest',
 ]) {
   copyRootFile(fileName);
@@ -119,4 +115,4 @@ for (const fileName of [
 
 optimizeHtmlOutput();
 
-console.log('Copied static assets, public files, root stylesheet, discovery files, runtime files, manifest, stripped legacy patch CSS, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
+console.log('Copied static assets, public files, root stylesheet, discovery files, runtime file, manifest, stripped legacy CSS/JS assets, stripped unused vendor scripts, and removed visible SEO helper blocks from dist.');
