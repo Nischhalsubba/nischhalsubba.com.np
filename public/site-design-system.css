@@ -32,7 +32,8 @@ body {
 main.container,
 .site-footer > .container,
 .nrs-uniform-shell .container,
-.nrs-uniform-shell main.container {
+.nrs-uniform-shell main.container,
+main.container:has(.nrs-home-hero) {
   width: var(--nrs-site-width) !important;
   max-width: var(--nrs-site-width) !important;
   margin-left: auto !important;
@@ -42,6 +43,7 @@ main.container,
 .section-container,
 .nrs-case-section,
 .nrs-services-section,
+.nrs-contact-section,
 main:has(.case-hero-img-container) .section-container.reveal-on-scroll:not(#proof) {
   padding-top: var(--nrs-section-y) !important;
   padding-bottom: var(--nrs-section-y) !important;
@@ -56,7 +58,9 @@ main:has(.case-hero-img-container) .section-container.reveal-on-scroll:not(#proo
 .hero-title,
 h1.hero-title,
 .section-title,
-h2.section-title {
+h2.section-title,
+.nrs-contact-title,
+.nrs-services-title {
   text-wrap: balance;
 }
 
@@ -93,6 +97,32 @@ h1.hero-title {
   padding: 0 clamp(13px, 1.1vw, 18px) !important;
   border-radius: var(--nrs-radius-pill) !important;
   white-space: nowrap !important;
+}
+
+.nav-link.active,
+.nav-link[aria-current="page"],
+.mobile-nav-links a.active,
+.mobile-nav-links a[aria-current="page"] {
+  color: var(--bg-page) !important;
+  background: var(--text-primary) !important;
+  border-color: var(--text-primary) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .nav-link.active,
+html[data-theme="light"] .nav-link[aria-current="page"],
+html[data-theme="light"] .mobile-nav-links a.active,
+html[data-theme="light"] .mobile-nav-links a[aria-current="page"] {
+  color: #ffffff !important;
+  background: #111111 !important;
+  border-color: #111111 !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .nav-link:hover:not(.active):not([aria-current="page"]),
+html[data-theme="light"] .mobile-nav-links a:hover:not(.active):not([aria-current="page"]) {
+  color: #111111 !important;
+  background: rgba(17,17,17,.07) !important;
 }
 
 .btn,
@@ -145,7 +175,11 @@ h1.hero-title {
 .nrs-services-panel,
 .nrs-service-card,
 .nrs-services-fit-card,
-.nrs-services-cta {
+.nrs-services-cta,
+.nrs-contact-panel,
+.nrs-contact-card,
+.nrs-contact-form-shell,
+.nrs-contact-cta {
   border-radius: var(--nrs-radius-card) !important;
   border-color: var(--border-faint) !important;
 }
@@ -159,7 +193,8 @@ h1.hero-title {
 .writing-list,
 .case-list,
 .nrs-services-grid,
-.nrs-services-process {
+.nrs-services-process,
+.nrs-contact-methods {
   gap: var(--nrs-component-gap) !important;
 }
 
@@ -169,7 +204,8 @@ h1.hero-title {
 
 .impact-summary-grid,
 .nrs-blog-proof-grid,
-.nrs-services-grid {
+.nrs-services-grid,
+.nrs-contact-methods {
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 }
 
@@ -191,13 +227,15 @@ h1.hero-title {
   outline-offset: 3px !important;
 }
 
-body.nrs-services-redesign main.container {
+body.nrs-services-redesign main.container,
+body.nrs-contact-page main.container {
   width: min(1520px, calc(100vw - clamp(48px, 7vw, 144px))) !important;
   max-width: min(1520px, calc(100vw - clamp(48px, 7vw, 144px))) !important;
 }
 
-body.nrs-services-redesign .nrs-services-title {
-  max-width: 880px !important;
+body.nrs-services-redesign .nrs-services-title,
+body.nrs-contact-page .nrs-contact-title {
+  max-width: 900px !important;
   font-size: clamp(4.2rem, 6.8vw, 8rem) !important;
   line-height: .9 !important;
 }
@@ -211,11 +249,14 @@ body.nrs-services-redesign .nrs-services-title {
   .journey-grid,
   .prototype-link-list,
   .nrs-services-grid,
-  .nrs-services-process {
+  .nrs-services-process,
+  .nrs-contact-methods {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
-  body.nrs-services-redesign .nrs-services-hero {
+  body.nrs-services-redesign .nrs-services-hero,
+  body.nrs-contact-page .nrs-contact-hero,
+  body.nrs-contact-page .nrs-contact-form-shell {
     grid-template-columns: 1fr !important;
   }
 }
@@ -241,7 +282,11 @@ body.nrs-services-redesign .nrs-services-title {
   .nrs-services-proof,
   .nrs-services-fit,
   .nrs-services-section-head,
-  .nrs-services-list li {
+  .nrs-services-list li,
+  .nrs-contact-methods,
+  .nrs-contact-form-grid,
+  .nrs-contact-form .form-actions,
+  .nrs-contact-proof div {
     grid-template-columns: 1fr !important;
   }
 
@@ -254,12 +299,14 @@ body.nrs-services-redesign .nrs-services-title {
     display: none !important;
   }
 
-  body.nrs-services-redesign main.container {
+  body.nrs-services-redesign main.container,
+  body.nrs-contact-page main.container {
     width: calc(100vw - 40px) !important;
     max-width: calc(100vw - 40px) !important;
   }
 
-  body.nrs-services-redesign .nrs-services-title {
+  body.nrs-services-redesign .nrs-services-title,
+  body.nrs-contact-page .nrs-contact-title {
     font-size: clamp(3.1rem, 15vw, 5.1rem) !important;
   }
 }
