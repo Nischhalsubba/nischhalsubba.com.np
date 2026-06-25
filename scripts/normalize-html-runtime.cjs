@@ -26,8 +26,17 @@ function normalizeStylesheets(html) {
   return output.replace(/<\/head>/i, `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
 }
 
+function removeExtraLocalScripts(html) {
+  return html
+    .replace(/\s*<script src="\/blog-index\.js[^>]*><\/script>/g, '')
+    .replace(/\s*<script src="\/site-experience\.js[^>]*><\/script>/g, '')
+    .replace(/\s*<script src="\/portfolio-improvements\.js[^>]*><\/script>/g, '')
+    .replace(/\s*<script src="\/assets\/vendor\/gsap\.min\.js" defer><\/script>/g, '')
+    .replace(/\s*<script src="\/assets\/vendor\/ScrollTrigger\.min\.js" defer><\/script>/g, '');
+}
+
 function normalizeScriptTags(html) {
-  let output = html.replace(/\/script\.js\?v=[0-9.]+/g, scriptSrc);
+  let output = removeExtraLocalScripts(html).replace(/\/script\.js\?v=[0-9.]+/g, scriptSrc);
 
   const scriptPattern = /<script\s+type="module"\s+src="\/script\.js\?v=32\.0"><\/script>/i;
   if (scriptPattern.test(output)) return output;
@@ -70,4 +79,4 @@ for (const file of htmlFiles) {
   }
 }
 
-console.log(`Normalized ${htmlFiles.length} HTML files to single stylesheet and runtime script; updated ${touched}.`);
+console.log(`Normalized ${htmlFiles.length} HTML files to one stylesheet and one website runtime script; updated ${touched}.`);
