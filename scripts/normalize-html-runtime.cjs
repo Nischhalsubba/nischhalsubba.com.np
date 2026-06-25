@@ -3,7 +3,7 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const htmlFiles = [];
-const sharedDesignHref = '/site-design-system.css?v=1.0';
+const styleHref = '/style.css?v=33.0';
 const scriptSrc = '/script.js?v=32.0';
 
 function walk(dir) {
@@ -15,28 +15,15 @@ function walk(dir) {
   }
 }
 
-function hasStyle(html, href) {
-  return html.includes(href) || html.includes(href.replace(/\?v=.*/, ''));
-}
+function normalizeStylesheets(html) {
+  let output = html.replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css)[^"]+\.css[^>]*>\s*/gi, '\n');
+  output = output.replace(/\/style\.css\?v=[0-9.]+/g, styleHref);
 
-function injectSharedDesignSystem(html) {
-  if (hasStyle(html, sharedDesignHref)) return html;
-
-  const tag = `    <link rel="stylesheet" href="${sharedDesignHref}" />`;
-
-  if (/<link[^>]+href="\/services-redesign\.css[^>]*>/i.test(html)) {
-    return html.replace(/<link[^>]+href="\/services-redesign\.css[^>]*>/i, (match) => `${tag}\n${match}`);
+  if (/<link\s+rel="stylesheet"\s+href="\/style\.css[^>]*>/i.test(output)) {
+    return output.replace(/<link\s+rel="stylesheet"\s+href="\/style\.css[^>]*>/i, `<link rel="stylesheet" href="${styleHref}" />`);
   }
 
-  if (/<link[^>]+href="\/seo-ui-enhancements\.css[^>]*>/i.test(html)) {
-    return html.replace(/<link[^>]+href="\/seo-ui-enhancements\.css[^>]*>/i, (match) => `${match}\n${tag}`);
-  }
-
-  if (/<link[^>]+href="\/style\.css[^>]*>/i.test(html)) {
-    return html.replace(/<link[^>]+href="\/style\.css[^>]*>/i, (match) => `${match}\n${tag}`);
-  }
-
-  return html.replace(/<\/head>/i, `${tag}\n  </head>`);
+  return output.replace(/<\/head>/i, `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
 }
 
 function normalizeScriptTags(html) {
@@ -54,9 +41,6 @@ function normalizeScriptTags(html) {
 
 function normalize(content) {
   let output = content
-    .replace(/\/style\.css\?v=[0-9.]+/g, '/style.css?v=32.0')
-    .replace(/\/seo-ui-enhancements\.css\?v=[0-9.]+/g, '/seo-ui-enhancements.css?v=1.1')
-    .replace(/\/services-redesign\.css\?v=[0-9.]+/g, '/services-redesign.css?v=1.0')
     .replace(/<canvas id="grid-canvas"><\/canvas>/g, '')
     .replace(/<div class="custom-cursor-dot"><\/div>/g, '')
     .replace(/<div class="custom-cursor-outline"><\/div>/g, '')
@@ -69,9 +53,8 @@ function normalize(content) {
     .replace(/<nav class="nav-wrapper">/g, '<nav class="nav-wrapper" aria-label="Primary navigation">')
     .replace(/<nav class="mobile-nav-links">/g, '<nav class="mobile-nav-links" aria-label="Mobile navigation">');
 
-  output = injectSharedDesignSystem(output);
+  output = normalizeStylesheets(output);
   output = normalizeScriptTags(output);
-
   return output;
 }
 
@@ -87,4 +70,4 @@ for (const file of htmlFiles) {
   }
 }
 
-console.log(`Normalized ${htmlFiles.length} HTML files for runtime consistency; updated ${touched}.`);
+console.log(`Normalized ${htmlFiles.length} HTML files to single stylesheet and runtime script; updated ${touched}.`);
