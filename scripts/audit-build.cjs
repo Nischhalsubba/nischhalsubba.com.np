@@ -108,6 +108,8 @@ if (!fs.existsSync(distDir)) {
       if (html.includes(marker)) fail(`Visible SEO helper marker found in ${rel}: ${marker}`);
     }
 
+    if (html.includes('Playfair Display') || html.includes('Playfair+Display')) fail(`${rel} contains legacy Playfair font reference`);
+    if (html.includes('/seo-ui-enhancements.css')) fail(`${rel} links removed SEO UI stylesheet`);
     if (!html.includes('/style.css')) fail(`${rel} is missing the single stylesheet /style.css`);
     if (!htmlUsesAllowedRuntime(html)) fail(`${rel} is missing the website runtime script`);
   }
@@ -126,6 +128,10 @@ if (!fs.existsSync(distDir)) {
   for (const phrase of homepagePositioningChecks) {
     if (!indexHtml.includes(phrase)) fail(`Homepage is missing positioning phrase: ${phrase}`);
   }
+
+  if (indexHtml.includes('center-aligned-hero nrs-home-hero')) fail('Homepage still uses the old centered hero class combination.');
+  if (indexHtml.includes('margin-left:auto;margin-right:auto')) fail('Homepage hero still contains centered inline headline margins.');
+  if (indexHtml.includes('justify-content:center')) fail('Homepage hero still contains centered inline CTA alignment.');
 
   const portraitIsAvailable =
     indexHtml.includes(requestedPortraitUrl) ||
