@@ -39,6 +39,7 @@ walk(targetRoot);
 const issues = [];
 const forbiddenCss = /(site-design-system|contact-redesign|services-redesign|services-process-redesign|seo-ui-enhancements|style-1|blog-experience)\.css/i;
 const forbiddenJs = /(blog-index|site-experience|portfolio-improvements)\.js/i;
+const forbiddenFontText = /(Playfair\+Display|Playfair Display|fonts\.googleapis\.com\/css2\?family=Playfair)/i;
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
@@ -46,9 +47,13 @@ for (const file of htmlFiles) {
   const cssLinks = stylesheetHrefs(html);
   const scripts = scriptSrcs(html);
 
+  if (forbiddenFontText.test(html)) issues.push(`${rel}: contains legacy Playfair font reference`);
+  if (html.includes('/style.css?v=22.0') || html.includes('/style.css?v=37.0')) issues.push(`${rel}: contains stale stylesheet cache version`);
+
   if (cssLinks.length === 0) issues.push(`${rel}: missing stylesheet link`);
   for (const href of cssLinks) {
     if (forbiddenCss.test(href)) issues.push(`${rel}: links removed CSS file ${href}`);
+    if (/fonts\.googleapis\.com\/css2/i.test(href)) issues.push(`${rel}: links external font stylesheet ${href}`);
   }
 
   for (const src of scripts) {
@@ -67,5 +72,5 @@ if (issues.length > 0) {
   for (const issue of issues) console.error(`- ${issue}`);
   process.exitCode = 1;
 } else {
-  console.log(`OK: ${htmlFiles.length} HTML files use the single frontend stylesheet and runtime script.`);
+  console.log(`OK: ${htmlFiles.length} HTML files use the single frontend stylesheet, approved font system, and runtime script.`);
 }
