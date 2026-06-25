@@ -22,43 +22,32 @@ function relative(file) {
   return path.relative(targetRoot, file).replaceAll(path.sep, '/');
 }
 
-function hasAnyStylesheet(html) {
-  return /<link\s+[^>]*rel=["']stylesheet["'][^>]*>/i.test(html);
+function stylesheetHrefs(html) {
+  return Array.from(html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)).map((match) => match[1]);
 }
 
 function hasRuntimeScript(html) {
-  // Source HTML points to /script.js. Vite production builds rewrite it to a
-  // fingerprinted /assets/*.js file, so accept either form here.
   return html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"]+\.js["'][^>]*><\/script>/i.test(html);
 }
 
 walk(targetRoot);
 
 const issues = [];
+const forbiddenCss = /(site-design-system|contact-redesign|services-redesign|services-process-redesign|seo-ui-enhancements|style-1|blog-experience)\.css/i;
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   const rel = relative(file);
+  const cssLinks = stylesheetHrefs(html);
 
-  if (!hasAnyStylesheet(html)) {
-    issues.push(`${rel}: missing stylesheet link`);
+  if (cssLinks.length === 0) issues.push(`${rel}: missing stylesheet link`);
+  for (const href of cssLinks) {
+    if (forbiddenCss.test(href)) issues.push(`${rel}: links removed CSS file ${href}`);
   }
 
-  if (!html.includes('/site-design-system.css')) {
-    issues.push(`${rel}: missing /site-design-system.css`);
-  }
-
-  if (!hasRuntimeScript(html)) {
-    issues.push(`${rel}: missing runtime script`);
-  }
-
-  if (/<nav class="nav-wrapper"(?![^>]*aria-label=)/.test(html)) {
-    issues.push(`${rel}: desktop nav missing aria-label`);
-  }
-
-  if (/<nav class="mobile-nav-links"(?![^>]*aria-label=)/.test(html)) {
-    issues.push(`${rel}: mobile nav missing aria-label`);
-  }
+  if (!hasRuntimeScript(html)) issues.push(`${rel}: missing runtime script`);
+  if (/<nav class="nav-wrapper"(?![^>]*aria-label=)/.test(html)) issues.push(`${rel}: desktop nav missing aria-label`);
+  if (/<nav class="mobile-nav-links"(?![^>]*aria-label=)/.test(html)) issues.push(`${rel}: mobile nav missing aria-label`);
 }
 
 if (issues.length > 0) {
@@ -66,5 +55,5 @@ if (issues.length > 0) {
   for (const issue of issues) console.error(`- ${issue}`);
   process.exitCode = 1;
 } else {
-  console.log(`OK: ${htmlFiles.length} HTML files include shared design-system CSS and runtime coverage.`);
+  console.log(`OK: ${htmlFiles.length} HTML files use the single frontend stylesheet and runtime script.`);
 }
