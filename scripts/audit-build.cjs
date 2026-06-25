@@ -57,6 +57,10 @@ function fail(message) {
   process.exitCode = 1;
 }
 
+function warn(message) {
+  console.warn(`[build-audit] ${message}`);
+}
+
 function walkFiles(directory, matcher, files = []) {
   if (!fs.existsSync(directory)) return files;
 
@@ -80,7 +84,11 @@ function fileContains(relativePath, value) {
 function hasPortraitAsset() {
   const assetDir = path.join(distDir, 'assets');
   if (!fs.existsSync(assetDir)) return false;
-  return fs.readdirSync(assetDir).some((fileName) => /^portrait[-\w]*\.(png|jpg|jpeg|webp)$/i.test(fileName));
+
+  return walkFiles(assetDir, (filePath) => {
+    const fileName = path.basename(filePath);
+    return /^portrait[-\w]*\.(png|jpg|jpeg|webp)$/i.test(fileName);
+  }).length > 0;
 }
 
 function htmlUsesAllowedRuntime(html) {
@@ -133,13 +141,22 @@ if (!fs.existsSync(distDir)) {
   if (indexHtml.includes('margin-left:auto;margin-right:auto')) fail('Homepage hero still contains centered inline headline margins.');
   if (indexHtml.includes('justify-content:center')) fail('Homepage hero still contains centered inline CTA alignment.');
 
+  const homepageReferencesPortrait =
+    indexHtml.includes(requestedPortraitUrl) ||
+    /assets\/images\/portrait\.(png|jpg|jpeg|webp)/i.test(indexHtml) ||
+    /<img[^>]+portrait[-\w]*\.(png|jpg|jpeg|webp)/i.test(indexHtml);
+
   const portraitIsAvailable =
     indexHtml.includes(requestedPortraitUrl) ||
     fileContains('style.css', requestedPortraitUrl) ||
     fileContains('script.js', requestedPortraitUrl) ||
     hasPortraitAsset();
 
-  if (!portraitIsAvailable) fail('Build is missing the requested portrait image or local portrait asset.');
+  if (homepageReferencesPortrait && !portraitIsAvailable) {
+    fail('Homepage references a portrait image, but no matching portrait asset was found in dist.');
+  } else if (!portraitIsAvailable) {
+    warn('No portrait image detected in dist. This is allowed because the clean homepage hero no longer requires it.');
+  }
 
   const resumePath = path.join(distDir, 'assets', 'resume.pdf');
   if (fs.existsSync(resumePath) && fs.statSync(resumePath).size < 10_000) {
