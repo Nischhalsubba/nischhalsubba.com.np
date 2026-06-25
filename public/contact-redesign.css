@@ -9,13 +9,14 @@ body.nrs-contact-page main.container {
   text-underline-offset: 0.18em;
 }
 
-.nrs-contact-hero {
+.nrs-contact-v3-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr);
+  grid-template-columns: minmax(0, 0.94fr) minmax(520px, 1.06fr);
   gap: clamp(44px, 6vw, 104px);
   align-items: center;
-  padding-top: clamp(132px, 11vw, 176px);
-  padding-bottom: clamp(72px, 8vw, 118px);
+  min-height: calc(100vh - 32px);
+  padding-top: clamp(124px, 10vw, 170px);
+  padding-bottom: clamp(64px, 8vw, 110px);
 }
 
 .nrs-contact-kicker {
@@ -28,21 +29,21 @@ body.nrs-contact-page main.container {
 }
 
 .nrs-contact-title {
-  max-width: 940px;
+  max-width: 920px;
   margin: 0;
   color: var(--text-primary);
   font-family: var(--font-serif);
-  font-size: clamp(4.2rem, 6.6vw, 8rem);
-  line-height: .9;
+  font-size: clamp(4.1rem, 6.4vw, 7.6rem);
+  line-height: .91;
   letter-spacing: -.068em;
   text-wrap: balance;
 }
 
 .nrs-contact-lead {
-  max-width: 760px;
-  margin: clamp(24px, 3vw, 36px) 0 0;
+  max-width: 720px;
+  margin: clamp(24px, 3vw, 34px) 0 0;
   color: var(--text-secondary);
-  font-size: clamp(1.05rem, 1.08vw, 1.22rem);
+  font-size: clamp(1.03rem, 1.08vw, 1.2rem);
   line-height: 1.76;
 }
 
@@ -50,99 +51,32 @@ body.nrs-contact-page main.container {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: clamp(28px, 4vw, 46px);
+  margin-top: clamp(28px, 4vw, 42px);
 }
 
-.nrs-contact-panel,
-.nrs-contact-card,
-.nrs-contact-form-shell,
-.nrs-contact-cta {
+.nrs-contact-v3-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  max-width: 720px;
+  margin-top: clamp(34px, 5vw, 58px);
+  overflow: hidden;
   border: 1px solid var(--border-faint);
   border-radius: var(--radius-2xl);
-  background:
-    radial-gradient(circle at top right, rgba(255,255,255,.12), transparent 36%),
-    linear-gradient(145deg, rgba(255,255,255,.084), rgba(255,255,255,.034));
-  box-shadow: var(--shadow-soft);
-}
-
-.nrs-contact-panel {
-  display: grid;
-  gap: 24px;
-  padding: clamp(28px, 3.6vw, 48px);
-  overflow: hidden;
-}
-
-.nrs-contact-panel h2,
-.nrs-contact-form-copy h2,
-.nrs-contact-cta h2 {
-  margin: 0;
-  color: var(--text-primary);
-  font-family: var(--font-serif);
-  letter-spacing: -.058em;
-  line-height: .96;
-}
-
-.nrs-contact-panel h2 {
-  max-width: 480px;
-  font-size: clamp(2.2rem, 3vw, 3.8rem);
-}
-
-.nrs-contact-panel p,
-.nrs-contact-card p,
-.nrs-contact-form-copy p,
-.nrs-contact-cta p {
-  margin: 0;
-  color: var(--text-secondary);
-  line-height: 1.74;
-}
-
-.nrs-contact-proof {
-  display: grid;
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid var(--border-faint);
-  border-radius: var(--radius-xl);
   background: var(--border-faint);
 }
 
-.nrs-contact-proof div {
+.nrs-contact-v3-meta a {
   display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 18px;
-  padding: 18px;
-  background: color-mix(in srgb, var(--bg-page) 76%, transparent);
+  gap: 8px;
+  min-height: 112px;
+  padding: 20px;
+  background: color-mix(in srgb, var(--bg-page) 86%, transparent);
+  text-decoration: none;
 }
 
-.nrs-contact-proof strong {
-  color: var(--text-primary);
-}
-
-.nrs-contact-proof span,
-.nrs-contact-proof a {
-  color: var(--text-secondary);
-}
-
-.nrs-contact-section {
-  padding-block: clamp(68px, 8vw, 112px);
-  border-top: 1px solid var(--border-faint);
-}
-
-.nrs-contact-methods {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(20px, 2.4vw, 34px);
-}
-
-.nrs-contact-card {
-  display: grid;
-  align-content: space-between;
-  min-height: 260px;
-  gap: 24px;
-  padding: clamp(24px, 2.8vw, 38px);
-}
-
-.nrs-contact-card small,
-.nrs-contact-step span {
+.nrs-contact-v3-meta span,
+.nrs-contact-v3-guidance span {
   color: var(--text-tertiary);
   font-size: .72rem;
   font-weight: 850;
@@ -150,7 +84,139 @@ body.nrs-contact-page main.container {
   text-transform: uppercase;
 }
 
-.nrs-contact-card h3 {
+.nrs-contact-v3-meta strong {
+  color: var(--text-primary);
+  font-size: clamp(.94rem, 1vw, 1.04rem);
+  line-height: 1.35;
+}
+
+.nrs-contact-v3-form {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  padding: clamp(28px, 3.8vw, 52px);
+  border: 1px solid var(--border-faint);
+  border-radius: var(--radius-2xl);
+  background:
+    radial-gradient(circle at 12% 0, rgba(255,255,255,.1), transparent 30%),
+    linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.nrs-contact-v3-form::after {
+  content: "";
+  position: absolute;
+  inset: auto -80px -120px auto;
+  width: 260px;
+  aspect-ratio: 1;
+  border: 1px solid var(--border-faint);
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  pointer-events: none;
+}
+
+.nrs-contact-form-head {
+  display: grid;
+  gap: 12px;
+  max-width: 580px;
+}
+
+.nrs-contact-form-head h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-serif);
+  font-size: clamp(2.3rem, 3.8vw, 4.4rem);
+  line-height: .96;
+  letter-spacing: -.06em;
+}
+
+.nrs-contact-form-head p,
+.nrs-contact-note,
+.nrs-contact-v3-guidance p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.72;
+}
+
+.nrs-contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.nrs-contact-v3-form .form-field {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-weight: 820;
+}
+
+.nrs-contact-v3-form input,
+.nrs-contact-v3-form select,
+.nrs-contact-v3-form textarea {
+  min-height: 58px;
+  width: 100%;
+  border: 1px solid var(--border-faint) !important;
+  border-radius: 20px !important;
+  background: color-mix(in srgb, var(--bg-page) 82%, transparent) !important;
+  color: var(--text-primary) !important;
+  padding: 0 18px;
+  outline: none;
+}
+
+.nrs-contact-v3-form textarea {
+  min-height: 190px;
+  padding: 18px;
+  resize: vertical;
+}
+
+.nrs-contact-v3-form input:focus,
+.nrs-contact-v3-form select:focus,
+.nrs-contact-v3-form textarea:focus {
+  border-color: var(--border-strong) !important;
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.nrs-contact-v3-form textarea::placeholder,
+.nrs-contact-v3-form input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.nrs-contact-form-footer {
+  display: grid;
+  gap: 18px;
+}
+
+.nrs-contact-v3-form .form-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.nrs-contact-v3-guidance {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2.4vw, 34px);
+  padding-block: clamp(66px, 8vw, 112px);
+  border-top: 1px solid var(--border-faint);
+}
+
+.nrs-contact-v3-guidance article {
+  display: grid;
+  align-content: start;
+  min-height: 230px;
+  gap: 24px;
+  padding: clamp(24px, 2.8vw, 38px);
+  border: 1px solid var(--border-faint);
+  border-radius: var(--radius-2xl);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.028));
+  box-shadow: var(--shadow-soft);
+}
+
+.nrs-contact-v3-guidance h2 {
   max-width: 360px;
   margin: 0;
   color: var(--text-primary);
@@ -160,147 +226,17 @@ body.nrs-contact-page main.container {
   letter-spacing: -.055em;
 }
 
-.nrs-contact-card a:last-child {
-  color: var(--text-primary);
-  font-weight: 850;
-}
-
-.nrs-contact-form-shell {
-  display: grid;
-  grid-template-columns: minmax(0, .82fr) minmax(520px, 1.18fr);
-  gap: clamp(28px, 5vw, 78px);
-  align-items: start;
-  padding: clamp(28px, 4vw, 56px);
-  box-shadow: var(--shadow-card);
-}
-
-.nrs-contact-form-copy {
-  display: grid;
-  gap: 24px;
-  position: sticky;
-  top: 120px;
-}
-
-.nrs-contact-form-copy h2 {
-  max-width: 560px;
-  font-size: clamp(2.6rem, 5vw, 5rem);
-}
-
-.nrs-contact-steps {
-  display: grid;
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid var(--border-faint);
-  border-radius: var(--radius-xl);
-  background: var(--border-faint);
-}
-
-.nrs-contact-step {
-  padding: 20px;
-  background: var(--bg-page);
-}
-
-.nrs-contact-step h3 {
-  margin: 8px 0 0;
-  color: var(--text-primary);
-  font-size: clamp(1.08rem, 1.4vw, 1.28rem);
-  line-height: 1.18;
-}
-
-.nrs-contact-step p {
-  margin: 10px 0 0;
-  color: var(--text-secondary);
-  line-height: 1.66;
-}
-
-.nrs-contact-form {
-  display: grid;
-  gap: 20px;
-  padding: 0 !important;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-.nrs-contact-form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.nrs-contact-form .form-field {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-  color: var(--text-secondary);
-  font-weight: 820;
-}
-
-.nrs-contact-form input,
-.nrs-contact-form select,
-.nrs-contact-form textarea {
-  min-height: 58px;
-  border: 1px solid var(--border-faint) !important;
-  border-radius: 22px !important;
-  background: color-mix(in srgb, var(--bg-page) 72%, transparent) !important;
-  color: var(--text-primary) !important;
-  padding: 0 18px;
-}
-
-.nrs-contact-form textarea {
-  min-height: 190px;
-  padding: 18px;
-}
-
-.nrs-contact-form textarea::placeholder,
-.nrs-contact-form input::placeholder {
-  color: var(--text-tertiary);
-}
-
-.nrs-contact-note {
-  margin: 0;
-  color: var(--text-tertiary);
-  font-size: .92rem;
-  line-height: 1.66;
-}
-
-.nrs-contact-form .form-actions {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 14px;
-}
-
-.nrs-contact-cta {
-  display: grid;
-  justify-items: center;
-  text-align: center;
-  padding: clamp(72px, 9vw, 128px) clamp(24px, 4vw, 58px);
-}
-
-.nrs-contact-cta h2 {
-  max-width: 900px;
-  font-size: clamp(2.7rem, 6vw, 6.2rem);
-}
-
-.nrs-contact-cta p {
-  max-width: 720px;
-  margin-top: 24px;
-}
-
-[data-theme="light"] .nrs-contact-panel,
-[data-theme="light"] .nrs-contact-card,
-[data-theme="light"] .nrs-contact-form-shell,
-[data-theme="light"] .nrs-contact-cta {
+[data-theme="light"] .nrs-contact-v3-form,
+[data-theme="light"] .nrs-contact-v3-guidance article {
   background: #ffffff !important;
   border-color: rgba(20,28,40,.13) !important;
   box-shadow: 0 20px 54px rgba(20,28,40,.07) !important;
 }
 
-[data-theme="light"] .nrs-contact-proof div,
-[data-theme="light"] .nrs-contact-step,
-[data-theme="light"] .nrs-contact-form input,
-[data-theme="light"] .nrs-contact-form select,
-[data-theme="light"] .nrs-contact-form textarea {
+[data-theme="light"] .nrs-contact-v3-meta a,
+[data-theme="light"] .nrs-contact-v3-form input,
+[data-theme="light"] .nrs-contact-v3-form select,
+[data-theme="light"] .nrs-contact-v3-form textarea {
   background: #fffdf7 !important;
 }
 
@@ -310,16 +246,12 @@ body.nrs-contact-page main.container {
     max-width: min(100%, calc(100vw - clamp(44px, 6vw, 88px))) !important;
   }
 
-  .nrs-contact-hero,
-  .nrs-contact-form-shell {
+  .nrs-contact-v3-hero {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 
-  .nrs-contact-form-copy {
-    position: static;
-  }
-
-  .nrs-contact-methods {
+  .nrs-contact-v3-guidance {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -330,7 +262,7 @@ body.nrs-contact-page main.container {
     max-width: calc(100vw - 40px) !important;
   }
 
-  .nrs-contact-hero {
+  .nrs-contact-v3-hero {
     padding-top: 112px;
   }
 
@@ -338,15 +270,22 @@ body.nrs-contact-page main.container {
     font-size: clamp(3.1rem, 15vw, 5.1rem);
   }
 
-  .nrs-contact-methods,
+  .nrs-contact-v3-meta,
   .nrs-contact-form-grid,
-  .nrs-contact-form .form-actions,
-  .nrs-contact-proof div {
+  .nrs-contact-v3-form .form-actions,
+  .nrs-contact-v3-guidance {
     grid-template-columns: 1fr;
   }
 
-  .nrs-contact-card,
-  .nrs-contact-form-shell {
+  .nrs-contact-v3-form {
+    padding: 24px;
+  }
+
+  .nrs-contact-actions .btn {
+    width: 100%;
+  }
+
+  .nrs-contact-v3-guidance article {
     min-height: auto;
   }
 }
