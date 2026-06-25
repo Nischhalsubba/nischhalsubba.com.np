@@ -15,6 +15,12 @@ function walk(dir) {
   }
 }
 
+function normalizeFontLinks(html) {
+  return html
+    .replace(/\s*<link\s+href="https:\/\/fonts\.googleapis\.com\/css2\?[^>]*rel="stylesheet"\s*\/?>\s*/gi, '\n')
+    .replace(/\s*<link\s+rel="stylesheet"\s+href="https:\/\/fonts\.googleapis\.com\/css2\?[^>]*>\s*/gi, '\n');
+}
+
 function normalizeStylesheets(html) {
   let output = html.replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css)[^"]+\.css[^>]*>\s*/gi, '\n');
   output = output.replace(/\/style\.css\?v=[0-9.]+/g, styleHref);
@@ -62,6 +68,7 @@ function normalize(content) {
     .replace(/<nav class="nav-wrapper">/g, '<nav class="nav-wrapper" aria-label="Primary navigation">')
     .replace(/<nav class="mobile-nav-links">/g, '<nav class="mobile-nav-links" aria-label="Mobile navigation">');
 
+  output = normalizeFontLinks(output);
   output = normalizeStylesheets(output);
   output = normalizeScriptTags(output);
   return output;
