@@ -97,9 +97,16 @@ function walk(dir, files = []) {
   return files;
 }
 
-function replaceFooter(html) {
-  if (!html.includes('<footer class="site-footer"')) return html;
-  return html.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/g, footer);
+function ensureFooter(html) {
+  if (html.includes('<footer class="site-footer"')) {
+    return html.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/g, footer);
+  }
+
+  if (html.includes('</body>')) {
+    return html.replace('</body>', `    ${footer}\n  </body>`);
+  }
+
+  return html;
 }
 
 function ensureFloatingResume(html) {
@@ -140,7 +147,7 @@ function polishHtml(filePath) {
   const before = html;
   html = removeVisibleAiCopy(html);
   html = alignAboutHero(html, filePath);
-  html = replaceFooter(html);
+  html = ensureFooter(html);
   html = ensureFloatingResume(html);
   if (html !== before) fs.writeFileSync(filePath, html, 'utf8');
   return html !== before;
