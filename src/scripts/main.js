@@ -3,6 +3,7 @@ import { injectGlobalStyles } from './features/global-styles.js';
 import { stabilizeLayout } from './features/layout-rescue.js';
 import { polishSiteConsistency } from './features/site-consistency.js';
 import { enforceDesignSystemShell } from './features/nav-consistency.js';
+import { applyLayoutSystemUniformity } from './features/layout-system-uniformity.js';
 import { applyViewportResponsivePolish } from './features/viewport-responsive-polish.js';
 import { normalizeArticleLayout } from './features/article-layout.js';
 import { polishContactPage } from './features/contact-page-polish.js';
@@ -42,6 +43,7 @@ onReady(() => {
   stabilizeLayout();
   polishSiteConsistency();
   enforceDesignSystemShell();
+  applyLayoutSystemUniformity();
   applyViewportResponsivePolish();
   normalizeArticleLayout();
   useProjectDetailImages();
@@ -68,6 +70,7 @@ onReady(() => {
   // 4. Ensure older/static pages still have a consistent footer.
   ensureSiteFooter();
   enforceDesignSystemShell();
+  applyLayoutSystemUniformity();
 
   // 5. Final guards. These run last because older CSS/runtime modules still exist.
   lockLightThemePalette();
@@ -77,4 +80,5 @@ onReady(() => {
   applyFinalSpacingNavProof();
   enforceDesignSystemShell();
   fixSectionRhythm();
+  applyLayoutSystemUniformity();
 });
