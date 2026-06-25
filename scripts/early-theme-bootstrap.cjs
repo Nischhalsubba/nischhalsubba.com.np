@@ -17,8 +17,8 @@ const EARLY_THEME_BOOTSTRAP = `<script id="nrs-early-theme-bootstrap">
   var style = document.createElement("style");
   style.id = "nrs-first-paint-theme";
   style.textContent = [
-    ":root{--nrs-first-bg:#080b10;--nrs-first-text:#f3f7fb;--nrs-progress:#b7f3ff;--nrs-progress-track:rgba(211,232,255,.13);color-scheme:dark;}",
-    "html[data-theme='light']{--nrs-first-bg:#f7f5ef;--nrs-first-text:#11110f;--nrs-progress:#11110f;--nrs-progress-track:rgba(17,17,15,.12);color-scheme:light;}",
+    ":root{--nrs-first-bg:#0c0f0b;--nrs-first-text:#f3f6ea;--nrs-progress:#d8ff48;--nrs-progress-track:rgba(243,246,234,.15);color-scheme:dark;}",
+    "html[data-theme='light']{--nrs-first-bg:#f4efe4;--nrs-first-text:#141410;--nrs-progress:#141410;--nrs-progress-track:rgba(20,20,16,.16);color-scheme:light;}",
     "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;color:var(--nrs-first-text)!important;}",
     "#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:5px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track)!important;opacity:1!important;transform:none!important;overflow:hidden!important;}",
     "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress)!important;transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
