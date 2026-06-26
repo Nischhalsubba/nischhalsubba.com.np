@@ -3,7 +3,7 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const htmlFiles = [];
-const styleHref = '/style.css?v=39.0';
+const styleHref = '/style.css?v=40.0';
 const scriptSrc = '/script.js?v=32.0';
 
 function walk(dir) {
