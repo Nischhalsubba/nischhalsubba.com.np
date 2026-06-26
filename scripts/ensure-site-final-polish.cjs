@@ -4,87 +4,138 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const email = 'hinischalsubba@gmail.com';
+const styleHref = '/style.css?v=39.0';
 
-const footer = `<footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><p class="eyebrow">Available for selected work</p><h2>Product design support for clearer products.</h2><p>I help teams improve UX structure, interface clarity, design systems, responsive behavior, and developer-ready handoff.</p><div class="cta-group"><a href="/contact.html" class="footer-email-btn">Discuss a project</a><a href="/assets/resume.pdf" class="btn btn-secondary" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a></div></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Services</h5><a href="/product-design-nepal.html">Product design</a><a href="/ux-audit.html">UX audit</a><a href="/figma-design-systems.html">Design systems</a><a href="/web3-ux-designer.html">Web3 UX</a><a href="/saas-ux-designer.html">SaaS UX</a><a href="/website-ux-design.html">Website UX</a></div><div class="footer-col"><h5>Selected work</h5><a href="/project-yarsha.html">Yarsha</a><a href="/project-mokshya.html">Mokshya</a><a href="/project-morajaa.html">Morajaa</a><a href="/project-pihub.html">piHub</a><a href="/project-zapp.html">Zapp Today</a><a href="/project-masteriyo.html">Masteriyo</a></div><div class="footer-col"><h5>Contact and proof</h5><a href="mailto:${email}">${email}</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume PDF</a><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span><span>Product design, UX/UI, systems, and handoff.</span></div></div></footer>`;
+const pageCopy = {
+  'index.html': {
+    title: 'Nischhal Raj Subba - Product Designer for SaaS, Web3 and UX Systems',
+    description: 'Nepal-based product designer helping SaaS, Web3, fintech and software teams improve UX flows, interfaces, design systems and developer-ready handoff.',
+  },
+  'home-v2.html': {
+    title: 'Nischhal Raj Subba - UX/UI Product Designer',
+    description: 'Selected product design work, UX case studies, interface systems and practical handoff examples by Nischhal Raj Subba.',
+  },
+  'about.html': {
+    title: 'About Nischhal Raj Subba - Product Designer in Nepal',
+    description: 'Learn about Nischhal Raj Subba, a Nepal-based product designer focused on UX strategy, interface design, design systems and implementation-ready handoff.',
+  },
+  'projects.html': {
+    title: 'Product Design Work - Nischhal Raj Subba',
+    description: 'Explore UX/UI case studies for Web3, SaaS, fintech, dashboards, websites and product systems designed by Nischhal Raj Subba.',
+  },
+  'services.html': {
+    title: 'Product Design Services - UX/UI, Design Systems and Handoff',
+    description: 'Product design support for startups and software teams: UX audits, interface design, design systems, website UX and developer handoff.',
+  },
+  'contact.html': {
+    title: 'Contact Nischhal Raj Subba - Product Design Support',
+    description: 'Contact Nischhal Raj Subba for product design, UX/UI, design systems, audits, website UX and handoff support.',
+  },
+  'blog/index.html': {
+    title: 'Product Design Writing - UX, Web3, SaaS and Handoff',
+    description: 'Practical product design articles about SaaS UX, Web3 flows, design systems, website UX, portfolio strategy and developer handoff.',
+  },
+  'blog.html': {
+    title: 'Product Design Blog - Nischhal Raj Subba',
+    description: 'Writing on practical UX/UI, product design systems, dashboards, Web3 product flows, website clarity and front-end-aware handoff.',
+  },
+  'product-design-nepal.html': {
+    title: 'Product Designer in Nepal - UX/UI for Software Teams',
+    description: 'Hire a Nepal-based product designer for UX strategy, interface design, responsive product flows, design systems and practical handoff.',
+  },
+  'ux-audit.html': {
+    title: 'UX Audit Service - Improve Product Clarity Before Redesign',
+    description: 'A focused UX audit for software products, dashboards and websites to find friction, unclear flows, weak hierarchy and conversion issues.',
+  },
+  'figma-design-systems.html': {
+    title: 'Figma Design Systems - Scalable UI Components and Handoff',
+    description: 'Create clearer Figma design systems with reusable components, responsive rules, interaction states, documentation and developer handoff.',
+  },
+  'web3-ux-designer.html': {
+    title: 'Web3 UX Designer - Wallets, Protocols and Transaction Flows',
+    description: 'UX/UI design for Web3 wallets, dashboards, transaction review, protocol websites and trust-building product flows.',
+  },
+  'saas-ux-designer.html': {
+    title: 'SaaS UX Designer - Dashboards, Admin Tools and Product Workflows',
+    description: 'UX/UI design for SaaS dashboards, admin workflows, onboarding, filters, role-based views, empty states and product systems.',
+  },
+  'website-ux-design.html': {
+    title: 'Website UX Design - Clearer Product and Service Websites',
+    description: 'Website UX design for software teams that need clearer messaging, page hierarchy, conversion paths and responsive interfaces.',
+  },
+  'project-yarsha.html': {
+    title: 'Yarsha Case Study - Web3 Messaging App UX/UI Design',
+    description: 'A product design case study for Yarsha, covering Web3 messaging, wallet actions, chat flows, payments and practical mobile UX.',
+  },
+  'project-mokshya.html': {
+    title: 'Mokshya Case Study - Web3 Protocol Website Design',
+    description: 'A Web3 website UX case study focused on clearer protocol messaging, trust cues, visual hierarchy and technical visitor journeys.',
+  },
+  'project-morajaa.html': {
+    title: 'Morajaa Case Study - Consulting Website UX and Visual Design',
+    description: 'A B2B website design case study focused on clearer positioning, page structure, service messaging and conversion-ready UX.',
+  },
+  'project-pihub.html': {
+    title: 'piHub Case Study - Dashboard and Product Workflow Design',
+    description: 'A product design case study for piHub covering dashboard structure, user flows, interface clarity and operational product UX.',
+  },
+  'project-zapp.html': {
+    title: 'Zapp Today Case Study - Mobile Product UX/UI Design',
+    description: 'A mobile product design case study covering app flows, interaction clarity, interface hierarchy and practical product experience.',
+  },
+  'project-masteriyo.html': {
+    title: 'Masteriyo Case Study - WordPress LMS UX/UI Design',
+    description: 'A WordPress LMS product design case study focused on course flows, admin usability, design systems and learning product UX.',
+  },
+  'blog/saas-dashboard-ux-checklist.html': {
+    title: 'SaaS Dashboard UX Checklist - Filters, Tables, States and Roles',
+    description: 'A practical SaaS dashboard UX checklist for improving tables, filters, metrics, role-based views, onboarding and operational workflows.',
+  },
+  'blog/web3-wallet-ux-checklist.html': {
+    title: 'Web3 Wallet UX Checklist - Signing, Permissions and Trust',
+    description: 'A practical checklist for Web3 wallet UX, covering signing context, permissions, transaction review, risk language and confirmation states.',
+  },
+  'blog/figma-handoff-notes-for-developers.html': {
+    title: 'Figma Handoff Notes for Developers - Practical UX Documentation',
+    description: 'How to write useful Figma handoff notes for developers, including states, edge cases, responsive rules, QA notes and implementation priorities.',
+  },
+  'blog/ux-audit-checklist-before-redesign.html': {
+    title: 'UX Audit Checklist Before Redesign - Find Friction First',
+    description: 'A practical UX audit checklist for finding product friction, unclear flows, weak hierarchy and redesign risks before creating new screens.',
+  },
+  'blog/website-ux-checklist-software-companies.html': {
+    title: 'Website UX Checklist for Software Companies',
+    description: 'A website UX checklist for software companies that need clearer positioning, page hierarchy, service copy and conversion paths.',
+  },
+};
+
+const footer = `<footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><p class="eyebrow">Available for selected work</p><h2>Product design support for clearer software.</h2><p>I help teams improve UX structure, interface clarity, design systems, responsive behavior and developer-ready handoff.</p><div class="cta-group"><a href="/contact.html" class="footer-email-btn">Discuss a project</a><a href="/assets/resume.pdf" class="btn btn-secondary" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a></div></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Services</h5><a href="/product-design-nepal.html">Product design</a><a href="/ux-audit.html">UX audit</a><a href="/figma-design-systems.html">Design systems</a><a href="/web3-ux-designer.html">Web3 UX</a><a href="/saas-ux-designer.html">SaaS UX</a><a href="/website-ux-design.html">Website UX</a></div><div class="footer-col"><h5>Selected work</h5><a href="/project-yarsha.html">Yarsha</a><a href="/project-mokshya.html">Mokshya</a><a href="/project-morajaa.html">Morajaa</a><a href="/project-pihub.html">piHub</a><a href="/project-zapp.html">Zapp Today</a><a href="/project-masteriyo.html">Masteriyo</a></div><div class="footer-col"><h5>Contact and proof</h5><a href="mailto:${email}">${email}</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume PDF</a><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span><span>UX/UI, product systems and handoff for software teams.</span></div></div></footer>`;
 
 const floatingResume = '<a class="floating-resume-btn" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a>';
+const homeHero = `      <section class="hero-section nrs-home-hero-clean">
+        <p class="eyebrow reveal-on-scroll">Product designer in Nepal for Web3, SaaS, fintech and software teams</p>
+        <h1 class="hero-title reveal-on-scroll">I design clearer product flows, interfaces and handoff.</h1>
+        <p class="body-large reveal-on-scroll">I help teams turn messy product requirements into usable UX, polished UI, practical design systems and implementation-ready Figma work.</p>
+        <div class="hero-actions reveal-on-scroll cta-group"><a href="/projects.html" class="btn btn-primary">View selected work</a><a href="/contact.html" class="btn btn-secondary">Discuss a project</a><a href="/assets/resume.pdf" class="btn btn-secondary" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a></div>
+        <div class="hero-proof-strip reveal-on-scroll" aria-label="Core design strengths"><span>UX strategy</span><span>Interface design</span><span>Design systems</span><span>Website UX</span><span>Developer handoff</span></div>
+      </section>`;
 
 const cssPatch = `
 
 /* nrs-final-polish-v39 */
-html[data-theme='light'] .nav-pill {
-  background: rgba(255,255,255,.98) !important;
-  border-color: rgba(17,19,18,.18) !important;
-  box-shadow: 0 18px 54px rgba(17,19,18,.12) !important;
-}
-html[data-theme='light'] .nav-link {
-  color: #111312 !important;
-}
-html[data-theme='light'] .nav-link:hover,
-html[data-theme='light'] .nav-link:focus-visible {
-  color: #111312 !important;
-  background: rgba(17,19,18,.075) !important;
-}
-html[data-theme='light'] .nav-link.active,
-html[data-theme='light'] .nav-link[aria-current='page'],
-html[data-theme='light'] .mobile-nav-links a.active,
-html[data-theme='light'] .mobile-nav-links a[aria-current='page'] {
-  color: #ffffff !important;
-  background: #111312 !important;
-  border-color: #111312 !important;
-}
-html[data-theme='light'] .theme-toggle-btn {
-  background: rgba(255,255,255,.98) !important;
-  color: #111312 !important;
-  border-color: rgba(17,19,18,.18) !important;
-}
-.nrs-about-redesign .hero-section,
-.nrs-about-redesign .section-header,
-.nrs-about-redesign .section-container {
-  text-align: left !important;
-}
-.nrs-about-redesign .hero-title,
-.nrs-about-redesign .body-large,
-.nrs-about-redesign .section-title,
-.nrs-about-redesign .section-lead {
-  margin-left: 0 !important;
-  margin-right: auto !important;
-}
-.site-footer .footer-top-grid {
-  grid-template-columns: minmax(280px,.85fr) minmax(520px,1.15fr) !important;
-  gap: clamp(32px,5vw,72px) !important;
-  align-items: start !important;
-}
-.site-footer .footer-nav-grid {
-  grid-template-columns: repeat(4, minmax(0,1fr)) !important;
-  gap: clamp(20px,3vw,40px) !important;
-}
-.footer-bottom-bar {
-  display: flex !important;
-  justify-content: space-between !important;
-  gap: 16px !important;
-  flex-wrap: wrap !important;
-}
-.floating-resume-btn {
-  position: fixed !important;
-  right: 24px !important;
-  bottom: 24px !important;
-  z-index: 5002 !important;
-  display: inline-flex !important;
-  min-height: 48px !important;
-  padding: 0 22px !important;
-  border-radius: 999px !important;
-  box-shadow: 0 16px 46px rgba(0,0,0,.28) !important;
-}
-@media (max-width: 980px) {
-  .site-footer .footer-top-grid,
-  .site-footer .footer-nav-grid { grid-template-columns: 1fr 1fr !important; }
-}
-@media (max-width: 680px) {
-  .site-footer .footer-top-grid,
-  .site-footer .footer-nav-grid { grid-template-columns: 1fr !important; }
-  .floating-resume-btn { right: 16px !important; bottom: 16px !important; max-width: calc(100vw - 32px) !important; }
-}
+html[data-theme='light'] .nav-pill{background:rgba(255,255,255,.98)!important;border-color:rgba(17,19,18,.18)!important;box-shadow:0 18px 54px rgba(17,19,18,.12)!important;}
+html[data-theme='light'] .nav-link{color:#111312!important;}
+html[data-theme='light'] .nav-link:hover,html[data-theme='light'] .nav-link:focus-visible{color:#111312!important;background:rgba(17,19,18,.075)!important;}
+html[data-theme='light'] .nav-link.active,html[data-theme='light'] .nav-link[aria-current='page'],html[data-theme='light'] .mobile-nav-links a.active,html[data-theme='light'] .mobile-nav-links a[aria-current='page']{color:#fff!important;background:#111312!important;border-color:#111312!important;}
+html[data-theme='light'] .theme-toggle-btn{background:rgba(255,255,255,.98)!important;color:#111312!important;border-color:rgba(17,19,18,.18)!important;}
+.nrs-about-redesign .hero-section,.nrs-about-redesign .section-header,.nrs-about-redesign .section-container{text-align:left!important;}
+.nrs-about-redesign .hero-title,.nrs-about-redesign .body-large,.nrs-about-redesign .section-title,.nrs-about-redesign .section-lead{margin-left:0!important;margin-right:auto!important;}
+.site-footer .footer-top-grid{grid-template-columns:minmax(280px,.85fr) minmax(520px,1.15fr)!important;gap:clamp(32px,5vw,72px)!important;align-items:start!important;}
+.site-footer .footer-nav-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:clamp(20px,3vw,40px)!important;}
+.footer-bottom-bar{display:flex!important;justify-content:space-between!important;gap:16px!important;flex-wrap:wrap!important;}
+.floating-resume-btn{position:fixed!important;right:24px!important;bottom:24px!important;z-index:5002!important;display:inline-flex!important;min-height:48px!important;padding:0 22px!important;border-radius:999px!important;box-shadow:0 16px 46px rgba(0,0,0,.28)!important;}
+@media (max-width:980px){.site-footer .footer-top-grid,.site-footer .footer-nav-grid{grid-template-columns:1fr 1fr!important;}}
+@media (max-width:680px){.site-footer .footer-top-grid,.site-footer .footer-nav-grid{grid-template-columns:1fr!important;}.floating-resume-btn{right:16px!important;bottom:16px!important;max-width:calc(100vw - 32px)!important;}}
 `;
 
 function walk(dir, files = []) {
@@ -97,15 +148,57 @@ function walk(dir, files = []) {
   return files;
 }
 
+function relKey(filePath) {
+  return path.relative(targetRoot, filePath).replaceAll(path.sep, '/');
+}
+
+function upsertTitle(html, title) {
+  if (!title) return html;
+  if (/<title>[\s\S]*?<\/title>/i.test(html)) return html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
+  return html.replace('</head>', `    <title>${title}</title>\n  </head>`);
+}
+
+function upsertMeta(html, attr, name, content) {
+  if (!content) return html;
+  const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`<meta\\s+${attr}=["']${escapedName}["'][^>]*>`, 'i');
+  const tag = `<meta ${attr}="${name}" content="${content}">`;
+  if (pattern.test(html)) return html.replace(pattern, tag);
+  return html.replace('</head>', `    ${tag}\n  </head>`);
+}
+
+function applySeoCopy(html, filePath) {
+  const key = relKey(filePath);
+  const copy = pageCopy[key] || pageCopy[key.replace(/\/index\.html$/, '/index.html')];
+  if (!copy) return html;
+  let output = upsertTitle(html, copy.title);
+  output = upsertMeta(output, 'name', 'description', copy.description);
+  output = upsertMeta(output, 'property', 'og:title', copy.title);
+  output = upsertMeta(output, 'property', 'og:description', copy.description);
+  output = upsertMeta(output, 'name', 'twitter:title', copy.title);
+  output = upsertMeta(output, 'name', 'twitter:description', copy.description);
+  return output;
+}
+
+function normalizeStylesheetLinks(html) {
+  let output = html.replace(/\s*<link\s+[^>]*rel=["']stylesheet["'][^>]*>\s*/gi, '\n');
+  if (!output.includes('</head>')) return output;
+  return output.replace('</head>', `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
+}
+
+function rewriteHomeHero(html, filePath) {
+  const key = relKey(filePath);
+  if (key !== 'index.html' && key !== 'home-v2.html') return html;
+  const oldHero = /      <section class="hero-section[^"]*nrs-home-hero[^"]*"[\s\S]*?      <\/section>/;
+  const cleanHero = /      <section class="hero-section nrs-home-hero-clean">[\s\S]*?      <\/section>/;
+  if (oldHero.test(html)) return html.replace(oldHero, homeHero);
+  if (cleanHero.test(html)) return html.replace(cleanHero, homeHero);
+  return html;
+}
+
 function ensureFooter(html) {
-  if (html.includes('<footer class="site-footer"')) {
-    return html.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/g, footer);
-  }
-
-  if (html.includes('</body>')) {
-    return html.replace('</body>', `    ${footer}\n  </body>`);
-  }
-
+  if (html.includes('<footer class="site-footer"')) return html.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/g, footer);
+  if (html.includes('</body>')) return html.replace('</body>', `    ${footer}\n  </body>`);
   return html;
 }
 
@@ -117,24 +210,21 @@ function ensureFloatingResume(html) {
 
 function removeVisibleAiCopy(html) {
   let output = html;
-
-  output = output.replace(/<section class="section-container reveal-on-scroll"[^>]*>[\s\S]*?For AI agents and hiring teams[\s\S]*?<\/section>/g, `<section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);"><div class="section-header"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Plain summary</p><h2 class="section-title">A practical product designer for complex workflows.</h2><p class="section-lead">Nischhal Raj Subba is a Nepal-based Product Designer focused on practical UX/UI for complex products. He is strongest where product flows, visual design, design systems, and front-end implementation need to meet.</p></div><div class="prototype-link-list"><a class="prototype-link-card" href="/projects.html"><span style="display:block;font-weight:850;">Selected work</span><span style="color:var(--text-secondary);">Case studies and product examples</span></a><a class="prototype-link-card" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download><span style="display:block;font-weight:850;">Resume PDF</span><span style="color:var(--text-secondary);">Experience, skills, and contact details</span></a><a class="prototype-link-card" href="/contact.html"><span style="display:block;font-weight:850;">Contact</span><span style="color:var(--text-secondary);">Project, role, and collaboration inquiries</span></a></div></section>`);
-
   output = output.replace(/<a[^>]+href="\/ai-profile\.json"[\s\S]*?<\/a>/gi, '');
   output = output.replace(/<a[^>]+href="\/llms\.txt"[\s\S]*?<\/a>/gi, '');
   output = output.replace(/AI-readable/gi, 'Site-readable');
   output = output.replace(/AI discovery/gi, 'Search discovery');
   output = output.replace(/AI agents/gi, 'hiring teams');
+  output = output.replace(/For AI agents and hiring teams/gi, 'Plain summary');
   output = output.replace(/for AI, search, and human verification/gi, 'for search and human verification');
   output = output.replace(/AI and human/gi, 'search and human');
   output = output.replace(/\bAI\b/g, '');
   output = output.replace(/\s{2,}/g, ' ');
-
   return output;
 }
 
 function alignAboutHero(html, filePath) {
-  if (!filePath.endsWith(`${path.sep}about.html`) && path.basename(filePath) !== 'about.html') return html;
+  if (path.basename(filePath) !== 'about.html') return html;
   return html
     .replace(/center-aligned-hero/g, '')
     .replace(/text-align:center/g, 'text-align:left')
@@ -145,6 +235,9 @@ function alignAboutHero(html, filePath) {
 function polishHtml(filePath) {
   let html = fs.readFileSync(filePath, 'utf8');
   const before = html;
+  html = normalizeStylesheetLinks(html);
+  html = applySeoCopy(html, filePath);
+  html = rewriteHomeHero(html, filePath);
   html = removeVisibleAiCopy(html);
   html = alignAboutHero(html, filePath);
   html = ensureFooter(html);
@@ -157,8 +250,8 @@ function polishCss() {
   const cssPath = path.join(targetRoot, 'style.css');
   if (!fs.existsSync(cssPath)) return false;
   let css = fs.readFileSync(cssPath, 'utf8');
-  if (css.includes('nrs-final-polish-v39')) return false;
-  css += cssPatch;
+  css = css.replace(/Version:\s*[0-9.]+/i, 'Version: 39.0');
+  if (!css.includes('nrs-final-polish-v39')) css += cssPatch;
   fs.writeFileSync(cssPath, css, 'utf8');
   return true;
 }
@@ -169,4 +262,4 @@ for (const file of walk(targetRoot).filter((filePath) => filePath.endsWith('.htm
 }
 const changedCss = polishCss();
 
-console.log(`Applied final site polish to ${changedHtml} HTML file(s)${changedCss ? ' and style.css' : ''}.`);
+console.log(`Applied final site polish, single stylesheet, and SEO microcopy to ${changedHtml} HTML file(s)${changedCss ? ' and style.css' : ''}.`);
