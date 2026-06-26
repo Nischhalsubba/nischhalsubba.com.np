@@ -4,12 +4,12 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const stylePath = path.join(targetRoot, 'style.css');
-const styleVersion = '43.0';
-const scriptVersion = '33.0';
+const styleVersion = '44.0';
+const scriptVersion = '34.0';
 
 const css = `
 
-/* nrs-mobile-header-polish-v43 */
+/* nrs-mobile-header-polish-v44 */
 @media (max-width: 850px) {
   .nav-wrapper {
     display: none !important;
@@ -34,6 +34,31 @@ const css = `
     transform: none !important;
     align-items: center !important;
     justify-content: center !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    color: var(--text-primary) !important;
+  }
+
+  .mobile-nav-toggle span {
+    display: block !important;
+    width: 22px !important;
+    height: 2px !important;
+    min-height: 2px !important;
+    border-radius: 999px !important;
+    background: currentColor !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  html[data-theme='light'] .mobile-nav-toggle {
+    color: #111312 !important;
+    background: rgba(255, 255, 255, .94) !important;
+    border-color: rgba(17, 19, 18, .16) !important;
+  }
+
+  html[data-theme='dark'] .mobile-nav-toggle {
+    color: #f4f5f2 !important;
   }
 
   .mobile-logo {
