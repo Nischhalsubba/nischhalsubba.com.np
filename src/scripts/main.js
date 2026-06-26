@@ -17,6 +17,7 @@ import { polishMicrocopy } from './features/microcopy-polish.js';
 import { polishPortfolioCaseStudies } from './features/portfolio-case-studies.js';
 import { addRemainingCaseStudyCoverage } from './features/portfolio-case-study-coverage.js';
 import { initPageExperience } from './features/page-experience.js';
+import { initPageTransitions } from './features/page-transitions.js';
 import { initProfessionalMotionSystem } from './features/motion-system.js';
 import { useProjectDetailImages } from './features/project-images.js';
 import { initResumeDownload } from './features/resume.js';
@@ -55,6 +56,7 @@ onReady(() => {
   polishPortfolioCaseStudies();
   addRemainingCaseStudyCoverage();
   initPageExperience();
+  initPageTransitions();
   resolveUiAuditIssues();
 
   // 2. Navigation and page-level interaction.
