@@ -4,7 +4,7 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const email = 'hinischalsubba@gmail.com';
-const styleHref = '/style.css?v=39.0';
+const styleHref = '/style.css?v=40.0';
 
 const pageCopy = {
   'index.html': {
@@ -122,7 +122,7 @@ const homeHero = `      <section class="hero-section nrs-home-hero-clean">
 
 const cssPatch = `
 
-/* nrs-final-polish-v39 */
+/* nrs-final-polish-v40 */
 html[data-theme='light'] .nav-pill{background:rgba(255,255,255,.98)!important;border-color:rgba(17,19,18,.18)!important;box-shadow:0 18px 54px rgba(17,19,18,.12)!important;}
 html[data-theme='light'] .nav-link{color:#111312!important;}
 html[data-theme='light'] .nav-link:hover,html[data-theme='light'] .nav-link:focus-visible{color:#111312!important;background:rgba(17,19,18,.075)!important;}
@@ -250,8 +250,8 @@ function polishCss() {
   const cssPath = path.join(targetRoot, 'style.css');
   if (!fs.existsSync(cssPath)) return false;
   let css = fs.readFileSync(cssPath, 'utf8');
-  css = css.replace(/Version:\s*[0-9.]+/i, 'Version: 39.0');
-  if (!css.includes('nrs-final-polish-v39')) css += cssPatch;
+  css = css.replace(/Version:\s*[0-9.]+/i, 'Version: 40.0');
+  if (!css.includes('nrs-final-polish-v40')) css += cssPatch;
   fs.writeFileSync(cssPath, css, 'utf8');
   return true;
 }
