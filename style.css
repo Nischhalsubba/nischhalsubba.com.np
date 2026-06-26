@@ -2,7 +2,7 @@
 Theme Name: Nischhal Portfolio Studio Calm
 Author: Nischhal Raj Subba
 Description: Single-source dark/light website design system for nischhalsubba.com.np
-Version: 38.0
+Version: 40.0
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
@@ -256,6 +256,60 @@ body.nrs-contact-page main.container { width: min(1360px, calc(100vw - clamp(48p
 #nrs-scroll-progress { background: rgba(255,255,255,.16) !important; }
 #nrs-scroll-progress::before { background: var(--accent) !important; }
 
+/* v40 unified section width */
+main.container > section,
+main.container > article,
+.section-container,
+.nrs-case-section,
+.nrs-services-section,
+.nrs-contact-section,
+.nrs-blog-hub-shell,
+.nrs-article-frame,
+.nrs-blog-detail-surface,
+.nrs-case-study,
+main:has(.case-hero-img-container),
+body.nrs-services-redesign main.container,
+body.nrs-contact-page main.container {
+  width: var(--site-width) !important;
+  max-width: var(--site-width) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.section-container > *,
+.nrs-case-section > *,
+.nrs-services-section > *,
+.nrs-contact-section > *,
+.impact-summary-grid,
+.project-grid,
+.journey-grid,
+.case-list,
+.prototype-link-list,
+.nrs-services-grid,
+.nrs-services-process,
+.nrs-services-fit,
+.nrs-services-list,
+.nrs-contact-v3-guidance,
+.nrs-contact-v3-meta,
+.nrs-contact-form-grid,
+.snapshot-grid,
+.writing-list,
+.footer-top-grid,
+.footer-nav-grid {
+  width: 100% !important;
+  max-width: none !important;
+}
+.section-header,
+.nrs-services-section-head,
+.nrs-case-hero,
+main:has(.case-hero-img-container) .hero-section,
+article.section-container,
+.nrs-blog-detail-surface {
+  width: 100% !important;
+  max-width: var(--site-width) !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
 @media (max-width: 1100px) {
   :root { --pad-x: clamp(22px, 4vw, 56px); --section-y: clamp(76px, 9vw, 118px); }
   .nrs-home-hero, .nrs-services-hero, .nrs-services-fit, .nrs-contact-v3-hero, .footer-top-grid { grid-template-columns: 1fr !important; min-height: auto; }
@@ -284,6 +338,39 @@ body.nrs-contact-page main.container { width: min(1360px, calc(100vw - clamp(48p
   .hero-actions .btn, .cta-group .btn, .nrs-services-actions .btn, .nrs-contact-actions .btn { width: 100%; }
   .hero-proof-strip { justify-content: flex-start; }
   .hero-portrait-img { width: min(320px, 78vw) !important; }
+
+  /* v40 mobile header spacing */
+  .mobile-nav-toggle {
+    left: max(16px, env(safe-area-inset-left)) !important;
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .mobile-logo {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    max-width: calc(100vw - 168px) !important;
+    min-height: 48px !important;
+    padding: 0 16px !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .theme-toggle-btn {
+    right: max(16px, env(safe-area-inset-right)) !important;
+    width: 48px !important;
+    height: 48px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .mobile-logo {
+    max-width: calc(100vw - 152px) !important;
+    font-size: .86rem !important;
+    padding-inline: 12px !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
