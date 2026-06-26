@@ -4,7 +4,7 @@ const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
 
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
-const styleHref = '/style.css?v=38.0';
+const styleHref = '/style.css?v=39.0';
 const scriptSrc = '/script.js?v=32.0';
 
 function copyDirectory(source, target) {
