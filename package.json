@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/update-portfolio-content.cjs && node scripts/generate-about-contact-pages.cjs && node scripts/ensure-contact-redesign.cjs && node scripts/ensure-homepage-audit-copy.cjs && node scripts/ensure-entity-proof-signals.cjs && node scripts/ensure-seo-growth-assets.cjs && node scripts/ensure-search-intents.cjs && node scripts/ensure-seo-code-fixes.cjs && node scripts/ensure-homepage-hero-layout.cjs && node scripts/normalize-html-runtime.cjs && vite build && node scripts/copy-static-assets.cjs && node scripts/ensure-site-final-polish.cjs --dist && node scripts/generate-resume-pdf.cjs",
+    "build": "node scripts/update-portfolio-content.cjs && node scripts/generate-about-contact-pages.cjs && node scripts/ensure-contact-redesign.cjs && node scripts/ensure-about-contact-v2.cjs && node scripts/ensure-homepage-audit-copy.cjs && node scripts/ensure-entity-proof-signals.cjs && node scripts/ensure-seo-growth-assets.cjs && node scripts/ensure-search-intents.cjs && node scripts/ensure-seo-code-fixes.cjs && node scripts/ensure-homepage-hero-layout.cjs && node scripts/normalize-html-runtime.cjs && vite build && node scripts/copy-static-assets.cjs && node scripts/ensure-site-final-polish.cjs --dist && node scripts/generate-resume-pdf.cjs",
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 .",
     "check:links": "node scripts/check-links.js",
