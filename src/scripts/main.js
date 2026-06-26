@@ -26,6 +26,7 @@ import { resolveUiAuditIssues } from './features/ui-audit-resolutions.js';
 import { applyDesignSystemStandards } from './features/design-system-standards.js';
 import { applyAboutContactStandards } from './features/about-contact-standards.js';
 import { applyFinalSpacingNavProof } from './features/final-spacing-nav-proof.js';
+import { proveMobileHeaderIcon } from './features/mobile-header-icon-proof.js';
 import { fixSectionRhythm } from './features/section-rhythm-fix.js';
 import { initAnalyticsEvents } from './features/analytics-events.js';
 
@@ -81,4 +82,5 @@ onReady(() => {
   enforceDesignSystemShell();
   fixSectionRhythm();
   applyLayoutSystemUniformity();
+  proveMobileHeaderIcon();
 });
