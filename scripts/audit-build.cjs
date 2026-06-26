@@ -27,10 +27,6 @@ const requiredFiles = [
   'site.webmanifest',
 ];
 
-/**
- * Build-time SEO helper sections should not be visible in rendered pages.
- * The JSON-LD/schema can stay, but the helper UI blocks must be stripped.
- */
 const forbiddenHtmlMarkers = [
   'nrs-static-project-context',
   'nrs-static-related-links',
@@ -79,6 +75,10 @@ function fileContains(relativePath, value) {
   return fs.existsSync(filePath) && fs.readFileSync(filePath, 'utf8').includes(value);
 }
 
+function stylesheetHrefs(html) {
+  return Array.from(html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)).map((match) => match[1]);
+}
+
 function hasPortraitAsset() {
   const assetDir = path.join(distDir, 'assets');
   if (!fs.existsSync(assetDir)) return false;
@@ -106,24 +106,32 @@ if (!fs.existsSync(distDir)) {
     if (fs.existsSync(filePath)) fail(`Removed frontend asset still exists in dist: ${relativePath}`);
   }
 
+  const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
+  const homepageStylesheets = stylesheetHrefs(indexHtml);
+  const homepageStylesheet = homepageStylesheets[0];
+
+  if (homepageStylesheets.length !== 1) fail(`Homepage should have exactly one stylesheet link, found ${homepageStylesheets.length}.`);
+  if (homepageStylesheet && !homepageStylesheet.startsWith('/style.css')) fail(`Homepage stylesheet should be /style.css, found ${homepageStylesheet}.`);
+
   for (const htmlFile of walkFiles(distDir, (file) => file.endsWith('.html'))) {
     const html = fs.readFileSync(htmlFile, 'utf8');
     const rel = path.relative(distDir, htmlFile).replaceAll(path.sep, '/');
+    const stylesheets = stylesheetHrefs(html);
 
     for (const marker of forbiddenHtmlMarkers) {
       if (html.includes(marker)) fail(`Visible SEO helper marker found in ${rel}: ${marker}`);
     }
 
+    if (stylesheets.length !== 1) fail(`${rel} should have exactly one stylesheet link, found ${stylesheets.length}.`);
+    if (homepageStylesheet && stylesheets[0] !== homepageStylesheet) fail(`${rel} stylesheet ${stylesheets[0]} does not match homepage stylesheet ${homepageStylesheet}.`);
     if (html.includes('Playfair Display') || html.includes('Playfair+Display')) fail(`${rel} contains legacy Playfair font reference`);
     if (/\bAI\b/.test(html)) fail(`${rel} contains visible AI wording`);
     if (html.includes('/seo-ui-enhancements.css')) fail(`${rel} links removed SEO UI stylesheet`);
-    if (!html.includes('/style.css')) fail(`${rel} is missing the single stylesheet /style.css`);
     if (!htmlUsesAllowedRuntime(html)) fail(`${rel} is missing the website runtime script`);
     if (!html.includes('class="site-footer"')) fail(`${rel} is missing the site footer`);
     if (!html.includes('floating-resume-btn')) fail(`${rel} is missing the floating resume button`);
   }
 
-  const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
   const homepagePositioningChecks = [
     'Product Designer',
     'Web3',
