@@ -256,6 +256,64 @@ function ensureFinalSpacingNavStyles() {
       }
     }
 
+    @media (max-width: 850px) {
+      .nav-wrapper {
+        display: none !important;
+      }
+
+      .mobile-nav-toggle,
+      .mobile-logo,
+      .theme-toggle-btn {
+        position: fixed !important;
+        top: calc(env(safe-area-inset-top, 0px) + 18px) !important;
+        z-index: 2147483000 !important;
+      }
+
+      .mobile-nav-toggle {
+        display: inline-flex !important;
+        left: calc(env(safe-area-inset-left, 0px) + 18px) !important;
+        right: auto !important;
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        min-height: 52px !important;
+        transform: none !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .mobile-logo {
+        display: inline-flex !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: auto !important;
+        max-width: calc(100vw - 190px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) !important;
+        min-width: 0 !important;
+        min-height: 52px !important;
+        padding: 0 16px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .theme-toggle-btn {
+        right: calc(env(safe-area-inset-right, 0px) + 18px) !important;
+        left: auto !important;
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        min-height: 52px !important;
+        transform: none !important;
+      }
+
+      .mobile-nav-overlay {
+        padding-top: calc(env(safe-area-inset-top, 0px) + 104px) !important;
+      }
+    }
+
     @media (max-width: 720px) {
       :root {
         --nrs-section-pad-y: clamp(32px, 8vw, 50px);
@@ -264,6 +322,14 @@ function ensureFinalSpacingNavStyles() {
 
       .snapshot-grid > div {
         min-height: auto !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .mobile-logo {
+        max-width: calc(100vw - 176px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) !important;
+        padding-inline: 12px !important;
+        font-size: .84rem !important;
       }
     }
   `;
