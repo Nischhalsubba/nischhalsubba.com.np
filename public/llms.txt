@@ -56,6 +56,8 @@ Role: Product Designer
 
 ## Useful writing
 
+- How to Prioritize UX Audit Findings Before a Redesign: https://nischhalsubba.com.np/blog/prioritize-ux-audit-findings-before-redesign.html
+- When a Startup Should Run a UX Audit Before a Redesign: https://nischhalsubba.com.np/blog/when-startup-needs-ux-audit-before-redesign.html
 - Designing Web3 Products Without Making Users Feel Lost: https://nischhalsubba.com.np/blog/blog-web3-products.html
 - Web3 Wallet UX Checklist for First-Time Users: https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist.html
 - How to Design Transaction Review Screens for Crypto Apps: https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps.html
