@@ -12,7 +12,8 @@
     "audit:build": "node scripts/audit-build.cjs",
     "audit:design-system": "node scripts/audit-design-system-coverage.cjs",
     "audit:structure": "node scripts/audit-content-structure.cjs",
-    "validate": "npm run build && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:design-system"
+    "audit:seo": "node scripts/audit-final-seo.cjs",
+    "validate": "npm run build && npm run audit:seo && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:design-system"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
