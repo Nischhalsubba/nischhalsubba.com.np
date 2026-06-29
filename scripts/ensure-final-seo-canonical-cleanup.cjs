@@ -244,17 +244,22 @@ function applyMetadata(file) {
 function writeSitemap() {
   const urls = preferredSitemap.map((url) => `  <url>\n    <loc>${site}${url}</loc>\n  </url>`).join('\n');
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  fs.writeFileSync(path.join(targetRoot, 'sitemap.xml'), xml, 'utf8');
+}
 
-  for (const name of ['sitemap.xml']) {
-    fs.writeFileSync(path.join(targetRoot, name), xml, 'utf8');
+function validateCloudflareRedirects(redirects) {
+  for (const [index, rawLine] of redirects.split('\n').entries()) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith('#')) continue;
+    const [from, to] = line.split(/\s+/);
+    if (!from?.startsWith('/') || !to?.startsWith('/')) {
+      throw new Error(`[redirects] Cloudflare Workers Assets requires relative URLs in _redirects. Invalid line ${index + 1}: ${line}`);
+    }
   }
 }
 
 function writeRedirects() {
-  const redirects = `https://www.nischhalsubba.com.np/* https://nischhalsubba.com.np/:splat 301
-http://nischhalsubba.com.np/* https://nischhalsubba.com.np/:splat 301
-http://www.nischhalsubba.com.np/* https://nischhalsubba.com.np/:splat 301
-/home.html / 301
+  const redirects = `/home.html / 301
 /home-v2.html / 301
 /blog.html /blog/ 301
 /index.html / 301
@@ -264,6 +269,7 @@ http://www.nischhalsubba.com.np/* https://nischhalsubba.com.np/:splat 301
 /contact /contact.html 301
 /projects /projects.html 301
 `;
+  validateCloudflareRedirects(redirects);
   fs.writeFileSync(path.join(targetRoot, '_redirects'), redirects, 'utf8');
 }
 
@@ -277,4 +283,4 @@ for (const file of walk(targetRoot).filter((item) => item.endsWith('.html'))) {
 writeSitemap();
 writeRedirects();
 
-console.log(`Final SEO cleanup applied to ${updated} preferred page(s); noindexed ${legacy} legacy route(s).`);
+console.log(`Final SEO cleanup applied to ${updated} preferred page(s); noindexed ${legacy} legacy route(s), and wrote Cloudflare-safe relative redirects.`);
