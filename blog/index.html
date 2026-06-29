@@ -29,42 +29,7 @@
     }
   } catch (error) {}
   root.setAttribute("data-theme", theme);
-  root.style.colorScheme = theme;
-
-  var style = document.createElement("style");
-  style.id = "nrs-first-paint-theme";
-  style.textContent = [
-    ":root{--nrs-first-bg:#111111;--nrs-first-text:#f2f2f2;--nrs-progress:#eeeeee;color-scheme:dark;}",
-    "html[data-theme='light']{--nrs-first-bg:#ffffff;--nrs-first-text:#171717;--nrs-progress:#171717;color-scheme:light;}",
-    "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;background-image:none!important;color:var(--nrs-first-text)!important;}",
-    "body::before,body::after{background:none!important;opacity:0!important;}",
-    "#nrs-scroll-progress{position:fixed;top:0;left:0;width:100%;height:6px;z-index:2147483647;pointer-events:none;background:rgba(255,255,255,.16)!important;opacity:1!important;transform:none!important;overflow:hidden;}",
-    "html[data-theme='light'] #nrs-scroll-progress{background:rgba(68,68,68,.16)!important;}",
-    "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress);transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
-    "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}"
-  ].join("");
-  document.head.appendChild(style);
-
-  function ensureProgressBar() {
-    if (document.getElementById("nrs-scroll-progress")) return;
-    var bar = document.createElement("div");
-    bar.id = "nrs-scroll-progress";
-    bar.setAttribute("aria-hidden", "true");
-    if (document.body) document.body.prepend(bar);
-    else document.addEventListener("DOMContentLoaded", ensureProgressBar, { once: true });
-  }
-
-  function updateProgress() {
-    var scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable));
-    root.style.setProperty("--nrs-scroll-progress-scale", String(value));
-  }
-
-  ensureProgressBar();
-  updateProgress();
-  window.addEventListener("scroll", updateProgress, { passive: true });
-  window.addEventListener("resize", updateProgress);
-  window.addEventListener("pageshow", updateProgress);
+  root.style.colorScheme = theme);
 })();
 </script>
   </head>
@@ -82,6 +47,9 @@
       <div class="search-wrapper reveal-on-scroll"><input type="search" id="search-blog" class="search-input" placeholder="Search product design articles..." aria-label="Search articles" /></div>
       <section class="section-container" style="padding-top:0;">
         <div class="writing-list reveal-on-scroll">
+          <a href="/blog/design-systems-small-product-teams.html" class="writing-item" data-category="design systems startup small teams figma developer handoff"><span class="w-date">Jun 29, 2026</span><div class="w-info"><span class="w-title">Design Systems for Small Product Teams Without Overbuilding</span><span class="w-summary">A practical guide to building reusable product decisions, states, component rules, and handoff notes without overbuilding.</span></div><span class="w-arrow">&rarr;</span></a>
+          <a href="/blog/design-handoff-checklist-startup-product-teams.html" class="writing-item" data-category="design handoff figma developer startup product teams"><span class="w-date">Jun 28, 2026</span><div class="w-info"><span class="w-title">Design Handoff Checklist for Startup Product Teams</span><span class="w-summary">A practical checklist for turning Figma work into developer-ready product decisions, states, responsive rules, and QA notes.</span></div><span class="w-arrow">&rarr;</span></a>
+          <a href="/blog/prioritize-ux-audit-findings-before-redesign.html" class="writing-item" data-category="ux audit prioritization product redesign saas web3"><span class="w-date">Jun 27, 2026</span><div class="w-info"><span class="w-title">How to Prioritize UX Audit Findings Before a Redesign</span><span class="w-summary">A practical way to sort UX audit findings by user harm, business risk, implementation effort, and redesign timing.</span></div><span class="w-arrow">&rarr;</span></a>
           <a href="/blog/when-startup-needs-ux-audit-before-redesign.html" class="writing-item" data-category="ux audit startup redesign product clarity"><span class="w-date">Jun 26, 2026</span><div class="w-info"><span class="w-title">When a Startup Should Run a UX Audit Before a Redesign</span><span class="w-summary">A practical guide for startup teams deciding whether to audit the current product experience before redesigning screens.</span></div><span class="w-arrow">&rarr;</span></a>
           <a href="/blog/blog-web3-products.html" class="writing-item" data-category="web3 ux product design"><span class="w-date">Apr 26, 2026</span><div class="w-info"><span class="w-title">Designing Web3 Products Without Making Users Feel Lost</span><span class="w-summary">What Yarsha and Mokshya taught me about wallet clarity, transaction review, trust language, and designing for people who may not understand Web3 deeply.</span></div><span class="w-arrow">&rarr;</span></a>
           <a href="/blog/blog-good-handoff.html" class="writing-item" data-category="handoff development figma ux process"><span class="w-date">Apr 25, 2026</span><div class="w-info"><span class="w-title">Why Good Handoff Matters More Than Perfect Screens</span><span class="w-summary">A Figma file is not enough. Strong handoff explains behavior, states, responsive rules, edge cases, and design intent.</span></div><span class="w-arrow">&rarr;</span></a>
