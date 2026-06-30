@@ -48,7 +48,7 @@ const css = `
   margin: 0 !important;
   font-size: clamp(3rem, 6vw, 6.7rem) !important;
   line-height: .96 !important;
-  letter-spacing: -.065em !important;
+  letter-spacing: 0 !important;
 }
 .nrs-about-v2 .body-large,
 .nrs-contact-v2 .body-large {

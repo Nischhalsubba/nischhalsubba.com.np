@@ -6,6 +6,7 @@ import { enforceDesignSystemShell } from './features/nav-consistency.js';
 import { applyLayoutSystemUniformity } from './features/layout-system-uniformity.js';
 import { applyViewportResponsivePolish } from './features/viewport-responsive-polish.js';
 import { normalizeArticleLayout } from './features/article-layout.js';
+import { ensureBlogGeneratedVisuals } from './features/blog-visuals.js';
 import { polishContactPage } from './features/contact-page-polish.js';
 import { initActiveNavigation } from './features/navigation.js';
 import { initContactForm } from './features/contact-form.js';
@@ -30,6 +31,7 @@ import { applyFinalSpacingNavProof } from './features/final-spacing-nav-proof.js
 import { proveMobileHeaderIcon } from './features/mobile-header-icon-proof.js';
 import { fixSectionRhythm } from './features/section-rhythm-fix.js';
 import { initAnalyticsEvents } from './features/analytics-events.js';
+import { applyTypographyRefinement } from './features/typography-refinement.js';
 
 /**
  * Site runtime entrypoint.
@@ -48,6 +50,7 @@ onReady(() => {
   applyLayoutSystemUniformity();
   applyViewportResponsivePolish();
   normalizeArticleLayout();
+  ensureBlogGeneratedVisuals();
   useProjectDetailImages();
   initTheme();
   polishListSpacing();
@@ -85,4 +88,5 @@ onReady(() => {
   fixSectionRhythm();
   applyLayoutSystemUniformity();
   proveMobileHeaderIcon();
+  applyTypographyRefinement();
 });

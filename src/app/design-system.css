@@ -43,7 +43,7 @@ body {
     linear-gradient(135deg, #f7faff 0%, #ffffff 50%, #eef6ff 100%);
   color: var(--foreground);
   font-family: var(--font-body);
-  letter-spacing: -0.006em;
+  letter-spacing: 0;
 }
 
 h1,
@@ -65,7 +65,7 @@ h3,
 
 .hero-title {
   font-family: var(--font-display);
-  letter-spacing: -0.055em;
+  letter-spacing: 0;
   line-height: 0.95;
 }
 
@@ -135,6 +135,6 @@ h3,
 
 @media (max-width: 576px) {
   .hero-title {
-    letter-spacing: -0.045em;
+    letter-spacing: 0;
   }
 }

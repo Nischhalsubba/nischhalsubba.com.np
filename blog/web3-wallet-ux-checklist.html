@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="nrs-search-intent" content="Web3 wallet UX checklist" />
+    <title>Web3 Wallet UX Checklist: Signing, Permissions &amp; Transaction Review | Nischhal Raj Subba</title>
+    <meta name="description" content="A Web3 wallet UX checklist for safer signing flows, permissions, transaction review, fee clarity, risk language, loading states and confirmation feedback." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Web3 Wallet UX Checklist: Signing, Permissions &amp; Transaction Review | Nischhal Raj Subba" />
+    <meta property="og:description" content="A Web3 wallet UX checklist for safer signing flows, permissions, transaction review, fee clarity, risk language, loading states and confirmation feedback." />
+    <meta property="og:url" content="https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist" />
+    <meta property="og:image" content="https://nischhalsubba.com.np/assets/images/blog-web3-wallet-ux-cover.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Web3 Wallet UX Checklist: Signing, Permissions &amp; Transaction Review | Nischhal Raj Subba" />
+    <meta name="twitter:description" content="A Web3 wallet UX checklist for safer signing flows, permissions, transaction review, fee clarity, risk language, loading states and confirmation feedback." />
+    <meta name="twitter:image" content="https://nischhalsubba.com.np/assets/images/blog-web3-wallet-ux-cover.png">
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt summary for AI agents" />
+    <link rel="alternate" type="application/json" href="/ai-profile.json" title="AI-readable profile for Nischhal Raj Subba" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script id="nrs-early-theme-bootstrap">
+(function () {
+  var storageKey = "theme";
+  var root = document.documentElement;
+  var theme = "dark";
+  try {
+    var saved = localStorage.getItem(storageKey);
+    if (saved === "light" || saved === "dark") {
+      theme = saved;
+    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+      theme = "light";
+    }
+  } catch (error) {}
+  root.setAttribute("data-theme", theme);
+  root.style.colorScheme = theme;
+
+  var style = document.createElement("style");
+  style.id = "nrs-first-paint-theme";
+  style.textContent = [
+    ":root{--nrs-first-bg:#0c0f0b;--nrs-first-text:#f3f6ea;--nrs-progress:#d8ff48;--nrs-progress-track:rgba(243,246,234,.15);color-scheme:dark;}",
+    "html[data-theme='light']{--nrs-first-bg:#f4efe4;--nrs-first-text:#141410;--nrs-progress:#141410;--nrs-progress-track:rgba(20,20,16,.16);color-scheme:light;}",
+    "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;color:var(--nrs-first-text)!important;}",
+    "#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:5px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track)!important;opacity:1!important;transform:none!important;overflow:hidden!important;}",
+    "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress)!important;transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
+    "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}"
+  ].join("");
+  document.head.appendChild(style);
+
+  function ensureProgressBar() {
+    if (document.getElementById("nrs-scroll-progress")) return;
+    var bar = document.createElement("div");
+    bar.id = "nrs-scroll-progress";
+    bar.setAttribute("aria-hidden", "true");
+    if (document.body) document.body.prepend(bar);
+    else document.addEventListener("DOMContentLoaded", ensureProgressBar, { once: true });
+  }
+
+  function updateProgress() {
+    var scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable));
+    root.style.setProperty("--nrs-scroll-progress-scale", String(value));
+  }
+
+  ensureProgressBar();
+  updateProgress();
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress);
+  window.addEventListener("pageshow", updateProgress);
+})();
+</script>
+    <link rel="stylesheet" href="/style.css?v=41.0" />
+    <script type="application/ld+json" id="nrs-article-schema">{"@context":"https://schema.org","@type":"Article","headline":"Web3 Wallet UX Checklist for Safer Transaction Flows","description":"A Web3 wallet UX checklist covering signing context, permissions, transaction review, risk language, loading states, confirmation states and user trust.","datePublished":"2026-06-24","dateModified":"2026-06-24","author":{"@type":"Person","@id":"https://nischhalsubba.com.np/#nischhal-raj-subba","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/about","jobTitle":"Product Designer"},"publisher":{"@type":"Person","@id":"https://nischhalsubba.com.np/#nischhal-raj-subba","name":"Nischhal Raj Subba"},"mainEntityOfPage":"https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist","about":"Web3 wallet UX checklist for signing, permissions and transaction review"}</script>
+      <script type="application/ld+json" id="nrs-search-intent-schema">{"@context":"https://schema.org","@type":"Article","@id":"https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist#search-intent","url":"https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist","name":"Web3 Wallet UX Checklist | Nischhal Raj Subba","description":"A checklist for improving Web3 wallet UX, transaction review, permissions, risk language, confirmation states and trust-building interaction design.","about":"Web3 wallet UX checklist","isPartOf":{"@type":"WebSite","@id":"https://nischhalsubba.com.np/#website","name":"Nischhal Raj Subba Portfolio","url":"https://nischhalsubba.com.np/"},"author":{"@type":"Person","@id":"https://nischhalsubba.com.np/#nischhal-raj-subba","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/about","jobTitle":"Product Designer"}}</script>
+  </head>
+  <body>
+    <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/" class="">Home</a><a href="/projects" class="">Work</a><a href="/services">Services</a><a href="/about" class="">About</a><a href="/blog/" class=" active" aria-current="page">Writing</a><a href="/contact" class="">Contact</a></nav></div><button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button><nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects" class="nav-link">Work</a><a href="/services" class="nav-link">Services</a><a href="/about" class="nav-link">About</a><a href="/blog/" class="nav-link active" aria-current="page">Writing</a><a href="/contact" class="nav-link">Contact</a></div></nav>
+    <main class="container nrs-seo-article">
+      <article class="section-container" style="padding-top:150px;max-width:900px;">
+        <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Product design article</p>
+        <h1 class="hero-title" style="max-width:980px;">Web3 Wallet UX Checklist for Safer Transaction Flows</h1>
+        <p class="body-large" style="margin-top:24px;color:var(--text-secondary);">Web3 UX fails when users are asked to approve something they do not understand. Good wallet UX slows down the right moments, explains risk clearly, and avoids turning every action into a technical panic room.</p><figure class="nrs-blog-cover"><img class="nrs-blog-cover-img" src="/assets/images/blog-web3-wallet-ux-cover.png" alt="Generated product design cover showing Web3 wallet review, permissions, and trust-focused interface states" width="1600" height="900" loading="eager" decoding="async"></figure>
+        <div class="hero-proof-strip" style="margin-top:28px;"><span>Written by Nischhal Raj Subba</span><span>Updated 2026-06-24</span><span>Web3 wallet UX checklist for signing, permissions and transaction review</span></div>
+      </article>
+      <section class="section-container" style="padding-top:0;max-width:900px;">
+        <ul class="case-list">
+          <li><strong>Show what the user is approving:</strong> Every signing or transaction step should explain the action, asset, network, address, amount, fees, permissions, and consequence before the user confirms.</li>
+          <li><strong>Use plain risk language:</strong> Avoid hiding the meaning behind protocol jargon. If an action grants access, changes ownership, triggers a fee, or cannot be reversed, say that clearly.</li>
+          <li><strong>Design for waiting and failure:</strong> Wallet flows need pending, delayed, rejected, failed, expired, and confirmed states. Without these, users refresh, retry, or assume the product broke.</li>
+          <li><strong>Keep proof close to action:</strong> Project pages, trust signals, protocol context, support links, and transaction history help users understand whether they are acting in the right place.</li>
+        </ul>
+      </section>
+      <section class="section-container" style="border-top:1px solid var(--border-faint);max-width:900px;">
+        <div class="section-header"><p class="eyebrow">Related pages</p><h2 class="section-title">Use this with real portfolio context.</h2><p class="section-lead">These links connect the article to public proof, service intent, and contact paths.</p></div>
+        <div class="prototype-link-list">
+          <a class="prototype-link-card" href="/project-yarsha"><span style="display:block;font-weight:850;">Yarsha Web3 UX case study</span><span style="color:var(--text-secondary);">Open related page</span></a>
+          <a class="prototype-link-card" href="/web3-ux-designer"><span style="display:block;font-weight:850;">Web3 UX design service</span><span style="color:var(--text-secondary);">Open related page</span></a>
+          <a class="prototype-link-card" href="/contact"><span style="display:block;font-weight:850;">Contact for Web3 UX work</span><span style="color:var(--text-secondary);">Open related page</span></a>
+          <a class="prototype-link-card" href="/media-kit"><span style="display:block;font-weight:850;">Media kit and proof links</span><span style="color:var(--text-secondary);">Use official profile and citation details</span></a>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects">Work</a><a href="/services">Services</a><a href="/about">About</a><a href="/blog/">Writing</a><a href="/contact">Contact</a><a href="/media-kit">Media kit</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>
+    <script type="module" src="/script.js?v=32.0"></script>
+  </body>
+</html>

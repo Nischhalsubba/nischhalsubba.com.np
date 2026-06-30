@@ -175,7 +175,7 @@ function ensureDesignSystemStyles() {
     .nrs-project-detail-page .journey-card h3 {
       font-family: var(--font-sans) !important;
       font-size: clamp(1.08rem, 1.35vw, 1.28rem) !important;
-      letter-spacing: -0.025em !important;
+      letter-spacing: 0!important;
       line-height: 1.25 !important;
       margin: 0 !important;
       color: var(--text-primary) !important;
@@ -245,7 +245,7 @@ function ensureDesignSystemStyles() {
       font-family: var(--font-serif) !important;
       font-size: clamp(1.35rem, 1.8vw, 1.75rem) !important;
       line-height: 1.12 !important;
-      letter-spacing: -0.035em !important;
+      letter-spacing: 0!important;
       color: var(--text-primary) !important;
     }
 
@@ -287,7 +287,7 @@ function ensureDesignSystemStyles() {
       font-size: 0.76rem !important;
       font-weight: 800 !important;
       line-height: 1 !important;
-      letter-spacing: 0.08em !important;
+      letter-spacing: 0!important;
       text-transform: uppercase !important;
       box-shadow: none !important;
     }
@@ -317,7 +317,7 @@ function ensureDesignSystemStyles() {
       padding: 0 18px !important;
       border-radius: var(--radius-card) !important;
       font-weight: 850 !important;
-      letter-spacing: -0.01em !important;
+      letter-spacing: 0!important;
       box-shadow: none !important;
       transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease, color 160ms ease !important;
     }

@@ -179,7 +179,7 @@ function ensureUniformityStyles() {
       max-width: 880px !important;
       font-size: clamp(4.2rem, 6.8vw, 8rem) !important;
       line-height: .9 !important;
-      letter-spacing: -.068em !important;
+      letter-spacing: 0!important;
     }
 
     body.nrs-services-redesign .nrs-services-lead {

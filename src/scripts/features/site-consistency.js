@@ -135,7 +135,7 @@ function injectConsistencyStyles() {
       color: var(--text-primary) !important;
       font-family: var(--font-serif) !important;
       font-weight: 400 !important;
-      letter-spacing: -0.055em !important;
+      letter-spacing: 0!important;
     }
 
     h3, h4, h5, h6,
@@ -153,7 +153,7 @@ function injectConsistencyStyles() {
 
     h3, .journey-card h3, .clarity-row-list h3, .clarity-steps h3 {
       font-weight: 760 !important;
-      letter-spacing: -0.035em !important;
+      letter-spacing: 0!important;
     }
 
     p, li, .body-large, .section-lead, .card-summary, .w-summary, label {
@@ -169,7 +169,7 @@ function injectConsistencyStyles() {
       font-family: var(--font-sans) !important;
       font-size: .72rem !important;
       font-weight: 800 !important;
-      letter-spacing: .16em !important;
+      letter-spacing: 0!important;
       text-transform: uppercase !important;
     }
 
@@ -188,7 +188,7 @@ function injectConsistencyStyles() {
       color: var(--text-secondary) !important;
       font-size: .78rem !important;
       font-weight: 800 !important;
-      letter-spacing: -0.01em !important;
+      letter-spacing: 0!important;
     }
 
     .nav-link:hover,
@@ -235,7 +235,7 @@ function injectConsistencyStyles() {
       border-radius: 999px !important;
       font-size: .86rem !important;
       font-weight: 820 !important;
-      letter-spacing: -0.012em !important;
+      letter-spacing: 0!important;
     }
 
     .btn-primary, .footer-email-btn, .floating-resume-btn {
@@ -497,7 +497,7 @@ function injectConsistencyStyles() {
       padding: 6px 10px;
       border-radius: 999px;
       font-size: .72rem;
-      letter-spacing: .12em;
+      letter-spacing: 0;
       text-transform: uppercase;
     }
 
@@ -580,7 +580,7 @@ function injectConsistencyStyles() {
       color: var(--text-tertiary) !important;
       font-size: .72rem !important;
       font-weight: 850 !important;
-      letter-spacing: .14em !important;
+      letter-spacing: 0!important;
       text-transform: uppercase !important;
     }
 
@@ -592,7 +592,7 @@ function injectConsistencyStyles() {
       margin: 0 0 clamp(24px, 4vw, 42px) !important;
       font-size: clamp(3.2rem, 7vw, 6.2rem) !important;
       line-height: .96 !important;
-      letter-spacing: -.06em !important;
+      letter-spacing: 0!important;
     }
 
     .nrs-blog-detail-page article.section-container > .body-large,
@@ -698,7 +698,7 @@ function injectConsistencyStyles() {
     .nrs-project-detail-page .section-container > h2 {
       font-size: clamp(2rem, 4vw, 3.4rem) !important;
       line-height: 1.02 !important;
-      letter-spacing: -.045em !important;
+      letter-spacing: 0!important;
       margin-bottom: 0 !important;
     }
 

@@ -157,7 +157,7 @@ function injectViewportResponsivePolish() {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         font-weight: 800;
-        letter-spacing: .08em;
+        letter-spacing: 0;
         text-decoration: none;
       }
 
@@ -332,7 +332,7 @@ function injectViewportResponsivePolish() {
       .section-title {
         font-size: clamp(2.28rem, 12.4vw, 3.5rem) !important;
         line-height: 1 !important;
-        letter-spacing: -.052em !important;
+        letter-spacing: 0!important;
         max-width: 100% !important;
       }
 

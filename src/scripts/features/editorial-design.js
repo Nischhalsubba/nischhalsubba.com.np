@@ -41,7 +41,7 @@ function injectEditorialDesignStyles() {
       max-width: 1060px !important;
       font-size: clamp(3rem, 8vw, 7.1rem) !important;
       line-height: .94 !important;
-      letter-spacing: -.064em !important;
+      letter-spacing: 0!important;
       text-wrap: balance;
     }
 
@@ -174,7 +174,7 @@ function injectEditorialDesignStyles() {
       font-family: var(--font-sans, Inter, sans-serif) !important;
       font-size: .74rem !important;
       line-height: 1.35 !important;
-      letter-spacing: .14em !important;
+      letter-spacing: 0!important;
       text-transform: uppercase !important;
     }
 
@@ -407,7 +407,7 @@ function injectEditorialDesignStyles() {
     @media (max-width: 760px) {
       .nrs-inner-page .hero-title {
         font-size: clamp(2.2rem, 13vw, 3.6rem) !important;
-        letter-spacing: -.055em !important;
+        letter-spacing: 0!important;
       }
 
       .nrs-inner-page .section-container,

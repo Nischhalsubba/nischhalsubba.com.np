@@ -110,7 +110,7 @@ body .text-outline, body .text-fill, body .text-outline::before, body .text-fill
   color: var(--text-primary) !important;
   font-family: var(--font-sans) !important;
   font-weight: 800 !important;
-  letter-spacing: -.055em !important;
+  letter-spacing: 0!important;
   line-height: .98 !important;
   -webkit-text-fill-color: var(--text-primary) !important;
   -webkit-text-stroke: 0 !important;
@@ -127,7 +127,7 @@ p, li { color: var(--text-secondary); }
   font-family: var(--font-sans) !important;
   font-size: .72rem;
   font-weight: 800;
-  letter-spacing: .12em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .text-outline::before, .text-fill::before { content: attr(data-text); }
@@ -217,7 +217,7 @@ body.nrs-services-redesign main.container { width: min(1440px, calc(100vw - clam
 .nrs-services-section-head h2 { font-size: clamp(2.35rem, 4.8vw, 5.2rem) !important; }
 .nrs-service-card { display: grid; min-height: 250px; align-content: space-between; gap: 28px; }
 .nrs-service-card::after { display: none; }
-.nrs-service-card small, .nrs-services-step span, .nrs-contact-v3-meta span, .nrs-contact-v3-guidance span { color: var(--text-tertiary); font-family: var(--font-sans) !important; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.nrs-service-card small, .nrs-services-step span, .nrs-contact-v3-meta span, .nrs-contact-v3-guidance span { color: var(--text-tertiary); font-family: var(--font-sans) !important; font-weight: 800; letter-spacing: 0; text-transform: uppercase; }
 .nrs-services-step { display: grid; align-content: space-between; min-height: 240px; }
 .nrs-services-list { display: grid; gap: 0; overflow: hidden; border: 1px solid var(--border-faint); border-radius: var(--radius-lg); background: var(--bg-panel); }
 .nrs-services-list li { display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 28px; min-height: 112px; margin: 0; padding: 28px; background: transparent; color: var(--text-secondary); list-style: none; border-bottom: 1px solid var(--hairline); }
@@ -243,7 +243,7 @@ body.nrs-contact-page main.container { width: min(1360px, calc(100vw - clamp(48p
 .footer-cta h2 { font-size: clamp(2.6rem, 5vw, 5.4rem) !important; }
 .footer-cta p { max-width: 620px; }
 .footer-col { display: grid; gap: 12px; align-content: start; }
-.footer-col h5 { margin: 0 0 6px; color: var(--text-tertiary); font-family: var(--font-sans) !important; font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; }
+.footer-col h5 { margin: 0 0 6px; color: var(--text-tertiary); font-family: var(--font-sans) !important; font-size: .72rem; text-transform: uppercase; letter-spacing: 0; }
 .footer-col a { width: max-content; max-width: 100%; color: var(--text-secondary); text-decoration: none; }
 .footer-col a:hover { color: var(--text-primary); text-decoration: underline; text-underline-offset: 4px; }
 .footer-bottom-bar { margin-top: 56px; color: var(--text-tertiary); }
@@ -375,4 +375,69 @@ article.section-container,
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .001ms !important; }
+}
+
+/* Portfolio typography refinement: keep the dramatic scale, but remove tight
+   tracking and give long-form blog pages the same readable rhythm as the rest
+   of the site. */
+h1, h2, h3, h4, h5, h6,
+.hero-title,
+.section-title,
+.w-title,
+.card-content h3,
+.btn,
+.nav-link,
+.filter-btn,
+.badge-pill,
+.link-pill,
+.eyebrow,
+.meta-text,
+.w-date,
+.card-meta-line,
+.case-label,
+.nrs-card-kicker {
+  letter-spacing: 0 !important;
+}
+
+.nrs-blog-detail-page {
+  --nrs-readable-width: 760px;
+}
+
+.nrs-blog-detail-page article.section-container,
+.nrs-blog-detail-page .nrs-article-frame,
+.nrs-blog-detail-page .blog-prose {
+  max-width: min(1040px, calc(100vw - var(--pad-x) * 2)) !important;
+}
+
+.nrs-blog-detail-page article.section-container > h1,
+.nrs-blog-detail-page article.section-container > .hero-title {
+  max-width: 980px !important;
+  text-wrap: balance;
+}
+
+.nrs-blog-detail-page article.section-container > p,
+.nrs-blog-detail-page article.section-container li,
+.nrs-blog-detail-page .blog-prose p,
+.nrs-blog-detail-page .blog-prose li {
+  max-width: var(--nrs-readable-width) !important;
+  font-size: clamp(1rem, 1.05vw, 1.125rem) !important;
+  line-height: 1.78 !important;
+}
+
+.nrs-blog-detail-page .nrs-blog-cover {
+  max-width: min(1040px, 100%);
+  margin: clamp(32px, 5vw, 58px) 0 clamp(42px, 6vw, 72px);
+}
+
+.nrs-blog-detail-page .nrs-blog-cover-img,
+.nrs-blog-detail-page article img[src*="blog-"] {
+  display: block;
+  width: 100% !important;
+  aspect-ratio: 16 / 9;
+  height: auto !important;
+  object-fit: cover;
+  border: 1px solid var(--border-faint) !important;
+  border-radius: clamp(18px, 2.4vw, 28px) !important;
+  background: var(--bg-surface) !important;
+  box-shadow: 0 28px 86px rgba(0, 0, 0, .24) !important;
 }

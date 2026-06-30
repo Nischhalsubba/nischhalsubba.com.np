@@ -11,37 +11,18 @@
     <meta property="og:title" content="Accessibility in Fintech: Building for Trust | Nischhal Raj Subba" />
     <meta property="og:description" content="Accessibility practices for fintech UX: clear language, recoverable errors, readable transaction reviews, and trust-building flows." />
     <meta property="og:url" content="https://nischhalsubba.com.np/blog-accessibility-fintech.html" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop" />
+    <meta property="og:image" content="https://nischhalsubba.com.np/assets/images/blog-ux-audit-research-cover.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Accessibility in Fintech: Building for Trust | Nischhal Raj Subba" />
     <meta name="twitter:description" content="Accessibility practices for fintech UX: clear language, recoverable errors, readable transaction reviews, and trust-building flows." />
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop" />
+    <meta name="twitter:image" content="https://nischhalsubba.com.np/assets/images/blog-ux-audit-research-cover.png">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=15.3">
+<link rel="stylesheet" href="style.css?v=15.3">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Accessibility in Fintech: Building for Trust",
-  "datePublished": "2025-05-20",
-  "author": {
-    "@type": "Person",
-    "name": "Nischhal Raj Subba"
-  },
-  "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop",
-  "dateModified": "2026-03-12",
-  "description": "Accessibility practices for fintech UX: clear language, recoverable errors, readable transaction reviews, and trust-building flows.",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://nischhalsubba.com.np/blog-accessibility-fintech.html"
-  }
-}
-    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Accessibility in Fintech: Building for Trust","datePublished":"2025-05-20","author":{"@type":"Person","name":"Nischhal Raj Subba"},"image":"https://nischhalsubba.com.np/assets/images/blog-ux-audit-research-cover.png","dateModified":"2026-03-12","description":"Accessibility practices for fintech UX: clear language, recoverable errors, readable transaction reviews, and trust-building flows.","mainEntityOfPage":{"@type":"WebPage","@id":"https://nischhalsubba.com.np/blog-accessibility-fintech.html"}}</script>
     <script id="nrs-early-theme-bootstrap">
 (function () {
   var storageKey = "theme";
@@ -61,12 +42,12 @@
   var style = document.createElement("style");
   style.id = "nrs-first-paint-theme";
   style.textContent = [
-    ":root{--nrs-first-bg:#111111;--nrs-first-text:#f2f2f2;--nrs-progress:#eeeeee;color-scheme:dark;}",
-    "html[data-theme='light']{--nrs-first-bg:#ffffff;--nrs-first-text:#171717;--nrs-progress:#171717;color-scheme:light;}",
+    ":root{--nrs-first-bg:#111111;--nrs-first-text:#f2f2f2;--nrs-progress:#E0E0E0;--nrs-progress-track:rgba(255,255,255,.16);color-scheme:dark;}",
+    "html[data-theme='light']{--nrs-first-bg:#ffffff;--nrs-first-text:#171717;--nrs-progress:#444444;--nrs-progress-track:rgba(68,68,68,.16);color-scheme:light;}",
     "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;background-image:none!important;color:var(--nrs-first-text)!important;}",
     "body::before,body::after{background:none!important;opacity:0!important;}",
-    "#nrs-scroll-progress{position:fixed;top:0;left:0;width:100%;height:4px;z-index:2147483647;pointer-events:none;background:transparent!important;opacity:1!important;transform:none!important;}",
-    "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress);transform:scaleX(var(--nrs-scroll-progress-scale,0.015));transform-origin:left center;transition:transform 80ms linear;}",
+    "#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:6px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track,rgba(255,255,255,.16))!important;opacity:1!important;transform:none!important;overflow:hidden!important;}",
+    "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress);transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
     "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}"
   ].join("");
   document.head.appendChild(style);
@@ -82,7 +63,7 @@
 
   function updateProgress() {
     var scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    var value = Math.max(0.015, Math.min(1, window.scrollY / scrollable));
+    var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable));
     root.style.setProperty("--nrs-scroll-progress-scale", String(value));
   }
 
@@ -93,16 +74,17 @@
   window.addEventListener("pageshow", updateProgress);
 })();
 </script>
+      <link rel="stylesheet" href="/style.css?v=41.0" />
   </head>
 <body>
-    <canvas id="grid-canvas"></canvas>
-    <div class="custom-cursor-dot"></div>
-    <div class="custom-cursor-outline"></div>
+    
+    
+    
     <button class="mobile-nav-toggle" aria-label="Menu"><span></span><span></span></button>
     <a href="index.html" class="mobile-logo">NRS</a>
 
     <div class="mobile-nav-overlay">
-        <nav class="mobile-nav-links">
+        <nav class="mobile-nav-links" aria-label="Mobile navigation">
             <a href="index.html">Home</a>
             <a href="projects.html">Work</a>
             <a href="about.html">About</a>
@@ -160,7 +142,7 @@
                             </div>
 
                             <figure class="blog-figure">
-                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop" alt="Desk scene representing financial product planning and accessibility review" loading="lazy" />
+                                <img height="900" width="1600" decoding="async" class="nrs-blog-cover-img" src="/assets/images/blog-ux-audit-research-cover.png" alt="Generated product design cover showing UX audit boards, research notes, and prioritization artifacts" loading="lazy" />
                                 <figcaption>Fintech UX needs to communicate risk, timing, and next steps clearly enough that users with different reading, vision, and motor needs can still complete the flow with confidence.</figcaption>
                             </figure>
 
@@ -294,5 +276,6 @@
         </div>
     </footer>
     <script type="module" src="script.js?v=15.3"></script>
-</body>
+    <script type="module" src="/script.js?v=32.0"></script>
+  </body>
 </html>

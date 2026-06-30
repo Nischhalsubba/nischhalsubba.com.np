@@ -186,7 +186,7 @@ export function injectGlobalStyles() {
       margin-bottom: clamp(16px, 3vw, 28px) !important;
       font-size: clamp(3rem, 9vw, 7.6rem) !important;
       line-height: .93 !important;
-      letter-spacing: -.065em !important;
+      letter-spacing: 0!important;
     }
 
     .nrs-inner-page .body-large,
@@ -287,7 +287,7 @@ export function injectGlobalStyles() {
     .case-label,
     .badge-pill,
     .eyebrow {
-      letter-spacing: .12em !important;
+      letter-spacing: 0!important;
     }
 
     .badge-pill,
