@@ -5,7 +5,7 @@
   <url><loc>https://nischhalsubba.com.np/projects.html</loc><lastmod>2026-06-24</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
   <url><loc>https://nischhalsubba.com.np/services.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.94</priority></url>
   <url><loc>https://nischhalsubba.com.np/about.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://nischhalsubba.com.np/blog/</loc><lastmod>2026-06-27</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/</loc><lastmod>2026-07-02</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
   <url><loc>https://nischhalsubba.com.np/contact.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
   <url><loc>https://nischhalsubba.com.np/media-kit.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
 
@@ -31,6 +31,10 @@
   <url><loc>https://nischhalsubba.com.np/project-designerex.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.76</priority></url>
   <url><loc>https://nischhalsubba.com.np/project-sassboilerplate.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.76</priority></url>
 
+  <url><loc>https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux.html</loc><lastmod>2026-07-02</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover.html</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.87</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/design-systems-small-product-teams.html</loc><lastmod>2026-06-29</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
+  <url><loc>https://nischhalsubba.com.np/blog/design-handoff-checklist-startup-product-teams.html</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
   <url><loc>https://nischhalsubba.com.np/blog/prioritize-ux-audit-findings-before-redesign.html</loc><lastmod>2026-06-27</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
   <url><loc>https://nischhalsubba.com.np/blog/when-startup-needs-ux-audit-before-redesign.html</loc><lastmod>2026-06-26</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
   <url><loc>https://nischhalsubba.com.np/blog/hire-product-designer-nepal-saas-web3.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -40,7 +44,6 @@
   <url><loc>https://nischhalsubba.com.np/blog/fintech-verification-ux.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.86</priority></url>
   <url><loc>https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
   <url><loc>https://nischhalsubba.com.np/blog/website-ux-checklist-software-companies.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
-
   <url><loc>https://nischhalsubba.com.np/blog/blog-web3-products.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
   <url><loc>https://nischhalsubba.com.np/blog/blog-good-handoff.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
   <url><loc>https://nischhalsubba.com.np/blog/blog-portfolio-product.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -49,8 +52,8 @@
   <url><loc>https://nischhalsubba.com.np/blog/blog-design-systems-front-end.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
   <url><loc>https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
 
-  <url><loc>https://nischhalsubba.com.np/llms.txt</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://nischhalsubba.com.np/llms-full.txt</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://nischhalsubba.com.np/ai-profile.json</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://nischhalsubba.com.np/llms.txt</loc><lastmod>2026-07-02</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://nischhalsubba.com.np/llms-full.txt</loc><lastmod>2026-07-02</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://nischhalsubba.com.np/ai-profile.json</loc><lastmod>2026-07-02</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://nischhalsubba.com.np/humans.txt</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
 </urlset>
