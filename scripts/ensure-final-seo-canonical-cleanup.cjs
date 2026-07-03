@@ -57,7 +57,7 @@ const metadata = {
   'saas-ux-designer.html': {
     canonical: '/saas-ux-designer.html',
     title: 'SaaS UX Design for Dashboards and Admin Tools',
-    description: 'UX/UI design services for SaaS dashboards, admin workflows, onboarding, filters, tables, role-based views, empty states and operational product systems.',
+    description: 'UX/UI design services for SaaS dashboards, admin workflows, onboarding, filters, role-based views, empty states and operational product systems.',
     schemaType: 'Service',
   },
   'figma-design-systems.html': {
@@ -110,6 +110,7 @@ const preferredSitemap = [
   '/blog/figma-handoff-notes-for-developers.html',
   '/blog/ux-audit-checklist-before-redesign.html',
   '/blog/website-ux-checklist-software-companies.html',
+  '/blog/role-based-saas-dashboard-ux.html',
 ];
 
 function walk(dir, files = []) {
@@ -268,6 +269,12 @@ function writeRedirects() {
 /about /about.html 301
 /contact /contact.html 301
 /projects /projects.html 301
+/blog-saas-dashboard-ux-checklist.html /blog/saas-dashboard-ux-checklist.html 301
+/blog-web3-wallet-ux-checklist.html /blog/web3-wallet-ux-checklist.html 301
+/blog-figma-handoff-notes-for-developers.html /blog/figma-handoff-notes-for-developers.html 301
+/blog-ux-audit-checklist-before-redesign.html /blog/ux-audit-checklist-before-redesign.html 301
+/blog-website-ux-checklist-software-companies.html /blog/website-ux-checklist-software-companies.html 301
+/blog-role-based-saas-dashboard-ux.html /blog/role-based-saas-dashboard-ux.html 301
 `;
   validateCloudflareRedirects(redirects);
   fs.writeFileSync(path.join(targetRoot, '_redirects'), redirects, 'utf8');
