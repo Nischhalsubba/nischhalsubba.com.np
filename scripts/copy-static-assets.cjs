@@ -5,11 +5,11 @@ const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const styleHref = '/style.css?v=41.0';
+const remediationStyleHref = '/audit-remediations.css?v=1.0';
 const scriptSrc = '/script.js?v=32.0';
 
 function copyDirectory(source, target) {
   if (!fs.existsSync(source)) return;
-
   fs.mkdirSync(target, { recursive: true });
 
   for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
@@ -29,6 +29,13 @@ function copyFile(source, target) {
   if (!fs.existsSync(source)) return;
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.copyFileSync(source, target);
+}
+
+function copyTextFile(source, target, transform = (value) => value) {
+  if (!fs.existsSync(source)) return;
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  const content = fs.readFileSync(source, 'utf8');
+  fs.writeFileSync(target, transform(content), 'utf8');
 }
 
 function copyRootFile(fileName) {
@@ -74,18 +81,34 @@ function stripUnusedVendorScripts(html) {
 
 function removeLegacyPatchAssets(html) {
   return html
-    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css)[^"]+\.css[^"]*"\s*\/?>/g, '')
+    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css|audit-remediations\.css)[^"]+\.css[^"]*"\s*\/?>/g, '')
     .replace(/\s*<script\s+src="\/(?!script\.js|assets\/)[^"]+\.js[^"]*"(?:\s+defer)?><\/script>/g, '');
 }
 
-function ensureStylesheet(html) {
-  if (html.includes('/style.css')) return html.replace(/\/style\.css\?v=[0-9.]+/g, styleHref);
-  if (!html.includes('</head>')) return html;
-  return html.replace('</head>', `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
+function removeRemoteFontDependencies(html) {
+  return html
+    .replace(/\s*<link[^>]+rel=["']preconnect["'][^>]+href=["']https:\/\/fonts\.(?:googleapis|gstatic)\.com[^"']*["'][^>]*>/gi, '')
+    .replace(/\s*<link[^>]+href=["']https:\/\/fonts\.googleapis\.com\/[^"']+["'][^>]*>/gi, '');
+}
+
+function ensureStylesheets(html) {
+  let output = html;
+
+  if (output.includes('/style.css')) {
+    output = output.replace(/\/style\.css\?v=[0-9.]+/g, styleHref);
+  } else if (output.includes('</head>')) {
+    output = output.replace('</head>', `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
+  }
+
+  if (!output.includes('/audit-remediations.css') && output.includes('</head>')) {
+    output = output.replace('</head>', `    <link rel="stylesheet" href="${remediationStyleHref}" />\n  </head>`);
+  }
+
+  return output;
 }
 
 function ensureRuntimeScript(html) {
-  if (html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"]+\.js["'][^>]*><\/script>/i.test(html)) return html;
+  if (html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"']+\.js["'][^>]*><\/script>/i.test(html)) return html;
   return html.replace('</body>', `  <script type="module" src="${scriptSrc}"></script>\n  </body>`);
 }
 
@@ -95,14 +118,61 @@ function ensureEarlyThemeBootstrap(html) {
   return cleaned.replace('</head>', `    ${EARLY_THEME_BOOTSTRAP}\n  </head>`);
 }
 
+function ensureSkipLinkAndMainTarget(html) {
+  if (!html.includes('<body') || !html.includes('<main')) return html;
+
+  let output = html;
+  if (!/\bmain[^>]*\bid=["']main-content["']/i.test(output)) {
+    output = output.replace(/<main\b([^>]*)>/i, '<main id="main-content"$1>');
+  }
+
+  if (!output.includes('class="skip-link"') && !output.includes("class='skip-link'")) {
+    output = output.replace(/(<body\b[^>]*>)/i, '$1\n    <a class="skip-link" href="#main-content">Skip to main content</a>');
+  }
+
+  return output;
+}
+
+function normalizeFigmaFrames(html) {
+  return html.replace(/<iframe\b([^>]*figma\.com[^>]*)>/gi, (match, attributes) => {
+    let next = attributes
+      .replace(/\sloading=["']eager["']/i, '')
+      .replace(/\sloading=["']lazy["']/i, '');
+
+    if (!/\stitle=["']/i.test(next)) next += ' title="Interactive Figma project preview"';
+    if (!/\sreferrerpolicy=["']/i.test(next)) next += ' referrerpolicy="strict-origin-when-cross-origin"';
+    return `<iframe${next} loading="lazy">`;
+  });
+}
+
+function stripRemoteFontImports(css) {
+  return css
+    .replace(/@import\s+url\(["']?https:\/\/fonts\.googleapis\.com\/[^;]+;\s*/gi, '')
+    .replace(/--font-sans:\s*Manrope,\s*/g, '--font-sans: ');
+}
+
 function optimizeHtmlOutput() {
   for (const filePath of walkFiles(distDir, (file) => file.endsWith('.html'))) {
     const original = fs.readFileSync(filePath, 'utf8');
-    const optimized = ensureRuntimeScript(ensureStylesheet(ensureEarlyThemeBootstrap(removeLegacyPatchAssets(stripUnusedVendorScripts(stripVisibleSeoHelperBlocks(original))))));
+    const optimized = ensureRuntimeScript(
+      ensureStylesheets(
+        ensureEarlyThemeBootstrap(
+          ensureSkipLinkAndMainTarget(
+            normalizeFigmaFrames(
+              removeRemoteFontDependencies(
+                removeLegacyPatchAssets(
+                  stripUnusedVendorScripts(
+                    stripVisibleSeoHelperBlocks(original),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
 
-    if (optimized !== original) {
-      fs.writeFileSync(filePath, optimized, 'utf8');
-    }
+    if (optimized !== original) fs.writeFileSync(filePath, optimized, 'utf8');
   }
 }
 
@@ -110,7 +180,7 @@ copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
 copyDirectory(path.join(rootDir, 'public'), distDir);
 copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
 copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
-copyFile(path.join(rootDir, 'style.css'), path.join(distDir, 'style.css'));
+copyTextFile(path.join(rootDir, 'style.css'), path.join(distDir, 'style.css'), stripRemoteFontImports);
 
 for (const fileName of [
   'robots.txt',
@@ -124,4 +194,4 @@ for (const fileName of [
 
 optimizeHtmlOutput();
 
-console.log('Copied static assets, public files, source runtime modules, root stylesheet, discovery files, runtime entry, manifest, stripped legacy CSS/JS assets, preserved Vite bundles, and removed visible SEO helper blocks from dist.');
+console.log('Copied production assets, removed remote font dependencies, normalized Figma loading, added skip links, preserved the canonical runtime, and stripped legacy output patches.');
