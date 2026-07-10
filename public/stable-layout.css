@@ -1,0 +1,224 @@
+/* Stable presentation rules moved out of runtime JavaScript during the 2026 audit.
+   This file loads after style.css so layout and readability do not depend on DOM repair. */
+
+:root {
+  --nrs-title-grid-gap: clamp(34px, 4.2vw, 58px);
+  --nrs-label-title-gap: clamp(10px, 1.3vw, 16px);
+  --nrs-section-header-gap: clamp(26px, 3.2vw, 42px);
+  --text-tertiary: #989f95;
+}
+
+html[data-theme='light'] {
+  --text-tertiary: #686e65;
+}
+
+.section-container,
+.nrs-about-redesign .section-container,
+.nrs-contact-redesign .section-container,
+main:has(.case-hero-img-container) .section-container {
+  overflow: visible;
+}
+
+.case-label,
+.section-container > .eyebrow,
+.section-header > .eyebrow {
+  display: inline-flex;
+  margin-top: 0;
+  margin-bottom: var(--nrs-label-title-gap);
+}
+
+.case-label + .section-title,
+.section-container > .eyebrow + .section-title,
+.section-header > .eyebrow + .section-title,
+.section-title,
+.nrs-project-detail-page .section-title,
+main:has(.case-hero-img-container) .section-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section-title,
+.nrs-project-detail-page .section-title,
+main:has(.case-hero-img-container) .section-title {
+  position: relative;
+  z-index: 2;
+}
+
+.section-header {
+  margin-bottom: var(--nrs-section-header-gap);
+}
+
+.section-header + :where(
+  .case-list,
+  .outcome-list,
+  .nrs-outcome-list,
+  .journey-grid,
+  .prototype-link-list,
+  .clarity-row-list,
+  .writing-list,
+  .project-grid,
+  .impact-summary-grid,
+  .snapshot-grid,
+  .nrs-blog-proof-grid,
+  .nrs-proof-grid
+) {
+  margin-top: 0;
+  margin-block-start: 0;
+}
+
+.section-title + :where(
+  .case-list,
+  .outcome-list,
+  .nrs-outcome-list,
+  .journey-grid,
+  .prototype-link-list,
+  .clarity-row-list,
+  .writing-list,
+  .project-grid,
+  .impact-summary-grid,
+  .snapshot-grid,
+  .nrs-blog-proof-grid,
+  .nrs-proof-grid
+),
+.case-label + .section-title + :where(
+  .case-list,
+  .outcome-list,
+  .nrs-outcome-list,
+  .journey-grid,
+  .prototype-link-list,
+  .clarity-row-list,
+  .writing-list,
+  .project-grid,
+  .impact-summary-grid,
+  .snapshot-grid,
+  .nrs-blog-proof-grid,
+  .nrs-proof-grid
+),
+.section-container > .eyebrow + .section-title + :where(
+  .case-list,
+  .outcome-list,
+  .nrs-outcome-list,
+  .journey-grid,
+  .prototype-link-list,
+  .clarity-row-list,
+  .writing-list,
+  .project-grid,
+  .impact-summary-grid,
+  .snapshot-grid,
+  .nrs-blog-proof-grid,
+  .nrs-proof-grid
+),
+.body-large + :where(
+  .case-list,
+  .outcome-list,
+  .nrs-outcome-list,
+  .journey-grid,
+  .prototype-link-list,
+  .clarity-row-list,
+  .writing-list,
+  .project-grid,
+  .impact-summary-grid,
+  .snapshot-grid,
+  .nrs-blog-proof-grid,
+  .nrs-proof-grid
+),
+.section-lead + :where(
+  .case-list,
+  .outcome-list,
+  .nrs-outcome-list,
+  .journey-grid,
+  .prototype-link-list,
+  .clarity-row-list,
+  .writing-list,
+  .project-grid,
+  .impact-summary-grid,
+  .snapshot-grid,
+  .nrs-blog-proof-grid,
+  .nrs-proof-grid
+) {
+  margin-top: var(--nrs-title-grid-gap);
+  margin-block-start: var(--nrs-title-grid-gap);
+}
+
+.section-container > :where(
+  .case-list,
+  .outcome-list,
+  .nrs-outcome-list,
+  .journey-grid,
+  .prototype-link-list,
+  .clarity-row-list,
+  .writing-list,
+  .project-grid,
+  .impact-summary-grid,
+  .snapshot-grid,
+  .nrs-blog-proof-grid,
+  .nrs-proof-grid
+):not(:first-child):not(.section-header + *) {
+  margin-top: var(--nrs-title-grid-gap);
+  margin-block-start: var(--nrs-title-grid-gap);
+}
+
+.case-list,
+.outcome-list,
+.nrs-outcome-list,
+.journey-grid,
+.prototype-link-list,
+.clarity-row-list,
+.writing-list,
+.project-grid,
+.impact-summary-grid,
+.snapshot-grid,
+.nrs-blog-proof-grid,
+.nrs-proof-grid {
+  position: relative;
+  z-index: 0;
+}
+
+.case-list::before,
+.case-list::after,
+.outcome-list::before,
+.outcome-list::after,
+.nrs-outcome-list::before,
+.nrs-outcome-list::after {
+  display: none;
+  content: none;
+}
+
+/* Do not conceal portfolio evidence behind visual truncation. */
+.card-summary,
+.w-summary,
+.impact-card p,
+.journey-card p,
+.nrs-service-card p,
+.nrs-services-step p,
+.nrs-contact-v3-guidance p {
+  display: block;
+  overflow: visible;
+  -webkit-box-orient: initial;
+  -webkit-line-clamp: unset;
+}
+
+/* Keep dramatic type without allowing headings to occupy an entire laptop viewport. */
+@media (min-width: 851px) and (max-width: 1180px) {
+  body h1,
+  body .hero-title,
+  .nrs-services-title,
+  .nrs-contact-title {
+    max-width: 18ch;
+    font-size: clamp(3rem, 6.4vw, 5.6rem) !important;
+    line-height: 0.98 !important;
+  }
+
+  body h2,
+  body .section-title {
+    font-size: clamp(2.25rem, 4.6vw, 4.25rem) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --nrs-title-grid-gap: clamp(26px, 7vw, 40px);
+    --nrs-section-header-gap: 26px;
+  }
+}
