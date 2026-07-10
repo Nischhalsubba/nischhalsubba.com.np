@@ -1,25 +1,29 @@
 /**
  * Canonical route manifest for the static portfolio.
  *
- * This does not change the live routing by itself. It documents the intended
- * public URL contract so future cleanup can remove root clutter safely instead
- * of guessing which files are active. Guessing is how static sites become a
- * scavenger hunt with 404 pages.
+ * Public paths use Cloudflare Pages clean URLs. The backing files remain
+ * static HTML, but navigation, canonical tags, sitemaps and tests should all
+ * agree on this one public contract.
  */
 export const coreRoutes = [
   { path: '/', file: 'index.html', title: 'Home', priority: 1 },
-  { path: '/projects.html', file: 'projects.html', title: 'Work', priority: 0.95 },
-  { path: '/about.html', file: 'about.html', title: 'About', priority: 0.88 },
-  { path: '/contact.html', file: 'contact.html', title: 'Contact', priority: 0.86 },
+  { path: '/projects', file: 'projects.html', title: 'Work', priority: 0.95 },
+  { path: '/services', file: 'public/services.html', title: 'Services', priority: 0.92 },
+  { path: '/about', file: 'about.html', title: 'About', priority: 0.88 },
+  { path: '/contact', file: 'contact.html', title: 'Contact', priority: 0.86 },
   { path: '/blog/', file: 'blog/index.html', title: 'Writing', priority: 0.9 },
 ];
 
 export const compatibilityRoutes = [
+  { path: '/home', target: '/', status: 301 },
   { path: '/home.html', target: '/', status: 301 },
+  { path: '/home-v2', target: '/', status: 301 },
   { path: '/home-v2.html', target: '/', status: 301 },
+  { path: '/blog', target: '/blog/', status: 301 },
   { path: '/blog.html', target: '/blog/', status: 301 },
-  { path: '/products.html', target: '/figma-design-systems.html', status: 301 },
-  { path: '/project-detail.html', target: '/projects.html', status: 301 },
+  { path: '/products', target: '/figma-design-systems', status: 301 },
+  { path: '/products.html', target: '/figma-design-systems', status: 301 },
+  { path: '/project-detail.html', target: '/projects', status: 301 },
   { path: '/blog-detail.html', target: '/blog/', status: 301 },
 ];
 
