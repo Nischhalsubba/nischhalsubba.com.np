@@ -1,88 +1,89 @@
 import { onReady } from './utils/dom.js';
-import { injectGlobalStyles } from './features/global-styles.js';
-import { polishSiteConsistency } from './features/site-consistency.js';
-import { enforceDesignSystemShell } from './features/nav-consistency.js';
-import { applyLayoutSystemUniformity } from './features/layout-system-uniformity.js';
-import { applyViewportResponsivePolish } from './features/viewport-responsive-polish.js';
-import { normalizeArticleLayout } from './features/article-layout.js';
-import { ensureBlogGeneratedVisuals } from './features/blog-visuals.js';
-import { polishContactPage } from './features/contact-page-polish.js';
-import { initActiveNavigation } from './features/navigation.js';
-import { initContactForm } from './features/contact-form.js';
-import { initFilters } from './features/filters.js';
-import { lockLightThemePalette } from './features/light-palette-lock.js';
-import { polishListSpacing } from './features/list-spacing.js';
-import { initMobileMenu } from './features/mobile-menu.js';
-import { polishMicrocopy } from './features/microcopy-polish.js';
-import { polishPortfolioCaseStudies } from './features/portfolio-case-studies.js';
-import { addRemainingCaseStudyCoverage } from './features/portfolio-case-study-coverage.js';
-import { initPageExperience } from './features/page-experience.js';
-import { initPageTransitions } from './features/page-transitions.js';
-import { initProfessionalMotionSystem } from './features/motion-system.js';
-import { useProjectDetailImages } from './features/project-images.js';
-import { initResumeDownload } from './features/resume.js';
-import { ensureSiteFooter } from './features/site-footer.js';
-import { initTheme } from './features/theme.js';
-import { resolveUiAuditIssues } from './features/ui-audit-resolutions.js';
-import { applyDesignSystemStandards } from './features/design-system-standards.js';
-import { applyAboutContactStandards } from './features/about-contact-standards.js';
-import { applyFinalSpacingNavProof } from './features/final-spacing-nav-proof.js';
-import { proveMobileHeaderIcon } from './features/mobile-header-icon-proof.js';
-import { initAnalyticsEvents } from './features/analytics-events.js';
-import { applyAuditRemediations } from './features/audit-remediations.js';
 
-/**
- * Run each feature independently so one legacy page-specific failure cannot
- * prevent navigation, theme, contact or accessibility features from starting.
- */
-function runFeature(name, feature) {
-  try {
-    feature();
-  } catch (error) {
-    console.error(`[portfolio] ${name} failed`, error);
+const globalFeatures = [
+  ['theme', () => import('./features/theme.js').then((module) => module.initTheme)],
+  ['global styles', () => import('./features/global-styles.js').then((module) => module.injectGlobalStyles)],
+  ['site consistency', () => import('./features/site-consistency.js').then((module) => module.polishSiteConsistency)],
+  ['design-system shell', () => import('./features/nav-consistency.js').then((module) => module.enforceDesignSystemShell)],
+  ['layout uniformity', () => import('./features/layout-system-uniformity.js').then((module) => module.applyLayoutSystemUniformity)],
+  ['responsive polish', () => import('./features/viewport-responsive-polish.js').then((module) => module.applyViewportResponsivePolish)],
+  ['page experience', () => import('./features/page-experience.js').then((module) => module.initPageExperience)],
+  ['page transitions', () => import('./features/page-transitions.js').then((module) => module.initPageTransitions)],
+  ['mobile menu', () => import('./features/mobile-menu.js').then((module) => module.initMobileMenu)],
+  ['active navigation', () => import('./features/navigation.js').then((module) => module.initActiveNavigation)],
+  ['motion system', () => import('./features/motion-system.js').then((module) => module.initProfessionalMotionSystem)],
+  ['resume download', () => import('./features/resume.js').then((module) => module.initResumeDownload)],
+  ['analytics events', () => import('./features/analytics-events.js').then((module) => module.initAnalyticsEvents)],
+  ['light palette', () => import('./features/light-palette-lock.js').then((module) => module.lockLightThemePalette)],
+  ['UI audit resolutions', () => import('./features/ui-audit-resolutions.js').then((module) => module.resolveUiAuditIssues)],
+  ['design-system standards', () => import('./features/design-system-standards.js').then((module) => module.applyDesignSystemStandards)],
+  ['spacing and navigation proof', () => import('./features/final-spacing-nav-proof.js').then((module) => module.applyFinalSpacingNavProof)],
+  ['mobile header icon', () => import('./features/mobile-header-icon-proof.js').then((module) => module.proveMobileHeaderIcon)],
+  ['audit remediations', () => import('./features/audit-remediations.js').then((module) => module.applyAuditRemediations)],
+];
+
+const projectDetailFeatures = [
+  ['article layout', () => import('./features/article-layout.js').then((module) => module.normalizeArticleLayout)],
+  ['project imagery', () => import('./features/project-images.js').then((module) => module.useProjectDetailImages)],
+  ['list spacing', () => import('./features/list-spacing.js').then((module) => module.polishListSpacing)],
+  ['microcopy polish', () => import('./features/microcopy-polish.js').then((module) => module.polishMicrocopy)],
+  ['case-study polish', () => import('./features/portfolio-case-studies.js').then((module) => module.polishPortfolioCaseStudies)],
+  ['case-study coverage', () => import('./features/portfolio-case-study-coverage.js').then((module) => module.addRemainingCaseStudyCoverage)],
+];
+
+const blogFeatures = [
+  ['article layout', () => import('./features/article-layout.js').then((module) => module.normalizeArticleLayout)],
+  ['blog visuals', () => import('./features/blog-visuals.js').then((module) => module.ensureBlogGeneratedVisuals)],
+  ['list spacing', () => import('./features/list-spacing.js').then((module) => module.polishListSpacing)],
+];
+
+const contactFeatures = [
+  ['contact page polish', () => import('./features/contact-page-polish.js').then((module) => module.polishContactPage)],
+  ['contact form', () => import('./features/contact-form.js').then((module) => module.initContactForm)],
+  ['about/contact standards', () => import('./features/about-contact-standards.js').then((module) => module.applyAboutContactStandards)],
+];
+
+const aboutFeatures = [
+  ['about/contact standards', () => import('./features/about-contact-standards.js').then((module) => module.applyAboutContactStandards)],
+];
+
+const projectsIndexFeatures = [
+  ['filters', () => import('./features/filters.js').then((module) => module.initFilters)],
+  ['list spacing', () => import('./features/list-spacing.js').then((module) => module.polishListSpacing)],
+];
+
+function pageSpecificFeatures() {
+  const path = window.location.pathname.replace(/\.html$/, '');
+
+  if (path === '/contact') return contactFeatures;
+  if (path === '/about') return aboutFeatures;
+  if (path === '/projects') return projectsIndexFeatures;
+  if (path.startsWith('/project-')) return projectDetailFeatures;
+  if (path === '/blog' || path.startsWith('/blog/')) return blogFeatures;
+  return [];
+}
+
+async function loadAndRunFeatures(definitions) {
+  const loaded = await Promise.all(definitions.map(async ([name, load]) => {
+    try {
+      return [name, await load()];
+    } catch (error) {
+      console.error(`[portfolio] failed to load ${name}`, error);
+      return [name, null];
+    }
+  }));
+
+  for (const [name, feature] of loaded) {
+    if (typeof feature !== 'function') continue;
+    try {
+      feature();
+    } catch (error) {
+      console.error(`[portfolio] ${name} failed`, error);
+    }
   }
 }
 
-/**
- * Site runtime entrypoint.
- *
- * Stable layout, spacing and typography now live in authored CSS. Runtime
- * modules are reserved for actual behavior and legacy compatibility work.
- */
-onReady(() => {
-  const features = [
-    ['global styles', injectGlobalStyles],
-    ['theme', initTheme],
-    ['site consistency', polishSiteConsistency],
-    ['design-system shell', enforceDesignSystemShell],
-    ['layout uniformity', applyLayoutSystemUniformity],
-    ['responsive polish', applyViewportResponsivePolish],
-    ['article layout', normalizeArticleLayout],
-    ['blog visuals', ensureBlogGeneratedVisuals],
-    ['project imagery', useProjectDetailImages],
-    ['list spacing', polishListSpacing],
-    ['contact page polish', polishContactPage],
-    ['microcopy polish', polishMicrocopy],
-    ['case-study polish', polishPortfolioCaseStudies],
-    ['case-study coverage', addRemainingCaseStudyCoverage],
-    ['page experience', initPageExperience],
-    ['page transitions', initPageTransitions],
-    ['mobile menu', initMobileMenu],
-    ['active navigation', initActiveNavigation],
-    ['filters', initFilters],
-    ['motion system', initProfessionalMotionSystem],
-    ['resume download', initResumeDownload],
-    ['contact form', initContactForm],
-    ['analytics events', initAnalyticsEvents],
-    ['site footer', ensureSiteFooter],
-    ['light palette', lockLightThemePalette],
-    ['UI audit resolutions', resolveUiAuditIssues],
-    ['design-system standards', applyDesignSystemStandards],
-    ['about/contact standards', applyAboutContactStandards],
-    ['spacing and navigation proof', applyFinalSpacingNavProof],
-    ['mobile header icon', proveMobileHeaderIcon],
-    ['audit remediations', applyAuditRemediations],
-  ];
-
-  features.forEach(([name, feature]) => runFeature(name, feature));
+onReady(async () => {
+  await loadAndRunFeatures(globalFeatures);
+  await loadAndRunFeatures(pageSpecificFeatures());
 });
