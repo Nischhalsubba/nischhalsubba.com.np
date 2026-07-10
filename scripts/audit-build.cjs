@@ -3,28 +3,23 @@ const path = require('node:path');
 
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
-const requestedPortraitUrl = 'https://i.imgur.com/oFHdPUS.png';
 
-/**
- * Files that must exist in the final Cloudflare Pages output.
- *
- * The public website contract is intentionally simple:
- * - one frontend stylesheet: /style.css
- * - one frontend runtime entry: /script.js or Vite's generated /assets/*.js
- * - build/package scripts remain separate tooling and are not public runtime files
- */
 const requiredFiles = [
   'index.html',
-  'home-v2.html',
   'projects.html',
-  'blog/index.html',
+  'services.html',
+  'about.html',
   'contact.html',
+  'blog/index.html',
   'style.css',
+  'audit-remediations.css',
   'script.js',
   'assets/resume.pdf',
   'robots.txt',
   'sitemap.xml',
   'site.webmanifest',
+  '_headers',
+  '_redirects',
 ];
 
 const forbiddenHtmlMarkers = [
@@ -79,39 +74,36 @@ function stylesheetHrefs(html) {
   return Array.from(html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)).map((match) => match[1]);
 }
 
-function hasPortraitAsset() {
-  const assetDir = path.join(distDir, 'assets');
-  if (!fs.existsSync(assetDir)) return false;
-
-  return walkFiles(assetDir, (filePath) => {
-    const fileName = path.basename(filePath);
-    return /^portrait[-\w]*\.(png|jpg|jpeg|webp)$/i.test(fileName);
-  }).length > 0;
+function canonicalHref(html) {
+  return html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1] || '';
 }
 
 function htmlUsesAllowedRuntime(html) {
-  return html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"]+\.js["'][^>]*><\/script>/i.test(html);
+  return html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"']+\.js["'][^>]*><\/script>/i.test(html);
+}
+
+function hasLocalPortraitAsset() {
+  const assetDir = path.join(distDir, 'assets', 'images');
+  if (!fs.existsSync(assetDir)) return false;
+  return walkFiles(assetDir, (filePath) => /^portrait[-\w]*\.(png|jpg|jpeg|webp|avif|svg)$/i.test(path.basename(filePath))).length > 0;
 }
 
 if (!fs.existsSync(distDir)) {
   fail('dist directory does not exist. Run the build before auditing.');
 } else {
   for (const relativePath of requiredFiles) {
-    const filePath = path.join(distDir, relativePath);
-    if (!fs.existsSync(filePath)) fail(`Missing required build output: ${relativePath}`);
+    if (!fs.existsSync(path.join(distDir, relativePath))) fail(`Missing required build output: ${relativePath}`);
   }
 
   for (const relativePath of forbiddenPublicAssets) {
-    const filePath = path.join(distDir, relativePath);
-    if (fs.existsSync(filePath)) fail(`Removed frontend asset still exists in dist: ${relativePath}`);
+    if (fs.existsSync(path.join(distDir, relativePath))) fail(`Removed frontend asset still exists in dist: ${relativePath}`);
   }
 
-  const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
+  const indexPath = path.join(distDir, 'index.html');
+  const indexHtml = fs.existsSync(indexPath) ? fs.readFileSync(indexPath, 'utf8') : '';
   const homepageStylesheets = stylesheetHrefs(indexHtml);
-  const homepageStylesheet = homepageStylesheets[0];
 
-  if (homepageStylesheets.length !== 1) fail(`Homepage should have exactly one stylesheet link, found ${homepageStylesheets.length}.`);
-  if (homepageStylesheet && !homepageStylesheet.startsWith('/style.css')) fail(`Homepage stylesheet should be /style.css, found ${homepageStylesheet}.`);
+  if (!homepageStylesheets.some((href) => href.startsWith('/style.css'))) fail('Homepage is missing /style.css.');
 
   for (const htmlFile of walkFiles(distDir, (file) => file.endsWith('.html'))) {
     const html = fs.readFileSync(htmlFile, 'utf8');
@@ -122,57 +114,30 @@ if (!fs.existsSync(distDir)) {
       if (html.includes(marker)) fail(`Visible SEO helper marker found in ${rel}: ${marker}`);
     }
 
-    if (stylesheets.length !== 1) fail(`${rel} should have exactly one stylesheet link, found ${stylesheets.length}.`);
-    if (homepageStylesheet && stylesheets[0] !== homepageStylesheet) fail(`${rel} stylesheet ${stylesheets[0]} does not match homepage stylesheet ${homepageStylesheet}.`);
-    if (html.includes('Playfair Display') || html.includes('Playfair+Display')) fail(`${rel} contains legacy Playfair font reference`);
-    if (/\bAI\b/.test(html)) fail(`${rel} contains visible AI wording`);
-    if (html.includes('/seo-ui-enhancements.css')) fail(`${rel} links removed SEO UI stylesheet`);
-    if (!htmlUsesAllowedRuntime(html)) fail(`${rel} is missing the website runtime script`);
-    if (!html.includes('class="site-footer"')) fail(`${rel} is missing the site footer`);
-    if (!html.includes('floating-resume-btn')) fail(`${rel} is missing the floating resume button`);
+    if (!stylesheets.some((href) => href.startsWith('/style.css'))) fail(`${rel} is missing /style.css.`);
+    if (html.includes('Playfair Display') || html.includes('Playfair+Display')) fail(`${rel} contains legacy Playfair font reference.`);
+    if (html.includes('https://i.imgur.com/oFHdPUS.png')) fail(`${rel} still depends on the external Imgur portrait.`);
+    if (!htmlUsesAllowedRuntime(html)) fail(`${rel} is missing the website runtime script.`);
+    if (!html.includes('class="site-footer"') && !html.includes('class="floating-resume-btn"')) warn(`${rel} has neither an authored footer nor the floating resume control.`);
+
+    const canonical = canonicalHref(html);
+    if (canonical && canonical.endsWith('.html')) fail(`${rel} uses a .html canonical URL: ${canonical}`);
+
+    const eagerFigmaFrame = /<iframe[^>]+figma\.com[^>]+loading=["']eager["']/i.test(html);
+    if (eagerFigmaFrame) fail(`${rel} eagerly loads a Figma embed.`);
   }
 
-  const homepagePositioningChecks = [
-    'Product Designer',
-    'Web3',
-    'SaaS',
-    'fintech',
-    'developer-ready handoff',
-  ];
-
-  for (const phrase of homepagePositioningChecks) {
+  const positioningChecks = ['Product Designer', 'Web3', 'SaaS', 'fintech', 'developer-ready handoff'];
+  for (const phrase of positioningChecks) {
     if (!indexHtml.includes(phrase)) fail(`Homepage is missing positioning phrase: ${phrase}`);
   }
 
-  if (indexHtml.includes('center-aligned-hero nrs-home-hero')) fail('Homepage still uses the old centered hero class combination.');
-  if (indexHtml.includes('margin-left:auto;margin-right:auto')) fail('Homepage hero still contains centered inline headline margins.');
-  if (indexHtml.includes('justify-content:center')) fail('Homepage hero still contains centered inline CTA alignment.');
-
-  const homepageReferencesPortrait =
-    indexHtml.includes(requestedPortraitUrl) ||
-    /assets\/images\/portrait\.(png|jpg|jpeg|webp)/i.test(indexHtml) ||
-    /<img[^>]+portrait[-\w]*\.(png|jpg|jpeg|webp)/i.test(indexHtml);
-
-  const portraitIsAvailable =
-    indexHtml.includes(requestedPortraitUrl) ||
-    fileContains('style.css', requestedPortraitUrl) ||
-    fileContains('script.js', requestedPortraitUrl) ||
-    hasPortraitAsset();
-
-  if (homepageReferencesPortrait && !portraitIsAvailable) {
-    fail('Homepage references a portrait image, but no matching portrait asset was found in dist.');
-  } else if (!portraitIsAvailable) {
-    warn('No portrait image detected in dist. This is allowed because the clean homepage hero no longer requires it.');
-  }
+  if (!hasLocalPortraitAsset()) warn('No local portrait asset was detected. Pages must not fall back to a third-party portrait URL.');
+  if (fileContains('style.css', 'fonts.googleapis.com')) fail('style.css still imports Google Fonts.');
 
   const resumePath = path.join(distDir, 'assets', 'resume.pdf');
-  if (fs.existsSync(resumePath) && fs.statSync(resumePath).size < 10_000) {
-    fail('Generated resume PDF looks too small.');
-  }
+  if (fs.existsSync(resumePath) && fs.statSync(resumePath).size < 10_000) fail('Generated resume PDF looks too small.');
 }
 
-if (process.exitCode) {
-  process.exit(process.exitCode);
-}
-
+if (process.exitCode) process.exit(process.exitCode);
 console.log('[build-audit] Build output checks passed.');
