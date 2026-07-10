@@ -10,31 +10,47 @@ const required = {
     canonical: `${site}/`,
     titleMustInclude: ['Nischhal Raj Subba', 'UX/UI Product Designer'],
     descriptionMustInclude: ['Portfolio', 'Nepal-based'],
-    robots: 'index, follow',
+    robotsMustInclude: ['index', 'follow'],
   },
   'product-design-nepal.html': {
-    canonical: `${site}/product-design-nepal.html`,
+    canonical: `${site}/product-design-nepal`,
     titleMustInclude: ['UX/UI Product Design Services', 'Nepal'],
     descriptionMustInclude: ['service page', 'startups', 'software teams'],
-    robots: 'index, follow',
+    robotsMustInclude: ['index', 'follow'],
   },
   'services.html': {
-    canonical: `${site}/services.html`,
+    canonical: `${site}/services`,
     titleMustInclude: ['Product Design Services'],
     descriptionMustInclude: ['UX/UI design', 'developer handoff'],
-    robots: 'index, follow',
+    robotsMustInclude: ['index', 'follow'],
+  },
+  'about.html': {
+    canonical: `${site}/about`,
+    robotsMustInclude: ['index', 'follow'],
+  },
+  'projects.html': {
+    canonical: `${site}/projects`,
+    robotsMustInclude: ['index', 'follow'],
+  },
+  'contact.html': {
+    canonical: `${site}/contact`,
+    robotsMustInclude: ['index', 'follow'],
+  },
+  'blog/index.html': {
+    canonical: `${site}/blog/`,
+    robotsMustInclude: ['index', 'follow'],
   },
   'home.html': {
     canonical: `${site}/`,
-    robots: 'noindex, follow',
+    robotsMustInclude: ['noindex', 'follow'],
   },
   'home-v2.html': {
     canonical: `${site}/`,
-    robots: 'noindex, follow',
+    robotsMustInclude: ['noindex', 'follow'],
   },
   'blog.html': {
     canonical: `${site}/blog/`,
-    robots: 'noindex, follow',
+    robotsMustInclude: ['noindex', 'follow'],
   },
 };
 
@@ -73,7 +89,8 @@ for (const [file, rule] of Object.entries(required)) {
   const canonical = canonicalOf(html);
 
   if (rule.canonical && canonical !== rule.canonical) throw new Error(`[seo-audit] ${file} canonical mismatch. Expected ${rule.canonical}, found ${canonical}`);
-  if (rule.robots && robots !== rule.robots) throw new Error(`[seo-audit] ${file} robots mismatch. Expected ${rule.robots}, found ${robots}`);
+  if (canonical.endsWith('.html')) throw new Error(`[seo-audit] ${file} uses an HTML filename as its canonical URL.`);
+  assertContains(`${file} robots`, robots, rule.robotsMustInclude);
   assertContains(`${file} title`, title, rule.titleMustInclude);
   assertContains(`${file} description`, description, rule.descriptionMustInclude);
 }
@@ -84,8 +101,22 @@ if (titleOf(homepage) === titleOf(service)) throw new Error('[seo-audit] Homepag
 if (metaOf(homepage, 'description') === metaOf(service, 'description')) throw new Error('[seo-audit] Homepage and product-design-nepal description must not match.');
 
 const sitemap = read('sitemap.xml');
-for (const bad of [`${site}/home.html`, `${site}/home-v2.html`, `${site}/blog.html`]) {
-  if (sitemap.includes(bad)) throw new Error(`[seo-audit] Sitemap must not include legacy URL: ${bad}`);
+for (const bad of [
+  `${site}/home.html`,
+  `${site}/home-v2.html`,
+  `${site}/blog.html`,
+  `${site}/projects.html`,
+  `${site}/services.html`,
+  `${site}/about.html`,
+  `${site}/contact.html`,
+]) {
+  if (sitemap.includes(bad)) throw new Error(`[seo-audit] Sitemap must not include non-canonical URL: ${bad}`);
 }
 
-console.log('[seo-audit] Final SEO metadata, canonicals, robots and sitemap passed.');
+const redirects = read('_redirects');
+for (const cleanRoute of ['/projects', '/services', '/about', '/contact']) {
+  const reverseRule = new RegExp(`^${cleanRoute.replace('/', '\\/')}\\s+${cleanRoute.replace('/', '\\/')}\\.html\\s+`, 'm');
+  if (reverseRule.test(redirects)) throw new Error(`[seo-audit] Clean route ${cleanRoute} must not redirect to an HTML filename.`);
+}
+
+console.log('[seo-audit] Final metadata, clean canonicals, robots, sitemap and redirect contract passed.');
