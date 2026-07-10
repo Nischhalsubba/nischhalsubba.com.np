@@ -13,6 +13,7 @@ const requiredFiles = [
   'blog/index.html',
   'style.css',
   'audit-remediations.css',
+  'stable-layout.css',
   'script.js',
   'assets/resume.pdf',
   'robots.txt',
@@ -103,7 +104,9 @@ if (!fs.existsSync(distDir)) {
   const indexHtml = fs.existsSync(indexPath) ? fs.readFileSync(indexPath, 'utf8') : '';
   const homepageStylesheets = stylesheetHrefs(indexHtml);
 
-  if (!homepageStylesheets.some((href) => href.startsWith('/style.css'))) fail('Homepage is missing /style.css.');
+  for (const requiredStylesheet of ['/style.css', '/audit-remediations.css', '/stable-layout.css']) {
+    if (!homepageStylesheets.some((href) => href.startsWith(requiredStylesheet))) fail(`Homepage is missing ${requiredStylesheet}.`);
+  }
 
   for (const htmlFile of walkFiles(distDir, (file) => file.endsWith('.html'))) {
     const html = fs.readFileSync(htmlFile, 'utf8');
@@ -114,7 +117,10 @@ if (!fs.existsSync(distDir)) {
       if (html.includes(marker)) fail(`Visible SEO helper marker found in ${rel}: ${marker}`);
     }
 
-    if (!stylesheets.some((href) => href.startsWith('/style.css'))) fail(`${rel} is missing /style.css.`);
+    for (const requiredStylesheet of ['/style.css', '/audit-remediations.css', '/stable-layout.css']) {
+      if (!stylesheets.some((href) => href.startsWith(requiredStylesheet))) fail(`${rel} is missing ${requiredStylesheet}.`);
+    }
+
     if (html.includes('Playfair Display') || html.includes('Playfair+Display')) fail(`${rel} contains legacy Playfair font reference.`);
     if (html.includes('https://i.imgur.com/oFHdPUS.png')) fail(`${rel} still depends on the external Imgur portrait.`);
     if (!htmlUsesAllowedRuntime(html)) fail(`${rel} is missing the website runtime script.`);
