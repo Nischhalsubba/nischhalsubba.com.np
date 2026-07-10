@@ -1,18 +1,16 @@
 const FIGMA_HOSTS = new Set(['www.figma.com', 'figma.com', 'embed.figma.com']);
 
 function ensureAuditStylesheet() {
-  if (document.querySelector('link[data-audit-remediations]')) return;
+  if (document.querySelector('link[href^="/audit-remediations.css"]')) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = '/audit-remediations.css?v=1.0';
-  link.dataset.auditRemediations = 'true';
+  link.href = '/audit-remediations.css?v=1.1';
   document.head.appendChild(link);
 }
 
 function ensureSkipLink() {
   const main = document.querySelector('main');
   if (!main) return;
-
   if (!main.id) main.id = 'main-content';
 
   let skipLink = document.querySelector('.skip-link');
@@ -22,7 +20,6 @@ function ensureSkipLink() {
     skipLink.textContent = 'Skip to main content';
     document.body.prepend(skipLink);
   }
-
   skipLink.setAttribute('href', `#${main.id}`);
 }
 
@@ -41,13 +38,8 @@ function normalizeFigmaEmbedUrl(rawUrl) {
       return target.toString();
     }
 
-    if (current.hostname === 'www.figma.com' || current.hostname === 'figma.com') {
-      current.hostname = 'embed.figma.com';
-      current.searchParams.delete('m');
-      current.searchParams.set('embed-host', 'share');
-      return current.toString();
-    }
-
+    if (current.hostname === 'www.figma.com' || current.hostname === 'figma.com') current.hostname = 'embed.figma.com';
+    current.searchParams.delete('m');
     current.searchParams.set('embed-host', 'share');
     return current.toString();
   } catch {
@@ -64,6 +56,14 @@ function getPublicFigmaUrl(rawUrl) {
   } catch {
     return rawUrl;
   }
+}
+
+function markFigmaUnavailable(frame, fallback, message) {
+  frame.hidden = true;
+  frame.setAttribute('aria-hidden', 'true');
+  fallback.classList.add('is-active');
+  const status = fallback.querySelector('[data-figma-status]');
+  if (status) status.textContent = message;
 }
 
 function enhanceFigmaEmbeds() {
@@ -83,20 +83,38 @@ function enhanceFigmaEmbeds() {
     frame.setAttribute('allow', 'fullscreen');
 
     const wrapper = frame.closest('.embed-frame-wrapper') || frame.parentElement;
-    if (!wrapper || wrapper.querySelector('.figma-embed-fallback')) return;
-
+    if (!wrapper) return;
     wrapper.classList.add('figma-embed-enhanced');
 
-    const fallback = document.createElement('div');
-    fallback.className = 'figma-embed-fallback';
-    fallback.innerHTML = `
-      <div>
-        <strong>Interactive preview</strong>
-        <span>Figma embeds can be blocked by permissions, privacy tools or third-party outages.</span>
-      </div>
-      <a class="btn btn-secondary" href="${getPublicFigmaUrl(normalizedSrc || originalSrc)}" target="_blank" rel="noopener noreferrer">Open in Figma</a>
-    `;
-    wrapper.appendChild(fallback);
+    let fallback = wrapper.querySelector('.figma-embed-fallback');
+    if (!fallback) {
+      fallback = document.createElement('div');
+      fallback.className = 'figma-embed-fallback';
+      fallback.innerHTML = `
+        <div>
+          <strong>Project prototype</strong>
+          <span data-figma-status>The interactive preview is optional. Open the source directly if your browser blocks third-party embeds.</span>
+        </div>
+        <a class="btn btn-secondary" href="${getPublicFigmaUrl(normalizedSrc || originalSrc)}" target="_blank" rel="noopener noreferrer">Open in Figma</a>
+      `;
+      wrapper.appendChild(fallback);
+    }
+
+    let loaded = false;
+    const timeout = window.setTimeout(() => {
+      if (!loaded) markFigmaUnavailable(frame, fallback, 'The embedded preview did not become available. Use the Figma link instead.');
+    }, 9000);
+
+    frame.addEventListener('load', () => {
+      loaded = true;
+      window.clearTimeout(timeout);
+      fallback.classList.add('is-ready');
+    }, { once: true });
+
+    frame.addEventListener('error', () => {
+      window.clearTimeout(timeout);
+      markFigmaUnavailable(frame, fallback, 'The embedded preview failed to load. Use the Figma link instead.');
+    }, { once: true });
   });
 }
 
@@ -113,28 +131,43 @@ function initFloatingResumeVisibility() {
   const button = document.querySelector('.floating-resume-btn');
   if (!button || button.dataset.auditVisibilityReady === 'true') return;
   button.dataset.auditVisibilityReady = 'true';
+  button.classList.add('is-obscured');
 
-  if (window.location.pathname === '/contact' || window.location.pathname === '/contact.html') {
-    button.classList.add('is-obscured');
-    return;
+  const path = window.location.pathname.replace(/\.html$/, '');
+  if (path === '/contact' || path === '/privacy') return;
+
+  const hero = document.querySelector('.hero-section, .nrs-about-v2-hero, .nrs-services-hero');
+  const footerTarget = document.querySelector('footer, .nrs-services-cta, .nrs-about-v2-cta, .nrs-contact-v2-footer-cta');
+  let pastHero = !hero;
+  let nearFooter = false;
+
+  const update = () => button.classList.toggle('is-obscured', !pastHero || nearFooter);
+
+  if (hero && 'IntersectionObserver' in window) {
+    const heroObserver = new IntersectionObserver(([entry]) => {
+      pastHero = !entry.isIntersecting && entry.boundingClientRect.bottom < 0;
+      update();
+    }, { threshold: 0 });
+    heroObserver.observe(hero);
+  } else {
+    pastHero = true;
   }
 
-  const footerTarget = document.querySelector('footer, .nrs-services-cta, .nrs-about-v2-cta, .nrs-contact-v2-footer-cta');
-  if (!footerTarget || !('IntersectionObserver' in window)) return;
+  if (footerTarget && 'IntersectionObserver' in window) {
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      nearFooter = entry.isIntersecting;
+      update();
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.02 });
+    footerObserver.observe(footerTarget);
+  }
 
-  const observer = new IntersectionObserver((entries) => {
-    button.classList.toggle('is-obscured', entries.some((entry) => entry.isIntersecting));
-  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-
-  observer.observe(footerTarget);
+  update();
 }
 
 function improveImageDefaults() {
   document.querySelectorAll('img').forEach((image) => {
     if (!image.hasAttribute('decoding')) image.decoding = 'async';
-    if (!image.hasAttribute('loading') && !image.closest('.hero-section, .nrs-about-v2-hero, .nrs-services-hero')) {
-      image.loading = 'lazy';
-    }
+    if (!image.hasAttribute('loading') && !image.closest('.hero-section, .nrs-about-v2-hero, .nrs-services-hero')) image.loading = 'lazy';
   });
 }
 
