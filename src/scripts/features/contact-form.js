@@ -3,33 +3,65 @@ import { $ } from '../utils/dom.js';
 const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
 const CONTACT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
-function encodeEmailBody(form) {
-  const data = new FormData(form);
-  const name = data.get('name') || '';
-  const email = data.get('email') || '';
-  const need = data.get('need') || '';
-  const timeline = data.get('timeline') || '';
-  const message = data.get('message') || '';
-
-  return {
-    subject: encodeURIComponent(`Portfolio inquiry from ${name || 'website visitor'}`),
-    body: encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Project type: ${need}`,
-        `Timeline: ${timeline}`,
-        '',
-        'Project brief:',
-        message,
-      ].join('\n')
-    ),
-  };
+function getFieldErrorId(field) {
+  const safeName = (field.name || field.id || 'field').replace(/[^a-z0-9_-]/gi, '-');
+  return `contact-error-${safeName}`;
 }
 
-function openEmailFallback(form) {
-  const { subject, body } = encodeEmailBody(form);
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+function getValidationMessage(field) {
+  if (field.validity.valueMissing) return 'This field is required.';
+  if (field.validity.typeMismatch) return 'Enter a valid email address.';
+  if (field.validity.tooShort) return `Use at least ${field.minLength} characters.`;
+  if (field.validity.tooLong) return `Use no more than ${field.maxLength} characters.`;
+  return field.validationMessage || 'Check this field and try again.';
+}
+
+function clearFieldError(field) {
+  field.removeAttribute('aria-invalid');
+  const errorId = getFieldErrorId(field);
+  document.getElementById(errorId)?.remove();
+
+  const describedBy = (field.getAttribute('aria-describedby') || '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((id) => id !== errorId);
+
+  if (describedBy.length) field.setAttribute('aria-describedby', describedBy.join(' '));
+  else field.removeAttribute('aria-describedby');
+}
+
+function showFieldError(field) {
+  clearFieldError(field);
+
+  const error = document.createElement('span');
+  const errorId = getFieldErrorId(field);
+  error.id = errorId;
+  error.className = 'nrs-contact-field-error';
+  error.textContent = getValidationMessage(field);
+
+  field.setAttribute('aria-invalid', 'true');
+  const describedBy = new Set((field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+  describedBy.add(errorId);
+  field.setAttribute('aria-describedby', [...describedBy].join(' '));
+  field.insertAdjacentElement('afterend', error);
+}
+
+function validateForm(form) {
+  const fields = [...form.querySelectorAll('input, select, textarea')]
+    .filter((field) => field.type !== 'hidden' && field.name !== '_honey');
+
+  let firstInvalid = null;
+
+  fields.forEach((field) => {
+    clearFieldError(field);
+    if (!field.checkValidity()) {
+      showFieldError(field);
+      if (!firstInvalid) firstInvalid = field;
+    }
+  });
+
+  firstInvalid?.focus({ preventScroll: false });
+  return !firstInvalid;
 }
 
 function buildSubmissionPayload(form) {
@@ -38,29 +70,28 @@ function buildSubmissionPayload(form) {
 
   payload.set('_subject', 'Portfolio inquiry from nischhalsubba.com.np');
   payload.set('_template', 'table');
-  payload.set('_captcha', 'false');
+  payload.delete('_captcha');
 
-  if (visitorEmail) {
-    payload.set('_replyto', visitorEmail);
-  }
+  if (visitorEmail) payload.set('_replyto', visitorEmail);
 
   payload.set('source_page', window.location.href);
   payload.set('submitted_at', new Date().toISOString());
-
   return payload;
 }
 
 export function initContactForm() {
   const form = $('#contact-form');
-  if (!form) return;
+  if (!form || form.dataset.contactFormReady === 'true') return;
 
+  form.dataset.contactFormReady = 'true';
+  form.noValidate = true;
   form.setAttribute('action', `https://formsubmit.co/${CONTACT_EMAIL}`);
   form.setAttribute('method', 'POST');
 
   const status = $('#contact-form-status') || form.querySelector('[role="status"]');
   const submitButton = form.querySelector('button[type="submit"]');
   const emailFallback = form.querySelector('a[href^="mailto:"]');
-  const originalButtonText = submitButton?.textContent || 'Submit message';
+  const originalButtonText = submitButton?.textContent || 'Send message';
 
   const setStatus = (message, tone = 'neutral') => {
     if (!status) return;
@@ -68,15 +99,21 @@ export function initContactForm() {
     status.dataset.tone = tone;
   };
 
+  form.querySelectorAll('input, select, textarea').forEach((field) => {
+    if (field.type === 'hidden') return;
+    field.addEventListener('input', () => clearFieldError(field));
+    field.addEventListener('change', () => clearFieldError(field));
+  });
+
   emailFallback?.addEventListener('click', () => {
-    setStatus('Opening your email app with the message context.', 'neutral');
+    setStatus('Opening your email app. Your form entries remain on this page.', 'neutral');
   });
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    if (!form.reportValidity()) {
-      setStatus('Please fill the required fields first.', 'error');
+    if (!validateForm(form)) {
+      setStatus('Review the highlighted fields and try again.', 'error');
       return;
     }
 
@@ -85,7 +122,8 @@ export function initContactForm() {
       submitButton.textContent = 'Sending...';
     }
 
-    setStatus('Sending your message to hinischalsubba@gmail.com...', 'neutral');
+    form.setAttribute('aria-busy', 'true');
+    setStatus('Sending your message securely through the form provider...', 'neutral');
 
     try {
       const response = await fetch(CONTACT_ENDPOINT, {
@@ -94,16 +132,17 @@ export function initContactForm() {
         headers: { Accept: 'application/json' },
       });
 
-      if (!response.ok) {
-        throw new Error(`Form endpoint returned ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`Form endpoint returned ${response.status}`);
 
       form.reset();
-      setStatus('Thanks. Your message was sent to hinischalsubba@gmail.com.', 'success');
+      form.querySelectorAll('[aria-invalid="true"]').forEach(clearFieldError);
+      setStatus('Thanks. Your message was sent successfully.', 'success');
     } catch (error) {
-      setStatus('Direct send was blocked. Opening your email app with the same message.', 'error');
-      openEmailFallback(form);
+      console.error('[portfolio] contact form submission failed', error);
+      setStatus('The direct form could not send your message. Your entries are still here; use the email button to send them manually.', 'error');
+      emailFallback?.focus({ preventScroll: false });
     } finally {
+      form.removeAttribute('aria-busy');
       if (submitButton) {
         submitButton.disabled = false;
         submitButton.textContent = originalButtonText;
