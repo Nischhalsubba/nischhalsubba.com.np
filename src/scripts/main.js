@@ -1,6 +1,5 @@
 import { onReady } from './utils/dom.js';
 import { injectGlobalStyles } from './features/global-styles.js';
-import { stabilizeLayout } from './features/layout-rescue.js';
 import { polishSiteConsistency } from './features/site-consistency.js';
 import { enforceDesignSystemShell } from './features/nav-consistency.js';
 import { applyLayoutSystemUniformity } from './features/layout-system-uniformity.js';
@@ -29,9 +28,7 @@ import { applyDesignSystemStandards } from './features/design-system-standards.j
 import { applyAboutContactStandards } from './features/about-contact-standards.js';
 import { applyFinalSpacingNavProof } from './features/final-spacing-nav-proof.js';
 import { proveMobileHeaderIcon } from './features/mobile-header-icon-proof.js';
-import { fixSectionRhythm } from './features/section-rhythm-fix.js';
 import { initAnalyticsEvents } from './features/analytics-events.js';
-import { applyTypographyRefinement } from './features/typography-refinement.js';
 import { applyAuditRemediations } from './features/audit-remediations.js';
 
 /**
@@ -49,14 +46,13 @@ function runFeature(name, feature) {
 /**
  * Site runtime entrypoint.
  *
- * Stable visual rules belong in authored HTML/CSS. This pipeline initializes
- * each compatibility or interaction module once, in a deliberate order.
+ * Stable layout, spacing and typography now live in authored CSS. Runtime
+ * modules are reserved for actual behavior and legacy compatibility work.
  */
 onReady(() => {
   const features = [
     ['global styles', injectGlobalStyles],
     ['theme', initTheme],
-    ['layout rescue', stabilizeLayout],
     ['site consistency', polishSiteConsistency],
     ['design-system shell', enforceDesignSystemShell],
     ['layout uniformity', applyLayoutSystemUniformity],
@@ -84,9 +80,7 @@ onReady(() => {
     ['design-system standards', applyDesignSystemStandards],
     ['about/contact standards', applyAboutContactStandards],
     ['spacing and navigation proof', applyFinalSpacingNavProof],
-    ['section rhythm', fixSectionRhythm],
     ['mobile header icon', proveMobileHeaderIcon],
-    ['typography refinement', applyTypographyRefinement],
     ['audit remediations', applyAuditRemediations],
   ];
 
