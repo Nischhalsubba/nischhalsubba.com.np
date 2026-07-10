@@ -1,12 +1,23 @@
 const TRACKING_ATTR = 'data-nrs-tracked';
 
+function normalizePath(href) {
+  try {
+    return new URL(href, window.location.origin).pathname.replace(/\.html$/, '') || '/';
+  } catch {
+    return href;
+  }
+}
+
 function eventNameForLink(link) {
   const href = link.getAttribute('href') || '';
+  const path = normalizePath(href);
+
   if (href.includes('/assets/resume.pdf')) return 'resume_download_click';
   if (href.startsWith('mailto:')) return 'email_click';
-  if (href.includes('/contact.html')) return 'contact_cta_click';
-  if (href.includes('/project-')) return 'project_case_study_click';
-  if (href.includes('/projects.html')) return 'portfolio_click';
+  if (path === '/contact') return 'contact_cta_click';
+  if (path.startsWith('/project-')) return 'project_case_study_click';
+  if (path === '/projects') return 'portfolio_click';
+  if (href.includes('figma.com')) return 'prototype_open_click';
   if (href.includes('/llms.txt') || href.includes('/ai-profile.json') || href.includes('/humans.txt')) return 'ai_discovery_file_click';
   if (href.includes('behance.net') || href.includes('uxcel.com') || href.includes('linkedin.com') || href.includes('github.com')) return 'external_proof_click';
   return '';
@@ -17,17 +28,9 @@ function emitEvent(name, detail) {
 
   window.dispatchEvent(new CustomEvent('nrs:analytics', { detail: { name, ...detail } }));
 
-  if (Array.isArray(window.dataLayer)) {
-    window.dataLayer.push({ event: name, ...detail });
-  }
-
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', name, detail);
-  }
-
-  if (typeof window.plausible === 'function') {
-    window.plausible(name, { props: detail });
-  }
+  if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: name, ...detail });
+  if (typeof window.gtag === 'function') window.gtag('event', name, detail);
+  if (typeof window.plausible === 'function') window.plausible(name, { props: detail });
 }
 
 export function initAnalyticsEvents() {
