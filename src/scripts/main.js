@@ -32,61 +32,63 @@ import { proveMobileHeaderIcon } from './features/mobile-header-icon-proof.js';
 import { fixSectionRhythm } from './features/section-rhythm-fix.js';
 import { initAnalyticsEvents } from './features/analytics-events.js';
 import { applyTypographyRefinement } from './features/typography-refinement.js';
+import { applyAuditRemediations } from './features/audit-remediations.js';
+
+/**
+ * Run each feature independently so one legacy page-specific failure cannot
+ * prevent navigation, theme, contact or accessibility features from starting.
+ */
+function runFeature(name, feature) {
+  try {
+    feature();
+  } catch (error) {
+    console.error(`[portfolio] ${name} failed`, error);
+  }
+}
 
 /**
  * Site runtime entrypoint.
  *
- * Root HTML files keep loading `/script.js` for backward compatibility. That
- * file imports this module, which then initializes focused feature modules in a
- * predictable order. Keep new browser behavior in `src/scripts/features/` and
- * wire it here instead of scattering inline scripts across static HTML pages.
+ * Stable visual rules belong in authored HTML/CSS. This pipeline initializes
+ * each compatibility or interaction module once, in a deliberate order.
  */
 onReady(() => {
-  // 1. Shared visual/runtime foundations first.
-  injectGlobalStyles();
-  stabilizeLayout();
-  polishSiteConsistency();
-  enforceDesignSystemShell();
-  applyLayoutSystemUniformity();
-  applyViewportResponsivePolish();
-  normalizeArticleLayout();
-  ensureBlogGeneratedVisuals();
-  useProjectDetailImages();
-  initTheme();
-  polishListSpacing();
-  polishContactPage();
-  polishMicrocopy();
-  polishPortfolioCaseStudies();
-  addRemainingCaseStudyCoverage();
-  initPageExperience();
-  initPageTransitions();
-  resolveUiAuditIssues();
+  const features = [
+    ['global styles', injectGlobalStyles],
+    ['theme', initTheme],
+    ['layout rescue', stabilizeLayout],
+    ['site consistency', polishSiteConsistency],
+    ['design-system shell', enforceDesignSystemShell],
+    ['layout uniformity', applyLayoutSystemUniformity],
+    ['responsive polish', applyViewportResponsivePolish],
+    ['article layout', normalizeArticleLayout],
+    ['blog visuals', ensureBlogGeneratedVisuals],
+    ['project imagery', useProjectDetailImages],
+    ['list spacing', polishListSpacing],
+    ['contact page polish', polishContactPage],
+    ['microcopy polish', polishMicrocopy],
+    ['case-study polish', polishPortfolioCaseStudies],
+    ['case-study coverage', addRemainingCaseStudyCoverage],
+    ['page experience', initPageExperience],
+    ['page transitions', initPageTransitions],
+    ['mobile menu', initMobileMenu],
+    ['active navigation', initActiveNavigation],
+    ['filters', initFilters],
+    ['motion system', initProfessionalMotionSystem],
+    ['resume download', initResumeDownload],
+    ['contact form', initContactForm],
+    ['analytics events', initAnalyticsEvents],
+    ['site footer', ensureSiteFooter],
+    ['light palette', lockLightThemePalette],
+    ['UI audit resolutions', resolveUiAuditIssues],
+    ['design-system standards', applyDesignSystemStandards],
+    ['about/contact standards', applyAboutContactStandards],
+    ['spacing and navigation proof', applyFinalSpacingNavProof],
+    ['section rhythm', fixSectionRhythm],
+    ['mobile header icon', proveMobileHeaderIcon],
+    ['typography refinement', applyTypographyRefinement],
+    ['audit remediations', applyAuditRemediations],
+  ];
 
-  // 2. Navigation and page-level interaction.
-  initMobileMenu();
-  initActiveNavigation();
-  initFilters();
-
-  // 3. Progressive enhancements. These should fail silently if unavailable.
-  initProfessionalMotionSystem();
-  initResumeDownload();
-  initContactForm();
-  initAnalyticsEvents();
-
-  // 4. Ensure older/static pages still have a consistent footer.
-  ensureSiteFooter();
-  enforceDesignSystemShell();
-  applyLayoutSystemUniformity();
-
-  // 5. Final guards. These run last because older CSS/runtime modules still exist.
-  lockLightThemePalette();
-  resolveUiAuditIssues();
-  applyDesignSystemStandards();
-  applyAboutContactStandards();
-  applyFinalSpacingNavProof();
-  enforceDesignSystemShell();
-  fixSectionRhythm();
-  applyLayoutSystemUniformity();
-  proveMobileHeaderIcon();
-  applyTypographyRefinement();
+  features.forEach(([name, feature]) => runFeature(name, feature));
 });
