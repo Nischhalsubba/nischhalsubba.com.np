@@ -6,7 +6,8 @@ const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const styleHref = '/style.css?v=41.0';
 const remediationStyleHref = '/audit-remediations.css?v=1.0';
-const scriptSrc = '/script.js?v=32.0';
+const stableLayoutStyleHref = '/stable-layout.css?v=1.0';
+const scriptSrc = '/script.js?v=33.0';
 
 function copyDirectory(source, target) {
   if (!fs.existsSync(source)) return;
@@ -81,7 +82,7 @@ function stripUnusedVendorScripts(html) {
 
 function removeLegacyPatchAssets(html) {
   return html
-    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css|audit-remediations\.css)[^"]+\.css[^"]*"\s*\/?>/g, '')
+    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css|audit-remediations\.css|stable-layout\.css)[^"]+\.css[^"]*"\s*\/?>/g, '')
     .replace(/\s*<script\s+src="\/(?!script\.js|assets\/)[^"]+\.js[^"]*"(?:\s+defer)?><\/script>/g, '');
 }
 
@@ -102,6 +103,10 @@ function ensureStylesheets(html) {
 
   if (!output.includes('/audit-remediations.css') && output.includes('</head>')) {
     output = output.replace('</head>', `    <link rel="stylesheet" href="${remediationStyleHref}" />\n  </head>`);
+  }
+
+  if (!output.includes('/stable-layout.css') && output.includes('</head>')) {
+    output = output.replace('</head>', `    <link rel="stylesheet" href="${stableLayoutStyleHref}" />\n  </head>`);
   }
 
   return output;
@@ -194,4 +199,4 @@ for (const fileName of [
 
 optimizeHtmlOutput();
 
-console.log('Copied production assets, removed remote font dependencies, normalized Figma loading, added skip links, preserved the canonical runtime, and stripped legacy output patches.');
+console.log('Copied production assets, removed remote font dependencies, normalized Figma loading, added skip links, loaded static layout rules, preserved the canonical runtime, and stripped legacy output patches.');
