@@ -1,0 +1,358 @@
+/* Cross-site fixes from the 2026 portfolio audit. Keep this file small and
+   focused; stable component styles should eventually move into the main system. */
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2147483647;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--text-primary, #fff);
+  color: var(--bg-primary, #111);
+  font-weight: 800;
+  text-decoration: none;
+  transform: translateY(-180%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid #9bdcff;
+  outline-offset: 4px;
+}
+
+.nrs-anchor-target,
+main :where(h1, h2, h3, section, article)[id] {
+  scroll-margin-top: 7rem;
+}
+
+body.menu-open {
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+.mobile-nav-overlay[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+.mobile-nav-overlay[aria-hidden="false"] {
+  pointer-events: auto;
+}
+
+.figma-embed-enhanced {
+  display: grid;
+}
+
+.figma-embed-enhanced iframe {
+  width: 100%;
+  min-height: min(620px, 70vh);
+  background: var(--bg-surface, #151515);
+}
+
+.figma-embed-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-top: 1px solid var(--border-faint, rgba(255,255,255,.12));
+  background: var(--bg-surface, #151515);
+}
+
+.figma-embed-fallback div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.figma-embed-fallback span {
+  color: var(--text-secondary, #b8b8b8);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.floating-resume-btn {
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+}
+
+.floating-resume-btn.is-obscured {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.nrs-contact-field-error {
+  display: block;
+  margin-top: 0.45rem;
+  color: #ff9a9a;
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+:where(input, select, textarea)[aria-invalid="true"] {
+  border-color: #ff7f7f !important;
+  box-shadow: 0 0 0 1px #ff7f7f;
+}
+
+.nrs-contact-privacy {
+  color: var(--text-secondary, #b8b8b8);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+/* Services page */
+.nrs-services-page {
+  padding-top: clamp(8rem, 12vw, 10rem);
+  padding-bottom: 7rem;
+}
+
+.nrs-services-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.nrs-services-hero .hero-title {
+  max-width: 14ch;
+}
+
+.nrs-services-hero .body-large {
+  max-width: 49rem;
+  color: var(--text-secondary);
+}
+
+.nrs-services-summary,
+.nrs-service-grid article,
+.nrs-engagement-grid article,
+.nrs-service-faq details,
+.nrs-services-cta {
+  border: 1px solid var(--border-faint);
+  background: var(--bg-surface);
+  border-radius: 1.25rem;
+}
+
+.nrs-services-summary {
+  padding: clamp(1.4rem, 3vw, 2rem);
+}
+
+.nrs-services-summary h2 {
+  margin: 0.65rem 0 1.5rem;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1.15;
+}
+
+.nrs-services-summary dl {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+.nrs-services-summary dl div {
+  display: grid;
+  gap: 0.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-faint);
+}
+
+.nrs-services-summary dt {
+  color: var(--text-tertiary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.nrs-services-summary dd {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.nrs-service-grid,
+.nrs-engagement-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.nrs-service-grid article,
+.nrs-engagement-grid article {
+  display: flex;
+  flex-direction: column;
+  min-height: 18rem;
+  padding: clamp(1.35rem, 2.5vw, 2rem);
+}
+
+.nrs-service-grid h3,
+.nrs-engagement-grid h3 {
+  margin: 1rem 0 0.75rem;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  line-height: 1.15;
+}
+
+.nrs-service-grid p,
+.nrs-engagement-grid p {
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.nrs-service-grid a {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.nrs-service-process {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border-faint);
+}
+
+.nrs-service-process li {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.nrs-service-process li > span {
+  color: var(--text-tertiary);
+  font-weight: 800;
+}
+
+.nrs-service-process h3 {
+  margin: 0 0 0.45rem;
+}
+
+.nrs-service-process p {
+  max-width: 50rem;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.nrs-services-engagement {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.nrs-engagement-grid {
+  grid-template-columns: 1fr;
+}
+
+.nrs-engagement-grid article {
+  min-height: 0;
+}
+
+.nrs-service-faq {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.nrs-service-faq details {
+  padding: 1rem 1.2rem;
+}
+
+.nrs-service-faq summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.nrs-service-faq p {
+  margin: 0.85rem 0 0;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.nrs-services-cta {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding: clamp(2rem, 6vw, 4rem);
+}
+
+.nrs-services-cta h2 {
+  max-width: 16ch;
+  margin: 0.75rem 0 1rem;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 0.98;
+}
+
+.nrs-services-cta > p:not(.eyebrow) {
+  max-width: 45rem;
+  color: var(--text-secondary);
+}
+
+@media (min-width: 851px) and (max-width: 1180px) {
+  .hero-title {
+    font-size: clamp(3rem, 7vw, 6.25rem) !important;
+    line-height: 0.94 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .nrs-services-hero,
+  .nrs-services-engagement {
+    grid-template-columns: 1fr;
+  }
+
+  .nrs-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .figma-embed-enhanced iframe {
+    min-height: 420px;
+  }
+
+  .figma-embed-fallback {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .figma-embed-fallback .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nrs-service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nrs-service-grid article {
+    min-height: 0;
+  }
+
+  .nrs-service-process li {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .floating-resume-btn {
+    max-width: calc(100vw - 2rem);
+    right: 1rem !important;
+    bottom: 1rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
