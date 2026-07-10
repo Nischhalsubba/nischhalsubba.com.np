@@ -9,6 +9,8 @@
 /home-v2.html  /  301
 
 # Canonical writing index
+/writing  /blog/  301
+/writing/  /blog/  301
 /blog  /blog/  301
 /blog.html  /blog/  301
 
