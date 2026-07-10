@@ -13,31 +13,31 @@ const metadata = {
     schemaType: 'ProfilePage',
   },
   'product-design-nepal.html': {
-    canonical: '/product-design-nepal.html',
+    canonical: '/product-design-nepal',
     title: 'UX/UI Product Design Services in Nepal',
     description: 'Product design service page for startups and software teams that need UX audits, mobile app flows, SaaS dashboard design, design systems and practical handoff support in Nepal.',
     schemaType: 'Service',
   },
   'services.html': {
-    canonical: '/services.html',
+    canonical: '/services',
     title: 'Product Design Services for Software Teams',
     description: 'UX/UI design, product audits, SaaS dashboard design, Web3 UX, design systems, website UX and developer handoff services by Nischhal Raj Subba.',
     schemaType: 'Service',
   },
   'about.html': {
-    canonical: '/about.html',
+    canonical: '/about',
     title: 'About Nischhal Raj Subba - Product Designer',
     description: 'About Nischhal Raj Subba, a Nepal-based product designer focused on UX strategy, product interfaces, design systems, responsive website UX and practical engineering handoff.',
     schemaType: 'ProfilePage',
   },
   'projects.html': {
-    canonical: '/projects.html',
+    canonical: '/projects',
     title: 'UX/UI Product Design Case Studies',
     description: 'Selected product design case studies by Nischhal Raj Subba across Web3, SaaS, fintech, dashboards, mobile apps, websites and design systems.',
     schemaType: 'CollectionPage',
   },
   'contact.html': {
-    canonical: '/contact.html',
+    canonical: '/contact',
     title: 'Contact Nischhal Raj Subba for Product Design',
     description: 'Contact Nischhal Raj Subba for UX/UI product design, SaaS dashboards, Web3 flows, design systems, UX audits, product websites and developer-ready handoff.',
     schemaType: 'ContactPage',
@@ -49,68 +49,77 @@ const metadata = {
     schemaType: 'Blog',
   },
   'web3-ux-designer.html': {
-    canonical: '/web3-ux-designer.html',
+    canonical: '/web3-ux-designer',
     title: 'Web3 UX Design for Wallets and Protocols',
     description: 'UX/UI design services for Web3 wallets, protocol websites, transaction review flows, signing context, risk language and trust-building product experiences.',
     schemaType: 'Service',
   },
   'saas-ux-designer.html': {
-    canonical: '/saas-ux-designer.html',
+    canonical: '/saas-ux-designer',
     title: 'SaaS UX Design for Dashboards and Admin Tools',
     description: 'UX/UI design services for SaaS dashboards, admin workflows, onboarding, filters, role-based views, empty states and operational product systems.',
     schemaType: 'Service',
   },
   'figma-design-systems.html': {
-    canonical: '/figma-design-systems.html',
+    canonical: '/figma-design-systems',
     title: 'Figma Design Systems and Developer Handoff',
     description: 'Design system support for reusable Figma components, responsive rules, interaction states, product UI documentation and developer-ready handoff.',
     schemaType: 'Service',
   },
   'ux-audit.html': {
-    canonical: '/ux-audit.html',
+    canonical: '/ux-audit',
     title: 'UX Audit for Software Products and Websites',
     description: 'UX audit service for finding unclear flows, weak hierarchy, confusing copy, missing states, responsive issues and conversion friction before redesign.',
     schemaType: 'Service',
   },
   'website-ux-design.html': {
-    canonical: '/website-ux-design.html',
+    canonical: '/website-ux-design',
     title: 'Website UX Design for Software and Product Teams',
     description: 'Website UX design for software companies that need clearer positioning, page hierarchy, service messaging, responsive layouts and conversion paths.',
     schemaType: 'Service',
   },
 };
 
-const legacyNoindex = new Set([
-  'home.html',
-  'home-v2.html',
-  'blog.html',
-]);
+const legacyNoindex = new Set(['home.html', 'home-v2.html', 'blog.html']);
 
 const preferredSitemap = [
   '/',
-  '/projects.html',
-  '/services.html',
-  '/about.html',
-  '/contact.html',
+  '/nischhal-raj-subba',
+  '/projects',
+  '/services',
+  '/about',
+  '/contact',
   '/blog/',
-  '/product-design-nepal.html',
-  '/web3-ux-designer.html',
-  '/saas-ux-designer.html',
-  '/figma-design-systems.html',
-  '/ux-audit.html',
-  '/website-ux-design.html',
-  '/project-yarsha.html',
-  '/project-mokshya.html',
-  '/project-morajaa.html',
-  '/project-pihub.html',
-  '/project-zapp.html',
-  '/project-masteriyo.html',
-  '/blog/saas-dashboard-ux-checklist.html',
-  '/blog/web3-wallet-ux-checklist.html',
-  '/blog/figma-handoff-notes-for-developers.html',
-  '/blog/ux-audit-checklist-before-redesign.html',
-  '/blog/website-ux-checklist-software-companies.html',
-  '/blog/role-based-saas-dashboard-ux.html',
+  '/product-design-nepal',
+  '/web3-ux-designer',
+  '/saas-ux-designer',
+  '/figma-design-systems',
+  '/ux-audit',
+  '/website-ux-design',
+  '/project-yarsha',
+  '/project-mokshya',
+  '/project-hamro-idea',
+  '/project-morajaa',
+  '/project-pihub',
+  '/project-masteriyo',
+  '/project-zapp',
+  '/project-neverwinter-parser',
+  '/project-orkest',
+  '/project-splashnode',
+  '/project-grid-labs',
+  '/project-zakra-furniture',
+  '/project-designerex',
+  '/project-sassboilerplate',
+  '/blog/saas-dashboard-ux-checklist',
+  '/blog/web3-wallet-ux-checklist',
+  '/blog/figma-handoff-notes-for-developers',
+  '/blog/ux-audit-checklist-before-redesign',
+  '/blog/website-ux-checklist-software-companies',
+  '/blog/role-based-saas-dashboard-ux',
+  '/llms.txt',
+  '/llms-full.txt',
+  '/ai-profile.json',
+  '/humans.txt',
 ];
 
 function walk(dir, files = []) {
@@ -138,7 +147,8 @@ function upsertTitle(html, title) {
 }
 
 function upsertMeta(html, attr, name, content) {
-  const pattern = new RegExp(`<meta\\s+${attr}=["']${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'i');
+  const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`<meta\\s+${attr}=["']${escapedName}["'][^>]*>`, 'i');
   const tag = `<meta ${attr}="${name}" content="${escapeAttribute(content)}" />`;
   if (pattern.test(html)) return html.replace(pattern, tag);
   return html.replace('</head>', `    ${tag}\n  </head>`);
@@ -159,7 +169,7 @@ function removeJsonLd(html) {
   return html.replace(/\s*<script\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>\s*/gi, '\n');
 }
 
-function buildSchema(key, data) {
+function buildSchema(data) {
   const url = `${site}${data.canonical}`;
   const base = {
     '@context': 'https://schema.org',
@@ -229,53 +239,53 @@ function applyMetadata(file) {
 
   html = upsertTitle(html, data.title);
   html = upsertMeta(html, 'name', 'description', data.description);
-  html = upsertMeta(html, 'name', 'robots', 'index, follow');
+  html = upsertMeta(html, 'name', 'robots', 'index, follow, max-image-preview:large');
   html = upsertMeta(html, 'property', 'og:title', data.title);
   html = upsertMeta(html, 'property', 'og:description', data.description);
   html = upsertMeta(html, 'property', 'og:url', `${site}${data.canonical}`);
   html = upsertMeta(html, 'name', 'twitter:title', data.title);
   html = upsertMeta(html, 'name', 'twitter:description', data.description);
   html = upsertCanonical(html, data.canonical);
-  html = removeJsonLd(html).replace('</head>', `    ${buildSchema(key, data)}\n  </head>`);
+  html = removeJsonLd(html).replace('</head>', `    ${buildSchema(data)}\n  </head>`);
 
   fs.writeFileSync(file, html, 'utf8');
   return 'updated';
 }
 
 function writeSitemap() {
-  const urls = preferredSitemap.map((url) => `  <url>\n    <loc>${site}${url}</loc>\n  </url>`).join('\n');
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const urls = preferredSitemap.map((url) => `  <url>\n    <loc>${site}${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`).join('\n');
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
   fs.writeFileSync(path.join(targetRoot, 'sitemap.xml'), xml, 'utf8');
 }
 
 function validateCloudflareRedirects(redirects) {
+  const map = new Map();
+
   for (const [index, rawLine] of redirects.split('\n').entries()) {
     const line = rawLine.trim();
     if (!line || line.startsWith('#')) continue;
     const [from, to] = line.split(/\s+/);
     if (!from?.startsWith('/') || !to?.startsWith('/')) {
-      throw new Error(`[redirects] Cloudflare Workers Assets requires relative URLs in _redirects. Invalid line ${index + 1}: ${line}`);
+      throw new Error(`[redirects] Relative URLs are required. Invalid line ${index + 1}: ${line}`);
+    }
+    if (from === to) throw new Error(`[redirects] Self redirect on line ${index + 1}: ${line}`);
+    map.set(from, to);
+  }
+
+  for (const start of map.keys()) {
+    const seen = new Set();
+    let current = start;
+    while (map.has(current)) {
+      if (seen.has(current)) throw new Error(`[redirects] Redirect cycle detected from ${start}`);
+      seen.add(current);
+      current = map.get(current);
     }
   }
 }
 
 function writeRedirects() {
-  const redirects = `/home.html / 301
-/home-v2.html / 301
-/blog.html /blog/ 301
-/index.html / 301
-/product-design-nepal /product-design-nepal.html 301
-/services /services.html 301
-/about /about.html 301
-/contact /contact.html 301
-/projects /projects.html 301
-/blog-saas-dashboard-ux-checklist.html /blog/saas-dashboard-ux-checklist.html 301
-/blog-web3-wallet-ux-checklist.html /blog/web3-wallet-ux-checklist.html 301
-/blog-figma-handoff-notes-for-developers.html /blog/figma-handoff-notes-for-developers.html 301
-/blog-ux-audit-checklist-before-redesign.html /blog/ux-audit-checklist-before-redesign.html 301
-/blog-website-ux-checklist-software-companies.html /blog/website-ux-checklist-software-companies.html 301
-/blog-role-based-saas-dashboard-ux.html /blog/role-based-saas-dashboard-ux.html 301
-`;
+  const redirects = `# Legacy URLs only. Clean routes are served directly by the platform.\n/home / 301\n/home.html / 301\n/home-v2 / 301\n/home-v2.html / 301\n/index.html / 301\n/blog /blog/ 301\n/blog.html /blog/ 301\n/products /figma-design-systems 301\n/products.html /figma-design-systems 301\n/project-detail.html /projects 301\n/project-jeweltrek.html /projects 301\n/blog-detail.html /blog/ 301\n/blog-saas-dashboard-ux-checklist.html /blog/saas-dashboard-ux-checklist 301\n/blog-web3-wallet-ux-checklist.html /blog/web3-wallet-ux-checklist 301\n/blog-figma-handoff-notes-for-developers.html /blog/figma-handoff-notes-for-developers 301\n/blog-ux-audit-checklist-before-redesign.html /blog/ux-audit-checklist-before-redesign 301\n/blog-website-ux-checklist-software-companies.html /blog/website-ux-checklist-software-companies 301\n/blog-role-based-saas-dashboard-ux.html /blog/role-based-saas-dashboard-ux 301\n`;
   validateCloudflareRedirects(redirects);
   fs.writeFileSync(path.join(targetRoot, '_redirects'), redirects, 'utf8');
 }
@@ -290,4 +300,4 @@ for (const file of walk(targetRoot).filter((item) => item.endsWith('.html'))) {
 writeSitemap();
 writeRedirects();
 
-console.log(`Final SEO cleanup applied to ${updated} preferred page(s); noindexed ${legacy} legacy route(s), and wrote Cloudflare-safe relative redirects.`);
+console.log(`Final SEO cleanup applied to ${updated} preferred page(s); noindexed ${legacy} legacy route(s), and wrote clean canonical URLs without reverse redirects.`);
