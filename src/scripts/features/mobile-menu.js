@@ -1,11 +1,73 @@
 import { $, $$ } from '../utils/dom.js';
 
-function setMenuState(button, overlay, open) {
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+function getFocusableElements(overlay) {
+  if (!overlay) return [];
+  return [...overlay.querySelectorAll(FOCUSABLE_SELECTOR)].filter((element) => {
+    return !element.hasAttribute('hidden') && element.getAttribute('aria-hidden') !== 'true';
+  });
+}
+
+function setBackgroundInert(button, overlay, open) {
+  [...document.body.children].forEach((element) => {
+    if (element === overlay || element === button || element.classList.contains('skip-link')) return;
+
+    if (open) {
+      if (element.inert) element.dataset.wasInert = 'true';
+      element.inert = true;
+    } else {
+      element.inert = element.dataset.wasInert === 'true';
+      delete element.dataset.wasInert;
+    }
+  });
+}
+
+function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
   document.body.classList.toggle('menu-open', open);
   button.setAttribute('aria-expanded', String(open));
+  button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
 
-  if (overlay) {
-    overlay.toggleAttribute('aria-hidden', !open);
+  if (!overlay) return;
+
+  overlay.setAttribute('aria-hidden', String(!open));
+  setBackgroundInert(button, overlay, open);
+
+  if (open) {
+    button.dataset.previousFocus = document.activeElement === button ? 'button' : 'other';
+    const firstFocusable = getFocusableElements(overlay)[0] || overlay;
+    window.requestAnimationFrame(() => firstFocusable.focus({ preventScroll: true }));
+  } else if (restoreFocus) {
+    window.requestAnimationFrame(() => button.focus({ preventScroll: true }));
+  }
+}
+
+function trapFocus(event, overlay) {
+  if (event.key !== 'Tab') return;
+
+  const focusable = getFocusableElements(overlay);
+  if (!focusable.length) {
+    event.preventDefault();
+    overlay.focus({ preventScroll: true });
+    return;
+  }
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus({ preventScroll: true });
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus({ preventScroll: true });
   }
 }
 
@@ -19,10 +81,15 @@ export function initMobileMenu() {
   button.dataset.mobileMenuReady = 'true';
   button.setAttribute('type', 'button');
   button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('aria-label', 'Open navigation menu');
 
   if (overlay) {
     button.setAttribute('aria-controls', overlay.id);
     overlay.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Site navigation');
+    overlay.setAttribute('tabindex', '-1');
   }
 
   button.addEventListener('click', (event) => {
@@ -34,26 +101,29 @@ export function initMobileMenu() {
 
   $$('.mobile-nav-links a').forEach((link) => {
     link.addEventListener('click', () => {
-      setMenuState(button, overlay, false);
+      setMenuState(button, overlay, false, { restoreFocus: false });
     });
   });
 
   overlay?.addEventListener('click', (event) => {
-    if (event.target === overlay) {
-      setMenuState(button, overlay, false);
-    }
+    if (event.target === overlay) setMenuState(button, overlay, false);
   });
 
   window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && document.body.classList.contains('menu-open')) {
+    if (!document.body.classList.contains('menu-open')) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
       setMenuState(button, overlay, false);
-      button.focus({ preventScroll: true });
+      return;
     }
+
+    trapFocus(event, overlay);
   });
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > 850 && document.body.classList.contains('menu-open')) {
-      setMenuState(button, overlay, false);
+      setMenuState(button, overlay, false, { restoreFocus: false });
     }
-  });
+  }, { passive: true });
 }
