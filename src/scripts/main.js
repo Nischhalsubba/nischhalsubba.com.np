@@ -26,6 +26,7 @@ const globalFeatures = [
 ];
 
 const projectDetailFeatures = [
+  ['case study layout fixes', () => import('./features/case-study-layout-fixes.js').then((module) => module.improveCaseStudySections)],
   ['article layout', () => import('./features/article-layout.js').then((module) => module.normalizeArticleLayout)],
   ['project imagery', () => import('./features/project-images.js').then((module) => module.useProjectDetailImages)],
   ['list spacing', () => import('./features/list-spacing.js').then((module) => module.polishListSpacing)],
