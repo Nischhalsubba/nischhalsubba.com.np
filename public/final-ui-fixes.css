@@ -1,0 +1,273 @@
+/* Final shared UI fixes for header alignment, hidden skip links and project-detail editorial sections. */
+
+/* Keep the accessibility link available to keyboard users without leaving a permanent pill in the viewport. */
+html body .skip-link {
+  position: fixed !important;
+  top: 12px !important;
+  left: 12px !important;
+  right: auto !important;
+  z-index: 2147483647 !important;
+  width: auto !important;
+  max-width: calc(100vw - 24px) !important;
+  min-height: 42px !important;
+  margin: 0 !important;
+  padding: 0 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  border: 1px solid var(--border-faint, rgba(255,255,255,.14)) !important;
+  border-radius: 999px !important;
+  color: var(--accent-ink, #111) !important;
+  background: var(--accent, #f4f5f2) !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,.18) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate3d(0, -180%, 0) !important;
+  transition: transform 160ms ease, opacity 160ms ease, visibility 160ms ease !important;
+}
+
+html body .skip-link:focus,
+html body .skip-link:focus-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Desktop header controls stay on one horizontal rhythm. */
+@media (min-width: 761px) {
+  html body .nav-wrapper {
+    top: 20px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
+
+  html body .theme-toggle-btn,
+  html body #theme-toggle {
+    position: fixed !important;
+    top: 20px !important;
+    right: 24px !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    min-height: 46px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    z-index: 5002 !important;
+  }
+}
+
+/* Mobile header controls share the same size, top edge and side inset. */
+@media (max-width: 760px) {
+  html body .mobile-nav-toggle {
+    position: fixed !important;
+    top: 18px !important;
+    left: 18px !important;
+    right: auto !important;
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+    margin: 0 !important;
+    transform: none !important;
+    z-index: 5002 !important;
+  }
+
+  html body .mobile-logo {
+    position: fixed !important;
+    top: 18px !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 68px !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    margin: 0 !important;
+    transform: translateX(-50%) !important;
+    z-index: 5002 !important;
+  }
+
+  html body .theme-toggle-btn,
+  html body #theme-toggle {
+    position: fixed !important;
+    top: 18px !important;
+    right: 18px !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    z-index: 5002 !important;
+  }
+}
+
+/* Project-detail role and design-decision sections use a deliberate editorial layout. */
+body.nrs-project-detail-page main.container .nrs-case-role-section,
+body.nrs-project-detail-page main.container .nrs-case-decisions-section {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+@media (min-width: 1001px) {
+  body.nrs-project-detail-page main.container .nrs-case-role-section,
+  body.nrs-project-detail-page main.container .nrs-case-decisions-section {
+    display: grid !important;
+    grid-template-columns: minmax(230px, .68fr) minmax(0, 1.32fr) !important;
+    column-gap: clamp(52px, 7vw, 112px) !important;
+    row-gap: 18px !important;
+    align-items: start !important;
+  }
+
+  body.nrs-project-detail-page main.container .nrs-case-role-section > .section-title,
+  body.nrs-project-detail-page main.container .nrs-case-role-section > h2 {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    max-width: 8ch !important;
+  }
+
+  body.nrs-project-detail-page main.container .nrs-case-role-section > .body-large,
+  body.nrs-project-detail-page main.container .nrs-case-role-section > p {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    margin: 0 !important;
+    max-width: 34ch !important;
+  }
+
+  body.nrs-project-detail-page main.container .nrs-case-decisions-section > .case-label {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 0 4px !important;
+  }
+
+  body.nrs-project-detail-page main.container .nrs-case-decisions-section > .section-title,
+  body.nrs-project-detail-page main.container .nrs-case-decisions-section > h2 {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    margin: 0 !important;
+    max-width: 10ch !important;
+  }
+
+  body.nrs-project-detail-page main.container .nrs-case-role-section > .journey-grid,
+  body.nrs-project-detail-page main.container .nrs-case-decisions-section > .journey-grid {
+    grid-column: 2 !important;
+    grid-row: 1 / span 4 !important;
+    margin: 0 !important;
+  }
+}
+
+body.nrs-project-detail-page main.container :is(
+  .nrs-case-role-section,
+  .nrs-case-decisions-section
+) > .journey-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0 clamp(28px, 4vw, 52px) !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--border-faint, rgba(255,255,255,.12)) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.nrs-project-detail-page main.container :is(
+  .nrs-case-role-section,
+  .nrs-case-decisions-section
+) > .journey-grid > .journey-card {
+  display: block !important;
+  grid-template-columns: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: clamp(24px, 3vw, 36px) 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--border-faint, rgba(255,255,255,.12)) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+body.nrs-project-detail-page main.container :is(
+  .nrs-case-role-section,
+  .nrs-case-decisions-section
+) > .journey-grid > .journey-card > * {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  max-width: 100% !important;
+}
+
+body.nrs-project-detail-page main.container :is(
+  .nrs-case-role-section,
+  .nrs-case-decisions-section
+) .journey-card .eyebrow {
+  display: inline-block !important;
+  margin: 0 0 14px !important;
+}
+
+body.nrs-project-detail-page main.container :is(
+  .nrs-case-role-section,
+  .nrs-case-decisions-section
+) .journey-card h3 {
+  margin: 0 0 12px !important;
+  font-size: clamp(1.28rem, 2vw, 1.78rem) !important;
+  line-height: 1.12 !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+body.nrs-project-detail-page main.container :is(
+  .nrs-case-role-section,
+  .nrs-case-decisions-section
+) .journey-card p {
+  margin: 0 !important;
+  max-width: 52ch !important;
+  font-size: 1rem !important;
+  line-height: 1.72 !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+@media (max-width: 1000px) {
+  body.nrs-project-detail-page main.container .nrs-case-role-section,
+  body.nrs-project-detail-page main.container .nrs-case-decisions-section {
+    display: block !important;
+  }
+
+  body.nrs-project-detail-page main.container :is(
+    .nrs-case-role-section,
+    .nrs-case-decisions-section
+  ) > .journey-grid {
+    margin-top: clamp(28px, 5vw, 46px) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  body.nrs-project-detail-page main.container :is(
+    .nrs-case-role-section,
+    .nrs-case-decisions-section
+  ) > .journey-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+
+  body.nrs-project-detail-page main.container :is(
+    .nrs-case-role-section,
+    .nrs-case-decisions-section
+  ) > .journey-grid > .journey-card {
+    padding: 22px 0 !important;
+  }
+}
