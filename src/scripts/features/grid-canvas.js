@@ -18,7 +18,7 @@ export function initGridCanvas() {
   }
 
   function shouldRun() {
-    return !document.hidden && !isLightTheme() && window.innerWidth >= 900;
+    return !document.hidden && window.innerWidth >= 900;
   }
 
   function resize() {
@@ -41,8 +41,9 @@ export function initGridCanvas() {
     context.clearRect(0, 0, width, height);
     canvas.style.opacity = '1';
 
+    const light = isLightTheme();
     const grid = 60;
-    context.strokeStyle = 'rgba(255,255,255,.045)';
+    context.strokeStyle = light ? 'rgba(17,19,18,.055)' : 'rgba(255,255,255,.045)';
     context.lineWidth = 1;
     context.beginPath();
 
@@ -59,8 +60,8 @@ export function initGridCanvas() {
     context.stroke();
 
     const gradient = context.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 320);
-    gradient.addColorStop(0, 'rgba(59,130,246,.14)');
-    gradient.addColorStop(1, 'rgba(59,130,246,0)');
+    gradient.addColorStop(0, light ? 'rgba(17,19,18,.13)' : 'rgba(244,245,242,.18)');
+    gradient.addColorStop(1, light ? 'rgba(17,19,18,0)' : 'rgba(244,245,242,0)');
 
     context.strokeStyle = gradient;
     context.beginPath();
