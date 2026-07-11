@@ -30,6 +30,14 @@ function routeContext(path) {
   return { parentHref: '/', parentLabel: 'Home', backLabel: 'Back home' };
 }
 
+function ensureExperienceStylesheet() {
+  if (document.querySelector('link[href^="/experience-system.css"]')) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/experience-system.css?v=1.0';
+  document.head.appendChild(link);
+}
+
 function addWayfinding() {
   const path = canonicalPath();
   if (path === '/' || document.querySelector('.nrs-wayfinding')) return;
@@ -165,6 +173,7 @@ function markInteractiveElements() {
 }
 
 export function initExperienceSystem() {
+  ensureExperienceStylesheet();
   ensureGridCanvas();
   addWayfinding();
   improveMediaLoading();
