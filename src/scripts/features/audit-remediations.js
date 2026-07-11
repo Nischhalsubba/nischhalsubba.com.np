@@ -35,28 +35,28 @@ function normalizeResponsivePageClasses() {
   document.body.classList.toggle('nrs-contact-page', path === '/contact');
 }
 
-function ensureAuditStylesheet() {
-  if (document.querySelector('link[href^="/audit-remediations.css"]')) return;
+function ensureStylesheet(path, version) {
+  if (document.querySelector(`link[href^="/${path}"]`)) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = '/audit-remediations.css?v=1.2';
+  link.href = `/${path}?v=${version}`;
   document.head.appendChild(link);
+}
+
+function ensureAuditStylesheet() {
+  ensureStylesheet('audit-remediations.css', '1.2');
 }
 
 function ensureResponsiveStylesheet() {
-  if (document.querySelector('link[href^="/responsive-inner-pages.css"]')) return;
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = '/responsive-inner-pages.css?v=1.1';
-  document.head.appendChild(link);
+  ensureStylesheet('responsive-inner-pages.css', '1.1');
 }
 
 function ensureMobileInnerPageReset() {
-  if (document.querySelector('link[href^="/mobile-inner-page-reset.css"]')) return;
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = '/mobile-inner-page-reset.css?v=1.0';
-  document.head.appendChild(link);
+  ensureStylesheet('mobile-inner-page-reset.css', '1.0');
+}
+
+function ensureFinalUiFixes() {
+  ensureStylesheet('final-ui-fixes.css', '1.0');
 }
 
 function ensureSkipLink() {
@@ -231,6 +231,7 @@ export function applyAuditRemediations() {
   ensureAuditStylesheet();
   ensureResponsiveStylesheet();
   ensureMobileInnerPageReset();
+  ensureFinalUiFixes();
   ensureSkipLink();
   enhanceFigmaEmbeds();
   protectExternalLinks();
