@@ -1,0 +1,334 @@
+/* Shared responsive guardrails for case studies, service pages, blog details,
+   contact/about pages and other inner routes. This stylesheet intentionally
+   loads after the legacy design layers so mobile layout does not depend on
+   route-specific runtime patches. */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+html body main,
+html body main.container,
+html body main.container > *,
+html body .section-container,
+html body .section-header,
+html body .hero-section,
+html body .case-hero-img-container,
+html body .embed-frame-wrapper,
+html body .snapshot-grid,
+html body .journey-grid,
+html body .comparison-grid,
+html body .metric-plan-grid,
+html body .story-grid,
+html body .prototype-link-list,
+html body .impact-summary-grid,
+html body .project-grid,
+html body .writing-list,
+html body .nrs-service-grid,
+html body .nrs-engagement-grid,
+html body .nrs-services-hero,
+html body .nrs-services-engagement,
+html body .nrs-contact-form-grid,
+html body .nrs-contact-v3-hero,
+html body .nrs-contact-v3-meta,
+html body .footer-top-grid,
+html body .footer-nav-grid {
+  min-width: 0;
+  max-width: 100%;
+}
+
+html body main.container :is(
+  .snapshot-grid,
+  .journey-grid,
+  .comparison-grid,
+  .metric-plan-grid,
+  .story-grid,
+  .prototype-link-list,
+  .impact-summary-grid,
+  .project-grid,
+  .writing-list,
+  .nrs-service-grid,
+  .nrs-engagement-grid,
+  .nrs-contact-form-grid,
+  .nrs-contact-v3-meta
+) > * {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+html body main.container :is(
+  .snapshot-grid,
+  .journey-grid,
+  .comparison-grid,
+  .metric-plan-grid,
+  .story-grid,
+  .prototype-link-list,
+  .impact-summary-grid,
+  .project-grid,
+  .writing-list,
+  .nrs-service-grid,
+  .nrs-engagement-grid,
+  .nrs-contact-form-grid,
+  .nrs-contact-v3-meta
+) :is(h1, h2, h3, h4, h5, h6, p, li, span, strong, a, dd, dt) {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+}
+
+html body img,
+html body svg,
+html body video,
+html body iframe,
+html body canvas {
+  max-width: 100% !important;
+}
+
+html body pre,
+html body code,
+html body table {
+  max-width: 100%;
+}
+
+html body pre,
+html body .table-wrapper,
+html body .table-scroll,
+html body table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 920px) {
+  html body main.container .section-container,
+  html body main.container .nrs-case-section,
+  html body main.container .nrs-services-section,
+  html body main.container .nrs-contact-section,
+  html body main.container article.section-container {
+    display: block !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  html body main.container .snapshot-grid,
+  html body main.container .journey-grid,
+  html body main.container .comparison-grid,
+  html body main.container .metric-plan-grid,
+  html body main.container .story-grid,
+  html body main.container .prototype-link-list,
+  html body main.container .impact-summary-grid,
+  html body main.container .project-grid,
+  html body main.container .writing-list,
+  html body main.container .nrs-blog-proof-grid,
+  html body main.container .nrs-proof-grid,
+  html body main.container .nrs-service-grid,
+  html body main.container .nrs-engagement-grid,
+  html body main.container .nrs-services-process,
+  html body main.container .nrs-contact-form-grid,
+  html body main.container .nrs-contact-v3-meta,
+  html body main.container .nrs-contact-v3-guidance,
+  html body .site-footer .footer-top-grid,
+  html body .site-footer .footer-nav-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: clamp(14px, 4vw, 24px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  html body main.container .nrs-services-hero,
+  html body main.container .nrs-services-engagement,
+  html body main.container .nrs-contact-v3-hero,
+  html body main.container .nrs-home-hero,
+  html body main.container .nrs-services-section-head {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: clamp(24px, 6vw, 42px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+  }
+
+  html body main.container .section-container > *,
+  html body main.container .nrs-case-section > *,
+  html body main.container .nrs-services-section > *,
+  html body main.container .nrs-contact-section > * {
+    grid-column: 1 !important;
+    position: static !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  html body main.container .snapshot-grid {
+    overflow: hidden !important;
+  }
+
+  html body main.container .snapshot-grid > div {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: clamp(20px, 6vw, 30px) !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--border-faint, rgba(255,255,255,.12)) !important;
+  }
+
+  html body main.container .snapshot-grid > div:last-child {
+    border-bottom: 0 !important;
+  }
+
+  html body main.container :is(
+    .journey-card,
+    .comparison-card,
+    .metric-plan-card,
+    .story-card,
+    .quote-card,
+    .prototype-link-card,
+    .impact-card,
+    .project-card,
+    .writing-item,
+    .nrs-service-card,
+    .nrs-engagement-grid article,
+    .nrs-contact-v3-meta a,
+    .nrs-contact-v3-guidance article
+  ) {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  html body main.container .case-hero-img-container,
+  html body main.container .blog-hero-img-container,
+  html body main.container .embed-frame-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+  }
+
+  html body main.container iframe {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: min(520px, 68vh) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --nrs-responsive-gutter: max(16px, env(safe-area-inset-left));
+  }
+
+  html body main.container,
+  html body .container,
+  html body .site-footer > .container {
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px) !important;
+    margin-inline: auto !important;
+  }
+
+  html body main.container .hero-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  html body main.container .section-container,
+  html body main.container .nrs-case-section,
+  html body main.container .nrs-services-section,
+  html body main.container .nrs-contact-section,
+  html body main.container article.section-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body main.container :is(h1, .hero-title, .nrs-services-title, .nrs-contact-title) {
+    max-width: 100% !important;
+    font-size: clamp(2.35rem, 12vw, 3.6rem) !important;
+    line-height: 1 !important;
+    text-wrap: balance;
+  }
+
+  html body main.container :is(h2, .section-title) {
+    max-width: 100% !important;
+    font-size: clamp(1.9rem, 9vw, 2.9rem) !important;
+    line-height: 1.06 !important;
+  }
+
+  html body main.container :is(h3, h4, h5, h6, p, li, a, span, strong, dd, dt) {
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+  }
+
+  html body main.container .snapshot-grid > div,
+  html body main.container :is(
+    .journey-card,
+    .comparison-card,
+    .metric-plan-card,
+    .story-card,
+    .quote-card,
+    .prototype-link-card,
+    .impact-card,
+    .project-card,
+    .writing-item,
+    .nrs-service-card,
+    .nrs-engagement-grid article,
+    .nrs-contact-v3-meta a,
+    .nrs-contact-v3-guidance article
+  ) {
+    padding: clamp(18px, 5.5vw, 26px) !important;
+  }
+
+  html body main.container .hero-actions,
+  html body main.container .cta-group,
+  html body main.container .form-actions,
+  html body main.container .nrs-services-actions,
+  html body main.container .nrs-contact-actions {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  html body main.container :is(
+    .hero-actions,
+    .cta-group,
+    .form-actions,
+    .nrs-services-actions,
+    .nrs-contact-actions
+  ) :is(.btn, button, a) {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  html body main.container .nrs-service-process li,
+  html body main.container .nrs-services-list li {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  html body main.container iframe {
+    min-height: min(420px, 62vh) !important;
+  }
+}
+
+@media (max-width: 390px) {
+  html body main.container,
+  html body .container,
+  html body .site-footer > .container {
+    width: calc(100% - 24px) !important;
+    max-width: calc(100% - 24px) !important;
+  }
+
+  html body main.container :is(h1, .hero-title, .nrs-services-title, .nrs-contact-title) {
+    font-size: clamp(2.1rem, 11.5vw, 3rem) !important;
+  }
+}
