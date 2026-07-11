@@ -6,6 +6,7 @@ const globalFeatures = [
   ['site consistency', () => import('./features/site-consistency.js').then((module) => module.polishSiteConsistency)],
   ['design-system shell', () => import('./features/nav-consistency.js').then((module) => module.enforceDesignSystemShell)],
   ['layout uniformity', () => import('./features/layout-system-uniformity.js').then((module) => module.applyLayoutSystemUniformity)],
+  ['layout integrity', () => import('./features/layout-integrity.js').then((module) => module.applyLayoutIntegrity)],
   ['responsive polish', () => import('./features/viewport-responsive-polish.js').then((module) => module.applyViewportResponsivePolish)],
   ['page experience', () => import('./features/page-experience.js').then((module) => module.initPageExperience)],
   ['page transitions', () => import('./features/page-transitions.js').then((module) => module.initPageTransitions)],
