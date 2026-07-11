@@ -1,10 +1,45 @@
 const FIGMA_HOSTS = new Set(['www.figma.com', 'figma.com', 'embed.figma.com']);
 
+const SERVICE_PATHS = new Set([
+  '/services',
+  '/product-design-nepal',
+  '/web3-ux-designer',
+  '/saas-ux-designer',
+  '/website-ux-design',
+  '/figma-design-systems',
+  '/ux-audit',
+]);
+
+function getCanonicalPathname() {
+  const pathname = window.location.pathname || '/';
+  if (pathname === '/') return '/';
+  return pathname.replace(/\/+$/, '').replace(/\.html$/, '') || '/';
+}
+
+function normalizeResponsivePageClasses() {
+  const path = getCanonicalPathname();
+  const isHome = path === '/';
+  const isProjectDetail = /^\/project-[^/]+$/.test(path);
+  const isBlogListing = path === '/blog';
+  const isBlogDetail = path.startsWith('/blog/') && !isBlogListing;
+  const isServicePage = SERVICE_PATHS.has(path);
+
+  document.body.classList.toggle('nrs-home-page', isHome);
+  document.body.classList.toggle('nrs-inner-page', !isHome);
+  document.body.classList.toggle('nrs-project-detail-page', isProjectDetail);
+  document.body.classList.toggle('nrs-blog-page', isBlogListing || isBlogDetail);
+  document.body.classList.toggle('nrs-blog-detail-page', isBlogDetail);
+  document.body.classList.toggle('nrs-service-page', isServicePage);
+  document.body.classList.toggle('nrs-work-page', path === '/projects');
+  document.body.classList.toggle('nrs-about-page', path === '/about');
+  document.body.classList.toggle('nrs-contact-page', path === '/contact');
+}
+
 function ensureAuditStylesheet() {
   if (document.querySelector('link[href^="/audit-remediations.css"]')) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = '/audit-remediations.css?v=1.1';
+  link.href = '/audit-remediations.css?v=1.2';
   document.head.appendChild(link);
 }
 
@@ -133,7 +168,7 @@ function initFloatingResumeVisibility() {
   button.dataset.auditVisibilityReady = 'true';
   button.classList.add('is-obscured');
 
-  const path = window.location.pathname.replace(/\.html$/, '');
+  const path = getCanonicalPathname();
   if (path === '/contact' || path === '/privacy') return;
 
   const hero = document.querySelector('.hero-section, .nrs-about-v2-hero, .nrs-services-hero');
@@ -176,6 +211,7 @@ function addAnchorOffsetTargets() {
 }
 
 export function applyAuditRemediations() {
+  normalizeResponsivePageClasses();
   ensureAuditStylesheet();
   ensureSkipLink();
   enhanceFigmaEmbeds();
