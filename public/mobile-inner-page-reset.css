@@ -1,0 +1,267 @@
+/* Mobile-only simplification for inner pages.
+   Desktop keeps the card system; narrow screens use compact sections and dividers. */
+
+@media (max-width: 760px) {
+  body.nrs-inner-page main.container {
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px) !important;
+    margin-inline: auto !important;
+  }
+
+  body.nrs-inner-page main.container :is(
+    .section-container,
+    .nrs-case-section,
+    .nrs-services-section,
+    .nrs-contact-section,
+    article.section-container,
+    .nrs-services-panel,
+    .nrs-services-summary,
+    .nrs-services-cta,
+    .nrs-contact-v3-form,
+    .contact-form,
+    .blog-note,
+    .blog-toc,
+    .blog-author-card,
+    .blog-share-card
+  ) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 32px 0 !important;
+    border: 0 !important;
+    border-top: 1px solid var(--border-faint, rgba(255,255,255,.12)) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  body.nrs-inner-page main.container .hero-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.nrs-inner-page main.container :is(
+    .snapshot-grid,
+    .journey-grid,
+    .comparison-grid,
+    .metric-plan-grid,
+    .story-grid,
+    .prototype-link-list,
+    .impact-summary-grid,
+    .nrs-blog-proof-grid,
+    .nrs-proof-grid,
+    .nrs-service-grid,
+    .nrs-engagement-grid,
+    .nrs-services-process,
+    .nrs-contact-v3-meta,
+    .nrs-contact-v3-guidance
+  ) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 0 !important;
+    margin: 20px 0 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-top: 1px solid var(--border-faint, rgba(255,255,255,.12)) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  body.nrs-inner-page main.container .snapshot-grid > div {
+    display: grid !important;
+    grid-template-columns: minmax(82px, 108px) minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    padding: 18px 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--border-faint, rgba(255,255,255,.12)) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.nrs-inner-page main.container .snapshot-grid > div:last-child {
+    border-bottom: 0 !important;
+  }
+
+  body.nrs-inner-page main.container .snapshot-grid :is(h5, p) {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+  }
+
+  body.nrs-inner-page main.container :is(
+    .journey-card,
+    .comparison-card,
+    .metric-plan-card,
+    .story-card,
+    .quote-card,
+    .prototype-link-card,
+    .impact-card,
+    .nrs-service-card,
+    .nrs-services-step,
+    .nrs-engagement-grid article,
+    .nrs-contact-v3-meta a,
+    .nrs-contact-v3-guidance article,
+    .nrs-blog-proof-grid article,
+    .nrs-proof-grid article,
+    .case-list li,
+    .nrs-services-list li,
+    .nrs-service-process li
+  ) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 20px 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--border-faint, rgba(255,255,255,.12)) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  body.nrs-inner-page main.container :is(
+    .journey-card,
+    .comparison-card,
+    .metric-plan-card,
+    .story-card,
+    .quote-card,
+    .prototype-link-card,
+    .impact-card,
+    .nrs-service-card,
+    .nrs-services-step,
+    .nrs-engagement-grid article,
+    .nrs-contact-v3-meta a,
+    .nrs-contact-v3-guidance article,
+    .nrs-blog-proof-grid article,
+    .nrs-proof-grid article,
+    .case-list li,
+    .nrs-services-list li,
+    .nrs-service-process li
+  ):last-child {
+    border-bottom: 0 !important;
+  }
+
+  body.nrs-inner-page main.container :is(
+    .journey-card,
+    .comparison-card,
+    .metric-plan-card,
+    .story-card,
+    .quote-card,
+    .prototype-link-card,
+    .impact-card,
+    .nrs-service-card,
+    .nrs-services-step,
+    .nrs-engagement-grid article,
+    .nrs-contact-v3-meta a,
+    .nrs-contact-v3-guidance article,
+    .nrs-blog-proof-grid article,
+    .nrs-proof-grid article
+  ) :is(h2, h3, h4, p, span, strong, a) {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin-top: 0 !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+  }
+
+  body.nrs-inner-page main.container .case-list {
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  body.nrs-inner-page main.container .case-list li {
+    padding-left: 24px !important;
+  }
+
+  body.nrs-inner-page main.container .case-list li::before {
+    left: 0 !important;
+    top: 28px !important;
+  }
+
+  body.nrs-inner-page main.container :is(
+    .section-title,
+    .section-header,
+    .body-large,
+    .section-lead,
+    .case-label,
+    .eyebrow
+  ) {
+    max-width: 100% !important;
+  }
+
+  body.nrs-inner-page main.container .embed-frame-wrapper {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 18px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+  }
+
+  body.nrs-inner-page main.container .figma-embed-fallback {
+    padding: 16px 0 0 !important;
+    border: 0 !important;
+    border-top: 1px solid var(--border-faint, rgba(255,255,255,.12)) !important;
+    background: transparent !important;
+  }
+
+  body.nrs-inner-page main.container :is(.form-grid, .nrs-contact-form-grid) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  body.nrs-inner-page main.container :is(.project-card, .writing-item) {
+    min-height: auto !important;
+  }
+
+  body.nrs-inner-page main.container .project-card .card-content,
+  body.nrs-inner-page main.container .writing-item {
+    padding: 18px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  body.nrs-inner-page main.container {
+    width: calc(100% - 24px) !important;
+    max-width: calc(100% - 24px) !important;
+  }
+
+  body.nrs-inner-page main.container .snapshot-grid > div {
+    grid-template-columns: minmax(72px, 92px) minmax(0, 1fr) !important;
+    gap: 12px !important;
+    padding: 16px 0 !important;
+  }
+
+  body.nrs-inner-page main.container :is(
+    .section-container,
+    .nrs-case-section,
+    .nrs-services-section,
+    .nrs-contact-section,
+    article.section-container
+  ) {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+}
