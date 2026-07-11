@@ -8,7 +8,9 @@ const INTERACTIVE_SELECTOR = [
   'textarea',
   'select',
   'summary',
+  'label',
   '[role="button"]',
+  '[tabindex]:not([tabindex="-1"])',
   '.project-card',
   '.impact-card',
   '.blog-card-modern',
@@ -16,6 +18,7 @@ const INTERACTIVE_SELECTOR = [
   '.link-pill',
   '.filter-btn',
   '.btn',
+  '.nrs-cursor-target',
 ].join(',');
 
 function ensureCursorStyle() {
@@ -130,7 +133,6 @@ export function initPointerGlow() {
   let ringY = mouseY;
   let frame = 0;
 
-  // Keep the real browser cursor visible. The custom cursor is decorative, not a replacement.
   document.body.classList.add('nrs-premium-cursor');
 
   function animate() {
@@ -149,7 +151,8 @@ export function initPointerGlow() {
   }
 
   function hideCursor() {
-    document.body.classList.remove('nrs-cursor-visible', 'nrs-cursor-interactive', 'nrs-cursor-pressed');
+    document.body.classList.remove('nrs-cursor-visible', 'nrs-cursor-interactive', 'nrs-cursor-pressed', 'nrs-cursor-text', 'nrs-cursor-media', 'nrs-cursor-labeled');
+    ring.removeAttribute('data-label');
   }
 
   window.addEventListener('pointermove', (event) => {
@@ -161,14 +164,26 @@ export function initPointerGlow() {
 
   window.addEventListener('scroll', showCursor, { passive: true });
   window.addEventListener('resize', ensureCursorStyle);
-
   window.addEventListener('pointerleave', hideCursor, { passive: true });
   document.addEventListener('mouseleave', hideCursor, { passive: true });
 
   document.addEventListener('pointerover', (event) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
-    document.body.classList.toggle('nrs-cursor-interactive', Boolean(target.closest(INTERACTIVE_SELECTOR)));
+
+    const interactive = target.closest(INTERACTIVE_SELECTOR);
+    const modeTarget = target.closest('[data-cursor-mode]');
+    const labelTarget = target.closest('[data-cursor-label]');
+    const mode = modeTarget?.getAttribute('data-cursor-mode');
+    const label = labelTarget?.getAttribute('data-cursor-label') || '';
+
+    document.body.classList.toggle('nrs-cursor-interactive', Boolean(interactive));
+    document.body.classList.toggle('nrs-cursor-text', mode === 'text' && !interactive);
+    document.body.classList.toggle('nrs-cursor-media', mode === 'media');
+    document.body.classList.toggle('nrs-cursor-labeled', Boolean(label));
+
+    if (label) ring.setAttribute('data-label', label);
+    else ring.removeAttribute('data-label');
   }, { passive: true });
 
   document.addEventListener('pointerdown', () => {
