@@ -1,18 +1,21 @@
 const EARLY_THEME_BOOTSTRAP = `<script id="nrs-early-theme-bootstrap">
 (function () {
-  var storageKey = "theme";
   var root = document.documentElement;
   var theme = "dark";
   try {
-    var saved = localStorage.getItem(storageKey);
-    if (saved === "light" || saved === "dark") {
-      theme = saved;
+    var override = sessionStorage.getItem("nrs-theme-override");
+    if (override === "light" || override === "dark") {
+      theme = override;
     } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
       theme = "light";
     }
-  } catch (error) {}
+    localStorage.removeItem("theme");
+  } catch (error) {
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) theme = "light";
+  }
   root.setAttribute("data-theme", theme);
   root.style.colorScheme = theme;
+  root.setAttribute("data-theme-source", "system");
 
   var style = document.createElement("style");
   style.id = "nrs-first-paint-theme";
