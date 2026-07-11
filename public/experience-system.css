@@ -1,0 +1,420 @@
+/* Unified experience layer: editorial inner pages, branded wayfinding,
+   interactive background/cursor states and media loading feedback. */
+
+:root {
+  --nrs-line: var(--border-faint, rgba(255, 255, 255, 0.12));
+  --nrs-line-strong: var(--border-strong, rgba(255, 255, 255, 0.24));
+  --nrs-panel-soft: color-mix(in srgb, var(--bg-panel, #111) 56%, transparent);
+  --nrs-grid-line: rgba(255, 255, 255, 0.045);
+  --nrs-grid-glow: rgba(244, 245, 242, 0.18);
+  --nrs-skeleton-a: rgba(255, 255, 255, 0.045);
+  --nrs-skeleton-b: rgba(255, 255, 255, 0.11);
+}
+
+html[data-theme='light'] {
+  --nrs-grid-line: rgba(17, 19, 18, 0.055);
+  --nrs-grid-glow: rgba(17, 19, 18, 0.13);
+  --nrs-skeleton-a: rgba(17, 19, 18, 0.045);
+  --nrs-skeleton-b: rgba(17, 19, 18, 0.10);
+}
+
+/* Subtle interactive grid sits above the page background but below content. */
+html body #grid-canvas {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  opacity: 0;
+  pointer-events: none !important;
+  transition: opacity 260ms ease;
+}
+
+body > :not(#grid-canvas):not(.nrs-cursor-dot):not(.nrs-cursor-ring) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Branded breadcrumbs and deterministic back navigation. */
+.nrs-wayfinding {
+  grid-column: 1 / -1 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: 100%;
+  margin: 0 0 clamp(30px, 4vw, 54px);
+  color: var(--text-tertiary);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0;
+}
+
+.nrs-breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nrs-breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  color: var(--text-tertiary);
+}
+
+.nrs-breadcrumbs li + li::before {
+  content: '/';
+  margin-right: 9px;
+  color: color-mix(in srgb, var(--text-tertiary) 52%, transparent);
+}
+
+.nrs-breadcrumbs a,
+.nrs-breadcrumbs span {
+  max-width: min(34ch, 42vw);
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nrs-breadcrumbs a:hover,
+.nrs-breadcrumbs a:focus-visible {
+  color: var(--text-primary);
+}
+
+.nrs-breadcrumbs [aria-current='page'] {
+  color: var(--text-primary);
+}
+
+.nrs-back-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid var(--nrs-line);
+  border-radius: 999px;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--bg-nav, #111) 80%, transparent);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.nrs-back-link::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.nrs-back-link:hover,
+.nrs-back-link:focus-visible {
+  transform: translateX(-3px);
+  border-color: var(--nrs-line-strong);
+  background: var(--bg-surface-2);
+}
+
+/* Desktop editorial system. Keep listing cards, remove nested boxes elsewhere. */
+@media (min-width: 761px) {
+  body.nrs-inner-page main.container > :is(
+    .section-container,
+    .nrs-case-section,
+    .nrs-services-section,
+    .nrs-contact-section,
+    article.section-container
+  ) {
+    border: 0 !important;
+    border-top: 1px solid var(--nrs-line) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.nrs-project-detail-page main.container :is(
+    .snapshot-grid,
+    .journey-grid,
+    .comparison-grid,
+    .metric-plan-grid,
+    .story-grid,
+    .prototype-link-list,
+    .impact-summary-grid,
+    .nrs-blog-proof-grid,
+    .nrs-proof-grid
+  ),
+  body.nrs-service-page main.container :is(
+    .snapshot-grid,
+    .journey-grid,
+    .nrs-service-grid,
+    .nrs-engagement-grid,
+    .nrs-services-process,
+    .nrs-contact-v3-guidance
+  ),
+  body.nrs-about-page main.container :is(
+    .journey-grid,
+    .impact-summary-grid,
+    .nrs-proof-grid
+  ),
+  body.nrs-contact-page main.container :is(
+    .nrs-contact-v3-meta,
+    .nrs-contact-v3-guidance
+  ),
+  body.nrs-blog-detail-page main.container :is(
+    .writing-list,
+    .nrs-blog-proof-grid,
+    .nrs-proof-grid
+  ) {
+    gap: 0 !important;
+    border: 0 !important;
+    border-top: 1px solid var(--nrs-line) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  body.nrs-project-detail-page main.container .snapshot-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  body.nrs-project-detail-page main.container .snapshot-grid > div,
+  body.nrs-service-page main.container .snapshot-grid > div {
+    min-height: 0 !important;
+    padding: clamp(24px, 3vw, 38px) clamp(20px, 3vw, 38px) !important;
+    border: 0 !important;
+    border-right: 1px solid var(--nrs-line) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.nrs-project-detail-page main.container .snapshot-grid > div:last-child,
+  body.nrs-service-page main.container .snapshot-grid > div:last-child {
+    border-right: 0 !important;
+  }
+
+  body.nrs-project-detail-page main.container :is(
+    .journey-card,
+    .comparison-card,
+    .metric-plan-card,
+    .story-card,
+    .quote-card,
+    .prototype-link-card,
+    .impact-card,
+    .nrs-blog-proof-grid article,
+    .nrs-proof-grid article
+  ),
+  body.nrs-service-page main.container :is(
+    .journey-card,
+    .nrs-service-card,
+    .nrs-services-step,
+    .nrs-engagement-grid article,
+    .nrs-contact-v3-guidance article
+  ),
+  body.nrs-about-page main.container :is(
+    .journey-card,
+    .impact-card,
+    .nrs-proof-grid article
+  ),
+  body.nrs-contact-page main.container :is(
+    .nrs-contact-v3-meta a,
+    .nrs-contact-v3-guidance article
+  ),
+  body.nrs-blog-detail-page main.container :is(
+    .writing-item,
+    .blog-note,
+    .blog-toc,
+    .blog-author-card,
+    .blog-share-card,
+    .nrs-blog-proof-grid article,
+    .nrs-proof-grid article
+  ) {
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: clamp(28px, 4vw, 48px) 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--nrs-line) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  body.nrs-project-detail-page main.container :is(.journey-card, .prototype-link-card),
+  body.nrs-service-page main.container :is(.journey-card, .nrs-service-card, .nrs-services-step),
+  body.nrs-about-page main.container :is(.journey-card, .impact-card) {
+    display: grid !important;
+    grid-template-columns: minmax(130px, 190px) minmax(0, 1fr) !important;
+    column-gap: clamp(28px, 5vw, 72px) !important;
+    row-gap: 10px !important;
+    align-items: start !important;
+  }
+
+  body.nrs-project-detail-page main.container :is(.journey-card, .prototype-link-card) > :first-child,
+  body.nrs-service-page main.container :is(.journey-card, .nrs-service-card, .nrs-services-step) > :first-child,
+  body.nrs-about-page main.container :is(.journey-card, .impact-card) > :first-child {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+  }
+
+  body.nrs-project-detail-page main.container :is(.journey-card, .prototype-link-card) > :not(:first-child),
+  body.nrs-service-page main.container :is(.journey-card, .nrs-service-card, .nrs-services-step) > :not(:first-child),
+  body.nrs-about-page main.container :is(.journey-card, .impact-card) > :not(:first-child) {
+    grid-column: 2;
+  }
+
+  body.nrs-inner-page main.container :is(
+    .contact-form,
+    .nrs-contact-v3-form,
+    .nrs-services-panel,
+    .nrs-services-summary,
+    .nrs-services-cta
+  ) {
+    border: 0 !important;
+    border-top: 1px solid var(--nrs-line) !important;
+    border-bottom: 1px solid var(--nrs-line) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Cursor states. Native cursor remains available for usability. */
+.nrs-cursor-dot,
+.nrs-cursor-ring {
+  mix-blend-mode: difference;
+}
+
+.nrs-cursor-ring::after {
+  content: attr(data-label);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.nrs-cursor-labeled .nrs-cursor-ring::after {
+  opacity: 1;
+}
+
+.nrs-cursor-text .nrs-cursor-ring {
+  width: 24px !important;
+  height: 42px !important;
+  border-radius: 10px !important;
+}
+
+.nrs-cursor-media .nrs-cursor-ring,
+.nrs-cursor-labeled .nrs-cursor-ring {
+  width: 72px !important;
+  height: 72px !important;
+  background: rgba(255, 255, 255, 0.10) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Lazy media and skeleton feedback. */
+.nrs-skeleton-host {
+  position: relative !important;
+  isolation: isolate;
+}
+
+.nrs-skeleton-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  border-radius: inherit;
+  background: linear-gradient(100deg, var(--nrs-skeleton-a) 20%, var(--nrs-skeleton-b) 38%, var(--nrs-skeleton-a) 56%);
+  background-size: 220% 100%;
+  pointer-events: none;
+  animation: nrs-skeleton-shimmer 1.35s linear infinite;
+  transition: opacity 260ms ease, visibility 260ms ease;
+}
+
+.nrs-media-ready > .nrs-skeleton-layer,
+.nrs-media-error > .nrs-skeleton-layer {
+  opacity: 0;
+  visibility: hidden;
+}
+
+img.nrs-lazy-media,
+iframe.nrs-lazy-media {
+  transition: opacity 320ms ease, filter 320ms ease;
+}
+
+img.nrs-lazy-media:not(.is-loaded),
+iframe.nrs-lazy-media:not(.is-loaded) {
+  opacity: 0.01;
+  filter: blur(7px);
+}
+
+img.nrs-lazy-media.is-loaded,
+iframe.nrs-lazy-media.is-loaded {
+  opacity: 1;
+  filter: none;
+}
+
+img.nrs-standalone-skeleton:not(.is-loaded) {
+  min-height: min(48vw, 320px);
+  border-radius: inherit;
+  background: linear-gradient(100deg, var(--nrs-skeleton-a) 20%, var(--nrs-skeleton-b) 38%, var(--nrs-skeleton-a) 56%);
+  background-size: 220% 100%;
+  animation: nrs-skeleton-shimmer 1.35s linear infinite;
+}
+
+@keyframes nrs-skeleton-shimmer {
+  to { background-position-x: -220%; }
+}
+
+@media (max-width: 760px) {
+  .nrs-wayfinding {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .nrs-back-link {
+    min-height: 40px;
+    padding-inline: 14px;
+  }
+
+  .nrs-breadcrumbs a,
+  .nrs-breadcrumbs span {
+    max-width: min(28ch, 68vw);
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  html body #grid-canvas,
+  .nrs-cursor-dot,
+  .nrs-cursor-ring {
+    display: none !important;
+  }
+
+  .nrs-skeleton-layer,
+  img.nrs-standalone-skeleton:not(.is-loaded) {
+    animation: none;
+  }
+}
