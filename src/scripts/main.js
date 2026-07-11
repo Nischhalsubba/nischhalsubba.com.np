@@ -20,6 +20,9 @@ const globalFeatures = [
   ['spacing and navigation proof', () => import('./features/final-spacing-nav-proof.js').then((module) => module.applyFinalSpacingNavProof)],
   ['mobile header icon', () => import('./features/mobile-header-icon-proof.js').then((module) => module.proveMobileHeaderIcon)],
   ['audit remediations', () => import('./features/audit-remediations.js').then((module) => module.applyAuditRemediations)],
+  ['experience system', () => import('./features/experience-system.js').then((module) => module.initExperienceSystem)],
+  ['interactive grid', () => import('./features/grid-canvas.js').then((module) => module.initGridCanvas)],
+  ['interactive cursor', () => import('./features/pointer-glow.js').then((module) => module.initPointerGlow)],
 ];
 
 const projectDetailFeatures = [
