@@ -47,7 +47,15 @@ function ensureResponsiveStylesheet() {
   if (document.querySelector('link[href^="/responsive-inner-pages.css"]')) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = '/responsive-inner-pages.css?v=1.0';
+  link.href = '/responsive-inner-pages.css?v=1.1';
+  document.head.appendChild(link);
+}
+
+function ensureMobileInnerPageReset() {
+  if (document.querySelector('link[href^="/mobile-inner-page-reset.css"]')) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/mobile-inner-page-reset.css?v=1.0';
   document.head.appendChild(link);
 }
 
@@ -222,6 +230,7 @@ export function applyAuditRemediations() {
   normalizeResponsivePageClasses();
   ensureAuditStylesheet();
   ensureResponsiveStylesheet();
+  ensureMobileInnerPageReset();
   ensureSkipLink();
   enhanceFigmaEmbeds();
   protectExternalLinks();
