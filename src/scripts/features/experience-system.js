@@ -40,7 +40,8 @@ function ensureExperienceStylesheet() {
 
 function addWayfinding() {
   const path = canonicalPath();
-  if (path === '/' || document.querySelector('.nrs-wayfinding')) return;
+  const isBlogDetail = path.startsWith('/blog/') && path !== '/blog';
+  if (path === '/' || isBlogDetail || document.querySelector('.nrs-wayfinding, .nrs-blog-utility')) return;
 
   const main = document.querySelector('main');
   if (!main) return;
