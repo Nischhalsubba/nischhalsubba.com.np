@@ -14,6 +14,7 @@ const stages = [
   ['Generate blog covers', ['node', 'scripts/ensure-blog-generated-covers.cjs']],
   ['Apply homepage hero layout', ['node', 'scripts/ensure-homepage-hero-layout.cjs']],
   ['Apply spacious core page layouts', ['node', 'scripts/ensure-spacious-core-pages.cjs']],
+  ['Enforce canonical Services source', ['node', 'scripts/enforce-services-template.cjs']],
   ['Normalize semantic headings in source', ['node', 'scripts/ensure-semantic-headings.cjs']],
   ['Compile single design stylesheet', ['node', 'scripts/compile-single-stylesheet.cjs']],
   ['Normalize article navigation and typography', ['node', 'scripts/ensure-navigation-font-consistency.cjs']],
@@ -36,6 +37,7 @@ const stages = [
   ['Normalize semantic headings in build', ['node', 'scripts/ensure-semantic-headings.cjs', '--dist']],
   ['Apply audit completion pass', ['node', 'scripts/ensure-audit-completion.cjs']],
   ['Finalize shared site shell in build', ['node', 'scripts/ensure-shared-site-shell.cjs', '--dist']],
+  ['Enforce canonical Services build', ['node', 'scripts/enforce-services-template.cjs', '--dist']],
   ['Enforce canonical production routes', ['node', 'scripts/enforce-production-routes.cjs']],
   ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
 ];
