@@ -10,3 +10,14 @@ const remove = [
   'audit-remediations.css',
   'stable-layout.css',
   'final-ui-fixes.css',
+  'layout-integrity.css',
+  'detail-navigation.js',
+  'seo-enhancements.js',
+];
+
+for (const relative of remove) {
+  const target = path.join(dist, relative);
+  if (fs.existsSync(target)) fs.rmSync(target, { recursive: true, force: true });
+}
+
+console.log('Removed retired public pages and patch assets from dist.');
