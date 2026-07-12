@@ -18,6 +18,7 @@ const stages = [
   ['Compile single design stylesheet', ['node', 'scripts/compile-single-stylesheet.cjs']],
   ['Normalize article navigation and typography', ['node', 'scripts/ensure-navigation-font-consistency.cjs']],
   ['Enforce one article navigation in source', ['node', 'scripts/normalize-blog-detail-template.cjs']],
+  ['Normalize shared site shell in source', ['node', 'scripts/ensure-shared-site-shell.cjs']],
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
   ['Build Vite site', ['npx', 'vite', 'build']],
   ['Copy production assets', ['node', 'scripts/copy-static-assets.cjs']],
@@ -30,6 +31,7 @@ const stages = [
   ['Enforce one article navigation in build', ['node', 'scripts/normalize-blog-detail-template.cjs', '--dist']],
   ['Normalize semantic headings in build', ['node', 'scripts/ensure-semantic-headings.cjs', '--dist']],
   ['Apply audit completion pass', ['node', 'scripts/ensure-audit-completion.cjs']],
+  ['Finalize shared site shell in build', ['node', 'scripts/ensure-shared-site-shell.cjs', '--dist']],
   ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
 ];
 
