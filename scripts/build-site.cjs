@@ -15,6 +15,7 @@ const stages = [
   ['Apply homepage hero layout', ['node', 'scripts/ensure-homepage-hero-layout.cjs']],
   ['Apply spacious core page layouts', ['node', 'scripts/ensure-spacious-core-pages.cjs']],
   ['Compile single design stylesheet', ['node', 'scripts/compile-single-stylesheet.cjs']],
+  ['Normalize article navigation and typography', ['node', 'scripts/ensure-navigation-font-consistency.cjs']],
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
   ['Build Vite site', ['npx', 'vite', 'build']],
   ['Copy production assets', ['node', 'scripts/copy-static-assets.cjs']],
@@ -24,6 +25,7 @@ const stages = [
   ['Apply canonical and redirect cleanup', ['node', 'scripts/ensure-final-seo-canonical-cleanup.cjs', '--dist']],
   ['Apply blog detail polish', ['node', 'scripts/ensure-blog-detail-polish.cjs', '--dist']],
   ['Reapply single design stylesheet to build', ['node', 'scripts/compile-single-stylesheet.cjs', '--dist']],
+  ['Finalize article navigation and typography', ['node', 'scripts/ensure-navigation-font-consistency.cjs', '--dist']],
   ['Apply audit completion pass', ['node', 'scripts/ensure-audit-completion.cjs']],
   ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
 ];
