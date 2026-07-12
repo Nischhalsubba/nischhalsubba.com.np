@@ -14,6 +14,7 @@ const stages = [
   ['Generate blog covers', ['node', 'scripts/ensure-blog-generated-covers.cjs']],
   ['Apply homepage hero layout', ['node', 'scripts/ensure-homepage-hero-layout.cjs']],
   ['Apply spacious core page layouts', ['node', 'scripts/ensure-spacious-core-pages.cjs']],
+  ['Normalize semantic headings in source', ['node', 'scripts/ensure-semantic-headings.cjs']],
   ['Compile single design stylesheet', ['node', 'scripts/compile-single-stylesheet.cjs']],
   ['Normalize article navigation and typography', ['node', 'scripts/ensure-navigation-font-consistency.cjs']],
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
@@ -26,6 +27,7 @@ const stages = [
   ['Apply blog detail polish', ['node', 'scripts/ensure-blog-detail-polish.cjs', '--dist']],
   ['Reapply single design stylesheet to build', ['node', 'scripts/compile-single-stylesheet.cjs', '--dist']],
   ['Finalize article navigation and typography', ['node', 'scripts/ensure-navigation-font-consistency.cjs', '--dist']],
+  ['Normalize semantic headings in build', ['node', 'scripts/ensure-semantic-headings.cjs', '--dist']],
   ['Apply audit completion pass', ['node', 'scripts/ensure-audit-completion.cjs']],
   ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
 ];
