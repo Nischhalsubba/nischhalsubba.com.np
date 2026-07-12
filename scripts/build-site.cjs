@@ -13,6 +13,7 @@ const stages = [
   ['Apply SEO code fixes', ['node', 'scripts/ensure-seo-code-fixes.cjs']],
   ['Generate blog covers', ['node', 'scripts/ensure-blog-generated-covers.cjs']],
   ['Apply homepage hero layout', ['node', 'scripts/ensure-homepage-hero-layout.cjs']],
+  ['Compile single design stylesheet', ['node', 'scripts/compile-single-stylesheet.cjs']],
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
   ['Build Vite site', ['npx', 'vite', 'build']],
   ['Copy production assets', ['node', 'scripts/copy-static-assets.cjs']],
@@ -21,6 +22,7 @@ const stages = [
   ['Apply mobile header polish', ['node', 'scripts/ensure-mobile-header-polish.cjs', '--dist']],
   ['Apply canonical and redirect cleanup', ['node', 'scripts/ensure-final-seo-canonical-cleanup.cjs', '--dist']],
   ['Apply blog detail polish', ['node', 'scripts/ensure-blog-detail-polish.cjs', '--dist']],
+  ['Reapply single design stylesheet to build', ['node', 'scripts/compile-single-stylesheet.cjs', '--dist']],
   ['Apply audit completion pass', ['node', 'scripts/ensure-audit-completion.cjs']],
   ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
 ];
