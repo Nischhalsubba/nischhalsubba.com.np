@@ -2,7 +2,7 @@ const fs=require('fs');
 const path=require('path');
 const root=path.resolve(__dirname,'..');
 const htmlFiles=[];
-const styleHref='/style.css?v=48.0';
+const styleHref='/style.css?v=49.0';
 const scriptSrc='/script.js?v=32.0';
 function walk(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){if(entry.name==='node_modules'||entry.name==='dist'||entry.name==='.git')continue;const fullPath=path.join(dir,entry.name);if(entry.isDirectory())walk(fullPath);else if(entry.isFile()&&entry.name.endsWith('.html'))htmlFiles.push(fullPath);}}
 function normalizeFontLinks(html){return html.replace(/\s*<link\s+href="https:\/\/fonts\.googleapis\.com\/css2\?[^>]*rel="stylesheet"\s*\/?>\s*/gi,'\n').replace(/\s*<link\s+rel="stylesheet"\s+href="https:\/\/fonts\.googleapis\.com\/css2\?[^>]*>\s*/gi,'\n');}
@@ -11,4 +11,4 @@ function removeExtraLocalScripts(html){return html.replace(/\s*<script src="\/bl
 function normalizeScriptTags(html){let output=removeExtraLocalScripts(html).replace(/\/script\.js\?v=[0-9.]+/g,scriptSrc);const pattern=/<script\s+type="module"\s+src="\/script\.js\?v=32\.0"><\/script>/i;if(pattern.test(output))return output;if(/<script[^>]+src="\/script\.js[^>]*><\/script>/i.test(output))return output.replace(/<script[^>]+src="\/script\.js[^>]*><\/script>/i,`<script type="module" src="${scriptSrc}"></script>`);return output.replace(/<\/body>/i,`    <script type="module" src="${scriptSrc}"></script>\n  </body>`);}
 function normalize(content){let output=content.replace(/<canvas id="grid-canvas"><\/canvas>/g,'').replace(/<div class="custom-cursor-dot"><\/div>/g,'').replace(/<div class="custom-cursor-outline"><\/div>/g,'').replace(/<nav class="nav-wrapper">/g,'<nav class="nav-wrapper" aria-label="Primary navigation">').replace(/<nav class="mobile-nav-links">/g,'<nav class="mobile-nav-links" aria-label="Mobile navigation">');output=normalizeFontLinks(output);output=normalizeStylesheets(output);output=normalizeScriptTags(output);return output;}
 walk(root);let touched=0;for(const file of htmlFiles){const before=fs.readFileSync(file,'utf8');const after=normalize(before);if(after!==before){fs.writeFileSync(file,after,'utf8');touched+=1;}}
-console.log(`Normalized ${htmlFiles.length} HTML files to one stylesheet and one website runtime script; updated ${touched}.`);
+console.log(`Normalized ${htmlFiles.length} HTML files to style.css v49 and one website runtime script; updated ${touched}.`);
