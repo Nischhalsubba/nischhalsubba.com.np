@@ -18,10 +18,14 @@ function updateWorkSummary({ visibleCount, totalCount, activeFilter, query }) {
   const filterLabel = activeFilter === 'all' ? 'all work' : activeFilter;
   const queryLabel = query ? ` matching “${query}”` : '';
   summary.textContent = `${visibleCount} of ${totalCount} projects · ${filterLabel}${queryLabel}`;
+  summary.setAttribute('aria-live', 'polite');
 }
 
 function updateNoResults(visibleCount) {
-  $('#nrs-no-results')?.classList.toggle('is-visible', visibleCount === 0);
+  const noResults = $('#nrs-no-results');
+  if (!noResults) return;
+  noResults.classList.toggle('is-visible', visibleCount === 0);
+  noResults.setAttribute('aria-hidden', visibleCount === 0 ? 'false' : 'true');
 }
 
 function applyFilters({ searchWork, searchBlog }) {
@@ -47,20 +51,25 @@ function applyFilters({ searchWork, searchBlog }) {
   }
 }
 
+function setActiveFilter(button, selector) {
+  $$(selector).forEach((item) => {
+    item.classList.remove('active');
+    item.setAttribute('aria-pressed', 'false');
+  });
+  button.classList.add('active');
+  button.setAttribute('aria-pressed', 'true');
+}
+
 export function initFilters() {
   const searchWork = $('#search-work');
   const searchBlog = $('#search-blog');
   const controls = { searchWork, searchBlog };
 
   $$('.filter-btn, .blog-filter-btn').forEach((button) => {
+    button.setAttribute('aria-pressed', button.classList.contains('active') ? 'true' : 'false');
     button.addEventListener('click', () => {
       const selector = button.classList.contains('blog-filter-btn') ? '.blog-filter-btn' : '.filter-btn';
-      $$(selector).forEach((item) => {
-        item.classList.remove('active');
-        item.setAttribute('aria-pressed', 'false');
-      });
-      button.classList.add('active');
-      button.setAttribute('aria-pressed', 'true');
+      setActiveFilter(button, selector);
       applyFilters(controls);
     });
   });
@@ -72,6 +81,8 @@ export function initFilters() {
   $('#clear-work')?.addEventListener('click', () => {
     if (!searchWork) return;
     searchWork.value = '';
+    const allButton = $('.filter-btn[data-filter="all"]');
+    if (allButton) setActiveFilter(allButton, '.filter-btn');
     applyFilters(controls);
     searchWork.focus();
   });
