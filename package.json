@@ -8,6 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/preflight-build-scripts.cjs",
     "build": "node scripts/build-site.cjs",
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 dist",
