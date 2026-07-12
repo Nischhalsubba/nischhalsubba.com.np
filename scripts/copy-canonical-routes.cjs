@@ -11,4 +11,8 @@ for (const relative of manifest.html) {
   const source = path.join(root, relative);
   const target = path.join(dist, relative);
   if (!fs.existsSync(source)) throw new Error(`Canonical route source is missing: ${relative}`);
-  fs.mkdirSync
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.copyFileSync(source, target);
+}
+
+console.log(`Copied ${manifest.html.length} canonical HTML routes into dist.`);
