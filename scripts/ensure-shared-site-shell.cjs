@@ -1,42 +1,15 @@
-const fs = require('node:fs');
-const path = require('node:path');
-
-const root = path.resolve(__dirname, '..');
-const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
-const serviceDetails = new Set([
-  'product-design-nepal.html',
-  'web3-ux-designer.html',
-  'saas-ux-designer.html',
-  'website-ux-design.html',
-  'figma-design-systems.html',
-  'ux-audit.html',
-]);
-
-const navItems = [
-  ['home', '/', 'Home'],
-  ['work', '/projects', 'Work'],
-  ['services', '/services', 'Services'],
-  ['about', '/about', 'About'],
-  ['writing', '/blog/', 'Writing'],
-  ['contact', '/contact', 'Contact'],
-];
-
-function walk(dir, files = []) {
-  if (!fs.existsSync(dir)) return files;
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name === '.git' || entry.name === 'node_modules' || (targetRoot === root && entry.name === 'dist')) continue;
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) walk(full, files);
-    else files.push(full);
-  }
-  return files;
-}
-
-function normalizedRelative(file) {
-  return path.relative(targetRoot, file).replaceAll(path.sep, '/').replace(/^public\//, '');
-}
-
-function activeSection(relativePath) {
-  const base = path.basename(relativePath);
-  if (relativePath === 'index.html' || base === 'home.html' || base === 'home-v2.html') return 'home';
-  if (base
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const target=process.argv.includes('--dist')?path.join(root,'dist'):root;
+const details=new Set(['product-design-nepal.html','web3-ux-designer.html','saas-ux-designer.html','website-ux-design.html','figma-design-systems.html','ux-audit.html']);
+const items=[['home','/','Home'],['work','/projects','Work'],['services','/services','Services'],['about','/about','About'],['writing','/blog/','Writing'],['contact','/contact','Contact']];
+function walk(dir,out=[]){if(!fs.existsSync(dir))return out;for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(e.name==='.git'||e.name==='node_modules'||(target===root&&e.name==='dist'))continue;const f=path.join(dir,e.name);e.isDirectory()?walk(f,out):out.push(f)}return out}
+function rel(file){return path.relative(target,file).replaceAll(path.sep,'/').replace(/^public\//,'')}
+function section(r){const b=path.basename(r);if(r==='index.html'||b==='home.html'||b==='home-v2.html')return'home';if(b==='projects.html'||/^project-/.test(b))return'work';if(b==='services.html'||details.has(b))return'services';if(b==='about.html')return'about';if(b==='contact.html')return'contact';if(r.startsWith('blog/')||/^blog-/.test(b))return'writing';return''}
+function links(active,cls){return items.map(([key,href,label])=>`<a href="${href}" class="${cls}${key===active?' active':''}"${key===active?' aria-current="page"':''}>${label}</a>`).join('')}
+function shell(active){return{desktop:`<nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider" aria-hidden="true"></div>${links(active,'nav-link')}</div></nav>`,mobile:`<button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo" aria-label="Nischhal Raj Subba home">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay" hidden><nav class="mobile-nav-links" aria-label="Mobile navigation">${links(active,'')}</nav></div>`}}
+const footer=`<footer class="site-footer" aria-label="Portfolio footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><p class="eyebrow">Product designer in Nepal · Remote collaboration</p><h2>Clear product thinking, polished interfaces and practical handoff.</h2><p>Available for product design roles, focused UX/UI projects, design systems, Web3 and SaaS work, website UX and product audits.</p><a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a></div><div class="footer-nav-grid"><div class="footer-col"><h3>Pages</h3><a href="/">Home</a><a href="/projects">Work</a><a href="/services">Services</a><a href="/about">About</a><a href="/blog/">Writing</a><a href="/contact">Contact</a></div><div class="footer-col"><h3>Proof</h3><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener noreferrer">Behance</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Nischhalsubba" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div><div class="footer-col"><h3>Services</h3><a href="/product-design-nepal">Product design</a><a href="/saas-ux-designer">SaaS UX</a><a href="/web3-ux-designer">Web3 UX</a><a href="/figma-design-systems">Design systems</a><a href="/ux-audit">UX audit</a></div></div></div><div class="footer-bottom-bar"><span>© 2026 Nischhal Raj Subba.</span><span>Based in Nepal · UTC+5:45</span><a href="/privacy">Privacy</a></div></div></footer>`;
+function normalize(html,r){const s=shell(section(r));html=html.replace(/<button class="mobile-nav-toggle"[\s\S]*?<\/div><button id="theme-toggle"/i,`${s.mobile}<button id="theme-toggle"`).replace(/<nav class="nav-wrapper"[\s\S]*?<\/nav>/i,s.desktop);html=/<footer\b[^>]*class=["'][^"']*site-footer/i.test(html)?html.replace(/<footer\b[^>]*class=["'][^"']*site-footer[\s\S]*?<\/footer>/i,footer):html.replace(/\s*(<script\b[^>]*src=["'](?:\/script\.js|\/assets\/[^"']+\.js)[^>]*><\/script>\s*<\/body>)/i,`\n${footer}\n$1`);return html.replace(/\(c\)\s*2026/gi,'© 2026').replace(/href="\/(projects|services|about|contact)\.html"/g,'href="/$1"').replace(/href="\/(product-design-nepal|web3-ux-designer|saas-ux-designer|website-ux-design|figma-design-systems|ux-audit)\.html"/g,'href="/$1"')}
+let changed=0;for(const file of walk(target).filter(f=>f.endsWith('.html'))){const r=rel(file),before=fs.readFileSync(file,'utf8'),after=normalize(before,r);if(after!==before){fs.writeFileSync(file,after);changed++}}
+console.log(`Normalized shared navigation and footer on ${changed} page(s).`);
