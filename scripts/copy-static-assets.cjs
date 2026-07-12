@@ -2,201 +2,91 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
 
-const rootDir = path.resolve(__dirname, '..');
-const distDir = path.join(rootDir, 'dist');
-const styleHref = '/style.css?v=41.0';
-const remediationStyleHref = '/audit-remediations.css?v=1.0';
-const stableLayoutStyleHref = '/stable-layout.css?v=1.0';
-const scriptSrc = '/script.js?v=33.0';
+const root = path.resolve(__dirname, '..');
+const dist = path.join(root, 'dist');
+const publicDir = path.join(root, 'public');
+const styleHref = '/style.css?v=50.0';
+const scriptSrc = '/script.js?v=35.0';
+const forbiddenPublicExtensions = new Set(['.html', '.css', '.js']);
+const forbiddenPublicFiles = new Set(['sitemap.xml', 'robots.txt', 'llms.txt', 'llms-full.txt', 'ai-profile.json', 'humans.txt']);
 
-function copyDirectory(source, target) {
+function ensureDir(file) { fs.mkdirSync(path.dirname(file), { recursive: true }); }
+function copyFile(source, target) { if (!fs.existsSync(source)) return; ensureDir(target); fs.copyFileSync(source, target); }
+function copyText(source, target, transform = (value) => value) {
   if (!fs.existsSync(source)) return;
-  fs.mkdirSync(target, { recursive: true });
-
-  for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
-    const sourcePath = path.join(source, entry.name);
-    const targetPath = path.join(target, entry.name);
-
-    if (entry.isDirectory()) {
-      copyDirectory(sourcePath, targetPath);
-      continue;
-    }
-
-    fs.copyFileSync(sourcePath, targetPath);
+  ensureDir(target);
+  fs.writeFileSync(target, transform(fs.readFileSync(source, 'utf8')), 'utf8');
+}
+function walk(dir, files = []) {
+  if (!fs.existsSync(dir)) return files;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walk(full, files); else files.push(full);
   }
-}
-
-function copyFile(source, target) {
-  if (!fs.existsSync(source)) return;
-  fs.mkdirSync(path.dirname(target), { recursive: true });
-  fs.copyFileSync(source, target);
-}
-
-function copyTextFile(source, target, transform = (value) => value) {
-  if (!fs.existsSync(source)) return;
-  fs.mkdirSync(path.dirname(target), { recursive: true });
-  const content = fs.readFileSync(source, 'utf8');
-  fs.writeFileSync(target, transform(content), 'utf8');
-}
-
-function copyRootFile(fileName) {
-  copyFile(path.join(rootDir, fileName), path.join(distDir, fileName));
-}
-
-function walkFiles(directory, matcher, files = []) {
-  if (!fs.existsSync(directory)) return files;
-
-  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    const fullPath = path.join(directory, entry.name);
-    if (entry.isDirectory()) {
-      walkFiles(fullPath, matcher, files);
-      continue;
-    }
-    if (matcher(fullPath)) files.push(fullPath);
-  }
-
   return files;
 }
-
-function stripVisibleSeoHelperBlocks(html) {
-  const helperBlockClasses = [
-    'nrs-static-project-context',
-    'nrs-static-related-links',
-    'nrs-static-faq',
-  ];
-
-  let output = html;
-  for (const className of helperBlockClasses) {
-    const pattern = new RegExp(`<section[^>]*\\b${className}\\b[^>]*>[\\s\\S]*?<\\/section>`, 'g');
-    output = output.replace(pattern, '');
+function copyDirectory(source, target) {
+  for (const file of walk(source)) copyFile(file, path.join(target, path.relative(source, file)));
+}
+function copyPublicAssets() {
+  for (const file of walk(publicDir)) {
+    const relative = path.relative(publicDir, file).replaceAll(path.sep, '/');
+    const extension = path.extname(file).toLowerCase();
+    if (forbiddenPublicExtensions.has(extension) || forbiddenPublicFiles.has(relative)) continue;
+    copyFile(file, path.join(dist, relative));
   }
-
-  return output;
 }
-
-function stripUnusedVendorScripts(html) {
-  return html
-    .replace(/\s*<script\s+src="\/assets\/vendor\/gsap\.min\.js"\s+defer><\/script>/g, '')
-    .replace(/\s*<script\s+src="\/assets\/vendor\/ScrollTrigger\.min\.js"\s+defer><\/script>/g, '');
-}
-
-function removeLegacyPatchAssets(html) {
-  return html
-    .replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css|audit-remediations\.css|stable-layout\.css)[^"]+\.css[^"]*"\s*\/?>/g, '')
-    .replace(/\s*<script\s+src="\/(?!script\.js|assets\/)[^"]+\.js[^"]*"(?:\s+defer)?><\/script>/g, '');
-}
-
-function removeRemoteFontDependencies(html) {
+function removeRemoteFonts(html) {
   return html
     .replace(/\s*<link[^>]+rel=["']preconnect["'][^>]+href=["']https:\/\/fonts\.(?:googleapis|gstatic)\.com[^"']*["'][^>]*>/gi, '')
     .replace(/\s*<link[^>]+href=["']https:\/\/fonts\.googleapis\.com\/[^"']+["'][^>]*>/gi, '');
 }
-
-function ensureStylesheets(html) {
-  let output = html;
-
-  if (output.includes('/style.css')) {
-    output = output.replace(/\/style\.css\?v=[0-9.]+/g, styleHref);
-  } else if (output.includes('</head>')) {
-    output = output.replace('</head>', `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
-  }
-
-  if (!output.includes('/audit-remediations.css') && output.includes('</head>')) {
-    output = output.replace('</head>', `    <link rel="stylesheet" href="${remediationStyleHref}" />\n  </head>`);
-  }
-
-  if (!output.includes('/stable-layout.css') && output.includes('</head>')) {
-    output = output.replace('</head>', `    <link rel="stylesheet" href="${stableLayoutStyleHref}" />\n  </head>`);
-  }
-
+function ensureSingleStylesheet(html) {
+  let output = html.replace(/\s*<link[^>]+rel=["']stylesheet["'][^>]*>/gi, (tag) => /\/style\.css(?:\?|["'])/i.test(tag) ? tag : '');
+  if (/\/style\.css/i.test(output)) output = output.replace(/\/style\.css(?:\?v=[^"']+)?/g, styleHref);
+  else output = output.replace('</head>', `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
   return output;
 }
-
-function ensureRuntimeScript(html) {
-  if (html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"']+\.js["'][^>]*><\/script>/i.test(html)) return html;
+function ensureRuntime(html) {
+  if (/src=["'](?:\/assets\/[^"']+|\/script\.js[^"']*)["']/i.test(html)) return html;
   return html.replace('</body>', `  <script type="module" src="${scriptSrc}"></script>\n  </body>`);
 }
-
-function ensureEarlyThemeBootstrap(html) {
+function ensureTheme(html) {
   const cleaned = html.replace(/\s*<script id="nrs-early-theme-bootstrap">[\s\S]*?<\/script>/, '');
-  if (!cleaned.includes('</head>')) return html;
-  return cleaned.replace('</head>', `    ${EARLY_THEME_BOOTSTRAP}\n  </head>`);
+  return cleaned.includes('</head>') ? cleaned.replace('</head>', `    ${EARLY_THEME_BOOTSTRAP}\n  </head>`) : cleaned;
 }
-
-function ensureSkipLinkAndMainTarget(html) {
-  if (!html.includes('<body') || !html.includes('<main')) return html;
-
+function ensureAccessibility(html) {
+  if (!/<body/i.test(html) || !/<main/i.test(html)) return html;
   let output = html;
-  if (!/\bmain[^>]*\bid=["']main-content["']/i.test(output)) {
-    output = output.replace(/<main\b([^>]*)>/i, '<main id="main-content"$1>');
-  }
-
-  if (!output.includes('class="skip-link"') && !output.includes("class='skip-link'")) {
-    output = output.replace(/(<body\b[^>]*>)/i, '$1\n    <a class="skip-link" href="#main-content">Skip to main content</a>');
-  }
-
+  if (!/<main\b[^>]*\bid=["']main-content["']/i.test(output)) output = output.replace(/<main\b([^>]*)>/i, '<main id="main-content"$1>');
+  if (!/class=["'][^"']*skip-link/i.test(output)) output = output.replace(/(<body\b[^>]*>)/i, '$1\n    <a class="skip-link" href="#main-content">Skip to main content</a>');
   return output;
 }
-
-function normalizeFigmaFrames(html) {
-  return html.replace(/<iframe\b([^>]*figma\.com[^>]*)>/gi, (match, attributes) => {
-    let next = attributes
-      .replace(/\sloading=["']eager["']/i, '')
-      .replace(/\sloading=["']lazy["']/i, '');
-
+function normalizeFrames(html) {
+  return html.replace(/<iframe\b([^>]*figma\.com[^>]*)>/gi, (_match, attrs) => {
+    let next = attrs.replace(/\sloading=["'](?:eager|lazy)["']/i, '');
     if (!/\stitle=["']/i.test(next)) next += ' title="Interactive Figma project preview"';
     if (!/\sreferrerpolicy=["']/i.test(next)) next += ' referrerpolicy="strict-origin-when-cross-origin"';
     return `<iframe${next} loading="lazy">`;
   });
 }
-
-function stripRemoteFontImports(css) {
-  return css
-    .replace(/@import\s+url\(["']?https:\/\/fonts\.googleapis\.com\/[^;]+;\s*/gi, '')
-    .replace(/--font-sans:\s*Manrope,\s*/g, '--font-sans: ');
-}
-
-function optimizeHtmlOutput() {
-  for (const filePath of walkFiles(distDir, (file) => file.endsWith('.html'))) {
-    const original = fs.readFileSync(filePath, 'utf8');
-    const optimized = ensureRuntimeScript(
-      ensureStylesheets(
-        ensureEarlyThemeBootstrap(
-          ensureSkipLinkAndMainTarget(
-            normalizeFigmaFrames(
-              removeRemoteFontDependencies(
-                removeLegacyPatchAssets(
-                  stripUnusedVendorScripts(
-                    stripVisibleSeoHelperBlocks(original),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-
-    if (optimized !== original) fs.writeFileSync(filePath, optimized, 'utf8');
+function optimizeHtml() {
+  for (const file of walk(dist).filter((item) => item.endsWith('.html'))) {
+    const original = fs.readFileSync(file, 'utf8');
+    const updated = ensureRuntime(ensureSingleStylesheet(ensureTheme(ensureAccessibility(normalizeFrames(removeRemoteFonts(original))))));
+    if (updated !== original) fs.writeFileSync(file, updated, 'utf8');
   }
 }
-
-copyDirectory(path.join(rootDir, 'assets'), path.join(distDir, 'assets'));
-copyDirectory(path.join(rootDir, 'public'), distDir);
-copyDirectory(path.join(rootDir, 'src', 'scripts'), path.join(distDir, 'src', 'scripts'));
-copyFile(path.join(rootDir, 'script.js'), path.join(distDir, 'script.js'));
-copyTextFile(path.join(rootDir, 'style.css'), path.join(distDir, 'style.css'), stripRemoteFontImports);
-
-for (const fileName of [
-  'robots.txt',
-  'sitemap.xml',
-  'llms.txt',
-  'ai-profile.json',
-  'site.webmanifest',
-]) {
-  copyRootFile(fileName);
+function stripRemoteFontImports(css) {
+  return css.replace(/@import\s+url\(["']?https:\/\/fonts\.googleapis\.com\/[^;]+;\s*/gi, '');
 }
 
-optimizeHtmlOutput();
-
-console.log('Copied production assets, removed remote font dependencies, normalized Figma loading, added skip links, loaded static layout rules, preserved the canonical runtime, and stripped legacy output patches.');
+if (!fs.existsSync(dist)) throw new Error('dist directory is missing. Run Vite before copying assets.');
+copyDirectory(path.join(root, 'assets'), path.join(dist, 'assets'));
+copyPublicAssets();
+copyDirectory(path.join(root, 'src', 'scripts'), path.join(dist, 'src', 'scripts'));
+copyFile(path.join(root, 'script.js'), path.join(dist, 'script.js'));
+copyText(path.join(root, 'style.css'), path.join(dist, 'style.css'), stripRemoteFontImports);
+for (const name of ['robots.txt', 'sitemap.xml', 'llms.txt', 'llms-full.txt', 'ai-profile.json', 'humans.txt', 'site.webmanifest', '_headers', '_redirects']) copyFile(path.join(root, name), path.join(dist, name));
+optimizeHtml();
+console.log('Copied canonical static assets without allowing public HTML, CSS or JavaScript to overwrite generated production pages.');
