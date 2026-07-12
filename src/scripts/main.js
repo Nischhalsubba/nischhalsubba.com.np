@@ -1,6 +1,7 @@
 import { onReady } from './utils/dom.js';
 
 const globalFeatures = [
+  ['shared page system', () => import('./features/shared-page-system.js').then((module) => module.applySharedPageSystem)],
   ['theme', () => import('./features/theme.js').then((module) => module.initTheme)],
   ['global styles', () => import('./features/global-styles.js').then((module) => module.injectGlobalStyles)],
   ['site consistency', () => import('./features/site-consistency.js').then((module) => module.polishSiteConsistency)],
