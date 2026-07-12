@@ -1,119 +1,713 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="nrs-blog-detail-page">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SaaS Dashboard Empty States That Help Users Recover | Nischhal Raj Subba</title>
-    <meta name="description" content="A practical guide to SaaS dashboard empty states that explain context, reduce confusion, and help users recover without needing support." />
+    <title>
+      SaaS Dashboard Empty States That Help Users Recover | Nischhal Raj Subba
+    </title>
+    <meta
+      name="description"
+      content="A practical guide to SaaS dashboard empty states that explain context, reduce confusion, and help users recover without needing support."
+    />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover.html" />
+    <link
+      rel="canonical"
+      href="https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover"
+    />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="SaaS Dashboard Empty States That Help Users Recover" />
-    <meta property="og:description" content="How to design empty states for SaaS dashboards that explain what happened, what matters, and what the user should do next." />
-    <meta property="og:url" content="https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover.html" />
-    <meta property="og:image" content="https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png" />
+    <meta
+      property="og:title"
+      content="SaaS Dashboard Empty States That Help Users Recover"
+    />
+    <meta
+      property="og:description"
+      content="How to design empty states for SaaS dashboards that explain what happened, what matters, and what the user should do next."
+    />
+    <meta
+      property="og:url"
+      content="https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover"
+    />
+    <meta
+      property="og:image"
+      content="https://nischhalsubba.com.np/assets/images/blog-saas-empty-states-cover.png"
+    />
     <meta property="article:author" content="Nischhal Raj Subba" />
     <meta property="article:published_time" content="2026-07-01" />
     <meta property="article:modified_time" content="2026-07-01" />
     <meta property="article:section" content="SaaS Dashboard UX" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SaaS Dashboard Empty States That Help Users Recover" />
-    <meta name="twitter:description" content="A product designer's guide to useful SaaS dashboard empty states for loading, filters, permissions, setup, and errors." />
-    <meta name="twitter:image" content="https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png" />
+    <meta
+      name="twitter:title"
+      content="SaaS Dashboard Empty States That Help Users Recover"
+    />
+    <meta
+      name="twitter:description"
+      content="A product designer's guide to useful SaaS dashboard empty states for loading, filters, permissions, setup, and errors."
+    />
+    <meta
+      name="twitter:image"
+      content="https://nischhalsubba.com.np/assets/images/blog-saas-empty-states-cover.png"
+    />
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/style.css?v=41.0" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"SaaS Dashboard Empty States That Help Users Recover","description":"A practical guide to SaaS dashboard empty states that explain context, reduce confusion, and help users recover without needing support.","image":"https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png","datePublished":"2026-07-01","dateModified":"2026-07-01","author":{"@type":"Person","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/"},"publisher":{"@type":"Person","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/"},"mainEntityOfPage":"https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover.html","url":"https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover.html","keywords":["SaaS dashboard empty states","dashboard UX","empty state UX","SaaS UX design","admin dashboard UX","product design"],"articleSection":"SaaS Dashboard UX","wordCount":1900},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nischhalsubba.com.np/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://nischhalsubba.com.np/blog/"},{"@type":"ListItem","position":3,"name":"SaaS Dashboard Empty States That Help Users Recover","item":"https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an empty state in a SaaS dashboard?","acceptedAnswer":{"@type":"Answer","text":"An empty state is the interface shown when a dashboard area has no data, no matching results, missing setup, restricted access, or a temporary failure."}},{"@type":"Question","name":"Why do SaaS dashboards need better empty states?","acceptedAnswer":{"@type":"Answer","text":"SaaS dashboards depend on data, roles, filters, setup, and integrations. Clear empty states help users understand what happened and what to do next."}},{"@type":"Question","name":"Should every empty state have a call to action?","acceptedAnswer":{"@type":"Answer","text":"No. The call to action should match the reason the state is empty. Some states need reset, request access, retry, create, import, or only explanation."}}]}]}</script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            "headline": "SaaS Dashboard Empty States That Help Users Recover",
+            "description": "A practical guide to SaaS dashboard empty states that explain context, reduce confusion, and help users recover without needing support.",
+            "image": "https://nischhalsubba.com.np/assets/images/blog-saas-empty-states-cover.png",
+            "datePublished": "2026-07-01",
+            "dateModified": "2026-07-01",
+            "author": {
+              "@type": "Person",
+              "name": "Nischhal Raj Subba",
+              "url": "https://nischhalsubba.com.np/"
+            },
+            "publisher": {
+              "@type": "Person",
+              "name": "Nischhal Raj Subba",
+              "url": "https://nischhalsubba.com.np/"
+            },
+            "mainEntityOfPage": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover.html",
+            "url": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover.html",
+            "keywords": [
+              "SaaS dashboard empty states",
+              "dashboard UX",
+              "empty state UX",
+              "SaaS UX design",
+              "admin dashboard UX",
+              "product design"
+            ],
+            "articleSection": "SaaS Dashboard UX",
+            "wordCount": 1900
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://nischhalsubba.com.np/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Writing",
+                "item": "https://nischhalsubba.com.np/blog/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "SaaS Dashboard Empty States That Help Users Recover",
+                "item": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover.html"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is an empty state in a SaaS dashboard?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "An empty state is the interface shown when a dashboard area has no data, no matching results, missing setup, restricted access, or a temporary failure."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why do SaaS dashboards need better empty states?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "SaaS dashboards depend on data, roles, filters, setup, and integrations. Clear empty states help users understand what happened and what to do next."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Should every empty state have a call to action?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. The call to action should match the reason the state is empty. Some states need reset, request access, retry, create, import, or only explanation."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script id="nrs-early-theme-bootstrap">
+      (function () {
+        var root = document.documentElement;
+        var theme = "dark";
+        try {
+          var override = sessionStorage.getItem("nrs-theme-override");
+          if (override === "light" || override === "dark") {
+            theme = override;
+          } else if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+          ) {
+            theme = "light";
+          }
+          localStorage.removeItem("theme");
+        } catch (error) {
+          if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+          )
+            theme = "light";
+        }
+        root.setAttribute("data-theme", theme);
+        root.style.colorScheme = theme;
+        root.setAttribute("data-theme-source", "system");
+        var style = document.createElement("style");
+        style.id = "nrs-first-paint-theme";
+        style.textContent = [
+          ":root{--nrs-first-bg:#0c0f0b;--nrs-first-text:#f3f6ea;--nrs-progress:#d8ff48;--nrs-progress-track:rgba(243,246,234,.15);color-scheme:dark;}",
+          "html[data-theme='light']{--nrs-first-bg:#f4efe4;--nrs-first-text:#141410;--nrs-progress:#141410;--nrs-progress-track:rgba(20,20,16,.16);color-scheme:light;}",
+          "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;color:var(--nrs-first-text)!important;}",
+          "#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:5px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track)!important;opacity:1!important;transform:none!important;overflow:hidden!important;}",
+          "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress)!important;transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
+          "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}",
+        ].join("");
+        document.head.appendChild(style);
+        function ensureProgressBar() {
+          if (document.getElementById("nrs-scroll-progress")) return;
+          var bar = document.createElement("div");
+          bar.id = "nrs-scroll-progress";
+          bar.setAttribute("aria-hidden", "true");
+          if (document.body) document.body.prepend(bar);
+          else
+            document.addEventListener("DOMContentLoaded", ensureProgressBar, {
+              once: true,
+            });
+        }
+        function updateProgress() {
+          var scrollable = Math.max(
+            1,
+            document.documentElement.scrollHeight - window.innerHeight,
+          );
+          var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable));
+          root.style.setProperty("--nrs-scroll-progress-scale", String(value));
+        }
+        ensureProgressBar();
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+        window.addEventListener("pageshow", updateProgress);
+      })();
+    </script>
+    <link rel="stylesheet" href="/style.css?v=46.0" />
+    <script id="nrs-blog-breadcrumb-json" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nischhalsubba.com.np/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Writing",
+            "item": "https://nischhalsubba.com.np/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "SaaS Dashboard Empty States That Help Users Recover",
+            "item": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
-    <button class="mobile-nav-toggle" aria-label="Menu"><span></span><span></span></button>
-    <a href="/" class="mobile-logo">NRS</a>
-    <div class="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/blog/" class="active">Writing</a><a href="/contact.html">Contact</a></nav></div>
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
-    <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects.html" class="nav-link">Work</a><a href="/services.html" class="nav-link">Services</a><a href="/about.html" class="nav-link">About</a><a href="/blog/" class="nav-link active">Writing</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
-    <main class="container">
-      <article class="section-container" style="max-width:980px;margin:0 auto;padding-top:150px;">
-        <a class="badge-pill" href="/blog/">← Back to writing</a>
-        <p class="eyebrow" style="margin-top:36px;">SaaS dashboard UX</p>
-        <h1 class="hero-title" style="font-size:clamp(2.55rem,6vw,5rem);line-height:1.04;max-width:980px;">SaaS Dashboard Empty States That Help Users Recover</h1>
-        <p class="body-large" style="max-width:840px;">A practical way to design empty states that explain the product condition, reduce avoidable support questions, and guide users back to useful work.</p>
-        <div class="meta-text" style="display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border-faint);padding-top:22px;margin-top:28px;"><span>Jul 01, 2026</span><span>9 min read</span><span>By Nischhal Raj Subba</span></div>
-        <img height="900" width="1600" decoding="async" loading="eager" class="nrs-blog-cover-img" src="/assets/images/blog-design-systems-handoff-cover.png" alt="Generated product design cover showing SaaS dashboard cards, empty-state messages, filters, and handoff notes" style="width:100%;max-height:360px;object-fit:cover;margin-top:42px;border-radius:28px;border:1px solid var(--border-faint);" />
-        <div class="body-large" style="max-width:860px;color:var(--text-secondary);font-size:1.12rem;line-height:1.86;margin-top:56px;">
-          <p>A SaaS dashboard empty state should not simply say “No data found.” It should explain why nothing is visible, whether the user needs to act, and how they can recover. In dashboard products, empty space can mean first use, narrow filters, missing permissions, delayed sync, setup not completed, or a real zero-value business condition.</p>
+    <a class="skip-link" href="#main-content">Skip to main content</a
+    ><button
+      class="mobile-nav-toggle"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav-overlay"
+    >
+      <span></span><span></span></button
+    ><a href="/" class="mobile-logo">NRS</a>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <nav class="mobile-nav-links" aria-label="Mobile navigation">
+        <a href="/" class="active" aria-current="page">Home</a
+        ><a href="/projects">Work</a><a href="/services">Services</a
+        ><a href="/about">About</a><a href="/blog/">Writing</a
+        ><a href="/contact">Contact</a>
+      </nav>
+    </div>
+    <button
+      id="theme-toggle"
+      class="theme-toggle-btn"
+      aria-label="Toggle theme"
+    ></button>
+    <nav class="nav-wrapper" aria-label="Primary navigation">
+      <div class="nav-pill">
+        <div class="nav-glider"></div>
+        <a href="/" class="nav-link active" aria-current="page">Home</a
+        ><a href="/projects" class="nav-link">Work</a
+        ><a href="/services" class="nav-link">Services</a
+        ><a href="/about" class="nav-link">About</a
+        ><a href="/blog/" class="nav-link">Writing</a
+        ><a href="/contact" class="nav-link">Contact</a>
+      </div>
+    </nav>
+    <main id="main-content" class="container">
+      <article
+        class="section-container"
+        style="max-width: 980px; margin: 0 auto; padding-top: 150px"
+      >
+        <nav class="nrs-blog-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span
+          ><a href="/blog/">Writing</a><span aria-hidden="true">/</span
+          ><span class="nrs-crumb-current" aria-current="page"
+            >SaaS Dashboard UX</span
+          >
+        </nav>
+        <a class="nrs-blog-back-btn" href="/blog/">Back to all writing</a>
+        <p class="eyebrow nrs-blog-category" style="margin-top: 36px">
+          SaaS dashboard UX
+        </p>
+        <h1
+          class="hero-title"
+          style="
+            font-size: clamp(2.55rem, 6vw, 5rem);
+            line-height: 1.04;
+            max-width: 980px;
+          "
+        >
+          SaaS Dashboard Empty States That Help Users Recover
+        </h1>
+        <p class="body-large nrs-blog-dek" style="max-width: 840px">
+          A practical way to design empty states that explain the product
+          condition, reduce avoidable support questions, and guide users back to
+          useful work.
+        </p>
+        <div
+          class="meta-text nrs-blog-meta"
+          style="
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border-faint);
+            padding-top: 22px;
+            margin-top: 28px;
+          "
+        >
+          <span>Jul 01, 2026</span><span>9 min read</span
+          ><span>By Nischhal Raj Subba</span>
+        </div>
+        <img
+          height="900"
+          width="1600"
+          decoding="async"
+          loading="eager"
+          class="nrs-blog-cover-img"
+          src="/assets/images/blog-saas-empty-states-cover.png"
+          alt="Generated product design cover showing SaaS dashboard empty states and product clarity artifacts"
+          style="
+            width: 100%;
+            max-height: 360px;
+            object-fit: cover;
+            margin-top: 42px;
+            border-radius: 28px;
+            border: 1px solid var(--border-faint);
+          "
+        />
+        <div
+          class="body-large nrs-blog-content"
+          style="
+            max-width: 860px;
+            color: var(--text-secondary);
+            font-size: 1.12rem;
+            line-height: 1.86;
+            margin-top: 56px;
+          "
+        >
+          <p>
+            A SaaS dashboard empty state should not simply say “No data found.”
+            It should explain why nothing is visible, whether the user needs to
+            act, and how they can recover. In dashboard products, empty space
+            can mean first use, narrow filters, missing permissions, delayed
+            sync, setup not completed, or a real zero-value business condition.
+          </p>
           <h2>Writer brief</h2>
-          <p><strong>Topic:</strong> SaaS dashboard empty states. <strong>Reader:</strong> a product designer, PM, founder, or developer working on admin dashboards and internal tools. <strong>Problem:</strong> empty dashboard areas create confusion because the interface does not explain the reason. <strong>Goal:</strong> design empty states that guide recovery. <strong>Search intent:</strong> practical how-to. <strong>Main keyword:</strong> SaaS dashboard empty states. <strong>Secondary keywords:</strong> empty state UX, dashboard UX, SaaS UX design, admin dashboard UX. <strong>Promise:</strong> give teams a reusable way to decide what each empty state should say and do. <strong>Angle:</strong> empty states are product diagnosis and recovery moments. <strong>Examples:</strong> CRM, finance, inventory, logistics, fintech verification, and modular SaaS workflows. <strong>Level:</strong> practical intermediate. <strong>Assumption:</strong> the team ships dashboards with roles, filters, tables, integrations, and admin workflows.</p>
+          <p>
+            <strong>Topic:</strong> SaaS dashboard empty states.
+            <strong>Reader:</strong> a product designer, PM, founder, or
+            developer working on admin dashboards and internal tools.
+            <strong>Problem:</strong> empty dashboard areas create confusion
+            because the interface does not explain the reason.
+            <strong>Goal:</strong> design empty states that guide recovery.
+            <strong>Search intent:</strong> practical how-to.
+            <strong>Main keyword:</strong> SaaS dashboard empty states.
+            <strong>Secondary keywords:</strong> empty state UX, dashboard UX,
+            SaaS UX design, admin dashboard UX. <strong>Promise:</strong> give
+            teams a reusable way to decide what each empty state should say and
+            do. <strong>Angle:</strong> empty states are product diagnosis and
+            recovery moments. <strong>Examples:</strong> CRM, finance,
+            inventory, logistics, fintech verification, and modular SaaS
+            workflows. <strong>Level:</strong> practical intermediate.
+            <strong>Assumption:</strong> the team ships dashboards with roles,
+            filters, tables, integrations, and admin workflows.
+          </p>
           <h2>Short answer</h2>
-          <p>Design SaaS dashboard empty states by identifying the cause first: first use, filtered results, permissions, setup, sync delay, error, or true zero data. Then write the message around context, consequence, and next action. A good empty state helps the user know whether to create, reset, wait, request access, fix setup, or simply understand that nothing needs attention.</p>
+          <p>
+            Design SaaS dashboard empty states by identifying the cause first:
+            first use, filtered results, permissions, setup, sync delay, error,
+            or true zero data. Then write the message around context,
+            consequence, and next action. A good empty state helps the user know
+            whether to create, reset, wait, request access, fix setup, or simply
+            understand that nothing needs attention.
+          </p>
           <h2>Who this is for</h2>
-          <p>This is for product designers, founders, PMs, and front-end developers building SaaS dashboards, CRMs, fintech admin tools, logistics platforms, analytics pages, and internal workflow software. It is especially useful when one table, card, or module can be empty for five different reasons.</p>
+          <p>
+            This is for product designers, founders, PMs, and front-end
+            developers building SaaS dashboards, CRMs, fintech admin tools,
+            logistics platforms, analytics pages, and internal workflow
+            software. It is especially useful when one table, card, or module
+            can be empty for five different reasons.
+          </p>
           <h2>What an empty state actually means</h2>
-          <p>An empty state is the interface shown when a product area has no visible content. In a dashboard, that can happen because there is no data yet, the user filtered everything out, the user lacks permission, an integration has not synced, an error blocked loading, or setup is incomplete.</p>
-          <p>The important part is this: empty does not mean useless. It is a diagnostic state. The screen is telling the user something about the product, the data, or their access. The designer's job is to translate that condition into a clear explanation and a useful path forward.</p>
+          <p>
+            An empty state is the interface shown when a product area has no
+            visible content. In a dashboard, that can happen because there is no
+            data yet, the user filtered everything out, the user lacks
+            permission, an integration has not synced, an error blocked loading,
+            or setup is incomplete.
+          </p>
+          <p>
+            The important part is this: empty does not mean useless. It is a
+            diagnostic state. The screen is telling the user something about the
+            product, the data, or their access. The designer's job is to
+            translate that condition into a clear explanation and a useful path
+            forward.
+          </p>
           <h2>The CLEAR framework for dashboard empty states</h2>
-          <p>I use a CLEAR framework for SaaS empty states: Cause, Location, Effect, Action, and Recovery. It keeps the message tied to the product condition instead of hiding behind vague friendliness and a decorative illustration.</p>
+          <p>
+            I use a CLEAR framework for SaaS empty states: Cause, Location,
+            Effect, Action, and Recovery. It keeps the message tied to the
+            product condition instead of hiding behind vague friendliness and a
+            decorative illustration.
+          </p>
           <h3>1. Cause: explain why the area is empty</h3>
-          <p>Start with the reason. Is this a new workspace? Did the user apply a filter? Is the connected account still syncing? Does the role prevent access? Did the request fail? The copy should make that cause visible.</p>
-          <p>In a CRM dashboard, an empty deals table could say “No deals match these filters” when filters are active, but “No deals have been added yet” during first use. One invites the user to reset filters. The other invites the user to add or import a deal.</p>
+          <p>
+            Start with the reason. Is this a new workspace? Did the user apply a
+            filter? Is the connected account still syncing? Does the role
+            prevent access? Did the request fail? The copy should make that
+            cause visible.
+          </p>
+          <p>
+            In a CRM dashboard, an empty deals table could say “No deals match
+            these filters” when filters are active, but “No deals have been
+            added yet” during first use. One invites the user to reset filters.
+            The other invites the user to add or import a deal.
+          </p>
           <h3>2. Location: connect the message to the module</h3>
-          <p>Dashboard users scan quickly. An empty state inside a revenue card, customer table, inventory alert, or verification queue should name the object. Avoid generic copy like “Nothing here yet.” Better: “No pending verification requests” or “No inventory alerts for this warehouse.”</p>
+          <p>
+            Dashboard users scan quickly. An empty state inside a revenue card,
+            customer table, inventory alert, or verification queue should name
+            the object. Avoid generic copy like “Nothing here yet.” Better: “No
+            pending verification requests” or “No inventory alerts for this
+            warehouse.”
+          </p>
           <h3>3. Effect: say what it means</h3>
-          <p>Some empty states are good news. Some block work. Some are neutral. The interface should say the consequence. If there are no failed payments, that is reassurance. If there are no invoices because billing setup is missing, that is a setup issue. If there are no results after search, it means the query or filter should change.</p>
+          <p>
+            Some empty states are good news. Some block work. Some are neutral.
+            The interface should say the consequence. If there are no failed
+            payments, that is reassurance. If there are no invoices because
+            billing setup is missing, that is a setup issue. If there are no
+            results after search, it means the query or filter should change.
+          </p>
           <h3>4. Action: offer the right next step</h3>
-          <p>Not every empty state needs a giant primary button. First-use states may need “Create customer,” “Import CSV,” or “Connect account.” Filtered-empty states need “Clear filters” or “Edit search.” Permission states need “Request access” or a contact path. Sync states need progress, timestamp, and what happens next.</p>
+          <p>
+            Not every empty state needs a giant primary button. First-use states
+            may need “Create customer,” “Import CSV,” or “Connect account.”
+            Filtered-empty states need “Clear filters” or “Edit search.”
+            Permission states need “Request access” or a contact path. Sync
+            states need progress, timestamp, and what happens next.
+          </p>
           <h3>5. Recovery: help users return to useful work</h3>
-          <p>Recovery is the difference between decorative UX and practical product design. Good recovery can include a reset link, setup checklist, import option, documentation link, role explanation, last sync time, retry button, or contact owner. The point is not to fill the space. The point is to reduce uncertainty.</p>
+          <p>
+            Recovery is the difference between decorative UX and practical
+            product design. Good recovery can include a reset link, setup
+            checklist, import option, documentation link, role explanation, last
+            sync time, retry button, or contact owner. The point is not to fill
+            the space. The point is to reduce uncertainty.
+          </p>
           <h2>Common dashboard empty states and what they need</h2>
           <h3>First-use empty state</h3>
-          <p>This appears when the user has not created or imported data yet. It should explain what the module is for, what the user needs to add, and what will appear after setup. A SaaS finance dashboard could say: “No invoices yet. Create your first invoice or import existing billing data to track due, paid, and overdue amounts here.”</p>
+          <p>
+            This appears when the user has not created or imported data yet. It
+            should explain what the module is for, what the user needs to add,
+            and what will appear after setup. A SaaS finance dashboard could
+            say: “No invoices yet. Create your first invoice or import existing
+            billing data to track due, paid, and overdue amounts here.”
+          </p>
           <h3>Filtered-empty state</h3>
-          <p>This appears when data exists but the current filter hides it. The message should mention filters and give a reset action. Example: “No customers match this segment. Clear filters or adjust the date range.” Do not say “No customers found” unless the product truly has no customers.</p>
+          <p>
+            This appears when data exists but the current filter hides it. The
+            message should mention filters and give a reset action. Example: “No
+            customers match this segment. Clear filters or adjust the date
+            range.” Do not say “No customers found” unless the product truly has
+            no customers.
+          </p>
           <h3>Permission-empty state</h3>
-          <p>This appears when the user cannot see data because of role limits. It should explain access without exposing restricted data. Example: “You do not have permission to view finance reports. Ask a workspace admin for finance access.”</p>
+          <p>
+            This appears when the user cannot see data because of role limits.
+            It should explain access without exposing restricted data. Example:
+            “You do not have permission to view finance reports. Ask a workspace
+            admin for finance access.”
+          </p>
           <h3>Setup-empty state</h3>
-          <p>This appears when the dashboard needs configuration before it can work. Setup might involve connecting an account, adding rules, verifying a profile, or enabling an integration. The empty state should show the missing step and the safest next action.</p>
+          <p>
+            This appears when the dashboard needs configuration before it can
+            work. Setup might involve connecting an account, adding rules,
+            verifying a profile, or enabling an integration. The empty state
+            should show the missing step and the safest next action.
+          </p>
           <h3>Error-empty state</h3>
-          <p>This appears when data should exist but cannot load. It needs plain error copy, retry behavior, and possibly a support path. Do not use the same tone as first use. A failure state should not pretend to be onboarding.</p>
+          <p>
+            This appears when data should exist but cannot load. It needs plain
+            error copy, retry behavior, and possibly a support path. Do not use
+            the same tone as first use. A failure state should not pretend to be
+            onboarding.
+          </p>
           <h2>Common mistakes</h2>
           <h3>Using one message for every empty state</h3>
-          <p><strong>What it is:</strong> the same “No data found” copy appears everywhere. <strong>Why it happens:</strong> teams treat empty states as visual leftovers. <strong>Why it hurts:</strong> users cannot tell whether they need to create data, clear filters, wait, fix setup, or ask for permission. <strong>Better approach:</strong> define empty-state types in the design system and write cause-specific messages.</p>
+          <p>
+            <strong>What it is:</strong> the same “No data found” copy appears
+            everywhere. <strong>Why it happens:</strong> teams treat empty
+            states as visual leftovers. <strong>Why it hurts:</strong> users
+            cannot tell whether they need to create data, clear filters, wait,
+            fix setup, or ask for permission.
+            <strong>Better approach:</strong> define empty-state types in the
+            design system and write cause-specific messages.
+          </p>
           <h3>Adding a button without understanding the cause</h3>
-          <p><strong>What it is:</strong> every empty state gets a primary CTA. <strong>Why it happens:</strong> action looks productive. <strong>Why it hurts:</strong> the wrong action can create noise or send users into a dead end. <strong>Better approach:</strong> map the empty cause first, then choose whether the state needs create, import, reset, request, retry, or no action.</p>
+          <p>
+            <strong>What it is:</strong> every empty state gets a primary CTA.
+            <strong>Why it happens:</strong> action looks productive.
+            <strong>Why it hurts:</strong> the wrong action can create noise or
+            send users into a dead end. <strong>Better approach:</strong> map
+            the empty cause first, then choose whether the state needs create,
+            import, reset, request, retry, or no action.
+          </p>
           <h3>Hiding system delay</h3>
-          <p><strong>What it is:</strong> sync and loading delays are shown as generic empty areas. <strong>Why it happens:</strong> teams avoid explaining system behavior. <strong>Why it hurts:</strong> users assume data is missing or broken. <strong>Better approach:</strong> show sync status, last updated time, expected delay, and retry behavior when relevant.</p>
+          <p>
+            <strong>What it is:</strong> sync and loading delays are shown as
+            generic empty areas. <strong>Why it happens:</strong> teams avoid
+            explaining system behavior. <strong>Why it hurts:</strong> users
+            assume data is missing or broken.
+            <strong>Better approach:</strong> show sync status, last updated
+            time, expected delay, and retry behavior when relevant.
+          </p>
           <h2>Practical checklist</h2>
           <ul>
-            <li>Identify whether the state is first-use, filtered, permission-based, setup-related, delayed, error-based, or true zero data.</li>
+            <li>
+              Identify whether the state is first-use, filtered,
+              permission-based, setup-related, delayed, error-based, or true
+              zero data.
+            </li>
             <li>Name the object or module that is empty.</li>
             <li>Explain what the empty condition means for the user's work.</li>
-            <li>Choose one useful next step: create, import, clear filters, request access, connect, retry, or learn more.</li>
-            <li>Show filter chips, date ranges, or search terms when they affect the result.</li>
+            <li>
+              Choose one useful next step: create, import, clear filters,
+              request access, connect, retry, or learn more.
+            </li>
+            <li>
+              Show filter chips, date ranges, or search terms when they affect
+              the result.
+            </li>
             <li>Use different copy for no data and no matching data.</li>
-            <li>Document empty states in Figma and handoff notes, not only in final screens.</li>
-            <li>Include loading, error, partial-data, and permission states in QA.</li>
+            <li>
+              Document empty states in Figma and handoff notes, not only in
+              final screens.
+            </li>
+            <li>
+              Include loading, error, partial-data, and permission states in QA.
+            </li>
           </ul>
           <h2>How this connects to design systems and handoff</h2>
-          <p>Empty states should become part of the design system, not a one-off message invented after the main screen is done. A useful component should include title, body, optional illustration, optional action, secondary action, state type, permission notes, and responsive behavior.</p>
-          <p>In handoff, designers should specify when each state appears. For example: “Show filtered-empty state when the API returns zero results and filters are active. Show first-use state when workspace has no created records. Show error state when request fails.” This makes the design buildable and prevents developers from guessing product logic.</p>
+          <p>
+            Empty states should become part of the design system, not a one-off
+            message invented after the main screen is done. A useful component
+            should include title, body, optional illustration, optional action,
+            secondary action, state type, permission notes, and responsive
+            behavior.
+          </p>
+          <p>
+            In handoff, designers should specify when each state appears. For
+            example: “Show filtered-empty state when the API returns zero
+            results and filters are active. Show first-use state when workspace
+            has no created records. Show error state when request fails.” This
+            makes the design buildable and prevents developers from guessing
+            product logic.
+          </p>
           <h2>FAQ</h2>
           <h3>What is an empty state in a SaaS dashboard?</h3>
-          <p>It is the screen, card, table, or module shown when no visible content is available because of missing data, filters, permissions, setup, delay, or error.</p>
+          <p>
+            It is the screen, card, table, or module shown when no visible
+            content is available because of missing data, filters, permissions,
+            setup, delay, or error.
+          </p>
           <h3>Should empty states use illustrations?</h3>
-          <p>Illustrations can help first-use and friendly onboarding states, but they should not replace explanation. In operational dashboards, clear copy and a useful action matter more than decoration.</p>
+          <p>
+            Illustrations can help first-use and friendly onboarding states, but
+            they should not replace explanation. In operational dashboards,
+            clear copy and a useful action matter more than decoration.
+          </p>
           <h3>What should a filtered-empty state say?</h3>
-          <p>It should say that no results match the current filters or search, then offer a way to clear filters, edit the query, or broaden the date range.</p>
+          <p>
+            It should say that no results match the current filters or search,
+            then offer a way to clear filters, edit the query, or broaden the
+            date range.
+          </p>
           <h3>What should a permission empty state say?</h3>
-          <p>It should explain that the user does not have access to that module or data and tell them who can grant access, without exposing restricted information.</p>
+          <p>
+            It should explain that the user does not have access to that module
+            or data and tell them who can grant access, without exposing
+            restricted information.
+          </p>
           <h3>How many empty states should a dashboard design include?</h3>
-          <p>At minimum, include first-use, filtered-empty, loading, error, permission, and true zero-data states for core tables and cards. Add setup and sync states when the product depends on integrations or configuration.</p>
+          <p>
+            At minimum, include first-use, filtered-empty, loading, error,
+            permission, and true zero-data states for core tables and cards. Add
+            setup and sync states when the product depends on integrations or
+            configuration.
+          </p>
           <h3>Where should empty states be documented?</h3>
-          <p>Document them inside the component system, screen annotations, and developer handoff notes. Include triggers, copy, actions, and edge cases.</p>
+          <p>
+            Document them inside the component system, screen annotations, and
+            developer handoff notes. Include triggers, copy, actions, and edge
+            cases.
+          </p>
           <h2>Final takeaway</h2>
-          <p>A SaaS dashboard empty state is not an empty box waiting for charm. It is a product explanation moment. When the UI explains the cause, context, effect, and recovery path, users can keep working without guessing whether the product is broken, unfinished, or waiting for setup.</p>
-          <p>Related reading: <a href="/blog/saas-dashboard-ux-checklist.html">SaaS Dashboard UX Checklist</a>, <a href="/blog/design-systems-small-product-teams.html">Design Systems for Small Product Teams Without Overbuilding</a>, and <a href="/blog/design-handoff-checklist-startup-product-teams.html">Design Handoff Checklist for Startup Product Teams</a>. For project context, see <a href="/project-orkest.html">Orkest HQ</a> and <a href="/saas-ux-designer.html">SaaS UX design services</a>.</p>
+          <p>
+            A SaaS dashboard empty state is not an empty box waiting for charm.
+            It is a product explanation moment. When the UI explains the cause,
+            context, effect, and recovery path, users can keep working without
+            guessing whether the product is broken, unfinished, or waiting for
+            setup.
+          </p>
+          <p>
+            Related reading:
+            <a href="/blog/saas-dashboard-ux-checklist.html"
+              >SaaS Dashboard UX Checklist</a
+            >,
+            <a href="/blog/design-systems-small-product-teams.html"
+              >Design Systems for Small Product Teams Without Overbuilding</a
+            >, and
+            <a href="/blog/design-handoff-checklist-startup-product-teams.html"
+              >Design Handoff Checklist for Startup Product Teams</a
+            >. For project context, see
+            <a href="/project-orkest.html">Orkest HQ</a> and
+            <a href="/saas-ux-designer.html">SaaS UX design services</a>.
+          </p>
         </div>
       </article>
     </main>
-    <script type="module" src="/script.js?v=32.0"></script>
+    <script type="module" src="/script.js?v=36.0"></script>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top-grid">
+          <div class="footer-cta">
+            <p class="eyebrow">Available for selected work</p>
+            <h2>Product design support for clearer software.</h2>
+            <p>
+              I help teams improve UX structure, interface clarity, design
+              systems, responsive behavior and developer-ready handoff.
+            </p>
+            <div class="cta-group">
+              <a href="/contact.html" class="footer-email-btn"
+                >Discuss a project</a
+              ><a
+                href="/assets/resume.pdf"
+                class="btn btn-secondary"
+                download="Nischhal-Raj-Subba-Resume.pdf"
+                data-resume-download
+                >Download Resume</a
+              >
+            </div>
+          </div>
+          <div class="footer-nav-grid">
+            <div class="footer-col">
+              <h5>Pages</h5>
+              <a href="/">Home</a><a href="/projects.html">Work</a
+              ><a href="/services.html">Services</a
+              ><a href="/about.html">About</a><a href="/blog/">Writing</a
+              ><a href="/contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+              <h5>Services</h5>
+              <a href="/product-design-nepal.html">Product design</a
+              ><a href="/ux-audit.html">UX audit</a
+              ><a href="/figma-design-systems.html">Design systems</a
+              ><a href="/web3-ux-designer.html">Web3 UX</a
+              ><a href="/saas-ux-designer.html">SaaS UX</a
+              ><a href="/website-ux-design.html">Website UX</a>
+            </div>
+            <div class="footer-col">
+              <h5>Selected work</h5>
+              <a href="/project-yarsha.html">Yarsha</a
+              ><a href="/project-mokshya.html">Mokshya</a
+              ><a href="/project-morajaa.html">Morajaa</a
+              ><a href="/project-pihub.html">piHub</a
+              ><a href="/project-zapp.html">Zapp Today</a
+              ><a href="/project-masteriyo.html">Masteriyo</a>
+            </div>
+            <div class="footer-col">
+              <h5>Contact and proof</h5>
+              <a href="mailto:hinischalsubba@gmail.com"
+                >hinischalsubba@gmail.com</a
+              ><a
+                href="/assets/resume.pdf"
+                download="Nischhal-Raj-Subba-Resume.pdf"
+                data-resume-download
+                >Resume PDF</a
+              ><a
+                href="https://www.behance.net/nischhal"
+                target="_blank"
+                rel="noopener"
+                >Behance</a
+              ><a
+                href="https://app.uxcel.com/ux/nischhal"
+                target="_blank"
+                rel="noopener"
+                >Uxcel</a
+              ><a
+                href="https://linkedin.com/in/nischhal/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom-bar">
+          <span>(c) 2026 Nischhal Raj Subba.</span
+          ><span>UX/UI, product systems and handoff for software teams.</span>
+        </div>
+      </div>
+    </footer>
+    <a
+      class="floating-resume-btn"
+      href="/assets/resume.pdf"
+      download="Nischhal-Raj-Subba-Resume.pdf"
+      data-resume-download
+      >Download Resume</a
+    >
   </body>
 </html>

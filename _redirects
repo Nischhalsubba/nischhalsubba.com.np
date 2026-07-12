@@ -1,0 +1,21 @@
+# Legacy URLs only. Clean routes are served directly by the platform.
+/home / 301
+/home.html / 301
+/home-v2 / 301
+/home-v2.html / 301
+/index.html / 301
+/blog /blog/ 301
+/blog.html /blog/ 301
+/products /figma-design-systems 301
+/products.html /figma-design-systems 301
+/project-detail.html /projects 301
+/project-jeweltrek.html /projects 301
+/blog-detail.html /blog/ 301
+/blog-saas-dashboard-ux-checklist.html /blog/saas-dashboard-ux-checklist 301
+/blog-web3-wallet-ux-checklist.html /blog/web3-wallet-ux-checklist 301
+/blog-figma-handoff-notes-for-developers.html /blog/figma-handoff-notes-for-developers 301
+/blog-ux-audit-checklist-before-redesign.html /blog/ux-audit-checklist-before-redesign 301
+/blog-website-ux-checklist-software-companies.html /blog/website-ux-checklist-software-companies 301
+/blog-role-based-saas-dashboard-ux.html /blog/role-based-saas-dashboard-ux 301
+/writing /blog/ 301
+/writing/ /blog/ 301

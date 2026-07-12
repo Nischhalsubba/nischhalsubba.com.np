@@ -1,0 +1,24 @@
+{
+  "name": "Nischhal Raj Subba - Product Designer in Nepal",
+  "short_name": "Nischhal",
+  "description": "Product design portfolio by Nischhal Raj Subba, focused on UX/UI, Web3 UX, SaaS dashboards, fintech workflows, service websites, design systems, UX audits and developer-ready handoff.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "portfolio",
+    "design",
+    "productivity"
+  ],
+  "lang": "en"
+}

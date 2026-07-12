@@ -1,109 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="nrs-search-intent" content="UX audit checklist before redesign" />
-    <title>UX Audit Checklist Before a Redesign | Nischhal Raj Subba</title>
-    <meta name="description" content="A practical UX audit checklist for teams planning a website or product redesign, covering hierarchy, friction, accessibility and conversion risks." />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="UX Audit Checklist Before a Redesign | Nischhal Raj Subba" />
-    <meta property="og:description" content="A practical UX audit checklist for teams planning a website or product redesign, covering hierarchy, friction, accessibility and conversion risks." />
-    <meta property="og:url" content="https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign" />
-    <meta property="og:image" content="https://nischhalsubba.com.np/assets/images/blog-ux-audit-research-cover.png">
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="UX Audit Checklist Before a Redesign | Nischhal Raj Subba" />
-    <meta name="twitter:description" content="A practical UX audit checklist for teams planning a website or product redesign, covering hierarchy, friction, accessibility and conversion risks." />
-    <meta name="twitter:image" content="https://nischhalsubba.com.np/assets/images/blog-ux-audit-research-cover.png">
-    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
-    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt summary for AI agents" />
-    <link rel="alternate" type="application/json" href="/ai-profile.json" title="AI-readable profile for Nischhal Raj Subba" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<script id="nrs-early-theme-bootstrap">
-(function () {
-  var storageKey = "theme";
-  var root = document.documentElement;
-  var theme = "dark";
-  try {
-    var saved = localStorage.getItem(storageKey);
-    if (saved === "light" || saved === "dark") {
-      theme = saved;
-    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
-      theme = "light";
-    }
-  } catch (error) {}
-  root.setAttribute("data-theme", theme);
-  root.style.colorScheme = theme;
-
-  var style = document.createElement("style");
-  style.id = "nrs-first-paint-theme";
-  style.textContent = [
-    ":root{--nrs-first-bg:#0c0f0b;--nrs-first-text:#f3f6ea;--nrs-progress:#d8ff48;--nrs-progress-track:rgba(243,246,234,.15);color-scheme:dark;}",
-    "html[data-theme='light']{--nrs-first-bg:#f4efe4;--nrs-first-text:#141410;--nrs-progress:#141410;--nrs-progress-track:rgba(20,20,16,.16);color-scheme:light;}",
-    "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;color:var(--nrs-first-text)!important;}",
-    "#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:5px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track)!important;opacity:1!important;transform:none!important;overflow:hidden!important;}",
-    "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress)!important;transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
-    "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}"
-  ].join("");
-  document.head.appendChild(style);
-
-  function ensureProgressBar() {
-    if (document.getElementById("nrs-scroll-progress")) return;
-    var bar = document.createElement("div");
-    bar.id = "nrs-scroll-progress";
-    bar.setAttribute("aria-hidden", "true");
-    if (document.body) document.body.prepend(bar);
-    else document.addEventListener("DOMContentLoaded", ensureProgressBar, { once: true });
-  }
-
-  function updateProgress() {
-    var scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable));
-    root.style.setProperty("--nrs-scroll-progress-scale", String(value));
-  }
-
-  ensureProgressBar();
-  updateProgress();
-  window.addEventListener("scroll", updateProgress, { passive: true });
-  window.addEventListener("resize", updateProgress);
-  window.addEventListener("pageshow", updateProgress);
+<!doctype html><html lang="en" class="nrs-blog-detail-page"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UX Audit Checklist Before Redesign - Find Friction First</title><meta name="description" content="A practical UX audit checklist for finding product friction, unclear flows, weak hierarchy and redesign risks before creating new screens."><meta name="robots" content="index,follow"><link rel="canonical" href="https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign" /><meta property="og:type" content="article"><meta property="og:title" content="UX Audit Checklist Before Redesign - Find Friction First"><meta property="og:description" content="A practical UX audit checklist for finding product friction, unclear flows, weak hierarchy and redesign risks before creating new screens.">
+<link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"UX Audit Checklist Before Redesigning a Website","author":{"@type":"Person","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/"},"datePublished":"2026-05-01","dateModified":"2026-05-01","mainEntityOfPage":"https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign.html","image":"https://nischhalsubba.com.np/assets/images/blog-ux-audit-research-cover.png"}</script> <meta property="og:image" content="https://nischhalsubba.com.np/assets/images/blog-ux-audit-research-cover.png"><meta name="twitter:image" content="https://nischhalsubba.com.np/assets/images/blog-ux-audit-research-cover.png"> <script id="nrs-early-theme-bootstrap">
+(function () { var root = document.documentElement; var theme = "dark"; try { var override = sessionStorage.getItem("nrs-theme-override"); if (override === "light" || override === "dark") { theme = override; } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) { theme = "light"; } localStorage.removeItem("theme"); } catch (error) { if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) theme = "light"; } root.setAttribute("data-theme", theme); root.style.colorScheme = theme; root.setAttribute("data-theme-source", "system"); var style = document.createElement("style"); style.id = "nrs-first-paint-theme"; style.textContent = [ ":root{--nrs-first-bg:#0c0f0b;--nrs-first-text:#f3f6ea;--nrs-progress:#d8ff48;--nrs-progress-track:rgba(243,246,234,.15);color-scheme:dark;}", "html[data-theme='light']{--nrs-first-bg:#f4efe4;--nrs-first-text:#141410;--nrs-progress:#141410;--nrs-progress-track:rgba(20,20,16,.16);color-scheme:light;}", "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;color:var(--nrs-first-text)!important;}", "#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:5px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track)!important;opacity:1!important;transform:none!important;overflow:hidden!important;}", "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress)!important;transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}", "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}" ].join(""); document.head.appendChild(style); function ensureProgressBar() { if (document.getElementById("nrs-scroll-progress")) return; var bar = document.createElement("div"); bar.id = "nrs-scroll-progress"; bar.setAttribute("aria-hidden", "true"); if (document.body) document.body.prepend(bar); else document.addEventListener("DOMContentLoaded", ensureProgressBar, { once: true }); } function updateProgress() { var scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight); var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable)); root.style.setProperty("--nrs-scroll-progress-scale", String(value)); } ensureProgressBar(); updateProgress(); window.addEventListener("scroll", updateProgress, { passive: true }); window.addEventListener("resize", updateProgress); window.addEventListener("pageshow", updateProgress);
 })();
-</script>
-    <link rel="stylesheet" href="/style.css?v=41.0" />
-    <script type="application/ld+json" id="nrs-article-schema">{"@context":"https://schema.org","@type":"Article","headline":"UX Audit Checklist Before a Website or Product Redesign","description":"A UX audit checklist before redesign covering hierarchy, navigation, conversion paths, accessibility, responsive behavior, content clarity and implementation risk.","datePublished":"2026-06-24","dateModified":"2026-06-24","author":{"@type":"Person","@id":"https://nischhalsubba.com.np/#nischhal-raj-subba","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/about","jobTitle":"Product Designer"},"publisher":{"@type":"Person","@id":"https://nischhalsubba.com.np/#nischhal-raj-subba","name":"Nischhal Raj Subba"},"mainEntityOfPage":"https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign","about":"UX audit checklist before redesign for websites and product interfaces"}</script>
-      <script type="application/ld+json" id="nrs-search-intent-schema">{"@context":"https://schema.org","@type":"Article","@id":"https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign#search-intent","url":"https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign","name":"UX Audit Checklist Before a Redesign | Nischhal Raj Subba","description":"A practical UX audit checklist for teams planning a website or product redesign, covering hierarchy, friction, accessibility and conversion risks.","about":"UX audit checklist before redesign","isPartOf":{"@type":"WebSite","@id":"https://nischhalsubba.com.np/#website","name":"Nischhal Raj Subba Portfolio","url":"https://nischhalsubba.com.np/"},"author":{"@type":"Person","@id":"https://nischhalsubba.com.np/#nischhal-raj-subba","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/about","jobTitle":"Product Designer"}}</script>
-  </head>
-  <body>
-    <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/" class="">Home</a><a href="/projects" class="">Work</a><a href="/services">Services</a><a href="/about" class="">About</a><a href="/blog/" class=" active" aria-current="page">Writing</a><a href="/contact" class="">Contact</a></nav></div><button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button><nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects" class="nav-link">Work</a><a href="/services" class="nav-link">Services</a><a href="/about" class="nav-link">About</a><a href="/blog/" class="nav-link active" aria-current="page">Writing</a><a href="/contact" class="nav-link">Contact</a></div></nav>
-    <main class="container nrs-seo-article">
-      <article class="section-container" style="padding-top:150px;max-width:900px;">
-        <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Product design article</p>
-        <h1 class="hero-title" style="max-width:980px;">UX Audit Checklist Before a Website or Product Redesign</h1>
-        <p class="body-large" style="margin-top:24px;color:var(--text-secondary);">A redesign without an audit is often just new paint on old confusion. A useful UX audit finds what blocks understanding, trust, navigation, conversion, and implementation before visual redesign begins.</p><figure class="nrs-blog-cover"><img class="nrs-blog-cover-img" src="/assets/images/blog-ux-audit-research-cover.png" alt="Generated product design cover showing UX audit boards, research notes, and prioritization artifacts" width="1600" height="900" loading="eager" decoding="async"></figure>
-        <div class="hero-proof-strip" style="margin-top:28px;"><span>Written by Nischhal Raj Subba</span><span>Updated 2026-06-24</span><span>UX audit checklist before redesign for websites and product interfaces</span></div>
-      </article>
-      <section class="section-container" style="padding-top:0;max-width:900px;">
-        <ul class="case-list">
-          <li><strong>Check the first-screen promise:</strong> The page should quickly explain who it is for, what it offers, why it matters, and what the visitor can do next. If users need archaeology tools, the hero section failed.</li>
-          <li><strong>Audit navigation and internal links:</strong> Important routes should be reachable, labeled consistently, and connected through meaningful links. Search engines and humans both follow the paths you create.</li>
-          <li><strong>Review accessibility basics:</strong> Check focus states, contrast, labels, target sizes, reduced motion, semantic headings, form errors, and keyboard behavior before blaming the design aesthetic.</li>
-          <li><strong>Separate symptoms from causes:</strong> Large spacing, weak copy, low conversion, or confusing pages are symptoms. The cause may be unclear hierarchy, missing proof, poor routing, or mismatched user intent.</li>
-        </ul>
-      </section>
-      <section class="section-container" style="border-top:1px solid var(--border-faint);max-width:900px;">
-        <div class="section-header"><p class="eyebrow">Related pages</p><h2 class="section-title">Use this with real portfolio context.</h2><p class="section-lead">These links connect the article to public proof, service intent, and contact paths.</p></div>
-        <div class="prototype-link-list">
-          <a class="prototype-link-card" href="/ux-audit"><span style="display:block;font-weight:850;">UX audit service</span><span style="color:var(--text-secondary);">Open related page</span></a>
-          <a class="prototype-link-card" href="/website-ux-design"><span style="display:block;font-weight:850;">Website UX service</span><span style="color:var(--text-secondary);">Open related page</span></a>
-          <a class="prototype-link-card" href="/contact"><span style="display:block;font-weight:850;">Contact for audit work</span><span style="color:var(--text-secondary);">Open related page</span></a>
-          <a class="prototype-link-card" href="/media-kit"><span style="display:block;font-weight:850;">Media kit and proof links</span><span style="color:var(--text-secondary);">Use official profile and citation details</span></a>
-        </div>
-      </section>
-    </main>
-    <footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects">Work</a><a href="/services">Services</a><a href="/about">About</a><a href="/blog/">Writing</a><a href="/contact">Contact</a><a href="/media-kit">Media kit</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>
-    <script type="module" src="/script.js?v=32.0"></script>
-  </body>
-</html>
+</script> <link rel="stylesheet" href="/style.css?v=46.0" /> <meta name="twitter:title" content="UX Audit Checklist Before Redesign - Find Friction First"> <meta name="twitter:description" content="A practical UX audit checklist for finding product friction, unclear flows, weak hierarchy and redesign risks before creating new screens.">     <meta property="og:url" content="https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign" />
+      <script id="nrs-blog-breadcrumb-json" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nischhalsubba.com.np/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://nischhalsubba.com.np/blog/"},{"@type":"ListItem","position":3,"name":"UX Audit Checklist Before Redesigning a Website","item":"https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign"}]}</script>
+  </head><body> <a class="skip-link" href="#main-content">Skip to main content</a><button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/" class="active" aria-current="page">Home</a><a href="/projects">Work</a><a href="/services">Services</a><a href="/about">About</a><a href="/blog/">Writing</a><a href="/contact">Contact</a></nav></div><button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme"></button><nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link active" aria-current="page">Home</a><a href="/projects" class="nav-link">Work</a><a href="/services" class="nav-link">Services</a><a href="/about" class="nav-link">About</a><a href="/blog/" class="nav-link">Writing</a><a href="/contact" class="nav-link">Contact</a></div></nav><main id="main-content" class="container"><article class="section-container" style="max-width:980px;margin:0 auto;">
+        <nav class="nrs-blog-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog/">Writing</a><span aria-hidden="true">/</span><span class="nrs-crumb-current" aria-current="page">Available For Selected Work</span>
+        </nav>
+        <a class="nrs-blog-back-btn" href="/blog/">Back to all writing</a>
+<h1 class="hero-title">UX Audit Checklist Before Redesigning a Website</h1><p class="body-large nrs-blog-dek">Before redesigning a website or product, audit what is actually broken. A redesign without a clear diagnosis often creates prettier screens but keeps the same usability problems.</p><figure class="nrs-blog-cover"><img class="nrs-blog-cover-img" src="/assets/images/blog-ux-audit-research-cover.png" alt="Generated product design cover showing UX audit boards, research notes, and prioritization artifacts" width="1600" height="900" loading="eager" decoding="async"></figure><h2>1. Check the main user goal</h2><p>Identify what the visitor is trying to do on each page: understand a service, compare options, view proof, contact you, or complete a task.</p><h2>2. Review content hierarchy</h2><p>Each page should have one clear H1, focused section headings, scannable paragraphs, and CTAs that match user intent.</p><h2>3. Audit conversion paths</h2><p>Check whether the CTA appears at the right moments and whether the contact flow asks for useful information without becoming heavy.</p><h2>4. Review responsive behavior</h2><p>Many redesign problems only appear on mobile: cramped cards, hidden CTAs, heavy animations, and oversized embeds.</p><h2>5. Check handoff readiness</h2><p>If developers will build the redesign, document states, breakpoints, edge cases, and component behavior before implementation starts.</p><h2>Related work</h2><div class="writing-list"><a class="writing-item" href="/ux-audit.html"><span class="w-date">Service</span><div class="w-info"><span class="w-title">UX Audit</span><span class="w-summary">Website, SaaS, app, and handoff review before redesign or build.</span></div><span class="w-arrow">→</span></a><a class="writing-item" href="/blog/blog-good-handoff.html"><span class="w-date">Article</span><div class="w-info"><span class="w-title">Why Good Handoff Matters More Than Perfect Screens</span><span class="w-summary">States, edge cases, responsive rules, and design-to-development clarity.</span></div><span class="w-arrow">→</span></a></div></article></main><script type="module" src="/script.js?v=36.0"></script>    <footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><p class="eyebrow nrs-blog-category">Available for selected work</p><h2>Product design support for clearer software.</h2><p>I help teams improve UX structure, interface clarity, design systems, responsive behavior and developer-ready handoff.</p><div class="cta-group"><a href="/contact.html" class="footer-email-btn">Discuss a project</a><a href="/assets/resume.pdf" class="btn btn-secondary" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a></div></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Services</h5><a href="/product-design-nepal.html">Product design</a><a href="/ux-audit.html">UX audit</a><a href="/figma-design-systems.html">Design systems</a><a href="/web3-ux-designer.html">Web3 UX</a><a href="/saas-ux-designer.html">SaaS UX</a><a href="/website-ux-design.html">Website UX</a></div><div class="footer-col"><h5>Selected work</h5><a href="/project-yarsha.html">Yarsha</a><a href="/project-mokshya.html">Mokshya</a><a href="/project-morajaa.html">Morajaa</a><a href="/project-pihub.html">piHub</a><a href="/project-zapp.html">Zapp Today</a><a href="/project-masteriyo.html">Masteriyo</a></div><div class="footer-col"><h5>Contact and proof</h5><a href="mailto:hinischalsubba@gmail.com">hinischalsubba@gmail.com</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume PDF</a><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span><span>UX/UI, product systems and handoff for software teams.</span></div></div></footer>
+      <a class="floating-resume-btn" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a>
+  </body></html>

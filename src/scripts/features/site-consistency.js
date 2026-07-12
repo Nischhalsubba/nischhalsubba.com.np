@@ -4,23 +4,8 @@ function getCurrentFileName() {
 }
 
 function loadPortfolioFonts() {
-  if (document.getElementById('nrs-portfolio-fonts')) return;
-
-  const preconnectFonts = document.createElement('link');
-  preconnectFonts.rel = 'preconnect';
-  preconnectFonts.href = 'https://fonts.googleapis.com';
-
-  const preconnectStatic = document.createElement('link');
-  preconnectStatic.rel = 'preconnect';
-  preconnectStatic.href = 'https://fonts.gstatic.com';
-  preconnectStatic.crossOrigin = '';
-
-  const fontLink = document.createElement('link');
-  fontLink.id = 'nrs-portfolio-fonts';
-  fontLink.rel = 'stylesheet';
-  fontLink.href = 'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap';
-
-  document.head.append(preconnectFonts, preconnectStatic, fontLink);
+  // The portfolio uses the system font stack declared in /style.css so every
+  // route paints consistently without a late remote-font stylesheet.
 }
 
 function applyConsistencyPageClasses() {

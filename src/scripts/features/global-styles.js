@@ -1,10 +1,5 @@
 function ensureSharedDesignStylesheet() {
-  if (document.querySelector('link[href^="/seo-ui-enhancements.css"]')) return;
-
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = '/seo-ui-enhancements.css?v=1.4';
-  document.head.appendChild(link);
+  // Shared design rules are compiled into /style.css during the production build.
 }
 
 function applyPageShellClasses() {

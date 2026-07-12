@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Hire a Product Designer in Nepal for SaaS and Web3 Products",
+    "url": "/blog/hire-product-designer-nepal-saas-web3",
+    "date": "2026-06-11",
+    "label": "Hiring guide",
+    "summary": "A practical hiring guide for startups and software teams that need clearer product flows, polished UI, design systems, UX audits, and developer-ready handoff.",
+    "tags": ["Product Designer Nepal", "SaaS UX", "Web3 UX", "Hiring"]
+  },
+  {
+    "title": "Web3 Wallet UX Checklist for First-Time Users",
+    "url": "/blog/web3-wallet-ux-checklist",
+    "date": "2026-05-01",
+    "label": "Web3 UX",
+    "summary": "A practical checklist for wallet onboarding, signing clarity, transaction review, fees, recovery, and trust-focused Web3 design.",
+    "tags": ["Web3 UX", "Wallet UX", "Trust"]
+  },
+  {
+    "title": "How to Design Transaction Review Screens for Crypto Apps",
+    "url": "/blog/transaction-review-ux-crypto-apps",
+    "date": "2026-05-01",
+    "label": "Crypto UX",
+    "summary": "Recipient clarity, amount, network, fees, signing context, status states, and recovery paths for crypto transaction UX.",
+    "tags": ["Crypto UX", "Transaction Review", "Web3"]
+  },
+  {
+    "title": "SaaS Dashboard UX Checklist for Complex Workflows",
+    "url": "/blog/saas-dashboard-ux-checklist",
+    "date": "2026-05-01",
+    "label": "SaaS UX",
+    "summary": "Navigation, role-based workflows, tables, filters, status states, empty states, and decision clarity for SaaS products.",
+    "tags": ["SaaS UX", "Dashboards", "Workflows"]
+  },
+  {
+    "title": "Website UX Checklist for Software Companies",
+    "url": "/blog/website-ux-checklist-software-companies",
+    "date": "2026-05-01",
+    "label": "Website UX",
+    "summary": "Positioning, service pages, SEO structure, case studies, trust signals, CTAs, and conversion paths for software websites.",
+    "tags": ["Website UX", "SEO", "Software"]
+  },
+  {
+    "title": "UX Audit Checklist Before Redesigning a Website",
+    "url": "/blog/ux-audit-checklist-before-redesign",
+    "date": "2026-05-01",
+    "label": "UX Audit",
+    "summary": "Usability, hierarchy, content, accessibility, conversion, performance, and handoff checks before redesigning.",
+    "tags": ["UX Audit", "Redesign", "Accessibility"]
+  },
+  {
+    "title": "How to Write Developer Handoff Notes in Figma",
+    "url": "/blog/figma-handoff-notes-for-developers",
+    "date": "2026-05-01",
+    "label": "Handoff",
+    "summary": "States, breakpoints, interactions, content rules, accessibility, and acceptance criteria for developer handoff.",
+    "tags": ["Figma", "Handoff", "Design Systems"]
+  },
+  {
+    "title": "Designing Web3 Products Without Making Users Feel Lost",
+    "url": "/blog/blog-web3-products",
+    "date": "2026-04-26",
+    "label": "Web3 UX",
+    "summary": "Wallet connection, transaction review, signing clarity, trust language, Yarsha, Mokshya, and Web3 product education.",
+    "tags": ["Web3 UX", "Wallets", "Product Design"]
+  },
+  {
+    "title": "Why Good Handoff Matters More Than Perfect Screens",
+    "url": "/blog/blog-good-handoff",
+    "date": "2026-04-25",
+    "label": "Handoff",
+    "summary": "States, edge cases, responsive rules, interaction notes, acceptance criteria, and design-to-development clarity.",
+    "tags": ["Figma", "Developers", "QA"]
+  },
+  {
+    "title": "What I Learned Designing My Portfolio Like a Product",
+    "url": "/blog/blog-portfolio-product",
+    "date": "2026-04-24",
+    "label": "Portfolio UX",
+    "summary": "Portfolio UX, truthful project framing, SEO structure, case-study hierarchy, contribution clarity, and recruiter/client decision paths.",
+    "tags": ["Portfolio", "Strategy", "SEO"]
+  },
+  {
+    "title": "Designing Service Websites That Explain the Business Clearly",
+    "url": "/blog/blog-service-websites",
+    "date": "2026-04-18",
+    "label": "Website UX",
+    "summary": "Service page structure, business positioning, SEO headings, trust signals, conversion paths, and clear website storytelling.",
+    "tags": ["Website UX", "Service Business", "Conversion"]
+  },
+  {
+    "title": "What Gaming Taught Me About Interface Clarity",
+    "url": "/blog/blog-gaming-interface-clarity",
+    "date": "2026-04-12",
+    "label": "Gaming UX",
+    "summary": "Real-time feedback, combat logs, status states, information density, dashboards, and decision-making in fast-changing interfaces.",
+    "tags": ["Gaming UX", "Dashboards", "Feedback"]
+  },
+  {
+    "title": "How I Think About Design Systems as a Front-End-Aware Designer",
+    "url": "/blog/blog-design-systems-front-end",
+    "date": "2026-04-08",
+    "label": "Design Systems",
+    "summary": "Tokens, reusable components, interaction states, accessibility notes, responsive behavior, and practical design-to-code thinking.",
+    "tags": ["Design Systems", "Frontend", "Figma"]
+  }
+]

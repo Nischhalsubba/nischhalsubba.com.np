@@ -1,101 +1,575 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="nrs-blog-detail-page">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SaaS Dashboard Filter UX That Helps Teams Find the Right Data | Nischhal Raj Subba</title>
-    <meta name="description" content="A practical product design guide to SaaS dashboard filter UX for complex tables, saved views, empty states, permissions, and handoff clarity." />
+    <title>
+      SaaS Dashboard Filter UX That Helps Teams Find the Right Data | Nischhal
+      Raj Subba
+    </title>
+    <meta
+      name="description"
+      content="A practical product design guide to SaaS dashboard filter UX for complex tables, saved views, empty states, permissions, and handoff clarity."
+    />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux.html" />
+    <link
+      rel="canonical"
+      href="https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux"
+    />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="SaaS Dashboard Filter UX That Helps Teams Find the Right Data" />
-    <meta property="og:description" content="How to design dashboard filters that help users find, narrow, recover, save, and share useful views without turning the product into spreadsheet cosplay." />
-    <meta property="og:url" content="https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux.html" />
-    <meta property="og:image" content="https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png" />
+    <meta
+      property="og:title"
+      content="SaaS Dashboard Filter UX That Helps Teams Find the Right Data"
+    />
+    <meta
+      property="og:description"
+      content="How to design dashboard filters that help users find, narrow, recover, save, and share useful views without turning the product into spreadsheet cosplay."
+    />
+    <meta
+      property="og:url"
+      content="https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux"
+    />
+    <meta
+      property="og:image"
+      content="https://nischhalsubba.com.np/assets/images/blog-saas-empty-states-cover.png"
+    />
     <meta property="article:author" content="Nischhal Raj Subba" />
     <meta property="article:published_time" content="2026-07-03" />
     <meta property="article:modified_time" content="2026-07-03" />
     <meta property="article:section" content="SaaS Dashboard UX" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SaaS Dashboard Filter UX That Helps Teams Find the Right Data" />
-    <meta name="twitter:description" content="A practical product designer's guide to filters, saved views, empty results, permissions, and developer handoff for SaaS dashboards." />
-    <meta name="twitter:image" content="https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png" />
+    <meta
+      name="twitter:title"
+      content="SaaS Dashboard Filter UX That Helps Teams Find the Right Data"
+    />
+    <meta
+      name="twitter:description"
+      content="A practical product designer's guide to filters, saved views, empty results, permissions, and developer handoff for SaaS dashboards."
+    />
+    <meta
+      name="twitter:image"
+      content="https://nischhalsubba.com.np/assets/images/blog-saas-empty-states-cover.png"
+    />
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/style.css?v=41.0" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"SaaS Dashboard Filter UX That Helps Teams Find the Right Data","description":"A practical product design guide to SaaS dashboard filter UX for complex tables, saved views, empty states, permissions, and handoff clarity.","image":"https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png","datePublished":"2026-07-03","dateModified":"2026-07-03","author":{"@type":"Person","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/"},"publisher":{"@type":"Person","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/"},"mainEntityOfPage":"https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux.html","url":"https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux.html","keywords":["SaaS dashboard filter UX","dashboard filters","saved views UX","table filter design","SaaS dashboard UX","product design handoff"],"articleSection":"SaaS Dashboard UX","wordCount":2060},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nischhalsubba.com.np/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://nischhalsubba.com.np/blog/"},{"@type":"ListItem","position":3,"name":"SaaS Dashboard Filter UX That Helps Teams Find the Right Data","item":"https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What makes SaaS dashboard filters usable?","acceptedAnswer":{"@type":"Answer","text":"Usable dashboard filters help users narrow data by real work questions, show active filters clearly, explain empty results, preserve useful views, and document behavior for edge cases."}},{"@type":"Question","name":"Should filters be hidden behind an advanced button?","acceptedAnswer":{"@type":"Answer","text":"Only rare filters should be hidden. Filters that users need every day should stay visible, understandable, and close to the table or chart they control."}},{"@type":"Question","name":"What should designers hand off for filter UX?","acceptedAnswer":{"@type":"Answer","text":"Designers should document filter types, default states, active chips, empty results, reset behavior, saved views, permission rules, responsive behavior, and loading states."}}]}]}</script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            "headline": "SaaS Dashboard Filter UX That Helps Teams Find the Right Data",
+            "description": "A practical product design guide to SaaS dashboard filter UX for complex tables, saved views, empty states, permissions, and handoff clarity.",
+            "image": "https://nischhalsubba.com.np/assets/images/blog-saas-empty-states-cover.png",
+            "datePublished": "2026-07-03",
+            "dateModified": "2026-07-03",
+            "author": {
+              "@type": "Person",
+              "name": "Nischhal Raj Subba",
+              "url": "https://nischhalsubba.com.np/"
+            },
+            "publisher": {
+              "@type": "Person",
+              "name": "Nischhal Raj Subba",
+              "url": "https://nischhalsubba.com.np/"
+            },
+            "mainEntityOfPage": "https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux.html",
+            "url": "https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux.html",
+            "keywords": [
+              "SaaS dashboard filter UX",
+              "dashboard filters",
+              "saved views UX",
+              "table filter design",
+              "SaaS dashboard UX",
+              "product design handoff"
+            ],
+            "articleSection": "SaaS Dashboard UX",
+            "wordCount": 2060
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://nischhalsubba.com.np/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Writing",
+                "item": "https://nischhalsubba.com.np/blog/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "SaaS Dashboard Filter UX That Helps Teams Find the Right Data",
+                "item": "https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux.html"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What makes SaaS dashboard filters usable?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Usable dashboard filters help users narrow data by real work questions, show active filters clearly, explain empty results, preserve useful views, and document behavior for edge cases."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Should filters be hidden behind an advanced button?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Only rare filters should be hidden. Filters that users need every day should stay visible, understandable, and close to the table or chart they control."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What should designers hand off for filter UX?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Designers should document filter types, default states, active chips, empty results, reset behavior, saved views, permission rules, responsive behavior, and loading states."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script id="nrs-early-theme-bootstrap">
+      (function () {
+        var root = document.documentElement;
+        var theme = "dark";
+        try {
+          var override = sessionStorage.getItem("nrs-theme-override");
+          if (override === "light" || override === "dark") {
+            theme = override;
+          } else if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+          ) {
+            theme = "light";
+          }
+          localStorage.removeItem("theme");
+        } catch (error) {
+          if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+          )
+            theme = "light";
+        }
+        root.setAttribute("data-theme", theme);
+        root.style.colorScheme = theme;
+        root.setAttribute("data-theme-source", "system");
+        var style = document.createElement("style");
+        style.id = "nrs-first-paint-theme";
+        style.textContent = [
+          ":root{--nrs-first-bg:#0c0f0b;--nrs-first-text:#f3f6ea;--nrs-progress:#d8ff48;--nrs-progress-track:rgba(243,246,234,.15);color-scheme:dark;}",
+          "html[data-theme='light']{--nrs-first-bg:#f4efe4;--nrs-first-text:#141410;--nrs-progress:#141410;--nrs-progress-track:rgba(20,20,16,.16);color-scheme:light;}",
+          "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;color:var(--nrs-first-text)!important;}",
+          "#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:5px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track)!important;opacity:1!important;transform:none!important;overflow:hidden!important;}",
+          "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress)!important;transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
+          "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}",
+        ].join("");
+        document.head.appendChild(style);
+        function ensureProgressBar() {
+          if (document.getElementById("nrs-scroll-progress")) return;
+          var bar = document.createElement("div");
+          bar.id = "nrs-scroll-progress";
+          bar.setAttribute("aria-hidden", "true");
+          if (document.body) document.body.prepend(bar);
+          else
+            document.addEventListener("DOMContentLoaded", ensureProgressBar, {
+              once: true,
+            });
+        }
+        function updateProgress() {
+          var scrollable = Math.max(
+            1,
+            document.documentElement.scrollHeight - window.innerHeight,
+          );
+          var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable));
+          root.style.setProperty("--nrs-scroll-progress-scale", String(value));
+        }
+        ensureProgressBar();
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+        window.addEventListener("pageshow", updateProgress);
+      })();
+    </script>
+    <link rel="stylesheet" href="/style.css?v=46.0" />
+    <script id="nrs-blog-breadcrumb-json" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nischhalsubba.com.np/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Writing",
+            "item": "https://nischhalsubba.com.np/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "SaaS Dashboard Filter UX That Helps Teams Find the Right Data",
+            "item": "https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
-    <button class="mobile-nav-toggle" aria-label="Menu"><span></span><span></span></button>
-    <a href="/" class="mobile-logo">NRS</a>
-    <div class="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/blog/" class="active">Writing</a><a href="/contact.html">Contact</a></nav></div>
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
-    <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects.html" class="nav-link">Work</a><a href="/services.html" class="nav-link">Services</a><a href="/about.html" class="nav-link">About</a><a href="/blog/" class="nav-link active">Writing</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
-    <main class="container">
-      <article class="section-container" style="max-width:980px;margin:0 auto;padding-top:150px;">
-        <a class="badge-pill" href="/blog/">← Back to writing</a>
-        <p class="eyebrow" style="margin-top:36px;">SaaS dashboard UX</p>
-        <h1 class="hero-title" style="font-size:clamp(2.55rem,6vw,5rem);line-height:1.04;max-width:980px;">SaaS Dashboard Filter UX That Helps Teams Find the Right Data</h1>
-        <p class="body-large" style="max-width:840px;">A practical way to design filters, saved views, empty results, and handoff notes for dashboards where users need answers, not decoration.</p>
-        <div class="meta-text" style="display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border-faint);padding-top:22px;margin-top:28px;"><span>Jul 03, 2026</span><span>10 min read</span><span>By Nischhal Raj Subba</span></div>
-        <img height="900" width="1600" decoding="async" loading="eager" class="nrs-blog-cover-img" src="/assets/images/blog-design-systems-handoff-cover.png" alt="Generated product design cover showing SaaS dashboard filters, table views, active chips, and handoff notes" style="width:100%;max-height:360px;object-fit:cover;margin-top:42px;border-radius:28px;border:1px solid var(--border-faint);" />
-        <div class="body-large" style="max-width:860px;color:var(--text-secondary);font-size:1.12rem;line-height:1.86;margin-top:56px;">
-          <p>Dashboard filters should help people answer a specific work question: which orders are delayed, which payments failed, which leads are active, which users need review, which inventory items are low, or which tickets are stuck. When filters are designed as a pile of dropdowns, users do not get clarity. They get a tiny control panel for uncertainty, because apparently business software needed more tiny mysteries.</p>
+    <a class="skip-link" href="#main-content">Skip to main content</a
+    ><button
+      class="mobile-nav-toggle"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav-overlay"
+    >
+      <span></span><span></span></button
+    ><a href="/" class="mobile-logo">NRS</a>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <nav class="mobile-nav-links" aria-label="Mobile navigation">
+        <a href="/" class="active" aria-current="page">Home</a
+        ><a href="/projects">Work</a><a href="/services">Services</a
+        ><a href="/about">About</a><a href="/blog/">Writing</a
+        ><a href="/contact">Contact</a>
+      </nav>
+    </div>
+    <button
+      id="theme-toggle"
+      class="theme-toggle-btn"
+      aria-label="Toggle theme"
+    ></button>
+    <nav class="nav-wrapper" aria-label="Primary navigation">
+      <div class="nav-pill">
+        <div class="nav-glider"></div>
+        <a href="/" class="nav-link active" aria-current="page">Home</a
+        ><a href="/projects" class="nav-link">Work</a
+        ><a href="/services" class="nav-link">Services</a
+        ><a href="/about" class="nav-link">About</a
+        ><a href="/blog/" class="nav-link">Writing</a
+        ><a href="/contact" class="nav-link">Contact</a>
+      </div>
+    </nav>
+    <main id="main-content" class="container">
+      <article
+        class="section-container"
+        style="max-width: 980px; margin: 0 auto; padding-top: 150px"
+      >
+        <nav class="nrs-blog-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span
+          ><a href="/blog/">Writing</a><span aria-hidden="true">/</span
+          ><span class="nrs-crumb-current" aria-current="page"
+            >SaaS Dashboard UX</span
+          >
+        </nav>
+        <a class="nrs-blog-back-btn" href="/blog/">Back to all writing</a>
+        <p class="eyebrow nrs-blog-category" style="margin-top: 36px">
+          SaaS dashboard UX
+        </p>
+        <h1
+          class="hero-title"
+          style="
+            font-size: clamp(2.55rem, 6vw, 5rem);
+            line-height: 1.04;
+            max-width: 980px;
+          "
+        >
+          SaaS Dashboard Filter UX That Helps Teams Find the Right Data
+        </h1>
+        <p class="body-large nrs-blog-dek" style="max-width: 840px">
+          A practical way to design filters, saved views, empty results, and
+          handoff notes for dashboards where users need answers, not decoration.
+        </p>
+        <div
+          class="meta-text nrs-blog-meta"
+          style="
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border-faint);
+            padding-top: 22px;
+            margin-top: 28px;
+          "
+        >
+          <span>Jul 03, 2026</span><span>10 min read</span
+          ><span>By Nischhal Raj Subba</span>
+        </div>
+        <img
+          height="900"
+          width="1600"
+          decoding="async"
+          loading="eager"
+          class="nrs-blog-cover-img"
+          src="/assets/images/blog-saas-empty-states-cover.png"
+          alt="Generated product design cover showing SaaS dashboard empty states and product clarity artifacts"
+          style="
+            width: 100%;
+            max-height: 360px;
+            object-fit: cover;
+            margin-top: 42px;
+            border-radius: 28px;
+            border: 1px solid var(--border-faint);
+          "
+        />
+        <div
+          class="body-large nrs-blog-content"
+          style="
+            max-width: 860px;
+            color: var(--text-secondary);
+            font-size: 1.12rem;
+            line-height: 1.86;
+            margin-top: 56px;
+          "
+        >
+          <p>
+            Dashboard filters should help people answer a specific work
+            question: which orders are delayed, which payments failed, which
+            leads are active, which users need review, which inventory items are
+            low, or which tickets are stuck. When filters are designed as a pile
+            of dropdowns, users do not get clarity. They get a tiny control
+            panel for uncertainty, because apparently business software needed
+            more tiny mysteries.
+          </p>
           <h2>Writer brief</h2>
-          <p><strong>Topic:</strong> SaaS dashboard filter UX. <strong>Reader:</strong> product designers, PMs, founders, and developers working on dashboards with tables, metrics, roles, and operational workflows. <strong>Problem:</strong> filters become hard to understand, hard to reset, hard to save, and easy to misread. <strong>Goal:</strong> design filters that help users narrow data confidently and recover when the result is wrong. <strong>Search intent:</strong> practical how-to. <strong>Main keyword:</strong> SaaS dashboard filter UX. <strong>Secondary keywords:</strong> dashboard filters, saved views UX, table filter design, SaaS dashboard UX, product design handoff. <strong>Promise:</strong> give teams a reusable way to design filters that support real decisions. <strong>Angle:</strong> filter UX is not just input control design; it is question design, state design, and recovery design. <strong>Examples:</strong> CRM, finance, logistics, inventory, fintech review, and modular SaaS dashboards. <strong>Level:</strong> practical intermediate.</p>
+          <p>
+            <strong>Topic:</strong> SaaS dashboard filter UX.
+            <strong>Reader:</strong> product designers, PMs, founders, and
+            developers working on dashboards with tables, metrics, roles, and
+            operational workflows. <strong>Problem:</strong> filters become hard
+            to understand, hard to reset, hard to save, and easy to misread.
+            <strong>Goal:</strong> design filters that help users narrow data
+            confidently and recover when the result is wrong.
+            <strong>Search intent:</strong> practical how-to.
+            <strong>Main keyword:</strong> SaaS dashboard filter UX.
+            <strong>Secondary keywords:</strong> dashboard filters, saved views
+            UX, table filter design, SaaS dashboard UX, product design handoff.
+            <strong>Promise:</strong> give teams a reusable way to design
+            filters that support real decisions. <strong>Angle:</strong> filter
+            UX is not just input control design; it is question design, state
+            design, and recovery design. <strong>Examples:</strong> CRM,
+            finance, logistics, inventory, fintech review, and modular SaaS
+            dashboards. <strong>Level:</strong> practical intermediate.
+          </p>
           <h2>Short answer</h2>
-          <p>Good SaaS dashboard filter UX starts with the user's work question, not the database columns. Decide what users need to find, which filters matter most, how active filters are shown, how empty results are explained, and how useful views are saved or shared. A filter system should make narrowing, scanning, resetting, and handing off the result feel obvious.</p>
+          <p>
+            Good SaaS dashboard filter UX starts with the user's work question,
+            not the database columns. Decide what users need to find, which
+            filters matter most, how active filters are shown, how empty results
+            are explained, and how useful views are saved or shared. A filter
+            system should make narrowing, scanning, resetting, and handing off
+            the result feel obvious.
+          </p>
           <h2>Who this is for</h2>
-          <p>This is for teams designing SaaS dashboards with tables, cards, charts, queues, approvals, search, exports, and role-based access. It applies to CRM dashboards, finance tools, logistics admin panels, support queues, inventory systems, fintech review products, and internal business platforms like the modular SaaS work I often think about through projects such as Orkest HQ and Zapp Today.</p>
+          <p>
+            This is for teams designing SaaS dashboards with tables, cards,
+            charts, queues, approvals, search, exports, and role-based access.
+            It applies to CRM dashboards, finance tools, logistics admin panels,
+            support queues, inventory systems, fintech review products, and
+            internal business platforms like the modular SaaS work I often think
+            about through projects such as Orkest HQ and Zapp Today.
+          </p>
           <h2>What dashboard filters really do</h2>
-          <p>A filter is a promise: “show me only the data that matches this condition.” That sounds simple until the product has permissions, date ranges, statuses, assignees, archived records, partial sync, default views, team ownership, and role-specific visibility. Then the humble filter becomes a small machine for either clarity or chaos.</p>
-          <p>In product design terms, filters connect user intent to data visibility. They should reduce the distance between “I need to know this” and “here is the right set of records.” If a user has to test five dropdowns just to find pending approvals, the interface is not helping. It is outsourcing product thinking to tired humans with too many tabs open.</p>
+          <p>
+            A filter is a promise: “show me only the data that matches this
+            condition.” That sounds simple until the product has permissions,
+            date ranges, statuses, assignees, archived records, partial sync,
+            default views, team ownership, and role-specific visibility. Then
+            the humble filter becomes a small machine for either clarity or
+            chaos.
+          </p>
+          <p>
+            In product design terms, filters connect user intent to data
+            visibility. They should reduce the distance between “I need to know
+            this” and “here is the right set of records.” If a user has to test
+            five dropdowns just to find pending approvals, the interface is not
+            helping. It is outsourcing product thinking to tired humans with too
+            many tabs open.
+          </p>
           <h2>The FIND framework for filter UX</h2>
-          <p>I use a FIND framework for SaaS dashboard filters: Frame, Input, Notice, and Decide. It keeps the design focused on work instead of turning filters into a decorative row of controls.</p>
+          <p>
+            I use a FIND framework for SaaS dashboard filters: Frame, Input,
+            Notice, and Decide. It keeps the design focused on work instead of
+            turning filters into a decorative row of controls.
+          </p>
           <h3>1. Frame the user's question</h3>
-          <p>Before choosing controls, write the question the user is trying to answer. A sales manager may ask, “Which deals are closing this week?” A finance user may ask, “Which invoices failed payment?” A support lead may ask, “Which tickets are waiting too long?” A warehouse operator may ask, “Which orders are delayed today?”</p>
-          <p>Once the question is clear, filter priority becomes easier. Date, status, owner, customer, risk, and source may matter. But not every column deserves a filter. Filtering every possible field is how dashboards become spreadsheet tribute bands.</p>
+          <p>
+            Before choosing controls, write the question the user is trying to
+            answer. A sales manager may ask, “Which deals are closing this
+            week?” A finance user may ask, “Which invoices failed payment?” A
+            support lead may ask, “Which tickets are waiting too long?” A
+            warehouse operator may ask, “Which orders are delayed today?”
+          </p>
+          <p>
+            Once the question is clear, filter priority becomes easier. Date,
+            status, owner, customer, risk, and source may matter. But not every
+            column deserves a filter. Filtering every possible field is how
+            dashboards become spreadsheet tribute bands.
+          </p>
           <h3>2. Input only what the user can understand</h3>
-          <p>The control should match the decision. Use date ranges for time windows, multi-selects for statuses, search for known names or IDs, toggles for simple binary conditions, and saved views for repeated operational questions. Avoid clever controls that require explanation every time. Clever UI is expensive when the user is trying to solve a work problem.</p>
-          <p>For example, a logistics dashboard might prioritize date, delivery status, driver, area, exception type, and payment status. A fintech review queue might prioritize risk level, verification stage, assigned reviewer, submitted date, and decision status. These are different products, so the filter systems should not look like the same copied component wearing different labels.</p>
+          <p>
+            The control should match the decision. Use date ranges for time
+            windows, multi-selects for statuses, search for known names or IDs,
+            toggles for simple binary conditions, and saved views for repeated
+            operational questions. Avoid clever controls that require
+            explanation every time. Clever UI is expensive when the user is
+            trying to solve a work problem.
+          </p>
+          <p>
+            For example, a logistics dashboard might prioritize date, delivery
+            status, driver, area, exception type, and payment status. A fintech
+            review queue might prioritize risk level, verification stage,
+            assigned reviewer, submitted date, and decision status. These are
+            different products, so the filter systems should not look like the
+            same copied component wearing different labels.
+          </p>
           <h3>3. Notice active, default, and inherited states</h3>
-          <p>Users should always know which filters are active. Use visible chips, labels, counts, and clear reset behavior. If a default view already filters the table, say so. If the user is seeing “My assigned tickets,” that is not an unfiltered table. It is a filtered view, and the interface should admit it like an honest adult.</p>
-          <p>This matters even more in role-based dashboards. A read-only user may see fewer records because of permission limits. A manager may see team records. An admin may see everything. If the product does not explain the difference, users may believe data is missing or broken.</p>
+          <p>
+            Users should always know which filters are active. Use visible
+            chips, labels, counts, and clear reset behavior. If a default view
+            already filters the table, say so. If the user is seeing “My
+            assigned tickets,” that is not an unfiltered table. It is a filtered
+            view, and the interface should admit it like an honest adult.
+          </p>
+          <p>
+            This matters even more in role-based dashboards. A read-only user
+            may see fewer records because of permission limits. A manager may
+            see team records. An admin may see everything. If the product does
+            not explain the difference, users may believe data is missing or
+            broken.
+          </p>
           <h3>4. Decide what happens after filtering</h3>
-          <p>Filtering is rarely the final step. Users filter so they can inspect, approve, export, assign, contact, compare, or escalate. The filtered state should support the next action. If a finance user filters failed payments, the table should expose retry, contact, invoice, notes, or export actions depending on permission. If a support lead filters overdue tickets, bulk assign or priority change may matter.</p>
-          <p>Designers should not stop at the dropdown. Follow the workflow after the table changes. Otherwise the product helps the user find a problem and then politely abandons them in front of it.</p>
+          <p>
+            Filtering is rarely the final step. Users filter so they can
+            inspect, approve, export, assign, contact, compare, or escalate. The
+            filtered state should support the next action. If a finance user
+            filters failed payments, the table should expose retry, contact,
+            invoice, notes, or export actions depending on permission. If a
+            support lead filters overdue tickets, bulk assign or priority change
+            may matter.
+          </p>
+          <p>
+            Designers should not stop at the dropdown. Follow the workflow after
+            the table changes. Otherwise the product helps the user find a
+            problem and then politely abandons them in front of it.
+          </p>
           <h2>Design decisions that make filters easier</h2>
           <h3>Use default views for common jobs</h3>
-          <p>If users repeatedly use the same filters, turn them into named views. “Pending review,” “Failed payments,” “Assigned to me,” “Low stock,” “Overdue tasks,” and “High-risk accounts” are easier than asking users to rebuild the same combination every morning. Saved views also help teams share meaning, not just data.</p>
+          <p>
+            If users repeatedly use the same filters, turn them into named
+            views. “Pending review,” “Failed payments,” “Assigned to me,” “Low
+            stock,” “Overdue tasks,” and “High-risk accounts” are easier than
+            asking users to rebuild the same combination every morning. Saved
+            views also help teams share meaning, not just data.
+          </p>
           <h3>Separate search from filters</h3>
-          <p>Search and filters do different jobs. Search helps users find a known record, name, ID, invoice, wallet address, or customer. Filters narrow a set by attributes. Mixing both into one vague input usually creates confusion. If the dashboard needs both, make their roles clear.</p>
+          <p>
+            Search and filters do different jobs. Search helps users find a
+            known record, name, ID, invoice, wallet address, or customer.
+            Filters narrow a set by attributes. Mixing both into one vague input
+            usually creates confusion. If the dashboard needs both, make their
+            roles clear.
+          </p>
           <h3>Show result counts and applied logic</h3>
-          <p>When users apply filters, show the number of matching records and the active conditions. A line like “24 invoices match: Failed payment, Last 30 days, Nepal region” can prevent misreading. For complex dashboards, this summary is more useful than a decorative metric card pretending to be insight.</p>
+          <p>
+            When users apply filters, show the number of matching records and
+            the active conditions. A line like “24 invoices match: Failed
+            payment, Last 30 days, Nepal region” can prevent misreading. For
+            complex dashboards, this summary is more useful than a decorative
+            metric card pretending to be insight.
+          </p>
           <h3>Design empty results as recovery states</h3>
-          <p>An empty filtered table should not only say “No results.” It should explain what happened and offer a way forward: clear all filters, remove one filter, widen the date range, check permissions, or try another search. Empty states are part of the filter system, not a sad afterthought.</p>
+          <p>
+            An empty filtered table should not only say “No results.” It should
+            explain what happened and offer a way forward: clear all filters,
+            remove one filter, widen the date range, check permissions, or try
+            another search. Empty states are part of the filter system, not a
+            sad afterthought.
+          </p>
           <h3>Make reset behavior predictable</h3>
-          <p>Users need to know whether reset clears all filters, restores the default view, or removes only unsaved changes. If your default dashboard view has built-in filters, “Clear all” and “Back to default” should not behave like twins with trust issues.</p>
+          <p>
+            Users need to know whether reset clears all filters, restores the
+            default view, or removes only unsaved changes. If your default
+            dashboard view has built-in filters, “Clear all” and “Back to
+            default” should not behave like twins with trust issues.
+          </p>
           <h2>Common mistakes</h2>
           <h3>Mistake 1: exposing every database field as a filter</h3>
-          <p>This happens when teams treat filters as a technical mapping exercise. It hurts because users must understand internal data structure before finding work. A better approach is to prioritize filters by user questions, frequency, risk, and next action.</p>
+          <p>
+            This happens when teams treat filters as a technical mapping
+            exercise. It hurts because users must understand internal data
+            structure before finding work. A better approach is to prioritize
+            filters by user questions, frequency, risk, and next action.
+          </p>
           <h3>Mistake 2: hiding active filters</h3>
-          <p>This happens when designers tuck filters inside drawers or modals without visible summaries. It hurts because users forget why the table changed. Keep active filters visible as chips, labels, summaries, or view names.</p>
+          <p>
+            This happens when designers tuck filters inside drawers or modals
+            without visible summaries. It hurts because users forget why the
+            table changed. Keep active filters visible as chips, labels,
+            summaries, or view names.
+          </p>
           <h3>Mistake 3: using vague status labels</h3>
-          <p>Labels like “open,” “active,” or “processing” can mean different things across teams. It hurts because users filter for a concept but get a technical state. Use status labels that match business meaning, and document the edge cases for developers.</p>
+          <p>
+            Labels like “open,” “active,” or “processing” can mean different
+            things across teams. It hurts because users filter for a concept but
+            get a technical state. Use status labels that match business
+            meaning, and document the edge cases for developers.
+          </p>
           <h3>Mistake 4: treating empty results like failure</h3>
-          <p>Filtered empty states are often valid. They may mean the work is done, the date range is too narrow, access is restricted, or sync has not finished. Explain the reason when possible and provide recovery actions.</p>
+          <p>
+            Filtered empty states are often valid. They may mean the work is
+            done, the date range is too narrow, access is restricted, or sync
+            has not finished. Explain the reason when possible and provide
+            recovery actions.
+          </p>
           <h3>Mistake 5: forgetting mobile and narrow layouts</h3>
-          <p>Filters that work on desktop can collapse into nonsense on smaller screens. Define which filters stay visible, which move into a sheet, how chips wrap, and how the table keeps context. Responsive behavior is part of handoff, not a bonus round.</p>
+          <p>
+            Filters that work on desktop can collapse into nonsense on smaller
+            screens. Define which filters stay visible, which move into a sheet,
+            how chips wrap, and how the table keeps context. Responsive behavior
+            is part of handoff, not a bonus round.
+          </p>
           <h2>What to document for developer handoff</h2>
-          <p>Filter UX needs careful handoff because small logic gaps create big user confusion. Document default view rules, available filters by role, active chip behavior, empty state messages, date range logic, multi-select logic, search behavior, loading state, disabled options, reset behavior, saved view permissions, export behavior, and responsive layout.</p>
-          <p>For Figma handoff, I would include a filter state matrix: default, active, loading, empty, error, restricted, saved, unsaved changes, mobile drawer, and cleared. This sounds boring, which is exactly the point. Good dashboard work often looks boring because the thinking has already absorbed the chaos.</p>
+          <p>
+            Filter UX needs careful handoff because small logic gaps create big
+            user confusion. Document default view rules, available filters by
+            role, active chip behavior, empty state messages, date range logic,
+            multi-select logic, search behavior, loading state, disabled
+            options, reset behavior, saved view permissions, export behavior,
+            and responsive layout.
+          </p>
+          <p>
+            For Figma handoff, I would include a filter state matrix: default,
+            active, loading, empty, error, restricted, saved, unsaved changes,
+            mobile drawer, and cleared. This sounds boring, which is exactly the
+            point. Good dashboard work often looks boring because the thinking
+            has already absorbed the chaos.
+          </p>
           <h2>Practical checklist</h2>
           <ul>
             <li>Write the main user question before adding filter controls.</li>
             <li>Prioritize filters by frequency, decision value, and risk.</li>
             <li>Keep common filters visible and rare filters secondary.</li>
-            <li>Show active filters with chips, labels, or a readable summary.</li>
-            <li>Separate search for known records from filters for narrowing sets.</li>
+            <li>
+              Show active filters with chips, labels, or a readable summary.
+            </li>
+            <li>
+              Separate search for known records from filters for narrowing sets.
+            </li>
             <li>Use named saved views for repeated team workflows.</li>
             <li>Explain default, role-based, and permission-limited views.</li>
             <li>Design empty filtered results with recovery actions.</li>
@@ -104,23 +578,157 @@
           </ul>
           <h2>FAQ</h2>
           <h3>How many filters should a SaaS dashboard have?</h3>
-          <p>There is no perfect number. The better question is how many filters the user needs to answer common work questions. Keep primary filters visible and move rare or advanced filters into a secondary area.</p>
+          <p>
+            There is no perfect number. The better question is how many filters
+            the user needs to answer common work questions. Keep primary filters
+            visible and move rare or advanced filters into a secondary area.
+          </p>
           <h3>Should dashboards use saved filters or saved views?</h3>
-          <p>Use saved views when users repeatedly return to the same filter combination. Saved views are clearer because they name the job, not only the conditions.</p>
+          <p>
+            Use saved views when users repeatedly return to the same filter
+            combination. Saved views are clearer because they name the job, not
+            only the conditions.
+          </p>
           <h3>Where should filters appear?</h3>
-          <p>Filters should appear close to the table, list, chart, or queue they affect. If the dashboard has multiple sections, avoid one global filter area unless it is obvious what the filter controls.</p>
+          <p>
+            Filters should appear close to the table, list, chart, or queue they
+            affect. If the dashboard has multiple sections, avoid one global
+            filter area unless it is obvious what the filter controls.
+          </p>
           <h3>How should filters work with permissions?</h3>
-          <p>Permissions should affect which data and actions the user can access. The UI should explain restricted data, disabled actions, and role-limited views instead of making records silently disappear.</p>
+          <p>
+            Permissions should affect which data and actions the user can
+            access. The UI should explain restricted data, disabled actions, and
+            role-limited views instead of making records silently disappear.
+          </p>
           <h3>What is the biggest filter UX risk?</h3>
-          <p>The biggest risk is users making decisions from a filtered view they do not understand. Active filters, result summaries, and default view labels reduce that risk.</p>
+          <p>
+            The biggest risk is users making decisions from a filtered view they
+            do not understand. Active filters, result summaries, and default
+            view labels reduce that risk.
+          </p>
           <h3>What should be included in filter handoff?</h3>
-          <p>Include filter types, labels, logic, empty states, loading states, reset behavior, saved view rules, role restrictions, responsive behavior, and QA cases.</p>
+          <p>
+            Include filter types, labels, logic, empty states, loading states,
+            reset behavior, saved view rules, role restrictions, responsive
+            behavior, and QA cases.
+          </p>
           <h2>Final takeaway</h2>
-          <p>SaaS dashboard filters are not just controls. They are how users turn messy product data into a decision. Start from the question, show the active state, explain empty results, support the next action, and document the logic clearly enough that engineering does not have to decode your design like ancient ruins.</p>
-          <p>Related reading: <a href="/blog/role-based-saas-dashboard-ux.html">role-based SaaS dashboard UX</a>, <a href="/blog/saas-dashboard-empty-states-that-help-users-recover.html">SaaS dashboard empty states</a>, and <a href="/blog/design-handoff-checklist-startup-product-teams.html">design handoff checklist for startup product teams</a>. For project context, see <a href="/project-orkest.html">Orkest HQ</a>, <a href="/project-zapp.html">Zapp Today</a>, and <a href="/saas-ux-designer.html">SaaS UX design services</a>.</p>
+          <p>
+            SaaS dashboard filters are not just controls. They are how users
+            turn messy product data into a decision. Start from the question,
+            show the active state, explain empty results, support the next
+            action, and document the logic clearly enough that engineering does
+            not have to decode your design like ancient ruins.
+          </p>
+          <p>
+            Related reading:
+            <a href="/blog/role-based-saas-dashboard-ux.html"
+              >role-based SaaS dashboard UX</a
+            >,
+            <a
+              href="/blog/saas-dashboard-empty-states-that-help-users-recover.html"
+              >SaaS dashboard empty states</a
+            >, and
+            <a href="/blog/design-handoff-checklist-startup-product-teams.html"
+              >design handoff checklist for startup product teams</a
+            >. For project context, see
+            <a href="/project-orkest.html">Orkest HQ</a>,
+            <a href="/project-zapp.html">Zapp Today</a>, and
+            <a href="/saas-ux-designer.html">SaaS UX design services</a>.
+          </p>
         </div>
       </article>
     </main>
-    <script type="module" src="/script.js?v=32.0"></script>
+    <script type="module" src="/script.js?v=36.0"></script>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top-grid">
+          <div class="footer-cta">
+            <p class="eyebrow">Available for selected work</p>
+            <h2>Product design support for clearer software.</h2>
+            <p>
+              I help teams improve UX structure, interface clarity, design
+              systems, responsive behavior and developer-ready handoff.
+            </p>
+            <div class="cta-group">
+              <a href="/contact.html" class="footer-email-btn"
+                >Discuss a project</a
+              ><a
+                href="/assets/resume.pdf"
+                class="btn btn-secondary"
+                download="Nischhal-Raj-Subba-Resume.pdf"
+                data-resume-download
+                >Download Resume</a
+              >
+            </div>
+          </div>
+          <div class="footer-nav-grid">
+            <div class="footer-col">
+              <h5>Pages</h5>
+              <a href="/">Home</a><a href="/projects.html">Work</a
+              ><a href="/services.html">Services</a
+              ><a href="/about.html">About</a><a href="/blog/">Writing</a
+              ><a href="/contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+              <h5>Services</h5>
+              <a href="/product-design-nepal.html">Product design</a
+              ><a href="/ux-audit.html">UX audit</a
+              ><a href="/figma-design-systems.html">Design systems</a
+              ><a href="/web3-ux-designer.html">Web3 UX</a
+              ><a href="/saas-ux-designer.html">SaaS UX</a
+              ><a href="/website-ux-design.html">Website UX</a>
+            </div>
+            <div class="footer-col">
+              <h5>Selected work</h5>
+              <a href="/project-yarsha.html">Yarsha</a
+              ><a href="/project-mokshya.html">Mokshya</a
+              ><a href="/project-morajaa.html">Morajaa</a
+              ><a href="/project-pihub.html">piHub</a
+              ><a href="/project-zapp.html">Zapp Today</a
+              ><a href="/project-masteriyo.html">Masteriyo</a>
+            </div>
+            <div class="footer-col">
+              <h5>Contact and proof</h5>
+              <a href="mailto:hinischalsubba@gmail.com"
+                >hinischalsubba@gmail.com</a
+              ><a
+                href="/assets/resume.pdf"
+                download="Nischhal-Raj-Subba-Resume.pdf"
+                data-resume-download
+                >Resume PDF</a
+              ><a
+                href="https://www.behance.net/nischhal"
+                target="_blank"
+                rel="noopener"
+                >Behance</a
+              ><a
+                href="https://app.uxcel.com/ux/nischhal"
+                target="_blank"
+                rel="noopener"
+                >Uxcel</a
+              ><a
+                href="https://linkedin.com/in/nischhal/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom-bar">
+          <span>(c) 2026 Nischhal Raj Subba.</span
+          ><span>UX/UI, product systems and handoff for software teams.</span>
+        </div>
+      </div>
+    </footer>
+    <a
+      class="floating-resume-btn"
+      href="/assets/resume.pdf"
+      download="Nischhal-Raj-Subba-Resume.pdf"
+      data-resume-download
+      >Download Resume</a
+    >
   </body>
 </html>

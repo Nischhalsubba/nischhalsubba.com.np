@@ -1,117 +1,733 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="nrs-blog-detail-page">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Role-Based SaaS Dashboard UX for Complex Teams | Nischhal Raj Subba</title>
-    <meta name="description" content="A practical product design guide to role-based SaaS dashboard UX: permissions, navigation, views, empty states, handoff, and team workflow clarity." />
+    <title>
+      Role-Based SaaS Dashboard UX for Complex Teams | Nischhal Raj Subba
+    </title>
+    <meta
+      name="description"
+      content="A practical product design guide to role-based SaaS dashboard UX: permissions, navigation, views, empty states, handoff, and team workflow clarity."
+    />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux.html" />
+    <link
+      rel="canonical"
+      href="https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux"
+    />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Role-Based SaaS Dashboard UX for Complex Teams" />
-    <meta property="og:description" content="How to design SaaS dashboards that adapt to roles, permissions, responsibilities, and workflow context without confusing users." />
-    <meta property="og:url" content="https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux.html" />
-    <meta property="og:image" content="https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png" />
+    <meta
+      property="og:title"
+      content="Role-Based SaaS Dashboard UX for Complex Teams"
+    />
+    <meta
+      property="og:description"
+      content="How to design SaaS dashboards that adapt to roles, permissions, responsibilities, and workflow context without confusing users."
+    />
+    <meta
+      property="og:url"
+      content="https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux"
+    />
+    <meta
+      property="og:image"
+      content="https://nischhalsubba.com.np/assets/images/blog-saas-empty-states-cover.png"
+    />
     <meta property="article:author" content="Nischhal Raj Subba" />
     <meta property="article:published_time" content="2026-07-02" />
     <meta property="article:modified_time" content="2026-07-02" />
     <meta property="article:section" content="SaaS Dashboard UX" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Role-Based SaaS Dashboard UX for Complex Teams" />
-    <meta name="twitter:description" content="A practical product designer's guide to permissions, role-specific dashboard views, navigation, empty states, and handoff for SaaS teams." />
-    <meta name="twitter:image" content="https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png" />
+    <meta
+      name="twitter:title"
+      content="Role-Based SaaS Dashboard UX for Complex Teams"
+    />
+    <meta
+      name="twitter:description"
+      content="A practical product designer's guide to permissions, role-specific dashboard views, navigation, empty states, and handoff for SaaS teams."
+    />
+    <meta
+      name="twitter:image"
+      content="https://nischhalsubba.com.np/assets/images/blog-saas-empty-states-cover.png"
+    />
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/style.css?v=41.0" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"Role-Based SaaS Dashboard UX for Complex Teams","description":"A practical product design guide to role-based SaaS dashboard UX: permissions, navigation, views, empty states, handoff, and team workflow clarity.","image":"https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png","datePublished":"2026-07-02","dateModified":"2026-07-02","author":{"@type":"Person","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/"},"publisher":{"@type":"Person","name":"Nischhal Raj Subba","url":"https://nischhalsubba.com.np/"},"mainEntityOfPage":"https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux.html","url":"https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux.html","keywords":["role-based SaaS dashboard UX","SaaS dashboard UX","permissions UX","admin dashboard UX","dashboard navigation","product design handoff"],"articleSection":"SaaS Dashboard UX","wordCount":1850},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nischhalsubba.com.np/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://nischhalsubba.com.np/blog/"},{"@type":"ListItem","position":3,"name":"Role-Based SaaS Dashboard UX for Complex Teams","item":"https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is role-based SaaS dashboard UX?","acceptedAnswer":{"@type":"Answer","text":"Role-based SaaS dashboard UX is the design of dashboard navigation, data, actions, and messages around the responsibilities and permissions of each user role."}},{"@type":"Question","name":"Why do SaaS dashboards need role-based views?","acceptedAnswer":{"@type":"Answer","text":"Role-based views reduce confusion by showing the information, actions, alerts, and settings that match a user's job instead of exposing every module to everyone."}},{"@type":"Question","name":"What should designers document for role-based dashboards?","acceptedAnswer":{"@type":"Answer","text":"Designers should document roles, permissions, navigation visibility, empty states, restricted states, default views, upgrade or request-access paths, and QA scenarios."}}]}]}</script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            "headline": "Role-Based SaaS Dashboard UX for Complex Teams",
+            "description": "A practical product design guide to role-based SaaS dashboard UX: permissions, navigation, views, empty states, handoff, and team workflow clarity.",
+            "image": "https://nischhalsubba.com.np/assets/images/blog-saas-empty-states-cover.png",
+            "datePublished": "2026-07-02",
+            "dateModified": "2026-07-02",
+            "author": {
+              "@type": "Person",
+              "name": "Nischhal Raj Subba",
+              "url": "https://nischhalsubba.com.np/"
+            },
+            "publisher": {
+              "@type": "Person",
+              "name": "Nischhal Raj Subba",
+              "url": "https://nischhalsubba.com.np/"
+            },
+            "mainEntityOfPage": "https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux.html",
+            "url": "https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux.html",
+            "keywords": [
+              "role-based SaaS dashboard UX",
+              "SaaS dashboard UX",
+              "permissions UX",
+              "admin dashboard UX",
+              "dashboard navigation",
+              "product design handoff"
+            ],
+            "articleSection": "SaaS Dashboard UX",
+            "wordCount": 1850
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://nischhalsubba.com.np/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Writing",
+                "item": "https://nischhalsubba.com.np/blog/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Role-Based SaaS Dashboard UX for Complex Teams",
+                "item": "https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux.html"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is role-based SaaS dashboard UX?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Role-based SaaS dashboard UX is the design of dashboard navigation, data, actions, and messages around the responsibilities and permissions of each user role."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why do SaaS dashboards need role-based views?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Role-based views reduce confusion by showing the information, actions, alerts, and settings that match a user's job instead of exposing every module to everyone."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What should designers document for role-based dashboards?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Designers should document roles, permissions, navigation visibility, empty states, restricted states, default views, upgrade or request-access paths, and QA scenarios."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script id="nrs-early-theme-bootstrap">
+      (function () {
+        var root = document.documentElement;
+        var theme = "dark";
+        try {
+          var override = sessionStorage.getItem("nrs-theme-override");
+          if (override === "light" || override === "dark") {
+            theme = override;
+          } else if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+          ) {
+            theme = "light";
+          }
+          localStorage.removeItem("theme");
+        } catch (error) {
+          if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+          )
+            theme = "light";
+        }
+        root.setAttribute("data-theme", theme);
+        root.style.colorScheme = theme;
+        root.setAttribute("data-theme-source", "system");
+        var style = document.createElement("style");
+        style.id = "nrs-first-paint-theme";
+        style.textContent = [
+          ":root{--nrs-first-bg:#0c0f0b;--nrs-first-text:#f3f6ea;--nrs-progress:#d8ff48;--nrs-progress-track:rgba(243,246,234,.15);color-scheme:dark;}",
+          "html[data-theme='light']{--nrs-first-bg:#f4efe4;--nrs-first-text:#141410;--nrs-progress:#141410;--nrs-progress-track:rgba(20,20,16,.16);color-scheme:light;}",
+          "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;color:var(--nrs-first-text)!important;}",
+          "#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:5px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track)!important;opacity:1!important;transform:none!important;overflow:hidden!important;}",
+          "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress)!important;transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
+          "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}",
+        ].join("");
+        document.head.appendChild(style);
+        function ensureProgressBar() {
+          if (document.getElementById("nrs-scroll-progress")) return;
+          var bar = document.createElement("div");
+          bar.id = "nrs-scroll-progress";
+          bar.setAttribute("aria-hidden", "true");
+          if (document.body) document.body.prepend(bar);
+          else
+            document.addEventListener("DOMContentLoaded", ensureProgressBar, {
+              once: true,
+            });
+        }
+        function updateProgress() {
+          var scrollable = Math.max(
+            1,
+            document.documentElement.scrollHeight - window.innerHeight,
+          );
+          var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable));
+          root.style.setProperty("--nrs-scroll-progress-scale", String(value));
+        }
+        ensureProgressBar();
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+        window.addEventListener("pageshow", updateProgress);
+      })();
+    </script>
+    <link rel="stylesheet" href="/style.css?v=46.0" />
+    <script id="nrs-blog-breadcrumb-json" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nischhalsubba.com.np/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Writing",
+            "item": "https://nischhalsubba.com.np/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Role-Based SaaS Dashboard UX for Complex Teams",
+            "item": "https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
-    <button class="mobile-nav-toggle" aria-label="Menu"><span></span><span></span></button>
-    <a href="/" class="mobile-logo">NRS</a>
-    <div class="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/blog/" class="active">Writing</a><a href="/contact.html">Contact</a></nav></div>
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
-    <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects.html" class="nav-link">Work</a><a href="/services.html" class="nav-link">Services</a><a href="/about.html" class="nav-link">About</a><a href="/blog/" class="nav-link active">Writing</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
-    <main class="container">
-      <article class="section-container" style="max-width:980px;margin:0 auto;padding-top:150px;">
-        <a class="badge-pill" href="/blog/">← Back to writing</a>
-        <p class="eyebrow" style="margin-top:36px;">SaaS dashboard UX</p>
-        <h1 class="hero-title" style="font-size:clamp(2.55rem,6vw,5rem);line-height:1.04;max-width:980px;">Role-Based SaaS Dashboard UX for Complex Teams</h1>
-        <p class="body-large" style="max-width:840px;">A practical way to design dashboards around permissions, responsibilities, and workflow context so each user sees what helps them move.</p>
-        <div class="meta-text" style="display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border-faint);padding-top:22px;margin-top:28px;"><span>Jul 02, 2026</span><span>9 min read</span><span>By Nischhal Raj Subba</span></div>
-        <img height="900" width="1600" decoding="async" loading="eager" class="nrs-blog-cover-img" src="/assets/images/blog-design-systems-handoff-cover.png" alt="Generated product design cover showing SaaS dashboard cards, role permissions, navigation states, and handoff notes" style="width:100%;max-height:360px;object-fit:cover;margin-top:42px;border-radius:28px;border:1px solid var(--border-faint);" />
-        <div class="body-large" style="max-width:860px;color:var(--text-secondary);font-size:1.12rem;line-height:1.86;margin-top:56px;">
-          <p>A role-based SaaS dashboard should not be one giant interface wearing different usernames. A sales manager, finance user, warehouse operator, support lead, founder, and workspace admin do not enter a product with the same questions. They care about different risks, decisions, permissions, and next actions. When the dashboard ignores that, users spend their time translating the product instead of using it. Truly, nothing says productivity like making humans play hide-and-seek with the one button they are allowed to click.</p>
+    <a class="skip-link" href="#main-content">Skip to main content</a
+    ><button
+      class="mobile-nav-toggle"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav-overlay"
+    >
+      <span></span><span></span></button
+    ><a href="/" class="mobile-logo">NRS</a>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <nav class="mobile-nav-links" aria-label="Mobile navigation">
+        <a href="/" class="active" aria-current="page">Home</a
+        ><a href="/projects">Work</a><a href="/services">Services</a
+        ><a href="/about">About</a><a href="/blog/">Writing</a
+        ><a href="/contact">Contact</a>
+      </nav>
+    </div>
+    <button
+      id="theme-toggle"
+      class="theme-toggle-btn"
+      aria-label="Toggle theme"
+    ></button>
+    <nav class="nav-wrapper" aria-label="Primary navigation">
+      <div class="nav-pill">
+        <div class="nav-glider"></div>
+        <a href="/" class="nav-link active" aria-current="page">Home</a
+        ><a href="/projects" class="nav-link">Work</a
+        ><a href="/services" class="nav-link">Services</a
+        ><a href="/about" class="nav-link">About</a
+        ><a href="/blog/" class="nav-link">Writing</a
+        ><a href="/contact" class="nav-link">Contact</a>
+      </div>
+    </nav>
+    <main id="main-content" class="container">
+      <article
+        class="section-container"
+        style="max-width: 980px; margin: 0 auto; padding-top: 150px"
+      >
+        <nav class="nrs-blog-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span
+          ><a href="/blog/">Writing</a><span aria-hidden="true">/</span
+          ><span class="nrs-crumb-current" aria-current="page"
+            >SaaS Dashboard UX</span
+          >
+        </nav>
+        <a class="nrs-blog-back-btn" href="/blog/">Back to all writing</a>
+        <p class="eyebrow nrs-blog-category" style="margin-top: 36px">
+          SaaS dashboard UX
+        </p>
+        <h1
+          class="hero-title"
+          style="
+            font-size: clamp(2.55rem, 6vw, 5rem);
+            line-height: 1.04;
+            max-width: 980px;
+          "
+        >
+          Role-Based SaaS Dashboard UX for Complex Teams
+        </h1>
+        <p class="body-large nrs-blog-dek" style="max-width: 840px">
+          A practical way to design dashboards around permissions,
+          responsibilities, and workflow context so each user sees what helps
+          them move.
+        </p>
+        <div
+          class="meta-text nrs-blog-meta"
+          style="
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border-faint);
+            padding-top: 22px;
+            margin-top: 28px;
+          "
+        >
+          <span>Jul 02, 2026</span><span>9 min read</span
+          ><span>By Nischhal Raj Subba</span>
+        </div>
+        <img
+          height="900"
+          width="1600"
+          decoding="async"
+          loading="eager"
+          class="nrs-blog-cover-img"
+          src="/assets/images/blog-saas-empty-states-cover.png"
+          alt="Generated product design cover showing SaaS dashboard empty states and product clarity artifacts"
+          style="
+            width: 100%;
+            max-height: 360px;
+            object-fit: cover;
+            margin-top: 42px;
+            border-radius: 28px;
+            border: 1px solid var(--border-faint);
+          "
+        />
+        <div
+          class="body-large nrs-blog-content"
+          style="
+            max-width: 860px;
+            color: var(--text-secondary);
+            font-size: 1.12rem;
+            line-height: 1.86;
+            margin-top: 56px;
+          "
+        >
+          <p>
+            A role-based SaaS dashboard should not be one giant interface
+            wearing different usernames. A sales manager, finance user,
+            warehouse operator, support lead, founder, and workspace admin do
+            not enter a product with the same questions. They care about
+            different risks, decisions, permissions, and next actions. When the
+            dashboard ignores that, users spend their time translating the
+            product instead of using it. Truly, nothing says productivity like
+            making humans play hide-and-seek with the one button they are
+            allowed to click.
+          </p>
           <h2>Writer brief</h2>
-          <p><strong>Topic:</strong> role-based SaaS dashboard UX. <strong>Reader:</strong> product designers, founders, PMs, and developers working on admin dashboards, internal tools, and modular SaaS products. <strong>Problem:</strong> dashboards become confusing when every role sees the same navigation, data, empty states, and actions. <strong>Goal:</strong> design dashboard views that respect responsibility and permission. <strong>Search intent:</strong> practical how-to. <strong>Main keyword:</strong> role-based SaaS dashboard UX. <strong>Secondary keywords:</strong> SaaS dashboard UX, permissions UX, admin dashboard UX, dashboard navigation, product design handoff. <strong>Promise:</strong> give teams a reusable way to plan role-specific dashboards without overcomplicating the product. <strong>Angle:</strong> role-based UX is not only access control; it is clarity, prioritization, and recovery design. <strong>Examples:</strong> CRM, finance, inventory, logistics, fintech verification, and modular business platforms. <strong>Level:</strong> practical intermediate.</p>
+          <p>
+            <strong>Topic:</strong> role-based SaaS dashboard UX.
+            <strong>Reader:</strong> product designers, founders, PMs, and
+            developers working on admin dashboards, internal tools, and modular
+            SaaS products. <strong>Problem:</strong> dashboards become confusing
+            when every role sees the same navigation, data, empty states, and
+            actions. <strong>Goal:</strong> design dashboard views that respect
+            responsibility and permission.
+            <strong>Search intent:</strong> practical how-to.
+            <strong>Main keyword:</strong> role-based SaaS dashboard UX.
+            <strong>Secondary keywords:</strong> SaaS dashboard UX, permissions
+            UX, admin dashboard UX, dashboard navigation, product design
+            handoff. <strong>Promise:</strong> give teams a reusable way to plan
+            role-specific dashboards without overcomplicating the product.
+            <strong>Angle:</strong> role-based UX is not only access control; it
+            is clarity, prioritization, and recovery design.
+            <strong>Examples:</strong> CRM, finance, inventory, logistics,
+            fintech verification, and modular business platforms.
+            <strong>Level:</strong> practical intermediate.
+          </p>
           <h2>Short answer</h2>
-          <p>Design role-based SaaS dashboards by mapping what each role needs to know, decide, and act on. Then adjust navigation, default views, data density, empty states, restricted states, alerts, and primary actions around those jobs. A good role-based dashboard makes the user's responsibility obvious and makes unavailable actions understandable instead of mysteriously missing.</p>
+          <p>
+            Design role-based SaaS dashboards by mapping what each role needs to
+            know, decide, and act on. Then adjust navigation, default views,
+            data density, empty states, restricted states, alerts, and primary
+            actions around those jobs. A good role-based dashboard makes the
+            user's responsibility obvious and makes unavailable actions
+            understandable instead of mysteriously missing.
+          </p>
           <h2>Who this is for</h2>
-          <p>This is for teams designing SaaS dashboards where multiple roles share the same product but do different work. That includes CRM platforms, finance tools, inventory systems, logistics apps, admin portals, HR tools, fintech review systems, and Web3 operations dashboards. It is especially useful when your product has owners, admins, managers, operators, reviewers, clients, and read-only users sharing the same workspace.</p>
+          <p>
+            This is for teams designing SaaS dashboards where multiple roles
+            share the same product but do different work. That includes CRM
+            platforms, finance tools, inventory systems, logistics apps, admin
+            portals, HR tools, fintech review systems, and Web3 operations
+            dashboards. It is especially useful when your product has owners,
+            admins, managers, operators, reviewers, clients, and read-only users
+            sharing the same workspace.
+          </p>
           <h2>Role-based UX is more than permission gates</h2>
-          <p>Permission logic decides what a user can access. Role-based UX decides what the user can understand and do confidently. Those are related, but not the same. A product can technically block a feature and still create a confusing experience if the interface does not explain why the action is unavailable, who controls it, or what the user should do next.</p>
-          <p>For example, hiding the finance module from a support agent might be correct. But hiding a customer refund status from the same user may be harmful if they need that status to answer support tickets. Role-based design is not about removing everything. It is about matching visibility, action, and explanation to the user's responsibility.</p>
+          <p>
+            Permission logic decides what a user can access. Role-based UX
+            decides what the user can understand and do confidently. Those are
+            related, but not the same. A product can technically block a feature
+            and still create a confusing experience if the interface does not
+            explain why the action is unavailable, who controls it, or what the
+            user should do next.
+          </p>
+          <p>
+            For example, hiding the finance module from a support agent might be
+            correct. But hiding a customer refund status from the same user may
+            be harmful if they need that status to answer support tickets.
+            Role-based design is not about removing everything. It is about
+            matching visibility, action, and explanation to the user's
+            responsibility.
+          </p>
           <h2>The ROLE framework</h2>
-          <p>I use a ROLE framework for role-based SaaS dashboard UX: Responsibility, Objects, Limits, and Escalation. It keeps the design grounded in work instead of turning permissions into a spreadsheet that escaped into the interface.</p>
+          <p>
+            I use a ROLE framework for role-based SaaS dashboard UX:
+            Responsibility, Objects, Limits, and Escalation. It keeps the design
+            grounded in work instead of turning permissions into a spreadsheet
+            that escaped into the interface.
+          </p>
           <h3>1. Responsibility: define the job of each role</h3>
-          <p>Start with what the role is responsible for. A founder may need a high-level view of revenue, product usage, risk, and team activity. A finance user may need invoices, payments, approvals, and exports. A warehouse operator may need stock levels, alerts, transfer tasks, and delivery status. A reviewer may need queues, evidence, decisions, and audit history.</p>
-          <p>Do not begin with screens. Begin with decisions. Ask what this role needs to notice, decide, approve, fix, export, assign, or escalate. The dashboard should then prioritize those jobs. Otherwise the product becomes a buffet of modules where every user is apparently expected to bring their own map.</p>
+          <p>
+            Start with what the role is responsible for. A founder may need a
+            high-level view of revenue, product usage, risk, and team activity.
+            A finance user may need invoices, payments, approvals, and exports.
+            A warehouse operator may need stock levels, alerts, transfer tasks,
+            and delivery status. A reviewer may need queues, evidence,
+            decisions, and audit history.
+          </p>
+          <p>
+            Do not begin with screens. Begin with decisions. Ask what this role
+            needs to notice, decide, approve, fix, export, assign, or escalate.
+            The dashboard should then prioritize those jobs. Otherwise the
+            product becomes a buffet of modules where every user is apparently
+            expected to bring their own map.
+          </p>
           <h3>2. Objects: identify the data each role works with</h3>
-          <p>Each role usually works around specific objects: customers, orders, invoices, tickets, wallets, transactions, files, inventory items, leads, or verification requests. A role-based dashboard should make those objects easy to scan and act on. The interface should also avoid mixing objects that belong to different mental models.</p>
-          <p>In a CRM, sales users may care about leads, deals, tasks, and pipeline movement. Finance may care about invoices, payments, tax documents, and overdue accounts. Admins may care about users, roles, integrations, billing, and audit logs. The same customer object may appear in each role, but with different columns, actions, and risk indicators.</p>
+          <p>
+            Each role usually works around specific objects: customers, orders,
+            invoices, tickets, wallets, transactions, files, inventory items,
+            leads, or verification requests. A role-based dashboard should make
+            those objects easy to scan and act on. The interface should also
+            avoid mixing objects that belong to different mental models.
+          </p>
+          <p>
+            In a CRM, sales users may care about leads, deals, tasks, and
+            pipeline movement. Finance may care about invoices, payments, tax
+            documents, and overdue accounts. Admins may care about users, roles,
+            integrations, billing, and audit logs. The same customer object may
+            appear in each role, but with different columns, actions, and risk
+            indicators.
+          </p>
           <h3>3. Limits: explain what the user cannot do</h3>
-          <p>A limited view is not a broken view. The dashboard should explain limits clearly. If a user cannot approve a payment, show the approval status and the role required. If a user cannot export data, explain that exports are limited to admins. If a module is locked behind setup, say what setup is missing.</p>
-          <p>WCAG guidance matters here because forms, status messages, labels, and instructions need to be understandable and programmatically clear. The W3C WCAG 2.2 recommendation includes success criteria around labels or instructions and status messages, which are directly relevant when dashboards show restricted, pending, failed, or changed states.</p>
+          <p>
+            A limited view is not a broken view. The dashboard should explain
+            limits clearly. If a user cannot approve a payment, show the
+            approval status and the role required. If a user cannot export data,
+            explain that exports are limited to admins. If a module is locked
+            behind setup, say what setup is missing.
+          </p>
+          <p>
+            WCAG guidance matters here because forms, status messages, labels,
+            and instructions need to be understandable and programmatically
+            clear. The W3C WCAG 2.2 recommendation includes success criteria
+            around labels or instructions and status messages, which are
+            directly relevant when dashboards show restricted, pending, failed,
+            or changed states.
+          </p>
           <h3>4. Escalation: show how work moves forward</h3>
-          <p>Many role-based workflows require escalation. A support agent may need to request refund approval. A finance user may need an admin to reconnect an integration. A reviewer may need a manager to handle a risky account. The dashboard should not end with “Access denied,” the digital equivalent of a locked door with a smug little sign.</p>
-          <p>Useful escalation options include request access, assign to manager, ask admin, send for approval, view audit trail, copy link, add note, or contact owner. Escalation turns a blocked state into a workflow state.</p>
+          <p>
+            Many role-based workflows require escalation. A support agent may
+            need to request refund approval. A finance user may need an admin to
+            reconnect an integration. A reviewer may need a manager to handle a
+            risky account. The dashboard should not end with “Access denied,”
+            the digital equivalent of a locked door with a smug little sign.
+          </p>
+          <p>
+            Useful escalation options include request access, assign to manager,
+            ask admin, send for approval, view audit trail, copy link, add note,
+            or contact owner. Escalation turns a blocked state into a workflow
+            state.
+          </p>
           <h2>What should change by role?</h2>
           <h3>Navigation</h3>
-          <p>Navigation should reflect the user's active responsibilities. Hide modules that are completely irrelevant, but be careful with hidden navigation when it prevents users from understanding where work lives. If a feature is commonly requested but restricted, a disabled item with explanation may be better than total disappearance.</p>
+          <p>
+            Navigation should reflect the user's active responsibilities. Hide
+            modules that are completely irrelevant, but be careful with hidden
+            navigation when it prevents users from understanding where work
+            lives. If a feature is commonly requested but restricted, a disabled
+            item with explanation may be better than total disappearance.
+          </p>
           <h3>Default dashboard view</h3>
-          <p>The first screen should answer the role's most common question. A founder may need business health. A manager may need team workload. An operator may need today's tasks. A finance user may need pending approvals and failed payments. The same “Dashboard” label should not mean the same layout for every role.</p>
+          <p>
+            The first screen should answer the role's most common question. A
+            founder may need business health. A manager may need team workload.
+            An operator may need today's tasks. A finance user may need pending
+            approvals and failed payments. The same “Dashboard” label should not
+            mean the same layout for every role.
+          </p>
           <h3>Tables and columns</h3>
-          <p>Role-based table design often matters more than the dashboard cards. Different users need different columns, sorting, filters, and bulk actions. In a logistics dashboard, the driver team may need route, pickup time, contact, and delivery status. Operations may need SLA risk, assignment, failed attempts, and exception reason.</p>
+          <p>
+            Role-based table design often matters more than the dashboard cards.
+            Different users need different columns, sorting, filters, and bulk
+            actions. In a logistics dashboard, the driver team may need route,
+            pickup time, contact, and delivery status. Operations may need SLA
+            risk, assignment, failed attempts, and exception reason.
+          </p>
           <h3>Actions</h3>
-          <p>Primary actions should match authority. If a role can only comment, do not visually compete with “Approve,” “Delete,” or “Export” actions they cannot use. If the action exists but is unavailable, explain why and provide the correct path. Good disabled states are boring, clear, and merciful.</p>
+          <p>
+            Primary actions should match authority. If a role can only comment,
+            do not visually compete with “Approve,” “Delete,” or “Export”
+            actions they cannot use. If the action exists but is unavailable,
+            explain why and provide the correct path. Good disabled states are
+            boring, clear, and merciful.
+          </p>
           <h3>Notifications and alerts</h3>
-          <p>Alerts should match responsibility. A founder does not need every low-level table warning. An operator does. A finance user needs failed billing alerts. A product admin needs integration failures. Role-based notification design prevents urgency inflation, which is what happens when every tiny event screams like it discovered fire.</p>
+          <p>
+            Alerts should match responsibility. A founder does not need every
+            low-level table warning. An operator does. A finance user needs
+            failed billing alerts. A product admin needs integration failures.
+            Role-based notification design prevents urgency inflation, which is
+            what happens when every tiny event screams like it discovered fire.
+          </p>
           <h2>Common role-based dashboard states</h2>
           <h3>Read-only state</h3>
-          <p>The user can see information but cannot change it. Show the data, hide destructive actions, and explain why editing is unavailable when the user reaches an edit path. Include who can make changes when that is useful.</p>
+          <p>
+            The user can see information but cannot change it. Show the data,
+            hide destructive actions, and explain why editing is unavailable
+            when the user reaches an edit path. Include who can make changes
+            when that is useful.
+          </p>
           <h3>Permission-empty state</h3>
-          <p>The user sees a module but has no available data because of role limits. Do not say “No data found.” Say that access is restricted and explain the access path. This connects directly to strong empty-state design because empty does not always mean missing data.</p>
+          <p>
+            The user sees a module but has no available data because of role
+            limits. Do not say “No data found.” Say that access is restricted
+            and explain the access path. This connects directly to strong
+            empty-state design because empty does not always mean missing data.
+          </p>
           <h3>Partial-data state</h3>
-          <p>The user can see some records but not all. This is common in multi-branch, multi-team, or client-facing dashboards. Say what scope is visible: “Showing customers assigned to your team” or “Showing inventory for Biratnagar warehouse.” Scope labels reduce false assumptions.</p>
+          <p>
+            The user can see some records but not all. This is common in
+            multi-branch, multi-team, or client-facing dashboards. Say what
+            scope is visible: “Showing customers assigned to your team” or
+            “Showing inventory for Biratnagar warehouse.” Scope labels reduce
+            false assumptions.
+          </p>
           <h3>Pending-approval state</h3>
-          <p>The user has submitted something but cannot finish the workflow. Show current status, approver role, submitted time, next step, and cancellation rules. Pending states should feel trackable, not abandoned in a bureaucratic swamp.</p>
+          <p>
+            The user has submitted something but cannot finish the workflow.
+            Show current status, approver role, submitted time, next step, and
+            cancellation rules. Pending states should feel trackable, not
+            abandoned in a bureaucratic swamp.
+          </p>
           <h2>Design handoff checklist</h2>
           <ul>
             <li>List every product role and its responsibility.</li>
-            <li>Map which modules each role can view, edit, approve, export, delete, and configure.</li>
+            <li>
+              Map which modules each role can view, edit, approve, export,
+              delete, and configure.
+            </li>
             <li>Define the default dashboard view for each major role.</li>
             <li>Document table columns, filters, and bulk actions by role.</li>
-            <li>Write copy for restricted, read-only, partial-data, pending, and request-access states.</li>
-            <li>Show what happens when a user changes role, loses access, or enters from a shared link.</li>
-            <li>Include keyboard focus, labels, status messages, and visible instructions for state changes.</li>
-            <li>QA each role with real scenarios, not just happy-path admin access.</li>
+            <li>
+              Write copy for restricted, read-only, partial-data, pending, and
+              request-access states.
+            </li>
+            <li>
+              Show what happens when a user changes role, loses access, or
+              enters from a shared link.
+            </li>
+            <li>
+              Include keyboard focus, labels, status messages, and visible
+              instructions for state changes.
+            </li>
+            <li>
+              QA each role with real scenarios, not just happy-path admin
+              access.
+            </li>
           </ul>
           <h2>Sources consulted</h2>
-          <p>This article was written from product design practice and checked against public accessibility guidance from the <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">W3C Web Content Accessibility Guidelines 2.2</a>, especially the need for clear labels, instructions, and status messages in interactive interfaces. I also considered common dashboard patterns from SaaS, CRM, finance, logistics, and admin tooling work.</p>
+          <p>
+            This article was written from product design practice and checked
+            against public accessibility guidance from the
+            <a
+              href="https://www.w3.org/TR/WCAG22/"
+              target="_blank"
+              rel="noopener"
+              >W3C Web Content Accessibility Guidelines 2.2</a
+            >, especially the need for clear labels, instructions, and status
+            messages in interactive interfaces. I also considered common
+            dashboard patterns from SaaS, CRM, finance, logistics, and admin
+            tooling work.
+          </p>
           <h2>FAQ</h2>
           <h3>What is role-based SaaS dashboard UX?</h3>
-          <p>It is dashboard design that changes navigation, data, actions, messages, and default views based on what each user role is responsible for and allowed to do.</p>
+          <p>
+            It is dashboard design that changes navigation, data, actions,
+            messages, and default views based on what each user role is
+            responsible for and allowed to do.
+          </p>
           <h3>Should restricted features be hidden or disabled?</h3>
-          <p>Hide features that are irrelevant to the role. Disable or explain features when the user knows the feature exists, may need access, or needs to understand why an action is unavailable.</p>
+          <p>
+            Hide features that are irrelevant to the role. Disable or explain
+            features when the user knows the feature exists, may need access, or
+            needs to understand why an action is unavailable.
+          </p>
           <h3>How do you avoid too many dashboard versions?</h3>
-          <p>Start with major role groups, not every individual user. Design reusable modules that can change visibility, columns, actions, and copy based on permission rules.</p>
+          <p>
+            Start with major role groups, not every individual user. Design
+            reusable modules that can change visibility, columns, actions, and
+            copy based on permission rules.
+          </p>
           <h3>What should developers receive in handoff?</h3>
-          <p>Developers need a role-permission matrix, state rules, example screens, empty-state copy, restricted-state copy, navigation logic, and QA scenarios for each role.</p>
+          <p>
+            Developers need a role-permission matrix, state rules, example
+            screens, empty-state copy, restricted-state copy, navigation logic,
+            and QA scenarios for each role.
+          </p>
           <h2>Final takeaway</h2>
-          <p>A role-based SaaS dashboard is not just an admin panel with different locks. It is a product clarity system. When each role sees the right objects, actions, limits, and escalation paths, the dashboard becomes easier to understand, easier to build, and easier to trust.</p>
-          <p>Related reading: <a href="/blog/saas-dashboard-empty-states-that-help-users-recover.html">SaaS Dashboard Empty States That Help Users Recover</a>, <a href="/blog/saas-dashboard-ux-checklist.html">SaaS Dashboard UX Checklist</a>, <a href="/blog/design-systems-small-product-teams.html">Design Systems for Small Product Teams Without Overbuilding</a>, and <a href="/blog/design-handoff-checklist-startup-product-teams.html">Design Handoff Checklist for Startup Product Teams</a>. For project context, see <a href="/project-orkest.html">Orkest HQ</a>, <a href="/project-zapp.html">Zapp Today</a>, and <a href="/saas-ux-designer.html">SaaS UX design services</a>.</p>
+          <p>
+            A role-based SaaS dashboard is not just an admin panel with
+            different locks. It is a product clarity system. When each role sees
+            the right objects, actions, limits, and escalation paths, the
+            dashboard becomes easier to understand, easier to build, and easier
+            to trust.
+          </p>
+          <p>
+            Related reading:
+            <a
+              href="/blog/saas-dashboard-empty-states-that-help-users-recover.html"
+              >SaaS Dashboard Empty States That Help Users Recover</a
+            >,
+            <a href="/blog/saas-dashboard-ux-checklist.html"
+              >SaaS Dashboard UX Checklist</a
+            >,
+            <a href="/blog/design-systems-small-product-teams.html"
+              >Design Systems for Small Product Teams Without Overbuilding</a
+            >, and
+            <a href="/blog/design-handoff-checklist-startup-product-teams.html"
+              >Design Handoff Checklist for Startup Product Teams</a
+            >. For project context, see
+            <a href="/project-orkest.html">Orkest HQ</a>,
+            <a href="/project-zapp.html">Zapp Today</a>, and
+            <a href="/saas-ux-designer.html">SaaS UX design services</a>.
+          </p>
         </div>
       </article>
     </main>
-    <script type="module" src="/script.js?v=32.0"></script>
+    <script type="module" src="/script.js?v=36.0"></script>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top-grid">
+          <div class="footer-cta">
+            <p class="eyebrow">Available for selected work</p>
+            <h2>Product design support for clearer software.</h2>
+            <p>
+              I help teams improve UX structure, interface clarity, design
+              systems, responsive behavior and developer-ready handoff.
+            </p>
+            <div class="cta-group">
+              <a href="/contact.html" class="footer-email-btn"
+                >Discuss a project</a
+              ><a
+                href="/assets/resume.pdf"
+                class="btn btn-secondary"
+                download="Nischhal-Raj-Subba-Resume.pdf"
+                data-resume-download
+                >Download Resume</a
+              >
+            </div>
+          </div>
+          <div class="footer-nav-grid">
+            <div class="footer-col">
+              <h5>Pages</h5>
+              <a href="/">Home</a><a href="/projects.html">Work</a
+              ><a href="/services.html">Services</a
+              ><a href="/about.html">About</a><a href="/blog/">Writing</a
+              ><a href="/contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+              <h5>Services</h5>
+              <a href="/product-design-nepal.html">Product design</a
+              ><a href="/ux-audit.html">UX audit</a
+              ><a href="/figma-design-systems.html">Design systems</a
+              ><a href="/web3-ux-designer.html">Web3 UX</a
+              ><a href="/saas-ux-designer.html">SaaS UX</a
+              ><a href="/website-ux-design.html">Website UX</a>
+            </div>
+            <div class="footer-col">
+              <h5>Selected work</h5>
+              <a href="/project-yarsha.html">Yarsha</a
+              ><a href="/project-mokshya.html">Mokshya</a
+              ><a href="/project-morajaa.html">Morajaa</a
+              ><a href="/project-pihub.html">piHub</a
+              ><a href="/project-zapp.html">Zapp Today</a
+              ><a href="/project-masteriyo.html">Masteriyo</a>
+            </div>
+            <div class="footer-col">
+              <h5>Contact and proof</h5>
+              <a href="mailto:hinischalsubba@gmail.com"
+                >hinischalsubba@gmail.com</a
+              ><a
+                href="/assets/resume.pdf"
+                download="Nischhal-Raj-Subba-Resume.pdf"
+                data-resume-download
+                >Resume PDF</a
+              ><a
+                href="https://www.behance.net/nischhal"
+                target="_blank"
+                rel="noopener"
+                >Behance</a
+              ><a
+                href="https://app.uxcel.com/ux/nischhal"
+                target="_blank"
+                rel="noopener"
+                >Uxcel</a
+              ><a
+                href="https://linkedin.com/in/nischhal/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom-bar">
+          <span>(c) 2026 Nischhal Raj Subba.</span
+          ><span>UX/UI, product systems and handoff for software teams.</span>
+        </div>
+      </div>
+    </footer>
+    <a
+      class="floating-resume-btn"
+      href="/assets/resume.pdf"
+      download="Nischhal-Raj-Subba-Resume.pdf"
+      data-resume-download
+      >Download Resume</a
+    >
   </body>
 </html>

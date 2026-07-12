@@ -3,59 +3,431 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Design Blog | Web3 UX, SaaS UX, Website UX & Handoff | Nischhal Raj Subba</title>
-    <meta name="description" content="Product design articles by Nischhal Raj Subba about AI-assisted product design, hiring product designers, Web3 wallet UX, SaaS dashboard UX, website UX, UX audits, Figma handoff, design systems, and service website design." />
-    <meta name="robots" content="index, follow" />
+    <title>Product Design Writing - UX, SaaS, Web3 and Handoff</title>
+    <meta
+      name="description"
+      content="Practical product design writing about SaaS dashboard UX, Web3 wallet flows, design systems, website UX, UX audits and developer handoff."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://nischhalsubba.com.np/blog/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Product Design Blog | Nischhal Raj Subba" />
-    <meta property="og:description" content="Writing on AI-assisted product design, hiring product designers, Web3 UX, SaaS UX, design handoff, website UX, UX audits, gaming interfaces, and design systems." />
+    <meta
+      property="og:title"
+      content="Product Design Writing - UX, SaaS, Web3 and Handoff"
+    />
+    <meta
+      property="og:description"
+      content="Practical product design writing about SaaS dashboard UX, Web3 wallet flows, design systems, website UX, UX audits and developer handoff."
+    />
     <meta property="og:url" content="https://nischhalsubba.com.np/blog/" />
-    <meta property="og:image" content="https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png" />
+    <meta
+      property="og:image"
+      content="https://nischhalsubba.com.np/assets/images/blog-design-systems-handoff-cover.png"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/style.css?v=41.0" />
-<script id="nrs-early-theme-bootstrap">
-(function () {var storageKey="theme";var root=document.documentElement;var theme="dark";try{var saved=localStorage.getItem(storageKey);if(saved==="light"||saved==="dark"){theme=saved}else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches){theme="light"}}catch(error){}root.setAttribute("data-theme",theme);root.style.colorScheme=theme;var style=document.createElement("style");style.id="nrs-first-paint-theme";style.textContent=[":root{--nrs-first-bg:#111111;--nrs-first-text:#f2f2f2;--nrs-progress:#E0E0E0;--nrs-progress-track:rgba(255,255,255,.16);color-scheme:dark;}","html[data-theme='light']{--nrs-first-bg:#ffffff;--nrs-first-text:#171717;--nrs-progress:#444444;--nrs-progress-track:rgba(68,68,68,.16);color-scheme:light;}","html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;background-image:none!important;color:var(--nrs-first-text)!important;}","body::before,body::after{background:none!important;opacity:0!important;}","#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:6px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track,rgba(255,255,255,.16))!important;opacity:1!important;transform:none!important;overflow:hidden!important;}","#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress);transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}","@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}"].join("");document.head.appendChild(style);function ensureProgressBar(){if(document.getElementById("nrs-scroll-progress"))return;var bar=document.createElement("div");bar.id="nrs-scroll-progress";bar.setAttribute("aria-hidden","true");if(document.body)document.body.prepend(bar);else document.addEventListener("DOMContentLoaded",ensureProgressBar,{once:true})}function updateProgress(){var scrollable=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);var value=Math.max(0.02,Math.min(1,window.scrollY/scrollable));root.style.setProperty("--nrs-scroll-progress-scale",String(value))}ensureProgressBar();updateProgress();window.addEventListener("scroll",updateProgress,{passive:true});window.addEventListener("resize",updateProgress);window.addEventListener("pageshow",updateProgress);})();
-</script>
+    <script id="nrs-early-theme-bootstrap">
+      (function () {
+        var root = document.documentElement;
+        var theme = "dark";
+        try {
+          var override = sessionStorage.getItem("nrs-theme-override");
+          if (override === "light" || override === "dark") {
+            theme = override;
+          } else if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+          ) {
+            theme = "light";
+          }
+          localStorage.removeItem("theme");
+        } catch (error) {
+          if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+          )
+            theme = "light";
+        }
+        root.setAttribute("data-theme", theme);
+        root.style.colorScheme = theme;
+        root.setAttribute("data-theme-source", "system");
+        var style = document.createElement("style");
+        style.id = "nrs-first-paint-theme";
+        style.textContent = [
+          ":root{--nrs-first-bg:#0c0f0b;--nrs-first-text:#f3f6ea;--nrs-progress:#d8ff48;--nrs-progress-track:rgba(243,246,234,.15);color-scheme:dark;}",
+          "html[data-theme='light']{--nrs-first-bg:#f4efe4;--nrs-first-text:#141410;--nrs-progress:#141410;--nrs-progress-track:rgba(20,20,16,.16);color-scheme:light;}",
+          "html,body{background:var(--nrs-first-bg)!important;background-color:var(--nrs-first-bg)!important;color:var(--nrs-first-text)!important;}",
+          "#nrs-scroll-progress{position:fixed!important;top:0!important;left:0!important;width:100%!important;height:5px!important;z-index:2147483647!important;pointer-events:none!important;background:var(--nrs-progress-track)!important;opacity:1!important;transform:none!important;overflow:hidden!important;}",
+          "#nrs-scroll-progress::before{content:'';display:block;width:100%;height:100%;background:var(--nrs-progress)!important;transform:scaleX(var(--nrs-scroll-progress-scale,0.02));transform-origin:left center;transition:transform 80ms linear;}",
+          "@media (prefers-reduced-motion: reduce){#nrs-scroll-progress::before{transition:none!important;}}",
+        ].join("");
+        document.head.appendChild(style);
+        function ensureProgressBar() {
+          if (document.getElementById("nrs-scroll-progress")) return;
+          var bar = document.createElement("div");
+          bar.id = "nrs-scroll-progress";
+          bar.setAttribute("aria-hidden", "true");
+          if (document.body) document.body.prepend(bar);
+          else
+            document.addEventListener("DOMContentLoaded", ensureProgressBar, {
+              once: true,
+            });
+        }
+        function updateProgress() {
+          var scrollable = Math.max(
+            1,
+            document.documentElement.scrollHeight - window.innerHeight,
+          );
+          var value = Math.max(0.02, Math.min(1, window.scrollY / scrollable));
+          root.style.setProperty("--nrs-scroll-progress-scale", String(value));
+        }
+        ensureProgressBar();
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+        window.addEventListener("pageshow", updateProgress);
+      })();
+    </script>
+    <link rel="stylesheet" href="/style.css?v=45.0" />
+    <meta
+      name="twitter:title"
+      content="Product Design Writing - UX, SaaS, Web3 and Handoff"
+    />
+    <meta
+      name="twitter:description"
+      content="Practical product design writing about SaaS dashboard UX, Web3 wallet flows, design systems, website UX, UX audits and developer handoff."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Product Design Writing - UX, SaaS, Web3 and Handoff",
+        "description": "Practical product design writing about SaaS dashboard UX, Web3 wallet flows, design systems, website UX, UX audits and developer handoff.",
+        "url": "https://nischhalsubba.com.np/blog/",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Nischhal Raj Subba Portfolio",
+          "url": "https://nischhalsubba.com.np/"
+        }
+      }
+    </script>
   </head>
   <body>
-    <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button>
-    <a href="/" class="mobile-logo">NRS</a>
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/">Home</a><a href="/projects.html">Work</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/blog/" class="active" aria-current="page">Writing</a><a href="/contact.html">Contact</a></nav></div>
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
-    <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link">Home</a><a href="/projects.html" class="nav-link">Work</a><a href="/services.html" class="nav-link">Services</a><a href="/about.html" class="nav-link">About</a><a href="/blog/" class="nav-link active" aria-current="page">Writing</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
-    <main class="container nrs-blog-hub">
-      <section class="hero-section nrs-blog-hub-shell" style="min-height:42vh;">
+    <a class="skip-link" href="#main-content">Skip to main content</a
+    ><button
+      class="mobile-nav-toggle"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav-overlay"
+    >
+      <span></span><span></span></button
+    ><a href="/" class="mobile-logo">NRS</a>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <nav class="mobile-nav-links" aria-label="Mobile navigation">
+        <a href="/" class="active" aria-current="page">Home</a
+        ><a href="/projects">Work</a><a href="/services">Services</a
+        ><a href="/about">About</a><a href="/blog/">Writing</a
+        ><a href="/contact">Contact</a>
+      </nav>
+    </div>
+    <button
+      id="theme-toggle"
+      class="theme-toggle-btn"
+      aria-label="Toggle theme"
+    ></button>
+    <nav class="nav-wrapper" aria-label="Primary navigation">
+      <div class="nav-pill">
+        <div class="nav-glider"></div>
+        <a href="/" class="nav-link active" aria-current="page">Home</a
+        ><a href="/projects" class="nav-link">Work</a
+        ><a href="/services" class="nav-link">Services</a
+        ><a href="/about" class="nav-link">About</a
+        ><a href="/blog/" class="nav-link">Writing</a
+        ><a href="/contact" class="nav-link">Contact</a>
+      </div>
+    </nav>
+    <main id="main-content" class="container nrs-blog-hub">
+      <section class="hero-section nrs-blog-hub-shell" style="min-height: 42vh">
         <p class="nrs-blog-hub-kicker">Writing for product teams</p>
-        <h1 class="hero-title nrs-blog-hub-title reveal-on-scroll">Product Design Writing</h1>
-        <p class="body-large nrs-blog-hub-copy reveal-on-scroll">Subject-focused notes on AI-assisted product design, hiring product designers, Web3 wallet UX, SaaS dashboards, website UX, UX audits, Figma handoff, gaming interface clarity, portfolio strategy, and front-end-aware design systems.</p>
+        <h1 class="hero-title nrs-blog-hub-title reveal-on-scroll">
+          Product Design Writing
+        </h1>
+        <p class="body-large nrs-blog-hub-copy reveal-on-scroll">
+          Subject-focused notes on hiring product designers, Web3 wallet UX,
+          SaaS dashboards, website UX, UX audits, Figma handoff, gaming
+          interface clarity, portfolio strategy, and front-end-aware design
+          systems.
+        </p>
         <div class="nrs-blog-proof-grid">
-          <article><span>01</span><strong>Hiring intent</strong><p>Guides for teams looking for product design help.</p></article>
-          <article><span>02</span><strong>Complex UX</strong><p>Wallets, dashboards, verification, states, and product flows.</p></article>
-          <article><span>03</span><strong>Build clarity</strong><p>Figma systems, handoff, QA, and developer context.</p></article>
+          <article>
+            <span>01</span><strong>Hiring intent</strong>
+            <p>Guides for teams looking for product design help.</p>
+          </article>
+          <article>
+            <span>02</span><strong>Complex UX</strong>
+            <p>Wallets, dashboards, verification, states, and product flows.</p>
+          </article>
+          <article>
+            <span>03</span><strong>Build clarity</strong>
+            <p>Figma systems, handoff, QA, and developer context.</p>
+          </article>
         </div>
       </section>
-      <section class="section-container nrs-blog-controls-panel" aria-label="Search and filter writing">
-        <div class="search-wrapper"><input class="search-input" data-blog-search type="search" placeholder="Search by Web3, SaaS, UX audit, handoff..." aria-label="Search writing" /></div>
+      <section
+        class="section-container nrs-blog-controls-panel"
+        aria-label="Search and filter writing"
+      >
+        <div class="search-wrapper">
+          <input
+            class="search-input"
+            data-blog-search
+            type="search"
+            placeholder="Search by Web3, SaaS, UX audit, handoff..."
+            aria-label="Search writing"
+          />
+        </div>
         <div class="filter-row" data-blog-filters></div>
       </section>
-      <section class="section-container" style="padding-top:0;">
+      <section class="section-container" style="padding-top: 0">
         <div class="writing-list reveal-on-scroll" data-blog-posts>
-          <a href="/blog/ai-assisted-product-design-workflows-small-teams.html" class="writing-item nrs-blog-index-card" data-category="ai assisted product design ux audit workflow handoff figma small teams"><span class="w-date">Jul 06, 2026</span><div class="w-info"><span class="w-title">AI-Assisted Product Design Workflows for Small Teams</span><span class="w-summary">A practical guide to using AI for UX audits, product clarity, edge cases, Figma handoff, and QA without replacing design judgment.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/web3-wallet-connection-ux.html" class="writing-item nrs-blog-index-card" data-category="web3 wallet connection ux trust permissions network handoff"><span class="w-date">Jul 04, 2026</span><div class="w-info"><span class="w-title">Web3 Wallet Connection UX That Builds Trust</span><span class="w-summary">A practical guide to wallet connection timing, permission copy, network states, recovery, and developer handoff.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/saas-dashboard-filter-ux.html" class="writing-item nrs-blog-index-card" data-category="saas dashboard filter ux saved views table handoff"><span class="w-date">Jul 03, 2026</span><div class="w-info"><span class="w-title">SaaS Dashboard Filter UX That Helps Teams Find the Right Data</span><span class="w-summary">A practical guide to designing dashboard filters, saved views, active chips, empty results, permissions, and handoff states.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/role-based-saas-dashboard-ux.html" class="writing-item nrs-blog-index-card" data-category="saas dashboard role-based ux permissions admin workflow handoff"><span class="w-date">Jul 02, 2026</span><div class="w-info"><span class="w-title">Role-Based SaaS Dashboard UX for Complex Teams</span><span class="w-summary">A practical guide to designing SaaS dashboards around roles, permissions, responsibilities, restricted states, and workflow clarity.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/saas-dashboard-empty-states-that-help-users-recover.html" class="writing-item nrs-blog-index-card" data-category="saas dashboard empty states recovery admin ux"><span class="w-date">Jul 01, 2026</span><div class="w-info"><span class="w-title">SaaS Dashboard Empty States That Help Users Recover</span><span class="w-summary">A practical guide to empty states that explain missing data, filters, permissions, setup, sync delay, and recovery actions.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/design-systems-small-product-teams.html" class="writing-item nrs-blog-index-card" data-category="design systems startup small teams figma developer handoff"><span class="w-date">Jun 29, 2026</span><div class="w-info"><span class="w-title">Design Systems for Small Product Teams Without Overbuilding</span><span class="w-summary">A practical guide to building reusable product decisions, states, component rules, and handoff notes without overbuilding.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/design-handoff-checklist-startup-product-teams.html" class="writing-item nrs-blog-index-card" data-category="design handoff figma developer startup product teams"><span class="w-date">Jun 28, 2026</span><div class="w-info"><span class="w-title">Design Handoff Checklist for Startup Product Teams</span><span class="w-summary">A practical checklist for turning Figma work into developer-ready product decisions, states, responsive rules, and QA notes.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/prioritize-ux-audit-findings-before-redesign.html" class="writing-item nrs-blog-index-card" data-category="ux audit prioritization product redesign saas web3"><span class="w-date">Jun 27, 2026</span><div class="w-info"><span class="w-title">How to Prioritize UX Audit Findings Before a Redesign</span><span class="w-summary">A practical way to sort UX audit findings by user harm, business risk, implementation effort, and redesign timing.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/when-startup-needs-ux-audit-before-redesign.html" class="writing-item nrs-blog-index-card" data-category="ux audit startup redesign product clarity saas web3"><span class="w-date">Jun 26, 2026</span><div class="w-info"><span class="w-title">When a Startup Should Run a UX Audit Before a Redesign</span><span class="w-summary">A practical guide for startup teams deciding whether to audit the current product experience before redesigning screens.</span></div><span class="w-arrow">&rarr;</span></a>
-          <a href="/blog/hire-product-designer-nepal-saas-web3.html" class="writing-item nrs-blog-index-card" data-category="hire product designer nepal saas web3 ux"><span class="w-date">Jun 11, 2026</span><div class="w-info"><span class="w-title">Hire a Product Designer in Nepal for SaaS and Web3 Products</span><span class="w-summary">A practical hiring guide for startups and software teams that need clearer product flows, polished UI, design systems, UX audits, and developer-ready handoff.</span></div><span class="w-arrow">&rarr;</span></a>
+          <a
+            href="/blog/responsive-saas-dashboard-handoff-notes.html"
+            class="writing-item nrs-blog-index-card"
+            data-category="responsive saas dashboard handoff figma developer responsive table ux"
+            ><span class="w-date">Jul 08, 2026</span>
+            <div class="w-info">
+              <span class="w-title"
+                >Responsive SaaS Dashboard Handoff Notes for Product Teams</span
+              ><span class="w-summary"
+                >A practical guide to documenting responsive dashboard behavior
+                for tables, filters, cards, states, and developer
+                collaboration.</span
+              >
+            </div>
+            <span class="w-arrow">&rarr;</span></a
+          >
+          <a
+            href="/blog/saas-dashboard-filter-ux.html"
+            class="writing-item nrs-blog-index-card"
+            data-category="saas dashboard filter ux saved views table handoff"
+            ><span class="w-date">Jul 03, 2026</span>
+            <div class="w-info">
+              <span class="w-title"
+                >SaaS Dashboard Filter UX That Helps Teams Find the Right
+                Data</span
+              ><span class="w-summary"
+                >A practical guide to designing dashboard filters, saved views,
+                active chips, empty results, permissions, and handoff
+                states.</span
+              >
+            </div>
+            <span class="w-arrow">&rarr;</span></a
+          >
+          <a
+            href="/blog/role-based-saas-dashboard-ux.html"
+            class="writing-item nrs-blog-index-card"
+            data-category="saas dashboard role-based ux permissions admin workflow handoff"
+            ><span class="w-date">Jul 02, 2026</span>
+            <div class="w-info">
+              <span class="w-title"
+                >Role-Based SaaS Dashboard UX for Complex Teams</span
+              ><span class="w-summary"
+                >A practical guide to designing SaaS dashboards around roles,
+                permissions, responsibilities, restricted states, and workflow
+                clarity.</span
+              >
+            </div>
+            <span class="w-arrow">&rarr;</span></a
+          >
+          <a
+            href="/blog/saas-dashboard-empty-states-that-help-users-recover.html"
+            class="writing-item nrs-blog-index-card"
+            data-category="saas dashboard empty states recovery admin ux"
+            ><span class="w-date">Jul 01, 2026</span>
+            <div class="w-info">
+              <span class="w-title"
+                >SaaS Dashboard Empty States That Help Users Recover</span
+              ><span class="w-summary"
+                >A practical guide to empty states that explain missing data,
+                filters, permissions, setup, sync delay, and recovery
+                actions.</span
+              >
+            </div>
+            <span class="w-arrow">&rarr;</span></a
+          >
+          <a
+            href="/blog/design-systems-small-product-teams.html"
+            class="writing-item nrs-blog-index-card"
+            data-category="design systems startup small teams figma developer handoff"
+            ><span class="w-date">Jun 29, 2026</span>
+            <div class="w-info">
+              <span class="w-title"
+                >Design Systems for Small Product Teams Without
+                Overbuilding</span
+              ><span class="w-summary"
+                >A practical guide to building reusable product decisions,
+                states, component rules, and handoff notes without
+                overbuilding.</span
+              >
+            </div>
+            <span class="w-arrow">&rarr;</span></a
+          >
+          <a
+            href="/blog/design-handoff-checklist-startup-product-teams.html"
+            class="writing-item nrs-blog-index-card"
+            data-category="design handoff figma developer startup product teams"
+            ><span class="w-date">Jun 28, 2026</span>
+            <div class="w-info">
+              <span class="w-title"
+                >Design Handoff Checklist for Startup Product Teams</span
+              ><span class="w-summary"
+                >A practical checklist for turning Figma work into
+                developer-ready product decisions, states, responsive rules, and
+                QA notes.</span
+              >
+            </div>
+            <span class="w-arrow">&rarr;</span></a
+          >
+          <a
+            href="/blog/prioritize-ux-audit-findings-before-redesign.html"
+            class="writing-item nrs-blog-index-card"
+            data-category="ux audit prioritization product redesign saas web3"
+            ><span class="w-date">Jun 27, 2026</span>
+            <div class="w-info">
+              <span class="w-title"
+                >How to Prioritize UX Audit Findings Before a Redesign</span
+              ><span class="w-summary"
+                >A practical way to sort UX audit findings by user harm,
+                business risk, implementation effort, and redesign timing.</span
+              >
+            </div>
+            <span class="w-arrow">&rarr;</span></a
+          >
+          <a
+            href="/blog/when-startup-needs-ux-audit-before-redesign.html"
+            class="writing-item nrs-blog-index-card"
+            data-category="ux audit startup redesign product clarity saas web3"
+            ><span class="w-date">Jun 26, 2026</span>
+            <div class="w-info">
+              <span class="w-title"
+                >When a Startup Should Run a UX Audit Before a Redesign</span
+              ><span class="w-summary"
+                >A practical guide for startup teams deciding whether to audit
+                the current product experience before redesigning screens.</span
+              >
+            </div>
+            <span class="w-arrow">&rarr;</span></a
+          >
+          <a
+            href="/blog/hire-product-designer-nepal-saas-web3.html"
+            class="writing-item nrs-blog-index-card"
+            data-category="hire product designer nepal saas web3 ux"
+            ><span class="w-date">Jun 11, 2026</span>
+            <div class="w-info">
+              <span class="w-title"
+                >Hire a Product Designer in Nepal for SaaS and Web3
+                Products</span
+              ><span class="w-summary"
+                >A practical hiring guide for startups and software teams that
+                need clearer product flows, polished UI, design systems, UX
+                audits, and developer-ready handoff.</span
+              >
+            </div>
+            <span class="w-arrow">&rarr;</span></a
+          >
         </div>
       </section>
     </main>
-    <script type="module" src="/script.js?v=32.0"></script>
+    <script type="module" src="/script.js?v=35.0"></script>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top-grid">
+          <div class="footer-cta">
+            <p class="eyebrow">Available for selected work</p>
+            <h2>Product design support for clearer software.</h2>
+            <p>
+              I help teams improve UX structure, interface clarity, design
+              systems, responsive behavior and developer-ready handoff.
+            </p>
+            <div class="cta-group">
+              <a href="/contact.html" class="footer-email-btn"
+                >Discuss a project</a
+              ><a
+                href="/assets/resume.pdf"
+                class="btn btn-secondary"
+                download="Nischhal-Raj-Subba-Resume.pdf"
+                data-resume-download
+                >Download Resume</a
+              >
+            </div>
+          </div>
+          <div class="footer-nav-grid">
+            <div class="footer-col">
+              <h5>Pages</h5>
+              <a href="/">Home</a><a href="/projects.html">Work</a
+              ><a href="/services.html">Services</a
+              ><a href="/about.html">About</a><a href="/blog/">Writing</a
+              ><a href="/contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+              <h5>Services</h5>
+              <a href="/product-design-nepal.html">Product design</a
+              ><a href="/ux-audit.html">UX audit</a
+              ><a href="/figma-design-systems.html">Design systems</a
+              ><a href="/web3-ux-designer.html">Web3 UX</a
+              ><a href="/saas-ux-designer.html">SaaS UX</a
+              ><a href="/website-ux-design.html">Website UX</a>
+            </div>
+            <div class="footer-col">
+              <h5>Selected work</h5>
+              <a href="/project-yarsha.html">Yarsha</a
+              ><a href="/project-mokshya.html">Mokshya</a
+              ><a href="/project-morajaa.html">Morajaa</a
+              ><a href="/project-pihub.html">piHub</a
+              ><a href="/project-zapp.html">Zapp Today</a
+              ><a href="/project-masteriyo.html">Masteriyo</a>
+            </div>
+            <div class="footer-col">
+              <h5>Contact and proof</h5>
+              <a href="mailto:hinischalsubba@gmail.com"
+                >hinischalsubba@gmail.com</a
+              ><a
+                href="/assets/resume.pdf"
+                download="Nischhal-Raj-Subba-Resume.pdf"
+                data-resume-download
+                >Resume PDF</a
+              ><a
+                href="https://www.behance.net/nischhal"
+                target="_blank"
+                rel="noopener"
+                >Behance</a
+              ><a
+                href="https://app.uxcel.com/ux/nischhal"
+                target="_blank"
+                rel="noopener"
+                >Uxcel</a
+              ><a
+                href="https://linkedin.com/in/nischhal/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom-bar">
+          <span>(c) 2026 Nischhal Raj Subba.</span
+          ><span>UX/UI, product systems and handoff for software teams.</span>
+        </div>
+      </div>
+    </footer>
+    <a
+      class="floating-resume-btn"
+      href="/assets/resume.pdf"
+      download="Nischhal-Raj-Subba-Resume.pdf"
+      data-resume-download
+      >Download Resume</a
+    >
   </body>
 </html>
