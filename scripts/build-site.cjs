@@ -1,6 +1,7 @@
 const { spawnSync } = require('node:child_process');
 
 const stages = [
+  ['Sanitize source CSS', ['node', 'scripts/sanitize-source-css.cjs']],
   ['Generate portfolio content', ['node', 'scripts/update-portfolio-content.cjs']],
   ['Generate about and contact pages', ['node', 'scripts/generate-about-contact-pages.cjs']],
   ['Apply contact redesign', ['node', 'scripts/ensure-contact-redesign.cjs']],
