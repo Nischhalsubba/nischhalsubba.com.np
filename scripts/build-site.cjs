@@ -13,6 +13,7 @@ const stages = [
   ['Apply SEO code fixes', ['node', 'scripts/ensure-seo-code-fixes.cjs']],
   ['Generate blog covers', ['node', 'scripts/ensure-blog-generated-covers.cjs']],
   ['Apply homepage hero layout', ['node', 'scripts/ensure-homepage-hero-layout.cjs']],
+  ['Apply spacious core page layouts', ['node', 'scripts/ensure-spacious-core-pages.cjs']],
   ['Compile single design stylesheet', ['node', 'scripts/compile-single-stylesheet.cjs']],
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
   ['Build Vite site', ['npx', 'vite', 'build']],
@@ -29,20 +30,8 @@ const stages = [
 
 for (const [label, [command, ...args]] of stages) {
   console.log(`\n[build] ${label}`);
-  const result = spawnSync(command, args, {
-    stdio: 'inherit',
-    shell: process.platform === 'win32',
-  });
-
-  if (result.error) {
-    console.error(`[build] Could not start ${label}:`, result.error.message);
-    process.exit(1);
-  }
-
-  if (result.status !== 0) {
-    console.error(`[build] ${label} failed with exit code ${result.status}.`);
-    process.exit(result.status || 1);
-  }
+  const result = spawnSync(command, args, { stdio: 'inherit', shell: process.platform === 'win32' });
+  if (result.error) { console.error(`[build] Could not start ${label}:`, result.error.message); process.exit(1); }
+  if (result.status !== 0) { console.error(`[build] ${label} failed with exit code ${result.status}.`); process.exit(result.status || 1); }
 }
-
 console.log('\n[build] Portfolio build completed successfully.');
