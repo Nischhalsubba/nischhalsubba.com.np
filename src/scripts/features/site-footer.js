@@ -1,40 +1,28 @@
 import { $ } from '../utils/dom.js';
 
+const footerMarkup = `
+  <div class="container">
+    <div class="footer-top-grid">
+      <div class="footer-cta">
+        <p class="eyebrow">Product designer in Nepal · Remote collaboration</p>
+        <h2>Clear product thinking, polished interfaces and practical handoff.</h2>
+        <p>Available for product design roles, focused UX/UI projects, design systems, Web3 and SaaS work, website UX and product audits.</p>
+        <a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a>
+      </div>
+      <div class="footer-nav-grid">
+        <div class="footer-col"><h3>Pages</h3><a href="/">Home</a><a href="/projects">Work</a><a href="/services">Services</a><a href="/about">About</a><a href="/blog/">Writing</a><a href="/contact">Contact</a></div>
+        <div class="footer-col"><h3>Proof</h3><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener noreferrer">Behance</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Nischhalsubba" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div>
+        <div class="footer-col"><h3>Services</h3><a href="/product-design-nepal">Product design</a><a href="/saas-ux-designer">SaaS UX</a><a href="/web3-ux-designer">Web3 UX</a><a href="/figma-design-systems">Design systems</a><a href="/ux-audit">UX audit</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom-bar"><span>© 2026 Nischhal Raj Subba.</span><span>Based in Nepal · UTC+5:45</span><a href="/privacy">Privacy</a></div>
+  </div>`;
+
 function buildFooter() {
   const footer = document.createElement('footer');
   footer.className = 'site-footer nrs-generated-footer';
-  footer.innerHTML = `
-    <div class="container">
-      <div class="footer-top-grid">
-        <div class="footer-cta">
-          <h2>Let's design<br>something<br><span style="font-style:italic;">clear.</span></h2>
-          <p>Available for product design, Web3 UX, SaaS dashboards, service websites, Figma design systems, UX audits, and developer-ready handoff.</p>
-          <a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a>
-        </div>
-        <div class="footer-nav-grid">
-          <div class="footer-col">
-            <h5>Sitemap</h5>
-            <a href="/">Home</a>
-            <a href="/projects.html">Work</a>
-            <a href="/about.html">About</a>
-            <a href="/blog/">Writing</a>
-            <a href="/contact.html">Contact</a>
-          </div>
-          <div class="footer-col">
-            <h5>Services</h5>
-            <a href="/product-design-nepal.html">Product Design</a>
-            <a href="/web3-ux-designer.html">Web3 UX</a>
-            <a href="/saas-ux-designer.html">SaaS UX</a>
-            <a href="/website-ux-design.html">Website UX</a>
-            <a href="/figma-design-systems.html">Figma Systems</a>
-            <a href="/ux-audit.html">UX Audit</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom-bar">
-        <span>(c) 2026 Nischhal Raj Subba. Product Designer in Nepal.</span>
-      </div>
-    </div>`;
+  footer.setAttribute('aria-label', 'Portfolio footer');
+  footer.innerHTML = footerMarkup;
   return footer;
 }
 
