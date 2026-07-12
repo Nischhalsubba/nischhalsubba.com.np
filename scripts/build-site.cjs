@@ -24,6 +24,7 @@ const stages = [
   ['Normalize shared site shell in source', ['node', 'scripts/ensure-shared-site-shell.cjs']],
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
   ['Build Vite site', ['npx', 'vite', 'build']],
+  ['Clean retired public output', ['node', 'scripts/clean-vite-public-output.cjs']],
   ['Copy canonical HTML routes', ['node', 'scripts/copy-canonical-routes.cjs']],
   ['Copy production assets', ['node', 'scripts/copy-static-assets.cjs']],
   ['Apply final site polish', ['node', 'scripts/ensure-site-final-polish.cjs', '--dist']],
