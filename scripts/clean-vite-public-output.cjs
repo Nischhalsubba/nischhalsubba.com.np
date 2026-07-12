@@ -9,13 +9,4 @@ const remove = [
   ...manifest.legacy,
   'audit-remediations.css',
   'stable-layout.css',
-  'detail-navigation.js',
-  'seo-enhancements.js',
-];
-
-for (const relative of remove) {
-  const target = path.join(dist, relative);
-  if (fs.existsSync(target)) fs.rmSync(target, { recursive: true, force: true });
-}
-
-console.log('Removed retired public pages and patch assets from dist.');
+  'final-ui-fixes.css',
