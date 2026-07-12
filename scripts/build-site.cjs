@@ -36,6 +36,7 @@ const stages = [
   ['Normalize semantic headings in build', ['node', 'scripts/ensure-semantic-headings.cjs', '--dist']],
   ['Apply audit completion pass', ['node', 'scripts/ensure-audit-completion.cjs']],
   ['Finalize shared site shell in build', ['node', 'scripts/ensure-shared-site-shell.cjs', '--dist']],
+  ['Enforce canonical production routes', ['node', 'scripts/enforce-production-routes.cjs']],
   ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
 ];
 
