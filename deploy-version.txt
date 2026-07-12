@@ -1,2 +1,4 @@
-deploy-refresh: 2026-05-28
-reason: verify-homepage-routing-blog-layout-resume
+deploy-refresh: 2026-07-12
+reason: production-zip-sync-and-conflict-free-main-deploy
+archive: nischhalsubba-website-production.zip
+files: 220
