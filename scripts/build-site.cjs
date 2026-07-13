@@ -31,6 +31,7 @@ const stages = [
   ['Clean initial Vite public output', ['node', 'scripts/clean-vite-public-output.cjs']],
   ['Copy canonical HTML routes', ['node', 'scripts/copy-canonical-routes.cjs']],
   ['Copy production assets', ['node', 'scripts/copy-static-assets.cjs']],
+  ['Localize portrait assets in build', ['node', 'scripts/normalize-portrait-assets.cjs', '--dist']],
   ['Apply final site polish', ['node', 'scripts/ensure-site-final-polish.cjs', '--dist']],
   ['Apply about/contact v2 styles', ['node', 'scripts/ensure-about-contact-v2-styles.cjs', '--dist']],
   ['Apply mobile header polish', ['node', 'scripts/ensure-mobile-header-polish.cjs', '--dist']],
