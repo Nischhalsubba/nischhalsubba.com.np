@@ -1,31 +1,40 @@
 name: Deploy Cloudflare Pages
-
 on:
   workflow_run:
     workflows: ["Browser audit"]
     types: [completed]
-
 permissions:
   contents: read
-
 concurrency:
   group: cloudflare-production
   cancel-in-progress: true
-
 jobs:
   deploy:
-    if: >-
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'main'
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      DEPLOY_SHA: ${{ github.event.workflow_run.head_sha }}
     steps:
-      - name: Checkout validated commit
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha }}
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+          ref: ${{ env.DEPLOY_SHA }}
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+      - name: Deploy validated output
+        run: npx wrangler@4 pages deploy dist --project-name portfolio-website-2026 --branch main --commit-hash "$DEPLOY_SHA"
+      - name: Verify production provenance
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            LIVE_SHA=$(curl -fsS https://nischhalsubba.com.np/build-info.json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{}})")
+            [ "$LIVE_SHA" = "$DEPLOY_SHA" ] && exit 0
+            sleep 10
+          done
+          echo "Production provenance did not match $DEPLOY_SHA"
+          exit 1
