@@ -48,8 +48,9 @@ function ensureSingleStylesheet(html) {
   return output;
 }
 function ensureRuntime(html) {
-  if (/src=["'](?:\/assets\/[^"']+|\/script\.js[^"']*)["']/i.test(html)) return html;
-  return html.replace('</body>', `  <script type="module" src="${scriptSrc}"></script>\n  </body>`);
+  const entryScriptPattern = /\s*<script\b[^>]*src=["'](?:\/script\.js(?:\?[^"']*)?|\/assets\/(?:script|main|index)[^"']*\.js)["'][^>]*><\/script>\s*/gi;
+  const output = html.replace(entryScriptPattern, '\n');
+  return output.replace('</body>', `  <script type="module" src="${scriptSrc}"></script>\n  </body>`);
 }
 function ensureTheme(html) {
   const cleaned = html.replace(/\s*<script id="nrs-early-theme-bootstrap">[\s\S]*?<\/script>/, '');
@@ -89,4 +90,4 @@ copyFile(path.join(root, 'script.js'), path.join(dist, 'script.js'));
 copyText(path.join(root, 'style.css'), path.join(dist, 'style.css'), stripRemoteFontImports);
 for (const name of ['robots.txt', 'sitemap.xml', 'llms.txt', 'llms-full.txt', 'ai-profile.json', 'humans.txt', 'site.webmanifest', '_headers', '_redirects']) copyFile(path.join(root, name), path.join(dist, name));
 optimizeHtml();
-console.log('Copied canonical static assets without allowing public HTML, CSS or JavaScript to overwrite generated production pages.');
+console.log('Copied canonical static assets and enforced one stable production runtime entrypoint.');
