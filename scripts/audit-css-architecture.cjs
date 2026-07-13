@@ -17,18 +17,23 @@ function readCommitted(relativePath, fallbackPath) {
   return fs.readFileSync(fallbackPath, 'utf8');
 }
 
+function withoutComments(css) {
+  return css.replace(/\/\*[\s\S]*?\*\//g, '');
+}
+
 for (const name of files) {
   const filePath = path.join(dir, name);
   const css = name === compatibilityName
     ? readCommitted(`src/styles/${name}`, filePath)
     : fs.readFileSync(filePath, 'utf8');
-  const importantCount = (css.match(/!important/g) || []).length;
+  const declarations = withoutComments(css);
+  const importantCount = (declarations.match(/!\s*important\b/gi) || []).length;
 
-  if (importantCount) issues.push(`${name}: ${importantCount} !important declaration(s) are forbidden`);
-  if (/@import\s+(?:url\()?['"]?https?:/i.test(css)) issues.push(`${name}: remote CSS imports are forbidden`);
-  if (/url\(['"]?data:/i.test(css)) issues.push(`${name}: inline data URLs are forbidden`);
+  if (importantCount) issues.push(`${name}: ${importantCount} importance declaration(s) are forbidden`);
+  if (/@import\s+(?:url\()?['"]?https?:/i.test(declarations)) issues.push(`${name}: remote CSS imports are forbidden`);
+  if (/url\(['"]?data:/i.test(declarations)) issues.push(`${name}: inline data URLs are forbidden`);
 
-  if (name !== compatibilityName && /(^|[}\n])\s*(?:html|body|\*)\s*(?:[,>{.:#\[])/m.test(css)) {
+  if (name !== compatibilityName && /(^|[}\n])\s*(?:html|body|\*)\s*(?:[,>{.:#\[])/m.test(declarations)) {
     issues.push(`${name}: global document selectors are forbidden in modular CSS`);
   }
 }
@@ -41,4 +46,4 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log(`[css-architecture] ${files.length} source stylesheet(s) passed with zero !important declarations.`);
+console.log(`[css-architecture] ${files.length} source stylesheet(s) passed with zero importance declarations.`);
