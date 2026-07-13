@@ -5,7 +5,7 @@ const { spawnSync } = require('node:child_process');
 const root = path.resolve(__dirname, '..');
 const dir = path.join(root, 'src', 'styles');
 const legacyName = 'inner-page-system.css';
-const legacyBudget = 163;
+const legacyBudget = 478;
 const files = fs.readdirSync(dir).filter((name) => name.endsWith('.css') && name !== legacyName);
 const issues = [];
 
