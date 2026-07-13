@@ -20,7 +20,7 @@ function cleanCanonical(url) {
   if (!url.startsWith(origin)) return url;
   const parsed = new URL(url);
   if (parsed.pathname.endsWith('.html')) parsed.pathname = parsed.pathname.slice(0, -5) || '/';
-  return parsed.toString().replace(/\/$/, parsed.pathname === '/' ? '/' : '');
+  return `${parsed.origin}${parsed.pathname}${parsed.search}${parsed.hash}`;
 }
 
 let changed = 0;
