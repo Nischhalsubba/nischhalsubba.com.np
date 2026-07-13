@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 concurrency:
   group: browser-audit-${{ github.ref }}
@@ -17,6 +18,7 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -39,6 +41,9 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Start preview server
+        id: preview
+        continue-on-error: true
+        shell: bash
         run: |
           npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/portfolio-preview.log 2>&1 &
           for attempt in {1..30}; do
@@ -49,16 +54,92 @@ jobs:
           exit 1
 
       - name: Audit every sitemap route and viewport
-        run: node scripts/browser-audit.mjs
+        id: browser
+        if: steps.preview.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/browser-audit.mjs 2>&1 | tee browser-audit.log
 
       - name: Audit contact form accessibility
-        run: node scripts/browser-contact-audit.mjs
+        id: contact
+        if: steps.preview.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/browser-contact-audit.mjs 2>&1 | tee contact-audit.log
 
-      - name: Upload preview log on failure
-        if: failure()
+      - name: Publish browser audit result
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          PREVIEW_OUTCOME: ${{ steps.preview.outcome }}
+          BROWSER_OUTCOME: ${{ steps.browser.outcome }}
+          CONTACT_OUTCOME: ${{ steps.contact.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+            const title = '[CI] Browser audit failure';
+            const { owner, repo } = context.repo;
+            const outcomes = {
+              preview: process.env.PREVIEW_OUTCOME,
+              browser: process.env.BROWSER_OUTCOME,
+              contact: process.env.CONTACT_OUTCOME,
+            };
+            const passed = Object.values(outcomes).every((value) => value === 'success');
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: 'all',
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => !issue.pull_request && issue.title === title);
+
+            if (passed) {
+              if (existing && existing.state === 'open') {
+                await github.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: existing.number,
+                  state: 'closed',
+                  body: `Browser audit passed on ${context.sha}.\n\nRun: ${runUrl}`,
+                });
+              }
+              return;
+            }
+
+            const sections = [`Browser audit failed on commit \`${context.sha}\`.`, '', `Run: ${runUrl}`, '', `Outcomes: ${JSON.stringify(outcomes)}`];
+            for (const [label, file] of [
+              ['Preview server', '/tmp/portfolio-preview.log'],
+              ['Route and viewport audit', 'browser-audit.log'],
+              ['Contact accessibility audit', 'contact-audit.log'],
+            ]) {
+              if (!fs.existsSync(file)) continue;
+              sections.push('', `<details><summary>${label}</summary>`, '', '```text', fs.readFileSync(file, 'utf8').slice(-50000), '```', '</details>');
+            }
+            const body = sections.join('\n');
+
+            if (existing) {
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: 'open', body });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body });
+            }
+
+      - name: Upload browser audit logs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: browser-audit-preview-log
-          path: /tmp/portfolio-preview.log
+          name: browser-audit-logs
+          path: |
+            /tmp/portfolio-preview.log
+            browser-audit.log
+            contact-audit.log
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Fail workflow when browser validation fails
+        if: steps.preview.outcome != 'success' || steps.browser.outcome != 'success' || steps.contact.outcome != 'success'
+        run: exit 1
