@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 concurrency:
   group: portfolio-validate-${{ github.ref }}
@@ -16,7 +17,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
@@ -32,7 +33,74 @@ jobs:
         run: npm ci
 
       - name: Build and run repository audits
-        run: npm run validate
+        id: validation
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run validate 2>&1 | tee validation.log
+
+      - name: Publish validation result
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          VALIDATION_OUTCOME: ${{ steps.validation.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+            const title = '[CI] Portfolio validation failure';
+            const { owner, repo } = context.repo;
+            const outcome = process.env.VALIDATION_OUTCOME;
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: 'all',
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => !issue.pull_request && issue.title === title);
+
+            if (outcome === 'success') {
+              if (existing && existing.state === 'open') {
+                await github.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: existing.number,
+                  state: 'closed',
+                  body: `Validation passed on ${context.sha}.\n\nRun: ${runUrl}`,
+                });
+              }
+              return;
+            }
+
+            const rawLog = fs.existsSync('validation.log')
+              ? fs.readFileSync('validation.log', 'utf8')
+              : 'validation.log was not created.';
+            const logTail = rawLog.slice(-55000);
+            const body = [
+              `Validation failed on commit \`${context.sha}\`.`,
+              '',
+              `Run: ${runUrl}`,
+              '',
+              '<details><summary>Validation log</summary>',
+              '',
+              '```text',
+              logTail,
+              '```',
+              '</details>',
+            ].join('\n');
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existing.number,
+                state: 'open',
+                body,
+              });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body });
+            }
 
       - name: Upload generated site for inspection
         if: always()
@@ -42,3 +110,7 @@ jobs:
           path: dist
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Fail workflow when validation fails
+        if: steps.validation.outcome != 'success'
+        run: exit 1
