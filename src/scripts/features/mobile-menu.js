@@ -49,19 +49,20 @@ function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
   setBackgroundInert(button, overlay, open);
 
   if (open) {
-    overlay.focus({ preventScroll: true });
     window.requestAnimationFrame(() => {
-      const firstFocusable = getFocusableElements(overlay)[0];
-      if (firstFocusable) firstFocusable.focus({ preventScroll: true });
+      overlay.focus({ preventScroll: true });
+      window.requestAnimationFrame(() => {
+        const firstFocusable = getFocusableElements(overlay)[0];
+        if (firstFocusable) firstFocusable.focus({ preventScroll: true });
+      });
     });
     return;
   }
 
-  const finishClose = () => {
+  window.requestAnimationFrame(() => {
     overlay.hidden = true;
     if (restoreFocus) button.focus({ preventScroll: true });
-  };
-  window.requestAnimationFrame(finishClose);
+  });
 }
 
 function trapFocus(event, overlay) {
