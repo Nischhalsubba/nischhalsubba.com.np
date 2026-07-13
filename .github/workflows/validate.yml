@@ -102,6 +102,15 @@ jobs:
               await github.rest.issues.create({ owner, repo, title, body });
             }
 
+      - name: Upload validation log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-validation-log
+          path: validation.log
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Upload generated site for inspection
         if: always()
         uses: actions/upload-artifact@v4
