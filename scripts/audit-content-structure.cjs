@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const rootDir = path.resolve(__dirname, '..');
+const distDir = path.join(rootDir, 'dist');
 
 const requiredStructure = [
   'src/content/projects.js',
@@ -15,10 +16,13 @@ const requiredStructure = [
   'docs/codebase-structure.md',
 ];
 
-const discouragedRootFiles = [
+const retiredProductionFiles = [
   'blog-detail.html',
   'project-detail.html',
   'products.html',
+  'home.html',
+  'home-v2.html',
+  'blog.html',
 ];
 
 function fail(message) {
@@ -32,11 +36,15 @@ for (const relativePath of requiredStructure) {
   }
 }
 
-for (const relativePath of discouragedRootFiles) {
-  if (fs.existsSync(path.join(rootDir, relativePath))) {
-    fail(`Legacy root file should not exist: ${relativePath}`);
+if (!fs.existsSync(distDir)) {
+  fail('Production output is missing. Run the build before the structure audit.');
+} else {
+  for (const relativePath of retiredProductionFiles) {
+    if (fs.existsSync(path.join(distDir, relativePath))) {
+      fail(`Retired production file should not exist: ${relativePath}`);
+    }
   }
 }
 
 if (process.exitCode) process.exit(process.exitCode);
-console.log('[content-structure] Content and documentation structure checks passed.');
+console.log('[content-structure] Source architecture and production route checks passed.');
