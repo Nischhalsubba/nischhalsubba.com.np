@@ -62,17 +62,27 @@ for (const [width, height] of viewports) {
 
   if (width <= 430) {
     try {
-      await page.goto(base, { waitUntil: 'domcontentloaded' });
+      await page.goto(base, { waitUntil: 'networkidle', timeout: 30000 });
       const toggle = page.locator('.mobile-nav-toggle');
       const overlay = page.locator('.mobile-nav-overlay');
       const links = overlay.locator('a[href]');
 
-      await page.waitForFunction(() => document.querySelector('.mobile-nav-toggle')?.dataset.mobileMenuReady === 'true');
+      if (await toggle.count() !== 1) throw new Error('expected exactly one mobile menu toggle');
+      if (await overlay.count() !== 1) throw new Error('expected exactly one mobile menu overlay');
+      const ready = await toggle.getAttribute('data-mobile-menu-ready');
+      if (ready !== 'true') throw new Error(`runtime did not initialize mobile menu; data-mobile-menu-ready=${ready}`);
+
       await toggle.focus();
       await toggle.click();
+      await page.waitForTimeout(100);
+
       if (await toggle.getAttribute('aria-expanded') !== 'true') throw new Error('menu did not open');
       if (await overlay.getAttribute('aria-hidden') !== 'false') throw new Error('open menu remains aria-hidden');
-      await page.waitForFunction(() => document.querySelector('.mobile-nav-overlay')?.contains(document.activeElement));
+      if (await overlay.getAttribute('hidden') !== null) throw new Error('open menu retains native hidden attribute');
+      if (!await page.evaluate(() => document.querySelector('.mobile-nav-overlay')?.contains(document.activeElement))) {
+        const active = await page.evaluate(() => document.activeElement?.outerHTML || 'none');
+        throw new Error(`focus did not enter menu; active element: ${active}`);
+      }
       if (!await page.evaluate(() => document.querySelector('main')?.inert)) throw new Error('background is not inert');
 
       const count = await links.count();
@@ -82,9 +92,11 @@ for (const [width, height] of viewports) {
       if (!await links.first().evaluate((element) => element === document.activeElement)) throw new Error('focus trap did not wrap');
 
       await page.keyboard.press('Escape');
+      await page.waitForTimeout(100);
       if (await toggle.getAttribute('aria-expanded') !== 'false') throw new Error('Escape did not close menu');
       if (await overlay.getAttribute('aria-hidden') !== 'true') throw new Error('closed menu is not aria-hidden');
-      await page.waitForFunction(() => document.querySelector('.mobile-nav-toggle') === document.activeElement);
+      if (await overlay.getAttribute('hidden') === null) throw new Error('closed menu is not natively hidden');
+      if (!await toggle.evaluate((element) => element === document.activeElement)) throw new Error('focus did not return to toggle');
       if (await page.evaluate(() => document.querySelector('main')?.inert)) throw new Error('background remained inert');
       await page.keyboard.press('Tab');
       if (await page.evaluate(() => document.querySelector('.mobile-nav-overlay')?.contains(document.activeElement))) throw new Error('closed menu remained keyboard reachable');
