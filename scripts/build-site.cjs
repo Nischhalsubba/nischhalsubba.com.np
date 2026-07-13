@@ -35,6 +35,7 @@ const stages = [
   ['Apply about/contact v2 styles', ['node', 'scripts/ensure-about-contact-v2-styles.cjs', '--dist']],
   ['Apply mobile header polish', ['node', 'scripts/ensure-mobile-header-polish.cjs', '--dist']],
   ['Apply canonical and redirect cleanup', ['node', 'scripts/ensure-final-seo-canonical-cleanup.cjs', '--dist']],
+  ['Normalize all production canonicals', ['node', 'scripts/normalize-production-canonicals.cjs', '--dist']],
   ['Reapply single design stylesheet to build', ['node', 'scripts/compile-single-stylesheet.cjs', '--dist']],
   ['Finalize article navigation and typography', ['node', 'scripts/ensure-navigation-font-consistency.cjs', '--dist']],
   ['Enforce two-role typography in build', ['node', 'scripts/ensure-typography-system.cjs', '--dist']],
