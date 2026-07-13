@@ -40,19 +40,9 @@ const required = {
     canonical: `${site}/blog/`,
     robotsMustInclude: ['index', 'follow'],
   },
-  'home.html': {
-    canonical: `${site}/`,
-    robotsMustInclude: ['noindex', 'follow'],
-  },
-  'home-v2.html': {
-    canonical: `${site}/`,
-    robotsMustInclude: ['noindex', 'follow'],
-  },
-  'blog.html': {
-    canonical: `${site}/blog/`,
-    robotsMustInclude: ['noindex', 'follow'],
-  },
 };
+
+const retiredOutputs = ['home.html', 'home-v2.html', 'blog.html'];
 
 function read(file) {
   const full = path.join(targetRoot, file);
@@ -78,6 +68,12 @@ function assertContains(label, value, parts) {
     if (!value.toLowerCase().includes(part.toLowerCase())) {
       throw new Error(`[seo-audit] ${label} must include "${part}". Found: ${value}`);
     }
+  }
+}
+
+for (const retired of retiredOutputs) {
+  if (fs.existsSync(path.join(targetRoot, retired))) {
+    throw new Error(`[seo-audit] Retired production output must not exist: ${retired}`);
   }
 }
 
