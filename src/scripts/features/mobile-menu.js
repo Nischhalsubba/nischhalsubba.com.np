@@ -10,9 +10,16 @@ const FOCUSABLE_SELECTOR = [
 ].join(',');
 
 function getFocusableElements(overlay) {
-  if (!overlay) return [];
+  if (!overlay || overlay.hidden) return [];
   return [...overlay.querySelectorAll(FOCUSABLE_SELECTOR)].filter((element) => {
-    return !element.hasAttribute('hidden') && element.getAttribute('aria-hidden') !== 'true';
+    const style = window.getComputedStyle(element);
+    const rect = element.getBoundingClientRect();
+    return !element.hasAttribute('hidden')
+      && element.getAttribute('aria-hidden') !== 'true'
+      && style.display !== 'none'
+      && style.visibility !== 'hidden'
+      && rect.width > 0
+      && rect.height > 0;
   });
 }
 
@@ -37,16 +44,21 @@ function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
 
   if (!overlay) return;
 
+  if (open) overlay.hidden = false;
   overlay.setAttribute('aria-hidden', String(!open));
   setBackgroundInert(button, overlay, open);
 
   if (open) {
-    button.dataset.previousFocus = document.activeElement === button ? 'button' : 'other';
     const firstFocusable = getFocusableElements(overlay)[0] || overlay;
     window.requestAnimationFrame(() => firstFocusable.focus({ preventScroll: true }));
-  } else if (restoreFocus) {
-    window.requestAnimationFrame(() => button.focus({ preventScroll: true }));
+    return;
   }
+
+  const finishClose = () => {
+    overlay.hidden = true;
+    if (restoreFocus) button.focus({ preventScroll: true });
+  };
+  window.requestAnimationFrame(finishClose);
 }
 
 function trapFocus(event, overlay) {
@@ -85,6 +97,7 @@ export function initMobileMenu() {
 
   if (overlay) {
     button.setAttribute('aria-controls', overlay.id);
+    overlay.hidden = true;
     overlay.setAttribute('aria-hidden', 'true');
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
