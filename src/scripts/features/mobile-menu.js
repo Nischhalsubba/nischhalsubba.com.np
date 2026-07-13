@@ -49,8 +49,11 @@ function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
   setBackgroundInert(button, overlay, open);
 
   if (open) {
-    const firstFocusable = getFocusableElements(overlay)[0] || overlay;
-    window.requestAnimationFrame(() => firstFocusable.focus({ preventScroll: true }));
+    overlay.focus({ preventScroll: true });
+    window.requestAnimationFrame(() => {
+      const firstFocusable = getFocusableElements(overlay)[0];
+      if (firstFocusable) firstFocusable.focus({ preventScroll: true });
+    });
     return;
   }
 
@@ -74,7 +77,7 @@ function trapFocus(event, overlay) {
   const first = focusable[0];
   const last = focusable[focusable.length - 1];
 
-  if (event.shiftKey && document.activeElement === first) {
+  if (event.shiftKey && (document.activeElement === first || document.activeElement === overlay)) {
     event.preventDefault();
     last.focus({ preventScroll: true });
   } else if (!event.shiftKey && document.activeElement === last) {
