@@ -51,6 +51,9 @@ jobs:
       - name: Audit every sitemap route and viewport
         run: node scripts/browser-audit.mjs
 
+      - name: Audit contact form accessibility
+        run: node scripts/browser-contact-audit.mjs
+
       - name: Upload preview log on failure
         if: failure()
         uses: actions/upload-artifact@v4
