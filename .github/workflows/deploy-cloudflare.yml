@@ -1,13 +1,18 @@
 name: Deploy Cloudflare Pages
+
 on:
   workflow_run:
     workflows: ["Browser audit"]
     types: [completed]
+
 permissions:
   contents: read
+  issues: write
+
 concurrency:
   group: cloudflare-production
   cancel-in-progress: true
+
 jobs:
   deploy:
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
@@ -17,28 +22,118 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       DEPLOY_SHA: ${{ github.event.workflow_run.head_sha }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout validated commit
+        uses: actions/checkout@v4
         with:
           ref: ${{ env.DEPLOY_SHA }}
-      - uses: actions/setup-node@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - name: Verify Cloudflare credentials
+
+      - name: Build, deploy and verify production
+        id: cloudflare
+        continue-on-error: true
+        shell: bash
         run: |
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID repository secret"; exit 1; }
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN repository secret"; exit 1; }
-      - run: npm ci
-      - run: npm run validate
-      - name: Deploy validated output
-        run: npx wrangler@4 pages deploy dist --project-name portfolio-website-2026 --branch main --commit-hash "$DEPLOY_SHA"
-      - name: Verify production provenance
-        run: |
-          for attempt in 1 2 3 4 5 6; do
-            LIVE_SHA=$(curl -fsS https://nischhalsubba.com.np/build-info.json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{}})")
-            [ "$LIVE_SHA" = "$DEPLOY_SHA" ] && exit 0
-            sleep 10
-          done
-          echo "Production provenance did not match $DEPLOY_SHA"
-          exit 1
+          set -o pipefail
+          {
+            test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID repository secret"; exit 1; }
+            test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN repository secret"; exit 1; }
+            npm ci
+            npm run validate
+            npx wrangler@4 pages deploy dist \
+              --project-name portfolio-website-2026 \
+              --branch main \
+              --commit-hash "$DEPLOY_SHA"
+
+            for attempt in 1 2 3 4 5 6 7 8 9 10; do
+              LIVE_SHA=$(curl -fsS https://nischhalsubba.com.np/build-info.json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{}})")
+              echo "Provenance attempt $attempt: live=$LIVE_SHA expected=$DEPLOY_SHA"
+              [ "$LIVE_SHA" = "$DEPLOY_SHA" ] && exit 0
+              sleep 10
+            done
+
+            echo "Production provenance did not match $DEPLOY_SHA"
+            exit 1
+          } 2>&1 | tee cloudflare-deploy.log
+
+      - name: Publish deployment result
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          DEPLOY_OUTCOME: ${{ steps.cloudflare.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+            const title = '[CI] Cloudflare production deployment failure';
+            const { owner, repo } = context.repo;
+            const outcome = process.env.DEPLOY_OUTCOME;
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: 'all',
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => !issue.pull_request && issue.title === title);
+
+            if (outcome === 'success') {
+              if (existing && existing.state === 'open') {
+                await github.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: existing.number,
+                  state: 'closed',
+                  state_reason: 'completed',
+                  body: `Cloudflare production deployment passed for \`${process.env.DEPLOY_SHA}\`.\n\nRun: ${runUrl}`,
+                });
+              }
+              return;
+            }
+
+            const rawLog = fs.existsSync('cloudflare-deploy.log')
+              ? fs.readFileSync('cloudflare-deploy.log', 'utf8')
+              : 'cloudflare-deploy.log was not created.';
+            const body = [
+              `Cloudflare production deployment failed for validated commit \`${process.env.DEPLOY_SHA}\`.`,
+              '',
+              `Run: ${runUrl}`,
+              '',
+              '<details><summary>Deployment log</summary>',
+              '',
+              '```text',
+              rawLog.slice(-55000),
+              '```',
+              '</details>',
+            ].join('\n');
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existing.number,
+                state: 'open',
+                state_reason: 'reopened',
+                body,
+              });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body });
+            }
+
+      - name: Upload deployment log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-deployment-log
+          path: cloudflare-deploy.log
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Fail workflow when deployment fails
+        if: steps.cloudflare.outcome != 'success'
+        run: exit 1
