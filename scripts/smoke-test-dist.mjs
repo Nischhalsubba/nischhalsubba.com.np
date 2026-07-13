@@ -65,6 +65,12 @@ function findRedirectCycle(redirects, start) {
   return null;
 }
 
+function localStylesheets(html) {
+  return [...html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)]
+    .map((match) => match[1])
+    .filter((href) => !/^https?:\/\//i.test(href));
+}
+
 function assertHtml(route, relativePath) {
   const html = fs.readFileSync(path.join(dist, relativePath), 'utf8');
 
@@ -72,8 +78,12 @@ function assertHtml(route, relativePath) {
   if (!/<h1\b/i.test(html)) fail(`${route} (${relativePath}) has no h1.`);
   if (!/class=["'][^"']*skip-link/i.test(html)) fail(`${route} (${relativePath}) has no skip link.`);
   if (!/id=["']main-content["']/i.test(html)) fail(`${route} (${relativePath}) has no #main-content target.`);
-  if (!html.includes('/style.css')) fail(`${route} (${relativePath}) is missing the primary stylesheet.`);
-  if (!html.includes('/audit-remediations.css')) fail(`${route} (${relativePath}) is missing the audit remediation stylesheet.`);
+
+  const stylesheets = localStylesheets(html);
+  if (stylesheets.length !== 1 || !stylesheets[0].startsWith('/style.css')) {
+    fail(`${route} (${relativePath}) must load exactly one local stylesheet: /style.css.`);
+  }
+
   if (!html.includes('/script.js') && !/<script[^>]+\/assets\/[^"']+\.js/i.test(html)) fail(`${route} (${relativePath}) is missing the runtime.`);
   if (/fonts\.googleapis\.com|fonts\.gstatic\.com/i.test(html)) fail(`${route} (${relativePath}) still loads remote Google Fonts.`);
   if (/i\.imgur\.com\/oFHdPUS/i.test(html)) fail(`${route} (${relativePath}) still loads the external portrait.`);
