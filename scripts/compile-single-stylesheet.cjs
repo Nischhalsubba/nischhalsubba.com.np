@@ -20,7 +20,8 @@ const fragments = fragmentFiles
 
 stylesheet = stylesheet
   .replace(/^\s*500;600;700;800&display=swap'\);\s*$/m, '')
-  .replace(/Version:\s*[0-9.]+/, 'Version: 50.0')
+  .replace(/Version:\s*[0-9.]+/, 'Version: 51.0')
+  .replace(/html\[data-theme='light'\]([\s\S]*?)--text-tertiary:\s*#[0-9a-f]{6};/i, (match, prefix) => `html[data-theme='light']${prefix}--text-tertiary: #5f655b;`)
   .replace(/\/\* nrs-single-source-inner-pages-v\d+:compiled:start \*\/[\s\S]*?\/\* nrs-single-source-inner-pages-v\d+:compiled:end \*\/\s*/g, '')
   .trimEnd();
 
