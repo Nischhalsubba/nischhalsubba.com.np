@@ -54,6 +54,7 @@ const stages = [
   ['Enforce one floating resume control', ['node', 'scripts/enforce-single-floating-resume.cjs', '--dist']],
   ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
   ['Configure protected contact output', ['node', 'scripts/configure-contact-protection.cjs', '--dist']],
+  ['Generate raster social previews', ['node', 'scripts/generate-social-previews.cjs']],
 ];
 
 for (const [label, [command, ...args]] of stages) {
