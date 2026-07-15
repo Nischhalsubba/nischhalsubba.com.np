@@ -3,7 +3,15 @@ import { $$ } from '../utils/dom.js';
 const RESUME_URL = '/assets/resume.pdf';
 const RESUME_FILENAME = 'Nischhal-Raj-Subba-Resume.pdf';
 
+function removeDuplicateFloatingResumeControls() {
+  const floatingControls = $$('.floating-resume-btn');
+
+  floatingControls.slice(1).forEach((control) => control.remove());
+}
+
 export function initResumeDownload() {
+  removeDuplicateFloatingResumeControls();
+
   $$('a[href$="resume.pdf"], .floating-resume-btn, [data-resume-download]').forEach((link) => {
     link.setAttribute('href', RESUME_URL);
     link.setAttribute('download', RESUME_FILENAME);
