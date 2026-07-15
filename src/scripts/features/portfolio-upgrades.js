@@ -1,5 +1,3 @@
-const PORTRAIT_URL = 'https://i.imgur.com/oFHdPUS.png';
-
 function injectUpgradeStyles() {
   if (document.getElementById('nrs-portfolio-upgrade-styles')) return;
 
@@ -142,17 +140,6 @@ function injectUpgradeStyles() {
   document.head.appendChild(style);
 }
 
-function useRequestedPortrait() {
-  document.querySelectorAll('.hero-portrait-img, .footer-portrait-img, .profile-img').forEach((image) => {
-    image.src = PORTRAIT_URL;
-    image.removeAttribute('style');
-  });
-
-  document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach((meta) => {
-    meta.setAttribute('content', PORTRAIT_URL);
-  });
-}
-
 function createSection({ id, kicker, title, lead, gridClass, cards }) {
   if (document.getElementById(id)) return null;
 
@@ -285,7 +272,6 @@ function improveBlogPages() {
 
 export function applyPortfolioUpgrades() {
   injectUpgradeStyles();
-  useRequestedPortrait();
   addHomepageSections();
   improveProjectCards();
   improveProjectDetailPages();
