@@ -1,22 +1,31 @@
-# Cloudflare Pages provides clean URLs for static HTML automatically.
-# Do not add generic `.html -> extensionless` redirects here: combining those
-# rules with Pages' own canonicalization can create redirect loops.
+# Cloudflare serves canonical extensionless HTML routes directly.
+# Keep this file limited to retired and legacy URLs to avoid redirect loops.
 
-# Legacy homepage experiments
 /home  /  301
 /home.html  /  301
 /home-v2  /  301
 /home-v2.html  /  301
+/index.html  /  301
 
-# Canonical writing index
-/writing  /blog/  301
-/writing/  /blog/  301
 /blog  /blog/  301
 /blog.html  /blog/  301
+/writing  /blog/  301
+/writing/  /blog/  301
 
-# Old placeholders and retired routes
-/products.html  /figma-design-systems  301
-/products  /figma-design-systems  301
+/products  /projects  301
+/products.html  /projects  301
+/project-detail  /projects  301
 /project-detail.html  /projects  301
+/project-archive  /projects  301
+/project-archive.html  /projects  301
 /project-jeweltrek.html  /projects  301
+/media-kit  /about  301
+/media-kit.html  /about  301
 /blog-detail.html  /blog/  301
+
+/blog-saas-dashboard-ux-checklist.html  /blog/saas-dashboard-ux-checklist  301
+/blog-web3-wallet-ux-checklist.html  /blog/web3-wallet-ux-checklist  301
+/blog-figma-handoff-notes-for-developers.html  /blog/figma-handoff-notes-for-developers  301
+/blog-ux-audit-checklist-before-redesign.html  /blog/ux-audit-checklist-before-redesign  301
+/blog-website-ux-checklist-software-companies.html  /blog/website-ux-checklist-software-companies  301
+/blog-role-based-saas-dashboard-ux.html  /blog/role-based-saas-dashboard-ux  301
