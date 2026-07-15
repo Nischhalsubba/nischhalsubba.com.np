@@ -1,126 +1,192 @@
 # Nischhal Raj Subba Portfolio
 
-Static, SEO-focused portfolio for **Nischhal Raj Subba**, a Product Designer in Nepal focused on Web3 UX, SaaS interfaces, fintech app experiences, service website UX, design systems, UX audits, and front-end-aware design.
+Production portfolio for **Nischhal Raj Subba**, a Nepal-based product designer working across Web3, SaaS, fintech, service websites, design systems, UX audits, and developer-ready handoff.
 
-[![Vite](https://img.shields.io/badge/Tooling-Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](#development)
-[![Static HTML](https://img.shields.io/badge/Frontend-HTML%20CSS%20JS-111111?style=for-the-badge)](#structure)
-[![SEO](https://img.shields.io/badge/SEO-Sitemap%20%2B%20Robots%20%2B%20Schema-0C8CE9?style=for-the-badge)](#seo-and-ai-discovery)
+The site is a static multi-page Vite build deployed through **Cloudflare Workers with static assets**. A Worker handles first-party API routes while Cloudflare serves the generated site from `dist/`.
 
----
+## Production
 
-## Overview
+- Canonical origin: `https://nischhalsubba.com.np`
+- Production branch: `main`
+- Deployment project: `portfolio-website-2026`
+- Platform: Cloudflare Workers + static assets
+- Worker entry point: `src/worker.js`
+- Configuration: `wrangler.jsonc`
+- Static output: `dist/`
 
-This repository powers:
+Only `main` is treated as production. Clean URLs such as `/services`, `/contact`, and `/project-yarsha` are canonical; `.html` filenames are build artifacts, not public URL targets.
 
-```txt
-https://nischhalsubba.com.np/
-```
+## Architecture
 
-The site is intentionally built as a static multi-page portfolio rather than a framework-heavy app. It includes:
-
-- a canonical homepage at `/`
-- project listing and project detail pages
-- blog listing and blog detail pages
-- service/SEO landing pages
-- AI discovery files for agents and LLM crawlers
-- sitemap, robots, manifest, and structured data
-- Vite build configuration for Cloudflare Pages
-- runtime JavaScript split into focused modules under `src/scripts/`
-
-The repository root has many `.html` files because those files are public routes. Messy-looking? A little. Dangerous to move randomly? Absolutely.
-
----
-
-## Deployment note
-
-Cloudflare Pages deploys the latest `main` branch build. Documentation-only commits may be used to trigger a fresh Pages rebuild when the previous deployment failed after a build-script or audit change.
-
----
-
-## Structure
-
-```txt
+```text
 .
-├── index.html                       # Canonical homepage
-├── home.html                        # Legacy/home experiment retained in build
-├── home-v2.html                     # Legacy/home experiment retained in build
-├── about.html                       # About page
-├── contact.html                     # Contact and lead page
-├── projects.html                    # Project listing page
-├── blog.html                        # Blog listing fallback page
-├── blog/                            # Canonical blog route and blog detail source pages
-├── project-*.html                   # Public project detail routes
-├── *-designer.html                  # Service/SEO landing pages
-├── ux-audit.html                    # Service/SEO landing page
-├── assets/                          # Images, SVG covers, vendor files, project data
-├── public/                          # Files Vite copies automatically
-├── src/scripts/                     # Modular browser runtime
-├── scripts/                         # Build, audit, link, and generation scripts
-├── docs/                            # Maintainer documentation
-├── script.js                        # Compatibility wrapper for old HTML references
-├── style.css                        # Main legacy/global stylesheet
-├── seo-ui-enhancements.css          # Shared polish layer loaded across pages
-├── robots.txt                       # Root-served crawler instructions
-├── sitemap.xml                      # Root-served sitemap
-├── llms.txt                         # AI-agent summary
-├── ai-profile.json                  # Machine-readable profile
-├── site.webmanifest                 # Browser/search identity metadata
-├── vite.config.ts                   # Multi-page Vite build config
-├── wrangler.toml                    # Cloudflare Pages output config
+├── index.html                     # Homepage source
+├── about.html                     # Canonical page source
+├── contact.html                   # Canonical page source
+├── projects.html                  # Work index source
+├── services.html                  # Services index source
+├── privacy.html                   # Privacy page source
+├── blog/                          # Blog index and article sources
+├── project-*.html                 # Case-study sources
+├── *-designer.html                # Search-intent service pages
+├── assets/                        # Authored images and project assets
+├── public/                        # Static files copied into the build
+├── src/
+│   ├── scripts/                   # Modular browser runtime
+│   └── worker.js                  # Cloudflare Worker/API router
+├── functions/api/contact.js       # Cloudflare contact handler
+├── scripts/                       # Generation, normalization, audits, and QA
+├── config/canonical-routes.json   # Authoritative route and redirect contract
+├── tests/visual/                  # Screenshot baseline contract
+├── style.css                      # Single authored production stylesheet
+├── script.js                      # Stable browser-runtime entry point
+├── _headers                       # Production security and cache headers
+├── _redirects                     # Legacy URL redirects only
+├── sitemap.xml                    # Generated canonical sitemap source
+├── robots.txt                     # Crawler directives
+├── llms.txt                       # Concise AI-agent summary
+├── llms-full.txt                  # Extended AI-agent context
+├── ai-profile.json                # Machine-readable profile
+├── vite.config.ts                 # Multi-page Vite build
+├── wrangler.jsonc                 # Worker, assets, and email binding config
 └── package.json
 ```
 
-More detailed maps:
+There is no Next.js runtime or `.next` compatibility layer in the current repository.
 
-- `docs/root-route-map.md`
-- `docs/codebase-structure.md`
-- `docs/build-pipeline.md`
+## Routes
 
----
+`config/canonical-routes.json` is the route source of truth. It defines:
 
-## Why the root has many files
+- every canonical HTML output;
+- retired HTML files that must not survive production;
+- legacy redirects and their expected clean destinations.
 
-Most root HTML files are route files. For example:
+The build fails when canonical files are missing, retired outputs survive, or `_redirects` disagrees with the manifest. Live production routes can be checked with:
 
-```txt
-project-yarsha.html -> /project-yarsha.html
-about.html          -> /about.html
+```bash
+npm run test:routes:live
 ```
 
-Moving those files breaks routes unless `vite.config.ts`, internal links, sitemap entries, redirects, and build audits are updated together. So yes, the root has clutter. No, the correct fix is not throwing files into `/pages` and hoping Cloudflare develops empathy.
+## Browser runtime and CSS
 
----
+- Authored browser features live under `src/scripts/`.
+- `script.js` is the stable module entry point used by generated pages.
+- `style.css` is the single authored stylesheet contract.
+- Build audits reject retired patch stylesheets and unexpected local CSS files.
+- Shared navigation, footer, theme behavior, responsive guardrails, resume handling, and contact behavior are normalized and audited during the build.
+
+## Contact API
+
+The contact page posts to:
+
+```text
+POST /api/contact
+```
+
+The Cloudflare Worker provides:
+
+- origin restrictions;
+- server-side field validation;
+- a honeypot field;
+- Cloudflare Turnstile verification;
+- native Cloudflare email delivery.
+
+Required Cloudflare configuration:
+
+- Build variable: `TURNSTILE_SITE_KEY`
+- Runtime secret: `TURNSTILE_SECRET_KEY`
+- Email binding: `CONTACT_EMAIL`
+- Verified destination: `hinischalsubba@gmail.com`
+
+The mail and Turnstile integration must be verified on the live domain after any account-level binding or key change.
+
+## SEO and discovery
+
+The production build maintains:
+
+- clean canonical URLs;
+- one title and description per canonical page;
+- Open Graph and Twitter metadata;
+- parseable JSON-LD;
+- exact sitemap parity with the canonical route manifest;
+- robots directives;
+- raster 1200×630 social previews for priority pages;
+- AI discovery files (`llms.txt`, `llms-full.txt`, and `ai-profile.json`).
+
+SEO validation runs across every canonical page:
+
+```bash
+npm run audit:seo
+npm run audit:seo-contract
+```
+
+The full contract rejects duplicate or missing metadata, invalid JSON-LD, sitemap drift, `.html` canonicals, mismatched social metadata, and invalid priority social images.
 
 ## Development
 
-Install dependencies:
+Install the locked dependency tree:
 
 ```bash
-npm install
+npm ci
 ```
 
-Run locally:
+Run Vite locally:
 
 ```bash
 npm run dev
 ```
 
-Build:
+Build production output:
 
 ```bash
 npm run build
 ```
 
-Preview production build:
+Preview `dist/`:
 
 ```bash
 npm run preview
 ```
 
-Check local links:
+Run all repository validation:
 
 ```bash
-npm run check:links
+npm run validate
 ```
 
----
+The validation suite covers metadata, content structure, internal links, build output, shared shell, CSS architecture, design-system usage, voice, accessibility tokens, build provenance, and smoke behavior.
+
+## Browser and visual QA
+
+GitHub Actions runs browser audits across every sitemap route and eight representative viewport sizes. The audit checks runtime errors, failed same-origin requests, overflow, H1 count, duplicate IDs, broken images, footer presence, CSS count, active navigation, and mobile-menu keyboard behavior.
+
+Priority visual regression screenshots cover Home, Services, Contact, Product Design, Yarsha, and Mokshya at mobile and desktop sizes. Review rules and the 0.5% pixel-difference tolerance are documented in:
+
+```text
+tests/visual/README.md
+```
+
+## Build behavior and known architecture debt
+
+The current build is reliable but not yet non-mutating. Before Vite runs, legacy generation and normalization scripts update tracked HTML and CSS source files. This behavior is explicit and covered by the delivery board, but it means `npm run build` may dirty a developer's working tree.
+
+The planned migration is:
+
+1. run source generation explicitly;
+2. commit canonical generated source;
+3. limit `npm run build` to reading source and writing `dist/`;
+4. enforce `git diff --exit-code` after validation in CI.
+
+Until that migration is verified, source-generation stages must not be removed casually. They currently prevent stale authored files from reaching production, an inelegant arrangement that is still preferable to deploying archaeological HTML.
+
+## Deployment checks
+
+Before considering a production change complete:
+
+1. confirm the latest `main` commit builds successfully in Cloudflare;
+2. run repository validation;
+3. verify clean routes on the custom domain;
+4. review browser and visual artifacts;
+5. test account-dependent functionality, including contact delivery, on production;
+6. update the Portfolio QA Delivery Board with evidence.
