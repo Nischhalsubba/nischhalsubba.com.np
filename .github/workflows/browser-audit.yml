@@ -37,7 +37,7 @@ jobs:
 
       - name: Install browser runtime
         run: |
-          npm install --no-save playwright@1.54.1
+          npm install --no-save playwright@1.54.1 pixelmatch@7.1.0 pngjs@7.0.0
           npx playwright install --with-deps chromium
 
       - name: Start preview server
@@ -71,6 +71,21 @@ jobs:
           set -o pipefail
           node scripts/browser-contact-audit.mjs 2>&1 | tee contact-audit.log
 
+      - name: Compare visual regression baselines
+        id: visual
+        if: steps.preview.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          if find tests/visual/baselines -type f -name '*.png' -print -quit 2>/dev/null | grep -q .; then
+            node scripts/visual-regression.mjs 2>&1 | tee visual-regression.log
+          else
+            UPDATE_VISUAL_BASELINES=1 node scripts/visual-regression.mjs 2>&1 | tee visual-regression.log
+            echo 'Visual baselines were generated as an artifact and must be committed before this check can pass.' | tee -a visual-regression.log
+            exit 1
+          fi
+
       - name: Publish browser audit result
         if: always()
         uses: actions/github-script@v7
@@ -78,6 +93,7 @@ jobs:
           PREVIEW_OUTCOME: ${{ steps.preview.outcome }}
           BROWSER_OUTCOME: ${{ steps.browser.outcome }}
           CONTACT_OUTCOME: ${{ steps.contact.outcome }}
+          VISUAL_OUTCOME: ${{ steps.visual.outcome }}
         with:
           script: |
             const fs = require('fs');
@@ -87,6 +103,7 @@ jobs:
               preview: process.env.PREVIEW_OUTCOME,
               browser: process.env.BROWSER_OUTCOME,
               contact: process.env.CONTACT_OUTCOME,
+              visual: process.env.VISUAL_OUTCOME,
             };
             const passed = Object.values(outcomes).every((value) => value === 'success');
             const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
@@ -105,7 +122,7 @@ jobs:
                   repo,
                   issue_number: existing.number,
                   state: 'closed',
-                  body: `Browser audit passed on ${context.sha}.\n\nRun: ${runUrl}`,
+                  body: `Browser and visual audits passed on ${context.sha}.\n\nRun: ${runUrl}`,
                 });
               }
               return;
@@ -116,6 +133,7 @@ jobs:
               ['Preview server', '/tmp/portfolio-preview.log'],
               ['Route and viewport audit', 'browser-audit.log'],
               ['Contact accessibility audit', 'contact-audit.log'],
+              ['Visual regression audit', 'visual-regression.log'],
             ]) {
               if (!fs.existsSync(file)) continue;
               sections.push('', `<details><summary>${label}</summary>`, '', '```text', fs.readFileSync(file, 'utf8').slice(-50000), '```', '</details>');
@@ -128,18 +146,21 @@ jobs:
               await github.rest.issues.create({ owner, repo, title, body });
             }
 
-      - name: Upload browser audit logs
+      - name: Upload browser and visual audit artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: browser-audit-logs
+          name: browser-audit-artifacts
           path: |
             /tmp/portfolio-preview.log
             browser-audit.log
             contact-audit.log
+            visual-regression.log
+            tests/visual/baselines
+            tests/visual/results
           if-no-files-found: ignore
           retention-days: 7
 
       - name: Fail workflow when browser validation fails
-        if: steps.preview.outcome != 'success' || steps.browser.outcome != 'success' || steps.contact.outcome != 'success'
+        if: steps.preview.outcome != 'success' || steps.browser.outcome != 'success' || steps.contact.outcome != 'success' || steps.visual.outcome != 'success'
         run: exit 1
