@@ -1,17 +1,15 @@
 import { $ } from '../utils/dom.js';
 
-const CONTACT_EMAIL = 'hinischhalsubba@gmail.com';
-const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
-const FIRST_PARTY_ENDPOINT = '/api/contact';
+const ENDPOINT = '/api/contact';
 const TURNSTILE_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-const REQUEST_TIMEOUT_MS = 15000;
+const REQUEST_TIMEOUT_MS = 20000;
 
-function getFieldErrorId(field) {
-  const safeName = (field.name || field.id || 'field').replace(/[^a-z0-9_-]/gi, '-');
-  return `contact-error-${safeName}`;
+function errorId(field) {
+  const name = (field.name || field.id || 'field').replace(/[^a-z0-9_-]/gi, '-');
+  return `contact-error-${name}`;
 }
 
-function getValidationMessage(field) {
+function validationMessage(field) {
   if (field.validity.valueMissing) return 'This field is required.';
   if (field.validity.typeMismatch) return 'Enter a valid email address.';
   if (field.validity.tooShort) return `Use at least ${field.minLength} characters.`;
@@ -21,48 +19,40 @@ function getValidationMessage(field) {
 
 function clearFieldError(field) {
   field.removeAttribute('aria-invalid');
-  const errorId = getFieldErrorId(field);
-  document.getElementById(errorId)?.remove();
-
-  const describedBy = (field.getAttribute('aria-describedby') || '')
+  const id = errorId(field);
+  document.getElementById(id)?.remove();
+  const values = (field.getAttribute('aria-describedby') || '')
     .split(/\s+/)
     .filter(Boolean)
-    .filter((id) => id !== errorId);
-
-  if (describedBy.length) field.setAttribute('aria-describedby', describedBy.join(' '));
+    .filter((value) => value !== id);
+  if (values.length) field.setAttribute('aria-describedby', values.join(' '));
   else field.removeAttribute('aria-describedby');
 }
 
-function showFieldError(field, message = getValidationMessage(field)) {
+function showFieldError(field, message = validationMessage(field)) {
   clearFieldError(field);
-
-  const error = document.createElement('span');
-  const errorId = getFieldErrorId(field);
-  error.id = errorId;
-  error.className = 'nrs-contact-field-error';
-  error.textContent = message;
-
+  const node = document.createElement('span');
+  node.id = errorId(field);
+  node.className = 'nrs-contact-field-error';
+  node.textContent = message;
   field.setAttribute('aria-invalid', 'true');
-  const describedBy = new Set((field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
-  describedBy.add(errorId);
-  field.setAttribute('aria-describedby', [...describedBy].join(' '));
-  field.insertAdjacentElement('afterend', error);
+  const values = new Set((field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+  values.add(node.id);
+  field.setAttribute('aria-describedby', [...values].join(' '));
+  field.insertAdjacentElement('afterend', node);
 }
 
-function validateForm(form) {
-  const fields = [...form.querySelectorAll('input, select, textarea')]
-    .filter((field) => field.type !== 'hidden' && field.name !== '_honey');
-
+function validate(form) {
   let firstInvalid = null;
-
-  fields.forEach((field) => {
-    clearFieldError(field);
-    if (!field.checkValidity()) {
-      showFieldError(field);
-      if (!firstInvalid) firstInvalid = field;
-    }
-  });
-
+  [...form.querySelectorAll('input, select, textarea')]
+    .filter((field) => field.type !== 'hidden' && field.name !== '_honey')
+    .forEach((field) => {
+      clearFieldError(field);
+      if (!field.checkValidity()) {
+        showFieldError(field);
+        firstInvalid ||= field;
+      }
+    });
   firstInvalid?.focus({ preventScroll: false });
   return !firstInvalid;
 }
@@ -73,36 +63,21 @@ function applyServerErrors(form, errors = {}) {
     const field = form.elements.namedItem(name);
     if (!(field instanceof HTMLElement)) return;
     showFieldError(field, String(message));
-    if (!firstInvalid) firstInvalid = field;
+    firstInvalid ||= field;
   });
   firstInvalid?.focus({ preventScroll: false });
 }
 
-function buildSubmissionPayload(form) {
-  const payload = new FormData(form);
-  const visitorEmail = payload.get('email');
-
-  payload.set('_subject', 'Portfolio inquiry from nischhalsubba.com.np');
-  payload.set('_template', 'table');
-  payload.delete('_captcha');
-
-  if (visitorEmail) payload.set('_replyto', visitorEmail);
-
-  payload.set('source_page', window.location.href);
-  payload.set('submitted_at', new Date().toISOString());
-  return payload;
-}
-
-function loadTurnstileScript() {
+function loadTurnstile() {
   if (window.turnstile) return Promise.resolve();
-  const existing = document.querySelector(`script[src^="${TURNSTILE_SCRIPT.split('?')[0]}"]`);
+  const base = TURNSTILE_SCRIPT.split('?')[0];
+  const existing = document.querySelector(`script[src^="${base}"]`);
   if (existing) {
     return new Promise((resolve, reject) => {
       existing.addEventListener('load', resolve, { once: true });
       existing.addEventListener('error', reject, { once: true });
     });
   }
-
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     script.src = TURNSTILE_SCRIPT;
@@ -115,27 +90,33 @@ function loadTurnstileScript() {
 }
 
 async function initializeTurnstile(form, setStatus) {
-  const siteKey = form.dataset.turnstileSiteKey || document.querySelector('meta[name="turnstile-site-key"]')?.content?.trim();
-  if (!siteKey) return { configured: false, widgetId: null };
+  const siteKey = form.dataset.turnstileSiteKey
+    || document.querySelector('meta[name="turnstile-site-key"]')?.content?.trim();
+  if (!siteKey) {
+    setStatus('The anti-spam service is not configured. Please use the email option.', 'error');
+    return { ready: false, widgetId: null };
+  }
 
-  const actions = form.querySelector('.nrs-contact-form-actions');
   const host = document.createElement('div');
   host.className = 'nrs-turnstile';
   host.setAttribute('aria-label', 'Anti-spam verification');
-  actions?.before(host);
+  form.querySelector('.nrs-form-actions, .nrs-contact-form-actions')?.before(host);
 
   try {
-    await loadTurnstileScript();
+    await loadTurnstile();
     const widgetId = window.turnstile.render(host, {
       sitekey: siteKey,
       theme: document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
       'response-field-name': 'cf-turnstile-response',
+      callback: () => setStatus('Anti-spam check complete. Your message is ready to send.', 'success'),
+      'expired-callback': () => setStatus('The anti-spam check expired. Complete it again.', 'error'),
+      'error-callback': () => setStatus('The anti-spam check could not load. Please use the email option.', 'error'),
     });
-    return { configured: true, widgetId };
+    return { ready: true, widgetId };
   } catch (error) {
-    console.error('[portfolio] Turnstile could not initialize', error);
-    setStatus('The protected form could not initialize. You can still use the email option.', 'error');
-    return { configured: false, widgetId: null };
+    console.error('[portfolio] Turnstile initialization failed', error);
+    setStatus('The anti-spam check could not load. Please use the email option.', 'error');
+    return { ready: false, widgetId: null };
   }
 }
 
@@ -145,14 +126,13 @@ export function initContactForm() {
 
   form.dataset.contactFormReady = 'true';
   form.noValidate = true;
-  form.setAttribute('action', `https://formsubmit.co/${CONTACT_EMAIL}`);
-  form.setAttribute('method', 'POST');
+  form.action = ENDPOINT;
+  form.method = 'POST';
 
   const status = $('#contact-form-status') || form.querySelector('[role="status"]');
-  const submitButton = form.querySelector('button[type="submit"]');
-  const emailFallback = form.querySelector('a[href^="mailto:"]');
-  const originalButtonText = submitButton?.textContent || 'Send message';
-
+  const submit = form.querySelector('button[type="submit"]');
+  const emailLink = form.querySelector('a[href^="mailto:"]');
+  const originalText = submit?.textContent || 'Send message';
   const setStatus = (message, tone = 'neutral') => {
     if (!status) return;
     status.textContent = message;
@@ -160,74 +140,73 @@ export function initContactForm() {
   };
 
   const turnstileState = initializeTurnstile(form, setStatus);
-
   form.querySelectorAll('input, select, textarea').forEach((field) => {
     if (field.type === 'hidden') return;
     field.addEventListener('input', () => clearFieldError(field));
     field.addEventListener('change', () => clearFieldError(field));
   });
-
-  emailFallback?.addEventListener('click', () => {
-    setStatus('Opening your email app. Your form entries remain on this page.', 'neutral');
-  });
+  emailLink?.addEventListener('click', () => setStatus('Opening your email app. Your form entries remain here.', 'neutral'));
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-
-    if (!validateForm(form)) {
+    if (!validate(form)) {
       setStatus('Review the highlighted fields and try again.', 'error');
       return;
     }
 
     const turnstile = await turnstileState;
+    if (!turnstile.ready) {
+      setStatus('The protected form is unavailable. Please use the email option.', 'error');
+      return;
+    }
     const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
-    if (turnstile.configured && !token) {
+    if (!token) {
       setStatus('Complete the anti-spam check and try again.', 'error');
       return;
     }
 
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
+    if (submit) {
+      submit.disabled = true;
+      submit.textContent = 'Sending...';
     }
-
     form.setAttribute('aria-busy', 'true');
-    setStatus(turnstile.configured ? 'Sending your message through the protected contact endpoint...' : 'Sending your message securely through the form provider...', 'neutral');
+    setStatus('Sending your message securely...', 'neutral');
 
+    const payload = new FormData(form);
+    payload.set('source_page', window.location.href);
     const controller = new AbortController();
-    const timeoutId = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
     try {
-      const response = await fetch(turnstile.configured ? FIRST_PARTY_ENDPOINT : FALLBACK_ENDPOINT, {
+      const response = await fetch(ENDPOINT, {
         method: 'POST',
-        body: buildSubmissionPayload(form),
+        body: payload,
         headers: { Accept: 'application/json' },
         signal: controller.signal,
       });
       const result = await response.json().catch(() => ({}));
-
       if (!response.ok) {
         if (result.errors) applyServerErrors(form, result.errors);
-        throw new Error(result.message || `Form endpoint returned ${response.status}`);
+        throw new Error(result.message || `The form returned ${response.status}.`);
       }
 
       form.reset();
       form.querySelectorAll('[aria-invalid="true"]').forEach(clearFieldError);
-      if (turnstile.configured && window.turnstile && turnstile.widgetId !== null) window.turnstile.reset(turnstile.widgetId);
+      if (window.turnstile && turnstile.widgetId !== null) window.turnstile.reset(turnstile.widgetId);
       setStatus(result.message || 'Thanks. Your message was sent successfully.', 'success');
     } catch (error) {
       console.error('[portfolio] contact form submission failed', error);
       const message = error?.name === 'AbortError'
-        ? 'The message service took too long to respond. Your entries are still here; use the email button or try again.'
-        : error.message || 'The direct form could not send your message. Your entries are still here; use the email button to send them manually.';
+        ? 'The request timed out. Your entries are still here; use the email option or try again.'
+        : error.message || 'The form could not send your message. Your entries are still here.';
       setStatus(message, 'error');
-      emailFallback?.focus({ preventScroll: false });
+      emailLink?.focus({ preventScroll: false });
     } finally {
-      window.clearTimeout(timeoutId);
+      window.clearTimeout(timeout);
       form.removeAttribute('aria-busy');
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = originalText;
       }
     }
   });
