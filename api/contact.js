@@ -1,4 +1,4 @@
-const CONTACT_EMAIL = 'hinischhalsubba@gmail.com';
+const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
 const ALLOWED_HOSTS = new Set([
   'nischhalsubba.com.np',
   'www.nischhalsubba.com.np',
