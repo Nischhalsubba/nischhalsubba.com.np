@@ -24,18 +24,15 @@ const markup = `<main id="main-content" class="container nrs-spacious-page nrs-c
       <h2 id="project-brief" class="section-title">A short, honest message is enough.</h2>
       <p class="section-lead">Describe what you are building, who it serves, what is currently unclear and when the first useful decision is needed.</p>
     </header>
-    <form id="contact-form" class="nrs-open-form" action="https://formsubmit.co/${email}" method="POST" novalidate>
-      <input type="hidden" name="_subject" value="Portfolio inquiry from nischhalsubba.com.np">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_replyto" value="">
+    <form id="contact-form" class="nrs-open-form" action="/api/contact" method="POST" novalidate>
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="nrs-hidden-field">
 
       <div class="nrs-form-grid">
         <label for="contact-name">Name</label>
-        <input id="contact-name" type="text" name="name" autocomplete="name" minlength="2" required placeholder="Your name">
+        <input id="contact-name" type="text" name="name" autocomplete="name" minlength="2" maxlength="100" required placeholder="Your name">
 
         <label for="contact-email">Email</label>
-        <input id="contact-email" type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+        <input id="contact-email" type="email" name="email" autocomplete="email" maxlength="254" required placeholder="you@example.com">
 
         <label for="contact-need">Project type</label>
         <select id="contact-need" name="need" required>
@@ -61,11 +58,11 @@ const markup = `<main id="main-content" class="container nrs-spacious-page nrs-c
       </div>
 
       <label for="contact-message">Product context and current problem</label>
-      <textarea id="contact-message" name="message" rows="8" minlength="20" required placeholder="What are you building, who is it for, what is unclear, and where should design help?"></textarea>
+      <textarea id="contact-message" name="message" rows="8" minlength="20" maxlength="5000" required placeholder="What are you building, who is it for, what is unclear, and where should design help?"></textarea>
 
-      <p class="nrs-form-note" id="contact-privacy-note">Your name, email and project context are used only to deliver and respond to this inquiry. Do not include passwords, payment details or confidential credentials.</p>
+      <p class="nrs-form-note" id="contact-privacy-note">Your name, email and project context are sent securely through this website to ${email}. Cloudflare Turnstile checks submissions for abuse. Do not include passwords, payment details or confidential credentials.</p>
       <div class="nrs-form-actions"><button class="btn btn-primary" type="submit">Send project context</button><a class="btn btn-secondary" href="mailto:${email}">Use email instead</a></div>
-      <p id="contact-form-status" class="form-status" role="status" aria-live="polite"></p>
+      <p id="contact-form-status" class="form-status" role="status" aria-live="polite">Complete the anti-spam check, then submit your message.</p>
     </form>
   </section>
 
