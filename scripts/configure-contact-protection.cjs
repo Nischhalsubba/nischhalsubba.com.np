@@ -17,11 +17,12 @@ if (siteKey) {
   html = html.replace('</head>', `  <meta name="turnstile-site-key" content="${siteKey.replace(/["<>]/g, '')}" />\n</head>`);
   console.log('[contact-protection] Turnstile site key added to the contact page.');
 } else {
-  console.log('[contact-protection] TURNSTILE_SITE_KEY is not set; retaining the tested provider fallback.');
+  console.log('[contact-protection] TURNSTILE_SITE_KEY is not set; protected submission will remain unavailable.');
 }
 
-const privacy = 'Your name, email and project context are used only to respond to this inquiry. When protection is configured, Cloudflare Turnstile checks the submission for abuse and the message is delivered through FormSubmit. Inquiry data is not sold or used for marketing. Avoid passwords, payment details or confidential credentials. <a href="/privacy">Read the privacy notice</a>.';
+const privacy = 'Your name, email and project context are sent securely through this website to the portfolio inbox. Cloudflare Turnstile checks submissions for abuse. Inquiry data is not sold or used for marketing. Avoid passwords, payment details or confidential credentials. <a href="/privacy">Read the privacy notice</a>.';
 html = html.replace(/<p class="nrs-contact-privacy">[\s\S]*?<\/p>/i, `<p class="nrs-contact-privacy">${privacy}</p>`);
+html = html.replace(/<p class="nrs-form-note" id="contact-privacy-note">[\s\S]*?<\/p>/i, `<p class="nrs-form-note" id="contact-privacy-note">${privacy}</p>`);
 
 fs.writeFileSync(file, html, 'utf8');
 console.log(`[contact-protection] Updated ${path.relative(root, file)}.`);
