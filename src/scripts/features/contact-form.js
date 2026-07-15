@@ -2,6 +2,7 @@ import { $ } from '../utils/dom.js';
 
 const ENDPOINT = '/api/contact';
 const TURNSTILE_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+const TURNSTILE_ACTION = 'portfolio-contact';
 const REQUEST_TIMEOUT_MS = 20000;
 
 function errorId(field) {
@@ -106,6 +107,7 @@ async function initializeTurnstile(form, setStatus) {
     await loadTurnstile();
     const widgetId = window.turnstile.render(host, {
       sitekey: siteKey,
+      action: TURNSTILE_ACTION,
       theme: document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
       'response-field-name': 'cf-turnstile-response',
       callback: () => setStatus('Anti-spam check complete. Your message is ready to send.', 'success'),
