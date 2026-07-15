@@ -2,10 +2,8 @@
 Theme Name: Nischhal Portfolio Studio Calm
 Author: Nischhal Raj Subba
 Description: Single-source dark/light website design system for nischhalsubba.com.np
-Version: 46.0
+Version: 51.0
 */
-
-500;600;700;800&display=swap');
 
 :root {
   color-scheme: dark;
@@ -55,7 +53,7 @@ html[data-theme='light'] {
   --bg-input: rgba(255,255,255,.84);
   --text-primary: #111312;
   --text-secondary: #4d514b;
-  --text-tertiary: #7b8076;
+  --text-tertiary: #5f655b;
   --accent: #111312;
   --accent-ink: #ffffff;
   --border-faint: rgba(17,19,18,.12);
@@ -442,7 +440,6 @@ h1, h2, h3, h4, h5, h6,
   box-shadow: 0 28px 86px rgba(0, 0, 0, .24) !important;
 }
 
-
 /* consolidated: layout-integrity.css */
 /* Shared layout-integrity guardrails.
    These rules intentionally load after the legacy runtime styles so readable
@@ -626,7 +623,6 @@ html body main.container :is(
     padding: 22px 0 !important;
   }
 }
-
 
 /* consolidated: audit-remediations.css */
 /* Cross-site fixes from the 2026 portfolio audit. Keep this file small and
@@ -988,7 +984,6 @@ body.menu-open {
   }
 }
 
-
 /* consolidated: responsive-inner-pages.css */
 /* Shared responsive guardrails for case studies, service pages, blog details,
    contact/about pages and other inner routes. This stylesheet intentionally
@@ -1325,7 +1320,6 @@ html body table {
   }
 }
 
-
 /* consolidated: mobile-inner-page-reset.css */
 /* Mobile-only simplification for inner pages.
    Desktop keeps the card system; narrow screens use compact sections and dividers. */
@@ -1594,7 +1588,6 @@ html body table {
     padding-bottom: 28px !important;
   }
 }
-
 
 /* consolidated: final-ui-fixes.css */
 /* Final shared UI fixes for header alignment, hidden skip links and project-detail editorial sections. */
@@ -1871,7 +1864,6 @@ body.nrs-project-detail-page main.container :is(
   }
 }
 
-
 /* consolidated: stable-layout.css */
 /* Stable presentation rules moved out of runtime JavaScript during the 2026 audit.
    This file loads after style.css so layout and readability do not depend on DOM repair. */
@@ -2097,7 +2089,6 @@ main:has(.case-hero-img-container) .section-title {
     --nrs-section-header-gap: 26px;
   }
 }
-
 
 /* consolidated: experience-system.css */
 /* Unified experience layer: editorial inner pages, branded wayfinding,
@@ -2521,7 +2512,6 @@ img.nrs-standalone-skeleton:not(.is-loaded) {
   }
 }
 
-
 /* nrs-final-polish-v41 */
 html[data-theme='light'] .nav-pill{background:rgba(255,255,255,.98)!important;border-color:rgba(17,19,18,.18)!important;box-shadow:0 18px 54px rgba(17,19,18,.12)!important;}
 html[data-theme='light'] .nav-link{color:#111312!important;}
@@ -2564,7 +2554,6 @@ main:has(.case-hero-img-container) .nrs-case-hero,main:has(.case-hero-img-contai
 .floating-resume-btn{position:fixed!important;right:24px!important;bottom:24px!important;z-index:5002!important;display:inline-flex!important;min-height:48px!important;padding:0 22px!important;border-radius:999px!important;box-shadow:0 16px 46px rgba(0,0,0,.28)!important;}
 @media (max-width:980px){main.container>.section-container[style*='text-align:center'],main.container>.section-container:has(.section-title):has(.btn-primary),main.container>.section-container>div[style*='text-align:center'],.nrs-services-fit,.nrs-about-redesign .clarity-section{grid-template-columns:1fr!important;}.site-footer .footer-top-grid,.site-footer .footer-nav-grid,.nrs-about-redesign .journey-grid,.nrs-about-redesign .clarity-pill-grid{grid-template-columns:1fr 1fr!important;}.nrs-services-list{border-left:0!important;border-top:1px solid var(--hairline)!important;}main.container>.section-container>div[style*='text-align:center'] .section-title,main.container>.section-container>div[style*='text-align:center'] .section-lead{grid-column:auto!important;}}
 @media (max-width:680px){.site-footer .footer-top-grid,.site-footer .footer-nav-grid,.nrs-about-redesign .journey-grid,.nrs-about-redesign .clarity-pill-grid{grid-template-columns:1fr!important;}.nrs-services-list li{grid-template-columns:1fr!important;}.floating-resume-btn{right:16px!important;bottom:16px!important;max-width:calc(100vw - 32px)!important;}}
-
 
 /* nrs-about-contact-v2 */
 .nrs-about-v2,
@@ -2887,7 +2876,6 @@ html[data-theme='light'] .form-status[data-tone='error'] { color: #9b2323 !impor
   }
 }
 
-
 /* nrs-services-contact-editorial-redesign */
 .nrs-services-index,
 .nrs-contact-redesign {
@@ -3204,7 +3192,6 @@ html[data-theme='light'] .form-status[data-tone='error'] { color: #9b2323 !impor
   .nrs-contact-form-actions { grid-template-columns: 1fr !important; }
 }
 
-
 /* nrs-mobile-header-polish-v45 */
 @media (max-width: 850px) {
   .nav-wrapper {
@@ -3403,7 +3390,6 @@ html[data-theme='light'] .form-status[data-tone='error'] { color: #9b2323 !impor
     }
   }
 }
-
 
 /* nrs-blog-detail-polish-v46 */
 .nrs-blog-detail-page,
