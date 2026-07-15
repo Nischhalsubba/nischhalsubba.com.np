@@ -52,6 +52,7 @@ const stages = [
   ['Enforce homepage and work build', ['node', 'scripts/enforce-home-work-contract.cjs', '--dist']],
   ['Enforce canonical Services build', ['node', 'scripts/enforce-services-template.cjs', '--dist']],
   ['Enforce canonical production routes', ['node', 'scripts/enforce-production-routes.cjs']],
+  ['Enforce one floating resume control', ['node', 'scripts/enforce-single-floating-resume.cjs', '--dist']],
   ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
 ];
 
