@@ -22,12 +22,8 @@ function pageTitle() {
 }
 
 function routeContext(path) {
-  if (/^\/project-[^/]+$/.test(path)) {
-    return { parentHref: '/projects', parentLabel: 'Work', backLabel: 'Back to work', showBack: true };
-  }
-  if (path.startsWith('/blog/') && path !== '/blog') {
-    return { parentHref: '/blog/', parentLabel: 'Writing', backLabel: 'Back to writing', showBack: true };
-  }
+  if (/^\/project-[^/]+$/.test(path)) return { parentHref: '/projects', parentLabel: 'Work', backLabel: 'Back to work', showBack: true };
+  if (path.startsWith('/blog/') && path !== '/blog') return { parentHref: '/blog/', parentLabel: 'Writing', backLabel: 'Back to writing', showBack: true };
   if (['/product-design-nepal', '/web3-ux-designer', '/saas-ux-designer', '/website-ux-design', '/figma-design-systems', '/ux-audit'].includes(path)) {
     return { parentHref: '/services', parentLabel: 'Services', backLabel: 'Back to services', showBack: true };
   }
@@ -41,7 +37,7 @@ function ensureExperienceStylesheet() {
 function addWayfinding() {
   const path = canonicalPath();
   const isBlogDetail = path.startsWith('/blog/') && path !== '/blog';
-  if (path === '/' || isBlogDetail || document.querySelector('.nrs-wayfinding, .nrs-blog-utility')) return;
+  if (path === '/' || isBlogDetail || document.querySelector('.nrs-detail-breadcrumb, .nrs-wayfinding, .nrs-blog-utility')) return;
 
   const main = document.querySelector('main');
   if (!main) return;
@@ -81,18 +77,7 @@ function addWayfinding() {
   }
 
   nav.appendChild(crumbs);
-
-  if (context.showBack) {
-    const back = document.createElement('a');
-    back.className = 'nrs-back-link';
-    back.href = context.parentHref;
-    back.textContent = context.backLabel;
-    nav.appendChild(back);
-  }
-
-  const anchor = main.querySelector(
-    '.hero-section, .nrs-services-index-hero, .nrs-contact-redesign-hero, .nrs-about-v2-hero, .nrs-contact-v2-hero, .nrs-services-hero, .nrs-contact-v3-hero, article, section',
-  );
+  const anchor = main.querySelector('.hero-section, .nrs-services-index-hero, .nrs-contact-redesign-hero, .nrs-about-v2-hero, .nrs-contact-v2-hero, .nrs-services-hero, .nrs-contact-v3-hero, article, section');
   if (anchor) anchor.prepend(nav);
   else main.prepend(nav);
 }
@@ -137,18 +122,14 @@ function addSkeleton(media) {
 
 function improveMediaLoading() {
   const heroMedia = new Set(document.querySelectorAll('.hero-section img, .nrs-services-hero img, .nrs-contact-v3-hero img, .case-hero-img-container img'));
-
   document.querySelectorAll('main img').forEach((image) => {
     image.decoding = 'async';
     if (heroMedia.has(image)) {
       image.loading = 'eager';
       image.fetchPriority = 'high';
-    } else {
-      image.loading = 'lazy';
-    }
+    } else image.loading = 'lazy';
     addSkeleton(image);
   });
-
   document.querySelectorAll('main iframe').forEach((frame) => {
     frame.loading = 'lazy';
     addSkeleton(frame);
