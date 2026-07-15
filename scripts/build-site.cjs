@@ -30,6 +30,7 @@ const stages = [
   ['Build Vite site', ['npx', 'vite', 'build']],
   ['Clean initial Vite public output', ['node', 'scripts/clean-vite-public-output.cjs']],
   ['Copy canonical HTML routes', ['node', 'scripts/copy-canonical-routes.cjs']],
+  ['Configure protected contact output', ['node', 'scripts/configure-contact-protection.cjs', '--dist']],
   ['Copy production assets', ['node', 'scripts/copy-static-assets.cjs']],
   ['Localize portrait assets in build', ['node', 'scripts/normalize-portrait-assets.cjs', '--dist']],
   ['Apply final site polish', ['node', 'scripts/ensure-site-final-polish.cjs', '--dist']],

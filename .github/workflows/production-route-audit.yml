@@ -1,0 +1,76 @@
+name: Production route audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: Production or preview base URL
+        required: false
+        default: https://nischhalsubba.com.np
+  schedule:
+    - cron: '17 2 * * *'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: production-route-audit
+  cancel-in-progress: true
+
+jobs:
+  routes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Audit custom-domain clean routes
+        id: audit
+        continue-on-error: true
+        env:
+          PRODUCTION_BASE_URL: ${{ inputs.base_url || 'https://nischhalsubba.com.np' }}
+        run: node scripts/audit-production-routes.mjs 2>&1 | tee production-route-audit.log
+
+      - name: Publish production route result
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+            const title = '[CI] Production route audit failure';
+            const { owner, repo } = context.repo;
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const issues = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'all', per_page: 100 });
+            const existing = issues.find((issue) => !issue.pull_request && issue.title === title);
+            if (process.env.AUDIT_OUTCOME === 'success') {
+              if (existing && existing.state === 'open') {
+                await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: 'closed', body: `Production route audit passed.\n\nRun: ${runUrl}` });
+              }
+              return;
+            }
+            const log = fs.existsSync('production-route-audit.log') ? fs.readFileSync('production-route-audit.log', 'utf8').slice(-50000) : 'No audit log was produced.';
+            const body = `Production route verification failed.\n\nRun: ${runUrl}\n\n\`\`\`text\n${log}\n\`\`\``;
+            if (existing) await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: 'open', body });
+            else await github.rest.issues.create({ owner, repo, title, body });
+
+      - name: Upload route audit log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-route-audit
+          path: production-route-audit.log
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Fail when production route validation fails
+        if: steps.audit.outcome != 'success'
+        run: exit 1

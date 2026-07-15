@@ -13,14 +13,48 @@ function isHtmlRoute(route) {
   return !/\.(?:txt|json|xml|webmanifest)$/i.test(route);
 }
 
+function isSameOrigin(url) {
+  try {
+    return new URL(url).origin === new URL(base).origin;
+  } catch {
+    return false;
+  }
+}
+
+function isAllowedConsoleMessage(message) {
+  const text = message.text();
+  return message.type() === 'warning' && /third-party cookie|favicon/i.test(text);
+}
+
 for (const [width, height] of viewports) {
   const context = await browser.newContext({ viewport: { width, height } });
   const page = await context.newPage();
 
   for (const route of routes) {
+    const runtimeErrors = [];
+    const failedRequests = [];
+    const consoleErrors = [];
+
+    const onPageError = (error) => runtimeErrors.push(error.message || String(error));
+    const onRequestFailed = (request) => {
+      if (isSameOrigin(request.url())) {
+        failedRequests.push(`${request.method()} ${request.url()} (${request.failure()?.errorText || 'failed'})`);
+      }
+    };
+    const onConsole = (message) => {
+      if (message.type() === 'error' && !isAllowedConsoleMessage(message)) consoleErrors.push(message.text());
+    };
+
+    page.on('pageerror', onPageError);
+    page.on('requestfailed', onRequestFailed);
+    page.on('console', onConsole);
+
     try {
-      const response = await page.goto(`${base}${route}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
+      const response = await page.goto(`${base}${route}`, { waitUntil: 'networkidle', timeout: 30000 });
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
+      if (runtimeErrors.length) throw new Error(`page errors: ${runtimeErrors.join(' | ')}`);
+      if (consoleErrors.length) throw new Error(`console errors: ${consoleErrors.join(' | ')}`);
+      if (failedRequests.length) throw new Error(`failed same-origin requests: ${failedRequests.join(' | ')}`);
       if (!isHtmlRoute(route)) continue;
 
       const result = await page.evaluate(() => {
@@ -57,6 +91,10 @@ for (const [width, height] of viewports) {
       if (result.activeByVisibleNav.some((count) => count > 1)) throw new Error(`multiple active links in one visible navigation: ${result.activeByVisibleNav.join(', ')}`);
     } catch (error) {
       failures.push(`${width}x${height} ${route}: ${error.message}`);
+    } finally {
+      page.off('pageerror', onPageError);
+      page.off('requestfailed', onRequestFailed);
+      page.off('console', onConsole);
     }
   }
 
