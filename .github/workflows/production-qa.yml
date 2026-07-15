@@ -1,9 +1,9 @@
 name: Production QA
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,19 +11,52 @@ permissions:
 
 concurrency:
   group: production-qa
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 40
+    env:
+      AUDIT_BASE_URL: https://nischhalsubba.com.np
+      SITE_URL: https://nischhalsubba.com.np
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-
+      - run: npm ci
+      - name: Wait for Cloudflare production
+        if: github.event_name == 'push'
+        run: sleep 90
+      - name: Install Chromium audit runtime
+        run: |
+          npm install --no-save playwright@1.54.1 pixelmatch@7.1.0 pngjs@7.0.0
+          npx playwright install --with-deps chromium
+      - name: Verify routes and redirects
+        run: npm run test:routes:live 2>&1 | tee production-routes.log
+      - name: Audit all live routes and viewports
+        run: node scripts/browser-audit.mjs 2>&1 | tee production-browser.log
+      - name: Audit live contact accessibility
+        run: node scripts/browser-contact-audit.mjs 2>&1 | tee production-contact.log
+      - name: Audit live visual baselines
+        run: node scripts/visual-regression.mjs 2>&1 | tee production-visual.log
+      - name: Verify production security headers
+        shell: bash
+        run: |
+          set -euo pipefail
+          headers=$(curl -fsSI https://nischhalsubba.com.np/ | tr -d '\r' | tr '[:upper:]' '[:lower:]')
+          for header in content-security-policy strict-transport-security x-content-type-options referrer-policy permissions-policy cross-origin-opener-policy; do
+            grep -q "^${header}:" <<<"$headers" || { echo "Missing $header"; exit 1; }
+          done
+      - name: Upload QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-qa-${{ github.sha }}
+          path: |
+            production-*.log
+            tests/visual/results
+          if-no-files-found: ignore
+          retention-days: 14
