@@ -2,7 +2,7 @@ const ALLOWED_ORIGINS = new Set([
   'https://nischhalsubba.com.np',
   'https://www.nischhalsubba.com.np',
 ]);
-const CONTACT_EMAIL = 'hinischhalsubba@gmail.com';
+const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
 const DELIVERY_TIMEOUT_MS = 10000;
 
 function json(payload, status = 200) {
