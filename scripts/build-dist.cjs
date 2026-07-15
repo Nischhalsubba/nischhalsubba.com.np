@@ -1,0 +1,38 @@
+const { runStages } = require('./run-build-stages.cjs');
+
+const stages = [
+  ['Preflight build script syntax', ['node', 'scripts/preflight-build-scripts.cjs']],
+  ['Build Vite site', ['npx', 'vite', 'build']],
+  ['Clean initial Vite public output', ['node', 'scripts/clean-vite-public-output.cjs']],
+  ['Copy canonical HTML routes', ['node', 'scripts/copy-canonical-routes.cjs']],
+  ['Copy production assets', ['node', 'scripts/copy-static-assets.cjs']],
+  ['Localize portrait assets', ['node', 'scripts/normalize-portrait-assets.cjs', '--dist']],
+  ['Apply final site polish', ['node', 'scripts/ensure-site-final-polish.cjs', '--dist']],
+  ['Apply about/contact v2 styles', ['node', 'scripts/ensure-about-contact-v2-styles.cjs', '--dist']],
+  ['Apply mobile header polish', ['node', 'scripts/ensure-mobile-header-polish.cjs', '--dist']],
+  ['Apply canonical and redirect cleanup', ['node', 'scripts/ensure-final-seo-canonical-cleanup.cjs', '--dist']],
+  ['Normalize production canonicals', ['node', 'scripts/normalize-production-canonicals.cjs', '--dist']],
+  ['Reapply single stylesheet', ['node', 'scripts/compile-single-stylesheet.cjs', '--dist']],
+  ['Finalize article navigation', ['node', 'scripts/ensure-navigation-font-consistency.cjs', '--dist']],
+  ['Enforce production typography', ['node', 'scripts/ensure-typography-system.cjs', '--dist']],
+  ['Apply production responsive guardrails', ['node', 'scripts/ensure-responsive-design-guardrails.cjs', '--dist']],
+  ['Enforce production article navigation', ['node', 'scripts/normalize-blog-detail-template.cjs', '--dist']],
+  ['Normalize production semantic headings', ['node', 'scripts/ensure-semantic-headings.cjs', '--dist']],
+  ['Apply audit completion pass', ['node', 'scripts/ensure-audit-completion.cjs']],
+  ['Finalize shared site shell', ['node', 'scripts/ensure-shared-site-shell.cjs', '--dist']],
+  ['Normalize case study system', ['node', 'scripts/normalize-case-study-system.cjs', '--dist']],
+  ['Clean retired output', ['node', 'scripts/clean-vite-public-output.cjs']],
+  ['Validate About and Contact', ['node', 'scripts/validate-about-contact.cjs', '--dist']],
+  ['Enforce homepage and work', ['node', 'scripts/enforce-home-work-contract.cjs', '--dist']],
+  ['Enforce canonical Services', ['node', 'scripts/enforce-services-template.cjs', '--dist']],
+  ['Enforce production routes', ['node', 'scripts/enforce-production-routes.cjs']],
+  ['Enforce one floating resume control', ['node', 'scripts/enforce-single-floating-resume.cjs', '--dist']],
+  ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
+  ['Configure protected contact output', ['node', 'scripts/configure-contact-protection.cjs', '--dist']],
+  ['Normalize production runtime', ['node', 'scripts/normalize-html-runtime.cjs', '--dist']],
+  ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
+  ['Generate raster social previews', ['node', 'scripts/generate-social-previews.cjs']],
+];
+
+runStages(stages, 'build');
+console.log('\n[build] Dist-only production build completed successfully.');
