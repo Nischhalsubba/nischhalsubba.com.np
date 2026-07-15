@@ -9,6 +9,7 @@ const stages = [
   ['Compose canonical About page', ['node', 'scripts/spacious-pages/about.cjs', '--dist']],
   ['Compose canonical Contact page', ['node', 'scripts/spacious-pages/contact.cjs', '--dist']],
   ['Compose canonical homepage and work surfaces', ['node', 'scripts/spacious-pages/home-work.cjs', '--dist']],
+  ['Compose canonical Services page', ['node', 'scripts/spacious-pages/services.cjs', '--dist']],
   ['Localize portrait assets', ['node', 'scripts/normalize-portrait-assets.cjs', '--dist']],
   ['Apply final site polish', ['node', 'scripts/ensure-site-final-polish.cjs', '--dist']],
   ['Apply about/contact v2 styles', ['node', 'scripts/ensure-about-contact-v2-styles.cjs', '--dist']],
