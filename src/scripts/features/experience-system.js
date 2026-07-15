@@ -97,14 +97,6 @@ function addWayfinding() {
   else main.prepend(nav);
 }
 
-function ensureGridCanvas() {
-  if (document.getElementById('grid-canvas')) return;
-  const canvas = document.createElement('canvas');
-  canvas.id = 'grid-canvas';
-  canvas.setAttribute('aria-hidden', 'true');
-  document.body.prepend(canvas);
-}
-
 function addSkeleton(media) {
   if (media.dataset.nrsLoadingReady === 'true') return;
   media.dataset.nrsLoadingReady = 'true';
@@ -180,7 +172,6 @@ function markInteractiveElements() {
 
 export function initExperienceSystem() {
   ensureExperienceStylesheet();
-  ensureGridCanvas();
   addWayfinding();
   improveMediaLoading();
   markInteractiveElements();
