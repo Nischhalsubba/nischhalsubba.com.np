@@ -25,6 +25,8 @@ const stages = [
   ['Enforce two-role typography', ['node', 'scripts/ensure-typography-system.cjs']],
   ['Apply responsive guardrails', ['node', 'scripts/ensure-responsive-design-guardrails.cjs']],
   ['Enforce one article navigation', ['node', 'scripts/normalize-blog-detail-template.cjs']],
+  ['Normalize detail breadcrumbs', ['node', 'scripts/normalize-detail-wayfinding.cjs']],
+  ['Apply mobile-first detail layout', ['node', 'scripts/ensure-mobile-first-detail-layout.cjs']],
   ['Normalize shared site shell', ['node', 'scripts/ensure-shared-site-shell.cjs']],
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
 ];
