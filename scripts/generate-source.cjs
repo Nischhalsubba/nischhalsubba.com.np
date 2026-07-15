@@ -28,6 +28,7 @@ const stages = [
   ['Normalize detail breadcrumbs', ['node', 'scripts/normalize-detail-wayfinding.cjs']],
   ['Apply mobile-first detail layout', ['node', 'scripts/ensure-mobile-first-detail-layout.cjs']],
   ['Normalize shared site shell', ['node', 'scripts/ensure-shared-site-shell.cjs']],
+  ['Apply final blog detail cleanup', ['node', 'scripts/ensure-blog-detail-cleanup.cjs']],
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
 ];
 
