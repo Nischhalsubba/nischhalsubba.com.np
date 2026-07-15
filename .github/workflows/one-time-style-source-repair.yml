@@ -1,0 +1,52 @@
+name: One-time source stylesheet repair
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/one-time-style-source-repair.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Repair authored stylesheet tokens
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const file = 'style.css';
+          let css = fs.readFileSync(file, 'utf8');
+          css = css
+            .replace(/^\s*500;600;700;800&display=swap'\);\s*$/m, '')
+            .replace(/Version:\s*[0-9.]+/, 'Version: 51.0')
+            .replace(/html\[data-theme='light'\]([\s\S]*?)--text-tertiary:\s*#[0-9a-f]{6};/i,
+              (_match, prefix) => `html[data-theme='light']${prefix}--text-tertiary: #5f655b;`)
+            .replace(/\n{3,}/g, '\n\n');
+          fs.writeFileSync(file, css, 'utf8');
+          if (/500;600;700;800&display=swap/.test(css)) throw new Error('Malformed font residue remains.');
+          if (!/html\[data-theme='light'\][\s\S]*?--text-tertiary:\s*#5f655b;/i.test(css)) {
+            throw new Error('Light tertiary token was not repaired.');
+          }
+          NODE
+
+      - name: Commit repaired source
+        shell: bash
+        run: |
+          if git diff --quiet -- style.css; then
+            echo "Stylesheet already clean."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add style.css
+          git commit -m "fix(css): remove malformed font residue and raise light contrast"
+          git push origin HEAD:main
