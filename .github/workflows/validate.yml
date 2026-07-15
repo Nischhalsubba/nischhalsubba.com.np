@@ -38,7 +38,10 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          npm run validate 2>&1 | tee validation.log
+          {
+            npm run validate
+            git diff --exit-code
+          } 2>&1 | tee validation.log
 
       - name: Publish validation result
         if: always()
