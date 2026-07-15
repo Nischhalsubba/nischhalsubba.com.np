@@ -1,9 +1,10 @@
 import { $ } from '../utils/dom.js';
 
-const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
+const CONTACT_EMAIL = 'hinischhalsubba@gmail.com';
 const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 const FIRST_PARTY_ENDPOINT = '/api/contact';
 const TURNSTILE_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+const REQUEST_TIMEOUT_MS = 15000;
 
 function getFieldErrorId(field) {
   const safeName = (field.name || field.id || 'field').replace(/[^a-z0-9_-]/gi, '-');
@@ -193,11 +194,15 @@ export function initContactForm() {
     form.setAttribute('aria-busy', 'true');
     setStatus(turnstile.configured ? 'Sending your message through the protected contact endpoint...' : 'Sending your message securely through the form provider...', 'neutral');
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
     try {
       const response = await fetch(turnstile.configured ? FIRST_PARTY_ENDPOINT : FALLBACK_ENDPOINT, {
         method: 'POST',
         body: buildSubmissionPayload(form),
         headers: { Accept: 'application/json' },
+        signal: controller.signal,
       });
       const result = await response.json().catch(() => ({}));
 
@@ -212,9 +217,13 @@ export function initContactForm() {
       setStatus(result.message || 'Thanks. Your message was sent successfully.', 'success');
     } catch (error) {
       console.error('[portfolio] contact form submission failed', error);
-      setStatus(error.message || 'The direct form could not send your message. Your entries are still here; use the email button to send them manually.', 'error');
+      const message = error?.name === 'AbortError'
+        ? 'The message service took too long to respond. Your entries are still here; use the email button or try again.'
+        : error.message || 'The direct form could not send your message. Your entries are still here; use the email button to send them manually.';
+      setStatus(message, 'error');
       emailFallback?.focus({ preventScroll: false });
     } finally {
+      window.clearTimeout(timeoutId);
       form.removeAttribute('aria-busy');
       if (submitButton) {
         submitButton.disabled = false;
