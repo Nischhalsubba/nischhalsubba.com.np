@@ -27,11 +27,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Build audit route manifest
-        run: npm run build:dist
       - name: Wait for Cloudflare production
         if: github.event_name == 'push'
         run: sleep 90
+      - name: Fetch live sitemap for browser route discovery
+        run: |
+          mkdir -p dist
+          curl --fail --silent --show-error https://nischhalsubba.com.np/sitemap.xml -o dist/sitemap.xml
       - name: Install Chromium audit runtime
         run: |
           npm install --no-save playwright@1.54.1 pixelmatch@7.1.0 pngjs@7.0.0
