@@ -1,14 +1,16 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const root = path.resolve(__dirname, '..');
+const repositoryRoot = path.resolve(__dirname, '..');
+const useDist = process.argv.includes('--dist');
+const root = useDist ? path.join(repositoryRoot, 'dist') : repositoryRoot;
 const htmlFiles = [];
 const styleHref = '/style.css?v=50.0';
 const scriptSrc = '/script.js?v=35.0';
 
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    if (entry.name === 'node_modules' || entry.name === 'dist' || entry.name === '.git') continue;
+    if (entry.name === 'node_modules' || entry.name === '.git' || (!useDist && entry.name === 'dist')) continue;
     const filePath = path.join(directory, entry.name);
     if (entry.isDirectory()) walk(filePath);
     else if (entry.isFile() && entry.name.endsWith('.html')) htmlFiles.push(filePath);
@@ -52,6 +54,7 @@ function normalize(content) {
   return output;
 }
 
+if (!fs.existsSync(root)) throw new Error(`HTML runtime target does not exist: ${root}`);
 walk(root);
 let touched = 0;
 for (const filePath of htmlFiles) {
@@ -63,4 +66,4 @@ for (const filePath of htmlFiles) {
   }
 }
 
-console.log(`Normalized ${htmlFiles.length} HTML files to style.css v50 and one stable runtime script; updated ${touched}.`);
+console.log(`Normalized ${htmlFiles.length} ${useDist ? 'production' : 'source'} HTML files to style.css v50 and one stable runtime script; updated ${touched}.`);
