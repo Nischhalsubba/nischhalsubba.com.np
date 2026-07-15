@@ -17,6 +17,8 @@ const stages = [
   ['Enforce production typography', ['node', 'scripts/ensure-typography-system.cjs', '--dist']],
   ['Apply production responsive guardrails', ['node', 'scripts/ensure-responsive-design-guardrails.cjs', '--dist']],
   ['Enforce production article navigation', ['node', 'scripts/normalize-blog-detail-template.cjs', '--dist']],
+  ['Normalize production breadcrumbs', ['node', 'scripts/normalize-detail-wayfinding.cjs', '--dist']],
+  ['Apply mobile-first production layout', ['node', 'scripts/ensure-mobile-first-detail-layout.cjs', '--dist']],
   ['Normalize production semantic headings', ['node', 'scripts/ensure-semantic-headings.cjs', '--dist']],
   ['Apply audit completion pass', ['node', 'scripts/ensure-audit-completion.cjs']],
   ['Finalize shared site shell', ['node', 'scripts/ensure-shared-site-shell.cjs', '--dist']],
