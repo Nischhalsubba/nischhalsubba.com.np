@@ -1,0 +1,33 @@
+const { runStages } = require('./run-build-stages.cjs');
+
+const stages = [
+  ['Preflight build script syntax', ['node', 'scripts/preflight-build-scripts.cjs']],
+  ['Sanitize source CSS', ['node', 'scripts/sanitize-source-css.cjs']],
+  ['Generate portfolio content', ['node', 'scripts/update-portfolio-content.cjs']],
+  ['Generate about and contact pages', ['node', 'scripts/generate-about-contact-pages.cjs']],
+  ['Apply contact redesign', ['node', 'scripts/ensure-contact-redesign.cjs']],
+  ['Apply about/contact v2', ['node', 'scripts/ensure-about-contact-v2.cjs']],
+  ['Apply homepage audit copy', ['node', 'scripts/ensure-homepage-audit-copy.cjs']],
+  ['Apply entity proof signals', ['node', 'scripts/ensure-entity-proof-signals.cjs']],
+  ['Generate SEO growth assets', ['node', 'scripts/ensure-seo-growth-assets.cjs']],
+  ['Apply search intent metadata', ['node', 'scripts/ensure-search-intents.cjs']],
+  ['Apply SEO code fixes', ['node', 'scripts/ensure-seo-code-fixes.cjs']],
+  ['Generate blog covers', ['node', 'scripts/ensure-blog-generated-covers.cjs']],
+  ['Apply homepage hero layout', ['node', 'scripts/ensure-homepage-hero-layout.cjs']],
+  ['Apply spacious core page layouts', ['node', 'scripts/ensure-spacious-core-pages.cjs']],
+  ['Normalize case study system', ['node', 'scripts/normalize-case-study-system.cjs']],
+  ['Validate About and Contact', ['node', 'scripts/validate-about-contact.cjs']],
+  ['Enforce homepage and work', ['node', 'scripts/enforce-home-work-contract.cjs']],
+  ['Enforce canonical Services', ['node', 'scripts/enforce-services-template.cjs']],
+  ['Normalize semantic headings', ['node', 'scripts/ensure-semantic-headings.cjs']],
+  ['Compile single design stylesheet', ['node', 'scripts/compile-single-stylesheet.cjs']],
+  ['Normalize article navigation and typography', ['node', 'scripts/ensure-navigation-font-consistency.cjs']],
+  ['Enforce two-role typography', ['node', 'scripts/ensure-typography-system.cjs']],
+  ['Apply responsive guardrails', ['node', 'scripts/ensure-responsive-design-guardrails.cjs']],
+  ['Enforce one article navigation', ['node', 'scripts/normalize-blog-detail-template.cjs']],
+  ['Normalize shared site shell', ['node', 'scripts/ensure-shared-site-shell.cjs']],
+  ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
+];
+
+runStages(stages, 'generate');
+console.log('\n[generate] Canonical source generation completed successfully.');
