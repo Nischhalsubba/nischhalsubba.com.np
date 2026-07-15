@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '../..');
+const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 
 const proofSection = `<section id="homepage-proof-discovery" class="nrs-home-proof-v49 reveal-on-scroll" aria-labelledby="site-proof-heading">
   <div class="nrs-home-proof-v49__intro">
@@ -18,7 +19,7 @@ const proofSection = `<section id="homepage-proof-discovery" class="nrs-home-pro
 </section>`;
 
 function updateHome(file) {
-  const target = path.join(root, file);
+  const target = path.join(targetRoot, file);
   if (!fs.existsSync(target)) return;
   let html = fs.readFileSync(target, 'utf8');
   const existing = /<section id="homepage-proof-discovery"[\s\S]*?<\/section>/i;
@@ -28,18 +29,27 @@ function updateHome(file) {
 }
 
 function updateProjects() {
-  const target = path.join(root, 'projects.html');
+  const target = path.join(targetRoot, 'projects.html');
+  if (!fs.existsSync(target)) throw new Error(`Missing target page: ${path.relative(root, target)}`);
+
   let html = fs.readFileSync(target, 'utf8');
   const controls = `<div class="work-controls nrs-work-toolbar-v49 reveal-on-scroll">
     <div class="nrs-work-toolbar-v49__top"><div><p class="eyebrow">Browse work</p><h2>Find the work most relevant to you.</h2></div><p id="nrs-work-summary" class="nrs-work-summary">Showing all projects.</p></div>
     <div class="nrs-work-toolbar-v49__controls"><div class="filter-row" role="group" aria-label="Filter projects by domain"><button class="filter-btn active" type="button" data-filter="all">All work</button><button class="filter-btn" type="button" data-filter="web3">Web3</button><button class="filter-btn" type="button" data-filter="fintech">Fintech</button><button class="filter-btn" type="button" data-filter="saas">SaaS</button><button class="filter-btn" type="button" data-filter="mobile">Mobile</button><button class="filter-btn" type="button" data-filter="website">Websites</button><button class="filter-btn" type="button" data-filter="frontend">Front-end</button></div><div class="nrs-work-search-v49"><label for="search-work">Search</label><div><input type="search" id="search-work" class="search-input" placeholder="Project, role or domain" aria-label="Search projects" /><button id="clear-work" type="button" aria-label="Clear project search">Clear</button></div></div></div>
   </div>`;
-  html = html.replace(/<div class="work-controls[\s\S]*?<\/div><div class="project-grid">/i, `${controls}<div id="nrs-no-results" class="nrs-no-results"><h3>No matching projects.</h3><p>Try another domain or a broader search term.</p></div><div class="project-grid">`);
-  html = html.replace(/<body(?:\s+class="([^"]*)")?([^>]*)>/i, (_m, current = '', rest = '') => `<body class="${`${current} nrs-inner-page nrs-work-page`.trim().replace(/\s+/g, ' ')}"${rest}>`);
+
+  html = html.replace(
+    /<div class="work-controls[\s\S]*?<\/div><div class="project-grid">/i,
+    `${controls}<div id="nrs-no-results" class="nrs-no-results"><h3>No matching projects.</h3><p>Try another domain or a broader search term.</p></div><div class="project-grid">`,
+  );
+  html = html.replace(/<body(?:\s+class="([^"]*)")?([^>]*)>/i, (_match, current = '', rest = '') => {
+    const classes = `${current} nrs-inner-page nrs-work-page`.trim().replace(/\s+/g, ' ');
+    return `<body class="${classes}"${rest}>`;
+  });
   fs.writeFileSync(target, html, 'utf8');
 }
 
 updateHome('index.html');
 updateHome('home-v2.html');
 updateProjects();
-console.log('Redesigned homepage proof and project filtering surfaces.');
+console.log(`Redesigned homepage proof and project filtering surfaces in ${path.relative(root, targetRoot) || 'source'}.`);
