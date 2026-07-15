@@ -27,6 +27,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Build audit route manifest
+        run: npm run build:dist
       - name: Wait for Cloudflare production
         if: github.event_name == 'push'
         run: sleep 90
@@ -37,19 +39,31 @@ jobs:
       - name: Verify routes and redirects
         id: routes
         continue-on-error: true
-        run: npm run test:routes:live 2>&1 | tee production-routes.log
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run test:routes:live 2>&1 | tee production-routes.log
       - name: Audit all live routes and viewports
         id: browser
         continue-on-error: true
-        run: node scripts/browser-audit.mjs 2>&1 | tee production-browser.log
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/browser-audit.mjs 2>&1 | tee production-browser.log
       - name: Audit live contact accessibility
         id: contact
         continue-on-error: true
-        run: node scripts/browser-contact-audit.mjs 2>&1 | tee production-contact.log
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/browser-contact-audit.mjs 2>&1 | tee production-contact.log
       - name: Audit live visual baselines
         id: visual
         continue-on-error: true
-        run: node scripts/visual-regression.mjs 2>&1 | tee production-visual.log
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/visual-regression.mjs 2>&1 | tee production-visual.log
       - name: Verify production security headers
         id: headers
         continue-on-error: true
@@ -74,13 +88,7 @@ jobs:
           script: |
             const fs = require('fs');
             const title = '[QA] Production website audit';
-            const outcomes = {
-              routes: process.env.ROUTES,
-              browser: process.env.BROWSER,
-              contact: process.env.CONTACT,
-              visual: process.env.VISUAL,
-              headers: process.env.HEADERS,
-            };
+            const outcomes = { routes: process.env.ROUTES, browser: process.env.BROWSER, contact: process.env.CONTACT, visual: process.env.VISUAL, headers: process.env.HEADERS };
             const run = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = [`Production QA for \`${context.sha}\`.`, '', `Run: ${run}`, '', `Outcomes: \`${JSON.stringify(outcomes)}\``];
             for (const [label, file] of [['Routes','production-routes.log'],['Browser','production-browser.log'],['Contact','production-contact.log'],['Visual','production-visual.log'],['Headers','production-headers.log']]) {
