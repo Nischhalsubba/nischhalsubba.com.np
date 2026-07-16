@@ -26,9 +26,29 @@ function isSameOrigin(url) {
   }
 }
 
+function isCloudflareTelemetry(url) {
+  try {
+    const parsed = new URL(url, base);
+    return parsed.origin === new URL(base).origin && /^\/cdn-cgi\/(?:rum|trace)(?:\/|$)/i.test(parsed.pathname);
+  } catch {
+    return false;
+  }
+}
+
+function isTurnstileResource(url) {
+  try {
+    return new URL(url, base).hostname === 'challenges.cloudflare.com';
+  } catch {
+    return false;
+  }
+}
+
 function isAllowedConsoleMessage(message) {
   const text = message.text();
-  return message.type() === 'warning' && /third-party cookie|favicon/i.test(text);
+  const locationUrl = message.location()?.url || '';
+  if (message.type() === 'warning' && /third-party cookie|favicon/i.test(text)) return true;
+  if (/Failed to load resource: the server responded with a status of 400/i.test(text) && isTurnstileResource(locationUrl)) return true;
+  return false;
 }
 
 for (const [width, height] of viewports) {
@@ -42,7 +62,9 @@ for (const [width, height] of viewports) {
 
     const onPageError = (error) => runtimeErrors.push(error.message || String(error));
     const onRequestFailed = (request) => {
-      if (isSameOrigin(request.url())) failedRequests.push(`${request.method()} ${request.url()} (${request.failure()?.errorText || 'failed'})`);
+      const url = request.url();
+      if (!isSameOrigin(url) || isCloudflareTelemetry(url)) return;
+      failedRequests.push(`${request.method()} ${url} (${request.failure()?.errorText || 'failed'})`);
     };
     const onConsole = (message) => {
       if (message.type() === 'error' && !isAllowedConsoleMessage(message)) consoleErrors.push(message.text());
