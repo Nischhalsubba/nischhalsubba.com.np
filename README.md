@@ -1,24 +1,58 @@
-# Nischhal Raj Subba Portfolio
-
 <!-- interactive-readme-standard:start -->
 
-> [!NOTE]
-> **Branch-specific documentation:** this section is maintained for [`fix/mobile-tablet-blank-space`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space). It is generated from the files present on this branch and preserves the project-authored README below.
+<div align="center">
 
-<details open>
-<summary><strong>Interactive repository guide</strong></summary>
+# nischhalsubba.com.np
 
-## Branch overview
+**Branch-aware technical guide for [`fix/mobile-tablet-blank-space`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space)**
 
-| Item | Value |
+<p><img alt="branch: fix/mobile-tablet-blank-space" src="https://img.shields.io/static/v1?label=&message=branch%3A%20fix%2Fmobile-tablet-blank-space&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+
+<p>
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space"><strong>Browse source</strong></a> ·
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/issues"><strong>Issues</strong></a> ·
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=fix%2Fmobile-tablet-blank-space"><strong>Open in Codespaces</strong></a>
+</p>
+
+</div>
+
+> [!IMPORTANT]
+> This guide is generated from the files actually present on `fix/mobile-tablet-blank-space`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
+
+## At a glance
+
+| Item | Detected value |
 |---|---|
-| Repository | [`Nischhalsubba/nischhalsubba.com.np`](https://github.com/Nischhalsubba/nischhalsubba.com.np) |
-| Branch | [`fix/mobile-tablet-blank-space`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space) |
-| Detected stack | Vite, TypeScript, WordPress, JavaScript, HTML, PHP, CSS |
-| Detected manifests | package.json |
-| Documentation policy | Every maintained branch must explain purpose, setup, structure, architecture, flows, testing, delivery, security, and ownership. |
+| Purpose | Production portfolio for Nischhal Raj Subba, a Nepal-based product designer focused on Web3, SaaS, fintech, UX systems, and developer-ready design handoff. |
+| Branch role | Compared with `main` |
+| Stack | Vite, TypeScript, WordPress, JavaScript, HTML, PHP, CSS |
+| Manifests | package.json |
+| Prerequisites | Node.js |
+| Delivery | vercel.json, GitHub Actions |
+| License | No license file detected |
 
-## Repository structure
+## Branch scope
+
+This branch differs from the default branch in the following detected paths:
+
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/mobile-tablet-blank-space/README.md)
+
+## Quick start
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
+
+### Configuration surface
+
+- No committed environment example file was detected.
+
+> Never commit secrets, private keys, production credentials, customer data, or unredacted infrastructure details.
+
+## Repository map
 
 ```mermaid
 flowchart TD
@@ -44,9 +78,16 @@ flowchart TD
     ROOT --> MORE["+ 75 more top-level entries"]
 ```
 
-The diagram is generated from the branch's actual top-level files and directories. Use the branch link above for complete source navigation.
+| Responsibility | Detected source paths |
+|---|---|
+| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/src) |
+| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/api) |
+| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/data) |
+| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/tests) |
+| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/docs) |
+| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/scripts) |
 
-## Website or application structure
+## Website or application map
 
 ```mermaid
 flowchart TD
@@ -54,25 +95,25 @@ flowchart TD
     APP --> R0["src/app"]
     APP --> R1["public"]
     R0 --> F0["src/app/layout.tsx"]
-    R1 --> F1["public/blog/design-handoff-checklist-startup-product-teams.html"]
-    R1 --> F2["public/blog/design-systems-small-product-teams.html"]
-    R1 --> F3["public/blog/figma-handoff-notes-for-developers.html"]
-    R1 --> F4["public/blog/hire-product-designer-nepal-saas-web3.html"]
-    R1 --> F5["public/blog/index.html"]
-    R1 --> F6["public/blog/prioritize-ux-audit-findings-before-redesign.html"]
-    R1 --> F7["public/blog/responsive-saas-dashboard-handoff-notes.html"]
-    R1 --> F8["public/blog/role-based-saas-dashboard-ux.html"]
-    R1 --> F9["public/blog/saas-dashboard-empty-state-ux-guide.html"]
-    R1 --> F10["public/blog/saas-dashboard-empty-states-product-clarity.html"]
-    R1 --> F11["public/blog/saas-dashboard-empty-states-that-help-users-recover.html"]
+    R1 --> F1["public/services.html"]
+    R1 --> F2["public/nischhal-raj-subba.html"]
+    R1 --> F3["public/privacy.html"]
+    R1 --> F4["public/blog/prioritize-ux-audit-findings-before-redesign.html"]
+    R1 --> F5["public/blog/saas-dashboard-empty-states-that-help-users-recover.html"]
+    R1 --> F6["public/blog/responsive-saas-dashboard-handoff-notes.html"]
+    R1 --> F7["public/blog/when-startup-needs-ux-audit-before-redesign.html"]
+    R1 --> F8["public/blog/figma-handoff-notes-for-developers.html"]
+    R1 --> F9["public/blog/web3-wallet-connection-ux.html"]
+    R1 --> F10["public/blog/index.html"]
+    R1 --> F11["public/blog/role-based-saas-dashboard-ux.html"]
 ```
 
-## Application and responsibility flow
+## Architecture and responsibility flow
 
 ```mermaid
 flowchart LR
-    ACTOR["User / contributor"]
-    ACTOR --> A0["Interface: public, src"]
+    USER["User / contributor"]
+    USER --> A0["Interface: public, src"]
     A0 --> A1["Application logic: api"]
     A1 --> A2["Data: data"]
     A2 --> A3["Quality: tests"]
@@ -81,30 +122,162 @@ flowchart LR
     A5 --> DELIVERY["Delivery: vercel.json, GitHub Actions"]
 ```
 
-## Change-to-delivery flow
+<details open>
+<summary><strong>Request lifecycle</strong></summary>
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor U as User / client
+    participant I as Interface
+    participant A as API / application
+    participant D as Data layer
+    U->>I: Trigger action
+    I->>A: Send validated request
+    A->>D: Read or write data
+    D-->>A: Return result
+    A-->>I: Return response
+    I-->>U: Render success or error state
+```
+
+Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/api).
+
+</details>
+<details>
+<summary><strong>Data flow and model surface</strong></summary>
 
 ```mermaid
 flowchart LR
-    CHANGE["Change on fix/mobile-tablet-blank-space"]
-    CHECK["Validate: npm run dev, npm run build, npm run preview"]
-    REVIEW["Review documentation and architecture impact"]
-    RELEASE["Merge, release, or deploy according to this branch"]
-    CHANGE --> CHECK --> REVIEW --> RELEASE
+    INPUT["User or system input"] --> VALIDATE["Validate and normalize"]
+    VALIDATE --> LOGIC["Application logic"]
+    LOGIC --> STORE["Persistent or local storage"]
+    STORE --> READ["Query / retrieval"]
+    READ --> OUTPUT["UI, API, report, or export"]
 ```
 
-## README requirements for this branch
+Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/data).
 
-- Explain what this branch contains and how it differs from the default branch.
-- Keep installation, configuration, usage, testing, deployment, security, support, and license information accurate.
-- Document repository, website or application, API, data, authentication, background-job, and deployment flows when they exist.
-- Prefer Mermaid diagrams and expandable `<details>` sections for visual navigation.
-- Link diagrams and modules to real source paths; never invent missing components.
-- Preserve project-specific documentation and update diagrams whenever architecture or major paths change.
-- Treat secrets, private infrastructure, customer data, and credentials as prohibited README content.
+</details>
+<details>
+<summary><strong>Background jobs and scheduled work</strong></summary>
+
+```mermaid
+flowchart LR
+    EVENT["Event / schedule"] --> QUEUE["Queue or job definition"]
+    QUEUE --> WORKER["Worker / processor"]
+    WORKER --> RESULT["Persist result or emit side effect"]
+    WORKER -->|failure| RETRY["Retry, alert, or dead-letter path"]
+```
+
+Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/mobile-tablet-blank-space/src/worker.js).
+
+</details>
+
+## Quality, security, and operations
+
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### Quality
+
+- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space/tests)
+
+Detected commands:
+- `npm run dev`
+- `npm run build`
+- `npm run preview`
+
+</td>
+<td width="33%" valign="top">
+
+### Security
+
+- No dedicated security policy or automated dependency configuration was detected.
+
+Review authentication, authorization, input validation, dependency updates, secret handling, and failure recovery before release.
+
+</td>
+<td width="34%" valign="top">
+
+### Observability
+
+- [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/mobile-tablet-blank-space/src/scripts/features/analytics-events.js)
+- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/mobile-tablet-blank-space/assets/analytics-events-Bq4IAYSg.js)
+
+Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
+
+</td>
+</tr>
+</table>
+
+## Delivery flow
+
+```mermaid
+flowchart LR
+    CHANGE["Change on fix/mobile-tablet-blank-space"] --> CHECK["Tests and quality checks"]
+    CHECK --> REVIEW["Review architecture and documentation impact"]
+    REVIEW --> BUILD["Build or package"]
+    BUILD --> DEPLOY["Deploy or release"]
+    DEPLOY --> VERIFY["Verify health and rollback readiness"]
+```
+
+### Automation detected
+
+- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/mobile-tablet-blank-space/.github/workflows/browser-audit.yml)
+- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/mobile-tablet-blank-space/.github/workflows/deploy-cloudflare.yml)
+- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/mobile-tablet-blank-space/.github/workflows/production-qa.yml)
+- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/mobile-tablet-blank-space/.github/workflows/production-route-audit.yml)
+- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/mobile-tablet-blank-space/.github/workflows/validate.yml)
+
+## Contribution flow
+
+```mermaid
+flowchart LR
+    FORK["Create branch"] --> CHANGE["Make focused change"]
+    CHANGE --> TEST["Run relevant checks"]
+    TEST --> DOCS["Update README and diagrams"]
+    DOCS --> PR["Open pull request"]
+    PR --> REVIEW["Review and iterate"]
+    REVIEW --> MERGE["Merge when ready"]
+```
+
+- Keep changes focused and explain architectural consequences.
+- Run the checks relevant to the changed area.
+- Update diagrams whenever routes, modules, data models, authentication, jobs, or delivery paths change.
+- Add screenshots or recordings for visual behavior changes when useful.
+- Use issues for reproducible defects and pull requests for reviewable changes.
+
+## Ownership and support
+
+| Topic | Source |
+|---|---|
+| Repository | [`Nischhalsubba/nischhalsubba.com.np`](https://github.com/Nischhalsubba/nischhalsubba.com.np) |
+| Branch | [`fix/mobile-tablet-blank-space`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/mobile-tablet-blank-space) |
+| Ownership | No CODEOWNERS file detected |
+| Contributing | Use the contribution flow above |
+| Support | [Open or review issues](https://github.com/Nischhalsubba/nischhalsubba.com.np/issues) |
+| License | No license file detected |
+
+<details>
+<summary><strong>Documentation maintenance checklist</strong></summary>
+
+- [ ] Purpose and branch scope are accurate.
+- [ ] Setup and configuration commands still work.
+- [ ] Repository, application, API, data, authentication, job, and deployment diagrams match the code.
+- [ ] Tests, security controls, observability, and rollback behavior are documented.
+- [ ] Links point to real files on this branch.
+- [ ] No secrets or private operational details are exposed.
 
 </details>
 
 <!-- interactive-readme-standard:end -->
+
+<!-- project-authored-notes:start -->
+<details>
+<summary><strong>Project-authored notes preserved from this branch</strong></summary>
+
+# Nischhal Raj Subba Portfolio
 
 Production portfolio for **Nischhal Raj Subba**, a Nepal-based product designer working across Web3, SaaS, fintech, service websites, design systems, UX audits, and developer-ready handoff.
 
@@ -296,3 +469,6 @@ Before considering a production change complete:
 4. review browser and visual artifacts;
 5. test account-dependent functionality, including contact delivery, on production;
 6. update the Portfolio QA Delivery Board with evidence.
+
+</details>
+<!-- project-authored-notes:end -->
