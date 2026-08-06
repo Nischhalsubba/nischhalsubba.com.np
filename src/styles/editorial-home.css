@@ -1,1 +1,422 @@
-/* Editorial redesign rules are consolidated in editorial-foundation.css. */
+/* Homepage: evidence-first composition with optional spatial enhancement. */
+.nrs-editorial-redesign .nrs-editorial-home {
+  padding-top: 0;
+}
+
+.nrs-editorial-redesign .nrs-editorial-hero {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  min-height: min(820px, 100dvh);
+  padding: clamp(132px, 14vh, 170px) 0 clamp(72px, 8vw, 104px);
+  border-bottom: 1px solid var(--nrs-ed-line);
+}
+
+.nrs-editorial-redesign .nrs-editorial-hero__copy {
+  grid-column: 1 / span 7;
+  position: relative;
+  z-index: 2;
+}
+
+.nrs-editorial-redesign .nrs-editorial-hero__title {
+  display: grid;
+  gap: 2px;
+  max-width: 12ch;
+  margin: clamp(18px, 2.4vw, 28px) 0 0;
+}
+
+.nrs-editorial-redesign .nrs-editorial-hero__title-line {
+  display: block;
+  color: var(--nrs-ed-text);
+  font: 790 clamp(4rem, 7.5vw, 8rem)/0.93 var(--nrs-ed-display);
+  letter-spacing: -0.058em;
+}
+
+.nrs-editorial-redesign .nrs-editorial-hero__title-line--accent {
+  color: var(--nrs-ed-accent);
+}
+
+.nrs-editorial-redesign .nrs-editorial-hero__intro {
+  max-width: 650px;
+  margin: clamp(26px, 3.5vw, 42px) 0 0;
+  color: var(--nrs-ed-muted);
+  font-size: clamp(1.08rem, 1.45vw, 1.3rem);
+  line-height: 1.65;
+}
+
+.nrs-editorial-redesign .nrs-editorial-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  margin-top: 30px;
+}
+
+.nrs-editorial-redesign .nrs-editorial-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-top: clamp(38px, 5vw, 60px);
+  color: var(--nrs-ed-faint);
+  font: 620 0.74rem/1.5 var(--nrs-ed-mono);
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.nrs-editorial-redesign .nrs-hero-field {
+  position: relative;
+  grid-column: 8 / -1;
+  min-height: clamp(420px, 45vw, 590px);
+  overflow: hidden;
+  border: 1px solid var(--nrs-ed-line);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 70% 18%, var(--nrs-ed-accent-soft), transparent 30%),
+    linear-gradient(145deg, var(--nrs-ed-surface-strong), var(--nrs-ed-surface));
+  box-shadow: var(--nrs-ed-shadow);
+  isolation: isolate;
+}
+
+.nrs-editorial-redesign .nrs-hero-field::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--nrs-ed-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--nrs-ed-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.28;
+  content: "";
+}
+
+.nrs-editorial-redesign .nrs-hero-field__canvas,
+.nrs-editorial-redesign .nrs-hero-field__canvas canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.nrs-editorial-redesign .nrs-hero-field__label {
+  position: absolute;
+  z-index: 5;
+  color: var(--nrs-ed-faint);
+  font: 620 0.7rem/1.45 var(--nrs-ed-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nrs-editorial-redesign .nrs-hero-field__label--top {
+  top: 18px;
+  left: 20px;
+}
+
+.nrs-editorial-redesign .nrs-hero-field__label--bottom {
+  right: 20px;
+  bottom: 18px;
+  text-align: right;
+}
+
+.nrs-editorial-redesign .nrs-hero-collage {
+  position: absolute;
+  inset: 62px 30px 48px;
+  z-index: 2;
+}
+
+.nrs-editorial-redesign .nrs-hero-collage__card {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid var(--nrs-ed-line-strong);
+  border-radius: 14px;
+  background: var(--nrs-ed-surface);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+.nrs-editorial-redesign .nrs-hero-collage__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nrs-editorial-redesign .nrs-hero-collage__card--yarsha {
+  inset: 9% 7% 10% 13%;
+  transform: rotate(-2.5deg);
+}
+
+.nrs-editorial-redesign .nrs-hero-collage__card--mokshya {
+  top: 2%;
+  right: 1%;
+  width: 48%;
+  height: 38%;
+  transform: rotate(3deg);
+}
+
+.nrs-editorial-redesign .nrs-hero-collage__card--pihub {
+  right: 0;
+  bottom: 0;
+  width: 49%;
+  height: 36%;
+  transform: rotate(2deg);
+}
+
+.nrs-editorial-redesign .nrs-editorial-section {
+  padding: var(--nrs-ed-section) 0;
+  border-bottom: 1px solid var(--nrs-ed-line);
+}
+
+.nrs-editorial-redesign .nrs-editorial-section__heading {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 20px;
+  align-items: end;
+  margin-bottom: clamp(38px, 5vw, 64px);
+}
+
+.nrs-editorial-redesign .nrs-editorial-section__heading-copy {
+  grid-column: 1 / span 8;
+}
+
+.nrs-editorial-redesign .nrs-editorial-section__title {
+  margin: 14px 0 0;
+}
+
+.nrs-editorial-redesign .nrs-editorial-section__title-text,
+.nrs-editorial-redesign .nrs-proof-title-text,
+.nrs-editorial-redesign .nrs-editorial-closing__title-text {
+  display: block;
+  color: var(--nrs-ed-text);
+  font: 760 clamp(2.7rem, 5vw, 5.8rem)/0.98 var(--nrs-ed-display);
+  letter-spacing: -0.052em;
+}
+
+.nrs-editorial-redesign .nrs-editorial-section__aside {
+  grid-column: 10 / -1;
+  margin: 0;
+  color: var(--nrs-ed-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.nrs-editorial-redesign .nrs-featured-project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(260px, 0.62fr);
+  gap: clamp(26px, 4vw, 56px);
+  align-items: end;
+  color: inherit;
+  text-decoration: none;
+}
+
+.nrs-editorial-redesign .nrs-editorial-project__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--nrs-ed-line);
+  border-radius: 18px;
+  background: var(--nrs-ed-surface);
+  box-shadow: var(--nrs-ed-shadow);
+  transform-style: preserve-3d;
+}
+
+.nrs-editorial-redesign .nrs-editorial-project__media img {
+  display: block;
+  width: 100%;
+  height: 103%;
+  object-fit: cover;
+  transform: translateY(var(--nrs-project-y, 0));
+}
+
+.nrs-editorial-redesign .nrs-editorial-project__copy {
+  min-width: 0;
+  padding-bottom: 6px;
+}
+
+.nrs-editorial-redesign .nrs-editorial-project__title {
+  margin: 14px 0;
+}
+
+.nrs-editorial-redesign .nrs-editorial-project__title-text {
+  color: var(--nrs-ed-text);
+  font: 760 clamp(2.5rem, 4.7vw, 5.2rem)/0.96 var(--nrs-ed-display);
+  letter-spacing: -0.05em;
+}
+
+.nrs-editorial-redesign .nrs-editorial-project__summary {
+  margin: 0;
+  color: var(--nrs-ed-muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.nrs-editorial-redesign .nrs-editorial-project__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 17px;
+  margin-top: 22px;
+  color: var(--nrs-ed-faint);
+  font: 620 0.72rem/1.4 var(--nrs-ed-mono);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.nrs-editorial-redesign .nrs-editorial-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(40px, 5vw, 68px) clamp(24px, 3.5vw, 48px);
+  margin-top: clamp(62px, 8vw, 104px);
+}
+
+.nrs-editorial-redesign .nrs-editorial-project-grid .nrs-editorial-project {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.nrs-editorial-redesign .nrs-editorial-project-grid .nrs-editorial-project__copy {
+  padding-top: 20px;
+}
+
+.nrs-editorial-redesign .nrs-editorial-project-grid .nrs-editorial-project__title-text {
+  font-size: clamp(2rem, 3.2vw, 3.8rem);
+}
+
+.nrs-editorial-redesign .nrs-editorial-all-work {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 44px;
+}
+
+.nrs-editorial-redesign .nrs-capability-list,
+.nrs-editorial-redesign .nrs-writing-index {
+  border-top: 1px solid var(--nrs-ed-line);
+}
+
+.nrs-editorial-redesign .nrs-capability-row,
+.nrs-editorial-redesign .nrs-writing-row {
+  display: grid;
+  grid-template-columns: 56px minmax(180px, 0.72fr) minmax(280px, 1.25fr) 30px;
+  gap: 18px;
+  align-items: center;
+  min-height: 88px;
+  border-bottom: 1px solid var(--nrs-ed-line);
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 150ms var(--nrs-ed-ease-out);
+}
+
+.nrs-editorial-redesign .nrs-capability-row:hover,
+.nrs-editorial-redesign .nrs-writing-row:hover {
+  background: var(--nrs-ed-accent-soft);
+}
+
+.nrs-editorial-redesign .nrs-capability-row__number,
+.nrs-editorial-redesign .nrs-writing-row__date {
+  color: var(--nrs-ed-accent);
+  font: 650 0.74rem/1 var(--nrs-ed-mono);
+  text-transform: uppercase;
+}
+
+.nrs-editorial-redesign .nrs-capability-row__title,
+.nrs-editorial-redesign .nrs-writing-row__title {
+  color: var(--nrs-ed-text);
+  font-size: clamp(1.14rem, 1.6vw, 1.5rem);
+  font-weight: 720;
+}
+
+.nrs-editorial-redesign .nrs-capability-row__description {
+  color: var(--nrs-ed-muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.nrs-editorial-redesign .nrs-capability-row__arrow,
+.nrs-editorial-redesign .nrs-writing-row__arrow {
+  justify-self: end;
+  color: var(--nrs-ed-faint);
+}
+
+.nrs-editorial-redesign .nrs-home-proof-v49 {
+  padding: var(--nrs-ed-section) 0;
+  border-bottom: 1px solid var(--nrs-ed-line);
+  background: transparent;
+}
+
+.nrs-editorial-redesign .nrs-home-proof-v49__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.46fr);
+  gap: 34px;
+  align-items: end;
+}
+
+.nrs-editorial-redesign .nrs-home-proof-v49__intro h2 {
+  margin: 14px 0 0;
+}
+
+.nrs-editorial-redesign .nrs-home-proof-v49__intro > p:last-child {
+  margin: 0;
+  color: var(--nrs-ed-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.nrs-editorial-redesign .nrs-home-proof-v49__signals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 44px;
+  border: 1px solid var(--nrs-ed-line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--nrs-ed-line);
+}
+
+.nrs-editorial-redesign .nrs-home-proof-v49__signals a,
+.nrs-editorial-redesign .nrs-home-proof-v49__signals article {
+  display: grid;
+  align-content: start;
+  min-height: 164px;
+  padding: 22px;
+  border: 0;
+  background: var(--nrs-ed-surface);
+  color: inherit;
+  text-decoration: none;
+}
+
+.nrs-editorial-redesign .nrs-home-proof-v49__signals span {
+  color: var(--nrs-ed-accent);
+  font: 650 0.72rem/1 var(--nrs-ed-mono);
+}
+
+.nrs-editorial-redesign .nrs-home-proof-v49__signals strong {
+  display: block;
+  margin-top: 18px;
+  color: var(--nrs-ed-text);
+  font-size: 1.08rem;
+}
+
+.nrs-editorial-redesign .nrs-home-proof-v49__signals p {
+  margin: 8px 0 0;
+  color: var(--nrs-ed-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.nrs-editorial-redesign .nrs-editorial-closing {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: end;
+  padding: clamp(80px, 10vw, 132px) 0;
+}
+
+.nrs-editorial-redesign .nrs-editorial-closing__title {
+  max-width: 17ch;
+  margin: 14px 0 0;
+}
+
+.nrs-editorial-redesign .nrs-editorial-closing__title em {
+  color: var(--nrs-ed-accent);
+  font-style: normal;
+}
