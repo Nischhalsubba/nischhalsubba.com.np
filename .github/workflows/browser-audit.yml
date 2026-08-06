@@ -182,13 +182,14 @@ jobs:
 
       - name: Assert browser validation passed
         if: always()
+        env:
+          PREVIEW_OUTCOME: ${{ steps.preview.outcome }}
+          BROWSER_OUTCOME: ${{ steps.browser.outcome }}
+          CONTACT_OUTCOME: ${{ steps.contact.outcome }}
+          VISUAL_OUTCOME: ${{ steps.visual.outcome }}
         shell: bash
         run: |
-          preview='${{ steps.preview.outcome }}'
-          browser='${{ steps.browser.outcome }}'
-          contact='${{ steps.contact.outcome }}'
-          visual='${{ steps.visual.outcome }}'
-          if [[ "$preview" != 'success' || "$browser" != 'success' || "$contact" != 'success' || "$visual" != 'success' ]]; then
-            echo "Browser validation failed: preview=$preview browser=$browser contact=$contact visual=$visual"
+          if [[ "$PREVIEW_OUTCOME" != "success" || "$BROWSER_OUTCOME" != "success" || "$CONTACT_OUTCOME" != "success" || "$VISUAL_OUTCOME" != "success" ]]; then
+            echo "Browser validation failed: preview=$PREVIEW_OUTCOME browser=$BROWSER_OUTCOME contact=$CONTACT_OUTCOME visual=$VISUAL_OUTCOME"
             exit 1
           fi
