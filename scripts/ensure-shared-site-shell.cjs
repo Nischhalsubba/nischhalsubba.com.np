@@ -64,7 +64,7 @@ function shell(active, themeToggle) {
   <div class="mobile-nav-overlay" id="mobile-nav-overlay" hidden><nav class="mobile-nav-links" aria-label="Mobile navigation">${links(active, '')}</nav></div>`;
 }
 
-const footer = `<footer class="site-footer" aria-label="Portfolio footer"><div class="container nrs-footer-editorial"><div class="nrs-footer-cta"><p class="nrs-editorial-section-label">Product design / Nepal / Remote</p><h2 class="nrs-footer-cta__title"><span class="nrs-footer-cta__title-text">Clear the product.<br><em>Then make it memorable.</em></span></h2></div><div class="nrs-footer-links"><a href="mailto:hinischalsubba@gmail.com">Email</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Nischhalsubba" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a><a href="/contact">Project inquiry</a></div><div class="nrs-footer-meta"><span>© 2026 Nischhal Raj Subba.</span><span>27.7172° N / 85.3240° E · UTC +05:45</span><span><a href="/privacy">Privacy</a> · <a href="/services">Services</a></span></div></div></footer>`;
+const footer = `<footer class="site-footer" aria-label="Portfolio footer"><div class="container nrs-footer-editorial"><div class="nrs-footer-cta"><div><p class="nrs-editorial-section-label">Product design / Nepal / Remote</p><h2 class="nrs-footer-cta__title"><span class="nrs-footer-cta__title-text">Clear the product.<br><em>Make the next action obvious.</em></span></h2></div><p class="nrs-footer-intro">Available for product design roles and focused UX/UI projects across Web3, SaaS, fintech, design systems and implementation-ready handoff.</p></div><div class="nrs-footer-links"><a href="mailto:hinischalsubba@gmail.com">Email</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Nischhalsubba" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a><a href="/contact">Project inquiry</a></div><div class="nrs-footer-meta"><span>© 2026 Nischhal Raj Subba.</span><span>27.7172° N / 85.3240° E · UTC +05:45</span><span><a href="/privacy">Privacy</a> · <a href="/services">Services</a></span></div></div></footer>`;
 
 const themeTogglePattern = /<button\b[^>]*id=["']theme-toggle["'][^>]*>[\s\S]*?<\/button>/i;
 
@@ -119,4 +119,4 @@ for (const filePath of walk(target).filter((file) => file.endsWith('.html'))) {
   }
 }
 
-console.log(`Normalized the editorial navigation and footer on ${changed} page(s).`);
+console.log(`Normalized the revised editorial navigation and footer on ${changed} page(s).`);
