@@ -60,7 +60,6 @@ function shell(active, themeToggle) {
     <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider" aria-hidden="true"></div>${links(active, 'nav-link')}</div></nav>
     <div class="nrs-site-actions"><span class="nrs-site-availability" aria-label="Available for selected product design work"><span>Available for selected work</span></span>${themeToggle}<button class="mobile-nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button></div>
   </header>
-  <a href="/" class="mobile-logo" aria-label="Nischhal Raj Subba home">NRS</a>
   <div class="mobile-nav-overlay" id="mobile-nav-overlay" hidden><nav class="mobile-nav-links" aria-label="Mobile navigation">${links(active, '')}</nav></div>`;
 }
 
