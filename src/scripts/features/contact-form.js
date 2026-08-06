@@ -93,7 +93,6 @@ async function initializeTurnstile(form, setStatus) {
   const siteKey = form.dataset.turnstileSiteKey
     || document.querySelector('meta[name="turnstile-site-key"]')?.content?.trim();
   if (!siteKey) {
-    setStatus('The anti-spam service is not configured. Please use the email option.', 'error');
     return { ready: false, widgetId: null };
   }
 
@@ -115,7 +114,7 @@ async function initializeTurnstile(form, setStatus) {
     return { ready: true, widgetId };
   } catch (error) {
     console.error('[portfolio] Turnstile initialization failed', error);
-    setStatus('The anti-spam check could not load. Please use the email option.', 'error');
+    setStatus('The protected form is temporarily unavailable. The email option remains available.', 'neutral');
     return { ready: false, widgetId: null };
   }
 }
@@ -157,6 +156,7 @@ export function initContactForm() {
     const turnstile = await turnstileState;
     if (!turnstile.ready) {
       setStatus('The protected form is unavailable. Please use the email option.', 'error');
+      emailLink?.focus({ preventScroll: false });
       return;
     }
     const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
