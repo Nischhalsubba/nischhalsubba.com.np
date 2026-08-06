@@ -62,7 +62,7 @@ const markup = `<main id="main-content" class="container nrs-spacious-page nrs-c
 
       <p class="nrs-form-note" id="contact-privacy-note">Your name, email and project context are sent securely through this website to ${email}. Cloudflare Turnstile checks submissions for abuse. Do not include passwords, payment details or confidential credentials.</p>
       <div class="nrs-form-actions"><button class="btn btn-primary" type="submit">Send project context</button><a class="btn btn-secondary" href="mailto:${email}">Use email instead</a></div>
-      <p id="contact-form-status" class="form-status" role="status" aria-live="polite">Complete the anti-spam check, then submit your message.</p>
+      <p id="contact-form-status" class="form-status" role="status" aria-live="polite"></p>
     </form>
   </section>
 
