@@ -1,5 +1,102 @@
 # Nischhal Raj Subba Portfolio
 
+<!-- interactive-readme-standard:start -->
+
+> [!NOTE]
+> **Branch-specific documentation:** this section is maintained for [`cleanup-current`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/cleanup-current). It is generated from the files present on this branch and preserves the project-authored README below.
+
+<details open>
+<summary><strong>Interactive repository guide</strong></summary>
+
+## Branch overview
+
+| Item | Value |
+|---|---|
+| Repository | [`Nischhalsubba/nischhalsubba.com.np`](https://github.com/Nischhalsubba/nischhalsubba.com.np) |
+| Branch | [`cleanup-current`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/cleanup-current) |
+| Detected stack | Vite, TypeScript, WordPress, HTML, JavaScript, PHP, CSS |
+| Detected manifests | package.json |
+| Documentation policy | Every maintained branch must explain purpose, setup, structure, architecture, flows, testing, delivery, security, and ownership. |
+
+## Repository structure
+
+```mermaid
+flowchart TD
+    ROOT["nischhalsubba.com.np / cleanup-current"]
+    ROOT --> P0["assets/"]
+    ROOT --> P1["blog/"]
+    ROOT --> P2["docs/"]
+    ROOT --> P3["public/"]
+    ROOT --> P4["scripts/"]
+    ROOT --> P5["src/"]
+    ROOT --> P6["wordpress/"]
+    ROOT --> P7[".editorconfig"]
+    ROOT --> P8[".gitignore"]
+    ROOT --> P9["about.html"]
+    ROOT --> P10["ai-profile.json"]
+    ROOT --> P11["blog-accessibility-fintech.html"]
+    ROOT --> P12["blog-ai-ops.html"]
+    ROOT --> P13["blog-design-metrics.html"]
+    ROOT --> P14["blog-enterprise-ux.html"]
+    ROOT --> P15["blog-governance.html"]
+    ROOT --> P16["blog-handoff.html"]
+    ROOT --> P17["blog-pricing-ux.html"]
+    ROOT --> MORE["+ 58 more top-level entries"]
+```
+
+The diagram is generated from the branch's actual top-level files and directories. Use the branch link above for complete source navigation.
+
+## Website or application structure
+
+```mermaid
+flowchart TD
+    APP["nischhalsubba.com.np"]
+    APP --> R0["public"]
+    R0 --> F0["public/blog/figma-handoff-notes-for-developers.html"]
+    R0 --> F1["public/blog/index.html"]
+    R0 --> F2["public/blog/saas-dashboard-ux-checklist.html"]
+    R0 --> F3["public/blog/transaction-review-ux-crypto-apps.html"]
+    R0 --> F4["public/blog/ux-audit-checklist-before-redesign.html"]
+    R0 --> F5["public/blog/web3-wallet-ux-checklist.html"]
+    R0 --> F6["public/blog/website-ux-checklist-software-companies.html"]
+    R0 --> F7["public/nischhal-raj-subba.html"]
+```
+
+## Application and responsibility flow
+
+```mermaid
+flowchart LR
+    ACTOR["User / contributor"]
+    ACTOR --> A0["Interface: public, src"]
+    A0 --> A1["Documentation: docs"]
+    A1 --> A2["Delivery: scripts"]
+```
+
+## Change-to-delivery flow
+
+```mermaid
+flowchart LR
+    CHANGE["Change on cleanup-current"]
+    CHECK["Validate: npm run dev, npm run build, npm run preview"]
+    REVIEW["Review documentation and architecture impact"]
+    RELEASE["Merge, release, or deploy according to this branch"]
+    CHANGE --> CHECK --> REVIEW --> RELEASE
+```
+
+## README requirements for this branch
+
+- Explain what this branch contains and how it differs from the default branch.
+- Keep installation, configuration, usage, testing, deployment, security, support, and license information accurate.
+- Document repository, website or application, API, data, authentication, background-job, and deployment flows when they exist.
+- Prefer Mermaid diagrams and expandable `<details>` sections for visual navigation.
+- Link diagrams and modules to real source paths; never invent missing components.
+- Preserve project-specific documentation and update diagrams whenever architecture or major paths change.
+- Treat secrets, private infrastructure, customer data, and credentials as prohibited README content.
+
+</details>
+
+<!-- interactive-readme-standard:end -->
+
 Static, SEO-focused portfolio for **Nischhal Raj Subba**, a Product Designer in Nepal focused on Web3 UX, SaaS interfaces, fintech app experiences, service website UX, design systems, UX audits, and front-end-aware design.
 
 [![Vite](https://img.shields.io/badge/Tooling-Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](#development)
