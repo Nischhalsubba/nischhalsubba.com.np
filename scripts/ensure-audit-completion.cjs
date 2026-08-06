@@ -55,11 +55,10 @@ function ensureFooter(html) {
 
 function ensureContactPrivacy(html, relativePath) {
   if (relativePath !== 'contact.html') return html;
-  let output = html.replace(/\s*<input[^>]+name=["']_captcha["'][^>]*>/gi, '');
-  if (!output.includes('class="nrs-contact-privacy"')) {
-    output = output.replace(/(<p[^>]+id=["']contact-form-status["'][^>]*><\/p>)/i, `$1<p class="nrs-contact-privacy">Your message is delivered through FormSubmit and used only to respond to this enquiry. Do not include sensitive personal information. <a href="/privacy">Read the privacy notice</a>.</p>`);
-  }
-  return output;
+  const output = html.replace(/\s*<input[^>]+name=["']_captcha["'][^>]*>/gi, '');
+  if (output.includes('id="contact-privacy-note"') || output.includes("id='contact-privacy-note'")) return output;
+  if (output.includes('class="nrs-contact-privacy"')) return output;
+  return output.replace(/(<p[^>]+id=["']contact-form-status["'][^>]*><\/p>)/i, `$1<p class="nrs-contact-privacy">Your message is sent through this website only to respond to your enquiry. Do not include sensitive personal information. <a href="/privacy">Read the privacy notice</a>.</p>`);
 }
 
 function projectCoverFor(relativePath) {
