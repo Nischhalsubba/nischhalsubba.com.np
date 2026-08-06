@@ -22,8 +22,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -73,36 +71,20 @@ jobs:
           set -o pipefail
           node scripts/browser-contact-audit.mjs 2>&1 | tee contact-audit.log
 
-      - name: Compare or refresh visual regression baselines
+      - name: Compare visual regression baselines
         id: visual
         if: steps.preview.outcome == 'success'
         continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
-          if [ -f .github/editorial-baseline-refresh ]; then
-            UPDATE_VISUAL_BASELINES=1 node scripts/visual-regression.mjs 2>&1 | tee visual-regression.log
-          elif find tests/visual/baselines -type f -name '*.png' -print -quit 2>/dev/null | grep -q .; then
+          if find tests/visual/baselines -type f -name '*.png' -print -quit 2>/dev/null | grep -q .; then
             node scripts/visual-regression.mjs 2>&1 | tee visual-regression.log
           else
             UPDATE_VISUAL_BASELINES=1 node scripts/visual-regression.mjs 2>&1 | tee visual-regression.log
             echo 'Initial visual baselines generated for review and repository bootstrap.' | tee -a visual-regression.log
             exit 1
           fi
-
-      - name: Commit reviewed editorial visual baselines
-        if: github.event_name == 'pull_request' && github.head_ref == 'gent/editorial-portfolio-redesign' && steps.visual.outcome == 'success' && hashFiles('.github/editorial-baseline-refresh') != ''
-        shell: bash
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tests/visual/baselines/*.png
-          if git diff --cached --quiet; then
-            echo 'Visual baselines are already current.'
-            exit 0
-          fi
-          git commit -m 'test: refresh editorial visual baselines'
-          git push origin HEAD:gent/editorial-portfolio-redesign
 
       - name: Commit reviewed initial visual baselines
         id: baseline_bootstrap
@@ -198,6 +180,15 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
-      - name: Fail workflow when browser validation fails
-        if: steps.preview.outcome != 'success' || steps.browser.outcome != 'success' || steps.contact.outcome != 'success' || steps.visual.outcome != 'success'
-        run: exit 1
+      - name: Assert browser validation passed
+        if: always()
+        shell: bash
+        run: |
+          preview='${{ steps.preview.outcome }}'
+          browser='${{ steps.browser.outcome }}'
+          contact='${{ steps.contact.outcome }}'
+          visual='${{ steps.visual.outcome }}'
+          if [[ "$preview" != 'success' || "$browser" != 'success' || "$contact" != 'success' || "$visual" != 'success' ]]; then
+            echo "Browser validation failed: preview=$preview browser=$browser contact=$contact visual=$visual"
+            exit 1
+          fi
