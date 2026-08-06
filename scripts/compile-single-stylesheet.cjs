@@ -11,6 +11,7 @@ const fragmentFiles = [
   path.join(root, 'src', 'styles', 'editorial-home.css'),
   path.join(root, 'src', 'styles', 'editorial-case-study.css'),
   path.join(root, 'src', 'styles', 'editorial-responsive.css'),
+  path.join(root, 'src', 'styles', 'editorial-polish.css'),
 ];
 const startMarker = '/* nrs-single-source-inner-pages-v52:compiled:start */';
 const endMarker = '/* nrs-single-source-inner-pages-v52:compiled:end */';
