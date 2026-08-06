@@ -1,0 +1,26 @@
+/* Final route-level corrections discovered during visual review. */
+.nrs-editorial-redesign .mobile-nav-overlay[hidden] {
+  display: none;
+}
+
+.nrs-editorial-redesign .nrs-direct-email {
+  max-width: none;
+  overflow-wrap: normal;
+  word-break: normal;
+  white-space: nowrap;
+  font-size: clamp(1.05rem, 1.45vw, 1.42rem);
+  line-height: 1.25;
+}
+
+.nrs-editorial-redesign #contact-form-status:empty,
+.nrs-editorial-redesign .form-status:empty {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .nrs-editorial-redesign .nrs-direct-email {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    font-size: clamp(1.15rem, 5.4vw, 1.5rem);
+  }
+}
