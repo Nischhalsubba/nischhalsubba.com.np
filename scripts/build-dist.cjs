@@ -27,6 +27,7 @@ const stages = [
   ['Apply audit completion pass', ['node', 'scripts/ensure-audit-completion.cjs']],
   ['Finalize shared site shell', ['node', 'scripts/ensure-shared-site-shell.cjs', '--dist']],
   ['Normalize case study system', ['node', 'scripts/normalize-case-study-system.cjs', '--dist']],
+  ['Compose editorial Yarsha case study', ['node', 'scripts/spacious-pages/yarsha-editorial.cjs', '--dist']],
   ['Apply final blog detail cleanup', ['node', 'scripts/ensure-blog-detail-cleanup.cjs', '--dist']],
   ['Apply final mobile layout contract', ['node', 'scripts/ensure-final-mobile-layout.cjs', '--dist']],
   ['Clean retired output', ['node', 'scripts/clean-vite-public-output.cjs']],

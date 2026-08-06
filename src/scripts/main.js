@@ -7,6 +7,7 @@ import { initMobileMenu } from './features/mobile-menu.js';
  */
 const globalFeatures = [
   ['theme', () => import('./features/theme.js').then((module) => module.initTheme)],
+  ['editorial redesign', () => import('./features/editorial-redesign.js').then((module) => module.initEditorialRedesign)],
   ['audit remediations', () => import('./features/audit-remediations.js').then((module) => module.applyAuditRemediations)],
   ['design-system shell', () => import('./features/nav-consistency.js').then((module) => module.enforceDesignSystemShell)],
   ['layout integrity', () => import('./features/layout-integrity.js').then((module) => module.applyLayoutIntegrity)],
@@ -40,7 +41,6 @@ const projectsIndexFeatures = [
 
 function pageSpecificFeatures() {
   const currentPath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
-
   if (currentPath === '/contact') return contactFeatures;
   if (currentPath === '/projects') return projectsIndexFeatures;
   if (currentPath.startsWith('/project-')) return projectDetailFeatures;

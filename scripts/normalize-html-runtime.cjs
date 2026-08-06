@@ -5,8 +5,8 @@ const repositoryRoot = path.resolve(__dirname, '..');
 const useDist = process.argv.includes('--dist');
 const root = useDist ? path.join(repositoryRoot, 'dist') : repositoryRoot;
 const htmlFiles = [];
-const styleHref = '/style.css?v=50.0';
-const scriptSrc = '/script.js?v=35.0';
+const styleHref = '/style.css?v=52.0';
+const scriptSrc = '/script.js?v=36.0';
 
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -66,4 +66,4 @@ for (const filePath of htmlFiles) {
   }
 }
 
-console.log(`Normalized ${htmlFiles.length} ${useDist ? 'production' : 'source'} HTML files to style.css v50 and one stable runtime script; updated ${touched}.`);
+console.log(`Normalized ${htmlFiles.length} ${useDist ? 'production' : 'source'} HTML files to style.css v52 and one stable runtime script; updated ${touched}.`);

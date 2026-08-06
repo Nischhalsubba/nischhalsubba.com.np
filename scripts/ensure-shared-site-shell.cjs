@@ -54,17 +54,23 @@ function links(active, className) {
   }).join('');
 }
 
-function shell(active) {
-  return {
-    desktop: `<nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider" aria-hidden="true"></div>${links(active, 'nav-link')}</div></nav>`,
-    mobile: `<button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo" aria-label="Nischhal Raj Subba home">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay" hidden><nav class="mobile-nav-links" aria-label="Mobile navigation">${links(active, '')}</nav></div>`,
-  };
+function shell(active, themeToggle) {
+  return `<header class="nrs-site-header" data-nrs-site-header>
+    <a class="nrs-site-brand" href="/" aria-label="Nischhal Raj Subba home"><span class="nrs-site-brand__name">Nischhal Raj Subba</span><span class="nrs-site-brand__role">Product Designer · Kathmandu</span></a>
+    <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider" aria-hidden="true"></div>${links(active, 'nav-link')}</div></nav>
+    <div class="nrs-site-actions"><span class="nrs-site-availability" aria-label="Available for selected product design work"><span>Available for selected work</span></span>${themeToggle}<button class="mobile-nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button></div>
+  </header>
+  <a href="/" class="mobile-logo" aria-label="Nischhal Raj Subba home">NRS</a>
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay" hidden><nav class="mobile-nav-links" aria-label="Mobile navigation">${links(active, '')}</nav></div>`;
 }
 
-const footer = `<footer class="site-footer" aria-label="Portfolio footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><p class="eyebrow">Product designer in Nepal · Remote collaboration</p><h2>Clear product thinking, polished interfaces and practical handoff.</h2><p>Available for product design roles, focused UX/UI projects, design systems, Web3 and SaaS work, website UX and product audits.</p><a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a></div><div class="footer-nav-grid"><div class="footer-col"><h3>Pages</h3><a href="/">Home</a><a href="/projects">Work</a><a href="/services">Services</a><a href="/about">About</a><a href="/blog/">Writing</a><a href="/contact">Contact</a></div><div class="footer-col"><h3>Proof</h3><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener noreferrer">Behance</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Nischhalsubba" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div><div class="footer-col"><h3>Services</h3><a href="/product-design-nepal">Product design</a><a href="/saas-ux-designer">SaaS UX</a><a href="/web3-ux-designer">Web3 UX</a><a href="/figma-design-systems">Design systems</a><a href="/ux-audit">UX audit</a></div></div></div><div class="footer-bottom-bar"><span>© 2026 Nischhal Raj Subba.</span><span>Based in Nepal · UTC+5:45</span><a href="/privacy">Privacy</a></div></div></footer>`;
+const footer = `<footer class="site-footer" aria-label="Portfolio footer"><div class="container nrs-footer-editorial"><div class="nrs-footer-cta"><p class="nrs-editorial-section-label">Product design / Nepal / Remote</p><h2 class="nrs-footer-cta__title"><span class="nrs-footer-cta__title-text">Clear the product.<br><em>Then make it memorable.</em></span></h2></div><div class="nrs-footer-links"><a href="mailto:hinischalsubba@gmail.com">Email</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/Nischhalsubba" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a><a href="/contact">Project inquiry</a></div><div class="nrs-footer-meta"><span>© 2026 Nischhal Raj Subba.</span><span>27.7172° N / 85.3240° E · UTC +05:45</span><span><a href="/privacy">Privacy</a> · <a href="/services">Services</a></span></div></div></footer>`;
+
+const themeTogglePattern = /<button\b[^>]*id=["']theme-toggle["'][^>]*>[\s\S]*?<\/button>/i;
 
 function stripExistingShell(html) {
   return html
+    .replace(/<header\b[^>]*class=["'][^"']*nrs-site-header[^"']*["'][\s\S]*?<\/header>/gi, '')
     .replace(/<button\b[^>]*class=["'][^"']*mobile-nav-toggle[^"']*["'][\s\S]*?<\/button>/gi, '')
     .replace(/<a\b[^>]*class=["'][^"']*mobile-logo[^"']*["'][\s\S]*?<\/a>/gi, '')
     .replace(/<div\b[^>]*class=["'][^"']*mobile-nav-overlay[^"']*["'][\s\S]*?<\/div>/gi, '')
@@ -72,12 +78,8 @@ function stripExistingShell(html) {
 }
 
 function insertShell(html, sharedShell) {
-  const themeToggle = /<button\b[^>]*id=["']theme-toggle["'][^>]*>[\s\S]*?<\/button>/i;
-  if (themeToggle.test(html)) {
-    return html.replace(themeToggle, (toggle) => `${sharedShell.mobile}${toggle}${sharedShell.desktop}`);
-  }
-  if (/<main\b/i.test(html)) return html.replace(/<main\b/i, `${sharedShell.mobile}${sharedShell.desktop}<main`);
-  throw new Error('Cannot insert shared shell because the page has neither a theme toggle nor a main element.');
+  if (/<main\b/i.test(html)) return html.replace(/<main\b/i, `${sharedShell}<main`);
+  throw new Error('Cannot insert shared shell because the page has no main element.');
 }
 
 function normalizeFooter(html) {
@@ -88,10 +90,19 @@ function normalizeFooter(html) {
   return html.replace(/<\/body>/i, `${footer}</body>`);
 }
 
+function addBodyClass(html) {
+  return html.replace(/<body(?:\s+class="([^"]*)")?([^>]*)>/i, (_match, current = '', rest = '') => {
+    const classes = new Set(`${current} nrs-editorial-redesign`.trim().split(/\s+/).filter(Boolean));
+    return `<body class="${[...classes].join(' ')}"${rest}>`;
+  });
+}
+
 function normalize(html, relativeFile) {
-  const sharedShell = shell(activeSection(relativeFile));
-  let output = insertShell(stripExistingShell(html), sharedShell);
+  const existingToggle = html.match(themeTogglePattern)?.[0] || '<button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme"></button>';
+  let output = stripExistingShell(html).replace(themeTogglePattern, '');
+  output = insertShell(output, shell(activeSection(relativeFile), existingToggle));
   output = normalizeFooter(output);
+  output = addBodyClass(output);
   return output
     .replace(/\(c\)\s*2026/gi, '© 2026')
     .replace(/href="\/(projects|services|about|contact)\.html"/g, 'href="/$1"')
@@ -108,4 +119,4 @@ for (const filePath of walk(target).filter((file) => file.endsWith('.html'))) {
   }
 }
 
-console.log(`Normalized shared navigation and footer on ${changed} page(s).`);
+console.log(`Normalized the editorial navigation and footer on ${changed} page(s).`);
