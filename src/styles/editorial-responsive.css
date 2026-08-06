@@ -1,1 +1,94 @@
-/* Editorial redesign rules are consolidated in editorial-foundation.css. */
+/* Responsive contract for the editorial system. */
+@media (max-width: 1180px) {
+  .nrs-editorial-redesign .nrs-site-availability { display: none; }
+  .nrs-editorial-redesign .nrs-editorial-hero__copy { grid-column: 1 / span 7; }
+  .nrs-editorial-redesign .nrs-hero-field { grid-column: 8 / -1; }
+  .nrs-editorial-redesign .nrs-home-proof-v49__signals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .nrs-editorial-redesign .nrs-site-header { grid-template-columns: 1fr auto; min-height: 60px; }
+  .nrs-editorial-redesign .nrs-site-header .nav-wrapper,
+  .nrs-editorial-redesign .nrs-site-brand__role { display: none; }
+  .nrs-editorial-redesign .nrs-site-actions .mobile-nav-toggle { display: flex; }
+  .nrs-editorial-redesign .mobile-logo { display: none; }
+  .nrs-editorial-redesign main.container:not(.nrs-editorial-home):not(.nrs-case-editorial) { padding-top: 112px; }
+  .nrs-editorial-redesign .nrs-editorial-hero { grid-template-columns: 1fr; min-height: auto; padding-top: 124px; }
+  .nrs-editorial-redesign .nrs-editorial-hero__copy,
+  .nrs-editorial-redesign .nrs-hero-field { grid-column: 1; }
+  .nrs-editorial-redesign .nrs-editorial-hero__title { max-width: 10.5ch; }
+  .nrs-editorial-redesign .nrs-editorial-hero__title-line { font-size: clamp(3.9rem, 13vw, 7rem); }
+  .nrs-editorial-redesign .nrs-hero-field { min-height: min(68vw, 540px); margin-top: 16px; }
+  .nrs-editorial-redesign .nrs-editorial-section__heading,
+  .nrs-editorial-redesign .nrs-home-proof-v49__intro,
+  .nrs-editorial-redesign .nrs-footer-cta { grid-template-columns: 1fr; }
+  .nrs-editorial-redesign .nrs-editorial-section__heading-copy,
+  .nrs-editorial-redesign .nrs-editorial-section__aside { grid-column: 1; }
+  .nrs-editorial-redesign .nrs-editorial-section__aside { max-width: 640px; margin-top: 20px; }
+  .nrs-editorial-redesign .nrs-featured-project { grid-template-columns: 1fr; }
+  .nrs-editorial-redesign .nrs-editorial-project__copy { max-width: 650px; }
+  .nrs-editorial-redesign .nrs-capability-row,
+  .nrs-editorial-redesign .nrs-writing-row { grid-template-columns: 42px minmax(160px, 0.8fr) minmax(220px, 1.2fr) 28px; }
+  .nrs-editorial-redesign .nrs-editorial-closing { grid-template-columns: 1fr; }
+  .nrs-editorial-redesign .nrs-case-hero,
+  .nrs-editorial-redesign .nrs-case-chapter { grid-template-columns: 1fr; }
+  .nrs-editorial-redesign .nrs-case-chapter__heading { position: static; }
+  .nrs-editorial-redesign .nrs-case-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--nrs-ed-line); background: var(--nrs-ed-line); }
+  .nrs-editorial-redesign .nrs-case-fact { display: block; padding: 18px; border: 0; background: var(--nrs-ed-page); }
+  .nrs-editorial-redesign .nrs-case-fact dd { margin-top: 8px; }
+  .nrs-editorial-redesign .nrs-flow-map,
+  .nrs-editorial-redesign .nrs-state-matrix { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nrs-editorial-redesign .nrs-flow-step:nth-child(2)::after { display: none; }
+}
+
+@media (max-width: 620px) {
+  .nrs-editorial-redesign main.container,
+  .nrs-editorial-redesign .site-footer > .container,
+  .nrs-editorial-redesign .nrs-footer-editorial { width: min(100% - 32px, 1440px); }
+  .nrs-editorial-redesign .nrs-site-header { inset: 8px; padding-left: 12px; }
+  .nrs-editorial-redesign .nrs-site-brand__name { font-size: 0.84rem; }
+  .nrs-editorial-redesign .nrs-editorial-hero { padding-top: 108px; padding-bottom: 62px; }
+  .nrs-editorial-redesign .nrs-editorial-hero__title { max-width: none; }
+  .nrs-editorial-redesign .nrs-editorial-hero__title-line { font-size: clamp(3.35rem, 16vw, 5.25rem); line-height: 0.96; letter-spacing: -0.052em; }
+  .nrs-editorial-redesign .nrs-editorial-hero__intro { font-size: 1.05rem; }
+  .nrs-editorial-redesign .nrs-editorial-hero__meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; }
+  .nrs-editorial-redesign .nrs-hero-field { min-height: 360px; border-radius: 16px; }
+  .nrs-editorial-redesign .nrs-hero-collage { inset: 54px 18px 42px; }
+  .nrs-editorial-redesign .nrs-hero-collage__card--yarsha { inset: 11% 4% 12% 5%; }
+  .nrs-editorial-redesign .nrs-hero-collage__card--mokshya,
+  .nrs-editorial-redesign .nrs-hero-collage__card--pihub { display: none; }
+  .nrs-editorial-redesign .nrs-editorial-section { padding: 68px 0; }
+  .nrs-editorial-redesign .nrs-editorial-section__title-text,
+  .nrs-editorial-redesign .nrs-proof-title-text,
+  .nrs-editorial-redesign .nrs-editorial-closing__title-text,
+  .nrs-editorial-redesign .nrs-footer-cta__title-text { font-size: clamp(2.35rem, 12vw, 3.75rem); line-height: 1; letter-spacing: -0.048em; }
+  .nrs-editorial-redesign .nrs-editorial-project-grid { grid-template-columns: 1fr; gap: 52px; margin-top: 58px; }
+  .nrs-editorial-redesign .nrs-editorial-project__title-text,
+  .nrs-editorial-redesign .nrs-editorial-project-grid .nrs-editorial-project__title-text { font-size: 2.45rem; }
+  .nrs-editorial-redesign .nrs-capability-row,
+  .nrs-editorial-redesign .nrs-writing-row { grid-template-columns: 34px 1fr 24px; gap: 10px; min-height: 0; padding: 18px 0; }
+  .nrs-editorial-redesign .nrs-capability-row__description { display: block; grid-column: 2 / 4; padding-right: 18px; font-size: 0.94rem; }
+  .nrs-editorial-redesign .nrs-writing-row__date { align-self: start; padding-top: 4px; }
+  .nrs-editorial-redesign .nrs-home-proof-v49__signals { grid-template-columns: 1fr; }
+  .nrs-editorial-redesign .nrs-home-proof-v49__signals a,
+  .nrs-editorial-redesign .nrs-home-proof-v49__signals article { min-height: 0; }
+  .nrs-editorial-redesign .nrs-editorial-closing { padding: 72px 0; }
+  .nrs-editorial-redesign .nrs-footer-meta,
+  .nrs-editorial-redesign .nrs-case-pagination { display: grid; }
+  .nrs-editorial-redesign .nrs-case-editorial { padding-top: 108px; }
+  .nrs-editorial-redesign .nrs-case-title__text { font-size: clamp(3.7rem, 19vw, 5.5rem); }
+  .nrs-editorial-redesign .nrs-case-facts,
+  .nrs-editorial-redesign .nrs-flow-map,
+  .nrs-editorial-redesign .nrs-state-matrix { grid-template-columns: 1fr; }
+  .nrs-editorial-redesign .nrs-flow-step::after { display: none; }
+  .nrs-editorial-redesign .nrs-decision-panel { grid-template-columns: 1fr; }
+  .nrs-editorial-redesign .nrs-inner-page :where(.hero-title, h1) { max-width: none; font-size: clamp(3rem, 14vw, 4.5rem); line-height: 1; letter-spacing: -0.048em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nrs-editorial-redesign .nrs-motion-reveal { opacity: 1; transform: none; }
+  .nrs-editorial-redesign .nrs-editorial-action:hover,
+  .nrs-editorial-redesign .nrs-editorial-action:focus-visible { transform: none; }
+  .nrs-editorial-redesign .nrs-editorial-project__media img,
+  .nrs-editorial-redesign .nrs-hero-collage__card { transform: none; }
+}
