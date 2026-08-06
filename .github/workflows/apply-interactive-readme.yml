@@ -1,0 +1,16 @@
+name: Apply interactive README standard
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/apply-interactive-readme.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    permissions:
+      contents: write
+    uses: Nischhalsubba/Nischhalsubba/.github/workflows/reusable-interactive-readme.yml@main
