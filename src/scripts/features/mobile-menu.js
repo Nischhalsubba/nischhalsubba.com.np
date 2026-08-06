@@ -23,9 +23,38 @@ function getFocusableElements(overlay) {
   });
 }
 
+function syncMobileStacking(button, overlay) {
+  const header = button.closest('[data-nrs-site-header]');
+  const brand = header?.querySelector('.nrs-site-brand');
+  const themeToggle = header?.querySelector('.theme-toggle-btn');
+  const mobile = window.innerWidth <= 850;
+  const apply = (element, property, value) => element?.style.setProperty(property, value, 'important');
+  const clear = (element, property) => element?.style.removeProperty(property);
+
+  if (mobile) {
+    apply(header, 'z-index', '2147483600');
+    apply(header, 'pointer-events', 'none');
+    apply(brand, 'pointer-events', 'auto');
+    apply(themeToggle, 'pointer-events', 'auto');
+    apply(button, 'pointer-events', 'auto');
+    apply(button, 'z-index', '2147483602');
+    apply(overlay, 'z-index', '2147483500');
+    return;
+  }
+
+  clear(header, 'z-index');
+  clear(header, 'pointer-events');
+  clear(brand, 'pointer-events');
+  clear(themeToggle, 'pointer-events');
+  clear(button, 'pointer-events');
+  clear(button, 'z-index');
+  clear(overlay, 'z-index');
+}
+
 function setBackgroundInert(button, overlay, open) {
+  const header = button.closest('[data-nrs-site-header]');
   [...document.body.children].forEach((element) => {
-    if (element === overlay || element === button || element.classList.contains('skip-link')) return;
+    if (element === overlay || element === button || element === header || element.classList.contains('skip-link')) return;
 
     if (open) {
       if (element.inert) element.dataset.wasInert = 'true';
@@ -115,6 +144,8 @@ export function initMobileMenu() {
     overlay.setAttribute('tabindex', '-1');
   }
 
+  syncMobileStacking(button, overlay);
+
   button.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -145,6 +176,7 @@ export function initMobileMenu() {
   });
 
   window.addEventListener('resize', () => {
+    syncMobileStacking(button, overlay);
     if (window.innerWidth > 850 && document.body.classList.contains('menu-open')) {
       setMenuState(button, overlay, false, { restoreFocus: false });
     }
