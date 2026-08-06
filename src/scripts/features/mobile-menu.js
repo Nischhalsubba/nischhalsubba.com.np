@@ -10,7 +10,7 @@ const FOCUSABLE_SELECTOR = [
 ].join(',');
 
 function getFocusableElements(overlay) {
-  if (!overlay || overlay.hidden) return [];
+  if (!overlay || overlay.hidden || overlay.inert) return [];
   return [...overlay.querySelectorAll(FOCUSABLE_SELECTOR)].filter((element) => {
     const style = window.getComputedStyle(element);
     const rect = element.getBoundingClientRect();
@@ -44,7 +44,12 @@ function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
 
   if (!overlay) return;
 
-  if (open) overlay.hidden = false;
+  if (open) {
+    overlay.hidden = false;
+    overlay.inert = false;
+  } else {
+    overlay.inert = true;
+  }
   overlay.setAttribute('aria-hidden', String(!open));
   setBackgroundInert(button, overlay, open);
 
@@ -102,6 +107,7 @@ export function initMobileMenu() {
   if (overlay) {
     button.setAttribute('aria-controls', overlay.id);
     overlay.hidden = true;
+    overlay.inert = true;
     overlay.setAttribute('aria-hidden', 'true');
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
