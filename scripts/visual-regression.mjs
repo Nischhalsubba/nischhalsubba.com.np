@@ -52,7 +52,7 @@ for (const [viewportName, viewport] of viewports) {
     const diffPath = path.join(resultDirectory, `${routeName}-${viewportName}-diff.png`);
 
     try {
-      const response = await page.goto(`${base}${routePath}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
+      const response = await page.goto(`${base}${routePath}`, { waitUntil: 'networkidle', timeout: 30000 });
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
       await page.evaluate(async () => {
         await document.fonts?.ready;
@@ -71,7 +71,14 @@ for (const [viewportName, viewport] of viewports) {
         .reveal-on-scroll { opacity: 1 !important; transform: none !important; }
         [data-visual-placeholder="true"] { min-height: 68px; display: grid; place-items: center; border: 1px solid var(--border-faint); border-radius: 12px; }
       ` });
-      await page.waitForTimeout(250);
+      if (viewport.width <= 1100) {
+        await page.waitForFunction(() => {
+          const firstSurface = document.querySelector('main > :first-child');
+          return firstSurface?.dataset.nrsResponsiveTopSpacingFixed === 'true';
+        }, null, { timeout: 5000 }).catch(() => {});
+      }
+      await page.waitForFunction(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1, null, { timeout: 3000 }).catch(() => {});
+      await page.waitForTimeout(150);
       await page.screenshot({ path: actualPath, fullPage: true, animations: 'disabled' });
 
       if (update) {
