@@ -1,5 +1,111 @@
 # Nischhal Raj Subba Portfolio
 
+<!-- interactive-readme-standard:start -->
+
+> [!NOTE]
+> **Branch-specific documentation:** this section is maintained for [`fix/verified-mobile-hero-top`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/verified-mobile-hero-top). It is generated from the files present on this branch and preserves the project-authored README below.
+
+<details open>
+<summary><strong>Interactive repository guide</strong></summary>
+
+## Branch overview
+
+| Item | Value |
+|---|---|
+| Repository | [`Nischhalsubba/nischhalsubba.com.np`](https://github.com/Nischhalsubba/nischhalsubba.com.np) |
+| Branch | [`fix/verified-mobile-hero-top`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/fix/verified-mobile-hero-top) |
+| Detected stack | Vite, TypeScript, WordPress, JavaScript, HTML, PHP, CSS |
+| Detected manifests | package.json |
+| Documentation policy | Every maintained branch must explain purpose, setup, structure, architecture, flows, testing, delivery, security, and ownership. |
+
+## Repository structure
+
+```mermaid
+flowchart TD
+    ROOT["nischhalsubba.com.np / fix/verified-mobile-hero-top"]
+    ROOT --> P0[".github/"]
+    ROOT --> P1["api/"]
+    ROOT --> P2["assets/"]
+    ROOT --> P3["blog/"]
+    ROOT --> P4["config/"]
+    ROOT --> P5["data/"]
+    ROOT --> P6["docs/"]
+    ROOT --> P7["functions/"]
+    ROOT --> P8["public/"]
+    ROOT --> P9["scripts/"]
+    ROOT --> P10["src/"]
+    ROOT --> P11["tests/"]
+    ROOT --> P12["wordpress/"]
+    ROOT --> P13[".editorconfig"]
+    ROOT --> P14[".gitignore"]
+    ROOT --> P15["_headers"]
+    ROOT --> P16["_redirects"]
+    ROOT --> P17["about.html"]
+    ROOT --> MORE["+ 75 more top-level entries"]
+```
+
+The diagram is generated from the branch's actual top-level files and directories. Use the branch link above for complete source navigation.
+
+## Website or application structure
+
+```mermaid
+flowchart TD
+    APP["nischhalsubba.com.np"]
+    APP --> R0["src/app"]
+    APP --> R1["public"]
+    R0 --> F0["src/app/layout.tsx"]
+    R1 --> F1["public/blog/design-handoff-checklist-startup-product-teams.html"]
+    R1 --> F2["public/blog/design-systems-small-product-teams.html"]
+    R1 --> F3["public/blog/figma-handoff-notes-for-developers.html"]
+    R1 --> F4["public/blog/hire-product-designer-nepal-saas-web3.html"]
+    R1 --> F5["public/blog/index.html"]
+    R1 --> F6["public/blog/prioritize-ux-audit-findings-before-redesign.html"]
+    R1 --> F7["public/blog/responsive-saas-dashboard-handoff-notes.html"]
+    R1 --> F8["public/blog/role-based-saas-dashboard-ux.html"]
+    R1 --> F9["public/blog/saas-dashboard-empty-state-ux-guide.html"]
+    R1 --> F10["public/blog/saas-dashboard-empty-states-product-clarity.html"]
+    R1 --> F11["public/blog/saas-dashboard-empty-states-that-help-users-recover.html"]
+```
+
+## Application and responsibility flow
+
+```mermaid
+flowchart LR
+    ACTOR["User / contributor"]
+    ACTOR --> A0["Interface: public, src"]
+    A0 --> A1["Application logic: api"]
+    A1 --> A2["Data: data"]
+    A2 --> A3["Quality: tests"]
+    A3 --> A4["Documentation: docs"]
+    A4 --> A5["Delivery: .github, scripts"]
+    A5 --> DELIVERY["Delivery: vercel.json, GitHub Actions"]
+```
+
+## Change-to-delivery flow
+
+```mermaid
+flowchart LR
+    CHANGE["Change on fix/verified-mobile-hero-top"]
+    CHECK["Validate: npm run dev, npm run build, npm run preview"]
+    REVIEW["Review documentation and architecture impact"]
+    RELEASE["Merge, release, or deploy according to this branch"]
+    CHANGE --> CHECK --> REVIEW --> RELEASE
+```
+
+## README requirements for this branch
+
+- Explain what this branch contains and how it differs from the default branch.
+- Keep installation, configuration, usage, testing, deployment, security, support, and license information accurate.
+- Document repository, website or application, API, data, authentication, background-job, and deployment flows when they exist.
+- Prefer Mermaid diagrams and expandable `<details>` sections for visual navigation.
+- Link diagrams and modules to real source paths; never invent missing components.
+- Preserve project-specific documentation and update diagrams whenever architecture or major paths change.
+- Treat secrets, private infrastructure, customer data, and credentials as prohibited README content.
+
+</details>
+
+<!-- interactive-readme-standard:end -->
+
 Production portfolio for **Nischhal Raj Subba**, a Nepal-based product designer working across Web3, SaaS, fintech, service websites, design systems, UX audits, and developer-ready handoff.
 
 The site is a static multi-page Vite build deployed through **Cloudflare Workers with static assets**. A Worker handles first-party API routes while Cloudflare serves the generated site from `dist/`.
