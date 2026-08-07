@@ -125,7 +125,7 @@ jobs:
           exit 1
 
       - name: Publish browser audit result
-        if: always()
+        if: always() && !cancelled()
         uses: actions/github-script@v7
         env:
           PREVIEW_OUTCOME: ${{ steps.preview.outcome }}
@@ -200,7 +200,7 @@ jobs:
           retention-days: 7
 
       - name: Fail workflow when browser validation fails
-        if: always()
+        if: always() && !cancelled()
         env:
           PREVIEW_OUTCOME: ${{ steps.preview.outcome }}
           BROWSER_OUTCOME: ${{ steps.browser.outcome }}
