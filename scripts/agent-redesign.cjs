@@ -58,6 +58,9 @@ for (const [fileName, title] of customCaseTitles) {
     const breadcrumb = `<div class="agent-frame agent-breadcrumb-wrap"><nav class="breadcrumbs agent-breadcrumbs" aria-label="Breadcrumb"><a href="/projects">Work</a><span aria-hidden="true">/</span><span aria-current="page">${title}</span></nav></div>`;
     html = html.replace(/<header class="agent-case-hero">/i, `<header class="agent-case-hero">${breadcrumb}`);
   }
+  if (fileName === 'project-hamro-idea.html') {
+    html = html.replace(/>\s*Back to all work\s*</gi, '>View all projects<');
+  }
   fs.writeFileSync(filePath, html, 'utf8');
 }
 
