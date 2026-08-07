@@ -24,16 +24,16 @@
 }
 
 .agent-portfolio .nav-wrapper {
-  top: var(--nrs-progress-height);
+  top: 0;
   isolation: isolate;
 }
 
 .agent-portfolio .agent-main {
-  padding-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height));
+  padding-top: var(--nrs-sticky-nav-height);
 }
 
 .agent-portfolio :where(section[id], article[id], [data-anchor]) {
-  scroll-margin-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height) + 1rem);
+  scroll-margin-top: calc(var(--nrs-sticky-nav-height) + 1rem);
 }
 
 .agent-portfolio main,
@@ -116,13 +116,13 @@
 
   .agent-portfolio .theme-toggle-btn {
     position: fixed;
-    top: calc(var(--nrs-progress-height) + env(safe-area-inset-top) + .6rem);
+    top: calc(env(safe-area-inset-top) + .6rem);
     right: calc(var(--ap-gutter) + 3.4rem);
     z-index: calc(var(--ap-z-nav) + 3);
   }
 
   body.agent-portfolio .mobile-nav-toggle {
-    top: calc(var(--nrs-progress-height) + env(safe-area-inset-top) + .6rem) !important;
+    top: calc(env(safe-area-inset-top) + .6rem) !important;
     right: var(--ap-gutter) !important;
     left: auto !important;
     z-index: calc(var(--ap-z-nav) + 4) !important;
@@ -133,7 +133,7 @@
     max-height: 100dvh;
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height) + 1.5rem);
+    padding-top: calc(var(--nrs-sticky-nav-height) + 1.5rem);
     padding-bottom: calc(2rem + env(safe-area-inset-bottom));
     -webkit-overflow-scrolling: touch;
   }
@@ -146,7 +146,7 @@
 
   .agent-portfolio .agent-page-hero,
   .agent-portfolio .agent-hero {
-    scroll-margin-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height));
+    scroll-margin-top: var(--nrs-sticky-nav-height);
   }
 }
 
@@ -319,7 +319,7 @@
 @media (max-width: 1023px) and (max-height: 600px) {
   .agent-portfolio .mobile-nav-overlay {
     align-items: start;
-    padding-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height) + .75rem);
+    padding-top: calc(var(--nrs-sticky-nav-height) + .75rem);
   }
 
   .agent-portfolio .mobile-nav-links a {
