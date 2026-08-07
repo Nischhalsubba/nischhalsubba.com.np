@@ -44,8 +44,15 @@ function showFieldError(field, message = validationMessage(field)) {
 
 function focusInvalid(field) {
   if (!field) return;
-  field.focus({ preventScroll: false });
-  queueMicrotask(() => field.focus({ preventScroll: false }));
+  const restore = () => {
+    if (field.isConnected && document.activeElement !== field) field.focus({ preventScroll: false });
+  };
+  restore();
+  queueMicrotask(restore);
+  requestAnimationFrame(() => {
+    restore();
+    window.setTimeout(restore, 0);
+  });
 }
 
 function validate(form) {
@@ -157,6 +164,7 @@ export function initContactForm() {
     event.preventDefault();
     if (!validate(form)) {
       setStatus('Review the highlighted fields and try again.', 'error');
+      focusInvalid(form.querySelector('[aria-invalid="true"]'));
       return;
     }
 
