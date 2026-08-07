@@ -44,17 +44,38 @@ function showFieldError(field, message = validationMessage(field)) {
   field.insertAdjacentElement('afterend', node);
 }
 
-function focusInvalid(field) {
+function canRestoreInvalidFocus(field) {
+  const active = document.activeElement;
+  if (!active || active === document.body || active === document.documentElement) return true;
+  if (active === field) return false;
+  return active instanceof HTMLIFrameElement && Boolean(active.closest('.nrs-turnstile'));
+}
+
+function focusInvalid(field, { persistent = false } = {}) {
   if (!field) return;
-  const restore = () => {
-    if (field.isConnected && document.activeElement !== field) field.focus({ preventScroll: false });
+
+  const restore = (force = false) => {
+    if (!field.isConnected || document.activeElement === field) return;
+    if (!force && !canRestoreInvalidFocus(field)) return;
+    field.focus({ preventScroll: false });
   };
-  restore();
-  queueMicrotask(restore);
+
+  restore(true);
+  queueMicrotask(() => restore());
   requestAnimationFrame(() => {
     restore();
-    window.setTimeout(restore, 0);
+    window.setTimeout(() => restore(), 0);
   });
+
+  // Turnstile can finish mounting after validation has already moved focus.
+  // Re-assert the invalid field only while focus is effectively lost or still
+  // inside the anti-spam iframe. Never steal focus from another field/control
+  // the visitor deliberately moved to.
+  if (persistent) {
+    [100, 300, 750, 1500].forEach((delay) => {
+      window.setTimeout(() => restore(), delay);
+    });
+  }
 }
 
 function validate(form) {
@@ -80,7 +101,7 @@ function applyServerErrors(form, errors = {}) {
     showFieldError(field, String(message));
     firstInvalid ||= field;
   });
-  focusInvalid(firstInvalid);
+  focusInvalid(firstInvalid, { persistent: true });
 }
 
 function buildPayload(form) {
@@ -184,7 +205,7 @@ export function initContactForm() {
     event.preventDefault();
     if (!validate(form)) {
       setStatus('Review the highlighted fields and try again.', 'error');
-      focusInvalid(form.querySelector('[aria-invalid="true"]'));
+      focusInvalid(form.querySelector('[aria-invalid="true"]'), { persistent: true });
       return;
     }
 
