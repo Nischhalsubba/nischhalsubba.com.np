@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { chromium } from 'playwright';
 
 const base = process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173';
@@ -14,11 +16,27 @@ const viewports = [
   [1024, 768],
   [1440, 900],
 ];
+const screenshotWidths = new Set([375, 768, 1024, 1440]);
+const screenshotRoot = path.resolve('tests', 'sticky-responsive', 'results');
+fs.rmSync(screenshotRoot, { recursive: true, force: true });
+fs.mkdirSync(screenshotRoot, { recursive: true });
+
 const failures = [];
 const browser = await chromium.launch({ headless: true });
 
 function intersects(a, b) {
+  if (!a || !b) return false;
   return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+}
+
+function routeSlug(route) {
+  return route === '/' ? 'home' : route.replace(/^\/+|\/+$/g, '').replaceAll('/', '-');
+}
+
+async function capture(page, width, route, position) {
+  if (!screenshotWidths.has(width)) return;
+  const target = path.join(screenshotRoot, `${width}-${routeSlug(route)}-${position}.png`);
+  await page.screenshot({ path: target, fullPage: false });
 }
 
 for (const [width, height] of viewports) {
@@ -29,6 +47,7 @@ for (const [width, height] of viewports) {
     try {
       const response = await page.goto(`${base}${route}`, { waitUntil: 'networkidle', timeout: 30000 });
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
+      await capture(page, width, route, 'top');
 
       const initial = await page.evaluate(() => {
         const visible = (element) => {
@@ -45,7 +64,9 @@ for (const [width, height] of viewports) {
         const menu = document.querySelector('.mobile-nav-toggle');
         const desktopTheme = document.querySelector('.theme-toggle-btn');
         const mobileTheme = document.querySelector('.agent-mobile-theme-toggle');
-        const brand = document.querySelector('.agent-brand');
+        const brand = document.querySelector('.agent-mobile-brand') || document.querySelector('.agent-brand');
+        const brandStrong = brand?.querySelector('strong') || null;
+        const brandDetail = brand?.querySelector('span') || null;
         const fields = [...document.querySelectorAll('#contact-form input:not([type="hidden"]), #contact-form select, #contact-form textarea')]
           .filter((field) => field.name !== '_honey' && visible(field))
           .map((field) => ({
@@ -87,6 +108,10 @@ for (const [width, height] of viewports) {
           mobileThemeExists: Boolean(mobileTheme),
           brandVisible: visible(brand),
           brandRect: rect(brand),
+          brandStrongVisible: visible(brandStrong),
+          brandStrongRect: rect(brandStrong),
+          brandDetailVisible: visible(brandDetail),
+          brandDetailRect: rect(brandDetail),
           fields,
           importantButtons,
           mediaOverflow,
@@ -124,6 +149,9 @@ for (const [width, height] of viewports) {
         for (const box of [initial.menuRect, initial.brandRect]) {
           if (box.left < -1 || box.right > width + 1) throw new Error('mobile header control escapes viewport');
         }
+        if (width <= 430 && initial.brandStrongVisible && initial.brandDetailVisible && intersects(initial.brandStrongRect, initial.brandDetailRect)) {
+          throw new Error('mobile brand name overlaps the product-designer label');
+        }
 
         if (route === '/') {
           const themeBefore = await page.evaluate(() => document.documentElement.dataset.theme || '');
@@ -155,6 +183,7 @@ for (const [width, height] of viewports) {
       if (scrollable > 100) {
         await page.evaluate(() => window.scrollTo({ top: Math.round((document.documentElement.scrollHeight - window.innerHeight) * .58), behavior: 'instant' }));
         await page.waitForTimeout(100);
+        await capture(page, width, route, 'scroll58');
 
         const scrolled = await page.evaluate(() => {
           const root = document.querySelector('.agent-portfolio');
@@ -189,4 +218,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`[sticky-responsive-audit] ${routes.length} critical routes passed across ${viewports.length} portrait, landscape, tablet, and desktop viewports.`);
+console.log(`[sticky-responsive-audit] ${routes.length} critical routes passed across ${viewports.length} portrait, landscape, tablet, and desktop viewports. Evidence: ${screenshotRoot}`);
