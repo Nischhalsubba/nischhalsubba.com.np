@@ -5,234 +5,344 @@ const root = path.resolve(__dirname, '..');
 const base = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 
 const cases = {
-  'yarsha': {
-    title: 'Yarsha', domain: 'Web3 messaging + wallet UX', audience: 'People using chat to share Solana actions, interact with bots, and review wallet transactions',
-    deck: 'A messaging product where a conversation can lead directly to a financial action, designed so chat stays lightweight while wallet approval remains deliberate and understandable.',
-    challenge: 'Yarsha combines two interaction modes with very different risk. Messaging is fast and informal; wallet actions can move money, require signing, and depend on network behavior outside the interface. The design had to keep the reason for an action visible without making approval feel casual.',
-    scope: 'I designed the messaging-to-wallet experience around transaction cards, Solana blinks, bot-triggered actions, review states, wallet handoff, and the resolved state that returns to the thread. My focus was the behavior between screens: what persists, what changes, and what the user needs to understand at each transition.',
-    constraints: ['Financial actions need more friction than ordinary chat without turning every message into a banking screen.', 'Wallet and network behavior can introduce waiting, rejection, or failure outside the product.', 'Transaction context must still make sense when someone returns to the thread later.'],
-    decisions: [['Keep the reason visible', 'Wallet actions begin inside the conversation so users can see why the request exists before approval.'], ['Separate reading from signing', 'A focused review moment creates a clear boundary between seeing an action and authorizing it.'], ['Design failure states as normal', 'Pending, declined, failed, and completed states are explicit instead of being added after the happy path.'], ['Return the result to the thread', 'The final transaction state becomes part of the conversation history rather than disappearing into wallet history.']],
-    flow: ['Conversation provides the context for the wallet action.', 'Review surfaces the consequential details before approval.', 'Pending and network-dependent progress are represented honestly.', 'The resolved state is written back into the thread.'],
-    handoff: 'I framed the work as a state-transition contract for engineering: entry conditions, transaction content, wallet-dependent transitions, loading and pending behavior, failure recovery, and what remains visible after resolution.',
-    outcome: ['Conversation context and wallet actions are connected without being conflated.', 'Consequential actions have a deliberate review boundary.', 'Non-happy-path transaction states are part of the product model.', 'The thread keeps a durable record of what happened.'],
-    validate: ['Can users explain what will happen before approving a wallet action?', 'Do pending and failed states provide enough recovery context?', 'Does a resolved transaction still make sense when the thread is revisited later?'],
-    strengths: ['Complex state design', 'Web3 trust UX', 'Implementation-aware product thinking']
+  yarsha: {
+    title: 'Yarsha',
+    domain: 'Web3 messaging + wallet UX',
+    audience: 'People using chat to share Solana actions, interact with bots, and approve wallet transactions',
+    deck: 'I designed the point where conversation becomes transaction: a chat experience that keeps wallet actions understandable before, during, and after approval.',
+    situation: 'The difficult part of Yarsha was not adding crypto actions to a messenger. It was deciding how much friction a financial action needs inside an interface built around speed. A message can be casual; a signature or transfer cannot. The experience therefore had to preserve conversational context while making consequence, status, and recovery unmistakable.',
+    remit: 'My scope covered the messaging-to-wallet journey: transaction cards, Solana blinks, bot-triggered actions, review states, wallet handoff, pending behavior, failure states, and the final transaction record inside the thread. I worked at the interaction-model level, not just the screen level.',
+    constraints: ['Wallet approval happens partly outside the product, so the interface cannot pretend every transition is instant or controllable.', 'Users need enough information to make a safe decision without turning every wallet action into a dense finance form.', 'A transaction has to remain legible when the user returns to the conversation hours or days later.'],
+    moves: [['Keep intent attached to the action', 'The transaction starts in the thread, next to the message or bot context that caused it.'], ['Create a deliberate approval boundary', 'Review separates understanding an action from authorizing it, so signing never feels like an accidental continuation of chat.'], ['Model the states people actually meet', 'Pending, rejected, failed, and completed are treated as normal product states with their own copy and next actions.'], ['Write the outcome back into the conversation', 'The thread becomes the durable record of what was requested and what ultimately happened.']],
+    system: ['Conversation establishes why the action exists.', 'Review establishes what will happen and what the user is authorizing.', 'Wallet and network states communicate progress without false certainty.', 'Resolution returns to the thread with enough context to stand on its own later.'],
+    delivery: 'For engineering, I reduced the flow to a state model: entry conditions, required transaction data, wallet-dependent transitions, pending behavior, recoverable and terminal errors, and the information that persists after resolution. That makes the design implementable without reverse-engineering intent from mockups.',
+    result: ['Wallet actions remain connected to the conversation that created them.', 'Approval is a distinct, deliberate step instead of a casual chat interaction.', 'Failure and waiting states have a defined place in the product model.', 'The conversation preserves a readable transaction history.'],
+    success: ['Users can describe what they are about to approve before leaving the product for wallet confirmation.', 'Pending and failed transactions tell users whether to wait, retry, change something, or stop.', 'A completed transaction still makes sense when the conversation is revisited later.'],
+    strengths: ['High-stakes state design', 'Web3 trust and clarity', 'Behavior-first handoff']
   },
-  'mokshya': {
-    title: 'Mokshya.io', domain: 'Web3 protocol website', audience: 'Prospective users, technical evaluators, and developers',
-    deck: 'A protocol website that explains a technically complex product without flattening it into generic crypto marketing or forcing every visitor through developer-level detail.',
-    challenge: 'Protocol websites often fail in opposite directions: too much technical detail before the value is clear, or so much simplification that experienced visitors stop trusting the explanation. Mokshya needed a sequence that could establish the outcome, explain the mechanism, and then offer proof and developer depth.',
-    scope: 'I worked on information architecture, website UX, responsive composition, and the translation of protocol concepts into a readable product story. The key decisions were about what belongs in the first scan, what deserves progressive disclosure, and where supporting proof should sit.',
-    constraints: ['General visitors and developers arrive with very different levels of technical context.', 'Claims need supporting detail because vague language damages credibility quickly in Web3.', 'Technical content still needs useful reading measure and hierarchy on small screens.'],
-    decisions: [['Lead with the outcome', 'The first scan gives visitors a useful mental model before introducing protocol mechanics.'], ['Create two depths of reading', 'General explanation and developer detail stay connected without forcing either audience through the other path.'], ['Put proof next to claims', 'Specific terminology and supporting context carry credibility instead of ornamental effects.'], ['Design for reading, not shrinking', 'Responsive layouts preserve narrative order and reading measure rather than merely stacking desktop columns.']],
-    flow: ['The product promise comes before the protocol mechanism.', 'Mechanics appear only after visitors have enough context to understand them.', 'Proof is placed near the claims it supports.', 'Developer depth remains accessible without turning the full site into documentation.'],
-    handoff: 'I treated section order, reading measure, responsive collapse, and the relationship between general and technical content as reusable rules so the site could grow without losing the logic of the story.',
-    outcome: ['The product promise is easier to understand before technical depth begins.', 'General and developer audiences have distinct but connected paths.', 'Trust is supported by hierarchy, terminology, and evidence rather than hype.', 'Technical sections retain a readable structure across screen sizes.'],
-    validate: ['Can a first-time visitor explain the protocol in plain language after a short scan?', 'Can developers reach the technical detail they need quickly?', 'Which proof elements most strongly affect trust and continued exploration?'],
-    strengths: ['Technical information architecture', 'Product storytelling', 'Responsive content design']
+  mokshya: {
+    title: 'Mokshya.io',
+    domain: 'Web3 protocol website',
+    audience: 'Prospective users, technical evaluators, and developers',
+    deck: 'I turned a technical protocol into a website that can be understood quickly without stripping away the depth technical visitors need to trust it.',
+    situation: 'Mokshya had an audience split common to technical products: newcomers needed a useful mental model, while experienced visitors wanted mechanism, proof, and developer context. Leading with implementation detail would lose one group; hiding it behind generic marketing language would lose the other.',
+    remit: 'I shaped the information architecture, page hierarchy, responsive composition, and the translation of protocol concepts into a product story. The work was mainly about sequencing: what a visitor needs to understand first, what can wait, and where proof should appear to support a claim.',
+    constraints: ['Technical accuracy and accessibility had to coexist on the same site.', 'Web3 audiences are sensitive to vague claims, so credibility had to come from specificity rather than spectacle.', 'Long technical sections still needed comfortable reading measure and hierarchy on small screens.'],
+    moves: [['Start with the useful outcome', 'The first scan explains why the protocol matters before asking visitors to learn how it works.'], ['Offer progressive technical depth', 'General explanation and developer detail are connected, but neither audience is forced through the other path.'], ['Attach evidence to the claim it supports', 'Terminology, proof, and supporting detail appear where they can answer doubt instead of living in a distant trust section.'], ['Design mobile as a reading experience', 'Responsive layouts preserve sequence and measure rather than collapsing desktop columns mechanically.']],
+    system: ['Outcome creates the initial mental model.', 'Mechanism explains how the product produces that outcome.', 'Evidence gives the explanation credibility.', 'Developer detail extends the model for people who need implementation depth.'],
+    delivery: 'I documented section logic, responsive reading order, content priority, and the relationship between summary and technical detail so the site could grow without losing its narrative structure.',
+    result: ['The product can be understood before the visitor encounters protocol vocabulary.', 'General and technical audiences have distinct depths of reading within one coherent site.', 'Proof works as part of the explanation instead of decorative reassurance.', 'Technical content keeps a readable structure across breakpoints.'],
+    success: ['A first-time visitor can explain the protocol in plain language after a short scan.', 'A developer can reach meaningful technical context without searching through the entire marketing site.', 'Visitors can distinguish product claims from the evidence that supports them.'],
+    strengths: ['Technical information architecture', 'Product narrative design', 'Responsive editorial UX']
   },
-  'pihub': {
-    title: 'piHub', domain: 'Fintech product workflows', audience: 'Investors, creditors, applicants, and administrative users',
-    deck: 'A fintech product spanning investment, credit, applications, verification, and account management, organized around one recurring question: what state am I in, and what happens next?',
-    challenge: 'Financial workflows become stressful when the interface does not explain whether progress is waiting on the user, the system, or a reviewer. piHub combines several roles and process types, so the work had to create continuity without pretending dashboards, applications, and verification all need the same density.',
-    scope: 'I worked across investor, creditor, application, verification, and account-management experiences. The design focus was hierarchy, status language, forms, review moments, task-based density, and recovery states for incomplete, rejected, or waiting processes.',
-    constraints: ['Different roles need different information without making the product feel fragmented.', 'Verification creates waiting states where users may have no immediate action but still need confidence.', 'Dense financial information must remain scannable without overwhelming decision-heavy workflows.'],
-    decisions: [['Keep status beside the next action', 'Current state, missing requirements, and the next available step stay in the same visual neighborhood.'], ['Match density to the task', 'Dashboards and comparison surfaces carry more information; application and verification screens deliberately remove competing detail.'], ['Make recovery actionable', 'Incomplete and failed states explain both what happened and what the user can do next.'], ['Treat verification as a journey', 'Waiting, review, approval, rejection, and resubmission are designed as normal product states.']],
-    flow: ['Status and next action are visible together.', 'Application steps group related decisions into manageable chunks.', 'Verification distinguishes user-controlled actions from system-controlled waiting.', 'Dashboard density changes according to whether the user is scanning, comparing, editing, or deciding.'],
-    handoff: 'I organized the product around reusable status, form, review, dashboard, and recovery patterns while documenting where role-specific workflows needed to diverge. Consistency came from shared rules, not forcing every financial task into one template.',
-    outcome: ['Status and next action are more closely connected across the documented workflows.', 'Dashboard and form density are treated as separate design problems.', 'Recovery states give users a route forward instead of passive labels.', 'Verification and waiting are first-class parts of the experience.'],
-    validate: ['Can each role identify the next required action without support?', 'Where do applicants lose confidence during verification or review?', 'Which status messages are understood correctly without additional explanation?'],
-    strengths: ['Multi-role product architecture', 'Fintech state design', 'Forms and recovery UX']
+  pihub: {
+    title: 'piHub',
+    domain: 'Fintech product workflows',
+    audience: 'Investors, creditors, applicants, and administrative users',
+    deck: 'I designed financial workflows around a simple promise: users should always know their current status, what is blocking progress, and what they can do next.',
+    situation: 'piHub spans investment, credit, applications, verification, and account management. The complexity is procedural. Different users move through different review states, and some of the most important moments happen when the product is waiting on verification rather than offering an immediate action.',
+    remit: 'My work covered product UX and UI across investor, creditor, application, verification, and account-management journeys. I focused on state language, forms, review moments, dashboard density, recovery, and the relationship between status and action.',
+    constraints: ['Several user roles share infrastructure but need different information and permissions.', 'Verification introduces waiting periods where uncertainty can damage confidence.', 'Financial dashboards need density for scanning while applications need calm, focused decision-making.'],
+    moves: [['Pair status with the next useful action', 'Users should not have to read one area to understand state and another to discover what to do about it.'], ['Change density with the job', 'Dashboards support scanning and comparison; forms and verification screens deliberately remove competing information.'], ['Turn errors into routes forward', 'Incomplete, rejected, and failed states explain what changed, what is still valid, and what the user can do next.'], ['Treat review as part of the journey', 'Submitted, waiting, approved, rejected, and resubmitted are designed states, not edge-case copy added at the end.']],
+    system: ['Dashboards answer: what needs attention?', 'Applications answer: what information is required now?', 'Verification answers: who or what is the process waiting on?', 'Recovery states answer: what can I do from here?'],
+    delivery: 'I organized the work around reusable status, form, review, dashboard, and recovery patterns, while documenting where investor, creditor, applicant, and admin workflows needed to diverge. The goal was consistent rules without pretending every role has the same job.',
+    result: ['Status, requirements, and next actions are treated as one information problem.', 'High-density and high-attention surfaces use different layout rules.', 'Waiting and recovery states are designed as intentionally as successful completion.', 'Role-specific flows can diverge without feeling like separate products.'],
+    success: ['Each role can identify its next required action without support.', 'Users can tell whether a delay is waiting on them, the system, or a reviewer.', 'Rejected or incomplete states provide a clear recovery path instead of a dead end.'],
+    strengths: ['Fintech state architecture', 'Multi-role UX', 'Forms and recovery design']
   },
   'hamro-idea': {
-    title: 'Hamro Idea', domain: 'Software studio brand + website', audience: 'Prospective clients evaluating a Nepal-based software studio',
-    deck: 'A rebrand and multi-page studio website where positioning, service architecture, responsive front-end work, and search structure were solved together instead of handed off as separate disciplines.',
-    challenge: 'A service website cannot compensate for unclear positioning with visual polish. Visitors first need to understand what the studio does, which service fits their problem, and why the team is credible enough to contact. The project therefore became a combined content, UX, visual, implementation, and SEO exercise.',
-    scope: 'I worked from positioning and page hierarchy through responsive layouts, reusable sections, conversion paths, and front-end implementation. Being close to the code let me test real content lengths, breakpoints, semantic structure, and accessibility while the design was still changing.',
-    constraints: ['Internal service names are not always the language prospective clients use.', 'A multi-page studio site needs consistency without making every page feel cloned.', 'Performance, accessibility, responsive behavior, and search semantics all affect the delivered design.'],
-    decisions: [['Clarify positioning before styling', 'The site first explains who the studio helps and what the services mean before visual design asks for attention.'], ['Organize around client intent', 'Service architecture follows the questions a prospective client is likely to ask rather than the company org chart.'], ['Use code as design feedback', 'Building responsive sections exposed weak hierarchy and unrealistic content assumptions early.'], ['Treat semantics as interface quality', 'Accessibility, performance, and search structure are part of the final experience rather than cleanup.']],
-    flow: ['Visitors move from a broad capability into specific service detail.', 'Calls to action follow enough context to feel like a continuation of the page.', 'Reusable sections support different service stories and content lengths.', 'Mobile preserves the intended reading hierarchy rather than simply stacking desktop blocks.'],
-    handoff: 'Implementation happened inside the design loop. Reusable patterns, semantic hierarchy, responsive decisions, and content structure were tested in the browser rather than documented as assumptions for someone else to interpret.',
-    outcome: ['The service offer is easier to understand from a prospective client perspective.', 'Paths from a problem to relevant service detail and contact are more direct.', 'Responsive decisions were validated during implementation.', 'The multi-page system is easier to maintain because structure and semantics are reusable.'],
-    validate: ['Which service descriptions are understood without a sales explanation?', 'What pages and proof points do qualified prospects visit before contacting the studio?', 'Do incoming enquiries match the type of work the site is positioning the studio to win?'],
-    strengths: ['End-to-end website ownership', 'Design-to-code execution', 'Positioning and conversion architecture']
+    title: 'Hamro Idea',
+    domain: 'Software studio brand + website',
+    audience: 'Prospective clients evaluating a Nepal-based software studio',
+    deck: 'I redesigned a software studio website from positioning through front-end implementation, using the build itself to test whether the design held up under real content and responsive constraints.',
+    situation: 'The core problem was not visual identity in isolation. A prospective client needs to understand what the studio does, which service matches the problem, and why the team is credible enough to contact. The website needed to make those decisions easier before visual polish could do useful work.',
+    remit: 'I worked across positioning, information architecture, responsive UI, reusable sections, conversion paths, semantic markup, and front-end implementation. Because I owned both design and code, responsive behavior and content density could be corrected during the design process rather than after handoff.',
+    constraints: ['Internal service language is rarely the same language prospective clients use when looking for help.', 'A multi-page service site needs a shared system without making every page feel templated.', 'Accessibility, performance, SEO structure, and responsive behavior directly affect the quality of the delivered design.'],
+    moves: [['Clarify the offer before styling it', 'The page structure answers who the studio helps and what each service means before adding visual emphasis.'], ['Organize services around client intent', 'Navigation and service pages follow the questions a prospective client is likely to ask, not the company org chart.'], ['Use implementation as a design test', 'Real breakpoints, content lengths, and browser behavior expose weak assumptions faster than static frames.'], ['Make semantics part of craft', 'Heading structure, accessibility, performance, and search readability are treated as interface decisions.']],
+    system: ['Positioning establishes fit.', 'Service architecture helps visitors find the relevant capability.', 'Proof and project material support confidence.', 'Contextual calls to action turn evaluation into a conversation.'],
+    delivery: 'The browser was part of the design loop. Reusable layout patterns, semantic structure, responsive behavior, and content rules were implemented and refined together, reducing the translation loss that usually appears between design files and production.',
+    result: ['The service offer is organized around prospective-client needs.', 'Service pages have clearer paths to relevant detail and contact.', 'Responsive behavior was tested as part of design rather than deferred to implementation.', 'The site system is easier to maintain because structure and semantics are reusable.'],
+    success: ['A prospect can identify the most relevant service without sales assistance.', 'Qualified visitors reach project proof and contact from the service context that matters to them.', 'The site attracts enquiries that match the work the studio is positioning itself to deliver.'],
+    strengths: ['End-to-end ownership', 'Design-to-code execution', 'Service positioning and IA']
   },
-  'masteriyo': {
-    title: 'Masteriyo', domain: 'WordPress LMS product design', audience: 'Course creators, learners, and administrators',
-    deck: 'Product-design work inside an existing LMS, balancing course authoring, quizzes, learner progress, and administration while staying consistent with a larger product and design team.',
-    challenge: 'Course creators, learners, and administrators share the same product but not the same mental model. Creators need structure and configuration; learners need focus, progress, and feedback; administrators need control and visibility. The system had to feel coherent without making those roles behave alike.',
-    scope: 'I contributed product design within a larger team, working on course and quiz flows, product states, hierarchy, and interface patterns that had to fit an established WordPress LMS. My contribution needed to be easy for other designers and engineers to review and extend.',
-    constraints: ['Authoring workflows can expose many settings and content relationships at once.', 'Learner-facing screens should not inherit administrative language just because they share the same data model.', 'New work has to fit existing product patterns and a multi-designer workflow.'],
-    decisions: [['Design by role, not by database', 'Creators and learners share visual language but their screens prioritize different information because their jobs differ.'], ['Reveal authoring complexity progressively', 'Course and quiz configuration is grouped into manageable decisions instead of shown all at once.'], ['Keep learner feedback close to the next action', 'Progress, quiz state, completion, and what to do next remain visible without surfacing admin complexity.'], ['Respect the existing system', 'New patterns are introduced in a form the larger design and engineering team can review, reuse, and extend.']],
-    flow: ['Course creation is broken into understandable configuration steps.', 'Quiz states make attempt status, feedback, and next steps clear.', 'Creator and learner experiences share conventions while deliberately diverging in hierarchy and density.', 'Edge and empty states are documented alongside the happy path.'],
-    handoff: 'I prepared consistent naming, reusable components, state coverage, and enough interaction context that another designer or engineer could extend the flow without reverse-engineering intent from a screenshot.',
-    outcome: ['Course-authoring patterns are organized around progressive configuration.', 'Learner-facing states emphasize progress and feedback rather than administration concepts.', 'New interface work aligns with an existing WordPress LMS system.', 'The contribution remains clearly scoped within a larger team.'],
-    validate: ['Where do creators abandon or misunderstand course setup?', 'Can learners identify progress and the next action without scanning unrelated information?', 'Where should shared patterns intentionally diverge between creator and learner roles?'],
-    strengths: ['Product-team collaboration', 'Complex authoring UX', 'Design-system consistency']
+  masteriyo: {
+    title: 'Masteriyo',
+    domain: 'WordPress LMS product design',
+    audience: 'Course creators, learners, and administrators',
+    deck: 'I contributed to an established LMS by designing authoring and learning states that fit the product system while respecting how differently creators and learners think about the same course.',
+    situation: 'Masteriyo serves several roles inside one product. Creators think in curriculum, settings, and publishing. Learners think in progress, comprehension, and what comes next. Administrators need oversight. Reusing the same hierarchy for every role would make the system consistent in appearance and inconsistent in use.',
+    remit: 'I worked as part of a larger design team on course authoring, quiz flows, learner states, hierarchy, and reusable interface patterns. My contribution had to fit an existing WordPress product and be clear enough for other designers and engineers to review, extend, and ship.',
+    constraints: ['Course creation can expose a large number of settings and content relationships.', 'Learner screens should not inherit administrative language or density simply because the underlying data is shared.', 'New patterns need to work inside an established product and multi-designer workflow.'],
+    moves: [['Share a system, not a hierarchy', 'Creators and learners reuse conventions while prioritizing different information based on their actual jobs.'], ['Break authoring into meaningful decisions', 'Course and quiz setup reveals complexity progressively instead of presenting one long configuration surface.'], ['Keep feedback near the next action', 'Learners see progress, attempt state, completion, and what to do next without admin concepts leaking into the experience.'], ['Design for team continuation', 'States, naming, and component behavior are explicit enough that another designer can continue the feature coherently.']],
+    system: ['Creators move from course structure into progressive configuration.', 'Learners move from content into feedback and the next learning action.', 'Shared components provide familiarity without forcing identical density.', 'Empty, error, and completion states sit inside the same interaction model.'],
+    delivery: 'I prepared the work for a collaborative product environment: reusable components, state coverage, consistent terminology, and interaction notes that explain intent rather than relying on a collection of final-looking screens.',
+    result: ['Course authoring is framed as progressive configuration instead of a settings dump.', 'Learner states emphasize progress and feedback rather than product administration.', 'New interface work remains consistent with an existing LMS system.', 'My contribution is clearly scoped within the larger product team.'],
+    success: ['Creators can move through setup without losing track of what is required to publish.', 'Learners can identify progress and the next action quickly.', 'Shared patterns reduce learning cost without forcing creator and learner experiences to behave the same way.'],
+    strengths: ['Collaborative product design', 'Complex authoring UX', 'Design-system discipline']
   },
-  'orkest': {
-    title: 'Orkest HQ', domain: 'Modular SaaS platform', audience: 'Business teams, operators, and administrators working across CRM, sales, inventory, and finance',
-    deck: 'UX architecture for a modular business platform where CRM, Sales, Inventory, Finance, and shared workspaces needed to feel related without collapsing into one generic admin template.',
-    challenge: 'Orkest connects several business modules that share infrastructure but not the same task model. The core problem was deciding what should stay globally consistent, what belongs to a module, what belongs to a record, and how much information should be visible before the user chooses to inspect more.',
-    scope: 'I worked on UX architecture and product design across the shared workspace and module-level structure: navigation hierarchy, dashboard and table density, shared patterns, and the rules for intentional variation. I approached the platform as a product grammar rather than a collection of independent screens.',
-    constraints: ['CRM, Sales, Inventory, and Finance represent different business tasks even when they share infrastructure.', 'Operational views need enough information for fast scanning without overwhelming users with secondary detail.', 'Reusable patterns become harmful when they force genuinely different workflows into identical interactions.'],
-    decisions: [['Define the system before the screen', 'Shared navigation, hierarchy, and state conventions are established before module-level detail.'], ['Use a stable workspace shell', 'People can predict where global, module-level, and record-level actions will live.'], ['Design density by scan priority', 'Tables and dashboards show what matters at scan level and defer secondary detail until the user asks for it.'], ['Write down the exceptions', 'The design system explains where patterns should diverge, not just where they should repeat.']],
-    flow: ['Global navigation defines the shared workspace.', 'Module navigation exposes entities and tasks specific to CRM, Sales, Inventory, or Finance.', 'Tables and dashboards prioritize scan-level information before record-level depth.', 'Module-specific actions remain task-appropriate while shared patterns stay recognizable.'],
-    handoff: 'The deliverable was a set of system rules: navigation levels, shared components, density conventions, state behavior, and explicit exceptions. That gives engineering a scalable model for adding modules without treating the design system as a straightjacket.',
-    outcome: ['A shared workspace model connects modules without flattening their differences.', 'Global, module, and local action levels have clearer boundaries.', 'Dense operational surfaces use a more deliberate information hierarchy.', 'Reusable patterns include rules for legitimate variation.'],
-    validate: ['Can users move between modules without losing orientation?', 'Do dense views expose the right information at scan level?', 'Which shared patterns reduce learning cost, and which become restrictive in real workflows?'],
-    strengths: ['SaaS information architecture', 'Scalable design systems', 'Dense operational UI']
+  orkest: {
+    title: 'Orkest HQ',
+    domain: 'Modular SaaS platform',
+    audience: 'Business teams, operators, and administrators working across CRM, sales, inventory, and finance',
+    deck: 'I designed the architecture behind a multi-module SaaS product so CRM, Sales, Inventory, and Finance could share a system without becoming the same interface with different labels.',
+    situation: 'Orkest is a platform problem before it is a screen problem. Multiple business modules share navigation, components, permissions, and data conventions, but each module represents a different operational job. The challenge was defining what should repeat and what should be allowed to differ.',
+    remit: 'My scope focused on UX architecture and product design across the shared workspace and module structure: navigation levels, dashboards, tables, record views, information density, reusable patterns, and the rules for intentional variation.',
+    constraints: ['CRM, Sales, Inventory, and Finance share infrastructure but not task models.', 'Operational users need enough information for fast scanning without drowning in secondary detail.', 'A design system becomes a liability when consistency is enforced where the business task genuinely differs.'],
+    moves: [['Define the product grammar first', 'Navigation, hierarchy, actions, and state conventions are established before individual modules are polished.'], ['Make location predictable', 'Global, module-level, and record-level actions live in consistent layers so users can build spatial memory.'], ['Design density around decisions', 'Tables and dashboards expose the information required for scanning, then move secondary detail into deliberate inspection.'], ['Document the exceptions', 'Variation is part of the system: when a workflow needs to break a shared pattern, the reason is explicit.']],
+    system: ['The workspace establishes global context.', 'Each module exposes its own entities and tasks inside that shared shell.', 'Dashboards and tables support scanning before inspection.', 'Record-level actions become specific without changing the product language around them.'],
+    delivery: 'The important handoff was not a stack of finished screens. It was a set of rules for navigation, density, states, shared components, and exceptions so engineering could extend the platform without re-deciding the interaction model for every new module.',
+    result: ['Modules feel related without being flattened into one generic admin template.', 'Global, module, and record-level actions have clearer boundaries.', 'Dense operational surfaces follow a deliberate hierarchy.', 'The reusable system includes principled variation, not only repetition.'],
+    success: ['Users can move between modules without losing orientation.', 'The first scan of a dense view exposes the information needed for the next decision.', 'New modules can reuse the platform grammar without forcing inappropriate interactions.'],
+    strengths: ['SaaS architecture', 'Scalable design systems', 'Dense operational UI']
   },
-  'splashnode': {
-    title: 'Splashnode', domain: 'Technical platform website + front-end', audience: 'Platform buyers evaluating content, device, and data-management capabilities',
-    deck: 'Website design and front-end implementation for a technical platform, turning a dense capability set into a product story that can be scanned quickly and explored in depth.',
-    challenge: 'Splashnode had a technical capability set that could easily become a feature inventory. First-time visitors needed to understand how content, devices, and data fit together before deeper detail would be useful. The website needed a product model, not simply more sections.',
-    scope: 'I designed and coded the website experience, including information hierarchy, capability grouping, responsive composition, interface polish, and front-end implementation. Working in the browser gave me a direct feedback loop for content density, semantics, spacing, and performance.',
-    constraints: ['First-time visitors need a product model before technical depth becomes useful.', 'Responsive changes must preserve narrative order, not simply fit narrower widths.', 'Implementation choices affect performance, semantics, maintainability, and perceived quality.'],
-    decisions: [['Translate features into jobs', 'Content, device, and data capabilities are grouped around what buyers are trying to accomplish.'], ['Create a scannable capability model', 'Visitors can understand how the platform is organized before deciding where to go deeper.'], ['Preserve narrative order on mobile', 'Responsive layouts keep the same explanation sequence even when the composition changes.'], ['Use implementation as QA', 'The browser is used to test real spacing, content length, semantics, and performance assumptions.']],
-    flow: ['The top-level story establishes what the platform helps teams manage.', 'Capability groups connect related content, device, and data functions.', 'Deeper technical detail appears after the visitor has enough context to evaluate it.', 'Mobile preserves the same explanation order even when the layout becomes linear.'],
-    handoff: 'Because I also implemented the front end, the final deliverable included the actual responsive behavior. The design was tested against semantic markup, real content lengths, browser constraints, and production-facing performance considerations.',
-    outcome: ['Content, device, and data capabilities are easier to understand as one platform.', 'Technical detail is framed around useful outcomes before deeper evaluation.', 'Responsive layouts preserve the logic of the product story.', 'Design decisions were validated against implementation rather than remaining static assumptions.'],
-    validate: ['Can first-time visitors explain what the platform does after a short scan?', 'Can technical buyers find deeper capability detail quickly?', 'Which calls to action best match visitors at different stages of evaluation?'],
-    strengths: ['Design and front-end execution', 'Technical product storytelling', 'Responsive implementation']
+  splashnode: {
+    title: 'Splashnode',
+    domain: 'Technical platform website + front-end',
+    audience: 'Platform buyers evaluating content, device, and data-management capabilities',
+    deck: 'I designed and built a technical product website that turns a dense feature set into a clear capability model, then lets buyers go deeper when they are ready.',
+    situation: 'Splashnode had enough technical capability to overwhelm a first-time visitor. Content, devices, and data management make sense internally as features, but buyers first need to understand how those capabilities combine to solve a practical job.',
+    remit: 'I owned website design and front-end implementation, including capability grouping, page hierarchy, responsive behavior, interaction polish, semantic structure, and the implementation details that determine whether the final site still feels intentional.',
+    constraints: ['New visitors need a product model before technical depth becomes useful.', 'Responsive layouts must preserve the explanation order even when the composition changes.', 'Implementation decisions affect performance, semantics, maintainability, and visual quality.'],
+    moves: [['Organize around buyer jobs', 'Capabilities are grouped by what teams are trying to manage, not by an internal feature inventory.'], ['Make the system scannable first', 'Visitors can understand the relationship between content, devices, and data before opening deeper detail.'], ['Protect the story on mobile', 'Responsive composition changes, but the explanation sequence does not.'], ['Use the browser as a design critic', 'Real content, spacing, performance, and semantics are tested during implementation instead of treated as someone else\'s problem.']],
+    system: ['The opening establishes what the platform helps teams manage.', 'Capability groups create a coherent mental model.', 'Deeper product detail supports technical evaluation after orientation.', 'Calls to action match different stages of buyer intent.'],
+    delivery: 'Because I also implemented the front end, responsive rules and interaction behavior were delivered as working code rather than left to interpretation. That let design decisions be tested against the actual browser, content, and performance constraints.',
+    result: ['The platform is easier to understand as a connected system rather than a feature list.', 'Technical detail has a clear place after initial orientation.', 'Responsive behavior preserves the product narrative.', 'Design decisions survive into implementation with less translation loss.'],
+    success: ['A first-time visitor can explain what the platform does after a short scan.', 'A technical evaluator can reach deeper capability information without losing context.', 'Different calls to action make sense for visitors at different stages of evaluation.'],
+    strengths: ['Design plus implementation', 'Technical product storytelling', 'Responsive systems thinking']
   },
-  'morajaa': {
-    title: 'Morajaa', domain: 'B2B consulting website', audience: 'Decision-makers exploring consulting support by business problem, service, or sector',
-    deck: 'A consulting website structured around how prospective clients recognize their needs, connecting services, sectors, credibility, and inquiry paths without relying on vague corporate language.',
-    challenge: 'High-consideration prospects often know the problem they are trying to solve before they know the consulting firm\'s internal service name. Morajaa needed several coherent routes into the same offer - by need, service, and sector - plus a premium visual language that created confidence without sacrificing clarity.',
-    scope: 'I worked on website UX, information architecture, service and sector relationships, visual hierarchy, responsive composition, and the path from exploration to inquiry. I treated credibility as a content problem as much as a visual one.',
-    constraints: ['Visitors may enter through a business need, a sector, or a known service.', 'Premium presentation cannot reduce content clarity or accessibility.', 'Inquiry calls to action should preserve the context of what the visitor was evaluating.'],
-    decisions: [['Let visitors enter by need', 'The site does not require prospects to know internal consulting vocabulary before finding a relevant path.'], ['Connect services and sectors', 'Related content is cross-linked so discovery paths reinforce each other instead of becoming duplicate dead ends.'], ['Build trust with precision', 'Clear language and relevant proof do more credibility work than abstract premium claims.'], ['Keep inquiry contextual', 'Calls to action appear after relevant service or sector content so contact begins with useful context.']],
-    flow: ['Visitors can recognize a relevant business problem before knowing the exact service name.', 'Service and sector pages connect where their contexts overlap.', 'Proof appears close to the claims it is meant to support.', 'Inquiry paths carry the context of what the prospect was exploring into contact.'],
-    handoff: 'I organized the site around reusable section patterns and content relationships so the service and sector model could scale without duplicating the entire structure. Responsive behavior preserves those relationships on smaller screens.',
-    outcome: ['Visitors have more than one coherent route into the consulting offer.', 'Premium presentation is supported by clarity and proof rather than ornament alone.', 'Service information is organized around recognition and evaluation rather than internal labels.', 'Inquiry points retain useful context from the content that led to them.'],
-    validate: ['Can visitors identify the right service without already knowing its internal name?', 'Which sector or proof content creates the strongest confidence?', 'Where do serious prospects decide they have enough context to contact the firm?'],
-    strengths: ['B2B information architecture', 'Trust and conversion design', 'Content-heavy responsive UX']
+  morajaa: {
+    title: 'Morajaa',
+    domain: 'B2B consulting website',
+    audience: 'Decision-makers exploring consulting support by business problem, service, or sector',
+    deck: 'I structured a consulting website around the way prospects recognize problems, so visitors can find relevant expertise without first learning the firm\'s internal vocabulary.',
+    situation: 'High-consideration buyers often know the business problem they need help with before they know the name of the consulting service. A site organized only around internal service categories makes the visitor translate their problem into the firm\'s language before they can even evaluate fit.',
+    remit: 'I worked on information architecture, service and sector relationships, visual hierarchy, responsive composition, credibility content, and the path from exploration into a qualified enquiry.',
+    constraints: ['Visitors may enter through a problem, a known service, or an industry sector.', 'Premium presentation cannot reduce clarity or reading comfort.', 'An enquiry is more valuable when the context that led to it is preserved.'],
+    moves: [['Start with recognition', 'Visitors can enter through the business problem they recognize rather than a taxonomy they have to learn.'], ['Connect service and sector paths', 'Related pages reinforce one another instead of becoming isolated content silos.'], ['Make precision the premium signal', 'Clear language, evidence, and restrained hierarchy do more credibility work than vague luxury styling.'], ['Ask for contact after context', 'Inquiry points appear after relevant service or sector material so the conversation starts with more information.']],
+    system: ['Problem-led entry helps a visitor recognize relevance.', 'Service pages explain the type of support available.', 'Sector pages make that expertise concrete in context.', 'Proof and enquiry close the evaluation loop.'],
+    delivery: 'I organized the site around reusable relationships between service, sector, proof, and enquiry content so the information architecture could scale without duplicating entire page structures.',
+    result: ['Prospects have multiple coherent ways to discover relevant expertise.', 'Service and sector content support one another instead of competing for navigation priority.', 'The premium tone comes from precision and pacing rather than decoration.', 'Inquiry paths retain more of the context a prospect was evaluating.'],
+    success: ['A visitor can identify the relevant service without knowing its formal name beforehand.', 'Service and sector paths lead naturally to the proof most relevant to the decision.', 'Qualified prospects reach enquiry with enough context to start a useful conversation.'],
+    strengths: ['B2B information architecture', 'Trust-led content design', 'Conversion without pressure']
   },
   'neverwinter-parser': {
-    title: 'Neverwinter Live Parser', domain: 'Game combat-log analysis', audience: 'Neverwinter players using combat data to understand encounters and performance',
-    deck: 'An interface concept for turning raw combat-log output into useful encounter-level answers while staying honest about what the parser can and cannot infer.',
-    challenge: 'Raw combat logs are detailed but cognitively expensive. Players usually want answers about an encounter, build, rotation, or performance difference, not another event stream. The interface needed a hierarchy from raw data to useful interpretation without implying certainty the parser does not have.',
-    scope: 'I worked on the product and interface model for encounter summaries, comparison patterns, drill-down analysis, filters, and the boundary between reliable parser output and inferred interpretation.',
-    constraints: ['Large event streams require strong hierarchy before they become useful.', 'Metrics become misleading when units, grouping, or comparison context are hidden.', 'The interface cannot claim insights the parser cannot reliably derive.'],
-    decisions: [['Start with the player question', 'The primary interface is organized around encounter questions instead of the raw log schema.'], ['Use summary before diagnosis', 'High-level results provide orientation before deeper drill-down is introduced.'], ['Keep comparison context visible', 'Units, grouping, and scale remain explicit so visual differences are not mistaken for stronger evidence.'], ['Make the data contract visible', 'Uncertainty and missing information are treated as product states rather than silently ignored.']],
-    flow: ['Encounter summary provides quick orientation.', 'Drill-down views expose metrics relevant to a specific question.', 'Comparison patterns preserve units and grouping.', 'Filters narrow the view while keeping active context visible.'],
-    handoff: 'The design and parser capability have to evolve together. I treated available fields, grouping rules, uncertainty, and interaction states as part of the interface contract so the UI cannot drift into analytics the parser does not support.',
-    outcome: ['Combat-log data is organized around encounter-level questions rather than raw events.', 'Summary and diagnostic detail have clearer roles.', 'Comparison patterns carry more explicit context.', 'The interface stays aligned with the technical limits of the parser.'],
-    validate: ['Which summaries actually change a player\'s decision after an encounter?', 'How much information remains readable while switching between gameplay and analysis?', 'Where do filters or comparisons create false confidence?'],
+    title: 'Neverwinter Live Parser',
+    domain: 'Game combat-log analysis',
+    audience: 'Neverwinter players using combat data to understand encounters and performance',
+    deck: 'I designed an analysis layer for combat logs that starts with the questions players actually ask, then exposes deeper data without pretending the parser knows more than it does.',
+    situation: 'Raw combat logs are detailed but rarely useful in their original form. Players want to understand an encounter, compare performance, and investigate why something changed. The interface needed to compress a large event stream into useful summaries while keeping the underlying data and uncertainty honest.',
+    remit: 'My work focused on the product model for parser output: encounter summaries, comparison patterns, drill-down structure, filters, metric hierarchy, and the boundary between reliable data and interpretation.',
+    constraints: ['Large event streams need strong hierarchy before they become readable.', 'Metrics can mislead when units, grouping, or comparison context is hidden.', 'The interface cannot promise insight that the parser cannot reliably derive from the source data.'],
+    moves: [['Begin with the player question', 'The interface opens on encounter-level answers rather than raw event output.'], ['Use summary as orientation, not a dead end', 'Users can move from a quick interpretation into the exact metrics behind it.'], ['Keep comparison context explicit', 'Units, grouping, and scale remain visible so visual differences do not create false conclusions.'], ['Make data limits visible', 'Uncertainty and unsupported interpretation are exposed instead of being disguised as analytical confidence.']],
+    system: ['Encounter summary provides orientation.', 'Metric groups support focused investigation.', 'Comparisons keep units and grouping consistent.', 'Filters narrow the question while keeping the active analysis state visible.'],
+    delivery: 'I treated the parser data contract and interface as one system. Available fields, aggregation rules, uncertainty, and interaction states define what the UI is allowed to claim, which keeps the design from drifting ahead of the underlying data.',
+    result: ['Combat data is organized around encounter questions instead of event streams.', 'Summary and diagnostic views have distinct jobs.', 'Comparison patterns make context and units explicit.', 'The interface stays aligned with what the parser can actually support.'],
+    success: ['Players can identify a useful explanation from the encounter summary without reading raw logs.', 'Drill-down paths help answer a specific question rather than simply exposing more data.', 'Filters and comparisons do not create confidence beyond what the underlying data supports.'],
     strengths: ['Data-heavy product design', 'Analytical hierarchy', 'Technical constraint awareness']
   },
   'grid-labs': {
-    title: 'Grid Labs', domain: 'Hosting service landing experience', audience: 'Visitors comparing hosting, domain, and service options',
-    deck: 'A focused hosting landing experience designed around the questions buyers actually need answered: what fits, what it costs, what is included, and whether the provider feels credible enough to continue.',
-    challenge: 'Hosting pages easily become a wall of plans, specifications, badges, and promotions. The real decision is smaller: which service fits, how the plans differ, what they include, and whether the provider feels trustworthy. The project stayed focused on that marketing and comparison problem.',
-    scope: 'I worked on interface structure and static front-end delivery for service hierarchy, pricing comparison, domain/search affordance, trust content, and responsive layout. The implementation stayed intentionally lightweight because clarity, not architecture theater, was the goal.',
-    constraints: ['Hosting terminology can overwhelm visitors making a straightforward comparison.', 'Pricing cards become difficult to compare when included features move or change format.', 'Trust badges do not help if the offer itself remains unclear.'],
-    decisions: [['Answer buyer questions first', 'Service type, pricing, inclusions, and trust appear before secondary technical detail.'], ['Keep comparison dimensions stable', 'Plan cards use a consistent structure so visitors do not have to remember information from another column.'], ['Use trust after clarity', 'Reassurance supports an understood offer instead of substituting for one.'], ['Keep the implementation honest', 'The static build stays focused on its role rather than implying a full hosting product.']],
-    flow: ['Visitors identify the relevant service category before comparing plans.', 'Pricing cards preserve the same information structure across options.', 'Domain/search UI communicates its marketing purpose without implying unsupported account functionality.', 'Trust content supports the decision and leads toward the next service step.'],
-    handoff: 'The front-end structure favored clear sections, predictable responsive behavior, and simple reusable patterns. The scope did not need a component system more complicated than the experience itself.',
-    outcome: ['The journey from hosting intent to comparison is more direct.', 'Pricing information is easier to compare because the structure is stable.', 'Trust content appears after the offer has enough context to be understood.', 'The implementation remains appropriately lightweight for the real project scope.'],
-    validate: ['Can visitors compare plans accurately without opening additional detail?', 'Does the domain/search affordance communicate its purpose immediately?', 'What information is still missing before a visitor is ready to act?'],
-    strengths: ['Commercial information hierarchy', 'Responsive front-end', 'Scope discipline']
+    title: 'Grid Labs',
+    domain: 'Hosting service landing experience',
+    audience: 'Visitors comparing hosting, domain, and service options',
+    deck: 'I reduced a hosting landing page to the decisions a buyer actually needs to make: what fits, what it costs, what is included, and whether the provider is credible enough to continue.',
+    situation: 'Hosting pages can become a pile of plans, badges, specifications, and promotional claims. The real buyer journey is simpler. Visitors need to identify the right service, compare options accurately, understand what is included, and decide whether to proceed.',
+    remit: 'My contribution covered the marketing experience and static front-end structure: service hierarchy, pricing comparison, domain-search affordance, trust content, responsive layout, and the path toward contact or purchase intent.',
+    constraints: ['Technical terminology can obscure a straightforward purchase decision.', 'Pricing becomes hard to compare when plans use inconsistent structure or feature order.', 'A static landing experience should not imply account or infrastructure functionality it does not actually provide.'],
+    moves: [['Prioritize the buyer questions', 'Service type, price, included value, and trust appear before secondary technical detail.'], ['Standardize the comparison', 'Plans keep the same information order so users can compare without remembering a previous card.'], ['Use trust after clarity', 'Reassurance supports an understood offer instead of trying to replace explanation.'], ['Keep implementation proportional', 'The front end stays simple and maintainable because the project is a landing experience, not a hidden SaaS platform.']],
+    system: ['Service selection narrows intent.', 'Plan comparison makes trade-offs visible.', 'Domain and supporting tools clarify the next commercial step.', 'Trust and contact help the visitor continue with confidence.'],
+    delivery: 'I kept the static implementation deliberately lightweight: predictable sections, responsive rules, and reusable patterns without introducing a component architecture more complex than the site required.',
+    result: ['The page sequence follows the buyer decision more closely.', 'Pricing and service options are easier to compare consistently.', 'Trust content reinforces a clear offer instead of competing with it.', 'The implementation remains honest about the actual project scope.'],
+    success: ['Visitors can compare plans without opening multiple secondary views.', 'The purpose of domain-search UI is understood immediately.', 'The page exposes enough information for a visitor to know whether to continue, contact, or leave.'],
+    strengths: ['Commercial hierarchy', 'Responsive front-end craft', 'Scope discipline']
   },
   'zakra-furniture': {
-    title: 'Zakra Furniture', domain: 'WordPress / Elementor starter-site design', audience: 'Furniture shoppers and site owners maintaining catalogue content',
-    deck: 'A furniture starter-site concept balancing image-led browsing with the practical realities of product comparison, changing content, and non-designer editing in WordPress and Elementor.',
-    challenge: 'Furniture discovery is visual, but a useful commerce-oriented page still needs category cues and enough information to compare. A starter site adds another user: the person maintaining it. The design had to survive different images, copy lengths, and catalogue sizes without requiring a designer for every update.',
-    scope: 'I worked on category discovery, product-card hierarchy, flexible section patterns, typography, spacing, image behavior, and editor-aware layout decisions. Editability was treated as part of usability rather than an implementation detail.',
-    constraints: ['Product photography varies in crop, aspect ratio, and visual weight.', 'Starter sections need to tolerate different catalogue sizes and copy lengths.', 'Site owners need enough freedom to edit without design expertise for every change.'],
-    decisions: [['Let imagery lead, but not navigate alone', 'Photography carries the visual hierarchy while categories and labels preserve orientation.'], ['Design for variable content', 'Sections expand or contract without depending on one perfect amount of copy or imagery.'], ['Keep comparison information available', 'Product metadata supports decisions without competing with the photography.'], ['Respect the editor', 'Patterns are chosen for what a site owner can realistically maintain in Elementor.']],
-    flow: ['Category cues move visitors from broad browsing into product groups.', 'Product cards balance image dominance with enough information for comparison.', 'Section patterns remain coherent as catalogue size and copy length change.', 'Responsive states preserve the image-first hierarchy while keeping product information readable.'],
-    handoff: 'The design was prepared for a CMS environment, so repeatable blocks, image behavior, typography, and spacing rules matter as much as the original composition. The template should remain usable after the demo content is gone.',
-    outcome: ['Visual browsing has clearer category structure and product hierarchy.', 'Reusable sections are more tolerant of changing catalogue content.', 'Photography and decision-supporting text have more deliberate roles.', 'The patterns are designed to remain manageable inside WordPress and Elementor.'],
-    validate: ['Can visitors find relevant categories quickly from an image-led page?', 'Do product cards contain enough information to support comparison?', 'Can site owners update ordinary content without breaking layout or hierarchy?'],
+    title: 'Zakra Furniture',
+    domain: 'WordPress / Elementor starter-site design',
+    audience: 'Furniture shoppers and site owners maintaining catalogue content',
+    deck: 'I designed a furniture starter site that leads with imagery for shoppers while remaining resilient enough for real site owners to edit inside WordPress and Elementor.',
+    situation: 'Furniture discovery is visual, but a usable catalogue still needs category structure, product information, and clear navigation. As a starter site, the design also had to survive different photographs, copy lengths, and catalogue sizes rather than only looking good with demo content.',
+    remit: 'My contribution focused on visual and structural patterns: category discovery, product cards, section flexibility, typography, spacing, responsive behavior, and editor-friendly choices that reduce the chance of routine content updates breaking the layout.',
+    constraints: ['Product images vary widely in aspect ratio, crop, and visual weight.', 'Starter-site sections need to tolerate different quantities of content.', 'Site owners need useful editing freedom without having to redesign the page in Elementor.'],
+    moves: [['Let imagery lead without removing structure', 'Photography gets visual priority while categories and labels keep browsing understandable.'], ['Design for content variance', 'Blocks tolerate different product counts and copy lengths instead of depending on perfect demo content.'], ['Keep comparison information available', 'Useful metadata supports decisions without competing with the product image.'], ['Treat editability as a user need', 'Section rules are simple enough for site owners to maintain inside the CMS.']],
+    system: ['Category cues create the first browsing layer.', 'Product cards combine visual discovery with practical detail.', 'Flexible sections adapt to the business content around them.', 'Responsive behavior preserves image priority without sacrificing readability.'],
+    delivery: 'The system was designed for a CMS, so image behavior, repeatable blocks, typography rules, and spacing conventions matter as much as the initial composition. The page should remain coherent after real content replaces the demo.',
+    result: ['Visual browsing has clearer category structure.', 'Product cards balance photography with useful decision information.', 'Sections can absorb normal catalogue and copy changes.', 'The design remains manageable for non-designer site owners.'],
+    success: ['Visitors can find a relevant category quickly from an image-led page.', 'Product cards carry enough information to support meaningful comparison.', 'Routine content updates do not break hierarchy or responsive behavior.'],
     strengths: ['CMS-aware design', 'Image-led commerce UX', 'Reusable template systems']
   },
-  'designerex': {
-    title: 'Designerex', domain: 'Luxury fashion rental marketplace', audience: 'People browsing and comparing designer fashion rentals',
-    deck: 'A product-design contribution to a luxury rental marketplace, balancing aspirational photography with the stable listing information people need to compare real options.',
-    challenge: 'Luxury marketplaces have two jobs at once: make the product desirable and make the decision practical. Large imagery can create confidence and aspiration, but comparison still depends on stable listing information. Premium presentation could not be allowed to disrupt familiar marketplace behavior.',
-    scope: 'This was a design contribution within a broader product, focused on browsing and listing patterns, visual hierarchy, and the relationship between product photography and decision-supporting metadata. The case keeps that ownership boundary explicit.',
-    constraints: ['Product imagery should lead without forcing users to hunt for practical details.', 'Comparison slows when information changes position or format between cards.', 'Premium styling can become decorative noise if it changes familiar marketplace behavior.'],
-    decisions: [['Keep photography dominant', 'The product image remains the first visual signal while practical metadata stays consistently available.'], ['Stabilize listing structure', 'Repeated card patterns let users compare items without relearning where information lives.'], ['Use restraint as polish', 'Premium presentation comes from proportion, spacing, and hierarchy rather than novelty interaction.'], ['Keep contribution boundaries clear', 'The case describes the work actually contributed rather than implying ownership of the whole marketplace.']],
-    flow: ['Browsing surfaces lead with imagery while core listing information stays consistently placed.', 'Repeated patterns reduce the cognitive cost of comparing a visually rich catalogue.', 'Product detail carries more depth without making the listing grid excessively dense.', 'Interaction styling supports the marketplace task instead of competing with the product.'],
-    handoff: 'The work was designed to fit the existing product context and marketplace conventions. Reusable listing patterns and stable content hierarchy make the contribution easier for a larger team to review and extend.',
-    outcome: ['Product-listing patterns are more consistent across browsing surfaces.', 'Premium presentation and practical product information have clearer roles.', 'Repeated conventions reduce comparison friction.', 'Contribution scope remains transparent and defensible.'],
-    validate: ['Which listing details most strongly affect rental confidence?', 'Do browsing and filtering patterns support fast comparison?', 'Where does premium visual treatment begin to interfere with usability?'],
-    strengths: ['Marketplace UX', 'Visual hierarchy', 'Accurate team contribution']
+  designerex: {
+    title: 'Designerex',
+    domain: 'Luxury fashion rental marketplace',
+    audience: 'People browsing and comparing designer fashion rentals',
+    deck: 'I contributed marketplace patterns that let luxury photography carry the emotion of the experience while practical listing information remains consistent enough for fast comparison.',
+    situation: 'Luxury marketplaces have to support desire and decision at the same time. Large photography creates appeal, but rental confidence depends on practical details that need to be easy to find and compare. Too much visual treatment can make the product feel premium while making the task harder.',
+    remit: 'This was a design contribution within a broader product. I focused on browsing and listing patterns, visual hierarchy, the relationship between imagery and metadata, and interaction conventions that fit the existing marketplace rather than claiming end-to-end ownership.',
+    constraints: ['Photography should dominate without hiding practical rental information.', 'Comparison slows down when listing details move or change format between cards.', 'Premium visual treatment can easily introduce interaction noise that competes with the products.'],
+    moves: [['Use photography as the lead, not the whole interface', 'Core listing information remains consistently available alongside the visual content.'], ['Make repeated patterns genuinely repeat', 'Stable positions and labels reduce the mental work of comparing multiple listings.'], ['Keep premium styling restrained', 'Polish supports product desirability without adding unnecessary interaction.'], ['Be precise about contribution', 'The case reflects the part of the marketplace I actually worked on rather than inflating team work into individual ownership.']],
+    system: ['Browse emphasizes visual discovery.', 'Listing metadata supports quick comparison.', 'Product detail carries depth that would make the grid too dense.', 'Interaction remains secondary to the fashion itself.'],
+    delivery: 'The work was prepared to fit an existing product context, using reusable listing patterns and consistent hierarchy that a larger team could review and extend without introducing a parallel design language.',
+    result: ['Listing patterns support more consistent comparison.', 'Premium presentation and practical information are better balanced.', 'Repeated interactions reduce relearning between products.', 'The portfolio scope accurately reflects a team contribution.'],
+    success: ['Users can compare the rental details that influence confidence without opening every listing.', 'Product imagery remains dominant without obscuring task-critical metadata.', 'Premium styling does not reduce browsing speed or interaction clarity.'],
+    strengths: ['Marketplace UX', 'Luxury visual hierarchy', 'Accurate team attribution']
   },
-  'sassboilerplate': {
-    title: 'SassBoilerplate', domain: 'Front-end developer utility', audience: 'Developers starting small static front-end projects',
-    deck: 'A lightweight Sass starter built to remove repeated setup work without turning a small project into a private framework another developer has to learn first.',
-    challenge: 'Boilerplate can save setup time and still create maintenance debt when the starter is more opinionated than the projects using it. The useful question was not how much tooling could fit into the repository, but which repeated decisions were genuinely worth standardizing.',
-    scope: 'I structured the Sass workflow around clear responsibilities, reusable imports, and conventions that support small static projects without becoming difficult to understand. Most of the design work here is architectural: make the next decision easier and keep removal cheap.',
-    constraints: ['Boilerplate becomes harmful when most projects immediately delete or override large parts of it.', 'Folder and naming conventions only help if another developer can infer their purpose.', 'Small projects do not need enterprise-scale tooling to be maintainable.'],
-    decisions: [['Give files clear responsibilities', 'Styles are separated by purpose so changes have a predictable place to live.'], ['Keep defaults light', 'The starter automates repeated setup without assuming every project needs the same component layer.'], ['Make removal easy', 'Conventions are intentionally simple enough to replace when project needs change.'], ['Optimize for the next developer', 'The system favors comprehension and maintainability over tooling novelty.']],
-    flow: ['A new project begins from a known structure instead of rebuilding setup manually.', 'Styles are grouped by responsibility so maintenance is easier to reason about.', 'Unused conventions can be removed without unraveling the starter.', 'The workflow remains understandable without specialized knowledge beyond Sass and the intended build setup.'],
-    handoff: 'For a developer utility, documentation and predictability are part of the interface. The structure is intended to be legible to someone who did not create it, with minimal hidden coupling between files.',
-    outcome: ['Small projects have a repeatable starting structure.', 'Styling responsibilities are separated more clearly.', 'The starter reduces repeated decisions without introducing a heavy framework.', 'Projects can adapt or remove conventions without fighting the boilerplate.'],
-    validate: ['Does the starter meaningfully reduce setup time across several real projects?', 'How much boilerplate remains unused in typical implementations?', 'Can another developer understand and modify the structure without verbal explanation?'],
+  sassboilerplate: {
+    title: 'SassBoilerplate',
+    domain: 'Front-end developer utility',
+    audience: 'Developers starting small static front-end projects',
+    deck: 'I built a lightweight Sass starter around fewer repeated setup decisions, clear file responsibilities, and a low cost of changing or removing the conventions later.',
+    situation: 'Boilerplate saves time only when it removes decisions without creating a private framework that every future project has to fight. The design problem here was developer experience: deciding which structure is useful enough to standardize and which assumptions should stay out.',
+    remit: 'I defined the Sass structure, file responsibilities, naming conventions, and default workflow for small front-end projects. The goal was legibility and maintenance rather than demonstrating the maximum amount of tooling that could be assembled.',
+    constraints: ['Unused boilerplate quickly becomes maintenance debt.', 'Folder and naming conventions help only when another developer can understand their responsibilities.', 'Small static projects do not benefit from enterprise-level complexity by default.'],
+    moves: [['Give styles predictable homes', 'Responsibilities are separated so changes do not accumulate in one large stylesheet.'], ['Keep defaults intentionally small', 'Repeated setup is automated without assuming every project needs the same components or architecture.'], ['Make removal cheap', 'Conventions are loosely coupled enough to replace when a project has different needs.'], ['Optimize for the next developer', 'The structure should be understandable without a verbal tour from its author.']],
+    system: ['A new project begins from a known file structure.', 'Imports and responsibilities remain predictable as styles grow.', 'Unused layers can be removed without unraveling the whole setup.', 'Documentation and naming explain the workflow without hidden conventions.'],
+    delivery: 'For a developer utility, the handoff is the product. The repository structure, naming, and documentation need to communicate intent clearly enough that another developer can adopt or modify the starter without relying on tribal knowledge.',
+    result: ['Small projects begin from a repeatable Sass structure.', 'Style responsibilities are easier to locate and maintain.', 'The starter reduces repeated setup without overcommitting future projects.', 'The workflow stays easy to adapt or remove.'],
+    success: ['The starter reduces setup time across several real projects.', 'Most included structure is used often enough to justify its existence.', 'Another developer can understand and change the setup without explanation from the author.'],
     strengths: ['Front-end systems thinking', 'Developer experience', 'Maintainability over novelty']
   },
-  'zapp': {
-    title: 'Zapp Today', domain: 'Logistics product', audience: 'Customers, drivers, and operations/support teams sharing one delivery lifecycle',
-    deck: 'A logistics product where customers, drivers, and operations need different interfaces but must agree on the same delivery state, especially when the delivery does not go to plan.',
-    challenge: 'Delivery products are coordination systems. Customers need confidence and a clear status, drivers need the next task without distraction, and operations needs enough history to understand exceptions. The design had to let each role see the delivery differently while keeping state language consistent.',
-    scope: 'I worked on customer, driver, and operational journeys including booking context, active tasks, tracking and status, state transitions, and exception handling. I used one delivery lifecycle while changing information priority according to the job each role was doing.',
-    constraints: ['Customer, driver, and operations users need different information from the same delivery state.', 'Drivers need low-distraction task priority during active work.', 'Delayed, interrupted, reassigned, or failed deliveries create more UX risk than the ideal completed journey.'],
-    decisions: [['Design priority by role', 'Customer, driver, and operations interfaces use different hierarchies while sharing the same delivery state model.'], ['Use one status language', 'State names remain consistent across roles so the product does not contradict itself.'], ['Reveal operational detail progressively', 'Each role sees the amount of internal detail required for its current task.'], ['Design exceptions as normal states', 'Delay, interruption, reassignment, and failure are treated as real journeys rather than annotations on the happy path.']],
-    flow: ['Customer booking establishes the delivery request and the information needed for confidence later.', 'Driver views prioritize the next action, route context, and state update.', 'Customer tracking exposes useful progress without leaking unnecessary operational complexity.', 'Operations views retain enough state history and exception context to understand stalled deliveries.'],
-    handoff: 'The handoff was organized around one shared delivery lifecycle: state names, transition rules, role-specific actions, and exception behavior. That is more useful than three unrelated sets of screens that happen to describe the same service.',
-    outcome: ['Customer, driver, and operational views share a more coherent state model.', 'Driver interfaces have clearer task priority during active work.', 'Customer tracking exposes less unnecessary internal complexity.', 'Operations has more explicit context for delivery exceptions.'],
-    validate: ['Do cross-role statuses stay consistent when real deliveries change state?', 'Can drivers identify the next required action quickly during active work?', 'Where do delayed or interrupted deliveries create the most confusion for customers or support?'],
+  zapp: {
+    title: 'Zapp Today',
+    domain: 'Logistics product',
+    audience: 'Customers, drivers, and operations/support teams sharing one delivery lifecycle',
+    deck: 'I designed a shared delivery state model across customer, driver, and operations experiences so each role gets the interface it needs without disagreeing about what is happening to the delivery.',
+    situation: 'A logistics product is a coordination system. Customers need confidence, drivers need a clear next task, and operations teams need enough visibility to recover when the happy path breaks. All three roles look at the same delivery, but they should not see the same interface.',
+    remit: 'My work focused on booking context, driver tasks, tracking and status, state transitions, and exception handling across customer, driver, and operational views. I used one delivery lifecycle underneath role-specific information priorities.',
+    constraints: ['Each role needs different information from the same underlying delivery state.', 'Drivers need low-distraction interfaces while actively working.', 'Delayed, reassigned, interrupted, and failed deliveries create more UX risk than a straightforward completion flow.'],
+    moves: [['Share the state model, not the screen', 'Customer, driver, and operations interfaces differ while using the same language for the delivery lifecycle.'], ['Put the next task first for drivers', 'Active-work screens prioritize action and route context over secondary operational detail.'], ['Expose detail progressively', 'Customers see enough information for confidence without inheriting internal operational complexity.'], ['Design exceptions before they become support tickets', 'Delay, interruption, reassignment, and failure have defined states and recovery paths.']],
+    system: ['Booking creates the delivery request and baseline context.', 'Driver views turn the lifecycle into immediate operational tasks.', 'Customer tracking translates the same state into useful confidence.', 'Operations views preserve history and exception detail for recovery.'],
+    delivery: 'Handoff centered on one shared lifecycle: state names, transition rules, actions available to each role, and exception behavior. That is more durable than separate screen sets that happen to look consistent but disagree about state.',
+    result: ['Customer, driver, and operations views share a coherent delivery language.', 'Driver screens prioritize the next operational action.', 'Customers receive useful progress without unnecessary internal detail.', 'Operations has a clearer model for understanding and recovering from exceptions.'],
+    success: ['The same delivery status means the same thing across all roles.', 'Drivers can identify the next required action quickly during active work.', 'Delayed or interrupted deliveries give customers and support enough context to understand what happens next.'],
     strengths: ['Multi-role service design', 'Operational state modeling', 'Exception and recovery UX']
   }
 };
 
-function esc(value) { return String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;'); }
-function strip(value) { return String(value ?? '').replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/\s+/g, ' ').trim(); }
-function fact(main, label) { const dt = new RegExp(`<dt[^>]*>\\s*${label}\\s*<\\/dt>\\s*<dd[^>]*>([\\s\\S]*?)<\\/dd>`, 'i').exec(main); if (dt) return strip(dt[1]); const old = new RegExp(`<h5[^>]*>\\s*${label}\\s*<\\/h5>\\s*<p[^>]*>([\\s\\S]*?)<\\/p>`, 'i').exec(main); return old ? strip(old[1]) : ''; }
-function year(main) { const badges = [...main.matchAll(/<span[^>]*class=["'][^"']*badge-pill[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi)].map((m) => strip(m[1])); return fact(main, 'Year') || badges.find((value) => /\b20\d{2}/.test(value)) || ''; }
-function cover(main, item) { const source = main.match(/<figure[^>]*class=["'][^"']*agent-case-cover[^"']*["'][^>]*>[\s\S]*?<\/figure>/i)?.[0] || main.match(/<div[^>]*class=["'][^"']*case-hero-img-container[^"']*["'][^>]*>[\s\S]*?<\/div>/i)?.[0] || main; const img = source.match(/<img\b[^>]*src=["']([^"']+)["'][^>]*>/i); if (!img) return ''; const alt = /\balt=["']([^"']*)["']/i.exec(img[0])?.[1] || `${item.title} interface`; return `<figure class="agent-case-cover nrs-hireable-case-cover"><img src="${esc(img[1])}" alt="${esc(alt)}" loading="eager" decoding="async"></figure>`; }
-function externalLinks(main) { const seen = new Set(), links = []; for (const m of main.matchAll(/<a\b[^>]*href=["'](https?:\/\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) { if (/nischhalsubba\.com\.np/i.test(m[1]) || seen.has(m[1])) continue; seen.add(m[1]); links.push([strip(m[2]) || 'Open project artifact', m[1]]); } return links.slice(0, 6); }
-function list(items) { return `<ul class="nrs-case-list">${items.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`; }
-function cards(items) { return `<div class="agent-decision-grid nrs-case-decision-grid">${items.map(([h,p]) => `<article class="agent-decision nrs-case-decision-card"><span class="agent-meta">Decision</span><h3>${esc(h)}</h3><p>${esc(p)}</p></article>`).join('')}</div>`; }
-function section(n, label, title, body, className='') { return `<section class="agent-section ${className}"><div class="agent-frame nrs-case-section"><header class="nrs-case-section-head"><span class="agent-meta">${String(n).padStart(2,'0')} · ${esc(label)}</span><h2>${esc(title)}</h2></header><div class="nrs-case-section-body">${body}</div></div></section>`; }
-function evidence(main) { const links = externalLinks(main); if (!links.length) return '<p class="nrs-case-evidence-note">No public interactive artifact is attached to this case. The page stays limited to work and decisions that can be shown and defended without inventing product results.</p>'; return `<div class="agent-evidence-links nrs-case-evidence-links">${links.map(([label,url]) => `<a class="agent-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`).join('')}</div><p class="nrs-case-evidence-note">These are the public artifacts currently attached to the project. Metrics or research findings are not claimed where they are not public.</p>`; }
-function facts(main, item) { const role = fact(main,'Role') || 'Product design contribution'; const values = [['Role',role],['Year',year(main)],['Domain',fact(main,'Domain') || item.domain],['Audience',fact(main,'Users') || fact(main,'Audience') || item.audience]].filter(([,v]) => v); return `<dl class="agent-case-facts nrs-hireable-case-facts">${values.map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`; }
+function esc(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+}
+
+function strip(value) {
+  return String(value ?? '')
+    .replace(/<script\b[\s\S]*?<\/script>/gi, '')
+    .replace(/<style\b[\s\S]*?<\/style>/gi, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function fact(main, label) {
+  const dt = new RegExp(`<dt[^>]*>\\s*${label}\\s*<\\/dt>\\s*<dd[^>]*>([\\s\\S]*?)<\\/dd>`, 'i').exec(main);
+  if (dt) return strip(dt[1]);
+  const old = new RegExp(`<h5[^>]*>\\s*${label}\\s*<\\/h5>\\s*<p[^>]*>([\\s\\S]*?)<\\/p>`, 'i').exec(main);
+  return old ? strip(old[1]) : '';
+}
+
+function year(main) {
+  const badges = [...main.matchAll(/<span[^>]*class=["'][^"']*badge-pill[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi)].map((match) => strip(match[1]));
+  return fact(main, 'Year') || badges.find((value) => /\b20\d{2}/.test(value)) || '';
+}
+
+function cover(main, item) {
+  const source = main.match(/<figure[^>]*class=["'][^"']*agent-case-cover[^"']*["'][^>]*>[\s\S]*?<\/figure>/i)?.[0]
+    || main.match(/<div[^>]*class=["'][^"']*case-hero-img-container[^"']*["'][^>]*>[\s\S]*?<\/div>/i)?.[0]
+    || main;
+  const img = source.match(/<img\b[^>]*src=["']([^"']+)["'][^>]*>/i);
+  if (!img) return '';
+  const alt = /\balt=["']([^"']*)["']/i.exec(img[0])?.[1] || `${item.title} interface`;
+  return `<figure class="agent-case-cover nrs-hireable-case-cover"><img src="${esc(img[1])}" alt="${esc(alt)}" loading="eager" decoding="async"></figure>`;
+}
+
+function externalLinks(main) {
+  const seen = new Set();
+  const links = [];
+  for (const match of main.matchAll(/<a\b[^>]*href=["'](https?:\/\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    if (/nischhalsubba\.com\.np/i.test(match[1]) || seen.has(match[1])) continue;
+    seen.add(match[1]);
+    links.push([strip(match[2]) || 'Open project artifact', match[1]]);
+  }
+  return links.slice(0, 6);
+}
+
+function list(items) {
+  return `<ul class="nrs-case-list">${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>`;
+}
+
+function cards(items) {
+  return `<div class="agent-decision-grid nrs-case-decision-grid">${items.map(([title, text]) => `<article class="agent-decision nrs-case-decision-card"><span class="agent-meta">Design move</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div>`;
+}
+
+function section(number, label, title, body, className = '') {
+  return `<section class="agent-section ${className}"><div class="agent-frame nrs-case-section"><header class="nrs-case-section-head"><span class="agent-meta">${String(number).padStart(2, '0')} · ${esc(label)}</span><h2>${esc(title)}</h2></header><div class="nrs-case-section-body">${body}</div></div></section>`;
+}
+
+function facts(main, item) {
+  const role = fact(main, 'Role') || 'Product design contribution';
+  const values = [
+    ['Role', role],
+    ['Year', year(main)],
+    ['Domain', fact(main, 'Domain') || item.domain],
+    ['Audience', fact(main, 'Users') || fact(main, 'Audience') || item.audience],
+  ].filter(([, value]) => value);
+  return `<dl class="agent-case-facts nrs-hireable-case-facts">${values.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
+}
+
+function evidence(main) {
+  const links = externalLinks(main);
+  if (!links.length) {
+    return '<p class="nrs-case-evidence-note">No public interactive artifact is attached to this case. The write-up is limited to work I can describe and defend publicly.</p>';
+  }
+  return `<div class="agent-evidence-links nrs-case-evidence-links">${links.map(([label, url]) => `<a class="agent-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`).join('')}</div>`;
+}
 
 function render(slug, main, item) {
-  const hero = `<header class="agent-case-hero nrs-hireable-case-hero"><div class="agent-frame agent-case-grid"><nav class="nrs-case-breadcrumb" aria-label="Breadcrumb"><a href="/projects">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(item.title)}</span></nav><div class="agent-case-title-wrap"><span class="agent-kicker">${esc(item.domain)}</span><h1 class="agent-case-title">${esc(item.title)}</h1></div><p class="agent-case-deck">${esc(item.deck)}</p>${facts(main,item)}${cover(main,item)}</div></header>`;
-  const challenge = section(1,'Challenge','The problem worth solving',`<p>${esc(item.challenge)}</p><div class="nrs-case-callout"><strong>Primary audience</strong><p>${esc(item.audience)}</p></div>`,'agent-section--compact');
-  const scope = section(2,'Role and scope','What I owned and what shaped the work',`<p>${esc(item.scope)}</p><h3 class="nrs-case-subhead">Constraints</h3>${list(item.constraints)}`);
-  const strategy = section(3,'Design strategy','The decisions that moved the work forward',cards(item.decisions),'agent-section--inverse');
-  const architecture = section(4,'Experience architecture','How the experience is structured',list(item.flow));
-  const handoff = section(5,'From design to build','What had to be explicit for implementation',`<p>${esc(item.handoff)}</p>`,'agent-section--compact');
-  const outcome = section(6,'Design outcome','What changed in the design',`${list(item.outcome)}<p class="nrs-case-evidence-note"><strong>Evidence boundary:</strong> these are observable design changes, not invented business metrics.</p>`);
-  const validation = section(7,'Validation','What I would test next',list(item.validate),'agent-section--inverse');
-  const proof = section(8,'Artifacts','Public evidence and project material',evidence(main),'agent-section--compact');
-  const close = section(9,'Practice','What this project demonstrates',`<div class="nrs-case-signal-grid">${item.strengths.map((x) => `<article><strong>${esc(x)}</strong></article>`).join('')}</div><div class="agent-actions nrs-case-actions"><a class="agent-btn agent-btn--primary" href="/projects">View all work</a><a class="agent-btn" href="/contact">Discuss similar work</a></div>`);
-  return `<main id="main-content" class="agent-main nrs-hireable-case nrs-senior-case" data-project-slug="${esc(slug)}">${hero}${challenge}${scope}${strategy}${architecture}${handoff}${outcome}${validation}${proof}${close}</main>`;
+  const hero = `<header class="agent-case-hero nrs-hireable-case-hero"><div class="agent-frame agent-case-grid"><nav class="nrs-case-breadcrumb" aria-label="Breadcrumb"><a href="/projects">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(item.title)}</span></nav><div class="agent-case-title-wrap"><span class="agent-kicker">${esc(item.domain)}</span><h1 class="agent-case-title">${esc(item.title)}</h1></div><p class="agent-case-deck">${esc(item.deck)}</p>${facts(main, item)}${cover(main, item)}</div></header>`;
+  const context = section(1, 'Context', 'Where the complexity actually was', `<p>${esc(item.situation)}</p><div class="nrs-case-callout"><strong>Primary audience</strong><p>${esc(item.audience)}</p></div>`, 'agent-section--compact');
+  const remit = section(2, 'My remit', 'What I was responsible for', `<p>${esc(item.remit)}</p><h3 class="nrs-case-subhead">Constraints that shaped the work</h3>${list(item.constraints)}`);
+  const moves = section(3, 'Design moves', 'The choices that changed the experience', cards(item.moves), 'agent-section--inverse');
+  const system = section(4, 'System logic', 'How the experience holds together', list(item.system));
+  const delivery = section(5, 'Delivery', 'What engineering needed from the design', `<p>${esc(item.delivery)}</p>`, 'agent-section--compact');
+  const result = section(6, 'Result', 'What the design resolved', `${list(item.result)}<p class="nrs-case-evidence-note">Quantitative product metrics are not public for this work, so this section describes the delivered design outcome rather than inventing business impact.</p>`);
+  const success = section(7, 'Success criteria', 'How I would know it is working', list(item.success), 'agent-section--inverse');
+  const proof = section(8, 'Evidence', 'Public work and references', evidence(main), 'agent-section--compact');
+  const close = section(9, 'Takeaway', 'What this case says about my practice', `<div class="nrs-case-signal-grid">${item.strengths.map((strength) => `<article><strong>${esc(strength)}</strong></article>`).join('')}</div><div class="agent-actions nrs-case-actions"><a class="agent-btn agent-btn--primary" href="/projects">View all work</a><a class="agent-btn" href="/contact">Discuss similar work</a></div>`);
+  return `<main id="main-content" class="agent-main nrs-hireable-case nrs-senior-case nrs-editorial-case" data-project-slug="${esc(slug)}">${hero}${context}${remit}${moves}${system}${delivery}${result}${success}${proof}${close}</main>`;
 }
 
 const missing = [];
 let count = 0;
-for (const [slug,item] of Object.entries(cases)) {
-  const file = path.join(base,`project-${slug}.html`);
-  if (!fs.existsSync(file)) { missing.push(slug); continue; }
-  let html = fs.readFileSync(file,'utf8');
+for (const [slug, item] of Object.entries(cases)) {
+  const file = path.join(base, `project-${slug}.html`);
+  if (!fs.existsSync(file)) {
+    missing.push(slug);
+    continue;
+  }
+  let html = fs.readFileSync(file, 'utf8');
   const main = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/i)?.[0];
-  if (!main) { missing.push(`${slug}:main`); continue; }
-  html = html.replace(main,render(slug,main,item));
-  fs.writeFileSync(file,html,'utf8');
+  if (!main) {
+    missing.push(`${slug}:main`);
+    continue;
+  }
+  html = html.replace(main, render(slug, main, item));
+  fs.writeFileSync(file, html, 'utf8');
   count += 1;
 }
+
 if (missing.length) throw new Error(`[senior-case-studies] Missing inputs: ${missing.join(', ')}`);
 if (count !== Object.keys(cases).length) throw new Error(`[senior-case-studies] Expected ${Object.keys(cases).length}, got ${count}`);
+
 for (const slug of Object.keys(cases)) {
-  const html = fs.readFileSync(path.join(base,`project-${slug}.html`),'utf8');
+  const html = fs.readFileSync(path.join(base, `project-${slug}.html`), 'utf8');
   const main = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/i)?.[0] || '';
-  if ((main.match(/<h1\b/gi)||[]).length !== 1) throw new Error(`[senior-case-studies] ${slug}: expected one H1`);
-  for (const required of ['The problem worth solving','The decisions that moved the work forward','What changed in the design','What I would test next']) if (!main.includes(required)) throw new Error(`[senior-case-studies] ${slug}: missing ${required}`);
+  if ((main.match(/<h1\b/gi) || []).length !== 1) throw new Error(`[senior-case-studies] ${slug}: expected one H1`);
+  for (const required of ['Where the complexity actually was', 'The choices that changed the experience', 'What the design resolved', 'How I would know it is working']) {
+    if (!main.includes(required)) throw new Error(`[senior-case-studies] ${slug}: missing ${required}`);
+  }
 }
-console.log(`[senior-case-studies] Rewrote ${count} project pages with senior editorial case-study content.`);
+
+console.log(`[senior-case-studies] Rewrote ${count} project pages with fresh editorial case-study content.`);
