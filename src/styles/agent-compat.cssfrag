@@ -215,11 +215,17 @@
     display: none;
   }
 
+  /* Legacy production CSS positions this control on the left with importance declarations.
+     The redesign deliberately wins that one old cascade fight so the identity remains readable. */
   .agent-portfolio .mobile-nav-toggle {
-    top: .6rem;
-    right: var(--ap-gutter);
-    left: auto;
-    z-index: calc(var(--ap-z-nav) + 4);
+    top: .6rem !important;
+    right: var(--ap-gutter) !important;
+    left: auto !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    min-width: 2.75rem !important;
+    min-height: 2.75rem !important;
+    z-index: 2147483001 !important;
   }
 
   .agent-portfolio .agent-page-hero-grid > div:first-child {
