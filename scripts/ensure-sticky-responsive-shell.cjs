@@ -4,8 +4,8 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const target = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const stylePath = path.join(target, 'style.css');
-const start = '/* nrs-sticky-responsive-shell-v2:start */';
-const end = '/* nrs-sticky-responsive-shell-v2:end */';
+const start = '/* nrs-sticky-responsive-shell-v3:start */';
+const end = '/* nrs-sticky-responsive-shell-v3:end */';
 const marker = /\/\* nrs-sticky-responsive-shell-v\d+:start \*\/[\s\S]*?\/\* nrs-sticky-responsive-shell-v\d+:end \*\//g;
 
 if (!fs.existsSync(stylePath)) throw new Error(`[sticky-responsive-shell] Missing ${stylePath}`);
@@ -15,6 +15,7 @@ const css = `${start}
   --nrs-progress-h: 3px;
   --nrs-mobile-control: 44px;
   --nrs-mobile-gap: 10px;
+  --nrs-nav-edge: clamp(1rem, 1.7vw, 1.5rem);
 }
 
 #nrs-scroll-progress,
@@ -33,14 +34,20 @@ const css = `${start}
   transform-origin: left center !important;
 }
 
+/* Keep the desktop navbar compact and centered instead of stretching edge-to-edge. */
 .agent-portfolio .nav-wrapper {
   position: fixed !important;
-  inset: 0 0 auto 0 !important;
-  width: 100% !important;
-  max-width: none !important;
+  top: 0 !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: min(calc(100vw - (2 * var(--nrs-nav-edge))), var(--ap-max)) !important;
+  max-width: var(--ap-max) !important;
   margin: 0 !important;
-  transform: none !important;
+  transform: translateX(-50%) !important;
   z-index: 2147483000 !important;
+  border: 1px solid color-mix(in srgb, var(--ap-line) 76%, transparent) !important;
+  border-top: 0 !important;
 }
 
 .agent-portfolio .agent-main {
@@ -232,7 +239,7 @@ style = style.replace(marker, '').trimEnd();
 style += `\n\n${css}\n`;
 fs.writeFileSync(stylePath, style, 'utf8');
 
-for (const required of ['#agent-progress', '.agent-portfolio .nav-wrapper', 'height: 100dvh !important', 'font-size: 16px !important']) {
+for (const required of ['#agent-progress', '--nrs-nav-edge', 'width: min(calc(100vw - (2 * var(--nrs-nav-edge))), var(--ap-max)) !important', 'height: 100dvh !important', 'font-size: 16px !important']) {
   if (!style.includes(required)) throw new Error(`[sticky-responsive-shell] Missing contract: ${required}`);
 }
 
