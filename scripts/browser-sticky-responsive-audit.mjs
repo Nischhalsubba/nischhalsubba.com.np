@@ -95,7 +95,7 @@ for (const [width, height] of viewports) {
       if (initial.docWidth - initial.viewportWidth > 1) throw new Error(`horizontal overflow ${initial.docWidth - initial.viewportWidth}px`);
       if (!initial.navVisible) throw new Error('sticky navigation is not visible');
       if (!['fixed', 'sticky'].includes(initial.navPosition)) throw new Error(`navigation position is ${initial.navPosition || 'unset'}`);
-      if (!initial.navRect || Math.abs(initial.navRect.top - 3) > 2) throw new Error(`navigation top is ${initial.navRect?.top ?? 'missing'}px, expected 3px`);
+      if (!initial.navRect || Math.abs(initial.navRect.top) > 1) throw new Error(`navigation is not pinned to viewport top: ${initial.navRect?.top ?? 'missing'}px`);
       if (!initial.progressVisible || !initial.progressRect || Math.abs(initial.progressRect.top) > 1) throw new Error('scroll progress is not fixed to the viewport top');
       if (initial.progressReady !== 'true') throw new Error('scroll progress runtime did not initialize');
       if (!Number.isFinite(initial.progressValue) || initial.progressValue < 0 || initial.progressValue > .04) throw new Error(`scroll progress has an invalid page-top value: ${initial.progressValue}`);
@@ -143,7 +143,7 @@ for (const [width, height] of viewports) {
           };
         });
 
-        if (scrolled.navTop === null || Math.abs(scrolled.navTop - 3) > 2) throw new Error(`navigation moved while scrolling: top=${scrolled.navTop}`);
+        if (scrolled.navTop === null || Math.abs(scrolled.navTop) > 1) throw new Error(`navigation moved while scrolling: top=${scrolled.navTop}`);
         if (scrolled.progressTop === null || Math.abs(scrolled.progressTop) > 1) throw new Error('scroll progress moved away from viewport top');
         if (scrolled.progressValue < .45 || scrolled.progressValue > .7) throw new Error(`scroll progress value is implausible: ${scrolled.progressValue}`);
         if (scrolled.overflow > 1) throw new Error(`horizontal overflow after scroll ${scrolled.overflow}px`);
