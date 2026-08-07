@@ -3,11 +3,14 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
-const styleSource = path.join(root, 'src', 'styles', 'agent-polish.cssfrag');
+const styleSources = [
+  path.join(root, 'src', 'styles', 'agent-polish.cssfrag'),
+  path.join(root, 'src', 'styles', 'agent-responsive-hardening.cssfrag'),
+];
 const distStyle = path.join(dist, 'style.css');
 const aboutPath = path.join(dist, 'about.html');
 
-if (!fs.existsSync(styleSource) || !fs.existsSync(distStyle)) {
+if (styleSources.some((file) => !fs.existsSync(file)) || !fs.existsSync(distStyle)) {
   throw new Error('[agent-polish] style source or production stylesheet is missing');
 }
 
@@ -30,5 +33,7 @@ if (fs.existsSync(aboutPath)) {
   fs.writeFileSync(aboutPath, html, 'utf8');
 }
 
-fs.appendFileSync(distStyle, `\n${fs.readFileSync(styleSource, 'utf8')}\n`, 'utf8');
-console.log('[agent-polish] Applied contrast, writing-density, About-content, and desktop-nav refinements.');
+for (const styleSource of styleSources) {
+  fs.appendFileSync(distStyle, `\n${fs.readFileSync(styleSource, 'utf8')}\n`, 'utf8');
+}
+console.log('[agent-polish] Applied contrast, editorial density, About content, sticky site chrome, and responsive hardening.');
