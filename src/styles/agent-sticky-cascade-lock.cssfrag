@@ -1,0 +1,17 @@
+/* Final cascade lock for legacy production rules that still use !important on site chrome. */
+body.agent-portfolio .nav-wrapper {
+  position: fixed !important;
+  top: 0 !important;
+  z-index: var(--ap-z-nav) !important;
+}
+
+@media (max-width: 1023px) {
+  body.agent-portfolio .nav-wrapper {
+    display: grid !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    transform: none !important;
+  }
+}
