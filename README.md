@@ -37,6 +37,7 @@ This branch differs from the default branch in the following detected paths:
 
 - [`.github/editorial-baseline-refresh`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/editorial-baseline-refresh)
 - [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/workflows/browser-audit.yml)
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/README.md)
 - [`docs/end-to-end-design-audit-2026-08-06.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/docs/end-to-end-design-audit-2026-08-06.md)
 - [`docs/nrs-editorial-redesign.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/docs/nrs-editorial-redesign.md)
 - [`scripts/build-dist.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/build-dist.cjs)
@@ -46,7 +47,6 @@ This branch differs from the default branch in the following detected paths:
 - [`scripts/normalize-html-runtime.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/normalize-html-runtime.cjs)
 - [`scripts/remove-blocked-project-embeds.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/remove-blocked-project-embeds.cjs)
 - [`scripts/spacious-pages/contact.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/spacious-pages/contact.cjs)
-- [`scripts/spacious-pages/home-work.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/spacious-pages/home-work.cjs)
 
 ## Quick start
 
