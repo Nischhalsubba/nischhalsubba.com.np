@@ -4,27 +4,27 @@
 
 # nischhalsubba.com.np
 
-**Branch-aware technical guide for [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main)**
+**Branch-aware technical guide for [`gent/editorial-portfolio-redesign`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign)**
 
-<p><img alt="branch: main" src="https://img.shields.io/static/v1?label=&message=branch%3A%20main&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+<p><img alt="branch: gent/editorial-portfolio-redesign" src="https://img.shields.io/static/v1?label=&message=branch%3A%20gent%2Feditorial-portfolio-redesign&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
 
 <p>
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main"><strong>Browse source</strong></a> ·
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign"><strong>Browse source</strong></a> ·
   <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/issues"><strong>Issues</strong></a> ·
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=main"><strong>Open in Codespaces</strong></a>
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=gent%2Feditorial-portfolio-redesign"><strong>Open in Codespaces</strong></a>
 </p>
 
 </div>
 
 > [!IMPORTANT]
-> This guide is generated from the files actually present on `main`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
+> This guide is generated from the files actually present on `gent/editorial-portfolio-redesign`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
 
 ## At a glance
 
 | Item | Detected value |
 |---|---|
 | Purpose | Production portfolio for Nischhal Raj Subba, a Nepal-based product designer focused on Web3, SaaS, fintech, UX systems, and developer-ready design handoff. |
-| Branch role | Default branch |
+| Branch role | Compared with `main` |
 | Stack | Vite, TypeScript, WordPress, JavaScript, HTML, PHP, CSS |
 | Manifests | package.json |
 | Prerequisites | Node.js |
@@ -33,9 +33,20 @@
 
 ## Branch scope
 
-This is the repository's default branch.
+This branch differs from the default branch in the following detected paths:
 
-
+- [`.github/editorial-baseline-refresh`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/editorial-baseline-refresh)
+- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/workflows/browser-audit.yml)
+- [`docs/end-to-end-design-audit-2026-08-06.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/docs/end-to-end-design-audit-2026-08-06.md)
+- [`docs/nrs-editorial-redesign.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/docs/nrs-editorial-redesign.md)
+- [`scripts/build-dist.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/build-dist.cjs)
+- [`scripts/compile-single-stylesheet.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/compile-single-stylesheet.cjs)
+- [`scripts/ensure-audit-completion.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/ensure-audit-completion.cjs)
+- [`scripts/ensure-shared-site-shell.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/ensure-shared-site-shell.cjs)
+- [`scripts/normalize-html-runtime.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/normalize-html-runtime.cjs)
+- [`scripts/remove-blocked-project-embeds.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/remove-blocked-project-embeds.cjs)
+- [`scripts/spacious-pages/contact.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/spacious-pages/contact.cjs)
+- [`scripts/spacious-pages/home-work.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/scripts/spacious-pages/home-work.cjs)
 
 ## Quick start
 
@@ -56,7 +67,7 @@ npm run preview
 
 ```mermaid
 flowchart TD
-    ROOT["nischhalsubba.com.np / main"]
+    ROOT["nischhalsubba.com.np / gent/editorial-portfolio-redesign"]
     ROOT --> P0[".github/"]
     ROOT --> P1["api/"]
     ROOT --> P2["assets/"]
@@ -80,12 +91,12 @@ flowchart TD
 
 | Responsibility | Detected source paths |
 |---|---|
-| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/src) |
-| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api) |
-| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data) |
-| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests) |
-| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/docs) |
-| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/scripts) |
+| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/src) |
+| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/api) |
+| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/data) |
+| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/tests) |
+| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/docs) |
+| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/scripts) |
 
 ## Website or application map
 
@@ -95,17 +106,17 @@ flowchart TD
     APP --> R0["src/app"]
     APP --> R1["public"]
     R0 --> F0["src/app/layout.tsx"]
-    R1 --> F1["public/services.html"]
-    R1 --> F2["public/nischhal-raj-subba.html"]
-    R1 --> F3["public/privacy.html"]
-    R1 --> F4["public/blog/prioritize-ux-audit-findings-before-redesign.html"]
-    R1 --> F5["public/blog/saas-dashboard-empty-states-that-help-users-recover.html"]
-    R1 --> F6["public/blog/responsive-saas-dashboard-handoff-notes.html"]
-    R1 --> F7["public/blog/when-startup-needs-ux-audit-before-redesign.html"]
-    R1 --> F8["public/blog/figma-handoff-notes-for-developers.html"]
-    R1 --> F9["public/blog/web3-wallet-connection-ux.html"]
-    R1 --> F10["public/blog/index.html"]
-    R1 --> F11["public/blog/role-based-saas-dashboard-ux.html"]
+    R1 --> F1["public/nischhal-raj-subba.html"]
+    R1 --> F2["public/privacy.html"]
+    R1 --> F3["public/services.html"]
+    R1 --> F4["public/blog/hire-product-designer-nepal-saas-web3.html"]
+    R1 --> F5["public/blog/design-handoff-checklist-startup-product-teams.html"]
+    R1 --> F6["public/blog/web3-wallet-connection-ux.html"]
+    R1 --> F7["public/blog/index.html"]
+    R1 --> F8["public/blog/role-based-saas-dashboard-ux.html"]
+    R1 --> F9["public/blog/saas-dashboard-empty-states-product-clarity.html"]
+    R1 --> F10["public/blog/saas-dashboard-filter-ux.html"]
+    R1 --> F11["public/blog/design-systems-small-product-teams.html"]
 ```
 
 ## Architecture and responsibility flow
@@ -140,7 +151,7 @@ sequenceDiagram
     I-->>U: Render success or error state
 ```
 
-Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api).
+Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/api).
 
 </details>
 <details>
@@ -155,7 +166,7 @@ flowchart LR
     READ --> OUTPUT["UI, API, report, or export"]
 ```
 
-Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data).
+Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/data).
 
 </details>
 <details>
@@ -169,7 +180,7 @@ flowchart LR
     WORKER -->|failure| RETRY["Retry, alert, or dead-letter path"]
 ```
 
-Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/worker.js).
+Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/src/worker.js).
 
 </details>
 
@@ -181,7 +192,7 @@ Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nisc
 
 ### Quality
 
-- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests)
+- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign/tests)
 
 Detected commands:
 - `npm run dev`
@@ -202,8 +213,8 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/scripts/features/analytics-events.js)
-- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/assets/analytics-events-Bq4IAYSg.js)
+- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/assets/analytics-events-Bq4IAYSg.js)
+- [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/src/scripts/features/analytics-events.js)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
@@ -215,7 +226,7 @@ Define useful logs, metrics, traces, alerts, and rollback signals for production
 
 ```mermaid
 flowchart LR
-    CHANGE["Change on main"] --> CHECK["Tests and quality checks"]
+    CHANGE["Change on gent/editorial-portfolio-redesign"] --> CHECK["Tests and quality checks"]
     CHECK --> REVIEW["Review architecture and documentation impact"]
     REVIEW --> BUILD["Build or package"]
     BUILD --> DEPLOY["Deploy or release"]
@@ -224,12 +235,12 @@ flowchart LR
 
 ### Automation detected
 
-- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/apply-interactive-readme.yml)
-- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/browser-audit.yml)
-- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/deploy-cloudflare.yml)
-- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-qa.yml)
-- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-route-audit.yml)
-- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/validate.yml)
+- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/workflows/apply-interactive-readme.yml)
+- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/workflows/browser-audit.yml)
+- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/workflows/deploy-cloudflare.yml)
+- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/workflows/production-qa.yml)
+- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/workflows/production-route-audit.yml)
+- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/gent/editorial-portfolio-redesign/.github/workflows/validate.yml)
 
 ## Contribution flow
 
@@ -254,7 +265,7 @@ flowchart LR
 | Topic | Source |
 |---|---|
 | Repository | [`Nischhalsubba/nischhalsubba.com.np`](https://github.com/Nischhalsubba/nischhalsubba.com.np) |
-| Branch | [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main) |
+| Branch | [`gent/editorial-portfolio-redesign`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/gent/editorial-portfolio-redesign) |
 | Ownership | No CODEOWNERS file detected |
 | Contributing | Use the contribution flow above |
 | Support | [Open or review issues](https://github.com/Nischhalsubba/nischhalsubba.com.np/issues) |
