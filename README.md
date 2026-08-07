@@ -43,6 +43,7 @@ This is the repository's default branch.
 npm install
 npm run dev
 npm run build
+npm run lint
 npm run preview
 ```
 
@@ -186,6 +187,7 @@ Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nisc
 Detected commands:
 - `npm run dev`
 - `npm run build`
+- `npm run lint`
 - `npm run preview`
 
 </td>
@@ -227,6 +229,7 @@ flowchart LR
 - [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/apply-interactive-readme.yml)
 - [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/browser-audit.yml)
 - [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/deploy-cloudflare.yml)
+- [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/interface-polish-audit.yml)
 - [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-qa.yml)
 - [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-route-audit.yml)
 - [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/validate.yml)
