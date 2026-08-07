@@ -16,10 +16,11 @@ concurrency:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     env:
       AUDIT_BASE_URL: https://nischhalsubba.com.np
       SITE_URL: https://nischhalsubba.com.np
+      EXPECTED_SHA: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,9 +28,27 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Wait for Cloudflare production
-        if: github.event_name == 'push'
-        run: sleep 90
+      - name: Wait for exact Cloudflare Workers production commit
+        shell: bash
+        run: |
+          set -o pipefail
+          matched=0
+          for attempt in $(seq 1 36); do
+            live_info=$(curl -fsS --max-time 10 "$SITE_URL/build-info.json" || true)
+            live_sha=$(printf '%s' "$live_info" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{console.log('')}})")
+            live_branch=$(printf '%s' "$live_info" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).branch||'')}catch{console.log('')}})")
+            live_provider=$(printf '%s' "$live_info" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).provider||'')}catch{console.log('')}})")
+            echo "Production QA provenance $attempt: live=${live_sha:-unavailable} branch=${live_branch:-unknown} provider=${live_provider:-unknown} expected=$EXPECTED_SHA"
+            if [ "$live_sha" = "$EXPECTED_SHA" ] && [ "$live_branch" = "main" ] && [ "$live_provider" = "cloudflare-workers" ]; then
+              matched=1
+              break
+            fi
+            sleep 10
+          done
+          [ "$matched" = "1" ] || {
+            echo "Refusing to audit stale production. Expected Cloudflare Workers commit $EXPECTED_SHA."
+            exit 1
+          }
       - name: Fetch live sitemap for browser route discovery
         run: |
           mkdir -p dist

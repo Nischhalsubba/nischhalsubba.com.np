@@ -1,4 +1,4 @@
-name: Verify Cloudflare Pages production
+name: Verify Cloudflare Workers production
 
 on:
   workflow_run:
@@ -17,30 +17,31 @@ jobs:
   verify:
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     env:
       DEPLOY_SHA: ${{ github.event.workflow_run.head_sha }}
       PRODUCTION_URL: https://nischhalsubba.com.np
 
     steps:
-      - name: Wait for Cloudflare Git integration and verify production
+      - name: Wait for Workers Builds and verify production
         id: cloudflare
         continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
           {
-            echo "Cloudflare Pages Git integration is the production deployer."
-            echo "Production branch must be main. Waiting for $DEPLOY_SHA to reach $PRODUCTION_URL."
+            echo "Cloudflare Workers Builds is the production deployer."
+            echo "Waiting for validated main commit $DEPLOY_SHA to reach $PRODUCTION_URL."
 
             PROVENANCE_OK=0
-            for attempt in $(seq 1 24); do
+            for attempt in $(seq 1 36); do
               LIVE_INFO=$(curl -fsS --max-time 10 "$PRODUCTION_URL/build-info.json" || true)
               LIVE_SHA=$(printf '%s' "$LIVE_INFO" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{console.log('')}})")
               LIVE_BRANCH=$(printf '%s' "$LIVE_INFO" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).branch||'')}catch{console.log('')}})")
-              echo "Provenance attempt $attempt: live=${LIVE_SHA:-unavailable} branch=${LIVE_BRANCH:-unknown} expected=$DEPLOY_SHA"
+              LIVE_PROVIDER=$(printf '%s' "$LIVE_INFO" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).provider||'')}catch{console.log('')}})")
+              echo "Provenance attempt $attempt: live=${LIVE_SHA:-unavailable} branch=${LIVE_BRANCH:-unknown} provider=${LIVE_PROVIDER:-unknown} expected=$DEPLOY_SHA"
 
-              if [ "$LIVE_SHA" = "$DEPLOY_SHA" ]; then
+              if [ "$LIVE_SHA" = "$DEPLOY_SHA" ] && [ "$LIVE_BRANCH" = "main" ] && [ "$LIVE_PROVIDER" = "cloudflare-workers" ]; then
                 PROVENANCE_OK=1
                 break
               fi
@@ -48,8 +49,8 @@ jobs:
             done
 
             [ "$PROVENANCE_OK" = "1" ] || {
-              echo "Production did not reach validated main commit $DEPLOY_SHA."
-              echo "In Cloudflare Pages set Settings > Builds > Branch control > Production branch to main and enable automatic production deployments."
+              echo "Production did not reach the validated Cloudflare Workers build for $DEPLOY_SHA."
+              echo "Check Workers Builds branch control, production deploy status, and the Wrangler production route for nischhalsubba.com.np."
               exit 1
             }
 
@@ -73,7 +74,7 @@ jobs:
               exit 1
             }
 
-            echo "Cloudflare production provenance and critical-page smoke checks passed."
+            echo "Cloudflare Workers production provenance and critical-page smoke checks passed."
           } 2>&1 | tee cloudflare-production.log
 
       - name: Publish production verification result
@@ -104,7 +105,7 @@ jobs:
                   issue_number: existing.number,
                   state: 'closed',
                   state_reason: 'completed',
-                  body: `Cloudflare production verification passed for validated main commit \`${process.env.DEPLOY_SHA}\`.\n\nRun: ${runUrl}`,
+                  body: `Cloudflare Workers production verification passed for validated main commit \`${process.env.DEPLOY_SHA}\`.\n\nRun: ${runUrl}`,
                 });
               }
               return;
@@ -114,9 +115,9 @@ jobs:
               ? fs.readFileSync('cloudflare-production.log', 'utf8')
               : 'cloudflare-production.log was not created.';
             const body = [
-              `Cloudflare production verification failed for validated main commit \`${process.env.DEPLOY_SHA}\`.`,
+              `Cloudflare Workers production verification failed for validated main commit \`${process.env.DEPLOY_SHA}\`.`,
               '',
-              'Cloudflare Pages Git integration is the expected production deployer. Confirm the Pages project uses `main` as its Production branch and that automatic production deployments are enabled.',
+              'Workers Builds is the expected production deployer. Confirm `main` is the production branch and that the Wrangler production route for `nischhalsubba.com.np/*` is active.',
               '',
               `Run: ${runUrl}`,
               '',
