@@ -61,15 +61,25 @@ try {
   }
 
   const firstId = await first.getAttribute('id');
+
+  // Third-party verification widgets can finish mounting shortly after the form
+  // has already focused the invalid field. Simulate that late focus loss so the
+  // local audit covers the race that can otherwise appear only in production.
+  await page.waitForTimeout(50);
+  await page.evaluate((id) => {
+    const field = id ? document.getElementById(id) : null;
+    if (field && document.activeElement === field) field.blur();
+  }, firstId);
+
   try {
     await page.waitForFunction(
       (id) => Boolean(id) && document.activeElement?.id === id,
       firstId,
-      { timeout: 1000 },
+      { timeout: 2200 },
     );
   } catch (_) {
     const active = await page.evaluate(() => document.activeElement?.id || document.activeElement?.tagName || 'none');
-    failures.push(`focus did not move to first invalid field; active=${active}`);
+    failures.push(`focus did not recover to first invalid field; active=${active}`);
   }
 
   if (await name.inputValue() !== 'Nischhal') failures.push('entered value was not preserved');
@@ -108,4 +118,4 @@ if (failures.length) {
   console.error('[contact-audit] Failed\n' + failures.map((failure) => `- ${failure}`).join('\n'));
   process.exit(1);
 }
-console.log('[contact-audit] Accessible validation and resilient submission behavior passed.');
+console.log('[contact-audit] Accessible validation, focus recovery, and resilient submission behavior passed.');
