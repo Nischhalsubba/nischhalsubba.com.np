@@ -46,3 +46,4 @@ for (const file of files) {
 }
 
 console.log(`[agent-writing] Rebuilt ${files.length} writing index route(s).`);
+require('./agent-polish.cjs');
