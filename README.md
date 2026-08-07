@@ -35,7 +35,10 @@
 
 This branch differs from the default branch in the following detected paths:
 
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell-v2/README.md)
+- [`scripts/agent-redesign-part-2.cjsfrag`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell-v2/scripts/agent-redesign-part-2.cjsfrag)
 - [`scripts/build-dist.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell-v2/scripts/build-dist.cjs)
+- [`scripts/ensure-portfolio-content-polish.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell-v2/scripts/ensure-portfolio-content-polish.cjs)
 - [`scripts/ensure-sticky-responsive-shell.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell-v2/scripts/ensure-sticky-responsive-shell.cjs)
 - [`src/scripts/features/mobile-menu.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell-v2/src/scripts/features/mobile-menu.js)
 
