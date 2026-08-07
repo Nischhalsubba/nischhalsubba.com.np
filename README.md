@@ -96,17 +96,17 @@ flowchart TD
     APP --> R0["src/app"]
     APP --> R1["public"]
     R0 --> F0["src/app/layout.tsx"]
-    R1 --> F1["public/nischhal-raj-subba.html"]
-    R1 --> F2["public/privacy.html"]
-    R1 --> F3["public/services.html"]
-    R1 --> F4["public/blog/hire-product-designer-nepal-saas-web3.html"]
-    R1 --> F5["public/blog/design-handoff-checklist-startup-product-teams.html"]
-    R1 --> F6["public/blog/web3-wallet-connection-ux.html"]
-    R1 --> F7["public/blog/index.html"]
-    R1 --> F8["public/blog/role-based-saas-dashboard-ux.html"]
-    R1 --> F9["public/blog/saas-dashboard-empty-states-product-clarity.html"]
-    R1 --> F10["public/blog/saas-dashboard-filter-ux.html"]
-    R1 --> F11["public/blog/design-systems-small-product-teams.html"]
+    R1 --> F1["public/services.html"]
+    R1 --> F2["public/nischhal-raj-subba.html"]
+    R1 --> F3["public/privacy.html"]
+    R1 --> F4["public/blog/prioritize-ux-audit-findings-before-redesign.html"]
+    R1 --> F5["public/blog/saas-dashboard-empty-states-that-help-users-recover.html"]
+    R1 --> F6["public/blog/responsive-saas-dashboard-handoff-notes.html"]
+    R1 --> F7["public/blog/when-startup-needs-ux-audit-before-redesign.html"]
+    R1 --> F8["public/blog/figma-handoff-notes-for-developers.html"]
+    R1 --> F9["public/blog/web3-wallet-connection-ux.html"]
+    R1 --> F10["public/blog/index.html"]
+    R1 --> F11["public/blog/role-based-saas-dashboard-ux.html"]
 ```
 
 ## Architecture and responsibility flow
@@ -167,8 +167,8 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/production-backlog-round-2/assets/analytics-events-Bq4IAYSg.js)
 - [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/production-backlog-round-2/src/scripts/features/analytics-events.js)
+- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/production-backlog-round-2/assets/analytics-events-Bq4IAYSg.js)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
