@@ -4,27 +4,27 @@
 
 # nischhalsubba.com.np
 
-**Branch-aware technical guide for [`agent/ignore-superseded-browser-audits`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits)**
+**Branch-aware technical guide for [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main)**
 
-<p><img alt="branch: agent/ignore-superseded-browser-audits" src="https://img.shields.io/static/v1?label=&message=branch%3A%20agent%2Fignore-superseded-browser-audits&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+<p><img alt="branch: main" src="https://img.shields.io/static/v1?label=&message=branch%3A%20main&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
 
 <p>
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits"><strong>Browse source</strong></a> ·
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main"><strong>Browse source</strong></a> ·
   <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/issues"><strong>Issues</strong></a> ·
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=agent%2Fignore-superseded-browser-audits"><strong>Open in Codespaces</strong></a>
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=main"><strong>Open in Codespaces</strong></a>
 </p>
 
 </div>
 
 > [!IMPORTANT]
-> This guide is generated from the files actually present on `agent/ignore-superseded-browser-audits`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
+> This guide is generated from the files actually present on `main`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
 
 ## At a glance
 
 | Item | Detected value |
 |---|---|
 | Purpose | Production portfolio for Nischhal Raj Subba, a Nepal-based product designer focused on Web3, SaaS, fintech, UX systems, and developer-ready design handoff. |
-| Branch role | Compared with `main` |
+| Branch role | Default branch |
 | Stack | Vite, TypeScript, WordPress, JavaScript, HTML, PHP, CSS |
 | Manifests | package.json |
 | Prerequisites | Node.js |
@@ -33,10 +33,9 @@
 
 ## Branch scope
 
-This branch differs from the default branch in the following detected paths:
+This is the repository's default branch.
 
-- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/.github/workflows/browser-audit.yml)
-- [`scripts/browser-contact-audit.mjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/scripts/browser-contact-audit.mjs)
+
 
 ## Quick start
 
@@ -58,7 +57,7 @@ npm run preview
 
 ```mermaid
 flowchart TD
-    ROOT["nischhalsubba.com.np / agent/ignore-superseded-browser-audits"]
+    ROOT["nischhalsubba.com.np / main"]
     ROOT --> P0[".github/"]
     ROOT --> P1["api/"]
     ROOT --> P2["assets/"]
@@ -82,12 +81,12 @@ flowchart TD
 
 | Responsibility | Detected source paths |
 |---|---|
-| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/src) |
-| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/api) |
-| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/data) |
-| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/tests) |
-| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/docs) |
-| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/scripts) |
+| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/src) |
+| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api) |
+| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data) |
+| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests) |
+| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/docs) |
+| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/scripts) |
 
 ## Website or application map
 
@@ -142,7 +141,7 @@ sequenceDiagram
     I-->>U: Render success or error state
 ```
 
-Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/api).
+Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api).
 
 </details>
 <details>
@@ -157,7 +156,7 @@ flowchart LR
     READ --> OUTPUT["UI, API, report, or export"]
 ```
 
-Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/data).
+Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data).
 
 </details>
 <details>
@@ -171,7 +170,7 @@ flowchart LR
     WORKER -->|failure| RETRY["Retry, alert, or dead-letter path"]
 ```
 
-Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/src/worker.js).
+Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/worker.js).
 
 </details>
 
@@ -183,7 +182,7 @@ Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nisc
 
 ### Quality
 
-- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits/tests)
+- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests)
 
 Detected commands:
 - `npm run dev`
@@ -205,8 +204,8 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/src/scripts/features/analytics-events.js)
-- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/assets/analytics-events-Bq4IAYSg.js)
+- [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/scripts/features/analytics-events.js)
+- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/assets/analytics-events-Bq4IAYSg.js)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
@@ -218,7 +217,7 @@ Define useful logs, metrics, traces, alerts, and rollback signals for production
 
 ```mermaid
 flowchart LR
-    CHANGE["Change on agent/ignore-superseded-browser-audits"] --> CHECK["Tests and quality checks"]
+    CHANGE["Change on main"] --> CHECK["Tests and quality checks"]
     CHECK --> REVIEW["Review architecture and documentation impact"]
     REVIEW --> BUILD["Build or package"]
     BUILD --> DEPLOY["Deploy or release"]
@@ -227,13 +226,13 @@ flowchart LR
 
 ### Automation detected
 
-- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/.github/workflows/apply-interactive-readme.yml)
-- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/.github/workflows/browser-audit.yml)
-- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/.github/workflows/deploy-cloudflare.yml)
-- [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/.github/workflows/interface-polish-audit.yml)
-- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/.github/workflows/production-qa.yml)
-- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/.github/workflows/production-route-audit.yml)
-- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/.github/workflows/validate.yml)
+- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/apply-interactive-readme.yml)
+- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/browser-audit.yml)
+- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/deploy-cloudflare.yml)
+- [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/interface-polish-audit.yml)
+- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-qa.yml)
+- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-route-audit.yml)
+- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/validate.yml)
 
 ## Contribution flow
 
@@ -258,7 +257,7 @@ flowchart LR
 | Topic | Source |
 |---|---|
 | Repository | [`Nischhalsubba/nischhalsubba.com.np`](https://github.com/Nischhalsubba/nischhalsubba.com.np) |
-| Branch | [`agent/ignore-superseded-browser-audits`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/ignore-superseded-browser-audits) |
+| Branch | [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main) |
 | Ownership | No CODEOWNERS file detected |
 | Contributing | Use the contribution flow above |
 | Support | [Open or review issues](https://github.com/Nischhalsubba/nischhalsubba.com.np/issues) |
