@@ -1,0 +1,17 @@
+/* Existing production runtime drives these states. Keep the visual layer compatible with it. */
+.agent-portfolio .theme-toggle-btn svg {
+  display: none;
+}
+
+.agent-portfolio.menu-open .mobile-nav-overlay,
+.agent-portfolio .mobile-nav-overlay[aria-hidden='false'] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity var(--ap-section) var(--ap-ease), transform var(--ap-section) var(--ap-ease), visibility 0s step-start;
+}
+
+.agent-portfolio .mobile-nav-overlay[hidden] {
+  display: none;
+}
