@@ -59,11 +59,12 @@
 .agent-portfolio .agent-section--inverse .agent-capability h3,
 .agent-portfolio .agent-section--inverse h2,
 .agent-portfolio .agent-section--inverse h3 {
-  color: inherit;
+  color: var(--ap-inverse-ink);
+  -webkit-text-fill-color: var(--ap-inverse-ink);
 }
 
 .agent-portfolio .agent-section--inverse .agent-kicker {
-  color: color-mix(in srgb, currentColor 68%, transparent);
+  color: color-mix(in srgb, var(--ap-inverse-ink) 68%, transparent);
 }
 
 .agent-portfolio .agent-manifesto blockquote {
@@ -77,6 +78,7 @@
 
 .agent-portfolio .agent-footer-cta {
   color: var(--ap-inverse-ink);
+  -webkit-text-fill-color: var(--ap-inverse-ink);
 }
 
 .agent-portfolio .agent-footer-links,
@@ -178,6 +180,11 @@
 }
 
 @media (max-width: 1023px) {
+  .agent-portfolio .nav-wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+  }
+
   .agent-portfolio .agent-page-hero-grid > div:first-child {
     grid-column: 1 / span 5;
   }
