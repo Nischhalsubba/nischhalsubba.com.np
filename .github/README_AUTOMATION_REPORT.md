@@ -9,7 +9,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `agent/complete-portfolio-qa` | unchanged | README already matched the standard |
 | `agent/contact-button-hotfix` | unchanged | README already matched the standard |
 | `agent/contact-form-resilience` | unchanged | README already matched the standard |
-| `agent/editorial-portfolio-redesign` | unchanged | README already matched the standard |
+| `agent/editorial-portfolio-redesign` | updated | Branch-specific README committed |
 | `agent/redesign-services-work-proof` | unchanged | README already matched the standard |
 | `agent/refresh-ux-audit-prioritization` | unchanged | README already matched the standard |
 | `agent/spacious-core-pages` | unchanged | README already matched the standard |
