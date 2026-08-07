@@ -14,6 +14,32 @@ body.agent-portfolio #agent-progress {
   z-index: calc(var(--ap-z-nav) + 10) !important;
 }
 
+body.agent-portfolio .agent-frame {
+  box-sizing: border-box;
+}
+
+body.agent-portfolio .agent-project-row,
+body.agent-portfolio .agent-project-copy,
+body.agent-portfolio .agent-project-meta,
+body.agent-portfolio .agent-project-media,
+body.agent-portfolio .agent-case-cover,
+body.agent-portfolio .agent-index-item {
+  min-width: 0;
+  max-width: 100%;
+}
+
+body.agent-portfolio .agent-project-media,
+body.agent-portfolio .agent-case-cover {
+  width: 100%;
+}
+
+body.agent-portfolio .agent-project-media img,
+body.agent-portfolio .agent-case-cover img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
 @media (max-width: 1023px) {
   body.agent-portfolio .nav-wrapper {
     display: grid !important;
@@ -46,5 +72,17 @@ body.agent-portfolio #agent-progress {
     min-width: 2.75rem !important;
     min-height: 2.75rem !important;
     z-index: calc(var(--ap-z-nav) + 4) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.agent-portfolio .agent-project-row {
+    grid-template-columns: 2.2rem minmax(0, 1fr) !important;
+    width: 100%;
+  }
+
+  body.agent-portfolio .agent-index-item {
+    grid-template-columns: 2rem minmax(0, 1fr) !important;
+    width: 100%;
   }
 }
