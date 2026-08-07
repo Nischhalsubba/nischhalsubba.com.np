@@ -11,6 +11,22 @@ const projectOrder = [
   'zakra-furniture', 'sassboilerplate',
 ];
 const featured = new Set(['yarsha', 'mokshya', 'pihub', 'orkest', 'neverwinter-parser', 'masteriyo']);
+const projectTitles = {
+  yarsha: 'Yarsha',
+  mokshya: 'Mokshya.io',
+  pihub: 'piHub',
+  orkest: 'Orkest HQ',
+  'neverwinter-parser': 'Neverwinter Live Parser',
+  masteriyo: 'Masteriyo',
+  zapp: 'Zapp Today',
+  designerex: 'Designerex',
+  'hamro-idea': 'Hamro Idea',
+  morajaa: 'Morajaa',
+  splashnode: 'Splashnode',
+  'grid-labs': 'Grid Labs',
+  'zakra-furniture': 'Zakra Furniture',
+  sassboilerplate: 'SassBoilerplate',
+};
 
 function esc(value) {
   return String(value ?? '')
@@ -62,8 +78,11 @@ function sourceImages(slug) {
 }
 
 function sectionByLabel(main, label) {
-  const safe = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return main.match(new RegExp(`<section\\b[^>]*>[\\s\\S]*?<span\\b[^>]*class=["'][^"']*agent-meta[^"']*["'][^>]*>\\s*\\d+\\s*·\\s*${safe}\\s*<\\/span>[\\s\\S]*?<\\/section>`, 'i'))?.[0] || '';
+  const sections = [...main.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/gi)].map((match) => match[0]);
+  return sections.find((section) => {
+    const meta = section.match(/<span\b[^>]*class=["'][^"']*agent-meta[^"']*["'][^>]*>([\s\S]*?)<\/span>/i)?.[1] || '';
+    return strip(meta).replace(/^\d+\s*·\s*/, '').toLowerCase() === label.toLowerCase();
+  }) || '';
 }
 
 function firstParagraph(section) {
@@ -149,7 +168,7 @@ function transformCase(slug) {
   const index = projectOrder.indexOf(slug);
   const previous = index > 0 ? projectOrder[index - 1] : projectOrder.at(-1);
   const next = index >= 0 && index < projectOrder.length - 1 ? projectOrder[index + 1] : projectOrder[0];
-  const nextNav = `<nav class="agent-section nrs-case-next" aria-label="Project case study navigation"><div class="agent-frame"><a href="/project-${esc(previous)}"><span>Previous case</span><strong>${esc(previous.replaceAll('-', ' '))}</strong></a><a href="/projects"><span>Index</span><strong>Selected work</strong></a><a href="/project-${esc(next)}"><span>Next case</span><strong>${esc(next.replaceAll('-', ' '))}</strong></a></div></nav>`;
+  const nextNav = `<nav class="agent-section nrs-case-next" aria-label="Project case study navigation"><div class="agent-frame"><a href="/project-${esc(previous)}"><span>Previous case</span><strong>${esc(projectTitles[previous] || previous.replaceAll('-', ' '))}</strong></a><a href="/projects"><span>Index</span><strong>Selected work</strong></a><a href="/project-${esc(next)}"><span>Next case</span><strong>${esc(projectTitles[next] || next.replaceAll('-', ' '))}</strong></a></div></nav>`;
 
   const rebuilt = `<main id="main-content" class="agent-main nrs-hireable-case nrs-final-case nrs-audit-remediated-case" data-project-slug="${esc(slug)}">${hero}${summary}${chapterOne}${chapterTwo}${depth}${chapterThree}${nextNav}</main>`;
   html = html.replace(main, rebuilt);
@@ -207,14 +226,14 @@ function dedupeAboutProcess() {
   const file = path.join(base, 'about.html');
   if (!fs.existsSync(file)) return 0;
   let html = fs.readFileSync(file, 'utf8');
-  const pattern = /<section\b[^>]*>[\s\S]*?Four passes\.\s*Fewer loose ends\.[\s\S]*?<\/section>/gi;
-  const matches = [...html.matchAll(pattern)];
-  if (matches.length <= 1) return 0;
-  for (let i = matches.length - 1; i >= 1; i -= 1) {
-    html = html.slice(0, matches[i].index) + html.slice(matches[i].index + matches[i][0].length);
+  const sections = [...html.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/gi)]
+    .filter((match) => /Four passes\.\s*Fewer loose ends\./i.test(match[0]));
+  if (sections.length <= 1) return 0;
+  for (let i = sections.length - 1; i >= 1; i -= 1) {
+    html = html.slice(0, sections[i].index) + html.slice(sections[i].index + sections[i][0].length);
   }
   fs.writeFileSync(file, html, 'utf8');
-  return matches.length - 1;
+  return sections.length - 1;
 }
 
 function appendStyles() {
@@ -223,7 +242,6 @@ function appendStyles() {
   const end = '/* nrs-agent-audit-remediation-v1:end */';
   const marker = /\/\* nrs-agent-audit-remediation-v\d+:start \*\/[\s\S]*?\/\* nrs-agent-audit-remediation-v\d+:end \*\//g;
   const css = `${start}
-/* Agent-mode audit remediation: proof density, recruiter scanning, mobile masthead and typography. */
 .agent-portfolio .nrs-case-skim {
   padding-block: clamp(3rem, 5vw, 5rem) !important;
   background: var(--ap-surface) !important;
@@ -262,7 +280,6 @@ function appendStyles() {
   text-transform: uppercase;
 }
 .agent-portfolio .nrs-case-skim-grid dd { margin: 0; color: var(--ap-ink); font-size: .98rem; line-height: 1.55; }
-
 .agent-portfolio .nrs-case-chapter { border-bottom: 1px solid var(--ap-line); }
 .agent-portfolio .nrs-case-chapter > .agent-section { padding-block: clamp(3.25rem, 5.25vw, 5.5rem) !important; }
 .agent-portfolio .nrs-case-chapter > .agent-section + .agent-section { border-top: 1px solid var(--ap-line) !important; }
@@ -280,7 +297,6 @@ function appendStyles() {
 .agent-portfolio .nrs-case-evidence-grid figure { min-width: 0; margin: 0; border: 1px solid var(--ap-line); background: var(--ap-surface); }
 .agent-portfolio .nrs-case-evidence-grid img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
 .agent-portfolio .nrs-case-evidence-grid figcaption { padding: .85rem 1rem; color: var(--ap-ink-soft); font: 600 .75rem/1.45 var(--ap-font-mono); }
-
 .agent-portfolio .nrs-case-depth-wrap { padding-block: clamp(2rem, 3vw, 3rem) !important; }
 .agent-portfolio .nrs-case-depth { border: 1px solid var(--ap-line); background: var(--ap-surface); }
 .agent-portfolio .nrs-case-depth > summary,
@@ -308,7 +324,6 @@ function appendStyles() {
 .agent-portfolio .nrs-case-depth-body { border-top: 1px solid var(--ap-line); }
 .agent-portfolio .nrs-case-depth-body > .agent-section { padding-block: 2.75rem !important; border-top: 0 !important; }
 .agent-portfolio .nrs-case-depth-body > .agent-section + .agent-section { border-top: 1px solid var(--ap-line) !important; }
-
 .agent-portfolio .nrs-case-next { padding-block: 2rem !important; }
 .agent-portfolio .nrs-case-next .agent-frame { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--ap-line); }
 .agent-portfolio .nrs-case-next a { display: grid; gap: .35rem; min-height: 78px; padding: 1rem 1.2rem; color: var(--ap-ink); text-decoration: none; }
@@ -316,8 +331,6 @@ function appendStyles() {
 .agent-portfolio .nrs-case-next a:nth-child(2) { text-align: center; }
 .agent-portfolio .nrs-case-next a:nth-child(3) { text-align: right; }
 .agent-portfolio .nrs-case-next span { color: var(--ap-ink-soft); font: 600 .72rem/1.3 var(--ap-font-mono); text-transform: uppercase; }
-.agent-portfolio .nrs-case-next strong { text-transform: capitalize; }
-
 .agent-portfolio .nrs-work-featured,
 .agent-portfolio .nrs-work-archive-section { padding-block: clamp(3.75rem, 6vw, 6rem); }
 .agent-portfolio .nrs-work-archive-section { padding-top: 0; }
@@ -328,7 +341,6 @@ function appendStyles() {
 .agent-portfolio .nrs-work-card[data-project-slug='hamro-idea'] img,
 .agent-portfolio .nrs-work-card[data-project-slug='morajaa'] img,
 .agent-portfolio .nrs-work-card[data-project-slug='splashnode'] img { object-position: center top; }
-
 .agent-portfolio .nrs-service-rows article,
 .agent-portfolio .agent-service-row,
 .agent-portfolio .agent-service-item { position: relative; }
@@ -338,14 +350,12 @@ function appendStyles() {
 .agent-portfolio .nrs-service-rows article:has(a):hover,
 .agent-portfolio .agent-service-row:has(a):hover,
 .agent-portfolio .agent-service-item:has(a):hover { background: var(--ap-surface); }
-
 .agent-portfolio .nav-link { min-height: 44px !important; font-size: .8125rem !important; }
 .agent-portfolio .agent-meta,
 .agent-portfolio .agent-kicker { font-size: max(.75rem, 12px) !important; }
 .agent-portfolio .nrs-work-card-copy p,
 .agent-portfolio .nrs-case-section-body p,
 .agent-portfolio .nrs-case-section-body li { font-size: max(1rem, 16px); }
-
 @media (max-width: 430px) {
   .agent-portfolio .agent-mobile-brand {
     display: flex !important;
@@ -364,14 +374,12 @@ function appendStyles() {
   }
   .agent-portfolio .agent-mobile-brand span { display: none !important; }
 }
-
 @media (max-width: 1023px) {
   .agent-portfolio .nrs-case-skim-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .agent-portfolio .nrs-case-skim-grid > div { padding: 1rem 0; border-left: 0 !important; border-bottom: 1px solid var(--ap-line); }
   .agent-portfolio .nrs-case-skim-grid > div:nth-child(even) { padding-left: 1rem; border-left: 1px solid var(--ap-line) !important; }
   .agent-portfolio .nrs-case-skim-grid > div:last-child { grid-column: 1 / -1; }
 }
-
 @media (max-width: 767px) {
   .agent-portfolio .nrs-case-skim,
   .agent-portfolio .nrs-case-chapter > .agent-section,
@@ -389,7 +397,6 @@ function appendStyles() {
   .agent-portfolio .nrs-case-next a:nth-child(2),
   .agent-portfolio .nrs-case-next a:nth-child(3) { text-align: left; }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .agent-portfolio .nrs-case-depth > summary > span:last-child,
   .agent-portfolio .nrs-work-archive > summary > span:last-child { transition: none !important; }
