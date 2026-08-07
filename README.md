@@ -36,6 +36,9 @@
 This branch differs from the default branch in the following detected paths:
 
 - [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell/README.md)
+- [`scripts/build-dist.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell/scripts/build-dist.cjs)
+- [`scripts/ensure-sticky-responsive-shell.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell/scripts/ensure-sticky-responsive-shell.cjs)
+- [`src/scripts/features/mobile-menu.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/sticky-responsive-shell/src/scripts/features/mobile-menu.js)
 
 ## Quick start
 
