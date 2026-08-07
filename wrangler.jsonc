@@ -3,6 +3,16 @@
   "name": "portfolio-website-2026",
   "main": "./src/worker.js",
   "compatibility_date": "2026-02-05",
+  "routes": [
+    {
+      "pattern": "nischhalsubba.com.np/*",
+      "zone_name": "nischhalsubba.com.np"
+    },
+    {
+      "pattern": "www.nischhalsubba.com.np/*",
+      "zone_name": "nischhalsubba.com.np"
+    }
+  ],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
@@ -11,7 +21,7 @@
   "send_email": [
     {
       "name": "CONTACT_EMAIL",
-      "destination_address": "hinischalsubba@gmail.com"
+      "destination_address": "hinischhalsubba@gmail.com"
     }
   ]
 }
