@@ -19,16 +19,16 @@
   Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /*.js
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /*.css
   Cache-Control: public, max-age=300, must-revalidate
 
 /detail-navigation.js
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /seo-enhancements.js
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
 
 /assets/resume.pdf
   Content-Type: application/pdf
