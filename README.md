@@ -35,6 +35,7 @@
 
 This branch differs from the default branch in the following detected paths:
 
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-scroll-reveal-visibility/README.md)
 - [`docs/reveal-visibility-hotfix.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-scroll-reveal-visibility/docs/reveal-visibility-hotfix.md)
 - [`scripts/build-dist.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-scroll-reveal-visibility/scripts/build-dist.cjs)
 - [`scripts/ensure-reveal-visibility.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-scroll-reveal-visibility/scripts/ensure-reveal-visibility.cjs)
