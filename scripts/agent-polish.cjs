@@ -6,6 +6,7 @@ const dist = path.join(root, 'dist');
 const styleSources = [
   path.join(root, 'src', 'styles', 'agent-polish.cssfrag'),
   path.join(root, 'src', 'styles', 'agent-responsive-hardening.cssfrag'),
+  path.join(root, 'src', 'styles', 'agent-sticky-cascade-lock.cssfrag'),
 ];
 const distStyle = path.join(dist, 'style.css');
 const aboutPath = path.join(dist, 'about.html');
