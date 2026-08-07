@@ -36,13 +36,16 @@ function parseRedirects(file) {
   return entries;
 }
 
-for (const redirectFile of [path.join(root, '_redirects'), path.join(root, 'public', '_redirects')]) {
-  const redirects = parseRedirects(redirectFile);
-  for (const [from, to] of Object.entries(manifest.redirects)) {
-    if (redirects.get(from) !== to) {
-      errors.push(`${path.relative(root, redirectFile)}: ${from} must redirect to ${to}`);
-    }
+const redirectFile = path.join(root, 'public', '_redirects');
+const redirects = parseRedirects(redirectFile);
+for (const [from, to] of Object.entries(manifest.redirects)) {
+  if (redirects.get(from) !== to) {
+    errors.push(`${path.relative(root, redirectFile)}: ${from} must redirect to ${to}`);
   }
+}
+
+if (fs.existsSync(path.join(root, '_redirects'))) {
+  errors.push('Root _redirects must not exist; public/_redirects is the canonical redirect source.');
 }
 
 if (errors.length) {
