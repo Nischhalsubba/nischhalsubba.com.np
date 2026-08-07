@@ -21,6 +21,7 @@ jobs:
       AUDIT_BASE_URL: https://nischhalsubba.com.np
       SITE_URL: https://nischhalsubba.com.np
       EXPECTED_SHA: ${{ github.sha }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,27 +29,51 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Wait for exact Cloudflare Workers production commit
+      - name: Wait for validated Cloudflare Workers production lineage
         shell: bash
         run: |
           set -o pipefail
+
+          is_acceptable_live_commit() {
+            local expected="$1"
+            local live="$2"
+            [ -n "$live" ] || return 1
+            [ "$live" = "$expected" ] && return 0
+
+            local compare_status
+            compare_status=$(curl -fsS --max-time 10 \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$GITHUB_REPOSITORY/compare/$expected...$live" \
+              | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).status||'')}catch{console.log('')}})" \
+              || true)
+            [ "$compare_status" = "ahead" ] || [ "$compare_status" = "identical" ]
+          }
+
           matched=0
+          accepted_sha=''
           for attempt in $(seq 1 36); do
             live_info=$(curl -fsS --max-time 10 "$SITE_URL/build-info.json" || true)
             live_sha=$(printf '%s' "$live_info" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{console.log('')}})")
             live_branch=$(printf '%s' "$live_info" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).branch||'')}catch{console.log('')}})")
             live_provider=$(printf '%s' "$live_info" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).provider||'')}catch{console.log('')}})")
-            echo "Production QA provenance $attempt: live=${live_sha:-unavailable} branch=${live_branch:-unknown} provider=${live_provider:-unknown} expected=$EXPECTED_SHA"
-            if [ "$live_sha" = "$EXPECTED_SHA" ] && [ "$live_branch" = "main" ] && [ "$live_provider" = "cloudflare-workers" ]; then
+            echo "Production QA provenance $attempt: live=${live_sha:-unavailable} branch=${live_branch:-unknown} provider=${live_provider:-unknown} validated=$EXPECTED_SHA"
+
+            if [ "$live_branch" = "main" ] && [ "$live_provider" = "cloudflare-workers" ] && is_acceptable_live_commit "$EXPECTED_SHA" "$live_sha"; then
               matched=1
+              accepted_sha="$live_sha"
               break
             fi
             sleep 10
           done
+
           [ "$matched" = "1" ] || {
-            echo "Refusing to audit stale production. Expected Cloudflare Workers commit $EXPECTED_SHA."
+            echo "Refusing to audit production. Expected $EXPECTED_SHA or a newer main-branch descendant from Cloudflare Workers."
             exit 1
           }
+
+          echo "LIVE_AUDIT_SHA=$accepted_sha" >> "$GITHUB_ENV"
+          echo "Auditing live descendant $accepted_sha from validated baseline $EXPECTED_SHA."
       - name: Fetch live sitemap for browser route discovery
         run: |
           mkdir -p dist
@@ -105,13 +130,21 @@ jobs:
           CONTACT: ${{ steps.contact.outcome }}
           VISUAL: ${{ steps.visual.outcome }}
           HEADERS: ${{ steps.headers.outcome }}
+          LIVE_SHA: ${{ env.LIVE_AUDIT_SHA }}
         with:
           script: |
             const fs = require('fs');
             const title = '[QA] Production website audit';
             const outcomes = { routes: process.env.ROUTES, browser: process.env.BROWSER, contact: process.env.CONTACT, visual: process.env.VISUAL, headers: process.env.HEADERS };
             const run = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const body = [`Production QA for \`${context.sha}\`.`, '', `Run: ${run}`, '', `Outcomes: \`${JSON.stringify(outcomes)}\``];
+            const body = [
+              `Production QA for validated baseline \`${context.sha}\`.`,
+              `Live audited commit: \`${process.env.LIVE_SHA || 'unresolved'}\`.`,
+              '',
+              `Run: ${run}`,
+              '',
+              `Outcomes: \`${JSON.stringify(outcomes)}\``
+            ];
             for (const [label, file] of [['Routes','production-routes.log'],['Browser','production-browser.log'],['Contact','production-contact.log'],['Visual','production-visual.log'],['Headers','production-headers.log']]) {
               if (!fs.existsSync(file)) continue;
               body.push('', `<details><summary>${label}</summary>`, '', '```text', fs.readFileSync(file,'utf8').slice(-50000), '```', '</details>');
