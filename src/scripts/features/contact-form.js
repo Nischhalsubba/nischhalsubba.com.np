@@ -68,13 +68,15 @@ function focusInvalid(field, { persistent = false } = {}) {
   });
 
   // Turnstile can finish mounting after validation has already moved focus.
-  // Re-assert the invalid field only while focus is effectively lost or still
-  // inside the anti-spam iframe. Never steal focus from another field/control
-  // the visitor deliberately moved to.
+  // For a short window, recover only when focus is effectively lost or still
+  // inside the anti-spam iframe. Deliberate focus on any other control wins.
   if (persistent) {
-    [100, 300, 750, 1500].forEach((delay) => {
-      window.setTimeout(() => restore(), delay);
-    });
+    const deadline = performance.now() + 1800;
+    const keepRestoring = () => {
+      restore();
+      if (performance.now() < deadline) window.setTimeout(keepRestoring, 100);
+    };
+    window.setTimeout(keepRestoring, 100);
   }
 }
 
