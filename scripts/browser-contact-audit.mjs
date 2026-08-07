@@ -19,6 +19,23 @@ await page.route('https://formsubmit.co/ajax/**', async (route) => {
   });
 });
 
+async function waitForStatusText(locator, pattern, timeout = 5000) {
+  const deadline = Date.now() + timeout;
+  let text = '';
+
+  while (Date.now() < deadline) {
+    try {
+      text = (await locator.textContent()) || '';
+    } catch (_) {
+      text = '';
+    }
+    if (pattern.test(text)) return text;
+    await page.waitForTimeout(100);
+  }
+
+  return text;
+}
+
 try {
   await page.goto(`${base}/contact`, { waitUntil: 'domcontentloaded' });
   const form = page.locator('#contact-form');
@@ -26,6 +43,7 @@ try {
 
   await page.waitForFunction(
     () => document.querySelector('#contact-form')?.dataset.contactFormReady === 'true',
+    null,
     { timeout: 3000 },
   );
 
@@ -60,21 +78,22 @@ try {
   if (!/review the highlighted fields/i.test(await status.textContent() || '')) failures.push('status region did not announce validation failure');
   if (await status.getAttribute('role') !== 'status') failures.push('status region role is missing');
 
-  // The local audit intentionally has no production Turnstile site key. A valid
-  // submission must therefore remain usable through the provider fallback.
+  // The audit intentionally cannot solve a real production Turnstile challenge.
+  // A valid submission must therefore remain usable through the provider fallback.
   await page.locator('#contact-email').fill('nischhal@example.com');
   await page.locator('#contact-need').selectOption({ label: 'Freelance UX/UI project' });
   await page.locator('#contact-timeline').selectOption({ label: 'This month' });
   await page.locator('#contact-message').fill('I need help simplifying a product workflow with several unclear states and handoff constraints.');
   await form.locator('button[type="submit"]').click();
 
-  try {
-    await page.waitForFunction(
-      () => /sent successfully|thanks/i.test(document.querySelector('#contact-form-status')?.textContent || ''),
-      { timeout: 3000 },
-    );
-  } catch (_) {
-    failures.push(`valid fallback submission did not announce success; status=${await status.textContent() || ''}`);
+  const successText = await waitForStatusText(status, /sent successfully|thanks/i, 5000);
+  if (!/sent successfully|thanks/i.test(successText)) {
+    failures.push(`valid fallback submission did not announce success; status=${successText}`);
+  }
+
+  const resetDeadline = Date.now() + 2000;
+  while (Date.now() < resetDeadline && await name.inputValue() !== '') {
+    await page.waitForTimeout(50);
   }
 
   if (fallbackRequests !== 1) failures.push(`expected one fallback delivery request; received ${fallbackRequests}`);
