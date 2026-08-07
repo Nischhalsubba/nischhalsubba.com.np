@@ -96,6 +96,13 @@ jobs:
         run: |
           set -o pipefail
           node scripts/browser-audit.mjs 2>&1 | tee production-browser.log
+      - name: Audit exact sticky and responsive behavior
+        id: sticky
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/browser-sticky-responsive-audit.mjs 2>&1 | tee production-sticky.log
       - name: Audit live contact accessibility
         id: contact
         continue-on-error: true
@@ -127,6 +134,7 @@ jobs:
         env:
           ROUTES: ${{ steps.routes.outcome }}
           BROWSER: ${{ steps.browser.outcome }}
+          STICKY: ${{ steps.sticky.outcome }}
           CONTACT: ${{ steps.contact.outcome }}
           VISUAL: ${{ steps.visual.outcome }}
           HEADERS: ${{ steps.headers.outcome }}
@@ -135,7 +143,7 @@ jobs:
           script: |
             const fs = require('fs');
             const title = '[QA] Production website audit';
-            const outcomes = { routes: process.env.ROUTES, browser: process.env.BROWSER, contact: process.env.CONTACT, visual: process.env.VISUAL, headers: process.env.HEADERS };
+            const outcomes = { routes: process.env.ROUTES, browser: process.env.BROWSER, sticky: process.env.STICKY, contact: process.env.CONTACT, visual: process.env.VISUAL, headers: process.env.HEADERS };
             const run = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = [
               `Production QA for validated baseline \`${context.sha}\`.`,
@@ -145,7 +153,7 @@ jobs:
               '',
               `Outcomes: \`${JSON.stringify(outcomes)}\``
             ];
-            for (const [label, file] of [['Routes','production-routes.log'],['Browser','production-browser.log'],['Contact','production-contact.log'],['Visual','production-visual.log'],['Headers','production-headers.log']]) {
+            for (const [label, file] of [['Routes','production-routes.log'],['Browser','production-browser.log'],['Sticky responsive','production-sticky.log'],['Contact','production-contact.log'],['Visual','production-visual.log'],['Headers','production-headers.log']]) {
               if (!fs.existsSync(file)) continue;
               body.push('', `<details><summary>${label}</summary>`, '', '```text', fs.readFileSync(file,'utf8').slice(-50000), '```', '</details>');
             }
@@ -163,8 +171,9 @@ jobs:
           path: |
             production-*.log
             tests/visual/results
+            tests/sticky-responsive/results
           if-no-files-found: ignore
           retention-days: 14
       - name: Fail when production QA fails
-        if: steps.routes.outcome != 'success' || steps.browser.outcome != 'success' || steps.contact.outcome != 'success' || steps.visual.outcome != 'success' || steps.headers.outcome != 'success'
+        if: steps.routes.outcome != 'success' || steps.browser.outcome != 'success' || steps.sticky.outcome != 'success' || steps.contact.outcome != 'success' || steps.visual.outcome != 'success' || steps.headers.outcome != 'success'
         run: exit 1
