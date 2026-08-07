@@ -20,6 +20,7 @@ jobs:
     timeout-minutes: 25
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
       DEPLOY_SHA: ${{ github.event.workflow_run.head_sha }}
       CLOUDFLARE_PROJECT: portfolio-website-2026
 
@@ -79,6 +80,31 @@ jobs:
             export CLOUDFLARE_ACCOUNT_ID
             echo "Resolved Cloudflare account for $CLOUDFLARE_PROJECT."
 
+            # The static build happens in GitHub Actions, not inside Cloudflare Pages.
+            # Pull the public Turnstile site key from the Pages production config when
+            # a repository secret was not supplied, then expose it to the build step.
+            if [ -z "${TURNSTILE_SITE_KEY:-}" ]; then
+              PROJECT_JSON=$(curl -fsS \
+                -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+                -H "Content-Type: application/json" \
+                "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$CLOUDFLARE_PROJECT")
+
+              TURNSTILE_SITE_KEY=$(PROJECT_JSON="$PROJECT_JSON" node <<'NODE'
+          const payload = JSON.parse(process.env.PROJECT_JSON || '{}');
+          const entry = payload.result?.deployment_configs?.production?.env_vars?.TURNSTILE_SITE_KEY;
+          const value = typeof entry?.value === 'string' ? entry.value.trim() : '';
+          if (value && !/^\*+$/.test(value)) process.stdout.write(value);
+          NODE
+              )
+            fi
+
+            test -n "${TURNSTILE_SITE_KEY:-}" || {
+              echo "Missing TURNSTILE_SITE_KEY. Add it as a GitHub Actions secret or a plaintext production Pages variable."
+              exit 1
+            }
+            export TURNSTILE_SITE_KEY
+            echo "Turnstile public site key resolved for the production build."
+
             npm ci
             npm run validate
             npx wrangler@4 pages deploy dist \
@@ -86,15 +112,48 @@ jobs:
               --branch main \
               --commit-hash "$DEPLOY_SHA"
 
+            PROVENANCE_OK=0
             for attempt in 1 2 3 4 5 6 7 8 9 10; do
               LIVE_SHA=$(curl -fsS https://nischhalsubba.com.np/build-info.json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{}})")
               echo "Provenance attempt $attempt: live=$LIVE_SHA expected=$DEPLOY_SHA"
-              [ "$LIVE_SHA" = "$DEPLOY_SHA" ] && exit 0
+              if [ "$LIVE_SHA" = "$DEPLOY_SHA" ]; then
+                PROVENANCE_OK=1
+                break
+              fi
               sleep 10
             done
 
-            echo "Production provenance did not match $DEPLOY_SHA"
-            exit 1
+            [ "$PROVENANCE_OK" = "1" ] || {
+              echo "Production provenance did not match $DEPLOY_SHA"
+              exit 1
+            }
+
+            # Verify the client received a Turnstile site key and the Pages Function
+            # has its runtime secret + email binding. A valid form without a token must
+            # reach the token gate and return 422, never a configuration 503.
+            CONTACT_HTML=$(curl -fsS https://nischhalsubba.com.np/contact)
+            printf '%s' "$CONTACT_HTML" | grep -q 'name="turnstile-site-key"' || {
+              echo "Production contact page is missing the Turnstile site key."
+              exit 1
+            }
+
+            CONTACT_STATUS=$(curl -sS -o /tmp/contact-smoke.json -w '%{http_code}' \
+              -X POST https://nischhalsubba.com.np/api/contact \
+              -H 'Origin: https://nischhalsubba.com.np' \
+              -H 'Accept: application/json' \
+              -F 'name=Production Smoke Test' \
+              -F 'email=smoke-test@example.com' \
+              -F 'need=Portfolio form verification' \
+              -F 'timeline=Verification only' \
+              -F 'message=Automated deployment verification. No email should be sent because no Turnstile token is provided.')
+
+            if [ "$CONTACT_STATUS" != "422" ] || ! grep -qi 'Complete the anti-spam check' /tmp/contact-smoke.json; then
+              echo "Production contact API did not reach the expected Turnstile token gate (HTTP $CONTACT_STATUS)."
+              cat /tmp/contact-smoke.json
+              exit 1
+            fi
+
+            echo "Production contact protection and API bindings passed smoke verification."
           } 2>&1 | tee cloudflare-deploy.log
 
       - name: Publish deployment result
