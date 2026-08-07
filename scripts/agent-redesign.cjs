@@ -51,6 +51,16 @@ for (const [fileName, title] of customCaseTitles) {
   fs.writeFileSync(filePath, html, 'utf8');
 }
 
+const contactPath = path.join(dist, 'contact.html');
+if (fs.existsSync(contactPath)) {
+  let contactHtml = fs.readFileSync(contactPath, 'utf8');
+  contactHtml = contactHtml.replace(
+    /<div data-agent-reveal>(<form\b[^>]*class=["'][^"']*agent-contact-form[^"']*["'])/i,
+    '<div class="agent-contact-form-wrap" data-agent-reveal>$1',
+  );
+  fs.writeFileSync(contactPath, contactHtml, 'utf8');
+}
+
 for (const fileName of fs.readdirSync(dist).filter((name) => /^project-.*\.html$/.test(name))) {
   const filePath = path.join(dist, fileName);
   let html = fs.readFileSync(filePath, 'utf8');
