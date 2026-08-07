@@ -10,10 +10,11 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `agent/contact-button-hotfix` | unchanged | README already matched the standard |
 | `agent/contact-form-resilience` | unchanged | README already matched the standard |
 | `agent/editorial-portfolio-redesign` | unchanged | README already matched the standard |
+| `agent/fix-production-reveal-alias` | updated | Branch-specific README committed |
 | `agent/fix-scroll-reveal-visibility` | updated | Branch-specific README committed |
 | `agent/redesign-services-work-proof` | unchanged | README already matched the standard |
 | `agent/refresh-ux-audit-prioritization` | unchanged | README already matched the standard |
-| `agent/senior-portfolio-refinement` | updated | Branch-specific README committed |
+| `agent/senior-portfolio-refinement` | unchanged | README already matched the standard |
 | `agent/spacious-core-pages` | unchanged | README already matched the standard |
 | `backup/main-after-initial-audit-fixes-2026-07-10` | unchanged | README already matched the standard |
 | `backup/main-before-portfolio-audit-2026-07-10` | unchanged | README already matched the standard |
