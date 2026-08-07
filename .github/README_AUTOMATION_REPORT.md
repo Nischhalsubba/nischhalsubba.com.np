@@ -11,6 +11,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `agent/contact-form-resilience` | updated | Branch-specific README committed |
 | `agent/editorial-portfolio-redesign` | updated | Branch-specific README committed |
 | `agent/fix-case-title-about-alignment-polish` | updated | Branch-specific README committed |
+| `agent/fix-production-contact-audit` | updated | Branch-specific README committed |
 | `agent/fix-production-reveal-alias` | updated | Branch-specific README committed |
 | `agent/fix-scroll-reveal-visibility` | updated | Branch-specific README committed |
 | `agent/production-reliability-cleanup` | updated | Branch-specific README committed |
@@ -19,6 +20,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `agent/restore-case-breadcrumbs` | updated | Branch-specific README committed |
 | `agent/senior-portfolio-refinement` | updated | Branch-specific README committed |
 | `agent/spacious-core-pages` | updated | Branch-specific README committed |
+| `agent/sticky-responsive-shell` | updated | Branch-specific README committed |
 | `backup/main-after-initial-audit-fixes-2026-07-10` | updated | Branch-specific README committed |
 | `backup/main-before-portfolio-audit-2026-07-10` | updated | Branch-specific README committed |
 | `chore/sync-turnstile-secret-config` | updated | Branch-specific README committed |
