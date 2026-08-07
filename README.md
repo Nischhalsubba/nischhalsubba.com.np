@@ -95,13 +95,13 @@ flowchart TD
     APP --> R0["public"]
     R0 --> F0["public/nischhal-raj-subba.html"]
     R0 --> F1["public/uxcel-profile.html"]
-    R0 --> F2["public/blog/index.html"]
-    R0 --> F3["public/blog/transaction-review-ux-crypto-apps.html"]
-    R0 --> F4["public/blog/saas-dashboard-ux-checklist.html"]
+    R0 --> F2["public/blog/figma-handoff-notes-for-developers.html"]
+    R0 --> F3["public/blog/index.html"]
+    R0 --> F4["public/blog/ux-audit-checklist-before-redesign.html"]
     R0 --> F5["public/blog/website-ux-checklist-software-companies.html"]
-    R0 --> F6["public/blog/web3-wallet-ux-checklist.html"]
-    R0 --> F7["public/blog/ux-audit-checklist-before-redesign.html"]
-    R0 --> F8["public/blog/figma-handoff-notes-for-developers.html"]
+    R0 --> F6["public/blog/saas-dashboard-ux-checklist.html"]
+    R0 --> F7["public/blog/web3-wallet-ux-checklist.html"]
+    R0 --> F8["public/blog/transaction-review-ux-crypto-apps.html"]
 ```
 
 ## Architecture and responsibility flow
