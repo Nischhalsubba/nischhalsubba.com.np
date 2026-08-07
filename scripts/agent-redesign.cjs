@@ -89,10 +89,14 @@ for (const fileName of fs.readdirSync(dist).filter((name) => /^project-.*\.html$
 }
 
 const floatingResumePattern = /\s*<a\b(?=[^>]*\bclass=["'][^"']*\bfloating-resume-btn\b[^"']*["'])[^>]*>[\s\S]*?<\/a>/gi;
+const mobileBrand = '<a class="agent-mobile-brand" href="/" aria-label="Nischhal Raj Subba, home"><strong>Nischhal Raj Subba</strong><span>Product designer</span></a>';
 for (const filePath of htmlFiles(dist)) {
-  const html = fs.readFileSync(filePath, 'utf8');
-  const updated = html.replace(floatingResumePattern, '');
-  if (updated !== html) fs.writeFileSync(filePath, updated, 'utf8');
+  let html = fs.readFileSync(filePath, 'utf8');
+  html = html.replace(floatingResumePattern, '');
+  if (!html.includes('agent-mobile-brand')) {
+    html = html.replace(/(<button\b[^>]*class=["'][^"']*\bmobile-nav-toggle\b[^"']*["'][^>]*>)/i, `${mobileBrand}$1`);
+  }
+  fs.writeFileSync(filePath, html, 'utf8');
 }
 
 if (!fs.existsSync(agentRuntimePath) || !fs.existsSync(runtimeEntryPath)) {
