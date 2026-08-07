@@ -1,4 +1,4 @@
-name: Deploy Cloudflare Pages
+name: Verify Cloudflare Pages production
 
 on:
   workflow_run:
@@ -14,108 +14,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  verify:
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 10
     env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
       DEPLOY_SHA: ${{ github.event.workflow_run.head_sha }}
-      CLOUDFLARE_PROJECT: portfolio-website-2026
+      PRODUCTION_URL: https://nischhalsubba.com.np
 
     steps:
-      - name: Checkout validated commit
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ env.DEPLOY_SHA }}
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Build, deploy and verify production
+      - name: Wait for Cloudflare Git integration and verify production
         id: cloudflare
         continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
           {
-            test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN repository secret"; exit 1; }
-
-            ACCOUNTS_JSON=$(curl -fsS \
-              -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
-              -H "Content-Type: application/json" \
-              "https://api.cloudflare.com/client/v4/accounts?per_page=50")
-
-            CLOUDFLARE_ACCOUNT_ID=$(ACCOUNTS_JSON="$ACCOUNTS_JSON" PROJECT="$CLOUDFLARE_PROJECT" TOKEN="$CLOUDFLARE_API_TOKEN" node <<'NODE'
-          const { execFileSync } = require('node:child_process');
-          const payload = JSON.parse(process.env.ACCOUNTS_JSON || '{}');
-          const accounts = Array.isArray(payload.result) ? payload.result : [];
-
-          for (const account of accounts) {
-            try {
-              const response = execFileSync('curl', [
-                '-fsS',
-                '-H', `Authorization: Bearer ${process.env.TOKEN}`,
-                '-H', 'Content-Type: application/json',
-                `https://api.cloudflare.com/client/v4/accounts/${account.id}/pages/projects/${process.env.PROJECT}`,
-              ], { encoding: 'utf8' });
-              const project = JSON.parse(response);
-              if (project.success && project.result?.name === process.env.PROJECT) {
-                process.stdout.write(account.id);
-                process.exit(0);
-              }
-            } catch {}
-          }
-
-          console.error(`Unable to find Pages project ${process.env.PROJECT} in ${accounts.length} accessible account(s).`);
-          process.exit(1);
-          NODE
-            )
-
-            test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Cloudflare account resolution returned no account ID"; exit 1; }
-            export CLOUDFLARE_ACCOUNT_ID
-            echo "Resolved Cloudflare account for $CLOUDFLARE_PROJECT."
-
-            # The static build happens in GitHub Actions, not inside Cloudflare Pages.
-            # Pull the public Turnstile site key from the Pages production config when
-            # a repository secret was not supplied, then expose it to the build step.
-            if [ -z "${TURNSTILE_SITE_KEY:-}" ]; then
-              PROJECT_JSON=$(curl -fsS \
-                -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
-                -H "Content-Type: application/json" \
-                "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$CLOUDFLARE_PROJECT")
-
-              TURNSTILE_SITE_KEY=$(PROJECT_JSON="$PROJECT_JSON" node <<'NODE'
-          const payload = JSON.parse(process.env.PROJECT_JSON || '{}');
-          const entry = payload.result?.deployment_configs?.production?.env_vars?.TURNSTILE_SITE_KEY;
-          const value = typeof entry?.value === 'string' ? entry.value.trim() : '';
-          if (value && !/^\*+$/.test(value)) process.stdout.write(value);
-          NODE
-              )
-            fi
-
-            test -n "${TURNSTILE_SITE_KEY:-}" || {
-              echo "Missing TURNSTILE_SITE_KEY. Add it as a GitHub Actions secret or a plaintext production Pages variable."
-              exit 1
-            }
-            export TURNSTILE_SITE_KEY
-            echo "Turnstile public site key resolved for the production build."
-
-            npm ci
-            npm run validate
-            npx wrangler@4 pages deploy dist \
-              --project-name "$CLOUDFLARE_PROJECT" \
-              --branch main \
-              --commit-hash "$DEPLOY_SHA"
+            echo "Cloudflare Pages Git integration is the production deployer."
+            echo "Waiting for main commit $DEPLOY_SHA to reach $PRODUCTION_URL."
 
             PROVENANCE_OK=0
-            for attempt in 1 2 3 4 5 6 7 8 9 10; do
-              LIVE_SHA=$(curl -fsS https://nischhalsubba.com.np/build-info.json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{}})")
-              echo "Provenance attempt $attempt: live=$LIVE_SHA expected=$DEPLOY_SHA"
+            for attempt in $(seq 1 24); do
+              LIVE_INFO=$(curl -fsS --max-time 10 "$PRODUCTION_URL/build-info.json" || true)
+              LIVE_SHA=$(printf '%s' "$LIVE_INFO" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{console.log('')}})")
+              LIVE_BRANCH=$(printf '%s' "$LIVE_INFO" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).branch||'')}catch{console.log('')}})")
+              echo "Provenance attempt $attempt: live=${LIVE_SHA:-unavailable} branch=${LIVE_BRANCH:-unknown} expected=$DEPLOY_SHA"
+
               if [ "$LIVE_SHA" = "$DEPLOY_SHA" ]; then
                 PROVENANCE_OK=1
                 break
@@ -124,39 +48,35 @@ jobs:
             done
 
             [ "$PROVENANCE_OK" = "1" ] || {
-              echo "Production provenance did not match $DEPLOY_SHA"
+              echo "Production did not reach validated main commit $DEPLOY_SHA."
+              echo "In Cloudflare Pages set Settings > Builds > Branch control > Production branch to main and enable automatic production deployments."
               exit 1
             }
 
-            # Verify the client received a Turnstile site key and the Pages Function
-            # has its runtime secret + email binding. A valid form without a token must
-            # reach the token gate and return 422, never a configuration 503.
-            CONTACT_HTML=$(curl -fsS https://nischhalsubba.com.np/contact)
-            printf '%s' "$CONTACT_HTML" | grep -q 'name="turnstile-site-key"' || {
-              echo "Production contact page is missing the Turnstile site key."
+            CONTACT_HTML=$(curl -fsS --max-time 15 "$PRODUCTION_URL/contact")
+            printf '%s' "$CONTACT_HTML" | grep -q 'id="contact-form"' || {
+              echo "Production contact page is missing the contact form."
               exit 1
             }
-
-            CONTACT_STATUS=$(curl -sS -o /tmp/contact-smoke.json -w '%{http_code}' \
-              -X POST https://nischhalsubba.com.np/api/contact \
-              -H 'Origin: https://nischhalsubba.com.np' \
-              -H 'Accept: application/json' \
-              -F 'name=Production Smoke Test' \
-              -F 'email=smoke-test@example.com' \
-              -F 'need=Portfolio form verification' \
-              -F 'timeline=Verification only' \
-              -F 'message=Automated deployment verification. No email should be sent because no Turnstile token is provided.')
-
-            if [ "$CONTACT_STATUS" != "422" ] || ! grep -qi 'Complete the anti-spam check' /tmp/contact-smoke.json; then
-              echo "Production contact API did not reach the expected Turnstile token gate (HTTP $CONTACT_STATUS)."
-              cat /tmp/contact-smoke.json
+            printf '%s' "$CONTACT_HTML" | grep -q 'action="/api/contact"' || {
+              echo "Production contact form is not using the first-party endpoint as its static action."
+              exit 1
+            }
+            if printf '%s' "$CONTACT_HTML" | grep -qi 'The protected form is unavailable'; then
+              echo "Production contact page still contains the old unavailable-form state."
               exit 1
             fi
 
-            echo "Production contact protection and API bindings passed smoke verification."
-          } 2>&1 | tee cloudflare-deploy.log
+            HOME_HTML=$(curl -fsS --max-time 15 "$PRODUCTION_URL/")
+            printf '%s' "$HOME_HTML" | grep -q 'agent-portfolio' || {
+              echo "Production homepage is not serving the editorial redesign shell."
+              exit 1
+            }
 
-      - name: Publish deployment result
+            echo "Cloudflare production provenance and critical-page smoke checks passed."
+          } 2>&1 | tee cloudflare-production.log
+
+      - name: Publish production verification result
         if: always()
         uses: actions/github-script@v7
         env:
@@ -184,21 +104,23 @@ jobs:
                   issue_number: existing.number,
                   state: 'closed',
                   state_reason: 'completed',
-                  body: `Cloudflare production deployment passed for \`${process.env.DEPLOY_SHA}\`.\n\nRun: ${runUrl}`,
+                  body: `Cloudflare production verification passed for validated main commit \`${process.env.DEPLOY_SHA}\`.\n\nRun: ${runUrl}`,
                 });
               }
               return;
             }
 
-            const rawLog = fs.existsSync('cloudflare-deploy.log')
-              ? fs.readFileSync('cloudflare-deploy.log', 'utf8')
-              : 'cloudflare-deploy.log was not created.';
+            const rawLog = fs.existsSync('cloudflare-production.log')
+              ? fs.readFileSync('cloudflare-production.log', 'utf8')
+              : 'cloudflare-production.log was not created.';
             const body = [
-              `Cloudflare production deployment failed for validated commit \`${process.env.DEPLOY_SHA}\`.`,
+              `Cloudflare production verification failed for validated main commit \`${process.env.DEPLOY_SHA}\`.`,
+              '',
+              'Cloudflare Pages Git integration is the expected production deployer. Confirm the Pages project uses `main` as its Production branch and that automatic production deployments are enabled.',
               '',
               `Run: ${runUrl}`,
               '',
-              '<details><summary>Deployment log</summary>',
+              '<details><summary>Verification log</summary>',
               '',
               '```text',
               rawLog.slice(-55000),
@@ -219,15 +141,15 @@ jobs:
               await github.rest.issues.create({ owner, repo, title, body });
             }
 
-      - name: Upload deployment log
+      - name: Upload production verification log
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cloudflare-deployment-log
-          path: cloudflare-deploy.log
+          name: cloudflare-production-log
+          path: cloudflare-production.log
           if-no-files-found: ignore
           retention-days: 7
 
-      - name: Fail workflow when deployment fails
+      - name: Fail workflow when production verification fails
         if: steps.cloudflare.outcome != 'success'
         run: exit 1
