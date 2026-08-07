@@ -37,6 +37,7 @@ This branch differs from the default branch in the following detected paths:
 
 - [`.github/refresh-visual-baselines`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-case-title-about-alignment-polish/.github/refresh-visual-baselines)
 - [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-case-title-about-alignment-polish/.github/workflows/interface-polish-audit.yml)
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-case-title-about-alignment-polish/README.md)
 - [`package.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-case-title-about-alignment-polish/package.json)
 - [`scripts/browser-interface-polish-audit.mjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-case-title-about-alignment-polish/scripts/browser-interface-polish-audit.mjs)
 - [`scripts/build-dist.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-case-title-about-alignment-polish/scripts/build-dist.cjs)
