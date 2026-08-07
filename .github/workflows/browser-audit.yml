@@ -181,5 +181,25 @@ jobs:
           retention-days: 7
 
       - name: Fail workflow when browser validation fails
-        if: steps.preview.outcome != 'success' || steps.browser.outcome != 'success' || steps.contact.outcome != 'success' || steps.visual.outcome != 'success'
-        run: exit 1
+        if: always()
+        env:
+          PREVIEW_OUTCOME: ${{ steps.preview.outcome }}
+          BROWSER_OUTCOME: ${{ steps.browser.outcome }}
+          CONTACT_OUTCOME: ${{ steps.contact.outcome }}
+          VISUAL_OUTCOME: ${{ steps.visual.outcome }}
+        shell: bash
+        run: |
+          normalize() {
+            printf '%s' "$1" | tr -d "'\"[:space:]"
+          }
+
+          preview=$(normalize "$PREVIEW_OUTCOME")
+          browser=$(normalize "$BROWSER_OUTCOME")
+          contact=$(normalize "$CONTACT_OUTCOME")
+          visual=$(normalize "$VISUAL_OUTCOME")
+
+          echo "Audit outcomes: preview=$preview browser=$browser contact=$contact visual=$visual"
+
+          if [ "$preview" != "success" ] || [ "$browser" != "success" ] || [ "$contact" != "success" ] || [ "$visual" != "success" ]; then
+            exit 1
+          fi
