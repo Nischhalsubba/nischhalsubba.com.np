@@ -96,6 +96,8 @@ for (const [width, height] of viewports) {
           viewportWidth: document.documentElement.clientWidth,
           navVisible: visible(nav),
           navPosition: nav ? getComputedStyle(nav).position : '',
+          menuPosition: menu ? getComputedStyle(menu).position : '',
+          brandPosition: brand ? getComputedStyle(brand).position : '',
           navRect: rect(nav),
           progressReady: progress?.dataset.stickyProgressReady || '',
           progressVisible: visible(progress),
@@ -119,13 +121,15 @@ for (const [width, height] of viewports) {
       });
 
       if (initial.docWidth - initial.viewportWidth > 1) throw new Error(`horizontal overflow ${initial.docWidth - initial.viewportWidth}px`);
-      if (!initial.navVisible) throw new Error('sticky navigation is not visible');
-      if (!['fixed', 'sticky'].includes(initial.navPosition)) throw new Error(`navigation position is ${initial.navPosition || 'unset'}`);
-      if (!initial.navRect || Math.abs(initial.navRect.top) > 1) throw new Error(`navigation is not pinned to viewport top: ${initial.navRect?.top ?? 'missing'}px`);
+      if (width > 1023) {
+        if (!initial.navVisible) throw new Error('desktop sticky navigation is not visible');
+        if (!['fixed', 'sticky'].includes(initial.navPosition)) throw new Error(`navigation position is ${initial.navPosition || 'unset'}`);
+        if (!initial.navRect || Math.abs(initial.navRect.top) > 1) throw new Error(`navigation is not pinned to viewport top: ${initial.navRect?.top ?? 'missing'}px`);
+        if (initial.h1Rect && initial.h1Rect.top < initial.navRect.bottom - 2) throw new Error('first heading is obscured by sticky navigation');
+      }
       if (!initial.progressVisible || !initial.progressRect || Math.abs(initial.progressRect.top) > 1) throw new Error('scroll progress is not fixed to the viewport top');
       if (initial.progressReady !== 'true') throw new Error('scroll progress runtime did not initialize');
       if (!Number.isFinite(initial.progressValue) || initial.progressValue < 0 || initial.progressValue > .04) throw new Error(`scroll progress has an invalid page-top value: ${initial.progressValue}`);
-      if (initial.h1Rect && initial.h1Rect.top < initial.navRect.bottom - 2) throw new Error('first heading is obscured by sticky navigation');
       if (initial.mediaOverflow.length) throw new Error(`media escapes viewport: ${initial.mediaOverflow.join(', ')}`);
 
       for (const button of initial.importantButtons) {
@@ -143,12 +147,15 @@ for (const [width, height] of viewports) {
 
       if (width <= 1023) {
         if (!initial.menuVisible || !initial.brandVisible) throw new Error('mobile/tablet sticky masthead is incomplete');
+        if (!['fixed', 'sticky'].includes(initial.menuPosition) || !['fixed', 'sticky'].includes(initial.brandPosition)) throw new Error('mobile masthead controls are not pinned');
         if (initial.desktopThemeVisible) throw new Error('desktop theme control should move into the mobile drawer');
         if (!initial.mobileThemeExists) throw new Error('mobile drawer theme control is missing');
         if (intersects(initial.brandRect, initial.menuRect)) throw new Error('brand overlaps the mobile menu control');
         for (const box of [initial.menuRect, initial.brandRect]) {
           if (box.left < -1 || box.right > width + 1) throw new Error('mobile header control escapes viewport');
         }
+        const mobileBottom = Math.max(initial.menuRect?.bottom || 0, initial.brandRect?.bottom || 0);
+        if (initial.h1Rect && initial.h1Rect.top < mobileBottom - 2) throw new Error('first heading is obscured by the mobile masthead');
         if (width <= 430 && initial.brandStrongVisible && initial.brandDetailVisible && intersects(initial.brandStrongRect, initial.brandDetailRect)) {
           throw new Error('mobile brand name overlaps the product-designer label');
         }
@@ -189,17 +196,28 @@ for (const [width, height] of viewports) {
           const root = document.querySelector('.agent-portfolio');
           const nav = document.querySelector('.nav-wrapper');
           const progress = document.querySelector('#agent-progress');
+          const menu = document.querySelector('.mobile-nav-toggle');
+          const brand = document.querySelector('.agent-mobile-brand') || document.querySelector('.agent-brand');
           const navRect = nav?.getBoundingClientRect();
+          const menuRect = menu?.getBoundingClientRect();
+          const brandRect = brand?.getBoundingClientRect();
           const progressRect = progress?.getBoundingClientRect();
           return {
             navTop: navRect?.top ?? null,
+            menuTop: menuRect?.top ?? null,
+            brandTop: brandRect?.top ?? null,
             progressTop: progressRect?.top ?? null,
             progressValue: Number.parseFloat(root ? getComputedStyle(root).getPropertyValue('--agent-scroll') : '0'),
             overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           };
         });
 
-        if (scrolled.navTop === null || Math.abs(scrolled.navTop) > 1) throw new Error(`navigation moved while scrolling: top=${scrolled.navTop}`);
+        if (width > 1023) {
+          if (scrolled.navTop === null || Math.abs(scrolled.navTop) > 1) throw new Error(`navigation moved while scrolling: top=${scrolled.navTop}`);
+        } else {
+          if (scrolled.menuTop === null || scrolled.brandTop === null) throw new Error('mobile masthead disappeared while scrolling');
+          if (Math.abs(scrolled.menuTop - initial.menuRect.top) > 1 || Math.abs(scrolled.brandTop - initial.brandRect.top) > 1) throw new Error('mobile masthead moved while scrolling');
+        }
         if (scrolled.progressTop === null || Math.abs(scrolled.progressTop) > 1) throw new Error('scroll progress moved away from viewport top');
         if (scrolled.progressValue < .45 || scrolled.progressValue > .7) throw new Error(`scroll progress value is implausible: ${scrolled.progressValue}`);
         if (scrolled.overflow > 1) throw new Error(`horizontal overflow after scroll ${scrolled.overflow}px`);
