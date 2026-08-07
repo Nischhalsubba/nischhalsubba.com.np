@@ -42,6 +42,19 @@ function showFieldError(field, message = validationMessage(field)) {
   field.insertAdjacentElement('afterend', node);
 }
 
+function focusInvalid(field) {
+  if (!field) return;
+  const restore = () => {
+    if (field.isConnected && document.activeElement !== field) field.focus({ preventScroll: false });
+  };
+  restore();
+  queueMicrotask(restore);
+  requestAnimationFrame(() => {
+    restore();
+    window.setTimeout(restore, 0);
+  });
+}
+
 function validate(form) {
   let firstInvalid = null;
   [...form.querySelectorAll('input, select, textarea')]
@@ -53,7 +66,7 @@ function validate(form) {
         firstInvalid ||= field;
       }
     });
-  firstInvalid?.focus({ preventScroll: false });
+  focusInvalid(firstInvalid);
   return !firstInvalid;
 }
 
@@ -65,7 +78,7 @@ function applyServerErrors(form, errors = {}) {
     showFieldError(field, String(message));
     firstInvalid ||= field;
   });
-  firstInvalid?.focus({ preventScroll: false });
+  focusInvalid(firstInvalid);
 }
 
 function loadTurnstile() {
@@ -151,6 +164,7 @@ export function initContactForm() {
     event.preventDefault();
     if (!validate(form)) {
       setStatus('Review the highlighted fields and try again.', 'error');
+      focusInvalid(form.querySelector('[aria-invalid="true"]'));
       return;
     }
 

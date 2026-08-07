@@ -38,6 +38,8 @@ const stages = [
   ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
   ['Configure protected contact output', ['node', 'scripts/configure-contact-protection.cjs', '--dist']],
   ['Normalize production runtime', ['node', 'scripts/normalize-html-runtime.cjs', '--dist']],
+  ['Apply agent portfolio redesign', ['node', 'scripts/agent-redesign.cjs', '--dist']],
+  ['Rebuild editorial writing index', ['node', 'scripts/agent-writing-redesign.cjs']],
   ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
   ['Generate raster social previews', ['node', 'scripts/generate-social-previews.cjs']],
 ];
