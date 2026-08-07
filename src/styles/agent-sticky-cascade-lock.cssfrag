@@ -34,6 +34,7 @@ body.agent-portfolio .agent-index-item {
 body.agent-portfolio .agent-project-media,
 body.agent-portfolio .agent-case-cover {
   width: 100%;
+  margin: 0;
 }
 
 body.agent-portfolio .agent-project-media img,
@@ -56,12 +57,14 @@ body.agent-portfolio .agent-case-cover img {
   body.agent-portfolio .theme-toggle-btn {
     position: fixed !important;
     top: calc(env(safe-area-inset-top) + .6rem) !important;
-    right: calc(var(--ap-gutter) + 3.4rem) !important;
+    right: calc(var(--ap-gutter) + 4.25rem) !important;
     left: auto !important;
     width: 2.75rem !important;
     height: 2.75rem !important;
     min-width: 2.75rem !important;
     min-height: 2.75rem !important;
+    padding: 0 !important;
+    transform: none !important;
     z-index: calc(var(--ap-z-nav) + 3) !important;
   }
 
@@ -74,6 +77,8 @@ body.agent-portfolio .agent-case-cover img {
     height: 2.75rem !important;
     min-width: 2.75rem !important;
     min-height: 2.75rem !important;
+    padding: 0 !important;
+    transform: none !important;
     z-index: calc(var(--ap-z-nav) + 4) !important;
   }
 }
