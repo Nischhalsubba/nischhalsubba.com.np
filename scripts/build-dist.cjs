@@ -47,6 +47,7 @@ const stages = [
   ['Rebuild editorial writing index', ['node', 'scripts/agent-writing-redesign.cjs']],
   ['Compose mobile theme control', ['node', 'scripts/ensure-agent-mobile-theme-control.cjs']],
   ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
+  ['Enforce sticky responsive shell', ['node', 'scripts/ensure-sticky-responsive-shell.cjs', '--dist']],
   ['Generate raster social previews', ['node', 'scripts/generate-social-previews.cjs']],
 ];
 
