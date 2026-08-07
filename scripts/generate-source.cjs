@@ -33,6 +33,7 @@ const stages = [
   ['Apply evidence-first portfolio refinement', ['node', 'scripts/ensure-senior-portfolio-v2.cjs']],
   ['Replace generic case-study copy', ['node', 'scripts/ensure-case-study-specificity.cjs']],
   ['Enforce reveal visibility safety', ['node', 'scripts/ensure-reveal-visibility.cjs']],
+  ['Apply interface layout and motion polish', ['node', 'scripts/ensure-interface-polish.cjs']],
 ];
 
 runStages(stages, 'generate');

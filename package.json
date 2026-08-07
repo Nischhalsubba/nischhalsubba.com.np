@@ -14,6 +14,7 @@
     "build:dist": "npm run build",
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 dist",
+    "lint": "node scripts/lint-project.cjs",
     "check:links": "node scripts/check-links.js",
     "audit:build": "node scripts/audit-build.cjs",
     "audit:css-architecture": "node scripts/audit-css-architecture.cjs",
@@ -28,7 +29,7 @@
     "test:build-determinism": "node scripts/test-build-determinism.cjs",
     "test:smoke": "node scripts/smoke-test-dist.mjs",
     "test:routes:live": "node scripts/verify-live-routes.mjs",
-    "validate": "npm run build && npm run test:build-determinism && npm run audit:seo && npm run audit:seo-contract && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:shared-shell && npm run audit:css-architecture && npm run audit:design-system && npm run audit:voice && npm run audit:accessibility-tokens && npm run audit:provenance && npm run test:smoke"
+    "validate": "npm run build && npm run lint && npm run test:build-determinism && npm run audit:seo && npm run audit:seo-contract && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:shared-shell && npm run audit:css-architecture && npm run audit:design-system && npm run audit:voice && npm run audit:accessibility-tokens && npm run audit:provenance && npm run test:smoke"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
