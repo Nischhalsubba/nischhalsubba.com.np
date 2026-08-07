@@ -68,6 +68,29 @@
   color: color-mix(in srgb, var(--ap-inverse-ink) 68%, transparent);
 }
 
+/* Inverse sections swap their surface and ink roles. Buttons must swap with them. */
+.agent-portfolio .agent-section--inverse .agent-btn {
+  border-color: color-mix(in srgb, var(--ap-inverse-ink) 72%, transparent);
+  background: transparent;
+  color: var(--ap-inverse-ink);
+  -webkit-text-fill-color: var(--ap-inverse-ink);
+}
+
+.agent-portfolio .agent-section--inverse .agent-btn--primary {
+  border-color: var(--ap-inverse-ink);
+  background: var(--ap-inverse-ink);
+  color: var(--ap-inverse);
+  -webkit-text-fill-color: var(--ap-inverse);
+}
+
+.agent-portfolio .agent-section--inverse .agent-btn:hover,
+.agent-portfolio .agent-section--inverse .agent-btn--primary:hover {
+  border-color: var(--ap-signal);
+  background: var(--ap-signal);
+  color: var(--ap-signal-ink);
+  -webkit-text-fill-color: var(--ap-signal-ink);
+}
+
 .agent-portfolio .agent-manifesto blockquote {
   padding: 0;
   border: 0;
@@ -85,6 +108,17 @@
 .agent-portfolio .agent-footer-links,
 .agent-portfolio .agent-footer-bottom {
   color: color-mix(in srgb, var(--ap-inverse-ink) 72%, transparent);
+}
+
+.agent-portfolio .agent-footer-links a {
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+}
+
+.agent-portfolio .agent-footer-links a:hover,
+.agent-portfolio .agent-footer-links a:focus-visible {
+  color: var(--ap-inverse-ink);
+  -webkit-text-fill-color: var(--ap-inverse-ink);
 }
 
 .agent-portfolio .agent-breadcrumb-wrap {
