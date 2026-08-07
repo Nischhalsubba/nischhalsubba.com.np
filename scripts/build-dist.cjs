@@ -43,6 +43,7 @@ const stages = [
   ['Replace generic case-study copy', ['node', 'scripts/ensure-case-study-specificity.cjs', '--dist']],
   ['Enforce reveal visibility safety', ['node', 'scripts/ensure-reveal-visibility.cjs', '--dist']],
   ['Apply interface layout and motion polish', ['node', 'scripts/ensure-interface-polish.cjs', '--dist']],
+  ['Restore case-study breadcrumbs', ['node', 'scripts/ensure-case-breadcrumbs.cjs', '--dist']],
   ['Rebuild editorial writing index', ['node', 'scripts/agent-writing-redesign.cjs']],
   ['Compose mobile theme control', ['node', 'scripts/ensure-agent-mobile-theme-control.cjs']],
   ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
