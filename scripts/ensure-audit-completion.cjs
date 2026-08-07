@@ -56,8 +56,16 @@ function ensureFooter(html) {
 function ensureContactPrivacy(html, relativePath) {
   if (relativePath !== 'contact.html') return html;
   let output = html.replace(/\s*<input[^>]+name=["']_captcha["'][^>]*>/gi, '');
+
+  // The canonical Contact generator owns the visible disclosure through
+  // #contact-privacy-note. Older builds appended a second privacy paragraph here,
+  // which duplicated legal copy and changed the page height after later rewrites.
+  if (/id=["']contact-privacy-note["']/i.test(output)) {
+    return output.replace(/\s*<p[^>]+class=["'][^"']*nrs-contact-privacy[^"']*["'][^>]*>[\s\S]*?<\/p>/gi, '');
+  }
+
   if (!output.includes('class="nrs-contact-privacy"')) {
-    output = output.replace(/(<p[^>]+id=["']contact-form-status["'][^>]*><\/p>)/i, `$1<p class="nrs-contact-privacy">Your message is delivered through FormSubmit and used only to respond to this enquiry. Do not include sensitive personal information. <a href="/privacy">Read the privacy notice</a>.</p>`);
+    output = output.replace(/(<p[^>]+id=["']contact-form-status["'][^>]*><\/p>)/i, `$1<p class="nrs-contact-privacy">Your message is used only to respond to this enquiry. Do not include sensitive personal information. <a href="/privacy">Read the privacy notice</a>.</p>`);
   }
   return output;
 }
