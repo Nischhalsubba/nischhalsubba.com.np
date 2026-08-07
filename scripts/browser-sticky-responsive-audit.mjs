@@ -43,7 +43,8 @@ for (const [width, height] of viewports) {
         const progress = document.querySelector('#agent-progress');
         const h1 = [...document.querySelectorAll('h1')].find(visible);
         const menu = document.querySelector('.mobile-nav-toggle');
-        const theme = document.querySelector('.theme-toggle-btn');
+        const desktopTheme = document.querySelector('.theme-toggle-btn');
+        const mobileTheme = document.querySelector('.agent-mobile-theme-toggle');
         const brand = document.querySelector('.agent-brand');
         const fields = [...document.querySelectorAll('#contact-form input:not([type="hidden"]), #contact-form select, #contact-form textarea')]
           .filter((field) => field.name !== '_honey' && visible(field))
@@ -82,8 +83,8 @@ for (const [width, height] of viewports) {
           h1Rect: rect(h1),
           menuVisible: visible(menu),
           menuRect: rect(menu),
-          themeVisible: visible(theme),
-          themeRect: rect(theme),
+          desktopThemeVisible: visible(desktopTheme),
+          mobileThemeExists: Boolean(mobileTheme),
           brandVisible: visible(brand),
           brandRect: rect(brand),
           fields,
@@ -104,7 +105,7 @@ for (const [width, height] of viewports) {
 
       for (const button of initial.importantButtons) {
         if (width <= 767 && (button.width < 44 || button.height < 44)) {
-          throw new Error(`mobile target too small: ${button.label} ${Math.round(button.width)}x${Math.round(button.height)}`);
+          throw new Error(`mobile target too small: ${button.label} ${button.width.toFixed(2)}x${button.height.toFixed(2)}`);
         }
       }
 
@@ -116,11 +117,37 @@ for (const [width, height] of viewports) {
       }
 
       if (width <= 1023) {
-        if (!initial.menuVisible || !initial.themeVisible || !initial.brandVisible) throw new Error('mobile/tablet header controls are incomplete');
-        if (intersects(initial.menuRect, initial.themeRect)) throw new Error('menu and theme controls overlap');
-        if (intersects(initial.brandRect, initial.menuRect) || intersects(initial.brandRect, initial.themeRect)) throw new Error('brand overlaps mobile header controls');
-        for (const box of [initial.menuRect, initial.themeRect, initial.brandRect]) {
+        if (!initial.menuVisible || !initial.brandVisible) throw new Error('mobile/tablet sticky masthead is incomplete');
+        if (initial.desktopThemeVisible) throw new Error('desktop theme control should move into the mobile drawer');
+        if (!initial.mobileThemeExists) throw new Error('mobile drawer theme control is missing');
+        if (intersects(initial.brandRect, initial.menuRect)) throw new Error('brand overlaps the mobile menu control');
+        for (const box of [initial.menuRect, initial.brandRect]) {
           if (box.left < -1 || box.right > width + 1) throw new Error('mobile header control escapes viewport');
+        }
+
+        if (route === '/') {
+          const themeBefore = await page.evaluate(() => document.documentElement.dataset.theme || '');
+          await page.click('.mobile-nav-toggle');
+          await page.waitForTimeout(80);
+          const drawerControl = await page.evaluate(() => {
+            const element = document.querySelector('.agent-mobile-theme-toggle');
+            if (!element) return null;
+            const style = getComputedStyle(element);
+            const rect = element.getBoundingClientRect();
+            return {
+              visible: style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0,
+              width: rect.width,
+              height: rect.height,
+            };
+          });
+          if (!drawerControl?.visible) throw new Error('mobile drawer theme control is not visible when navigation opens');
+          if (drawerControl.width < 44 || drawerControl.height < 44) throw new Error('mobile drawer theme control is below the 44px target');
+          await page.click('.agent-mobile-theme-toggle');
+          await page.waitForTimeout(40);
+          const themeAfter = await page.evaluate(() => document.documentElement.dataset.theme || '');
+          if (themeBefore === themeAfter) throw new Error('mobile drawer theme control did not switch theme');
+          await page.keyboard.press('Escape');
+          await page.waitForTimeout(40);
         }
       }
 
