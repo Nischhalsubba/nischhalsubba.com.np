@@ -89,7 +89,7 @@ function buildPayload(form) {
 
   payload.set('_subject', 'Portfolio inquiry from nischhalsubba.com.np');
   payload.set('_template', 'table');
-  payload.delete('_captcha');
+  payload.set('_captcha', 'false');
   if (visitorEmail) payload.set('_replyto', visitorEmail);
   payload.set('source_page', window.location.href);
   payload.set('submitted_at', new Date().toISOString());
@@ -159,7 +159,7 @@ export function initContactForm() {
 
   form.dataset.contactFormReady = 'true';
   form.noValidate = true;
-  form.action = `https://formsubmit.co/${CONTACT_EMAIL}`;
+  form.action = FIRST_PARTY_ENDPOINT;
   form.method = 'POST';
 
   const status = $('#contact-form-status') || form.querySelector('[role="status"]');
