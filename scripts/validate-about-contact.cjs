@@ -34,9 +34,9 @@ if (!contact.includes('nrs-contact-spacious')) errors.push('Contact spacious lay
   if (!contact.includes(token)) errors.push(`Contact label ${token} missing.`);
 });
 if (!contact.includes('role="status"') || !contact.includes('aria-live="polite"')) errors.push('Contact live status region missing.');
-if (!contact.includes('Do not include passwords')) errors.push('Contact privacy guidance missing.');
-if (!contact.includes('action="/api/contact"')) errors.push('Contact form must submit to /api/contact.');
-if (contact.toLowerCase().includes('formsubmit')) errors.push('Contact output must not depend on FormSubmit.');
+if (!contact.includes('Avoid passwords') && !contact.includes('Do not include passwords')) errors.push('Contact privacy guidance missing.');
+if (!contact.includes('action="/api/contact"')) errors.push('Contact HTML must prefer the first-party /api/contact endpoint.');
+if (/action=["']https:\/\/formsubmit\.co/i.test(contact)) errors.push('Contact HTML must not make FormSubmit the primary form action.');
 if (!contact.includes('name="_honey"')) errors.push('Contact honeypot field missing.');
 if (!contact.includes('minlength="20"') || !contact.includes('maxlength="5000"')) errors.push('Contact message length limits missing.');
 

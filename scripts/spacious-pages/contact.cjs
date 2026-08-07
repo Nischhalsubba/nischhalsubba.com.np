@@ -60,9 +60,9 @@ const markup = `<main id="main-content" class="container nrs-spacious-page nrs-c
       <label for="contact-message">Product context and current problem</label>
       <textarea id="contact-message" name="message" rows="8" minlength="20" maxlength="5000" required placeholder="What are you building, who is it for, what is unclear, and where should design help?"></textarea>
 
-      <p class="nrs-form-note" id="contact-privacy-note">Your name, email and project context are sent securely through this website to ${email}. Cloudflare Turnstile checks submissions for abuse. Do not include passwords, payment details or confidential credentials.</p>
+      <p class="nrs-form-note" id="contact-privacy-note">Your name, email and project context are sent securely through this website to the portfolio inbox. Cloudflare Turnstile may check submissions for abuse. Inquiry data is not sold or used for marketing. Avoid passwords, payment details or confidential credentials. <a href="/privacy">Read the privacy notice</a>.</p>
       <div class="nrs-form-actions"><button class="btn btn-primary" type="submit">Send project context</button><a class="btn btn-secondary" href="mailto:${email}">Use email instead</a></div>
-      <p id="contact-form-status" class="form-status" role="status" aria-live="polite">Complete the anti-spam check, then submit your message.</p>
+      <p id="contact-form-status" class="form-status" role="status" aria-live="polite"></p>
     </form>
   </section>
 
