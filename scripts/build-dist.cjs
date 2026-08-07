@@ -48,9 +48,11 @@ const stages = [
   ['Compose mobile theme control', ['node', 'scripts/ensure-agent-mobile-theme-control.cjs']],
   ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
   ['Rewrite project case studies for hiring', ['node', 'scripts/ensure-hireable-case-studies.cjs', '--dist']],
+  ['Apply senior editorial case-study rewrite', ['node', 'scripts/ensure-senior-case-studies.cjs', '--dist']],
   ['Generate raster social previews', ['node', 'scripts/generate-social-previews.cjs']],
   ['Enforce sticky responsive shell', ['node', 'scripts/ensure-sticky-responsive-shell.cjs', '--dist']],
   ['Apply final portfolio content polish', ['node', 'scripts/ensure-portfolio-content-polish.cjs', '--dist']],
+  ['Enforce visible project decision cards', ['node', 'scripts/ensure-case-study-card-visibility.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
