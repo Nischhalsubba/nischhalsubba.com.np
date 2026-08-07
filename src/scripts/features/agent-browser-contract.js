@@ -6,6 +6,8 @@
   const nav = document.querySelector('.nav-wrapper');
   const progress = document.querySelector('#agent-progress');
   const contactForm = document.querySelector('#contact-form');
+  const desktopThemeToggle = document.querySelector('#theme-toggle');
+  const mobileThemeToggle = document.querySelector('.agent-mobile-theme-toggle');
 
   document.querySelector('#nrs-scroll-progress')?.remove();
   document.querySelector('#nrs-first-paint-theme')?.remove();
@@ -27,6 +29,13 @@
   if (nav && 'ResizeObserver' in window) {
     const observer = new ResizeObserver(syncHeaderHeight);
     observer.observe(nav);
+  }
+
+  if (mobileThemeToggle && desktopThemeToggle && mobileThemeToggle.dataset.themeProxyReady !== 'true') {
+    mobileThemeToggle.dataset.themeProxyReady = 'true';
+    mobileThemeToggle.addEventListener('click', () => {
+      desktopThemeToggle.click();
+    });
   }
 
   if (contactForm && contactForm.dataset.focusGuardReady !== 'true') {
