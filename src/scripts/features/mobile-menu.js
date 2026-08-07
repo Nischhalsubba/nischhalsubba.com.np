@@ -138,9 +138,19 @@ export function initMobileMenu() {
     trapFocus(event, overlay);
   });
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 850 && document.body.classList.contains('menu-open')) {
+  const closeWhenDesktopShellReturns = () => {
+    if (!document.body.classList.contains('menu-open')) return;
+
+    const style = window.getComputedStyle(button);
+    const mobileControlVisible = style.display !== 'none'
+      && style.visibility !== 'hidden'
+      && button.getClientRects().length > 0;
+
+    if (!mobileControlVisible) {
       setMenuState(button, overlay, false, { restoreFocus: false });
     }
-  }, { passive: true });
+  };
+
+  window.addEventListener('resize', closeWhenDesktopShellReturns, { passive: true });
+  window.addEventListener('orientationchange', closeWhenDesktopShellReturns, { passive: true });
 }

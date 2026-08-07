@@ -48,6 +48,8 @@ const stages = [
   ['Compose mobile theme control', ['node', 'scripts/ensure-agent-mobile-theme-control.cjs']],
   ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
   ['Generate raster social previews', ['node', 'scripts/generate-social-previews.cjs']],
+  ['Enforce sticky responsive shell', ['node', 'scripts/ensure-sticky-responsive-shell.cjs', '--dist']],
+  ['Apply final portfolio content polish', ['node', 'scripts/ensure-portfolio-content-polish.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
