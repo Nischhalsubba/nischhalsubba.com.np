@@ -1,0 +1,356 @@
+/* Sticky site chrome + responsive hardening. Loaded last so it can resolve legacy cascade conflicts deliberately. */
+:root {
+  --nrs-progress-height: 3px;
+  --nrs-sticky-nav-height: 4.5rem;
+}
+
+#nrs-scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 90;
+  width: 100%;
+  height: var(--nrs-progress-height);
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  background: rgba(17, 17, 15, .12);
+  transition: opacity 120ms cubic-bezier(.2, 0, 0, 1);
+  contain: paint;
+}
+
+#nrs-scroll-progress.is-active {
+  opacity: 1;
+}
+
+#nrs-scroll-progress::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ff4d00;
+  transform: scaleX(var(--nrs-scroll-progress-scale, 0));
+  transform-origin: left center;
+  will-change: transform;
+}
+
+html[data-theme='dark'] #nrs-scroll-progress {
+  background: rgba(243, 239, 230, .14);
+}
+
+html[data-theme='dark'] #nrs-scroll-progress::before {
+  background: #ff6b2c;
+}
+
+.agent-portfolio .nav-wrapper {
+  top: var(--nrs-progress-height);
+  isolation: isolate;
+}
+
+.agent-portfolio .agent-main {
+  padding-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height));
+}
+
+.agent-portfolio :where(section[id], article[id], [data-anchor]) {
+  scroll-margin-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height) + 1rem);
+}
+
+.agent-portfolio main,
+.agent-portfolio .agent-frame,
+.agent-portfolio .agent-main,
+.agent-portfolio .agent-project-row,
+.agent-portfolio .agent-index-item,
+.agent-portfolio .agent-contact-grid,
+.agent-portfolio .agent-case-grid,
+.agent-portfolio .agent-footer-grid {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.agent-portfolio main :where(img, video, iframe, svg, canvas) {
+  max-width: 100%;
+}
+
+.agent-portfolio main :where(pre, table) {
+  max-width: 100%;
+}
+
+.agent-portfolio main pre {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.agent-portfolio main table {
+  width: 100%;
+}
+
+.agent-portfolio :where(h1, h2, h3, h4, p, li, dd, dt, a) {
+  overflow-wrap: break-word;
+}
+
+.agent-portfolio .agent-btn,
+.agent-portfolio button,
+.agent-portfolio input,
+.agent-portfolio select,
+.agent-portfolio textarea {
+  min-width: 0;
+}
+
+@media (max-width: 1023px) {
+  .agent-portfolio .nav-wrapper {
+    left: 0;
+    right: 0;
+    display: grid;
+    width: 100%;
+    max-width: none;
+    min-height: 4rem;
+    padding: calc(.55rem + env(safe-area-inset-top)) calc(var(--ap-gutter) + 7.25rem) .55rem var(--ap-gutter);
+    transform: none;
+    background: color-mix(in srgb, var(--ap-page) 94%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .agent-portfolio .agent-mobile-brand {
+    display: none !important;
+  }
+
+  .agent-portfolio .agent-brand {
+    display: flex;
+    max-width: min(28rem, calc(100vw - 9.5rem));
+    overflow: hidden;
+  }
+
+  .agent-portfolio .agent-brand strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .agent-portfolio .agent-brand span,
+  .agent-portfolio .nav-pill {
+    display: none;
+  }
+
+  .agent-portfolio .theme-toggle-btn {
+    position: fixed;
+    top: calc(var(--nrs-progress-height) + env(safe-area-inset-top) + .6rem);
+    right: calc(var(--ap-gutter) + 3.4rem);
+    z-index: calc(var(--ap-z-nav) + 3);
+  }
+
+  body.agent-portfolio .mobile-nav-toggle {
+    top: calc(var(--nrs-progress-height) + env(safe-area-inset-top) + .6rem) !important;
+    right: var(--ap-gutter) !important;
+    left: auto !important;
+    z-index: calc(var(--ap-z-nav) + 4) !important;
+  }
+
+  .agent-portfolio .mobile-nav-overlay {
+    z-index: var(--ap-z-drawer);
+    max-height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height) + 1.5rem);
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .agent-portfolio.menu-open,
+  body.agent-portfolio.menu-open {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  .agent-portfolio .agent-page-hero,
+  .agent-portfolio .agent-hero {
+    scroll-margin-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height));
+  }
+}
+
+@media (max-width: 767px) {
+  .agent-portfolio {
+    --ap-gutter: clamp(1rem, 4.8vw, 1.35rem);
+  }
+
+  .agent-portfolio .nav-wrapper {
+    padding-right: calc(var(--ap-gutter) + 7rem);
+  }
+
+  .agent-portfolio .agent-frame {
+    width: 100%;
+    padding-inline: var(--ap-gutter);
+  }
+
+  .agent-portfolio .agent-hero-grid {
+    padding-top: clamp(2.75rem, 8vh, 4.25rem);
+  }
+
+  .agent-portfolio .agent-page-hero {
+    padding-top: clamp(3.25rem, 9vh, 5rem);
+    padding-bottom: clamp(2.5rem, 8vh, 4rem);
+  }
+
+  .agent-portfolio .agent-hero-title {
+    max-width: 10ch;
+    font-size: clamp(3.55rem, 17vw, 5.6rem);
+    line-height: .88;
+  }
+
+  .agent-portfolio .agent-page-hero h1 {
+    max-width: 12ch;
+    font-size: clamp(3.15rem, 15.5vw, 5.2rem);
+    line-height: .9;
+  }
+
+  .agent-portfolio .agent-section-title {
+    max-width: 13ch;
+    font-size: clamp(2.7rem, 12.5vw, 4.7rem);
+  }
+
+  .agent-portfolio .agent-project-copy h3 {
+    font-size: clamp(2.4rem, 11.5vw, 4rem);
+    line-height: .92;
+  }
+
+  .agent-portfolio .agent-index-item h2,
+  .agent-portfolio .agent-index-item h3 {
+    max-width: 100%;
+    font-size: clamp(1.7rem, 8vw, 2.35rem);
+    line-height: 1;
+  }
+
+  .agent-portfolio .agent-page-intro,
+  .agent-portfolio .agent-lead,
+  .agent-portfolio p,
+  .agent-portfolio li {
+    text-wrap: pretty;
+  }
+
+  .agent-portfolio .agent-project-media,
+  .agent-portfolio .agent-case-cover,
+  .agent-portfolio .agent-system-figure {
+    width: 100%;
+  }
+
+  .agent-portfolio .agent-contact-form,
+  .agent-portfolio .agent-contact-form .nrs-contact-form-grid,
+  .agent-portfolio .agent-contact-form label,
+  .agent-portfolio .agent-contact-form input,
+  .agent-portfolio .agent-contact-form select,
+  .agent-portfolio .agent-contact-form textarea {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .agent-portfolio .agent-contact-form input,
+  .agent-portfolio .agent-contact-form select,
+  .agent-portfolio .agent-contact-form textarea {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .agent-portfolio .agent-contact-form textarea {
+    min-height: 10rem;
+    resize: vertical;
+  }
+
+  .agent-portfolio .agent-contact-form .nrs-contact-form-actions,
+  .agent-portfolio .agent-actions {
+    align-items: stretch;
+  }
+
+  .agent-portfolio .agent-contact-form .nrs-contact-form-actions .agent-btn,
+  .agent-portfolio .agent-actions .agent-btn {
+    min-height: 44px;
+  }
+
+  .agent-portfolio .agent-footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .agent-portfolio a[href^='mailto:'] {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 430px) {
+  .agent-portfolio .agent-project-meta,
+  .agent-portfolio .agent-case-facts,
+  .agent-portfolio .agent-proof-stats,
+  .agent-portfolio .agent-about-fit-list {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-portfolio .agent-project-row,
+  .agent-portfolio .agent-index-item {
+    column-gap: .8rem;
+  }
+
+  .agent-portfolio .agent-actions,
+  .agent-portfolio .agent-contact-form .nrs-contact-form-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .agent-portfolio .agent-actions .agent-btn,
+  .agent-portfolio .agent-contact-form .nrs-contact-form-actions > * {
+    width: 100%;
+  }
+
+  .agent-portfolio .agent-footer-cta {
+    font-size: clamp(2.8rem, 15vw, 4.5rem);
+    line-height: .9;
+  }
+}
+
+@media (max-width: 360px) {
+  .agent-portfolio {
+    --ap-gutter: 1rem;
+  }
+
+  .agent-portfolio .nav-wrapper {
+    padding-right: 7.4rem;
+  }
+
+  .agent-portfolio .agent-brand strong {
+    font-size: .78rem;
+  }
+
+  .agent-portfolio .agent-hero-title {
+    font-size: clamp(3.25rem, 16vw, 4.5rem);
+  }
+
+  .agent-portfolio .agent-page-hero h1 {
+    font-size: clamp(2.9rem, 14.5vw, 4.3rem);
+  }
+
+  .agent-portfolio .mobile-nav-links a {
+    min-height: 3.75rem;
+    font-size: clamp(1.8rem, 9vw, 2.8rem);
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 600px) {
+  .agent-portfolio .mobile-nav-overlay {
+    align-items: start;
+    padding-top: calc(var(--nrs-sticky-nav-height) + var(--nrs-progress-height) + .75rem);
+  }
+
+  .agent-portfolio .mobile-nav-links a {
+    min-height: 3.25rem;
+    font-size: clamp(1.65rem, 6vh, 2.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #nrs-scroll-progress {
+    transition: none;
+  }
+
+  #nrs-scroll-progress::before {
+    will-change: auto;
+  }
+}
