@@ -31,7 +31,7 @@ jobs:
           set -o pipefail
           {
             echo "Cloudflare Pages Git integration is the production deployer."
-            echo "Waiting for main commit $DEPLOY_SHA to reach $PRODUCTION_URL."
+            echo "Production branch must be main. Waiting for $DEPLOY_SHA to reach $PRODUCTION_URL."
 
             PROVENANCE_OK=0
             for attempt in $(seq 1 24); do
