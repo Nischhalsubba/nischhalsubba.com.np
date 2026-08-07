@@ -4,40 +4,23 @@
   --nrs-sticky-nav-height: 4.5rem;
 }
 
-#nrs-scroll-progress {
+.agent-portfolio #agent-progress {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 90;
+  z-index: calc(var(--ap-z-nav) + 10);
+  display: block;
   width: 100%;
   height: var(--nrs-progress-height);
-  overflow: hidden;
+  min-height: var(--nrs-progress-height);
+  max-height: var(--nrs-progress-height);
+  border: 0;
+  border-radius: 0;
   pointer-events: none;
-  opacity: 0;
-  background: rgba(17, 17, 15, .12);
-  transition: opacity 120ms cubic-bezier(.2, 0, 0, 1);
-  contain: paint;
-}
-
-#nrs-scroll-progress.is-active {
-  opacity: 1;
-}
-
-#nrs-scroll-progress::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #ff4d00;
-  transform: scaleX(var(--nrs-scroll-progress-scale, 0));
+  background: var(--ap-signal);
+  transform: scaleX(var(--agent-scroll, .01));
   transform-origin: left center;
+  contain: paint;
   will-change: transform;
-}
-
-html[data-theme='dark'] #nrs-scroll-progress {
-  background: rgba(243, 239, 230, .14);
-}
-
-html[data-theme='dark'] #nrs-scroll-progress::before {
-  background: #ff6b2c;
 }
 
 .agent-portfolio .nav-wrapper {
@@ -346,11 +329,7 @@ html[data-theme='dark'] #nrs-scroll-progress::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #nrs-scroll-progress {
-    transition: none;
-  }
-
-  #nrs-scroll-progress::before {
+  .agent-portfolio #agent-progress {
     will-change: auto;
   }
 }
