@@ -108,6 +108,19 @@ if (!fs.existsSync(distDir)) {
     }
   }
 
+  const headersPath = path.join(distDir, '_headers');
+  if (fs.existsSync(headersPath)) {
+    const headers = fs.readFileSync(headersPath, 'utf8');
+    const atomicRuntimePolicy = '/*.js\n  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate';
+    if (!headers.includes(atomicRuntimePolicy)) {
+      fail('Stable JavaScript module URLs must use no-store so one page load cannot mix runtime generations across deploys.');
+    }
+    for (const runtimePath of ['/detail-navigation.js', '/seo-enhancements.js']) {
+      const expected = `${runtimePath}\n  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate`;
+      if (!headers.includes(expected)) fail(`${runtimePath} must use the atomic no-store runtime cache policy.`);
+    }
+  }
+
   for (const relativePath of [...retiredStylesheets, ...forbiddenPublicAssets]) {
     if (fs.existsSync(path.join(distDir, relativePath))) {
       fail(`Retired frontend asset still exists in dist: ${relativePath}`);
