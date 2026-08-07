@@ -53,6 +53,7 @@ const stages = [
   ['Enforce sticky responsive shell', ['node', 'scripts/ensure-sticky-responsive-shell.cjs', '--dist']],
   ['Apply final portfolio content polish', ['node', 'scripts/ensure-portfolio-content-polish.cjs', '--dist']],
   ['Enforce visible project decision cards', ['node', 'scripts/ensure-case-study-card-visibility.cjs', '--dist']],
+  ['Apply final projects editorial system', ['node', 'scripts/ensure-projects-final-editorial.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
