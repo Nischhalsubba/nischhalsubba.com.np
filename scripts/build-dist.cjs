@@ -55,6 +55,7 @@ const stages = [
   ['Enforce visible project decision cards', ['node', 'scripts/ensure-case-study-card-visibility.cjs', '--dist']],
   ['Apply final projects editorial system', ['node', 'scripts/ensure-projects-final-editorial.cjs', '--dist']],
   ['Apply agent design audit remediation', ['node', 'scripts/ensure-agent-audit-remediation.cjs', '--dist']],
+  ['Apply recruiter content enhancements', ['node', 'scripts/ensure-agent-audit-content-enhancements.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
