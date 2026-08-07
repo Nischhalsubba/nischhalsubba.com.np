@@ -30,6 +30,8 @@ const stages = [
   ['Normalize shared site shell', ['node', 'scripts/ensure-shared-site-shell.cjs']],
   ['Apply final blog detail cleanup', ['node', 'scripts/ensure-blog-detail-cleanup.cjs']],
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
+  ['Apply evidence-first portfolio refinement', ['node', 'scripts/ensure-senior-portfolio-v2.cjs']],
+  ['Replace generic case-study copy', ['node', 'scripts/ensure-case-study-specificity.cjs']],
 ];
 
 runStages(stages, 'generate');

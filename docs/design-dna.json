@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "name": "Nischhal Portfolio 2026",
+    "description": "Evidence-first editorial product-design portfolio: warm neutral surfaces, black editorial typography, orange signal color, product-specific case-study narratives, restrained motion, and an optional Three.js system field that visualizes complexity resolving into structure.",
+    "source_references": [
+      "src/styles/agent-portfolio-1.cssfrag",
+      "src/scripts/features/agent-portfolio.js",
+      "scripts/agent-redesign-part-1.cjsfrag",
+      "scripts/agent-redesign-part-2.cjsfrag",
+      "scripts/agent-redesign-part-3.cjsfrag",
+      "scripts/ensure-senior-portfolio-v2.cjs",
+      "scripts/ensure-case-study-specificity.cjs"
+    ],
+    "created_at": "2026-08-07"
+  },
+  "design_system": {
+    "color": {
+      "palette_type": "neutral with high-chroma signal accent",
+      "primary": { "hex": "#11110F", "role": "primary ink, headings, high-emphasis controls" },
+      "secondary": { "hex": "#F2EFE7", "role": "light-theme page canvas" },
+      "accent": { "hex": "#FF4D00", "role": "focus, active state, key emphasis, selective interaction signal" },
+      "neutral": {
+        "scale": ["#0C0C0B", "#151512", "#34322D", "#4C4A43", "#706C64", "#8E887E", "#C8C1B4", "#F2EFE7", "#FBF8F1", "#F7F2E8"],
+        "usage": "Warm neutrals carry nearly all surfaces and text hierarchy; orange is intentionally scarce so it remains meaningful."
+      },
+      "semantic": {
+        "success": "#2E7D32",
+        "warning": "#A85D00",
+        "error": "#B42318",
+        "info": "#2563EB"
+      },
+      "surface": {
+        "background": "#F2EFE7 / #0C0C0B dark",
+        "card": "#FBF8F1 / #151512 dark",
+        "elevated": "color-mix of page and ink with a subtle border rather than heavy shadow"
+      },
+      "contrast_strategy": "High-contrast ink on warm neutral surfaces; secondary copy remains clearly darker/lighter than background; orange is never the sole carrier of meaning."
+    },
+    "typography": {
+      "type_scale": {
+        "display": { "size": "clamp(4.35rem, 9.4vw, 10rem)", "weight": "750", "line_height": "0.86", "tracking": "-0.075em" },
+        "heading_1": { "size": "clamp(3.5rem, 7vw, 7.5rem)", "weight": "750", "line_height": "0.92", "tracking": "-0.06em" },
+        "heading_2": { "size": "clamp(2.4rem, 5vw, 5rem)", "weight": "700", "line_height": "0.98", "tracking": "-0.045em" },
+        "heading_3": { "size": "clamp(1.35rem, 2vw, 2rem)", "weight": "700", "line_height": "1.1", "tracking": "-0.025em" },
+        "body": { "size": "1rem", "weight": "400", "line_height": "1.65", "tracking": "0" },
+        "body_small": { "size": "0.9rem", "weight": "400", "line_height": "1.55", "tracking": "0" },
+        "caption": { "size": "0.74rem", "weight": "600", "line_height": "1.35", "tracking": "0.08em" },
+        "overline": { "size": "0.76rem", "weight": "600", "line_height": "1.3", "tracking": "0.08em" }
+      },
+      "font_families": {
+        "heading": "Arial, Helvetica Neue, Helvetica, sans-serif with Georgia italic editorial contrast",
+        "body": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+      },
+      "font_style_notes": "Large compressed sans typography provides product-studio confidence; sparse italic serif phrases add editorial personality; mono text is reserved for metadata, not body copy."
+    },
+    "spacing": {
+      "base_unit": "4px",
+      "scale": ["4px", "8px", "12px", "16px", "24px", "32px", "48px", "64px", "96px", "128px"],
+      "content_density": "spacious with intentionally denser project metadata and data-heavy examples",
+      "section_rhythm": "Large editorial intervals between narrative chapters, tighter rhythm inside proof, facts, and decision groups."
+    },
+    "layout": {
+      "grid_system": "12-column editorial grid",
+      "max_content_width": "96rem",
+      "columns": 12,
+      "gutter": "clamp(1.125rem, 3vw, 3.5rem)",
+      "breakpoints": ["375px", "640px", "768px", "900px", "1024px", "1440px"],
+      "alignment_tendency": "asymmetric editorial compositions constrained by a strict grid"
+    },
+    "shape": {
+      "border_radius": { "small": "2px", "medium": "8px", "large": "16px", "pill": "999px" },
+      "border_usage": "subtle 1px warm-neutral dividers; round controls only where the control itself benefits",
+      "divider_style": "1px solid neutral line with generous surrounding space"
+    },
+    "elevation": {
+      "shadow_style": "minimal; prefer border, overlap and contrast over card shadows",
+      "levels": { "low": "0 1px 0 rgba(17,17,15,.08)", "medium": "0 12px 40px rgba(17,17,15,.08)", "high": "0 28px 90px rgba(17,17,15,.14)" },
+      "depth_cues": "overlap, surface contrast, sticky/fixed positioning and the optional WebGL field"
+    },
+    "iconography": {
+      "style": "simple geometric SVG / text arrow cues",
+      "stroke_weight": "1.5–2px",
+      "size_scale": ["16px", "20px", "24px", "32px"],
+      "preferred_set": "Lucide-style outline icons when an icon is necessary; avoid emoji and decorative icon noise"
+    },
+    "motion": {
+      "easing": ["cubic-bezier(0.2, 0, 0, 1)", "cubic-bezier(0.05, 0.7, 0.1, 1)", "cubic-bezier(0.3, 0, 1, 1)", "linear for scroll-linked effects"],
+      "duration_scale": { "micro": "120ms", "normal": "180–360ms", "macro": "480ms maximum for interface transitions" },
+      "entrance_pattern": "20–28px translateY + opacity, decelerating into place; small stagger only for grouped content",
+      "exit_pattern": "shorter opacity or opacity + slight translation; no theatrical exit choreography",
+      "philosophy": "Functional editorial motion: motion explains hierarchy and state, never competes with portfolio evidence, and always respects reduced motion."
+    },
+    "components": {
+      "button_style": "rectilinear text-forward buttons with strong focus state and restrained hover translation",
+      "input_style": "high-contrast labels, visible boundaries, explicit focus ring, comfortable 44px+ target size",
+      "card_style": "project rows and narrative blocks rather than a wall of rounded cards",
+      "navigation_pattern": "fixed editorial header on desktop, focus-trapped overlay drawer on mobile",
+      "modal_style": "avoid unless required; use lightweight dialogs with explicit close and focus return",
+      "list_style": "editorial rows for projects; compact definition lists for case facts; bullet lists only for evidence or validation",
+      "component_notes": "Every interactive element must be keyboard reachable, have a visible focus state, and preserve meaning with motion disabled."
+    }
+  },
+  "design_style": {
+    "aesthetic": {
+      "mood": ["confident", "precise", "editorial", "technical", "warm"],
+      "visual_metaphor": "Complexity resolving into structure",
+      "era_influence": "Contemporary editorial product studios with restrained modernist grid discipline",
+      "genre": "editorial product-design portfolio",
+      "personality_traits": ["opinionated", "meticulous", "implementation-aware", "direct", "credible"],
+      "adjectives": ["evidence-led", "asymmetric", "warm-neutral", "high-contrast", "restrained"]
+    },
+    "visual_language": {
+      "complexity": "moderate",
+      "ornamentation": "subtle accents",
+      "whitespace_usage": "generous and deliberate",
+      "visual_weight_distribution": "large type and project evidence carry weight; metadata stays quiet",
+      "focal_strategy": "progressive reveal from proposition to flagship work to proof",
+      "contrast_level": "high",
+      "texture_usage": "mostly flat; texture comes from typography, real project imagery and the optional generative system field"
+    },
+    "composition": {
+      "hierarchy_method": "scale contrast, spatial isolation, editorial grid and scarce accent color",
+      "balance_type": "asymmetric",
+      "flow_direction": "top-to-bottom narrative with horizontal tension inside project rows",
+      "grouping_strategy": "problem → decision → artifact → validation",
+      "negative_space_role": "separates arguments and increases perceived confidence; never used to conceal missing evidence"
+    },
+    "imagery": {
+      "photo_treatment": "project imagery shown cleanly with minimal decorative framing",
+      "illustration_style": "diagrammatic and product-specific rather than generic SaaS illustration",
+      "graphic_elements": "numbered rails, orange signal blocks, system-grid field, restrained arrows",
+      "pattern_usage": "rare; grid appears as a conceptual system visualization rather than wallpaper",
+      "image_shape": "mostly rectangular product frames with limited rounding"
+    },
+    "interaction_feel": {
+      "feedback_style": "immediate and legible",
+      "hover_behavior": "small color, underline, media translation or 1px press changes",
+      "transition_personality": "snappy, smooth, non-bouncy",
+      "loading_style": "prefer native content loading; no decorative loader unless real latency requires feedback",
+      "microinteraction_density": "low-to-moderate"
+    },
+    "brand_voice_in_ui": {
+      "tone": "direct, specific, technically literate and human",
+      "formality": "professional without corporate filler",
+      "cta_style": "direct imperative",
+      "empty_state_approach": "state what is unavailable and provide a useful next step",
+      "error_tone": "plain, accountable and recovery-oriented"
+    }
+  },
+  "visual_effects": {
+    "overview": {
+      "effect_intensity": "subtle-accent",
+      "performance_tier": "heavy only on capable desktop devices; otherwise lightweight",
+      "fallback_strategy": "disable WebGL and scroll motion for reduced-motion, save-data, coarse pointer, small viewport or low-power devices; content remains fully usable as static HTML/CSS",
+      "primary_technology": "WebGL/Three.js for one hero field plus GSAP/WAAPI for restrained reveal motion"
+    },
+    "background_effects": {
+      "type": "none",
+      "description": "No perpetual decorative animated background; surfaces remain editorial and calm.",
+      "technology": "CSS",
+      "params": { "color_palette": ["#F2EFE7", "#0C0C0B"], "speed": "0", "density": "none", "opacity": "1", "blend_mode": "normal" }
+    },
+    "particle_systems": {
+      "enabled": true,
+      "type": "custom structured point field",
+      "description": "112 points begin scattered and resolve toward an ordered grid as the user moves through the hero, reinforcing the portfolio proposition of turning complexity into structure.",
+      "technology": "Three.js Points + BufferGeometry",
+      "params": { "count": 112, "shape": "points", "size_range": "0.055 world units", "movement_pattern": "slow ambient drift interpolating from scattered positions to grid targets", "color_behavior": "inherits the portfolio signal color", "interaction": "subtle pointer tilt and scroll-linked ordering", "spawn_area": "hero visualization figure" }
+    },
+    "3d_elements": {
+      "enabled": true,
+      "type": "abstract-geometry",
+      "description": "A lightweight points-and-lines system visualization; it is conceptual support, not the primary content.",
+      "technology": "Three.js r185",
+      "params": { "renderer": "WebGLRenderer, transparent, antialias, devicePixelRatio capped at 1.5", "lighting": "none required for PointsMaterial and LineBasicMaterial", "camera": "PerspectiveCamera 38deg, z=7.2", "materials": ["PointsMaterial", "LineBasicMaterial"], "geometry": ["BufferGeometry points", "LineSegments grid"], "post_processing": [], "interaction_model": "scroll interpolation + subtle pointer rotation; paused when offscreen or document hidden" }
+    },
+    "shader_effects": {
+      "enabled": false,
+      "type": "none",
+      "description": "Custom GLSL is intentionally avoided because the conceptual point field does not need shader complexity.",
+      "technology": "none",
+      "params": { "uniforms": [], "vertex_manipulation": "none", "fragment_output": "none", "noise_type": "none", "distortion": "none" }
+    },
+    "scroll_effects": {
+      "parallax": { "enabled": true, "layers": "1 product-image layer", "depth_range": "approximately -2% to +5% image translation", "speed_curve": "linear / scrubbed" },
+      "scroll_triggered_animations": { "enabled": true, "trigger_points": "roughly 88% viewport entry", "animation_type": "fade-up with small translation", "scrub_behavior": "reveal animations are one-shot; product-image parallax is scrubbed" },
+      "scroll_morphing": { "enabled": true, "description": "Hero point field morphs from scattered complexity toward an ordered grid as scroll progresses." }
+    },
+    "text_effects": {
+      "type": "none",
+      "description": "Typography relies on hierarchy and editorial contrast rather than split-letter spectacle.",
+      "technology": "CSS",
+      "params": { "split_strategy": "none", "animation_per_unit": "none", "stagger": "only at grouped element level", "effect_style": "none" }
+    },
+    "cursor_effects": {
+      "enabled": false,
+      "type": "none",
+      "description": "Native cursor behavior is preserved.",
+      "params": { "shape": "native", "size": "native", "blend_mode": "normal", "trail": "none", "interaction_zone": "none" }
+    },
+    "image_effects": {
+      "type": "subtle parallax translation",
+      "description": "Project media can move a few percent with scroll or a few pixels with fine-pointer hover; imagery remains legible and never distorts.",
+      "technology": "GSAP transform / CSS fallback",
+      "params": { "filter_pipeline": "none", "hover_transform": "small x translation", "reveal_animation": "fade-up with section", "distortion_type": "none" }
+    },
+    "glassmorphism_neumorphism": {
+      "enabled": true,
+      "style": "frosted navigation only",
+      "params": { "blur_radius": "14px", "transparency": "approximately 92% page surface", "border_treatment": "1px neutral divider", "shadow_type": "none", "light_source_angle": "not applicable" }
+    },
+    "canvas_drawings": {
+      "enabled": true,
+      "type": "generative-lines and points",
+      "description": "The hero canvas renders a restrained system field through Three.js.",
+      "technology": "WebGL canvas via Three.js",
+      "params": { "draw_method": "BufferGeometry + Points + LineSegments", "animation_loop": "requestAnimationFrame with visibility and device guards", "color_scheme": "signal orange + current-theme ink", "responsiveness": "renderer resizes to its figure; DPR capped", "interaction": "pointer tilt and scroll-linked ordering" }
+    },
+    "svg_animations": {
+      "enabled": false,
+      "type": "none",
+      "description": "Project SVG assets remain content, not decorative animation surfaces.",
+      "params": { "animation_method": "none", "path_morphing": "none", "stroke_animation": "none", "filter_effects": "none" }
+    },
+    "composite_notes": "The portfolio deliberately limits advanced effects to one meaningful hero visualization and subtle image motion. WebGL must never be required for navigation, comprehension, project evidence or conversion. Reduced-motion, save-data, low-power-device and viewport guards are part of the design contract, not optional implementation polish."
+  }
+}
