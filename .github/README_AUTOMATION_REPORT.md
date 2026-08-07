@@ -17,7 +17,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `agent/fix-production-reveal-alias` | unchanged | README already matched the standard |
 | `agent/fix-scroll-reveal-visibility` | unchanged | README already matched the standard |
 | `agent/harden-contact-focus` | unchanged | README already matched the standard |
-| `agent/ignore-superseded-browser-audits` | updated | Branch-specific README committed |
+| `agent/ignore-superseded-browser-audits` | unchanged | README already matched the standard |
 | `agent/portfolio-polish-v3` | unchanged | README already matched the standard |
 | `agent/production-reliability-cleanup` | unchanged | README already matched the standard |
 | `agent/redesign-services-work-proof` | unchanged | README already matched the standard |
