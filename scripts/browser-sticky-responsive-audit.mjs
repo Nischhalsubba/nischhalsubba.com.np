@@ -46,7 +46,7 @@ for (const [width, height] of viewports) {
         const theme = document.querySelector('.theme-toggle-btn');
         const brand = document.querySelector('.agent-brand');
         const fields = [...document.querySelectorAll('#contact-form input:not([type="hidden"]), #contact-form select, #contact-form textarea')]
-          .filter(visible)
+          .filter((field) => field.name !== '_honey' && visible(field))
           .map((field) => ({
             tag: field.tagName,
             name: field.getAttribute('name') || field.id,
