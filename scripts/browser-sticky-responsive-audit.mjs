@@ -38,8 +38,9 @@ for (const [width, height] of viewports) {
           return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
         };
         const rect = (element) => element ? element.getBoundingClientRect().toJSON() : null;
+        const root = document.querySelector('.agent-portfolio');
         const nav = document.querySelector('.nav-wrapper');
-        const progress = document.querySelector('#nrs-scroll-progress');
+        const progress = document.querySelector('#agent-progress');
         const h1 = [...document.querySelectorAll('h1')].find(visible);
         const menu = document.querySelector('.mobile-nav-toggle');
         const theme = document.querySelector('.theme-toggle-btn');
@@ -75,8 +76,9 @@ for (const [width, height] of viewports) {
           navPosition: nav ? getComputedStyle(nav).position : '',
           navRect: rect(nav),
           progressReady: progress?.dataset.stickyProgressReady || '',
-          progressOpacity: progress ? Number.parseFloat(getComputedStyle(progress).opacity) : -1,
+          progressVisible: visible(progress),
           progressRect: rect(progress),
+          progressValue: Number.parseFloat(root ? getComputedStyle(root).getPropertyValue('--agent-scroll') : '0'),
           h1Rect: rect(h1),
           menuVisible: visible(menu),
           menuRect: rect(menu),
@@ -94,9 +96,9 @@ for (const [width, height] of viewports) {
       if (!initial.navVisible) throw new Error('sticky navigation is not visible');
       if (!['fixed', 'sticky'].includes(initial.navPosition)) throw new Error(`navigation position is ${initial.navPosition || 'unset'}`);
       if (!initial.navRect || Math.abs(initial.navRect.top - 3) > 2) throw new Error(`navigation top is ${initial.navRect?.top ?? 'missing'}px, expected 3px`);
-      if (!initial.progressRect || Math.abs(initial.progressRect.top) > 1) throw new Error('scroll progress is not fixed to the viewport top');
+      if (!initial.progressVisible || !initial.progressRect || Math.abs(initial.progressRect.top) > 1) throw new Error('scroll progress is not fixed to the viewport top');
       if (initial.progressReady !== 'true') throw new Error('scroll progress runtime did not initialize');
-      if (initial.progressOpacity > 0.05) throw new Error(`scroll progress should be quiet at page top, opacity=${initial.progressOpacity}`);
+      if (!Number.isFinite(initial.progressValue) || initial.progressValue < 0 || initial.progressValue > .04) throw new Error(`scroll progress has an invalid page-top value: ${initial.progressValue}`);
       if (initial.h1Rect && initial.h1Rect.top < initial.navRect.bottom - 2) throw new Error('first heading is obscured by sticky navigation');
       if (initial.mediaOverflow.length) throw new Error(`media escapes viewport: ${initial.mediaOverflow.join(', ')}`);
 
@@ -128,22 +130,21 @@ for (const [width, height] of viewports) {
         await page.waitForTimeout(100);
 
         const scrolled = await page.evaluate(() => {
+          const root = document.querySelector('.agent-portfolio');
           const nav = document.querySelector('.nav-wrapper');
-          const progress = document.querySelector('#nrs-scroll-progress');
+          const progress = document.querySelector('#agent-progress');
           const navRect = nav?.getBoundingClientRect();
           const progressRect = progress?.getBoundingClientRect();
           return {
             navTop: navRect?.top ?? null,
             progressTop: progressRect?.top ?? null,
-            progressOpacity: progress ? Number.parseFloat(getComputedStyle(progress).opacity) : 0,
-            progressValue: Number.parseFloat(progress?.dataset.progress || '0'),
+            progressValue: Number.parseFloat(root ? getComputedStyle(root).getPropertyValue('--agent-scroll') : '0'),
             overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           };
         });
 
         if (scrolled.navTop === null || Math.abs(scrolled.navTop - 3) > 2) throw new Error(`navigation moved while scrolling: top=${scrolled.navTop}`);
         if (scrolled.progressTop === null || Math.abs(scrolled.progressTop) > 1) throw new Error('scroll progress moved away from viewport top');
-        if (scrolled.progressOpacity < .9) throw new Error(`scroll progress did not become visible: opacity=${scrolled.progressOpacity}`);
         if (scrolled.progressValue < .45 || scrolled.progressValue > .7) throw new Error(`scroll progress value is implausible: ${scrolled.progressValue}`);
         if (scrolled.overflow > 1) throw new Error(`horizontal overflow after scroll ${scrolled.overflow}px`);
       }
