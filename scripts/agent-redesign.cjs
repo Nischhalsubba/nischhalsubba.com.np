@@ -4,3 +4,8 @@ const parts = [1, 2, 3].map((part) => path.join(__dirname, `agent-redesign-part-
 if (parts.some((file) => !fs.existsSync(file))) throw new Error('[agent-redesign] source fragments are missing');
 const source = parts.map((file) => fs.readFileSync(file, 'utf8')).join('');
 new Function('require', '__dirname', '__filename', source)(require, __dirname, __filename);
+
+const contractPath = path.join(__dirname, '..', 'src', 'scripts', 'features', 'agent-browser-contract.js');
+const runtimePath = path.join(__dirname, '..', 'dist', 'script.js');
+if (!fs.existsSync(contractPath) || !fs.existsSync(runtimePath)) throw new Error('[agent-redesign] runtime contract target is missing');
+fs.appendFileSync(runtimePath, `\n${fs.readFileSync(contractPath, 'utf8')}\n`, 'utf8');
