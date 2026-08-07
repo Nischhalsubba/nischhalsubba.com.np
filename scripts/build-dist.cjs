@@ -49,6 +49,7 @@ const stages = [
   ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
   ['Enforce sticky responsive shell', ['node', 'scripts/ensure-sticky-responsive-shell.cjs', '--dist']],
   ['Generate raster social previews', ['node', 'scripts/generate-social-previews.cjs']],
+  ['Apply final portfolio content polish', ['node', 'scripts/ensure-portfolio-content-polish.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
