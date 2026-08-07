@@ -15,6 +15,11 @@ onReady(async () => {
     try {
       const { initContactForm } = await import('./features/contact-form.js');
       initContactForm();
+      const status = document.querySelector('#contact-form-status');
+      if (status?.textContent.includes('anti-spam service is not configured')) {
+        status.textContent = '';
+        status.removeAttribute('data-tone');
+      }
     } catch (error) {
       console.error('[portfolio] contact form failed to initialize', error);
     }
