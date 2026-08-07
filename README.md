@@ -35,6 +35,7 @@
 
 This branch differs from the default branch in the following detected paths:
 
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-production-reveal-alias/README.md)
 - [`scripts/ensure-reveal-visibility.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/fix-production-reveal-alias/scripts/ensure-reveal-visibility.cjs)
 
 ## Quick start
