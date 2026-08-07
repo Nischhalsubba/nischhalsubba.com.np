@@ -21,6 +21,7 @@ jobs:
     env:
       DEPLOY_SHA: ${{ github.event.workflow_run.head_sha }}
       PRODUCTION_URL: https://nischhalsubba.com.np
+      GH_TOKEN: ${{ github.token }}
 
     steps:
       - name: Wait for Workers Builds and verify production
@@ -31,28 +32,48 @@ jobs:
           set -o pipefail
           {
             echo "Cloudflare Workers Builds is the production deployer."
-            echo "Waiting for validated main commit $DEPLOY_SHA to reach $PRODUCTION_URL."
+            echo "Waiting for validated main commit $DEPLOY_SHA or a newer descendant to reach $PRODUCTION_URL."
+
+            is_acceptable_live_commit() {
+              local expected="$1"
+              local live="$2"
+              [ -n "$live" ] || return 1
+              [ "$live" = "$expected" ] && return 0
+
+              local compare_status
+              compare_status=$(curl -fsS --max-time 10 \
+                -H "Authorization: Bearer $GH_TOKEN" \
+                -H "Accept: application/vnd.github+json" \
+                "https://api.github.com/repos/$GITHUB_REPOSITORY/compare/$expected...$live" \
+                | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).status||'')}catch{console.log('')}})" \
+                || true)
+              [ "$compare_status" = "ahead" ] || [ "$compare_status" = "identical" ]
+            }
 
             PROVENANCE_OK=0
+            ACCEPTED_SHA=''
             for attempt in $(seq 1 36); do
               LIVE_INFO=$(curl -fsS --max-time 10 "$PRODUCTION_URL/build-info.json" || true)
               LIVE_SHA=$(printf '%s' "$LIVE_INFO" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).commit||'')}catch{console.log('')}})")
               LIVE_BRANCH=$(printf '%s' "$LIVE_INFO" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).branch||'')}catch{console.log('')}})")
               LIVE_PROVIDER=$(printf '%s' "$LIVE_INFO" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).provider||'')}catch{console.log('')}})")
-              echo "Provenance attempt $attempt: live=${LIVE_SHA:-unavailable} branch=${LIVE_BRANCH:-unknown} provider=${LIVE_PROVIDER:-unknown} expected=$DEPLOY_SHA"
+              echo "Provenance attempt $attempt: live=${LIVE_SHA:-unavailable} branch=${LIVE_BRANCH:-unknown} provider=${LIVE_PROVIDER:-unknown} validated=$DEPLOY_SHA"
 
-              if [ "$LIVE_SHA" = "$DEPLOY_SHA" ] && [ "$LIVE_BRANCH" = "main" ] && [ "$LIVE_PROVIDER" = "cloudflare-workers" ]; then
+              if [ "$LIVE_BRANCH" = "main" ] && [ "$LIVE_PROVIDER" = "cloudflare-workers" ] && is_acceptable_live_commit "$DEPLOY_SHA" "$LIVE_SHA"; then
                 PROVENANCE_OK=1
+                ACCEPTED_SHA="$LIVE_SHA"
                 break
               fi
               sleep 10
             done
 
             [ "$PROVENANCE_OK" = "1" ] || {
-              echo "Production did not reach the validated Cloudflare Workers build for $DEPLOY_SHA."
+              echo "Production did not reach validated commit $DEPLOY_SHA or a newer main-branch descendant."
               echo "Check Workers Builds branch control, production deploy status, and the Wrangler production route for nischhalsubba.com.np."
               exit 1
             }
+
+            echo "Accepted production commit $ACCEPTED_SHA for validated baseline $DEPLOY_SHA."
 
             CONTACT_HTML=$(curl -fsS --max-time 15 "$PRODUCTION_URL/contact")
             printf '%s' "$CONTACT_HTML" | grep -q 'id="contact-form"' || {
@@ -105,7 +126,7 @@ jobs:
                   issue_number: existing.number,
                   state: 'closed',
                   state_reason: 'completed',
-                  body: `Cloudflare Workers production verification passed for validated main commit \`${process.env.DEPLOY_SHA}\`.\n\nRun: ${runUrl}`,
+                  body: `Cloudflare Workers production verification passed for validated main commit \`${process.env.DEPLOY_SHA}\` or a newer descendant on main.\n\nRun: ${runUrl}`,
                 });
               }
               return;
@@ -117,7 +138,7 @@ jobs:
             const body = [
               `Cloudflare Workers production verification failed for validated main commit \`${process.env.DEPLOY_SHA}\`.`,
               '',
-              'Workers Builds is the expected production deployer. Confirm `main` is the production branch and that the Wrangler production route for `nischhalsubba.com.np/*` is active.',
+              'Workers Builds is the expected production deployer. The live commit must equal the validated commit or be a newer descendant of it on `main`.',
               '',
               `Run: ${runUrl}`,
               '',
