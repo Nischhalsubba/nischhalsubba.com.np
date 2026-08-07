@@ -96,8 +96,22 @@ const cssFiles = [...new Set(cssRoots.flatMap((directory) => walk(directory, (fi
 for (const file of cssFiles) {
   checked.css += 1;
   const source = fs.readFileSync(file, 'utf8');
-  if (!hasBalancedBraces(source)) addFailure(file, 'unbalanced CSS braces/comments/strings');
-  if (/transition\s*:\s*all\b/i.test(source)) addFailure(file, 'avoid `transition: all`; transition only the properties that move');
+  if (path.extname(file) === '.css' && !hasBalancedBraces(source)) {
+    addFailure(file, 'unbalanced CSS braces/comments/strings');
+  }
+  if (/transition\s*:\s*all\b/i.test(source)) {
+    addFailure(file, 'avoid `transition: all`; transition only the properties that move');
+  }
+}
+
+const agentFragments = cssFiles
+  .filter((file) => /^agent-portfolio-\d+\.cssfrag$/i.test(path.basename(file)))
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+if (agentFragments.length) {
+  const combined = agentFragments.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
+  if (!hasBalancedBraces(combined)) {
+    addFailure(agentFragments[0], 'combined agent portfolio CSS fragments are not structurally balanced');
+  }
 }
 
 const productionChecks = [
