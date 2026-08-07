@@ -9,15 +9,26 @@ if (!fs.existsSync(dist)) {
   process.exit(1);
 }
 
-const commit = process.env.CF_PAGES_COMMIT_SHA
+const commit = process.env.WORKERS_CI_COMMIT_SHA
+  || process.env.CF_PAGES_COMMIT_SHA
   || process.env.GITHUB_SHA
   || process.env.VERCEL_GIT_COMMIT_SHA
   || 'local';
-const branch = process.env.CF_PAGES_BRANCH
+const branch = process.env.WORKERS_CI_BRANCH
+  || process.env.CF_PAGES_BRANCH
   || process.env.GITHUB_REF_NAME
   || process.env.VERCEL_GIT_COMMIT_REF
   || 'local';
-const data = { commit, branch };
+const provider = process.env.WORKERS_CI === '1'
+  ? 'cloudflare-workers'
+  : process.env.CF_PAGES === '1'
+    ? 'cloudflare-pages'
+    : process.env.GITHUB_ACTIONS === 'true'
+      ? 'github-actions'
+      : process.env.VERCEL === '1'
+        ? 'vercel'
+        : 'local';
+const data = { commit, branch, provider };
 
 fs.writeFileSync(
   path.join(dist, 'build-info.json'),
@@ -44,4 +55,4 @@ function walk(directory) {
 }
 
 walk(dist);
-console.log(`[build-metadata] ${commit} on ${branch}`);
+console.log(`[build-metadata] ${commit} on ${branch} via ${provider}`);
