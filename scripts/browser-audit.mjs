@@ -138,7 +138,7 @@ for (const [width, height] of viewports) {
       await page.goto(base, { waitUntil: 'networkidle', timeout: 30000 });
       const toggle = page.locator('.mobile-nav-toggle');
       const overlay = page.locator('.mobile-nav-overlay');
-      const links = overlay.locator('a[href]');
+      const focusables = overlay.locator('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
 
       if (await toggle.count() !== 1) throw new Error('expected exactly one mobile menu toggle');
       if (await overlay.count() !== 1) throw new Error('expected exactly one mobile menu overlay');
@@ -158,11 +158,11 @@ for (const [width, height] of viewports) {
       }
       if (!await page.evaluate(() => document.querySelector('main')?.inert)) throw new Error('background is not inert');
 
-      const count = await links.count();
-      if (!count) throw new Error('menu has no links');
-      await links.nth(count - 1).focus();
+      const count = await focusables.count();
+      if (!count) throw new Error('menu has no focusable controls');
+      await focusables.nth(count - 1).focus();
       await page.keyboard.press('Tab');
-      if (!await links.first().evaluate((element) => element === document.activeElement)) throw new Error('focus trap did not wrap');
+      if (!await focusables.first().evaluate((element) => element === document.activeElement)) throw new Error('focus trap did not wrap');
 
       await page.keyboard.press('Escape');
       await page.waitForTimeout(100);
