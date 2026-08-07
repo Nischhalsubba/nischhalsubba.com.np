@@ -41,6 +41,7 @@ const stages = [
   ['Apply agent portfolio redesign', ['node', 'scripts/agent-redesign.cjs', '--dist']],
   ['Apply evidence-first portfolio refinement', ['node', 'scripts/ensure-senior-portfolio-v2.cjs', '--dist']],
   ['Replace generic case-study copy', ['node', 'scripts/ensure-case-study-specificity.cjs', '--dist']],
+  ['Enforce reveal visibility safety', ['node', 'scripts/ensure-reveal-visibility.cjs', '--dist']],
   ['Rebuild editorial writing index', ['node', 'scripts/agent-writing-redesign.cjs']],
   ['Compose mobile theme control', ['node', 'scripts/ensure-agent-mobile-theme-control.cjs']],
   ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
