@@ -10,7 +10,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `agent/complete-portfolio-qa` | unchanged | README already matched the standard |
 | `agent/contact-button-hotfix` | unchanged | README already matched the standard |
 | `agent/contact-form-resilience` | unchanged | README already matched the standard |
-| `agent/descendant-production-provenance` | updated | Branch-specific README committed |
+| `agent/descendant-production-provenance` | unchanged | README already matched the standard |
 | `agent/editorial-portfolio-redesign` | unchanged | README already matched the standard |
 | `agent/fix-case-title-about-alignment-polish` | unchanged | README already matched the standard |
 | `agent/fix-production-contact-audit` | unchanged | README already matched the standard |
@@ -46,7 +46,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/vercel-contact-protection` | unchanged | README already matched the standard |
 | `fix/verified-mobile-hero-top` | unchanged | README already matched the standard |
 | `gent/editorial-portfolio-redesign` | unchanged | README already matched the standard |
-| `main` | unchanged | README already matched the standard |
+| `main` | updated | Branch-specific README committed |
 | `redesign/ui-ux-pro-max-2026` | unchanged | README already matched the standard |
 | `seo-growth-code-fixes` | unchanged | README already matched the standard |
 | `seo-update` | unchanged | README already matched the standard |
