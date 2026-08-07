@@ -20,7 +20,7 @@ if (siteKey) {
   console.log('[contact-protection] TURNSTILE_SITE_KEY is not set; the contact form will use its provider fallback.');
 }
 
-const privacy = 'Your name, email and project context are used only to respond to this inquiry. Cloudflare Turnstile protects first-party delivery; FormSubmit is the fallback. Inquiry data is not sold or used for marketing. Avoid passwords, payment details or confidential credentials. <a href="/privacy">Read the privacy notice</a>.';
+const privacy = 'Your name, email and project context are sent securely through this website to the portfolio inbox. Cloudflare Turnstile may check submissions for abuse. Inquiry data is not sold or used for marketing. Avoid passwords, payment details or confidential credentials. <a href="/privacy">Read the privacy notice</a>.';
 html = html.replace(/<p class="nrs-contact-privacy">[\s\S]*?<\/p>/i, `<p class="nrs-contact-privacy">${privacy}</p>`);
 html = html.replace(/<p class="nrs-form-note" id="contact-privacy-note">[\s\S]*?<\/p>/i, `<p class="nrs-form-note" id="contact-privacy-note">${privacy}</p>`);
 
