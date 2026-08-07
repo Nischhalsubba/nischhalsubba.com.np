@@ -32,6 +32,7 @@ const stages = [
   ['Normalize source HTML runtime', ['node', 'scripts/normalize-html-runtime.cjs']],
   ['Apply evidence-first portfolio refinement', ['node', 'scripts/ensure-senior-portfolio-v2.cjs']],
   ['Replace generic case-study copy', ['node', 'scripts/ensure-case-study-specificity.cjs']],
+  ['Enforce reveal visibility safety', ['node', 'scripts/ensure-reveal-visibility.cjs']],
 ];
 
 runStages(stages, 'generate');
