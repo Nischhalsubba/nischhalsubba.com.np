@@ -1,6 +1,8 @@
 import { $ } from '../utils/dom.js';
 
-const ENDPOINT = '/api/contact';
+const CONTACT_EMAIL = 'hinischhalsubba@gmail.com';
+const FIRST_PARTY_ENDPOINT = '/api/contact';
+const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 const TURNSTILE_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
 const REQUEST_TIMEOUT_MS = 20000;
 
@@ -81,6 +83,19 @@ function applyServerErrors(form, errors = {}) {
   focusInvalid(firstInvalid);
 }
 
+function buildPayload(form) {
+  const payload = new FormData(form);
+  const visitorEmail = payload.get('email');
+
+  payload.set('_subject', 'Portfolio inquiry from nischhalsubba.com.np');
+  payload.set('_template', 'table');
+  payload.delete('_captcha');
+  if (visitorEmail) payload.set('_replyto', visitorEmail);
+  payload.set('source_page', window.location.href);
+  payload.set('submitted_at', new Date().toISOString());
+  return payload;
+}
+
 function loadTurnstile() {
   if (window.turnstile) return Promise.resolve();
   const base = TURNSTILE_SCRIPT.split('?')[0];
@@ -102,13 +117,10 @@ function loadTurnstile() {
   });
 }
 
-async function initializeTurnstile(form, setStatus) {
+async function initializeTurnstile(form) {
   const siteKey = form.dataset.turnstileSiteKey
     || document.querySelector('meta[name="turnstile-site-key"]')?.content?.trim();
-  if (!siteKey) {
-    setStatus('The anti-spam service is not configured. Please use the email option.', 'error');
-    return { ready: false, widgetId: null };
-  }
+  if (!siteKey) return { configured: false, ready: false, widgetId: null };
 
   const host = document.createElement('div');
   host.className = 'nrs-turnstile';
@@ -121,16 +133,24 @@ async function initializeTurnstile(form, setStatus) {
       sitekey: siteKey,
       theme: document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
       'response-field-name': 'cf-turnstile-response',
-      callback: () => setStatus('Anti-spam check complete. Your message is ready to send.', 'success'),
-      'expired-callback': () => setStatus('The anti-spam check expired. Complete it again.', 'error'),
-      'error-callback': () => setStatus('The anti-spam check could not load. Please use the email option.', 'error'),
     });
-    return { ready: true, widgetId };
+    return { configured: true, ready: true, widgetId };
   } catch (error) {
-    console.error('[portfolio] Turnstile initialization failed', error);
-    setStatus('The anti-spam check could not load. Please use the email option.', 'error');
-    return { ready: false, widgetId: null };
+    console.error('[portfolio] Turnstile initialization failed; using fallback delivery', error);
+    host.remove();
+    return { configured: true, ready: false, widgetId: null };
   }
+}
+
+async function sendPayload(endpoint, form, signal) {
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    body: buildPayload(form),
+    headers: { Accept: 'application/json' },
+    signal,
+  });
+  const result = await response.json().catch(() => ({}));
+  return { response, result };
 }
 
 export function initContactForm() {
@@ -139,7 +159,7 @@ export function initContactForm() {
 
   form.dataset.contactFormReady = 'true';
   form.noValidate = true;
-  form.action = ENDPOINT;
+  form.action = `https://formsubmit.co/${CONTACT_EMAIL}`;
   form.method = 'POST';
 
   const status = $('#contact-form-status') || form.querySelector('[role="status"]');
@@ -152,7 +172,7 @@ export function initContactForm() {
     status.dataset.tone = tone;
   };
 
-  const turnstileState = initializeTurnstile(form, setStatus);
+  const turnstileState = initializeTurnstile(form);
   form.querySelectorAll('input, select, textarea').forEach((field) => {
     if (field.type === 'hidden') return;
     field.addEventListener('input', () => clearFieldError(field));
@@ -169,12 +189,8 @@ export function initContactForm() {
     }
 
     const turnstile = await turnstileState;
-    if (!turnstile.ready) {
-      setStatus('The protected form is unavailable. Please use the email option.', 'error');
-      return;
-    }
     const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
-    if (!token) {
+    if (turnstile.ready && !token) {
       setStatus('Complete the anti-spam check and try again.', 'error');
       return;
     }
@@ -184,21 +200,29 @@ export function initContactForm() {
       submit.textContent = 'Sending...';
     }
     form.setAttribute('aria-busy', 'true');
-    setStatus('Sending your message securely...', 'neutral');
 
-    const payload = new FormData(form);
-    payload.set('source_page', window.location.href);
+    let useFirstParty = Boolean(turnstile.ready && token);
+    setStatus(useFirstParty ? 'Sending your message securely...' : 'Sending your message...', 'neutral');
+
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
     try {
-      const response = await fetch(ENDPOINT, {
-        method: 'POST',
-        body: payload,
-        headers: { Accept: 'application/json' },
-        signal: controller.signal,
-      });
-      const result = await response.json().catch(() => ({}));
+      let { response, result } = await sendPayload(
+        useFirstParty ? FIRST_PARTY_ENDPOINT : FALLBACK_ENDPOINT,
+        form,
+        controller.signal,
+      );
+
+      // Runtime bindings can drift independently of the static deployment. If the
+      // protected endpoint is unavailable, keep the form usable through the known
+      // fallback provider instead of turning a valid form into a dead end.
+      if (useFirstParty && response.status >= 500) {
+        console.warn('[portfolio] protected contact endpoint unavailable; retrying through fallback delivery');
+        useFirstParty = false;
+        ({ response, result } = await sendPayload(FALLBACK_ENDPOINT, form, controller.signal));
+      }
+
       if (!response.ok) {
         if (result.errors) applyServerErrors(form, result.errors);
         throw new Error(result.message || `The form returned ${response.status}.`);
