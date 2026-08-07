@@ -7,6 +7,7 @@ const base = useDist ? path.join(repositoryRoot, 'dist') : repositoryRoot;
 
 const runtimeFiles = [
   path.join(base, 'src', 'scripts', 'features', 'agent-portfolio.js'),
+  path.join(base, 'script.js'),
 ];
 
 const styleFiles = useDist
