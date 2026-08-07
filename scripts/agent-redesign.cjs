@@ -40,6 +40,16 @@ function externalPrototypeUrl(raw) {
   }
 }
 
+function htmlFiles(directory, output = []) {
+  if (!fs.existsSync(directory)) return output;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const file = path.join(directory, entry.name);
+    if (entry.isDirectory()) htmlFiles(file, output);
+    else if (entry.isFile() && entry.name.endsWith('.html')) output.push(file);
+  }
+  return output;
+}
+
 for (const [fileName, title] of customCaseTitles) {
   const filePath = path.join(dist, fileName);
   if (!fs.existsSync(filePath)) continue;
@@ -73,6 +83,13 @@ for (const fileName of fs.readdirSync(dist).filter((name) => /^project-.*\.html$
     return `<p class="agent-embed-note"><a class="agent-btn" href="${escapeAttribute(href)}" target="_blank" rel="noopener noreferrer">Open external prototype</a></p>`;
   });
   if (replaced) fs.writeFileSync(filePath, html, 'utf8');
+}
+
+const floatingResumePattern = /\s*<a\b(?=[^>]*\bclass=["'][^"']*\bfloating-resume-btn\b[^"']*["'])[^>]*>[\s\S]*?<\/a>/gi;
+for (const filePath of htmlFiles(dist)) {
+  const html = fs.readFileSync(filePath, 'utf8');
+  const updated = html.replace(floatingResumePattern, '');
+  if (updated !== html) fs.writeFileSync(filePath, updated, 'utf8');
 }
 
 if (!fs.existsSync(agentRuntimePath) || !fs.existsSync(runtimeEntryPath)) {
