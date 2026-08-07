@@ -4,15 +4,15 @@
   .agent-portfolio .nav-wrapper {
     left: 50%;
     right: auto;
-    width: min(calc(100% - (var(--ap-gutter) * 2)), 80rem);
-    max-width: 80rem;
+    width: min(calc(100% - (var(--ap-gutter) * 2)), 72rem);
+    max-width: 72rem;
     transform: translateX(-50%);
     border-left: 1px solid color-mix(in srgb, var(--ap-line) 76%, transparent);
     border-right: 1px solid color-mix(in srgb, var(--ap-line) 76%, transparent);
   }
 
   .agent-portfolio .agent-brand {
-    max-width: 21rem;
+    max-width: 19rem;
   }
 
   .agent-portfolio .nav-pill {
@@ -20,7 +20,7 @@
   }
 
   .agent-portfolio .nav-link {
-    padding-inline: .58rem;
+    padding-inline: .54rem;
   }
 }
 
@@ -87,20 +87,6 @@
 }
 
 /* About page: restore substance without returning to card soup. */
-.agent-portfolio .agent-about-portrait {
-  margin: 0 0 2rem;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border: 1px solid var(--ap-line);
-  background: var(--ap-surface);
-}
-
-.agent-portfolio .agent-about-portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .agent-portfolio .agent-about-process {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -223,25 +209,39 @@
 
 @media (max-width: 767px) {
   .agent-portfolio .agent-index-item {
-    grid-template-columns: 2rem minmax(0, 1fr) auto;
-    gap: .8rem 1rem;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: .55rem 1rem;
     padding-block: 1.5rem;
+  }
+
+  .agent-portfolio .agent-index-item .agent-project-index {
+    grid-column: 1;
+    grid-row: 1 / span 4;
   }
 
   .agent-portfolio .agent-index-item h2,
   .agent-portfolio .agent-index-item h3 {
-    max-width: none;
-    font-size: clamp(1.8rem, 9vw, 2.6rem);
+    grid-column: 2;
+    grid-row: 1;
+    max-width: 22ch;
+    font-size: clamp(1.75rem, 8.2vw, 2.45rem);
     line-height: .98;
   }
 
-  .agent-portfolio .agent-index-item > :nth-child(4) {
-    grid-column: 2 / -1;
+  .agent-portfolio .agent-index-item .agent-meta {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: .15rem;
   }
 
-  .agent-portfolio .agent-about-portrait {
-    max-width: 22rem;
-    aspect-ratio: 4 / 4.7;
+  .agent-portfolio .agent-index-item > p {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: .25rem;
+  }
+
+  .agent-portfolio .agent-index-item .agent-project-arrow {
+    display: none;
   }
 
   .agent-portfolio .agent-about-process,
