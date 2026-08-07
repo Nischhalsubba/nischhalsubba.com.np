@@ -3,7 +3,8 @@
   display: none;
 }
 
-.agent-portfolio .floating-resume-btn {
+.agent-portfolio .floating-resume-btn,
+.agent-portfolio .agent-mobile-brand {
   display: none;
 }
 
@@ -180,9 +181,45 @@
 }
 
 @media (max-width: 1023px) {
+  .agent-portfolio .agent-mobile-brand {
+    position: fixed;
+    top: .6rem;
+    left: var(--ap-gutter);
+    z-index: calc(var(--ap-z-nav) + 3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 2.75rem;
+    max-width: calc(100vw - 8rem);
+    color: var(--ap-ink);
+    text-decoration: none;
+  }
+
+  .agent-portfolio .agent-mobile-brand strong {
+    overflow: hidden;
+    font: 750 .78rem/1.05 var(--ap-font-display);
+    letter-spacing: -.025em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .agent-portfolio .agent-mobile-brand span {
+    margin-top: .25rem;
+    color: var(--ap-ink-faint);
+    font: 600 .58rem/1 var(--ap-font-mono);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
   .agent-portfolio .nav-wrapper {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto auto;
+    display: none;
+  }
+
+  .agent-portfolio .mobile-nav-toggle {
+    top: .6rem;
+    right: var(--ap-gutter);
+    left: auto;
+    z-index: calc(var(--ap-z-nav) + 4);
   }
 
   .agent-portfolio .agent-page-hero-grid > div:first-child {
@@ -195,10 +232,6 @@
 }
 
 @media (max-width: 767px) {
-  .agent-portfolio .nav-wrapper {
-    width: 100%;
-  }
-
   .agent-portfolio .agent-hero {
     min-height: auto;
   }
