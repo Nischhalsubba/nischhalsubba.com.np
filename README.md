@@ -6,7 +6,7 @@
 
 **Branch-aware technical guide for [`develop`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/develop)**
 
-<p><img alt="branch: develop" src="https://img.shields.io/static/v1?label=&message=branch%3A%20develop&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+<p><img alt="branch: develop" src="https://img.shields.io/static/v1?label=&message=branch%3A%20develop&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
 
 <p>
   <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/develop"><strong>Browse source</strong></a> ·
@@ -25,7 +25,7 @@
 |---|---|
 | Purpose | A Vite project documented from the current branch structure and manifests. |
 | Branch role | Compared with `main` |
-| Stack | Vite, TypeScript, WordPress, PHP, CSS, HTML, JavaScript |
+| Stack | Vite, TypeScript, WordPress, PHP, HTML, CSS, JavaScript |
 | Manifests | package.json |
 | Prerequisites | Node.js |
 | Delivery | No conventional deployment configuration detected |
