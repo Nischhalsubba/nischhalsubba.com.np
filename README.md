@@ -33,10 +33,9 @@
 
 ## Branch scope
 
-This branch differs from the default branch in the following detected paths:
+No branch-specific file differences were detected against the default branch at generation time.
 
-- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/.github/workflows/browser-audit.yml)
-- [`scripts/browser-contact-audit.mjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/ignore-superseded-browser-audits/scripts/browser-contact-audit.mjs)
+
 
 ## Quick start
 
