@@ -37,19 +37,28 @@ function setBackgroundInert(button, overlay, open) {
   });
 }
 
-function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
+function syncOpenState(button, overlay, open) {
   document.body.classList.toggle('menu-open', open);
+  document.documentElement.classList.toggle('menu-open', open);
+  button.classList.toggle('is-open', open);
   button.setAttribute('aria-expanded', String(open));
-  button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  button.setAttribute('aria-label', open ? 'Close site navigation' : 'Open site navigation');
 
+  overlay.classList.toggle('is-open', open);
+  overlay.dataset.open = String(open);
+  overlay.setAttribute('aria-hidden', String(!open));
+}
+
+function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
   if (!overlay) return;
 
   if (open) overlay.hidden = false;
-  overlay.setAttribute('aria-hidden', String(!open));
+  syncOpenState(button, overlay, open);
   setBackgroundInert(button, overlay, open);
 
   if (open) {
     window.requestAnimationFrame(() => {
+      overlay.scrollTop = 0;
       overlay.focus({ preventScroll: true });
       window.requestAnimationFrame(() => {
         const firstFocusable = getFocusableElements(overlay)[0];
@@ -60,8 +69,9 @@ function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
   }
 
   window.requestAnimationFrame(() => {
+    overlay.scrollTop = 0;
     overlay.hidden = true;
-    if (restoreFocus) button.focus({ preventScroll: true });
+    if (restoreFocus && button.getClientRects().length) button.focus({ preventScroll: true });
   });
 }
 
@@ -89,25 +99,24 @@ function trapFocus(event, overlay) {
 
 export function initMobileMenu() {
   const button = $('.mobile-nav-toggle');
-  if (!button || button.dataset.mobileMenuReady === 'true') return;
-
   const overlay = $('.mobile-nav-overlay');
-  if (overlay && !overlay.id) overlay.id = 'mobile-nav-overlay';
+  if (!button || !overlay || button.dataset.mobileMenuReady === 'true') return;
+
+  if (!overlay.id) overlay.id = 'mobile-nav-overlay';
 
   button.dataset.mobileMenuReady = 'true';
   button.setAttribute('type', 'button');
+  button.setAttribute('aria-controls', overlay.id);
   button.setAttribute('aria-expanded', 'false');
-  button.setAttribute('aria-label', 'Open navigation menu');
+  button.setAttribute('aria-label', 'Open site navigation');
 
-  if (overlay) {
-    button.setAttribute('aria-controls', overlay.id);
-    overlay.hidden = true;
-    overlay.setAttribute('aria-hidden', 'true');
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Site navigation');
-    overlay.setAttribute('tabindex', '-1');
-  }
+  overlay.hidden = true;
+  overlay.dataset.open = 'false';
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Site navigation');
+  overlay.setAttribute('tabindex', '-1');
 
   button.addEventListener('click', (event) => {
     event.preventDefault();
@@ -122,7 +131,7 @@ export function initMobileMenu() {
     });
   });
 
-  overlay?.addEventListener('click', (event) => {
+  overlay.addEventListener('click', (event) => {
     if (event.target === overlay) setMenuState(button, overlay, false);
   });
 
@@ -153,4 +162,5 @@ export function initMobileMenu() {
 
   window.addEventListener('resize', closeWhenDesktopShellReturns, { passive: true });
   window.addEventListener('orientationchange', closeWhenDesktopShellReturns, { passive: true });
+  window.visualViewport?.addEventListener('resize', closeWhenDesktopShellReturns, { passive: true });
 }
