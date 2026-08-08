@@ -28,6 +28,16 @@ const LEGACY_REDIRECTS = new Map([
   ['/blog-role-based-saas-dashboard-ux.html', '/blog/role-based-saas-dashboard-ux'],
 ]);
 
+const ANALYTICS_EVENTS = new Set([
+  'project_view',
+  'resume_download',
+  'contact_start',
+  'contact_submit',
+  'contact_success',
+  'external_profile_click',
+  'performance_metric',
+]);
+
 function methodNotAllowed() {
   return new Response(JSON.stringify({
     ok: false,
@@ -53,6 +63,52 @@ function legacyRedirect(request, url) {
   return Response.redirect(target.toString(), 301);
 }
 
+function analyticsResponse(status = 204) {
+  return new Response(null, {
+    status,
+    headers: {
+      'cache-control': 'no-store',
+      'x-content-type-options': 'nosniff',
+      'access-control-allow-origin': 'https://nischhalsubba.com.np',
+      'access-control-allow-methods': 'POST, OPTIONS',
+      'access-control-allow-headers': 'content-type',
+    },
+  });
+}
+
+async function recordAnalytics(request, env) {
+  if (request.method === 'OPTIONS') return analyticsResponse();
+  if (request.method !== 'POST') return methodNotAllowed();
+
+  const length = Number(request.headers.get('content-length') || 0);
+  if (length > 4096) return analyticsResponse(413);
+
+  let payload;
+  try {
+    payload = await request.json();
+  } catch {
+    return analyticsResponse(400);
+  }
+
+  const event = String(payload?.event || '');
+  if (!ANALYTICS_EVENTS.has(event)) return analyticsResponse(400);
+
+  const requestUrl = new URL(request.url);
+  const pathName = String(payload?.path || '/').slice(0, 160);
+  const context = String(payload?.context || '').slice(0, 80);
+  const metric = String(payload?.metric || '').slice(0, 40);
+  const numericValue = Number(payload?.value);
+  const value = Number.isFinite(numericValue) ? numericValue : 1;
+
+  env.PORTFOLIO_ANALYTICS?.writeDataPoint({
+    indexes: [requestUrl.hostname],
+    blobs: [event, pathName, context, metric],
+    doubles: [value],
+  });
+
+  return analyticsResponse();
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -64,6 +120,10 @@ export default {
       if (request.method === 'POST') return onRequestPost({ request, env });
       if (request.method === 'OPTIONS') return onRequestOptions({ request, env });
       return methodNotAllowed();
+    }
+
+    if (url.pathname === '/api/analytics') {
+      return recordAnalytics(request, env);
     }
 
     return env.ASSETS.fetch(request);
