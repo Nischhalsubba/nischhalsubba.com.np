@@ -1,15 +1,25 @@
 User-agent: *
 Allow: /
 
-# Major search and AI crawlers are allowed to discover public portfolio content.
-# Private or NDA content should not be published on this site.
-User-agent: GPTBot
+# OpenAI search and user-requested browsing.
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: OAI-SearchBot
+# OpenAI model-training crawler. Public portfolio content may be crawled.
+User-agent: GPTBot
+Allow: /
+
+# Other major search / answer-engine crawlers.
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 User-agent: PerplexityBot
@@ -21,15 +31,4 @@ Allow: /
 User-agent: Claude-User
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-
 Sitemap: https://nischhalsubba.com.np/sitemap.xml
-
-# AI / LLM discovery files
-LLMs: https://nischhalsubba.com.np/llms.txt
-LLMs-Full: https://nischhalsubba.com.np/llms-full.txt
-AI-Profile: https://nischhalsubba.com.np/ai-profile.json
