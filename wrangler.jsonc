@@ -18,10 +18,16 @@
     "binding": "ASSETS",
     "run_worker_first": true
   },
+  "analytics_engine_datasets": [
+    {
+      "binding": "PORTFOLIO_ANALYTICS",
+      "dataset": "portfolio_events"
+    }
+  ],
   "send_email": [
     {
       "name": "CONTACT_EMAIL",
-      "destination_address": "hinischhalsubba@gmail.com"
+      "destination_address": "hinischalsubba@gmail.com"
     }
   ]
 }
