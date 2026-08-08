@@ -68,6 +68,7 @@ const stages = [
   ['Lock final theme surfaces and Work hero layout', ['node', 'scripts/ensure-theme-surface-v8.cjs', '--dist']],
   ['Contain final Services layout', ['node', 'scripts/ensure-service-containment-v9.cjs', '--dist']],
   ['Fix final Writing and Services visual inheritance', ['node', 'scripts/ensure-writing-service-visual-v10.cjs', '--dist']],
+  ['Enforce one mobile brand at runtime', ['node', 'scripts/ensure-mobile-brand-singleton-v11.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
