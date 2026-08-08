@@ -1,7 +1,6 @@
 {
   "html": [
     "index.html",
-    "nischhal-raj-subba.html",
     "projects.html",
     "services.html",
     "about.html",
@@ -59,6 +58,8 @@
     "/home.html": "/",
     "/home-v2": "/",
     "/home-v2.html": "/",
+    "/nischhal-raj-subba": "/",
+    "/nischhal-raj-subba.html": "/",
     "/blog.html": "/blog/",
     "/writing": "/blog/",
     "/writing/": "/blog/",
