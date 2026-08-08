@@ -66,6 +66,7 @@ const stages = [
   ['Finalize favicon, theme and search identity', ['node', 'scripts/ensure-search-identity-final.cjs', '--dist']],
   ['Apply final portfolio maturity contract', ['node', 'scripts/ensure-portfolio-maturity-v7.cjs', '--dist']],
   ['Lock final theme surfaces and Work hero layout', ['node', 'scripts/ensure-theme-surface-v8.cjs', '--dist']],
+  ['Contain final Services layout', ['node', 'scripts/ensure-service-containment-v9.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
