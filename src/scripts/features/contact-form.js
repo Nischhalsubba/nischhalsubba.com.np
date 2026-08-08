@@ -12,11 +12,11 @@ function errorId(field) {
 }
 
 function validationMessage(field) {
-  if (field.validity.valueMissing) return 'This field is required.';
-  if (field.validity.typeMismatch) return 'Enter a valid email address.';
-  if (field.validity.tooShort) return `Use at least ${field.minLength} characters.`;
-  if (field.validity.tooLong) return `Use no more than ${field.maxLength} characters.`;
-  return field.validationMessage || 'Check this field and try again.';
+  if (field.validity.valueMissing) return 'Add this detail before sending.';
+  if (field.validity.typeMismatch) return 'Use a valid email address.';
+  if (field.validity.tooShort) return `Add a little more detail (at least ${field.minLength} characters).`;
+  if (field.validity.tooLong) return `Keep this under ${field.maxLength} characters.`;
+  return field.validationMessage || 'Check this field before sending.';
 }
 
 function clearFieldError(field) {
@@ -67,9 +67,6 @@ function focusInvalid(field, { persistent = false } = {}) {
     window.setTimeout(() => restore(), 0);
   });
 
-  // Turnstile can finish mounting after validation has already moved focus.
-  // For a short window, recover only when focus is effectively lost or still
-  // inside the anti-spam iframe. Deliberate focus on any other control wins.
   if (persistent) {
     const deadline = performance.now() + 1800;
     const keepRestoring = () => {
@@ -188,7 +185,7 @@ export function initContactForm() {
   const status = $('#contact-form-status') || form.querySelector('[role="status"]');
   const submit = form.querySelector('button[type="submit"]');
   const emailLink = form.querySelector('a[href^="mailto:"]');
-  const originalText = submit?.textContent || 'Send message';
+  const originalText = submit?.textContent || 'Send the context';
   const setStatus = (message, tone = 'neutral') => {
     if (!status) return;
     status.textContent = message;
@@ -201,12 +198,12 @@ export function initContactForm() {
     field.addEventListener('input', () => clearFieldError(field));
     field.addEventListener('change', () => clearFieldError(field));
   });
-  emailLink?.addEventListener('click', () => setStatus('Opening your email app. Your form entries remain here.', 'neutral'));
+  emailLink?.addEventListener('click', () => setStatus('Opening your email app. Nothing you typed here has been cleared.', 'neutral'));
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!validate(form)) {
-      setStatus('Review the highlighted fields and try again.', 'error');
+      setStatus('Check the highlighted fields, then send again.', 'error');
       focusInvalid(form.querySelector('[aria-invalid="true"]'), { persistent: true });
       return;
     }
@@ -214,19 +211,18 @@ export function initContactForm() {
     const turnstile = await turnstileState;
     const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
     if (turnstile.ready && !token) {
-      setStatus('Complete the anti-spam check and try again.', 'error');
+      setStatus('Complete the anti-spam verification, then send again.', 'error');
       return;
     }
 
     if (submit) {
       submit.disabled = true;
-      submit.textContent = 'Sending...';
+      submit.textContent = 'Sending…';
     }
     form.setAttribute('aria-busy', 'true');
+    setStatus('Sending your message…', 'neutral');
 
     let useFirstParty = Boolean(turnstile.ready && token);
-    setStatus(useFirstParty ? 'Sending your message securely...' : 'Sending your message...', 'neutral');
-
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
@@ -237,9 +233,6 @@ export function initContactForm() {
         controller.signal,
       );
 
-      // Runtime bindings can drift independently of the static deployment. If the
-      // protected endpoint is unavailable, keep the form usable through the known
-      // fallback provider instead of turning a valid form into a dead end.
       if (useFirstParty && response.status >= 500) {
         console.warn('[portfolio] protected contact endpoint unavailable; retrying through fallback delivery');
         useFirstParty = false;
@@ -254,12 +247,12 @@ export function initContactForm() {
       form.reset();
       form.querySelectorAll('[aria-invalid="true"]').forEach(clearFieldError);
       if (window.turnstile && turnstile.widgetId !== null) window.turnstile.reset(turnstile.widgetId);
-      setStatus(result.message || 'Thanks. Your message was sent successfully.', 'success');
+      setStatus(result.message || 'Thanks. Your message is on its way. I’ll reply as soon as I can.', 'success');
     } catch (error) {
       console.error('[portfolio] contact form submission failed', error);
       const message = error?.name === 'AbortError'
-        ? 'The request timed out. Your entries are still here; use the email option or try again.'
-        : error.message || 'The form could not send your message. Your entries are still here.';
+        ? 'This took too long to send. Your text is still here; try again or email me directly.'
+        : error.message || 'I could not send this message. Your text is still here, and the email option is available.';
       setStatus(message, 'error');
       emailLink?.focus({ preventScroll: false });
     } finally {
