@@ -49,7 +49,7 @@ const stages = [
   ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
   ['Rewrite project case studies for hiring', ['node', 'scripts/ensure-hireable-case-studies.cjs', '--dist']],
   ['Apply senior editorial case-study rewrite', ['node', 'scripts/ensure-senior-case-studies.cjs', '--dist']],
-  ['Generate raster social previews', ['node', 'scripts/generate-social-previews.cjs']],
+  ['Assign real social preview imagery', ['node', 'scripts/generate-social-previews.cjs']],
   ['Enforce sticky responsive shell', ['node', 'scripts/ensure-sticky-responsive-shell.cjs', '--dist']],
   ['Apply final portfolio content polish', ['node', 'scripts/ensure-portfolio-content-polish.cjs', '--dist']],
   ['Enforce visible project decision cards', ['node', 'scripts/ensure-case-study-card-visibility.cjs', '--dist']],
@@ -60,6 +60,9 @@ const stages = [
   ['Rewrite product design article archive', ['node', 'scripts/ensure-blog-editorial-v4.cjs', '--dist']],
   ['Finish sitewide microcopy and metadata', ['node', 'scripts/ensure-sitewide-final-details.cjs', '--dist']],
   ['Stabilize expanded mobile navigation', ['node', 'scripts/ensure-mobile-drawer-final.cjs', '--dist']],
+  ['Repair mobile identity and theme contrast', ['node', 'scripts/ensure-final-brand-contrast.cjs', '--dist']],
+  ['Keep accent text accessible', ['node', 'scripts/ensure-accessible-accent-text.cjs', '--dist']],
+  ['Finalize people-first search metadata', ['node', 'scripts/ensure-human-seo.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
