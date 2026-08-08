@@ -64,6 +64,7 @@ const stages = [
   ['Keep accent text accessible', ['node', 'scripts/ensure-accessible-accent-text.cjs', '--dist']],
   ['Finalize people-first search metadata', ['node', 'scripts/ensure-human-seo-v2.cjs', '--dist']],
   ['Finalize favicon, theme and search identity', ['node', 'scripts/ensure-search-identity-final.cjs', '--dist']],
+  ['Apply final portfolio maturity contract', ['node', 'scripts/ensure-portfolio-maturity-v7.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
