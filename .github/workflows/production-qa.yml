@@ -110,6 +110,13 @@ jobs:
         run: |
           set -o pipefail
           node scripts/browser-mobile-menu-expanded-audit.mjs 2>&1 | tee production-mobile-menu.log
+      - name: Audit text contrast in light and dark themes
+        id: contrast
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/browser-theme-contrast-audit.mjs 2>&1 | tee production-contrast.log
       - name: Audit live contact accessibility
         id: contact
         continue-on-error: true
@@ -143,6 +150,7 @@ jobs:
           BROWSER: ${{ steps.browser.outcome }}
           STICKY: ${{ steps.sticky.outcome }}
           MENU: ${{ steps.menu.outcome }}
+          CONTRAST: ${{ steps.contrast.outcome }}
           CONTACT: ${{ steps.contact.outcome }}
           VISUAL: ${{ steps.visual.outcome }}
           HEADERS: ${{ steps.headers.outcome }}
@@ -151,7 +159,7 @@ jobs:
           script: |
             const fs = require('fs');
             const title = '[QA] Production website audit';
-            const outcomes = { routes: process.env.ROUTES, browser: process.env.BROWSER, sticky: process.env.STICKY, menu: process.env.MENU, contact: process.env.CONTACT, visual: process.env.VISUAL, headers: process.env.HEADERS };
+            const outcomes = { routes: process.env.ROUTES, browser: process.env.BROWSER, sticky: process.env.STICKY, menu: process.env.MENU, contrast: process.env.CONTRAST, contact: process.env.CONTACT, visual: process.env.VISUAL, headers: process.env.HEADERS };
             const run = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = [
               `Production QA for validated baseline \`${context.sha}\`.`,
@@ -161,7 +169,7 @@ jobs:
               '',
               `Outcomes: \`${JSON.stringify(outcomes)}\``
             ];
-            for (const [label, file] of [['Routes','production-routes.log'],['Browser','production-browser.log'],['Sticky responsive','production-sticky.log'],['Expanded mobile menu','production-mobile-menu.log'],['Contact','production-contact.log'],['Visual','production-visual.log'],['Headers','production-headers.log']]) {
+            for (const [label, file] of [['Routes','production-routes.log'],['Browser','production-browser.log'],['Sticky responsive','production-sticky.log'],['Expanded mobile menu','production-mobile-menu.log'],['Theme contrast','production-contrast.log'],['Contact','production-contact.log'],['Visual','production-visual.log'],['Headers','production-headers.log']]) {
               if (!fs.existsSync(file)) continue;
               body.push('', `<details><summary>${label}</summary>`, '', '```text', fs.readFileSync(file,'utf8').slice(-50000), '```', '</details>');
             }
@@ -184,5 +192,5 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
       - name: Fail when production QA fails
-        if: steps.routes.outcome != 'success' || steps.browser.outcome != 'success' || steps.sticky.outcome != 'success' || steps.menu.outcome != 'success' || steps.contact.outcome != 'success' || steps.visual.outcome != 'success' || steps.headers.outcome != 'success'
+        if: steps.routes.outcome != 'success' || steps.browser.outcome != 'success' || steps.sticky.outcome != 'success' || steps.menu.outcome != 'success' || steps.contrast.outcome != 'success' || steps.contact.outcome != 'success' || steps.visual.outcome != 'success' || steps.headers.outcome != 'success'
         run: exit 1
