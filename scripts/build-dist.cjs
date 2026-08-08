@@ -62,7 +62,7 @@ const stages = [
   ['Stabilize expanded mobile navigation', ['node', 'scripts/ensure-mobile-drawer-final.cjs', '--dist']],
   ['Repair mobile identity and theme contrast', ['node', 'scripts/ensure-final-brand-contrast.cjs', '--dist']],
   ['Keep accent text accessible', ['node', 'scripts/ensure-accessible-accent-text.cjs', '--dist']],
-  ['Finalize people-first search metadata', ['node', 'scripts/ensure-human-seo.cjs', '--dist']],
+  ['Finalize people-first search metadata', ['node', 'scripts/ensure-human-seo-v2.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
