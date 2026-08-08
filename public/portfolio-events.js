@@ -86,13 +86,14 @@
   } catch (_) {}
 
   function flushVitals() {
+    if (document.visibilityState !== 'visible') return;
     sendOnce('perf-lcp', 'performance_metric', { metric: 'lcp_ms', value: Math.round(lcp) });
     sendOnce('perf-cls', 'performance_metric', { metric: 'cls_x1000', value: Math.round(cls * 1000) });
     if (interaction) sendOnce('perf-interaction', 'performance_metric', { metric: 'max_interaction_ms', value: Math.round(interaction) });
   }
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') flushVitals();
-  });
-  window.addEventListener('pagehide', flushVitals, { once: true });
+  // Do not emit analytics during pagehide/visibility teardown. Those requests are
+  // routinely aborted by browsers while navigating and create false production errors.
+  // A settled-page sample is enough for portfolio performance telemetry.
+  window.setTimeout(flushVitals, 10000);
 })();
