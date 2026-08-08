@@ -83,10 +83,11 @@ function ensureContactForm(html) {
   html = addIdToNamedControl(html, 'timeline', 'contact-timeline');
   html = addIdToNamedControl(html, 'message', 'contact-message');
 
+  // Keep the human wording, but retain the audit/browser option label used by the production contract.
   html = html.replace(/<option([^>]*)>Product design engagement<\/option>/i, '<option$1>Freelance UX/UI project</option>');
 
   html = html.replace(/<([a-z0-9]+)\b([^>]*\bid=["']contact-form-status["'][^>]*)>/i, (whole, tag, attrs) => {
-    const next = attrs.replace(/\srole=["'][^"']*["']/i, '').replace(/\saria-live=["'][^"']*["']/i, '');
+    let next = attrs.replace(/\srole=["'][^"']*["']/i, '').replace(/\saria-live=["'][^"']*["']/i, '');
     return `<${tag}${next} role="status" aria-live="polite">`;
   });
   return html;
@@ -128,11 +129,7 @@ function enhanceWorkHierarchy(html) {
 
   const flagship = flagshipOrder.map((slug) => cards.get(slug)).join('');
   const secondary = secondaryOrder.map((slug) => cards.get(slug)).join('');
-  let next = section;
-  next = next.replace(/<div class="nrs-work-group-head">[\s\S]*?<\/div>/i,
-    '<div class="nrs-work-group-head"><span class="agent-meta">Start here</span><h2>Four flagship cases. Two supporting cases.</h2><p>Start with the four projects that best show product judgment, then use the supporting pair for technical storytelling and data-product range.</p></div>');
-  next = next.replace(/<div class="nrs-work-grid">[\s\S]*?<\/div>/i,
-    `<div class="nrs-work-subgroup"><div class="nrs-work-subgroup-head"><span class="agent-meta">Flagship cases</span><p>High-stakes interaction, multi-role workflows, SaaS architecture and mature product collaboration.</p></div><div class="nrs-work-grid nrs-work-grid--flagship">${flagship}</div></div><div class="nrs-work-subgroup nrs-work-subgroup--secondary"><div class="nrs-work-subgroup-head"><span class="agent-meta">Supporting range</span><p>Technical product storytelling and a data-heavy side project.</p></div><div class="nrs-work-grid nrs-work-grid--secondary">${secondary}</div></div>`);
+  const next = `<section class="agent-section nrs-work-featured"><div class="agent-frame"><div class="nrs-work-group-head"><span class="agent-meta">Start here</span><h2>Four flagship cases. Two supporting cases.</h2><p>Start with the four projects that best show product judgment, then use the supporting pair for technical storytelling and data-product range.</p></div><div class="nrs-work-subgroup"><div class="nrs-work-subgroup-head"><span class="agent-meta">Flagship cases</span><p>High-stakes interaction, multi-role workflows, SaaS architecture and mature product collaboration.</p></div><div class="nrs-work-grid nrs-work-grid--flagship">${flagship}</div></div><div class="nrs-work-subgroup nrs-work-subgroup--secondary"><div class="nrs-work-subgroup-head"><span class="agent-meta">Supporting range</span><p>Technical product storytelling and a data-heavy side project.</p></div><div class="nrs-work-grid nrs-work-grid--secondary">${secondary}</div></div></div></section>`;
   return html.replace(sectionPattern, next);
 }
 
@@ -170,7 +167,7 @@ function applyFinalCss() {
   if (!fs.existsSync(stylePath)) throw new Error('[portfolio-maturity-v6] Missing style.css');
   const start = '/* nrs-portfolio-maturity-v6:start */';
   const end = '/* nrs-portfolio-maturity-v6:end */';
-  const marker = /\/\* nrs-portfolio-maturity-v\d+:start \*\/[\s\S]*?\/\* nrs-portfolio-maturity-v\d+:end \*\//g;
+  const marker = /\/\* nrs-portfolio-maturity-v\d+:start \*\/[\s\S]*?\/\* nrs-portfolio-maturity-v\d+:end \*\\//g;
   const css = `${start}
 html[data-theme='light'] .agent-main {
   --nrs-final-bg: #f2efe7;
@@ -256,6 +253,8 @@ html:not([data-theme='light']) .agent-main :is(.agent-kicker,.agent-meta,.agent-
   color: #11110f !important;
   -webkit-text-fill-color: #11110f !important;
 }
+
+/* Work hero: stop the intro copy collapsing into a receipt-width column. */
 .nrs-editorial-work .agent-page-hero-grid {
   display: grid !important;
   grid-template-columns: minmax(0, 7fr) minmax(20rem, 4fr) !important;
@@ -273,6 +272,8 @@ html:not([data-theme='light']) .agent-main :is(.agent-kicker,.agent-meta,.agent-
 }
 .nrs-editorial-work .nrs-work-intro p { max-width: 58ch !important; }
 .nrs-editorial-work .nrs-work-intro p + p { margin-top: 1.1rem !important; }
+
+/* Recruiter hierarchy: four primary cases, then two supporting cases, then archive. */
 .nrs-work-subgroup { margin-top: clamp(2.25rem, 5vw, 4.75rem); }
 .nrs-work-subgroup-head { display: grid; grid-template-columns: minmax(0,1fr) minmax(16rem,28rem); gap: 1.5rem; align-items: end; margin-bottom: 1.25rem; }
 .nrs-work-subgroup-head p { margin: 0; max-width: 46ch; justify-self: end; }
@@ -280,8 +281,10 @@ html:not([data-theme='light']) .agent-main :is(.agent-kicker,.agent-meta,.agent-
 .nrs-work-grid--secondary { display: grid !important; grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
 .nrs-work-grid--secondary .nrs-work-card-media { aspect-ratio: 16 / 8.4; }
 .nrs-work-grid--secondary .nrs-work-card-copy { padding-block: clamp(1rem,1.8vw,1.35rem) !important; }
+
+/* Deep-page wayfinding. */
 .nrs-breadcrumbs {
-  width: min(var(--ap-frame, 1180px), calc(100% - 2 * var(--ap-gutter, 1.25rem)));
+  width: min(var(--ap-frame, 1180px), calc(100% - 2 * var(--ap-gutter, 1.25rem));
   margin: 0 auto;
   padding-top: clamp(6.75rem, 10vw, 8.5rem);
   display: flex;
@@ -296,6 +299,8 @@ html:not([data-theme='light']) .agent-main :is(.agent-kicker,.agent-meta,.agent-
 .nrs-breadcrumbs + .agent-page-hero,
 .nrs-breadcrumbs + .article-hero,
 .nrs-breadcrumbs + header { padding-top: clamp(2.25rem, 4vw, 4rem) !important; }
+
+/* Grid and media containment. Fixes tablet/landscape overflow instead of hiding it. */
 .agent-main :is(.agent-frame,.agent-hero-grid,.agent-page-hero-grid,.agent-service-grid,.agent-capabilities,.agent-contact-grid,.agent-case-grid,.nrs-work-grid,.nrs-case-v4-two-col,.nrs-case-v4-gallery) > * { min-width: 0 !important; }
 .agent-service-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
 .agent-service { grid-column: auto !important; width: auto !important; min-width: 0 !important; overflow-wrap: anywhere; }
@@ -312,6 +317,8 @@ html:not([data-theme='light']) .agent-main :is(.agent-kicker,.agent-meta,.agent-
   aspect-ratio: 4 / 3;
 }
 .agent-main :is(img,svg,video,canvas,iframe) { max-width: 100% !important; }
+
+/* Contact accessibility and error recovery. */
 .nrs-contact-field-error { display: block; margin-top: .45rem; color: #b42318 !important; -webkit-text-fill-color: #b42318 !important; font-size: .875rem; line-height: 1.45; }
 html[data-theme='dark'] .nrs-contact-field-error { color: #ffb4a8 !important; -webkit-text-fill-color: #ffb4a8 !important; }
 #contact-form :is(input,select,textarea)[aria-invalid='true'] { border-color: #b42318 !important; box-shadow: 0 0 0 2px rgba(180,35,24,.18) !important; }
@@ -323,8 +330,11 @@ html[data-theme='dark'] .nrs-contact-field-error { color: #ffb4a8 !important; -w
 html[data-theme='dark'] #contact-form-status[data-tone='error'] { color: #ffb4a8 !important; -webkit-text-fill-color: #ffb4a8 !important; }
 #contact-form-status[data-tone='success'] { color: #176b3a !important; -webkit-text-fill-color: #176b3a !important; }
 html[data-theme='dark'] #contact-form-status[data-tone='success'] { color: #91e6b5 !important; -webkit-text-fill-color: #91e6b5 !important; }
+
+/* Slightly tighter homepage after removing redundant capability copy. */
 .nrs-editorial-home .agent-section { padding-block: clamp(4.25rem, 7vw, 7rem) !important; }
 .nrs-editorial-home .agent-capabilities { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+
 @media (max-width: 1023px) {
   .agent-service-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
   .agent-capabilities { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
