@@ -35,7 +35,7 @@ const stages = [
   ['Enforce canonical Services', ['node', 'scripts/enforce-services-template.cjs', '--dist']],
   ['Enforce production routes', ['node', 'scripts/enforce-production-routes.cjs']],
   ['Enforce one floating resume control', ['node', 'scripts/enforce-single-floating-resume.cjs', '--dist']],
-  ['Generate resume PDF', ['node', 'scripts/generate-resume-pdf.cjs']],
+  ['Generate aligned resume PDF', ['node', 'scripts/generate-resume-pdf-v2.cjs']],
   ['Configure protected contact output', ['node', 'scripts/configure-contact-protection.cjs', '--dist']],
   ['Normalize production runtime', ['node', 'scripts/normalize-html-runtime.cjs', '--dist']],
   ['Apply agent portfolio redesign', ['node', 'scripts/agent-redesign.cjs', '--dist']],
@@ -64,6 +64,7 @@ const stages = [
   ['Keep accent text accessible', ['node', 'scripts/ensure-accessible-accent-text.cjs', '--dist']],
   ['Finalize people-first search metadata', ['node', 'scripts/ensure-human-seo-v2.cjs', '--dist']],
   ['Finalize favicon, theme and search identity', ['node', 'scripts/ensure-search-identity-final.cjs', '--dist']],
+  ['Apply final portfolio maturity contract', ['node', 'scripts/ensure-portfolio-maturity-v6.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
