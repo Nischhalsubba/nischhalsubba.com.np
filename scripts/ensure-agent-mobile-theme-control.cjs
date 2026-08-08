@@ -17,7 +17,7 @@ const files = [];
   }
 })(dist);
 
-const control = '<button class="agent-mobile-theme-toggle" type="button" aria-label="Switch color theme"><span>Theme</span><span aria-hidden="true">Light ↔ dark</span></button>';
+const control = '<button class="agent-mobile-theme-toggle" type="button" aria-label="Switch color theme"><span>Appearance</span><span aria-hidden="true">Light / dark</span></button>';
 let updated = 0;
 
 for (const file of files) {
