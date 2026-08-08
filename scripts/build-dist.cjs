@@ -63,6 +63,7 @@ const stages = [
   ['Repair mobile identity and theme contrast', ['node', 'scripts/ensure-final-brand-contrast.cjs', '--dist']],
   ['Keep accent text accessible', ['node', 'scripts/ensure-accessible-accent-text.cjs', '--dist']],
   ['Finalize people-first search metadata', ['node', 'scripts/ensure-human-seo-v2.cjs', '--dist']],
+  ['Finalize favicon, theme and search identity', ['node', 'scripts/ensure-search-identity-final.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
