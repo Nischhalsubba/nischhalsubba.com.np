@@ -76,7 +76,7 @@ function analyticsResponse(status = 204) {
   });
 }
 
-async function recordAnalytics(request, env) {
+async function recordAnalytics(request) {
   if (request.method === 'OPTIONS') return analyticsResponse();
   if (request.method !== 'POST') return methodNotAllowed();
 
@@ -93,18 +93,20 @@ async function recordAnalytics(request, env) {
   const event = String(payload?.event || '');
   if (!ANALYTICS_EVENTS.has(event)) return analyticsResponse(400);
 
-  const requestUrl = new URL(request.url);
   const pathName = String(payload?.path || '/').slice(0, 160);
   const context = String(payload?.context || '').slice(0, 80);
   const metric = String(payload?.metric || '').slice(0, 40);
   const numericValue = Number(payload?.value);
   const value = Number.isFinite(numericValue) ? numericValue : 1;
 
-  env.PORTFOLIO_ANALYTICS?.writeDataPoint({
-    indexes: [requestUrl.hostname],
-    blobs: [event, pathName, context, metric],
-    doubles: [value],
-  });
+  console.log(JSON.stringify({
+    type: 'portfolio_event',
+    event,
+    path: pathName,
+    context,
+    metric,
+    value,
+  }));
 
   return analyticsResponse();
 }
@@ -123,7 +125,7 @@ export default {
     }
 
     if (url.pathname === '/api/analytics') {
-      return recordAnalytics(request, env);
+      return recordAnalytics(request);
     }
 
     return env.ASSETS.fetch(request);
