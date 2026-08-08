@@ -1,0 +1,53 @@
+{
+  "name": "Nischhal Raj Subba",
+  "title": "Senior Product Designer",
+  "location": "Kathmandu, Nepal",
+  "remote": true,
+  "email": "hinischalsubba@gmail.com",
+  "website": "https://nischhalsubba.com.np/",
+  "summary": "Senior product designer with 6+ years across SaaS, Web3, fintech, enterprise software, learning products, design systems and implementation-aware product work. I focus on complex workflows, state design, interface systems and handoff that engineering can act on.",
+  "skills": [
+    "Product UX and workflow architecture",
+    "High-fidelity interface design",
+    "SaaS dashboards and multi-role products",
+    "Web3 wallet, signing and transaction UX",
+    "Fintech application and verification flows",
+    "Design systems and reusable patterns",
+    "Responsive product and website UX",
+    "Prototyping, developer handoff and UI QA"
+  ],
+  "experience": [
+    {"company":"Idealaya","role":"Product Designer","dates":"Aug 2025 – Dec 2025","summary":"Enterprise web software, high-fidelity product design and design-system work focused on clearer implementation."},
+    {"company":"Mokshya Protocol","role":"Product Designer","dates":"Mar 2024 – Jul 2025","summary":"Web3 product and website design, including wallet-native interactions, prototypes and technical product storytelling."},
+    {"company":"Tegzy","role":"Lead User Experience Designer","dates":"Feb 2023 – Nov 2023","summary":"Design-system consistency, reusable product patterns and stronger design-to-development handoff."},
+    {"company":"ESR Tech","role":"Senior UI/UX Designer","dates":"Oct 2021 – Feb 2023","summary":"Dashboard and internal-tool UX alongside broader product and website work."},
+    {"company":"ThemeGrill","role":"Senior UI/UX Designer","dates":"Apr 2021 – Sep 2021","summary":"Reusable UI components and prototypes inside a WordPress product environment."},
+    {"company":"Gurzu","role":"UI/UX Designer","dates":"Jul 2019 – Jan 2021","summary":"Client-facing product design, prototyping and interface improvement across early-stage and existing products."},
+    {"company":"Diagonal Softwares","role":"User Experience Designer","dates":"Apr 2019 – Sep 2020","summary":"Part-time interface and experience design aligned with client brand and product needs."}
+  ],
+  "projects": [
+    {"name":"Yarsha","summary":"Web3 messaging and wallet interaction design covering transaction context, review, signing handoff, pending states and recovery."},
+    {"name":"piHub","summary":"Fintech product workflows across applications, credit, verification, status architecture and role-specific next actions."},
+    {"name":"Orkest HQ","summary":"UX architecture for a modular SaaS platform spanning CRM, Sales, Inventory, Finance and shared workspace patterns."},
+    {"name":"Masteriyo","summary":"Product-design contribution within an established WordPress LMS covering course authoring, quizzes, learner states and reusable patterns."},
+    {"name":"Mokshya.io","summary":"Web3 protocol website structured for first-time comprehension, technical depth and responsive product storytelling."},
+    {"name":"Zapp Today","summary":"Multi-role logistics product UX across customer, driver and operational delivery states."}
+  ],
+  "education": [
+    "BA (Hons) Business Management — University of Wolverhampton, 2014–2018"
+  ],
+  "certifications": [
+    "Google UX Design Professional Certificate — June 2025",
+    "University of Minnesota: Introduction to UI Design — October 2024",
+    "Microsoft: Designing for User Experience — October 2024",
+    "Microsoft: Fundamentals of UI/UX Design — October 2024",
+    "CalArts: UX Design Fundamentals — October 2024",
+    "CalArts: Visual Elements of User Interface Design — October 2024"
+  ],
+  "profiles": {
+    "linkedin": "https://www.linkedin.com/in/nischhal/",
+    "behance": "https://www.behance.net/nischhal",
+    "github": "https://github.com/Nischhalsubba",
+    "uxcel": "https://app.uxcel.com/ux/nischhal"
+  }
+}
