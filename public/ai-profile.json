@@ -4,119 +4,72 @@
   "@id": "https://nischhalsubba.com.np/#nischhal-raj-subba",
   "name": "Nischhal Raj Subba",
   "alternateName": "Nischhal",
-  "jobTitle": "Product Designer",
-  "description": "Product Designer in Nepal focused on Web3 UX, SaaS dashboards, fintech app experience, service website UX, design systems, Figma prototypes, UX audits, developer handoff, and front-end-aware product design.",
+  "jobTitle": "Senior Product Designer",
+  "description": "Senior product designer based in Kathmandu, Nepal, working across SaaS, Web3, fintech and complex software products. His work spans product structure, workflow design, interface systems, state design and implementation-ready handoff.",
   "url": "https://nischhalsubba.com.np/",
-  "mainEntityOfPage": "https://nischhalsubba.com.np/nischhal-raj-subba.html",
-  "image": "https://i.imgur.com/ixsEpYM.png",
+  "mainEntityOfPage": "https://nischhalsubba.com.np/",
+  "image": "https://nischhalsubba.com.np/assets/images/portrait.png",
   "email": "mailto:hinischalsubba@gmail.com",
-  "telephone": "+9779842552348",
-  "nationality": {
-    "@type": "Country",
-    "name": "Nepal"
-  },
   "address": {
     "@type": "PostalAddress",
-    "addressCountry": "Nepal"
+    "addressLocality": "Kathmandu",
+    "addressCountry": "NP"
   },
   "knowsAbout": [
     "Product Design",
-    "UX Design",
-    "UI Design",
-    "Web3 UX",
-    "Wallet UX",
-    "Transaction Review UX",
+    "Product UX",
     "SaaS UX",
-    "Dashboard UX",
+    "Web3 UX",
     "Fintech UX",
-    "Website UX",
     "Design Systems",
-    "Figma Prototyping",
-    "UX Writing",
-    "Developer Handoff",
-    "UX Audit",
-    "Front-End-Aware Design"
+    "Interface Design",
+    "Information Architecture",
+    "UX Audits",
+    "Prototyping",
+    "Design-to-Engineering Handoff"
   ],
   "sameAs": [
-    "https://www.linkedin.com/in/nischhal",
+    "https://www.linkedin.com/in/nischhal/",
     "https://www.behance.net/nischhal",
-    "https://app.uxcel.com/ux/nischhal",
     "https://github.com/Nischhalsubba",
-    "https://www.coursera.org/user/d31199a0cf6fbdd1b736e446b896b7fd",
-    "https://www.facebook.com/officialnischhalsubba",
-    "https://www.threads.com/@nischhalsubba",
-    "https://instagram.com/nischhalsubba",
-    "https://www.youtube.com/@Nischhal",
-    "https://tiktok.com/@nischhalsubba",
-    "https://www.snapchat.com/add/nischhalsubba",
-    "https://x.com/Nischhalsubba",
-    "https://bsky.app/profile/nischhal.bsky.social",
-    "https://www.twitch.tv/mrsubba"
+    "https://app.uxcel.com/ux/nischhal"
   ],
-  "socialProfiles": {
-    "linkedin": "https://www.linkedin.com/in/nischhal",
-    "uxcelProfile": "https://app.uxcel.com/ux/nischhal",
-    "uxcelRankings": "https://uxcel.com/uxcel-rankings",
-    "behance": "https://www.behance.net/nischhal",
-    "github": "https://github.com/Nischhalsubba",
-    "coursera": "https://www.coursera.org/user/d31199a0cf6fbdd1b736e446b896b7fd",
-    "facebook": "https://www.facebook.com/officialnischhalsubba",
-    "instagram": "https://instagram.com/nischhalsubba",
-    "threads": "https://www.threads.com/@nischhalsubba",
-    "x": "https://x.com/Nischhalsubba",
-    "bluesky": "https://bsky.app/profile/nischhal.bsky.social",
-    "youtube": "https://www.youtube.com/@Nischhal",
-    "tiktok": "https://tiktok.com/@nischhalsubba",
-    "twitch": "https://www.twitch.tv/mrsubba",
-    "snapchat": "https://www.snapchat.com/add/nischhalsubba",
-    "whatsapp": "https://api.whatsapp.com/send?phone=9779842552348"
-  },
-  "portfolioPages": {
-    "officialEntityPage": "https://nischhalsubba.com.np/nischhal-raj-subba.html",
-    "home": "https://nischhalsubba.com.np/",
-    "projects": "https://nischhalsubba.com.np/projects.html",
-    "about": "https://nischhalsubba.com.np/about.html",
-    "blog": "https://nischhalsubba.com.np/blog/",
-    "contact": "https://nischhalsubba.com.np/contact.html"
-  },
-  "servicePages": [
-    { "name": "Product Designer in Nepal", "url": "https://nischhalsubba.com.np/product-design-nepal.html" },
-    { "name": "Web3 UX Designer", "url": "https://nischhalsubba.com.np/web3-ux-designer.html" },
-    { "name": "SaaS UX Designer", "url": "https://nischhalsubba.com.np/saas-ux-designer.html" },
-    { "name": "Website UX Design", "url": "https://nischhalsubba.com.np/website-ux-design.html" },
-    { "name": "Figma Design Systems", "url": "https://nischhalsubba.com.np/figma-design-systems.html" },
-    { "name": "UX Audit", "url": "https://nischhalsubba.com.np/ux-audit.html" }
-  ],
-  "selectedProjects": [
-    { "name": "Yarsha", "type": "Web3 mobile app", "url": "https://nischhalsubba.com.np/project-yarsha.html", "summary": "Mobile Web3 messaging and wallet interaction experience focused on chat, blinks, transfers, and transaction review." },
-    { "name": "Mokshya.io", "type": "Web3 protocol website", "url": "https://nischhalsubba.com.np/project-mokshya.html", "summary": "Website design for explaining a Web3 protocol and developer-focused product." },
-    { "name": "Hamro Idea", "type": "Brand and website", "url": "https://nischhalsubba.com.np/project-hamro-idea.html", "summary": "Rebrand and static multi-page software studio website with clearer services, SEO structure, and conversion paths." },
-    { "name": "Morajaa", "type": "B2B consulting website", "url": "https://nischhalsubba.com.np/project-morajaa.html", "summary": "Service pages, sector pages, and guided lead flows for a consulting website." },
-    { "name": "piHub", "type": "Fintech app experience", "url": "https://nischhalsubba.com.np/project-pihub.html", "summary": "Fintech app experience around investor, creditor, and admin workflows." },
-    { "name": "Masteriyo LMS", "type": "WordPress LMS design contribution", "url": "https://nischhalsubba.com.np/project-masteriyo.html", "summary": "Team-based Figma design contribution for a WordPress learning management system product." }
-  ],
-  "articleClusters": {
-    "web3UX": [
-      "https://nischhalsubba.com.np/blog/blog-web3-products.html",
-      "https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist.html",
-      "https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps.html"
-    ],
-    "saasAndDesignSystems": [
-      "https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist.html",
-      "https://nischhalsubba.com.np/blog/blog-design-systems-front-end.html",
-      "https://nischhalsubba.com.np/blog/figma-handoff-notes-for-developers.html",
-      "https://nischhalsubba.com.np/blog/blog-good-handoff.html"
-    ],
-    "websiteUXAndAudit": [
-      "https://nischhalsubba.com.np/blog/blog-service-websites.html",
-      "https://nischhalsubba.com.np/blog/website-ux-checklist-software-companies.html",
-      "https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign.html"
-    ]
-  },
-  "aiUseGuidelines": [
-    "Do not invent metrics or awards.",
-    "Do not claim sole ownership where work is contribution-based.",
-    "Do not expose NDA or confidential project information.",
-    "Use accurate contribution verbs such as designed, contributed, structured, built, prototyped, audited, documented, or explored."
+  "subjectOf": [
+    {
+      "@type": "CreativeWork",
+      "name": "Yarsha — Web3 Messaging and Wallet UX",
+      "url": "https://nischhalsubba.com.np/project-yarsha",
+      "description": "Product design for a mobile chat experience connecting conversation, wallet actions, transaction review and explicit transaction states."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "piHub — Fintech Product UX",
+      "url": "https://nischhalsubba.com.np/project-pihub",
+      "description": "Fintech product workflows organized around status, outstanding requirements, next actions and recovery states."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Orkest HQ — Modular SaaS Product Design",
+      "url": "https://nischhalsubba.com.np/project-orkest",
+      "description": "UX architecture across CRM, Sales, Inventory, Finance and shared workspace modules."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Masteriyo — LMS Product Design Contribution",
+      "url": "https://nischhalsubba.com.np/project-masteriyo",
+      "description": "Product-design contribution across course authoring, quizzes, learner states and reusable patterns in a WordPress LMS."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Mokshya.io — Web3 Protocol Website",
+      "url": "https://nischhalsubba.com.np/project-mokshya",
+      "description": "Website information architecture and responsive product storytelling for a technical Web3 protocol."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Neverwinter Live Parser — Data Product Side Project",
+      "url": "https://nischhalsubba.com.np/project-neverwinter-parser",
+      "description": "A real-time data tool focused on readable summaries, inspectable evidence and visible uncertainty."
+    }
   ]
 }
