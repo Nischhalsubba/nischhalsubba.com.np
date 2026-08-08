@@ -57,6 +57,7 @@ const stages = [
   ['Apply agent design audit remediation', ['node', 'scripts/ensure-agent-audit-remediation.cjs', '--dist']],
   ['Apply recruiter content enhancements', ['node', 'scripts/ensure-agent-audit-content-enhancements.cjs', '--dist']],
   ['Apply final sitewide editorial and SEO system', ['node', 'scripts/ensure-sitewide-editorial-v4.cjs', '--dist']],
+  ['Finish sitewide microcopy and metadata', ['node', 'scripts/ensure-sitewide-final-details.cjs', '--dist']],
   ['Stabilize expanded mobile navigation', ['node', 'scripts/ensure-mobile-drawer-final.cjs', '--dist']],
 ];
 
