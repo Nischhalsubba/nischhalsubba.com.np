@@ -1,6 +1,6 @@
 import { $ } from '../utils/dom.js';
 
-const CONTACT_EMAIL = 'hinischhalsubba@gmail.com';
+const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
 const FIRST_PARTY_ENDPOINT = '/api/contact';
 const FALLBACK_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 const TURNSTILE_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
@@ -203,7 +203,7 @@ export function initContactForm() {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!validate(form)) {
-      setStatus('Check the highlighted fields, then send again.', 'error');
+      setStatus('Review the highlighted fields, then send again.', 'error');
       focusInvalid(form.querySelector('[aria-invalid="true"]'), { persistent: true });
       return;
     }
