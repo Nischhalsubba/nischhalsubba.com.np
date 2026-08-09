@@ -69,6 +69,7 @@ const stages = [
   ['Contain final Services layout', ['node', 'scripts/ensure-service-containment-v9.cjs', '--dist']],
   ['Fix final Writing and Services visual inheritance', ['node', 'scripts/ensure-writing-service-visual-v10.cjs', '--dist']],
   ['Enforce one mobile brand at runtime', ['node', 'scripts/ensure-mobile-brand-singleton-v11.cjs', '--dist']],
+  ['Apply Signal over Noise portrait interaction', ['node', 'scripts/ensure-signal-portrait-interaction-v12.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
