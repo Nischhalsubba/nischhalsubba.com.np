@@ -3,17 +3,20 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 
 const root = path.resolve(__dirname, '..');
-const sourceDir = path.join(root, 'assets', 'images', 'hero-uploaded-dark.parts');
-const chunkNames = ['part-00a.b64', 'part-00b.b64', 'part-00c.b64', 'part-00d.b64'];
-const restored = Buffer.from(chunkNames
-  .map((name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
-  .join(''), 'utf8');
-const sourceHash = crypto.createHash('sha1')
-  .update(Buffer.from(`blob ${restored.length}\0`, 'utf8'))
-  .update(restored)
-  .digest('hex');
-if (restored.length !== 16000 || sourceHash !== '1f96ecf6774900e004bebc7bbcc27ddc2ad61a7c') {
-  throw new Error(`[uploaded-hero-v18] Dark source chunk verification failed: ${restored.length} bytes, ${sourceHash}.`);
+const sourceDir = path.join(root, 'assets', 'images', 'hero-original-v19.parts');
+
+function restore(targetName, chunkNames, expectedBytes, expectedHash) {
+  const restored = chunkNames
+    .map((name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
+    .join('');
+  const hash = crypto.createHash('sha256').update(restored, 'utf8').digest('hex');
+  if (restored.length !== expectedBytes || hash !== expectedHash) {
+    throw new Error(`[hero-photo-v19] ${targetName} reconstruction failed: ${restored.length} bytes, ${hash}.`);
+  }
+  fs.writeFileSync(path.join(sourceDir, targetName), restored, 'utf8');
 }
-fs.writeFileSync(path.join(sourceDir, 'part-00.b64'), restored);
+
+restore('part-01.b64', ['part-01a.b64', 'part-01b.b64'], 10000, '2a5b8f04acf317ba11c6d4dd734ab11c7d225bdeb954acebe6a700afb3f246eb');
+restore('part-02.b64', ['part-02a.b64', 'part-02b1.b64', 'part-02b2a.b64', 'part-02b2b.b64'], 10000, 'f98e9990e4acc7adaaa90e01f835d4166156423c0ecdf8e0ac61175c9cec9287');
+
 require('./finalize-signal-reference-visual-v18-core.cjs');
