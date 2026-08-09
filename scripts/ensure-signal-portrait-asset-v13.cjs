@@ -4,9 +4,11 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const base = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const homePath = path.join(base, 'index.html');
+const stylePath = path.join(base, 'style.css');
 const portraitPath = path.join(base, 'assets', 'images', 'signal-portrait.svg');
 
 if (!fs.existsSync(homePath)) throw new Error(`[signal-portrait-v13] Missing ${homePath}`);
+if (!fs.existsSync(stylePath)) throw new Error(`[signal-portrait-v13] Missing ${stylePath}`);
 if (!fs.existsSync(portraitPath)) throw new Error(`[signal-portrait-v13] Missing approved portrait asset ${portraitPath}`);
 
 let html = fs.readFileSync(homePath, 'utf8');
@@ -31,4 +33,27 @@ if (stale.length) {
   throw new Error(`[signal-portrait-v13] ${stale.length} stale Signal portrait.png reference(s) remain.`);
 }
 
-console.log('[signal-portrait-v13] Approved portrait asset wired into final homepage output.');
+let style = fs.readFileSync(stylePath, 'utf8');
+const start = '/* nrs-signal-portrait-v13-containment:start */';
+const end = '/* nrs-signal-portrait-v13-containment:end */';
+const marker = /\/\* nrs-signal-portrait-v13-containment:start \*\/[\s\S]*?\/\* nrs-signal-portrait-v13-containment:end \*\//g;
+const containment = `${start}
+@media (max-width: 899px) {
+  .agent-portfolio .nrs-signal-portrait {
+    left: 16px;
+    right: auto;
+    width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
+  }
+
+  .agent-portfolio .nrs-signal-portrait--ghost {
+    left: 16px;
+    right: auto;
+  }
+}
+${end}`;
+
+style = marker.test(style) ? style.replace(marker, containment) : `${style}\n\n${containment}\n`;
+fs.writeFileSync(stylePath, style, 'utf8');
+
+console.log('[signal-portrait-v13] Approved portrait asset finalized and contained for mobile/tablet motion.');
