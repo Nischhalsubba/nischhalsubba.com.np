@@ -34,26 +34,20 @@ if (stale.length) {
 }
 
 let style = fs.readFileSync(stylePath, 'utf8');
-const start = '/* nrs-signal-portrait-v13-containment:start */';
-const end = '/* nrs-signal-portrait-v13-containment:end */';
-const marker = /\/\* nrs-signal-portrait-v13-containment:start \*\/[\s\S]*?\/\* nrs-signal-portrait-v13-containment:end \*\//g;
-const containment = `${start}
-@media (max-width: 899px) {
-  .agent-portfolio .nrs-signal-portrait {
-    left: 16px;
-    right: auto;
-    width: calc(100% - 32px);
-    max-width: calc(100% - 32px);
-  }
+const oldContainment = /\/\* nrs-signal-portrait-v13-containment:start \*\/[\s\S]*?\/\* nrs-signal-portrait-v13-containment:end \*\//g;
+style = style.replace(oldContainment, '');
 
-  .agent-portfolio .nrs-signal-portrait--ghost {
-    left: 16px;
-    right: auto;
+const start = '/* nrs-signal-portrait-v13-stage-inset:start */';
+const end = '/* nrs-signal-portrait-v13-stage-inset:end */';
+const marker = /\/\* nrs-signal-portrait-v13-stage-inset:start \*\/[\s\S]*?\/\* nrs-signal-portrait-v13-stage-inset:end \*\//g;
+const inset = `${start}
+@media (max-width: 899px) {
+  .agent-portfolio .nrs-signal-figure {
+    width: min(calc(100% - 32px), 29rem);
   }
 }
 ${end}`;
-
-style = marker.test(style) ? style.replace(marker, containment) : `${style}\n\n${containment}\n`;
+style = marker.test(style) ? style.replace(marker, inset) : `${style}\n\n${inset}\n`;
 fs.writeFileSync(stylePath, style, 'utf8');
 
-console.log('[signal-portrait-v13] Approved portrait asset finalized and contained for mobile/tablet motion.');
+console.log('[signal-portrait-v13] Approved demo portrait asset wired without altering its crop.');
