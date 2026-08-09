@@ -21,11 +21,14 @@ html = html.replace(pattern, '$1/assets/images/signal-portrait.svg$2');
 fs.writeFileSync(homePath, html, 'utf8');
 
 const result = fs.readFileSync(homePath, 'utf8');
-if ((result.match(/\/assets\/images\/signal-portrait\.svg/g) || []).length !== 2) {
-  throw new Error('[signal-portrait-v13] Approved portrait references were not finalized.');
+const finalized = result.match(/<img class="nrs-signal-portrait[^\"]*" src="\/assets\/images\/signal-portrait\.svg"[^>]*>/g) || [];
+const stale = result.match(/<img class="nrs-signal-portrait[^\"]*" src="\/assets\/images\/portrait\.png"[^>]*>/g) || [];
+
+if (finalized.length !== 2) {
+  throw new Error(`[signal-portrait-v13] Expected 2 finalized Signal portrait references, found ${finalized.length}.`);
 }
-if (result.includes('nrs-signal-portrait') && result.includes('/assets/images/portrait.png')) {
-  throw new Error('[signal-portrait-v13] Stale Signal portrait.png reference remains.');
+if (stale.length) {
+  throw new Error(`[signal-portrait-v13] ${stale.length} stale Signal portrait.png reference(s) remain.`);
 }
 
 console.log('[signal-portrait-v13] Approved portrait asset wired into final homepage output.');
