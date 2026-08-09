@@ -40,6 +40,7 @@ const issues = [];
 const forbiddenCss = /(site-design-system|contact-redesign|services-redesign|services-process-redesign|seo-ui-enhancements|style-1|blog-experience)\.css/i;
 const forbiddenJs = /(blog-index|site-experience|portfolio-improvements)\.js/i;
 const forbiddenFontText = /(Playfair\+Display|Playfair Display|fonts\.googleapis\.com\/css2\?family=Playfair)/i;
+const approvedRootScripts = new Set(['/portfolio-events.js']);
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
@@ -57,7 +58,7 @@ for (const file of htmlFiles) {
   }
 
   for (const src of scripts) {
-    const isAllowedRuntime = src.includes('/script.js') || /\/assets\/.+\.js$/i.test(src);
+    const isAllowedRuntime = src.includes('/script.js') || /\/assets\/.+\.js$/i.test(src) || approvedRootScripts.has(src);
     if (src.startsWith('/') && src.endsWith('.js') && !isAllowedRuntime) issues.push(`${rel}: links extra website JS ${src}`);
     if (forbiddenJs.test(src)) issues.push(`${rel}: links removed website JS ${src}`);
   }
@@ -67,10 +68,14 @@ for (const file of htmlFiles) {
   if (/<nav class="mobile-nav-links"(?![^>]*aria-label=)/.test(html)) issues.push(`${rel}: mobile nav missing aria-label`);
 }
 
+if (fs.existsSync(path.join(targetRoot, 'portfolio-events.js')) === false) {
+  issues.push('approved first-party analytics runtime /portfolio-events.js is missing from build output');
+}
+
 if (issues.length > 0) {
   console.error('Design-system coverage audit failed:');
   for (const issue of issues) console.error(`- ${issue}`);
   process.exitCode = 1;
 } else {
-  console.log(`OK: ${htmlFiles.length} HTML files use the single frontend stylesheet, approved font system, and runtime script.`);
+  console.log(`OK: ${htmlFiles.length} HTML files use the single frontend stylesheet, approved font system, primary runtime, and first-party analytics runtime.`);
 }
