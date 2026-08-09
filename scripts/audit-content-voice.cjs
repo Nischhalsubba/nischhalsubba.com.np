@@ -11,7 +11,7 @@ const issues=[];
 for(const file of files){const html=fs.readFileSync(file,'utf8');const rel=path.relative(dist,file).replaceAll(path.sep,'/');for(const rule of banned){rule.lastIndex=0;if(rule.test(html))issues.push(`${rel}: generic phrase ${rule}`)}}
 const required={
  'index.html':['Product Designer','product'],
- 'services.html':['Design the product clearly','services'],
+ 'services.html':['Design support for software with too much complexity behind the screen.','services'],
  'about.html':['Product designer','experience'],
  'contact.html':['project','timeline','privacy']
 };
