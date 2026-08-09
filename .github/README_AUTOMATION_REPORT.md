@@ -41,7 +41,8 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/designer-story-v20` | updated | Branch-specific README committed |
 | `fix/exact-signal-demo-v17` | unchanged | README already matched the standard |
 | `fix/exact-signal-poster` | unchanged | README already matched the standard |
-| `fix/hero-photo-v19` | updated | Branch-specific README committed |
+| `fix/gsap-story-v21` | updated | Branch-specific README committed |
+| `fix/hero-photo-v19` | unchanged | README already matched the standard |
 | `fix/mobile-tablet-blank-space` | unchanged | README already matched the standard |
 | `fix/production-backlog-round-2` | unchanged | README already matched the standard |
 | `fix/remaining-portfolio-qa` | unchanged | README already matched the standard |
