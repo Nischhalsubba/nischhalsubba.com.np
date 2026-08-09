@@ -71,6 +71,7 @@ const stages = [
   ['Enforce one mobile brand at runtime', ['node', 'scripts/ensure-mobile-brand-singleton-v11.cjs', '--dist']],
   ['Apply Signal over Noise portrait interaction', ['node', 'scripts/ensure-signal-portrait-interaction-v12.cjs', '--dist']],
   ['Finalize approved Signal portrait asset', ['node', 'scripts/ensure-signal-portrait-asset-v13.cjs', '--dist']],
+  ['Remove Signal hero legend and instruction copy', ['node', 'scripts/remove-signal-hero-legend.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
