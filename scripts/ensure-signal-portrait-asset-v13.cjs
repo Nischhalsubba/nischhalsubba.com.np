@@ -6,23 +6,32 @@ const distMode = process.argv.includes('--dist');
 const base = distMode ? path.join(root, 'dist') : root;
 const homePath = path.join(base, 'index.html');
 const stylePath = path.join(base, 'style.css');
-const encodedPosterPath = path.join(root, 'assets', 'images', 'signal-demo-poster.webp.b64');
-const copiedEncodedPosterPath = path.join(base, 'assets', 'images', 'signal-demo-poster.webp.b64');
+const posterPartsDir = path.join(root, 'assets', 'images', 'signal-demo-poster.parts');
+const copiedPartsDir = path.join(base, 'assets', 'images', 'signal-demo-poster.parts');
 const posterPath = path.join(base, 'assets', 'images', 'signal-demo-poster.webp');
 
 if (!fs.existsSync(homePath)) throw new Error(`[signal-portrait-v13] Missing ${homePath}`);
 if (!fs.existsSync(stylePath)) throw new Error(`[signal-portrait-v13] Missing ${stylePath}`);
-if (!fs.existsSync(encodedPosterPath)) throw new Error(`[signal-portrait-v13] Missing exact demo poster source ${encodedPosterPath}`);
+if (!fs.existsSync(posterPartsDir)) throw new Error(`[signal-portrait-v13] Missing exact demo poster parts ${posterPartsDir}`);
 
-const encodedPoster = fs.readFileSync(encodedPosterPath, 'utf8').replace(/\s+/g, '');
+const partFiles = fs.readdirSync(posterPartsDir)
+  .filter((name) => /^part-\d+\.b64part$/.test(name))
+  .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+if (partFiles.length < 2) throw new Error(`[signal-portrait-v13] Expected multiple demo poster chunks, found ${partFiles.length}.`);
+const encodedPoster = partFiles
+  .map((name) => fs.readFileSync(path.join(posterPartsDir, name), 'utf8'))
+  .join('')
+  .replace(/\s+/g, '');
 const posterBytes = Buffer.from(encodedPoster, 'base64');
-if (posterBytes.length < 60000) throw new Error(`[signal-portrait-v13] Decoded demo poster is suspiciously small (${posterBytes.length} bytes).`);
+if (posterBytes.length < 60000) throw new Error(`[signal-portrait-v13] Reassembled demo poster is suspiciously small (${posterBytes.length} bytes from ${partFiles.length} chunks).`);
 if (posterBytes.subarray(0, 4).toString('ascii') !== 'RIFF' || posterBytes.subarray(8, 12).toString('ascii') !== 'WEBP') {
-  throw new Error('[signal-portrait-v13] Exact demo poster did not decode to a valid WebP container.');
+  throw new Error('[signal-portrait-v13] Reassembled exact demo poster is not a valid WebP container.');
 }
 fs.mkdirSync(path.dirname(posterPath), { recursive: true });
 fs.writeFileSync(posterPath, posterBytes);
-if (distMode && fs.existsSync(copiedEncodedPosterPath)) fs.rmSync(copiedEncodedPosterPath);
+if (distMode && fs.existsSync(copiedPartsDir)) fs.rmSync(copiedPartsDir, { recursive: true, force: true });
+const legacyEncoded = path.join(base, 'assets', 'images', 'signal-demo-poster.webp.b64');
+if (distMode && fs.existsSync(legacyEncoded)) fs.rmSync(legacyEncoded);
 
 let html = fs.readFileSync(homePath, 'utf8');
 const portraitPattern = /(<img class="nrs-signal-portrait[^\"]*" src=")[^"]+("[^>]*>)/g;
@@ -148,4 +157,4 @@ ${end}`;
 style = marker.test(style) ? style.replace(marker, inset) : `${style}\n\n${inset}\n`;
 fs.writeFileSync(stylePath, style, 'utf8');
 
-console.log(`[signal-portrait-v13] Exact uploaded demo poster decoded (${posterBytes.length} bytes), wired into the final hero, and paired with the demo legend.`);
+console.log(`[signal-portrait-v13] Exact uploaded demo poster reassembled (${posterBytes.length} bytes from ${partFiles.length} chunks), wired into the final hero, and paired with the demo legend.`);
