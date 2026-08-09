@@ -7,20 +7,6 @@ const site = 'https://nischhalsubba.com.np';
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
 const errors = [];
 
-const socialPages = new Map([
-  ['index.html', 'home'],
-  ['projects.html', 'projects'],
-  ['services.html', 'services'],
-  ['product-design-nepal.html', 'product-design-nepal'],
-  ['saas-ux-designer.html', 'saas-ux-designer'],
-  ['web3-ux-designer.html', 'web3-ux-designer'],
-  ['figma-design-systems.html', 'figma-design-systems'],
-  ['ux-audit.html', 'ux-audit'],
-  ['website-ux-design.html', 'website-ux-design'],
-  ['project-yarsha.html', 'project-yarsha'],
-  ['project-mokshya.html', 'project-mokshya'],
-]);
-
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
@@ -85,16 +71,29 @@ function validateJsonLd(html, file, canonical) {
   }
 }
 
-function validatePng(file, slug, imageUrl, widthMeta, heightMeta) {
-  const expectedUrl = `${site}/assets/images/social/${slug}.png`;
-  if (imageUrl !== expectedUrl) errors.push(`${file}: social image must be ${expectedUrl}`);
-  if (widthMeta !== '1200' || heightMeta !== '630') errors.push(`${file}: social image metadata must declare 1200x630`);
-  const imagePath = path.join(dist, 'assets', 'images', 'social', `${slug}.png`);
-  if (!fs.existsSync(imagePath)) return errors.push(`${file}: generated social image is missing`);
-  const png = fs.readFileSync(imagePath);
-  const signature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
-  if (png.length < 24 || !png.subarray(0, 8).equals(signature)) return errors.push(`${file}: social image is not a valid PNG`);
-  if (png.readUInt32BE(16) !== 1200 || png.readUInt32BE(20) !== 630) errors.push(`${file}: PNG dimensions are not 1200x630`);
+function validateSocialImage(file, imageUrl) {
+  if (!imageUrl) return errors.push(`${file}: social image is missing`);
+
+  let parsed;
+  try {
+    parsed = new URL(imageUrl);
+  } catch {
+    return errors.push(`${file}: social image URL is invalid`);
+  }
+
+  if (parsed.origin !== site) return errors.push(`${file}: social image must use the production origin`);
+  if (/^\/assets\/images\/social\//i.test(parsed.pathname)) {
+    errors.push(`${file}: social image still points to the retired synthetic preview-card directory`);
+    return;
+  }
+
+  const relative = decodeURIComponent(parsed.pathname).replace(/^\/+/, '');
+  const imagePath = path.join(dist, relative);
+  if (!fs.existsSync(imagePath) || !fs.statSync(imagePath).isFile()) {
+    errors.push(`${file}: social image does not resolve to a built file (${parsed.pathname})`);
+    return;
+  }
+  if (fs.statSync(imagePath).size === 0) errors.push(`${file}: social image file is empty`);
 }
 
 const canonicalUrls = [];
@@ -132,22 +131,16 @@ for (const file of manifest.html) {
   if (ogDescription !== description || twitterDescription !== description) errors.push(`${file}: social descriptions must equal meta description`);
   if (ogImage !== twitterImage) errors.push(`${file}: Open Graph and Twitter images must match`);
   if (twitterCard !== 'summary_large_image') errors.push(`${file}: twitter:card must be summary_large_image`);
-  if (!/^https:\/\/nischhalsubba\.com\.np\//.test(ogImage)) errors.push(`${file}: social image must use the production origin`);
 
   if (seenTitles.has(title)) errors.push(`${file}: duplicate title also used by ${seenTitles.get(title)}`);
   else if (title) seenTitles.set(title, file);
 
   validateJsonLd(html, file, canonical);
-  if (socialPages.has(file)) {
-    validatePng(
-      file,
-      socialPages.get(file),
-      ogImage,
-      single(metaValues(html, 'og:image:width', 'property'), 'og:image:width', file),
-      single(metaValues(html, 'og:image:height', 'property'), 'og:image:height', file),
-    );
-  }
+  validateSocialImage(file, ogImage);
 }
+
+const retiredSocialDirectory = path.join(dist, 'assets', 'images', 'social');
+if (fs.existsSync(retiredSocialDirectory)) errors.push('retired synthetic social preview directory must not be present in dist');
 
 const sitemapPath = path.join(dist, 'sitemap.xml');
 if (!fs.existsSync(sitemapPath)) errors.push('sitemap.xml is missing');
@@ -167,4 +160,4 @@ if (errors.length) {
   console.error(`[seo-contract] ${errors.length} failure(s)\n${errors.map((error) => `- ${error}`).join('\n')}`);
   process.exit(1);
 }
-console.log(`[seo-contract] ${manifest.html.length} canonical routes, structured data, sitemap and raster social previews passed.`);
+console.log(`[seo-contract] ${manifest.html.length} canonical routes, structured data, sitemap and real social imagery passed.`);
