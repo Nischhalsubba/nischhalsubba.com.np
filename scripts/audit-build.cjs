@@ -99,6 +99,22 @@ function hasLocalPortraitAsset() {
   ).length > 0;
 }
 
+function validateResumePdf(filePath) {
+  if (!fs.existsSync(filePath)) return;
+  const pdf = fs.readFileSync(filePath);
+  const text = pdf.toString('latin1');
+
+  if (pdf.length < 2_000) fail('Generated resume PDF is unexpectedly small or truncated.');
+  if (!text.startsWith('%PDF-')) fail('Generated resume PDF is missing a valid PDF header.');
+  if (!text.trimEnd().endsWith('%%EOF')) fail('Generated resume PDF is missing the EOF marker.');
+  if (!/\bxref\b/.test(text) || !/\btrailer\b/.test(text)) fail('Generated resume PDF is missing its cross-reference table or trailer.');
+  if (!/\/Type\s*\/Catalog\b/.test(text) || !/\/Type\s*\/Pages\b/.test(text)) fail('Generated resume PDF is missing its catalog/pages structure.');
+
+  const pageCount = Number(text.match(/\/Type\s*\/Pages\b[\s\S]*?\/Count\s+(\d+)/)?.[1] || 0);
+  if (!Number.isInteger(pageCount) || pageCount < 1) fail('Generated resume PDF does not declare at least one page.');
+  if (!text.includes('Nischhal Raj Subba')) fail('Generated resume PDF is missing the portfolio owner identity.');
+}
+
 if (!fs.existsSync(distDir)) {
   fail('dist directory does not exist. Run the build before auditing.');
 } else {
@@ -178,10 +194,7 @@ if (!fs.existsSync(distDir)) {
     fail('style.css still imports Google Fonts.');
   }
 
-  const resumePath = path.join(distDir, 'assets', 'resume.pdf');
-  if (fs.existsSync(resumePath) && fs.statSync(resumePath).size < 10_000) {
-    fail('Generated resume PDF looks too small.');
-  }
+  validateResumePdf(path.join(distDir, 'assets', 'resume.pdf'));
 
   if (!indexHtml.includes('Product Designer')) {
     warn('Homepage does not contain the primary Product Designer positioning phrase.');
