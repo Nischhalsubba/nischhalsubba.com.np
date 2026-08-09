@@ -1,51 +1,82 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 const root = path.resolve(__dirname, '..');
 const distMode = process.argv.includes('--dist');
 const base = distMode ? path.join(root, 'dist') : root;
 const homePath = path.join(base, 'index.html');
 const stylePath = path.join(base, 'style.css');
-const posterPartsDir = path.join(root, 'assets', 'images', 'signal-demo-poster-v2.parts');
-const copiedPartsDir = path.join(base, 'assets', 'images', 'signal-demo-poster-v2.parts');
+const posterPartsDir = path.join(root, 'assets', 'images', 'signal-demo-poster-v4.parts');
 const posterPath = path.join(base, 'assets', 'images', 'signal-demo-poster.webp');
-const EXPECTED_PARTS = 7;
-const EXPECTED_POSTER_BYTES = 44408;
+const EXPECTED_POSTER_BYTES = 65112;
+const EXPECTED_POSTER_SHA256 = '0ad9e8d745adb38217dd9c148860e27ef8d118531fd31d96362ce0987513bae6';
+const EXPECTED_PARTS = [
+  ['part-00.b64part', 20000, '869a076d3b463d2823fca6d0073cfa2eeaf8ba61aacfb26ea9c51de739074d96'],
+  ['part-01a.b64part', 5000, 'cc254ea7188655a80fb7bec8ee5306bddb4a81e5c95bec5b1965703059c97cea'],
+  ['part-01b.b64part', 5000, '176038e88f3f2ea45bf8237c6d4ee2a8d9104f223af8fb55c4db1140f33ab279'],
+  ['part-01c.b64part', 5000, 'dd21a44ff88e972eadaf954f7d6af38febd5b14e2a00d8b8d96cf6ea9cc2cf0e'],
+  ['part-01d.b64part', 5000, 'ccf74dc825122fe9d1384ce5d541a6df9e30ab6d0a565b15afb0b7190e641d58'],
+  ['part-02.b64part', 20000, '0867cb199892652ad88595dbda25495b676098aa171263dea2726d85ed5538ac'],
+  ['part-03a.b64part', 5000, '0bbbf59bfc74bb919de9e9573c38f440d98cacf3f4cf689e02f3b82eb1731463'],
+  ['part-03b.b64part', 5000, 'cc7331f1330dc36cef196c2c516d3d72492b9542f1540bc493e9a27732775d7e'],
+  ['part-03c.b64part', 5000, '86b4085bf87a3f104508f484f0dfde87c264463497d1da916a9a0bc9cc229861'],
+  ['part-03d.b64part', 5000, '4322b74815e268bdc3d24e16a14f6a6ef950cbde173c413eee259dcc3c40f60b'],
+  ['part-04a.b64part', 5000, 'cdb80dc1ae132b463a9c0472680cc4288f2819e0ee1e4b1bc800b66a73e24848'],
+  ['part-04b.b64part', 1816, '03750b04c44530bddc52e676252573c1f2aeae8209d2be4d8883e4f1c04c7a7b'],
+];
+
+const sha256 = (value) => crypto.createHash('sha256').update(value).digest('hex');
 
 if (!fs.existsSync(homePath)) throw new Error(`[signal-portrait-v13] Missing ${homePath}`);
 if (!fs.existsSync(stylePath)) throw new Error(`[signal-portrait-v13] Missing ${stylePath}`);
 if (!fs.existsSync(posterPartsDir)) throw new Error(`[signal-portrait-v13] Missing exact demo poster parts ${posterPartsDir}`);
 
-const partFiles = fs.readdirSync(posterPartsDir)
-  .filter((name) => /^part-\d+\.b64part$/.test(name))
+const discoveredParts = fs.readdirSync(posterPartsDir)
+  .filter((name) => name.endsWith('.b64part'))
   .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
-if (partFiles.length !== EXPECTED_PARTS) {
-  throw new Error(`[signal-portrait-v13] Expected ${EXPECTED_PARTS} exact demo poster chunks, found ${partFiles.length}.`);
-}
-for (let index = 0; index < EXPECTED_PARTS; index += 1) {
-  const expectedName = `part-${String(index).padStart(2, '0')}.b64part`;
-  if (partFiles[index] !== expectedName) throw new Error(`[signal-portrait-v13] Missing ordered poster chunk ${expectedName}.`);
+const expectedNames = EXPECTED_PARTS.map(([name]) => name).sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+if (JSON.stringify(discoveredParts) !== JSON.stringify(expectedNames)) {
+  throw new Error(`[signal-portrait-v13] Exact poster segment set mismatch. Expected ${expectedNames.join(', ')}, found ${discoveredParts.join(', ')}.`);
 }
 
-const encodedPoster = partFiles
-  .map((name) => fs.readFileSync(path.join(posterPartsDir, name), 'utf8'))
-  .join('')
-  .replace(/\s+/g, '');
+const encodedParts = EXPECTED_PARTS.map(([name, expectedChars, expectedHash]) => {
+  const normalized = fs.readFileSync(path.join(posterPartsDir, name), 'utf8').replace(/\s+/g, '');
+  if (normalized.length !== expectedChars) {
+    throw new Error(`[signal-portrait-v13] ${name} character count mismatch. Expected ${expectedChars}, found ${normalized.length}.`);
+  }
+  const actualHash = sha256(normalized);
+  if (actualHash !== expectedHash) {
+    throw new Error(`[signal-portrait-v13] ${name} checksum mismatch. Expected ${expectedHash}, found ${actualHash}.`);
+  }
+  return normalized;
+});
+
+const encodedPoster = encodedParts.join('');
 const posterBytes = Buffer.from(encodedPoster, 'base64');
 if (posterBytes.length !== EXPECTED_POSTER_BYTES) {
-  throw new Error(`[signal-portrait-v13] Reassembled demo poster byte count mismatch. Expected ${EXPECTED_POSTER_BYTES}, found ${posterBytes.length}.`);
+  throw new Error(`[signal-portrait-v13] Exact demo poster byte count mismatch. Expected ${EXPECTED_POSTER_BYTES}, found ${posterBytes.length}.`);
+}
+const posterHash = sha256(posterBytes);
+if (posterHash !== EXPECTED_POSTER_SHA256) {
+  throw new Error(`[signal-portrait-v13] Exact demo poster checksum mismatch. Expected ${EXPECTED_POSTER_SHA256}, found ${posterHash}.`);
 }
 if (posterBytes.subarray(0, 4).toString('ascii') !== 'RIFF' || posterBytes.subarray(8, 12).toString('ascii') !== 'WEBP') {
   throw new Error('[signal-portrait-v13] Reassembled exact demo poster is not a valid WebP container.');
 }
 fs.mkdirSync(path.dirname(posterPath), { recursive: true });
 fs.writeFileSync(posterPath, posterBytes);
-if (distMode && fs.existsSync(copiedPartsDir)) fs.rmSync(copiedPartsDir, { recursive: true, force: true });
-for (const legacyPath of [
-  path.join(base, 'assets', 'images', 'signal-demo-poster.parts'),
-  path.join(base, 'assets', 'images', 'signal-demo-poster.webp.b64'),
-]) {
-  if (distMode && fs.existsSync(legacyPath)) fs.rmSync(legacyPath, { recursive: true, force: true });
+
+if (distMode) {
+  for (const transientPath of [
+    path.join(base, 'assets', 'images', 'signal-demo-poster-v2.parts'),
+    path.join(base, 'assets', 'images', 'signal-demo-poster-v3.parts'),
+    path.join(base, 'assets', 'images', 'signal-demo-poster-v4.parts'),
+    path.join(base, 'assets', 'images', 'signal-demo-poster.parts'),
+    path.join(base, 'assets', 'images', 'signal-demo-poster.webp.b64'),
+  ]) {
+    if (fs.existsSync(transientPath)) fs.rmSync(transientPath, { recursive: true, force: true });
+  }
 }
 
 let html = fs.readFileSync(homePath, 'utf8');
@@ -172,4 +203,4 @@ ${end}`;
 style = marker.test(style) ? style.replace(marker, inset) : `${style}\n\n${inset}\n`;
 fs.writeFileSync(stylePath, style, 'utf8');
 
-console.log(`[signal-portrait-v13] Exact uploaded demo poster verified at ${posterBytes.length} bytes, wired into the final hero, and paired with the demo legend.`);
+console.log(`[signal-portrait-v13] Exact demo poster verified: ${posterBytes.length} bytes, SHA-256 ${posterHash}; final hero and legend wired.`);
