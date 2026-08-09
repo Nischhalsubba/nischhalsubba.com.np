@@ -44,6 +44,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/remaining-portfolio-qa` | unchanged | README already matched the standard |
 | `fix/remaining-portfolio-qa-v2` | unchanged | README already matched the standard |
 | `fix/remaining-production-issues` | unchanged | README already matched the standard |
+| `fix/signal-demo-v14` | updated | Branch-specific README committed |
 | `fix/vercel-contact-protection` | unchanged | README already matched the standard |
 | `fix/verified-mobile-hero-top` | unchanged | README already matched the standard |
 | `gent/editorial-portfolio-redesign` | unchanged | README already matched the standard |
