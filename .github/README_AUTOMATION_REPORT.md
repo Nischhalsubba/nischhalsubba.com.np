@@ -38,6 +38,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/cloudflare-worker-contact` | unchanged | README already matched the standard |
 | `fix/comprehensive-portfolio-audit` | unchanged | README already matched the standard |
 | `fix/contact-form-stuck-sending` | unchanged | README already matched the standard |
+| `fix/designer-story-v20` | updated | Branch-specific README committed |
 | `fix/exact-signal-demo-v17` | unchanged | README already matched the standard |
 | `fix/exact-signal-poster` | unchanged | README already matched the standard |
 | `fix/hero-photo-v19` | updated | Branch-specific README committed |
@@ -47,7 +48,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/remaining-portfolio-qa-v2` | unchanged | README already matched the standard |
 | `fix/remaining-production-issues` | unchanged | README already matched the standard |
 | `fix/signal-demo-v14` | unchanged | README already matched the standard |
-| `fix/uploaded-html-hero-v18` | updated | Branch-specific README committed |
+| `fix/uploaded-html-hero-v18` | unchanged | README already matched the standard |
 | `fix/vercel-contact-protection` | unchanged | README already matched the standard |
 | `fix/verified-mobile-hero-top` | unchanged | README already matched the standard |
 | `gent/editorial-portfolio-redesign` | unchanged | README already matched the standard |
