@@ -36,6 +36,7 @@
 This branch differs from the default branch in the following detected paths:
 
 - [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/README.md)
+- [`assets/images/signal-demo-poster-v4.parts/part-01d.b64part`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/assets/images/signal-demo-poster-v4.parts/part-01d.b64part)
 
 ## Quick start
 
