@@ -38,7 +38,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/cloudflare-worker-contact` | unchanged | README already matched the standard |
 | `fix/comprehensive-portfolio-audit` | unchanged | README already matched the standard |
 | `fix/contact-form-stuck-sending` | unchanged | README already matched the standard |
-| `fix/exact-signal-poster` | updated | Branch-specific README committed |
+| `fix/exact-signal-poster` | unchanged | README already matched the standard |
 | `fix/mobile-tablet-blank-space` | unchanged | README already matched the standard |
 | `fix/production-backlog-round-2` | unchanged | README already matched the standard |
 | `fix/remaining-portfolio-qa` | unchanged | README already matched the standard |
