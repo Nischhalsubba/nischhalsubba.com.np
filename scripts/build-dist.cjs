@@ -72,6 +72,7 @@ const stages = [
   ['Apply Signal over Noise portrait interaction', ['node', 'scripts/ensure-signal-portrait-interaction-v12.cjs', '--dist']],
   ['Finalize approved Signal portrait asset', ['node', 'scripts/ensure-signal-portrait-asset-v13.cjs', '--dist']],
   ['Remove Signal hero legend and instruction copy', ['node', 'scripts/remove-signal-hero-legend.cjs', '--dist']],
+  ['Match approved Signal hero theme reference', ['node', 'scripts/finalize-signal-reference-visual.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
