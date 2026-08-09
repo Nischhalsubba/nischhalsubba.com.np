@@ -40,6 +40,7 @@ This branch differs from the default branch in the following detected paths:
 - [`.github/deployment-replays/04-2da3aad.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/04-2da3aad.md)
 - [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/README.md)
 - [`assets/images/signal-demo-poster-v4.parts/part-01d.b64part`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/assets/images/signal-demo-poster-v4.parts/part-01d.b64part)
+- [`assets/images/signal-demo-poster-v4.parts/part-03c.b64part`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/assets/images/signal-demo-poster-v4.parts/part-03c.b64part)
 
 ## Quick start
 
