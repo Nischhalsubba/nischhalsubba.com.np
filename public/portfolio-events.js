@@ -1,8 +1,10 @@
 (() => {
   const endpoint = '/api/analytics';
   const once = new Set();
+  const localPreview = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
 
   function send(event, details = {}) {
+    if (localPreview) return;
     const payload = {
       event,
       path: window.location.pathname,
@@ -94,6 +96,6 @@
 
   // Do not emit analytics during pagehide/visibility teardown. Those requests are
   // routinely aborted by browsers while navigating and create false production errors.
-  // A settled-page sample is enough for portfolio performance telemetry.
+  // Local previews skip telemetry entirely so browser audits do not hit a production-only API route.
   window.setTimeout(flushVitals, 10000);
 })();
