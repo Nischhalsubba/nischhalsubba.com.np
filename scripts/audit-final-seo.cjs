@@ -8,20 +8,20 @@ const site = 'https://nischhalsubba.com.np';
 const required = {
   'index.html': {
     canonical: `${site}/`,
-    titleMustInclude: ['Nischhal Raj Subba', 'UX/UI Product Designer'],
-    descriptionMustInclude: ['Portfolio', 'Nepal-based'],
+    titleMustInclude: ['Nischhal Raj Subba', 'Senior Product Designer'],
+    descriptionMustInclude: ['Product designer', 'Kathmandu', 'SaaS'],
     robotsMustInclude: ['index', 'follow'],
   },
   'product-design-nepal.html': {
     canonical: `${site}/product-design-nepal`,
-    titleMustInclude: ['UX/UI Product Design Services', 'Nepal'],
-    descriptionMustInclude: ['service page', 'startups', 'software teams'],
+    titleMustInclude: ['Product Design for Software Teams', 'Nepal'],
+    descriptionMustInclude: ['Product design support', 'software teams', 'implementation-ready handoff'],
     robotsMustInclude: ['index', 'follow'],
   },
   'services.html': {
     canonical: `${site}/services`,
     titleMustInclude: ['Product Design Services'],
-    descriptionMustInclude: ['UX/UI design', 'developer handoff'],
+    descriptionMustInclude: ['Product design support', 'developer handoff'],
     robotsMustInclude: ['index', 'follow'],
   },
   'about.html': {
