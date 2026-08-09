@@ -5,21 +5,24 @@ These rules are mandatory for automated and manual changes to this repository.
 ## Production build safety
 
 1. Never push an incomplete multi-file asset set to any branch connected to a deployment provider.
-2. Binary assets split into transfer chunks must be assembled and checksum-verified before the first remote branch update. Prefer one atomic Git tree/commit for all mutually dependent files.
-3. For the Signal over Noise poster, `npm run build` must begin by running `scripts/verify-signal-poster-source.cjs`. Do not bypass or weaken its per-segment and final WebP checksum validation.
-4. After writing an asset through the GitHub API, verify the resulting Git blob SHA or refetch every dependent file before promoting or replaying commits. A validator that stops at the first error does not prove later segments are valid; verify the complete set.
-5. Never interpret a successful Git push as a successful deployment. Report production-live status only after the deployment provider confirms success.
-6. When recovering failed deployments, fix every root-cause integrity error first, then replay the failed logical changes in chronological order. Do not replay a known-broken intermediate state.
-7. Push/replay one deployment state at a time. When deployment status is available, wait for the previous build to succeed before triggering the next one.
-8. Documentation or automation commits inherit any broken build state beneath them. Repair the application/build source before replaying README or bot-generated commits.
-9. Do not remove checksum guards merely to make CI green. A failed integrity check means the source bytes must be corrected.
-10. Do not transfer long Base64 asset chunks through manual copy/paste when a verified Git blob can be created and attached to the tree by SHA.
+2. Prefer one atomic Git tree/commit for mutually dependent visual assets and build code. Do not split production binary artwork into hand-transferred text chunks.
+3. For the Signal over Noise hero, `npm run build` must begin by running `scripts/verify-signal-demo-source-v14.cjs`. Do not bypass or weaken its exact Git-blob, decoded WebP, container, byte-count, and dimension validation.
+4. The authoritative Signal hero source is `assets/images/signal-demo-poster.webp.b64`. It is a single verified source blob. Do not restore the retired `signal-demo-poster-v4.parts` chunk assembly path to the production hero.
+5. `scripts/ensure-signal-portrait-asset-v13.cjs` is only a legacy build-stage compatibility shim. The actual production installer is `scripts/ensure-signal-demo-hero-v14.cjs`.
+6. After writing or reusing an asset through the GitHub API, verify the resulting Git blob SHA before promoting it to `main`.
+7. Never interpret a successful Git push as a successful deployment. Report production-live status only after the deployment provider confirms success.
+8. When recovering failed deployments, fix every root-cause integrity error first, then replay failed logical changes in chronological order. Do not replay a known-broken intermediate state.
+9. Push/replay one deployment state at a time. When deployment status is available, wait for the previous build to succeed before triggering the next one.
+10. Do not remove checksum or source-integrity guards merely to make CI green. A failed integrity check means the source bytes must be corrected.
+11. Do not transfer long Base64 asset data through manual copy/paste when an already verified Git blob can be attached to the tree by SHA.
+12. When the approved Signal artwork changes, update the source blob, verifier constants, hero installer, and reviewed visual baseline together as one validated change set.
 
-## Signal poster invariants
+## Signal demo v14 invariants
 
-- Final WebP byte size: `65112`
-- Final WebP SHA-256: `0ad9e8d745adb38217dd9c148860e27ef8d118531fd31d96362ce0987513bae6`
-- `part-01d.b64part` SHA-256: `ccf74dc825122fe9d1384ce5d541a6df9e30ab6d0a565b15afb0b7190e641d58`
-- `part-03c.b64part` SHA-256: `86b4085bf87a3f104508f484f0dfde87c264463497d1da916a9a0bc9cc229861`
+- Source Git blob SHA-1: `0bcb8cd7a4a22584eac808909d1465f0f3922b0b`
+- Base64 source byte count: `114860`
+- Decoded WebP byte count: `86144`
+- Decoded WebP dimensions: `760x950`
+- Hero aspect ratio: `4:5`
 
-The verifier contains the authoritative checksum for every segment. If these values intentionally change because the approved source artwork changes, update the source, verifier, production asset script, and reviewed visual baselines together in one validated atomic change set.
+The uploaded Signal over Noise demo is the visual and interaction specification for this hero. Preserve its portrait composition, ghost/reasoning layer, orbit geometry, Signal/Intent/Logic/State/Decision nodes, insight behavior, Signal Mode, pointer depth, Escape reset, touch behavior, GSAP entrance treatment, reduced-motion behavior, and responsive 4:5 stage when modifying this feature.
