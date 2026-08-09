@@ -5,7 +5,7 @@ const root = path.resolve(__dirname, '..');
 const base = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const homePath = path.join(base, 'index.html');
 const stylePath = path.join(base, 'style.css');
-const portraitPath = path.join(base, 'assets', 'images', 'signal-portrait.svg');
+const portraitPath = path.join(base, 'assets', 'images', 'signal-approved.webp');
 
 if (!fs.existsSync(homePath)) throw new Error(`[signal-portrait-v13] Missing ${homePath}`);
 if (!fs.existsSync(stylePath)) throw new Error(`[signal-portrait-v13] Missing ${stylePath}`);
@@ -19,11 +19,11 @@ if (matches.length !== 2) {
   throw new Error(`[signal-portrait-v13] Expected 2 Signal portrait image references, found ${matches.length}.`);
 }
 
-html = html.replace(pattern, '$1/assets/images/signal-portrait.svg$2');
+html = html.replace(pattern, '$1/assets/images/signal-approved.webp$2');
 fs.writeFileSync(homePath, html, 'utf8');
 
 const result = fs.readFileSync(homePath, 'utf8');
-const finalized = result.match(/<img class="nrs-signal-portrait[^\"]*" src="\/assets\/images\/signal-portrait\.svg"[^>]*>/g) || [];
+const finalized = result.match(/<img class="nrs-signal-portrait[^\"]*" src="\/assets\/images\/signal-approved\.webp"[^>]*>/g) || [];
 const stale = result.match(/<img class="nrs-signal-portrait[^\"]*" src="\/assets\/images\/portrait\.png"[^>]*>/g) || [];
 
 if (finalized.length !== 2) {
@@ -50,4 +50,4 @@ ${end}`;
 style = marker.test(style) ? style.replace(marker, inset) : `${style}\n\n${inset}\n`;
 fs.writeFileSync(stylePath, style, 'utf8');
 
-console.log('[signal-portrait-v13] Approved demo portrait asset wired without altering its crop.');
+console.log('[signal-portrait-v13] Exact approved Signal portrait asset wired without altering its crop.');
