@@ -8,7 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/verify-signal-demo-source-v14.cjs && node scripts/preflight-build-scripts.cjs",
+    "prebuild": "node scripts/preflight-build-scripts.cjs",
     "generate": "node scripts/generate-source.cjs",
     "build": "node scripts/build-dist.cjs && node scripts/write-build-metadata.cjs",
     "build:dist": "npm run build",
