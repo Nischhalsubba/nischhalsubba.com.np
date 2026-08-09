@@ -9,19 +9,19 @@ const required = {
   'index.html': {
     canonical: `${site}/`,
     titleMustInclude: ['Nischhal Raj Subba', 'Senior Product Designer'],
-    descriptionMustInclude: ['Product designer', 'Kathmandu', 'SaaS'],
+    descriptionMustInclude: ['Senior product designer', 'Kathmandu', 'SaaS'],
     robotsMustInclude: ['index', 'follow'],
   },
   'product-design-nepal.html': {
     canonical: `${site}/product-design-nepal`,
-    titleMustInclude: ['Product Design for Software Teams', 'Nepal'],
-    descriptionMustInclude: ['Product design support', 'software teams', 'implementation-ready handoff'],
+    titleMustInclude: ['Product Designer in Nepal', 'Software Teams'],
+    descriptionMustInclude: ['Product design support from Kathmandu', 'software teams', 'build-ready handoff'],
     robotsMustInclude: ['index', 'follow'],
   },
   'services.html': {
     canonical: `${site}/services`,
     titleMustInclude: ['Product Design Services'],
-    descriptionMustInclude: ['Product design support', 'developer handoff'],
+    descriptionMustInclude: ['Product design support', 'developer-ready handoff'],
     robotsMustInclude: ['index', 'follow'],
   },
   'about.html': {
