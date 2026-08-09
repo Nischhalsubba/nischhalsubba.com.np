@@ -70,6 +70,7 @@ const stages = [
   ['Fix final Writing and Services visual inheritance', ['node', 'scripts/ensure-writing-service-visual-v10.cjs', '--dist']],
   ['Enforce one mobile brand at runtime', ['node', 'scripts/ensure-mobile-brand-singleton-v11.cjs', '--dist']],
   ['Apply Signal over Noise portrait interaction', ['node', 'scripts/ensure-signal-portrait-interaction-v12.cjs', '--dist']],
+  ['Finalize approved Signal portrait asset', ['node', 'scripts/ensure-signal-portrait-asset-v13.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
