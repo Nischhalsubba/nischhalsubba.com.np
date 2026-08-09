@@ -27,6 +27,7 @@ onReady(async () => {
 
   try {
     await import('./features/agent-portfolio.js');
+    await import('./features/signal-portrait.js');
     await import('./features/agent-browser-contract.js');
   } catch (error) {
     console.error('[portfolio] redesign runtime failed to initialize', error);
