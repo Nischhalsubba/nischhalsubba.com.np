@@ -6,9 +6,11 @@ const distMode = process.argv.includes('--dist');
 const base = distMode ? path.join(root, 'dist') : root;
 const homePath = path.join(base, 'index.html');
 const stylePath = path.join(base, 'style.css');
-const posterPartsDir = path.join(root, 'assets', 'images', 'signal-demo-poster.parts');
-const copiedPartsDir = path.join(base, 'assets', 'images', 'signal-demo-poster.parts');
+const posterPartsDir = path.join(root, 'assets', 'images', 'signal-demo-poster-v2.parts');
+const copiedPartsDir = path.join(base, 'assets', 'images', 'signal-demo-poster-v2.parts');
 const posterPath = path.join(base, 'assets', 'images', 'signal-demo-poster.webp');
+const EXPECTED_PARTS = 7;
+const EXPECTED_POSTER_BYTES = 44408;
 
 if (!fs.existsSync(homePath)) throw new Error(`[signal-portrait-v13] Missing ${homePath}`);
 if (!fs.existsSync(stylePath)) throw new Error(`[signal-portrait-v13] Missing ${stylePath}`);
@@ -17,21 +19,34 @@ if (!fs.existsSync(posterPartsDir)) throw new Error(`[signal-portrait-v13] Missi
 const partFiles = fs.readdirSync(posterPartsDir)
   .filter((name) => /^part-\d+\.b64part$/.test(name))
   .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
-if (partFiles.length < 2) throw new Error(`[signal-portrait-v13] Expected multiple demo poster chunks, found ${partFiles.length}.`);
+if (partFiles.length !== EXPECTED_PARTS) {
+  throw new Error(`[signal-portrait-v13] Expected ${EXPECTED_PARTS} exact demo poster chunks, found ${partFiles.length}.`);
+}
+for (let index = 0; index < EXPECTED_PARTS; index += 1) {
+  const expectedName = `part-${String(index).padStart(2, '0')}.b64part`;
+  if (partFiles[index] !== expectedName) throw new Error(`[signal-portrait-v13] Missing ordered poster chunk ${expectedName}.`);
+}
+
 const encodedPoster = partFiles
   .map((name) => fs.readFileSync(path.join(posterPartsDir, name), 'utf8'))
   .join('')
   .replace(/\s+/g, '');
 const posterBytes = Buffer.from(encodedPoster, 'base64');
-if (posterBytes.length < 60000) throw new Error(`[signal-portrait-v13] Reassembled demo poster is suspiciously small (${posterBytes.length} bytes from ${partFiles.length} chunks).`);
+if (posterBytes.length !== EXPECTED_POSTER_BYTES) {
+  throw new Error(`[signal-portrait-v13] Reassembled demo poster byte count mismatch. Expected ${EXPECTED_POSTER_BYTES}, found ${posterBytes.length}.`);
+}
 if (posterBytes.subarray(0, 4).toString('ascii') !== 'RIFF' || posterBytes.subarray(8, 12).toString('ascii') !== 'WEBP') {
   throw new Error('[signal-portrait-v13] Reassembled exact demo poster is not a valid WebP container.');
 }
 fs.mkdirSync(path.dirname(posterPath), { recursive: true });
 fs.writeFileSync(posterPath, posterBytes);
 if (distMode && fs.existsSync(copiedPartsDir)) fs.rmSync(copiedPartsDir, { recursive: true, force: true });
-const legacyEncoded = path.join(base, 'assets', 'images', 'signal-demo-poster.webp.b64');
-if (distMode && fs.existsSync(legacyEncoded)) fs.rmSync(legacyEncoded);
+for (const legacyPath of [
+  path.join(base, 'assets', 'images', 'signal-demo-poster.parts'),
+  path.join(base, 'assets', 'images', 'signal-demo-poster.webp.b64'),
+]) {
+  if (distMode && fs.existsSync(legacyPath)) fs.rmSync(legacyPath, { recursive: true, force: true });
+}
 
 let html = fs.readFileSync(homePath, 'utf8');
 const portraitPattern = /(<img class="nrs-signal-portrait[^\"]*" src=")[^"]+("[^>]*>)/g;
@@ -157,4 +172,4 @@ ${end}`;
 style = marker.test(style) ? style.replace(marker, inset) : `${style}\n\n${inset}\n`;
 fs.writeFileSync(stylePath, style, 'utf8');
 
-console.log(`[signal-portrait-v13] Exact uploaded demo poster reassembled (${posterBytes.length} bytes from ${partFiles.length} chunks), wired into the final hero, and paired with the demo legend.`);
+console.log(`[signal-portrait-v13] Exact uploaded demo poster verified at ${posterBytes.length} bytes, wired into the final hero, and paired with the demo legend.`);
