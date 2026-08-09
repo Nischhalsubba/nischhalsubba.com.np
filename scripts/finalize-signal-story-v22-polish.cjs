@@ -15,7 +15,9 @@ css += `
 .nrs-uploaded-hero-v19 .nrs-visual-grid{opacity:var(--story-grid-alpha,.55)!important;filter:opacity(.62)!important}
 .nrs-uploaded-hero-v19 .nrs-orbit{opacity:var(--story-orbit-alpha,1)!important;filter:opacity(.56) drop-shadow(0 0 7px color-mix(in srgb,var(--nrs-u-orange) 12%,transparent))!important}
 html[data-theme="light"] .nrs-uploaded-hero-v19 .nrs-pixel-field{filter:opacity(.72)!important}
+.nrs-uploaded-hero-v19 .nrs-uploaded-btn::before,.nrs-uploaded-hero-v19 .nrs-uploaded-btn::after{content:none!important;display:none!important}
+.nrs-uploaded-hero-v19 .nrs-uploaded-btn span{position:relative!important;z-index:1!important;display:inline!important}
 /* nrs-hero-story-v22-polish:end */\n`;
 fs.writeFileSync(stylePath, css, 'utf8');
 if (!css.includes('nrs-hero-story-v22-polish:start')) throw new Error('[hero-story-v22-polish] Verification failed.');
-console.log('[hero-story-v22-polish] Safe opacity composition installed.');
+console.log('[hero-story-v22-polish] Safe opacity and CTA composition installed.');
