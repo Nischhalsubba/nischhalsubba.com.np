@@ -33,20 +33,9 @@
 
 ## Branch scope
 
-This branch differs from the default branch in the following detected paths:
+No branch-specific file differences were detected against the default branch at generation time.
 
-- [`.github/deployment-replays/01-44c6084.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/01-44c6084.md)
-- [`.github/deployment-replays/02-bd95215-fix.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/02-bd95215-fix.md)
-- [`.github/deployment-replays/04-2da3aad.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/04-2da3aad.md)
-- [`.github/deployment-replays/final-01-44c6084.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/final-01-44c6084.md)
-- [`.github/deployment-replays/final-02-bd95215-fix.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/final-02-bd95215-fix.md)
-- [`.github/deployment-replays/final-04-2da3aad.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/final-04-2da3aad.md)
-- [`AGENTS.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/AGENTS.md)
-- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/README.md)
-- [`assets/images/signal-demo-poster-v4.parts/part-01d.b64part`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/assets/images/signal-demo-poster-v4.parts/part-01d.b64part)
-- [`assets/images/signal-demo-poster-v4.parts/part-03c.b64part`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/assets/images/signal-demo-poster-v4.parts/part-03c.b64part)
-- [`package.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/package.json)
-- [`scripts/verify-signal-poster-source.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/scripts/verify-signal-poster-source.cjs)
+
 
 ## Quick start
 
