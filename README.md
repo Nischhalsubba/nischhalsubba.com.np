@@ -75,8 +75,8 @@ flowchart TD
     ROOT --> P14[".gitignore"]
     ROOT --> P15["_headers"]
     ROOT --> P16["about.html"]
-    ROOT --> P17["ai-profile.json"]
-    ROOT --> MORE["+ 75 more top-level entries"]
+    ROOT --> P17["AGENTS.md"]
+    ROOT --> MORE["+ 76 more top-level entries"]
 ```
 
 | Responsibility | Detected source paths |
