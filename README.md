@@ -38,9 +38,15 @@ This branch differs from the default branch in the following detected paths:
 - [`.github/deployment-replays/01-44c6084.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/01-44c6084.md)
 - [`.github/deployment-replays/02-bd95215-fix.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/02-bd95215-fix.md)
 - [`.github/deployment-replays/04-2da3aad.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/04-2da3aad.md)
+- [`.github/deployment-replays/final-01-44c6084.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/final-01-44c6084.md)
+- [`.github/deployment-replays/final-02-bd95215-fix.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/final-02-bd95215-fix.md)
+- [`.github/deployment-replays/final-04-2da3aad.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/.github/deployment-replays/final-04-2da3aad.md)
+- [`AGENTS.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/AGENTS.md)
 - [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/README.md)
 - [`assets/images/signal-demo-poster-v4.parts/part-01d.b64part`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/assets/images/signal-demo-poster-v4.parts/part-01d.b64part)
 - [`assets/images/signal-demo-poster-v4.parts/part-03c.b64part`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/assets/images/signal-demo-poster-v4.parts/part-03c.b64part)
+- [`package.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/package.json)
+- [`scripts/verify-signal-poster-source.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/exact-signal-poster/scripts/verify-signal-poster-source.cjs)
 
 ## Quick start
 
@@ -80,8 +86,8 @@ flowchart TD
     ROOT --> P14[".gitignore"]
     ROOT --> P15["_headers"]
     ROOT --> P16["about.html"]
-    ROOT --> P17["ai-profile.json"]
-    ROOT --> MORE["+ 75 more top-level entries"]
+    ROOT --> P17["AGENTS.md"]
+    ROOT --> MORE["+ 76 more top-level entries"]
 ```
 
 | Responsibility | Detected source paths |
