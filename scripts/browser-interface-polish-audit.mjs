@@ -119,14 +119,19 @@ for (const viewport of [
 }
 
 {
-  const label = 'Capability alignment 1440x900';
+  const label = 'Three habits alignment 1440x900';
   let page;
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
-    const tops = await page.locator('.agent-capability').evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().top));
-    if (tops.length !== 4) throw new Error(`expected 4 capability cards, found ${tops.length}`);
-    const delta = Math.max(...tops) - Math.min(...tops);
-    if (delta > 2) throw new Error(`capability cards are vertically staggered by ${delta.toFixed(1)}px`);
+    const geometry = await page.locator('.nrs-home-habit').evaluateAll((elements) => elements.map((element) => {
+      const rect = element.getBoundingClientRect();
+      return { top: rect.top, width: rect.width };
+    }));
+    if (geometry.length !== 3) throw new Error(`expected 3 habit cards, found ${geometry.length}`);
+    const topDelta = Math.max(...geometry.map((item) => item.top)) - Math.min(...geometry.map((item) => item.top));
+    if (topDelta > 2) throw new Error(`habit cards are vertically staggered by ${topDelta.toFixed(1)}px`);
+    const widthDelta = Math.max(...geometry.map((item) => item.width)) - Math.min(...geometry.map((item) => item.width));
+    if (widthDelta > 3) throw new Error(`habit columns differ in width by ${widthDelta.toFixed(1)}px`);
   } catch (error) {
     fail(label, error.message);
   } finally {
@@ -232,4 +237,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('[interface-polish-audit] Project title, About alignment, capability grid, micro-interactions, focus, reveal stability, and reduced-motion checks passed.');
+console.log('[interface-polish-audit] Project title, About alignment, Three habits grid, micro-interactions, focus, reveal stability, and reduced-motion checks passed.');

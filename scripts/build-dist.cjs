@@ -74,6 +74,7 @@ const stages = [
   ['Remove Signal hero legend and instruction copy', ['node', 'scripts/remove-signal-hero-legend.cjs', '--dist']],
   ['Match approved Signal hero theme reference', ['node', 'scripts/finalize-signal-reference-visual.cjs', '--dist']],
   ['Link experience companies to official websites', ['node', 'scripts/link-experience-company-websites-v25.cjs', '--dist']],
+  ['Finalize hero QA remediations', ['node', 'scripts/finalize-hero-ux-remediations-v26.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
