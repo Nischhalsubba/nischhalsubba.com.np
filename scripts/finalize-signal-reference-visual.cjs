@@ -20,5 +20,4 @@ restore('part-01.b64', ['part-01a.b64', 'part-01b.b64'], 10000, '2a5b8f04acf317b
 restore('part-02.b64', ['part-02a.b64', 'part-02b1.b64', 'part-02b2a.b64', 'part-02b2b1.b64', 'part-02b2b2.b64'], 10000, 'f98e9990e4acc7adaaa90e01f835d4166156423c0ecdf8e0ac61175c9cec9287');
 
 require('./finalize-signal-reference-visual-v18-core.cjs');
-require('./finalize-signal-story-v22.cjs');
-require('./finalize-signal-story-v22-polish.cjs');
+require('./finalize-signal-story-v23.cjs');
