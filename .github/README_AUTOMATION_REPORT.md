@@ -47,9 +47,10 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/hero-decision-field-v23` | unchanged | README already matched the standard |
 | `fix/hero-photo-v19` | unchanged | README already matched the standard |
 | `fix/hero-pixel-story-v22` | unchanged | README already matched the standard |
-| `fix/hero-typography-v24` | updated | Branch-specific README committed |
+| `fix/hero-typography-v24` | unchanged | README already matched the standard |
 | `fix/mobile-tablet-blank-space` | unchanged | README already matched the standard |
 | `fix/production-backlog-round-2` | unchanged | README already matched the standard |
+| `fix/qa-remediations-2026-08-10` | updated | Branch-specific README committed |
 | `fix/remaining-portfolio-qa` | unchanged | README already matched the standard |
 | `fix/remaining-portfolio-qa-v2` | unchanged | README already matched the standard |
 | `fix/remaining-production-issues` | unchanged | README already matched the standard |
@@ -58,7 +59,8 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/vercel-contact-protection` | unchanged | README already matched the standard |
 | `fix/verified-mobile-hero-top` | unchanged | README already matched the standard |
 | `gent/editorial-portfolio-redesign` | unchanged | README already matched the standard |
-| `main` | unchanged | README already matched the standard |
+| `main` | updated | Branch-specific README committed |
+| `qa/comprehensive-microinteractions-2026-08-10` | updated | Branch-specific README committed |
 | `redesign/ui-ux-pro-max-2026` | unchanged | README already matched the standard |
 | `seo-growth-code-fixes` | unchanged | README already matched the standard |
 | `seo-update` | unchanged | README already matched the standard |
