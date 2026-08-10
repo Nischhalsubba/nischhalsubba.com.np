@@ -71,11 +71,7 @@ css += `
   text-decoration-thickness:1px!important;
   transition:color .16s cubic-bezier(.2,0,0,1)!important;
 }
-.nrs-experience-list .nrs-company-link strong{
-  color:inherit!important;
-  font:inherit!important;
-  font-weight:inherit!important;
-}
+.nrs-experience-list .nrs-company-link strong{color:inherit!important}
 .nrs-experience-list .nrs-company-link-arrow{
   display:inline-block!important;
   color:var(--accent,#ef6a2c)!important;
