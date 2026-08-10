@@ -42,7 +42,8 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/designer-story-v20` | unchanged | README already matched the standard |
 | `fix/exact-signal-demo-v17` | unchanged | README already matched the standard |
 | `fix/exact-signal-poster` | unchanged | README already matched the standard |
-| `fix/gsap-story-v21` | updated | Branch-specific README committed |
+| `fix/gsap-story-v21` | unchanged | README already matched the standard |
+| `fix/hero-decision-field-v23` | updated | Branch-specific README committed |
 | `fix/hero-photo-v19` | unchanged | README already matched the standard |
 | `fix/hero-pixel-story-v22` | updated | Branch-specific README committed |
 | `fix/mobile-tablet-blank-space` | unchanged | README already matched the standard |
