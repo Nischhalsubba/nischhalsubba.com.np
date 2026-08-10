@@ -21,3 +21,4 @@ restore('part-02.b64', ['part-02a.b64', 'part-02b1.b64', 'part-02b2a.b64', 'part
 
 require('./finalize-signal-reference-visual-v18-core.cjs');
 require('./finalize-signal-story-v23.cjs');
+require('./finalize-signal-typography-v24.cjs');
