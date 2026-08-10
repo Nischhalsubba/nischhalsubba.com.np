@@ -62,6 +62,7 @@ jobs:
           set -euo pipefail
           node scripts/browser-audit.mjs 2>&1 | tee browser-audit.log
           node scripts/browser-sticky-responsive-audit.mjs 2>&1 | tee -a browser-audit.log
+          node scripts/browser-microinteraction-audit.mjs 2>&1 | tee -a browser-audit.log
 
       - name: Audit contact form accessibility
         id: contact
