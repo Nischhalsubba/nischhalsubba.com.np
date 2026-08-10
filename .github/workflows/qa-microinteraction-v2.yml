@@ -52,6 +52,12 @@ jobs:
         continue-on-error: true
         run: node scripts/browser-microinteraction-audit-v2.mjs
 
+      - name: Validate settled hero geometry
+        id: stability
+        if: always()
+        continue-on-error: true
+        run: node scripts/browser-hero-stability-audit.mjs
+
       - name: Validate current Three habits layout
         id: habits
         if: always()
@@ -63,9 +69,10 @@ jobs:
         shell: bash
         env:
           MICRO: ${{ steps.micro.outcome }}
+          STABILITY: ${{ steps.stability.outcome }}
           HABITS: ${{ steps.habits.outcome }}
         run: |
-          echo "micro=$MICRO habits=$HABITS"
-          if [ "$MICRO" != "success" ] || [ "$HABITS" != "success" ]; then
+          echo "micro=$MICRO stability=$STABILITY habits=$HABITS"
+          if [ "$MICRO" != "success" ] || [ "$STABILITY" != "success" ] || [ "$HABITS" != "success" ]; then
             exit 1
           fi
