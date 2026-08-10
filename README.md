@@ -229,6 +229,7 @@ flowchart LR
 - [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/apply-interactive-readme.yml)
 - [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/browser-audit.yml)
 - [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/deploy-cloudflare.yml)
+- [`.github/workflows/hero-ux-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/hero-ux-audit.yml)
 - [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/interface-polish-audit.yml)
 - [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-qa.yml)
 - [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-route-audit.yml)
