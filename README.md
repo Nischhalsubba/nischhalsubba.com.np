@@ -33,9 +33,9 @@
 
 ## Branch scope
 
-No branch-specific file differences were detected against the default branch at generation time.
+This branch differs from the default branch in the following detected paths:
 
-
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/hero-decision-field-v23/README.md)
 
 ## Quick start
 
