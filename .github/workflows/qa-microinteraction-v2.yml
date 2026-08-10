@@ -48,4 +48,24 @@ jobs:
           exit 1
 
       - name: Run comprehensive microinteraction audit
+        id: micro
+        continue-on-error: true
         run: node scripts/browser-microinteraction-audit-v2.mjs
+
+      - name: Validate current Three habits layout
+        id: habits
+        if: always()
+        continue-on-error: true
+        run: node scripts/browser-current-home-layout-audit.mjs
+
+      - name: Fail on QA findings
+        if: always()
+        shell: bash
+        env:
+          MICRO: ${{ steps.micro.outcome }}
+          HABITS: ${{ steps.habits.outcome }}
+        run: |
+          echo "micro=$MICRO habits=$HABITS"
+          if [ "$MICRO" != "success" ] || [ "$HABITS" != "success" ]; then
+            exit 1
+          fi
