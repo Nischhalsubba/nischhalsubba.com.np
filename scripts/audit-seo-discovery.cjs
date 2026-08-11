@@ -63,7 +63,14 @@ for (const route of ['/assets/resume.pdf', '/llms.txt', '/llms-full.txt', '/ai-p
   const block = headers.match(new RegExp(`${route.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\n([\\s\\S]*?)(?=\\n\\S|$)`))?.[1] || '';
   if (!/X-Robots-Tag:\s*noindex/i.test(block)) errors.push(`_headers: ${route} must send X-Robots-Tag: noindex`);
 }
-if (/Cache-Control:\s*no-store|Cache-Control:\s*no-cache/i.test(headers)) errors.push('_headers: blanket no-store/no-cache policy survived SEO caching cleanup');
+for (const broadTarget of ['/*', '/*.html', '/style.css']) {
+  const broadBlock = headers.match(new RegExp(`${broadTarget.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\n([\\s\\S]*?)(?=\\n\\S|$)`))?.[1] || '';
+  if (/Cache-Control:\s*no-store|Cache-Control:\s*no-cache/i.test(broadBlock)) errors.push(`_headers: ${broadTarget} must not use blanket no-store/no-cache`);
+}
+const runtimePolicy = 'Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate';
+for (const runtimeTarget of ['/*.js', '/detail-navigation.js', '/seo-enhancements.js']) {
+  if (!headers.includes(`${runtimeTarget}\n  ${runtimePolicy}`)) errors.push(`_headers: ${runtimeTarget} must preserve the atomic stable-runtime cache policy`);
+}
 
 const wrangler = read(path.join(root, 'wrangler.jsonc'));
 if (!/"html_handling"\s*:\s*"auto-trailing-slash"/.test(wrangler)) errors.push('wrangler.jsonc: clean HTML handling is not explicit');
