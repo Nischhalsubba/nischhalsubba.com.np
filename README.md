@@ -35,6 +35,7 @@
 
 This branch differs from the default branch in the following detected paths:
 
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/README.md)
 - [`_headers`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/_headers)
 - [`ai-profile.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/ai-profile.json)
 - [`config/canonical-routes.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/config/canonical-routes.json)
@@ -46,7 +47,6 @@ This branch differs from the default branch in the following detected paths:
 - [`public/nischhal-raj-subba.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/public/nischhal-raj-subba.html)
 - [`robots.txt`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/robots.txt)
 - [`scripts/audit-seo-discovery.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/scripts/audit-seo-discovery.cjs)
-- [`scripts/generate-seo-discovery.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/scripts/generate-seo-discovery.cjs)
 
 ## Quick start
 
