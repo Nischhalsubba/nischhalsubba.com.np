@@ -24,6 +24,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `agent/refresh-ux-audit-prioritization` | unchanged | README already matched the standard |
 | `agent/restore-case-breadcrumbs` | unchanged | README already matched the standard |
 | `agent/senior-portfolio-refinement` | unchanged | README already matched the standard |
+| `agent/seo-discovery-hardening` | updated | Branch-specific README committed |
 | `agent/spacious-core-pages` | unchanged | README already matched the standard |
 | `agent/sticky-responsive-shell` | unchanged | README already matched the standard |
 | `agent/sticky-responsive-shell-v2` | unchanged | README already matched the standard |
@@ -42,7 +43,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `fix/designer-story-v20` | unchanged | README already matched the standard |
 | `fix/exact-signal-demo-v17` | unchanged | README already matched the standard |
 | `fix/exact-signal-poster` | unchanged | README already matched the standard |
-| `fix/experience-company-links-v25` | updated | Branch-specific README committed |
+| `fix/experience-company-links-v25` | unchanged | README already matched the standard |
 | `fix/gsap-story-v21` | unchanged | README already matched the standard |
 | `fix/hero-decision-field-v23` | unchanged | README already matched the standard |
 | `fix/hero-photo-v19` | unchanged | README already matched the standard |
