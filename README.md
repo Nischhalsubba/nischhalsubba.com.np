@@ -97,17 +97,17 @@ flowchart TD
     APP --> R1["src/pages"]
     APP --> R2["public"]
     R0 --> F0["src/app/layout.tsx"]
-    R1 --> F1["src/pages/services/figma-design-systems.html"]
-    R1 --> F2["src/pages/projects/project-sassboilerplate.html"]
-    R1 --> F3["src/pages/projects/project-orkest.html"]
-    R1 --> F4["src/pages/projects/project-grid-labs.html"]
-    R1 --> F5["src/pages/projects/project-morajaa.html"]
-    R1 --> F6["src/pages/core/services.html"]
-    R1 --> F7["src/pages/services/website-ux-design.html"]
-    R1 --> F8["src/pages/core/about.html"]
-    R1 --> F9["src/pages/core/projects.html"]
-    R1 --> F10["src/pages/projects/project-pihub.html"]
-    R1 --> F11["src/pages/services/product-design-nepal.html"]
+    R1 --> F1["src/pages/projects/project-sassboilerplate.html"]
+    R1 --> F2["src/pages/projects/project-orkest.html"]
+    R1 --> F3["src/pages/projects/project-grid-labs.html"]
+    R1 --> F4["src/pages/projects/project-morajaa.html"]
+    R1 --> F5["src/pages/projects/project-pihub.html"]
+    R1 --> F6["src/pages/projects/project-designerex.html"]
+    R1 --> F7["src/pages/projects/project-neverwinter-parser.html"]
+    R1 --> F8["src/pages/projects/project-zapp.html"]
+    R1 --> F9["src/pages/projects/project-splashnode.html"]
+    R1 --> F10["src/pages/projects/project-masteriyo.html"]
+    R1 --> F11["src/pages/projects/project-hamro-idea.html"]
 ```
 
 ## Architecture and responsibility flow
@@ -206,6 +206,7 @@ Review authentication, authorization, input validation, dependency updates, secr
 ### Observability
 
 - [`src/scripts/features/analytics/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/scripts/features/analytics/analytics-events.js)
+- [`src/scripts/features/analytics/README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/scripts/features/analytics/README.md)
 - [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/assets/analytics-events-Bq4IAYSg.js)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
