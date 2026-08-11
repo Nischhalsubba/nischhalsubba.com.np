@@ -1,17 +1,19 @@
 /**
  * @fileoverview scripts/build-dist.cjs
- * Purpose: Declare the deterministic production build pipeline and the exact order of every transformation and validation stage.
+ * Purpose: Define the ordered production build pipeline that transforms the Vite baseline into the final Cloudflare-ready `dist/` output.
  * Responsibilities:
- * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
- * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
- * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * - Run build and transformation stages in a deterministic order.
+ * - Stop immediately when a stage fails rather than continuing from partial output.
+ * - Keep production-only transformations separate from canonical authored source.
+ * - Make historical compatibility stages explicit until their responsibilities can be safely consolidated.
+ * Execution context: Node.js production build command invoked by `npm run build`.
  * Connected files:
  * - scripts/run-build-stages.cjs
  * - package.json
- * - scripts/agent-redesign.cjs
- * - scripts/agent-writing-redesign.cjs
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * - vite.config.ts
+ * - scripts/copy-static-assets.cjs
+ * - docs/build-pipeline.md
+ * Maintenance: Stage order is part of the production contract. Rename, remove, or reorder a stage only after tracing its inputs, outputs, and downstream consumers and then validating the resulting build.
  */
 const { runStages } = require('./run-build-stages.cjs');
 
@@ -53,14 +55,14 @@ const stages = [
   ['Generate aligned resume PDF', ['node', 'scripts/generate-resume-pdf-v2.cjs']],
   ['Configure protected contact output', ['node', 'scripts/configure-contact-protection.cjs', '--dist']],
   ['Normalize production runtime', ['node', 'scripts/normalize-html-runtime.cjs', '--dist']],
-  ['Apply agent portfolio redesign', ['node', 'scripts/agent-redesign.cjs', '--dist']],
+  ['Apply portfolio redesign', ['node', 'scripts/portfolio-redesign.cjs', '--dist']],
   ['Apply evidence-first portfolio refinement', ['node', 'scripts/ensure-senior-portfolio-v2.cjs', '--dist']],
   ['Replace generic case-study copy', ['node', 'scripts/ensure-case-study-specificity.cjs', '--dist']],
   ['Enforce reveal visibility safety', ['node', 'scripts/ensure-reveal-visibility.cjs', '--dist']],
   ['Apply interface layout and motion polish', ['node', 'scripts/ensure-interface-polish.cjs', '--dist']],
   ['Restore case-study breadcrumbs', ['node', 'scripts/ensure-case-breadcrumbs.cjs', '--dist']],
-  ['Rebuild editorial writing index', ['node', 'scripts/agent-writing-redesign.cjs']],
-  ['Compose mobile theme control', ['node', 'scripts/ensure-agent-mobile-theme-control.cjs']],
+  ['Rebuild editorial writing index', ['node', 'scripts/writing-redesign.cjs']],
+  ['Compose mobile theme control', ['node', 'scripts/ensure-mobile-theme-control.cjs']],
   ['Normalize production SEO contract', ['node', 'scripts/normalize-seo-contract.cjs']],
   ['Rewrite project case studies for hiring', ['node', 'scripts/ensure-hireable-case-studies.cjs', '--dist']],
   ['Apply senior editorial case-study rewrite', ['node', 'scripts/ensure-senior-case-studies.cjs', '--dist']],
@@ -69,8 +71,8 @@ const stages = [
   ['Apply final portfolio content polish', ['node', 'scripts/ensure-portfolio-content-polish.cjs', '--dist']],
   ['Enforce visible project decision cards', ['node', 'scripts/ensure-case-study-card-visibility.cjs', '--dist']],
   ['Apply final projects editorial system', ['node', 'scripts/ensure-projects-final-editorial.cjs', '--dist']],
-  ['Apply agent design audit remediation', ['node', 'scripts/ensure-agent-audit-remediation.cjs', '--dist']],
-  ['Apply recruiter content enhancements', ['node', 'scripts/ensure-agent-audit-content-enhancements.cjs', '--dist']],
+  ['Apply design audit remediation', ['node', 'scripts/ensure-design-audit-remediation.cjs', '--dist']],
+  ['Apply recruiter content enhancements', ['node', 'scripts/ensure-recruiter-content-enhancements.cjs', '--dist']],
   ['Apply final sitewide editorial and SEO system', ['node', 'scripts/ensure-sitewide-editorial-v4.cjs', '--dist']],
   ['Rewrite product design article archive', ['node', 'scripts/ensure-blog-editorial-v4.cjs', '--dist']],
   ['Finish sitewide microcopy and metadata', ['node', 'scripts/ensure-sitewide-final-details.cjs', '--dist']],
