@@ -1,0 +1,66 @@
+name: Refine callback contracts
+
+# Temporary PR-only workflow. It publishes callback comment improvements only; the workflow itself is removed separately through the GitHub connector.
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refine-callback-contracts-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  refine:
+    if: github.head_ref == 'agent/deep-code-organization'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout deep organization branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/deep-code-organization
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install repository dependencies
+        run: npm ci
+
+      - name: Rebuild inline callback contracts from AST context
+        run: node scripts/repository/refine-callback-contracts.cjs
+
+      - name: Remove one-shot callback refinement script
+        run: git rm -f scripts/repository/refine-callback-contracts.cjs
+
+      - name: Stage candidate callback documentation tree
+        run: git add -A
+
+      - name: Exclude temporary workflow from final-like Git index
+        run: git rm --cached .github/workflows/refine-callback-contracts.yml
+
+      - name: Regenerate final-like tracked-file catalog
+        run: |
+          npm run docs:file-catalog
+          git add docs/repository/file-catalog.md
+
+      - name: Validate callback documentation before committing
+        run: npm run validate
+
+      - name: Restore unchanged temporary workflow in Git index
+        run: git reset HEAD -- .github/workflows/refine-callback-contracts.yml
+
+      - name: Commit and push callback documentation cleanup
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'docs: correct inline callback contracts'
+          git push origin HEAD:agent/deep-code-organization
