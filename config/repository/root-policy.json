@@ -3,7 +3,9 @@
   "connectedFiles": [
     "scripts/repository/audit-repository-structure.cjs",
     "scripts/repository/source-layout.cjs",
-    "docs/repository/file-map.md"
+    "scripts/repository/generate-file-catalog.cjs",
+    "docs/repository/file-map.md",
+    "docs/repository/file-catalog.md"
   ],
   "allowedRootFiles": [
     ".editorconfig",
@@ -22,6 +24,7 @@
   ],
   "requiredDocumentation": [
     "docs/repository/file-map.md",
+    "docs/repository/file-catalog.md",
     "src/README.md",
     "src/pages/README.md",
     "src/runtime/README.md",
