@@ -179,7 +179,7 @@ function createSection({ id, kicker, title, lead, gridClass, cards }) {
       <p class="section-lead" style="margin:0 auto;">${lead}</p>
     </div>
     <div class="${gridClass}">
-      ${cards.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `card`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (card) => `
+      ${cards.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `card`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (card) => `
         <article class="${gridClass.replace('grid', 'card')}">
           <span class="nrs-card-kicker">${card.kicker}</span>
           <h3>${card.title}</h3>
@@ -268,7 +268,7 @@ function addHomepageSections() {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function improveProjectCards() {
-  document.querySelectorAll('.project-card[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (card) => {
+  document.querySelectorAll('.project-card[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (card) => {
     if (card.querySelector('.nrs-project-role-badge')) return;
     const href = card.getAttribute('href') || '';
     const role = href.includes('masteriyo') || href.includes('designerex') ? 'Design contribution' : href.includes('sassboilerplate') || href.includes('neverwinter') ? 'Designed + built' : 'Product design';

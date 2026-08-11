@@ -28,15 +28,15 @@ const endMarker = '/* nrs-single-source-inner-pages-v50:compiled:end */';
 
 let stylesheet = fs.readFileSync(stylesheetPath, 'utf8');
 const fragments = fragmentFiles
-  .filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => fs.existsSync(file))
-  .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => fs.readFileSync(file, 'utf8').trim())
+  .filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file`. Side effects: reads filesystem state. Returns: computed expression result consumed by the enclosing operation. */ (file) => fs.existsSync(file))
+  .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: reads filesystem state. Returns: computed expression result consumed by the enclosing operation. */ (file) => fs.readFileSync(file, 'utf8').trim())
   .filter(Boolean)
   .join('\n\n');
 
 stylesheet = stylesheet
   .replace(/^\s*500;600;700;800&display=swap'\);\s*$/m, '')
   .replace(/Version:\s*[0-9.]+/, 'Version: 51.0')
-  .replace(/html\[data-theme='light'\]([\s\S]*?)--text-tertiary:\s*#[0-9a-f]{6};/i, /** Callback contract: Perform the local callback step required by the enclosing compile single stylesheet repository tool operation. Inputs: `match`, `prefix`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match, prefix) => `html[data-theme='light']${prefix}--text-tertiary: #5f655b;`)
+  .replace(/html\[data-theme='light'\]([\s\S]*?)--text-tertiary:\s*#[0-9a-f]{6};/i, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `match`, `prefix`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match, prefix) => `html[data-theme='light']${prefix}--text-tertiary: #5f655b;`)
   .replace(/\/\* nrs-single-source-inner-pages-v\d+:compiled:start \*\/[\s\S]*?\/\* nrs-single-source-inner-pages-v\d+:compiled:end \*\/\s*/g, '')
   .trimEnd();
 

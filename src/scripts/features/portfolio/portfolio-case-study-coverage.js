@@ -232,7 +232,7 @@ function createEl(tag, className, text) {
  */
 function buildSnapshotGrid(project) {
   const grid = createEl('div', 'snapshot-grid nrs-case-study-snapshot');
-  Object.entries(project.snapshot).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[label, value]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([label, value]) => {
+  Object.entries(project.snapshot).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[label, value]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ ([label, value]) => {
     const item = createEl('div');
     item.append(createEl('h5', null, label), createEl('p', null, value));
     grid.appendChild(item);
@@ -249,7 +249,7 @@ function buildSnapshotGrid(project) {
  */
 function buildDecisionCards(project) {
   const grid = createEl('div', 'journey-grid nrs-case-study-decisions');
-  project.decisions.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[decision, why, tradeoff, result]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([decision, why, tradeoff, result]) => {
+  project.decisions.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[decision, why, tradeoff, result]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ ([decision, why, tradeoff, result]) => {
     const card = createEl('article', 'journey-card');
     card.append(
       createEl('span', 'eyebrow', 'Decision'),
@@ -279,7 +279,7 @@ function buildDecisionCards(project) {
  */
 function buildList(items) {
   const list = createEl('ul', 'case-list');
-  items.forEach(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => list.appendChild(createEl('li', null, item)));
+  items.forEach(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => list.appendChild(createEl('li', null, item)));
   return list;
 }
 
@@ -321,7 +321,7 @@ function renderAdditionalCaseStudy(project) {
     ['Reflection', 'What this project shows', project.reflection],
   ];
 
-  sections.forEach(/** Callback contract: Processes the callback step for sections without leaking orchestration details to the caller. Inputs: [label, title, body]. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[label, title, body]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([label, title, body]) => {
+  sections.forEach(/** Callback contract: Processes the callback step for sections without leaking orchestration details to the caller. Inputs: [label, title, body]. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[label, title, body]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[label, title, body]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ ([label, title, body]) => {
     const section = createEl('section', 'section-container reveal-on-scroll');
     section.append(createEl('div', 'case-label', label), createEl('h2', 'section-title', title));
     if (typeof body === 'string') section.appendChild(createEl('p', 'body-large', body));
@@ -329,7 +329,7 @@ function renderAdditionalCaseStudy(project) {
     content.appendChild(section);
   });
 
-  Array.from(main.children).forEach(/** Callback contract: Processes the callback step for array.from(main.children) without leaking orchestration details to the caller. Inputs: child. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `child`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (child) => {
+  Array.from(main.children).forEach(/** Callback contract: Processes the callback step for array.from(main.children) without leaking orchestration details to the caller. Inputs: child. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `child`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `child`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (child) => {
     if (child === hero || child === image || child === closing) return;
     child.remove();
   });

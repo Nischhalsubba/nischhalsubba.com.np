@@ -10,7 +10,7 @@
  * - src/runtime/script.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
-(/** Callback contract: Perform the local callback step required by the enclosing agent browser contract browser feature operation. Inputs: none. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: registers or removes browser listeners; reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
   const root = document.querySelector('.agent-portfolio');
   if (!root) return;
 
@@ -66,14 +66,14 @@
 
   if (mobileThemeToggle && desktopThemeToggle && mobileThemeToggle.dataset.themeProxyReady !== 'true') {
     mobileThemeToggle.dataset.themeProxyReady = 'true';
-    mobileThemeToggle.addEventListener('click', /** Callback contract: Processes the callback step for mobile theme toggle without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the click event for `mobileThemeToggle` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    mobileThemeToggle.addEventListener('click', /** Callback contract: Processes the callback step for mobile theme toggle without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the click event for `mobileThemeToggle` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the click event for `mobileThemeToggle` and apply the related local state update. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
       desktopThemeToggle.click();
     });
   }
 
   if (contactForm && contactForm.dataset.focusGuardReady !== 'true') {
     contactForm.dataset.focusGuardReady = 'true';
-    contactForm.addEventListener('submit', /** Callback contract: Processes the callback step for contact form without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Handle the submit event for `contactForm` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    contactForm.addEventListener('submit', /** Callback contract: Processes the callback step for contact form without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Handle the submit event for `contactForm` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the submit event for `contactForm` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
       let attempts = 0;
       /**
        * Function contract: restoreInvalidFocus
@@ -106,7 +106,7 @@
   window.addEventListener('pageshow', syncLayout, { passive: true });
 
   if (document.fonts?.ready) {
-    document.fonts.ready.then(syncLayout).catch(/** Callback contract: Processes the callback step for document.fonts.ready.then(sync layout) without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Convert or report the rejected asynchronous operation according to this module’s failure-handling policy. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {});
+    document.fonts.ready.then(syncLayout).catch(/** Callback contract: Processes the callback step for document.fonts.ready.then(sync layout) without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Convert or report the rejected asynchronous operation according to this module’s failure-handling policy. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {});
   }
 
   syncLayout();

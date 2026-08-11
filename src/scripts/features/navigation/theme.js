@@ -70,13 +70,13 @@ function saveSessionTheme(theme) {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updatePortraitImages() {
-  $$('.hero-portrait-img, .footer-portrait-img, .profile-img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (image) => {
+  $$('.hero-portrait-img, .footer-portrait-img, .profile-img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (image) => {
     if (image.dataset.localPortraitReady === 'true') return;
 
     image.dataset.localPortraitReady = 'true';
     image.src = PORTRAIT_IMG;
     image.decoding = 'async';
-    image.onerror = /** Callback contract: Perform the local callback step required by the enclosing theme browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    image.onerror = /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
       image.onerror = null;
       image.src = FALLBACK_PORTRAIT_IMG;
     };
@@ -149,14 +149,14 @@ export function initTheme() {
 
   applyTheme(override || systemTheme(), button, override ? 'session' : 'system');
 
-  button?.addEventListener('click', /** Callback contract: Processes the callback step for button? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the click event for `button` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+  button?.addEventListener('click', /** Callback contract: Processes the callback step for button? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the click event for `button` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the click event for `button` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
     const currentTheme = document.documentElement.getAttribute('data-theme') || systemTheme();
     const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
     saveSessionTheme(nextTheme);
     applyTheme(nextTheme, button, 'session');
   });
 
-  mediaQuery?.addEventListener?.('change', /** Callback contract: Processes the callback step for media query? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the change event for `mediaQuery` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+  mediaQuery?.addEventListener?.('change', /** Callback contract: Processes the callback step for media query? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the change event for `mediaQuery` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the change event for `mediaQuery` and apply the related local state update. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
     if (!sessionTheme()) applyTheme(systemTheme(), button, 'system');
   });
 }

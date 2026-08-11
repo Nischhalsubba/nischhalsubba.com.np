@@ -132,7 +132,7 @@ function ensureProjectHeroImage(project) {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateProjectMeta(project) {
-  document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `meta`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (meta) => {
+  document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `meta`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (meta) => {
     meta.setAttribute('content', absoluteUrl(project.src));
   });
 

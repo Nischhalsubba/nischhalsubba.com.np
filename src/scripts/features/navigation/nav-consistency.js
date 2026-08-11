@@ -49,7 +49,7 @@ function syncLinks(container, selector, className = '') {
   const active = currentKey();
   const existing = Array.from(container.querySelectorAll(selector));
 
-  const byLabel = new Map(existing.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => [link.textContent.trim().toLowerCase(), link]));
+  const byLabel = new Map(existing.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (link) => [link.textContent.trim().toLowerCase(), link]));
 
   for (const item of NAV_ITEMS) {
     let link = byLabel.get(item.label.toLowerCase());
@@ -93,12 +93,12 @@ function normalizePrimaryNav() {
  */
 function normalizeFooterNav() {
   const pagesHeading = Array.from(document.querySelectorAll('.footer-col h5'))
-    .find(/** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `heading`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (heading) => heading.textContent.trim().toLowerCase() === 'pages');
+    .find(/** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `heading`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ (heading) => heading.textContent.trim().toLowerCase() === 'pages');
   const footerColumn = pagesHeading?.parentElement;
   if (!footerColumn) return;
 
   const links = Array.from(footerColumn.querySelectorAll('a'));
-  const byLabel = new Map(links.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => [link.textContent.trim().toLowerCase(), link]));
+  const byLabel = new Map(links.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (link) => [link.textContent.trim().toLowerCase(), link]));
 
   for (const item of NAV_ITEMS) {
     let link = byLabel.get(item.label.toLowerCase());

@@ -50,11 +50,11 @@ function normalizeArticle(article) {
   const header = $('header', article);
   if (header) header.classList.add('nrs-article-header');
 
-  $$('section', article).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `section`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (section) => {
+  $$('section', article).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `section`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (section) => {
     section.classList.add('nrs-article-section');
   });
 
-  $$('article img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (image) => {
+  $$('article img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (image) => {
     image.loading = image.loading || 'lazy';
     image.decoding = image.decoding || 'async';
   });

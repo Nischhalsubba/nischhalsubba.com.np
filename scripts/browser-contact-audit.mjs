@@ -18,7 +18,7 @@ const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
 const failures = [];
 let fallbackRequests = 0;
 
-await page.route('https://formsubmit.co/ajax/**', /** Callback contract: Perform the local callback step required by the enclosing browser contact audit repository tool operation. Inputs: `route`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Promise that resolves when the asynchronous side effects complete. */ async (route) => {
+await page.route('https://formsubmit.co/ajax/**', /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `route`. Side effects: no direct external side effect beyond invoked dependencies. Returns: Promise resolving after the callback side effects complete. */ async (route) => {
   fallbackRequests += 1;
   if (route.request().method() !== 'POST') {
     await route.fulfill({ status: 405, contentType: 'application/json', body: JSON.stringify({ message: 'Method not allowed' }) });
@@ -66,7 +66,7 @@ async function waitForFocusedId(expectedId, timeout = 2200) {
   const deadline = Date.now() + timeout;
 
   while (Date.now() < deadline) {
-    const focusedId = await page.locator(':focus').first().getAttribute('id').catch(/** Callback contract: Convert or report the rejected asynchronous operation according to this module’s failure-handling policy. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => null);
+    const focusedId = await page.locator(':focus').first().getAttribute('id').catch(/** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: `null` as the local fallback value. */ () => null);
     if (focusedId === expectedId) return true;
     await page.waitForTimeout(100);
   }
@@ -83,7 +83,7 @@ async function waitForFocusedId(expectedId, timeout = 2200) {
  */
 async function describeFocus() {
   const focused = page.locator(':focus').first();
-  const id = await focused.getAttribute('id').catch(/** Callback contract: Convert or report the rejected asynchronous operation according to this module’s failure-handling policy. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => null);
+  const id = await focused.getAttribute('id').catch(/** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: `null` as the local fallback value. */ () => null);
   if (id) return id;
   if (await page.locator('body:focus').count()) return 'BODY';
   if (await page.locator('html:focus').count()) return 'HTML';
@@ -182,7 +182,7 @@ try {
 
 await browser.close();
 if (failures.length) {
-  console.error('[contact-audit] Failed\n' + failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: failure. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (failure) => `- ${failure}`).join('\n'));
+  console.error('[contact-audit] Failed\n' + failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: failure. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n'));
   process.exit(1);
 }
 console.log('[contact-audit] Accessible validation, focus recovery, resilient submission, and strict-CSP compatibility passed.');

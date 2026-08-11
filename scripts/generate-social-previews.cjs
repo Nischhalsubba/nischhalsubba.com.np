@@ -73,7 +73,7 @@ function pngFromRows(rows) {
   ihdr.writeUInt32BE(HEIGHT, 4);
   ihdr[8] = 8;
   ihdr[9] = 2;
-  const raw = Buffer.concat(rows.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `row`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (row) => Buffer.concat([Buffer.from([0]), row])));
+  const raw = Buffer.concat(rows.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `row`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (row) => Buffer.concat([Buffer.from([0]), row])));
   return Buffer.concat([
     Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
     chunk('IHDR', ihdr),
@@ -96,7 +96,7 @@ function makeCard(seed) {
   const foreground = [243, 246, 234];
   const accent = [216, 255, 72];
   const muted = [38, 45, 34];
-  const bars = Array.from({ length: 5 }, /** Callback contract: Perform the local callback step required by the enclosing generate social previews repository tool operation. Inputs: `_`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (_, index) => ({
+  const bars = Array.from({ length: 5 }, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `_`, `index`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (_, index) => ({
     x: 690 + (digest[index] % 130),
     y: 90 + index * 92,
     w: 230 + (digest[index + 5] % 250),
@@ -113,7 +113,7 @@ function makeCard(seed) {
       if (x >= 128 && x < 420 && y >= 221 && y < 233) color = muted;
       if (x >= 128 && x < 345 && y >= 257 && y < 269) color = muted;
       if (x >= 128 && x < 360 && y >= 482 && y < 490) color = accent;
-      if (bars.some(/** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `bar`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (bar) => x >= bar.x && x < bar.x + bar.w && y >= bar.y && y < bar.y + bar.h)) color = (y % 2 ? accent : foreground);
+      if (bars.some(/** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `bar`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (bar) => x >= bar.x && x < bar.x + bar.w && y >= bar.y && y < bar.y + bar.h)) color = (y % 2 ? accent : foreground);
       const offset = x * 3;
       row[offset] = color[0];
       row[offset + 1] = color[1];

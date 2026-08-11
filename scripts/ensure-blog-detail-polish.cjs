@@ -297,7 +297,7 @@ function getCategory(html) {
  * Returns: Boolean predicate result consumed by the caller.
  */
 function titleCase(value) {
-  return value.replace(/\s+/g, ' ').trim().replace(/\b\w/g, /** Callback contract: Perform the local callback step required by the enclosing ensure blog detail polish repository tool operation. Inputs: `char`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (char) => char.toUpperCase());
+  return value.replace(/\s+/g, ' ').trim().replace(/\b\w/g, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `char`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (char) => char.toUpperCase());
 }
 
 /**
@@ -523,7 +523,7 @@ function updateStyle() {
 }
 
 let changed = 0;
-for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.endsWith('.html'))) {
+for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => item.endsWith('.html'))) {
   if (polishBlogArticle(file)) changed += 1;
 }
 const styled = updateStyle();

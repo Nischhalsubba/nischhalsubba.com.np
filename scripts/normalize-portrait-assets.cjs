@@ -41,7 +41,7 @@ function walk(directory, files = []) {
 let changed = 0;
 for (const filePath of walk(target)) {
   const before = fs.readFileSync(filePath, 'utf8');
-  const after = before.replace(portraitReferences, /** Callback contract: Perform the local callback step required by the enclosing normalize portrait assets repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => match.startsWith('/') ? '/assets/images/portrait.svg' : localPortrait);
+  const after = before.replace(portraitReferences, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => match.startsWith('/') ? '/assets/images/portrait.svg' : localPortrait);
   if (after !== before) {
     fs.writeFileSync(filePath, after);
     changed += 1;

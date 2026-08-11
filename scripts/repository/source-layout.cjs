@@ -35,7 +35,7 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '../..');
 const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'config', 'canonical-routes.json'), 'utf8'));
 
-const ROOT_PAGE_NAMES = manifest.html.filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => !file.includes('/'));
+const ROOT_PAGE_NAMES = manifest.html.filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (file) => !file.includes('/'));
 const LEGACY_COMPATIBILITY_NAMES = ['home.html', 'home-v2.html', 'blog.html'];
 const DISCOVERY_NAMES = [
   '_headers',
@@ -71,11 +71,11 @@ function organizedPageSource(name) {
 }
 
 const mappings = [
-  ...ROOT_PAGE_NAMES.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => ({ source: organizedPageSource(name), target: name, sync: true })),
-  ...LEGACY_COMPATIBILITY_NAMES.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => ({ source: path.join('src', 'compat', 'legacy-pages', name), target: name, sync: true })),
+  ...ROOT_PAGE_NAMES.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (name) => ({ source: organizedPageSource(name), target: name, sync: true })),
+  ...LEGACY_COMPATIBILITY_NAMES.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (name) => ({ source: path.join('src', 'compat', 'legacy-pages', name), target: name, sync: true })),
   { source: path.join('src', 'styles', 'style.css'), target: 'style.css', sync: true },
   { source: path.join('src', 'runtime', 'script.js'), target: 'script.js', sync: false },
-  ...DISCOVERY_NAMES.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => ({ source: path.join('src', 'discovery', name), target: name, sync: false })),
+  ...DISCOVERY_NAMES.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (name) => ({ source: path.join('src', 'discovery', name), target: name, sync: false })),
 ];
 
 /**
@@ -139,7 +139,7 @@ function materializeRootSources() {
  */
 function syncRootSources() {
   let synced = 0;
-  for (const mapping of mappings.filter(/** Callback contract: Processes the callback step for mappings without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.sync)) {
+  for (const mapping of mappings.filter(/** Callback contract: Processes the callback step for mappings without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `sync` value. */ (item) => item.sync)) {
     const rootFile = path.join(ROOT, mapping.target);
     if (!fs.existsSync(rootFile)) continue;
     const sourceFile = path.join(ROOT, mapping.source);

@@ -75,7 +75,7 @@ function emitEvent(name, detail) {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function initAnalyticsEvents() {
-  document.querySelectorAll('a[href], button[data-analytics-event]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => {
+  document.querySelectorAll('a[href], button[data-analytics-event]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: registers or removes browser listeners; reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (element) => {
     if (element.dataset.nrsTracked === 'true') return;
 
     const explicitName = element.getAttribute('data-analytics-event');
@@ -83,7 +83,7 @@ export function initAnalyticsEvents() {
     if (!eventName) return;
 
     element.setAttribute(TRACKING_ATTR, 'true');
-    element.addEventListener('click', /** Callback contract: Handle the click event for `element` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    element.addEventListener('click', /** Callback contract: Handle the click event for `element` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
       emitEvent(eventName, {
         href: element.getAttribute('href') || '',
         label: element.textContent?.trim().replace(/\s+/g, ' ').slice(0, 120) || '',

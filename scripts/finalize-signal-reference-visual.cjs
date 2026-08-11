@@ -20,7 +20,7 @@ const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const sourceDir = path.join(root, 'assets', 'images', 'hero-original-v19.parts');
 const temporaryTargets = ['part-01.b64', 'part-02.b64'];
-const originals = new Map(temporaryTargets.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads repository/filesystem state. Returns: Array containing the values selected or transformed by this function. */ (name) => {
+const originals = new Map(temporaryTargets.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads filesystem state. Returns: computed value consumed by the enclosing operation. */ (name) => {
   const file = path.join(sourceDir, name);
   return [name, fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null];
 }));
@@ -34,7 +34,7 @@ const originals = new Map(temporaryTargets.map(/** Callback contract: Transform 
  */
 function restore(targetName, chunkNames, expectedBytes, expectedHash) {
   const restored = chunkNames
-    .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
+    .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads filesystem state. Returns: computed expression result consumed by the enclosing operation. */ (name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
     .join('');
   const hash = crypto.createHash('sha256').update(restored, 'utf8').digest('hex');
   if (restored.length !== expectedBytes || hash !== expectedHash) {

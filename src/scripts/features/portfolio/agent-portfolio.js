@@ -78,7 +78,7 @@ if (root) {
     const toggle = qs('#theme-toggle');
     if (!toggle) return;
     toggle.setAttribute('aria-label', 'Switch color theme');
-    toggle.addEventListener('click', /** Callback contract: Handle the click event for `toggle` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    toggle.addEventListener('click', /** Callback contract: Handle the click event for `toggle` and apply the related local state update. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
       setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
   }
@@ -95,7 +95,7 @@ if (root) {
     const overlay = qs('#mobile-nav-overlay');
     if (!toggle || !overlay) return;
 
-    const links = qsa('a, button', overlay).filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `el`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (el) => !el.hasAttribute('disabled'));
+    const links = qsa('a, button', overlay).filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `el`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (el) => !el.hasAttribute('disabled'));
     overlay.inert = true;
 
     /**
@@ -129,19 +129,19 @@ if (root) {
       toggle.setAttribute('aria-expanded', 'true');
       toggle.setAttribute('aria-label', 'Close navigation menu');
       root.classList.add('agent-menu-open');
-      requestAnimationFrame(/** Callback contract: Defer visibility/layout-dependent focus movement until the browser has applied the preceding DOM state change. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => links[0]?.focus({ preventScroll: true }));
+      requestAnimationFrame(/** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ () => links[0]?.focus({ preventScroll: true }));
     };
 
-    toggle.addEventListener('click', /** Callback contract: Handle the click event for `toggle` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    toggle.addEventListener('click', /** Callback contract: Handle the click event for `toggle` and apply the related local state update. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
       if (toggle.getAttribute('aria-expanded') === 'true') close();
       else open();
     });
 
-    overlay.addEventListener('click', /** Callback contract: Handle the click event for `overlay` and apply this module's related state update. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+    overlay.addEventListener('click', /** Callback contract: Handle the click event for `overlay` and apply the related local state update. Inputs: `event`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (event) => {
       if (event.target.closest('a')) close({ restoreFocus: false });
     });
 
-    document.addEventListener('keydown', /** Callback contract: Handle keydown input for Escape/Tab behavior and keyboard focus containment. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+    document.addEventListener('keydown', /** Callback contract: Handle keydown input for Escape/Tab behavior and keyboard focus containment. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (event) => {
       if (toggle.getAttribute('aria-expanded') !== 'true') return;
       if (event.key === 'Escape') {
         event.preventDefault();
@@ -160,7 +160,7 @@ if (root) {
       }
     });
 
-    desktop.addEventListener('change', /** Callback contract: Handle the change event for `desktop` and apply this module's related state update. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+    desktop.addEventListener('change', /** Callback contract: Handle the change event for `desktop` and apply the related local state update. Inputs: `event`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (event) => {
       if (event.matches && toggle.getAttribute('aria-expanded') === 'true') {
         close({ restoreFocus: false });
       }
@@ -224,14 +224,14 @@ if (root) {
     root.classList.add('agent-motion-ready');
 
     if (reduceMotion.matches || !('IntersectionObserver' in window)) {
-      targets.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `el`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (el) => {
+      targets.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `el`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (el) => {
         el.style.opacity = '1';
         el.style.transform = 'none';
       });
       return;
     }
 
-    const observer = new IntersectionObserver(/** Callback contract: Perform the local callback step required by the enclosing agent portfolio browser feature operation. Inputs: `entries`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (entries) => {
+    const observer = new IntersectionObserver(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `entries`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         entry.target.animate(
@@ -245,7 +245,7 @@ if (root) {
       }
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
-    targets.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `el`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (el) => observer.observe(el));
+    targets.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `el`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (el) => observer.observe(el));
   }
 
   /**
@@ -285,7 +285,7 @@ if (root) {
         );
       }
 
-      const sectionTargets = targets.filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `el`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (el) => !el.closest('.agent-hero'));
+      const sectionTargets = targets.filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `el`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (el) => !el.closest('.agent-hero'));
       ScrollTrigger.batch(sectionTargets, {
         start: 'top 88%',
         once: true,
@@ -314,7 +314,7 @@ if (root) {
       });
 
       if (desktop.matches) {
-        qsa('.agent-project-media img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (image) => {
+        qsa('.agent-project-media img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (image) => {
           gsap.fromTo(
             image,
             { yPercent: -2 },
@@ -332,15 +332,15 @@ if (root) {
         });
       }
 
-      qsa('.agent-project-row').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `row`. Side effects: registers or removes browser event listeners. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (row) => {
+      qsa('.agent-project-row').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `row`. Side effects: registers or removes browser listeners. Returns: undefined; callback is side-effect-only. */ (row) => {
         const media = qs('.agent-project-media', row);
         if (!media || !finePointer.matches) return;
         const move = gsap.quickTo(media, 'x', { duration: 0.18, ease: 'power2.out' });
-        row.addEventListener('pointermove', /** Callback contract: Handle the pointermove event for `row` and apply this module's related state update. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+        row.addEventListener('pointermove', /** Callback contract: Handle the pointermove event for `row` and apply the related local state update. Inputs: `event`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (event) => {
           const bounds = row.getBoundingClientRect();
           move(((event.clientX - bounds.left) / bounds.width - 0.5) * 3);
         });
-        row.addEventListener('pointerleave', /** Callback contract: Handle the pointerleave event for `row` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => move(0));
+        row.addEventListener('pointerleave', /** Callback contract: Handle the pointerleave event for `row` and apply the related local state update. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ () => move(0));
       });
 
       /**
@@ -351,7 +351,7 @@ if (root) {
        * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
        */
       const cleanup = () => {
-        ScrollTrigger.getAll().forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `trigger`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (trigger) => trigger.kill());
+        ScrollTrigger.getAll().forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `trigger`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (trigger) => trigger.kill());
       };
       addEventListener('pagehide', cleanup, { once: true });
       return true;
@@ -536,8 +536,8 @@ if (root) {
       pointer.y = clamp((event.clientY - rect.top) / rect.height, 0, 1) * 2 - 1;
     }
 
-    const observer = new IntersectionObserver(/** Callback contract: Perform the local callback step required by the enclosing agent portfolio browser feature operation. Inputs: `entries`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (entries) => {
-      visible = entries.some(/** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `entry`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (entry) => entry.isIntersecting);
+    const observer = new IntersectionObserver(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `entries`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (entries) => {
+      visible = entries.some(/** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `entry`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `isIntersecting` value. */ (entry) => entry.isIntersecting);
     }, { rootMargin: '15% 0px' });
     observer.observe(figure);
 
@@ -580,7 +580,7 @@ if (root) {
     figure.addEventListener('pointermove', onPointer, { passive: true });
     addEventListener('resize', resize, { passive: true });
     addEventListener('scroll', updateScrollOrder, { passive: true });
-    document.addEventListener('visibilitychange', /** Callback contract: Handle the visibilitychange event for `document` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    document.addEventListener('visibilitychange', /** Callback contract: Handle the visibilitychange event for `document` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
       if (!document.hidden) clock.getDelta();
     });
     tick();
@@ -609,7 +609,7 @@ if (root) {
     };
 
     addEventListener('pagehide', cleanup, { once: true });
-    reduceMotion.addEventListener('change', /** Callback contract: Handle the change event for `reduceMotion` and apply this module's related state update. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+    reduceMotion.addEventListener('change', /** Callback contract: Handle the change event for `reduceMotion` and apply the related local state update. Inputs: `event`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (event) => {
       if (event.matches) cleanup();
     }, { once: true });
   }
@@ -626,16 +626,16 @@ if (root) {
     const sections = qsa('.agent-case-chapter[id]');
     if (!railLinks.length || !sections.length || !('IntersectionObserver' in window)) return;
 
-    const byId = new Map(railLinks.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => [link.getAttribute('href')?.slice(1), link]));
-    const observer = new IntersectionObserver(/** Callback contract: Perform the local callback step required by the enclosing agent portfolio browser feature operation. Inputs: `entries`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (entries) => {
+    const byId = new Map(railLinks.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (link) => [link.getAttribute('href')?.slice(1), link]));
+    const observer = new IntersectionObserver(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `entries`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (entries) => {
       const current = entries
-        .filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `entry`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (entry) => entry.isIntersecting)
-        .sort(/** Callback contract: Compare two collection items and return their deterministic ordering for the enclosing sort. Inputs: `a`, `b`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        .filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `entry`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `isIntersecting` value. */ (entry) => entry.isIntersecting)
+        .sort(/** Callback contract: Compare two items and return their deterministic ordering for the enclosing sort. Inputs: `a`, `b`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (a, b) => b.intersectionRatio - a.intersectionRatio)[0];
       if (!current) return;
-      railLinks.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => link.removeAttribute('aria-current'));
+      railLinks.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (link) => link.removeAttribute('aria-current'));
       byId.get(current.target.id)?.setAttribute('aria-current', 'true');
     }, { threshold: [0.25, 0.5, 0.75], rootMargin: '-18% 0px -55% 0px' });
-    sections.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `section`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (section) => observer.observe(section));
+    sections.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `section`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (section) => observer.observe(section));
   }
 
   /**
@@ -646,8 +646,8 @@ if (root) {
    * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   function setupProjectKeyboardAffordance() {
-    qsa('.agent-project-row, .agent-index-item').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: registers or removes browser event listeners. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
-      link.addEventListener('keydown', /** Callback contract: Handle keydown input for Escape/Tab behavior and keyboard focus containment. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+    qsa('.agent-project-row, .agent-index-item').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: registers or removes browser listeners. Returns: undefined; callback is side-effect-only. */ (link) => {
+      link.addEventListener('keydown', /** Callback contract: Handle keydown input for Escape/Tab behavior and keyboard focus containment. Inputs: `event`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (event) => {
         if (event.key === 'Enter') link.click();
       });
     });
@@ -659,7 +659,7 @@ if (root) {
   setupCaseRail();
   setupProjectKeyboardAffordance();
 
-  setupGsapMotion().then(/** Callback contract: Transform the resolved promise value into the result required by the next asynchronous step. Inputs: `loaded`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (loaded) => {
+  setupGsapMotion().then(/** Callback contract: Transform the resolved promise value into the result required by the next asynchronous step. Inputs: `loaded`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (loaded) => {
     if (!loaded) setupFallbackReveal();
   });
   setupThreeField();

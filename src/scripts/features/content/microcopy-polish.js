@@ -82,7 +82,7 @@ function updateHeroCopy(copy) {
 
   const proofItems = hero.querySelectorAll('.hero-proof-strip span');
   if (copy.proof && proofItems.length) {
-    proofItems.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item, index) => {
+    proofItems.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (item, index) => {
       if (copy.proof[index]) item.textContent = copy.proof[index];
     });
   }
@@ -113,7 +113,7 @@ function polishProjectDetailCopy() {
     lead.dataset.microcopyPolished = 'true';
   }
 
-  document.querySelectorAll('.section-title, h2').forEach(/** Callback contract: Processes the callback step for document.query selector all('.section title, h2') without leaking orchestration details to the caller. Inputs: heading. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `heading`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (heading) => {
+  document.querySelectorAll('.section-title, h2').forEach(/** Callback contract: Processes the callback step for document.query selector all('.section title, h2') without leaking orchestration details to the caller. Inputs: heading. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `heading`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `heading`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (heading) => {
     const text = heading.textContent.trim();
     if (/what the design made easier/i.test(text)) heading.textContent = PROJECT_DETAIL_COPY.outcomeTitle;
     if (/how i approached the work/i.test(text)) heading.textContent = PROJECT_DETAIL_COPY.processTitle;
@@ -168,7 +168,7 @@ function polishBlogCopy() {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function polishCardCopy() {
-  document.querySelectorAll('.project-card .card-summary').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card .card summary') without leaking orchestration details to the caller. Inputs: summary. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `summary`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (summary) => {
+  document.querySelectorAll('.project-card .card-summary').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card .card summary') without leaking orchestration details to the caller. Inputs: summary. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `summary`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `summary`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (summary) => {
     const text = summary.textContent.trim();
     if (!text || summary.dataset.microcopyPolished) return;
 

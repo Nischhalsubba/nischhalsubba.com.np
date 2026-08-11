@@ -29,7 +29,7 @@ if (bodyStart >= 0 && bodyEnd > bodyStart) {
   const match = tag.match(/class="([^"]*)"/);
   const classes = match ? match[1].split(/\s+/).filter(Boolean) : [];
   const retired = new Set(['nrs-service-page', 'nrs-services-redesign', 'nrs-services-index-page', 'nrs-services-page']);
-  const next = classes.filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => !retired.has(name));
+  const next = classes.filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (name) => !retired.has(name));
   for (const name of ['nrs-inner-page', 'nrs-services-v49-page']) if (!next.includes(name)) next.push(name);
   const replacement = match ? tag.replace(match[0], `class="${next.join(' ')}"`) : tag.replace('<body', `<body class="${next.join(' ')}"`);
   html = html.slice(0, bodyStart) + replacement + html.slice(bodyEnd + 1);

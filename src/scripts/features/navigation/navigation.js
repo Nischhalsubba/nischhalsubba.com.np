@@ -94,7 +94,7 @@ function getLinkSection(href) {
 export function initActiveNavigation() {
   const activeSection = getActiveSection(window.location.pathname);
 
-  $$('.nav-link, .mobile-nav-links a, .footer-col a').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
+  $$('.nav-link, .mobile-nav-links a, .footer-col a').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (link) => {
     const href = link.getAttribute('href');
     if (!href || href.startsWith('http') || href.startsWith('mailto:')) return;
 

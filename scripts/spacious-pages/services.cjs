@@ -23,7 +23,7 @@ const services = [
   ['06', 'UX audit and remediation', 'Find the usability, accessibility, responsive and implementation issues that matter, then turn them into a practical fix plan.', 'Evidence, severity, priorities and fix guidance', '/ux-audit'],
 ];
 
-const serviceRows = services.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[number, title, description, scope, href]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([number, title, description, scope, href]) => `
+const serviceRows = services.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[number, title, description, scope, href]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([number, title, description, scope, href]) => `
   <article class="nrs-service-index-row">
     <span class="nrs-service-index-number">${number}</span>
     <h3>${title}</h3>
@@ -41,7 +41,7 @@ const process = [
   ['02', 'structure', 'journeys, hierarchy, content priority, states and edge cases before visual polish.'],
   ['03', 'design', 'reusable interface patterns, responsive screens and prototypes that can be reviewed.'],
   ['04', 'ship', 'implementation notes, assets, design qa and support while the product is being built.'],
-] without leaking orchestration details to the caller. Inputs: [number, title, description]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[number, title, description]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([number, title, description]) => `<li><span>${number}</span><h3>${title}</h3><p>${description}</p></li>`).join('');
+] without leaking orchestration details to the caller. Inputs: [number, title, description]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[number, title, description]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[number, title, description]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([number, title, description]) => `<li><span>${number}</span><h3>${title}</h3><p>${description}</p></li>`).join('');
 
 const markup = `<main id="main-content" class="container nrs-spacious-page nrs-services-v49">
   <section class="nrs-services-v49-hero reveal-on-scroll" aria-labelledby="services-title">

@@ -71,15 +71,15 @@ export function initPageTransitions() {
   if (prefersReducedMotion()) return;
 
   document.body.classList.add('nrs-page-enter');
-  window.setTimeout(/** Callback contract: Perform the local callback step required by the enclosing page transitions browser feature operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => document.body.classList.remove('nrs-page-enter'), 520);
+  window.setTimeout(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ () => document.body.classList.remove('nrs-page-enter'), 520);
 
-  window.addEventListener('pageshow', /** Callback contract: Handle the pageshow event for `window` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+  window.addEventListener('pageshow', /** Callback contract: Handle the pageshow event for `window` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
     document.body.classList.remove('nrs-page-leave');
     document.body.classList.add('nrs-page-enter');
-    window.setTimeout(/** Callback contract: Perform the local callback step required by the enclosing page transitions browser feature operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => document.body.classList.remove('nrs-page-enter'), 520);
+    window.setTimeout(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ () => document.body.classList.remove('nrs-page-enter'), 520);
   });
 
-  document.addEventListener('click', /** Callback contract: Handle the click event for `document` and apply this module's related state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+  document.addEventListener('click', /** Callback contract: Handle the click event for `document` and apply the related local state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (event) => {
     if (isModifiedClick(event)) return;
 
     const link = event.target.closest?.('a[href]');
@@ -89,7 +89,7 @@ export function initPageTransitions() {
     document.body.classList.remove('nrs-page-enter');
     document.body.classList.add('nrs-page-leave');
 
-    window.setTimeout(/** Callback contract: Perform the local callback step required by the enclosing page transitions browser feature operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    window.setTimeout(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
       window.location.href = link.href;
     }, TRANSITION_MS);
   });

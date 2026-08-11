@@ -57,7 +57,7 @@ function stripTags(value) {
  * Returns: Boolean predicate result consumed by the caller.
  */
 function normalizeLayeredHeading(html) {
-  return html.replace(/<(h[1-3])([^>]*)>([\s\S]*?)<\/\1>/gi, /** Callback contract: Perform the local callback step required by the enclosing ensure semantic headings repository tool operation. Inputs: `full`, `tag`, `attrs`, `inner`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ (full, tag, attrs, inner) => {
+  return html.replace(/<(h[1-3])([^>]*)>([\s\S]*?)<\/\1>/gi, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `full`, `tag`, `attrs`, `inner`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed value consumed by the enclosing operation. */ (full, tag, attrs, inner) => {
     const spans = Array.from(inner.matchAll(/<span\b([^>]*)class=["']([^"']*)["']([^>]*)>([\s\S]*?)<\/span>/gi));
     if (spans.length !== 2) return full;
 

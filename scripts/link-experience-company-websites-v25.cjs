@@ -39,7 +39,7 @@ const companies = [
  * Returns: Boolean predicate result consumed by the caller.
  */
 function htmlFiles(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(/** Callback contract: Perform the local callback step required by the enclosing link experience company websites v25 repository tool operation. Inputs: `entry`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ (entry) => {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `entry`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed value consumed by the enclosing operation. */ (entry) => {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) return htmlFiles(full);
     return entry.isFile() && entry.name.endsWith('.html') ? [full] : [];

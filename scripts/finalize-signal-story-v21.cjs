@@ -34,7 +34,7 @@ if (!html.includes('id="nrsStoryReadout"') || !html.includes('data-story="signal
 }
 
 if (!html.includes('class="nrs-story-noise"')) {
-  const specks = Array.from({ length: 30 }, /** Callback contract: Perform the local callback step required by the enclosing finalize signal story v21 repository tool operation. Inputs: `_`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (_, index) => {
+  const specks = Array.from({ length: 30 }, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `_`, `index`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ (_, index) => {
     const x = 8 + ((index * 37) % 85);
     const y = 9 + ((index * 53) % 78);
     const size = 1 + (index % 3);

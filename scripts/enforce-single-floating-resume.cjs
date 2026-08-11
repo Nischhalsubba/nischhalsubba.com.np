@@ -39,7 +39,7 @@ function walk(directory, output = []) {
 
 let changed = 0;
 const errors = [];
-for (const file of walk(target).filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.endsWith('.html'))) {
+for (const file of walk(target).filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => item.endsWith('.html'))) {
   const original = fs.readFileSync(file, 'utf8');
   const matches = original.match(anchorPattern) || [];
   let updated = original.replace(anchorPattern, '');

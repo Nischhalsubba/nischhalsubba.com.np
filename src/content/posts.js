@@ -97,4 +97,4 @@ export const posts = [
   },
 ];
 
-export const featuredPosts = posts.filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `post`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (post) => post.featured);
+export const featuredPosts = posts.filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `post`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `featured` value. */ (post) => post.featured);

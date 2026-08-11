@@ -133,7 +133,7 @@ function normalizePath(href) {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateProjectCards() {
-  document.querySelectorAll('.project-card[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (card) => {
+  document.querySelectorAll('.project-card[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (card) => {
     const copy = projectCopy[normalizePath(card.getAttribute('href'))];
     if (!copy) return;
 
@@ -143,7 +143,7 @@ function updateProjectCards() {
 
     if (title) title.textContent = copy.title;
     if (summary) summary.textContent = copy.summary;
-    metaItems.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item, index) => {
+    metaItems.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (item, index) => {
       if (copy.meta[index]) item.textContent = copy.meta[index];
     });
   });
@@ -157,7 +157,7 @@ function updateProjectCards() {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateWritingItems() {
-  document.querySelectorAll('.writing-item[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => {
+  document.querySelectorAll('.writing-item[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (item) => {
     const copy = writingCopy[normalizePath(item.getAttribute('href'))];
     if (!copy) return;
 

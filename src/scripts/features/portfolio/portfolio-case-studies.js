@@ -221,7 +221,7 @@ function createEl(tag, className, text) {
  */
 function buildSnapshotGrid(project) {
   const grid = createEl('div', 'snapshot-grid nrs-case-study-snapshot');
-  Object.entries(project.snapshot).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[label, value]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([label, value]) => {
+  Object.entries(project.snapshot).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[label, value]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ ([label, value]) => {
     const item = createEl('div');
     const heading = createEl('h5', null, label);
     heading.style.color = 'var(--text-tertiary)';
@@ -243,7 +243,7 @@ function buildSnapshotGrid(project) {
  */
 function buildDecisionCards(project) {
   const grid = createEl('div', 'journey-grid nrs-case-study-decisions');
-  project.decisions.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[decision, why, tradeoff, result]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([decision, why, tradeoff, result]) => {
+  project.decisions.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[decision, why, tradeoff, result]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ ([decision, why, tradeoff, result]) => {
     const card = createEl('article', 'journey-card');
     card.append(
       createEl('span', 'eyebrow', 'Decision'),
@@ -273,7 +273,7 @@ function buildDecisionCards(project) {
  */
 function buildList(items) {
   const list = createEl('ul', 'case-list');
-  items.forEach(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => list.appendChild(createEl('li', null, item)));
+  items.forEach(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => list.appendChild(createEl('li', null, item)));
   return list;
 }
 
@@ -301,7 +301,7 @@ function renderCaseStudy(project) {
     setText(hero.querySelector('.body-large, .section-lead'), project.summary);
     const chipWrap = hero.querySelector('.case-meta-chips');
     if (chipWrap) {
-      chipWrap.replaceChildren(...project.chips.map(/** Callback contract: Processes the callback step for project.chips without leaking orchestration details to the caller. Inputs: chip. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `chip`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (chip) => createEl('span', 'badge-pill', chip)));
+      chipWrap.replaceChildren(...project.chips.map(/** Callback contract: Processes the callback step for project.chips without leaking orchestration details to the caller. Inputs: chip. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `chip`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `chip`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (chip) => createEl('span', 'badge-pill', chip)));
     }
   }
 
@@ -379,7 +379,7 @@ function renderCaseStudy(project) {
   );
   content.appendChild(reflectionSection);
 
-  Array.from(main.children).forEach(/** Callback contract: Processes the callback step for array.from(main.children) without leaking orchestration details to the caller. Inputs: child. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `child`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (child) => {
+  Array.from(main.children).forEach(/** Callback contract: Processes the callback step for array.from(main.children) without leaking orchestration details to the caller. Inputs: child. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `child`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `child`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (child) => {
     if (child === hero || child === image || child === proof || child === closing) return;
     child.remove();
   });
@@ -403,7 +403,7 @@ function renderCaseStudy(project) {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function polishProjectCards() {
-  document.querySelectorAll('.project-card').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card') without leaking orchestration details to the caller. Inputs: card. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (card) => {
+  document.querySelectorAll('.project-card').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card') without leaking orchestration details to the caller. Inputs: card. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (card) => {
     const title = card.querySelector('h3')?.textContent?.trim();
     if (!title || !CARD_COPY[title]) return;
     const [eyebrow, summary] = CARD_COPY[title];

@@ -193,4 +193,4 @@ export const projects = [
   },
 ];
 
-export const featuredProjects = projects.filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `project`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (project) => project.featured);
+export const featuredProjects = projects.filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `project`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `featured` value. */ (project) => project.featured);

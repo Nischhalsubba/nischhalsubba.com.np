@@ -252,7 +252,7 @@ function markFigmaUnavailable(frame, fallback, message) {
 function enhanceFigmaEmbeds() {
   const frames = [...document.querySelectorAll('iframe[src*="figma.com"]')];
 
-  frames.forEach(/** Callback contract: Processes the callback step for frames without leaking orchestration details to the caller. Inputs: frame, index. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `frame`, `index`. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (frame, index) => {
+  frames.forEach(/** Callback contract: Processes the callback step for frames without leaking orchestration details to the caller. Inputs: frame, index. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `frame`, `index`. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `frame`, `index`. Side effects: registers or removes browser listeners; reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (frame, index) => {
     if (frame.dataset.auditEnhanced === "true") return;
     frame.dataset.auditEnhanced = "true";
 
@@ -290,7 +290,7 @@ function enhanceFigmaEmbeds() {
     }
 
     let loaded = false;
-    const timeout = window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit remediations browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    const timeout = window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit remediations browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
       if (!loaded)
         markFigmaUnavailable(
           frame,
@@ -301,7 +301,7 @@ function enhanceFigmaEmbeds() {
 
     frame.addEventListener(
       "load",
-      /** Callback contract: Processes the callback step for frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the load event for `frame` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+      /** Callback contract: Processes the callback step for frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the load event for `frame` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the load event for `frame` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
         loaded = true;
         window.clearTimeout(timeout);
         fallback.classList.add("is-ready");
@@ -311,7 +311,7 @@ function enhanceFigmaEmbeds() {
 
     frame.addEventListener(
       "error",
-      /** Callback contract: Processes the callback step for frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the error event for `frame` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+      /** Callback contract: Processes the callback step for frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the error event for `frame` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the error event for `frame` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
         window.clearTimeout(timeout);
         markFigmaUnavailable(
           frame,
@@ -339,7 +339,7 @@ function enhanceFigmaEmbeds() {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function protectExternalLinks() {
-  document.querySelectorAll('a[target="_blank"]').forEach(/** Callback contract: Processes the callback step for document.query selector all('a[target=" blank"]') without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
+  document.querySelectorAll('a[target="_blank"]').forEach(/** Callback contract: Processes the callback step for document.query selector all('a[target=" blank"]') without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (link) => {
     const rel = new Set(
       (link.getAttribute("rel") || "").split(/\s+/).filter(Boolean),
     );
@@ -400,7 +400,7 @@ function initFloatingResumeVisibility() {
 
   if (hero && "IntersectionObserver" in window) {
     const heroObserver = new IntersectionObserver(
-      /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: [entry]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit remediations browser feature operation. Inputs: `[entry]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([entry]) => {
+      /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: [entry]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit remediations browser feature operation. Inputs: `[entry]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `[entry]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ ([entry]) => {
         pastHero = !entry.isIntersecting && entry.boundingClientRect.bottom < 0;
         update();
       },
@@ -413,7 +413,7 @@ function initFloatingResumeVisibility() {
 
   if (footerTarget && "IntersectionObserver" in window) {
     const footerObserver = new IntersectionObserver(
-      /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: [entry]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit remediations browser feature operation. Inputs: `[entry]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([entry]) => {
+      /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: [entry]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit remediations browser feature operation. Inputs: `[entry]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `[entry]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ ([entry]) => {
         nearFooter = entry.isIntersecting;
         update();
       },
@@ -440,7 +440,7 @@ function initFloatingResumeVisibility() {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function improveImageDefaults() {
-  document.querySelectorAll("img").forEach(/** Callback contract: Processes the callback step for document.query selector all("img") without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (image) => {
+  document.querySelectorAll("img").forEach(/** Callback contract: Processes the callback step for document.query selector all("img") without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (image) => {
     if (!image.hasAttribute("decoding")) image.decoding = "async";
     if (
       !image.hasAttribute("loading") &&
@@ -468,7 +468,7 @@ function addAnchorOffsetTargets() {
   document
     .querySelectorAll("main [id]")
     .forEach(/** Callback contract: Processes the callback step for document
-    .query selector all("main [id]") without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.classList.add("nrs-anchor-target"));
+    .query selector all("main [id]") without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (element) => element.classList.add("nrs-anchor-target"));
 }
 
 /**

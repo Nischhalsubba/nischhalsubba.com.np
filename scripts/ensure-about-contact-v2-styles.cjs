@@ -368,7 +368,7 @@ function walk(dir, files = []) {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateHtmlStylesheetVersion() {
-  for (const file of walk(targetRoot).filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `filePath`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (filePath) => filePath.endsWith('.html'))) {
+  for (const file of walk(targetRoot).filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `filePath`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (filePath) => filePath.endsWith('.html'))) {
     const before = fs.readFileSync(file, 'utf8');
     const after = before.replace(/\/style\.css\?v=[0-9.]+/g, `/style.css?v=${version}`);
     if (after !== before) fs.writeFileSync(file, after, 'utf8');

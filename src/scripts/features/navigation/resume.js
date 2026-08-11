@@ -26,7 +26,7 @@ const RESUME_FILENAME = 'Nischhal-Raj-Subba-Resume.pdf';
 function removeDuplicateFloatingResumeControls() {
   const floatingControls = $$('.floating-resume-btn');
 
-  floatingControls.slice(1).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `control`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (control) => control.remove());
+  floatingControls.slice(1).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `control`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (control) => control.remove());
 }
 
 /**
@@ -39,12 +39,12 @@ function removeDuplicateFloatingResumeControls() {
 export function initResumeDownload() {
   removeDuplicateFloatingResumeControls();
 
-  $$('a[href$="resume.pdf"], .floating-resume-btn, [data-resume-download]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
+  $$('a[href$="resume.pdf"], .floating-resume-btn, [data-resume-download]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: registers or removes browser listeners; reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (link) => {
     link.setAttribute('href', RESUME_URL);
     link.setAttribute('download', RESUME_FILENAME);
     link.setAttribute('type', 'application/pdf');
 
-    link.addEventListener('click', /** Callback contract: Handle the click event for `link` and apply this module's related state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+    link.addEventListener('click', /** Callback contract: Handle the click event for `link` and apply the related local state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (event) => {
       event.preventDefault();
 
       const downloadLink = document.createElement('a');

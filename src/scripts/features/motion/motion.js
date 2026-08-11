@@ -27,8 +27,8 @@ function initRevealObserver() {
   if (prefersReducedMotion()) return;
 
   const observer = new IntersectionObserver(
-    /** Callback contract: Perform the local callback step required by the enclosing motion browser feature operation. Inputs: `entries`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (entries) => {
-      entries.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `entry`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (entry) => {
+    /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `entries`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (entries) => {
+      entries.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `entry`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (entry) => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
@@ -37,7 +37,7 @@ function initRevealObserver() {
     { threshold: 0.14, rootMargin: '0px 0px -8% 0px' }
   );
 
-  elements.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element, index) => {
+  elements.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`, `index`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (element, index) => {
     observer.observe(element);
   });
 }
@@ -83,10 +83,10 @@ function initGsapReveals() {
   }
 
   const elements = $$('.reveal-on-scroll, .project-card, .impact-card, .writing-item, .journey-card, .prototype-link-card')
-    .filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => !heroElements.includes(element));
+    .filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `element`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (element) => !heroElements.includes(element));
   if (!elements.length) return true;
 
-  elements.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`, `index`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element, index) => {
+  elements.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`, `index`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (element, index) => {
     const tween = {
       autoAlpha: 1,
       y: 0,

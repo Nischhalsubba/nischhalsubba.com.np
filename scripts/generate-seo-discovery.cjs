@@ -126,7 +126,7 @@ if (fs.existsSync(path.join(root, 'public', 'nischhal-raj-subba.html'))) {
 }
 
 if (failures.length) {
-  console.error(`[seo-discovery] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => `- ${item}`).join('\n')}`);
+  console.error(`[seo-discovery] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}`);
   process.exit(1);
 }
 

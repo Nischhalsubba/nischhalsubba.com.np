@@ -89,7 +89,7 @@ function activeSection(relativeFile) {
  * Returns: Boolean predicate result consumed by the caller.
  */
 function links(active, className) {
-  return navigationItems.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[key, href, label]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ ([key, href, label]) => {
+  return navigationItems.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[key, href, label]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ ([key, href, label]) => {
     const activeClass = key === active ? ' active' : '';
     const current = key === active ? ' aria-current="page"' : '';
     return `<a href="${href}" class="${className}${activeClass}"${current}>${label}</a>`;
@@ -151,7 +151,7 @@ function stripExistingShell(html) {
 function insertShell(html, sharedShell) {
   const themeToggle = /<button\b[^>]*id=["']theme-toggle["'][^>]*>[\s\S]*?<\/button>/i;
   if (themeToggle.test(html)) {
-    return html.replace(themeToggle, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: toggle. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing ensure shared site shell repository tool operation. Inputs: `toggle`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (toggle) => `${sharedShell.mobile}${toggle}${sharedShell.desktop}`);
+    return html.replace(themeToggle, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: toggle. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing ensure shared site shell repository tool operation. Inputs: `toggle`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `toggle`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (toggle) => `${sharedShell.mobile}${toggle}${sharedShell.desktop}`);
   }
   if (/<main\b/i.test(html)) return html.replace(/<main\b/i, `${sharedShell.mobile}${sharedShell.desktop}<main`);
   throw new Error('Cannot insert shared shell because the page has neither a theme toggle nor a main element.');
@@ -204,7 +204,7 @@ function normalize(html, relativeFile) {
 }
 
 let changed = 0;
-for (const filePath of walk(target).filter(/** Callback contract: Processes the callback step for walk(target) without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => file.endsWith('.html'))) {
+for (const filePath of walk(target).filter(/** Callback contract: Processes the callback step for walk(target) without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (file) => file.endsWith('.html'))) {
   const before = fs.readFileSync(filePath, 'utf8');
   const after = normalize(before, relativePath(filePath));
   if (after !== before) {

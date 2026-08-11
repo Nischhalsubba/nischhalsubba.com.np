@@ -30,7 +30,7 @@ if (/^\s*\d+(?:;\d+)+&display=swap'\);/m.test(css)) {
  */
 function hexToRgb(hex) {
   const value = hex.replace('#', '');
-  return [0, 2, 4].map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `offset`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (offset) => Number.parseInt(value.slice(offset, offset + 2), 16));
+  return [0, 2, 4].map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `offset`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (offset) => Number.parseInt(value.slice(offset, offset + 2), 16));
 }
 
 /**
@@ -41,7 +41,7 @@ function hexToRgb(hex) {
  * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function luminance(hex) {
-  const [r, g, b] = hexToRgb(hex).map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `channel`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (channel) => {
+  const [r, g, b] = hexToRgb(hex).map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `channel`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ (channel) => {
     const value = channel / 255;
     return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
   });
@@ -78,7 +78,7 @@ if (page && tertiary && contrast(tertiary, page) < 4.5) {
 }
 
 if (failures.length) {
-  console.error(`[accessibility-tokens] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[accessibility-tokens] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

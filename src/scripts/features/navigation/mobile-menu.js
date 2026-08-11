@@ -31,7 +31,7 @@ const FOCUSABLE_SELECTOR = [
  */
 function getFocusableElements(overlay) {
   if (!overlay || overlay.hidden) return [];
-  return [...overlay.querySelectorAll(FOCUSABLE_SELECTOR)].filter(/** Callback contract: Keep only elements that are rendered, visible, and eligible for the surrounding focus/layout operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Boolean predicate result consumed by the caller. */ (element) => {
+  return [...overlay.querySelectorAll(FOCUSABLE_SELECTOR)].filter(/** Callback contract: Keep only elements that are rendered, visible, and eligible for the enclosing focus/layout operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate/result. */ (element) => {
     const style = window.getComputedStyle(element);
     const rect = element.getBoundingClientRect();
     return !element.hasAttribute('hidden')
@@ -51,7 +51,7 @@ function getFocusableElements(overlay) {
  * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function setBackgroundInert(button, overlay, open) {
-  [...document.body.children].forEach(/** Callback contract: Apply or restore inert state for each background element while preserving its prior inert value. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => {
+  [...document.body.children].forEach(/** Callback contract: Apply or restore inert state for the current background element while preserving its previous value. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (element) => {
     if (element === overlay || element === button || element.classList.contains('skip-link')) return;
 
     if (open) {
@@ -98,10 +98,10 @@ function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
   setBackgroundInert(button, overlay, open);
 
   if (open) {
-    window.requestAnimationFrame(/** Callback contract: Defer visibility/layout-dependent focus movement until the browser has applied the preceding DOM state change. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    window.requestAnimationFrame(/** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
       overlay.scrollTop = 0;
       overlay.focus({ preventScroll: true });
-      window.requestAnimationFrame(/** Callback contract: Defer visibility/layout-dependent focus movement until the browser has applied the preceding DOM state change. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+      window.requestAnimationFrame(/** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
         const firstFocusable = getFocusableElements(overlay)[0];
         if (firstFocusable) firstFocusable.focus({ preventScroll: true });
       });
@@ -109,7 +109,7 @@ function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
     return;
   }
 
-  window.requestAnimationFrame(/** Callback contract: Defer visibility/layout-dependent focus movement until the browser has applied the preceding DOM state change. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+  window.requestAnimationFrame(/** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
     overlay.scrollTop = 0;
     overlay.hidden = true;
     if (restoreFocus && button.getClientRects().length) button.focus({ preventScroll: true });
@@ -173,24 +173,24 @@ export function initMobileMenu() {
   overlay.setAttribute('aria-label', 'Site navigation');
   overlay.setAttribute('tabindex', '-1');
 
-  button.addEventListener('click', /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+  button.addEventListener('click', /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (event) => {
     event.preventDefault();
     event.stopPropagation();
     const open = !document.body.classList.contains('menu-open');
     setMenuState(button, overlay, open);
   });
 
-  $$('.mobile-nav-links a').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: registers or removes browser event listeners. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
-    link.addEventListener('click', /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+  $$('.mobile-nav-links a').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: registers or removes browser listeners. Returns: undefined; callback is side-effect-only. */ (link) => {
+    link.addEventListener('click', /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
       setMenuState(button, overlay, false, { restoreFocus: false });
     });
   });
 
-  overlay.addEventListener('click', /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+  overlay.addEventListener('click', /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: `event`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (event) => {
     if (event.target === overlay) setMenuState(button, overlay, false);
   });
 
-  window.addEventListener('keydown', /** Callback contract: Handle keydown input for Escape/Tab behavior and keyboard focus containment. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
+  window.addEventListener('keydown', /** Callback contract: Handle keydown input for Escape/Tab behavior and keyboard focus containment. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (event) => {
     if (!document.body.classList.contains('menu-open')) return;
 
     if (event.key === 'Escape') {

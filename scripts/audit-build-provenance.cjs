@@ -61,7 +61,7 @@ function walk(directory) {
 walk(dist);
 
 if (issues.length) {
-  console.error(`[provenance] Failed\n${issues.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `issue`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (issue) => `- ${issue}`).join('\n')}`);
+  console.error(`[provenance] Failed\n${issues.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `issue`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (issue) => `- ${issue}`).join('\n')}`);
   process.exit(1);
 }
 

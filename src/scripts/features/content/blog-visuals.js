@@ -64,7 +64,7 @@ function currentCover() {
   const heading = document.querySelector('h1')?.textContent || '';
   const path = window.location.pathname;
   const key = `${path} ${title} ${heading}`;
-  return BLOG_COVERS.find(/** Callback contract: Processes the callback step for blog covers without leaking orchestration details to the caller. Inputs: cover. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `cover`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (cover) => cover.match.test(key)) || DEFAULT_COVER;
+  return BLOG_COVERS.find(/** Callback contract: Processes the callback step for blog covers without leaking orchestration details to the caller. Inputs: cover. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `cover`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `cover`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (cover) => cover.match.test(key)) || DEFAULT_COVER;
 }
 
 /**
@@ -105,7 +105,7 @@ function upsertMeta(selector, attrs) {
     meta = document.createElement('meta');
     document.head.appendChild(meta);
   }
-  Object.entries(attrs).forEach(/** Callback contract: Processes the callback step for object.entries(attrs) without leaking orchestration details to the caller. Inputs: [key, value]. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[key, value]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([key, value]) => meta.setAttribute(key, value));
+  Object.entries(attrs).forEach(/** Callback contract: Processes the callback step for object.entries(attrs) without leaking orchestration details to the caller. Inputs: [key, value]. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[key, value]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[key, value]`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ ([key, value]) => meta.setAttribute(key, value));
 }
 
 /**

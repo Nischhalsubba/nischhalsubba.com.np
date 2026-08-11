@@ -197,7 +197,7 @@ function addSkeleton(media) {
  */
 function improveMediaLoading() {
   const heroMedia = new Set(document.querySelectorAll('.hero-section img, .nrs-services-hero img, .nrs-contact-v3-hero img, .case-hero-img-container img'));
-  document.querySelectorAll('main img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (image) => {
+  document.querySelectorAll('main img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (image) => {
     image.decoding = 'async';
     if (heroMedia.has(image)) {
       image.loading = 'eager';
@@ -205,7 +205,7 @@ function improveMediaLoading() {
     } else image.loading = 'lazy';
     addSkeleton(image);
   });
-  document.querySelectorAll('main iframe').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `frame`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (frame) => {
+  document.querySelectorAll('main iframe').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `frame`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (frame) => {
     frame.loading = 'lazy';
     addSkeleton(frame);
   });
@@ -227,10 +227,10 @@ function markInteractiveElements() {
     '.case-list li', '.filter-btn', '.btn', '.nav-link', '.mobile-nav-links a',
   ].join(',');
 
-  document.querySelectorAll(selector).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.classList.add('nrs-cursor-target'));
-  document.querySelectorAll('main img, main video, main iframe').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.setAttribute('data-cursor-mode', 'media'));
-  document.querySelectorAll('main p, main li, main h1, main h2, main h3, main h4').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.setAttribute('data-cursor-mode', 'text'));
-  document.querySelectorAll('[data-cursor-label]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.classList.add('nrs-cursor-target'));
+  document.querySelectorAll(selector).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (element) => element.classList.add('nrs-cursor-target'));
+  document.querySelectorAll('main img, main video, main iframe').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (element) => element.setAttribute('data-cursor-mode', 'media'));
+  document.querySelectorAll('main p, main li, main h1, main h2, main h3, main h4').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (element) => element.setAttribute('data-cursor-mode', 'text'));
+  document.querySelectorAll('[data-cursor-label]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (element) => element.classList.add('nrs-cursor-target'));
 }
 
 /**
