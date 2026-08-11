@@ -15,7 +15,7 @@
  * - scripts/portfolio-redesign-part-2.cjsfrag
  * - scripts/portfolio-redesign-part-3.cjsfrag
  * - src/scripts/entrypoints/portfolio-main.js
- * - src/scripts/features/portfolio/agent-portfolio.js
+ * - src/scripts/features/portfolio/portfolio-runtime.js
  * - src/styles/fragments/portfolio/compatibility.cssfrag
  * Maintenance: Preserve the transformation order and existing DOM contracts until shared selectors are migrated across markup, CSS, browser runtime, and audits together. This stage should remain production-only and must not become a second owner of canonical page source.
  */
@@ -38,7 +38,7 @@ new Function('require', '__dirname', '__filename', source)(require, __dirname, _
 
 const repositoryRoot = path.join(__dirname, '..');
 const dist = path.join(repositoryRoot, 'dist');
-const portfolioRuntimePath = path.join(dist, 'src', 'scripts', 'features', 'portfolio', 'agent-portfolio.js');
+const portfolioRuntimePath = path.join(dist, 'src', 'scripts', 'features', 'portfolio', 'portfolio-runtime.js');
 const runtimeEntryPath = path.join(dist, 'script.js');
 const compatibilityStylePath = path.join(repositoryRoot, 'src', 'styles', 'fragments', 'portfolio', 'compatibility.cssfrag');
 const distStylePath = path.join(dist, 'style.css');
