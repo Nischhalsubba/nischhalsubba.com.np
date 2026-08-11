@@ -17,7 +17,7 @@ const target = path.resolve(__dirname, 'refine-code-documentation.cjs');
 
 /**
  * Function contract: main
- * Purpose: Replace the broad cross-comment regex with a block-bounded expression that cannot cross a closing `*/` marker.
+ * Purpose: Replace the broad cross-comment regex with a block-bounded expression that cannot cross a JSDoc closing marker.
  * Inputs: None; operates on the known temporary refinement script.
  * Side effects: Rewrites the temporary refinement script in the workflow checkout.
  * Returns: Undefined; throws when the expected declaration is missing.
