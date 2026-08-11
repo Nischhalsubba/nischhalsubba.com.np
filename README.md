@@ -37,6 +37,7 @@ This branch differs from the default branch in the following detected paths:
 
 - [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/qa/comprehensive-microinteractions-2026-08-10/.github/workflows/browser-audit.yml)
 - [`.github/workflows/qa-microinteraction-v2.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/qa/comprehensive-microinteractions-2026-08-10/.github/workflows/qa-microinteraction-v2.yml)
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/qa/comprehensive-microinteractions-2026-08-10/README.md)
 - [`scripts/browser-current-home-layout-audit.mjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/qa/comprehensive-microinteractions-2026-08-10/scripts/browser-current-home-layout-audit.mjs)
 - [`scripts/browser-hero-stability-audit.mjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/qa/comprehensive-microinteractions-2026-08-10/scripts/browser-hero-stability-audit.mjs)
 - [`scripts/browser-microinteraction-audit-v2.mjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/qa/comprehensive-microinteractions-2026-08-10/scripts/browser-microinteraction-audit-v2.mjs)
