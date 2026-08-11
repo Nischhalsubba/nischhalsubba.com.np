@@ -23,8 +23,8 @@ jobs:
       EXPECTED_SHA: ${{ github.sha }}
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
@@ -151,7 +151,7 @@ jobs:
           echo 'Required production security headers passed.' | tee production-headers.log
       - name: Publish production QA issue
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           ROUTES: ${{ steps.routes.outcome }}
           BROWSER: ${{ steps.browser.outcome }}
@@ -189,7 +189,7 @@ jobs:
             else await github.rest.issues.create(payload);
       - name: Upload QA evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: production-qa-${{ github.sha }}
           path: |
