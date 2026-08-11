@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-search-identity-final.cjs
+ * Purpose: Apply the ensure search identity final production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -61,16 +74,42 @@ const meta = {
   },
 };
 
+
+/**
+ * Function contract: routeFor
+ * Purpose: Implement the route for responsibility owned by the ensure search identity final repository tool.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
+
+
+/**
+ * Function contract: esc
+ * Purpose: Implement the esc responsibility owned by the ensure search identity final repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
+
+
+/**
+ * Function contract: setTitle
+ * Purpose: Synchronize title with the requested state while preserving related ensure search identity final repository tool invariants.
+ * Inputs: `html`, `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function setTitle(html, value) {
   const tag = `<title>${esc(value)}</title>`;
   return /<title\b[^>]*>[\s\S]*?<\/title>/i.test(html)
@@ -78,6 +117,15 @@ function setTitle(html, value) {
     : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
+
+
+/**
+ * Function contract: setMeta
+ * Purpose: Synchronize meta with the requested state while preserving related ensure search identity final repository tool invariants.
+ * Inputs: `html`, `key`, `value`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function setMeta(html, key, value, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapedKey}["'])[^>]*>`, 'i');
@@ -85,13 +133,30 @@ function setMeta(html, key, value, keyAttribute = 'name') {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
+
+
+/**
+ * Function contract: removeMeta
+ * Purpose: Remove meta without disturbing required surrounding ensure search identity final repository tool state.
+ * Inputs: `html`, `key`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function removeMeta(html, key, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return html.replace(new RegExp(`\\s*<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapedKey}["'])[^>]*>`, 'gi'), '');
 }
 
+
+/**
+ * Function contract: patchStructuredData
+ * Purpose: Implement the patch structured data responsibility owned by the ensure search identity final repository tool.
+ * Inputs: `html`, `route`, `pageMeta`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function patchStructuredData(html, route, pageMeta) {
-  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i, (whole, before, after, raw) => {
+  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure search identity final repository tool operation. Inputs: `whole`, `before`, `after`, `raw` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (whole, before, after, raw) => {
     try {
       const data = JSON.parse(raw.trim());
       const graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
@@ -123,6 +188,15 @@ function patchStructuredData(html, route, pageMeta) {
   });
 }
 
+
+
+/**
+ * Function contract: patchIdentityHead
+ * Purpose: Implement the patch identity head responsibility owned by the ensure search identity final repository tool.
+ * Inputs: `html`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function patchIdentityHead(html) {
   html = html
     .replace(/\s*<link\b[^>]*rel=["'](?:shortcut\s+icon|icon|apple-touch-icon|apple-touch-icon-precomposed|mask-icon|manifest)["'][^>]*>/gi, '')

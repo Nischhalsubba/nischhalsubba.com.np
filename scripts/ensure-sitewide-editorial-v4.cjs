@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-sitewide-editorial-v4.cjs
+ * Purpose: Apply the ensure sitewide editorial v4 production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -275,6 +288,14 @@ const services = {
   },
 };
 
+
+/**
+ * Function contract: esc
+ * Purpose: Implement the esc responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function esc(value = '') {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -283,6 +304,14 @@ function esc(value = '') {
     .replaceAll('"', '&quot;');
 }
 
+
+/**
+ * Function contract: strip
+ * Purpose: Remove module behavior without disturbing required surrounding ensure sitewide editorial v4 repository tool state.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function strip(value = '') {
   return String(value)
     .replace(/<script\b[\s\S]*?<\/script>/gi, '')
@@ -295,32 +324,81 @@ function strip(value = '') {
     .trim();
 }
 
+
+/**
+ * Function contract: fileFor
+ * Purpose: Implement the file for responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function fileFor(route) {
   if (route === '/') return path.join(base, 'index.html');
   if (route === '/blog/') return path.join(base, 'blog', 'index.html');
   return path.join(base, `${route.replace(/^\//, '')}.html`);
 }
 
+
+/**
+ * Function contract: read
+ * Purpose: Return module behavior from the supplied inputs or current ensure sitewide editorial v4 repository tool state.
+ * Inputs: `route`
+ * Side effects: reads filesystem state
+ * Returns: The requested module behavior; explicit early-return branches define empty/fallback behavior.
+ */
 function read(route) {
   const file = fileFor(route);
   return fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
 }
 
+
+/**
+ * Function contract: write
+ * Purpose: Implement the write responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `route`, `html`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function write(route, html) {
   const file = fileFor(route);
   if (!fs.existsSync(path.dirname(file))) fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, html, 'utf8');
 }
 
+
+/**
+ * Function contract: meta
+ * Purpose: Implement the meta responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `html`, `{ title, description, canonical, type = 'WebPage', image }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function meta(html, { title, description, canonical, type = 'WebPage', image }) {
   const safeTitle = esc(title);
   const safeDescription = esc(description);
   const safeCanonical = esc(canonical);
+  
+  /**
+   * Function contract: setName
+   * Purpose: Synchronize name with the requested state while preserving related ensure sitewide editorial v4 repository tool invariants.
+   * Inputs: `source`, `name`, `value`
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+   */
   const setName = (source, name, value) => {
     const pattern = new RegExp(`<meta\\s+[^>]*name=["']${name}["'][^>]*>`, 'i');
     const tag = `<meta name="${name}" content="${value}" />`;
     return pattern.test(source) ? source.replace(pattern, tag) : source.replace('</head>', `${tag}\n</head>`);
   };
+  
+  
+  /**
+   * Function contract: setProperty
+   * Purpose: Synchronize property with the requested state while preserving related ensure sitewide editorial v4 repository tool invariants.
+   * Inputs: `source`, `name`, `value`
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+   */
   const setProperty = (source, name, value) => {
     const pattern = new RegExp(`<meta\\s+[^>]*property=["']${name}["'][^>]*>`, 'i');
     const tag = `<meta property="${name}" content="${value}" />`;
@@ -360,10 +438,19 @@ function meta(html, { title, description, canonical, type = 'WebPage', image }) 
   return html;
 }
 
+
+
+/**
+ * Function contract: asset
+ * Purpose: Implement the asset responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `prefix`, `fallback`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function asset(prefix, fallback = '') {
   const assetsDir = path.join(base, 'assets');
   if (!fs.existsSync(assetsDir)) return fallback;
-  const found = fs.readdirSync(assetsDir).find((name) => name.startsWith(prefix));
+  const found = fs.readdirSync(assetsDir).find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (name) => name.startsWith(prefix));
   return found ? `/assets/${found}` : fallback;
 }
 
@@ -373,12 +460,30 @@ const coverPrefix = {
   morajaa: 'project-morajaa-cover-', splashnode: 'project-splashnode-cover-',
 };
 
+
+
+/**
+ * Function contract: projectImage
+ * Purpose: Implement the project image responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `slug`, `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function projectImage(slug, html = '') {
   const fromAsset = coverPrefix[slug] ? asset(coverPrefix[slug]) : '';
   if (fromAsset) return fromAsset;
   return html.match(/<img\b[^>]*src=["']([^"']+)["'][^>]*>/i)?.[1] || '';
 }
 
+
+
+/**
+ * Function contract: projectImages
+ * Purpose: Implement the project images responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function projectImages(html) {
   const seen = new Set();
   const images = [];
@@ -392,6 +497,15 @@ function projectImages(html) {
   return images;
 }
 
+
+
+/**
+ * Function contract: externalLinks
+ * Purpose: Implement the external links responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function externalLinks(html) {
   const links = [];
   const seen = new Set();
@@ -404,6 +518,15 @@ function externalLinks(html) {
   return links.slice(0, 4);
 }
 
+
+
+/**
+ * Function contract: fact
+ * Purpose: Implement the fact responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `html`, `labels`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function fact(html, labels) {
   for (const label of labels) {
     const safe = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -413,10 +536,28 @@ function fact(html, labels) {
   return '';
 }
 
+
+
+/**
+ * Function contract: footer
+ * Purpose: Implement the footer responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function footer() {
   return `<footer class="site-footer"><div class="agent-footer-grid"><div class="agent-footer-cta"><span class="agent-kicker">Open to senior product design roles and selected collaborations</span><p><a href="/contact">Need a designer who can make a complicated product easier to reason about?</a></p></div><nav class="agent-footer-links" aria-label="Footer navigation"><a href="/projects">Work</a><a href="/about">About</a><a href="/services">Services</a><a href="/blog/">Writing</a><a href="mailto:hinischalsubba@gmail.com">Email</a><a href="https://www.linkedin.com/in/nischhal/" rel="me">LinkedIn</a><a href="/assets/resume.pdf" data-resume-download>Resume</a></nav><div class="agent-footer-bottom"><span>© 2026 Nischhal Raj Subba</span><span>Kathmandu, Nepal · Remote-friendly</span></div></div></footer>`;
 }
 
+
+
+/**
+ * Function contract: shellCopy
+ * Purpose: Implement the shell copy responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function shellCopy(html) {
   html = html.replace(/aria-label=["']Open navigation menu["']/gi, 'aria-label="Open site navigation"');
   html = html.replace(/aria-label=["']Close navigation menu["']/gi, 'aria-label="Close site navigation"');
@@ -425,29 +566,72 @@ function shellCopy(html) {
   return html;
 }
 
+
+
+/**
+ * Function contract: projectRow
+ * Purpose: Implement the project row responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `slug`, `index`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function projectRow(slug, index) {
   const item = projects[slug];
   const image = projectImage(slug, read(`/project-${slug}`));
   return `<a class="agent-project-row" href="/project-${slug}" data-agent-reveal><span class="agent-project-index">${String(index + 1).padStart(2, '0')}</span><div class="agent-project-copy"><h3>${esc(item.title)}</h3><p>${esc(item.card)}</p></div><div class="agent-project-meta"><span>${esc(item.domain)}</span><span>Case study</span></div>${image ? `<figure class="agent-project-media"><img src="${esc(image)}" alt="${esc(item.title)} project preview" loading="lazy" decoding="async"></figure>` : ''}<span class="agent-project-arrow" aria-hidden="true">↗</span></a>`;
 }
 
+
+/**
+ * Function contract: workCard
+ * Purpose: Implement the work card responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `slug`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function workCard(slug) {
   const item = projects[slug];
   const image = projectImage(slug, read(`/project-${slug}`));
   return `<a class="nrs-work-card${image ? '' : ' nrs-work-card--text-only'}" href="/project-${slug}">${image ? `<div class="nrs-work-card-media"><img src="${esc(image)}" alt="${esc(item.title)} case study preview" loading="lazy" decoding="async"></div>` : ''}<div class="nrs-work-card-copy"><span class="agent-meta">${esc(item.domain)}</span><h3>${esc(item.title)}</h3><p>${esc(item.card)}</p><span class="nrs-work-card-link">Read case study <span aria-hidden="true">↗</span></span></div></a>`;
 }
 
+
+/**
+ * Function contract: renderHome
+ * Purpose: Implement the render home responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function renderHome() {
   const featured = ['yarsha', 'mokshya', 'pihub', 'orkest'];
   return `<main id="main-content" class="agent-main nrs-editorial-home"><section class="agent-hero"><div class="agent-frame agent-hero-grid"><div class="agent-hero-copy"><span class="agent-kicker" data-agent-reveal>Senior product designer · Kathmandu, Nepal · Remote</span><h1 class="agent-display agent-hero-title" data-agent-reveal>I turn complicated product logic into interfaces people can act on.</h1><div class="agent-hero-support" data-agent-reveal><p class="agent-lead">I’m Nischhal Raj Subba. For 6+ years I’ve worked across SaaS, Web3, fintech, enterprise software and product websites, from early product structure through interface systems and implementation handoff.</p><div class="agent-actions"><a class="agent-btn agent-btn--primary" href="/projects">View selected work</a><a class="agent-btn" href="/about">Experience and approach</a></div></div></div><aside class="agent-hero-side" aria-label="Design approach visualization" data-agent-reveal><div class="agent-system-figure"><canvas class="agent-three-canvas" aria-hidden="true"></canvas><p class="agent-system-label">My job is usually the same: find the product logic, expose the important state and make the next decision easier.</p></div><div class="agent-hero-foot"><span>6+ years</span><span>SaaS · Web3 · Fintech</span><span>Design ↔ implementation</span></div></aside></div></section><section class="agent-section" id="selected-work" aria-labelledby="selected-work-heading"><div class="agent-frame"><header class="agent-section-head" data-agent-reveal><span class="agent-kicker">Selected case studies</span><h2 class="agent-section-title" id="selected-work-heading">The work, with the difficult decisions left in.</h2></header><div class="agent-project-list">${featured.map(projectRow).join('')}</div><div class="agent-actions agent-actions--section-end"><a class="agent-btn" href="/projects">See all project work</a></div></div></section><section class="agent-section agent-section--inverse" aria-labelledby="practice-heading"><div class="agent-frame"><header class="agent-section-head"><span class="agent-kicker">What I bring</span><h2 class="agent-section-title" id="practice-heading">Product thinking that survives implementation.</h2></header><div class="agent-capabilities"><article class="agent-capability"><span class="agent-meta">01 · Structure</span><div><h3>Find the real product problem.</h3><p>Clarify roles, states, constraints and decision points before visual polish makes a weak flow look finished.</p></div></article><article class="agent-capability"><span class="agent-meta">02 · Interface</span><div><h3>Make important information easy to act on.</h3><p>Use hierarchy, density, content and interaction states to make complex work feel deliberate rather than crowded.</p></div></article><article class="agent-capability"><span class="agent-meta">03 · Systems</span><div><h3>Reuse decisions, not just components.</h3><p>Build patterns that create consistency while leaving room for workflows that genuinely need to behave differently.</p></div></article><article class="agent-capability"><span class="agent-meta">04 · Delivery</span><div><h3>Close the gap between design and build.</h3><p>Document responsive behavior, states and implementation intent, then stay close enough to QA the real interface.</p></div></article></div></div></section><section class="agent-section nrs-home-experience"><div class="agent-frame"><div class="nrs-home-experience-head"><span class="agent-kicker">Selected experience</span><h2>Agency breadth, product depth and enough front-end proximity to know where handoff breaks.</h2></div><div class="nrs-home-experience-list"><article><span>2025</span><strong>Idealaya</strong><p>Product design for enterprise web software and a reusable interface system.</p></article><article><span>2024–25</span><strong>Mokshya Protocol</strong><p>Web3 product and website design, including wallet-native interaction and technical storytelling.</p></article><article><span>2023</span><strong>Tegzy</strong><p>Lead UX work with a focus on design-system consistency and design-to-development handoff.</p></article></div><a class="agent-btn" href="/about">See the full experience story</a></div></section><section class="agent-section agent-section--compact"><div class="agent-frame agent-contact-strip"><h2>Hiring for a product designer, or trying to untangle a difficult product problem?</h2><div class="agent-actions"><a class="agent-btn agent-btn--primary" href="/contact">Send the context</a><a class="agent-btn" href="/assets/resume.pdf" data-resume-download>View resume</a></div></div></section></main>`;
 }
 
+
+
+/**
+ * Function contract: renderProjects
+ * Purpose: Implement the render projects responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function renderProjects() {
-  const featured = projectOrder.filter((slug) => featuredProjects.has(slug));
-  const archive = projectOrder.filter((slug) => !featuredProjects.has(slug));
+  const featured = projectOrder.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `slug` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (slug) => featuredProjects.has(slug));
+  const archive = projectOrder.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `slug` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (slug) => !featuredProjects.has(slug));
   return `<main id="main-content" class="agent-main nrs-projects-editorial nrs-editorial-work"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">Product design case studies</span><h1>Work that shows the decisions behind the interface.</h1></div><div class="nrs-work-intro"><p>I’ve worked across mobile products, workflow-heavy SaaS, Web3, fintech, technical websites and design systems. The case studies focus on what I owned, what made the problem difficult and how the product logic changed.</p><p>No invented conversion lifts. No fictional research rounds. If a result is not public, I describe the design outcome I can actually defend.</p></div></div></header><section class="agent-section nrs-work-featured"><div class="agent-frame"><div class="nrs-work-group-head"><span class="agent-meta">Start here</span><h2>Six projects that show the range.</h2><p>These cases are the fastest way to evaluate my product judgment across high-stakes states, complex workflows, technical storytelling and collaborative systems work.</p></div><div class="nrs-work-grid">${featured.map(workCard).join('')}</div></div></section><section class="agent-section nrs-work-archive-section"><div class="agent-frame"><details class="nrs-work-archive"><summary><span><b>Additional work</b><small>${archive.length} more projects across logistics, marketplaces, websites, ecommerce and front-end systems.</small></span><span aria-hidden="true">+</span></summary><div class="nrs-work-grid">${archive.map(workCard).join('')}</div></details></div></section><section class="agent-section agent-section--inverse nrs-work-close"><div class="agent-frame nrs-work-close-grid"><div><span class="agent-meta">What to look for</span><h2>I’m most useful when the product has more complexity than the interface should reveal.</h2></div><div><p>That can mean states and permissions in SaaS, trust and signing in Web3, dense financial workflows, technical product storytelling or simply a handoff that needs fewer unanswered questions.</p><a class="agent-btn" href="/contact">Discuss a role or product</a></div></div></section></main>`;
 }
 
+
+
+/**
+ * Function contract: renderServices
+ * Purpose: Implement the render services responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function renderServices() {
   const items = [
     ['Product UX', 'Clarify roles, journeys, states and decision points before adding more screens.', '/product-design-nepal', '/project-pihub', 'piHub'],
@@ -457,13 +641,29 @@ function renderServices() {
     ['Website UX', 'Explain technical products and B2B services with stronger information architecture, proof and responsive hierarchy.', '/website-ux-design', '/project-morajaa', 'Morajaa'],
     ['UX audit', 'Find usability, accessibility, responsive and implementation issues, then turn them into prioritized fixes.', '/ux-audit', '/project-neverwinter-parser', 'Neverwinter Live Parser'],
   ];
-  return `<main id="main-content" class="agent-main nrs-editorial-services"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">Product design services</span><h1>Design support for software with too much complexity behind the screen.</h1></div><p class="agent-page-intro">I work with product teams that need more than a polished layer: clearer product logic, stronger interface decisions, reusable systems and handoff that engineering can act on.</p></div></header><section class="agent-section"><div class="agent-frame agent-service-grid">${items.map(([title, copy, href, caseHref, caseTitle], index) => `<article class="agent-service"><span class="agent-meta">${String(index + 1).padStart(2, '0')}</span><div><h2>${esc(title)}</h2><p>${esc(copy)}</p><div class="agent-service-actions"><a class="agent-service-link" href="${href}">Explore service <span aria-hidden="true">↗</span></a><a class="agent-service-proof" href="${caseHref}">Related case: ${esc(caseTitle)}</a></div></div></article>`).join('')}</div></section><section class="agent-section agent-section--inverse"><div class="agent-frame"><header class="agent-section-head"><span class="agent-kicker">How engagements start</span><h2 class="agent-section-title">Frame the problem. Design the decision. Stay close to the build.</h2></header><div class="agent-capabilities"><article class="agent-capability"><span class="agent-meta">01 · Frame</span><div><h3>Understand what is actually stuck.</h3><p>Users, goals, evidence, constraints, existing product behavior and the decision the work needs to improve.</p></div></article><article class="agent-capability"><span class="agent-meta">02 · Design</span><div><h3>Resolve structure before decoration.</h3><p>Flows, hierarchy, states, content and reusable patterns become reviewable product decisions.</p></div></article><article class="agent-capability"><span class="agent-meta">03 · Ship</span><div><h3>Make implementation part of the design.</h3><p>Responsive rules, handoff, QA and iteration keep the product coherent after the Figma file stops being the source of truth.</p></div></article></div></div></section><section class="agent-section agent-section--compact"><div class="agent-frame agent-contact-strip"><h2>Have a product problem that does not fit neatly into a package?</h2><div class="agent-actions"><a class="agent-btn agent-btn--primary" href="/contact">Send the context</a><a class="agent-btn" href="/projects">Review the work</a></div></div></section></main>`;
+  return `<main id="main-content" class="agent-main nrs-editorial-services"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">Product design services</span><h1>Design support for software with too much complexity behind the screen.</h1></div><p class="agent-page-intro">I work with product teams that need more than a polished layer: clearer product logic, stronger interface decisions, reusable systems and handoff that engineering can act on.</p></div></header><section class="agent-section"><div class="agent-frame agent-service-grid">${items.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[title, copy, href, caseHref, caseTitle]`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([title, copy, href, caseHref, caseTitle], index) => `<article class="agent-service"><span class="agent-meta">${String(index + 1).padStart(2, '0')}</span><div><h2>${esc(title)}</h2><p>${esc(copy)}</p><div class="agent-service-actions"><a class="agent-service-link" href="${href}">Explore service <span aria-hidden="true">↗</span></a><a class="agent-service-proof" href="${caseHref}">Related case: ${esc(caseTitle)}</a></div></div></article>`).join('')}</div></section><section class="agent-section agent-section--inverse"><div class="agent-frame"><header class="agent-section-head"><span class="agent-kicker">How engagements start</span><h2 class="agent-section-title">Frame the problem. Design the decision. Stay close to the build.</h2></header><div class="agent-capabilities"><article class="agent-capability"><span class="agent-meta">01 · Frame</span><div><h3>Understand what is actually stuck.</h3><p>Users, goals, evidence, constraints, existing product behavior and the decision the work needs to improve.</p></div></article><article class="agent-capability"><span class="agent-meta">02 · Design</span><div><h3>Resolve structure before decoration.</h3><p>Flows, hierarchy, states, content and reusable patterns become reviewable product decisions.</p></div></article><article class="agent-capability"><span class="agent-meta">03 · Ship</span><div><h3>Make implementation part of the design.</h3><p>Responsive rules, handoff, QA and iteration keep the product coherent after the Figma file stops being the source of truth.</p></div></article></div></div></section><section class="agent-section agent-section--compact"><div class="agent-frame agent-contact-strip"><h2>Have a product problem that does not fit neatly into a package?</h2><div class="agent-actions"><a class="agent-btn agent-btn--primary" href="/contact">Send the context</a><a class="agent-btn" href="/projects">Review the work</a></div></div></section></main>`;
 }
 
+
+/**
+ * Function contract: renderAbout
+ * Purpose: Implement the render about responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function renderAbout() {
   return `<main id="main-content" class="agent-main nrs-editorial-about"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">About Nischhal Raj Subba</span><h1>I design by staying close to the product and close to the build.</h1></div><p class="agent-page-intro">I’m a product designer based in Kathmandu, Nepal. My work spans UX architecture, interface design, design systems, technical websites and implementation handoff.</p></div></header><section class="agent-section"><div class="agent-frame agent-about-grid"><div class="agent-about-copy agent-rich-copy"><p>I started in agency and client work, which taught me to move between industries and explain design decisions to people with very different priorities. Product roles pushed the work deeper: more states, longer-lived systems, permissions, data, engineering constraints and the consequences of decisions that cannot be solved by a nicer component.</p><p>That is the part of design I enjoy most. I like products where the brief is incomplete and the interface has to make a complicated system easier to reason about. I care about hierarchy, state language, recovery, responsive behavior and the quiet rules that make a product feel predictable.</p><p>I also stay close to implementation. I do not need to own the front end on every project, but understanding browser behavior, component constraints and UI QA makes my design work more practical and my handoff less theatrical.</p></div><aside class="agent-about-aside"><span class="agent-kicker">Quick context</span><div class="agent-proof-stats agent-proof-stats--stacked"><div class="agent-stat"><strong>6+</strong><span>Years in product and UX/UI design</span></div><div class="agent-stat"><strong>Product ↔ code</strong><span>Design systems, handoff and implementation-aware work</span></div><div class="agent-stat"><strong>KTM</strong><span>Kathmandu, Nepal · remote-friendly</span></div></div></aside></div></section><section class="agent-section nrs-experience-section" aria-labelledby="experience-heading"><div class="agent-frame"><header class="nrs-experience-head"><span class="agent-kicker">Experience</span><h2 id="experience-heading">A career that moved from broad client work into deeper product systems.</h2><p>The short version for hiring teams. The resume carries the full chronology.</p></header><div class="nrs-experience-list"><article><div><span>2025</span><strong>Idealaya</strong></div><div><h3>Product Designer</h3><p>Enterprise web software, high-fidelity product design and design-system work aimed at clearer implementation.</p></div></article><article><div><span>2024–25</span><strong>Mokshya Protocol</strong></div><div><h3>Product Designer</h3><p>Web3 product and website design, including wallet-native behavior, prototypes and technical product storytelling.</p></div></article><article><div><span>2023</span><strong>Tegzy</strong></div><div><h3>Lead User Experience Designer</h3><p>Design-system consistency, reusable product patterns and stronger design-to-development handoff.</p></div></article><article><div><span>2021–23</span><strong>ESR Tech</strong></div><div><h3>Senior UI/UX Designer</h3><p>Dashboard and internal-tool UX alongside broader product and website work.</p></div></article><article><div><span>2021</span><strong>ThemeGrill</strong></div><div><h3>Senior UI/UX Designer</h3><p>Reusable UI components and prototypes inside a WordPress product environment.</p></div></article><article><div><span>2019–21</span><strong>Gurzu</strong></div><div><h3>UI/UX Designer</h3><p>Client-facing product design, prototyping and interface improvement across early-stage and existing products.</p></div></article></div><a class="agent-btn" href="/assets/resume.pdf" data-resume-download>View full resume</a></div></section><section class="agent-section agent-section--inverse"><div class="agent-frame"><header class="agent-section-head"><span class="agent-kicker">How I work</span><h2 class="agent-section-title">Three habits I bring into almost every product.</h2></header><div class="agent-capabilities"><article class="agent-capability"><span class="agent-meta">01 · Decision</span><div><h3>Start with what the user needs to decide.</h3><p>It keeps flows, content and visual hierarchy tied to a job instead of a collection of screens.</p></div></article><article class="agent-capability"><span class="agent-meta">02 · State</span><div><h3>Design what happens when the happy path stops.</h3><p>Waiting, errors, permissions, empty states and recovery are product behavior, not cleanup copy.</p></div></article><article class="agent-capability"><span class="agent-meta">03 · Build</span><div><h3>Make the handoff explicit.</h3><p>Responsive rules, component behavior and QA should survive without a designer narrating every frame.</p></div></article></div></div></section><section class="agent-section agent-section--compact"><div class="agent-frame agent-contact-strip"><h2>Want the work history, the product thinking, or both?</h2><div class="agent-actions"><a class="agent-btn agent-btn--primary" href="/projects">View case studies</a><a class="agent-btn" href="/contact">Contact me</a></div></div></section></main>`;
 }
 
+
+/**
+ * Function contract: contactForm
+ * Purpose: Implement the contact form responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function contactForm(html) {
   let form = html.match(/<form\b[^>]*id=["']contact-form["'][^>]*>[\s\S]*?<\/form>/i)?.[0] || '';
   if (!form) return '';
@@ -488,55 +688,115 @@ function contactForm(html) {
   return form;
 }
 
+
+/**
+ * Function contract: renderContact
+ * Purpose: Implement the render contact responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `original`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function renderContact(original) {
   const form = contactForm(original);
   return `<main id="main-content" class="agent-main nrs-editorial-contact"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">Contact</span><h1>Send the complicated version.</h1></div><p class="agent-page-intro">For product design roles or focused design work, tell me what you are building, where the friction is, who needs to use it and when the decision matters.</p></div></header><section class="agent-section"><div class="agent-frame agent-contact-grid"><div class="agent-contact-copy"><span class="agent-kicker">Direct contact</span><p class="agent-lead">Email works just as well: <a href="mailto:hinischalsubba@gmail.com">hinischalsubba@gmail.com</a></p><div class="nrs-contact-context"><div><strong>Good context</strong><span>Product or role · current friction · useful links · rough timeline</span></div><div><strong>Typical reply</strong><span>Within 1–2 working days</span></div><div><strong>Based in</strong><span>Kathmandu, Nepal · remote-friendly</span></div></div></div><div class="agent-contact-form-wrap">${form}</div></div></section><section class="agent-section agent-section--compact"><div class="agent-frame nrs-contact-prep-v4"><span class="agent-kicker">A useful first message answers three things</span><ol><li><strong>What are you trying to ship or improve?</strong><span>Enough product context to understand the job.</span></li><li><strong>Where is the uncertainty?</strong><span>User friction, business risk, design debt or a decision the team cannot resolve.</span></li><li><strong>What changes if we get it right?</strong><span>The user, team or product outcome that makes the work worth doing.</span></li></ol></div></section></main>`;
 }
 
+
+
+/**
+ * Function contract: renderProfile
+ * Purpose: Implement the render profile responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function renderProfile() {
   return `<main id="main-content" class="agent-main nrs-editorial-profile"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">Nischhal Raj Subba</span><h1>Product designer in Nepal working across SaaS, Web3, fintech and software.</h1></div><p class="agent-page-intro">I design product flows, interfaces, systems and implementation-ready handoff, with 6+ years across product teams, agencies and front-end collaboration.</p></div></header><section class="agent-section"><div class="agent-frame agent-about-grid"><div class="agent-about-copy agent-rich-copy"><h2>A short professional profile</h2><p>My work sits between product structure and interface craft. I am usually brought into products where roles, states, data, technical constraints or an unfinished brief make the design problem larger than the screen.</p><p>Recent work includes enterprise software, Web3 product UX, fintech workflows, learning products, B2B websites and design systems. I prefer to describe contribution precisely: what I owned, what I influenced, what shipped and what remains private or unmeasured.</p><p>I’m based in Kathmandu and work remotely with product teams.</p></div><aside class="agent-about-aside"><div class="agent-proof-stats agent-proof-stats--stacked"><div class="agent-stat"><strong>6+</strong><span>Years</span></div><div class="agent-stat"><strong>Product</strong><span>UX · UI · systems · handoff</span></div><div class="agent-stat"><strong>Nepal</strong><span>Kathmandu · remote-friendly</span></div></div></aside></div></section><section class="agent-section agent-section--inverse"><div class="agent-frame"><header class="agent-section-head"><span class="agent-kicker">Selected evidence</span><h2 class="agent-section-title">Start with the work, then verify the profile.</h2></header><div class="agent-actions"><a class="agent-btn" href="/projects">Product case studies</a><a class="agent-btn" href="/assets/resume.pdf" data-resume-download>Resume</a><a class="agent-btn" href="https://www.linkedin.com/in/nischhal/">LinkedIn</a><a class="agent-btn" href="https://www.behance.net/nischhal">Behance</a><a class="agent-btn" href="https://github.com/Nischhalsubba">GitHub</a></div></div></section></main>`;
 }
 
+
+
+/**
+ * Function contract: renderWriting
+ * Purpose: Implement the render writing responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `original`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function renderWriting(original) {
   const itemPattern = /<a\b[^>]*class=["'][^"']*(?:agent-index-item|writing-item)[^"']*["'][^>]*href=["']([^"']+)["'][^>]*>[\s\S]*?<\/a>/gi;
-  const items = [...original.matchAll(itemPattern)].map((match) => ({ href: match[1], html: match[0] }));
+  const items = [...original.matchAll(itemPattern)].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => ({ href: match[1], html: match[0] }));
   const seen = new Set();
-  const unique = items.filter((item) => !seen.has(item.href) && seen.add(item.href));
+  const unique = items.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => !seen.has(item.href) && seen.add(item.href));
   const picks = ['/blog/beautiful-interface-poor-ux', '/blog/design-systems-small-product-teams.html', '/blog/responsive-saas-dashboard-handoff-notes.html'];
-  const featured = unique.filter((item) => picks.includes(item.href)).slice(0, 3);
-  const archive = unique.filter((item) => !featured.some((pick) => pick.href === item.href));
-  return `<main id="main-content" class="agent-main nrs-writing-remediated nrs-editorial-writing"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">Writing</span><h1>Notes from the parts of product design that do not fit neatly in a component library.</h1></div><p class="agent-page-intro">Practical essays on product judgment, UX audits, SaaS workflows, Web3 trust, design systems, responsive behavior and the handoff between design and engineering.</p></div></header>${featured.length ? `<section class="agent-section nrs-writing-featured"><div class="agent-frame"><div class="nrs-writing-featured-head"><span class="agent-kicker">Start here</span><h2>Three pieces that show how I think.</h2><p>Less checklist theatre, more trade-offs, failure modes and decisions that affect the product after the mockup is done.</p></div><div class="nrs-writing-featured-grid">${featured.map((item) => item.html.replace(/agent-index-item|writing-item/, 'agent-index-item nrs-writing-featured-item')).join('')}</div></div></section>` : ''}<section class="agent-section agent-section--compact nrs-writing-archive"><div class="agent-frame"><header class="nrs-writing-archive-head"><span class="agent-kicker">Archive</span><h2>More product design notes</h2></header><div class="agent-index-list">${archive.map((item) => item.html.replace(/writing-item/, 'agent-index-item')).join('')}</div></div></section></main>`;
+  const featured = unique.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => picks.includes(item.href)).slice(0, 3);
+  const archive = unique.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => !featured.some(   /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `pick` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (pick) => pick.href === item.href));
+  return `<main id="main-content" class="agent-main nrs-writing-remediated nrs-editorial-writing"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">Writing</span><h1>Notes from the parts of product design that do not fit neatly in a component library.</h1></div><p class="agent-page-intro">Practical essays on product judgment, UX audits, SaaS workflows, Web3 trust, design systems, responsive behavior and the handoff between design and engineering.</p></div></header>${featured.length ? `<section class="agent-section nrs-writing-featured"><div class="agent-frame"><div class="nrs-writing-featured-head"><span class="agent-kicker">Start here</span><h2>Three pieces that show how I think.</h2><p>Less checklist theatre, more trade-offs, failure modes and decisions that affect the product after the mockup is done.</p></div><div class="nrs-writing-featured-grid">${featured.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => item.html.replace(/agent-index-item|writing-item/, 'agent-index-item nrs-writing-featured-item')).join('')}</div></div></section>` : ''}<section class="agent-section agent-section--compact nrs-writing-archive"><div class="agent-frame"><header class="nrs-writing-archive-head"><span class="agent-kicker">Archive</span><h2>More product design notes</h2></header><div class="agent-index-list">${archive.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => item.html.replace(/writing-item/, 'agent-index-item')).join('')}</div></div></section></main>`;
 }
 
+
+
+/**
+ * Function contract: renderServiceDetail
+ * Purpose: Implement the render service detail responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `slug`, `item`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function renderServiceDetail(slug, item) {
-  const cases = item.cases.map((caseSlug) => workCard(caseSlug)).join('');
-  return `<main id="main-content" class="agent-main nrs-editorial-service-detail"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">${esc(item.kicker)}</span><h1>${esc(item.h1)}</h1></div><p class="agent-page-intro">${esc(item.intro)}</p></div></header><section class="agent-section"><div class="agent-frame nrs-service-detail-grid"><div><span class="agent-kicker">When this is useful</span><h2>${esc(item.problem)}</h2></div><div><span class="agent-kicker">Typical scope</span><ul class="nrs-editorial-list">${item.deliverables.map((entry) => `<li>${esc(entry)}</li>`).join('')}</ul></div></div></section><section class="agent-section agent-section--inverse"><div class="agent-frame"><header class="agent-section-head"><span class="agent-kicker">How I approach it</span><h2 class="agent-section-title">Make the product decision explicit before making the screen look finished.</h2></header><div class="agent-capabilities"><article class="agent-capability"><span class="agent-meta">01 · Context</span><div><h3>Understand the job and the constraint.</h3><p>Users, evidence, business goal, technical limits and the current behavior that is creating friction.</p></div></article><article class="agent-capability"><span class="agent-meta">02 · Structure</span><div><h3>Resolve flow, hierarchy and states.</h3><p>Turn the problem into reviewable decisions before high-fidelity design makes ambiguity expensive.</p></div></article><article class="agent-capability"><span class="agent-meta">03 · Delivery</span><div><h3>Design for the implementation.</h3><p>Responsive rules, components, interaction notes and QA make the work useful after handoff.</p></div></article></div></div></section><section class="agent-section"><div class="agent-frame"><header class="nrs-work-group-head"><span class="agent-kicker">Relevant case studies</span><h2>See the decisions in real project context.</h2></header><div class="nrs-work-grid">${cases}</div></div></section><section class="agent-section agent-section--compact"><div class="agent-frame agent-contact-strip"><h2>Have a product or role that needs this kind of work?</h2><div class="agent-actions"><a class="agent-btn agent-btn--primary" href="/contact">Send the context</a><a class="agent-btn" href="/projects">Browse all work</a></div></div></section></main>`;
+  const cases = item.cases.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `caseSlug` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (caseSlug) => workCard(caseSlug)).join('');
+  return `<main id="main-content" class="agent-main nrs-editorial-service-detail"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">${esc(item.kicker)}</span><h1>${esc(item.h1)}</h1></div><p class="agent-page-intro">${esc(item.intro)}</p></div></header><section class="agent-section"><div class="agent-frame nrs-service-detail-grid"><div><span class="agent-kicker">When this is useful</span><h2>${esc(item.problem)}</h2></div><div><span class="agent-kicker">Typical scope</span><ul class="nrs-editorial-list">${item.deliverables.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `entry` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (entry) => `<li>${esc(entry)}</li>`).join('')}</ul></div></div></section><section class="agent-section agent-section--inverse"><div class="agent-frame"><header class="agent-section-head"><span class="agent-kicker">How I approach it</span><h2 class="agent-section-title">Make the product decision explicit before making the screen look finished.</h2></header><div class="agent-capabilities"><article class="agent-capability"><span class="agent-meta">01 · Context</span><div><h3>Understand the job and the constraint.</h3><p>Users, evidence, business goal, technical limits and the current behavior that is creating friction.</p></div></article><article class="agent-capability"><span class="agent-meta">02 · Structure</span><div><h3>Resolve flow, hierarchy and states.</h3><p>Turn the problem into reviewable decisions before high-fidelity design makes ambiguity expensive.</p></div></article><article class="agent-capability"><span class="agent-meta">03 · Delivery</span><div><h3>Design for the implementation.</h3><p>Responsive rules, components, interaction notes and QA make the work useful after handoff.</p></div></article></div></div></section><section class="agent-section"><div class="agent-frame"><header class="nrs-work-group-head"><span class="agent-kicker">Relevant case studies</span><h2>See the decisions in real project context.</h2></header><div class="nrs-work-grid">${cases}</div></div></section><section class="agent-section agent-section--compact"><div class="agent-frame agent-contact-strip"><h2>Have a product or role that needs this kind of work?</h2><div class="agent-actions"><a class="agent-btn agent-btn--primary" href="/contact">Send the context</a><a class="agent-btn" href="/projects">Browse all work</a></div></div></section></main>`;
 }
 
+
+
+/**
+ * Function contract: caseFacts
+ * Purpose: Implement the case facts responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `original`, `item`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function caseFacts(original, item) {
   const values = [
     ['Role', fact(original, ['My role', 'Role']) || 'Product design contribution'],
     ['Year', fact(original, ['Year'])],
     ['Product', item.domain],
     ['Users', fact(original, ['Users'])],
-  ].filter(([, value]) => value);
-  return `<dl class="agent-case-facts">${values.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
+  ].filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `[, value]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ ([, value]) => value);
+  return `<dl class="agent-case-facts">${values.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[label, value]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
 }
 
+
+/**
+ * Function contract: renderCase
+ * Purpose: Implement the render case responsibility owned by the ensure sitewide editorial v4 repository tool.
+ * Inputs: `slug`, `original`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function renderCase(slug, original) {
   const item = projects[slug];
   const images = projectImages(original);
   const cover = projectImage(slug, original) || images[0]?.src || '';
-  const gallery = images.filter((image) => image.src !== cover).slice(0, 3);
+  const gallery = images.filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `image` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (image) => image.src !== cover).slice(0, 3);
   const links = externalLinks(original);
   const index = projectOrder.indexOf(slug);
   const previous = projectOrder[index > 0 ? index - 1 : projectOrder.length - 1];
   const next = projectOrder[index < projectOrder.length - 1 ? index + 1 : 0];
-  const evidence = gallery.length ? `<div class="nrs-case-v4-gallery">${gallery.map((image, i) => `<figure><img src="${esc(image.src)}" alt="${esc(image.alt || `${item.title} project artifact ${i + 1}`)}" loading="lazy" decoding="async"><figcaption>${esc(image.alt || `Project artifact ${i + 1}`)}</figcaption></figure>`).join('')}</div>` : `<p class="nrs-case-v4-note">This case has limited public visual material, so the write-up stays focused on the work I can describe accurately rather than filling the page with decorative substitutes.</p>`;
-  const publicLinks = links.length ? `<div class="agent-actions">${links.map((link) => `<a class="agent-btn" href="${esc(link.href)}" target="_blank" rel="noopener noreferrer">${esc(link.label)}</a>`).join('')}</div>` : '<p class="nrs-case-v4-note">No public interactive artifact is attached to this case. I can discuss the available work and contribution boundaries in a hiring conversation.</p>';
-  return `<main id="main-content" class="agent-main nrs-case-v4" data-project-slug="${esc(slug)}"><header class="agent-case-hero"><div class="agent-frame agent-case-grid"><nav class="nrs-case-breadcrumb" aria-label="Breadcrumb"><a href="/projects">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(item.title)}</span></nav><div class="agent-case-title-wrap"><span class="agent-kicker">${esc(item.domain)}</span><h1 class="agent-case-title">${esc(item.title)}</h1></div><p class="agent-case-deck">${esc(item.deck)}</p>${caseFacts(original, item)}${cover ? `<figure class="agent-case-cover"><img src="${esc(cover)}" alt="${esc(item.title)} product design case study" loading="eager" decoding="async"></figure>` : ''}</div></header><section class="agent-section nrs-case-v4-opening"><div class="agent-frame nrs-case-v4-two-col"><div><span class="agent-meta">The product problem</span><h2>${esc(item.problemTitle)}</h2></div><div class="agent-rich-copy"><p>${esc(item.problem)}</p><p><strong>My contribution.</strong> ${esc(item.contribution)}</p></div></div></section><section class="agent-section agent-section--inverse"><div class="agent-frame"><header class="agent-section-head"><span class="agent-kicker">Key decisions</span><h2 class="agent-section-title">Where the design judgment mattered.</h2></header><div class="agent-decision-grid nrs-case-v4-decisions">${item.decisions.map(([title, text]) => `<article class="agent-decision"><span class="agent-meta">Decision</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div></div></section><section class="agent-section"><div class="agent-frame nrs-case-v4-two-col"><div><span class="agent-kicker">Experience model</span><h2>${esc(item.experienceTitle)}</h2><p>${esc(item.outcome)}</p></div><ol class="nrs-case-v4-steps">${item.experience.map((step, i) => `<li><span>${String(i + 1).padStart(2, '0')}</span><p>${esc(step)}</p></li>`).join('')}</ol></div></section><section class="agent-section nrs-case-v4-evidence"><div class="agent-frame"><header class="nrs-case-evidence-head"><span class="agent-kicker">Project evidence</span><h2>Screens, shipped material and public references.</h2><p>The artifacts sit inside the story because proof is more useful next to the decision it supports than in a ceremonial section at the end.</p></header>${evidence}${publicLinks}</div></section><section class="agent-section agent-section--compact"><div class="agent-frame nrs-case-v4-outcome"><div><span class="agent-kicker">What this work demonstrates</span><h2>${esc(item.outcomeTitle)}</h2><p>${esc(item.outcome)}</p></div><div class="nrs-case-v4-signals">${item.strengths.map((strength) => `<span>${esc(strength)}</span>`).join('')}</div></div></section><nav class="agent-section nrs-case-next" aria-label="Project case study navigation"><div class="agent-frame"><a href="/project-${previous}"><span>Previous case</span><strong>${esc(projects[previous].title)}</strong></a><a href="/projects"><span>Index</span><strong>All work</strong></a><a href="/project-${next}"><span>Next case</span><strong>${esc(projects[next].title)}</strong></a></div></nav></main>`;
+  const evidence = gallery.length ? `<div class="nrs-case-v4-gallery">${gallery.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `image`, `i` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (image, i) => `<figure><img src="${esc(image.src)}" alt="${esc(image.alt || `${item.title} project artifact ${i + 1}`)}" loading="lazy" decoding="async"><figcaption>${esc(image.alt || `Project artifact ${i + 1}`)}</figcaption></figure>`).join('')}</div>` : `<p class="nrs-case-v4-note">This case has limited public visual material, so the write-up stays focused on the work I can describe accurately rather than filling the page with decorative substitutes.</p>`;
+  const publicLinks = links.length ? `<div class="agent-actions">${links.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (link) => `<a class="agent-btn" href="${esc(link.href)}" target="_blank" rel="noopener noreferrer">${esc(link.label)}</a>`).join('')}</div>` : '<p class="nrs-case-v4-note">No public interactive artifact is attached to this case. I can discuss the available work and contribution boundaries in a hiring conversation.</p>';
+  return `<main id="main-content" class="agent-main nrs-case-v4" data-project-slug="${esc(slug)}"><header class="agent-case-hero"><div class="agent-frame agent-case-grid"><nav class="nrs-case-breadcrumb" aria-label="Breadcrumb"><a href="/projects">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(item.title)}</span></nav><div class="agent-case-title-wrap"><span class="agent-kicker">${esc(item.domain)}</span><h1 class="agent-case-title">${esc(item.title)}</h1></div><p class="agent-case-deck">${esc(item.deck)}</p>${caseFacts(original, item)}${cover ? `<figure class="agent-case-cover"><img src="${esc(cover)}" alt="${esc(item.title)} product design case study" loading="eager" decoding="async"></figure>` : ''}</div></header><section class="agent-section nrs-case-v4-opening"><div class="agent-frame nrs-case-v4-two-col"><div><span class="agent-meta">The product problem</span><h2>${esc(item.problemTitle)}</h2></div><div class="agent-rich-copy"><p>${esc(item.problem)}</p><p><strong>My contribution.</strong> ${esc(item.contribution)}</p></div></div></section><section class="agent-section agent-section--inverse"><div class="agent-frame"><header class="agent-section-head"><span class="agent-kicker">Key decisions</span><h2 class="agent-section-title">Where the design judgment mattered.</h2></header><div class="agent-decision-grid nrs-case-v4-decisions">${item.decisions.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[title, text]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([title, text]) => `<article class="agent-decision"><span class="agent-meta">Decision</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div></div></section><section class="agent-section"><div class="agent-frame nrs-case-v4-two-col"><div><span class="agent-kicker">Experience model</span><h2>${esc(item.experienceTitle)}</h2><p>${esc(item.outcome)}</p></div><ol class="nrs-case-v4-steps">${item.experience.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `step`, `i` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (step, i) => `<li><span>${String(i + 1).padStart(2, '0')}</span><p>${esc(step)}</p></li>`).join('')}</ol></div></section><section class="agent-section nrs-case-v4-evidence"><div class="agent-frame"><header class="nrs-case-evidence-head"><span class="agent-kicker">Project evidence</span><h2>Screens, shipped material and public references.</h2><p>The artifacts sit inside the story because proof is more useful next to the decision it supports than in a ceremonial section at the end.</p></header>${evidence}${publicLinks}</div></section><section class="agent-section agent-section--compact"><div class="agent-frame nrs-case-v4-outcome"><div><span class="agent-kicker">What this work demonstrates</span><h2>${esc(item.outcomeTitle)}</h2><p>${esc(item.outcome)}</p></div><div class="nrs-case-v4-signals">${item.strengths.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `strength` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (strength) => `<span>${esc(strength)}</span>`).join('')}</div></div></section><nav class="agent-section nrs-case-next" aria-label="Project case study navigation"><div class="agent-frame"><a href="/project-${previous}"><span>Previous case</span><strong>${esc(projects[previous].title)}</strong></a><a href="/projects"><span>Index</span><strong>All work</strong></a><a href="/project-${next}"><span>Next case</span><strong>${esc(projects[next].title)}</strong></a></div></nav></main>`;
 }
 
+
+/**
+ * Function contract: applyPage
+ * Purpose: Apply page consistently while preserving the surrounding ensure sitewide editorial v4 repository tool contract.
+ * Inputs: `route`, `main`, `seo`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function applyPage(route, main, seo) {
   let html = read(route);
   if (!html) return false;

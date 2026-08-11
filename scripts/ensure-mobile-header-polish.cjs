@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-mobile-header-polish.cjs
+ * Purpose: Apply the ensure mobile header polish production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -209,6 +222,14 @@ const css = `
 }
 `;
 
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the ensure mobile header polish repository tool.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -219,8 +240,16 @@ function walk(dir, files = []) {
   return files;
 }
 
+
+/**
+ * Function contract: updateHtmlVersions
+ * Purpose: Apply html versions consistently while preserving the surrounding ensure mobile header polish repository tool contract.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function updateHtmlVersions() {
-  for (const file of walk(targetRoot).filter((filePath) => filePath.endsWith('.html'))) {
+  for (const file of walk(targetRoot).filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `filePath` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (filePath) => filePath.endsWith('.html'))) {
     const before = fs.readFileSync(file, 'utf8');
     const after = before
       .replace(/\/style\.css\?v=[0-9.]+/g, `/style.css?v=${styleVersion}`)
@@ -229,6 +258,15 @@ function updateHtmlVersions() {
   }
 }
 
+
+
+/**
+ * Function contract: updateStyle
+ * Purpose: Apply style consistently while preserving the surrounding ensure mobile header polish repository tool contract.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function updateStyle() {
   if (!fs.existsSync(stylePath)) return;
   let style = fs.readFileSync(stylePath, 'utf8');

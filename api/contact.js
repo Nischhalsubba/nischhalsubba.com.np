@@ -1,3 +1,16 @@
+/**
+ * @fileoverview api/contact.js
+ * Purpose: Handle contact server-side requests with validation and deployment-compatible response behavior.
+ * Responsibilities:
+ * - Validate request data before performing server-side work.
+ * - Return predictable status, error, and success responses compatible with the deployed client.
+ * Execution context: Serverless/API runtime used by supported deployment targets.
+ * Connected files:
+ * - README.md
+ * - functions/api/contact.js
+ * - src/worker.js
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
 const ALLOWED_HOSTS = new Set([
   'nischhalsubba.com.np',
@@ -7,6 +20,14 @@ const ALLOWED_HOSTS = new Set([
 
 export const config = { runtime: 'edge' };
 
+
+/**
+ * Function contract: json
+ * Purpose: Implement the json responsibility owned by the contact API handler.
+ * Inputs: `payload`, `status`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function json(payload, status = 200) {
   return new Response(JSON.stringify(payload), {
     status,
@@ -18,10 +39,26 @@ function json(payload, status = 200) {
   });
 }
 
+
+/**
+ * Function contract: clean
+ * Purpose: Remove module behavior without disturbing required surrounding contact API handler state.
+ * Inputs: `value`, `maxLength`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function clean(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+
+/**
+ * Function contract: validate
+ * Purpose: Validate module behavior and surface actionable failures when the contact API handler contract is violated.
+ * Inputs: `fields`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function validate(fields) {
   const errors = {};
   if (fields.name.length < 2) errors.name = 'Enter your name.';
@@ -32,6 +69,14 @@ function validate(fields) {
   return errors;
 }
 
+
+/**
+ * Function contract: originAllowed
+ * Purpose: Implement the origin allowed responsibility owned by the contact API handler.
+ * Inputs: `request`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function originAllowed(request) {
   const origin = request.headers.get('origin');
   if (!origin) return true;
@@ -46,6 +91,14 @@ function originAllowed(request) {
   }
 }
 
+
+/**
+ * Function contract: verifyTurnstile
+ * Purpose: Validate turnstile and surface actionable failures when the contact API handler contract is violated.
+ * Inputs: `secret`, `token`, `remoteip`
+ * Side effects: performs network I/O
+ * Returns: Promise resolving to the computed function result.
+ */
 async function verifyTurnstile(secret, token, remoteip) {
   const body = new FormData();
   body.set('secret', secret);
@@ -61,6 +114,14 @@ async function verifyTurnstile(secret, token, remoteip) {
   return response.json();
 }
 
+
+/**
+ * Function contract: handler
+ * Purpose: Implement the handler responsibility owned by the contact API handler.
+ * Inputs: `request`
+ * Side effects: performs network I/O
+ * Returns: Promise resolving to the computed function result.
+ */
 export default async function handler(request) {
   if (request.method === 'OPTIONS') {
     return new Response(null, {

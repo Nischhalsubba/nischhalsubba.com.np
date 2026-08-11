@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/link-experience-company-websites-v25.cjs
+ * Purpose: Apply the link experience company websites v25 production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -18,8 +31,16 @@ const companies = [
   ['Gurzu', 'https://gurzu.com/'],
 ];
 
+
+/**
+ * Function contract: htmlFiles
+ * Purpose: Implement the html files responsibility owned by the link experience company websites v25 repository tool.
+ * Inputs: `dir`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function htmlFiles(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap( /** Callback contract: Perform the local callback step required by the immediately enclosing link experience company websites v25 repository tool operation. Inputs: `entry` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (entry) => {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) return htmlFiles(full);
     return entry.isFile() && entry.name.endsWith('.html') ? [full] : [];

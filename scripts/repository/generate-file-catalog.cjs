@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/repository/generate-file-catalog.cjs
+ * Purpose: Maintain the repository architecture, generated documentation, or structural policy for generate file catalog.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - config/repository/root-policy.json
+ * - package.json
+ * - scripts/clean-vite-public-output.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
@@ -32,26 +46,61 @@ const TEXT_BASENAMES = new Set([
   '.editorconfig', '.gitignore', '_headers', '_redirects', 'robots.txt', 'sitemap.xml',
 ]);
 
+
+/**
+ * Function contract: gitTrackedFiles
+ * Purpose: Implement the git tracked files responsibility owned by the generate file catalog repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: spawns child processes
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function gitTrackedFiles() {
   const result = spawnSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' });
   if (result.status !== 0) throw new Error(`git ls-files failed: ${result.stderr || result.stdout}`);
   return result.stdout.split('\0').filter(Boolean).sort();
 }
 
+
+
+/**
+ * Function contract: humanize
+ * Purpose: Implement the humanize responsibility owned by the generate file catalog repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function humanize(value) {
   return value
     .replace(/\.[^.]+$/, '')
     .replace(/^blog-/, '')
     .replace(/^project-/, '')
     .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    .replace(/\b\w/g,    /** Callback contract: Perform the local callback step required by the immediately enclosing generate file catalog repository tool operation. Inputs: `letter` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (letter) => letter.toUpperCase());
 }
 
+
+
+/**
+ * Function contract: isTextFile
+ * Purpose: Determine whether text file satisfies the condition represented by this generate file catalog repository tool.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Boolean indicating whether text file satisfies the documented condition.
+ */
 function isTextFile(file) {
   const base = path.posix.basename(file);
   return TEXT_BASENAMES.has(base) || TEXT_EXTENSIONS.has(path.posix.extname(file).toLowerCase());
 }
 
+
+
+/**
+ * Function contract: readText
+ * Purpose: Return text from the supplied inputs or current generate file catalog repository tool state.
+ * Inputs: `file`
+ * Side effects: reads filesystem state
+ * Returns: The requested text; explicit early-return branches define empty/fallback behavior.
+ */
 function readText(file) {
   const absolute = path.join(ROOT, file);
   const stat = fs.statSync(absolute);
@@ -59,6 +108,15 @@ function readText(file) {
   return fs.readFileSync(absolute, 'utf8');
 }
 
+
+
+/**
+ * Function contract: purposeFor
+ * Purpose: Implement the purpose for responsibility owned by the generate file catalog repository tool.
+ * Inputs: `file`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function purposeFor(file) {
   const base = path.posix.basename(file);
   const ext = path.posix.extname(file).toLowerCase();
@@ -123,11 +181,20 @@ function purposeFor(file) {
   return `Repository asset/support file for ${humanize(base) || base}.`;
 }
 
+
+
+/**
+ * Function contract: defaultConnections
+ * Purpose: Implement the default connections responsibility owned by the generate file catalog repository tool.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function defaultConnections(file) {
   if (file.startsWith('src/pages/')) return ['config/canonical-routes.json', 'scripts/repository/source-layout.cjs', 'vite.config.ts'];
   if (file.startsWith('src/compat/legacy-pages/')) return ['vite.config.ts', 'scripts/clean-vite-public-output.cjs', 'scripts/repository/source-layout.cjs'];
   if (file.startsWith('blog/')) return ['config/canonical-routes.json', 'vite.config.ts', 'scripts/build-dist.cjs'];
-  if (file.startsWith('src/scripts/')) return ['src/scripts/main.js', 'src/runtime/script.js'];
+  if (file.startsWith('src/scripts/')) return ['src/scripts/entrypoints/main.js', 'src/runtime/script.js'];
   if (file.startsWith('src/styles/')) return ['scripts/compile-single-stylesheet.cjs', 'scripts/audit-css-architecture.cjs'];
   if (file.startsWith('src/discovery/')) return ['scripts/generate-seo-discovery.cjs', 'scripts/copy-static-assets.cjs'];
   if (file.startsWith('src/generated/')) return ['scripts/generate-seo-discovery.cjs', 'src/worker.js'];
@@ -144,11 +211,20 @@ function defaultConnections(file) {
   return ['docs/repository/file-map.md'];
 }
 
+
+
+/**
+ * Function contract: escapeCell
+ * Purpose: Implement the escape cell responsibility owned by the generate file catalog repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function escapeCell(value) {
   return String(value).replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
 }
 
-const files = gitTrackedFiles().filter((file) => file !== OUTPUT && !TEMPORARY_HELPERS.has(file));
+const files = gitTrackedFiles().filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => file !== OUTPUT && !TEMPORARY_HELPERS.has(file));
 const basenameCounts = new Map();
 for (const file of files) {
   const base = path.posix.basename(file);
@@ -165,6 +241,15 @@ for (const file of files) {
   }
 }
 
+
+
+/**
+ * Function contract: directConnections
+ * Purpose: Implement the direct connections responsibility owned by the generate file catalog repository tool.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function directConnections(file) {
   const base = path.posix.basename(file);
   const uniqueBase = basenameCounts.get(base) === 1 && base.length >= 5;
@@ -177,12 +262,12 @@ function directConnections(file) {
   return matches;
 }
 
-const rows = files.map((file) => {
+const rows = files.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (file) => {
   const direct = directConnections(file);
   const connections = [...new Set([...direct, ...defaultConnections(file)])]
-    .filter((item) => item !== file)
+    .filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => item !== file)
     .slice(0, 4);
-  return `| \`${escapeCell(file)}\` | ${escapeCell(purposeFor(file))} | ${connections.map((item) => `\`${escapeCell(item)}\``).join(', ')} |`;
+  return `| \`${escapeCell(file)}\` | ${escapeCell(purposeFor(file))} | ${connections.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => `\`${escapeCell(item)}\``).join(', ')} |`;
 });
 
 const output = [

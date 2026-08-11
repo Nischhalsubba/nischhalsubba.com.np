@@ -1,4 +1,15 @@
 /**
+ * @fileoverview src/content/routes.js
+ * Purpose: Provide structured routes content consumed by generators or runtime presentation code.
+ * Responsibilities:
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
+ * Execution context: Repository application or build source.
+ * Connected files:
+ * - scripts/audit-content-structure.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
+/**
  * Canonical route manifest for the static portfolio.
  *
  * Public paths use Cloudflare Pages clean URLs. The backing files remain

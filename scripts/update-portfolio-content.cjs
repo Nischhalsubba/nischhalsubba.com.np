@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/update-portfolio-content.cjs
+ * Purpose: Apply the update portfolio content production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/early-theme-bootstrap.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
@@ -27,8 +41,33 @@ const info = {
   sassboilerplate: ["2020", "Front-End Creator", "Developer workflow toolkit", "Front-end developers", "Static website work needed a repeatable starting point for organizing styles and build workflow instead of recreating the same setup for every small project.", "I created a front-end starter project for faster static website development and cleaner styling organization.", ["Sass structure", "Static website workflow", "Reusable starter setup", "Developer productivity"], "This is presented as a developer workflow project, not as a client product."],
 };
 
+
+/**
+ * Function contract: e
+ * Purpose: Implement the e responsibility owned by the update portfolio content repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed expression result consumed by the enclosing operation.
+ */
 const e = (value) => String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/**
+ * Function contract: nav
+ * Purpose: Implement the nav responsibility owned by the update portfolio content repository tool.
+ * Inputs: `active`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed expression result consumed by the enclosing operation.
+ */
 const nav = (active) => `<button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/"${active === "home" ? ' class="active"' : ""}>Home</a><a href="/projects.html"${active === "work" ? ' class="active"' : ""}>Work</a><a href="/about.html"${active === "about" ? ' class="active"' : ""}>About</a><a href="/blog/">Writing</a><a href="/contact.html"${active === "contact" ? ' class="active"' : ""}>Contact</a></nav></div><button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button><nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link${active === "home" ? " active" : ""}">Home</a><a href="/projects.html" class="nav-link${active === "work" ? " active" : ""}">Work</a><a href="/about.html" class="nav-link${active === "about" ? " active" : ""}">About</a><a href="/blog/" class="nav-link">Writing</a><a href="/contact.html" class="nav-link${active === "contact" ? " active" : ""}">Contact</a></div></nav>`;
+
+
+/**
+ * Function contract: head
+ * Purpose: Implement the head responsibility owned by the update portfolio content repository tool.
+ * Inputs: `{ title, description, canonical, image = "/assets/images/portrait.png", type = "website" }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed expression result consumed by the enclosing operation.
+ */
 const head = ({ title, description, canonical, image = "/assets/images/portrait.png", type = "website" }) => `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,11 +92,29 @@ const head = ({ title, description, canonical, image = "/assets/images/portrait.
 const footer = `<footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>`;
 const script = `<script type="module" src="/script.js?v=21.0"></script>`;
 
+
+
+/**
+ * Function contract: card
+ * Purpose: Implement the card responsibility owned by the update portfolio content repository tool.
+ * Inputs: `project`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function card(project) {
   const details = info[project.id] || [];
   return `<a href="/${project.href}" class="project-card reveal-on-scroll" data-category="${e(project.category)}"><div class="card-media-wrap"><img src="/${project.thumbnail}" alt="${e(project.alt)}" loading="lazy" decoding="async"></div><div class="card-content"><span class="eyebrow">${e(project.meta[0])}</span><h3>${e(project.title)}</h3><div class="card-meta-line"><span>${e(project.meta[1] || details[1] || "Product design")}</span><span>${e(details[0] || "")}</span></div><p class="card-summary">${e(project.summary)}</p></div></a>`;
 }
 
+
+
+/**
+ * Function contract: focusText
+ * Purpose: Implement the focus text responsibility owned by the update portfolio content repository tool.
+ * Inputs: `item`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function focusText(item) {
   const text = String(item).toLowerCase();
   if (text.includes("prototype") || text.includes("figma")) return "Turned the idea into a reviewable flow so decisions could be tested, shared, and discussed with less ambiguity.";
@@ -68,6 +125,15 @@ function focusText(item) {
   return "Shaped the product experience around clearer hierarchy, practical UI decisions, and fewer ambiguous next steps.";
 }
 
+
+
+/**
+ * Function contract: processItems
+ * Purpose: Implement the process items responsibility owned by the update portfolio content repository tool.
+ * Inputs: `project`, `details`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function processItems(project, details) {
   return [
     ["Understand", `Mapped the product context, primary users, and domain risks for ${project.title} before shaping interface details.`],
@@ -77,12 +143,21 @@ function processItems(project, details) {
   ];
 }
 
+
+
+/**
+ * Function contract: page
+ * Purpose: Implement the page responsibility owned by the update portfolio content repository tool.
+ * Inputs: `name`, `html`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function page(name, html) {
   fs.writeFileSync(path.join(root, name), `${html}\n`, "utf8");
 }
 
 const selected = ["yarsha", "mokshya", "hamro-idea", "pihub", "zapp", "morajaa"]
-  .map((id) => projects.find((project) => project.id === id))
+  .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `id` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (id) => projects.find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `project` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (project) => project.id === id))
   .filter(Boolean);
 
 const indexHtml = `${head({ title: "Nischhal Raj Subba | Senior UI/Product Designer", description: "Senior UI/Product Designer from Nepal helping teams design clearer mobile apps, SaaS products, Web3 flows, websites, dashboards, and design systems.", canonical: "", image: "/assets/images/portrait.png" }).replace("https://nischhalsubba.com.np/assets/images/portrait.png", "https://i.imgur.com/oFHdPUS.png")}
@@ -151,16 +226,25 @@ page("about.html", `${head({ title: "About Nischhal Raj Subba | Product Designer
   </body>
 </html>`);
 
+
+
+/**
+ * Function contract: projectPage
+ * Purpose: Implement the project page responsibility owned by the update portfolio content repository tool.
+ * Inputs: `project`, `index`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function projectPage(project, index) {
   const details = info[project.id] || ["", project.meta[1], project.meta[0], "Product users and internal teams", project.summary, "I worked on product design direction, interface structure, and UX decisions for this project.", project.meta, "The project page uses actual portfolio assets and avoids invented metrics, awards, or testimonials."];
   const links = project.links || [];
   const prev = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
   const linkCards = links.length
-    ? links.map((link) => `<a class="prototype-link-card" href="${e(link.url)}" target="_blank" rel="noopener noreferrer" style="padding:22px;border:1px solid var(--border-faint);border-radius:18px;background:var(--bg-surface);"><span style="display:block;font-weight:700;">${e(link.label)}</span><span style="color:var(--text-secondary);font-size:.92rem;">Open ${e(link.type || "resource")}</span></a>`).join("")
+    ? links.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (link) => `<a class="prototype-link-card" href="${e(link.url)}" target="_blank" rel="noopener noreferrer" style="padding:22px;border:1px solid var(--border-faint);border-radius:18px;background:var(--bg-surface);"><span style="display:block;font-weight:700;">${e(link.label)}</span><span style="color:var(--text-secondary);font-size:.92rem;">Open ${e(link.type || "resource")}</span></a>`).join("")
     : `<div class="case-callout">No public prototype link is attached to this project yet. I can walk through the available file or context during a hiring conversation.</div>`;
   const embeds = links.length
-    ? links.map((link) => `<div class="embed-frame-wrapper" style="margin-top:28px;border-radius:20px;overflow:hidden;border:1px solid var(--border-faint);background:var(--bg-surface);"><div style="padding:14px 18px;border-bottom:1px solid var(--border-faint);font-weight:700;">${e(link.label)}</div><iframe src="${e(link.url)}" width="100%" height="620" style="border:0;" allowfullscreen loading="eager"></iframe></div>`).join("")
+    ? links.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (link) => `<div class="embed-frame-wrapper" style="margin-top:28px;border-radius:20px;overflow:hidden;border:1px solid var(--border-faint);background:var(--bg-surface);"><div style="padding:14px 18px;border-bottom:1px solid var(--border-faint);font-weight:700;">${e(link.label)}</div><iframe src="${e(link.url)}" width="100%" height="620" style="border:0;" allowfullscreen loading="eager"></iframe></div>`).join("")
     : "";
   return `${head({ title: `${project.title} Case Study | Nischhal Raj Subba`, description: project.summary, canonical: project.href, image: "/" + project.thumbnail, type: "article" })}
   <body>
@@ -170,8 +254,8 @@ function projectPage(project, index) {
       <div class="case-hero-img-container reveal-on-scroll" style="margin-bottom:56px;"><img src="/${project.thumbnail}" class="case-hero-img" alt="${e(project.alt)}" style="width:100%;border-radius:16px;border:1px solid var(--border-faint);" loading="eager" /></div>
       <section class="section-container"><div class="snapshot-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;"><div><h5 style="color:var(--text-tertiary);margin-bottom:8px;text-transform:uppercase;">Role</h5><p>${e(details[1])}</p></div><div><h5 style="color:var(--text-tertiary);margin-bottom:8px;text-transform:uppercase;">Domain</h5><p>${e(details[2])}</p></div><div><h5 style="color:var(--text-tertiary);margin-bottom:8px;text-transform:uppercase;">Users</h5><p>${e(details[3])}</p></div></div></section>
       <section class="section-container reveal-on-scroll"><div class="case-label">PRODUCT CONTEXT</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">What needed to be made clearer</h2><p class="body-large" style="color:var(--text-secondary);max-width:860px;">${e(details[4])}</p></section>
-      <section class="section-container reveal-on-scroll"><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">My role</h2><p class="body-large" style="color:var(--text-secondary);max-width:860px;">${e(details[5])}</p><div class="journey-grid" style="margin-top:28px;">${details[6].map((item, itemIndex) => `<div class="journey-card"><span class="eyebrow">Focus ${itemIndex + 1}</span><h3>${e(item)}</h3><p>${e(focusText(item))}</p></div>`).join("")}</div></section>
-      <section class="section-container reveal-on-scroll"><div class="case-label">DESIGN DECISIONS</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">How I approached the work</h2><div class="journey-grid">${processItems(project, details).map(([title, text]) => `<div class="journey-card"><span class="eyebrow">Decision</span><h3>${e(title)}</h3><p>${e(text)}</p></div>`).join("")}</div></section>
+      <section class="section-container reveal-on-scroll"><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">My role</h2><p class="body-large" style="color:var(--text-secondary);max-width:860px;">${e(details[5])}</p><div class="journey-grid" style="margin-top:28px;">${details[6].map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`, `itemIndex` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item, itemIndex) => `<div class="journey-card"><span class="eyebrow">Focus ${itemIndex + 1}</span><h3>${e(item)}</h3><p>${e(focusText(item))}</p></div>`).join("")}</div></section>
+      <section class="section-container reveal-on-scroll"><div class="case-label">DESIGN DECISIONS</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">How I approached the work</h2><div class="journey-grid">${processItems(project, details).map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[title, text]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([title, text]) => `<div class="journey-card"><span class="eyebrow">Decision</span><h3>${e(title)}</h3><p>${e(text)}</p></div>`).join("")}</div></section>
       <section class="section-container reveal-on-scroll"><div class="case-label">OUTCOME</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">What the design made easier</h2><ul class="case-list"><li>Clearer entry points for the main user roles and use cases.</li><li>More explicit labels, hierarchy, and state language around important actions.</li><li>Reusable UI decisions that can scale beyond one screen.</li><li>A stronger hiring walkthrough because scope, artifacts, and constraints are visible.</li></ul></section>
       <section id="proof" class="section-container reveal-on-scroll"><div class="section-header" style="margin-bottom:28px;"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.12em;">Proof</p><h2 class="section-title" style="margin-bottom:14px;">Project image and resources</h2><p class="section-lead">${e(details[7])}</p></div><div class="prototype-link-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:18px;">${linkCards}</div>${embeds}</section>
       <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);"><h2 class="section-title">What I would discuss in an interview</h2><ul class="case-list"><li>Product context, user roles, and constraints.</li><li>Flow decisions, screen states, and content hierarchy.</li><li>How design assets were prepared for handoff or implementation.</li><li>What I would measure next if the team wanted stronger product evidence.</li></ul><p class="case-callout">This page uses available project assets, linked resources, and clearly scoped contribution notes instead of invented impact numbers or stock imagery.</p></section>
@@ -183,7 +267,7 @@ function projectPage(project, index) {
 </html>`;
 }
 
-projects.forEach((project, index) => page(project.href, projectPage(project, index)));
+projects.forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `project`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (project, index) => page(project.href, projectPage(project, index)));
 
 page("products.html", `${head({ title: "Products Removed | Nischhal Raj Subba", description: "This page no longer lists digital products. Visit the work page for real product design case studies and portfolio projects by Nischhal Raj Subba.", canonical: "products.html", image: "/assets/images/portrait.png" })}
   <body>
@@ -194,6 +278,6 @@ page("products.html", `${head({ title: "Products Removed | Nischhal Raj Subba", 
   </body>
 </html>`);
 
-["project-detail.html", "project-archive.html", "project-jeweltrek.html"].forEach((name) => {
+["project-detail.html", "project-archive.html", "project-jeweltrek.html"].forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (name) => {
   page(name, `${head({ title: "Work Archive | Nischhal Raj Subba", description: "This legacy page has been replaced by the current product design work archive.", canonical: "projects.html", image: "/assets/images/portrait.png" })}<body>${nav("work")}<main class="container"><section class="hero-section" style="min-height:auto;padding-top:160px;padding-bottom:90px;align-items:flex-start;text-align:left;"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Legacy page</p><h1 class="hero-title">This page has moved.</h1><p class="body-large" style="max-width:760px;color:var(--text-secondary);">I removed the older case-study content because it mixed outdated and placeholder material. The current work archive has the real, scoped project pages.</p><div class="hero-actions" style="margin-top:32px;"><a href="/projects.html" class="btn btn-primary">Go to current work</a></div></section></main>${footer}${script}</body></html>`);
 });

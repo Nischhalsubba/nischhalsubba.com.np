@@ -1,3 +1,19 @@
+/**
+ * @fileoverview scripts/ensure-interface-polish.cjs
+ * Purpose: Apply the final layout and micro-interaction polish contract to the canonical stylesheet and the organized portfolio runtime source used by production builds.
+ * Responsibilities:
+ * - Append one idempotent CSS polish block covering page-title geometry, project-row feedback, focus states, controls, responsive layouts, and reduced-motion behavior.
+ * - Tune the portfolio runtime's reveal/parallax motion values without creating a second runtime implementation.
+ * - Resolve both source and `dist/` runtime paths through the responsibility-based `features/portfolio/` folder introduced by the repository organization.
+ * - Fail when the stylesheet or required CSS contract disappears instead of silently producing partially polished output.
+ * Execution context: Node.js during source generation and `--dist` production build refinement.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - src/scripts/features/portfolio/agent-portfolio.js
+ * - src/styles/style.css
+ * Maintenance: Keep `runtimePaths` synchronized with the organized runtime tree; do not reintroduce the historical flat `src/scripts/features/agent-portfolio.js` path.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -8,9 +24,9 @@ const stylePath = path.join(base, 'style.css');
 const runtimePaths = useDist
   ? [
       path.join(base, 'script.js'),
-      path.join(base, 'src', 'scripts', 'features', 'agent-portfolio.js'),
+      path.join(base, 'src', 'scripts', 'features', 'portfolio', 'agent-portfolio.js'),
     ]
-  : [path.join(repositoryRoot, 'src', 'scripts', 'features', 'agent-portfolio.js')];
+  : [path.join(repositoryRoot, 'src', 'scripts', 'features', 'portfolio', 'agent-portfolio.js')];
 
 const startMarker = '/* interface-polish-v1:start */';
 const endMarker = '/* interface-polish-v1:end */';
@@ -216,6 +232,13 @@ const polishCss = `${startMarker}
 }
 ${endMarker}`;
 
+/**
+ * Function contract: appendPolishCss
+ * Purpose: Replace any previous interface-polish marker block and append exactly one current polish block to the selected source or production stylesheet.
+ * Inputs: `file`, absolute stylesheet path to update.
+ * Side effects: Reads and rewrites the stylesheet on disk.
+ * Returns: Boolean indicating whether the target stylesheet existed and was rewritten.
+ */
 function appendPolishCss(file) {
   if (!fs.existsSync(file)) return false;
   const before = fs.readFileSync(file, 'utf8');
@@ -224,6 +247,13 @@ function appendPolishCss(file) {
   return true;
 }
 
+/**
+ * Function contract: patchRuntime
+ * Purpose: Apply the approved reduced-motion/reveal/parallax tuning replacements to one organized portfolio runtime copy when those source patterns are present.
+ * Inputs: `file`, absolute path to the source or copied production runtime module.
+ * Side effects: Reads the runtime file and rewrites it only when at least one approved tuning pattern changes.
+ * Returns: Boolean indicating whether the runtime file existed and changed.
+ */
 function patchRuntime(file) {
   if (!fs.existsSync(file)) return false;
   const before = fs.readFileSync(file, 'utf8');
@@ -267,7 +297,7 @@ const requiredSelectors = [
   '.agent-portfolio .agent-project-row:focus-visible',
   '@media (prefers-reduced-motion: reduce)'
 ];
-const missing = requiredSelectors.filter((selector) => !finalCss.includes(selector));
+const missing = requiredSelectors.filter(/** Callback contract: Keep only required CSS contract selectors missing from the final stylesheet so the transform can fail with an exact list. Inputs: `selector`. Side effects: none. Returns: boolean predicate result. */ (selector) => !finalCss.includes(selector));
 if (missing.length) {
   console.error(`[interface-polish] Missing required CSS contracts: ${missing.join(', ')}`);
   process.exit(1);

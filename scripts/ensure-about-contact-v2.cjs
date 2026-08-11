@@ -1,9 +1,30 @@
+/**
+ * @fileoverview scripts/ensure-about-contact-v2.cjs
+ * Purpose: Apply the ensure about contact v2 production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const email = 'hinischalsubba@gmail.com';
 
+
+/**
+ * Function contract: head
+ * Purpose: Implement the head responsibility owned by the ensure about contact v2 repository tool.
+ * Inputs: `{ title, description, canonical }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function head({ title, description, canonical }) {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -28,6 +49,15 @@ function head({ title, description, canonical }) {
   </head>`;
 }
 
+
+
+/**
+ * Function contract: nav
+ * Purpose: Implement the nav responsibility owned by the ensure about contact v2 repository tool.
+ * Inputs: `active`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function nav(active) {
   const items = [
     ['/', 'Home', 'home'],
@@ -38,8 +68,8 @@ function nav(active) {
     ['/contact', 'Contact', 'contact'],
   ];
 
-  const desktop = items.map(([href, label, key]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
-  const mobile = items.map(([href, label, key]) => `<a href="${href}"${active === key ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('');
+  const desktop = items.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([href, label, key]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
+  const mobile = items.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([href, label, key]) => `<a href="${href}"${active === key ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('');
 
   return `    <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button>
     <a href="/" class="mobile-logo">NRS</a>
@@ -48,6 +78,15 @@ function nav(active) {
     <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div>${desktop}</div></nav>`;
 }
 
+
+
+/**
+ * Function contract: scripts
+ * Purpose: Implement the scripts responsibility owned by the ensure about contact v2 repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function scripts() {
   return `    <a class="floating-resume-btn" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a>
     <script type="module" src="/script.js?v=32.0"></script>`;

@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/spacious-pages/services.cjs
+ * Purpose: Apply the services production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/spacious-pages/shared.cjs
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const { replaceMain } = require('./shared.cjs');
 
 const services = [
@@ -9,7 +23,7 @@ const services = [
   ['06', 'UX audit and remediation', 'Find the usability, accessibility, responsive and implementation issues that matter, then turn them into a practical fix plan.', 'Evidence, severity, priorities and fix guidance', '/ux-audit'],
 ];
 
-const serviceRows = services.map(([number, title, description, scope, href]) => `
+const serviceRows = services.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[number, title, description, scope, href]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([number, title, description, scope, href]) => `
   <article class="nrs-service-index-row">
     <span class="nrs-service-index-number">${number}</span>
     <h3>${title}</h3>
@@ -22,7 +36,7 @@ const process = [
   ['02', 'Structure', 'Journeys, hierarchy, content priority, states and edge cases before visual polish.'],
   ['03', 'Design', 'Reusable interface patterns, responsive screens and prototypes that can be reviewed.'],
   ['04', 'Ship', 'Implementation notes, assets, design QA and support while the product is being built.'],
-].map(([number, title, description]) => `<li><span>${number}</span><h3>${title}</h3><p>${description}</p></li>`).join('');
+].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[number, title, description]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([number, title, description]) => `<li><span>${number}</span><h3>${title}</h3><p>${description}</p></li>`).join('');
 
 const markup = `<main id="main-content" class="container nrs-spacious-page nrs-services-v49">
   <section class="nrs-services-v49-hero reveal-on-scroll" aria-labelledby="services-title">

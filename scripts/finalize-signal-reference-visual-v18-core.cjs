@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/finalize-signal-reference-visual-v18-core.cjs
+ * Purpose: Apply the finalize signal reference visual v18 core production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -11,7 +23,7 @@ if (!fs.existsSync(stylePath)) throw new Error(`[hero-photo-v19] Missing ${style
 
 const partDir = path.join(root, 'assets', 'images', 'hero-original-v19.parts');
 const encodedPortrait = ['part-00.b64','part-01.b64','part-02.b64','part-03.b64']
-  .map((name) => fs.readFileSync(path.join(partDir, name), 'utf8').replace(/\s+/g, ''))
+  .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: reads filesystem state Returns: Computed expression result consumed by the enclosing operation. */ (name) => fs.readFileSync(path.join(partDir, name), 'utf8').replace(/\s+/g, ''))
   .join('');
 const portrait = Buffer.from(encodedPortrait, 'base64');
 const portraitHash = crypto.createHash('sha256').update(portrait).digest('hex');
@@ -28,7 +40,7 @@ const starts = [
   html.indexOf('<section class="nrs-uploaded-hero-v18"'),
   html.indexOf('<section class="nrs-exact-hero-v17"'),
   html.indexOf('<section class="agent-hero"'),
-].filter((value) => value >= 0);
+].filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `value` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (value) => value >= 0);
 const heroStart = starts.length ? Math.min(...starts) : -1;
 const nextSection = heroStart >= 0 ? html.indexOf('<section class="agent-section"', heroStart) : -1;
 if (heroStart < 0 || nextSection < 0) throw new Error('[hero-photo-v19] Stable homepage hero boundaries were not found.');

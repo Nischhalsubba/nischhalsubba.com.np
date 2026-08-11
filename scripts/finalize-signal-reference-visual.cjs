@@ -1,3 +1,18 @@
+/**
+ * @fileoverview scripts/finalize-signal-reference-visual.cjs
+ * Purpose: Apply the finalize signal reference visual production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/finalize-signal-reference-visual-v18-core.cjs
+ * - scripts/finalize-signal-story-v23.cjs
+ * - scripts/finalize-signal-typography-v24.cjs
+ * - scripts/build-dist.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -5,14 +20,22 @@ const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const sourceDir = path.join(root, 'assets', 'images', 'hero-original-v19.parts');
 const temporaryTargets = ['part-01.b64', 'part-02.b64'];
-const originals = new Map(temporaryTargets.map((name) => {
+const originals = new Map(temporaryTargets.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: reads filesystem state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (name) => {
   const file = path.join(sourceDir, name);
   return [name, fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null];
 }));
 
+
+/**
+ * Function contract: restore
+ * Purpose: Apply module behavior consistently while preserving the surrounding finalize signal reference visual repository tool contract.
+ * Inputs: `targetName`, `chunkNames`, `expectedBytes`, `expectedHash`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function restore(targetName, chunkNames, expectedBytes, expectedHash) {
   const restored = chunkNames
-    .map((name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
+    .map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: reads filesystem state Returns: Computed expression result consumed by the enclosing operation. */ (name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
     .join('');
   const hash = crypto.createHash('sha256').update(restored, 'utf8').digest('hex');
   if (restored.length !== expectedBytes || hash !== expectedHash) {
@@ -21,6 +44,15 @@ function restore(targetName, chunkNames, expectedBytes, expectedHash) {
   fs.writeFileSync(path.join(sourceDir, targetName), restored, 'utf8');
 }
 
+
+
+/**
+ * Function contract: restoreTrackedSources
+ * Purpose: Apply tracked sources consistently while preserving the surrounding finalize signal reference visual repository tool contract.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function restoreTrackedSources() {
   for (const [name, original] of originals) {
     const file = path.join(sourceDir, name);

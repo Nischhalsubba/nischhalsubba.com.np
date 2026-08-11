@@ -1,3 +1,18 @@
+/**
+ * @fileoverview scripts/generate-source.cjs
+ * Purpose: Generate or assemble generate source deterministically as part of the production toolchain.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/run-build-stages.cjs
+ * - package.json
+ * - scripts/build-site.cjs
+ * - scripts/compile-single-stylesheet.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const { runStages } = require('./run-build-stages.cjs');
 
 const stages = [

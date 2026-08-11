@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/verify-signal-demo-source-v14.cjs
+ * Purpose: Validate verify signal demo source v14 and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -10,6 +22,14 @@ const EXPECTED_WEBP_BYTES = 86144;
 const EXPECTED_WIDTH = 760;
 const EXPECTED_HEIGHT = 950;
 
+
+/**
+ * Function contract: gitBlobSha1
+ * Purpose: Implement the git blob sha1 responsibility owned by the verify signal demo source v14 repository tool.
+ * Inputs: `buffer`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function gitBlobSha1(buffer) {
   return crypto.createHash('sha1')
     .update(Buffer.from(`blob ${buffer.length}\0`, 'utf8'))
@@ -17,6 +37,15 @@ function gitBlobSha1(buffer) {
     .digest('hex');
 }
 
+
+
+/**
+ * Function contract: readVp8Dimensions
+ * Purpose: Return vp8 dimensions from the supplied inputs or current verify signal demo source v14 repository tool state.
+ * Inputs: `buffer`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: The requested vp8 dimensions; explicit early-return branches define empty/fallback behavior.
+ */
 function readVp8Dimensions(buffer) {
   const signature = Buffer.from([0x9d, 0x01, 0x2a]);
   const index = buffer.indexOf(signature);
@@ -29,6 +58,15 @@ function readVp8Dimensions(buffer) {
   };
 }
 
+
+
+/**
+ * Function contract: verifySource
+ * Purpose: Validate source and surface actionable failures when the verify signal demo source v14 repository tool contract is violated.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function verifySource() {
   if (!fs.existsSync(SOURCE_PATH)) {
     throw new Error(`[signal-demo-v14] Missing exact demo source: ${SOURCE_PATH}`);

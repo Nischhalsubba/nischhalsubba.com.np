@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/ensure-blog-detail-polish.cjs
+ * Purpose: Apply the ensure blog detail polish production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -224,6 +236,14 @@ const css = `
 }
 `;
 
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -234,37 +254,94 @@ function walk(dir, files = []) {
   return files;
 }
 
+
+/**
+ * Function contract: rel
+ * Purpose: Implement the rel responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function rel(file) {
   return path.relative(targetRoot, file).replaceAll(path.sep, '/');
 }
 
+
+/**
+ * Function contract: getTitle
+ * Purpose: Return title from the supplied inputs or current ensure blog detail polish repository tool state.
+ * Inputs: `html`, `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: The requested title; explicit early-return branches define empty/fallback behavior.
+ */
 function getTitle(html, file) {
   return html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g, '').trim()
     || html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.split('|')[0]?.trim()
     || path.basename(file, '.html').replace(/-/g, ' ');
 }
 
+
+/**
+ * Function contract: getCategory
+ * Purpose: Return category from the supplied inputs or current ensure blog detail polish repository tool state.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: The requested category; explicit early-return branches define empty/fallback behavior.
+ */
 function getCategory(html) {
   return html.match(/<p class="eyebrow"[^>]*>([\s\S]*?)<\/p>/i)?.[1]?.replace(/<[^>]+>/g, '').trim()
     || 'Article';
 }
 
+
+/**
+ * Function contract: titleCase
+ * Purpose: Implement the title case responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function titleCase(value) {
-  return value.replace(/\s+/g, ' ').trim().replace(/\b\w/g, (char) => char.toUpperCase());
+  return value.replace(/\s+/g, ' ').trim().replace(/\b\w/g,  /** Callback contract: Perform the local callback step required by the immediately enclosing ensure blog detail polish repository tool operation. Inputs: `char` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (char) => char.toUpperCase());
 }
 
+
+/**
+ * Function contract: upsertBodyClass
+ * Purpose: Implement the upsert body class responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertBodyClass(html) {
   if (/<html\b[^>]*class=["'][^"']*nrs-blog-detail-page/i.test(html)) return html;
   if (/<html\b[^>]*class=/i.test(html)) return html.replace(/<html\b([^>]*class=["'])([^"']*)(["'][^>]*)>/i, '<html$1$2 nrs-blog-detail-page$3>');
   return html.replace(/<html\b([^>]*)>/i, '<html$1 class="nrs-blog-detail-page">');
 }
 
+
+/**
+ * Function contract: normalizeAssetVersions
+ * Purpose: Apply asset versions consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeAssetVersions(html) {
   return html
     .replace(/\/style\.css\?v=[0-9.]+/g, `/style.css?v=${styleVersion}`)
     .replace(/\/script\.js\?v=[0-9.]+/g, `/script.js?v=${scriptVersion}`);
 }
 
+
+
+/**
+ * Function contract: normalizeArticleClasses
+ * Purpose: Apply article classes consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeArticleClasses(html) {
   return html
     .replace(/<p class="eyebrow"([^>]*)>/i, '<p class="eyebrow nrs-blog-category"$1>')
@@ -273,6 +350,15 @@ function normalizeArticleClasses(html) {
     .replace(/<p class="body-large"([^>]*)>/i, '<p class="body-large nrs-blog-dek"$1>');
 }
 
+
+
+/**
+ * Function contract: removeOldBackAndBreadcrumbs
+ * Purpose: Remove old back and breadcrumbs without disturbing required surrounding ensure blog detail polish repository tool state.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function removeOldBackAndBreadcrumbs(html) {
   return html
     .replace(/\s*<nav class="nrs-blog-breadcrumbs"[\s\S]*?<\/nav>\s*/gi, '\n')
@@ -280,6 +366,15 @@ function removeOldBackAndBreadcrumbs(html) {
     .replace(/\s*<a class="badge-pill" href="\/blog\/">[\s\S]*?<\/a>\s*/i, '\n');
 }
 
+
+
+/**
+ * Function contract: breadcrumbHtml
+ * Purpose: Implement the breadcrumb html responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `{ title, category }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function breadcrumbHtml({ title, category }) {
   const categoryLabel = titleCase(category);
   return `        <nav class="nrs-blog-breadcrumbs" aria-label="Breadcrumb">
@@ -288,6 +383,15 @@ function breadcrumbHtml({ title, category }) {
         <a class="nrs-blog-back-btn" href="/blog/">Back to all writing</a>`;
 }
 
+
+
+/**
+ * Function contract: breadcrumbJsonLd
+ * Purpose: Implement the breadcrumb json ld responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `{ title, slugPath }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function breadcrumbJsonLd({ title, slugPath }) {
   const url = `${site}/${slugPath}`;
   const data = {
@@ -302,11 +406,29 @@ function breadcrumbJsonLd({ title, slugPath }) {
   return `<script id="nrs-blog-breadcrumb-json" type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
+
+
+/**
+ * Function contract: upsertBreadcrumbJson
+ * Purpose: Implement the upsert breadcrumb json responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `html`, `payload`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertBreadcrumbJson(html, payload) {
   let output = html.replace(/\s*<script id="nrs-blog-breadcrumb-json"[\s\S]*?<\/script>\s*/gi, '\n');
   return output.replace('</head>', `    ${payload}\n  </head>`);
 }
 
+
+
+/**
+ * Function contract: ensureCanonicalHierarchy
+ * Purpose: Apply canonical hierarchy consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: `html`, `slugPath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function ensureCanonicalHierarchy(html, slugPath) {
   const canonical = `${site}/${slugPath}`;
   if (/<link\s+[^>]*rel=["']canonical["'][^>]*>/i.test(html)) {
@@ -318,6 +440,15 @@ function ensureCanonicalHierarchy(html, slugPath) {
   return html;
 }
 
+
+
+/**
+ * Function contract: polishBlogArticle
+ * Purpose: Apply blog article consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function polishBlogArticle(file) {
   const slugPath = rel(file);
   if (!slugPath.startsWith('blog/') || slugPath === 'blog/index.html' || !slugPath.endsWith('.html')) return false;
@@ -339,6 +470,15 @@ function polishBlogArticle(file) {
   return html !== before;
 }
 
+
+
+/**
+ * Function contract: updateStyle
+ * Purpose: Apply style consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function updateStyle() {
   if (!fs.existsSync(stylePath)) return false;
   let style = fs.readFileSync(stylePath, 'utf8');
@@ -350,7 +490,7 @@ function updateStyle() {
 }
 
 let changed = 0;
-for (const file of walk(targetRoot).filter((item) => item.endsWith('.html'))) {
+for (const file of walk(targetRoot).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => item.endsWith('.html'))) {
   if (polishBlogArticle(file)) changed += 1;
 }
 const styled = updateStyle();

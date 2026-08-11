@@ -1,3 +1,18 @@
+/**
+ * @fileoverview scripts/ensure-seo-code-fixes.cjs
+ * Purpose: Apply the ensure seo code fixes production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - blog/transaction-review-ux-crypto-apps.html
+ * - blog/web3-wallet-ux-checklist.html
+ * - blog/website-ux-checklist-software-companies.html
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -175,6 +190,14 @@ const seoOverrides = {
   },
 };
 
+
+/**
+ * Function contract: escapeHtml
+ * Purpose: Implement the escape html responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -183,11 +206,28 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
+
+/**
+ * Function contract: absoluteUrl
+ * Purpose: Implement the absolute url responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `canonical`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function absoluteUrl(canonical) {
   if (canonical === '/') return `${SITE}/`;
   return `${SITE}${canonical}`;
 }
 
+
+
+/**
+ * Function contract: routeForFile
+ * Purpose: Implement the route for file responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `relativePath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function routeForFile(relativePath) {
   if (relativePath === 'index.html') return '/';
   if (relativePath === 'blog/index.html') return '/blog/';
@@ -199,40 +239,94 @@ function routeForFile(relativePath) {
   return cleanRouteMap.get(publicStripped) || normalized;
 }
 
+
+
+/**
+ * Function contract: upsertTitle
+ * Purpose: Implement the upsert title responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`, `title`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertTitle(html, title) {
   const tag = `<title>${escapeHtml(title)}</title>`;
   return /<title>[\s\S]*?<\/title>/i.test(html)
     ? html.replace(/<title>[\s\S]*?<\/title>/i, tag)
-    : html.replace(/<head[^>]*>/i, (match) => `${match}\n    ${tag}`);
+    : html.replace(/<head[^>]*>/i,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure seo code fixes repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => `${match}\n    ${tag}`);
 }
 
+
+
+/**
+ * Function contract: upsertMetaName
+ * Purpose: Implement the upsert meta name responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`, `name`, `content`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertMetaName(html, name, content) {
   const tag = `<meta name="${name}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+name=["']${name}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, tag)
-    : html.replace(/<meta\s+name="viewport"[^>]*>/i, (match) => `${match}\n    ${tag}`);
+    : html.replace(/<meta\s+name="viewport"[^>]*>/i,  /** Callback contract: Perform the local callback step required by the immediately enclosing ensure seo code fixes repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => `${match}\n    ${tag}`);
 }
 
+
+
+/**
+ * Function contract: upsertMetaProperty
+ * Purpose: Implement the upsert meta property responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`, `property`, `content`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertMetaProperty(html, property, content) {
   const tag = `<meta property="${property}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+property=["']${property}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, tag)
-    : html.replace(/<\/title>/i, (match) => `${match}\n    ${tag}`);
+    : html.replace(/<\/title>/i,  /** Callback contract: Perform the local callback step required by the immediately enclosing ensure seo code fixes repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => `${match}\n    ${tag}`);
 }
 
+
+
+/**
+ * Function contract: upsertCanonical
+ * Purpose: Implement the upsert canonical responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`, `canonical`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertCanonical(html, canonical) {
   const tag = `<link rel="canonical" href="${absoluteUrl(canonical)}" />`;
   return /<link\s+rel="canonical"[^>]*>/i.test(html)
     ? html.replace(/<link\s+rel="canonical"[^>]*>/i, tag)
-    : html.replace(/<\/title>/i, (match) => `${match}\n    ${tag}`);
+    : html.replace(/<\/title>/i,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure seo code fixes repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => `${match}\n    ${tag}`);
 }
 
+
+
+/**
+ * Function contract: stripMetaKeywords
+ * Purpose: Remove meta keywords without disturbing required surrounding ensure seo code fixes repository tool state.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function stripMetaKeywords(html) {
   return html.replace(/\s*<meta\s+name=["']keywords["'][^>]*>/gi, '');
 }
 
+
+
+/**
+ * Function contract: rewriteCleanUrls
+ * Purpose: Implement the rewrite clean urls responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function rewriteCleanUrls(html) {
   let output = html;
   for (const [from, to] of cleanRouteMap.entries()) {
@@ -247,6 +341,15 @@ function rewriteCleanUrls(html) {
   return output;
 }
 
+
+
+/**
+ * Function contract: ensureServicesNav
+ * Purpose: Apply services nav consistently while preserving the surrounding ensure seo code fixes repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function ensureServicesNav(html) {
   let output = html;
 
@@ -268,6 +371,15 @@ function ensureServicesNav(html) {
   return output;
 }
 
+
+
+/**
+ * Function contract: addHomepageServiceBlock
+ * Purpose: Implement the add homepage service block responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function addHomepageServiceBlock(html) {
   if (!html.includes('nrs-home-services')) {
     const block = `
@@ -284,6 +396,15 @@ function addHomepageServiceBlock(html) {
   return html;
 }
 
+
+
+/**
+ * Function contract: applySeoOverride
+ * Purpose: Apply seo override consistently while preserving the surrounding ensure seo code fixes repository tool contract.
+ * Inputs: `html`, `config`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function applySeoOverride(html, config) {
   let output = html;
   output = upsertTitle(output, config.title);
@@ -299,6 +420,15 @@ function applySeoOverride(html, config) {
   return output;
 }
 
+
+
+/**
+ * Function contract: applyGenericCleanCanonical
+ * Purpose: Apply generic clean canonical consistently while preserving the surrounding ensure seo code fixes repository tool contract.
+ * Inputs: `html`, `relativePath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function applyGenericCleanCanonical(html, relativePath) {
   const cleanRoute = routeForFile(relativePath);
   let output = upsertCanonical(html, cleanRoute);

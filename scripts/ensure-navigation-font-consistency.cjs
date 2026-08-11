@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-navigation-font-consistency.cjs
+ * Purpose: Apply the ensure navigation font consistency production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -6,6 +20,14 @@ const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : r
 const stylePath = path.join(targetRoot, 'style.css');
 const styleVersion = '50.0';
 
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the ensure navigation font consistency repository tool.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -17,6 +39,14 @@ function walk(dir, files = []) {
   return files;
 }
 
+
+/**
+ * Function contract: cleanBlogArticle
+ * Purpose: Remove blog article without disturbing required surrounding ensure navigation font consistency repository tool state.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function cleanBlogArticle(file) {
   const rel = path.relative(targetRoot, file).replaceAll(path.sep, '/');
   if (!rel.startsWith('blog/') || rel === 'blog/index.html' || !rel.endsWith('.html')) return false;
@@ -163,7 +193,7 @@ body.nrs-services-v49-page .nrs-services-v49 {
 `;
 
 let changed = 0;
-for (const file of walk(targetRoot).filter((item) => item.endsWith('.html'))) {
+for (const file of walk(targetRoot).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => item.endsWith('.html'))) {
   if (cleanBlogArticle(file)) changed += 1;
 }
 

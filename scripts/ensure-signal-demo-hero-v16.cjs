@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-signal-demo-hero-v16.cjs
+ * Purpose: Apply the ensure signal demo hero v16 production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - AGENTS.md
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
@@ -8,12 +21,20 @@ const cssFile=path.join(base,'style.css');
 const partsDir=path.join(root,'assets','images','signal-demo-poster-v4.parts');
 const posterFile=path.join(base,'assets','images','signal-over-noise-exact.webp');
 const partNames=['part-00.b64part','part-01a.b64part','part-01b.b64part','part-01c.b64part','part-01d.b64part','part-02.b64part','part-03a.b64part','part-03b.b64part','part-03c.b64part','part-03d.b64part','part-04a.b64part','part-04b.b64part'];
+
+/**
+ * Function contract: sha
+ * Purpose: Implement the sha responsibility owned by the ensure signal demo hero v16 repository tool.
+ * Inputs: `v`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed expression result consumed by the enclosing operation.
+ */
 const sha=v=>crypto.createHash('sha256').update(v).digest('hex');
 if(!fs.existsSync(home)||!fs.existsSync(cssFile)||!fs.existsSync(partsDir))throw new Error('[signal-demo-v16] Missing homepage, stylesheet, or verified Signal poster source.');
-const found=fs.readdirSync(partsDir).filter(n=>n.endsWith('.b64part')).sort((a,b)=>a.localeCompare(b,'en',{numeric:true}));
-const expected=[...partNames].sort((a,b)=>a.localeCompare(b,'en',{numeric:true}));
+const found=fs.readdirSync(partsDir).filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `n` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ n=>n.endsWith('.b64part')).sort( /** Callback contract: Compare two items and return their deterministic ordering for the enclosing sort. Inputs: `a`, `b` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (a,b)=>a.localeCompare(b,'en',{numeric:true}));
+const expected=[...partNames].sort( /** Callback contract: Compare two items and return their deterministic ordering for the enclosing sort. Inputs: `a`, `b` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (a,b)=>a.localeCompare(b,'en',{numeric:true}));
 if(JSON.stringify(found)!==JSON.stringify(expected))throw new Error('[signal-demo-v16] Signal poster source set mismatch.');
-const encoded=partNames.map(n=>fs.readFileSync(path.join(partsDir,n),'utf8').replace(/\s+/g,'')).join('');
+const encoded=partNames.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `n` Side effects: reads filesystem state Returns: Computed expression result consumed by the enclosing operation. */ n=>fs.readFileSync(path.join(partsDir,n),'utf8').replace(/\s+/g,'')).join('');
 if(encoded.length!==86816)throw new Error(`[signal-demo-v16] Poster source length mismatch: ${encoded.length}.`);
 const poster=Buffer.from(encoded,'base64');
 const posterHash=sha(poster);

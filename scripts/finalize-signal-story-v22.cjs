@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/finalize-signal-story-v22.cjs
+ * Purpose: Apply the finalize signal story v22 production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/finalize-signal-story-v21.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -22,7 +35,7 @@ if (!html.includes('class="nrs-uploaded-visual"') || !html.includes('data-story=
 
 // Add a completely separate orange pixel/noise layer. The portrait image is never edited.
 if (!html.includes('class="nrs-pixel-field"')) {
-  const pixels = Array.from({ length: 84 }, (_, index) => {
+  const pixels = Array.from({ length: 84 },  /** Callback contract: Perform the local callback step required by the immediately enclosing finalize signal story v22 repository tool operation. Inputs: `_`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (_, index) => {
     const x = 4 + ((index * 37 + 11) % 92);
     const y = 5 + ((index * 53 + 7) % 89);
     const size = [1, 1, 1, 2, 2, 3][index % 6];

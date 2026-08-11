@@ -1,3 +1,14 @@
+/**
+ * @fileoverview src/app/design-system.css
+ * Purpose: Own the authored design system source for this repository.
+ * Responsibilities:
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
+ * Execution context: Authored stylesheet source assembled or copied into the canonical production CSS.
+ * Connected files:
+ * - No direct tracked-file dependency; ownership is defined by this folder and its build/runtime convention.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 :root {
   --font-body: "Inter", "Atkinson Hyperlegible", "SF Pro Text", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-display: "Nunito Sans", "Inter", "SF Pro Display", "Segoe UI", system-ui, -apple-system, sans-serif;

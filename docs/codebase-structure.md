@@ -1,91 +1,59 @@
 # Codebase Structure
 
-This project is a static, multi-page Vite site deployed to Cloudflare Pages.
+This project is a static multi-page Vite portfolio deployed through Cloudflare Workers/static assets. Source organization is responsibility-first while compatibility materialization preserves the mature public/build contract.
 
-## Runtime JavaScript
+## Canonical page source
 
-Browser behavior is organized under `src/scripts/`:
+`src/pages/` is grouped by route responsibility:
+
+```txt
+src/pages/
+├── core/       # Homepage and primary navigation routes
+├── projects/   # Individual project/case-study pages
+└── services/   # Specialist service/search landing pages
+```
+
+The build materializer maps these files to historical root filenames only during development/build. Tracked source does not return to the repository root.
+
+## Browser runtime
+
+`src/scripts/` is grouped by responsibility:
 
 ```txt
 src/scripts/
-├── main.js                     # Runtime entrypoint
-├── utils/
-│   └── dom.js                  # Shared DOM helpers
+├── entrypoints/
+├── shared/
 └── features/
-    ├── contact-form.js         # Contact mailto behavior
-    ├── filters.js              # Work/blog filtering and search
-    ├── global-styles.js        # Small JS-only runtime style helpers
-    ├── grid-canvas.js          # Optional homepage canvas grid
-    ├── mobile-menu.js          # Mobile navigation toggle
-    ├── navigation.js           # Active nav state
-    ├── page-transitions.js     # Lightweight page transition state
-    ├── resume.js               # Resume download normalization
-    ├── share.js                # Share/copy controls
-    └── theme.js                # Light/dark theme handling
+    ├── accessibility/
+    ├── analytics/
+    ├── content/
+    ├── forms/
+    ├── layout/
+    ├── motion/
+    ├── navigation/
+    ├── portfolio/
+    └── system/
 ```
 
-The root `script.js` file remains as a compatibility entrypoint because existing HTML files already reference it:
+Entrypoints orchestrate. Feature modules own one behavioral domain. Shared helpers remain dependency-light.
 
-```js
-import './src/scripts/main.js';
-```
+## Styles
 
-This keeps the public site stable while moving maintainable code into `src/`.
+`src/styles/style.css` remains the canonical production stylesheet because build/audit contracts intentionally enforce one served stylesheet. Supporting authored source is organized under `src/styles/systems/` and `src/styles/fragments/`.
 
-## Static Pages
+## Build tooling
 
-Most routes are static HTML files at the repository root. This is intentional for Cloudflare Pages and SEO stability.
+`scripts/` is an ordered transformation pipeline. Many historical stages compute repository paths relative to their own location, so they are not bulk-moved merely for aesthetics. Existing safe subdomains such as `scripts/repository/` and `scripts/spacious-pages/` remain grouped; new tooling should prefer responsibility folders when it does not depend on historical relative-path behavior.
 
-```txt
-index.html
-home-v2.html
-about.html
-contact.html
-projects.html
-blog.html
-project-*.html
-*-designer.html
-ux-audit.html
-```
+## Documentation contract
 
-The `/blog/` route has both source pages under `blog/` and Cloudflare/Vite public files under `public/blog/`.
+Authored JS/TS/CSS/HTML/workflow files begin with a structured `@fileoverview` comment describing purpose, responsibilities, execution context, connected files, and maintenance constraints. JS/TS functions and callbacks carry function contracts describing purpose, inputs, side effects, and return behavior.
 
-## Public Files
-
-Everything in `public/` is copied directly to the final Vite `dist/` folder.
-
-```txt
-public/
-├── _redirects
-├── robots.txt
-├── sitemap.xml
-├── detail-navigation.js
-├── seo-enhancements.js
-└── blog/
-```
-
-## Build and Deployment
-
-Use Vite as the source of truth:
+Run:
 
 ```bash
-npm run build
+npm run audit:code-docs
+npm run validate
 ```
 
-Cloudflare Pages should ideally use:
-
-```txt
-Build command: npm run build
-Output directory: dist
-```
-
-A temporary compatibility shim exists because Cloudflare was configured to run `npx next build`. The shim redirects `next build` to the real Vite build so deployments do not fail while dashboard settings are corrected.
-
-## Maintenance Rules
-
-- Keep public URLs stable unless redirects are added.
-- Put new browser behavior in `src/scripts/features/`.
-- Keep shared DOM helpers in `src/scripts/utils/`.
-- Keep deployment-only files in `public/` or `scripts/`.
-- Run `npm run build` before deploying major changes.
-- Run `npm run check:links` before changing page URLs.
+Generated/vendor code is excluded and documented at its source/generator instead of being hand-edited.

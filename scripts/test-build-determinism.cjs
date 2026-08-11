@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/test-build-determinism.cjs
+ * Purpose: Validate test build determinism and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -6,6 +18,14 @@ const { spawnSync } = require('node:child_process');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the test build determinism repository tool.
+ * Inputs: `directory`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function walk(directory, files = []) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     const absolute = path.join(directory, entry.name);
@@ -15,6 +35,14 @@ function walk(directory, files = []) {
   return files;
 }
 
+
+/**
+ * Function contract: snapshot
+ * Purpose: Implement the snapshot responsibility owned by the test build determinism repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function snapshot() {
   if (!fs.existsSync(dist)) throw new Error('dist is missing; run the production build first.');
   const hashes = new Map();
@@ -25,9 +53,17 @@ function snapshot() {
   return hashes;
 }
 
+
+/**
+ * Function contract: compare
+ * Purpose: Implement the compare responsibility owned by the test build determinism repository tool.
+ * Inputs: `before`, `after`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function compare(before, after) {
   const paths = new Set([...before.keys(), ...after.keys()]);
-  return [...paths].filter((file) => before.get(file) !== after.get(file)).sort();
+  return [...paths].filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => before.get(file) !== after.get(file)).sort();
 }
 
 const first = snapshot();

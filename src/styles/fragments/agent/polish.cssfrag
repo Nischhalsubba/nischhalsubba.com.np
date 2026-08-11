@@ -1,0 +1,286 @@
+/**
+ * @fileoverview src/styles/fragments/agent/polish.cssfrag
+ * Purpose: Define composable polish CSS rules that are assembled into the production stylesheet rather than served independently.
+ * Responsibilities:
+ * - Own visual rules only; behavior and state transitions remain in browser runtime modules.
+ * - Respect the single-stylesheet production architecture and existing design-system/accessibility audits.
+ * - Keep selectors scoped to the intended surface unless this is the canonical global stylesheet.
+ * Execution context: Authored stylesheet source assembled or copied into the canonical production CSS.
+ * Connected files:
+ * - scripts/compile-single-stylesheet.cjs
+ * - scripts/audit-css-architecture.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
+/* Agent portfolio polish pass: contrast, editorial density, richer About, compact desktop nav. */
+
+@media (min-width: 1024px) {
+  .agent-portfolio .nav-wrapper {
+    left: 50%;
+    right: auto;
+    width: min(calc(100% - (var(--ap-gutter) * 2)), 72rem);
+    max-width: 72rem;
+    transform: translateX(-50%);
+    border-left: 1px solid color-mix(in srgb, var(--ap-line) 76%, transparent);
+    border-right: 1px solid color-mix(in srgb, var(--ap-line) 76%, transparent);
+  }
+
+  .agent-portfolio .agent-brand {
+    max-width: 19rem;
+  }
+
+  .agent-portfolio .nav-pill {
+    gap: .05rem;
+  }
+
+  .agent-portfolio .nav-link {
+    padding-inline: .54rem;
+  }
+}
+
+/* The legacy production stylesheet has heading paint rules. Lock inverse sections to semantic tokens. */
+.agent-portfolio .agent-section--inverse {
+  background: var(--ap-inverse);
+  color: var(--ap-inverse-ink);
+}
+
+.agent-portfolio .agent-section--inverse .agent-section-title,
+.agent-portfolio .agent-section--inverse .agent-capability h3,
+.agent-portfolio .agent-section--inverse h2,
+.agent-portfolio .agent-section--inverse h3 {
+  color: var(--ap-inverse-ink) !important;
+  -webkit-text-fill-color: var(--ap-inverse-ink) !important;
+  text-shadow: none !important;
+  background: none !important;
+}
+
+.agent-portfolio .agent-section--inverse .agent-capability p {
+  color: color-mix(in srgb, var(--ap-inverse-ink) 82%, transparent);
+}
+
+.agent-portfolio .agent-section--inverse .agent-meta,
+.agent-portfolio .agent-section--inverse .agent-kicker {
+  color: color-mix(in srgb, var(--ap-inverse-ink) 72%, transparent);
+  -webkit-text-fill-color: currentColor;
+}
+
+.agent-portfolio .agent-section--inverse .agent-capabilities {
+  border-color: color-mix(in srgb, var(--ap-inverse-ink) 58%, transparent);
+}
+
+.agent-portfolio .agent-section--inverse .agent-capability {
+  border-color: color-mix(in srgb, var(--ap-inverse-ink) 28%, transparent);
+}
+
+/* Writing index: give titles enough measure to read like headlines, not stacked labels. */
+.agent-portfolio .agent-index-item {
+  grid-template-columns: .55fr minmax(0, 4.9fr) 1.3fr minmax(17rem, 4.6fr) .7fr;
+  column-gap: clamp(1rem, 1.6vw, 1.75rem);
+  align-items: start;
+  padding-block: 1.65rem;
+}
+
+.agent-portfolio .agent-index-item h2,
+.agent-portfolio .agent-index-item h3 {
+  max-width: 19ch;
+  font-size: clamp(1.8rem, 2.55vw, 3.25rem);
+  line-height: .96;
+  letter-spacing: -.05em;
+  text-wrap: balance;
+}
+
+.agent-portfolio .agent-index-item .agent-meta,
+.agent-portfolio .agent-index-item > p,
+.agent-portfolio .agent-index-item .agent-project-arrow {
+  margin-top: .35rem;
+}
+
+.agent-portfolio .agent-index-item > p {
+  max-width: 42rem;
+  line-height: 1.56;
+}
+
+/* About page: restore substance without returning to card soup. */
+.agent-portfolio .agent-about-process {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--ap-line-strong);
+}
+
+.agent-portfolio .agent-about-step {
+  min-height: 18rem;
+  display: grid;
+  align-content: space-between;
+  gap: 2.5rem;
+  padding: 1.25rem 1.4rem 1.5rem 0;
+  border-right: 1px solid var(--ap-line);
+  border-bottom: 1px solid var(--ap-line);
+}
+
+.agent-portfolio .agent-about-step:last-child {
+  border-right: 0;
+}
+
+.agent-portfolio .agent-about-step h3 {
+  margin: 0 0 .8rem;
+  color: var(--ap-ink);
+  font: 700 clamp(1.65rem, 2.6vw, 2.9rem)/.96 var(--ap-font-display);
+  letter-spacing: -.05em;
+}
+
+.agent-portfolio .agent-about-step p {
+  margin: 0;
+  color: var(--ap-ink-soft);
+  line-height: 1.62;
+}
+
+.agent-portfolio .agent-about-fit {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.agent-portfolio .agent-about-fit-copy {
+  grid-column: 1 / span 5;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.agent-portfolio .agent-about-fit-copy h2 {
+  max-width: 11ch;
+  margin: 0;
+  color: var(--ap-ink);
+  font: 720 clamp(2.6rem, 5vw, 5.4rem)/.92 var(--ap-font-display);
+  letter-spacing: -.065em;
+}
+
+.agent-portfolio .agent-about-fit-list {
+  grid-column: 7 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--ap-line-strong);
+}
+
+.agent-portfolio .agent-about-fit-item {
+  min-height: 5rem;
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: .7rem;
+  align-items: center;
+  padding: 1rem 1rem 1rem 0;
+  border-bottom: 1px solid var(--ap-line);
+}
+
+.agent-portfolio .agent-about-fit-item:nth-child(odd) {
+  border-right: 1px solid var(--ap-line);
+}
+
+.agent-portfolio .agent-about-fit-item:nth-child(even) {
+  padding-left: 1rem;
+}
+
+.agent-portfolio .agent-about-fit-item span:first-child {
+  color: var(--ap-signal);
+  font: 700 .7rem/1 var(--ap-font-mono);
+}
+
+.agent-portfolio .agent-about-fit-item span:last-child {
+  color: var(--ap-ink);
+  font-weight: 650;
+}
+
+@media (max-width: 1023px) {
+  .agent-portfolio .agent-index-item {
+    grid-template-columns: .5fr minmax(0, 4fr) 1.25fr minmax(14rem, 3.5fr) .6fr;
+  }
+
+  .agent-portfolio .agent-index-item h2,
+  .agent-portfolio .agent-index-item h3 {
+    font-size: clamp(1.7rem, 3vw, 2.8rem);
+  }
+
+  .agent-portfolio .agent-about-process {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .agent-portfolio .agent-about-step:nth-child(2) {
+    border-right: 0;
+  }
+
+  .agent-portfolio .agent-about-fit {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .agent-portfolio .agent-about-fit-copy {
+    grid-column: 1 / span 3;
+  }
+
+  .agent-portfolio .agent-about-fit-list {
+    grid-column: 4 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .agent-portfolio .agent-index-item {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: .55rem 1rem;
+    padding-block: 1.5rem;
+  }
+
+  .agent-portfolio .agent-index-item .agent-project-index {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+  }
+
+  .agent-portfolio .agent-index-item h2,
+  .agent-portfolio .agent-index-item h3 {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: 22ch;
+    font-size: clamp(1.75rem, 8.2vw, 2.45rem);
+    line-height: .98;
+  }
+
+  .agent-portfolio .agent-index-item .agent-meta {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: .15rem;
+  }
+
+  .agent-portfolio .agent-index-item > p {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: .25rem;
+  }
+
+  .agent-portfolio .agent-index-item .agent-project-arrow {
+    display: none;
+  }
+
+  .agent-portfolio .agent-about-process,
+  .agent-portfolio .agent-about-fit,
+  .agent-portfolio .agent-about-fit-list {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-portfolio .agent-about-step {
+    min-height: 13rem;
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .agent-portfolio .agent-about-fit-copy,
+  .agent-portfolio .agent-about-fit-list {
+    grid-column: 1;
+  }
+
+  .agent-portfolio .agent-about-fit-copy {
+    margin-bottom: 2rem;
+  }
+
+  .agent-portfolio .agent-about-fit-item:nth-child(odd),
+  .agent-portfolio .agent-about-fit-item:nth-child(even) {
+    border-right: 0;
+    padding-left: 0;
+  }
+}

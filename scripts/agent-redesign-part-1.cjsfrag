@@ -2,8 +2,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
-const styleSources = [1, 2, 3].map((part) => path.join(root, 'src', 'styles', `agent-portfolio-${part}.cssfrag`));
-const runtimeSource = path.join(root, 'src', 'scripts', 'features', 'agent-portfolio.js');
+const styleSources = [
+  path.join(root, 'src', 'styles', 'fragments', 'agent', 'portfolio-foundation.cssfrag'),
+  path.join(root, 'src', 'styles', 'fragments', 'agent', 'portfolio-components.cssfrag'),
+  path.join(root, 'src', 'styles', 'fragments', 'agent', 'portfolio-finishing.cssfrag'),
+];
+const runtimeSource = path.join(root, 'src', 'scripts', 'features', 'portfolio', 'agent-portfolio.js');
 if (!fs.existsSync(dist)) throw new Error('[agent-redesign] dist is missing');
 if (styleSources.some((file) => !fs.existsSync(file))) throw new Error('[agent-redesign] CSS fragments are missing');
 if (!fs.existsSync(runtimeSource)) throw new Error('[agent-redesign] runtime is missing');

@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/generate-resume-pdf.cjs
+ * Purpose: Generate or assemble generate resume pdf deterministically as part of the production toolchain.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - docs/build-pipeline.md
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -127,10 +140,26 @@ const pages = [
   ]
 ];
 
+
+/**
+ * Function contract: escapePdfText
+ * Purpose: Implement the escape pdf text responsibility owned by the generate resume pdf repository tool.
+ * Inputs: `text`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function escapePdfText(text) {
   return String(text).replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
 }
 
+
+/**
+ * Function contract: wrapLine
+ * Purpose: Implement the wrap line responsibility owned by the generate resume pdf repository tool.
+ * Inputs: `text`, `maxChars`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function wrapLine(text, maxChars = 92) {
   if (text.length <= maxChars) return [text];
   const words = text.split(' ');
@@ -150,6 +179,15 @@ function wrapLine(text, maxChars = 92) {
   return lines;
 }
 
+
+
+/**
+ * Function contract: buildPageContent
+ * Purpose: Build page content from the supplied inputs in the form expected by downstream generate resume pdf repository tool consumers.
+ * Inputs: `lines`, `pageIndex`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function buildPageContent(lines, pageIndex) {
   let y = 780;
   const commands = ['BT', '/F1 10 Tf', '1 0 0 1 54 780 Tm', '14 TL'];
@@ -174,8 +212,26 @@ function buildPageContent(lines, pageIndex) {
   return commands.join('\n');
 }
 
+
+
+/**
+ * Function contract: createPdf
+ * Purpose: Build pdf from the supplied inputs in the form expected by downstream generate resume pdf repository tool consumers.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function createPdf() {
   const objects = [];
+  
+  
+  /**
+   * Function contract: add
+   * Purpose: Implement the add responsibility owned by the generate resume pdf repository tool.
+   * Inputs: `body`
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+   */
   const add = (body) => {
     objects.push(body);
     return objects.length;
@@ -192,7 +248,7 @@ function createPdf() {
     pageRefs.push(pageRef);
   }
 
-  const pagesRef = add(`<< /Type /Pages /Kids [${pageRefs.map((ref) => `${ref} 0 R`).join(' ')}] /Count ${pageRefs.length} >>`);
+  const pagesRef = add(`<< /Type /Pages /Kids [${pageRefs.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `ref` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (ref) => `${ref} 0 R`).join(' ')}] /Count ${pageRefs.length} >>`);
   const catalogRef = add(`<< /Type /Catalog /Pages ${pagesRef} 0 R >>`);
 
   for (const pageRef of pageRefs) {

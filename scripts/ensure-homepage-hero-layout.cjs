@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-homepage-hero-layout.cjs
+ * Purpose: Apply the ensure homepage hero layout production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -12,6 +25,14 @@ const cleanHero = `      <section class="hero-section nrs-home-hero-clean">
         <div class="hero-proof-strip reveal-on-scroll" aria-label="Core design strengths"><span>UX strategy</span><span>Interface design</span><span>Design systems</span><span>UX writing</span><span>Developer handoff</span></div>
       </section>`;
 
+
+/**
+ * Function contract: replaceHero
+ * Purpose: Implement the replace hero responsibility owned by the ensure homepage hero layout repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function replaceHero(html) {
   const heroPattern = /      <section class="hero-section center-aligned-hero nrs-home-hero"[\s\S]*?      <\/section>/;
   if (heroPattern.test(html)) return html.replace(heroPattern, cleanHero);

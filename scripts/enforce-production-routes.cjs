@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/enforce-production-routes.cjs
+ * Purpose: Apply the enforce production routes production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -24,6 +37,15 @@ for (const name of ['audit-remediations.css', 'stable-layout.css', 'final-ui-fix
   if (fs.existsSync(path.join(dist, name))) errors.push(`Retired stylesheet survived build: ${name}`);
 }
 
+
+
+/**
+ * Function contract: parseRedirects
+ * Purpose: Convert redirects into the structured representation consumed by the enforce production routes repository tool.
+ * Inputs: `file`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function parseRedirects(file) {
   if (!fs.existsSync(file)) return new Map();
   const entries = new Map();

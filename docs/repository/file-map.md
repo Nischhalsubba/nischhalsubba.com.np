@@ -28,7 +28,7 @@ The exact allow-list is machine-enforced by `config/repository/root-policy.json`
 | `src/pages/*.html` | Canonical source for top-level site pages and project case studies. | `config/canonical-routes.json`, `scripts/repository/materialize-root-sources.cjs`, Vite. |
 | `blog/**/*.html` | Blog index and article source pages. This folder was already correctly grouped and remains at its public content path. | Canonical route manifest, Vite, blog normalization scripts. |
 | `src/styles/style.css` | Single authored production stylesheet. | Materialized as `/style.css`, `scripts/copy-static-assets.cjs`, CSS audits. |
-| `src/runtime/script.js` | Stable browser-runtime compatibility entry template. | Materialized as `/script.js`, imports `src/scripts/main.js`. |
+| `src/runtime/script.js` | Stable browser-runtime compatibility entry template. | Materialized as `/script.js`, imports `src/scripts/entrypoints/main.js`. |
 | `src/scripts/**/*.js` | Modular browser features such as navigation, theme, analytics, interactions, and accessibility behavior. | `src/runtime/script.js`, production HTML. |
 | `src/discovery/*` | SEO/AI/crawler and deployment metadata sources: sitemap, robots, llms files, AI profile, manifest, humans, and headers. | `scripts/generate-seo-discovery.cjs`, materializer, `scripts/copy-static-assets.cjs`. |
 | `src/compat/legacy-pages/*` | Three retired HTML inputs still required by the current Vite input map. They are built only for compatibility and are removed from production output. | `vite.config.ts`, `scripts/clean-vite-public-output.cjs`. |

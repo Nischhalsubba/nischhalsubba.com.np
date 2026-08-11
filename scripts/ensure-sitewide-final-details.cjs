@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-sitewide-final-details.cjs
+ * Purpose: Apply the ensure sitewide final details production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -5,14 +18,39 @@ const root = path.resolve(__dirname, '..');
 const base = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const siteUrl = 'https://nischhalsubba.com.np';
 
+
+/**
+ * Function contract: esc
+ * Purpose: Implement the esc responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 }
 
+
+/**
+ * Function contract: setMeta
+ * Purpose: Synchronize meta with the requested state while preserving related ensure sitewide final details repository tool invariants.
+ * Inputs: `html`, `selector`, `tag`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function setMeta(html, selector, tag) {
   return selector.test(html) ? html.replace(selector, tag) : html.replace('</head>', `${tag}\n</head>`);
 }
 
+
+
+/**
+ * Function contract: rewritePrivacy
+ * Purpose: Implement the rewrite privacy responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function rewritePrivacy() {
   const file = path.join(base, 'privacy.html');
   if (!fs.existsSync(file)) return false;
@@ -27,6 +65,15 @@ function rewritePrivacy() {
   return true;
 }
 
+
+
+/**
+ * Function contract: rewrite404
+ * Purpose: Implement the rewrite404 responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function rewrite404() {
   const file = path.join(base, '404.html');
   if (!fs.existsSync(file)) return false;
@@ -39,9 +86,27 @@ function rewrite404() {
   return true;
 }
 
+
+
+/**
+ * Function contract: sanitizeMetadata
+ * Purpose: Implement the sanitize metadata responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function sanitizeMetadata() {
   const files = [];
-  (function walk(directory) {
+  (
+  
+  /**
+   * Function contract: walk
+   * Purpose: Implement the walk responsibility owned by the ensure sitewide final details repository tool.
+   * Inputs: `directory`
+   * Side effects: reads filesystem state
+   * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+   */
+  function walk(directory) {
     if (!fs.existsSync(directory)) return;
     for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
       if (['node_modules', '.git'].includes(entry.name)) continue;
@@ -68,6 +133,15 @@ function sanitizeMetadata() {
   return cleaned;
 }
 
+
+
+/**
+ * Function contract: appendStyles
+ * Purpose: Implement the append styles responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function appendStyles() {
   const file = path.join(base, 'style.css');
   if (!fs.existsSync(file)) return;

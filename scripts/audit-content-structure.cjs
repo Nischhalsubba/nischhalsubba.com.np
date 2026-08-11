@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/audit-content-structure.cjs
+ * Purpose: Validate audit content structure and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * - src/compat/legacy-pages/home.html
+ * - src/content/posts.js
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -25,6 +39,14 @@ const retiredProductionFiles = [
   'blog.html',
 ];
 
+
+/**
+ * Function contract: fail
+ * Purpose: Implement the fail responsibility owned by the audit content structure repository tool.
+ * Inputs: `message`
+ * Side effects: emits diagnostics or changes process failure state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function fail(message) {
   console.error(`[content-structure] ${message}`);
   process.exitCode = 1;

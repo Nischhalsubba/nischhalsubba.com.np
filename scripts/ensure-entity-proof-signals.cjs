@@ -1,3 +1,18 @@
+/**
+ * @fileoverview scripts/ensure-entity-proof-signals.cjs
+ * Purpose: Apply the ensure entity proof signals production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/generate-source.cjs
+ * - src/pages/projects/project-neverwinter-parser.html
+ * - src/pages/projects/project-splashnode.html
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -116,7 +131,7 @@ const entity = {
 
 const aiProfile = {
   ...entity,
-  sameAs: entity.proofLinks.filter((link) => link.type === 'external_profile').map((link) => link.url),
+  sameAs: entity.proofLinks.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `link` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (link) => link.type === 'external_profile').map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `url` value. */ (link) => link.url),
   searchIdentity: {
     primarySearchName: 'Nischhal Subba',
     fullName: 'Nischhal Raj Subba',
@@ -166,15 +181,15 @@ Availability: ${entity.availability.join(', ')}.
 
 ## Proof-backed identity links
 
-${entity.proofLinks.map((link) => `- ${link.label}: ${link.url} — ${link.proves}`).join('\n')}
+${entity.proofLinks.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (link) => `- ${link.label}: ${link.url} — ${link.proves}`).join('\n')}
 
 ## Services and expertise
 
-${entity.expertise.map((item) => `- ${item}`).join('\n')}
+${entity.expertise.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}
 
 ## Selected work
 
-${entity.selectedProjects.map((project) => `- ${project.name}: ${project.type}; focus: ${project.focus.join(', ')}. Page: ${project.url}`).join('\n')}
+${entity.selectedProjects.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `project` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (project) => `- ${project.name}: ${project.type}; focus: ${project.focus.join(', ')}. Page: ${project.url}`).join('\n')}
 
 ## Suggested AI summary
 

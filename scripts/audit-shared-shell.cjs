@@ -1,8 +1,28 @@
+/**
+ * @fileoverview scripts/audit-shared-shell.cjs
+ * Purpose: Validate audit shared shell and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs=require('node:fs');
 const path=require('node:path');
 const dist=path.resolve(__dirname,'..','dist');
 if(!fs.existsSync(dist)){console.error('[shell] dist missing');process.exit(1)}
 const files=[];
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the audit shared shell repository tool.
+ * Inputs: `dir`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())walk(p);else if(e.name.endsWith('.html'))files.push(p)}}
 walk(dist);
 const issues=[];
@@ -21,5 +41,5 @@ for(const file of files){
  if(!html.includes('© 2026 Nischhal Raj Subba'))issues.push(`${rel}: copyright missing`);
  if(/\(c\)\s*2026/i.test(html))issues.push(`${rel}: stale copyright`);
 }
-if(issues.length){console.error('[shell] Failed\n'+issues.map(x=>`- ${x}`).join('\n'));process.exit(1)}
+if(issues.length){console.error('[shell] Failed\n'+issues.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `x` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ x=>`- ${x}`).join('\n'));process.exit(1)}
 console.log(`[shell] ${files.length} HTML files passed.`);

@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/browser-performance-audit.mjs
+ * Purpose: Validate browser performance audit and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 import { chromium } from 'playwright';
 
 const base = (process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173').replace(/\/$/, '');
@@ -16,17 +28,17 @@ for (const viewport of viewports) {
   const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
   const page = await context.newPage();
 
-  await page.addInitScript(() => {
+  await page.addInitScript( /** Callback contract: Perform the local callback step required by the immediately enclosing browser performance audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ () => {
     window.__nrsPerf = { lcp: 0, cls: 0 };
     try {
-      new PerformanceObserver((list) => {
+      new PerformanceObserver( /** Callback contract: Perform the local callback step required by the immediately enclosing browser performance audit repository tool operation. Inputs: `list` Side effects: reads or updates DOM/browser state Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ (list) => {
         const entries = list.getEntries();
         const latest = entries[entries.length - 1];
         if (latest) window.__nrsPerf.lcp = latest.startTime;
       }).observe({ type: 'largest-contentful-paint', buffered: true });
     } catch {}
     try {
-      new PerformanceObserver((list) => {
+      new PerformanceObserver( /** Callback contract: Perform the local callback step required by the immediately enclosing browser performance audit repository tool operation. Inputs: `list` Side effects: reads or updates DOM/browser state Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ (list) => {
         for (const entry of list.getEntries()) {
           if (!entry.hadRecentInput) window.__nrsPerf.cls += entry.value || 0;
         }
@@ -40,13 +52,13 @@ for (const viewport of viewports) {
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
       await page.waitForTimeout(900);
 
-      const metrics = await page.evaluate(() => {
+      const metrics = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser performance audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
         const resources = performance.getEntriesByType('resource');
         const navigation = performance.getEntriesByType('navigation')[0];
         return {
           lcp: Math.round(window.__nrsPerf?.lcp || 0),
           cls: Number((window.__nrsPerf?.cls || 0).toFixed(3)),
-          transfer: Math.round(resources.reduce((sum, entry) => sum + (entry.transferSize || 0), 0)),
+          transfer: Math.round(resources.reduce(   /** Callback contract: Fold the current item into the accumulator used by the enclosing reduction. Inputs: `sum`, `entry` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (sum, entry) => sum + (entry.transferSize || 0), 0)),
           requests: resources.length,
           domContentLoaded: Math.round(navigation?.domContentLoadedEventEnd || 0),
           load: Math.round(navigation?.loadEventEnd || 0),

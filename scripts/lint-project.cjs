@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/lint-project.cjs
+ * Purpose: Apply the lint project production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * - src/styles/fragments/agent/portfolio-components.cssfrag
+ * - src/styles/fragments/agent/portfolio-finishing.cssfrag
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
@@ -9,6 +23,14 @@ const cssRoots = [path.join(root, 'src', 'styles')];
 const failures = [];
 const checked = { javascript: 0, css: 0, production: 0 };
 
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the lint project repository tool.
+ * Inputs: `directory`, `predicate`, `output`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function walk(directory, predicate, output = []) {
   if (!fs.existsSync(directory)) return output;
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -23,14 +45,39 @@ function walk(directory, predicate, output = []) {
   return output;
 }
 
+
+/**
+ * Function contract: relative
+ * Purpose: Implement the relative responsibility owned by the lint project repository tool.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function relative(file) {
   return path.relative(root, file).replaceAll(path.sep, '/');
 }
 
+
+/**
+ * Function contract: addFailure
+ * Purpose: Implement the add failure responsibility owned by the lint project repository tool.
+ * Inputs: `file`, `message`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function addFailure(file, message) {
   failures.push(`${relative(file)}: ${message}`);
 }
 
+
+
+/**
+ * Function contract: hasBalancedBraces
+ * Purpose: Determine whether balanced braces satisfies the condition represented by this lint project repository tool.
+ * Inputs: `source`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Boolean indicating whether balanced braces satisfies the documented condition.
+ */
 function hasBalancedBraces(source) {
   let depth = 0;
   let quote = '';
@@ -79,7 +126,7 @@ function hasBalancedBraces(source) {
   return depth === 0 && !quote && !inComment;
 }
 
-const jsFiles = [...new Set(jsRoots.flatMap((directory) => walk(directory, (file) => jsExtensions.has(path.extname(file)))))]
+const jsFiles = [...new Set(jsRoots.flatMap(   /** Callback contract: Perform the local callback step required by the immediately enclosing lint project repository tool operation. Inputs: `directory` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (directory) => walk(directory,    /** Callback contract: Perform the local callback step required by the immediately enclosing lint project repository tool operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (file) => jsExtensions.has(path.extname(file)))))]
   .sort();
 
 for (const file of jsFiles) {
@@ -90,7 +137,7 @@ for (const file of jsFiles) {
   }
 }
 
-const cssFiles = [...new Set(cssRoots.flatMap((directory) => walk(directory, (file) => /\.css(?:frag)?$/i.test(file))))]
+const cssFiles = [...new Set(cssRoots.flatMap(   /** Callback contract: Perform the local callback step required by the immediately enclosing lint project repository tool operation. Inputs: `directory` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (directory) => walk(directory,    /** Callback contract: Perform the local callback step required by the immediately enclosing lint project repository tool operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (file) => /\.css(?:frag)?$/i.test(file))))]
   .sort();
 
 for (const file of cssFiles) {
@@ -104,11 +151,16 @@ for (const file of cssFiles) {
   }
 }
 
-const agentFragments = cssFiles
-  .filter((file) => /^agent-portfolio-\d+\.cssfrag$/i.test(path.basename(file)))
-  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+const portfolioFragmentOrder = [
+  'portfolio-foundation.cssfrag',
+  'portfolio-components.cssfrag',
+  'portfolio-finishing.cssfrag',
+];
+const agentFragments = portfolioFragmentOrder
+  .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (name) => cssFiles.find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => path.basename(file) === name))
+  .filter(Boolean);
 if (agentFragments.length) {
-  const combined = agentFragments.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
+  const combined = agentFragments.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file` Side effects: reads filesystem state Returns: Computed expression result consumed by the enclosing operation. */ (file) => fs.readFileSync(file, 'utf8')).join('\n');
   if (!hasBalancedBraces(combined)) {
     addFailure(agentFragments[0], 'combined agent portfolio CSS fragments are not structurally balanced');
   }

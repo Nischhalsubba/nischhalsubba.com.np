@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/normalize-blog-detail-template.cjs
+ * Purpose: Apply the normalize blog detail template production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -5,6 +19,14 @@ const root = path.resolve(__dirname, '..');
 const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const styleVersion = '51.0';
 
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the normalize blog detail template repository tool.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -16,10 +38,26 @@ function walk(dir, files = []) {
   return files;
 }
 
+
+/**
+ * Function contract: text
+ * Purpose: Implement the text responsibility owned by the normalize blog detail template repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function text(html) {
   return String(html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+
+/**
+ * Function contract: ensurePageClass
+ * Purpose: Apply page class consistently while preserving the surrounding normalize blog detail template repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function ensurePageClass(html) {
   if (/class=["'][^"']*nrs-blog-detail-page/i.test(html)) return html;
   if (/<html\b[^>]*class=/i.test(html)) {
@@ -28,6 +66,14 @@ function ensurePageClass(html) {
   return html.replace(/<html\b([^>]*)>/i, '<html$1 class="nrs-blog-detail-page">');
 }
 
+
+/**
+ * Function contract: normalizeArticle
+ * Purpose: Apply article consistently while preserving the surrounding normalize blog detail template repository tool contract.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeArticle(file) {
   const rel = path.relative(targetRoot, file).replaceAll(path.sep, '/');
   if (!rel.startsWith('blog/') || rel === 'blog/index.html' || !rel.endsWith('.html')) return false;

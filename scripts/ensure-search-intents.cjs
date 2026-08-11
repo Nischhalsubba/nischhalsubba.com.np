@@ -1,3 +1,18 @@
+/**
+ * @fileoverview scripts/ensure-search-intents.cjs
+ * Purpose: Apply the ensure search intents production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - blog/blog-design-systems-front-end.html
+ * - blog/blog-gaming-interface-clarity.html
+ * - blog/blog-portfolio-product.html
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -244,6 +259,15 @@ for (const [file, [type, intent, title, description]] of Object.entries(blogInte
   };
 }
 
+
+
+/**
+ * Function contract: escapeHtml
+ * Purpose: Implement the escape html responsibility owned by the ensure search intents repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -252,41 +276,95 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
+
+
+/**
+ * Function contract: absoluteUrl
+ * Purpose: Implement the absolute url responsibility owned by the ensure search intents repository tool.
+ * Inputs: `canonical`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function absoluteUrl(canonical) {
   if (canonical === '/') return `${SITE}/`;
   return `${SITE}${canonical}`;
 }
 
+
+
+/**
+ * Function contract: upsertTitle
+ * Purpose: Implement the upsert title responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`, `title`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertTitle(html, title) {
   const value = `<title>${escapeHtml(title)}</title>`;
   return /<title>[\s\S]*?<\/title>/i.test(html)
     ? html.replace(/<title>[\s\S]*?<\/title>/i, value)
-    : html.replace(/<head[^>]*>/i, (match) => `${match}\n    ${value}`);
+    : html.replace(/<head[^>]*>/i,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure search intents repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => `${match}\n    ${value}`);
 }
 
+
+
+/**
+ * Function contract: upsertMetaName
+ * Purpose: Implement the upsert meta name responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`, `name`, `content`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertMetaName(html, name, content) {
   const value = `<meta name="${name}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+name=["']${name}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, value)
-    : html.replace(/<meta\s+name="viewport"[^>]*>/i, (match) => `${match}\n    ${value}`);
+    : html.replace(/<meta\s+name="viewport"[^>]*>/i,  /** Callback contract: Perform the local callback step required by the immediately enclosing ensure search intents repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => `${match}\n    ${value}`);
 }
 
+
+
+/**
+ * Function contract: upsertMetaProperty
+ * Purpose: Implement the upsert meta property responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`, `property`, `content`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertMetaProperty(html, property, content) {
   const value = `<meta property="${property}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+property=["']${property}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, value)
-    : html.replace(/<\/title>/i, (match) => `${match}\n    ${value}`);
+    : html.replace(/<\/title>/i,  /** Callback contract: Perform the local callback step required by the immediately enclosing ensure search intents repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => `${match}\n    ${value}`);
 }
 
+
+
+/**
+ * Function contract: upsertCanonical
+ * Purpose: Implement the upsert canonical responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`, `canonical`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertCanonical(html, canonical) {
   const value = `<link rel="canonical" href="${absoluteUrl(canonical)}" />`;
   return /<link\s+rel="canonical"[^>]*>/i.test(html)
     ? html.replace(/<link\s+rel="canonical"[^>]*>/i, value)
-    : html.replace(/<\/title>/i, (match) => `${match}\n    ${value}`);
+    : html.replace(/<\/title>/i,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure search intents repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => `${match}\n    ${value}`);
 }
 
+
+
+/**
+ * Function contract: upsertSearchIntentSchema
+ * Purpose: Implement the upsert search intent schema responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`, `config`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertSearchIntentSchema(html, config) {
   const url = absoluteUrl(config.canonical);
   const schema = {
@@ -317,6 +395,15 @@ function upsertSearchIntentSchema(html, config) {
   return html.replace(/<\/head>/i, `    ${script}\n  </head>`);
 }
 
+
+
+/**
+ * Function contract: applyIntent
+ * Purpose: Apply intent consistently while preserving the surrounding ensure search intents repository tool contract.
+ * Inputs: `html`, `config`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function applyIntent(html, config) {
   html = upsertTitle(html, config.title);
   html = upsertMetaName(html, 'description', config.description);

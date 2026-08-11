@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/smoke-test-dist.mjs
+ * Purpose: Validate smoke test dist and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 /* eslint-disable no-console */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -24,20 +36,54 @@ const routes = [
 
 const errors = [];
 
+
+/**
+ * Function contract: fail
+ * Purpose: Implement the fail responsibility owned by the smoke test dist repository tool.
+ * Inputs: `message`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function fail(message) {
   errors.push(message);
 }
 
+
+/**
+ * Function contract: routeCandidates
+ * Purpose: Implement the route candidates responsibility owned by the smoke test dist repository tool.
+ * Inputs: `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function routeCandidates(route) {
   if (route === '/') return ['index.html'];
   const clean = route.replace(/^\//, '').replace(/\/$/, '');
   return [`${clean}.html`, `${clean}/index.html`];
 }
 
+
+
+/**
+ * Function contract: resolveRoute
+ * Purpose: Resolve route from the supplied inputs and current smoke test dist repository tool context.
+ * Inputs: `route`
+ * Side effects: reads filesystem state
+ * Returns: The requested route; explicit early-return branches define empty/fallback behavior.
+ */
 function resolveRoute(route) {
-  return routeCandidates(route).find((candidate) => fs.existsSync(path.join(dist, candidate))) || null;
+  return routeCandidates(route).find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `candidate` Side effects: reads filesystem state Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (candidate) => fs.existsSync(path.join(dist, candidate))) || null;
 }
 
+
+
+/**
+ * Function contract: readRedirects
+ * Purpose: Return redirects from the supplied inputs or current smoke test dist repository tool state.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads filesystem state
+ * Returns: The requested redirects; explicit early-return branches define empty/fallback behavior.
+ */
 function readRedirects() {
   const redirectPath = path.join(dist, '_redirects');
   const redirects = new Map();
@@ -52,6 +98,15 @@ function readRedirects() {
   return redirects;
 }
 
+
+
+/**
+ * Function contract: findRedirectCycle
+ * Purpose: Resolve redirect cycle from the supplied inputs and current smoke test dist repository tool context.
+ * Inputs: `redirects`, `start`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: The requested redirect cycle; explicit early-return branches define empty/fallback behavior.
+ */
 function findRedirectCycle(redirects, start) {
   const seen = new Set();
   let current = start;
@@ -65,12 +120,30 @@ function findRedirectCycle(redirects, start) {
   return null;
 }
 
+
+
+/**
+ * Function contract: localStylesheets
+ * Purpose: Implement the local stylesheets responsibility owned by the smoke test dist repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function localStylesheets(html) {
   return [...html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)]
-    .map((match) => match[1])
-    .filter((href) => !/^https?:\/\//i.test(href));
+    .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match[1])
+    .filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (href) => !/^https?:\/\//i.test(href));
 }
 
+
+
+/**
+ * Function contract: assertHtml
+ * Purpose: Implement the assert html responsibility owned by the smoke test dist repository tool.
+ * Inputs: `route`, `relativePath`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function assertHtml(route, relativePath) {
   const html = fs.readFileSync(path.join(dist, relativePath), 'utf8');
 
@@ -125,7 +198,7 @@ if (!fs.existsSync(dist)) {
 
 if (errors.length) {
   console.error('Portfolio smoke tests failed:');
-  errors.forEach((error) => console.error(`- ${error}`));
+  errors.forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `error` Side effects: emits diagnostics or changes process failure state Returns: Undefined; this callback is side-effect-only. */ (error) => console.error(`- ${error}`));
   process.exit(1);
 }
 

@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/visual-regression.mjs
+ * Purpose: Apply the visual regression production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 import fs from 'node:fs';
 import path from 'node:path';
 import pixelmatch from 'pixelmatch';
@@ -45,7 +57,7 @@ for (const theme of themes) {
     });
     const page = await context.newPage();
 
-    await page.route('**/*', async (route) => {
+    await page.route('**/*',  /** Callback contract: Perform the local callback step required by the immediately enclosing visual regression repository tool operation. Inputs: `route` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving to the computed function result. */ async (route) => {
       const url = new URL(route.request().url());
       if (url.origin === new URL(base).origin || url.protocol === 'data:' || url.protocol === 'blob:') return route.continue();
       return route.abort();
@@ -60,11 +72,11 @@ for (const theme of themes) {
       try {
         const response = await page.goto(`${base}${routePath}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
         if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
-        await page.evaluate(async (resolvedTheme) => {
+        await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing visual regression repository tool operation. Inputs: `resolvedTheme` Side effects: reads or updates DOM/browser state Returns: Promise resolving after the documented asynchronous side effects complete. */ async (resolvedTheme) => {
           await document.fonts?.ready;
           document.documentElement.dataset.theme = resolvedTheme;
           document.documentElement.style.colorScheme = resolvedTheme;
-          document.querySelectorAll('iframe, video').forEach((element) => element.setAttribute('hidden', ''));
+          document.querySelectorAll('iframe, video').forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (element) => element.setAttribute('hidden', ''));
           const turnstile = document.querySelector('.nrs-turnstile');
           if (turnstile) {
             turnstile.innerHTML = '<div aria-hidden="true">Anti-spam verification</div>';
@@ -114,7 +126,7 @@ for (const theme of themes) {
 
 await browser.close();
 if (failures.length) {
-  console.error(`[visual-regression] ${failures.length} failure(s)\n${failures.map((failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[visual-regression] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 console.log(`[visual-regression] ${routes.length * viewports.length * themes.length} snapshots ${update ? 'updated' : 'passed'} at ${(maximumDifferenceRatio * 100).toFixed(2)}% tolerance.`);

@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/enforce-services-template.cjs
+ * Purpose: Apply the enforce services template production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -15,7 +29,7 @@ if (bodyStart >= 0 && bodyEnd > bodyStart) {
   const match = tag.match(/class="([^"]*)"/);
   const classes = match ? match[1].split(/\s+/).filter(Boolean) : [];
   const retired = new Set(['nrs-service-page', 'nrs-services-redesign', 'nrs-services-index-page', 'nrs-services-page']);
-  const next = classes.filter((name) => !retired.has(name));
+  const next = classes.filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (name) => !retired.has(name));
   for (const name of ['nrs-inner-page', 'nrs-services-v49-page']) if (!next.includes(name)) next.push(name);
   const replacement = match ? tag.replace(match[0], `class="${next.join(' ')}"`) : tag.replace('<body', `<body class="${next.join(' ')}"`);
   html = html.slice(0, bodyStart) + replacement + html.slice(bodyEnd + 1);

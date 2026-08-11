@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/audit-production-routes.mjs
+ * Purpose: Validate audit production routes and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const base = new URL(process.env.PRODUCTION_BASE_URL || 'https://nischhalsubba.com.np');
 const requiredRoutes = [
   '/',
@@ -14,6 +26,14 @@ const requiredRoutes = [
 
 const failures = [];
 
+
+/**
+ * Function contract: requestWithRedirectAudit
+ * Purpose: Implement the request with redirect audit responsibility owned by the audit production routes repository tool.
+ * Inputs: `pathname`
+ * Side effects: performs network I/O
+ * Returns: Promise resolving to the computed function result.
+ */
 async function requestWithRedirectAudit(pathname) {
   let current = new URL(pathname, base);
   const visited = new Set();
@@ -59,7 +79,7 @@ for (const route of requiredRoutes) {
 }
 
 if (failures.length) {
-  console.error(`[production-routes] ${failures.length} failure(s)\n${failures.map((failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[production-routes] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

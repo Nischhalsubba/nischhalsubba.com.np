@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/audit-accessibility-tokens.cjs
+ * Purpose: Validate audit accessibility tokens and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -9,19 +21,43 @@ if (/^\s*\d+(?:;\d+)+&display=swap'\);/m.test(css)) {
   failures.push('style.css contains a malformed font-query fragment');
 }
 
+
+/**
+ * Function contract: hexToRgb
+ * Purpose: Implement the hex to rgb responsibility owned by the audit accessibility tokens repository tool.
+ * Inputs: `hex`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function hexToRgb(hex) {
   const value = hex.replace('#', '');
-  return [0, 2, 4].map((offset) => Number.parseInt(value.slice(offset, offset + 2), 16));
+  return [0, 2, 4].map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `offset` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (offset) => Number.parseInt(value.slice(offset, offset + 2), 16));
 }
 
+
+/**
+ * Function contract: luminance
+ * Purpose: Implement the luminance responsibility owned by the audit accessibility tokens repository tool.
+ * Inputs: `hex`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function luminance(hex) {
-  const [r, g, b] = hexToRgb(hex).map((channel) => {
+  const [r, g, b] = hexToRgb(hex).map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `channel` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (channel) => {
     const value = channel / 255;
     return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
   });
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
+
+/**
+ * Function contract: contrast
+ * Purpose: Implement the contrast responsibility owned by the audit accessibility tokens repository tool.
+ * Inputs: `foreground`, `background`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function contrast(foreground, background) {
   const lighter = Math.max(luminance(foreground), luminance(background));
   const darker = Math.min(luminance(foreground), luminance(background));
@@ -45,7 +81,7 @@ if (page && tertiary && contrast(tertiary, page) < 4.5) {
 }
 
 if (failures.length) {
-  console.error(`[accessibility-tokens] ${failures.length} failure(s)\n${failures.map((failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[accessibility-tokens] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

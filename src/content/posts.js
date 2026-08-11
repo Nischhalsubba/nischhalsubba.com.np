@@ -1,4 +1,15 @@
 /**
+ * @fileoverview src/content/posts.js
+ * Purpose: Provide structured posts content consumed by generators or runtime presentation code.
+ * Responsibilities:
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
+ * Execution context: Repository application or build source.
+ * Connected files:
+ * - scripts/audit-content-structure.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
+/**
  * Canonical writing metadata for the portfolio.
  *
  * Static blog pages still exist as HTML routes. This file is the future source
@@ -86,4 +97,4 @@ export const posts = [
   },
 ];
 
-export const featuredPosts = posts.filter((post) => post.featured);
+export const featuredPosts = posts.filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `post` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (post) => post.featured);

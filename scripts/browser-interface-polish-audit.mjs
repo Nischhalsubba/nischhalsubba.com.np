@@ -1,13 +1,42 @@
+/**
+ * @fileoverview scripts/browser-interface-polish-audit.mjs
+ * Purpose: Validate browser interface polish audit and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 import { chromium } from 'playwright';
 
 const base = process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173';
 const browser = await chromium.launch({ headless: true });
 const failures = [];
 
+
+/**
+ * Function contract: fail
+ * Purpose: Implement the fail responsibility owned by the browser interface polish audit repository tool.
+ * Inputs: `label`, `message`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function fail(label, message) {
   failures.push(`${label}: ${message}`);
 }
 
+
+
+/**
+ * Function contract: openPage
+ * Purpose: Implement the open page responsibility owned by the browser interface polish audit repository tool.
+ * Inputs: `context`, `route`, `viewport`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Promise resolving to the computed function result.
+ */
 async function openPage(context, route, viewport) {
   const page = await context.newPage();
   await page.setViewportSize(viewport);
@@ -31,7 +60,7 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/project-zapp', viewport);
-    const metrics = await page.evaluate(() => {
+    const metrics = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
       const wrapper = document.querySelector('.agent-case-title-wrap');
       const title = document.querySelector('.agent-case-title');
       const frame = document.querySelector('.agent-case-grid');
@@ -39,8 +68,8 @@ for (const viewport of [
 
       const range = document.createRange();
       range.selectNodeContents(title);
-      const lineRects = [...range.getClientRects()].filter((rect) => rect.width > 0 && rect.height > 0);
-      const uniqueLines = [...new Set(lineRects.map((rect) => Math.round(rect.top)))];
+      const lineRects = [...range.getClientRects()].filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `rect` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (rect) => rect.width > 0 && rect.height > 0);
+      const uniqueLines = [...new Set(lineRects.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `rect` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (rect) => Math.round(rect.top)))];
       const wrapperRect = wrapper.getBoundingClientRect();
       const titleRect = title.getBoundingClientRect();
       const frameRect = frame.getBoundingClientRect();
@@ -84,7 +113,7 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/about', viewport);
-    const metrics = await page.evaluate(() => {
+    const metrics = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
       const grid = document.querySelector('.agent-about-grid');
       const copy = document.querySelector('.agent-about-copy');
       const aside = document.querySelector('.agent-about-aside');
@@ -123,14 +152,14 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
-    const geometry = await page.locator('.nrs-home-habit').evaluateAll((elements) => elements.map((element) => {
+    const geometry = await page.locator('.nrs-home-habit').evaluateAll(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: `elements` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (elements) => elements.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (element) => {
       const rect = element.getBoundingClientRect();
       return { top: rect.top, width: rect.width };
     }));
     if (geometry.length !== 3) throw new Error(`expected 3 habit cards, found ${geometry.length}`);
-    const topDelta = Math.max(...geometry.map((item) => item.top)) - Math.min(...geometry.map((item) => item.top));
+    const topDelta = Math.max(...geometry.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `top` value. */ (item) => item.top)) - Math.min(...geometry.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `top` value. */ (item) => item.top));
     if (topDelta > 2) throw new Error(`habit cards are vertically staggered by ${topDelta.toFixed(1)}px`);
-    const widthDelta = Math.max(...geometry.map((item) => item.width)) - Math.min(...geometry.map((item) => item.width));
+    const widthDelta = Math.max(...geometry.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `width` value. */ (item) => item.width)) - Math.min(...geometry.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `width` value. */ (item) => item.width));
     if (widthDelta > 3) throw new Error(`habit columns differ in width by ${widthDelta.toFixed(1)}px`);
   } catch (error) {
     fail(label, error.message);
@@ -145,13 +174,13 @@ for (const viewport of [
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
     const row = page.locator('.agent-project-row').first();
-    const before = await row.evaluate((element) => ({
+    const before = await row.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (element) => ({
       background: getComputedStyle(element).backgroundColor,
       title: getComputedStyle(element.querySelector('h3')).color,
     }));
     await row.hover();
     await page.waitForTimeout(220);
-    const after = await row.evaluate((element) => ({
+    const after = await row.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (element) => ({
       background: getComputedStyle(element).backgroundColor,
       title: getComputedStyle(element.querySelector('h3')).color,
     }));
@@ -161,7 +190,7 @@ for (const viewport of [
 
     const button = page.locator('.agent-btn').first();
     await button.focus();
-    const focus = await button.evaluate((element) => {
+    const focus = await button.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (element) => {
       const style = getComputedStyle(element);
       const afterStyle = getComputedStyle(element, '::after');
       return {
@@ -184,15 +213,15 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
-    await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+    await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
     await page.waitForTimeout(900);
-    const hidden = await page.locator('[data-agent-reveal]').evaluateAll((elements) => elements
-      .filter((element) => {
+    const hidden = await page.locator('[data-agent-reveal]').evaluateAll(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: `elements` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (elements) => elements
+      .filter(   /** Callback contract: Keep only elements that are rendered, visible, and eligible for the enclosing focus/layout operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (element) => {
         const style = getComputedStyle(element);
         const rect = element.getBoundingClientRect();
         return rect.width > 0 && rect.height > 0 && (Number.parseFloat(style.opacity) < 0.95 || style.visibility === 'hidden');
       })
-      .map((element) => element.className || element.tagName));
+      .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result. */ (element) => element.className || element.tagName));
     if (hidden.length) throw new Error(`reveal targets remained hidden after animation: ${hidden.slice(0, 5).join(', ')}`);
   } catch (error) {
     fail(label, error.message);
@@ -209,16 +238,16 @@ await standard.close();
   let page;
   try {
     page = await openPage(reduced, '/', { width: 1440, height: 900 });
-    await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+    await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
     await page.waitForTimeout(250);
-    const result = await page.locator('[data-agent-reveal]').evaluateAll((elements) => ({
-      hidden: elements.filter((element) => {
+    const result = await page.locator('[data-agent-reveal]').evaluateAll(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser interface polish audit repository tool operation. Inputs: `elements` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (elements) => ({
+      hidden: elements.filter(   /** Callback contract: Keep only elements that are rendered, visible, and eligible for the enclosing focus/layout operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (element) => {
         const style = getComputedStyle(element);
         return Number.parseFloat(style.opacity) < 0.95 || style.visibility === 'hidden';
       }).length,
-      longTransitions: elements.filter((element) => {
-        const durations = getComputedStyle(element).transitionDuration.split(',').map((value) => Number.parseFloat(value) || 0);
-        return durations.some((duration) => duration > 0.05);
+      longTransitions: elements.filter(   /** Callback contract: Keep only elements that are rendered, visible, and eligible for the enclosing focus/layout operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (element) => {
+        const durations = getComputedStyle(element).transitionDuration.split(',').map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `value` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result. */ (value) => Number.parseFloat(value) || 0);
+        return durations.some(   /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `duration` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (duration) => duration > 0.05);
       }).length,
     }));
     if (result.hidden) throw new Error(`${result.hidden} reveal targets are hidden with reduced motion`);
@@ -233,7 +262,7 @@ await standard.close();
 await browser.close();
 
 if (failures.length) {
-  console.error(`[interface-polish-audit] ${failures.length} failure(s)\n${failures.map((failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[interface-polish-audit] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/generate-about-contact-pages.cjs
+ * Purpose: Generate or assemble generate about contact pages deterministically as part of the production toolchain.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/early-theme-bootstrap.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
@@ -5,6 +19,14 @@ const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
 const root = path.resolve(__dirname, '..');
 const email = 'hinischalsubba@gmail.com';
 
+
+/**
+ * Function contract: head
+ * Purpose: Implement the head responsibility owned by the generate about contact pages repository tool.
+ * Inputs: `{ title, description, canonical, image = '/assets/images/portrait.png', schema = '' }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function head({ title, description, canonical, image = '/assets/images/portrait.png', schema = '' }) {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -30,7 +52,25 @@ function head({ title, description, canonical, image = '/assets/images/portrait.
   </head>`;
 }
 
+
+
+/**
+ * Function contract: nav
+ * Purpose: Implement the nav responsibility owned by the generate about contact pages repository tool.
+ * Inputs: `active`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function nav(active) {
+  
+  
+  /**
+   * Function contract: item
+   * Purpose: Implement the item responsibility owned by the generate about contact pages repository tool.
+   * Inputs: `section`, `href`, `label`, `cls`
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+   */
   const item = (section, href, label, cls = 'nav-link') => {
     const isActive = active === section;
     return `<a href="${href}" class="${cls}${isActive ? ' active' : ''}"${isActive ? ' aria-current="page"' : ''}>${label}</a>`;
@@ -41,6 +81,15 @@ function nav(active) {
 const footer = `<footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:${email}" class="footer-email-btn">${email}</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>`;
 const script = `<script type="module" src="/script.js?v=32.0"></script>`;
 
+
+
+/**
+ * Function contract: page
+ * Purpose: Implement the page responsibility owned by the generate about contact pages repository tool.
+ * Inputs: `name`, `html`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function page(name, html) {
   fs.writeFileSync(path.join(root, name), `${html}\n`, 'utf8');
 }

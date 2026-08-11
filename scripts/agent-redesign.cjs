@@ -1,15 +1,30 @@
+/**
+ * @fileoverview scripts/agent-redesign.cjs
+ * Purpose: Apply the agent redesign production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - src/scripts/entrypoints/agent-main.js
+ * - src/scripts/features/portfolio/agent-portfolio.js
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
-const parts = [1, 2, 3].map((part) => path.join(__dirname, `agent-redesign-part-${part}.cjsfrag`));
-if (parts.some((file) => !fs.existsSync(file))) throw new Error('[agent-redesign] source fragments are missing');
-const source = parts.map((file) => fs.readFileSync(file, 'utf8')).join('');
+const parts = [1, 2, 3].map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `part` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (part) => path.join(__dirname, `agent-redesign-part-${part}.cjsfrag`));
+if (parts.some(   /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `file` Side effects: reads filesystem state Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => !fs.existsSync(file))) throw new Error('[agent-redesign] source fragments are missing');
+const source = parts.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file` Side effects: reads filesystem state Returns: Computed expression result consumed by the enclosing operation. */ (file) => fs.readFileSync(file, 'utf8')).join('');
 new Function('require', '__dirname', '__filename', source)(require, __dirname, __filename);
 
 const repositoryRoot = path.join(__dirname, '..');
 const dist = path.join(repositoryRoot, 'dist');
-const agentRuntimePath = path.join(dist, 'src', 'scripts', 'features', 'agent-portfolio.js');
+const agentRuntimePath = path.join(dist, 'src', 'scripts', 'features', 'portfolio', 'agent-portfolio.js');
 const runtimeEntryPath = path.join(dist, 'script.js');
-const compatStylePath = path.join(repositoryRoot, 'src', 'styles', 'agent-compat.cssfrag');
+const compatStylePath = path.join(repositoryRoot, 'src', 'styles', 'fragments', 'agent', 'compatibility.cssfrag');
 const distStylePath = path.join(dist, 'style.css');
 
 const customCaseTitles = new Map([
@@ -19,6 +34,15 @@ const customCaseTitles = new Map([
   ['project-hamro-idea.html', 'Hamro Idea'],
 ]);
 
+
+
+/**
+ * Function contract: escapeAttribute
+ * Purpose: Implement the escape attribute responsibility owned by the agent redesign repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function escapeAttribute(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -27,6 +51,15 @@ function escapeAttribute(value) {
     .replaceAll('>', '&gt;');
 }
 
+
+
+/**
+ * Function contract: externalPrototypeUrl
+ * Purpose: Implement the external prototype url responsibility owned by the agent redesign repository tool.
+ * Inputs: `raw`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function externalPrototypeUrl(raw) {
   if (!raw) return '';
   try {
@@ -40,6 +73,15 @@ function externalPrototypeUrl(raw) {
   }
 }
 
+
+
+/**
+ * Function contract: htmlFiles
+ * Purpose: Implement the html files responsibility owned by the agent redesign repository tool.
+ * Inputs: `directory`, `output`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function htmlFiles(directory, output = []) {
   if (!fs.existsSync(directory)) return output;
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -74,11 +116,11 @@ if (fs.existsSync(contactPath)) {
   fs.writeFileSync(contactPath, contactHtml, 'utf8');
 }
 
-for (const fileName of fs.readdirSync(dist).filter((name) => /^project-.*\.html$/.test(name))) {
+for (const fileName of fs.readdirSync(dist).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (name) => /^project-.*\.html$/.test(name))) {
   const filePath = path.join(dist, fileName);
   let html = fs.readFileSync(filePath, 'utf8');
   let replaced = 0;
-  html = html.replace(/<iframe\b([^>]*)>[\s\S]*?<\/iframe>/gi, (_match, attrs) => {
+  html = html.replace(/<iframe\b([^>]*)>[\s\S]*?<\/iframe>/gi,    /** Callback contract: Perform the local callback step required by the immediately enclosing agent redesign repository tool operation. Inputs: `_match`, `attrs` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (_match, attrs) => {
     replaced += 1;
     const src = attrs.match(/\bsrc=["']([^"']+)["']/i)?.[1] || '';
     const href = externalPrototypeUrl(src);
@@ -109,7 +151,7 @@ agentRuntime = agentRuntime
   .replace(/\n  setupMobileNavigation\(\);/, '');
 fs.writeFileSync(agentRuntimePath, agentRuntime, 'utf8');
 
-fs.writeFileSync(runtimeEntryPath, "import './src/scripts/agent-main.js';\n", 'utf8');
+fs.writeFileSync(runtimeEntryPath, "import './src/scripts/entrypoints/agent-main.js';\n", 'utf8');
 
 if (!fs.existsSync(compatStylePath) || !fs.existsSync(distStylePath)) {
   throw new Error('[agent-redesign] compatibility stylesheet target is missing');

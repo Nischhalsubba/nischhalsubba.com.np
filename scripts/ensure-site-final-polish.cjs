@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-site-final-polish.cjs
+ * Purpose: Apply the ensure site final polish production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -91,6 +104,14 @@ main:has(.case-hero-img-container) .nrs-case-hero,main:has(.case-hero-img-contai
 @media (max-width:680px){.site-footer .footer-top-grid,.site-footer .footer-nav-grid,.nrs-about-redesign .journey-grid,.nrs-about-redesign .clarity-pill-grid{grid-template-columns:1fr!important;}.nrs-services-list li{grid-template-columns:1fr!important;}.floating-resume-btn{right:16px!important;bottom:16px!important;max-width:calc(100vw - 32px)!important;}}
 `;
 
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -101,20 +122,122 @@ function walk(dir, files = []) {
   return files;
 }
 
+
+/**
+ * Function contract: relKey
+ * Purpose: Implement the rel key responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `filePath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function relKey(filePath) { return path.relative(targetRoot, filePath).replaceAll(path.sep, '/'); }
+
+/**
+ * Function contract: upsertTitle
+ * Purpose: Implement the upsert title responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `html`, `title`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertTitle(html, title) { if (!title) return html; if (/<title>[\s\S]*?<\/title>/i.test(html)) return html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`); return html.replace('</head>', `    <title>${title}</title>\n  </head>`); }
+
+
+/**
+ * Function contract: upsertMeta
+ * Purpose: Implement the upsert meta responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `html`, `attr`, `name`, `content`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertMeta(html, attr, name, content) { if (!content) return html; const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); const pattern = new RegExp(`<meta\\s+${attr}=["']${escapedName}["'][^>]*>`, 'i'); const tag = `<meta ${attr}="${name}" content="${content}">`; if (pattern.test(html)) return html.replace(pattern, tag); return html.replace('</head>', `    ${tag}\n  </head>`); }
+
+/**
+ * Function contract: applySeoCopy
+ * Purpose: Apply seo copy consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `html`, `filePath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function applySeoCopy(html, filePath) { const copy = pageCopy[relKey(filePath)] || pageCopy[relKey(filePath).replace(/\/index\.html$/, '/index.html')]; if (!copy) return html; let output = upsertTitle(html, copy.title); output = upsertMeta(output, 'name', 'description', copy.description); output = upsertMeta(output, 'property', 'og:title', copy.title); output = upsertMeta(output, 'property', 'og:description', copy.description); output = upsertMeta(output, 'name', 'twitter:title', copy.title); output = upsertMeta(output, 'name', 'twitter:description', copy.description); return output; }
+
+/**
+ * Function contract: normalizeStylesheetLinks
+ * Purpose: Apply stylesheet links consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeStylesheetLinks(html) { let output = html.replace(/\s*<link\s+[^>]*rel=["']stylesheet["'][^>]*>\s*/gi, '\n'); if (!output.includes('</head>')) return output; return output.replace('</head>', `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`); }
+
+/**
+ * Function contract: rewriteHomeHero
+ * Purpose: Implement the rewrite home hero responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `html`, `filePath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function rewriteHomeHero(html, filePath) { const key = relKey(filePath); if (key !== 'index.html' && key !== 'home-v2.html') return html; const oldHero = /      <section class="hero-section[^"]*nrs-home-hero[^"]*"[\s\S]*?      <\/section>/; const cleanHero = /      <section class="hero-section nrs-home-hero-clean">[\s\S]*?      <\/section>/; if (oldHero.test(html)) return html.replace(oldHero, homeHero); if (cleanHero.test(html)) return html.replace(cleanHero, homeHero); return html; }
+
+/**
+ * Function contract: ensureFooter
+ * Purpose: Apply footer consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function ensureFooter(html) { if (html.includes('<footer class="site-footer"')) return html.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/g, footer); if (html.includes('</body>')) return html.replace('</body>', `    ${footer}\n  </body>`); return html; }
+
+
+/**
+ * Function contract: ensureFloatingResume
+ * Purpose: Apply floating resume consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function ensureFloatingResume(html) { let output = html.replace(/\s*<a\s+class="floating-resume-btn"[\s\S]*?<\/a>/g, ''); if (!output.includes('</body>')) return output; return output.replace('</body>', `    ${floatingResume}\n  </body>`); }
+
+
+/**
+ * Function contract: removeVisibleAiCopy
+ * Purpose: Remove visible ai copy without disturbing required surrounding ensure site final polish repository tool state.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function removeVisibleAiCopy(html) { let output = html; output = output.replace(/<a[^>]+href="\/ai-profile\.json"[\s\S]*?<\/a>/gi, ''); output = output.replace(/<a[^>]+href="\/llms\.txt"[\s\S]*?<\/a>/gi, ''); output = output.replace(/AI-readable/gi, 'Site-readable'); output = output.replace(/AI discovery/gi, 'Search discovery'); output = output.replace(/AI agents/gi, 'hiring teams'); output = output.replace(/For AI agents and hiring teams/gi, 'Plain summary'); output = output.replace(/for AI, search, and human verification/gi, 'for search and human verification'); output = output.replace(/AI and human/gi, 'search and human'); output = output.replace(/\bAI\b/g, ''); output = output.replace(/\s{2,}/g, ' '); return output; }
+
+
+/**
+ * Function contract: alignAboutHero
+ * Purpose: Implement the align about hero responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `html`, `filePath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function alignAboutHero(html, filePath) { if (path.basename(filePath) !== 'about.html') return html; return html.replace(/center-aligned-hero/g, '').replace(/text-align:center/g, 'text-align:left').replace(/margin-left:auto;margin-right:auto/g, 'margin-left:0;margin-right:auto').replace(/margin:16px auto 28px/g, 'margin:16px 0 28px'); }
+
+
+/**
+ * Function contract: polishHtml
+ * Purpose: Apply html consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `filePath`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function polishHtml(filePath) { let html = fs.readFileSync(filePath, 'utf8'); const before = html; html = normalizeStylesheetLinks(html); html = applySeoCopy(html, filePath); html = rewriteHomeHero(html, filePath); html = removeVisibleAiCopy(html); html = alignAboutHero(html, filePath); html = ensureFooter(html); html = ensureFloatingResume(html); if (html !== before) fs.writeFileSync(filePath, html, 'utf8'); return html !== before; }
+
+
+/**
+ * Function contract: polishCss
+ * Purpose: Apply css consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function polishCss() { const cssPath = path.join(targetRoot, 'style.css'); if (!fs.existsSync(cssPath)) return false; let css = fs.readFileSync(cssPath, 'utf8'); css = css.replace(/Version:\s*[0-9.]+/i, 'Version: 41.0'); css = css.replace(/\/\* nrs-final-polish-v39 \*\/[\s\S]*?(?=\/\* nrs-final-polish-v4\d \*\/|$)/g, ''); css = css.replace(/\/\* nrs-final-polish-v40 \*\/[\s\S]*?(?=\/\* nrs-final-polish-v4\d \*\/|$)/g, ''); if (!css.includes('nrs-final-polish-v41')) css += cssPatch; fs.writeFileSync(cssPath, css, 'utf8'); return true; }
 
 let changedHtml = 0;
-for (const file of walk(targetRoot).filter((filePath) => filePath.endsWith('.html'))) if (polishHtml(file)) changedHtml += 1;
+for (const file of walk(targetRoot).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `filePath` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (filePath) => filePath.endsWith('.html'))) if (polishHtml(file)) changedHtml += 1;
 const changedCss = polishCss();
 console.log(`Applied final site polish v41 to ${changedHtml} HTML file(s)${changedCss ? ' and style.css' : ''}.`);

@@ -1,3 +1,18 @@
+/**
+ * @fileoverview scripts/generate-seo-discovery.cjs
+ * Purpose: Generate or assemble generate seo discovery deterministically as part of the production toolchain.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/seo-discovery-lib.cjs
+ * - docs/seo-maintenance.md
+ * - package.json
+ * - scripts/generate-source.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const {
@@ -24,6 +39,14 @@ const discoveryRoot = path.join(root, 'src', 'discovery');
 const manifest = loadManifest(root);
 const failures = [];
 
+
+/**
+ * Function contract: writeFile
+ * Purpose: Implement the write file responsibility owned by the generate seo discovery repository tool.
+ * Inputs: `target`, `content`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function writeFile(target, content) {
   fs.mkdirSync(path.dirname(target), { recursive: true });
   const previous = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null;
@@ -31,10 +54,26 @@ function writeFile(target, content) {
   return previous !== content;
 }
 
+
+/**
+ * Function contract: writeDiscoveryText
+ * Purpose: Implement the write discovery text responsibility owned by the generate seo discovery repository tool.
+ * Inputs: `relativePath`, `content`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function writeDiscoveryText(relativePath, content) {
   return writeFile(path.join(discoveryRoot, relativePath), content);
 }
 
+
+/**
+ * Function contract: normalizeTextFile
+ * Purpose: Apply text file consistently while preserving the surrounding generate seo discovery repository tool contract.
+ * Inputs: `relativePath`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeTextFile(relativePath) {
   const target = path.join(discoveryRoot, relativePath);
   if (!fs.existsSync(target)) return failures.push(`src/discovery/${relativePath}: missing discovery file`);
@@ -44,6 +83,15 @@ function normalizeTextFile(relativePath) {
   if (!unknown.length && output !== source) fs.writeFileSync(target, output, 'utf8');
 }
 
+
+
+/**
+ * Function contract: normalizeJsonFile
+ * Purpose: Apply json file consistently while preserving the surrounding generate seo discovery repository tool contract.
+ * Inputs: `relativePath`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeJsonFile(relativePath) {
   const target = path.join(discoveryRoot, relativePath);
   if (!fs.existsSync(target)) return failures.push(`src/discovery/${relativePath}: missing discovery file`);
@@ -76,7 +124,7 @@ if (fs.existsSync(path.join(root, 'public', 'nischhal-raj-subba.html'))) {
 }
 
 if (failures.length) {
-  console.error(`[seo-discovery] ${failures.length} failure(s)\n${failures.map((item) => `- ${item}`).join('\n')}`);
+  console.error(`[seo-discovery] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}`);
   process.exit(1);
 }
 

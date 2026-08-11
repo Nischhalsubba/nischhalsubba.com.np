@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/audit-final-seo.cjs
+ * Purpose: Validate audit final seo and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -44,25 +56,68 @@ const required = {
 
 const retiredOutputs = ['home.html', 'home-v2.html', 'blog.html'];
 
+
+
+/**
+ * Function contract: read
+ * Purpose: Return module behavior from the supplied inputs or current audit final seo repository tool state.
+ * Inputs: `file`
+ * Side effects: reads filesystem state
+ * Returns: The requested module behavior; explicit early-return branches define empty/fallback behavior.
+ */
 function read(file) {
   const full = path.join(targetRoot, file);
   if (!fs.existsSync(full)) throw new Error(`[seo-audit] Missing file: ${file}`);
   return fs.readFileSync(full, 'utf8');
 }
 
+
+
+/**
+ * Function contract: titleOf
+ * Purpose: Implement the title of responsibility owned by the audit final seo repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function titleOf(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() || '';
 }
 
+
+
+/**
+ * Function contract: metaOf
+ * Purpose: Implement the meta of responsibility owned by the audit final seo repository tool.
+ * Inputs: `html`, `name`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function metaOf(html, name) {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return html.match(new RegExp(`<meta\\s+[^>]*name=["']${escaped}["'][^>]*content=["']([^"']*)["'][^>]*>`, 'i'))?.[1]?.trim() || '';
 }
 
+
+/**
+ * Function contract: canonicalOf
+ * Purpose: Implement the canonical of responsibility owned by the audit final seo repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function canonicalOf(html) {
   return html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1]?.trim() || '';
 }
 
+
+/**
+ * Function contract: assertContains
+ * Purpose: Implement the assert contains responsibility owned by the audit final seo repository tool.
+ * Inputs: `label`, `value`, `parts`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function assertContains(label, value, parts) {
   for (const part of parts || []) {
     if (!value.toLowerCase().includes(part.toLowerCase())) {

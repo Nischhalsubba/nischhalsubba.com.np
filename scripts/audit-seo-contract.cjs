@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/audit-seo-contract.cjs
+ * Purpose: Validate audit seo contract and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -7,49 +19,129 @@ const site = 'https://nischhalsubba.com.np';
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
 const errors = [];
 
+
+/**
+ * Function contract: routeFor
+ * Purpose: Implement the route for responsibility owned by the audit seo contract repository tool.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
+
+
+/**
+ * Function contract: tags
+ * Purpose: Implement the tags responsibility owned by the audit seo contract repository tool.
+ * Inputs: `html`, `name`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function tags(html, name) {
-  return [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'gi'))].map((match) => match[0]);
+  return [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'gi'))].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match[0]);
 }
 
+
+
+/**
+ * Function contract: attribute
+ * Purpose: Implement the attribute responsibility owned by the audit seo contract repository tool.
+ * Inputs: `tag`, `name`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function attribute(tag, name) {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return tag.match(new RegExp(`\\b${escaped}=["']([^"']*)["']`, 'i'))?.[1]?.trim() || '';
 }
 
+
+
+/**
+ * Function contract: metaValues
+ * Purpose: Implement the meta values responsibility owned by the audit seo contract repository tool.
+ * Inputs: `html`, `key`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function metaValues(html, key, keyAttribute = 'name') {
   return tags(html, 'meta')
-    .filter((tag) => attribute(tag, keyAttribute).toLowerCase() === key.toLowerCase())
-    .map((tag) => attribute(tag, 'content'));
+    .filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `tag` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (tag) => attribute(tag, keyAttribute).toLowerCase() === key.toLowerCase())
+    .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `tag` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (tag) => attribute(tag, 'content'));
 }
 
+
+
+/**
+ * Function contract: single
+ * Purpose: Implement the single responsibility owned by the audit seo contract repository tool.
+ * Inputs: `values`, `label`, `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function single(values, label, file) {
   if (values.length !== 1) errors.push(`${file}: expected one ${label}, found ${values.length}`);
   return values[0] || '';
 }
 
+
+
+/**
+ * Function contract: canonicalValues
+ * Purpose: Implement the canonical values responsibility owned by the audit seo contract repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function canonicalValues(html) {
   return tags(html, 'link')
-    .filter((tag) => attribute(tag, 'rel').toLowerCase().split(/\s+/).includes('canonical'))
-    .map((tag) => attribute(tag, 'href'));
+    .filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `tag` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (tag) => attribute(tag, 'rel').toLowerCase().split(/\s+/).includes('canonical'))
+    .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `tag` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (tag) => attribute(tag, 'href'));
 }
 
+
+
+/**
+ * Function contract: titleValues
+ * Purpose: Implement the title values responsibility owned by the audit seo contract repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function titleValues(html) {
   return [...html.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title>/gi)]
-    .map((match) => match[1].replace(/\s+/g, ' ').trim());
+    .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match[1].replace(/\s+/g, ' ').trim());
 }
 
+
+
+/**
+ * Function contract: assertLength
+ * Purpose: Implement the assert length responsibility owned by the audit seo contract repository tool.
+ * Inputs: `value`, `minimum`, `maximum`, `label`, `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function assertLength(value, minimum, maximum, label, file) {
   if (value.length < minimum || value.length > maximum) {
     errors.push(`${file}: ${label} length ${value.length} is outside ${minimum}-${maximum}`);
   }
 }
 
+
+
+/**
+ * Function contract: validateJsonLd
+ * Purpose: Validate json ld and surface actionable failures when the audit seo contract repository tool contract is violated.
+ * Inputs: `html`, `file`, `canonical`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function validateJsonLd(html, file, canonical) {
   const blocks = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
   for (const [index, block] of blocks.entries()) {
@@ -71,6 +163,15 @@ function validateJsonLd(html, file, canonical) {
   }
 }
 
+
+
+/**
+ * Function contract: validateSocialImage
+ * Purpose: Validate social image and surface actionable failures when the audit seo contract repository tool contract is violated.
+ * Inputs: `file`, `imageUrl`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function validateSocialImage(file, imageUrl) {
   if (!imageUrl) return errors.push(`${file}: social image is missing`);
 
@@ -146,8 +247,8 @@ const sitemapPath = path.join(dist, 'sitemap.xml');
 if (!fs.existsSync(sitemapPath)) errors.push('sitemap.xml is missing');
 else {
   const sitemap = fs.readFileSync(sitemapPath, 'utf8');
-  const entries = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1].trim());
-  const duplicates = entries.filter((value, index) => entries.indexOf(value) !== index);
+  const entries = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match[1].trim());
+  const duplicates = entries.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `value`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (value, index) => entries.indexOf(value) !== index);
   if (duplicates.length) errors.push(`sitemap contains duplicates: ${[...new Set(duplicates)].join(', ')}`);
   for (const url of canonicalUrls) if (!entries.includes(url)) errors.push(`sitemap is missing ${url}`);
   for (const url of entries) {
@@ -157,7 +258,7 @@ else {
 }
 
 if (errors.length) {
-  console.error(`[seo-contract] ${errors.length} failure(s)\n${errors.map((error) => `- ${error}`).join('\n')}`);
+  console.error(`[seo-contract] ${errors.length} failure(s)\n${errors.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `error` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (error) => `- ${error}`).join('\n')}`);
   process.exit(1);
 }
 console.log(`[seo-contract] ${manifest.html.length} canonical routes, structured data, sitemap and real social imagery passed.`);

@@ -1,0 +1,598 @@
+/**
+ * @fileoverview src/styles/fragments/agent/portfolio-finishing.cssfrag
+ * Purpose: Define composable portfolio finishing CSS rules that are assembled into the production stylesheet rather than served independently.
+ * Responsibilities:
+ * - Own visual rules only; behavior and state transitions remain in browser runtime modules.
+ * - Respect the single-stylesheet production architecture and existing design-system/accessibility audits.
+ * - Keep selectors scoped to the intended surface unless this is the canonical global stylesheet.
+ * Execution context: Authored stylesheet source assembled or copied into the canonical production CSS.
+ * Connected files:
+ * - scripts/compile-single-stylesheet.cjs
+ * - scripts/audit-css-architecture.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
+.agent-portfolio {
+  --ap-space-lg: 1.5rem;
+  --ap-space-xl: 2rem;
+}
+
+.agent-portfolio .section-container,
+.agent-portfolio .case-section,
+.agent-portfolio .article-section,
+.agent-portfolio .content-section {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.agent-portfolio .project-card,
+.agent-portfolio .service-card,
+.agent-portfolio .impact-card,
+.agent-portfolio .writing-card,
+.agent-portfolio .case-card {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.agent-portfolio .project-card:hover,
+.agent-portfolio .service-card:hover,
+.agent-portfolio .writing-card:hover {
+  transform: translateY(-1px);
+}
+
+.agent-portfolio .btn,
+.agent-portfolio .tag,
+.agent-portfolio .pill,
+.agent-portfolio .chip,
+.agent-portfolio .eyebrow {
+  border-radius: 0;
+}
+
+.agent-portfolio .reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+}
+
+.agent-portfolio [data-agent-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+.agent-portfolio.agent-motion-ready [data-agent-reveal] {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+
+@media (max-width: 1023px) {
+  .agent-portfolio {
+    --ap-nav-h: 4rem;
+  }
+
+  .agent-portfolio .nav-wrapper {
+    grid-template-columns: 1fr auto auto;
+  }
+
+  .agent-portfolio .nav-pill {
+    display: none;
+  }
+
+  .agent-portfolio .mobile-logo {
+    display: none;
+  }
+
+  .agent-portfolio .mobile-nav-toggle {
+    position: fixed;
+    top: .6rem;
+    right: calc(var(--ap-gutter) + 3.45rem);
+    z-index: calc(var(--ap-z-nav) + 2);
+    display: grid;
+    place-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: .7rem;
+    border: 1px solid var(--ap-line);
+    border-radius: 50%;
+    background: var(--ap-page);
+    color: var(--ap-ink);
+    cursor: pointer;
+  }
+
+  .agent-portfolio .mobile-nav-toggle span {
+    display: block;
+    width: 1rem;
+    height: 1px;
+    margin: 2px 0;
+    background: currentColor;
+    transition: transform var(--ap-standard) var(--ap-ease), opacity var(--ap-quick) var(--ap-ease);
+  }
+
+  .agent-portfolio .mobile-nav-toggle[aria-expanded='true'] span:first-child {
+    transform: translateY(2.5px) rotate(45deg);
+  }
+
+  .agent-portfolio .mobile-nav-toggle[aria-expanded='true'] span:last-child {
+    transform: translateY(-2.5px) rotate(-45deg);
+  }
+
+  .agent-portfolio .theme-toggle-btn {
+    position: fixed;
+    top: .6rem;
+    right: var(--ap-gutter);
+    z-index: calc(var(--ap-z-nav) + 2);
+    background: var(--ap-page);
+  }
+
+  .agent-portfolio .mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--ap-z-drawer);
+    display: grid;
+    align-items: end;
+    padding: calc(var(--ap-nav-h) + 2rem) var(--ap-gutter) 2rem;
+    background: var(--ap-inverse);
+    color: var(--ap-inverse-ink);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-1rem);
+    transition: opacity var(--ap-section) var(--ap-ease), transform var(--ap-section) var(--ap-ease), visibility var(--ap-section) step-end;
+  }
+
+  .agent-portfolio .mobile-nav-overlay.is-open,
+  .agent-portfolio .mobile-nav-overlay[data-open='true'] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity var(--ap-section) var(--ap-ease), transform var(--ap-section) var(--ap-ease), visibility 0s step-start;
+  }
+
+  .agent-portfolio .mobile-nav-links {
+    display: grid;
+    gap: 0;
+  }
+
+  .agent-portfolio .mobile-nav-links a {
+    display: flex;
+    align-items: center;
+    min-height: 4.3rem;
+    border-top: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+    font: 700 clamp(2rem, 7vw, 4rem)/1 var(--ap-font-display);
+    letter-spacing: -.05em;
+    text-decoration: none;
+  }
+
+  .agent-portfolio .mobile-nav-links a:last-child {
+    border-bottom: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+  }
+
+  .agent-portfolio .agent-hero-grid,
+  .agent-portfolio .agent-page-hero-grid,
+  .agent-portfolio .agent-about-grid,
+  .agent-portfolio .agent-service-grid,
+  .agent-portfolio .agent-contact-grid,
+  .agent-portfolio .agent-case-grid,
+  .agent-portfolio .agent-proof-grid,
+  .agent-portfolio .agent-manifesto,
+  .agent-portfolio .agent-contact-strip,
+  .agent-portfolio .agent-footer-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .agent-portfolio .agent-hero-copy {
+    grid-column: 1 / span 6;
+  }
+
+  .agent-portfolio .agent-hero-title {
+    font-size: clamp(4rem, 12vw, 7.2rem);
+  }
+
+  .agent-portfolio .agent-hero-side {
+    grid-column: 7 / -1;
+    min-height: 22rem;
+  }
+
+  .agent-portfolio .agent-section-head {
+    grid-template-columns: 2fr 2fr 4fr;
+  }
+
+  .agent-portfolio .agent-section-head .agent-kicker {
+    grid-column: 1 / span 1;
+  }
+
+  .agent-portfolio .agent-section-title {
+    grid-column: 2 / -1;
+  }
+
+  .agent-portfolio .agent-project-row {
+    grid-template-columns: .5fr 2.5fr 1.5fr 3.5fr;
+  }
+
+  .agent-portfolio .agent-project-arrow {
+    display: none;
+  }
+
+  .agent-portfolio .agent-capability {
+    grid-column: span 4;
+  }
+
+  .agent-portfolio .agent-proof-big {
+    grid-column: 1 / span 5;
+  }
+
+  .agent-portfolio .agent-proof-copy {
+    grid-column: 6 / -1;
+  }
+
+  .agent-portfolio .agent-page-hero h1 {
+    grid-column: 1 / span 6;
+  }
+
+  .agent-portfolio .agent-page-intro {
+    grid-column: 6 / -1;
+  }
+
+  .agent-portfolio .agent-about-copy {
+    grid-column: 1 / span 6;
+  }
+
+  .agent-portfolio .agent-about-aside {
+    grid-column: 7 / -1;
+  }
+
+  .agent-portfolio .agent-service {
+    grid-column: span 4;
+  }
+
+  .agent-portfolio .agent-service:nth-child(3n) {
+    border-right: 1px solid var(--ap-line);
+  }
+
+  .agent-portfolio .agent-service:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .agent-portfolio .agent-contact-copy {
+    grid-column: 1 / span 3;
+  }
+
+  .agent-portfolio .agent-contact-form {
+    grid-column: 4 / -1;
+  }
+
+  .agent-portfolio .agent-case-title,
+  .agent-portfolio .agent-case-deck {
+    grid-column: 1 / span 6;
+  }
+
+  .agent-portfolio .agent-case-facts {
+    grid-column: 6 / -1;
+  }
+
+  .agent-portfolio .agent-case-chapters {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 4fr);
+  }
+
+  .agent-portfolio .agent-case-aside {
+    display: none;
+  }
+
+  .agent-portfolio .agent-footer-cta {
+    grid-column: 1 / span 6;
+  }
+
+  .agent-portfolio .agent-footer-links {
+    grid-column: 7 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .agent-portfolio {
+    --ap-gutter: clamp(1.125rem, 5vw, 1.5rem);
+  }
+
+  .agent-portfolio .nav-wrapper {
+    min-height: var(--ap-nav-h);
+    padding-block: .55rem;
+  }
+
+  .agent-portfolio .agent-brand span {
+    display: none;
+  }
+
+  .agent-portfolio .agent-hero {
+    min-height: auto;
+  }
+
+  .agent-portfolio .agent-hero-grid,
+  .agent-portfolio .agent-page-hero-grid,
+  .agent-portfolio .agent-about-grid,
+  .agent-portfolio .agent-service-grid,
+  .agent-portfolio .agent-contact-grid,
+  .agent-portfolio .agent-case-grid,
+  .agent-portfolio .agent-proof-grid,
+  .agent-portfolio .agent-manifesto,
+  .agent-portfolio .agent-contact-strip,
+  .agent-portfolio .agent-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .agent-portfolio .agent-hero-grid {
+    padding-top: 7.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .agent-portfolio .agent-hero-copy,
+  .agent-portfolio .agent-hero-side,
+  .agent-portfolio .agent-proof-big,
+  .agent-portfolio .agent-proof-copy,
+  .agent-portfolio .agent-page-hero h1,
+  .agent-portfolio .agent-page-intro,
+  .agent-portfolio .agent-about-copy,
+  .agent-portfolio .agent-about-aside,
+  .agent-portfolio .agent-contact-copy,
+  .agent-portfolio .agent-contact-form,
+  .agent-portfolio .agent-case-title,
+  .agent-portfolio .agent-case-deck,
+  .agent-portfolio .agent-case-facts,
+  .agent-portfolio .agent-footer-cta,
+  .agent-portfolio .agent-footer-links {
+    grid-column: 1;
+  }
+
+  .agent-portfolio .agent-hero-title {
+    max-width: none;
+    font-size: clamp(4rem, 20vw, 6.4rem);
+    line-height: .84;
+  }
+
+  .agent-portfolio .agent-hero-support {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .agent-portfolio .agent-hero-side {
+    min-height: auto;
+    padding-top: .5rem;
+  }
+
+  .agent-portfolio .agent-system-figure {
+    min-height: 13rem;
+  }
+
+  .agent-portfolio .agent-three-canvas {
+    display: none;
+  }
+
+  .agent-portfolio .agent-section {
+    padding-block: 4.5rem;
+  }
+
+  .agent-portfolio .agent-section-head {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .agent-portfolio .agent-section-head .agent-kicker,
+  .agent-portfolio .agent-section-title {
+    grid-column: 1;
+  }
+
+  .agent-portfolio .agent-project-row {
+    grid-template-columns: 2.2rem 1fr;
+    gap: .9rem 1rem;
+    align-items: start;
+    min-height: 0;
+    padding-block: 2rem;
+  }
+
+  .agent-portfolio .agent-project-index {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+
+  .agent-portfolio .agent-project-copy,
+  .agent-portfolio .agent-project-meta,
+  .agent-portfolio .agent-project-media {
+    grid-column: 2;
+  }
+
+  .agent-portfolio .agent-project-copy h3 {
+    font-size: clamp(2.8rem, 14vw, 4.6rem);
+  }
+
+  .agent-portfolio .agent-project-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: .4rem;
+  }
+
+  .agent-portfolio .agent-project-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .agent-portfolio .agent-capabilities {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-portfolio .agent-capability {
+    grid-column: 1;
+    min-height: 12rem;
+    transform: none;
+  }
+
+  .agent-portfolio .agent-capability:nth-child(2),
+  .agent-portfolio .agent-capability:nth-child(4) {
+    transform: none;
+  }
+
+  .agent-portfolio .agent-proof-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-portfolio .agent-stat {
+    padding: 1.2rem 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--ap-line);
+  }
+
+  .agent-portfolio .agent-stat:last-child {
+    border-bottom: 0;
+  }
+
+  .agent-portfolio .agent-manifesto blockquote,
+  .agent-portfolio .agent-manifesto aside {
+    grid-column: 1;
+  }
+
+  .agent-portfolio .agent-contact-strip h2,
+  .agent-portfolio .agent-contact-strip .agent-actions {
+    grid-column: 1;
+  }
+
+  .agent-portfolio .agent-contact-strip .agent-actions {
+    justify-content: flex-start;
+  }
+
+  .agent-portfolio .agent-page-hero {
+    padding-top: 7.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .agent-portfolio .agent-page-hero h1 {
+    margin-top: .75rem;
+    font-size: clamp(4rem, 20vw, 6.8rem);
+  }
+
+  .agent-portfolio .agent-index-item {
+    grid-template-columns: 2rem 1fr auto;
+    gap: .75rem 1rem;
+  }
+
+  .agent-portfolio .agent-index-item > :nth-child(4) {
+    grid-column: 2 / -1;
+  }
+
+  .agent-portfolio .agent-service {
+    grid-column: 1;
+    min-height: 14rem;
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .agent-portfolio .agent-service:nth-child(3n),
+  .agent-portfolio .agent-service:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .agent-portfolio .agent-about-aside {
+    position: static;
+  }
+
+  .agent-portfolio .agent-case-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .agent-portfolio .agent-case-cover {
+    aspect-ratio: 4 / 3;
+  }
+
+  .agent-portfolio .agent-case-chapters {
+    grid-template-columns: 1fr;
+    padding-block: 4rem;
+  }
+
+  .agent-portfolio .agent-case-rail {
+    display: none;
+  }
+
+  .agent-portfolio .agent-decision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-portfolio .agent-footer-bottom {
+    flex-direction: column;
+    margin-top: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-portfolio .agent-three-canvas {
+    display: none;
+  }
+
+  .agent-portfolio.agent-motion-ready [data-agent-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .agent-portfolio .agent-project-media img,
+  .agent-portfolio .agent-project-arrow,
+  .agent-portfolio .agent-btn,
+  .agent-portfolio .nav-link,
+  .agent-portfolio .nav-link::after,
+  .agent-portfolio .mobile-nav-overlay,
+  .agent-portfolio .mobile-nav-toggle span {
+    transition-duration: .01ms;
+  }
+}
+
+@supports (view-transition-name: none) {
+  @view-transition { navigation: auto; }
+
+  .agent-portfolio .agent-brand {
+    view-transition-name: agent-brand;
+  }
+
+  .agent-portfolio .nav-wrapper {
+    view-transition-name: agent-nav;
+  }
+
+  ::view-transition-old(root) {
+    animation: agent-vt-out 160ms cubic-bezier(0.3, 0, 1, 1) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: agent-vt-in 280ms cubic-bezier(0.2, 0, 0, 1) both;
+  }
+}
+
+@keyframes agent-vt-out {
+  to { opacity: .15; transform: translateY(-.35rem); }
+}
+
+@keyframes agent-vt-in {
+  from { opacity: 0; transform: translateY(.45rem); }
+}
+
+.agent-portfolio #agent-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: calc(var(--ap-z-nav) + 10);
+  height: 2px;
+  pointer-events: none;
+  transform: scaleX(var(--agent-scroll, .01));
+  transform-origin: left center;
+  background: var(--ap-signal);
+}
+
+.agent-portfolio .agent-no-js-note {
+  display: none;
+}
+
+.agent-portfolio .agent-contact-direct {
+  margin-top: var(--ap-space-lg);
+}
+
+.agent-portfolio .agent-actions--section-end {
+  margin-top: var(--ap-space-xl);
+}
+
+.agent-portfolio .agent-proof-stats--stacked {
+  grid-template-columns: 1fr;
+  margin-top: var(--ap-space-lg);
+}
+
+.agent-portfolio .agent-case-cover {
+  grid-column: 1 / -1;
+}

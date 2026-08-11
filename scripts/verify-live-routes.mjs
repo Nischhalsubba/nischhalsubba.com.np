@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/verify-live-routes.mjs
+ * Purpose: Validate verify live routes and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const BASE_URL = process.env.SITE_URL || 'https://nischhalsubba.com.np';
 const routes = [
   '/', '/projects', '/services', '/about', '/contact', '/privacy', '/blog/',
@@ -20,6 +32,14 @@ const redirects = new Map([
 
 const errors = [];
 
+
+/**
+ * Function contract: verifyRoute
+ * Purpose: Validate route and surface actionable failures when the verify live routes repository tool contract is violated.
+ * Inputs: `route`
+ * Side effects: reads or updates DOM/browser state; performs network I/O
+ * Returns: Promise resolving after the documented asynchronous side effects complete.
+ */
 async function verifyRoute(route) {
   const response = await fetch(new URL(route, BASE_URL), { redirect: 'manual' });
   const type = response.headers.get('content-type') || '';
@@ -30,6 +50,15 @@ async function verifyRoute(route) {
   if (!/<h1\b/i.test(text)) errors.push(`${route}: missing H1`);
 }
 
+
+
+/**
+ * Function contract: verifyRedirect
+ * Purpose: Validate redirect and surface actionable failures when the verify live routes repository tool contract is violated.
+ * Inputs: `route`, `expected`
+ * Side effects: performs network I/O
+ * Returns: Promise resolving after the documented asynchronous side effects complete.
+ */
 async function verifyRedirect(route, expected) {
   const response = await fetch(new URL(route, BASE_URL), { redirect: 'manual' });
   if (![301, 302, 307, 308].includes(response.status)) {

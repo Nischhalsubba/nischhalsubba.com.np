@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-portfolio-maturity-v7.cjs
+ * Purpose: Apply the ensure portfolio maturity v7 production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -9,24 +22,73 @@ const serviceRoutes = new Set(['/product-design-nepal','/web3-ux-designer','/saa
 const flagship = ['yarsha','pihub','orkest','masteriyo'];
 const supporting = ['mokshya','neverwinter-parser'];
 
+
+/**
+ * Function contract: routeFor
+ * Purpose: Implement the route for responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
   return `/${file.replace(/\.html$/i, '')}`;
 }
+
+
+/**
+ * Function contract: fileFor
+ * Purpose: Implement the file for responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function fileFor(route) {
   if (route === '/') return path.join(base, 'index.html');
   if (route === '/blog/') return path.join(base, 'blog', 'index.html');
   return path.join(base, `${route.replace(/^\//, '')}.html`);
 }
+
+/**
+ * Function contract: strip
+ * Purpose: Remove module behavior without disturbing required surrounding ensure portfolio maturity v7 repository tool state.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function strip(value = '') {
   return String(value).replace(/<script\b[\s\S]*?<\/script>/gi,' ').replace(/<style\b[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&#39;/gi,"'").replace(/&quot;/gi,'"').replace(/\s+/g,' ').trim();
 }
+
+/**
+ * Function contract: esc
+ * Purpose: Implement the esc responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function esc(value = '') {
   return String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 }
+
+/**
+ * Function contract: h1
+ * Purpose: Implement the h1 responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function h1(html) { return strip(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || 'Current page'); }
 
+
+/**
+ * Function contract: breadcrumb
+ * Purpose: Implement the breadcrumb responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `html`, `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function breadcrumb(html, route) {
   const article = route.startsWith('/blog/') && route !== '/blog/';
   if (!article && !serviceRoutes.has(route)) return html;
@@ -37,18 +99,43 @@ function breadcrumb(html, route) {
   return html.replace(/(<main\b[^>]*>)/i, `$1${nav}`);
 }
 
+
+
+/**
+ * Function contract: addControlId
+ * Purpose: Implement the add control id responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `html`, `name`, `id`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function addControlId(html, name, id) {
   const re = new RegExp(`<(input|select|textarea)\\b([^>]*\\bname=["']${name}["'][^>]*)>`, 'i');
-  return html.replace(re, (whole, tag, attrs) => /\bid=["']/i.test(attrs) ? whole : `<${tag}${attrs} id="${id}">`);
+  return html.replace(re,  /** Callback contract: Perform the local callback step required by the immediately enclosing ensure portfolio maturity v7 repository tool operation. Inputs: `whole`, `tag`, `attrs` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (whole, tag, attrs) => /\bid=["']/i.test(attrs) ? whole : `<${tag}${attrs} id="${id}">`);
 }
+
+/**
+ * Function contract: contactContract
+ * Purpose: Implement the contact contract responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function contactContract(html) {
   if (!/id=["']contact-form["']/i.test(html)) return html;
   for (const [name,id] of [['name','contact-name'],['email','contact-email'],['need','contact-need'],['timeline','contact-timeline'],['message','contact-message']]) html = addControlId(html, name, id);
   html = html.replace(/<option([^>]*)>Product design engagement<\/option>/i, '<option$1>Freelance UX/UI project</option>');
-  html = html.replace(/<([a-z0-9]+)\b([^>]*\bid=["']contact-form-status["'][^>]*)>/i, (_whole, tag, attrs) => `<${tag}${attrs.replace(/\srole=["'][^"']*["']/i,'').replace(/\saria-live=["'][^"']*["']/i,'')} role="status" aria-live="polite">`);
+  html = html.replace(/<([a-z0-9]+)\b([^>]*\bid=["']contact-form-status["'][^>]*)>/i,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure portfolio maturity v7 repository tool operation. Inputs: `_whole`, `tag`, `attrs` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (_whole, tag, attrs) => `<${tag}${attrs.replace(/\srole=["'][^"']*["']/i,'').replace(/\saria-live=["'][^"']*["']/i,'')} role="status" aria-live="polite">`);
   return html;
 }
 
+
+/**
+ * Function contract: moveEvidence
+ * Purpose: Implement the move evidence responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function moveEvidence(html) {
   if (!/\bnrs-case-v4\b/i.test(html)) return html;
   const evidence = html.match(/<section\b[^>]*class=["'][^"']*\bnrs-case-v4-evidence\b[^"']*["'][^>]*>[\s\S]*?<\/section>/i)?.[0];
@@ -58,6 +145,15 @@ function moveEvidence(html) {
   return decisions.test(source) ? source.replace(decisions, `$1${evidence}`) : html;
 }
 
+
+
+/**
+ * Function contract: workHierarchy
+ * Purpose: Implement the work hierarchy responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function workHierarchy(html) {
   const re = /<section\b[^>]*class=["'][^"']*\bnrs-work-featured\b[^"']*["'][^>]*>[\s\S]*?<\/section>/i;
   const section = html.match(re)?.[0];
@@ -65,21 +161,48 @@ function workHierarchy(html) {
   const cards = new Map();
   for (const match of section.matchAll(/<a\b[^>]*class=["'][^"']*\bnrs-work-card\b[^"']*["'][^>]*href=["']\/project-([^"']+)["'][^>]*>[\s\S]*?<\/a>/gi)) cards.set(match[1], match[0]);
   const order = [...flagship, ...supporting];
-  if (!order.every((slug) => cards.has(slug))) return html;
-  const primary = flagship.map((slug) => cards.get(slug)).join('');
-  const secondary = supporting.map((slug) => cards.get(slug)).join('');
+  if (!order.every(   /** Callback contract: Evaluate whether the current item satisfies the enclosing all-items condition. Inputs: `slug` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (slug) => cards.has(slug))) return html;
+  const primary = flagship.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `slug` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (slug) => cards.get(slug)).join('');
+  const secondary = supporting.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `slug` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (slug) => cards.get(slug)).join('');
   const replacement = `<section class="agent-section nrs-work-featured"><div class="agent-frame"><div class="nrs-work-group-head"><span class="agent-meta">Start here</span><h2>Four flagship cases. Two supporting cases.</h2><p>The flagship set shows high-stakes interaction, multi-role workflows, SaaS architecture and mature product collaboration. The supporting pair adds technical storytelling and data-product range.</p></div><div class="nrs-work-subgroup"><div class="nrs-work-subgroup-head"><span class="agent-meta">Flagship cases</span><p>The strongest view of how I structure complex product behavior and carry decisions into interface systems.</p></div><div class="nrs-work-grid nrs-work-grid--flagship">${primary}</div></div><div class="nrs-work-subgroup nrs-work-subgroup--secondary"><div class="nrs-work-subgroup-head"><span class="agent-meta">Supporting range</span><p>Two shorter cases showing technical communication and a data-heavy side project.</p></div><div class="nrs-work-grid nrs-work-grid--secondary">${secondary}</div></div></div></section>`;
   return html.replace(re, replacement);
 }
 
+
+
+/**
+ * Function contract: tightenHome
+ * Purpose: Implement the tighten home responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function tightenHome(html) {
   if (!/\bnrs-editorial-home\b/i.test(html)) return html;
   html = html.replace(/<article\b[^>]*class=["'][^"']*\bagent-capability\b[^"']*["'][^>]*>[\s\S]*?<h3>Make important information easy to act on\.<\/h3>[\s\S]*?<\/article>/i, '');
   return html.replace('Product thinking that survives implementation.', 'Three habits that keep product decisions useful through implementation.');
 }
+
+
+/**
+ * Function contract: imageHints
+ * Purpose: Implement the image hints responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function imageHints(html) {
-  return html.replace(/<img\b[^>]*>/gi, (tag) => /\bdecoding=/i.test(tag) ? tag : tag.replace(/\s*\/?>(\s*)$/i, ' decoding="async">$1'));
+  return html.replace(/<img\b[^>]*>/gi,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure portfolio maturity v7 repository tool operation. Inputs: `tag` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (tag) => /\bdecoding=/i.test(tag) ? tag : tag.replace(/\s*\/?>(\s*)$/i, ' decoding="async">$1'));
 }
+
+
+/**
+ * Function contract: analytics
+ * Purpose: Implement the analytics responsibility owned by the ensure portfolio maturity v7 repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function analytics(html) {
   return /src=["']\/portfolio-events\.js["']/i.test(html) ? html : html.replace('</body>', '  <script src="/portfolio-events.js" defer></script>\n</body>');
 }

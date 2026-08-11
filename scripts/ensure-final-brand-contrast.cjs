@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-final-brand-contrast.cjs
+ * Purpose: Apply the ensure final brand contrast production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -12,7 +25,16 @@ if (!fs.existsSync(stylePath)) throw new Error(`[final-brand-contrast] Missing $
 
 const brandMarkup = '<a class="agent-mobile-brand" href="/" aria-label="Nischhal Raj Subba, home"><strong>Nischhal Raj Subba</strong></a>';
 const htmlFiles = [];
-(function walk(directory) {
+(
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the ensure final brand contrast repository tool.
+ * Inputs: `directory`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
+function walk(directory) {
   if (!fs.existsSync(directory)) return;
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (['node_modules', '.git'].includes(entry.name)) continue;

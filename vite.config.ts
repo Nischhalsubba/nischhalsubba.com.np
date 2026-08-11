@@ -1,3 +1,16 @@
+/**
+ * @fileoverview vite.config.ts
+ * Purpose: Configure Vite multi-page inputs, canonical URL transforms, source materialization expectations, and production asset output.
+ * Responsibilities:
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
+ * Execution context: TypeScript source consumed by build/runtime tooling.
+ * Connected files:
+ * - README.md
+ * - config/repository/code-documentation-policy.json
+ * - config/repository/root-policy.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
@@ -5,6 +18,14 @@ import { defineConfig, loadEnv, type Plugin } from 'vite';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
+/**
+ * Function contract: page
+ * Purpose: Implement the page responsibility owned by the vite.config module.
+ * Inputs: `filePath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed expression result consumed by the enclosing operation.
+ */
 const page = (filePath: string) => path.resolve(__dirname, filePath);
 const SITE = 'https://nischhalsubba.com.np';
 
@@ -348,6 +369,14 @@ const blogSeo: Record<string, SeoEntry> = {
 
 const staticSeoEntries: Record<string, SeoEntry> = { ...projectSeo, ...blogSeo };
 
+
+/**
+ * Function contract: makeStaticSeoSection
+ * Purpose: Build static seo section from the supplied inputs in the form expected by downstream vite.config module consumers.
+ * Inputs: `pagePath`, `data`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
   const schema = {
     '@context': 'https://schema.org',
@@ -374,7 +403,7 @@ function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
       },
       {
         '@type': 'FAQPage',
-        mainEntity: data.faqs.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } }))
+        mainEntity: data.faqs.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[name, text]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } }))
       }
     ]
   };
@@ -390,8 +419,26 @@ function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
  * not depend only on client-side JavaScript. Visible helper blocks are avoided
  * intentionally because they can leak into production UI and fail the build audit.
  */
+
+
+/**
+ * Function contract: htmlEnhancementInjector
+ * Purpose: Implement the html enhancement injector responsibility owned by the vite.config module.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed expression result consumed by the enclosing operation.
+ */
 const htmlEnhancementInjector = (): Plugin => ({
   name: 'nrs-html-enhancement-injector',
+  
+  
+  /**
+   * Function contract: transformIndexHtml
+   * Purpose: Implement the transform index html responsibility owned by the vite.config module.
+   * Inputs: `html`, `ctx`
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+   */
   transformIndexHtml(html, ctx) {
     let output = html
       .replace(/<script src="https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/gsap\/3\.12\.2\/gsap\.min\.js"><\/script>/g, '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>')
@@ -415,7 +462,7 @@ const htmlEnhancementInjector = (): Plugin => ({
   }
 });
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(   /** Callback contract: Perform the local callback step required by the immediately enclosing vite.config module operation. Inputs: `{ mode }` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ ({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {

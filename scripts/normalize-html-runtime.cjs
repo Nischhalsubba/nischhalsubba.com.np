@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/normalize-html-runtime.cjs
+ * Purpose: Apply the normalize html runtime production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -8,6 +22,14 @@ const htmlFiles = [];
 const styleHref = '/style.css?v=50.0';
 const scriptSrc = '/script.js?v=35.0';
 
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the normalize html runtime repository tool.
+ * Inputs: `directory`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (entry.name === 'node_modules' || entry.name === '.git' || (!useDist && entry.name === 'dist')) continue;
@@ -17,12 +39,28 @@ function walk(directory) {
   }
 }
 
+
+/**
+ * Function contract: normalizeFontLinks
+ * Purpose: Apply font links consistently while preserving the surrounding normalize html runtime repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeFontLinks(html) {
   return html
     .replace(/\s*<link\s+href="https:\/\/fonts\.googleapis\.com\/css2\?[^>]*rel="stylesheet"\s*\/?>\s*/gi, '\n')
     .replace(/\s*<link\s+rel="stylesheet"\s+href="https:\/\/fonts\.googleapis\.com\/css2\?[^>]*>\s*/gi, '\n');
 }
 
+
+/**
+ * Function contract: normalizeStylesheets
+ * Purpose: Apply stylesheets consistently while preserving the surrounding normalize html runtime repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeStylesheets(html) {
   let output = html.replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css)[^"]+\.css[^>]*>\s*/gi, '\n');
   output = output.replace(/\/style\.css\?v=[0-9.]+/g, styleHref);
@@ -32,6 +70,14 @@ function normalizeStylesheets(html) {
   return output.replace(/<\/head>/i, `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
 }
 
+
+/**
+ * Function contract: normalizeScriptTags
+ * Purpose: Apply script tags consistently while preserving the surrounding normalize html runtime repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeScriptTags(html) {
   const localRuntimePattern = /\s*<script\b[^>]*src=["'](?:\/script\.js(?:\?[^"']*)?|\/assets\/(?:script|main|index)[^"']*\.js)["'][^>]*><\/script>\s*/gi;
   let output = html.replace(localRuntimePattern, '\n');
@@ -41,6 +87,14 @@ function normalizeScriptTags(html) {
   return output.replace(/<\/body>/i, `    <script type="module" src="${scriptSrc}"></script>\n  </body>`);
 }
 
+
+/**
+ * Function contract: normalize
+ * Purpose: Apply module behavior consistently while preserving the surrounding normalize html runtime repository tool contract.
+ * Inputs: `content`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalize(content) {
   let output = content
     .replace(/<canvas id="grid-canvas"><\/canvas>/g, '')

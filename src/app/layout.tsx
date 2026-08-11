@@ -1,3 +1,15 @@
+/**
+ * @fileoverview src/app/layout.tsx
+ * Purpose: Own the authored layout source for this repository.
+ * Responsibilities:
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
+ * Execution context: TypeScript source consumed by build/runtime tooling.
+ * Connected files:
+ * - src/app/design-system.css
+ * - README.md
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 import type { Metadata, Viewport } from "next";
 import { Inter, Nunito_Sans } from "next/font/google";
 import AppTelemetry from "@/components/AppTelemetry";
@@ -74,6 +86,15 @@ export const viewport: Viewport = {
 
 /**
  * Root layout for the entire app.
+ */
+
+
+/**
+ * Function contract: RootLayout
+ * Purpose: Implement the root layout responsibility owned by the layout module.
+ * Inputs: `{ children }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

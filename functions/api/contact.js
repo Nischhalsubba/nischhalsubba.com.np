@@ -1,3 +1,15 @@
+/**
+ * @fileoverview functions/api/contact.js
+ * Purpose: Handle contact server-side requests with validation and deployment-compatible response behavior.
+ * Responsibilities:
+ * - Validate request data before performing server-side work.
+ * - Return predictable status, error, and success responses compatible with the deployed client.
+ * Execution context: Serverless/API runtime used by supported deployment targets.
+ * Connected files:
+ * - README.md
+ * - src/worker.js
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 import { EmailMessage } from 'cloudflare:email';
 
 const ALLOWED_ORIGINS = new Set([
@@ -7,6 +19,14 @@ const ALLOWED_ORIGINS = new Set([
 const DESTINATION_EMAIL = 'hinischalsubba@gmail.com';
 const SENDER_EMAIL = 'portfolio@nischhalsubba.com.np';
 
+
+/**
+ * Function contract: json
+ * Purpose: Implement the json responsibility owned by the contact API handler.
+ * Inputs: `payload`, `status`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function json(payload, status = 200) {
   return new Response(JSON.stringify(payload), {
     status,
@@ -18,10 +38,26 @@ function json(payload, status = 200) {
   });
 }
 
+
+/**
+ * Function contract: clean
+ * Purpose: Remove module behavior without disturbing required surrounding contact API handler state.
+ * Inputs: `value`, `maxLength`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function clean(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+
+/**
+ * Function contract: validate
+ * Purpose: Validate module behavior and surface actionable failures when the contact API handler contract is violated.
+ * Inputs: `fields`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function validate(fields) {
   const errors = {};
   if (fields.name.length < 2) errors.name = 'Enter your name.';
@@ -32,6 +68,14 @@ function validate(fields) {
   return errors;
 }
 
+
+/**
+ * Function contract: verifyTurnstile
+ * Purpose: Validate turnstile and surface actionable failures when the contact API handler contract is violated.
+ * Inputs: `secret`, `token`, `remoteip`
+ * Side effects: performs network I/O
+ * Returns: Promise resolving to the computed function result.
+ */
 async function verifyTurnstile(secret, token, remoteip) {
   const body = new FormData();
   body.set('secret', secret);
@@ -42,10 +86,26 @@ async function verifyTurnstile(secret, token, remoteip) {
   return response.json();
 }
 
+
+/**
+ * Function contract: safeHeader
+ * Purpose: Implement the safe header responsibility owned by the contact API handler.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function safeHeader(value) {
   return String(value || '').replace(/[\r\n]+/g, ' ').trim();
 }
 
+
+/**
+ * Function contract: buildRawEmail
+ * Purpose: Build raw email from the supplied inputs in the form expected by downstream contact API handler consumers.
+ * Inputs: `fields`, `sourcePage`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function buildRawEmail(fields, sourcePage) {
   const boundary = `portfolio-${crypto.randomUUID()}`;
   const subject = safeHeader(`Portfolio inquiry: ${fields.need} from ${fields.name}`);
@@ -80,6 +140,15 @@ function buildRawEmail(fields, sourcePage) {
   ].join('\r\n');
 }
 
+
+
+/**
+ * Function contract: onRequestPost
+ * Purpose: Handle request post and coordinate the resulting contact API handler state changes.
+ * Inputs: `{ request, env }`
+ * Side effects: emits diagnostics or changes process failure state
+ * Returns: Promise resolving to the computed function result.
+ */
 export async function onRequestPost({ request, env }) {
   try {
     const origin = request.headers.get('origin');
@@ -120,6 +189,15 @@ export async function onRequestPost({ request, env }) {
   }
 }
 
+
+
+/**
+ * Function contract: onRequestOptions
+ * Purpose: Handle request options and coordinate the resulting contact API handler state changes.
+ * Inputs: `{ request }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 export function onRequestOptions({ request }) {
   const origin = request.headers.get('origin');
   if (origin && !ALLOWED_ORIGINS.has(origin) && !origin.endsWith('.pages.dev')) return new Response(null, { status: 403 });

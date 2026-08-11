@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-semantic-headings.cjs
+ * Purpose: Apply the ensure semantic headings production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -6,6 +20,14 @@ const useDist = process.argv.includes('--dist');
 const targetRoot = useDist ? path.join(root, 'dist') : root;
 const ignored = new Set(['.git', 'node_modules', '.wrangler', 'dist', 'wordpress']);
 
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the ensure semantic headings repository tool.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -17,12 +39,28 @@ function walk(dir, files = []) {
   return files;
 }
 
+
+/**
+ * Function contract: stripTags
+ * Purpose: Remove tags without disturbing required surrounding ensure semantic headings repository tool state.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function stripTags(value) {
   return value.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/\s+/g, ' ').trim();
 }
 
+
+/**
+ * Function contract: normalizeLayeredHeading
+ * Purpose: Apply layered heading consistently while preserving the surrounding ensure semantic headings repository tool contract.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function normalizeLayeredHeading(html) {
-  return html.replace(/<(h[1-3])([^>]*)>([\s\S]*?)<\/\1>/gi, (full, tag, attrs, inner) => {
+  return html.replace(/<(h[1-3])([^>]*)>([\s\S]*?)<\/\1>/gi,  /** Callback contract: Perform the local callback step required by the immediately enclosing ensure semantic headings repository tool operation. Inputs: `full`, `tag`, `attrs`, `inner` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (full, tag, attrs, inner) => {
     const spans = Array.from(inner.matchAll(/<span\b([^>]*)class=["']([^"']*)["']([^>]*)>([\s\S]*?)<\/span>/gi));
     if (spans.length !== 2) return full;
 

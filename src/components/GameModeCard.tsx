@@ -1,3 +1,14 @@
+/**
+ * @fileoverview src/components/GameModeCard.tsx
+ * Purpose: Implement the reusable Game Mode Card UI component and its local rendering/interaction contract.
+ * Responsibilities:
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
+ * Execution context: TypeScript source consumed by build/runtime tooling.
+ * Connected files:
+ * - No direct tracked-file dependency; ownership is defined by this folder and its build/runtime convention.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,6 +31,14 @@ const toneClasses: Record<NonNullable<GameModeCardProps["tone"]>, string> = {
   soft: "from-violet-100 via-fuchsia-100 to-pink-100 text-violet-950 border-violet-200",
 };
 
+
+/**
+ * Function contract: GameModeCard
+ * Purpose: Implement the game mode card responsibility owned by the game mode card module.
+ * Inputs: `{ title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 export default function GameModeCard({ title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }: GameModeCardProps) {
   const content = (
     <Card className={cn("group h-full overflow-hidden border bg-gradient-to-br shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md", toneClasses[tone])}>

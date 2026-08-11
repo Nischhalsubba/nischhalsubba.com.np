@@ -1,3 +1,18 @@
+/**
+ * @fileoverview scripts/generate-social-previews.cjs
+ * Purpose: Generate or assemble generate social previews deterministically as part of the production toolchain.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/seo-discovery-lib.cjs
+ * - docs/seo-maintenance.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const zlib = require('node:zlib');
@@ -12,6 +27,14 @@ const SITE = 'https://nischhalsubba.com.np';
 const WIDTH = 1200;
 const HEIGHT = 630;
 
+
+/**
+ * Function contract: crc32
+ * Purpose: Implement the crc32 responsibility owned by the generate social previews repository tool.
+ * Inputs: `buffer`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function crc32(buffer) {
   let crc = 0xffffffff;
   for (const byte of buffer) {
@@ -21,6 +44,14 @@ function crc32(buffer) {
   return (crc ^ 0xffffffff) >>> 0;
 }
 
+
+/**
+ * Function contract: chunk
+ * Purpose: Implement the chunk responsibility owned by the generate social previews repository tool.
+ * Inputs: `type`, `data`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function chunk(type, data) {
   const label = Buffer.from(type, 'ascii');
   const out = Buffer.alloc(12 + data.length);
@@ -31,13 +62,21 @@ function chunk(type, data) {
   return out;
 }
 
+
+/**
+ * Function contract: pngFromRows
+ * Purpose: Implement the png from rows responsibility owned by the generate social previews repository tool.
+ * Inputs: `rows`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function pngFromRows(rows) {
   const ihdr = Buffer.alloc(13);
   ihdr.writeUInt32BE(WIDTH, 0);
   ihdr.writeUInt32BE(HEIGHT, 4);
   ihdr[8] = 8;
   ihdr[9] = 2;
-  const raw = Buffer.concat(rows.map((row) => Buffer.concat([Buffer.from([0]), row])));
+  const raw = Buffer.concat(rows.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `row` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (row) => Buffer.concat([Buffer.from([0]), row])));
   return Buffer.concat([
     Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
     chunk('IHDR', ihdr),
@@ -46,6 +85,14 @@ function pngFromRows(rows) {
   ]);
 }
 
+
+/**
+ * Function contract: makeCard
+ * Purpose: Build card from the supplied inputs in the form expected by downstream generate social previews repository tool consumers.
+ * Inputs: `seed`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function makeCard(seed) {
   const digest = crypto.createHash('sha256').update(seed).digest();
   const rows = [];
@@ -53,7 +100,7 @@ function makeCard(seed) {
   const foreground = [243, 246, 234];
   const accent = [216, 255, 72];
   const muted = [38, 45, 34];
-  const bars = Array.from({ length: 5 }, (_, index) => ({
+  const bars = Array.from({ length: 5 },  /** Callback contract: Perform the local callback step required by the immediately enclosing generate social previews repository tool operation. Inputs: `_`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (_, index) => ({
     x: 690 + (digest[index] % 130),
     y: 90 + index * 92,
     w: 230 + (digest[index + 5] % 250),
@@ -70,7 +117,7 @@ function makeCard(seed) {
       if (x >= 128 && x < 420 && y >= 221 && y < 233) color = muted;
       if (x >= 128 && x < 345 && y >= 257 && y < 269) color = muted;
       if (x >= 128 && x < 360 && y >= 482 && y < 490) color = accent;
-      if (bars.some((bar) => x >= bar.x && x < bar.x + bar.w && y >= bar.y && y < bar.y + bar.h)) color = (y % 2 ? accent : foreground);
+      if (bars.some( /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `bar` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (bar) => x >= bar.x && x < bar.x + bar.w && y >= bar.y && y < bar.y + bar.h)) color = (y % 2 ? accent : foreground);
       const offset = x * 3;
       row[offset] = color[0];
       row[offset + 1] = color[1];
@@ -81,12 +128,28 @@ function makeCard(seed) {
   return pngFromRows(rows);
 }
 
+
+/**
+ * Function contract: routeSlug
+ * Purpose: Implement the route slug responsibility owned by the generate social previews repository tool.
+ * Inputs: `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function routeSlug(route) {
   if (route === '/') return 'home';
   if (route === '/blog/') return 'writing';
   return route.replace(/^\//, '').replace(/\//g, '--').replace(/[^a-z0-9-]/gi, '-');
 }
 
+
+/**
+ * Function contract: setMeta
+ * Purpose: Synchronize meta with the requested state while preserving related generate social previews repository tool invariants.
+ * Inputs: `html`, `attribute`, `key`, `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function setMeta(html, attribute, key, value) {
   const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const regex = new RegExp(`<meta\\b(?=[^>]*\\b${attribute}=["']${escaped}["'])[^>]*>`, 'i');

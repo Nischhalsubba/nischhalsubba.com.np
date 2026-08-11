@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-homepage-audit-copy.cjs
+ * Purpose: Validate ensure homepage audit copy and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -31,6 +44,14 @@ const proofSection = `
         </div>
       </section>`;
 
+
+/**
+ * Function contract: entitySchema
+ * Purpose: Implement the entity schema responsibility owned by the ensure homepage audit copy repository tool.
+ * Inputs: `canonical`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function entitySchema(canonical) {
   const url = canonical === 'home-v2.html' ? `${SITE}/home-v2.html` : `${SITE}/`;
   const graph = {
@@ -91,10 +112,28 @@ function entitySchema(canonical) {
   return `<script type="application/ld+json" id="nrs-homepage-entity-schema">${JSON.stringify(graph)}</script>`;
 }
 
+
+
+/**
+ * Function contract: replaceHero
+ * Purpose: Implement the replace hero responsibility owned by the ensure homepage audit copy repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function replaceHero(html) {
   return html.replace(/      <section class="hero-section center-aligned-hero nrs-home-hero"[\s\S]*?      <\/section>/, hero);
 }
 
+
+
+/**
+ * Function contract: upsertProofSection
+ * Purpose: Implement the upsert proof section responsibility owned by the ensure homepage audit copy repository tool.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertProofSection(html) {
   html = html.replace(/\s*<section id="homepage-proof-discovery"[\s\S]*?<\/section>/, '');
   html = html.replace(/\s*<section class="section-container reveal-on-scroll" aria-labelledby="site-proof-heading"[\s\S]*?<\/section>/, '');
@@ -107,11 +146,29 @@ function upsertProofSection(html) {
   return html.replace('</main>', `${proofSection}\n    </main>`);
 }
 
+
+
+/**
+ * Function contract: upsertEntitySchema
+ * Purpose: Implement the upsert entity schema responsibility owned by the ensure homepage audit copy repository tool.
+ * Inputs: `html`, `target`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function upsertEntitySchema(html, target) {
   html = html.replace(/\s*<script\s+type="application\/ld\+json"\s+id="nrs-homepage-entity-schema">[\s\S]*?<\/script>/, '');
   return html.replace('</head>', `    ${entitySchema(target)}\n  </head>`);
 }
 
+
+
+/**
+ * Function contract: cleanOutdatedCopy
+ * Purpose: Remove outdated copy without disturbing required surrounding ensure homepage audit copy repository tool state.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ */
 function cleanOutdatedCopy(html) {
   return html
     .replace(/Senior UI\/Product Designer/g, 'Product Designer')

@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/ensure-clean-sitemap.cjs
+ * Purpose: Apply the ensure clean sitemap production transformation or maintenance step while preserving canonical source/build contracts.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -54,7 +66,7 @@ const routes = [
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
-  .map(([route, priority]) => {
+  .map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[route, priority]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ ([route, priority]) => {
     const loc = route === '/' ? `${SITE}/` : `${SITE}${route}`;
     return `  <url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><priority>${priority}</priority></url>`;
   })

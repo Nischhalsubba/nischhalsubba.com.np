@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/write-build-metadata.cjs
+ * Purpose: Generate or assemble write build metadata deterministically as part of the production toolchain.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - docs/production-delivery.md
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -38,6 +51,15 @@ fs.writeFileSync(
 
 const marker = `<meta name="nrs-build-commit" content="${commit}">`;
 
+
+
+/**
+ * Function contract: walk
+ * Purpose: Implement the walk responsibility owned by the write build metadata repository tool.
+ * Inputs: `directory`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ */
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     const absolute = path.join(directory, entry.name);

@@ -1,3 +1,15 @@
+/**
+ * @fileoverview scripts/browser-contact-audit.mjs
+ * Purpose: Validate browser contact audit and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 import { chromium } from 'playwright';
 
 const base = process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173';
@@ -6,7 +18,7 @@ const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
 const failures = [];
 let fallbackRequests = 0;
 
-await page.route('https://formsubmit.co/ajax/**', async (route) => {
+await page.route('https://formsubmit.co/ajax/**',  /** Callback contract: Perform the local callback step required by the immediately enclosing browser contact audit repository tool operation. Inputs: `route` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving after the documented asynchronous side effects complete. */ async (route) => {
   fallbackRequests += 1;
   if (route.request().method() !== 'POST') {
     await route.fulfill({ status: 405, contentType: 'application/json', body: JSON.stringify({ message: 'Method not allowed' }) });
@@ -19,6 +31,14 @@ await page.route('https://formsubmit.co/ajax/**', async (route) => {
   });
 });
 
+
+/**
+ * Function contract: waitForAttribute
+ * Purpose: Implement the wait for attribute responsibility owned by the browser contact audit repository tool.
+ * Inputs: `locator`, `name`, `expected`, `timeout`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Promise resolving to the computed function result.
+ */
 async function waitForAttribute(locator, name, expected, timeout = 3000) {
   const deadline = Date.now() + timeout;
   let value = null;
@@ -36,11 +56,19 @@ async function waitForAttribute(locator, name, expected, timeout = 3000) {
   return false;
 }
 
+
+/**
+ * Function contract: waitForFocusedId
+ * Purpose: Implement the wait for focused id responsibility owned by the browser contact audit repository tool.
+ * Inputs: `expectedId`, `timeout`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Promise resolving to the computed function result.
+ */
 async function waitForFocusedId(expectedId, timeout = 2200) {
   const deadline = Date.now() + timeout;
 
   while (Date.now() < deadline) {
-    const focusedId = await page.locator(':focus').first().getAttribute('id').catch(() => null);
+    const focusedId = await page.locator(':focus').first().getAttribute('id').catch( /** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ () => null);
     if (focusedId === expectedId) return true;
     await page.waitForTimeout(100);
   }
@@ -48,15 +76,31 @@ async function waitForFocusedId(expectedId, timeout = 2200) {
   return false;
 }
 
+
+/**
+ * Function contract: describeFocus
+ * Purpose: Implement the describe focus responsibility owned by the browser contact audit repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Promise resolving to the computed function result.
+ */
 async function describeFocus() {
   const focused = page.locator(':focus').first();
-  const id = await focused.getAttribute('id').catch(() => null);
+  const id = await focused.getAttribute('id').catch( /** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ () => null);
   if (id) return id;
   if (await page.locator('body:focus').count()) return 'BODY';
   if (await page.locator('html:focus').count()) return 'HTML';
   return 'unknown';
 }
 
+
+/**
+ * Function contract: waitForStatusText
+ * Purpose: Implement the wait for status text responsibility owned by the browser contact audit repository tool.
+ * Inputs: `locator`, `pattern`, `timeout`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Promise resolving to the computed function result.
+ */
 async function waitForStatusText(locator, pattern, timeout = 5000) {
   const deadline = Date.now() + timeout;
   let text = '';
@@ -142,7 +186,7 @@ try {
 
 await browser.close();
 if (failures.length) {
-  console.error('[contact-audit] Failed\n' + failures.map((failure) => `- ${failure}`).join('\n'));
+  console.error('[contact-audit] Failed\n' + failures.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n'));
   process.exit(1);
 }
 console.log('[contact-audit] Accessible validation, focus recovery, resilient submission, and strict-CSP compatibility passed.');
