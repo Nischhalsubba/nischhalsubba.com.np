@@ -36,6 +36,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # npm owns the exact transitive versions and integrity hashes here.
           npm audit fix --package-lock-only
           npm audit --audit-level=high
 
