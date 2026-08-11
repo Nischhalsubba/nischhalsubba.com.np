@@ -32,11 +32,14 @@ jobs:
       - name: Install repository dependencies
         run: npm ci
 
+      - name: Bound generated-comment cleanup to one JSDoc block
+        run: node scripts/repository/fix-refine-comment-boundary.cjs
+
       - name: Rewrite generated comments into semantic documentation
         run: node scripts/repository/refine-code-documentation.cjs
 
-      - name: Remove one-shot refinement script
-        run: git rm -f scripts/repository/refine-code-documentation.cjs
+      - name: Remove one-shot refinement scripts
+        run: git rm -f scripts/repository/refine-code-documentation.cjs scripts/repository/fix-refine-comment-boundary.cjs
 
       - name: Stage candidate documentation tree
         run: git add -A
