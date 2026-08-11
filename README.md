@@ -6,7 +6,7 @@
 
 **Branch-aware technical guide for [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main)**
 
-<p><img alt="branch: main" src="https://img.shields.io/static/v1?label=&message=branch%3A%20main&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+<p><img alt="branch: main" src="https://img.shields.io/static/v1?label=&message=branch%3A%20main&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
 
 <p>
   <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main"><strong>Browse source</strong></a> ·
@@ -25,7 +25,7 @@
 |---|---|
 | Purpose | Production portfolio for Nischhal Raj Subba, a Nepal-based product designer focused on Web3, SaaS, fintech, UX systems, and developer-ready design handoff. |
 | Branch role | Default branch |
-| Stack | Vite, TypeScript, WordPress, JavaScript, HTML, PHP, CSS |
+| Stack | Vite, TypeScript, JavaScript, HTML, CSS |
 | Manifests | package.json |
 | Prerequisites | Node.js |
 | Delivery | vercel.json, GitHub Actions |
@@ -70,13 +70,13 @@ flowchart TD
     ROOT --> P9["scripts/"]
     ROOT --> P10["src/"]
     ROOT --> P11["tests/"]
-    ROOT --> P12["wordpress/"]
-    ROOT --> P13[".editorconfig"]
-    ROOT --> P14[".gitignore"]
-    ROOT --> P15["_headers"]
-    ROOT --> P16["about.html"]
-    ROOT --> P17["AGENTS.md"]
-    ROOT --> MORE["+ 76 more top-level entries"]
+    ROOT --> P12[".editorconfig"]
+    ROOT --> P13[".gitignore"]
+    ROOT --> P14["AGENTS.md"]
+    ROOT --> P15["package-lock.json"]
+    ROOT --> P16["package.json"]
+    ROOT --> P17["tsconfig.json"]
+    ROOT --> MORE["+ 3 more top-level entries"]
 ```
 
 | Responsibility | Detected source paths |
@@ -94,19 +94,20 @@ flowchart TD
 flowchart TD
     APP["nischhalsubba.com.np"]
     APP --> R0["src/app"]
-    APP --> R1["public"]
+    APP --> R1["src/pages"]
+    APP --> R2["public"]
     R0 --> F0["src/app/layout.tsx"]
-    R1 --> F1["public/services.html"]
-    R1 --> F2["public/privacy.html"]
-    R1 --> F3["public/blog/prioritize-ux-audit-findings-before-redesign.html"]
-    R1 --> F4["public/blog/saas-dashboard-empty-states-that-help-users-recover.html"]
-    R1 --> F5["public/blog/responsive-saas-dashboard-handoff-notes.html"]
-    R1 --> F6["public/blog/when-startup-needs-ux-audit-before-redesign.html"]
-    R1 --> F7["public/blog/figma-handoff-notes-for-developers.html"]
-    R1 --> F8["public/blog/web3-wallet-connection-ux.html"]
-    R1 --> F9["public/blog/index.html"]
-    R1 --> F10["public/blog/role-based-saas-dashboard-ux.html"]
-    R1 --> F11["public/blog/ux-audit-checklist-before-redesign.html"]
+    R1 --> F1["src/pages/figma-design-systems.html"]
+    R1 --> F2["src/pages/project-sassboilerplate.html"]
+    R1 --> F3["src/pages/project-orkest.html"]
+    R1 --> F4["src/pages/project-grid-labs.html"]
+    R1 --> F5["src/pages/project-morajaa.html"]
+    R1 --> F6["src/pages/services.html"]
+    R1 --> F7["src/pages/website-ux-design.html"]
+    R1 --> F8["src/pages/about.html"]
+    R1 --> F9["src/pages/projects.html"]
+    R1 --> F10["src/pages/project-pihub.html"]
+    R1 --> F11["src/pages/product-design-nepal.html"]
 ```
 
 ## Architecture and responsibility flow
