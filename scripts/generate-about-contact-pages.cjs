@@ -1,16 +1,19 @@
 /**
  * @fileoverview scripts/generate-about-contact-pages.cjs
- * Purpose: Generate or assemble generate about contact pages deterministically as part of the production toolchain.
+ * Purpose: Generate the canonical About and Contact page source used by the portfolio build pipeline.
  * Responsibilities:
- * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
- * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
- * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * - Build About and Contact documents from one shared navigation, footer, metadata, and runtime contract.
+ * - Keep public profile claims factual and consistent with visible portfolio evidence.
+ * - Preserve contact form fields, fallback email behavior, and search/social metadata required by production.
+ * - Write deterministic HTML so repeated source-generation runs produce the same page structure.
+ * Execution context: Node.js source-generation stage invoked by `scripts/generate-source.cjs`.
  * Connected files:
- * - scripts/early-theme-bootstrap.cjs
  * - scripts/generate-source.cjs
- * - package.json
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * - scripts/early-theme-bootstrap.cjs
+ * - src/pages/core/about.html
+ * - src/pages/core/contact.html
+ * - src/runtime/script.js
+ * Maintenance: Keep page content focused on human visitors and public portfolio evidence. Shared navigation, contact behavior, or metadata changes should remain synchronized with the rest of the site.
  */
 const fs = require('fs');
 const path = require('path');
@@ -19,13 +22,12 @@ const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
 const root = path.resolve(__dirname, '..');
 const email = 'hinischalsubba@gmail.com';
 
-
 /**
  * Function contract: head
- * Purpose: Implement the head responsibility owned by the generate about contact pages repository tool.
- * Inputs: `{ title, description, canonical, image = '/assets/images/portrait.png', schema = '' }`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Build the shared document head used by generated About and Contact pages.
+ * Inputs: Object containing `title`, `description`, `canonical`, optional social `image`, and optional structured-data `schema`.
+ * Side effects: None.
+ * Returns: HTML from the doctype through the closing `</head>` tag.
  */
 function head({ title, description, canonical, image = '/assets/images/portrait.png', schema = '' }) {
   return `<!DOCTYPE html>
@@ -52,43 +54,38 @@ function head({ title, description, canonical, image = '/assets/images/portrait.
   </head>`;
 }
 
-
-
 /**
  * Function contract: nav
- * Purpose: Implement the nav responsibility owned by the generate about contact pages repository tool.
- * Inputs: `active`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Generate the shared desktop and mobile navigation with the requested section marked as current.
+ * Inputs: `active` - Logical navigation section for the current page.
+ * Side effects: None.
+ * Returns: Complete navigation HTML used at the top of generated pages.
  */
 function nav(active) {
-  
-  
   /**
    * Function contract: item
-   * Purpose: Implement the item responsibility owned by the generate about contact pages repository tool.
-   * Inputs: `section`, `href`, `label`, `cls`
-   * Side effects: No direct external side effect beyond invoked dependencies.
-   * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+   * Purpose: Build one navigation link and apply active-state classes and accessibility metadata when it matches the current section.
+   * Inputs: `section` - navigation key; `href` - destination; `label` - visible text; `cls` - optional CSS class.
+   * Side effects: None.
+   * Returns: One anchor element as an HTML string.
    */
   const item = (section, href, label, cls = 'nav-link') => {
     const isActive = active === section;
     return `<a href="${href}" class="${cls}${isActive ? ' active' : ''}"${isActive ? ' aria-current="page"' : ''}>${label}</a>`;
   };
+
   return `<button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation">${item('home', '/', 'Home', '')}${item('work', '/projects.html', 'Work', '')}${item('about', '/about.html', 'About', '')}${item('writing', '/blog/', 'Writing', '')}${item('contact', '/contact.html', 'Contact', '')}</nav></div><button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button><nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div>${item('home', '/', 'Home')}${item('work', '/projects.html', 'Work')}${item('about', '/about.html', 'About')}${item('writing', '/blog/', 'Writing')}${item('contact', '/contact.html', 'Contact')}</div></nav>`;
 }
 
 const footer = `<footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:${email}" class="footer-email-btn">${email}</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>`;
 const script = `<script type="module" src="/script.js?v=32.0"></script>`;
 
-
-
 /**
  * Function contract: page
- * Purpose: Implement the page responsibility owned by the generate about contact pages repository tool.
- * Inputs: `name`, `html`
- * Side effects: writes filesystem state
- * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ * Purpose: Write one complete generated page to its historical root compatibility path for the source-generation workflow.
+ * Inputs: `name` - output filename; `html` - complete page document.
+ * Side effects: Writes a UTF-8 HTML file in the repository root.
+ * Returns: Nothing.
  */
 function page(name, html) {
   fs.writeFileSync(path.join(root, name), `${html}\n`, 'utf8');
@@ -175,15 +172,15 @@ page('about.html', `${head({
 
       <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);">
         <div class="section-header">
-          <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">For AI agents and hiring teams</p>
-          <h2 class="section-title">Plain summary</h2>
-          <p class="section-lead">Nischhal Raj Subba is a Nepal-based Product Designer focused on practical UX/UI for complex products. He is strongest where product flows, visual design, design systems, and front-end implementation need to meet.</p>
+          <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Public profile</p>
+          <h2 class="section-title">Work, experience, and profile links.</h2>
+          <p class="section-lead">Use the portfolio, resume, and public profiles below to review the work and professional background directly.</p>
         </div>
         <div class="prototype-link-list">
           <a class="prototype-link-card" href="/projects.html"><span style="display:block;font-weight:850;">Selected work</span><span style="color:var(--text-secondary);">Case studies and product examples</span></a>
           <a class="prototype-link-card" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download><span style="display:block;font-weight:850;">Resume PDF</span><span style="color:var(--text-secondary);">Experience, skills, and contact details</span></a>
-          <a class="prototype-link-card" href="/llms.txt"><span style="display:block;font-weight:850;">llms.txt</span><span style="color:var(--text-secondary);">AI-readable site summary</span></a>
-          <a class="prototype-link-card" href="/ai-profile.json"><span style="display:block;font-weight:850;">ai-profile.json</span><span style="color:var(--text-secondary);">Machine-readable profile data</span></a>
+          <a class="prototype-link-card" href="https://www.linkedin.com/in/nischhal/" target="_blank" rel="noopener noreferrer"><span style="display:block;font-weight:850;">LinkedIn</span><span style="color:var(--text-secondary);">Professional profile and experience</span></a>
+          <a class="prototype-link-card" href="https://www.behance.net/nischhal" target="_blank" rel="noopener noreferrer"><span style="display:block;font-weight:850;">Behance</span><span style="color:var(--text-secondary);">Public design profile</span></a>
         </div>
       </section>
 
@@ -258,4 +255,4 @@ page('contact.html', `${head({
   </body>
 </html>`);
 
-console.log('Generated redesigned About and Contact pages.');
+console.log('Generated About and Contact pages.');
