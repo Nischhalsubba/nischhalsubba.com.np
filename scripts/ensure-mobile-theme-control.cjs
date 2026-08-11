@@ -1,15 +1,17 @@
 /**
- * @fileoverview scripts/ensure-agent-mobile-theme-control.cjs
- * Purpose: Apply the ensure agent mobile theme control production transformation or maintenance step while preserving canonical source/build contracts.
+ * @fileoverview scripts/ensure-mobile-theme-control.cjs
+ * Purpose: Ensure redesigned mobile navigation drawers expose the same light/dark appearance control as the rest of the site.
  * Responsibilities:
- * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
- * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
- * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * - Walk generated HTML routes in `dist/`.
+ * - Add the drawer theme control only to pages using the redesigned portfolio shell.
+ * - Keep the transformation idempotent by skipping pages that already contain the control.
+ * Execution context: Node.js production build stage run after portfolio markup exists in `dist/`.
  * Connected files:
  * - scripts/build-dist.cjs
- * - package.json
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * - scripts/ensure-mobile-drawer-final.cjs
+ * - src/scripts/features/system/agent-browser-contract.js
+ * - src/styles/fragments/agent/sticky-cascade-lock.cssfrag
+ * Maintenance: The current DOM class names are shared compatibility selectors used by later styling and browser checks. Rename those selectors only as a coordinated migration across every consumer.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -18,17 +20,17 @@ const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 
 if (!fs.existsSync(dist)) {
-  throw new Error('[agent-mobile-theme] dist is missing');
+  throw new Error('[mobile-theme] dist is missing');
 }
 
 const files = [];
 (
 /**
  * Function contract: walk
- * Purpose: Implement the walk responsibility owned by the ensure agent mobile theme control repository tool.
- * Inputs: `directory`
- * Side effects: reads filesystem state
- * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ * Purpose: Recursively collect generated HTML files beneath the production output directory.
+ * Inputs: `directory` - Directory currently being scanned.
+ * Side effects: Reads directory entries and appends discovered HTML paths to the shared `files` array.
+ * Returns: Nothing.
  */
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -54,4 +56,4 @@ for (const file of files) {
   updated += 1;
 }
 
-console.log(`[agent-mobile-theme] Added the drawer theme control to ${updated} route(s).`);
+console.log(`[mobile-theme] Added the drawer theme control to ${updated} route(s).`);
