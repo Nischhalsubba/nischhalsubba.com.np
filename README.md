@@ -37,6 +37,7 @@ This branch differs from the default branch in the following detected paths:
 
 - [`.editorconfig`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.editorconfig)
 - [`.gitignore`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.gitignore)
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/README.md)
 - [`blog-accessibility-fintech.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-accessibility-fintech.html)
 - [`blog-ai-ops.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-ai-ops.html)
 - [`blog-design-metrics.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-design-metrics.html)
@@ -46,7 +47,6 @@ This branch differs from the default branch in the following detected paths:
 - [`blog-pricing-ux.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-pricing-ux.html)
 - [`blog-research-emerging.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-research-emerging.html)
 - [`blog-web3-ux.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-web3-ux.html)
-- [`config/canonical-routes.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/config/canonical-routes.json)
 
 ## Quick start
 
