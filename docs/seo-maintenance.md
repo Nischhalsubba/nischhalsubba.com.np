@@ -56,7 +56,9 @@ The homepage (`/`) is the canonical owned entity page for Nischhal Raj Subba. Th
 
 ### 5. Caching policy
 
-Cloudflare Workers Static Assets already provides revalidation semantics for mutable static assets. The project no longer overrides HTML, JavaScript, and CSS with blanket `no-store`/`no-cache` rules.
+Cloudflare Workers Static Assets provides ETag revalidation for mutable static assets by default. HTML and CSS therefore no longer use blanket `no-store`/`no-cache` overrides.
+
+The production runtime is different: this repository intentionally serves stable, unhashed JavaScript module URLs. `/*.js`, `/detail-navigation.js`, and `/seo-enhancements.js` retain the repository's atomic `no-store, no-cache, must-revalidate, proxy-revalidate` policy so a page load cannot combine runtime files from different deployments.
 
 Authored media under `/assets/*` receives a bounded browser cache plus `stale-while-revalidate`. It is intentionally not marked `immutable` because not every authored filename is content-hashed.
 
@@ -129,7 +131,7 @@ Do not manually add a sitemap row, Worker redirect, static redirect, or AI-file 
 - invalid `ai-profile.json`;
 - reintroduction of the duplicate personal entity page;
 - missing `X-Robots-Tag: noindex` on machine files/resume;
-- reintroduction of blanket `no-store`/`no-cache` static caching;
+- blanket `no-store`/`no-cache` on HTML/CSS or removal of the required atomic JavaScript runtime cache policy;
 - missing explicit Cloudflare clean-HTML handling;
 - missing, mismatched, non-PNG, or non-1200x630 generated social cards.
 
@@ -143,6 +145,7 @@ Check these response contracts on the live site:
 - `/sitemap.xml` contains exactly the current canonical routes;
 - `/robots.txt` exposes the sitemap and does not block crawling;
 - `/assets/resume.pdf`, `/llms.txt`, `/llms-full.txt`, and `/ai-profile.json` return `X-Robots-Tag: noindex`;
+- stable JavaScript runtime URLs return the atomic `no-store` policy;
 - canonical pages expose matching Open Graph/Twitter PNG preview URLs;
 - generated preview images return successfully.
 
