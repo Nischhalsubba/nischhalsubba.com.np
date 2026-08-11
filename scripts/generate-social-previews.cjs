@@ -1,69 +1,124 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const zlib = require('node:zlib');
+const crypto = require('node:crypto');
+const { routeForFile } = require('./seo-discovery-lib.cjs');
 
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
-const site = 'https://nischhalsubba.com.np';
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
-const portrait = `${site}/assets/images/portrait.png`;
+const outputDir = path.join(dist, 'assets', 'social');
+const SITE = 'https://nischhalsubba.com.np';
+const WIDTH = 1200;
+const HEIGHT = 630;
 
-function absoluteImage(src) {
-  if (!src || /^data:/i.test(src)) return '';
-  try { return new URL(src, `${site}/`).href; } catch { return ''; }
-}
-
-function pageImages(html) {
-  const images = [];
-  const seen = new Set();
-  for (const match of html.matchAll(/<img\b[^>]*src=["']([^"']+)["'][^>]*>/gi)) {
-    const src = absoluteImage(match[1]);
-    if (!src || seen.has(src) || /favicon|logo|icon|social\//i.test(src)) continue;
-    seen.add(src);
-    images.push(src);
+function crc32(buffer) {
+  let crc = 0xffffffff;
+  for (const byte of buffer) {
+    crc ^= byte;
+    for (let bit = 0; bit < 8; bit += 1) crc = (crc >>> 1) ^ (0xedb88320 & -(crc & 1));
   }
-  return images;
+  return (crc ^ 0xffffffff) >>> 0;
 }
 
-function preferredImage(html) {
-  const images = pageImages(html);
-  return images.find((src) => /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(src)) || images[0] || portrait;
+function chunk(type, data) {
+  const label = Buffer.from(type, 'ascii');
+  const out = Buffer.alloc(12 + data.length);
+  out.writeUInt32BE(data.length, 0);
+  label.copy(out, 4);
+  data.copy(out, 8);
+  out.writeUInt32BE(crc32(Buffer.concat([label, data])), 8 + data.length);
+  return out;
+}
+
+function pngFromRows(rows) {
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(WIDTH, 0);
+  ihdr.writeUInt32BE(HEIGHT, 4);
+  ihdr[8] = 8;
+  ihdr[9] = 2;
+  const raw = Buffer.concat(rows.map((row) => Buffer.concat([Buffer.from([0]), row])));
+  return Buffer.concat([
+    Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
+    chunk('IHDR', ihdr),
+    chunk('IDAT', zlib.deflateSync(raw, { level: 9 })),
+    chunk('IEND', Buffer.alloc(0)),
+  ]);
+}
+
+function makeCard(seed) {
+  const digest = crypto.createHash('sha256').update(seed).digest();
+  const rows = [];
+  const background = [12, 15, 11];
+  const foreground = [243, 246, 234];
+  const accent = [216, 255, 72];
+  const muted = [38, 45, 34];
+  const bars = Array.from({ length: 5 }, (_, index) => ({
+    x: 690 + (digest[index] % 130),
+    y: 90 + index * 92,
+    w: 230 + (digest[index + 5] % 250),
+    h: 18 + (digest[index + 10] % 34),
+  }));
+
+  for (let y = 0; y < HEIGHT; y += 1) {
+    const row = Buffer.alloc(WIDTH * 3);
+    for (let x = 0; x < WIDTH; x += 1) {
+      let color = background;
+      if (x >= 72 && x < 88 && y >= 72 && y < 558) color = accent;
+      if (x >= 128 && x < 560 && y >= 132 && y < 148) color = foreground;
+      if (x >= 128 && x < 490 && y >= 185 && y < 197) color = muted;
+      if (x >= 128 && x < 420 && y >= 221 && y < 233) color = muted;
+      if (x >= 128 && x < 345 && y >= 257 && y < 269) color = muted;
+      if (x >= 128 && x < 360 && y >= 482 && y < 490) color = accent;
+      if (bars.some((bar) => x >= bar.x && x < bar.x + bar.w && y >= bar.y && y < bar.y + bar.h)) color = (y % 2 ? accent : foreground);
+      const offset = x * 3;
+      row[offset] = color[0];
+      row[offset + 1] = color[1];
+      row[offset + 2] = color[2];
+    }
+    rows.push(row);
+  }
+  return pngFromRows(rows);
+}
+
+function routeSlug(route) {
+  if (route === '/') return 'home';
+  if (route === '/blog/') return 'writing';
+  return route.replace(/^\//, '').replace(/\//g, '--').replace(/[^a-z0-9-]/gi, '-');
 }
 
 function setMeta(html, attribute, key, value) {
   const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${attribute}=["']${escaped}["'])[^>]*>`, 'i');
-  const tag = `<meta ${attribute}="${key}" content="${value.replace(/["<>]/g, '')}" />`;
-  return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
+  const regex = new RegExp(`<meta\\b(?=[^>]*\\b${attribute}=["']${escaped}["'])[^>]*>`, 'i');
+  const tag = `<meta ${attribute}="${key}" content="${String(value).replace(/["<>]/g, '')}" />`;
+  return regex.test(html) ? html.replace(regex, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-function removeMeta(html, attribute, key) {
-  const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return html.replace(new RegExp(`\\s*<meta\\b(?=[^>]*\\b${attribute}=["']${escaped}["'])[^>]*>`, 'gi'), '');
-}
-
-if (!fs.existsSync(dist)) throw new Error('dist directory is missing.');
-
-/* Delete the old generated-card directory so Search/social crawlers cannot keep discovering it in fresh builds. */
-const retired = path.join(dist, 'assets', 'images', 'social');
-if (fs.existsSync(retired)) fs.rmSync(retired, { recursive: true, force: true });
+if (!fs.existsSync(dist)) throw new Error('dist directory is missing. Run the production build before social preview generation.');
+fs.rmSync(outputDir, { recursive: true, force: true });
+fs.mkdirSync(outputDir, { recursive: true });
 
 let updated = 0;
 for (const file of manifest.html) {
-  const filePath = path.join(dist, file);
-  if (!fs.existsSync(filePath)) continue;
+  const htmlPath = path.join(dist, file);
+  if (!fs.existsSync(htmlPath)) throw new Error(`Missing canonical output for social preview: ${file}`);
 
-  let html = fs.readFileSync(filePath, 'utf8');
-  const image = preferredImage(html);
-  const title = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/<[^>]+>/g, '').trim() || 'Nischhal Raj Subba';
+  const route = routeForFile(file);
+  const filename = `${routeSlug(route)}.png`;
+  const imageUrl = `${SITE}/assets/social/${filename}`;
+  fs.writeFileSync(path.join(outputDir, filename), makeCard(route));
 
-  html = removeMeta(html, 'property', 'og:image:width');
-  html = removeMeta(html, 'property', 'og:image:height');
-  html = setMeta(html, 'property', 'og:image', image);
-  html = setMeta(html, 'property', 'og:image:alt', `${title} — portfolio image`);
-  html = setMeta(html, 'name', 'twitter:image', image);
-  html = setMeta(html, 'name', 'twitter:image:alt', `${title} — portfolio image`);
-  fs.writeFileSync(filePath, html, 'utf8');
+  let html = fs.readFileSync(htmlPath, 'utf8');
+  const title = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() || 'Nischhal Raj Subba';
+  html = setMeta(html, 'property', 'og:image', imageUrl);
+  html = setMeta(html, 'property', 'og:image:alt', `${title} - Nischhal Raj Subba portfolio`);
+  html = setMeta(html, 'property', 'og:image:width', String(WIDTH));
+  html = setMeta(html, 'property', 'og:image:height', String(HEIGHT));
+  html = setMeta(html, 'name', 'twitter:card', 'summary_large_image');
+  html = setMeta(html, 'name', 'twitter:image', imageUrl);
+  html = setMeta(html, 'name', 'twitter:image:alt', `${title} - Nischhal Raj Subba portfolio`);
+  fs.writeFileSync(htmlPath, html, 'utf8');
   updated += 1;
 }
 
-console.log(`[social-preview] Assigned real page/project imagery to ${updated} route(s); synthetic preview cards retired.`);
+console.log(`[social-preview] Generated ${updated} deterministic ${WIDTH}x${HEIGHT} PNG cards from canonical routes.`);
