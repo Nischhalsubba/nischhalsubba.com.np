@@ -39,26 +39,165 @@
     "https://nischhalsubba.com.np/ux-audit"
   ],
   "selectedProjects": [
-    {"name": "Yarsha", "url": "https://nischhalsubba.com.np/project-yarsha", "type": "Web3 messaging app", "focus": ["mobile UX", "wallet interaction", "chat UX", "transaction review"]},
-    {"name": "Mokshya.io", "url": "https://nischhalsubba.com.np/project-mokshya", "type": "Web3 protocol website", "focus": ["website UX", "product storytelling", "trust signals", "developer-facing content"]},
-    {"name": "Hamro Idea", "url": "https://nischhalsubba.com.np/project-hamro-idea", "type": "Brand and website", "focus": ["brand design", "service website UX", "SEO structure", "conversion paths"]},
-    {"name": "piHub", "url": "https://nischhalsubba.com.np/project-pihub", "type": "Fintech product experience", "focus": ["investor flows", "credit requests", "verification", "dashboard clarity"]},
-    {"name": "Zapp Today", "url": "https://nischhalsubba.com.np/project-zapp", "type": "Logistics mobile product", "focus": ["customer app", "driver app", "delivery flows", "admin workflows"]},
-    {"name": "Morajaa", "url": "https://nischhalsubba.com.np/project-morajaa", "type": "B2B consulting website", "focus": ["website UX", "content structure", "service pages", "guided inquiry"]},
-    {"name": "Masteriyo", "url": "https://nischhalsubba.com.np/project-masteriyo", "type": "WordPress LMS product design contribution", "focus": ["course workflows", "admin UI", "student experience"]},
-    {"name": "Neverwinter Live Parser", "url": "https://nischhalsubba.com.np/project-neverwinter-parser", "type": "Gaming analytics desktop app", "focus": ["desktop UI", "combat logs", "dashboard clarity", "data readability"]},
-    {"name": "Orkest HQ", "url": "https://nischhalsubba.com.np/project-orkest", "type": "SaaS dashboard UX architecture", "focus": ["CRM", "sales", "inventory", "finance", "modular SaaS"]},
-    {"name": "Splashnode", "url": "https://nischhalsubba.com.np/project-splashnode", "type": "Technical platform website", "focus": ["technical website UX", "front-end implementation", "feature explanation"]}
+    {
+      "name": "Yarsha",
+      "url": "https://nischhalsubba.com.np/project-yarsha",
+      "type": "Web3 messaging app",
+      "focus": [
+        "mobile UX",
+        "wallet interaction",
+        "chat UX",
+        "transaction review"
+      ]
+    },
+    {
+      "name": "Mokshya.io",
+      "url": "https://nischhalsubba.com.np/project-mokshya",
+      "type": "Web3 protocol website",
+      "focus": [
+        "website UX",
+        "product storytelling",
+        "trust signals",
+        "developer-facing content"
+      ]
+    },
+    {
+      "name": "Hamro Idea",
+      "url": "https://nischhalsubba.com.np/project-hamro-idea",
+      "type": "Brand and website",
+      "focus": [
+        "brand design",
+        "service website UX",
+        "SEO structure",
+        "conversion paths"
+      ]
+    },
+    {
+      "name": "piHub",
+      "url": "https://nischhalsubba.com.np/project-pihub",
+      "type": "Fintech product experience",
+      "focus": [
+        "investor flows",
+        "credit requests",
+        "verification",
+        "dashboard clarity"
+      ]
+    },
+    {
+      "name": "Zapp Today",
+      "url": "https://nischhalsubba.com.np/project-zapp",
+      "type": "Logistics mobile product",
+      "focus": [
+        "customer app",
+        "driver app",
+        "delivery flows",
+        "admin workflows"
+      ]
+    },
+    {
+      "name": "Morajaa",
+      "url": "https://nischhalsubba.com.np/project-morajaa",
+      "type": "B2B consulting website",
+      "focus": [
+        "website UX",
+        "content structure",
+        "service pages",
+        "guided inquiry"
+      ]
+    },
+    {
+      "name": "Masteriyo",
+      "url": "https://nischhalsubba.com.np/project-masteriyo",
+      "type": "WordPress LMS product design contribution",
+      "focus": [
+        "course workflows",
+        "admin UI",
+        "student experience"
+      ]
+    },
+    {
+      "name": "Neverwinter Live Parser",
+      "url": "https://nischhalsubba.com.np/project-neverwinter-parser",
+      "type": "Gaming analytics desktop app",
+      "focus": [
+        "desktop UI",
+        "combat logs",
+        "dashboard clarity",
+        "data readability"
+      ]
+    },
+    {
+      "name": "Orkest HQ",
+      "url": "https://nischhalsubba.com.np/project-orkest",
+      "type": "SaaS dashboard UX architecture",
+      "focus": [
+        "CRM",
+        "sales",
+        "inventory",
+        "finance",
+        "modular SaaS"
+      ]
+    },
+    {
+      "name": "Splashnode",
+      "url": "https://nischhalsubba.com.np/project-splashnode",
+      "type": "Technical platform website",
+      "focus": [
+        "technical website UX",
+        "front-end implementation",
+        "feature explanation"
+      ]
+    }
   ],
   "proofLinks": [
-    {"label": "Portfolio homepage", "type": "owned_profile", "url": "https://nischhalsubba.com.np/", "proves": "Primary owned web presence and canonical entity page for Nischhal Raj Subba."},
-    {"label": "About page", "type": "owned_profile", "url": "https://nischhalsubba.com.np/about", "proves": "Role, profile summary, professional context, and proof links."},
-    {"label": "Product design portfolio", "type": "owned_work_archive", "url": "https://nischhalsubba.com.np/projects", "proves": "Selected project archive and public case-study routes."},
-    {"label": "Resume PDF", "type": "owned_document", "url": "https://nischhalsubba.com.np/assets/resume.pdf", "proves": "Experience, selected work, skills, and contact information."},
-    {"label": "Uxcel profile", "type": "external_profile", "url": "https://app.uxcel.com/ux/nischhal", "proves": "Public UX/UI learning progress. Do not infer rankings unless explicitly visible on the profile."},
-    {"label": "Behance profile", "type": "external_profile", "url": "https://www.behance.net/nischhal", "proves": "External design portfolio/profile presence."},
-    {"label": "LinkedIn profile", "type": "external_profile", "url": "https://linkedin.com/in/nischhal/", "proves": "Professional identity and work profile."},
-    {"label": "GitHub profile", "type": "external_profile", "url": "https://github.com/Nischhalsubba", "proves": "Technical/front-end and repository identity signal."}
+    {
+      "label": "Portfolio homepage",
+      "type": "owned_profile",
+      "url": "https://nischhalsubba.com.np/",
+      "proves": "Primary owned web presence and canonical entity page for Nischhal Raj Subba."
+    },
+    {
+      "label": "About page",
+      "type": "owned_profile",
+      "url": "https://nischhalsubba.com.np/about",
+      "proves": "Role, profile summary, professional context, and proof links."
+    },
+    {
+      "label": "Product design portfolio",
+      "type": "owned_work_archive",
+      "url": "https://nischhalsubba.com.np/projects",
+      "proves": "Selected project archive and public case-study routes."
+    },
+    {
+      "label": "Resume PDF",
+      "type": "owned_document",
+      "url": "https://nischhalsubba.com.np/assets/resume.pdf",
+      "proves": "Experience, selected work, skills, and contact information."
+    },
+    {
+      "label": "Uxcel profile",
+      "type": "external_profile",
+      "url": "https://app.uxcel.com/ux/nischhal",
+      "proves": "Public UX/UI learning progress. Do not infer rankings unless explicitly visible on the profile."
+    },
+    {
+      "label": "Behance profile",
+      "type": "external_profile",
+      "url": "https://www.behance.net/nischhal",
+      "proves": "External design portfolio/profile presence."
+    },
+    {
+      "label": "LinkedIn profile",
+      "type": "external_profile",
+      "url": "https://linkedin.com/in/nischhal/",
+      "proves": "Professional identity and work profile."
+    },
+    {
+      "label": "GitHub profile",
+      "type": "external_profile",
+      "url": "https://github.com/Nischhalsubba",
+      "proves": "Technical/front-end and repository identity signal."
+    }
   ],
   "sameAs": [
     "https://app.uxcel.com/ux/nischhal",
