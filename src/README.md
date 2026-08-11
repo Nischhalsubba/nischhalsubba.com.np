@@ -1,15 +1,36 @@
 # `src/`
 
-Primary production source tree.
+Primary production source tree for the portfolio.
+
+## Structure
 
 - `pages/` owns canonical HTML grouped into `core/`, `projects/`, and `services/`.
-- `styles/` owns the canonical stylesheet plus reusable systems and composable fragments.
-- `runtime/` owns the stable compatibility browser entry template.
+- `styles/` owns the canonical production stylesheet and supporting style systems/fragments.
+- `runtime/` owns the stable browser-entry compatibility source used by existing page/build contracts.
 - `scripts/` owns browser code split into entrypoints, shared helpers, and responsibility-based feature domains.
-- `content/` owns structured content used by generators/runtime code.
-- `discovery/` owns crawler, SEO, AI-discovery, manifest, and header source files.
-- `compat/` contains explicitly documented build-only legacy inputs.
-- `worker.js` is the Cloudflare Worker/API router.
-- `generated/` contains machine-generated runtime modules and is excluded from hand-documentation.
+- `content/` owns structured portfolio, article, service, and route-related content used by generators or runtime code.
+- `discovery/` owns crawler directives, response headers, browser manifest data, and human-readable ownership metadata.
+- `compat/` contains explicitly documented historical inputs retained for build compatibility.
+- `generated/` contains build-owned source that should be changed through its generator rather than by hand.
+- `worker.js` is the Cloudflare Worker and API routing entry point.
 
-Every authored code file is governed by `config/repository/code-documentation-policy.json`. See `docs/repository/file-map.md` and `docs/repository/file-catalog.md` for ownership and dependency connections.
+## Source ownership
+
+New authored production code should normally live under `src/` rather than at repository root.
+
+Some historical tools still require temporary root-level files. Those paths are materialized from canonical source by the repository tooling in `scripts/repository/`. A compatibility copy is not a second source of truth.
+
+## Documentation
+
+Authored code files are governed by `config/repository/code-documentation-policy.json`.
+
+File-level documentation should explain the file's purpose, responsibilities, execution context, important connections, and maintenance constraints. Function comments should explain purpose, inputs, side effects, and return behavior in plain engineering language.
+
+Generated, vendored, bundled, or minified output should be documented at its source or generator instead of being manually annotated.
+
+See:
+
+- `docs/codebase-structure.md`
+- `docs/repository/file-map.md`
+- `docs/repository/file-catalog.md`
+- `scripts/repository/README.md`
