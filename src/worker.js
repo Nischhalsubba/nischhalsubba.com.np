@@ -1,32 +1,5 @@
 import { onRequestOptions, onRequestPost } from '../functions/api/contact.js';
-
-const LEGACY_REDIRECTS = new Map([
-  ['/home', '/'],
-  ['/home.html', '/'],
-  ['/home-v2', '/'],
-  ['/home-v2.html', '/'],
-  ['/index.html', '/'],
-  ['/blog', '/blog/'],
-  ['/blog.html', '/blog/'],
-  ['/writing', '/blog/'],
-  ['/writing/', '/blog/'],
-  ['/products', '/projects'],
-  ['/products.html', '/projects'],
-  ['/project-detail', '/projects'],
-  ['/project-detail.html', '/projects'],
-  ['/project-archive', '/projects'],
-  ['/project-archive.html', '/projects'],
-  ['/project-jeweltrek.html', '/projects'],
-  ['/media-kit', '/about'],
-  ['/media-kit.html', '/about'],
-  ['/blog-detail.html', '/blog/'],
-  ['/blog-saas-dashboard-ux-checklist.html', '/blog/saas-dashboard-ux-checklist'],
-  ['/blog-web3-wallet-ux-checklist.html', '/blog/web3-wallet-ux-checklist'],
-  ['/blog-figma-handoff-notes-for-developers.html', '/blog/figma-handoff-notes-for-developers'],
-  ['/blog-ux-audit-checklist-before-redesign.html', '/blog/ux-audit-checklist-before-redesign'],
-  ['/blog-website-ux-checklist-software-companies.html', '/blog/website-ux-checklist-software-companies'],
-  ['/blog-role-based-saas-dashboard-ux.html', '/blog/role-based-saas-dashboard-ux'],
-]);
+import { LEGACY_REDIRECTS } from './generated/legacy-redirects.js';
 
 const ANALYTICS_EVENTS = new Set([
   'project_view',
