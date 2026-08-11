@@ -37,6 +37,7 @@ This branch differs from the default branch in the following detected paths:
 
 - [`.github/refresh-visual-baselines`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/qa-remediations-2026-08-10/.github/refresh-visual-baselines)
 - [`.github/workflows/hero-ux-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/qa-remediations-2026-08-10/.github/workflows/hero-ux-audit.yml)
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/qa-remediations-2026-08-10/README.md)
 - [`scripts/browser-hero-ux-audit-v26.mjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/qa-remediations-2026-08-10/scripts/browser-hero-ux-audit-v26.mjs)
 - [`scripts/browser-interface-polish-audit.mjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/qa-remediations-2026-08-10/scripts/browser-interface-polish-audit.mjs)
 - [`scripts/build-dist.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/fix/qa-remediations-2026-08-10/scripts/build-dist.cjs)
