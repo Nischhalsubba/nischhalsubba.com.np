@@ -1,0 +1,53 @@
+{
+  "description": "Documentation contract for authored source code. Generated, vendored, minified, and machine-owned outputs are excluded because their source of truth lives elsewhere.",
+  "codeRoots": [
+    ".github/workflows",
+    "api",
+    "blog",
+    "functions/api",
+    "scripts",
+    "src",
+    "tests",
+    "vite.config.ts"
+  ],
+  "excludedPrefixes": [
+    "assets/",
+    "dist/",
+    "node_modules/",
+    "public/",
+    "src/generated/",
+    "tests/visual/baselines/"
+  ],
+  "excludedFiles": [
+    "docs/repository/file-catalog.md"
+  ],
+  "headerExtensions": [
+    ".cjs",
+    ".css",
+    ".cssfrag",
+    ".html",
+    ".js",
+    ".jsx",
+    ".mjs",
+    ".ts",
+    ".tsx",
+    ".yaml",
+    ".yml"
+  ],
+  "headerBasenames": [],
+  "functionExtensions": [
+    ".cjs",
+    ".js",
+    ".jsx",
+    ".mjs",
+    ".ts",
+    ".tsx"
+  ],
+  "headerSearchCharacters": 5000,
+  "commentRules": {
+    "fileHeader": "Every authored code file must explain purpose, responsibilities, connections, execution context, and maintenance constraints near the start of the file.",
+    "namedFunctions": "Every named function, method, constructor, getter, setter, and assigned arrow/function expression must have an explanatory comment describing purpose, inputs, side effects, and return behavior.",
+    "callbacks": "Inline callbacks must have a nearby concise explanatory comment. Trivial callbacks may use a compact one-line block comment; complex callbacks should use a multi-line explanation.",
+    "generatedCode": "Generated or vendored code is documented at its generator/owner instead of being hand-edited."
+  }
+}
