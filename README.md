@@ -40,6 +40,7 @@ This branch differs from the default branch in the following detected paths:
 - [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/accessibility-security-hardening/.github/workflows/interface-polish-audit.yml)
 - [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/accessibility-security-hardening/.github/workflows/production-qa.yml)
 - [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/accessibility-security-hardening/.github/workflows/validate.yml)
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/accessibility-security-hardening/README.md)
 - [`docs/quality-gates.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/accessibility-security-hardening/docs/quality-gates.md)
 - [`package-lock.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/accessibility-security-hardening/package-lock.json)
 - [`package.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/accessibility-security-hardening/package.json)
