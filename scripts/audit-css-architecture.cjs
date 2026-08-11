@@ -2,9 +2,26 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
+/*
+ * CSS architecture audit.
+ *
+ * `src/styles/style.css` is the canonical global production stylesheet. It was
+ * moved from repository root during the source-layout cleanup, so its existing
+ * global selectors and compatibility `!important` declarations are intentionally
+ * outside the modular-CSS restrictions applied to the other files in this folder.
+ *
+ * Connected files:
+ * - src/styles/style.css: global production stylesheet source.
+ * - src/styles/inner-page-system.css: historical compatibility stylesheet.
+ * - scripts/repository/source-layout.cjs: materializes style.css at root for the
+ *   mature build pipeline.
+ * - package.json: runs this audit through npm run audit:css-architecture.
+ */
+
 const root = path.resolve(__dirname, '..');
 const dir = path.join(root, 'src', 'styles');
 const compatibilityName = 'inner-page-system.css';
+const globalStylesheetName = 'style.css';
 const files = fs.readdirSync(dir).filter((name) => name.endsWith('.css'));
 const issues = [];
 
@@ -28,16 +45,20 @@ for (const name of files) {
     : fs.readFileSync(filePath, 'utf8');
   const declarations = withoutComments(css);
   const importantCount = (declarations.match(/!\s*important\b/gi) || []).length;
+  const isGlobalStylesheet = name === globalStylesheetName;
 
-  if (importantCount) issues.push(`${name}: ${importantCount} importance declaration(s) are forbidden`);
+  if (!isGlobalStylesheet && importantCount) {
+    issues.push(`${name}: ${importantCount} importance declaration(s) are forbidden`);
+  }
   if (/@import\s+(?:url\()?['"]?https?:/i.test(declarations)) issues.push(`${name}: remote CSS imports are forbidden`);
   if (/url\(['"]?data:/i.test(declarations)) issues.push(`${name}: inline data URLs are forbidden`);
 
-  if (name !== compatibilityName && /(^|[}\n])\s*(?:html|body|\*)\s*(?:[,>{.:#\[])/m.test(declarations)) {
+  if (!isGlobalStylesheet && name !== compatibilityName && /(^|[}\n])\s*(?:html|body|\*)\s*(?:[,>{.:#\[])/m.test(declarations)) {
     issues.push(`${name}: global document selectors are forbidden in modular CSS`);
   }
 }
 
+if (!files.includes(globalStylesheetName)) issues.push(`${globalStylesheetName}: canonical global stylesheet is missing`);
 if (!files.includes(compatibilityName)) issues.push(`${compatibilityName}: compatibility stylesheet is missing`);
 if (!files.length) issues.push('No CSS source files found');
 
@@ -46,4 +67,4 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log(`[css-architecture] ${files.length} source stylesheet(s) passed with zero importance declarations.`);
+console.log(`[css-architecture] ${files.length} source stylesheet(s) passed; modular styles contain no importance declarations or global document selectors.`);
