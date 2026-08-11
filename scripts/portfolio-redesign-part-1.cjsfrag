@@ -1,20 +1,44 @@
+/**
+ * @fileoverview scripts/portfolio-redesign-part-1.cjsfrag
+ * Purpose: Start the production portfolio-redesign transform by loading its style/runtime dependencies and defining shared shell, project-row, hero, and homepage markup helpers.
+ * Responsibilities:
+ * - Resolve the canonical portfolio style fragments and browser runtime used by the production redesign.
+ * - Define shared navigation, footer, image, project-row, and page-shell helpers consumed by later redesign fragments.
+ * - Begin the homepage renderer that is completed by `portfolio-redesign-part-2.cjsfrag` after the fragments are concatenated.
+ * Execution context: Code fragment concatenated and executed by `scripts/portfolio-redesign.cjs`; it is not a standalone Node.js module.
+ * Connected files:
+ * - scripts/portfolio-redesign.cjs
+ * - scripts/portfolio-redesign-part-2.cjsfrag
+ * - src/styles/fragments/portfolio/portfolio-foundation.cssfrag
+ * - src/styles/fragments/portfolio/portfolio-components.cssfrag
+ * - src/styles/fragments/portfolio/portfolio-finishing.cssfrag
+ * - src/scripts/features/portfolio/portfolio-runtime.js
+ * Maintenance: This fragment deliberately ends inside `homeMain`; part 2 begins by closing that function. Keep the cross-fragment boundary intact when editing.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const styleSources = [
-  path.join(root, 'src', 'styles', 'fragments', 'agent', 'portfolio-foundation.cssfrag'),
-  path.join(root, 'src', 'styles', 'fragments', 'agent', 'portfolio-components.cssfrag'),
-  path.join(root, 'src', 'styles', 'fragments', 'agent', 'portfolio-finishing.cssfrag'),
+  path.join(root, 'src', 'styles', 'fragments', 'portfolio', 'portfolio-foundation.cssfrag'),
+  path.join(root, 'src', 'styles', 'fragments', 'portfolio', 'portfolio-components.cssfrag'),
+  path.join(root, 'src', 'styles', 'fragments', 'portfolio', 'portfolio-finishing.cssfrag'),
 ];
-const runtimeSource = path.join(root, 'src', 'scripts', 'features', 'portfolio', 'agent-portfolio.js');
-if (!fs.existsSync(dist)) throw new Error('[agent-redesign] dist is missing');
-if (styleSources.some((file) => !fs.existsSync(file))) throw new Error('[agent-redesign] CSS fragments are missing');
-if (!fs.existsSync(runtimeSource)) throw new Error('[agent-redesign] runtime is missing');
+const runtimeSource = path.join(root, 'src', 'scripts', 'features', 'portfolio', 'portfolio-runtime.js');
+if (!fs.existsSync(dist)) throw new Error('[portfolio-redesign] dist is missing');
+if (styleSources.some(/** Callback contract: Check whether one required redesign style source is missing. Inputs: `file`. Side effects: Reads filesystem state. Returns: `true` when the file is absent. */ (file) => !fs.existsSync(file))) throw new Error('[portfolio-redesign] CSS fragments are missing');
+if (!fs.existsSync(runtimeSource)) throw new Error('[portfolio-redesign] runtime is missing');
 
 const assetNames = fs.existsSync(path.join(dist, 'assets')) ? fs.readdirSync(path.join(dist, 'assets')) : [];
+/**
+ * Function contract: asset
+ * Purpose: Resolve a hashed production asset by filename prefix, falling back to a stable authored image when no match exists.
+ * Inputs: `prefix` - expected production filename prefix; `fallback` - public fallback URL.
+ * Side effects: None beyond reading the already-captured `assetNames` list.
+ * Returns: Public URL for the matching production asset or fallback.
+ */
 const asset = (prefix, fallback = '/assets/images/portrait.png') => {
-  const found = assetNames.find((name) => name.startsWith(prefix));
+  const found = assetNames.find(/** Callback contract: Find the first production asset whose filename begins with the requested prefix. Inputs: `name`. Side effects: None. Returns: Boolean prefix match. */ (name) => name.startsWith(prefix));
   return found ? `/assets/${found}` : fallback;
 };
 const images = {
@@ -24,12 +48,27 @@ const images = {
   splashnode: asset('project-splashnode-cover-'), morajaa: asset('project-morajaa-cover-'),
 };
 const navItems = [['home','/','Home'],['work','/projects','Work'],['services','/services','Services'],['about','/about','About'],['writing','/blog/','Writing'],['contact','/contact','Contact']];
+/**
+ * Function contract: activeKey
+ * Purpose: Map a generated HTML route to the navigation section that should be marked active.
+ * Inputs: `rel` - generated route filename/path.
+ * Side effects: None.
+ * Returns: Navigation key or an empty string when no primary section applies.
+ */
 const activeKey = (rel) => /^(index|home|home-v2)\.html$/.test(rel) ? 'home' : rel === 'projects.html' || rel.startsWith('project-') ? 'work' : rel === 'services.html' || /(ux-designer|ux-audit|design-systems|website-ux-design|product-design-nepal)\.html$/.test(rel) ? 'services' : rel === 'about.html' ? 'about' : rel === 'contact.html' ? 'contact' : rel === 'blog.html' || rel.startsWith('blog/') ? 'writing' : '';
+/**
+ * Function contract: shell
+ * Purpose: Render the shared skip link, mobile navigation, desktop navigation, theme control, and progress indicator for a generated page.
+ * Inputs: `active` - navigation key for the current route.
+ * Side effects: None.
+ * Returns: Shared site-shell HTML string.
+ */
 const shell = (active) => {
-  const desktop = navItems.map(([key, href, label]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
-  const mobile = navItems.map(([key, href, label]) => `<a href="${href}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
+  const desktop = navItems.map(/** Callback contract: Render one desktop navigation link and its active state. Inputs: `[key, href, label]`. Side effects: None. Returns: Anchor HTML. */ ([key, href, label]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
+  const mobile = navItems.map(/** Callback contract: Render one mobile navigation link and its current-page state. Inputs: `[key, href, label]`. Side effects: None. Returns: Anchor HTML. */ ([key, href, label]) => `<a href="${href}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
   return `<a class="skip-link" href="#main-content">Skip to main content</a><button class="mobile-nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><div class="mobile-nav-overlay" id="mobile-nav-overlay" data-open="false"><nav class="mobile-nav-links" aria-label="Mobile navigation">${mobile}</nav></div><nav class="nav-wrapper" aria-label="Primary navigation"><a class="agent-brand" href="/" aria-label="Nischhal Raj Subba, home"><strong>Nischhal Raj Subba</strong><span>Product designer · Kathmandu</span></a><div class="nav-pill"><div class="nav-glider"></div>${desktop}</div><button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Switch color theme"></button></nav><div id="agent-progress" aria-hidden="true"></div>`;
 };
+/** Function contract: footer. Purpose: Render the shared portfolio footer with contact, profile, resume, location, and availability links. Inputs: None. Side effects: None. Returns: Footer HTML string. */
 const footer = () => `<footer class="site-footer"><div class="agent-footer-grid"><p class="agent-footer-cta"><a href="/contact">Have a difficult product problem?</a></p><div class="agent-footer-links" aria-label="Footer links"><a href="mailto:hinischalsubba@gmail.com">Email</a><a href="https://www.linkedin.com/in/nischhal/" rel="me">LinkedIn</a><a href="https://github.com/Nischhalsubba" rel="me">GitHub</a><a href="/assets/resume.pdf" data-resume-download>Resume</a></div><div class="agent-footer-bottom"><span>© 2026 Nischhal Raj Subba</span><span>Kathmandu · UTC+5:45 · Available for selected product work</span></div></div></footer>`;
 
 const featured = [
@@ -38,9 +77,19 @@ const featured = [
  ['03','/project-pihub','piHub',['Fintech','App experience','2024'],'Structuring investor, application, credit, verification, and profile flows around clearer decisions.',images.pihub],
  ['04','/project-hamro-idea','Hamro Idea',['Software studio','Design + development','2025'],'Repositioning a Nepal software studio through stronger service clarity and cleaner conversion paths.',images.hamro],
 ];
-const row = ([index,href,title,meta,summary,image]) => `<a class="agent-project-row" href="${href}" data-agent-reveal><span class="agent-project-index">${index}</span><div class="agent-project-copy"><h3>${title}</h3><p>${summary}</p></div><div class="agent-project-meta">${meta.map((item) => `<span>${item}</span>`).join('')}</div><figure class="agent-project-media"><img src="${image}" alt="${title} project interface" loading="lazy" decoding="async"></figure><span class="agent-project-arrow" aria-hidden="true">↗</span></a>`;
+/** Function contract: row. Purpose: Render one project record as the shared project-list row. Inputs: Project tuple containing index, href, title, metadata, summary, and image. Side effects: None. Returns: Project-link HTML. */
+const row = ([index,href,title,meta,summary,image]) => `<a class="agent-project-row" href="${href}" data-agent-reveal><span class="agent-project-index">${index}</span><div class="agent-project-copy"><h3>${title}</h3><p>${summary}</p></div><div class="agent-project-meta">${meta.map(/** Callback contract: Render one project metadata value. Inputs: `item`. Side effects: None. Returns: Span HTML. */ (item) => `<span>${item}</span>`).join('')}</div><figure class="agent-project-media"><img src="${image}" alt="${title} project interface" loading="lazy" decoding="async"></figure><span class="agent-project-arrow" aria-hidden="true">↗</span></a>`;
+/** Function contract: hero. Purpose: Render a standard interior-page hero from kicker, title, and introductory copy. Inputs: `kicker`, `title`, `intro`. Side effects: None. Returns: Header HTML. */
 const hero = (kicker, title, intro) => `<header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">${kicker}</span><h1>${title}</h1></div><p class="agent-page-intro">${intro}</p></div></header>`;
+/** Function contract: main. Purpose: Wrap generated page content in the canonical main landmark used by the redesign. Inputs: `body` - generated page sections. Side effects: None. Returns: Main-landmark HTML. */
 const main = (body) => `<main id="main-content" class="agent-main">${body}</main>`;
 
+/**
+ * Function contract: homeMain
+ * Purpose: Begin rendering the redesigned homepage body, including the hero, selected work, capabilities, proof, manifesto, and contact sections.
+ * Inputs: None.
+ * Side effects: None.
+ * Returns: Homepage `<main>` HTML after the function is completed at the start of part 2.
+ */
 function homeMain() {
-  return main(`<section class="agent-hero"><div class="agent-frame agent-hero-grid"><div class="agent-hero-copy"><span class="agent-kicker" data-agent-reveal>Product designer · UX systems · interface craft</span><h1 class="agent-display agent-hero-title" data-agent-reveal>I make complex products feel <span class="agent-serif">obvious.</span></h1><div class="agent-hero-support" data-agent-reveal><p class="agent-lead">I design product flows, interfaces, systems, and implementation-ready handoff for Web3, SaaS, fintech, and software teams that have more complexity than their users should ever need to see.</p><div class="agent-actions"><a class="agent-btn agent-btn--primary" href="#selected-work">See the work</a><a class="agent-btn" href="/contact">Start a project</a></div></div></div><aside class="agent-hero-side" aria-label="Design approach visualization" data-agent-reveal><div class="agent-system-figure"><canvas class="agent-three-canvas" aria-hidden="true"></canvas><p class="agent-system-label">A live system study: scattered complexity resolves toward structure as you move through the page.</p></div><div class="agent-hero-foot"><span>Kathmandu, Nepal</span><span>6+ years</span><span>Design ↔ code</span></div></aside></div></section><section class="agent-section" id="selected-work" aria-labelledby="selected-work-heading"><div class="agent-frame"><header class="agent-section-head" data-agent-reveal><span class="agent-kicker">Selected work</span><h2 class="agent-section-title" id="selected-work-heading">Evidence before adjectives.</h2></header><div class="agent-project-list">${featured.map(row).join('')}</div><div class="agent-actions agent-actions--section-end" data-agent-reveal><a class="agent-btn" href="/projects">View the complete project index</a></div></div></section><section class="agent-section agent-section--inverse" aria-labelledby="capabilities-heading"><div class="agent-frame"><header class="agent-section-head" data-agent-reveal><span class="agent-kicker">What I actually do</span><h2 class="agent-section-title" id="capabilities-heading">From ambiguity to a buildable system.</h2></header><div class="agent-capabilities">${[['01 · Product UX','Flows before screens.','Map states, decisions, constraints, and edge cases before visual polish hides the structural problem.'],['02 · Interface','Clarity with character.','Build readable hierarchy, responsive behavior, complete interaction states, and product-specific visual character.'],['03 · Systems','Consistency that survives.','Create reusable tokens, components, patterns, and documentation that can absorb real product change.'],['04 · Handoff','Designed to be built.','Work close to implementation and use front-end code when it meaningfully removes ambiguity.']].map(([n,h,p]) => `<article class="agent-capability" data-agent-reveal><span class="agent-meta">${n}</span><div><h3>${h}</h3><p>${p}</p></div></article>`).join('')}</div></div></section><section class="agent-section"><div class="agent-frame"><div class="agent-proof-grid"><h2 class="agent-proof-big" data-agent-reveal>Design that respects the <span class="agent-serif">messy middle.</span></h2><div class="agent-proof-copy" data-agent-reveal><span class="agent-kicker">Working style</span><p>I’m most useful when the brief is incomplete, the product has too many states, engineering constraints are real, and someone needs to turn all of that into a coherent interface.</p><a class="agent-btn" href="/about">How I work</a></div></div><div class="agent-proof-stats"><div class="agent-stat" data-agent-reveal><strong>6+</strong><span>Years across product, website, agency, and front-end collaboration</span></div><div class="agent-stat" data-agent-reveal><strong>4</strong><span>Product UX, interface craft, systems, implementation handoff</span></div><div class="agent-stat" data-agent-reveal><strong>NP</strong><span>Kathmandu, working with remote product teams</span></div></div></div></section><section class="agent-section agent-section--compact"><div class="agent-frame agent-manifesto"><blockquote data-agent-reveal>“Good product design hides the complexity without hiding the truth.”</blockquote><aside data-agent-reveal><p>I care about honest states, readable hierarchy, useful motion, and handoff that does not require engineering to reverse-engineer intent.</p></aside></div></section><section class="agent-section"><div class="agent-frame agent-contact-strip"><h2 data-agent-reveal>Bring me the complicated part.</h2><div class="agent-actions" data-agent-reveal><a class="agent-btn agent-btn--primary" href="/contact">Discuss a project</a><a class="agent-btn" href="mailto:hinischalsubba@gmail.com">Email directly</a></div></div></section>`);
+  return main(`<section class="agent-hero"><div class="agent-frame agent-hero-grid"><div class="agent-hero-copy"><span class="agent-kicker" data-agent-reveal>Product designer · UX systems · interface craft</span><h1 class="agent-display agent-hero-title" data-agent-reveal>I make complex products feel <span class="agent-serif">obvious.</span></h1><div class="agent-hero-support" data-agent-reveal><p class="agent-lead">I design product flows, interfaces, systems, and implementation-ready handoff for Web3, SaaS, fintech, and software teams that have more complexity than their users should ever need to see.</p><div class="agent-actions"><a class="agent-btn agent-btn--primary" href="#selected-work">See the work</a><a class="agent-btn" href="/contact">Start a project</a></div></div></div><aside class="agent-hero-side" aria-label="Design approach visualization" data-agent-reveal><div class="agent-system-figure"><canvas class="agent-three-canvas" aria-hidden="true"></canvas><p class="agent-system-label">A live system study: scattered complexity resolves toward structure as you move through the page.</p></div><div class="agent-hero-foot"><span>Kathmandu, Nepal</span><span>6+ years</span><span>Design ↔ code</span></div></aside></div></section><section class="agent-section" id="selected-work" aria-labelledby="selected-work-heading"><div class="agent-frame"><header class="agent-section-head" data-agent-reveal><span class="agent-kicker">Selected work</span><h2 class="agent-section-title" id="selected-work-heading">Evidence before adjectives.</h2></header><div class="agent-project-list">${featured.map(row).join('')}</div><div class="agent-actions agent-actions--section-end" data-agent-reveal><a class="agent-btn" href="/projects">View the complete project index</a></div></div></section><section class="agent-section agent-section--inverse" aria-labelledby="capabilities-heading"><div class="agent-frame"><header class="agent-section-head" data-agent-reveal><span class="agent-kicker">What I actually do</span><h2 class="agent-section-title" id="capabilities-heading">From ambiguity to a buildable system.</h2></header><div class="agent-capabilities">${[['01 · Product UX','Flows before screens.','Map states, decisions, constraints, and edge cases before visual polish hides the structural problem.'],['02 · Interface','Clarity with character.','Build readable hierarchy, responsive behavior, complete interaction states, and product-specific visual character.'],['03 · Systems','Consistency that survives.','Create reusable tokens, components, patterns, and documentation that can absorb real product change.'],['04 · Handoff','Designed to be built.','Work close to implementation and use front-end code when it meaningfully removes ambiguity.']].map(/** Callback contract: Render one homepage capability card from its metadata, heading, and explanation. Inputs: `[n, h, p]`. Side effects: None. Returns: Article HTML. */ ([n,h,p]) => `<article class="agent-capability" data-agent-reveal><span class="agent-meta">${n}</span><div><h3>${h}</h3><p>${p}</p></div></article>`).join('')}</div></div></section><section class="agent-section"><div class="agent-frame"><div class="agent-proof-grid"><h2 class="agent-proof-big" data-agent-reveal>Design that respects the <span class="agent-serif">messy middle.</span></h2><div class="agent-proof-copy" data-agent-reveal><span class="agent-kicker">Working style</span><p>I’m most useful when the brief is incomplete, the product has too many states, engineering constraints are real, and someone needs to turn all of that into a coherent interface.</p><a class="agent-btn" href="/about">How I work</a></div></div><div class="agent-proof-stats"><div class="agent-stat" data-agent-reveal><strong>6+</strong><span>Years across product, website, agency, and front-end collaboration</span></div><div class="agent-stat" data-agent-reveal><strong>4</strong><span>Product UX, interface craft, systems, implementation handoff</span></div><div class="agent-stat" data-agent-reveal><strong>NP</strong><span>Kathmandu, working with remote product teams</span></div></div></div></section><section class="agent-section agent-section--compact"><div class="agent-frame agent-manifesto"><blockquote data-agent-reveal>“Good product design hides the complexity without hiding the truth.”</blockquote><aside data-agent-reveal><p>I care about honest states, readable hierarchy, useful motion, and handoff that does not require engineering to reverse-engineer intent.</p></aside></div></section><section class="agent-section"><div class="agent-frame agent-contact-strip"><h2 data-agent-reveal>Bring me the complicated part.</h2><div class="agent-actions" data-agent-reveal><a class="agent-btn agent-btn--primary" href="/contact">Discuss a project</a><a class="agent-btn" href="mailto:hinischhalsubba@gmail.com">Email directly</a></div></div></section>`);

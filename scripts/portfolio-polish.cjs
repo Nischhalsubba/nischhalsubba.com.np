@@ -8,12 +8,12 @@
  * Execution context: Node.js production-build stage invoked indirectly by `scripts/writing-redesign.cjs`.
  * Connected files:
  * - scripts/writing-redesign.cjs
- * - src/styles/fragments/agent/polish.cssfrag
- * - src/styles/fragments/agent/responsive-hardening.cssfrag
- * - src/styles/fragments/agent/sticky-cascade-lock.cssfrag
+ * - src/styles/fragments/portfolio/polish.cssfrag
+ * - src/styles/fragments/portfolio/responsive-hardening.cssfrag
+ * - src/styles/fragments/portfolio/sticky-cascade-lock.cssfrag
  * - dist/about.html
  * - dist/style.css
- * Maintenance: The current style-fragment paths and `.agent-*` selectors are historical compatibility contracts. Migrate them only as a coordinated path/selector change across generators, runtime code, styles, and browser audits.
+ * Maintenance: The current `.agent-*` selectors are shared DOM compatibility contracts. Migrate them only as one coordinated markup, runtime, style, and browser-audit change.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -21,9 +21,9 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const styleSources = [
-  path.join(root, 'src', 'styles', 'fragments', 'agent', 'polish.cssfrag'),
-  path.join(root, 'src', 'styles', 'fragments', 'agent', 'responsive-hardening.cssfrag'),
-  path.join(root, 'src', 'styles', 'fragments', 'agent', 'sticky-cascade-lock.cssfrag'),
+  path.join(root, 'src', 'styles', 'fragments', 'portfolio', 'polish.cssfrag'),
+  path.join(root, 'src', 'styles', 'fragments', 'portfolio', 'responsive-hardening.cssfrag'),
+  path.join(root, 'src', 'styles', 'fragments', 'portfolio', 'sticky-cascade-lock.cssfrag'),
 ];
 const distStyle = path.join(dist, 'style.css');
 const aboutPath = path.join(dist, 'about.html');
