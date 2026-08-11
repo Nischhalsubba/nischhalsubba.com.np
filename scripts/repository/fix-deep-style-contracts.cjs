@@ -3,12 +3,12 @@ const path = require('node:path');
 
 /**
  * @fileoverview Temporary migration helper for path-sensitive stylesheet/runtime consumers.
- * Purpose: Update build scripts that construct source paths from `path.join(...)` segments, which cannot be safely rewritten by literal path replacement alone.
+ * Purpose: Update build scripts that construct source paths from path segments, which literal move rewriting cannot reliably detect.
  * Responsibilities:
  * - Point agent redesign and polish stages at responsibility-named CSS fragments.
  * - Point agent redesign runtime reads at the organized portfolio feature domain.
  * - Point the single-stylesheet compiler at `src/styles/systems/`.
- * - Make CSS architecture validation recursive so nested systems/fragments remain governed.
+ * - Make CSS architecture validation recursive so nested systems remain governed.
  * - Update lint's combined portfolio-fragment structural check for responsibility names.
  * Execution context: Node.js inside the one-shot deep-organization GitHub Actions workflow before source files move.
  * Connected files:
@@ -43,7 +43,7 @@ function replaceRequired(file, before, after, label) {
 
 /**
  * Function contract: patchAgentRedesignWrapper
- * Purpose: Updates direct runtime and compatibility-style paths used after the generated redesign source executes.
+ * Purpose: Updates direct runtime and compatibility-style paths used after the evaluated redesign source executes.
  * Inputs: none; targets the known agent-redesign wrapper.
  * Side effects: rewrites two path declarations in `scripts/agent-redesign.cjs`.
  * Returns: no explicit value.
@@ -66,7 +66,7 @@ function patchAgentRedesignWrapper() {
 /**
  * Function contract: patchAgentRedesignSourceFragment
  * Purpose: Replaces sequence-generated fragment/runtime paths inside the evaluated redesign source with explicit responsibility-based paths.
- * Inputs: none; targets part 1 of the generated/evaluated redesign source.
+ * Inputs: none; targets part 1 of the evaluated redesign source.
  * Side effects: rewrites CSS source and runtime-source declarations in `scripts/agent-redesign-part-1.cjsfrag`.
  * Returns: no explicit value.
  */
@@ -88,15 +88,15 @@ function patchAgentRedesignSourceFragment() {
 /**
  * Function contract: patchAgentPolish
  * Purpose: Points the agent polish stage at the renamed responsibility-based fragment files.
- * Inputs: none; targets the known `styleSources` block.
+ * Inputs: none; targets the known styleSources block.
  * Side effects: rewrites `scripts/agent-polish.cjs`.
  * Returns: no explicit value.
  */
 function patchAgentPolish() {
   replaceRequired(
     'scripts/agent-polish.cjs',
-    `const styleSources = [\n  path.join(root, 'src', 'styles', 'agent-polish.cssfrag'),\n  path.join(root, 'src', 'styles', 'agent-responsive-hardening.cssfrag'),\n  path.join(root, 'src', 'styles', 'agent-sticky-cascade-lock.cssfrag'),\n];`,
-    `const styleSources = [\n  path.join(root, 'src', 'styles', 'fragments', 'agent', 'polish.cssfrag'),\n  path.join(root, 'src', 'styles', 'fragments', 'agent', 'responsive-hardening.cssfrag'),\n  path.join(root, 'src', 'styles', 'fragments', 'agent', 'sticky-cascade-lock.cssfrag'),\n];`,
+    "const styleSources = [\n  path.join(root, 'src', 'styles', 'agent-polish.cssfrag'),\n  path.join(root, 'src', 'styles', 'agent-responsive-hardening.cssfrag'),\n  path.join(root, 'src', 'styles', 'agent-sticky-cascade-lock.cssfrag'),\n];",
+    "const styleSources = [\n  path.join(root, 'src', 'styles', 'fragments', 'agent', 'polish.cssfrag'),\n  path.join(root, 'src', 'styles', 'fragments', 'agent', 'responsive-hardening.cssfrag'),\n  path.join(root, 'src', 'styles', 'fragments', 'agent', 'sticky-cascade-lock.cssfrag'),\n];",
     'agent polish fragment paths',
   );
 }
@@ -111,8 +111,8 @@ function patchAgentPolish() {
 function patchStylesheetCompiler() {
   replaceRequired(
     'scripts/compile-single-stylesheet.cjs',
-    `const fragmentFiles = [\n  path.join(root, 'src', 'styles', 'inner-page-system.css'),\n  path.join(root, 'src', 'styles', 'case-study-system.css'),\n];`,
-    `const fragmentFiles = [\n  path.join(root, 'src', 'styles', 'systems', 'inner-pages.css'),\n  path.join(root, 'src', 'styles', 'systems', 'case-study.css'),\n];`,
+    "const fragmentFiles = [\n  path.join(root, 'src', 'styles', 'inner-page-system.css'),\n  path.join(root, 'src', 'styles', 'case-study-system.css'),\n];",
+    "const fragmentFiles = [\n  path.join(root, 'src', 'styles', 'systems', 'inner-pages.css'),\n  path.join(root, 'src', 'styles', 'systems', 'case-study.css'),\n];",
     'single stylesheet system paths',
   );
 }
@@ -129,15 +129,102 @@ function patchCssArchitectureAudit() {
   const absolute = path.join(ROOT, file);
   let source = fs.readFileSync(absolute, 'utf8');
   const start = source.indexOf("const root = path.resolve(__dirname, '..');");
-  const end = source.indexOf("if (issues.length) {");
+  const end = source.indexOf('if (issues.length) {');
   if (start < 0 || end < 0 || end <= start) {
     throw new Error('[deep-organize] CSS architecture audit: could not locate replaceable implementation block');
   }
 
-  const replacement = `const root = path.resolve(__dirname, '..');\nconst dir = path.join(root, 'src', 'styles');\nconst compatibilityRelativePath = 'systems/inner-pages.css';\nconst globalStylesheetRelativePath = 'style.css';\nconst issues = [];\n\n/**\n * Function contract: walkCssFiles\n * Purpose: Recursively discovers authored CSS files under the organized style source tree.\n * Inputs: directory path and mutable output collection.\n * Side effects: reads directory metadata; appends discovered CSS paths to the provided collection.\n * Returns: the output collection containing absolute CSS file paths.\n */\nfunction walkCssFiles(directory, output = []) {\n  if (!fs.existsSync(directory)) return output;\n  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {\n    const full = path.join(directory, entry.name);\n    if (entry.isDirectory()) walkCssFiles(full, output);\n    else if (entry.isFile() && entry.name.endsWith('.css')) output.push(full);\n  }\n  return output;\n}\n\n/**\n * Function contract: relativeStylePath\n * Purpose: Normalizes an absolute style path into a stable repository-style relative path for policy comparisons and diagnostics.\n * Inputs: absolute CSS file path.\n * Side effects: no external side effects.\n * Returns: forward-slash path relative to src/styles.\n */\nfunction relativeStylePath(file) {\n  return path.relative(dir, file).split(path.sep).join('/');\n}\n\n/**\n * Function contract: readCommitted\n * Purpose: Reads the committed version of compatibility CSS when available so generated working-tree mutations do not distort architecture checks.\n * Inputs: repository-relative path and fallback absolute path.\n * Side effects: executes git show; may read the fallback file from disk.\n * Returns: committed/fallback CSS text.\n */\nfunction readCommitted(relativePath, fallbackPath) {\n  const result = spawnSync('git', ['show', \\`HEAD:\\${relativePath}\\`], {\n    cwd: root,\n    encoding: 'utf8',\n  });\n  if (result.status === 0 && result.stdout) return result.stdout;\n  return fs.readFileSync(fallbackPath, 'utf8');\n}\n\n/**\n * Function contract: withoutComments\n * Purpose: Removes CSS block comments before selector/declaration policy checks.\n * Inputs: complete CSS source text.\n * Side effects: no external side effects.\n * Returns: CSS text without block comments.\n */\nfunction withoutComments(css) {\n  return css.replace(/\\/\\*[\\s\\S]*?\\*\\//g, '');\n}\n\nconst files = walkCssFiles(dir).sort();\nfor (const filePath of files) {\n  const relativePath = relativeStylePath(filePath);\n  const css = relativePath === compatibilityRelativePath\n    ? readCommitted(\\`src/styles/\\${relativePath}\\`, filePath)\n    : fs.readFileSync(filePath, 'utf8');\n  const declarations = withoutComments(css);\n  const importantCount = (declarations.match(/!\\s*important\\b/gi) || []).length;\n  const isGlobalStylesheet = relativePath === globalStylesheetRelativePath;\n\n  if (!isGlobalStylesheet && importantCount) {\n    issues.push(\\`\\${relativePath}: \\${importantCount} importance declaration(s) are forbidden\\`);\n  }\n  if (/@import\\s+(?:url\\()?['\"]?https?:/i.test(declarations)) issues.push(\\`\\${relativePath}: remote CSS imports are forbidden\\`);\n  if (/url\\(['\"]?data:/i.test(declarations)) issues.push(\\`\\${relativePath}: inline data URLs are forbidden\\`);\n\n  if (!isGlobalStylesheet && relativePath !== compatibilityRelativePath && /(^|[}\\n])\\s*(?:html|body|\\*)\\s*(?:[,>{.:#\\[])/m.test(declarations)) {\n    issues.push(\\`\\${relativePath}: global document selectors are forbidden in modular CSS\\`);\n  }\n}\n\nconst relativeFiles = files.map(relativeStylePath);\nif (!relativeFiles.includes(globalStylesheetRelativePath)) issues.push(\\`\\${globalStylesheetRelativePath}: canonical global stylesheet is missing\\`);\nif (!relativeFiles.includes(compatibilityRelativePath)) issues.push(\\`\\${compatibilityRelativePath}: compatibility stylesheet is missing\\`);\nif (!files.length) issues.push('No CSS source files found');\n\n`;
+  const replacement = `const root = path.resolve(__dirname, '..');
+const dir = path.join(root, 'src', 'styles');
+const compatibilityRelativePath = 'systems/inner-pages.css';
+const globalStylesheetRelativePath = 'style.css';
+const issues = [];
 
-  source = `${source.slice(0, start)}${replacement}${source.slice(end)}`;
-  source = source.replace('`${files.length} source stylesheet(s) passed;', '`${files.length} recursively discovered source stylesheet(s) passed;');
+/**
+ * Function contract: walkCssFiles
+ * Purpose: Recursively discovers authored CSS files under the organized style source tree.
+ * Inputs: directory path and mutable output collection.
+ * Side effects: reads directory metadata; appends discovered CSS paths to the provided collection.
+ * Returns: the output collection containing absolute CSS file paths.
+ */
+function walkCssFiles(directory, output = []) {
+  if (!fs.existsSync(directory)) return output;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const full = path.join(directory, entry.name);
+    if (entry.isDirectory()) walkCssFiles(full, output);
+    else if (entry.isFile() && entry.name.endsWith('.css')) output.push(full);
+  }
+  return output;
+}
+
+/**
+ * Function contract: relativeStylePath
+ * Purpose: Normalizes an absolute style path into a stable repository-style relative path for policy comparisons and diagnostics.
+ * Inputs: absolute CSS file path.
+ * Side effects: no external side effects.
+ * Returns: forward-slash path relative to src/styles.
+ */
+function relativeStylePath(file) {
+  return path.relative(dir, file).split(path.sep).join('/');
+}
+
+/**
+ * Function contract: readCommitted
+ * Purpose: Reads committed compatibility CSS when available so generated working-tree mutations do not distort architecture checks.
+ * Inputs: repository-relative path and fallback absolute path.
+ * Side effects: executes git show; may read the fallback file from disk.
+ * Returns: committed/fallback CSS text.
+ */
+function readCommitted(relativePath, fallbackPath) {
+  const result = spawnSync('git', ['show', 'HEAD:' + relativePath], {
+    cwd: root,
+    encoding: 'utf8',
+  });
+  if (result.status === 0 && result.stdout) return result.stdout;
+  return fs.readFileSync(fallbackPath, 'utf8');
+}
+
+/**
+ * Function contract: withoutComments
+ * Purpose: Removes CSS block comments before selector/declaration policy checks.
+ * Inputs: complete CSS source text.
+ * Side effects: no external side effects.
+ * Returns: CSS text without block comments.
+ */
+function withoutComments(css) {
+  return css.replace(/\/\*[\s\S]*?\*\//g, '');
+}
+
+const files = walkCssFiles(dir).sort();
+for (const filePath of files) {
+  const relativePath = relativeStylePath(filePath);
+  const css = relativePath === compatibilityRelativePath
+    ? readCommitted('src/styles/' + relativePath, filePath)
+    : fs.readFileSync(filePath, 'utf8');
+  const declarations = withoutComments(css);
+  const importantCount = (declarations.match(/!\s*important\b/gi) || []).length;
+  const isGlobalStylesheet = relativePath === globalStylesheetRelativePath;
+
+  if (!isGlobalStylesheet && importantCount) {
+    issues.push(relativePath + ': ' + importantCount + ' importance declaration(s) are forbidden');
+  }
+  if (/@import\s+(?:url\()?['"]?https?:/i.test(declarations)) issues.push(relativePath + ': remote CSS imports are forbidden');
+  if (/url\(['"]?data:/i.test(declarations)) issues.push(relativePath + ': inline data URLs are forbidden');
+
+  if (!isGlobalStylesheet && relativePath !== compatibilityRelativePath && /(^|[}\n])\s*(?:html|body|\*)\s*(?:[,>{.:#\[])/m.test(declarations)) {
+    issues.push(relativePath + ': global document selectors are forbidden in modular CSS');
+  }
+}
+
+const relativeFiles = files.map(relativeStylePath);
+if (!relativeFiles.includes(globalStylesheetRelativePath)) issues.push(globalStylesheetRelativePath + ': canonical global stylesheet is missing');
+if (!relativeFiles.includes(compatibilityRelativePath)) issues.push(compatibilityRelativePath + ': compatibility stylesheet is missing');
+if (!files.length) issues.push('No CSS source files found');
+
+`;
+
+  source = source.slice(0, start) + replacement + source.slice(end);
+  source = source.replace('${files.length} source stylesheet(s) passed;', '${files.length} recursively discovered source stylesheet(s) passed;');
   fs.writeFileSync(absolute, source, 'utf8');
   console.log('[deep-organize] Patched recursive CSS architecture audit.');
 }
@@ -152,8 +239,8 @@ function patchCssArchitectureAudit() {
 function patchLintPortfolioFragments() {
   replaceRequired(
     'scripts/lint-project.cjs',
-    `const agentFragments = cssFiles\n  .filter((file) => /^agent-portfolio-\\d+\\.cssfrag$/i.test(path.basename(file)))\n  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));`,
-    `const portfolioFragmentOrder = [\n  'portfolio-foundation.cssfrag',\n  'portfolio-components.cssfrag',\n  'portfolio-finishing.cssfrag',\n];\nconst agentFragments = portfolioFragmentOrder\n  .map((name) => cssFiles.find((file) => path.basename(file) === name))\n  .filter(Boolean);`,
+    "const agentFragments = cssFiles\n  .filter((file) => /^agent-portfolio-\\d+\\.cssfrag$/i.test(path.basename(file)))\n  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));",
+    "const portfolioFragmentOrder = [\n  'portfolio-foundation.cssfrag',\n  'portfolio-components.cssfrag',\n  'portfolio-finishing.cssfrag',\n];\nconst agentFragments = portfolioFragmentOrder\n  .map((name) => cssFiles.find((file) => path.basename(file) === name))\n  .filter(Boolean);",
     'portfolio fragment lint ordering',
   );
 }
