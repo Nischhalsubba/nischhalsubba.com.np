@@ -10,7 +10,6 @@
   "allowedRootFiles": [
     ".editorconfig",
     ".gitignore",
-    "AGENTS.md",
     "README.md",
     "package-lock.json",
     "package.json",
@@ -24,6 +23,7 @@
   ],
   "requiredDocumentation": [
     "config/repository/code-documentation-policy.json",
+    "docs/deployment-safety.md",
     "docs/repository/file-catalog.md",
     "docs/repository/file-map.md",
     "scripts/repository/README.md",
