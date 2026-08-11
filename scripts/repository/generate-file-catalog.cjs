@@ -19,6 +19,10 @@ const { spawnSync } = require('node:child_process');
 
 const ROOT = path.resolve(__dirname, '../..');
 const OUTPUT = 'docs/repository/file-catalog.md';
+const TEMPORARY_HELPERS = new Set([
+  '.github/workflows/generate-file-catalog.yml',
+  '.github/workflows/generate-file-catalog-pr.yml',
+]);
 const MAX_SCAN_BYTES = 512 * 1024;
 const TEXT_EXTENSIONS = new Set([
   '.css', '.html', '.js', '.cjs', '.mjs', '.json', '.jsonc', '.md', '.ts', '.tsx',
@@ -144,7 +148,7 @@ function escapeCell(value) {
   return String(value).replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
 }
 
-const files = gitTrackedFiles().filter((file) => file !== OUTPUT);
+const files = gitTrackedFiles().filter((file) => file !== OUTPUT && !TEMPORARY_HELPERS.has(file));
 const basenameCounts = new Map();
 for (const file of files) {
   const base = path.posix.basename(file);
