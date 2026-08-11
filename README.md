@@ -36,6 +36,7 @@
 This branch differs from the default branch in the following detected paths:
 
 - [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-catalog-sync/.github/workflows/apply-interactive-readme.yml)
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-catalog-sync/README.md)
 - [`docs/repository/file-catalog.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-catalog-sync/docs/repository/file-catalog.md)
 
 ## Quick start
