@@ -1,0 +1,33 @@
+{
+  "description": "Repository-root policy. Keeps only ecosystem entry/configuration files at root and prevents production source files from drifting back out of organized folders.",
+  "connectedFiles": [
+    "scripts/repository/audit-repository-structure.cjs",
+    "scripts/repository/source-layout.cjs",
+    "docs/repository/file-map.md"
+  ],
+  "allowedRootFiles": [
+    ".editorconfig",
+    ".gitignore",
+    "AGENTS.md",
+    "README.md",
+    "package-lock.json",
+    "package.json",
+    "tsconfig.json",
+    "vercel.json",
+    "vite.config.ts",
+    "wrangler.jsonc"
+  ],
+  "forbiddenTrackedPrefixes": [
+    "wordpress/"
+  ],
+  "requiredDocumentation": [
+    "docs/repository/file-map.md",
+    "src/README.md",
+    "src/pages/README.md",
+    "src/runtime/README.md",
+    "src/styles/README.md",
+    "src/discovery/README.md",
+    "src/compat/README.md",
+    "scripts/repository/README.md"
+  ]
+}
