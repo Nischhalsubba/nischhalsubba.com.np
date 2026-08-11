@@ -1,48 +1,36 @@
 /**
  * @fileoverview scripts/repository/source-layout.cjs
- * Purpose: Define the canonical organized-source to historical-root compatibility mappings used by development and build tooling.
+ * Purpose: Define how organized source files are exposed at legacy root paths required by the development and build pipeline.
  * Responsibilities:
- * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
- * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
- * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * - Keep canonical authored source under `src/` while preserving established root-level build contracts.
+ * - Provide one shared mapping for materializing, synchronizing, and cleaning compatibility files.
+ * - Fail clearly when a required canonical source file is missing.
+ * Execution context: Node.js repository tooling used by development, generation, build, and cleanup commands.
  * Connected files:
- * - config/repository/root-policy.json
- * - scripts/repository/audit-repository-structure.cjs
+ * - config/canonical-routes.json
+ * - scripts/repository/materialize-root-sources.cjs
+ * - scripts/repository/sync-root-sources.cjs
  * - scripts/repository/clean-root-sources.cjs
- * - package.json
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * Maintenance: Add files here only when a root-level compatibility path is genuinely required by the current build or deployment contract.
  */
 const fs = require('node:fs');
 const path = require('node:path');
 
 /*
- * Repository source-layout contract.
- *
  * Canonical authored files live under src/. Historical build scripts still expect
  * selected HTML, CSS, runtime, and discovery files at repository root. This module
- * materializes those compatibility paths for dev/build and can sync intentional
- * source-generation changes back into the organized source tree.
- *
- * Connected files:
- * - config/canonical-routes.json: canonical route inventory.
- * - scripts/repository/materialize-root-sources.cjs: canonical -> compatibility.
- * - scripts/repository/sync-root-sources.cjs: compatibility -> canonical.
- * - scripts/repository/clean-root-sources.cjs: removes compatibility copies.
- * - scripts/build-dist.cjs and vite.config.ts: consume materialized root paths.
+ * materializes those compatibility paths for development/build and can sync
+ * intentional source-generation changes back into the organized source tree.
  */
 
 const ROOT = path.resolve(__dirname, '../..');
 const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'config', 'canonical-routes.json'), 'utf8'));
 
-const ROOT_PAGE_NAMES = manifest.html.filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => !file.includes('/'));
+const ROOT_PAGE_NAMES = manifest.html.filter( /** Callback contract: Keep only route files that belong at repository root. Inputs: `file` Side effects: None. Returns: `true` when the route filename has no directory component. */ (file) => !file.includes('/'));
 const LEGACY_COMPATIBILITY_NAMES = ['home.html', 'home-v2.html', 'blog.html'];
 const DISCOVERY_NAMES = [
   '_headers',
-  'ai-profile.json',
   'humans.txt',
-  'llms.txt',
-  'llms-full.txt',
   'robots.txt',
   'sitemap.xml',
   'site.webmanifest',
@@ -57,13 +45,12 @@ const SERVICE_PAGE_NAMES = new Set([
   'website-ux-design.html',
 ]);
 
-
 /**
  * Function contract: organizedPageSource
- * Purpose: Resolve a historical root-compatible HTML filename to its canonical core, project, or service source folder.
- * Inputs: `name`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Choose the canonical source folder for a root-compatible HTML page.
+ * Inputs: `name` - HTML filename from the canonical route manifest.
+ * Side effects: None.
+ * Returns: Relative path to the page under `src/pages/`.
  */
 function organizedPageSource(name) {
   if (name.startsWith('project-')) return path.join('src', 'pages', 'projects', name);
@@ -72,32 +59,30 @@ function organizedPageSource(name) {
 }
 
 const mappings = [
-  ...ROOT_PAGE_NAMES.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (name) => ({ source: organizedPageSource(name), target: name, sync: true })),
-  ...LEGACY_COMPATIBILITY_NAMES.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (name) => ({ source: path.join('src', 'compat', 'legacy-pages', name), target: name, sync: true })),
+  ...ROOT_PAGE_NAMES.map( /** Callback contract: Map each root page to the canonical source file that owns it. Inputs: `name` Side effects: None. Returns: A source/target mapping that may be synchronized back to canonical source. */ (name) => ({ source: organizedPageSource(name), target: name, sync: true })),
+  ...LEGACY_COMPATIBILITY_NAMES.map( /** Callback contract: Map each retained legacy route to its compatibility source. Inputs: `name` Side effects: None. Returns: A source/target mapping for the legacy page. */ (name) => ({ source: path.join('src', 'compat', 'legacy-pages', name), target: name, sync: true })),
   { source: path.join('src', 'styles', 'style.css'), target: 'style.css', sync: true },
   { source: path.join('src', 'runtime', 'script.js'), target: 'script.js', sync: false },
-  ...DISCOVERY_NAMES.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (name) => ({ source: path.join('src', 'discovery', name), target: name, sync: false })),
+  ...DISCOVERY_NAMES.map( /** Callback contract: Map each crawler or platform discovery file to its canonical source. Inputs: `name` Side effects: None. Returns: A source/target mapping that is materialized but not synchronized from root. */ (name) => ({ source: path.join('src', 'discovery', name), target: name, sync: false })),
 ];
-
 
 /**
  * Function contract: ensureParent
- * Purpose: Apply parent consistently while preserving the surrounding source layout repository tool contract.
- * Inputs: `file`
- * Side effects: writes filesystem state
- * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ * Purpose: Ensure the destination directory exists before writing a compatibility file.
+ * Inputs: `file` - Absolute destination path.
+ * Side effects: Creates missing directories on disk.
+ * Returns: Nothing.
  */
 function ensureParent(file) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
 }
 
-
 /**
  * Function contract: copyRequired
- * Purpose: Implement the copy required responsibility owned by the source layout repository tool.
- * Inputs: `source`, `target`
- * Side effects: writes filesystem state
- * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ * Purpose: Copy one required canonical source file to its compatibility path.
+ * Inputs: `source` - Absolute canonical source path; `target` - absolute compatibility destination.
+ * Side effects: Reads and writes filesystem state.
+ * Returns: Nothing.
  */
 function copyRequired(source, target) {
   if (!fs.existsSync(source)) throw new Error(`Missing organized source: ${path.relative(ROOT, source)}`);
@@ -105,14 +90,12 @@ function copyRequired(source, target) {
   fs.copyFileSync(source, target);
 }
 
-
-
 /**
  * Function contract: materializeRootSources
- * Purpose: Implement the materialize root sources responsibility owned by the source layout repository tool.
- * Inputs: None; derives required state from its enclosing module/runtime context.
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Create all root-level compatibility files required by development and build tooling.
+ * Inputs: None.
+ * Side effects: Copies canonical source files into their configured compatibility paths.
+ * Returns: Number of mappings materialized.
  */
 function materializeRootSources() {
   for (const mapping of mappings) {
@@ -121,18 +104,16 @@ function materializeRootSources() {
   return mappings.length;
 }
 
-
-
 /**
  * Function contract: syncRootSources
- * Purpose: Synchronize root sources with the requested state while preserving related source layout repository tool invariants.
- * Inputs: None; derives required state from its enclosing module/runtime context.
- * Side effects: writes filesystem state
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Copy intentional edits from sync-enabled root compatibility files back to canonical source.
+ * Inputs: None.
+ * Side effects: Reads compatibility files and may update canonical source files.
+ * Returns: Number of canonical files changed.
  */
 function syncRootSources() {
   let synced = 0;
-  for (const mapping of mappings.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => item.sync)) {
+  for (const mapping of mappings.filter(   /** Callback contract: Select only mappings that explicitly allow reverse synchronization. Inputs: `item` Side effects: None. Returns: The mapping's synchronization flag. */ (item) => item.sync)) {
     const rootFile = path.join(ROOT, mapping.target);
     if (!fs.existsSync(rootFile)) continue;
     const sourceFile = path.join(ROOT, mapping.source);
@@ -147,14 +128,12 @@ function syncRootSources() {
   return synced;
 }
 
-
-
 /**
  * Function contract: cleanRootSources
- * Purpose: Remove root sources without disturbing required surrounding source layout repository tool state.
- * Inputs: None; derives required state from its enclosing module/runtime context.
- * Side effects: writes filesystem state
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Remove materialized root compatibility files after they are no longer needed.
+ * Inputs: None.
+ * Side effects: Deletes configured compatibility files from the repository root.
+ * Returns: Number of files removed.
  */
 function cleanRootSources() {
   let removed = 0;
