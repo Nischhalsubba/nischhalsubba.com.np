@@ -1,17 +1,17 @@
 /**
  * @fileoverview scripts/generate-source.cjs
- * Purpose: Generate or assemble generate source deterministically as part of the production toolchain.
+ * Purpose: Run the ordered source-generation and normalization stages that prepare canonical HTML, CSS, metadata, and support files before production builds.
  * Responsibilities:
- * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
- * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
- * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * - Keep source transformations in one explicit, reviewable order.
+ * - Stop immediately when a stage fails so later transforms do not build on a partial state.
+ * - Keep build preparation separate from the final Vite/static-asset assembly step.
+ * Execution context: Node.js command used by `npm run generate` and maintenance workflows.
  * Connected files:
  * - scripts/run-build-stages.cjs
- * - package.json
  * - scripts/build-site.cjs
  * - scripts/compile-single-stylesheet.cjs
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * - scripts/generate-seo-discovery.cjs
+ * Maintenance: Preserve stage ordering when later scripts depend on earlier output. Remove obsolete stages only after confirming they are not required by the current canonical source contract.
  */
 const { runStages } = require('./run-build-stages.cjs');
 
@@ -23,7 +23,7 @@ const stages = [
   ['Apply contact redesign', ['node', 'scripts/ensure-contact-redesign.cjs']],
   ['Apply about/contact v2', ['node', 'scripts/ensure-about-contact-v2.cjs']],
   ['Apply homepage audit copy', ['node', 'scripts/ensure-homepage-audit-copy.cjs']],
-  ['Apply entity proof signals', ['node', 'scripts/ensure-entity-proof-signals.cjs']],
+  ['Generate public identity assets', ['node', 'scripts/ensure-public-identity-assets.cjs']],
   ['Generate SEO growth assets', ['node', 'scripts/ensure-seo-growth-assets.cjs']],
   ['Apply search intent metadata', ['node', 'scripts/ensure-search-intents.cjs']],
   ['Apply SEO code fixes', ['node', 'scripts/ensure-seo-code-fixes.cjs']],
