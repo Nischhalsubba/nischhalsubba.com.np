@@ -2,7 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://nischhalsubba.com.np/sitemap.xml
-
-# AI and agent discovery
-AI-Profile: https://nischhalsubba.com.np/ai-profile.json
-LLMs: https://nischhalsubba.com.np/llms.txt
