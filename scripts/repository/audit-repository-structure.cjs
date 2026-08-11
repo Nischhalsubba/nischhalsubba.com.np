@@ -1,58 +1,95 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
-const { ROOT, ROOT_PAGE_NAMES, DISCOVERY_NAMES } = require('./source-layout.cjs');
+const { ROOT, ROOT_PAGE_NAMES, DISCOVERY_NAMES, mappings } = require('./source-layout.cjs');
 
-/*
- * Repository structure audit.
- *
- * Purpose: fail CI when tracked production source drifts back into repository root,
- * when retired WordPress material returns, or when the structure documentation is
- * removed. It validates the organization contract introduced by the repository
- * cleanup without caring about temporary git-ignored compatibility files.
- *
+/**
+ * @fileoverview scripts/repository/audit-repository-structure.cjs
+ * Purpose: Enforce repository ownership boundaries without assuming that canonical pages live directly under one flat source folder.
+ * Responsibilities:
+ * - Reject tracked production source that drifts back into the repository root.
+ * - Reject forbidden retired source prefixes such as the removed WordPress tree.
+ * - Verify every canonical root-compatible page through the source-layout mapping contract rather than hardcoded folder paths.
+ * - Verify compatibility pages, canonical runtime/style/discovery sources, and required architecture documentation remain tracked.
+ * Execution context: Node.js during `npm run audit:repo-structure` and the main validation workflows.
  * Connected files:
- * - config/repository/root-policy.json: allowed root and documentation policy.
- * - config/canonical-routes.json: canonical page inventory via source-layout.cjs.
- * - package.json: exposes this audit as npm run audit:repo-structure.
+ * - scripts/repository/source-layout.cjs
+ * - config/repository/root-policy.json
+ * - config/canonical-routes.json
+ * - package.json
+ * Maintenance: Add or move canonical source through `source-layout.cjs`; this audit should consume that mapping instead of duplicating folder assumptions.
  */
 
 const policyPath = path.join(ROOT, 'config', 'repository', 'root-policy.json');
 const policy = JSON.parse(fs.readFileSync(policyPath, 'utf8'));
 const result = spawnSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' });
-if (result.status !== 0) throw new Error(`git ls-files failed: ${result.stderr || result.stdout}`);
+
+if (result.status !== 0) {
+  throw new Error(`git ls-files failed: ${result.stderr || result.stdout}`);
+}
 
 const tracked = result.stdout.split('\0').filter(Boolean);
 const rootFiles = tracked.filter((file) => !file.includes('/')).sort();
 const unexpectedRoot = rootFiles.filter((file) => !policy.allowedRootFiles.includes(file));
 const failures = [];
 
-if (unexpectedRoot.length) failures.push(`Unexpected tracked root file(s): ${unexpectedRoot.join(', ')}`);
+/**
+ * Function contract: sourceForRootTarget
+ * Purpose: Resolve a historical/public root-compatible filename to the organized canonical source declared by the repository materialization contract.
+ * Inputs: `target`, the root filename such as `index.html` or `project-yarsha.html`.
+ * Side effects: No external side effects; reads the in-memory `mappings` contract.
+ * Returns: The repository-relative organized source path, or an empty string when no mapping exists.
+ */
+function sourceForRootTarget(target) {
+  return mappings.find((mapping) => mapping.target === target && mapping.sync)?.source || '';
+}
+
+if (unexpectedRoot.length) {
+  failures.push(`Unexpected tracked root file(s): ${unexpectedRoot.join(', ')}`);
+}
 
 for (const prefix of policy.forbiddenTrackedPrefixes) {
   const matches = tracked.filter((file) => file.startsWith(prefix));
-  if (matches.length) failures.push(`Forbidden tracked prefix ${prefix}: ${matches.length} file(s)`);
+  if (matches.length) {
+    failures.push(`Forbidden tracked prefix ${prefix}: ${matches.length} file(s)`);
+  }
 }
 
 for (const page of ROOT_PAGE_NAMES) {
-  const source = `src/pages/${page}`;
-  if (!tracked.includes(source)) failures.push(`Missing canonical page source: ${source}`);
+  const source = sourceForRootTarget(page);
+  if (!source) {
+    failures.push(`Missing source-layout mapping for canonical page target: ${page}`);
+  } else if (!tracked.includes(source)) {
+    failures.push(`Missing canonical page source: ${source}`);
+  }
 }
 
 for (const name of ['home.html', 'home-v2.html', 'blog.html']) {
   const source = `src/compat/legacy-pages/${name}`;
-  if (!tracked.includes(source)) failures.push(`Missing Vite compatibility page source: ${source}`);
+  if (!tracked.includes(source)) {
+    failures.push(`Missing Vite compatibility page source: ${source}`);
+  }
 }
 
-if (!tracked.includes('src/styles/style.css')) failures.push('Missing canonical stylesheet source: src/styles/style.css');
-if (!tracked.includes('src/runtime/script.js')) failures.push('Missing canonical runtime entry template: src/runtime/script.js');
+if (!tracked.includes('src/styles/style.css')) {
+  failures.push('Missing canonical stylesheet source: src/styles/style.css');
+}
+
+if (!tracked.includes('src/runtime/script.js')) {
+  failures.push('Missing canonical runtime entry template: src/runtime/script.js');
+}
+
 for (const name of DISCOVERY_NAMES) {
   const source = `src/discovery/${name}`;
-  if (!tracked.includes(source)) failures.push(`Missing discovery source: ${source}`);
+  if (!tracked.includes(source)) {
+    failures.push(`Missing discovery source: ${source}`);
+  }
 }
 
 for (const doc of policy.requiredDocumentation) {
-  if (!tracked.includes(doc)) failures.push(`Missing repository documentation: ${doc}`);
+  if (!tracked.includes(doc)) {
+    failures.push(`Missing repository documentation: ${doc}`);
+  }
 }
 
 if (failures.length) {
@@ -60,4 +97,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`[repository-structure] Root policy passed with ${rootFiles.length} tracked root file(s), ${ROOT_PAGE_NAMES.length} organized canonical root page source(s), and ${DISCOVERY_NAMES.length} organized discovery source(s).`);
+console.log(`[repository-structure] Root policy passed with ${rootFiles.length} tracked root file(s), ${ROOT_PAGE_NAMES.length} mapped canonical page source(s), and ${DISCOVERY_NAMES.length} organized discovery source(s).`);
