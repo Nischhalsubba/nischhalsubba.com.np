@@ -1,15 +1,18 @@
 /**
  * @fileoverview scripts/ensure-homepage-audit-copy.cjs
- * Purpose: Validate ensure homepage audit copy and fail with actionable diagnostics when the production contract is violated.
+ * Purpose: Keep homepage positioning, proof links, and structured profile metadata aligned with the public portfolio and current product-design positioning.
  * Responsibilities:
- * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
- * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
- * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * - Apply approved homepage hero copy to current and retained compatibility home sources.
+ * - Add a proof section that links visitors to verifiable work, profile information, public learning evidence, and the resume.
+ * - Maintain Schema.org Person, WebSite, and WebPage data without introducing unsupported claims.
+ * - Remove known outdated positioning text when source generation encounters it.
+ * Execution context: Node.js source-generation stage run from `scripts/generate-source.cjs`.
  * Connected files:
  * - scripts/generate-source.cjs
- * - package.json
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * - src/pages/core/index.html
+ * - src/compat/legacy-pages/home-v2.html
+ * - assets/images/portrait.png
+ * Maintenance: Keep public claims consistent with visible portfolio evidence. Structural changes to the homepage should be made in the owning page/design system rather than accumulated as unrelated copy patches here.
  */
 const fs = require('fs');
 const path = require('path');
@@ -30,27 +33,24 @@ const hero = `      <section class="hero-section center-aligned-hero nrs-home-he
 const proofSection = `
       <section id="homepage-proof-discovery" class="section-container reveal-on-scroll" aria-labelledby="site-proof-heading" style="border-top:1px solid var(--border-faint);">
         <div class="section-header" style="max-width:820px;margin-bottom:34px;">
-          <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Proof and discovery</p>
-          <h2 id="site-proof-heading" class="section-title">Proof-backed product design, developer-ready handoff, and machine-readable profile data.</h2>
-          <p class="section-lead">This homepage is structured so hiring teams, search engines, and AI tools can understand who I am, what I design, where to verify my work, and how to contact me without guessing.</p>
+          <p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Proof and profile</p>
+          <h2 id="site-proof-heading" class="section-title">Product design work backed by public case studies and profile evidence.</h2>
+          <p class="section-lead">Hiring teams and potential collaborators can verify the work, experience, public profile, and contact details through the links below.</p>
         </div>
         <div class="nrs-proof-grid">
           <a class="nrs-proof-card" href="/projects.html"><span class="eyebrow">Portfolio</span><h3>Product design case studies</h3><p>Selected work across Web3 UX, SaaS dashboards, fintech workflows, logistics apps, service websites, WordPress LMS, and front-end tools.</p></a>
-          <a class="nrs-proof-card" href="/about.html"><span class="eyebrow">Entity</span><h3>About Nischhal Raj Subba</h3><p>Profile page with role, location, experience, proof links, resume, and AI-readable identity signals.</p></a>
-          <a class="nrs-proof-card" href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener"><span class="eyebrow">Proof</span><h3>Uxcel profile</h3><p>Public proof for UX/UI learning progress. No unsupported rankings or fake awards are claimed.</p></a>
-          <a class="nrs-proof-card" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download><span class="eyebrow">Resume</span><h3>6+ years of experience</h3><p>Experience path across agencies, product teams, Web3, SaaS, websites, dashboards, and front-end-aware design.</p></a>
-          <a class="nrs-proof-card" href="/llms.txt"><span class="eyebrow">AI discovery</span><h3>llms.txt</h3><p>Concise AI-readable site summary for agents and LLM crawlers that inspect plain-text discovery files.</p></a>
-          <a class="nrs-proof-card" href="/ai-profile.json"><span class="eyebrow">Machine data</span><h3>ai-profile.json</h3><p>Structured profile data with role, focus areas, contact information, and key portfolio routes.</p></a>
+          <a class="nrs-proof-card" href="/about.html"><span class="eyebrow">Profile</span><h3>About Nischhal Raj Subba</h3><p>Role, location, experience, working approach, public proof links, and portfolio context.</p></a>
+          <a class="nrs-proof-card" href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener"><span class="eyebrow">Learning</span><h3>Uxcel profile</h3><p>Public evidence of UX/UI learning progress without unsupported rankings or awards.</p></a>
+          <a class="nrs-proof-card" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download><span class="eyebrow">Resume</span><h3>6+ years of experience</h3><p>Experience across agencies, product teams, Web3, SaaS, websites, dashboards, and front-end-aware design.</p></a>
         </div>
       </section>`;
 
-
 /**
  * Function contract: entitySchema
- * Purpose: Implement the entity schema responsibility owned by the ensure homepage audit copy repository tool.
- * Inputs: `canonical`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Build homepage Schema.org metadata for the person, portfolio website, and current homepage URL.
+ * Inputs: `canonical` - Source filename used to distinguish the primary homepage from the retained compatibility page.
+ * Side effects: None.
+ * Returns: A JSON-LD script element ready to insert into the page head.
  */
 function entitySchema(canonical) {
   const url = canonical === 'home-v2.html' ? `${SITE}/home-v2.html` : `${SITE}/`;
@@ -112,62 +112,54 @@ function entitySchema(canonical) {
   return `<script type="application/ld+json" id="nrs-homepage-entity-schema">${JSON.stringify(graph)}</script>`;
 }
 
-
-
 /**
  * Function contract: replaceHero
- * Purpose: Implement the replace hero responsibility owned by the ensure homepage audit copy repository tool.
- * Inputs: `html`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Replace the generated homepage hero block with the approved positioning and call-to-action markup.
+ * Inputs: `html` - Complete homepage HTML.
+ * Side effects: None.
+ * Returns: Homepage HTML with the target hero block replaced when present.
  */
 function replaceHero(html) {
   return html.replace(/      <section class="hero-section center-aligned-hero nrs-home-hero"[\s\S]*?      <\/section>/, hero);
 }
 
-
-
 /**
  * Function contract: upsertProofSection
- * Purpose: Implement the upsert proof section responsibility owned by the ensure homepage audit copy repository tool.
- * Inputs: `html`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Remove older copies of the homepage proof section and insert one current proof block before the final centered section or `</main>` fallback.
+ * Inputs: `html` - Complete homepage HTML.
+ * Side effects: None.
+ * Returns: Homepage HTML containing exactly one current proof section.
  */
 function upsertProofSection(html) {
-  html = html.replace(/\s*<section id="homepage-proof-discovery"[\s\S]*?<\/section>/, '');
-  html = html.replace(/\s*<section class="section-container reveal-on-scroll" aria-labelledby="site-proof-heading"[\s\S]*?<\/section>/, '');
+  let output = html.replace(/\s*<section id="homepage-proof-discovery"[\s\S]*?<\/section>/, '');
+  output = output.replace(/\s*<section class="section-container reveal-on-scroll" aria-labelledby="site-proof-heading"[\s\S]*?<\/section>/, '');
 
   const anchor = '      <section class="section-container reveal-on-scroll" style="text-align:center;padding-bottom:110px;">';
-  if (html.includes(anchor)) {
-    return html.replace(anchor, `${proofSection}\n${anchor}`);
+  if (output.includes(anchor)) {
+    return output.replace(anchor, `${proofSection}\n${anchor}`);
   }
 
-  return html.replace('</main>', `${proofSection}\n    </main>`);
+  return output.replace('</main>', `${proofSection}\n    </main>`);
 }
-
-
 
 /**
  * Function contract: upsertEntitySchema
- * Purpose: Implement the upsert entity schema responsibility owned by the ensure homepage audit copy repository tool.
- * Inputs: `html`, `target`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Replace any prior homepage entity schema with the current structured-data graph.
+ * Inputs: `html` - Complete homepage HTML; `target` - current homepage source filename.
+ * Side effects: None.
+ * Returns: HTML containing one current homepage entity-schema script.
  */
 function upsertEntitySchema(html, target) {
-  html = html.replace(/\s*<script\s+type="application\/ld\+json"\s+id="nrs-homepage-entity-schema">[\s\S]*?<\/script>/, '');
-  return html.replace('</head>', `    ${entitySchema(target)}\n  </head>`);
+  const cleaned = html.replace(/\s*<script\s+type="application\/ld\+json"\s+id="nrs-homepage-entity-schema">[\s\S]*?<\/script>/, '');
+  return cleaned.replace('</head>', `    ${entitySchema(target)}\n  </head>`);
 }
-
-
 
 /**
  * Function contract: cleanOutdatedCopy
- * Purpose: Remove outdated copy without disturbing required surrounding ensure homepage audit copy repository tool state.
- * Inputs: `html`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Replace a small set of known obsolete positioning phrases with current factual wording.
+ * Inputs: `html` - Complete homepage HTML.
+ * Side effects: None.
+ * Returns: HTML with obsolete phrases normalized.
  */
 function cleanOutdatedCopy(html) {
   return html
@@ -189,4 +181,4 @@ for (const target of targets) {
   fs.writeFileSync(filePath, html, 'utf8');
 }
 
-console.log('Ensured homepage entity, proof, and AI discovery copy.');
+console.log('Ensured homepage positioning, proof links, and structured profile metadata.');
