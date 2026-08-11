@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/browser-performance-audit.mjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for browser performance audit.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - .github/workflows/production-qa.yml
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 import { chromium } from 'playwright';
 
 const base = (process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173').replace(/\/$/, '');
@@ -16,17 +30,17 @@ for (const viewport of viewports) {
   const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
   const page = await context.newPage();
 
-  await page.addInitScript(() => {
+  await page.addInitScript(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
     window.__nrsPerf = { lcp: 0, cls: 0 };
     try {
-      new PerformanceObserver((list) => {
+      new PerformanceObserver(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: list. Side effects: may read or update browser DOM/state. No explicit return contract. */ (list) => {
         const entries = list.getEntries();
         const latest = entries[entries.length - 1];
         if (latest) window.__nrsPerf.lcp = latest.startTime;
       }).observe({ type: 'largest-contentful-paint', buffered: true });
     } catch {}
     try {
-      new PerformanceObserver((list) => {
+      new PerformanceObserver(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: list. Side effects: may read or update browser DOM/state. No explicit return contract. */ (list) => {
         for (const entry of list.getEntries()) {
           if (!entry.hadRecentInput) window.__nrsPerf.cls += entry.value || 0;
         }
@@ -40,13 +54,13 @@ for (const viewport of viewports) {
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
       await page.waitForTimeout(900);
 
-      const metrics = await page.evaluate(() => {
+      const metrics = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
         const resources = performance.getEntriesByType('resource');
         const navigation = performance.getEntriesByType('navigation')[0];
         return {
           lcp: Math.round(window.__nrsPerf?.lcp || 0),
           cls: Number((window.__nrsPerf?.cls || 0).toFixed(3)),
-          transfer: Math.round(resources.reduce((sum, entry) => sum + (entry.transferSize || 0), 0)),
+          transfer: Math.round(resources.reduce(/** Callback contract: Processes the callback step for resources without leaking orchestration details to the caller. Inputs: sum, entry. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (sum, entry) => sum + (entry.transferSize || 0), 0)),
           requests: resources.length,
           domContentLoaded: Math.round(navigation?.domContentLoadedEventEnd || 0),
           load: Math.round(navigation?.loadEventEnd || 0),

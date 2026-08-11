@@ -1,4 +1,18 @@
 /**
+ * @fileoverview src/content/routes.js
+ * Purpose: Structured content module providing routes data to generators/runtime code.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Repository build or application source.
+ * Connected files:
+ * - README.md
+ * - docs/repository/file-catalog.md
+ * - docs/repository/file-map.md
+ * - docs/seo-maintenance.md
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
+/**
  * Canonical route manifest for the static portfolio.
  *
  * Public paths use Cloudflare Pages clean URLs. The backing files remain

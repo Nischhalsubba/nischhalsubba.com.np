@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/enforce-production-routes.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for enforce production routes.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -24,6 +37,13 @@ for (const name of ['audit-remediations.css', 'stable-layout.css', 'final-ui-fix
   if (fs.existsSync(path.join(dist, name))) errors.push(`Retired stylesheet survived build: ${name}`);
 }
 
+/**
+ * Function contract: parseRedirects
+ * Purpose: Parses parse redirects into the structured form consumed by downstream logic.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function parseRedirects(file) {
   if (!fs.existsSync(file)) return new Map();
   const entries = new Map();

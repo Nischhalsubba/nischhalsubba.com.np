@@ -1,0 +1,306 @@
+/**
+ * @fileoverview src/styles/fragments/agent/compatibility.cssfrag
+ * Purpose: Composable stylesheet fragment for compatibility rules assembled into the production stylesheet.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Stylesheet source assembled or copied into production CSS.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/agent-redesign.cjs
+ * - scripts/repository/apply-deep-organization.cjs
+ * - scripts/repository/fix-deep-style-contracts.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
+/* Existing production runtime drives these states. Keep the visual layer compatible with it. */
+.agent-portfolio .theme-toggle-btn svg {
+  display: none;
+}
+
+.agent-portfolio .floating-resume-btn,
+.agent-portfolio .agent-mobile-brand {
+  display: none;
+}
+
+.agent-portfolio .nav-wrapper {
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  transform: none;
+}
+
+.agent-portfolio .nav-link.active,
+.agent-portfolio .nav-link[aria-current='page'] {
+  background: transparent;
+  color: var(--ap-ink);
+  box-shadow: none;
+}
+
+.agent-portfolio.menu-open .mobile-nav-overlay,
+.agent-portfolio .mobile-nav-overlay[aria-hidden='false'] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity var(--ap-section) var(--ap-ease), transform var(--ap-section) var(--ap-ease), visibility 0s step-start;
+}
+
+.agent-portfolio .mobile-nav-overlay[hidden] {
+  display: none;
+}
+
+.agent-portfolio .agent-hero {
+  min-height: min(52rem, 92dvh);
+  align-items: center;
+}
+
+.agent-portfolio .agent-hero-grid {
+  padding-top: clamp(7rem, 11vh, 8.5rem);
+  padding-bottom: clamp(2.5rem, 5vh, 4rem);
+}
+
+.agent-portfolio .agent-page-hero-grid > div:first-child {
+  grid-column: 1 / span 8;
+}
+
+.agent-portfolio .agent-page-hero h1 {
+  grid-column: auto;
+  color: var(--ap-ink);
+}
+
+.agent-portfolio .agent-section--inverse .agent-section-title,
+.agent-portfolio .agent-section--inverse .agent-capability h3,
+.agent-portfolio .agent-section--inverse h2,
+.agent-portfolio .agent-section--inverse h3 {
+  color: var(--ap-inverse-ink);
+  -webkit-text-fill-color: var(--ap-inverse-ink);
+}
+
+.agent-portfolio .agent-section--inverse .agent-kicker {
+  color: color-mix(in srgb, var(--ap-inverse-ink) 68%, transparent);
+}
+
+/* Inverse sections swap their surface and ink roles. Buttons must swap with them. */
+.agent-portfolio .agent-section--inverse .agent-btn {
+  border-color: color-mix(in srgb, var(--ap-inverse-ink) 72%, transparent);
+  background: transparent;
+  color: var(--ap-inverse-ink);
+  -webkit-text-fill-color: var(--ap-inverse-ink);
+}
+
+.agent-portfolio .agent-section--inverse .agent-btn--primary {
+  border-color: var(--ap-inverse-ink);
+  background: var(--ap-inverse-ink);
+  color: var(--ap-inverse);
+  -webkit-text-fill-color: var(--ap-inverse);
+}
+
+.agent-portfolio .agent-section--inverse .agent-btn:hover,
+.agent-portfolio .agent-section--inverse .agent-btn--primary:hover {
+  border-color: var(--ap-signal);
+  background: var(--ap-signal);
+  color: var(--ap-signal-ink);
+  -webkit-text-fill-color: var(--ap-signal-ink);
+}
+
+.agent-portfolio .agent-manifesto blockquote {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+}
+
+.agent-portfolio .agent-footer-cta {
+  color: var(--ap-inverse-ink);
+  -webkit-text-fill-color: var(--ap-inverse-ink);
+}
+
+.agent-portfolio .agent-footer-links,
+.agent-portfolio .agent-footer-bottom {
+  color: color-mix(in srgb, var(--ap-inverse-ink) 72%, transparent);
+}
+
+.agent-portfolio .agent-footer-links a {
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+}
+
+.agent-portfolio .agent-footer-links a:hover,
+.agent-portfolio .agent-footer-links a:focus-visible {
+  color: var(--ap-inverse-ink);
+  -webkit-text-fill-color: var(--ap-inverse-ink);
+}
+
+.agent-portfolio .agent-breadcrumb-wrap {
+  padding-top: 1rem;
+}
+
+.agent-portfolio .agent-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem;
+  margin: 0;
+  color: var(--ap-ink-faint);
+  font: 600 .7rem/1.35 var(--ap-font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.agent-portfolio .agent-breadcrumbs a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--ap-ink-soft);
+  text-decoration: none;
+}
+
+.agent-portfolio .agent-breadcrumbs a:hover {
+  color: var(--ap-signal);
+}
+
+.agent-portfolio .agent-embed-note {
+  margin-block: 1.5rem;
+}
+
+.agent-portfolio .agent-contact-form-wrap {
+  grid-column: 7 / -1;
+  min-width: 0;
+}
+
+.agent-portfolio .agent-contact-form {
+  grid-column: auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.agent-portfolio .agent-contact-form .nrs-contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.agent-portfolio .agent-contact-form .nrs-contact-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: center;
+}
+
+.agent-portfolio .agent-contact-form .form-status:empty {
+  display: none;
+}
+
+/* Bring preserved long-tail routes into the same flat editorial language. */
+.agent-portfolio .impact-card,
+.agent-portfolio .project-card,
+.agent-portfolio .service-card,
+.agent-portfolio .writing-card,
+.agent-portfolio .case-card,
+.agent-portfolio .proof-card {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.agent-portfolio .impact-card,
+.agent-portfolio .service-card,
+.agent-portfolio .proof-card {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ap-line);
+}
+
+.agent-portfolio .project-card,
+.agent-portfolio .writing-card,
+.agent-portfolio .case-card {
+  background: color-mix(in srgb, var(--ap-surface) 44%, transparent);
+  border-color: var(--ap-line);
+}
+
+.agent-portfolio .project-card img,
+.agent-portfolio .project-card-media,
+.agent-portfolio .project-image,
+.agent-portfolio .case-card img {
+  border-radius: 0;
+}
+
+@media (max-width: 1023px) {
+  .agent-portfolio .agent-mobile-brand {
+    position: fixed;
+    top: .6rem;
+    left: var(--ap-gutter);
+    z-index: calc(var(--ap-z-nav) + 3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 2.75rem;
+    max-width: calc(100vw - 8rem);
+    color: var(--ap-ink);
+    text-decoration: none;
+  }
+
+  .agent-portfolio .agent-mobile-brand strong {
+    overflow: hidden;
+    font: 750 .78rem/1.05 var(--ap-font-display);
+    letter-spacing: -.025em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .agent-portfolio .agent-mobile-brand span {
+    margin-top: .25rem;
+    color: var(--ap-ink-faint);
+    font: 600 .58rem/1 var(--ap-font-mono);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .agent-portfolio .nav-wrapper {
+    display: none;
+  }
+
+  /* Legacy production CSS positions this control on the left with importance declarations.
+     The redesign deliberately wins that one old cascade fight so the identity remains readable. */
+  .agent-portfolio .mobile-nav-toggle {
+    top: .6rem !important;
+    right: var(--ap-gutter) !important;
+    left: auto !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    min-width: 2.75rem !important;
+    min-height: 2.75rem !important;
+    z-index: 2147483001 !important;
+  }
+
+  .agent-portfolio .agent-page-hero-grid > div:first-child {
+    grid-column: 1 / span 5;
+  }
+
+  .agent-portfolio .agent-contact-form-wrap {
+    grid-column: 4 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .agent-portfolio .agent-hero {
+    min-height: auto;
+  }
+
+  .agent-portfolio .agent-hero-grid {
+    padding-top: 7.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .agent-portfolio .agent-page-hero-grid > div:first-child,
+  .agent-portfolio .agent-contact-form-wrap {
+    grid-column: 1;
+  }
+
+  .agent-portfolio .agent-contact-form .nrs-contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

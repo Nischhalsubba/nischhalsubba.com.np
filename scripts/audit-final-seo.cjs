@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/audit-final-seo.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for audit final seo.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -44,25 +57,60 @@ const required = {
 
 const retiredOutputs = ['home.html', 'home-v2.html', 'blog.html'];
 
+/**
+ * Function contract: read
+ * Purpose: Retrieves read and returns it in the form expected by its caller.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function read(file) {
   const full = path.join(targetRoot, file);
   if (!fs.existsSync(full)) throw new Error(`[seo-audit] Missing file: ${file}`);
   return fs.readFileSync(full, 'utf8');
 }
 
+/**
+ * Function contract: titleOf
+ * Purpose: Implements the title of responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function titleOf(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() || '';
 }
 
+/**
+ * Function contract: metaOf
+ * Purpose: Implements the meta of responsibility for this module.
+ * Inputs: html, name.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function metaOf(html, name) {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return html.match(new RegExp(`<meta\\s+[^>]*name=["']${escaped}["'][^>]*content=["']([^"']*)["'][^>]*>`, 'i'))?.[1]?.trim() || '';
 }
 
+/**
+ * Function contract: canonicalOf
+ * Purpose: Implements the canonical of responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function canonicalOf(html) {
   return html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1]?.trim() || '';
 }
 
+/**
+ * Function contract: assertContains
+ * Purpose: Implements the assert contains responsibility for this module.
+ * Inputs: label, value, parts.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function assertContains(label, value, parts) {
   for (const part of parts || []) {
     if (!value.toLowerCase().includes(part.toLowerCase())) {

@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-mobile-header-polish.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure mobile header polish.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -209,6 +222,13 @@ const css = `
 }
 `;
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: dir, files.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -219,8 +239,15 @@ function walk(dir, files = []) {
   return files;
 }
 
+/**
+ * Function contract: updateHtmlVersions
+ * Purpose: Applies update html versions while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function updateHtmlVersions() {
-  for (const file of walk(targetRoot).filter((filePath) => filePath.endsWith('.html'))) {
+  for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: filePath. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (filePath) => filePath.endsWith('.html'))) {
     const before = fs.readFileSync(file, 'utf8');
     const after = before
       .replace(/\/style\.css\?v=[0-9.]+/g, `/style.css?v=${styleVersion}`)
@@ -229,6 +256,13 @@ function updateHtmlVersions() {
   }
 }
 
+/**
+ * Function contract: updateStyle
+ * Purpose: Applies update style while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function updateStyle() {
   if (!fs.existsSync(stylePath)) return;
   let style = fs.readFileSync(stylePath, 'utf8');

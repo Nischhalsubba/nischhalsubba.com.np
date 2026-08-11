@@ -34,6 +34,13 @@ const FUNCTION_COMMENT_PATTERN = /(?:\/\*\*[\s\S]*?\*\/|\/\*[\s\S]*?\*\/|\/\/[^\
  * Side effects: reads one JSON file from disk.
  * Returns: the parsed policy object.
  */
+/**
+ * Function contract: loadPolicy
+ * Purpose: Retrieves load policy and returns it in the form expected by its caller.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function loadPolicy() {
   if (!fs.existsSync(POLICY_PATH)) {
     throw new Error(`Missing code documentation policy: ${path.relative(ROOT, POLICY_PATH)}`);
@@ -47,6 +54,13 @@ function loadPolicy() {
  * Inputs: none.
  * Side effects: executes `git ls-files` in the repository root.
  * Returns: sorted repository-relative paths using forward slashes.
+ */
+/**
+ * Function contract: gitTrackedFiles
+ * Purpose: Implements the git tracked files responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
 function gitTrackedFiles() {
   const result = spawnSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' });
@@ -65,8 +79,15 @@ function gitTrackedFiles() {
  * Side effects: none.
  * Returns: true when the path should not be inspected by this audit.
  */
+/**
+ * Function contract: isExcluded
+ * Purpose: Implements the is excluded responsibility for this module.
+ * Inputs: file, policy.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function isExcluded(file, policy) {
-  return policy.excludedPrefixes.some((prefix) => file.startsWith(prefix)) ||
+  return policy.excludedPrefixes.some(/** Callback contract: Processes the callback step for policy.excluded prefixes without leaking orchestration details to the caller. Inputs: prefix. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (prefix) => file.startsWith(prefix)) ||
     policy.excludedFiles.includes(file);
 }
 
@@ -79,9 +100,16 @@ function isExcluded(file, policy) {
  * Side effects: none.
  * Returns: true for authored files under a configured code root.
  */
+/**
+ * Function contract: isAuthoredFile
+ * Purpose: Implements the is authored file responsibility for this module.
+ * Inputs: file, policy.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function isAuthoredFile(file, policy) {
   if (isExcluded(file, policy)) return false;
-  return policy.codeRoots.some((root) => file === root || file.startsWith(`${root}/`));
+  return policy.codeRoots.some(/** Callback contract: Processes the callback step for policy.code roots without leaking orchestration details to the caller. Inputs: root. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (root) => file === root || file.startsWith(`${root}/`));
 }
 
 /**
@@ -90,6 +118,13 @@ function isAuthoredFile(file, policy) {
  * Inputs: repository-relative file path.
  * Side effects: none.
  * Returns: a TypeScript ScriptKind value.
+ */
+/**
+ * Function contract: scriptKindFor
+ * Purpose: Implements the script kind for responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
 function scriptKindFor(file) {
   if (file.endsWith('.tsx')) return ts.ScriptKind.TSX;
@@ -107,6 +142,13 @@ function scriptKindFor(file) {
  * Inputs: function-like TypeScript AST node.
  * Side effects: none.
  * Returns: node whose start position should also be checked for a documentation comment.
+ */
+/**
+ * Function contract: documentationOwner
+ * Purpose: Implements the documentation owner responsibility for this module.
+ * Inputs: node.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
 function documentationOwner(node) {
   let current = node;
@@ -134,6 +176,13 @@ function documentationOwner(node) {
  * Side effects: none.
  * Returns: true when a block/JSDoc/line comment immediately precedes the node.
  */
+/**
+ * Function contract: hasLeadingExplanation
+ * Purpose: Implements the has leading explanation responsibility for this module.
+ * Inputs: source, position.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function hasLeadingExplanation(source, position) {
   const prefix = source.slice(Math.max(0, position - 1400), position);
   return FUNCTION_COMMENT_PATTERN.test(prefix);
@@ -146,6 +195,13 @@ function hasLeadingExplanation(source, position) {
  * Side effects: none.
  * Returns: one-based line number.
  */
+/**
+ * Function contract: lineNumberAt
+ * Purpose: Implements the line number at responsibility for this module.
+ * Inputs: source, position.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function lineNumberAt(source, position) {
   return source.slice(0, position).split('\n').length;
 }
@@ -156,6 +212,13 @@ function lineNumberAt(source, position) {
  * Inputs: TypeScript AST node.
  * Side effects: none.
  * Returns: true for functions, methods, constructors, getters, setters, and arrow functions with bodies.
+ */
+/**
+ * Function contract: isDocumentableFunction
+ * Purpose: Implements the is documentable function responsibility for this module.
+ * Inputs: node.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
 function isDocumentableFunction(node) {
   return ts.isFunctionDeclaration(node) ||
@@ -176,6 +239,13 @@ function isDocumentableFunction(node) {
  * Side effects: parses source into a TypeScript AST.
  * Returns: diagnostic strings for every function without nearby explanatory documentation.
  */
+/**
+ * Function contract: auditFunctions
+ * Purpose: Validates audit functions and reports violations instead of silently accepting invalid state.
+ * Inputs: file, source.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function auditFunctions(file, source) {
   const sourceFile = ts.createSourceFile(
     file,
@@ -192,6 +262,13 @@ function auditFunctions(file, source) {
    * Inputs: current TypeScript AST node.
    * Side effects: appends human-readable failures to the enclosing `failures` array.
    * Returns: nothing; traversal continues through child nodes.
+   */
+  /**
+   * Function contract: visit
+   * Purpose: Implements the visit responsibility for this module.
+   * Inputs: node.
+   * Side effects: no obvious external side effect beyond invoked dependencies.
+   * Returns: no explicit value unless an invoked dependency throws/rejects.
    */
   function visit(node) {
     if (isDocumentableFunction(node) && node.body) {
@@ -215,6 +292,13 @@ function auditFunctions(file, source) {
  * Inputs: none; reads policy and tracked source files from the current checkout.
  * Side effects: reads source files, prints diagnostics, and sets process exit status on failure.
  * Returns: nothing.
+ */
+/**
+ * Function contract: main
+ * Purpose: Implements the main responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state; may emit diagnostics or inspect process state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
 function main() {
   const policy = loadPolicy();

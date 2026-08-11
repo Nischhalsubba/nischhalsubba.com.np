@@ -1,3 +1,16 @@
+/**
+ * @fileoverview functions/api/contact.js
+ * Purpose: Server-side API handler for contact behavior.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Serverless/API runtime.
+ * Connected files:
+ * - README.md
+ * - docs/repository/file-catalog.md
+ * - src/worker.js
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 import { EmailMessage } from 'cloudflare:email';
 
 const ALLOWED_ORIGINS = new Set([
@@ -7,6 +20,13 @@ const ALLOWED_ORIGINS = new Set([
 const DESTINATION_EMAIL = 'hinischalsubba@gmail.com';
 const SENDER_EMAIL = 'portfolio@nischhalsubba.com.np';
 
+/**
+ * Function contract: json
+ * Purpose: Implements the json responsibility for this module.
+ * Inputs: payload, status.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function json(payload, status = 200) {
   return new Response(JSON.stringify(payload), {
     status,
@@ -18,10 +38,24 @@ function json(payload, status = 200) {
   });
 }
 
+/**
+ * Function contract: clean
+ * Purpose: Removes or cleans clean while keeping required outputs intact.
+ * Inputs: value, maxLength.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function clean(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+/**
+ * Function contract: validate
+ * Purpose: Validates validate and reports violations instead of silently accepting invalid state.
+ * Inputs: fields.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function validate(fields) {
   const errors = {};
   if (fields.name.length < 2) errors.name = 'Enter your name.';
@@ -32,6 +66,13 @@ function validate(fields) {
   return errors;
 }
 
+/**
+ * Function contract: verifyTurnstile
+ * Purpose: Validates verify turnstile and reports violations instead of silently accepting invalid state.
+ * Inputs: secret, token, remoteip.
+ * Side effects: may perform network I/O.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 async function verifyTurnstile(secret, token, remoteip) {
   const body = new FormData();
   body.set('secret', secret);
@@ -42,10 +83,24 @@ async function verifyTurnstile(secret, token, remoteip) {
   return response.json();
 }
 
+/**
+ * Function contract: safeHeader
+ * Purpose: Implements the safe header responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function safeHeader(value) {
   return String(value || '').replace(/[\r\n]+/g, ' ').trim();
 }
 
+/**
+ * Function contract: buildRawEmail
+ * Purpose: Creates build raw email from the supplied inputs and repository state.
+ * Inputs: fields, sourcePage.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function buildRawEmail(fields, sourcePage) {
   const boundary = `portfolio-${crypto.randomUUID()}`;
   const subject = safeHeader(`Portfolio inquiry: ${fields.need} from ${fields.name}`);
@@ -80,6 +135,13 @@ function buildRawEmail(fields, sourcePage) {
   ].join('\r\n');
 }
 
+/**
+ * Function contract: onRequestPost
+ * Purpose: Handles on request post and coordinates the required state or UI response.
+ * Inputs: { request, env }.
+ * Side effects: may emit diagnostics or inspect process state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 export async function onRequestPost({ request, env }) {
   try {
     const origin = request.headers.get('origin');
@@ -120,6 +182,13 @@ export async function onRequestPost({ request, env }) {
   }
 }
 
+/**
+ * Function contract: onRequestOptions
+ * Purpose: Handles on request options and coordinates the required state or UI response.
+ * Inputs: { request }.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 export function onRequestOptions({ request }) {
   const origin = request.headers.get('origin');
   if (origin && !ALLOWED_ORIGINS.has(origin) && !origin.endsWith('.pages.dev')) return new Response(null, { status: 403 });

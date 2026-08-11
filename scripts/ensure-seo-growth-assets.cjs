@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-seo-growth-assets.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure seo growth assets.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/generate-source.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
@@ -7,13 +21,34 @@ const SITE = 'https://nischhalsubba.com.np';
 const email = 'hinischalsubba@gmail.com';
 const today = '2026-06-24';
 
+/**
+ * Function contract: escapeHtml
+ * Purpose: Implements the escape html responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 const escapeHtml = (value) => String(value)
   .replace(/&/g, '&amp;')
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;');
 
+/**
+ * Function contract: nav
+ * Purpose: Implements the nav responsibility for this module.
+ * Inputs: active.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function nav(active = 'writing') {
+  /**
+   * Function contract: item
+   * Purpose: Implements the item responsibility for this module.
+   * Inputs: section, href, label, cls.
+   * Side effects: no obvious external side effect beyond invoked dependencies.
+   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
   const item = (section, href, label, cls = 'nav-link') => {
     const isActive = active === section;
     return `<a href="${href}" class="${cls}${isActive ? ' active' : ''}"${isActive ? ' aria-current="page"' : ''}>${label}</a>`;
@@ -24,6 +59,13 @@ function nav(active = 'writing') {
 const footer = `<footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:${email}" class="footer-email-btn">${email}</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a><a href="/media-kit.html">Media kit</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>`;
 const script = `<script type="module" src="/script.js?v=32.0"></script>`;
 
+/**
+ * Function contract: head
+ * Purpose: Implements the head responsibility for this module.
+ * Inputs: { title, description, canonical, type = 'article', schema }.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function head({ title, description, canonical, type = 'article', schema }) {
   const url = `${SITE}${canonical}`;
   return `<!DOCTYPE html>
@@ -56,6 +98,13 @@ function head({ title, description, canonical, type = 'article', schema }) {
   </head>`;
 }
 
+/**
+ * Function contract: articleSchema
+ * Purpose: Implements the article schema responsibility for this module.
+ * Inputs: article.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function articleSchema(article) {
   return `<script type="application/ld+json" id="nrs-article-schema">${JSON.stringify({
     '@context': 'https://schema.org',
@@ -174,6 +223,13 @@ const articles = [
   },
 ];
 
+/**
+ * Function contract: articlePage
+ * Purpose: Implements the article page responsibility for this module.
+ * Inputs: article.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function articlePage(article) {
   const canonical = `/blog/${article.slug}`;
   const schema = articleSchema({ ...article, canonical });
@@ -189,13 +245,13 @@ function articlePage(article) {
       </article>
       <section class="section-container" style="padding-top:0;max-width:900px;">
         <ul class="case-list">
-          ${article.sections.map(([heading, body]) => `<li><strong>${escapeHtml(heading)}:</strong> ${escapeHtml(body)}</li>`).join('\n          ')}
+          ${article.sections.map(/** Callback contract: Processes the callback step for article.sections without leaking orchestration details to the caller. Inputs: [heading, body]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([heading, body]) => `<li><strong>${escapeHtml(heading)}:</strong> ${escapeHtml(body)}</li>`).join('\n          ')}
         </ul>
       </section>
       <section class="section-container" style="border-top:1px solid var(--border-faint);max-width:900px;">
         <div class="section-header"><p class="eyebrow">Related pages</p><h2 class="section-title">Use this with real portfolio context.</h2><p class="section-lead">These links connect the article to public proof, service intent, and contact paths.</p></div>
         <div class="prototype-link-list">
-          ${article.links.map(([label, href]) => `<a class="prototype-link-card" href="${href}"><span style="display:block;font-weight:850;">${escapeHtml(label)}</span><span style="color:var(--text-secondary);">Open related page</span></a>`).join('\n          ')}
+          ${article.links.map(/** Callback contract: Processes the callback step for article.links without leaking orchestration details to the caller. Inputs: [label, href]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([label, href]) => `<a class="prototype-link-card" href="${href}"><span style="display:block;font-weight:850;">${escapeHtml(label)}</span><span style="color:var(--text-secondary);">Open related page</span></a>`).join('\n          ')}
           <a class="prototype-link-card" href="/media-kit.html"><span style="display:block;font-weight:850;">Media kit and proof links</span><span style="color:var(--text-secondary);">Use official profile and citation details</span></a>
         </div>
       </section>
@@ -206,6 +262,13 @@ function articlePage(article) {
 </html>`;
 }
 
+/**
+ * Function contract: mediaKitPage
+ * Purpose: Implements the media kit page responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function mediaKitPage() {
   const schema = `<script type="application/ld+json" id="nrs-media-kit-schema">${JSON.stringify({
     '@context': 'https://schema.org',
@@ -279,6 +342,13 @@ const projectSeo = {
   'project-sassboilerplate.html': ['Sass front-end starter structure case study', '/figma-design-systems.html'],
 };
 
+/**
+ * Function contract: enhanceProjectPage
+ * Purpose: Implements the enhance project page responsibility for this module.
+ * Inputs: file, [intent, serviceLink].
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function enhanceProjectPage(file, [intent, serviceLink]) {
   const filePath = path.join(root, file);
   if (!fs.existsSync(filePath)) return;
@@ -298,12 +368,19 @@ function enhanceProjectPage(file, [intent, serviceLink]) {
   fs.writeFileSync(filePath, html, 'utf8');
 }
 
+/**
+ * Function contract: updateBlogIndex
+ * Purpose: Applies update blog index while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function updateBlogIndex() {
   const filePath = path.join(root, 'blog', 'index.html');
   if (!fs.existsSync(filePath)) return;
   let html = fs.readFileSync(filePath, 'utf8');
   html = html.replace(/\s*<section id="nrs-seo-growth-writing"[\s\S]*?<\/section>/, '');
-  const links = articles.map((article) => `<a href="/blog/${article.slug}" class="writing-item" data-category="seo ux product design"><span class="w-date">Jun 24, 2026</span><div class="w-info"><span class="w-title">${escapeHtml(article.navTitle)}</span><span class="w-summary">${escapeHtml(article.description)}</span></div><span class="w-arrow">&rarr;</span></a>`).join('\n          ');
+  const links = articles.map(/** Callback contract: Processes the callback step for articles without leaking orchestration details to the caller. Inputs: article. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (article) => `<a href="/blog/${article.slug}" class="writing-item" data-category="seo ux product design"><span class="w-date">Jun 24, 2026</span><div class="w-info"><span class="w-title">${escapeHtml(article.navTitle)}</span><span class="w-summary">${escapeHtml(article.description)}</span></div><span class="w-arrow">&rarr;</span></a>`).join('\n          ');
   const section = `
       <section id="nrs-seo-growth-writing" class="section-container" style="border-top:1px solid var(--border-faint);">
         <div class="section-header"><p class="eyebrow">Practical SEO series</p><h2 class="section-title">Answers to hiring and client questions.</h2><p class="section-lead">Focused articles that connect product design expertise to real search intent, case studies, and service pages.</p></div>
@@ -315,6 +392,13 @@ function updateBlogIndex() {
   fs.writeFileSync(filePath, html, 'utf8');
 }
 
+/**
+ * Function contract: writeDocs
+ * Purpose: Applies write docs while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function writeDocs() {
   fs.mkdirSync(path.join(root, 'docs'), { recursive: true });
   const doc = `# SEO and AI Visibility QA Plan
@@ -371,6 +455,13 @@ Runtime emits CustomEvent('nrs:analytics') and optional dataLayer/gtag/plausible
   fs.writeFileSync(path.join(root, 'docs', 'seo-ai-visibility-plan.md'), doc, 'utf8');
 }
 
+/**
+ * Function contract: writeArticlePages
+ * Purpose: Applies write article pages while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function writeArticlePages() {
   fs.mkdirSync(path.join(root, 'blog'), { recursive: true });
   for (const article of articles) {
@@ -380,7 +471,7 @@ function writeArticlePages() {
 
 writeArticlePages();
 fs.writeFileSync(path.join(root, 'media-kit.html'), `${mediaKitPage()}\n`, 'utf8');
-Object.entries(projectSeo).forEach(([file, config]) => enhanceProjectPage(file, config));
+Object.entries(projectSeo).forEach(/** Callback contract: Processes the callback step for object.entries(project seo) without leaking orchestration details to the caller. Inputs: [file, config]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([file, config]) => enhanceProjectPage(file, config));
 updateBlogIndex();
 writeDocs();
 

@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-case-breadcrumbs.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure case breadcrumbs.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -46,12 +59,26 @@ const breadcrumbCss = `${start}
 }
 ${end}`;
 
+/**
+ * Function contract: titleFromHtml
+ * Purpose: Implements the title from html responsibility for this module.
+ * Inputs: html, file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function titleFromHtml(html, file) {
   const match = html.match(/<h1\b[^>]*class="[^"]*agent-case-title[^"]*"[^>]*>([\s\S]*?)<\/h1>/i);
   if (match) return match[1].replace(/<[^>]+>/g, '').trim();
   return path.basename(file, '.html').replace(/^project-/, '').replaceAll('-', ' ');
 }
 
+/**
+ * Function contract: patchCase
+ * Purpose: Implements the patch case responsibility for this module.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function patchCase(file) {
   const fullPath = path.join(base, file);
   let html = fs.readFileSync(fullPath, 'utf8');
@@ -74,7 +101,7 @@ if (!fs.existsSync(base)) {
 }
 
 let patched = 0;
-for (const file of fs.readdirSync(base).filter((name) => /^project-[a-z0-9-]+\.html$/i.test(name))) {
+for (const file of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => /^project-[a-z0-9-]+\.html$/i.test(name))) {
   if (patchCase(file)) patched += 1;
 }
 
@@ -85,7 +112,7 @@ if (fs.existsSync(stylePath)) {
 }
 
 const missing = [];
-for (const file of fs.readdirSync(base).filter((name) => /^project-(?:yarsha|mokshya|morajaa|pihub|masteriyo|zapp)\.html$/i.test(name))) {
+for (const file of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => /^project-(?:yarsha|mokshya|morajaa|pihub|masteriyo|zapp)\.html$/i.test(name))) {
   const html = fs.readFileSync(path.join(base, file), 'utf8');
   const count = (html.match(/nav\b[^>]*aria-label=["']Breadcrumb["']/gi) || []).length;
   if (count !== 1) missing.push(`${file}: ${count} breadcrumb navigations`);

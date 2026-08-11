@@ -1,4 +1,17 @@
 /**
+ * @fileoverview src/content/posts.js
+ * Purpose: Structured content module providing posts data to generators/runtime code.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Repository build or application source.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/audit-content-structure.cjs
+ * - src/content/README.md
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
+/**
  * Canonical writing metadata for the portfolio.
  *
  * Static blog pages still exist as HTML routes. This file is the future source
@@ -86,4 +99,4 @@ export const posts = [
   },
 ];
 
-export const featuredPosts = posts.filter((post) => post.featured);
+export const featuredPosts = posts.filter(/** Callback contract: Processes the callback step for posts without leaking orchestration details to the caller. Inputs: post. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (post) => post.featured);

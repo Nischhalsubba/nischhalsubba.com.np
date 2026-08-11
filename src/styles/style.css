@@ -1,3 +1,17 @@
+/**
+ * @fileoverview src/styles/style.css
+ * Purpose: Canonical global stylesheet assembled and validated for all production routes.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Stylesheet source assembled or copied into production CSS.
+ * Connected files:
+ * - .gitignore
+ * - README.md
+ * - blog/ai-assisted-product-design-workflows-small-teams.html
+ * - blog/beautiful-interface-poor-ux.html
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 /*
 Theme Name: Nischhal Portfolio Studio Calm
 Author: Nischhal Raj Subba

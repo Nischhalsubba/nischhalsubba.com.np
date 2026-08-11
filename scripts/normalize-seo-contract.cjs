@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/normalize-seo-contract.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for normalize seo contract.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -7,26 +20,61 @@ const site = 'https://nischhalsubba.com.np';
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
 const fallbackImage = `${site}/assets/images/portrait.png`;
 
+/**
+ * Function contract: routeFor
+ * Purpose: Implements the route for responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
+/**
+ * Function contract: escapePattern
+ * Purpose: Implements the escape pattern responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function escapePattern(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+/**
+ * Function contract: attribute
+ * Purpose: Implements the attribute responsibility for this module.
+ * Inputs: tag, name.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function attribute(tag, name) {
   return tag.match(new RegExp(`\\b${escapePattern(name)}=["']([^"']*)["']`, 'i'))?.[1]?.trim() || '';
 }
 
+/**
+ * Function contract: metaValue
+ * Purpose: Implements the meta value responsibility for this module.
+ * Inputs: html, key, keyAttribute.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function metaValue(html, key, keyAttribute = 'name') {
-  const tags = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => match[0]);
-  const tag = tags.find((candidate) => attribute(candidate, keyAttribute).toLowerCase() === key.toLowerCase());
+  const tags = [...html.matchAll(/<meta\b[^>]*>/gi)].map(/** Callback contract: Processes the callback step for [...html.match all(/<meta\b[^>]*>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => match[0]);
+  const tag = tags.find(/** Callback contract: Processes the callback step for tags without leaking orchestration details to the caller. Inputs: candidate. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (candidate) => attribute(candidate, keyAttribute).toLowerCase() === key.toLowerCase());
   return tag ? attribute(tag, 'content') : '';
 }
 
+/**
+ * Function contract: setMeta
+ * Purpose: Applies set meta while preserving the surrounding repository/runtime contract.
+ * Inputs: html, key, value, keyAttribute.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function setMeta(html, key, value, keyAttribute = 'name') {
   const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapePattern(key)}["'])[^>]*>`, 'i');
   const safeValue = String(value).replace(/["<>]/g, '');
@@ -34,10 +82,24 @@ function setMeta(html, key, value, keyAttribute = 'name') {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
+/**
+ * Function contract: titleValue
+ * Purpose: Implements the title value responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function titleValue(html) {
   return html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g, ' ').trim() || '';
 }
 
+/**
+ * Function contract: conciseTitle
+ * Purpose: Implements the concise title responsibility for this module.
+ * Inputs: title.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function conciseTitle(title) {
   if (title.length <= 80) return title;
   const primary = title.split(/\s+[|–—-]\s+/)[0].trim();
@@ -52,6 +114,13 @@ function conciseTitle(title) {
   return result || title.slice(0, 76).trim();
 }
 
+/**
+ * Function contract: setTitle
+ * Purpose: Applies set title while preserving the surrounding repository/runtime contract.
+ * Inputs: html, title.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function setTitle(html, title) {
   const safeTitle = title.replace(/[<>]/g, '');
   return /<title\b[^>]*>[\s\S]*?<\/title>/i.test(html)
@@ -89,7 +158,7 @@ for (const file of manifest.html) {
   }
 }
 
-const sitemapEntries = manifest.html.map((file) => `  <url><loc>${site}${routeFor(file)}</loc></url>`).join('\n');
+const sitemapEntries = manifest.html.map(/** Callback contract: Processes the callback step for manifest.html without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => `  <url><loc>${site}${routeFor(file)}</loc></url>`).join('\n');
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`;
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap, 'utf8');
 console.log(`[seo-contract] Normalized ${updated} page(s) and rebuilt sitemap with ${manifest.html.length} canonical URLs.`);

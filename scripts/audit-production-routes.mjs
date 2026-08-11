@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/audit-production-routes.mjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for audit production routes.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - .github/workflows/production-route-audit.yml
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const base = new URL(process.env.PRODUCTION_BASE_URL || 'https://nischhalsubba.com.np');
 const requiredRoutes = [
   '/',
@@ -14,6 +28,13 @@ const requiredRoutes = [
 
 const failures = [];
 
+/**
+ * Function contract: requestWithRedirectAudit
+ * Purpose: Implements the request with redirect audit responsibility for this module.
+ * Inputs: pathname.
+ * Side effects: may perform network I/O.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 async function requestWithRedirectAudit(pathname) {
   let current = new URL(pathname, base);
   const visited = new Set();
@@ -59,7 +80,7 @@ for (const route of requiredRoutes) {
 }
 
 if (failures.length) {
-  console.error(`[production-routes] ${failures.length} failure(s)\n${failures.map((failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[production-routes] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: failure. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

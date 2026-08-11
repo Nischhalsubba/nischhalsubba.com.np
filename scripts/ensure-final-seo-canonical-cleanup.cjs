@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-final-seo-canonical-cleanup.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure final seo canonical cleanup.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -122,6 +135,13 @@ const preferredSitemap = [
   '/humans.txt',
 ];
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: dir, files.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -132,20 +152,48 @@ function walk(dir, files = []) {
   return files;
 }
 
+/**
+ * Function contract: rel
+ * Purpose: Implements the rel responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function rel(file) {
   return path.relative(targetRoot, file).replaceAll(path.sep, '/');
 }
 
+/**
+ * Function contract: escapeAttribute
+ * Purpose: Implements the escape attribute responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function escapeAttribute(value) {
   return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
+/**
+ * Function contract: upsertTitle
+ * Purpose: Implements the upsert title responsibility for this module.
+ * Inputs: html, title.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertTitle(html, title) {
   const tag = `<title>${title}</title>`;
   if (/<title>[\s\S]*?<\/title>/i.test(html)) return html.replace(/<title>[\s\S]*?<\/title>/i, tag);
   return html.replace('</head>', `    ${tag}\n  </head>`);
 }
 
+/**
+ * Function contract: upsertMeta
+ * Purpose: Implements the upsert meta responsibility for this module.
+ * Inputs: html, attr, name, content.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertMeta(html, attr, name, content) {
   const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`<meta\\s+${attr}=["']${escapedName}["'][^>]*>`, 'i');
@@ -154,6 +202,13 @@ function upsertMeta(html, attr, name, content) {
   return html.replace('</head>', `    ${tag}\n  </head>`);
 }
 
+/**
+ * Function contract: upsertCanonical
+ * Purpose: Implements the upsert canonical responsibility for this module.
+ * Inputs: html, canonicalPath.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertCanonical(html, canonicalPath) {
   const href = `${site}${canonicalPath}`;
   const tag = `<link rel="canonical" href="${href}" />`;
@@ -161,14 +216,35 @@ function upsertCanonical(html, canonicalPath) {
   return html.replace('</head>', `    ${tag}\n  </head>`);
 }
 
+/**
+ * Function contract: removeKeywordMeta
+ * Purpose: Removes or cleans remove keyword meta while keeping required outputs intact.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function removeKeywordMeta(html) {
   return html.replace(/\s*<meta\s+[^>]*name=["']keywords["'][^>]*>\s*/gi, '\n');
 }
 
+/**
+ * Function contract: removeJsonLd
+ * Purpose: Removes or cleans remove json ld while keeping required outputs intact.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function removeJsonLd(html) {
   return html.replace(/\s*<script\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>\s*/gi, '\n');
 }
 
+/**
+ * Function contract: buildSchema
+ * Purpose: Creates build schema from the supplied inputs and repository state.
+ * Inputs: data.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function buildSchema(data) {
   const url = `${site}${data.canonical}`;
   const base = {
@@ -216,6 +292,13 @@ function buildSchema(data) {
   return `<script type="application/ld+json">${JSON.stringify(base)}</script>`;
 }
 
+/**
+ * Function contract: applyMetadata
+ * Purpose: Applies apply metadata while preserving the surrounding repository/runtime contract.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function applyMetadata(file) {
   const key = rel(file);
   let html = fs.readFileSync(file, 'utf8');
@@ -252,13 +335,27 @@ function applyMetadata(file) {
   return 'updated';
 }
 
+/**
+ * Function contract: writeSitemap
+ * Purpose: Applies write sitemap while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function writeSitemap() {
   const lastmod = new Date().toISOString().slice(0, 10);
-  const urls = preferredSitemap.map((url) => `  <url>\n    <loc>${site}${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`).join('\n');
+  const urls = preferredSitemap.map(/** Callback contract: Processes the callback step for preferred sitemap without leaking orchestration details to the caller. Inputs: url. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (url) => `  <url>\n    <loc>${site}${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`).join('\n');
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
   fs.writeFileSync(path.join(targetRoot, 'sitemap.xml'), xml, 'utf8');
 }
 
+/**
+ * Function contract: validateCloudflareRedirects
+ * Purpose: Validates validate cloudflare redirects and reports violations instead of silently accepting invalid state.
+ * Inputs: redirects.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function validateCloudflareRedirects(redirects) {
   const map = new Map();
 
@@ -284,6 +381,13 @@ function validateCloudflareRedirects(redirects) {
   }
 }
 
+/**
+ * Function contract: writeRedirects
+ * Purpose: Applies write redirects while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function writeRedirects() {
   const redirects = `# Legacy URLs only. Clean routes are served directly by the platform.\n/home / 301\n/home.html / 301\n/home-v2 / 301\n/home-v2.html / 301\n/index.html / 301\n/blog /blog/ 301\n/blog.html /blog/ 301\n/products /figma-design-systems 301\n/products.html /figma-design-systems 301\n/project-detail.html /projects 301\n/project-jeweltrek.html /projects 301\n/blog-detail.html /blog/ 301\n/blog-saas-dashboard-ux-checklist.html /blog/saas-dashboard-ux-checklist 301\n/blog-web3-wallet-ux-checklist.html /blog/web3-wallet-ux-checklist 301\n/blog-figma-handoff-notes-for-developers.html /blog/figma-handoff-notes-for-developers 301\n/blog-ux-audit-checklist-before-redesign.html /blog/ux-audit-checklist-before-redesign 301\n/blog-website-ux-checklist-software-companies.html /blog/website-ux-checklist-software-companies 301\n/blog-role-based-saas-dashboard-ux.html /blog/role-based-saas-dashboard-ux 301\n`;
   validateCloudflareRedirects(redirects);
@@ -292,7 +396,7 @@ function writeRedirects() {
 
 let updated = 0;
 let legacy = 0;
-for (const file of walk(targetRoot).filter((item) => item.endsWith('.html'))) {
+for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.endsWith('.html'))) {
   const status = applyMetadata(file);
   if (status === 'updated') updated += 1;
   if (status === 'legacy') legacy += 1;

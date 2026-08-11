@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/audit-build.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for audit build.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/build-pipeline.md
+ * - docs/repository/file-catalog.md
+ * - docs/root-route-map.md
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -47,15 +61,36 @@ const forbiddenPublicAssets = [
   'portfolio-improvements.js',
 ];
 
+/**
+ * Function contract: fail
+ * Purpose: Implements the fail responsibility for this module.
+ * Inputs: message.
+ * Side effects: may emit diagnostics or inspect process state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function fail(message) {
   console.error(`[build-audit] ${message}`);
   process.exitCode = 1;
 }
 
+/**
+ * Function contract: warn
+ * Purpose: Implements the warn responsibility for this module.
+ * Inputs: message.
+ * Side effects: may emit diagnostics or inspect process state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function warn(message) {
   console.warn(`[build-audit] ${message}`);
 }
 
+/**
+ * Function contract: walkFiles
+ * Purpose: Implements the walk files responsibility for this module.
+ * Inputs: directory, matcher, files.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function walkFiles(directory, matcher, files = []) {
   if (!fs.existsSync(directory)) return files;
 
@@ -71,34 +106,78 @@ function walkFiles(directory, matcher, files = []) {
   return files;
 }
 
+/**
+ * Function contract: fileContains
+ * Purpose: Implements the file contains responsibility for this module.
+ * Inputs: relativePath, value.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function fileContains(relativePath, value) {
   const filePath = path.join(distDir, relativePath);
   return fs.existsSync(filePath) && fs.readFileSync(filePath, 'utf8').includes(value);
 }
 
+/**
+ * Function contract: stylesheetHrefs
+ * Purpose: Implements the stylesheet hrefs responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function stylesheetHrefs(html) {
   return Array.from(
     html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi),
-  ).map((match) => match[1]);
+  ).map(/** Callback contract: Processes the callback step for array.from(
+    html.match all(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi),
+  ) without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => match[1]);
 }
 
+/**
+ * Function contract: canonicalHref
+ * Purpose: Implements the canonical href responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function canonicalHref(html) {
   return html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1] || '';
 }
 
+/**
+ * Function contract: htmlUsesAllowedRuntime
+ * Purpose: Implements the html uses allowed runtime responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function htmlUsesAllowedRuntime(html) {
   return html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"']+\.js["'][^>]*><\/script>/i.test(html);
 }
 
+/**
+ * Function contract: hasLocalPortraitAsset
+ * Purpose: Implements the has local portrait asset responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function hasLocalPortraitAsset() {
   const assetDir = path.join(distDir, 'assets', 'images');
   if (!fs.existsSync(assetDir)) return false;
   return walkFiles(
     assetDir,
-    (filePath) => /^portrait[-\w]*\.(png|jpg|jpeg|webp|avif|svg)$/i.test(path.basename(filePath)),
+    /** Callback contract: Processes the callback step for walk files without leaking orchestration details to the caller. Inputs: filePath. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (filePath) => /^portrait[-\w]*\.(png|jpg|jpeg|webp|avif|svg)$/i.test(path.basename(filePath)),
   ).length > 0;
 }
 
+/**
+ * Function contract: validateResumePdf
+ * Purpose: Validates validate resume pdf and reports violations instead of silently accepting invalid state.
+ * Inputs: filePath.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function validateResumePdf(filePath) {
   if (!fs.existsSync(filePath)) return;
   const pdf = fs.readFileSync(filePath);
@@ -146,7 +225,7 @@ if (!fs.existsSync(distDir)) {
   const indexPath = path.join(distDir, 'index.html');
   const indexHtml = fs.existsSync(indexPath) ? fs.readFileSync(indexPath, 'utf8') : '';
 
-  for (const htmlFile of walkFiles(distDir, (file) => file.endsWith('.html'))) {
+  for (const htmlFile of walkFiles(distDir, /** Callback contract: Processes the callback step for walk files without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => file.endsWith('.html'))) {
     const html = fs.readFileSync(htmlFile, 'utf8');
     const rel = path.relative(distDir, htmlFile).replaceAll(path.sep, '/');
     const stylesheets = stylesheetHrefs(html);
@@ -155,13 +234,13 @@ if (!fs.existsSync(distDir)) {
       if (html.includes(marker)) fail(`Visible SEO helper marker found in ${rel}: ${marker}`);
     }
 
-    const localStylesheets = stylesheets.filter((href) => !/^https?:\/\//i.test(href));
+    const localStylesheets = stylesheets.filter(/** Callback contract: Processes the callback step for stylesheets without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (href) => !/^https?:\/\//i.test(href));
     if (localStylesheets.length !== 1 || !localStylesheets[0].startsWith('/style.css')) {
       fail(`${rel} must use exactly one local stylesheet: /style.css.`);
     }
 
     for (const retiredStylesheet of retiredStylesheets) {
-      if (stylesheets.some((href) => href.includes(retiredStylesheet))) {
+      if (stylesheets.some(/** Callback contract: Processes the callback step for stylesheets without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (href) => href.includes(retiredStylesheet))) {
         fail(`${rel} references retired stylesheet ${retiredStylesheet}.`);
       }
     }

@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/generate-resume-pdf-v2.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for generate resume pdf v2.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -6,6 +19,13 @@ const profile = JSON.parse(fs.readFileSync(path.join(root, 'config', 'profession
 const outputPath = path.join(root, 'dist', 'assets', 'resume.pdf');
 
 const lines = [];
+/**
+ * Function contract: add
+ * Purpose: Implements the add responsibility for this module.
+ * Inputs: items.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 const add = (...items) => lines.push(...items);
 add(
   profile.name,
@@ -17,13 +37,13 @@ add(
   profile.summary,
   '',
   'CORE SKILLS',
-  ...profile.skills.map((item) => `- ${item}`),
+  ...profile.skills.map(/** Callback contract: Processes the callback step for profile.skills without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => `- ${item}`),
   '',
   'SELECTED WORK',
-  ...profile.projects.flatMap((project) => [project.name, `- ${project.summary}`]),
+  ...profile.projects.flatMap(/** Callback contract: Processes the callback step for profile.projects without leaking orchestration details to the caller. Inputs: project. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (project) => [project.name, `- ${project.summary}`]),
   '',
   'EXPERIENCE',
-  ...profile.experience.flatMap((job) => [
+  ...profile.experience.flatMap(/** Callback contract: Processes the callback step for profile.experience without leaking orchestration details to the caller. Inputs: job. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (job) => [
     `${job.company} | ${job.role} | ${job.dates}`,
     `- ${job.summary}`,
   ]),
@@ -41,6 +61,13 @@ add(
   `Uxcel: ${profile.profiles.uxcel}`,
 );
 
+/**
+ * Function contract: wrapLine
+ * Purpose: Implements the wrap line responsibility for this module.
+ * Inputs: text, maxChars.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function wrapLine(text, maxChars = 92) {
   const value = String(text || '');
   if (!value) return [''];
@@ -59,20 +86,41 @@ function wrapLine(text, maxChars = 92) {
   return result;
 }
 
+/**
+ * Function contract: escapePdfText
+ * Purpose: Implements the escape pdf text responsibility for this module.
+ * Inputs: text.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function escapePdfText(text) {
   return String(text).replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
 }
 
+/**
+ * Function contract: isHeading
+ * Purpose: Implements the is heading responsibility for this module.
+ * Inputs: line.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function isHeading(line) {
   return ['SUMMARY', 'CORE SKILLS', 'SELECTED WORK', 'EXPERIENCE', 'EDUCATION', 'CERTIFICATIONS', 'PROFILES'].includes(line);
 }
 
+/**
+ * Function contract: paginate
+ * Purpose: Implements the paginate responsibility for this module.
+ * Inputs: source.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function paginate(source) {
   const pages = [];
   let page = [];
   let used = 0;
   const pageBudget = 47;
-  source.forEach((line, index) => {
+  source.forEach(/** Callback contract: Processes the callback step for source without leaking orchestration details to the caller. Inputs: line, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (line, index) => {
     const wrapped = wrapLine(line, index === 0 ? 46 : 92);
     const cost = wrapped.length + (isHeading(line) ? 1 : 0);
     if (page.length && used + cost > pageBudget) {
@@ -87,6 +135,13 @@ function paginate(source) {
   return pages;
 }
 
+/**
+ * Function contract: buildPageContent
+ * Purpose: Creates build page content from the supplied inputs and repository state.
+ * Inputs: pageLines, pageIndex.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function buildPageContent(pageLines, pageIndex) {
   let y = 760;
   const commands = ['BT', '/F1 9.5 Tf', '13.2 TL'];
@@ -113,8 +168,22 @@ function buildPageContent(pageLines, pageIndex) {
   return commands.join('\n');
 }
 
+/**
+ * Function contract: createPdf
+ * Purpose: Creates create pdf from the supplied inputs and repository state.
+ * Inputs: pages.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function createPdf(pages) {
   const objects = [];
+  /**
+   * Function contract: push
+   * Purpose: Implements the push responsibility for this module.
+   * Inputs: body.
+   * Side effects: no obvious external side effect beyond invoked dependencies.
+   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
   const push = (body) => { objects.push(body); return objects.length; };
   const regular = push('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
   const bold = push('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>');
@@ -125,7 +194,7 @@ function createPdf(pages) {
     const pageRef = push(`<< /Type /Page /Parent 0 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 ${regular} 0 R /F2 ${bold} 0 R >> >> /Contents ${contentRef} 0 R >>`);
     pageRefs.push(pageRef);
   }
-  const pagesRef = push(`<< /Type /Pages /Kids [${pageRefs.map((ref) => `${ref} 0 R`).join(' ')}] /Count ${pageRefs.length} >>`);
+  const pagesRef = push(`<< /Type /Pages /Kids [${pageRefs.map(/** Callback contract: Processes the callback step for page refs without leaking orchestration details to the caller. Inputs: ref. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (ref) => `${ref} 0 R`).join(' ')}] /Count ${pageRefs.length} >>`);
   const catalogRef = push(`<< /Type /Catalog /Pages ${pagesRef} 0 R >>`);
   for (const ref of pageRefs) objects[ref - 1] = objects[ref - 1].replace('/Parent 0 0 R', `/Parent ${pagesRef} 0 R`);
   let pdf = '%PDF-1.4\n';

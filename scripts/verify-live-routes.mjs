@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/verify-live-routes.mjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for verify live routes.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const BASE_URL = process.env.SITE_URL || 'https://nischhalsubba.com.np';
 const routes = [
   '/', '/projects', '/services', '/about', '/contact', '/privacy', '/blog/',
@@ -20,6 +33,13 @@ const redirects = new Map([
 
 const errors = [];
 
+/**
+ * Function contract: verifyRoute
+ * Purpose: Validates verify route and reports violations instead of silently accepting invalid state.
+ * Inputs: route.
+ * Side effects: may read or update browser DOM/state; may perform network I/O.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 async function verifyRoute(route) {
   const response = await fetch(new URL(route, BASE_URL), { redirect: 'manual' });
   const type = response.headers.get('content-type') || '';
@@ -30,6 +50,13 @@ async function verifyRoute(route) {
   if (!/<h1\b/i.test(text)) errors.push(`${route}: missing H1`);
 }
 
+/**
+ * Function contract: verifyRedirect
+ * Purpose: Validates verify redirect and reports violations instead of silently accepting invalid state.
+ * Inputs: route, expected.
+ * Side effects: may perform network I/O.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 async function verifyRedirect(route, expected) {
   const response = await fetch(new URL(route, BASE_URL), { redirect: 'manual' });
   if (![301, 302, 307, 308].includes(response.status)) {

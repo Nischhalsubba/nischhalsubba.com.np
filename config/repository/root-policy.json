@@ -23,14 +23,20 @@
     "wordpress/"
   ],
   "requiredDocumentation": [
-    "docs/repository/file-map.md",
+    "config/repository/code-documentation-policy.json",
     "docs/repository/file-catalog.md",
+    "docs/repository/file-map.md",
+    "scripts/repository/README.md",
     "src/README.md",
+    "src/compat/README.md",
+    "src/discovery/README.md",
     "src/pages/README.md",
     "src/runtime/README.md",
+    "src/scripts/README.md",
+    "src/scripts/entrypoints/README.md",
+    "src/scripts/shared/README.md",
     "src/styles/README.md",
-    "src/discovery/README.md",
-    "src/compat/README.md",
-    "scripts/repository/README.md"
+    "src/styles/fragments/README.md",
+    "src/styles/systems/README.md"
   ]
 }

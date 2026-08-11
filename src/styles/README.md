@@ -1,13 +1,9 @@
 # `src/styles/`
 
-Owns authored production CSS.
+Authored stylesheet source with explicit ownership.
 
-`style.css` is the single stylesheet source of truth. It is materialized to `/style.css` for the mature build pipeline, then copied to `dist/style.css` by `scripts/copy-static-assets.cjs`.
+- `style.css`: canonical assembled/global production stylesheet required by the mature build contract.
+- `systems/`: reusable authored stylesheet systems.
+- `fragments/agent/`: composable agent-era fragments assembled by the stylesheet compiler; names describe responsibility instead of historical sequence numbers.
 
-Connected files:
-
-- HTML pages that reference `/style.css`;
-- `scripts/compile-single-stylesheet.cjs` and CSS/design-system audits;
-- `scripts/repository/source-layout.cjs` for compatibility materialization.
-
-Do not add patch/version stylesheets. The build audits intentionally enforce one production stylesheet contract.
+Do not add patch/version stylesheets. `scripts/compile-single-stylesheet.cjs` remains the assembly owner and CSS audits enforce the production contract.

@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/link-experience-company-websites-v25.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for link experience company websites v25.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -18,8 +31,15 @@ const companies = [
   ['Gurzu', 'https://gurzu.com/'],
 ];
 
+/**
+ * Function contract: htmlFiles
+ * Purpose: Implements the html files responsibility for this module.
+ * Inputs: dir.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function htmlFiles(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(/** Callback contract: Processes the callback step for fs.readdir sync(dir, { with file types: true }) without leaking orchestration details to the caller. Inputs: entry. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (entry) => {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) return htmlFiles(full);
     return entry.isFile() && entry.name.endsWith('.html') ? [full] : [];

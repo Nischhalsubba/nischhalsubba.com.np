@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/verify-signal-demo-source-v14.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for verify signal demo source v14.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/ensure-signal-demo-hero-v14.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -10,6 +24,13 @@ const EXPECTED_WEBP_BYTES = 86144;
 const EXPECTED_WIDTH = 760;
 const EXPECTED_HEIGHT = 950;
 
+/**
+ * Function contract: gitBlobSha1
+ * Purpose: Implements the git blob sha1 responsibility for this module.
+ * Inputs: buffer.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function gitBlobSha1(buffer) {
   return crypto.createHash('sha1')
     .update(Buffer.from(`blob ${buffer.length}\0`, 'utf8'))
@@ -17,6 +38,13 @@ function gitBlobSha1(buffer) {
     .digest('hex');
 }
 
+/**
+ * Function contract: readVp8Dimensions
+ * Purpose: Retrieves read vp8 dimensions and returns it in the form expected by its caller.
+ * Inputs: buffer.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function readVp8Dimensions(buffer) {
   const signature = Buffer.from([0x9d, 0x01, 0x2a]);
   const index = buffer.indexOf(signature);
@@ -29,6 +57,13 @@ function readVp8Dimensions(buffer) {
   };
 }
 
+/**
+ * Function contract: verifySource
+ * Purpose: Validates verify source and reports violations instead of silently accepting invalid state.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function verifySource() {
   if (!fs.existsSync(SOURCE_PATH)) {
     throw new Error(`[signal-demo-v14] Missing exact demo source: ${SOURCE_PATH}`);

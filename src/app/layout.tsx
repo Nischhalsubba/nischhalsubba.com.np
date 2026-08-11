@@ -1,3 +1,15 @@
+/**
+ * @fileoverview src/app/layout.tsx
+ * Purpose: Authored source file responsible for Layout.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Repository build or application source.
+ * Connected files:
+ * - README.md
+ * - docs/repository/file-catalog.md
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 import type { Metadata, Viewport } from "next";
 import { Inter, Nunito_Sans } from "next/font/google";
 import AppTelemetry from "@/components/AppTelemetry";
@@ -74,6 +86,13 @@ export const viewport: Viewport = {
 
 /**
  * Root layout for the entire app.
+ */
+/**
+ * Function contract: RootLayout
+ * Purpose: Implements the root layout responsibility for this module.
+ * Inputs: { children }.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

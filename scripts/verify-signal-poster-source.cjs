@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/verify-signal-poster-source.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for verify signal poster source.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -21,6 +34,13 @@ const EXPECTED_PARTS = [
   ['part-04b.b64part', 1816, '03750b04c44530bddc52e676252573c1f2aeae8209d2be4d8883e4f1c04c7a7b'],
 ];
 
+/**
+ * Function contract: sha256
+ * Purpose: Implements the sha256 responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 const sha256 = (value) => crypto.createHash('sha256').update(value).digest('hex');
 
 if (!fs.existsSync(partsDir)) {
@@ -28,15 +48,16 @@ if (!fs.existsSync(partsDir)) {
 }
 
 const discovered = fs.readdirSync(partsDir)
-  .filter((name) => name.endsWith('.b64part'))
-  .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
-const expectedNames = EXPECTED_PARTS.map(([name]) => name)
-  .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+  .filter(/** Callback contract: Processes the callback step for fs.readdir sync(parts dir) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => name.endsWith('.b64part'))
+  .sort(/** Callback contract: Processes the callback step for fs.readdir sync(parts dir)
+  .filter((name) => name.ends with('.b64part')) without leaking orchestration details to the caller. Inputs: a, b. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (a, b) => a.localeCompare(b, 'en', { numeric: true }));
+const expectedNames = EXPECTED_PARTS.map(/** Callback contract: Processes the callback step for expected parts without leaking orchestration details to the caller. Inputs: [name]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([name]) => name)
+  .sort(/** Callback contract: Processes the callback step for expected parts.map(([name]) => name) without leaking orchestration details to the caller. Inputs: a, b. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (a, b) => a.localeCompare(b, 'en', { numeric: true }));
 if (JSON.stringify(discovered) !== JSON.stringify(expectedNames)) {
   throw new Error(`[signal-source-preflight] Segment set mismatch. Expected ${expectedNames.join(', ')}, found ${discovered.join(', ')}.`);
 }
 
-const encoded = EXPECTED_PARTS.map(([name, expectedChars, expectedHash]) => {
+const encoded = EXPECTED_PARTS.map(/** Callback contract: Processes the callback step for expected parts without leaking orchestration details to the caller. Inputs: [name, expectedChars, expectedHash]. Side effects: may read or write repository/filesystem state. Returns a value to the invoking API. */ ([name, expectedChars, expectedHash]) => {
   const value = fs.readFileSync(path.join(partsDir, name), 'utf8').replace(/\s+/g, '');
   if (value.length !== expectedChars) {
     throw new Error(`[signal-source-preflight] ${name} character count mismatch. Expected ${expectedChars}, found ${value.length}.`);

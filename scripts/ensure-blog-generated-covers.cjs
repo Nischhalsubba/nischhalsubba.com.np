@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-blog-generated-covers.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure blog generated covers.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/generate-source.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -34,32 +48,67 @@ const COVER_BY_TOPIC = [
 
 const DEFAULT_COVER = COVER_BY_TOPIC[1];
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: dir.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(/** Callback contract: Processes the callback step for fs.readdir sync(dir, { with file types: true }) without leaking orchestration details to the caller. Inputs: entry. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (entry) => {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) return walk(fullPath);
     return entry.isFile() && entry.name.endsWith('.html') ? [fullPath] : [];
   });
 }
 
+/**
+ * Function contract: pageKey
+ * Purpose: Implements the page key responsibility for this module.
+ * Inputs: filePath, html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function pageKey(filePath, html) {
   const title = html.match(/<title>(.*?)<\/title>/is)?.[1] || '';
   const h1 = html.match(/<h1[^>]*>(.*?)<\/h1>/is)?.[1] || '';
   return `${filePath} ${title} ${h1}`.replace(/<[^>]*>/g, ' ');
 }
 
+/**
+ * Function contract: pickCover
+ * Purpose: Implements the pick cover responsibility for this module.
+ * Inputs: filePath, html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function pickCover(filePath, html) {
   const key = pageKey(filePath, html);
-  return COVER_BY_TOPIC.find((cover) => cover.match.test(key)) || DEFAULT_COVER;
+  return COVER_BY_TOPIC.find(/** Callback contract: Processes the callback step for cover by topic without leaking orchestration details to the caller. Inputs: cover. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (cover) => cover.match.test(key)) || DEFAULT_COVER;
 }
 
+/**
+ * Function contract: absolute
+ * Purpose: Implements the absolute responsibility for this module.
+ * Inputs: src.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function absolute(src) {
   return `${SITE_URL}${src}`;
 }
 
+/**
+ * Function contract: upsertMeta
+ * Purpose: Implements the upsert meta responsibility for this module.
+ * Inputs: html, selector, attrs.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertMeta(html, selector, attrs) {
-  const attrText = Object.entries(attrs).map(([key, value]) => `${key}="${value}"`).join(' ');
+  const attrText = Object.entries(attrs).map(/** Callback contract: Processes the callback step for object.entries(attrs) without leaking orchestration details to the caller. Inputs: [key, value]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([key, value]) => `${key}="${value}"`).join(' ');
   const tag = `<meta ${attrText}>`;
   const regex = selector === 'og:image'
     ? /<meta[^>]+property=["']og:image["'][^>]*>/i
@@ -69,16 +118,30 @@ function upsertMeta(html, selector, attrs) {
   return html.replace(/<\/head>/i, `${tag}</head>`);
 }
 
+/**
+ * Function contract: updateJsonLdImages
+ * Purpose: Applies update json ld images while preserving the surrounding repository/runtime contract.
+ * Inputs: html, cover.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function updateJsonLdImages(html, cover) {
-  return html.replace(/<script type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi, (match, rawJson) => {
+  return html.replace(/<script type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match, rawJson. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (match, rawJson) => {
     try {
       const data = JSON.parse(rawJson.trim());
+      /**
+       * Function contract: setImage
+       * Purpose: Applies set image while preserving the surrounding repository/runtime contract.
+       * Inputs: node.
+       * Side effects: no obvious external side effect beyond invoked dependencies.
+       * Returns: no explicit value unless an invoked dependency throws/rejects.
+       */
       const setImage = (node) => {
         if (node && typeof node === 'object') {
           if (['Article', 'BlogPosting'].includes(node['@type']) || node.headline) {
             node.image = absolute(cover.src);
           }
-          Object.values(node).forEach((value) => {
+          Object.values(node).forEach(/** Callback contract: Processes the callback step for object.values(node) without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => {
             if (Array.isArray(value)) value.forEach(setImage);
             else setImage(value);
           });
@@ -92,11 +155,18 @@ function updateJsonLdImages(html, cover) {
   });
 }
 
+/**
+ * Function contract: replaceExistingCover
+ * Purpose: Implements the replace existing cover responsibility for this module.
+ * Inputs: html, cover.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function replaceExistingCover(html, cover) {
   const imgRegex = /<img\b([^>]*?)\bsrc=["']([^"']*(?:unsplash|blog-[^"']+\.(?:svg|png))[^"']*)["']([^>]*)>/i;
   if (!imgRegex.test(html)) return html;
 
-  return html.replace(imgRegex, (match, before, _src, after) => {
+  return html.replace(imgRegex, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match, before, _src, after. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (match, before, _src, after) => {
     let next = match
       .replace(/\bsrc=["'][^"']+["']/i, `src="${cover.src}"`)
       .replace(/\balt=["'][^"']*["']/i, `alt="${cover.alt}"`);
@@ -111,6 +181,13 @@ function replaceExistingCover(html, cover) {
   });
 }
 
+/**
+ * Function contract: insertCover
+ * Purpose: Implements the insert cover responsibility for this module.
+ * Inputs: html, cover.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function insertCover(html, cover) {
   if (/<img\b[^>]+src=["'][^"']*blog-[^"']+\.(?:png|svg)["']/i.test(html)) return html;
 
@@ -127,6 +204,13 @@ function insertCover(html, cover) {
   return html;
 }
 
+/**
+ * Function contract: processFile
+ * Purpose: Implements the process file responsibility for this module.
+ * Inputs: filePath.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function processFile(filePath) {
   if (path.basename(filePath) === 'index.html') return false;
 
@@ -150,8 +234,9 @@ const files = [
   ...walk(path.join(ROOT, 'blog')),
   ...walk(path.join(ROOT, 'public', 'blog')),
   ...fs.readdirSync(ROOT)
-    .filter((name) => /^blog-.+\.html$/.test(name))
-    .map((name) => path.join(ROOT, name)),
+    .filter(/** Callback contract: Processes the callback step for fs.readdir sync(root) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => /^blog-.+\.html$/.test(name))
+    .map(/** Callback contract: Processes the callback step for fs.readdir sync(root)
+    .filter((name) => /^blog .+\.html$/.test(name)) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => path.join(ROOT, name)),
 ];
 
 let changed = 0;

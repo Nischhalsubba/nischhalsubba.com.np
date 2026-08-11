@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-blog-detail-polish.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure blog detail polish.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -224,6 +237,13 @@ const css = `
 }
 `;
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: dir, files.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -234,37 +254,86 @@ function walk(dir, files = []) {
   return files;
 }
 
+/**
+ * Function contract: rel
+ * Purpose: Implements the rel responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function rel(file) {
   return path.relative(targetRoot, file).replaceAll(path.sep, '/');
 }
 
+/**
+ * Function contract: getTitle
+ * Purpose: Retrieves get title and returns it in the form expected by its caller.
+ * Inputs: html, file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function getTitle(html, file) {
   return html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g, '').trim()
     || html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.split('|')[0]?.trim()
     || path.basename(file, '.html').replace(/-/g, ' ');
 }
 
+/**
+ * Function contract: getCategory
+ * Purpose: Retrieves get category and returns it in the form expected by its caller.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function getCategory(html) {
   return html.match(/<p class="eyebrow"[^>]*>([\s\S]*?)<\/p>/i)?.[1]?.replace(/<[^>]+>/g, '').trim()
     || 'Article';
 }
 
+/**
+ * Function contract: titleCase
+ * Purpose: Implements the title case responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function titleCase(value) {
-  return value.replace(/\s+/g, ' ').trim().replace(/\b\w/g, (char) => char.toUpperCase());
+  return value.replace(/\s+/g, ' ').trim().replace(/\b\w/g, /** Callback contract: Processes the callback step for value.replace(/\s+/g, ' ').trim() without leaking orchestration details to the caller. Inputs: char. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (char) => char.toUpperCase());
 }
 
+/**
+ * Function contract: upsertBodyClass
+ * Purpose: Implements the upsert body class responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertBodyClass(html) {
   if (/<html\b[^>]*class=["'][^"']*nrs-blog-detail-page/i.test(html)) return html;
   if (/<html\b[^>]*class=/i.test(html)) return html.replace(/<html\b([^>]*class=["'])([^"']*)(["'][^>]*)>/i, '<html$1$2 nrs-blog-detail-page$3>');
   return html.replace(/<html\b([^>]*)>/i, '<html$1 class="nrs-blog-detail-page">');
 }
 
+/**
+ * Function contract: normalizeAssetVersions
+ * Purpose: Applies normalize asset versions while preserving the surrounding repository/runtime contract.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function normalizeAssetVersions(html) {
   return html
     .replace(/\/style\.css\?v=[0-9.]+/g, `/style.css?v=${styleVersion}`)
     .replace(/\/script\.js\?v=[0-9.]+/g, `/script.js?v=${scriptVersion}`);
 }
 
+/**
+ * Function contract: normalizeArticleClasses
+ * Purpose: Applies normalize article classes while preserving the surrounding repository/runtime contract.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function normalizeArticleClasses(html) {
   return html
     .replace(/<p class="eyebrow"([^>]*)>/i, '<p class="eyebrow nrs-blog-category"$1>')
@@ -273,6 +342,13 @@ function normalizeArticleClasses(html) {
     .replace(/<p class="body-large"([^>]*)>/i, '<p class="body-large nrs-blog-dek"$1>');
 }
 
+/**
+ * Function contract: removeOldBackAndBreadcrumbs
+ * Purpose: Removes or cleans remove old back and breadcrumbs while keeping required outputs intact.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function removeOldBackAndBreadcrumbs(html) {
   return html
     .replace(/\s*<nav class="nrs-blog-breadcrumbs"[\s\S]*?<\/nav>\s*/gi, '\n')
@@ -280,6 +356,13 @@ function removeOldBackAndBreadcrumbs(html) {
     .replace(/\s*<a class="badge-pill" href="\/blog\/">[\s\S]*?<\/a>\s*/i, '\n');
 }
 
+/**
+ * Function contract: breadcrumbHtml
+ * Purpose: Implements the breadcrumb html responsibility for this module.
+ * Inputs: { title, category }.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function breadcrumbHtml({ title, category }) {
   const categoryLabel = titleCase(category);
   return `        <nav class="nrs-blog-breadcrumbs" aria-label="Breadcrumb">
@@ -288,6 +371,13 @@ function breadcrumbHtml({ title, category }) {
         <a class="nrs-blog-back-btn" href="/blog/">Back to all writing</a>`;
 }
 
+/**
+ * Function contract: breadcrumbJsonLd
+ * Purpose: Implements the breadcrumb json ld responsibility for this module.
+ * Inputs: { title, slugPath }.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function breadcrumbJsonLd({ title, slugPath }) {
   const url = `${site}/${slugPath}`;
   const data = {
@@ -302,11 +392,25 @@ function breadcrumbJsonLd({ title, slugPath }) {
   return `<script id="nrs-blog-breadcrumb-json" type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
+/**
+ * Function contract: upsertBreadcrumbJson
+ * Purpose: Implements the upsert breadcrumb json responsibility for this module.
+ * Inputs: html, payload.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertBreadcrumbJson(html, payload) {
   let output = html.replace(/\s*<script id="nrs-blog-breadcrumb-json"[\s\S]*?<\/script>\s*/gi, '\n');
   return output.replace('</head>', `    ${payload}\n  </head>`);
 }
 
+/**
+ * Function contract: ensureCanonicalHierarchy
+ * Purpose: Applies ensure canonical hierarchy while preserving the surrounding repository/runtime contract.
+ * Inputs: html, slugPath.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function ensureCanonicalHierarchy(html, slugPath) {
   const canonical = `${site}/${slugPath}`;
   if (/<link\s+[^>]*rel=["']canonical["'][^>]*>/i.test(html)) {
@@ -318,6 +422,13 @@ function ensureCanonicalHierarchy(html, slugPath) {
   return html;
 }
 
+/**
+ * Function contract: polishBlogArticle
+ * Purpose: Applies polish blog article while preserving the surrounding repository/runtime contract.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function polishBlogArticle(file) {
   const slugPath = rel(file);
   if (!slugPath.startsWith('blog/') || slugPath === 'blog/index.html' || !slugPath.endsWith('.html')) return false;
@@ -339,6 +450,13 @@ function polishBlogArticle(file) {
   return html !== before;
 }
 
+/**
+ * Function contract: updateStyle
+ * Purpose: Applies update style while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function updateStyle() {
   if (!fs.existsSync(stylePath)) return false;
   let style = fs.readFileSync(stylePath, 'utf8');
@@ -350,7 +468,7 @@ function updateStyle() {
 }
 
 let changed = 0;
-for (const file of walk(targetRoot).filter((item) => item.endsWith('.html'))) {
+for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.endsWith('.html'))) {
   if (polishBlogArticle(file)) changed += 1;
 }
 const styled = updateStyle();

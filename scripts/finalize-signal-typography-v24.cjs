@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/finalize-signal-typography-v24.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for finalize signal typography v24.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/finalize-signal-reference-visual.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 

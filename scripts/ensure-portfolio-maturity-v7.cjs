@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-portfolio-maturity-v7.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure portfolio maturity v7.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -9,24 +22,66 @@ const serviceRoutes = new Set(['/product-design-nepal','/web3-ux-designer','/saa
 const flagship = ['yarsha','pihub','orkest','masteriyo'];
 const supporting = ['mokshya','neverwinter-parser'];
 
+/**
+ * Function contract: routeFor
+ * Purpose: Implements the route for responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
   return `/${file.replace(/\.html$/i, '')}`;
 }
+/**
+ * Function contract: fileFor
+ * Purpose: Implements the file for responsibility for this module.
+ * Inputs: route.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function fileFor(route) {
   if (route === '/') return path.join(base, 'index.html');
   if (route === '/blog/') return path.join(base, 'blog', 'index.html');
   return path.join(base, `${route.replace(/^\//, '')}.html`);
 }
+/**
+ * Function contract: strip
+ * Purpose: Implements the strip responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function strip(value = '') {
   return String(value).replace(/<script\b[\s\S]*?<\/script>/gi,' ').replace(/<style\b[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&#39;/gi,"'").replace(/&quot;/gi,'"').replace(/\s+/g,' ').trim();
 }
+/**
+ * Function contract: esc
+ * Purpose: Implements the esc responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function esc(value = '') {
   return String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 }
+/**
+ * Function contract: h1
+ * Purpose: Implements the h1 responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function h1(html) { return strip(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || 'Current page'); }
 
+/**
+ * Function contract: breadcrumb
+ * Purpose: Implements the breadcrumb responsibility for this module.
+ * Inputs: html, route.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function breadcrumb(html, route) {
   const article = route.startsWith('/blog/') && route !== '/blog/';
   if (!article && !serviceRoutes.has(route)) return html;
@@ -37,18 +92,39 @@ function breadcrumb(html, route) {
   return html.replace(/(<main\b[^>]*>)/i, `$1${nav}`);
 }
 
+/**
+ * Function contract: addControlId
+ * Purpose: Implements the add control id responsibility for this module.
+ * Inputs: html, name, id.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function addControlId(html, name, id) {
   const re = new RegExp(`<(input|select|textarea)\\b([^>]*\\bname=["']${name}["'][^>]*)>`, 'i');
-  return html.replace(re, (whole, tag, attrs) => /\bid=["']/i.test(attrs) ? whole : `<${tag}${attrs} id="${id}">`);
+  return html.replace(re, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: whole, tag, attrs. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (whole, tag, attrs) => /\bid=["']/i.test(attrs) ? whole : `<${tag}${attrs} id="${id}">`);
 }
+/**
+ * Function contract: contactContract
+ * Purpose: Implements the contact contract responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function contactContract(html) {
   if (!/id=["']contact-form["']/i.test(html)) return html;
   for (const [name,id] of [['name','contact-name'],['email','contact-email'],['need','contact-need'],['timeline','contact-timeline'],['message','contact-message']]) html = addControlId(html, name, id);
   html = html.replace(/<option([^>]*)>Product design engagement<\/option>/i, '<option$1>Freelance UX/UI project</option>');
-  html = html.replace(/<([a-z0-9]+)\b([^>]*\bid=["']contact-form-status["'][^>]*)>/i, (_whole, tag, attrs) => `<${tag}${attrs.replace(/\srole=["'][^"']*["']/i,'').replace(/\saria-live=["'][^"']*["']/i,'')} role="status" aria-live="polite">`);
+  html = html.replace(/<([a-z0-9]+)\b([^>]*\bid=["']contact-form-status["'][^>]*)>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: _whole, tag, attrs. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (_whole, tag, attrs) => `<${tag}${attrs.replace(/\srole=["'][^"']*["']/i,'').replace(/\saria-live=["'][^"']*["']/i,'')} role="status" aria-live="polite">`);
   return html;
 }
 
+/**
+ * Function contract: moveEvidence
+ * Purpose: Implements the move evidence responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function moveEvidence(html) {
   if (!/\bnrs-case-v4\b/i.test(html)) return html;
   const evidence = html.match(/<section\b[^>]*class=["'][^"']*\bnrs-case-v4-evidence\b[^"']*["'][^>]*>[\s\S]*?<\/section>/i)?.[0];
@@ -58,6 +134,13 @@ function moveEvidence(html) {
   return decisions.test(source) ? source.replace(decisions, `$1${evidence}`) : html;
 }
 
+/**
+ * Function contract: workHierarchy
+ * Purpose: Implements the work hierarchy responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function workHierarchy(html) {
   const re = /<section\b[^>]*class=["'][^"']*\bnrs-work-featured\b[^"']*["'][^>]*>[\s\S]*?<\/section>/i;
   const section = html.match(re)?.[0];
@@ -65,21 +148,42 @@ function workHierarchy(html) {
   const cards = new Map();
   for (const match of section.matchAll(/<a\b[^>]*class=["'][^"']*\bnrs-work-card\b[^"']*["'][^>]*href=["']\/project-([^"']+)["'][^>]*>[\s\S]*?<\/a>/gi)) cards.set(match[1], match[0]);
   const order = [...flagship, ...supporting];
-  if (!order.every((slug) => cards.has(slug))) return html;
-  const primary = flagship.map((slug) => cards.get(slug)).join('');
-  const secondary = supporting.map((slug) => cards.get(slug)).join('');
+  if (!order.every(/** Callback contract: Processes the callback step for order without leaking orchestration details to the caller. Inputs: slug. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (slug) => cards.has(slug))) return html;
+  const primary = flagship.map(/** Callback contract: Processes the callback step for flagship without leaking orchestration details to the caller. Inputs: slug. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (slug) => cards.get(slug)).join('');
+  const secondary = supporting.map(/** Callback contract: Processes the callback step for supporting without leaking orchestration details to the caller. Inputs: slug. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (slug) => cards.get(slug)).join('');
   const replacement = `<section class="agent-section nrs-work-featured"><div class="agent-frame"><div class="nrs-work-group-head"><span class="agent-meta">Start here</span><h2>Four flagship cases. Two supporting cases.</h2><p>The flagship set shows high-stakes interaction, multi-role workflows, SaaS architecture and mature product collaboration. The supporting pair adds technical storytelling and data-product range.</p></div><div class="nrs-work-subgroup"><div class="nrs-work-subgroup-head"><span class="agent-meta">Flagship cases</span><p>The strongest view of how I structure complex product behavior and carry decisions into interface systems.</p></div><div class="nrs-work-grid nrs-work-grid--flagship">${primary}</div></div><div class="nrs-work-subgroup nrs-work-subgroup--secondary"><div class="nrs-work-subgroup-head"><span class="agent-meta">Supporting range</span><p>Two shorter cases showing technical communication and a data-heavy side project.</p></div><div class="nrs-work-grid nrs-work-grid--secondary">${secondary}</div></div></div></section>`;
   return html.replace(re, replacement);
 }
 
+/**
+ * Function contract: tightenHome
+ * Purpose: Implements the tighten home responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function tightenHome(html) {
   if (!/\bnrs-editorial-home\b/i.test(html)) return html;
   html = html.replace(/<article\b[^>]*class=["'][^"']*\bagent-capability\b[^"']*["'][^>]*>[\s\S]*?<h3>Make important information easy to act on\.<\/h3>[\s\S]*?<\/article>/i, '');
   return html.replace('Product thinking that survives implementation.', 'Three habits that keep product decisions useful through implementation.');
 }
+/**
+ * Function contract: imageHints
+ * Purpose: Implements the image hints responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function imageHints(html) {
-  return html.replace(/<img\b[^>]*>/gi, (tag) => /\bdecoding=/i.test(tag) ? tag : tag.replace(/\s*\/?>(\s*)$/i, ' decoding="async">$1'));
+  return html.replace(/<img\b[^>]*>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: tag. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (tag) => /\bdecoding=/i.test(tag) ? tag : tag.replace(/\s*\/?>(\s*)$/i, ' decoding="async">$1'));
 }
+/**
+ * Function contract: analytics
+ * Purpose: Implements the analytics responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function analytics(html) {
   return /src=["']\/portfolio-events\.js["']/i.test(html) ? html : html.replace('</body>', '  <script src="/portfolio-events.js" defer></script>\n</body>');
 }

@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-audit-completion.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure audit completion.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -5,6 +18,13 @@ const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const site = 'https://nischhalsubba.com.np';
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: directory, files.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function walk(directory, files = []) {
   if (!fs.existsSync(directory)) return files;
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -15,6 +35,13 @@ function walk(directory, files = []) {
   return files;
 }
 
+/**
+ * Function contract: footerMarkup
+ * Purpose: Implements the footer markup responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function footerMarkup() {
   return `<footer class="site-footer" aria-label="Portfolio footer">
   <div class="container">
@@ -48,11 +75,25 @@ function footerMarkup() {
 </footer>`;
 }
 
+/**
+ * Function contract: ensureFooter
+ * Purpose: Applies ensure footer while preserving the surrounding repository/runtime contract.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function ensureFooter(html) {
   if (/<footer\b[^>]*class=["'][^"']*site-footer/i.test(html)) return html;
   return html.replace(/\s*(<script\b[^>]*src=["']\/script\.js[^>]*><\/script>\s*<\/body>)/i, `\n${footerMarkup()}\n    $1`);
 }
 
+/**
+ * Function contract: ensureContactPrivacy
+ * Purpose: Applies ensure contact privacy while preserving the surrounding repository/runtime contract.
+ * Inputs: html, relativePath.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function ensureContactPrivacy(html, relativePath) {
   if (relativePath !== 'contact.html') return html;
   let output = html.replace(/\s*<input[^>]+name=["']_captcha["'][^>]*>/gi, '');
@@ -70,6 +111,13 @@ function ensureContactPrivacy(html, relativePath) {
   return output;
 }
 
+/**
+ * Function contract: projectCoverFor
+ * Purpose: Implements the project cover for responsibility for this module.
+ * Inputs: relativePath.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function projectCoverFor(relativePath) {
   const match = path.basename(relativePath).match(/^project-(.+)\.html$/);
   if (!match) return null;
@@ -77,18 +125,32 @@ function projectCoverFor(relativePath) {
   return fs.existsSync(path.join(dist, candidate)) ? `/${candidate}` : '/assets/images/portrait.png';
 }
 
+/**
+ * Function contract: ensureStaticFigmaProof
+ * Purpose: Applies ensure static figma proof while preserving the surrounding repository/runtime contract.
+ * Inputs: html, relativePath.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function ensureStaticFigmaProof(html, relativePath) {
   if (!/<iframe\b[^>]*figma\.com/i.test(html)) return html;
   const cover = projectCoverFor(relativePath) || '/assets/images/portrait.png';
   const title = path.basename(relativePath, '.html').replace(/^project-/, '').replaceAll('-', ' ');
 
-  return html.replace(/(<iframe\b[^>]*figma\.com[^>]*><\/iframe>)/gi, (frame, _match, offset, source) => {
+  return html.replace(/(<iframe\b[^>]*figma\.com[^>]*><\/iframe>)/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: frame, _match, offset, source. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (frame, _match, offset, source) => {
     const before = source.slice(Math.max(0, offset - 400), offset);
     if (before.includes('nrs-static-figma-proof')) return frame;
     return `<figure class="nrs-static-figma-proof"><img src="${cover}" alt="Static project preview for ${title}" loading="lazy" decoding="async" /><figcaption>Static project evidence remains available even when the optional Figma preview is blocked.</figcaption></figure>${frame}`;
   });
 }
 
+/**
+ * Function contract: ensurePrivacyMetadata
+ * Purpose: Applies ensure privacy metadata while preserving the surrounding repository/runtime contract.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function ensurePrivacyMetadata(html) {
   if (!html.includes('class="nrs-privacy-page"')) return html;
   let output = html;
@@ -98,8 +160,15 @@ function ensurePrivacyMetadata(html) {
   return output;
 }
 
+/**
+ * Function contract: processHtml
+ * Purpose: Implements the process html responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function processHtml() {
-  for (const file of walk(dist).filter((item) => item.endsWith('.html'))) {
+  for (const file of walk(dist).filter(/** Callback contract: Processes the callback step for walk(dist) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.endsWith('.html'))) {
     const relativePath = path.relative(dist, file).replaceAll(path.sep, '/');
     const original = fs.readFileSync(file, 'utf8');
     const updated = ensurePrivacyMetadata(ensureStaticFigmaProof(ensureContactPrivacy(ensureFooter(original), relativePath), relativePath));
@@ -107,6 +176,13 @@ function processHtml() {
   }
 }
 
+/**
+ * Function contract: ensureRedirects
+ * Purpose: Applies ensure redirects while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function ensureRedirects() {
   const file = path.join(dist, '_redirects');
   const original = fs.existsSync(file) ? fs.readFileSync(file, 'utf8').trimEnd() : '';
@@ -116,6 +192,13 @@ function ensureRedirects() {
   if (additions.length) fs.writeFileSync(file, `${original}\n${additions.join('\n')}\n`, 'utf8');
 }
 
+/**
+ * Function contract: ensurePrivacyInSitemap
+ * Purpose: Applies ensure privacy in sitemap while preserving the surrounding repository/runtime contract.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function ensurePrivacyInSitemap() {
   const file = path.join(dist, 'sitemap.xml');
   if (!fs.existsSync(file)) return;

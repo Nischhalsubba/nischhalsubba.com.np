@@ -1,4 +1,17 @@
 /**
+ * @fileoverview src/content/services.js
+ * Purpose: Structured content module providing services data to generators/runtime code.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Repository build or application source.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/audit-content-structure.cjs
+ * - src/content/README.md
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
+/**
  * Canonical service-page metadata.
  *
  * These pages support SEO and client discovery. Keeping their positioning in one

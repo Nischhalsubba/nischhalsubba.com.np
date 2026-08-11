@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-search-identity-final.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure search identity final.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -61,16 +74,37 @@ const meta = {
   },
 };
 
+/**
+ * Function contract: routeFor
+ * Purpose: Implements the route for responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
+/**
+ * Function contract: esc
+ * Purpose: Implements the esc responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
+/**
+ * Function contract: setTitle
+ * Purpose: Applies set title while preserving the surrounding repository/runtime contract.
+ * Inputs: html, value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function setTitle(html, value) {
   const tag = `<title>${esc(value)}</title>`;
   return /<title\b[^>]*>[\s\S]*?<\/title>/i.test(html)
@@ -78,6 +112,13 @@ function setTitle(html, value) {
     : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
+/**
+ * Function contract: setMeta
+ * Purpose: Applies set meta while preserving the surrounding repository/runtime contract.
+ * Inputs: html, key, value, keyAttribute.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function setMeta(html, key, value, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapedKey}["'])[^>]*>`, 'i');
@@ -85,13 +126,27 @@ function setMeta(html, key, value, keyAttribute = 'name') {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
+/**
+ * Function contract: removeMeta
+ * Purpose: Removes or cleans remove meta while keeping required outputs intact.
+ * Inputs: html, key, keyAttribute.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function removeMeta(html, key, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return html.replace(new RegExp(`\\s*<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapedKey}["'])[^>]*>`, 'gi'), '');
 }
 
+/**
+ * Function contract: patchStructuredData
+ * Purpose: Implements the patch structured data responsibility for this module.
+ * Inputs: html, route, pageMeta.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function patchStructuredData(html, route, pageMeta) {
-  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i, (whole, before, after, raw) => {
+  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: whole, before, after, raw. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (whole, before, after, raw) => {
     try {
       const data = JSON.parse(raw.trim());
       const graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
@@ -123,6 +178,13 @@ function patchStructuredData(html, route, pageMeta) {
   });
 }
 
+/**
+ * Function contract: patchIdentityHead
+ * Purpose: Implements the patch identity head responsibility for this module.
+ * Inputs: html.
+ * Side effects: may read or update browser DOM/state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function patchIdentityHead(html) {
   html = html
     .replace(/\s*<link\b[^>]*rel=["'](?:shortcut\s+icon|icon|apple-touch-icon|apple-touch-icon-precomposed|mask-icon|manifest)["'][^>]*>/gi, '')

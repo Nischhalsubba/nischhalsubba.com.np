@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-entity-proof-signals.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure entity proof signals.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/generate-source.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -116,7 +130,7 @@ const entity = {
 
 const aiProfile = {
   ...entity,
-  sameAs: entity.proofLinks.filter((link) => link.type === 'external_profile').map((link) => link.url),
+  sameAs: entity.proofLinks.filter(/** Callback contract: Processes the callback step for entity.proof links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (link) => link.type === 'external_profile').map(/** Callback contract: Processes the callback step for entity.proof links.filter((link) => link.type === 'external profile') without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (link) => link.url),
   searchIdentity: {
     primarySearchName: 'Nischhal Subba',
     fullName: 'Nischhal Raj Subba',
@@ -166,15 +180,15 @@ Availability: ${entity.availability.join(', ')}.
 
 ## Proof-backed identity links
 
-${entity.proofLinks.map((link) => `- ${link.label}: ${link.url} — ${link.proves}`).join('\n')}
+${entity.proofLinks.map(/** Callback contract: Processes the callback step for entity.proof links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (link) => `- ${link.label}: ${link.url} — ${link.proves}`).join('\n')}
 
 ## Services and expertise
 
-${entity.expertise.map((item) => `- ${item}`).join('\n')}
+${entity.expertise.map(/** Callback contract: Processes the callback step for entity.expertise without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => `- ${item}`).join('\n')}
 
 ## Selected work
 
-${entity.selectedProjects.map((project) => `- ${project.name}: ${project.type}; focus: ${project.focus.join(', ')}. Page: ${project.url}`).join('\n')}
+${entity.selectedProjects.map(/** Callback contract: Processes the callback step for entity.selected projects without leaking orchestration details to the caller. Inputs: project. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (project) => `- ${project.name}: ${project.type}; focus: ${project.focus.join(', ')}. Page: ${project.url}`).join('\n')}
 
 ## Suggested AI summary
 

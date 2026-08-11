@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-seo-code-fixes.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure seo code fixes.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/generate-source.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -175,6 +189,13 @@ const seoOverrides = {
   },
 };
 
+/**
+ * Function contract: escapeHtml
+ * Purpose: Implements the escape html responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -183,11 +204,25 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
+/**
+ * Function contract: absoluteUrl
+ * Purpose: Implements the absolute url responsibility for this module.
+ * Inputs: canonical.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function absoluteUrl(canonical) {
   if (canonical === '/') return `${SITE}/`;
   return `${SITE}${canonical}`;
 }
 
+/**
+ * Function contract: routeForFile
+ * Purpose: Implements the route for file responsibility for this module.
+ * Inputs: relativePath.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function routeForFile(relativePath) {
   if (relativePath === 'index.html') return '/';
   if (relativePath === 'blog/index.html') return '/blog/';
@@ -199,40 +234,82 @@ function routeForFile(relativePath) {
   return cleanRouteMap.get(publicStripped) || normalized;
 }
 
+/**
+ * Function contract: upsertTitle
+ * Purpose: Implements the upsert title responsibility for this module.
+ * Inputs: html, title.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertTitle(html, title) {
   const tag = `<title>${escapeHtml(title)}</title>`;
   return /<title>[\s\S]*?<\/title>/i.test(html)
     ? html.replace(/<title>[\s\S]*?<\/title>/i, tag)
-    : html.replace(/<head[^>]*>/i, (match) => `${match}\n    ${tag}`);
+    : html.replace(/<head[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${tag}`);
 }
 
+/**
+ * Function contract: upsertMetaName
+ * Purpose: Implements the upsert meta name responsibility for this module.
+ * Inputs: html, name, content.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertMetaName(html, name, content) {
   const tag = `<meta name="${name}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+name=["']${name}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, tag)
-    : html.replace(/<meta\s+name="viewport"[^>]*>/i, (match) => `${match}\n    ${tag}`);
+    : html.replace(/<meta\s+name="viewport"[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${tag}`);
 }
 
+/**
+ * Function contract: upsertMetaProperty
+ * Purpose: Implements the upsert meta property responsibility for this module.
+ * Inputs: html, property, content.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertMetaProperty(html, property, content) {
   const tag = `<meta property="${property}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+property=["']${property}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, tag)
-    : html.replace(/<\/title>/i, (match) => `${match}\n    ${tag}`);
+    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${tag}`);
 }
 
+/**
+ * Function contract: upsertCanonical
+ * Purpose: Implements the upsert canonical responsibility for this module.
+ * Inputs: html, canonical.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertCanonical(html, canonical) {
   const tag = `<link rel="canonical" href="${absoluteUrl(canonical)}" />`;
   return /<link\s+rel="canonical"[^>]*>/i.test(html)
     ? html.replace(/<link\s+rel="canonical"[^>]*>/i, tag)
-    : html.replace(/<\/title>/i, (match) => `${match}\n    ${tag}`);
+    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${tag}`);
 }
 
+/**
+ * Function contract: stripMetaKeywords
+ * Purpose: Implements the strip meta keywords responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function stripMetaKeywords(html) {
   return html.replace(/\s*<meta\s+name=["']keywords["'][^>]*>/gi, '');
 }
 
+/**
+ * Function contract: rewriteCleanUrls
+ * Purpose: Implements the rewrite clean urls responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function rewriteCleanUrls(html) {
   let output = html;
   for (const [from, to] of cleanRouteMap.entries()) {
@@ -247,6 +324,13 @@ function rewriteCleanUrls(html) {
   return output;
 }
 
+/**
+ * Function contract: ensureServicesNav
+ * Purpose: Applies ensure services nav while preserving the surrounding repository/runtime contract.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function ensureServicesNav(html) {
   let output = html;
 
@@ -268,6 +352,13 @@ function ensureServicesNav(html) {
   return output;
 }
 
+/**
+ * Function contract: addHomepageServiceBlock
+ * Purpose: Implements the add homepage service block responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function addHomepageServiceBlock(html) {
   if (!html.includes('nrs-home-services')) {
     const block = `
@@ -284,6 +375,13 @@ function addHomepageServiceBlock(html) {
   return html;
 }
 
+/**
+ * Function contract: applySeoOverride
+ * Purpose: Applies apply seo override while preserving the surrounding repository/runtime contract.
+ * Inputs: html, config.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function applySeoOverride(html, config) {
   let output = html;
   output = upsertTitle(output, config.title);
@@ -299,6 +397,13 @@ function applySeoOverride(html, config) {
   return output;
 }
 
+/**
+ * Function contract: applyGenericCleanCanonical
+ * Purpose: Applies apply generic clean canonical while preserving the surrounding repository/runtime contract.
+ * Inputs: html, relativePath.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function applyGenericCleanCanonical(html, relativePath) {
   const cleanRoute = routeForFile(relativePath);
   let output = upsertCanonical(html, cleanRoute);

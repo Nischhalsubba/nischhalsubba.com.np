@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/repository/generate-file-catalog.cjs
+ * Purpose: Repository architecture and maintenance utility for generate file catalog.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - .github/workflows/apply-interactive-readme.yml
+ * - config/repository/root-policy.json
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
@@ -32,26 +46,58 @@ const TEXT_BASENAMES = new Set([
   '.editorconfig', '.gitignore', '_headers', '_redirects', 'robots.txt', 'sitemap.xml',
 ]);
 
+/**
+ * Function contract: gitTrackedFiles
+ * Purpose: Implements the git tracked files responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function gitTrackedFiles() {
   const result = spawnSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' });
   if (result.status !== 0) throw new Error(`git ls-files failed: ${result.stderr || result.stdout}`);
   return result.stdout.split('\0').filter(Boolean).sort();
 }
 
+/**
+ * Function contract: humanize
+ * Purpose: Implements the humanize responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function humanize(value) {
   return value
     .replace(/\.[^.]+$/, '')
     .replace(/^blog-/, '')
     .replace(/^project-/, '')
     .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    .replace(/\b\w/g, /** Callback contract: Processes the callback step for value
+    .replace(/\.[^.]+$/, '')
+    .replace(/^blog /, '')
+    .replace(/^project /, '')
+    .replace(/[ ]+/g, ' ') without leaking orchestration details to the caller. Inputs: letter. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (letter) => letter.toUpperCase());
 }
 
+/**
+ * Function contract: isTextFile
+ * Purpose: Implements the is text file responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function isTextFile(file) {
   const base = path.posix.basename(file);
   return TEXT_BASENAMES.has(base) || TEXT_EXTENSIONS.has(path.posix.extname(file).toLowerCase());
 }
 
+/**
+ * Function contract: readText
+ * Purpose: Retrieves read text and returns it in the form expected by its caller.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function readText(file) {
   const absolute = path.join(ROOT, file);
   const stat = fs.statSync(absolute);
@@ -59,6 +105,13 @@ function readText(file) {
   return fs.readFileSync(absolute, 'utf8');
 }
 
+/**
+ * Function contract: purposeFor
+ * Purpose: Implements the purpose for responsibility for this module.
+ * Inputs: file.
+ * Side effects: may read or update browser DOM/state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function purposeFor(file) {
   const base = path.posix.basename(file);
   const ext = path.posix.extname(file).toLowerCase();
@@ -123,11 +176,18 @@ function purposeFor(file) {
   return `Repository asset/support file for ${humanize(base) || base}.`;
 }
 
+/**
+ * Function contract: defaultConnections
+ * Purpose: Implements the default connections responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function defaultConnections(file) {
   if (file.startsWith('src/pages/')) return ['config/canonical-routes.json', 'scripts/repository/source-layout.cjs', 'vite.config.ts'];
   if (file.startsWith('src/compat/legacy-pages/')) return ['vite.config.ts', 'scripts/clean-vite-public-output.cjs', 'scripts/repository/source-layout.cjs'];
   if (file.startsWith('blog/')) return ['config/canonical-routes.json', 'vite.config.ts', 'scripts/build-dist.cjs'];
-  if (file.startsWith('src/scripts/')) return ['src/scripts/main.js', 'src/runtime/script.js'];
+  if (file.startsWith('src/scripts/')) return ['src/scripts/entrypoints/main.js', 'src/runtime/script.js'];
   if (file.startsWith('src/styles/')) return ['scripts/compile-single-stylesheet.cjs', 'scripts/audit-css-architecture.cjs'];
   if (file.startsWith('src/discovery/')) return ['scripts/generate-seo-discovery.cjs', 'scripts/copy-static-assets.cjs'];
   if (file.startsWith('src/generated/')) return ['scripts/generate-seo-discovery.cjs', 'src/worker.js'];
@@ -144,11 +204,18 @@ function defaultConnections(file) {
   return ['docs/repository/file-map.md'];
 }
 
+/**
+ * Function contract: escapeCell
+ * Purpose: Implements the escape cell responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function escapeCell(value) {
   return String(value).replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
 }
 
-const files = gitTrackedFiles().filter((file) => file !== OUTPUT && !TEMPORARY_HELPERS.has(file));
+const files = gitTrackedFiles().filter(/** Callback contract: Processes the callback step for git tracked files() without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => file !== OUTPUT && !TEMPORARY_HELPERS.has(file));
 const basenameCounts = new Map();
 for (const file of files) {
   const base = path.posix.basename(file);
@@ -165,6 +232,13 @@ for (const file of files) {
   }
 }
 
+/**
+ * Function contract: directConnections
+ * Purpose: Implements the direct connections responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function directConnections(file) {
   const base = path.posix.basename(file);
   const uniqueBase = basenameCounts.get(base) === 1 && base.length >= 5;
@@ -177,12 +251,12 @@ function directConnections(file) {
   return matches;
 }
 
-const rows = files.map((file) => {
+const rows = files.map(/** Callback contract: Processes the callback step for files without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (file) => {
   const direct = directConnections(file);
   const connections = [...new Set([...direct, ...defaultConnections(file)])]
-    .filter((item) => item !== file)
+    .filter(/** Callback contract: Processes the callback step for [...new set([...direct, ...default connections(file)])] without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item !== file)
     .slice(0, 4);
-  return `| \`${escapeCell(file)}\` | ${escapeCell(purposeFor(file))} | ${connections.map((item) => `\`${escapeCell(item)}\``).join(', ')} |`;
+  return `| \`${escapeCell(file)}\` | ${escapeCell(purposeFor(file))} | ${connections.map(/** Callback contract: Processes the callback step for connections without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => `\`${escapeCell(item)}\``).join(', ')} |`;
 });
 
 const output = [

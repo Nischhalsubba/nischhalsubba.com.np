@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-blog-editorial-v4.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure blog editorial v4.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -217,23 +230,58 @@ const articles = {
   },
 };
 
+/**
+ * Function contract: esc
+ * Purpose: Implements the esc responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 }
 
+/**
+ * Function contract: canonicalFor
+ * Purpose: Implements the canonical for responsibility for this module.
+ * Inputs: slug.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function canonicalFor(slug) {
   return `${siteUrl}/blog/${slug}`;
 }
 
+/**
+ * Function contract: updateMeta
+ * Purpose: Applies update meta while preserving the surrounding repository/runtime contract.
+ * Inputs: html, article, slug.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function updateMeta(html, article, slug) {
   const title = `${article.title} | Nischhal Raj Subba`;
   const description = article.description;
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`);
+  /**
+   * Function contract: setName
+   * Purpose: Applies set name while preserving the surrounding repository/runtime contract.
+   * Inputs: name, value.
+   * Side effects: no obvious external side effect beyond invoked dependencies.
+   * Returns: no explicit value unless an invoked dependency throws/rejects.
+   */
   const setName = (name, value) => {
     const re = new RegExp(`<meta\\s+[^>]*name=["']${name}["'][^>]*>`, 'i');
     const tag = `<meta name="${name}" content="${esc(value)}" />`;
     html = re.test(html) ? html.replace(re, tag) : html.replace('</head>', `${tag}\n</head>`);
   };
+  /**
+   * Function contract: setProperty
+   * Purpose: Applies set property while preserving the surrounding repository/runtime contract.
+   * Inputs: name, value.
+   * Side effects: no obvious external side effect beyond invoked dependencies.
+   * Returns: no explicit value unless an invoked dependency throws/rejects.
+   */
   const setProperty = (name, value) => {
     const re = new RegExp(`<meta\\s+[^>]*property=["']${name}["'][^>]*>`, 'i');
     const tag = `<meta property="${name}" content="${esc(value)}" />`;
@@ -256,12 +304,26 @@ function updateMeta(html, article, slug) {
   return html;
 }
 
+/**
+ * Function contract: renderArticle
+ * Purpose: Implements the render article responsibility for this module.
+ * Inputs: article.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function renderArticle(article) {
-  const sections = article.sections.map(([heading, paragraphs], index) => `<section class="nrs-article-v4-section"><span class="agent-meta">${String(index + 1).padStart(2, '0')}</span><div><h2>${esc(heading)}</h2>${paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}</div></section>`).join('');
-  const related = article.related.map(([href, label]) => `<a class="agent-btn" href="${esc(href)}">${esc(label)}</a>`).join('');
+  const sections = article.sections.map(/** Callback contract: Processes the callback step for article.sections without leaking orchestration details to the caller. Inputs: [heading, paragraphs], index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([heading, paragraphs], index) => `<section class="nrs-article-v4-section"><span class="agent-meta">${String(index + 1).padStart(2, '0')}</span><div><h2>${esc(heading)}</h2>${paragraphs.map(/** Callback contract: Processes the callback step for paragraphs without leaking orchestration details to the caller. Inputs: p. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (p) => `<p>${esc(p)}</p>`).join('')}</div></section>`).join('');
+  const related = article.related.map(/** Callback contract: Processes the callback step for article.related without leaking orchestration details to the caller. Inputs: [href, label]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([href, label]) => `<a class="agent-btn" href="${esc(href)}">${esc(label)}</a>`).join('');
   return `<main id="main-content" class="agent-main nrs-article-v4"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">Product design writing</span><h1>${esc(article.title)}</h1></div><p class="agent-page-intro">${esc(article.dek)}</p></div></header><article class="agent-section"><div class="agent-frame nrs-article-v4-frame"><div class="nrs-article-v4-intro"><span class="agent-meta">Practical note · Nischhal Raj Subba</span><p>This article is written as a working review tool rather than a universal formula. Apply the parts that match the product, evidence and constraints in front of you.</p></div>${sections}<footer class="nrs-article-v4-close"><span class="agent-kicker">Continue</span><h2>Use the framework to make a decision, not to create another checklist nobody owns.</h2><div class="agent-actions">${related}<a class="agent-btn" href="/blog/">All writing</a></div></footer></div></article></main>`;
 }
 
+/**
+ * Function contract: locate
+ * Purpose: Resolves locate using the current inputs and repository/runtime context.
+ * Inputs: slug.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function locate(slug) {
   if (!fs.existsSync(blogDir)) return null;
   const candidates = [`${slug}.html`, slug];

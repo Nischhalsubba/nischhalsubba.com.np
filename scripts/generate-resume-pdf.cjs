@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/generate-resume-pdf.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for generate resume pdf.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/build-pipeline.md
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -127,10 +141,24 @@ const pages = [
   ]
 ];
 
+/**
+ * Function contract: escapePdfText
+ * Purpose: Implements the escape pdf text responsibility for this module.
+ * Inputs: text.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function escapePdfText(text) {
   return String(text).replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
 }
 
+/**
+ * Function contract: wrapLine
+ * Purpose: Implements the wrap line responsibility for this module.
+ * Inputs: text, maxChars.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function wrapLine(text, maxChars = 92) {
   if (text.length <= maxChars) return [text];
   const words = text.split(' ');
@@ -150,6 +178,13 @@ function wrapLine(text, maxChars = 92) {
   return lines;
 }
 
+/**
+ * Function contract: buildPageContent
+ * Purpose: Creates build page content from the supplied inputs and repository state.
+ * Inputs: lines, pageIndex.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function buildPageContent(lines, pageIndex) {
   let y = 780;
   const commands = ['BT', '/F1 10 Tf', '1 0 0 1 54 780 Tm', '14 TL'];
@@ -174,8 +209,22 @@ function buildPageContent(lines, pageIndex) {
   return commands.join('\n');
 }
 
+/**
+ * Function contract: createPdf
+ * Purpose: Creates create pdf from the supplied inputs and repository state.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function createPdf() {
   const objects = [];
+  /**
+   * Function contract: add
+   * Purpose: Implements the add responsibility for this module.
+   * Inputs: body.
+   * Side effects: no obvious external side effect beyond invoked dependencies.
+   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
   const add = (body) => {
     objects.push(body);
     return objects.length;
@@ -192,7 +241,7 @@ function createPdf() {
     pageRefs.push(pageRef);
   }
 
-  const pagesRef = add(`<< /Type /Pages /Kids [${pageRefs.map((ref) => `${ref} 0 R`).join(' ')}] /Count ${pageRefs.length} >>`);
+  const pagesRef = add(`<< /Type /Pages /Kids [${pageRefs.map(/** Callback contract: Processes the callback step for page refs without leaking orchestration details to the caller. Inputs: ref. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (ref) => `${ref} 0 R`).join(' ')}] /Count ${pageRefs.length} >>`);
   const catalogRef = add(`<< /Type /Catalog /Pages ${pagesRef} 0 R >>`);
 
   for (const pageRef of pageRefs) {

@@ -3,8 +3,8 @@
     "name": "Nischhal Portfolio 2026",
     "description": "Evidence-first editorial product-design portfolio: warm neutral surfaces, black editorial typography, orange signal color, product-specific case-study narratives, restrained motion, and an optional Three.js system field that visualizes complexity resolving into structure.",
     "source_references": [
-      "src/styles/agent-portfolio-1.cssfrag",
-      "src/scripts/features/agent-portfolio.js",
+      "src/styles/fragments/agent/portfolio-foundation.cssfrag",
+      "src/scripts/features/portfolio/agent-portfolio.js",
       "scripts/agent-redesign-part-1.cjsfrag",
       "scripts/agent-redesign-part-2.cjsfrag",
       "scripts/agent-redesign-part-3.cjsfrag",

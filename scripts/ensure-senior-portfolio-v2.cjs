@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-senior-portfolio-v2.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure senior portfolio v2.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/design-dna.json
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
@@ -12,14 +26,63 @@ const cases={
 'project-morajaa.html':{title:'Morajaa',deck:'A consulting website for high-consideration B2B visitors who may arrive with a business problem but not know the internal name of the service they need.',chapters:[['Discovery problem','Organize the site around visitor questions instead of internal consulting categories.','Service and sector content needs to help a visitor recognize their situation quickly, understand relevant expertise and find a sensible path forward.'],['Information architecture','Connect services and sectors without creating duplicate dead ends.','Cross-linking service and sector contexts gives visitors more than one useful route while keeping the underlying structure coherent.'],['Trust and tone','Premium communication should feel precise, not merely expensive.','Hierarchy, restrained visual treatment, proof and clear language do more for credibility than ornamental luxury cues or vague corporate claims.'],['Lead path','The inquiry should begin with context, not a generic contact interruption.','Calls to action work best when they follow a relevant service or sector story and help visitors carry that context into the conversation.']],links:[['Open final prototype','https://www.figma.com/proto/E9BBrx6PdFTqoG3YLvqRX6/morajaa?node-id=680-15253&page-id=452%3A6769']],next:['/projects','View all projects']}
 };
 const featured=['project-yarsha.html','project-pihub.html','project-zapp.html'];
+/**
+ * Function contract: esc
+ * Purpose: Implements the esc responsibility for this module.
+ * Inputs: s.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-function asset(file){const slug=file.replace('project-','').replace('.html','');if(!dist)return `/assets/images/project-${slug}-cover.svg`;const dir=path.join(base,'assets');const hit=fs.existsSync(dir)&&fs.readdirSync(dir).find(n=>n.startsWith(`project-${slug}-cover-`));return hit?`/assets/${hit}`:`/assets/images/project-${slug}-cover.svg`}
+/**
+ * Function contract: asset
+ * Purpose: Implements the asset responsibility for this module.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+function asset(file){const slug=file.replace('project-','').replace('.html','');if(!dist)return `/assets/images/project-${slug}-cover.svg`;const dir=path.join(base,'assets');const hit=fs.existsSync(dir)&&fs.readdirSync(dir).find(/** Callback contract: Processes the callback step for fs.readdir sync(dir) without leaking orchestration details to the caller. Inputs: n. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ n=>n.startsWith(`project-${slug}-cover-`));return hit?`/assets/${hit}`:`/assets/images/project-${slug}-cover.svg`}
+/**
+ * Function contract: replaceMain
+ * Purpose: Implements the replace main responsibility for this module.
+ * Inputs: html, body.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function replaceMain(html,body){return html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i,body)}
-function caseMain(file,p){return `<main id="main-content" class="agent-main"><header class="agent-case-hero"><div class="agent-frame agent-case-grid"><div class="agent-case-title-wrap"><span class="agent-kicker">Case study</span><h1 class="agent-case-title">${esc(p.title)}</h1></div><p class="agent-case-deck">${esc(p.deck)}</p><figure class="agent-case-cover"><img src="${asset(file)}" alt="${esc(p.title)} interface" decoding="async"></figure></div></header><section class="agent-frame agent-case-chapters"><nav class="agent-case-rail" aria-label="Case study chapters">${p.chapters.map((_,i)=>`<a href="#chapter-${i+1}">0${i+1}</a>`).join('')}<a href="#evidence">05</a></nav><div class="agent-case-body">${p.chapters.map(([label,h,b],i)=>`<section class="agent-case-chapter" id="chapter-${i+1}" data-agent-reveal><span class="agent-meta">0${i+1} · ${esc(label)}</span><h2>${esc(h)}</h2><p>${esc(b)}</p></section>`).join('')}<section class="agent-case-chapter agent-case-evidence" id="evidence" data-agent-reveal><span class="agent-meta">05 · Evidence</span><h2>Inspect the artifact, not just the adjectives.</h2>${p.links.length?`<div class="agent-evidence-links">${p.links.map(([l,u])=>`<a class="agent-btn" href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(l)} ↗</a>`).join('')}</div>`:'<p class="agent-evidence-empty">No public interactive artifact is linked for this project. The case stays within work that can be shown publicly.</p>'}<p class="agent-case-evidence-note">Delivered design decisions and visible artifacts are shown here. Unmeasured intent is not converted into invented product metrics.</p></section><section class="agent-case-chapter" data-agent-reveal><span class="agent-meta">Continue</span><h2>Keep reading the work.</h2><a class="agent-btn agent-btn--primary" href="${p.next[0]}">${esc(p.next[1])}</a><a class="agent-btn" href="/projects">All projects</a></section></div></section></main>`}
+/**
+ * Function contract: caseMain
+ * Purpose: Implements the case main responsibility for this module.
+ * Inputs: file, p.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+function caseMain(file,p){return `<main id="main-content" class="agent-main"><header class="agent-case-hero"><div class="agent-frame agent-case-grid"><div class="agent-case-title-wrap"><span class="agent-kicker">Case study</span><h1 class="agent-case-title">${esc(p.title)}</h1></div><p class="agent-case-deck">${esc(p.deck)}</p><figure class="agent-case-cover"><img src="${asset(file)}" alt="${esc(p.title)} interface" decoding="async"></figure></div></header><section class="agent-frame agent-case-chapters"><nav class="agent-case-rail" aria-label="Case study chapters">${p.chapters.map(/** Callback contract: Processes the callback step for p.chapters without leaking orchestration details to the caller. Inputs: _, i. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (_,i)=>`<a href="#chapter-${i+1}">0${i+1}</a>`).join('')}<a href="#evidence">05</a></nav><div class="agent-case-body">${p.chapters.map(/** Callback contract: Processes the callback step for p.chapters without leaking orchestration details to the caller. Inputs: [label,h,b], i. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([label,h,b],i)=>`<section class="agent-case-chapter" id="chapter-${i+1}" data-agent-reveal><span class="agent-meta">0${i+1} · ${esc(label)}</span><h2>${esc(h)}</h2><p>${esc(b)}</p></section>`).join('')}<section class="agent-case-chapter agent-case-evidence" id="evidence" data-agent-reveal><span class="agent-meta">05 · Evidence</span><h2>Inspect the artifact, not just the adjectives.</h2>${p.links.length?`<div class="agent-evidence-links">${p.links.map(/** Callback contract: Processes the callback step for p.links without leaking orchestration details to the caller. Inputs: [l,u]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([l,u])=>`<a class="agent-btn" href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(l)} ↗</a>`).join('')}</div>`:'<p class="agent-evidence-empty">No public interactive artifact is linked for this project. The case stays within work that can be shown publicly.</p>'}<p class="agent-case-evidence-note">Delivered design decisions and visible artifacts are shown here. Unmeasured intent is not converted into invented product metrics.</p></section><section class="agent-case-chapter" data-agent-reveal><span class="agent-meta">Continue</span><h2>Keep reading the work.</h2><a class="agent-btn agent-btn--primary" href="${p.next[0]}">${esc(p.next[1])}</a><a class="agent-btn" href="/projects">All projects</a></section></div></section></main>`}
+/**
+ * Function contract: projectRow
+ * Purpose: Implements the project row responsibility for this module.
+ * Inputs: file, i.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function projectRow(file,i){const p=cases[file];return `<a class="agent-project-row" href="/${file.replace('.html','')}" data-agent-reveal><span class="agent-project-index">0${i+1}</span><div class="agent-project-copy"><h3>${esc(p.title)}</h3><p>${esc(p.deck)}</p></div><figure class="agent-project-media"><img src="${asset(file)}" alt="${esc(p.title)} project interface" loading="lazy" decoding="async"></figure><span class="agent-project-arrow" aria-hidden="true">↗</span></a>`}
+/**
+ * Function contract: patchHome
+ * Purpose: Implements the patch home responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function patchHome(html){html=html.replace(/<div class="nrs-home-proof-v49__machine">[\s\S]*?<\/div><\/section>/i,'</section>');if(!dist||!html.includes('agent-hero'))return html;html=html.replace('I design product flows, interfaces, systems, and implementation-ready handoff for Web3, SaaS, fintech, and software teams that have more complexity than their users should ever need to see.','I design complex software products so users see the decision they need to make, not the system complexity behind it. My work spans product UX, interface systems, and implementation-aware handoff for SaaS, fintech, Web3, and operational software.');return html.replace(/<div class="agent-project-list">[\s\S]*?<\/div><div class="agent-actions agent-actions--section-end"/i,`<div class="agent-project-list">${featured.map(projectRow).join('')}</div><div class="agent-actions agent-actions--section-end"`)}
+/**
+ * Function contract: patchSourceCase
+ * Purpose: Implements the patch source case responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function patchSourceCase(html){return html.replace(/<div class="nrs-evidence-status" data-evidence-status="intended"><strong>Evidence status:<\/strong> Intended design effect, not a measured product result\.<\/div>/gi,'<p class="nrs-evidence-note">Post-launch analytics are not available for this case, so this section stays focused on delivered design changes.</p>').replace(/<div class="nrs-evidence-status"[^>]*>[\s\S]*?<\/div>/gi,'').replace(/What I would discuss in an interview|What still needs evidence/gi,'What I would validate next')}
 if(fs.existsSync(base)){for(const home of ['index.html','home-v2.html']){const p=path.join(base,home);if(fs.existsSync(p))fs.writeFileSync(p,patchHome(fs.readFileSync(p,'utf8')),'utf8')}for(const [file,data] of Object.entries(cases)){const p=path.join(base,file);if(!fs.existsSync(p))continue;const html=fs.readFileSync(p,'utf8');fs.writeFileSync(p,dist?replaceMain(html,caseMain(file,data)):patchSourceCase(html),'utf8')}}
-const runtime=path.join(base,'src/scripts/features/agent-portfolio.js');if(fs.existsSync(runtime)){let js=fs.readFileSync(runtime,'utf8');js=js.replace('three@0.180.0/build/three.module.js','three@0.185.0/build/three.module.js');js=js.replace("const saveData = Boolean(navigator.connection && navigator.connection.saveData);","const saveData = Boolean(navigator.connection && navigator.connection.saveData);\n  const lowPowerDevice = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || (navigator.deviceMemory && navigator.deviceMemory <= 4);");js=js.replace('if (reduceMotion.matches || saveData || !finePointer.matches || !desktop.matches) return;','if (reduceMotion.matches || saveData || lowPowerDevice || !finePointer.matches || !desktop.matches) return;');fs.writeFileSync(runtime,js,'utf8')}
+const runtime=path.join(base,'src/scripts/features/portfolio/agent-portfolio.js');if(fs.existsSync(runtime)){let js=fs.readFileSync(runtime,'utf8');js=js.replace('three@0.180.0/build/three.module.js','three@0.185.0/build/three.module.js');js=js.replace("const saveData = Boolean(navigator.connection && navigator.connection.saveData);","const saveData = Boolean(navigator.connection && navigator.connection.saveData);\n  const lowPowerDevice = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || (navigator.deviceMemory && navigator.deviceMemory <= 4);");js=js.replace('if (reduceMotion.matches || saveData || !finePointer.matches || !desktop.matches) return;','if (reduceMotion.matches || saveData || lowPowerDevice || !finePointer.matches || !desktop.matches) return;');fs.writeFileSync(runtime,js,'utf8')}
 const style=path.join(base,'style.css');if(fs.existsSync(style)){const start='/* senior-portfolio-v2:start */',end='/* senior-portfolio-v2:end */';let css=fs.readFileSync(style,'utf8').replace(/\/\* senior-portfolio-v2:start \*\/[\s\S]*?\/\* senior-portfolio-v2:end \*\//g,'').trimEnd();css+=`\n\n${start}\n.agent-portfolio .agent-evidence-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}.agent-portfolio .agent-case-evidence-note,.agent-portfolio .agent-evidence-empty{max-width:48rem;margin-top:1.5rem;color:var(--ap-ink-faint);font-size:.95rem}.agent-portfolio .agent-case-chapter>.agent-btn+.agent-btn{margin-left:.65rem}@media(max-width:640px){.agent-portfolio .agent-evidence-links{display:grid}.agent-portfolio .agent-evidence-links .agent-btn{width:100%}.agent-portfolio .agent-case-chapter>.agent-btn+.agent-btn{margin-left:0;margin-top:.65rem}}@media(prefers-reduced-motion:reduce){.agent-portfolio [data-agent-reveal]{opacity:1!important;transform:none!important}.agent-portfolio .agent-project-media img{transform:none!important}}\n${end}\n`;fs.writeFileSync(style,css,'utf8')}
 console.log(`[senior-portfolio-v2] Applied evidence-first refinements to ${dist?'dist':'source'}.`);

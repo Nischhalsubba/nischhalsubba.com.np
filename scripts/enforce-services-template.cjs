@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/enforce-services-template.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for enforce services template.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -15,7 +29,7 @@ if (bodyStart >= 0 && bodyEnd > bodyStart) {
   const match = tag.match(/class="([^"]*)"/);
   const classes = match ? match[1].split(/\s+/).filter(Boolean) : [];
   const retired = new Set(['nrs-service-page', 'nrs-services-redesign', 'nrs-services-index-page', 'nrs-services-page']);
-  const next = classes.filter((name) => !retired.has(name));
+  const next = classes.filter(/** Callback contract: Processes the callback step for classes without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => !retired.has(name));
   for (const name of ['nrs-inner-page', 'nrs-services-v49-page']) if (!next.includes(name)) next.push(name);
   const replacement = match ? tag.replace(match[0], `class="${next.join(' ')}"`) : tag.replace('<body', `<body class="${next.join(' ')}"`);
   html = html.slice(0, bodyStart) + replacement + html.slice(bodyEnd + 1);

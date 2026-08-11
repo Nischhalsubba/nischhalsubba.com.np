@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/finalize-signal-reference-visual-v18-core.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for finalize signal reference visual v18 core.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/finalize-signal-reference-visual.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -11,7 +25,7 @@ if (!fs.existsSync(stylePath)) throw new Error(`[hero-photo-v19] Missing ${style
 
 const partDir = path.join(root, 'assets', 'images', 'hero-original-v19.parts');
 const encodedPortrait = ['part-00.b64','part-01.b64','part-02.b64','part-03.b64']
-  .map((name) => fs.readFileSync(path.join(partDir, name), 'utf8').replace(/\s+/g, ''))
+  .map(/** Callback contract: Processes the callback step for ['part 00.b64','part 01.b64','part 02.b64','part 03.b64'] without leaking orchestration details to the caller. Inputs: name. Side effects: may read or write repository/filesystem state. No explicit return contract. */ (name) => fs.readFileSync(path.join(partDir, name), 'utf8').replace(/\s+/g, ''))
   .join('');
 const portrait = Buffer.from(encodedPortrait, 'base64');
 const portraitHash = crypto.createHash('sha256').update(portrait).digest('hex');
@@ -28,7 +42,12 @@ const starts = [
   html.indexOf('<section class="nrs-uploaded-hero-v18"'),
   html.indexOf('<section class="nrs-exact-hero-v17"'),
   html.indexOf('<section class="agent-hero"'),
-].filter((value) => value >= 0);
+].filter(/** Callback contract: Processes the callback step for [
+  html.index of('<section class="nrs uploaded hero v19"'),
+  html.index of('<section class="nrs uploaded hero v18"'),
+  html.index of('<section class="nrs exact hero v17"'),
+  html.index of('<section class="agent hero"'),
+] without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => value >= 0);
 const heroStart = starts.length ? Math.min(...starts) : -1;
 const nextSection = heroStart >= 0 ? html.indexOf('<section class="agent-section"', heroStart) : -1;
 if (heroStart < 0 || nextSection < 0) throw new Error('[hero-photo-v19] Stable homepage hero boundaries were not found.');

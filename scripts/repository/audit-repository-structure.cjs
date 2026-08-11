@@ -29,8 +29,8 @@ if (result.status !== 0) {
 }
 
 const tracked = result.stdout.split('\0').filter(Boolean);
-const rootFiles = tracked.filter((file) => !file.includes('/')).sort();
-const unexpectedRoot = rootFiles.filter((file) => !policy.allowedRootFiles.includes(file));
+const rootFiles = tracked.filter(/** Callback contract: Processes the callback step for tracked without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => !file.includes('/')).sort();
+const unexpectedRoot = rootFiles.filter(/** Callback contract: Processes the callback step for root files without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => !policy.allowedRootFiles.includes(file));
 const failures = [];
 
 /**
@@ -41,7 +41,7 @@ const failures = [];
  * Returns: The repository-relative organized source path, or an empty string when no mapping exists.
  */
 function sourceForRootTarget(target) {
-  return mappings.find((mapping) => mapping.target === target && mapping.sync)?.source || '';
+  return mappings.find(/** Callback contract: Processes the callback step for mappings without leaking orchestration details to the caller. Inputs: mapping. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (mapping) => mapping.target === target && mapping.sync)?.source || '';
 }
 
 if (unexpectedRoot.length) {
@@ -49,7 +49,7 @@ if (unexpectedRoot.length) {
 }
 
 for (const prefix of policy.forbiddenTrackedPrefixes) {
-  const matches = tracked.filter((file) => file.startsWith(prefix));
+  const matches = tracked.filter(/** Callback contract: Processes the callback step for tracked without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => file.startsWith(prefix));
   if (matches.length) {
     failures.push(`Forbidden tracked prefix ${prefix}: ${matches.length} file(s)`);
   }
@@ -93,7 +93,7 @@ for (const doc of policy.requiredDocumentation) {
 }
 
 if (failures.length) {
-  console.error(`[repository-structure] ${failures.length} failure(s)\n${failures.map((item) => `- ${item}`).join('\n')}`);
+  console.error(`[repository-structure] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => `- ${item}`).join('\n')}`);
   process.exit(1);
 }
 

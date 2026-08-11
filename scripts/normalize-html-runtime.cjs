@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/normalize-html-runtime.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for normalize html runtime.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -8,6 +22,13 @@ const htmlFiles = [];
 const styleHref = '/style.css?v=50.0';
 const scriptSrc = '/script.js?v=35.0';
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: directory.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (entry.name === 'node_modules' || entry.name === '.git' || (!useDist && entry.name === 'dist')) continue;
@@ -17,12 +38,26 @@ function walk(directory) {
   }
 }
 
+/**
+ * Function contract: normalizeFontLinks
+ * Purpose: Applies normalize font links while preserving the surrounding repository/runtime contract.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function normalizeFontLinks(html) {
   return html
     .replace(/\s*<link\s+href="https:\/\/fonts\.googleapis\.com\/css2\?[^>]*rel="stylesheet"\s*\/?>\s*/gi, '\n')
     .replace(/\s*<link\s+rel="stylesheet"\s+href="https:\/\/fonts\.googleapis\.com\/css2\?[^>]*>\s*/gi, '\n');
 }
 
+/**
+ * Function contract: normalizeStylesheets
+ * Purpose: Applies normalize stylesheets while preserving the surrounding repository/runtime contract.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function normalizeStylesheets(html) {
   let output = html.replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css)[^"]+\.css[^>]*>\s*/gi, '\n');
   output = output.replace(/\/style\.css\?v=[0-9.]+/g, styleHref);
@@ -32,6 +67,13 @@ function normalizeStylesheets(html) {
   return output.replace(/<\/head>/i, `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
 }
 
+/**
+ * Function contract: normalizeScriptTags
+ * Purpose: Applies normalize script tags while preserving the surrounding repository/runtime contract.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function normalizeScriptTags(html) {
   const localRuntimePattern = /\s*<script\b[^>]*src=["'](?:\/script\.js(?:\?[^"']*)?|\/assets\/(?:script|main|index)[^"']*\.js)["'][^>]*><\/script>\s*/gi;
   let output = html.replace(localRuntimePattern, '\n');
@@ -41,6 +83,13 @@ function normalizeScriptTags(html) {
   return output.replace(/<\/body>/i, `    <script type="module" src="${scriptSrc}"></script>\n  </body>`);
 }
 
+/**
+ * Function contract: normalize
+ * Purpose: Applies normalize while preserving the surrounding repository/runtime contract.
+ * Inputs: content.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function normalize(content) {
   let output = content
     .replace(/<canvas id="grid-canvas"><\/canvas>/g, '')

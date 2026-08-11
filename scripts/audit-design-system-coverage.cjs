@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/audit-design-system-coverage.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for audit design system coverage.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/design-system/README.md
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -6,6 +20,13 @@ const targetRoot = fs.existsSync(path.join(root, 'dist')) ? path.join(root, 'dis
 const htmlFiles = [];
 const ignoredDirs = new Set(['.git', 'node_modules', '.wrangler']);
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: dir.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (ignoredDirs.has(entry.name)) continue;
@@ -18,18 +39,46 @@ function walk(dir) {
   }
 }
 
+/**
+ * Function contract: relative
+ * Purpose: Implements the relative responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function relative(file) {
   return path.relative(targetRoot, file).replaceAll(path.sep, '/');
 }
 
+/**
+ * Function contract: stylesheetHrefs
+ * Purpose: Implements the stylesheet hrefs responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function stylesheetHrefs(html) {
-  return Array.from(html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)).map((match) => match[1]);
+  return Array.from(html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)).map(/** Callback contract: Processes the callback step for array.from(html.match all(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)) without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => match[1]);
 }
 
+/**
+ * Function contract: scriptSrcs
+ * Purpose: Implements the script srcs responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function scriptSrcs(html) {
-  return Array.from(html.matchAll(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/gi)).map((match) => match[1]);
+  return Array.from(html.matchAll(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/gi)).map(/** Callback contract: Processes the callback step for array.from(html.match all(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/gi)) without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => match[1]);
 }
 
+/**
+ * Function contract: hasRuntimeScript
+ * Purpose: Implements the has runtime script responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function hasRuntimeScript(html) {
   return html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"]+\.js["'][^>]*><\/script>/i.test(html);
 }

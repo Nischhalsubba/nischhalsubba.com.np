@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-navigation-font-consistency.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure navigation font consistency.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -6,6 +20,13 @@ const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : r
 const stylePath = path.join(targetRoot, 'style.css');
 const styleVersion = '50.0';
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: dir, files.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -17,6 +38,13 @@ function walk(dir, files = []) {
   return files;
 }
 
+/**
+ * Function contract: cleanBlogArticle
+ * Purpose: Removes or cleans clean blog article while keeping required outputs intact.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function cleanBlogArticle(file) {
   const rel = path.relative(targetRoot, file).replaceAll(path.sep, '/');
   if (!rel.startsWith('blog/') || rel === 'blog/index.html' || !rel.endsWith('.html')) return false;
@@ -163,7 +191,7 @@ body.nrs-services-v49-page .nrs-services-v49 {
 `;
 
 let changed = 0;
-for (const file of walk(targetRoot).filter((item) => item.endsWith('.html'))) {
+for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.endsWith('.html'))) {
   if (cleanBlogArticle(file)) changed += 1;
 }
 

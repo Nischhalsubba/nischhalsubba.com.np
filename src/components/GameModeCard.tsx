@@ -1,3 +1,14 @@
+/**
+ * @fileoverview src/components/GameModeCard.tsx
+ * Purpose: Reusable UI component implementing Game Mode Card.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Repository build or application source.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,6 +31,13 @@ const toneClasses: Record<NonNullable<GameModeCardProps["tone"]>, string> = {
   soft: "from-violet-100 via-fuchsia-100 to-pink-100 text-violet-950 border-violet-200",
 };
 
+/**
+ * Function contract: GameModeCard
+ * Purpose: Implements the game mode card responsibility for this module.
+ * Inputs: { title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 export default function GameModeCard({ title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }: GameModeCardProps) {
   const content = (
     <Card className={cn("group h-full overflow-hidden border bg-gradient-to-br shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md", toneClasses[tone])}>

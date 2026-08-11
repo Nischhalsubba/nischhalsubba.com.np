@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/audit-seo-discovery.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for audit seo discovery.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const {
@@ -16,8 +29,22 @@ const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const manifest = loadManifest(root);
 const errors = [];
+/**
+ * Function contract: read
+ * Purpose: Retrieves read and returns it in the form expected by its caller.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 const read = (file) => fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
 
+/**
+ * Function contract: expectEqual
+ * Purpose: Implements the expect equal responsibility for this module.
+ * Inputs: relativePath, expected.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function expectEqual(relativePath, expected) {
   const actual = read(path.join(root, relativePath));
   if (!actual) return errors.push(`${relativePath}: missing`);
@@ -30,12 +57,12 @@ expectEqual('public/_redirects', buildRedirectFile(manifest));
 expectEqual('src/generated/legacy-redirects.js', buildRedirectModule(manifest));
 
 const sitemap = read(path.join(root, 'sitemap.xml'));
-const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
-const expectedUrls = manifest.html.map((file) => `${SITE}${routeForFile(file)}`);
+const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(/** Callback contract: Processes the callback step for [...sitemap.match all(/<loc>(.*?)<\/loc>/g)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => match[1]);
+const expectedUrls = manifest.html.map(/** Callback contract: Processes the callback step for manifest.html without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => `${SITE}${routeForFile(file)}`);
 if (sitemapUrls.length !== expectedUrls.length) errors.push(`sitemap: expected ${expectedUrls.length} URLs, found ${sitemapUrls.length}`);
 for (const url of expectedUrls) if (!sitemapUrls.includes(url)) errors.push(`sitemap: missing ${url}`);
 if (/<lastmod>|llms\.txt|llms-full\.txt|ai-profile\.json|humans\.txt/i.test(sitemap)) errors.push('sitemap: contains unverified dates or machine-only resources');
-if (sitemapUrls.some((url) => url.endsWith('.html'))) errors.push('sitemap: exposes .html URLs');
+if (sitemapUrls.some(/** Callback contract: Processes the callback step for sitemap urls without leaking orchestration details to the caller. Inputs: url. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (url) => url.endsWith('.html'))) errors.push('sitemap: exposes .html URLs');
 
 const robots = read(path.join(root, 'robots.txt'));
 if (/^AI-Profile:|^LLMs:/mi.test(robots)) errors.push('robots.txt: contains non-standard custom directives');
@@ -97,7 +124,7 @@ if (fs.existsSync(dist)) {
 }
 
 if (errors.length) {
-  console.error(`[seo-discovery-audit] ${errors.length} failure(s)\n${errors.map((error) => `- ${error}`).join('\n')}`);
+  console.error(`[seo-discovery-audit] ${errors.length} failure(s)\n${errors.map(/** Callback contract: Processes the callback step for errors without leaking orchestration details to the caller. Inputs: error. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (error) => `- ${error}`).join('\n')}`);
   process.exit(1);
 }
 console.log(`[seo-discovery-audit] ${manifest.html.length} canonical routes, AI files, redirects, headers, clean URLs, and social previews passed.`);

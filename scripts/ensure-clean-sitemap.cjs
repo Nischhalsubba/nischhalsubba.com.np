@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-clean-sitemap.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure clean sitemap.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -54,7 +67,7 @@ const routes = [
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
-  .map(([route, priority]) => {
+  .map(/** Callback contract: Processes the callback step for routes without leaking orchestration details to the caller. Inputs: [route, priority]. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ ([route, priority]) => {
     const loc = route === '/' ? `${SITE}/` : `${SITE}${route}`;
     return `  <url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><priority>${priority}</priority></url>`;
   })

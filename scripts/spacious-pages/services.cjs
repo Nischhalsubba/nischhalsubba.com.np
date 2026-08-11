@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/spacious-pages/services.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for services.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - scripts/ensure-spacious-core-pages.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const { replaceMain } = require('./shared.cjs');
 
 const services = [
@@ -9,7 +23,7 @@ const services = [
   ['06', 'UX audit and remediation', 'Find the usability, accessibility, responsive and implementation issues that matter, then turn them into a practical fix plan.', 'Evidence, severity, priorities and fix guidance', '/ux-audit'],
 ];
 
-const serviceRows = services.map(([number, title, description, scope, href]) => `
+const serviceRows = services.map(/** Callback contract: Processes the callback step for services without leaking orchestration details to the caller. Inputs: [number, title, description, scope, href]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([number, title, description, scope, href]) => `
   <article class="nrs-service-index-row">
     <span class="nrs-service-index-number">${number}</span>
     <h3>${title}</h3>
@@ -22,7 +36,12 @@ const process = [
   ['02', 'Structure', 'Journeys, hierarchy, content priority, states and edge cases before visual polish.'],
   ['03', 'Design', 'Reusable interface patterns, responsive screens and prototypes that can be reviewed.'],
   ['04', 'Ship', 'Implementation notes, assets, design QA and support while the product is being built.'],
-].map(([number, title, description]) => `<li><span>${number}</span><h3>${title}</h3><p>${description}</p></li>`).join('');
+].map(/** Callback contract: Processes the callback step for [
+  ['01', 'understand', 'product context, users, constraints and the decision the interface needs to support.'],
+  ['02', 'structure', 'journeys, hierarchy, content priority, states and edge cases before visual polish.'],
+  ['03', 'design', 'reusable interface patterns, responsive screens and prototypes that can be reviewed.'],
+  ['04', 'ship', 'implementation notes, assets, design qa and support while the product is being built.'],
+] without leaking orchestration details to the caller. Inputs: [number, title, description]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([number, title, description]) => `<li><span>${number}</span><h3>${title}</h3><p>${description}</p></li>`).join('');
 
 const markup = `<main id="main-content" class="container nrs-spacious-page nrs-services-v49">
   <section class="nrs-services-v49-hero reveal-on-scroll" aria-labelledby="services-title">

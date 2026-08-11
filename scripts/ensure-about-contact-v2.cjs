@@ -1,9 +1,30 @@
+/**
+ * @fileoverview scripts/ensure-about-contact-v2.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure about contact v2.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/generate-source.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const email = 'hinischalsubba@gmail.com';
 
+/**
+ * Function contract: head
+ * Purpose: Implements the head responsibility for this module.
+ * Inputs: { title, description, canonical }.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function head({ title, description, canonical }) {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -28,6 +49,13 @@ function head({ title, description, canonical }) {
   </head>`;
 }
 
+/**
+ * Function contract: nav
+ * Purpose: Implements the nav responsibility for this module.
+ * Inputs: active.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function nav(active) {
   const items = [
     ['/', 'Home', 'home'],
@@ -38,8 +66,8 @@ function nav(active) {
     ['/contact', 'Contact', 'contact'],
   ];
 
-  const desktop = items.map(([href, label, key]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
-  const mobile = items.map(([href, label, key]) => `<a href="${href}"${active === key ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('');
+  const desktop = items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [href, label, key]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([href, label, key]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
+  const mobile = items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [href, label, key]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([href, label, key]) => `<a href="${href}"${active === key ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('');
 
   return `    <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button>
     <a href="/" class="mobile-logo">NRS</a>
@@ -48,6 +76,13 @@ function nav(active) {
     <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div>${desktop}</div></nav>`;
 }
 
+/**
+ * Function contract: scripts
+ * Purpose: Implements the scripts responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function scripts() {
   return `    <a class="floating-resume-btn" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a>
     <script type="module" src="/script.js?v=32.0"></script>`;

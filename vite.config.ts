@@ -1,3 +1,17 @@
+/**
+ * @fileoverview vite.config.ts
+ * Purpose: Configures the Vite multi-page build, canonical URL transformations, and production asset behavior.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Repository build or application source.
+ * Connected files:
+ * - README.md
+ * - config/repository/code-documentation-policy.json
+ * - config/repository/root-policy.json
+ * - docs/CODEBASE_GUIDE.md
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
@@ -5,6 +19,13 @@ import { defineConfig, loadEnv, type Plugin } from 'vite';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * Function contract: page
+ * Purpose: Implements the page responsibility for this module.
+ * Inputs: filePath.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 const page = (filePath: string) => path.resolve(__dirname, filePath);
 const SITE = 'https://nischhalsubba.com.np';
 
@@ -348,6 +369,13 @@ const blogSeo: Record<string, SeoEntry> = {
 
 const staticSeoEntries: Record<string, SeoEntry> = { ...projectSeo, ...blogSeo };
 
+/**
+ * Function contract: makeStaticSeoSection
+ * Purpose: Implements the make static seo section responsibility for this module.
+ * Inputs: pagePath, data.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
   const schema = {
     '@context': 'https://schema.org',
@@ -374,7 +402,7 @@ function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
       },
       {
         '@type': 'FAQPage',
-        mainEntity: data.faqs.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } }))
+        mainEntity: data.faqs.map(/** Callback contract: Processes the callback step for data.faqs without leaking orchestration details to the caller. Inputs: [name, text]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } }))
       }
     ]
   };
@@ -390,8 +418,22 @@ function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
  * not depend only on client-side JavaScript. Visible helper blocks are avoided
  * intentionally because they can leak into production UI and fail the build audit.
  */
+/**
+ * Function contract: htmlEnhancementInjector
+ * Purpose: Implements the html enhancement injector responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 const htmlEnhancementInjector = (): Plugin => ({
   name: 'nrs-html-enhancement-injector',
+  /**
+   * Function contract: transformIndexHtml
+   * Purpose: Implements the transform index html responsibility for this module.
+   * Inputs: html, ctx.
+   * Side effects: no obvious external side effect beyond invoked dependencies.
+   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
   transformIndexHtml(html, ctx) {
     let output = html
       .replace(/<script src="https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/gsap\/3\.12\.2\/gsap\.min\.js"><\/script>/g, '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>')
@@ -415,7 +457,7 @@ const htmlEnhancementInjector = (): Plugin => ({
   }
 });
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(/** Callback contract: Processes the callback step for define config without leaking orchestration details to the caller. Inputs: { mode }. Side effects: may emit diagnostics or inspect process state. Returns a value to the invoking API. */ ({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {

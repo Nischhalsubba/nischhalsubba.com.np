@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-human-seo.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure human seo.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -92,18 +105,39 @@ const serviceProofRoute = {
   '/ux-audit': '/project-pihub',
 };
 
+/**
+ * Function contract: routeFor
+ * Purpose: Implements the route for responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
+/**
+ * Function contract: fileFor
+ * Purpose: Implements the file for responsibility for this module.
+ * Inputs: route.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function fileFor(route) {
   if (route === '/') return path.join(base, 'index.html');
   if (route === '/blog/') return path.join(base, 'blog', 'index.html');
   return path.join(base, `${route.replace(/^\//, '')}.html`);
 }
 
+/**
+ * Function contract: esc
+ * Purpose: Implements the esc responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function esc(value = '') {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -112,6 +146,13 @@ function esc(value = '') {
     .replaceAll('>', '&gt;');
 }
 
+/**
+ * Function contract: strip
+ * Purpose: Implements the strip responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function strip(value = '') {
   return String(value)
     .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
@@ -125,8 +166,15 @@ function strip(value = '') {
     .trim();
 }
 
+/**
+ * Function contract: metaValue
+ * Purpose: Implements the meta value responsibility for this module.
+ * Inputs: html, key, attribute.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function metaValue(html, key, attribute = 'name') {
-  const tags = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => match[0]);
+  const tags = [...html.matchAll(/<meta\b[^>]*>/gi)].map(/** Callback contract: Processes the callback step for [...html.match all(/<meta\b[^>]*>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => match[0]);
   for (const tag of tags) {
     const foundKey = tag.match(new RegExp(`\\b${attribute}=["']([^"']+)["']`, 'i'))?.[1];
     if (foundKey?.toLowerCase() !== key.toLowerCase()) continue;
@@ -135,6 +183,13 @@ function metaValue(html, key, attribute = 'name') {
   return '';
 }
 
+/**
+ * Function contract: setMeta
+ * Purpose: Applies set meta while preserving the surrounding repository/runtime contract.
+ * Inputs: html, key, value, attribute.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function setMeta(html, key, value, attribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${attribute}=["']${escapedKey}["'])[^>]*>`, 'i');
@@ -142,12 +197,26 @@ function setMeta(html, key, value, attribute = 'name') {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
+/**
+ * Function contract: removeMeta
+ * Purpose: Removes or cleans remove meta while keeping required outputs intact.
+ * Inputs: html, key, attribute.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function removeMeta(html, key, attribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`\\s*<meta\\b(?=[^>]*\\b${attribute}=["']${escapedKey}["'])[^>]*>`, 'gi');
   return html.replace(pattern, '');
 }
 
+/**
+ * Function contract: setTitle
+ * Purpose: Applies set title while preserving the surrounding repository/runtime contract.
+ * Inputs: html, value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function setTitle(html, value) {
   const tag = `<title>${esc(value)}</title>`;
   return /<title\b[^>]*>[\s\S]*?<\/title>/i.test(html)
@@ -155,6 +224,13 @@ function setTitle(html, value) {
     : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
+/**
+ * Function contract: setCanonical
+ * Purpose: Applies set canonical while preserving the surrounding repository/runtime contract.
+ * Inputs: html, canonical.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function setCanonical(html, canonical) {
   const tag = `<link rel="canonical" href="${esc(canonical)}" />`;
   return /<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i.test(html)
@@ -162,20 +238,48 @@ function setCanonical(html, canonical) {
     : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
+/**
+ * Function contract: classText
+ * Purpose: Implements the class text responsibility for this module.
+ * Inputs: html, className.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function classText(html, className) {
   const pattern = new RegExp(`<[^>]+class=["'][^"']*\\b${className}\\b[^"']*["'][^>]*>([\\s\\S]*?)<\\/[^>]+>`, 'i');
   return strip(pattern.exec(html)?.[1] || '');
 }
 
+/**
+ * Function contract: h1Text
+ * Purpose: Implements the h1 text responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function h1Text(html) {
   return strip(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || '');
 }
 
+/**
+ * Function contract: absoluteImage
+ * Purpose: Implements the absolute image responsibility for this module.
+ * Inputs: src.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function absoluteImage(src) {
   if (!src || /^data:/i.test(src)) return '';
   try { return new URL(src, `${site}/`).href; } catch { return ''; }
 }
 
+/**
+ * Function contract: imagesIn
+ * Purpose: Implements the images in responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function imagesIn(html) {
   const found = [];
   const seen = new Set();
@@ -188,6 +292,13 @@ function imagesIn(html) {
   return found;
 }
 
+/**
+ * Function contract: preferredPageImage
+ * Purpose: Implements the preferred page image responsibility for this module.
+ * Inputs: route, html.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function preferredPageImage(route, html) {
   if (route === '/' || route === '/about' || route === '/contact' || route === '/blog/' || route.startsWith('/blog/')) return portrait;
   const proofRoute = serviceProofRoute[route];
@@ -195,19 +306,33 @@ function preferredPageImage(route, html) {
     const proofFile = fileFor(proofRoute);
     if (fs.existsSync(proofFile)) {
       const candidates = imagesIn(fs.readFileSync(proofFile, 'utf8'));
-      const raster = candidates.find((src) => /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(src));
+      const raster = candidates.find(/** Callback contract: Processes the callback step for candidates without leaking orchestration details to the caller. Inputs: src. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (src) => /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(src));
       if (raster || candidates[0]) return raster || candidates[0];
     }
   }
   const candidates = imagesIn(html);
-  const raster = candidates.find((src) => /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(src));
+  const raster = candidates.find(/** Callback contract: Processes the callback step for candidates without leaking orchestration details to the caller. Inputs: src. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (src) => /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(src));
   return raster || candidates[0] || portrait;
 }
 
+/**
+ * Function contract: currentTitle
+ * Purpose: Implements the current title responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function currentTitle(html) {
   return strip(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '');
 }
 
+/**
+ * Function contract: humanTitle
+ * Purpose: Implements the human title responsibility for this module.
+ * Inputs: file, route, html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function humanTitle(file, route, html) {
   if (coreMeta[route]) return coreMeta[route].title;
   if (projectTitles[file]) return projectTitles[file];
@@ -218,6 +343,13 @@ function humanTitle(file, route, html) {
   return currentTitle(html) || 'Nischhal Raj Subba';
 }
 
+/**
+ * Function contract: humanDescription
+ * Purpose: Implements the human description responsibility for this module.
+ * Inputs: file, route, html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function humanDescription(file, route, html) {
   if (coreMeta[route]) return coreMeta[route].description;
   if (projectTitles[file]) {
@@ -226,6 +358,13 @@ function humanDescription(file, route, html) {
   return metaValue(html, 'description') || classText(html, 'agent-page-intro') || 'Product design work and writing by Nischhal Raj Subba.';
 }
 
+/**
+ * Function contract: breadcrumb
+ * Purpose: Implements the breadcrumb responsibility for this module.
+ * Inputs: route, name.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function breadcrumb(route, name) {
   if (route === '/') return null;
   const items = [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` }];
@@ -236,6 +375,13 @@ function breadcrumb(route, name) {
   return { '@type': 'BreadcrumbList', itemListElement: items };
 }
 
+/**
+ * Function contract: schema
+ * Purpose: Implements the schema responsibility for this module.
+ * Inputs: route, title, description, image, html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function schema(route, title, description, image, html) {
   const name = h1Text(html) || title.replace(/\s*[|–—-]\s*Nischhal Raj Subba\s*$/i, '');
   const canonical = route === '/' ? `${site}/` : `${site}${route}`;
@@ -320,6 +466,13 @@ function schema(route, title, description, image, html) {
   return { '@context': 'https://schema.org', '@graph': graph };
 }
 
+/**
+ * Function contract: setJsonLd
+ * Purpose: Applies set json ld while preserving the surrounding repository/runtime contract.
+ * Inputs: html, data.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function setJsonLd(html, data) {
   html = html.replace(/\s*<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi, '');
   const tag = `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
@@ -395,7 +548,7 @@ if (fs.existsSync(retiredProfile)) {
   fs.writeFileSync(retiredProfile, html, 'utf8');
 }
 
-const sitemapUrls = manifest.html.map((file) => {
+const sitemapUrls = manifest.html.map(/** Callback contract: Processes the callback step for manifest.html without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (file) => {
   const route = routeFor(file);
   return `  <url><loc>${route === '/' ? `${site}/` : `${site}${route}`}</loc></url>`;
 }).join('\n');

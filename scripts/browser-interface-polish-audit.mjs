@@ -1,13 +1,41 @@
+/**
+ * @fileoverview scripts/browser-interface-polish-audit.mjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for browser interface polish audit.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - .github/workflows/interface-polish-audit.yml
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 import { chromium } from 'playwright';
 
 const base = process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173';
 const browser = await chromium.launch({ headless: true });
 const failures = [];
 
+/**
+ * Function contract: fail
+ * Purpose: Implements the fail responsibility for this module.
+ * Inputs: label, message.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function fail(label, message) {
   failures.push(`${label}: ${message}`);
 }
 
+/**
+ * Function contract: openPage
+ * Purpose: Implements the open page responsibility for this module.
+ * Inputs: context, route, viewport.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 async function openPage(context, route, viewport) {
   const page = await context.newPage();
   await page.setViewportSize(viewport);
@@ -31,7 +59,7 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/project-zapp', viewport);
-    const metrics = await page.evaluate(() => {
+    const metrics = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
       const wrapper = document.querySelector('.agent-case-title-wrap');
       const title = document.querySelector('.agent-case-title');
       const frame = document.querySelector('.agent-case-grid');
@@ -39,8 +67,8 @@ for (const viewport of [
 
       const range = document.createRange();
       range.selectNodeContents(title);
-      const lineRects = [...range.getClientRects()].filter((rect) => rect.width > 0 && rect.height > 0);
-      const uniqueLines = [...new Set(lineRects.map((rect) => Math.round(rect.top)))];
+      const lineRects = [...range.getClientRects()].filter(/** Callback contract: Processes the callback step for [...range.get client rects()] without leaking orchestration details to the caller. Inputs: rect. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (rect) => rect.width > 0 && rect.height > 0);
+      const uniqueLines = [...new Set(lineRects.map(/** Callback contract: Processes the callback step for line rects without leaking orchestration details to the caller. Inputs: rect. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (rect) => Math.round(rect.top)))];
       const wrapperRect = wrapper.getBoundingClientRect();
       const titleRect = title.getBoundingClientRect();
       const frameRect = frame.getBoundingClientRect();
@@ -84,7 +112,7 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/about', viewport);
-    const metrics = await page.evaluate(() => {
+    const metrics = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
       const grid = document.querySelector('.agent-about-grid');
       const copy = document.querySelector('.agent-about-copy');
       const aside = document.querySelector('.agent-about-aside');
@@ -123,14 +151,14 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
-    const geometry = await page.locator('.nrs-home-habit').evaluateAll((elements) => elements.map((element) => {
+    const geometry = await page.locator('.nrs-home-habit').evaluateAll(/** Callback contract: Processes the callback step for page.locator('.nrs home habit') without leaking orchestration details to the caller. Inputs: elements. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (elements) => elements.map(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
       const rect = element.getBoundingClientRect();
       return { top: rect.top, width: rect.width };
     }));
     if (geometry.length !== 3) throw new Error(`expected 3 habit cards, found ${geometry.length}`);
-    const topDelta = Math.max(...geometry.map((item) => item.top)) - Math.min(...geometry.map((item) => item.top));
+    const topDelta = Math.max(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.top)) - Math.min(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.top));
     if (topDelta > 2) throw new Error(`habit cards are vertically staggered by ${topDelta.toFixed(1)}px`);
-    const widthDelta = Math.max(...geometry.map((item) => item.width)) - Math.min(...geometry.map((item) => item.width));
+    const widthDelta = Math.max(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.width)) - Math.min(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.width));
     if (widthDelta > 3) throw new Error(`habit columns differ in width by ${widthDelta.toFixed(1)}px`);
   } catch (error) {
     fail(label, error.message);
@@ -145,13 +173,13 @@ for (const viewport of [
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
     const row = page.locator('.agent-project-row').first();
-    const before = await row.evaluate((element) => ({
+    const before = await row.evaluate(/** Callback contract: Processes the callback step for row without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element) => ({
       background: getComputedStyle(element).backgroundColor,
       title: getComputedStyle(element.querySelector('h3')).color,
     }));
     await row.hover();
     await page.waitForTimeout(220);
-    const after = await row.evaluate((element) => ({
+    const after = await row.evaluate(/** Callback contract: Processes the callback step for row without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element) => ({
       background: getComputedStyle(element).backgroundColor,
       title: getComputedStyle(element.querySelector('h3')).color,
     }));
@@ -161,7 +189,7 @@ for (const viewport of [
 
     const button = page.locator('.agent-btn').first();
     await button.focus();
-    const focus = await button.evaluate((element) => {
+    const focus = await button.evaluate(/** Callback contract: Processes the callback step for button without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
       const style = getComputedStyle(element);
       const afterStyle = getComputedStyle(element, '::after');
       return {
@@ -184,15 +212,20 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
-    await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+    await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
     await page.waitForTimeout(900);
-    const hidden = await page.locator('[data-agent-reveal]').evaluateAll((elements) => elements
-      .filter((element) => {
+    const hidden = await page.locator('[data-agent-reveal]').evaluateAll(/** Callback contract: Processes the callback step for page.locator('[data agent reveal]') without leaking orchestration details to the caller. Inputs: elements. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (elements) => elements
+      .filter(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
         const style = getComputedStyle(element);
         const rect = element.getBoundingClientRect();
         return rect.width > 0 && rect.height > 0 && (Number.parseFloat(style.opacity) < 0.95 || style.visibility === 'hidden');
       })
-      .map((element) => element.className || element.tagName));
+      .map(/** Callback contract: Processes the callback step for elements
+      .filter((element) => {
+        const style = get computed style(element);
+        const rect = element.get bounding client rect();
+        return rect.width > 0 && rect.height > 0 && (number.parse float(style.opacity) < 0.95 || style.visibility === 'hidden');
+      }) without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element) => element.className || element.tagName));
     if (hidden.length) throw new Error(`reveal targets remained hidden after animation: ${hidden.slice(0, 5).join(', ')}`);
   } catch (error) {
     fail(label, error.message);
@@ -209,16 +242,16 @@ await standard.close();
   let page;
   try {
     page = await openPage(reduced, '/', { width: 1440, height: 900 });
-    await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+    await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
     await page.waitForTimeout(250);
-    const result = await page.locator('[data-agent-reveal]').evaluateAll((elements) => ({
-      hidden: elements.filter((element) => {
+    const result = await page.locator('[data-agent-reveal]').evaluateAll(/** Callback contract: Processes the callback step for page.locator('[data agent reveal]') without leaking orchestration details to the caller. Inputs: elements. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (elements) => ({
+      hidden: elements.filter(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
         const style = getComputedStyle(element);
         return Number.parseFloat(style.opacity) < 0.95 || style.visibility === 'hidden';
       }).length,
-      longTransitions: elements.filter((element) => {
-        const durations = getComputedStyle(element).transitionDuration.split(',').map((value) => Number.parseFloat(value) || 0);
-        return durations.some((duration) => duration > 0.05);
+      longTransitions: elements.filter(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
+        const durations = getComputedStyle(element).transitionDuration.split(',').map(/** Callback contract: Processes the callback step for get computed style(element).transition duration.split(',') without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => Number.parseFloat(value) || 0);
+        return durations.some(/** Callback contract: Processes the callback step for durations without leaking orchestration details to the caller. Inputs: duration. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (duration) => duration > 0.05);
       }).length,
     }));
     if (result.hidden) throw new Error(`${result.hidden} reveal targets are hidden with reduced motion`);
@@ -233,7 +266,7 @@ await standard.close();
 await browser.close();
 
 if (failures.length) {
-  console.error(`[interface-polish-audit] ${failures.length} failure(s)\n${failures.map((failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[interface-polish-audit] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: failure. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

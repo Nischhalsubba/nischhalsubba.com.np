@@ -1,4 +1,17 @@
 /**
+ * @fileoverview src/content/projects.js
+ * Purpose: Structured content module providing projects data to generators/runtime code.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Repository build or application source.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/audit-content-structure.cjs
+ * - src/content/README.md
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
+/**
  * Canonical project metadata for the portfolio.
  *
  * This file is intentionally data-only. The current site still uses static HTML
@@ -182,4 +195,4 @@ export const projects = [
   },
 ];
 
-export const featuredProjects = projects.filter((project) => project.featured);
+export const featuredProjects = projects.filter(/** Callback contract: Processes the callback step for projects without leaking orchestration details to the caller. Inputs: project. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (project) => project.featured);

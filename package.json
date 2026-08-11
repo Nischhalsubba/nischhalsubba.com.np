@@ -38,7 +38,8 @@
     "test:build-determinism": "node scripts/test-build-determinism.cjs",
     "test:smoke": "node scripts/smoke-test-dist.mjs",
     "test:routes:live": "node scripts/verify-live-routes.mjs",
-    "validate": "npm run docs:file-catalog && npm run build && npm run lint && npm run audit:repo-structure && npm run test:build-determinism && npm run audit:seo && npm run audit:seo-contract && npm run audit:seo-discovery && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:shared-shell && npm run audit:css-architecture && npm run audit:design-system && npm run audit:voice && npm run audit:accessibility-tokens && npm run audit:provenance && npm run test:smoke"
+    "validate": "npm run docs:file-catalog && npm run build && npm run lint && npm run audit:repo-structure && npm run audit:code-docs && npm run test:build-determinism && npm run audit:seo && npm run audit:seo-contract && npm run audit:seo-discovery && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:shared-shell && npm run audit:css-architecture && npm run audit:design-system && npm run audit:voice && npm run audit:accessibility-tokens && npm run audit:provenance && npm run test:smoke",
+    "audit:code-docs": "node scripts/repository/audit-code-documentation.cjs"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

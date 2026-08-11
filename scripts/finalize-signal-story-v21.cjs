@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/finalize-signal-story-v21.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for finalize signal story v21.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/finalize-signal-story-v22.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -21,7 +35,7 @@ if (!html.includes('id="nrsStoryReadout"') || !html.includes('data-story="signal
 }
 
 if (!html.includes('class="nrs-story-noise"')) {
-  const specks = Array.from({ length: 30 }, (_, index) => {
+  const specks = Array.from({ length: 30 }, /** Callback contract: Processes the callback step for array without leaking orchestration details to the caller. Inputs: _, index. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (_, index) => {
     const x = 8 + ((index * 37) % 85);
     const y = 9 + ((index * 53) % 78);
     const size = 1 + (index % 3);

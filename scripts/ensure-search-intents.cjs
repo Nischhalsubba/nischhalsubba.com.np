@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-search-intents.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure search intents.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/generate-source.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -244,6 +258,13 @@ for (const [file, [type, intent, title, description]] of Object.entries(blogInte
   };
 }
 
+/**
+ * Function contract: escapeHtml
+ * Purpose: Implements the escape html responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -252,41 +273,83 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
+/**
+ * Function contract: absoluteUrl
+ * Purpose: Implements the absolute url responsibility for this module.
+ * Inputs: canonical.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function absoluteUrl(canonical) {
   if (canonical === '/') return `${SITE}/`;
   return `${SITE}${canonical}`;
 }
 
+/**
+ * Function contract: upsertTitle
+ * Purpose: Implements the upsert title responsibility for this module.
+ * Inputs: html, title.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertTitle(html, title) {
   const value = `<title>${escapeHtml(title)}</title>`;
   return /<title>[\s\S]*?<\/title>/i.test(html)
     ? html.replace(/<title>[\s\S]*?<\/title>/i, value)
-    : html.replace(/<head[^>]*>/i, (match) => `${match}\n    ${value}`);
+    : html.replace(/<head[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${value}`);
 }
 
+/**
+ * Function contract: upsertMetaName
+ * Purpose: Implements the upsert meta name responsibility for this module.
+ * Inputs: html, name, content.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertMetaName(html, name, content) {
   const value = `<meta name="${name}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+name=["']${name}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, value)
-    : html.replace(/<meta\s+name="viewport"[^>]*>/i, (match) => `${match}\n    ${value}`);
+    : html.replace(/<meta\s+name="viewport"[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${value}`);
 }
 
+/**
+ * Function contract: upsertMetaProperty
+ * Purpose: Implements the upsert meta property responsibility for this module.
+ * Inputs: html, property, content.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertMetaProperty(html, property, content) {
   const value = `<meta property="${property}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+property=["']${property}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, value)
-    : html.replace(/<\/title>/i, (match) => `${match}\n    ${value}`);
+    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${value}`);
 }
 
+/**
+ * Function contract: upsertCanonical
+ * Purpose: Implements the upsert canonical responsibility for this module.
+ * Inputs: html, canonical.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertCanonical(html, canonical) {
   const value = `<link rel="canonical" href="${absoluteUrl(canonical)}" />`;
   return /<link\s+rel="canonical"[^>]*>/i.test(html)
     ? html.replace(/<link\s+rel="canonical"[^>]*>/i, value)
-    : html.replace(/<\/title>/i, (match) => `${match}\n    ${value}`);
+    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${value}`);
 }
 
+/**
+ * Function contract: upsertSearchIntentSchema
+ * Purpose: Implements the upsert search intent schema responsibility for this module.
+ * Inputs: html, config.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertSearchIntentSchema(html, config) {
   const url = absoluteUrl(config.canonical);
   const schema = {
@@ -317,6 +380,13 @@ function upsertSearchIntentSchema(html, config) {
   return html.replace(/<\/head>/i, `    ${script}\n  </head>`);
 }
 
+/**
+ * Function contract: applyIntent
+ * Purpose: Applies apply intent while preserving the surrounding repository/runtime contract.
+ * Inputs: html, config.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function applyIntent(html, config) {
   html = upsertTitle(html, config.title);
   html = upsertMetaName(html, 'description', config.description);

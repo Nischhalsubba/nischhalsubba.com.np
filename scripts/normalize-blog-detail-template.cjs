@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/normalize-blog-detail-template.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for normalize blog detail template.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -5,6 +19,13 @@ const root = path.resolve(__dirname, '..');
 const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const styleVersion = '51.0';
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: dir, files.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -16,10 +37,24 @@ function walk(dir, files = []) {
   return files;
 }
 
+/**
+ * Function contract: text
+ * Purpose: Implements the text responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function text(html) {
   return String(html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+/**
+ * Function contract: ensurePageClass
+ * Purpose: Applies ensure page class while preserving the surrounding repository/runtime contract.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function ensurePageClass(html) {
   if (/class=["'][^"']*nrs-blog-detail-page/i.test(html)) return html;
   if (/<html\b[^>]*class=/i.test(html)) {
@@ -28,6 +63,13 @@ function ensurePageClass(html) {
   return html.replace(/<html\b([^>]*)>/i, '<html$1 class="nrs-blog-detail-page">');
 }
 
+/**
+ * Function contract: normalizeArticle
+ * Purpose: Applies normalize article while preserving the surrounding repository/runtime contract.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function normalizeArticle(file) {
   const rel = path.relative(targetRoot, file).replaceAll(path.sep, '/');
   if (!rel.startsWith('blog/') || rel === 'blog/index.html' || !rel.endsWith('.html')) return false;

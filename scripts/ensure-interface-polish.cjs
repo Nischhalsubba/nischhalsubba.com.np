@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-interface-polish.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure interface polish.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - scripts/generate-source.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -216,6 +230,13 @@ const polishCss = `${startMarker}
 }
 ${endMarker}`;
 
+/**
+ * Function contract: appendPolishCss
+ * Purpose: Implements the append polish css responsibility for this module.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function appendPolishCss(file) {
   if (!fs.existsSync(file)) return false;
   const before = fs.readFileSync(file, 'utf8');
@@ -224,6 +245,13 @@ function appendPolishCss(file) {
   return true;
 }
 
+/**
+ * Function contract: patchRuntime
+ * Purpose: Implements the patch runtime responsibility for this module.
+ * Inputs: file.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function patchRuntime(file) {
   if (!fs.existsSync(file)) return false;
   const before = fs.readFileSync(file, 'utf8');
@@ -267,7 +295,7 @@ const requiredSelectors = [
   '.agent-portfolio .agent-project-row:focus-visible',
   '@media (prefers-reduced-motion: reduce)'
 ];
-const missing = requiredSelectors.filter((selector) => !finalCss.includes(selector));
+const missing = requiredSelectors.filter(/** Callback contract: Processes the callback step for required selectors without leaking orchestration details to the caller. Inputs: selector. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (selector) => !finalCss.includes(selector));
 if (missing.length) {
   console.error(`[interface-polish] Missing required CSS contracts: ${missing.join(', ')}`);
   process.exit(1);

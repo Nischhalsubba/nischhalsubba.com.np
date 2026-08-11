@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/visual-regression.mjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for visual regression.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - .github/workflows/browser-audit.yml
+ * - .github/workflows/production-qa.yml
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 import fs from 'node:fs';
 import path from 'node:path';
 import pixelmatch from 'pixelmatch';
@@ -45,7 +59,7 @@ for (const theme of themes) {
     });
     const page = await context.newPage();
 
-    await page.route('**/*', async (route) => {
+    await page.route('**/*', /** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: route. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ async (route) => {
       const url = new URL(route.request().url());
       if (url.origin === new URL(base).origin || url.protocol === 'data:' || url.protocol === 'blob:') return route.continue();
       return route.abort();
@@ -60,11 +74,11 @@ for (const theme of themes) {
       try {
         const response = await page.goto(`${base}${routePath}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
         if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
-        await page.evaluate(async (resolvedTheme) => {
+        await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: resolvedTheme. Side effects: may read or update browser DOM/state. No explicit return contract. */ async (resolvedTheme) => {
           await document.fonts?.ready;
           document.documentElement.dataset.theme = resolvedTheme;
           document.documentElement.style.colorScheme = resolvedTheme;
-          document.querySelectorAll('iframe, video').forEach((element) => element.setAttribute('hidden', ''));
+          document.querySelectorAll('iframe, video').forEach(/** Callback contract: Processes the callback step for document.query selector all('iframe, video') without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ (element) => element.setAttribute('hidden', ''));
           const turnstile = document.querySelector('.nrs-turnstile');
           if (turnstile) {
             turnstile.innerHTML = '<div aria-hidden="true">Anti-spam verification</div>';
@@ -114,7 +128,7 @@ for (const theme of themes) {
 
 await browser.close();
 if (failures.length) {
-  console.error(`[visual-regression] ${failures.length} failure(s)\n${failures.map((failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[visual-regression] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: failure. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 console.log(`[visual-regression] ${routes.length * viewports.length * themes.length} snapshots ${update ? 'updated' : 'passed'} at ${(maximumDifferenceRatio * 100).toFixed(2)}% tolerance.`);

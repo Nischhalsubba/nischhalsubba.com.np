@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-hireable-case-studies.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure hireable case studies.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -623,6 +636,13 @@ const projects = {
   }
 };
 
+/**
+ * Function contract: esc
+ * Purpose: Implements the esc responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function esc(value) {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -631,6 +651,13 @@ function esc(value) {
     .replaceAll('"', '&quot;');
 }
 
+/**
+ * Function contract: strip
+ * Purpose: Implements the strip responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function strip(value) {
   return String(value ?? '')
     .replace(/<script\b[\s\S]*?<\/script>/gi, '')
@@ -643,6 +670,13 @@ function strip(value) {
     .trim();
 }
 
+/**
+ * Function contract: fact
+ * Purpose: Implements the fact responsibility for this module.
+ * Inputs: main, label.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function fact(main, label) {
   const dt = new RegExp(`<dt[^>]*>\\s*${label}\\s*<\\/dt>\\s*<dd[^>]*>([\\s\\S]*?)<\\/dd>`, 'i').exec(main);
   if (dt) return strip(dt[1]);
@@ -650,11 +684,25 @@ function fact(main, label) {
   return old ? strip(old[1]) : '';
 }
 
+/**
+ * Function contract: badgeYear
+ * Purpose: Implements the badge year responsibility for this module.
+ * Inputs: main.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function badgeYear(main) {
-  const badges = [...main.matchAll(/<span[^>]*class=["'][^"']*badge-pill[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi)].map((m) => strip(m[1]));
-  return badges.find((value) => /\b20\d{2}(?:\s*[–-]\s*\d{2,4})?\b/.test(value)) || '';
+  const badges = [...main.matchAll(/<span[^>]*class=["'][^"']*badge-pill[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi)].map(/** Callback contract: Processes the callback step for [...main.match all(/<span[^>]*class=["'][^"']*badge pill[^"']*["'][^>]*>([\s\s]*?)<\/span>/gi)] without leaking orchestration details to the caller. Inputs: m. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (m) => strip(m[1]));
+  return badges.find(/** Callback contract: Processes the callback step for badges without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => /\b20\d{2}(?:\s*[–-]\s*\d{2,4})?\b/.test(value)) || '';
 }
 
+/**
+ * Function contract: cover
+ * Purpose: Implements the cover responsibility for this module.
+ * Inputs: main, project.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function cover(main, project) {
   const figure = main.match(/<figure[^>]*class=["'][^"']*agent-case-cover[^"']*["'][^>]*>[\s\S]*?<\/figure>/i)?.[0]
     || main.match(/<div[^>]*class=["'][^"']*case-hero-img-container[^"']*["'][^>]*>[\s\S]*?<\/div>/i)?.[0]
@@ -665,6 +713,13 @@ function cover(main, project) {
   return `<figure class="agent-case-cover nrs-hireable-case-cover"><img src="${esc(img[1])}" alt="${esc(alt)}" loading="eager" decoding="async"></figure>`;
 }
 
+/**
+ * Function contract: evidenceLinks
+ * Purpose: Implements the evidence links responsibility for this module.
+ * Inputs: main.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function evidenceLinks(main) {
   const seen = new Set();
   const links = [];
@@ -678,22 +733,57 @@ function evidenceLinks(main) {
   return links.slice(0, 6);
 }
 
+/**
+ * Function contract: paragraphs
+ * Purpose: Implements the paragraphs responsibility for this module.
+ * Inputs: items.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function paragraphs(items) {
-  return items.map((item) => `<p>${esc(item)}</p>`).join('');
+  return items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => `<p>${esc(item)}</p>`).join('');
 }
 
+/**
+ * Function contract: bullets
+ * Purpose: Implements the bullets responsibility for this module.
+ * Inputs: items.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function bullets(items) {
-  return `<ul class="nrs-case-list">${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>`;
+  return `<ul class="nrs-case-list">${items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => `<li>${esc(item)}</li>`).join('')}</ul>`;
 }
 
+/**
+ * Function contract: decisions
+ * Purpose: Implements the decisions responsibility for this module.
+ * Inputs: items.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function decisions(items) {
-  return `<div class="agent-decision-grid nrs-case-decision-grid">${items.map(([title, text]) => `<article class="agent-decision"><span class="agent-meta">Decision</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div>`;
+  return `<div class="agent-decision-grid nrs-case-decision-grid">${items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [title, text]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([title, text]) => `<article class="agent-decision"><span class="agent-meta">Decision</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div>`;
 }
 
+/**
+ * Function contract: section
+ * Purpose: Implements the section responsibility for this module.
+ * Inputs: index, kicker, title, body, className.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function section(index, kicker, title, body, className = '') {
   return `<section class="agent-section ${className}"><div class="agent-frame nrs-case-section"><header class="nrs-case-section-head"><span class="agent-meta">${String(index).padStart(2, '0')} · ${esc(kicker)}</span><h2>${esc(title)}</h2></header><div class="nrs-case-section-body">${body}</div></div></section>`;
 }
 
+/**
+ * Function contract: renderFacts
+ * Purpose: Implements the render facts responsibility for this module.
+ * Inputs: main, project.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function renderFacts(main, project) {
   const role = fact(main, 'Role') || 'Product design contribution';
   const year = fact(main, 'Year') || badgeYear(main);
@@ -701,16 +791,30 @@ function renderFacts(main, project) {
   const users = fact(main, 'Users') || fact(main, 'Audience') || project.audience;
   const items = [['Role', role], ['Domain', domain], ['Audience', users]];
   if (year) items.splice(1, 0, ['Year', year]);
-  return `<dl class="agent-case-facts nrs-hireable-case-facts">${items.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
+  return `<dl class="agent-case-facts nrs-hireable-case-facts">${items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [label, value]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
 }
 
+/**
+ * Function contract: renderEvidence
+ * Purpose: Implements the render evidence responsibility for this module.
+ * Inputs: links.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function renderEvidence(links) {
   if (!links.length) {
     return `<p class="nrs-case-evidence-note">No public interactive artifact is linked for this project. I am keeping the case limited to the work and decisions that can be shown publicly rather than filling the gap with invented proof.</p>`;
   }
-  return `<div class="agent-evidence-links nrs-case-evidence-links">${links.map(([label, url]) => `<a class="agent-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`).join('')}</div><p class="nrs-case-evidence-note">The links above are the public artifacts currently attached to this case. Product metrics or research findings are not claimed where they are not available.</p>`;
+  return `<div class="agent-evidence-links nrs-case-evidence-links">${links.map(/** Callback contract: Processes the callback step for links without leaking orchestration details to the caller. Inputs: [label, url]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([label, url]) => `<a class="agent-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`).join('')}</div><p class="nrs-case-evidence-note">The links above are the public artifacts currently attached to this case. Product metrics or research findings are not claimed where they are not available.</p>`;
 }
 
+/**
+ * Function contract: renderMain
+ * Purpose: Implements the render main responsibility for this module.
+ * Inputs: slug, main, project.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function renderMain(slug, main, project) {
   const image = cover(main, project);
   const links = evidenceLinks(main);
@@ -726,7 +830,7 @@ function renderMain(slug, main, project) {
   const outcome = section(6, 'Delivered design effect', 'What changed in the design', `${bullets(project.outcomes)}<p class="nrs-case-evidence-note"><strong>Evidence boundary:</strong> these are observable design changes. I am not converting design intent into fabricated business metrics.</p>`);
   const validation = section(7, 'Next validation', 'What I would measure or test next', `${bullets(project.validation)}<p class="nrs-case-supporting">If product analytics or research becomes available, these are the questions I would use to test whether the design decisions are producing the intended user behavior.</p>`, 'agent-section--inverse');
   const proof = section(8, 'Evidence', 'Inspect the artifacts, not just the adjectives', renderEvidence(links), 'agent-section--compact');
-  const hiring = section(9, 'What this demonstrates', 'The capability behind this project', `<div class="nrs-case-signal-grid">${project.signals.map((signal) => `<article><strong>${esc(signal)}</strong></article>`).join('')}</div><div class="agent-actions nrs-case-actions"><a class="agent-btn agent-btn--primary" href="/projects">View all work</a><a class="agent-btn" href="/contact">Discuss similar work</a></div>`);
+  const hiring = section(9, 'What this demonstrates', 'The capability behind this project', `<div class="nrs-case-signal-grid">${project.signals.map(/** Callback contract: Processes the callback step for project.signals without leaking orchestration details to the caller. Inputs: signal. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (signal) => `<article><strong>${esc(signal)}</strong></article>`).join('')}</div><div class="agent-actions nrs-case-actions"><a class="agent-btn agent-btn--primary" href="/projects">View all work</a><a class="agent-btn" href="/contact">Discuss similar work</a></div>`);
 
   return `<main id="main-content" class="agent-main nrs-hireable-case" data-project-slug="${esc(slug)}">${hero}${overview}${contribution}${decisionSection}${flowSection}${handoff}${outcome}${validation}${proof}${hiring}</main>`;
 }

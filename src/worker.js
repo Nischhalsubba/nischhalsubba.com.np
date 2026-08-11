@@ -1,3 +1,17 @@
+/**
+ * @fileoverview src/worker.js
+ * Purpose: Routes Cloudflare Worker requests for static assets, canonical redirects, and API behavior.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Cloudflare Workers runtime.
+ * Connected files:
+ * - README.md
+ * - docs/production-delivery.md
+ * - docs/repository/file-catalog.md
+ * - docs/repository/file-map.md
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 import { onRequestOptions, onRequestPost } from '../functions/api/contact.js';
 import { LEGACY_REDIRECTS } from './generated/legacy-redirects.js';
 
@@ -11,6 +25,13 @@ const ANALYTICS_EVENTS = new Set([
   'performance_metric',
 ]);
 
+/**
+ * Function contract: methodNotAllowed
+ * Purpose: Implements the method not allowed responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function methodNotAllowed() {
   return new Response(JSON.stringify({
     ok: false,
@@ -26,6 +47,13 @@ function methodNotAllowed() {
   });
 }
 
+/**
+ * Function contract: legacyRedirect
+ * Purpose: Implements the legacy redirect responsibility for this module.
+ * Inputs: request, url.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function legacyRedirect(request, url) {
   if (request.method !== 'GET' && request.method !== 'HEAD') return null;
   const targetPath = LEGACY_REDIRECTS.get(url.pathname);
@@ -36,6 +64,13 @@ function legacyRedirect(request, url) {
   return Response.redirect(target.toString(), 301);
 }
 
+/**
+ * Function contract: analyticsResponse
+ * Purpose: Implements the analytics response responsibility for this module.
+ * Inputs: status.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function analyticsResponse(status = 204) {
   return new Response(null, {
     status,
@@ -49,6 +84,13 @@ function analyticsResponse(status = 204) {
   });
 }
 
+/**
+ * Function contract: recordAnalytics
+ * Purpose: Implements the record analytics responsibility for this module.
+ * Inputs: request.
+ * Side effects: may emit diagnostics or inspect process state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 async function recordAnalytics(request) {
   if (request.method === 'OPTIONS') return analyticsResponse();
   if (request.method !== 'POST') return methodNotAllowed();
@@ -85,6 +127,13 @@ async function recordAnalytics(request) {
 }
 
 export default {
+  /**
+   * Function contract: fetch
+   * Purpose: Retrieves fetch and returns it in the form expected by its caller.
+   * Inputs: request, env.
+   * Side effects: may perform network I/O.
+   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
   async fetch(request, env) {
     const url = new URL(request.url);
 

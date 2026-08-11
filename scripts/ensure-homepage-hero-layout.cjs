@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-homepage-hero-layout.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure homepage hero layout.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/generate-source.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -12,6 +26,13 @@ const cleanHero = `      <section class="hero-section nrs-home-hero-clean">
         <div class="hero-proof-strip reveal-on-scroll" aria-label="Core design strengths"><span>UX strategy</span><span>Interface design</span><span>Design systems</span><span>UX writing</span><span>Developer handoff</span></div>
       </section>`;
 
+/**
+ * Function contract: replaceHero
+ * Purpose: Implements the replace hero responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function replaceHero(html) {
   const heroPattern = /      <section class="hero-section center-aligned-hero nrs-home-hero"[\s\S]*?      <\/section>/;
   if (heroPattern.test(html)) return html.replace(heroPattern, cleanHero);

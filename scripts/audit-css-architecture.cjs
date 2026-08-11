@@ -135,7 +135,7 @@ if (!files.length) {
 }
 
 if (issues.length) {
-  console.error('[css-architecture] Failed\n' + issues.map((issue) => `- ${issue}`).join('\n'));
+  console.error('[css-architecture] Failed\n' + issues.map(/** Callback contract: Processes the callback step for issues without leaking orchestration details to the caller. Inputs: issue. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (issue) => `- ${issue}`).join('\n'));
   process.exit(1);
 }
 

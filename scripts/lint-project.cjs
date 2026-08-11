@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/lint-project.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for lint project.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/repository/fix-deep-style-contracts.cjs
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
@@ -9,6 +23,13 @@ const cssRoots = [path.join(root, 'src', 'styles')];
 const failures = [];
 const checked = { javascript: 0, css: 0, production: 0 };
 
+/**
+ * Function contract: walk
+ * Purpose: Implements the walk responsibility for this module.
+ * Inputs: directory, predicate, output.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function walk(directory, predicate, output = []) {
   if (!fs.existsSync(directory)) return output;
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -23,14 +44,35 @@ function walk(directory, predicate, output = []) {
   return output;
 }
 
+/**
+ * Function contract: relative
+ * Purpose: Implements the relative responsibility for this module.
+ * Inputs: file.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function relative(file) {
   return path.relative(root, file).replaceAll(path.sep, '/');
 }
 
+/**
+ * Function contract: addFailure
+ * Purpose: Implements the add failure responsibility for this module.
+ * Inputs: file, message.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function addFailure(file, message) {
   failures.push(`${relative(file)}: ${message}`);
 }
 
+/**
+ * Function contract: hasBalancedBraces
+ * Purpose: Implements the has balanced braces responsibility for this module.
+ * Inputs: source.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function hasBalancedBraces(source) {
   let depth = 0;
   let quote = '';
@@ -79,7 +121,7 @@ function hasBalancedBraces(source) {
   return depth === 0 && !quote && !inComment;
 }
 
-const jsFiles = [...new Set(jsRoots.flatMap((directory) => walk(directory, (file) => jsExtensions.has(path.extname(file)))))]
+const jsFiles = [...new Set(jsRoots.flatMap(/** Callback contract: Processes the callback step for js roots without leaking orchestration details to the caller. Inputs: directory. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (directory) => walk(directory, /** Callback contract: Processes the callback step for walk without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => jsExtensions.has(path.extname(file)))))]
   .sort();
 
 for (const file of jsFiles) {
@@ -90,7 +132,7 @@ for (const file of jsFiles) {
   }
 }
 
-const cssFiles = [...new Set(cssRoots.flatMap((directory) => walk(directory, (file) => /\.css(?:frag)?$/i.test(file))))]
+const cssFiles = [...new Set(cssRoots.flatMap(/** Callback contract: Processes the callback step for css roots without leaking orchestration details to the caller. Inputs: directory. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (directory) => walk(directory, /** Callback contract: Processes the callback step for walk without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => /\.css(?:frag)?$/i.test(file))))]
   .sort();
 
 for (const file of cssFiles) {
@@ -104,11 +146,16 @@ for (const file of cssFiles) {
   }
 }
 
-const agentFragments = cssFiles
-  .filter((file) => /^agent-portfolio-\d+\.cssfrag$/i.test(path.basename(file)))
-  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+const portfolioFragmentOrder = [
+  'portfolio-foundation.cssfrag',
+  'portfolio-components.cssfrag',
+  'portfolio-finishing.cssfrag',
+];
+const agentFragments = portfolioFragmentOrder
+  .map(/** Callback contract: Processes the callback step for portfolio fragment order without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => cssFiles.find(/** Callback contract: Processes the callback step for css files without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => path.basename(file) === name))
+  .filter(Boolean);
 if (agentFragments.length) {
-  const combined = agentFragments.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
+  const combined = agentFragments.map(/** Callback contract: Processes the callback step for agent fragments without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ (file) => fs.readFileSync(file, 'utf8')).join('\n');
   if (!hasBalancedBraces(combined)) {
     addFailure(agentFragments[0], 'combined agent portfolio CSS fragments are not structurally balanced');
   }

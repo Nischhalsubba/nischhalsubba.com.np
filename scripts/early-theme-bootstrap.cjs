@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/early-theme-bootstrap.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for early theme bootstrap.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/copy-static-assets.cjs
+ * - scripts/ensure-contact-redesign.cjs
+ * - scripts/ensure-seo-growth-assets.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const EARLY_THEME_BOOTSTRAP = `<script id="nrs-early-theme-bootstrap">
 (function () {
   var root = document.documentElement;

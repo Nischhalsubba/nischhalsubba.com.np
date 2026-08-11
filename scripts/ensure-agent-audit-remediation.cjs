@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/ensure-agent-audit-remediation.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure agent audit remediation.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/build-dist.cjs
+ * - package.json
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -28,6 +41,13 @@ const projectTitles = {
   sassboilerplate: 'SassBoilerplate',
 };
 
+/**
+ * Function contract: esc
+ * Purpose: Implements the esc responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function esc(value) {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -36,6 +56,13 @@ function esc(value) {
     .replaceAll('"', '&quot;');
 }
 
+/**
+ * Function contract: strip
+ * Purpose: Implements the strip responsibility for this module.
+ * Inputs: value.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function strip(value) {
   return String(value ?? '')
     .replace(/<script\b[\s\S]*?<\/script>/gi, '')
@@ -49,6 +76,13 @@ function strip(value) {
     .trim();
 }
 
+/**
+ * Function contract: truncate
+ * Purpose: Implements the truncate responsibility for this module.
+ * Inputs: value, max.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function truncate(value, max = 210) {
   const text = strip(value);
   if (text.length <= max) return text;
@@ -57,11 +91,25 @@ function truncate(value, max = 210) {
   return `${slice.slice(0, breakAt > max * .65 ? breakAt : max).trim()}…`;
 }
 
+/**
+ * Function contract: sourceProject
+ * Purpose: Implements the source project responsibility for this module.
+ * Inputs: slug.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function sourceProject(slug) {
   const file = path.join(root, `project-${slug}.html`);
   return fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
 }
 
+/**
+ * Function contract: sourceImages
+ * Purpose: Implements the source images responsibility for this module.
+ * Inputs: slug.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function sourceImages(slug) {
   const html = sourceProject(slug);
   const main = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/i)?.[0] || html;
@@ -77,49 +125,105 @@ function sourceImages(slug) {
   return images;
 }
 
+/**
+ * Function contract: sectionByLabel
+ * Purpose: Implements the section by label responsibility for this module.
+ * Inputs: main, label.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function sectionByLabel(main, label) {
-  const sections = [...main.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/gi)].map((match) => match[0]);
-  return sections.find((section) => {
+  const sections = [...main.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/gi)].map(/** Callback contract: Processes the callback step for [...main.match all(/<section\b[^>]*>[\s\s]*?<\/section>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => match[0]);
+  return sections.find(/** Callback contract: Processes the callback step for sections without leaking orchestration details to the caller. Inputs: section. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (section) => {
     const meta = section.match(/<span\b[^>]*class=["'][^"']*agent-meta[^"']*["'][^>]*>([\s\S]*?)<\/span>/i)?.[1] || '';
     return strip(meta).replace(/^\d+\s*·\s*/, '').toLowerCase() === label.toLowerCase();
   }) || '';
 }
 
+/**
+ * Function contract: firstParagraph
+ * Purpose: Implements the first paragraph responsibility for this module.
+ * Inputs: section.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function firstParagraph(section) {
   return section.match(/<div\b[^>]*class=["'][^"']*nrs-case-section-body[^"']*["'][^>]*>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1]
     || section.match(/<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1]
     || '';
 }
 
+/**
+ * Function contract: firstListItem
+ * Purpose: Implements the first list item responsibility for this module.
+ * Inputs: section.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function firstListItem(section) {
   return section.match(/<li\b[^>]*>([\s\S]*?)<\/li>/i)?.[1] || '';
 }
 
+/**
+ * Function contract: decisionTitles
+ * Purpose: Implements the decision titles responsibility for this module.
+ * Inputs: section.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function decisionTitles(section) {
   return [...section.matchAll(/<article\b[^>]*class=["'][^"']*nrs-case-decision-card[^"']*["'][^>]*>[\s\S]*?<h3\b[^>]*>([\s\S]*?)<\/h3>/gi)]
-    .map((match) => strip(match[1]))
+    .map(/** Callback contract: Processes the callback step for [...section.match all(/<article\b[^>]*class=["'][^"']*nrs case decision card[^"']*["'][^>]*>[\s\s]*?<h3\b[^>]*>([\s\s]*?)<\/h3>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => strip(match[1]))
     .filter(Boolean)
     .slice(0, 3);
 }
 
+/**
+ * Function contract: removeLegacyBackLinks
+ * Purpose: Removes or cleans remove legacy back links while keeping required outputs intact.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function removeLegacyBackLinks(html) {
   return html.replace(/\s*<a\b[^>]*>\s*(?:&larr;|←|&#8592;)?\s*Back to Work\s*<\/a>/gi, '');
 }
 
+/**
+ * Function contract: evidenceGallery
+ * Purpose: Implements the evidence gallery responsibility for this module.
+ * Inputs: slug, currentMain.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function evidenceGallery(slug, currentMain) {
   const images = sourceImages(slug);
   if (!images.length) return '';
   const heroSrc = currentMain.match(/<header\b[^>]*class=["'][^"']*agent-case-hero[^"']*["'][^>]*>[\s\S]*?<img\b[^>]*src=["']([^"']+)["']/i)?.[1] || '';
-  let selected = images.filter((image) => image.src !== heroSrc).slice(0, 4);
+  let selected = images.filter(/** Callback contract: Processes the callback step for images without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (image) => image.src !== heroSrc).slice(0, 4);
   if (!selected.length) selected = images.slice(0, 1);
-  return `<section class="agent-section nrs-case-evidence-gallery" aria-labelledby="evidence-gallery-${esc(slug)}"><div class="agent-frame"><header class="nrs-case-evidence-head"><span class="agent-meta">Project evidence</span><h2 id="evidence-gallery-${esc(slug)}">Screens and shipped artifacts</h2><p>Visual material from the project, placed near the decisions instead of making the reader hunt for proof at the end.</p></header><div class="nrs-case-evidence-grid">${selected.map((image, index) => `<figure><img src="${esc(image.src)}" alt="${esc(image.alt || `${slug} project artifact ${index + 1}`)}" loading="lazy" decoding="async"><figcaption>${String(index + 1).padStart(2, '0')} · ${esc(image.alt || 'Project artifact')}</figcaption></figure>`).join('')}</div></div></section>`;
+  return `<section class="agent-section nrs-case-evidence-gallery" aria-labelledby="evidence-gallery-${esc(slug)}"><div class="agent-frame"><header class="nrs-case-evidence-head"><span class="agent-meta">Project evidence</span><h2 id="evidence-gallery-${esc(slug)}">Screens and shipped artifacts</h2><p>Visual material from the project, placed near the decisions instead of making the reader hunt for proof at the end.</p></header><div class="nrs-case-evidence-grid">${selected.map(/** Callback contract: Processes the callback step for selected without leaking orchestration details to the caller. Inputs: image, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (image, index) => `<figure><img src="${esc(image.src)}" alt="${esc(image.alt || `${slug} project artifact ${index + 1}`)}" loading="lazy" decoding="async"><figcaption>${String(index + 1).padStart(2, '0')} · ${esc(image.alt || 'Project artifact')}</figcaption></figure>`).join('')}</div></div></section>`;
 }
 
+/**
+ * Function contract: compactSectionMeta
+ * Purpose: Implements the compact section meta responsibility for this module.
+ * Inputs: section, label.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function compactSectionMeta(section, label) {
   if (!section) return '';
   return section.replace(/<span\b([^>]*class=["'][^"']*agent-meta[^"']*["'][^>]*)>\s*\d+\s*·\s*[^<]+<\/span>/i, `<span$1>${esc(label)}</span>`);
 }
 
+/**
+ * Function contract: transformCase
+ * Purpose: Implements the transform case responsibility for this module.
+ * Inputs: slug.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function transformCase(slug) {
   const file = path.join(base, `project-${slug}.html`);
   if (!fs.existsSync(file)) return { changed: false, evidence: 0 };
@@ -177,6 +281,13 @@ function transformCase(slug) {
   return { changed: true, evidence: sourceEvidence.length };
 }
 
+/**
+ * Function contract: repairWorkPage
+ * Purpose: Implements the repair work page responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function repairWorkPage() {
   const file = path.join(base, 'projects.html');
   if (!fs.existsSync(file)) return { cards: 0, repaired: 0, textOnly: 0 };
@@ -187,7 +298,7 @@ function repairWorkPage() {
   const hero = main.match(/<header\b[^>]*class=["'][^"']*agent-page-hero[^"']*["'][^>]*>[\s\S]*?<\/header>/i)?.[0] || '';
   const close = main.match(/<section\b[^>]*class=["'][^"']*nrs-work-close[^"']*["'][^>]*>[\s\S]*?<\/section>/i)?.[0] || '';
   const cards = [...main.matchAll(/<a\b[^>]*class=["'][^"']*nrs-work-card[^"']*["'][^>]*href=["']\/project-([^"']+)["'][^>]*>[\s\S]*?<\/a>/gi)]
-    .map((match) => ({ slug: match[1].replace(/\.html$/i, ''), html: match[0] }));
+    .map(/** Callback contract: Processes the callback step for [...main.match all(/<a\b[^>]*class=["'][^"']*nrs work card[^"']*["'][^>]*href=["']\/project ([^"']+)["'][^>]*>[\s\s]*?<\/a>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => ({ slug: match[1].replace(/\.html$/i, ''), html: match[0] }));
 
   let repaired = 0;
   let textOnly = 0;
@@ -204,16 +315,16 @@ function repairWorkPage() {
         repaired += 1;
       } else {
         card = card.replace(mediaMatch[0], '');
-        card = card.replace(/class=["']([^"']*nrs-work-card[^"']*)["']/i, (_m, classes) => `class="${classes} nrs-work-card--text-only"`);
+        card = card.replace(/class=["']([^"']*nrs-work-card[^"']*)["']/i, /** Callback contract: Processes the callback step for card without leaking orchestration details to the caller. Inputs: _m, classes. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (_m, classes) => `class="${classes} nrs-work-card--text-only"`);
         textOnly += 1;
       }
     }
     cardMap.set(slug, card);
   }
 
-  const sorted = projectOrder.map((slug) => [slug, cardMap.get(slug)]).filter(([, card]) => card);
-  const featuredCards = sorted.filter(([slug]) => featured.has(slug)).map(([, card]) => card).join('');
-  const archiveCards = sorted.filter(([slug]) => !featured.has(slug)).map(([, card]) => card).join('');
+  const sorted = projectOrder.map(/** Callback contract: Processes the callback step for project order without leaking orchestration details to the caller. Inputs: slug. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (slug) => [slug, cardMap.get(slug)]).filter(/** Callback contract: Processes the callback step for project order.map((slug) => [slug, card map.get(slug)]) without leaking orchestration details to the caller. Inputs: [, card]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([, card]) => card);
+  const featuredCards = sorted.filter(/** Callback contract: Processes the callback step for sorted without leaking orchestration details to the caller. Inputs: [slug]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([slug]) => featured.has(slug)).map(/** Callback contract: Processes the callback step for sorted.filter(([slug]) => featured.has(slug)) without leaking orchestration details to the caller. Inputs: [, card]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([, card]) => card).join('');
+  const archiveCards = sorted.filter(/** Callback contract: Processes the callback step for sorted without leaking orchestration details to the caller. Inputs: [slug]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([slug]) => !featured.has(slug)).map(/** Callback contract: Processes the callback step for sorted.filter(([slug]) => !featured.has(slug)) without leaking orchestration details to the caller. Inputs: [, card]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([, card]) => card).join('');
   const featuredSection = `<section class="agent-section nrs-work-featured"><div class="agent-frame"><div class="nrs-work-group-head"><span class="agent-meta">Start here</span><h2>Six case studies that show the range.</h2><p>Product systems, technical storytelling, data-heavy work and collaborative product design. These are the fastest route to how I think.</p></div><div class="nrs-work-grid">${featuredCards}</div></div></section>`;
   const archiveSection = `<section class="agent-section nrs-work-archive-section"><div class="agent-frame"><details class="nrs-work-archive"><summary><span><b>Additional work</b><small>${sorted.length - featured.size} more projects across websites, marketplaces, logistics and front-end systems.</small></span><span aria-hidden="true">+</span></summary><div class="nrs-work-grid">${archiveCards}</div></details></div></section>`;
   const rebuilt = `<main id="main-content" class="agent-main nrs-projects-editorial nrs-audit-remediated-work">${hero}${featuredSection}${archiveSection}${close}</main>`;
@@ -222,12 +333,19 @@ function repairWorkPage() {
   return { cards: sorted.length, repaired, textOnly };
 }
 
+/**
+ * Function contract: dedupeAboutProcess
+ * Purpose: Implements the dedupe about process responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function dedupeAboutProcess() {
   const file = path.join(base, 'about.html');
   if (!fs.existsSync(file)) return 0;
   let html = fs.readFileSync(file, 'utf8');
   const sections = [...html.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/gi)]
-    .filter((match) => /Four passes\.\s*Fewer loose ends\./i.test(match[0]));
+    .filter(/** Callback contract: Processes the callback step for [...html.match all(/<section\b[^>]*>[\s\s]*?<\/section>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => /Four passes\.\s*Fewer loose ends\./i.test(match[0]));
   if (sections.length <= 1) return 0;
   for (let i = sections.length - 1; i >= 1; i -= 1) {
     html = html.slice(0, sections[i].index) + html.slice(sections[i].index + sections[i][0].length);
@@ -236,6 +354,13 @@ function dedupeAboutProcess() {
   return sections.length - 1;
 }
 
+/**
+ * Function contract: appendStyles
+ * Purpose: Implements the append styles responsibility for this module.
+ * Inputs: none; the function derives state from its enclosing module/runtime context.
+ * Side effects: may read or write repository/filesystem state.
+ * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
 function appendStyles() {
   if (!fs.existsSync(stylePath)) throw new Error(`[agent-audit-remediation] Missing ${stylePath}`);
   const start = '/* nrs-agent-audit-remediation-v1:start */';
@@ -409,7 +534,7 @@ ${end}`;
   fs.writeFileSync(stylePath, style, 'utf8');
 }
 
-const caseResults = projectOrder.map((slug) => [slug, transformCase(slug)]);
+const caseResults = projectOrder.map(/** Callback contract: Processes the callback step for project order without leaking orchestration details to the caller. Inputs: slug. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (slug) => [slug, transformCase(slug)]);
 const workResult = repairWorkPage();
 const removedAboutDuplicates = dedupeAboutProcess();
 appendStyles();

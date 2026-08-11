@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-contact-redesign.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure contact redesign.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/generate-source.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');

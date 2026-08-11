@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/browser-mobile-menu-expanded-audit.mjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for browser mobile menu expanded audit.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - .github/workflows/production-qa.yml
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -35,24 +49,38 @@ for (const [width, height] of viewports) {
       const buttonBox = await button.boundingBox();
       if (!buttonBox || buttonBox.width < 44 || buttonBox.height < 44) throw new Error(`menu target is ${buttonBox?.width || 0}x${buttonBox?.height || 0}`);
 
-      const beforeScroll = await page.evaluate(() => window.scrollY);
+      const beforeScroll = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => window.scrollY);
       await button.click();
       await page.waitForTimeout(120);
 
-      const state = await page.evaluate(() => {
+      const state = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
+        /**
+         * Function contract: visible
+         * Purpose: Implements the visible responsibility for this module.
+         * Inputs: element.
+         * Side effects: no obvious external side effect beyond invoked dependencies.
+         * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+         */
         const visible = (element) => {
           if (!element) return false;
           const style = getComputedStyle(element);
           const rect = element.getBoundingClientRect();
           return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0' && rect.width > 0 && rect.height > 0;
         };
+        /**
+         * Function contract: box
+         * Purpose: Implements the box responsibility for this module.
+         * Inputs: element.
+         * Side effects: no obvious external side effect beyond invoked dependencies.
+         * Returns: no explicit value unless an invoked dependency throws/rejects.
+         */
         const box = (element) => element ? element.getBoundingClientRect().toJSON() : null;
         const overlay = document.querySelector('.mobile-nav-overlay');
         const menu = document.querySelector('.mobile-nav-toggle');
         const brand = document.querySelector('.agent-mobile-brand');
         const theme = document.querySelector('.theme-toggle-btn, #theme-toggle');
         const drawerTheme = document.querySelector('.agent-mobile-theme-toggle');
-        const links = [...document.querySelectorAll('.mobile-nav-links a')].map((link) => ({
+        const links = [...document.querySelectorAll('.mobile-nav-links a')].map(/** Callback contract: Processes the callback step for [...document.query selector all('.mobile nav links a')] without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ (link) => ({
           label: link.textContent.trim(),
           box: box(link),
           visible: visible(link),
@@ -107,7 +135,7 @@ for (const [width, height] of viewports) {
 
       await page.keyboard.press('Escape');
       await page.waitForTimeout(80);
-      const closed = await page.evaluate(() => ({
+      const closed = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => ({
         bodyOpen: document.body.classList.contains('menu-open'),
         expanded: document.querySelector('.mobile-nav-toggle')?.getAttribute('aria-expanded'),
         hidden: document.querySelector('.mobile-nav-overlay')?.hidden,
@@ -128,7 +156,7 @@ for (const [width, height] of viewports) {
 await browser.close();
 
 if (failures.length) {
-  console.error(`[mobile-menu-expanded-audit] ${failures.length} failure(s)\n${failures.map((failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[mobile-menu-expanded-audit] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: failure. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

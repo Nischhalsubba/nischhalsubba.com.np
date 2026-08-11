@@ -1,3 +1,16 @@
+/**
+ * @fileoverview scripts/finalize-signal-story-v22.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for finalize signal story v22.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -22,7 +35,7 @@ if (!html.includes('class="nrs-uploaded-visual"') || !html.includes('data-story=
 
 // Add a completely separate orange pixel/noise layer. The portrait image is never edited.
 if (!html.includes('class="nrs-pixel-field"')) {
-  const pixels = Array.from({ length: 84 }, (_, index) => {
+  const pixels = Array.from({ length: 84 }, /** Callback contract: Processes the callback step for array without leaking orchestration details to the caller. Inputs: _, index. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (_, index) => {
     const x = 4 + ((index * 37 + 11) % 92);
     const y = 5 + ((index * 53 + 7) % 89);
     const size = [1, 1, 1, 2, 2, 3][index % 6];

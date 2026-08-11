@@ -1,3 +1,16 @@
+/**
+ * @fileoverview api/contact.js
+ * Purpose: Server-side API handler for contact behavior.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Serverless/API runtime.
+ * Connected files:
+ * - README.md
+ * - docs/repository/file-catalog.md
+ * - src/worker.js
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
 const ALLOWED_HOSTS = new Set([
   'nischhalsubba.com.np',
@@ -7,6 +20,13 @@ const ALLOWED_HOSTS = new Set([
 
 export const config = { runtime: 'edge' };
 
+/**
+ * Function contract: json
+ * Purpose: Implements the json responsibility for this module.
+ * Inputs: payload, status.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function json(payload, status = 200) {
   return new Response(JSON.stringify(payload), {
     status,
@@ -18,10 +38,24 @@ function json(payload, status = 200) {
   });
 }
 
+/**
+ * Function contract: clean
+ * Purpose: Removes or cleans clean while keeping required outputs intact.
+ * Inputs: value, maxLength.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function clean(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+/**
+ * Function contract: validate
+ * Purpose: Validates validate and reports violations instead of silently accepting invalid state.
+ * Inputs: fields.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function validate(fields) {
   const errors = {};
   if (fields.name.length < 2) errors.name = 'Enter your name.';
@@ -32,6 +66,13 @@ function validate(fields) {
   return errors;
 }
 
+/**
+ * Function contract: originAllowed
+ * Purpose: Implements the origin allowed responsibility for this module.
+ * Inputs: request.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function originAllowed(request) {
   const origin = request.headers.get('origin');
   if (!origin) return true;
@@ -46,6 +87,13 @@ function originAllowed(request) {
   }
 }
 
+/**
+ * Function contract: verifyTurnstile
+ * Purpose: Validates verify turnstile and reports violations instead of silently accepting invalid state.
+ * Inputs: secret, token, remoteip.
+ * Side effects: may perform network I/O.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 async function verifyTurnstile(secret, token, remoteip) {
   const body = new FormData();
   body.set('secret', secret);
@@ -61,7 +109,7 @@ async function verifyTurnstile(secret, token, remoteip) {
   return response.json();
 }
 
-export default async function handler(request) {
+/** Callback contract: Handles handler and coordinates the required state or UI response. Inputs: request. Side effects: may perform network I/O; may emit diagnostics or inspect process state. Returns a value to the invoking API. */ export default async function handler(request) {
   if (request.method === 'OPTIONS') {
     return new Response(null, {
       status: 204,

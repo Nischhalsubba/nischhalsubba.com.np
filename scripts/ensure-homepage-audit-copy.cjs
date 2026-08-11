@@ -1,3 +1,17 @@
+/**
+ * @fileoverview scripts/ensure-homepage-audit-copy.cjs
+ * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure homepage audit copy.
+ * Responsibilities:
+ * - Own the behavior/content implied by this file's single responsibility.
+ * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * Connected files:
+ * - docs/repository/file-catalog.md
+ * - scripts/generate-source.cjs
+ * - package.json
+ * - scripts/build-dist.cjs
+ * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -31,6 +45,13 @@ const proofSection = `
         </div>
       </section>`;
 
+/**
+ * Function contract: entitySchema
+ * Purpose: Implements the entity schema responsibility for this module.
+ * Inputs: canonical.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function entitySchema(canonical) {
   const url = canonical === 'home-v2.html' ? `${SITE}/home-v2.html` : `${SITE}/`;
   const graph = {
@@ -91,10 +112,24 @@ function entitySchema(canonical) {
   return `<script type="application/ld+json" id="nrs-homepage-entity-schema">${JSON.stringify(graph)}</script>`;
 }
 
+/**
+ * Function contract: replaceHero
+ * Purpose: Implements the replace hero responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function replaceHero(html) {
   return html.replace(/      <section class="hero-section center-aligned-hero nrs-home-hero"[\s\S]*?      <\/section>/, hero);
 }
 
+/**
+ * Function contract: upsertProofSection
+ * Purpose: Implements the upsert proof section responsibility for this module.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertProofSection(html) {
   html = html.replace(/\s*<section id="homepage-proof-discovery"[\s\S]*?<\/section>/, '');
   html = html.replace(/\s*<section class="section-container reveal-on-scroll" aria-labelledby="site-proof-heading"[\s\S]*?<\/section>/, '');
@@ -107,11 +142,25 @@ function upsertProofSection(html) {
   return html.replace('</main>', `${proofSection}\n    </main>`);
 }
 
+/**
+ * Function contract: upsertEntitySchema
+ * Purpose: Implements the upsert entity schema responsibility for this module.
+ * Inputs: html, target.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function upsertEntitySchema(html, target) {
   html = html.replace(/\s*<script\s+type="application\/ld\+json"\s+id="nrs-homepage-entity-schema">[\s\S]*?<\/script>/, '');
   return html.replace('</head>', `    ${entitySchema(target)}\n  </head>`);
 }
 
+/**
+ * Function contract: cleanOutdatedCopy
+ * Purpose: Removes or cleans clean outdated copy while keeping required outputs intact.
+ * Inputs: html.
+ * Side effects: no obvious external side effect beyond invoked dependencies.
+ * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
 function cleanOutdatedCopy(html) {
   return html
     .replace(/Senior UI\/Product Designer/g, 'Product Designer')
