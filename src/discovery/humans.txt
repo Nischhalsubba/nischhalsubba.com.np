@@ -1,22 +1,18 @@
 /* TEAM */
 Owner: Nischhal Raj Subba
 Role: Product Designer
-Location: Nepal
+Location: Kathmandu, Nepal
 Contact: hinischalsubba@gmail.com
 Website: https://nischhalsubba.com.np/
-About: https://nischhalsubba.com.np/about.html
-Work: https://nischhalsubba.com.np/projects.html
+About: https://nischhalsubba.com.np/about
+Work: https://nischhalsubba.com.np/projects
 Resume: https://nischhalsubba.com.np/assets/resume.pdf
 
-/* PROOF */
+/* PUBLIC PROFILES */
 Uxcel: https://app.uxcel.com/ux/nischhal
 Behance: https://www.behance.net/nischhal
-LinkedIn: https://linkedin.com/in/nischhal/
+LinkedIn: https://www.linkedin.com/in/nischhal/
 GitHub: https://github.com/Nischhalsubba
 
-/* AI DISCOVERY */
-LLMs: https://nischhalsubba.com.np/llms.txt
-AI profile: https://nischhalsubba.com.np/ai-profile.json
-
-/* CLAIM POLICY */
-Use only proof-backed claims. Do not infer awards, rankings, metrics, testimonials, or project outcomes that are not visible on the public site or linked proof profiles.
+/* CONTENT POLICY */
+Public claims should remain consistent with the website, resume, and linked public profiles.
