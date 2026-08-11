@@ -1,21 +1,6 @@
 name: Apply deep code organization
 
-# @fileoverview .github/workflows/apply-deep-code-organization.yml
-# Purpose: One-shot migration runner for the responsibility-based source reorganization and documentation pass.
-# Responsibilities:
-# - Patch compatibility materialization and path-sensitive style/runtime owners before source paths move.
-# - Run the syntax-aware migration against a real Git checkout with installed project dependencies.
-# - Stage the complete candidate tree before validation so Git-index-based audits see new documentation and moved sources without committing them early.
-# - Validate the migrated tree before committing it back to the dedicated branch.
-# - Remove temporary migration files so one-shot machinery never reaches main.
-# Execution context: GitHub Actions on pull requests from agent/deep-code-organization.
-# Connected files:
-# - scripts/repository/fix-deep-layout-contract.cjs
-# - scripts/repository/fix-deep-style-contracts.cjs
-# - scripts/repository/apply-deep-organization.cjs
-# - scripts/repository/audit-code-documentation.cjs
-# - config/repository/code-documentation-policy.json
-# Maintenance: Temporary workflow; it deletes itself after a successful migration.
+# Temporary migration workflow. It intentionally leaves workflow files unchanged in the migration commit because the GitHub Actions token cannot publish workflow-file changes.
 
 on:
   pull_request:
@@ -56,19 +41,30 @@ jobs:
       - name: Apply responsibility-based source migration and documentation contracts
         run: node scripts/repository/apply-deep-organization.cjs
 
-      - name: Remove one-shot migration machinery
-        run: git rm -f scripts/repository/apply-deep-organization.cjs scripts/repository/fix-deep-layout-contract.cjs scripts/repository/fix-deep-style-contracts.cjs .github/workflows/apply-deep-code-organization.yml
+      - name: Restore workflow orchestration files
+        run: git restore --source=HEAD --worktree .github/workflows
 
-      - name: Regenerate tracked-file catalog
-        run: npm run docs:file-catalog
+      - name: Remove one-shot migration scripts
+        run: git rm -f scripts/repository/apply-deep-organization.cjs scripts/repository/fix-deep-layout-contract.cjs scripts/repository/fix-deep-style-contracts.cjs
 
-      - name: Stage candidate tree for Git-index-based audits
+      - name: Stage candidate source tree
         run: git add -A
+
+      - name: Exclude temporary workflow from final-like Git index
+        run: git rm --cached .github/workflows/apply-deep-code-organization.yml
+
+      - name: Regenerate final-like tracked-file catalog
+        run: |
+          npm run docs:file-catalog
+          git add docs/repository/file-catalog.md
 
       - name: Validate migrated repository before committing
         run: npm run validate
 
-      - name: Commit migrated tree
+      - name: Restore unchanged temporary workflow in Git index
+        run: git reset HEAD -- .github/workflows/apply-deep-code-organization.yml
+
+      - name: Commit and push validated source migration
         shell: bash
         run: |
           set -euo pipefail
