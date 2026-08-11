@@ -18,9 +18,7 @@
     "src/generated/",
     "tests/visual/baselines/"
   ],
-  "excludedFiles": [
-    "docs/repository/file-catalog.md"
-  ],
+  "excludedFiles": [],
   "headerExtensions": [
     ".cjs",
     ".css",
