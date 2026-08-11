@@ -1,3 +1,4 @@
+# Repository-wide editor defaults. Structural source ownership is documented under docs/repository/.
 root = true
 
 [*]

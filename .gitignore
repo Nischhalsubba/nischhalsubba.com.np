@@ -12,6 +12,21 @@ dist
 dist-ssr
 *.local
 
+# Materialized compatibility sources.
+# Canonical tracked source lives under src/ and is copied to these historical
+# root paths by scripts/repository/materialize-root-sources.cjs for dev/build.
+/*.html
+/style.css
+/script.js
+/_headers
+/ai-profile.json
+/humans.txt
+/llms.txt
+/llms-full.txt
+/robots.txt
+/sitemap.xml
+/site.webmanifest
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
