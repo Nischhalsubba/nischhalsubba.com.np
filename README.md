@@ -4,27 +4,27 @@
 
 # nischhalsubba.com.np
 
-**Branch-aware technical guide for [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main)**
+**Branch-aware technical guide for [`agent/deep-code-organization`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization)**
 
-<p><img alt="branch: main" src="https://img.shields.io/static/v1?label=&message=branch%3A%20main&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+<p><img alt="branch: agent/deep-code-organization" src="https://img.shields.io/static/v1?label=&message=branch%3A%20agent%2Fdeep-code-organization&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
 
 <p>
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main"><strong>Browse source</strong></a> ·
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization"><strong>Browse source</strong></a> ·
   <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/issues"><strong>Issues</strong></a> ·
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=main"><strong>Open in Codespaces</strong></a>
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=agent%2Fdeep-code-organization"><strong>Open in Codespaces</strong></a>
 </p>
 
 </div>
 
 > [!IMPORTANT]
-> This guide is generated from the files actually present on `main`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
+> This guide is generated from the files actually present on `agent/deep-code-organization`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
 
 ## At a glance
 
 | Item | Detected value |
 |---|---|
 | Purpose | Production portfolio for Nischhal Raj Subba, a Nepal-based product designer focused on Web3, SaaS, fintech, UX systems, and developer-ready design handoff. |
-| Branch role | Default branch |
+| Branch role | Compared with `main` |
 | Stack | Vite, TypeScript, JavaScript, HTML, CSS |
 | Manifests | package.json |
 | Prerequisites | Node.js |
@@ -33,9 +33,20 @@
 
 ## Branch scope
 
-This is the repository's default branch.
+This branch differs from the default branch in the following detected paths:
 
-
+- [`README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/README.md)
+- [`api/contact.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/api/contact.js)
+- [`blog/ai-assisted-product-design-workflows-small-teams.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/ai-assisted-product-design-workflows-small-teams.html)
+- [`blog/beautiful-interface-poor-ux.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/beautiful-interface-poor-ux.html)
+- [`blog/blog-design-systems-front-end.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/blog-design-systems-front-end.html)
+- [`blog/blog-gaming-interface-clarity.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/blog-gaming-interface-clarity.html)
+- [`blog/blog-good-handoff.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/blog-good-handoff.html)
+- [`blog/blog-portfolio-product.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/blog-portfolio-product.html)
+- [`blog/blog-service-websites.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/blog-service-websites.html)
+- [`blog/blog-web3-products.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/blog-web3-products.html)
+- [`blog/design-handoff-checklist-startup-product-teams.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/design-handoff-checklist-startup-product-teams.html)
+- [`blog/design-systems-small-product-teams.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/blog/design-systems-small-product-teams.html)
 
 ## Quick start
 
@@ -57,7 +68,7 @@ npm run preview
 
 ```mermaid
 flowchart TD
-    ROOT["nischhalsubba.com.np / main"]
+    ROOT["nischhalsubba.com.np / agent/deep-code-organization"]
     ROOT --> P0[".github/"]
     ROOT --> P1["api/"]
     ROOT --> P2["assets/"]
@@ -81,12 +92,12 @@ flowchart TD
 
 | Responsibility | Detected source paths |
 |---|---|
-| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/src) |
-| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api) |
-| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data) |
-| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests) |
-| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/docs) |
-| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/scripts) |
+| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/src) |
+| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/api) |
+| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/data) |
+| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/tests) |
+| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/docs) |
+| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/scripts) |
 
 ## Website or application map
 
@@ -97,17 +108,17 @@ flowchart TD
     APP --> R1["src/pages"]
     APP --> R2["public"]
     R0 --> F0["src/app/layout.tsx"]
-    R1 --> F1["src/pages/services/figma-design-systems.html"]
-    R1 --> F2["src/pages/projects/project-sassboilerplate.html"]
-    R1 --> F3["src/pages/projects/project-orkest.html"]
-    R1 --> F4["src/pages/projects/project-grid-labs.html"]
-    R1 --> F5["src/pages/projects/project-morajaa.html"]
-    R1 --> F6["src/pages/core/services.html"]
-    R1 --> F7["src/pages/services/website-ux-design.html"]
-    R1 --> F8["src/pages/core/about.html"]
-    R1 --> F9["src/pages/core/projects.html"]
-    R1 --> F10["src/pages/projects/project-pihub.html"]
-    R1 --> F11["src/pages/services/product-design-nepal.html"]
+    R1 --> F1["src/pages/projects/project-sassboilerplate.html"]
+    R1 --> F2["src/pages/projects/project-orkest.html"]
+    R1 --> F3["src/pages/projects/project-grid-labs.html"]
+    R1 --> F4["src/pages/projects/project-morajaa.html"]
+    R1 --> F5["src/pages/projects/project-pihub.html"]
+    R1 --> F6["src/pages/projects/project-designerex.html"]
+    R1 --> F7["src/pages/projects/project-neverwinter-parser.html"]
+    R1 --> F8["src/pages/projects/project-zapp.html"]
+    R1 --> F9["src/pages/projects/project-splashnode.html"]
+    R1 --> F10["src/pages/projects/project-masteriyo.html"]
+    R1 --> F11["src/pages/projects/project-hamro-idea.html"]
 ```
 
 ## Architecture and responsibility flow
@@ -142,7 +153,7 @@ sequenceDiagram
     I-->>U: Render success or error state
 ```
 
-Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api).
+Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/api).
 
 </details>
 <details>
@@ -157,7 +168,7 @@ flowchart LR
     READ --> OUTPUT["UI, API, report, or export"]
 ```
 
-Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data).
+Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/data).
 
 </details>
 <details>
@@ -171,7 +182,7 @@ flowchart LR
     WORKER -->|failure| RETRY["Retry, alert, or dead-letter path"]
 ```
 
-Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/worker.js).
+Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/src/worker.js).
 
 </details>
 
@@ -183,7 +194,7 @@ Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nisc
 
 ### Quality
 
-- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests)
+- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization/tests)
 
 Detected commands:
 - `npm run dev`
@@ -205,8 +216,9 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`src/scripts/features/analytics/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/scripts/features/analytics/analytics-events.js)
-- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/assets/analytics-events-Bq4IAYSg.js)
+- [`src/scripts/features/analytics/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/src/scripts/features/analytics/analytics-events.js)
+- [`src/scripts/features/analytics/README.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/src/scripts/features/analytics/README.md)
+- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/assets/analytics-events-Bq4IAYSg.js)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
@@ -218,7 +230,7 @@ Define useful logs, metrics, traces, alerts, and rollback signals for production
 
 ```mermaid
 flowchart LR
-    CHANGE["Change on main"] --> CHECK["Tests and quality checks"]
+    CHANGE["Change on agent/deep-code-organization"] --> CHECK["Tests and quality checks"]
     CHECK --> REVIEW["Review architecture and documentation impact"]
     REVIEW --> BUILD["Build or package"]
     BUILD --> DEPLOY["Deploy or release"]
@@ -227,14 +239,14 @@ flowchart LR
 
 ### Automation detected
 
-- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/apply-interactive-readme.yml)
-- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/browser-audit.yml)
-- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/deploy-cloudflare.yml)
-- [`.github/workflows/hero-ux-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/hero-ux-audit.yml)
-- [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/interface-polish-audit.yml)
-- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-qa.yml)
-- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-route-audit.yml)
-- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/validate.yml)
+- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/.github/workflows/apply-interactive-readme.yml)
+- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/.github/workflows/browser-audit.yml)
+- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/.github/workflows/deploy-cloudflare.yml)
+- [`.github/workflows/hero-ux-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/.github/workflows/hero-ux-audit.yml)
+- [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/.github/workflows/interface-polish-audit.yml)
+- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/.github/workflows/production-qa.yml)
+- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/.github/workflows/production-route-audit.yml)
+- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/deep-code-organization/.github/workflows/validate.yml)
 
 ## Contribution flow
 
@@ -259,7 +271,7 @@ flowchart LR
 | Topic | Source |
 |---|---|
 | Repository | [`Nischhalsubba/nischhalsubba.com.np`](https://github.com/Nischhalsubba/nischhalsubba.com.np) |
-| Branch | [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main) |
+| Branch | [`agent/deep-code-organization`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/deep-code-organization) |
 | Ownership | No CODEOWNERS file detected |
 | Contributing | Use the contribution flow above |
 | Support | [Open or review issues](https://github.com/Nischhalsubba/nischhalsubba.com.np/issues) |
