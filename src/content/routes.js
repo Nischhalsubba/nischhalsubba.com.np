@@ -1,21 +1,18 @@
 /**
  * @fileoverview src/content/routes.js
- * Purpose: Provide structured routes content consumed by generators or runtime presentation code.
+ * Purpose: Provide lightweight route metadata for content tooling that needs to refer to primary pages, historical redirects, or public discovery resources.
  * Responsibilities:
- * - Keep this file focused on its stated responsibility and stable public/build interfaces.
- * - Update connected owners whenever this file changes a shared contract.
- * Execution context: Repository application or build source.
+ * - Keep human-facing route metadata in one data-only module.
+ * - Preserve compatibility redirect intent for content tooling that cannot read the canonical manifest directly.
+ * - List public non-page resources that may be linked from generated content or maintenance tooling.
+ * Execution context: Repository source imported by content generators and validation tooling.
  * Connected files:
+ * - config/canonical-routes.json
  * - scripts/audit-content-structure.cjs
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * - src/content/
+ * Maintenance: `config/canonical-routes.json` remains authoritative for production routing. Keep this file aligned with that manifest and avoid introducing an independent routing policy here.
  */
-/**
- * Canonical route manifest for the static portfolio.
- *
- * Public paths use Cloudflare Pages clean URLs. The backing files remain
- * static HTML, but navigation, canonical tags, sitemaps and tests should all
- * agree on this one public contract.
- */
+
 export const coreRoutes = [
   { path: '/', file: 'index.html', title: 'Home', priority: 1 },
   { path: '/projects', file: 'projects.html', title: 'Work', priority: 0.95 },
@@ -41,8 +38,7 @@ export const compatibilityRoutes = [
 export const discoveryRoutes = [
   { path: '/robots.txt', file: 'robots.txt', title: 'Robots' },
   { path: '/sitemap.xml', file: 'sitemap.xml', title: 'Sitemap' },
-  { path: '/llms.txt', file: 'llms.txt', title: 'LLMs summary' },
-  { path: '/ai-profile.json', file: 'ai-profile.json', title: 'AI profile' },
+  { path: '/humans.txt', file: 'humans.txt', title: 'Ownership information' },
   { path: '/site.webmanifest', file: 'site.webmanifest', title: 'Web manifest' },
 ];
 
