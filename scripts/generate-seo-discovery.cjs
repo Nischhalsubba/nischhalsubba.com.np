@@ -1,17 +1,18 @@
 /**
  * @fileoverview scripts/generate-seo-discovery.cjs
- * Purpose: Generate or assemble generate seo discovery deterministically as part of the production toolchain.
+ * Purpose: Generate the standard search-engine and routing discovery files used by the production site.
  * Responsibilities:
- * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
- * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
- * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * - Rebuild the sitemap and robots file from the canonical route manifest.
+ * - Keep deployment redirects synchronized with the same route definitions.
+ * - Write generated files only when their contents have changed.
+ * - Report conflicting public entity pages before deployment.
+ * Execution context: Node.js CLI used during source generation, prebuild, and repository validation.
  * Connected files:
  * - scripts/seo-discovery-lib.cjs
+ * - config/canonical-routes.json
  * - docs/seo-maintenance.md
- * - package.json
- * - scripts/generate-source.cjs
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * - scripts/repository/source-layout.cjs
+ * Maintenance: Keep this generator limited to standard web discovery and routing assets. Add new generated outputs only when they are part of the site's public deployment contract.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -21,31 +22,19 @@ const {
   buildRobots,
   buildRedirectFile,
   buildRedirectModule,
-  normalizeOwnedUrlsInText,
-  normalizeJsonUrls,
 } = require('./seo-discovery-lib.cjs');
-
-/*
- * Generates and normalizes crawler/search/AI discovery source.
- *
- * Canonical discovery files live in src/discovery/. Root copies are temporary
- * compatibility material created by scripts/repository/materialize-root-sources.cjs.
- * Redirect output remains under public/ and src/generated/ because those paths are
- * direct build/runtime contracts.
- */
 
 const root = path.resolve(__dirname, '..');
 const discoveryRoot = path.join(root, 'src', 'discovery');
 const manifest = loadManifest(root);
 const failures = [];
 
-
 /**
  * Function contract: writeFile
- * Purpose: Implement the write file responsibility owned by the generate seo discovery repository tool.
- * Inputs: `target`, `content`
- * Side effects: writes filesystem state
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Write generated content only when it differs from the existing file.
+ * Inputs: `target` - absolute output path; `content` - complete UTF-8 file contents.
+ * Side effects: Creates parent directories and may write a file.
+ * Returns: `true` when the file changed, otherwise `false`.
  */
 function writeFile(target, content) {
   fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -54,59 +43,15 @@ function writeFile(target, content) {
   return previous !== content;
 }
 
-
 /**
  * Function contract: writeDiscoveryText
- * Purpose: Implement the write discovery text responsibility owned by the generate seo discovery repository tool.
- * Inputs: `relativePath`, `content`
- * Side effects: writes filesystem state
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Write a canonical text discovery file under `src/discovery`.
+ * Inputs: `relativePath` - filename under the discovery directory; `content` - generated contents.
+ * Side effects: May update the canonical discovery file.
+ * Returns: `true` when the file changed, otherwise `false`.
  */
 function writeDiscoveryText(relativePath, content) {
   return writeFile(path.join(discoveryRoot, relativePath), content);
-}
-
-
-/**
- * Function contract: normalizeTextFile
- * Purpose: Apply text file consistently while preserving the surrounding generate seo discovery repository tool contract.
- * Inputs: `relativePath`
- * Side effects: writes filesystem state
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
- */
-function normalizeTextFile(relativePath) {
-  const target = path.join(discoveryRoot, relativePath);
-  if (!fs.existsSync(target)) return failures.push(`src/discovery/${relativePath}: missing discovery file`);
-  const source = fs.readFileSync(target, 'utf8');
-  const { output, unknown } = normalizeOwnedUrlsInText(source, manifest);
-  if (unknown.length) failures.push(`src/discovery/${relativePath}: unknown owned URL(s): ${unknown.join(', ')}`);
-  if (!unknown.length && output !== source) fs.writeFileSync(target, output, 'utf8');
-}
-
-
-
-/**
- * Function contract: normalizeJsonFile
- * Purpose: Apply json file consistently while preserving the surrounding generate seo discovery repository tool contract.
- * Inputs: `relativePath`
- * Side effects: writes filesystem state
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
- */
-function normalizeJsonFile(relativePath) {
-  const target = path.join(discoveryRoot, relativePath);
-  if (!fs.existsSync(target)) return failures.push(`src/discovery/${relativePath}: missing discovery file`);
-
-  let parsed;
-  try {
-    parsed = JSON.parse(fs.readFileSync(target, 'utf8'));
-  } catch (error) {
-    return failures.push(`src/discovery/${relativePath}: invalid JSON (${error.message})`);
-  }
-
-  const unknown = new Set();
-  const normalized = normalizeJsonUrls(parsed, manifest, unknown);
-  if (unknown.size) failures.push(`src/discovery/${relativePath}: unknown owned URL(s): ${[...unknown].join(', ')}`);
-  if (!unknown.size) fs.writeFileSync(target, `${JSON.stringify(normalized, null, 2)}\n`, 'utf8');
 }
 
 const changed = [];
@@ -115,17 +60,13 @@ if (writeDiscoveryText('robots.txt', buildRobots())) changed.push('src/discovery
 if (writeFile(path.join(root, 'public', '_redirects'), buildRedirectFile(manifest))) changed.push('public/_redirects');
 if (writeFile(path.join(root, 'src', 'generated', 'legacy-redirects.js'), buildRedirectModule(manifest))) changed.push('src/generated/legacy-redirects.js');
 
-normalizeTextFile('llms.txt');
-normalizeTextFile('llms-full.txt');
-normalizeJsonFile('ai-profile.json');
-
 if (fs.existsSync(path.join(root, 'public', 'nischhal-raj-subba.html'))) {
   failures.push('public/nischhal-raj-subba.html: duplicate entity page must remain retired; homepage is the canonical entity page');
 }
 
 if (failures.length) {
-  console.error(`[seo-discovery] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}`);
+  console.error(`[seo-discovery] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Format each validation failure as a readable list item. Inputs: `item` Side effects: None. Returns: Formatted diagnostic line. */ (item) => `- ${item}`).join('\n')}`);
   process.exit(1);
 }
 
-console.log(`[seo-discovery] Canonical discovery assets synchronized from ${manifest.html.length} routes and ${Object.keys(manifest.redirects).length} redirects${changed.length ? `; rewrote ${changed.join(', ')}` : ''}.`);
+console.log(`[seo-discovery] Canonical web discovery assets synchronized from ${manifest.html.length} routes and ${Object.keys(manifest.redirects).length} redirects${changed.length ? `; rewrote ${changed.join(', ')}` : ''}.`);
