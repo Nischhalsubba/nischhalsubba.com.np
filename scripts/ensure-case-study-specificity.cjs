@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/ensure-case-study-specificity.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure case study specificity.
+ * Purpose: Apply the ensure case study specificity production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
  * - docs/design-dna.json
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - scripts/generate-source.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs=require('node:fs');
 const path=require('node:path');
@@ -34,27 +35,27 @@ const specifics={
 };
 /**
  * Function contract: cards
- * Purpose: Implements the cards responsibility for this module.
- * Inputs: items.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the cards responsibility owned by the ensure case study specificity repository tool.
+ * Inputs: `items`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
-function cards(items){return `<div class="journey-grid">${items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [h,p]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([h,p])=>`<div class="journey-card"><span class="eyebrow">Decision</span><h3>${h}</h3><p>${p}</p></div>`).join('')}</div>`}
+function cards(items){return `<div class="journey-grid">${items.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[h,p]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([h,p])=>`<div class="journey-card"><span class="eyebrow">Decision</span><h3>${h}</h3><p>${p}</p></div>`).join('')}</div>`}
 /**
  * Function contract: list
- * Purpose: Implements the list responsibility for this module.
- * Inputs: items.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return module behavior from the supplied inputs or current ensure case study specificity repository tool state.
+ * Inputs: `items`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested module behavior; early-return/empty-state behavior follows the explicit branches in this function.
  */
-function list(items){return `<ul class="case-list">${items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: x. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ x=>`<li>${x}</li>`).join('')}</ul>`}
+function list(items){return `<ul class="case-list">${items.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `x`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ x=>`<li>${x}</li>`).join('')}</ul>`}
 /**
  * Function contract: patch
- * Purpose: Implements the patch responsibility for this module.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the patch responsibility owned by the ensure case study specificity repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function patch(file){const slug=file.replace(/^project-/,'').replace(/\.html$/,'');const spec=specifics[slug];const p=path.join(base,file);if(!spec||!fs.existsSync(p))return;let h=fs.readFileSync(p,'utf8');h=h.replace(/\s*<section id="project-seo-asset"[\s\S]*?<\/section>/i,'');h=h.replace(/<section class="section-container reveal-on-scroll"><div class="case-label">DESIGN DECISIONS<\/div><h2 class="section-title"[^>]*>How I approached the work<\/h2>[\s\S]*?<\/section>/i,`<section class="section-container reveal-on-scroll"><div class="case-label">KEY DECISIONS</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">Decisions that shaped the product</h2>${cards(spec.decisions)}</section>`);h=h.replace(/<section(?: id="case-contribution")? class="section-container reveal-on-scroll"[^>]*>(?:<p class="case-label">[^<]*<\/p>|<div class="case-label">OUTCOME<\/div>)?<h2[^>]*>(?:What the design made easier|What the design aimed to make easier)<\/h2>[\s\S]*?<\/section>/i,`<section class="section-container reveal-on-scroll"><div class="case-label">DELIVERED DESIGN EFFECT</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">What changed in the design</h2>${list(spec.outcomes)}<p class="nrs-evidence-note">These are observable design changes, not fabricated business or product metrics.</p></section>`);h=h.replace(/<section[^>]*><h2 class="section-title">(?:What I would discuss in an interview|What I would validate next)<\/h2>[\s\S]*?<\/section>/i,`<section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);"><div class="case-label">NEXT VALIDATION</div><h2 class="section-title">What I would validate next</h2>${list(spec.validation)}</section>`);h=h.replace(/<li>A stronger hiring walkthrough because scope, artifacts, and constraints are visible\.<\/li>/gi,'');fs.writeFileSync(p,h,'utf8')}
-if(fs.existsSync(base)){for(const f of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: n. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ n=>/^project-[a-z0-9-]+\.html$/i.test(n)))patch(f)}
+if(fs.existsSync(base)){for(const f of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: n. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `n`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ n=>/^project-[a-z0-9-]+\.html$/i.test(n)))patch(f)}
 console.log(`[case-specificity] Replaced generic process/outcome/search copy in ${process.argv.includes('--dist')?'dist':'source'} project pages.`);

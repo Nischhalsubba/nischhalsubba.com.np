@@ -1,15 +1,14 @@
 /**
  * @fileoverview src/scripts/features/portfolio/portfolio-case-study-coverage.js
- * Purpose: Browser runtime feature in the portfolio domain responsible for portfolio case study coverage behavior.
+ * Purpose: Implement portfolio case study coverage behavior inside the portfolio browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the portfolio behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/main.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const ADDITIONAL_PROJECTS = {
   '/project-masteriyo.html': {
@@ -200,10 +199,10 @@ const ADDITIONAL_PROJECTS = {
 
 /**
  * Function contract: setText
- * Purpose: Applies set text while preserving the surrounding repository/runtime contract.
- * Inputs: element, text.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Synchronize text with the requested state while preserving related portfolio case study coverage browser feature invariants.
+ * Inputs: `element`: DOM element currently being evaluated or updated; `text`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function setText(element, text) {
   if (!element || !text) return;
@@ -212,10 +211,10 @@ function setText(element, text) {
 
 /**
  * Function contract: createEl
- * Purpose: Creates create el from the supplied inputs and repository state.
- * Inputs: tag, className, text.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Build el from the supplied inputs in the form expected by downstream portfolio case study coverage browser feature consumers.
+ * Inputs: `tag`: input consumed by this operation; `className`: input consumed by this operation; `text`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function createEl(tag, className, text) {
   const el = document.createElement(tag);
@@ -226,14 +225,14 @@ function createEl(tag, className, text) {
 
 /**
  * Function contract: buildSnapshotGrid
- * Purpose: Creates build snapshot grid from the supplied inputs and repository state.
- * Inputs: project.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Build snapshot grid from the supplied inputs in the form expected by downstream portfolio case study coverage browser feature consumers.
+ * Inputs: `project`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function buildSnapshotGrid(project) {
   const grid = createEl('div', 'snapshot-grid nrs-case-study-snapshot');
-  Object.entries(project.snapshot).forEach(/** Callback contract: Processes the callback step for object.entries(project.snapshot) without leaking orchestration details to the caller. Inputs: [label, value]. Side effects: may read or update browser DOM/state. No explicit return contract. */ ([label, value]) => {
+  Object.entries(project.snapshot).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[label, value]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([label, value]) => {
     const item = createEl('div');
     item.append(createEl('h5', null, label), createEl('p', null, value));
     grid.appendChild(item);
@@ -243,14 +242,14 @@ function buildSnapshotGrid(project) {
 
 /**
  * Function contract: buildDecisionCards
- * Purpose: Creates build decision cards from the supplied inputs and repository state.
- * Inputs: project.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Build decision cards from the supplied inputs in the form expected by downstream portfolio case study coverage browser feature consumers.
+ * Inputs: `project`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function buildDecisionCards(project) {
   const grid = createEl('div', 'journey-grid nrs-case-study-decisions');
-  project.decisions.forEach(/** Callback contract: Processes the callback step for project.decisions without leaking orchestration details to the caller. Inputs: [decision, why, tradeoff, result]. Side effects: may read or update browser DOM/state. No explicit return contract. */ ([decision, why, tradeoff, result]) => {
+  project.decisions.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[decision, why, tradeoff, result]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([decision, why, tradeoff, result]) => {
     const card = createEl('article', 'journey-card');
     card.append(
       createEl('span', 'eyebrow', 'Decision'),
@@ -271,9 +270,16 @@ function buildDecisionCards(project) {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: buildList
+ * Purpose: Build list from the supplied inputs in the form expected by downstream portfolio case study coverage browser feature consumers.
+ * Inputs: `items`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function buildList(items) {
   const list = createEl('ul', 'case-list');
-  items.forEach(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: may read or update browser DOM/state. No explicit return contract. */ (item) => list.appendChild(createEl('li', null, item)));
+  items.forEach(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => list.appendChild(createEl('li', null, item)));
   return list;
 }
 
@@ -283,6 +289,13 @@ function buildList(items) {
  * Inputs: project.
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: renderAdditionalCaseStudy
+ * Purpose: Implement the render additional case study responsibility owned by the portfolio case study coverage browser feature.
+ * Inputs: `project`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function renderAdditionalCaseStudy(project) {
   const main = document.querySelector('main.container');
@@ -308,7 +321,7 @@ function renderAdditionalCaseStudy(project) {
     ['Reflection', 'What this project shows', project.reflection],
   ];
 
-  sections.forEach(/** Callback contract: Processes the callback step for sections without leaking orchestration details to the caller. Inputs: [label, title, body]. Side effects: may read or update browser DOM/state. No explicit return contract. */ ([label, title, body]) => {
+  sections.forEach(/** Callback contract: Processes the callback step for sections without leaking orchestration details to the caller. Inputs: [label, title, body]. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[label, title, body]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([label, title, body]) => {
     const section = createEl('section', 'section-container reveal-on-scroll');
     section.append(createEl('div', 'case-label', label), createEl('h2', 'section-title', title));
     if (typeof body === 'string') section.appendChild(createEl('p', 'body-large', body));
@@ -316,7 +329,7 @@ function renderAdditionalCaseStudy(project) {
     content.appendChild(section);
   });
 
-  Array.from(main.children).forEach(/** Callback contract: Processes the callback step for array.from(main.children) without leaking orchestration details to the caller. Inputs: child. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (child) => {
+  Array.from(main.children).forEach(/** Callback contract: Processes the callback step for array.from(main.children) without leaking orchestration details to the caller. Inputs: child. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `child`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (child) => {
     if (child === hero || child === image || child === closing) return;
     child.remove();
   });
@@ -331,6 +344,13 @@ function renderAdditionalCaseStudy(project) {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: addRemainingCaseStudyCoverage
+ * Purpose: Implement the add remaining case study coverage responsibility owned by the portfolio case study coverage browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function addRemainingCaseStudyCoverage() {
   const project = ADDITIONAL_PROJECTS[window.location.pathname];

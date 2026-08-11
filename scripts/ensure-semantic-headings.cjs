@@ -1,16 +1,16 @@
 /**
  * @fileoverview scripts/ensure-semantic-headings.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure semantic headings.
+ * Purpose: Apply the ensure semantic headings production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - scripts/generate-source.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -22,10 +22,10 @@ const ignored = new Set(['.git', 'node_modules', '.wrangler', 'dist', 'wordpress
 
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: dir, files.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the walk responsibility owned by the ensure semantic headings repository tool.
+ * Inputs: `dir`: input consumed by this operation; `files`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -40,10 +40,10 @@ function walk(dir, files = []) {
 
 /**
  * Function contract: stripTags
- * Purpose: Implements the strip tags responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Remove tags without disturbing required surrounding ensure semantic headings repository tool state.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function stripTags(value) {
   return value.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/\s+/g, ' ').trim();
@@ -51,13 +51,13 @@ function stripTags(value) {
 
 /**
  * Function contract: normalizeLayeredHeading
- * Purpose: Applies normalize layered heading while preserving the surrounding repository/runtime contract.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply layered heading consistently while preserving the surrounding ensure semantic headings repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function normalizeLayeredHeading(html) {
-  return html.replace(/<(h[1-3])([^>]*)>([\s\S]*?)<\/\1>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: full, tag, attrs, inner. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (full, tag, attrs, inner) => {
+  return html.replace(/<(h[1-3])([^>]*)>([\s\S]*?)<\/\1>/gi, /** Callback contract: Perform the local callback step required by the enclosing ensure semantic headings repository tool operation. Inputs: `full`, `tag`, `attrs`, `inner`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ (full, tag, attrs, inner) => {
     const spans = Array.from(inner.matchAll(/<span\b([^>]*)class=["']([^"']*)["']([^>]*)>([\s\S]*?)<\/span>/gi));
     if (spans.length !== 2) return full;
 

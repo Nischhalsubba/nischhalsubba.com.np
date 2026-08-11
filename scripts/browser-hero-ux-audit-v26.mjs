@@ -1,16 +1,14 @@
 /**
  * @fileoverview scripts/browser-hero-ux-audit-v26.mjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for browser hero ux audit v26.
+ * Purpose: Validate browser hero ux audit v26 and fail with actionable diagnostics when the production contract is violated.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - .github/workflows/hero-ux-audit.yml
- * - docs/repository/file-catalog.md
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { chromium } from 'playwright';
 
@@ -19,10 +17,10 @@ const failures = [];
 
 /**
  * Function contract: record
- * Purpose: Implements the record responsibility for this module.
- * Inputs: label, error.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the record responsibility owned by the browser hero ux audit v26 repository tool.
+ * Inputs: `label`: input consumed by this operation; `error`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function record(label, error) {
   failures.push(`${label}: ${error?.message || error}`);
@@ -35,6 +33,13 @@ function record(label, error) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: near
+ * Purpose: Implement the near responsibility owned by the browser hero ux audit v26 repository tool.
+ * Inputs: `a`: input consumed by this operation; `b`: input consumed by this operation; `tolerance`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function near(a, b, tolerance = 1.5) {
   return Math.abs(a - b) <= tolerance;
 }
@@ -45,6 +50,13 @@ function near(a, b, tolerance = 1.5) {
  * Inputs: a, b.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: overlaps
+ * Purpose: Implement the overlaps responsibility owned by the browser hero ux audit v26 repository tool.
+ * Inputs: `a`: input consumed by this operation; `b`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function overlaps(a, b) {
   return Boolean(a && b && a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y);
@@ -57,6 +69,13 @@ function overlaps(a, b) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: goto
+ * Purpose: Implement the goto responsibility owned by the browser hero ux audit v26 repository tool.
+ * Inputs: `page`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Promise that resolves when the asynchronous side effects complete.
+ */
 async function goto(page) {
   const response = await page.goto(`${base}/`, { waitUntil: 'networkidle', timeout: 30000 });
   if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'} for /`);
@@ -68,6 +87,13 @@ async function goto(page) {
  * Inputs: browser.
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: desktopAudit
+ * Purpose: Implement the desktop audit responsibility owned by the browser hero ux audit v26 repository tool.
+ * Inputs: `browser`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Promise that resolves when the asynchronous side effects complete.
  */
 async function desktopAudit(browser) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
@@ -95,7 +121,7 @@ async function desktopAudit(browser) {
     if (await visual.getAttribute('data-story-active') !== 'problem') throw new Error('Problem hover did not activate');
     if (await readout.getAttribute('aria-hidden') !== 'false') throw new Error('Problem hover did not reveal readout');
 
-    const pointerEvents = await readout.evaluate(/** Callback contract: Processes the callback step for readout without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (el) => getComputedStyle(el).pointerEvents);
+    const pointerEvents = await readout.evaluate(/** Callback contract: Processes the callback step for readout without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser hero ux audit v26 repository tool operation. Inputs: `el`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (el) => getComputedStyle(el).pointerEvents);
     if (pointerEvents !== 'none') throw new Error(`readout intercepts pointer events: ${pointerEvents}`);
 
     const readoutBox = await readout.boundingBox();
@@ -108,10 +134,10 @@ async function desktopAudit(browser) {
 
     await problem.hover();
     await page.waitForTimeout(360);
-    const problemPixels = Number.parseFloat(await page.locator('.nrs-field-pixels').evaluate(/** Callback contract: Processes the callback step for page.locator('.nrs field pixels') without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (el) => getComputedStyle(el).opacity));
+    const problemPixels = Number.parseFloat(await page.locator('.nrs-field-pixels').evaluate(/** Callback contract: Processes the callback step for page.locator('.nrs field pixels') without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser hero ux audit v26 repository tool operation. Inputs: `el`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (el) => getComputedStyle(el).opacity));
     await signal.hover({ timeout: 2500 });
     await page.waitForTimeout(420);
-    const signalPixels = Number.parseFloat(await page.locator('.nrs-field-pixels').evaluate(/** Callback contract: Processes the callback step for page.locator('.nrs field pixels') without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (el) => getComputedStyle(el).opacity));
+    const signalPixels = Number.parseFloat(await page.locator('.nrs-field-pixels').evaluate(/** Callback contract: Processes the callback step for page.locator('.nrs field pixels') without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser hero ux audit v26 repository tool operation. Inputs: `el`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (el) => getComputedStyle(el).opacity));
     if (!(Number.isFinite(problemPixels) && Number.isFinite(signalPixels) && signalPixels < problemPixels * 0.35)) {
       throw new Error(`Signal reduction is too weak: problem=${problemPixels}, signal=${signalPixels}`);
     }
@@ -123,10 +149,10 @@ async function desktopAudit(browser) {
     const portraitBase = [basePortrait.x, basePortrait.y, basePortrait.width, basePortrait.height];
     const fieldValues = [afterField.x, afterField.y, afterField.width, afterField.height];
     const fieldBase = [baseField.x, baseField.y, baseField.width, baseField.height];
-    if (!portraitValues.every(/** Callback contract: Processes the callback step for portrait values without leaking orchestration details to the caller. Inputs: value, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value, index) => near(value, portraitBase[index]))) throw new Error('settled portrait moves or scales during story interaction');
-    if (!fieldValues.every(/** Callback contract: Processes the callback step for field values without leaking orchestration details to the caller. Inputs: value, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value, index) => near(value, fieldBase[index]))) throw new Error('settled decision field moves or scales during story interaction');
+    if (!portraitValues.every(/** Callback contract: Processes the callback step for portrait values without leaking orchestration details to the caller. Inputs: value, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition required by the enclosing all-items check. Inputs: `value`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (value, index) => near(value, portraitBase[index]))) throw new Error('settled portrait moves or scales during story interaction');
+    if (!fieldValues.every(/** Callback contract: Processes the callback step for field values without leaking orchestration details to the caller. Inputs: value, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition required by the enclosing all-items check. Inputs: `value`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (value, index) => near(value, fieldBase[index]))) throw new Error('settled decision field moves or scales during story interaction');
 
-    const overflow = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    const overflow = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser hero ux audit v26 repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (overflow > 1) throw new Error(`desktop hero introduces ${overflow}px horizontal overflow`);
   } catch (error) {
     record('desktop hero interaction', error);
@@ -141,6 +167,13 @@ async function desktopAudit(browser) {
  * Inputs: browser.
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: mobileAudit
+ * Purpose: Implement the mobile audit responsibility owned by the browser hero ux audit v26 repository tool.
+ * Inputs: `browser`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Promise that resolves when the asynchronous side effects complete.
  */
 async function mobileAudit(browser) {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
@@ -159,10 +192,10 @@ async function mobileAudit(browser) {
       if (box.width < 44 || box.height < 44) throw new Error(`${key} target is ${box.width.toFixed(1)}x${box.height.toFixed(1)}px`);
     }
 
-    const thesisSize = Number.parseFloat(await page.locator('.nrs-uploaded-thesis').evaluate(/** Callback contract: Processes the callback step for page.locator('.nrs uploaded thesis') without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (el) => getComputedStyle(el).fontSize));
+    const thesisSize = Number.parseFloat(await page.locator('.nrs-uploaded-thesis').evaluate(/** Callback contract: Processes the callback step for page.locator('.nrs uploaded thesis') without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser hero ux audit v26 repository tool operation. Inputs: `el`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (el) => getComputedStyle(el).fontSize));
     if (thesisSize < 11) throw new Error(`hero thesis is only ${thesisSize}px`);
 
-    const overflow = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    const overflow = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser hero ux audit v26 repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (overflow > 1) throw new Error(`mobile hero introduces ${overflow}px horizontal overflow`);
 
     const problem = page.locator('.nrs-story-node[data-story="problem"]');
@@ -186,6 +219,13 @@ async function mobileAudit(browser) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: reducedMotionAudit
+ * Purpose: Implement the reduced motion audit responsibility owned by the browser hero ux audit v26 repository tool.
+ * Inputs: `browser`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Promise that resolves when the asynchronous side effects complete.
+ */
 async function reducedMotionAudit(browser) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
   const page = await context.newPage();
@@ -197,8 +237,8 @@ async function reducedMotionAudit(browser) {
     const visual = page.locator('.nrs-uploaded-visual');
     if (await visual.getAttribute('data-story-active') !== 'state') throw new Error('reduced motion removes story state feedback');
     if (await page.locator('#nrsStoryReadout').getAttribute('aria-hidden') !== 'false') throw new Error('reduced motion hides the story readout');
-    const transitions = await page.locator('#nrsStoryReadout').evaluate(/** Callback contract: Processes the callback step for page.locator('#nrs story readout') without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (el) => getComputedStyle(el).transitionDuration);
-    if (transitions.split(',').some(/** Callback contract: Processes the callback step for transitions.split(',') without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => Number.parseFloat(value) > 0.05)) throw new Error(`readout still has long transitions under reduced motion: ${transitions}`);
+    const transitions = await page.locator('#nrsStoryReadout').evaluate(/** Callback contract: Processes the callback step for page.locator('#nrs story readout') without leaking orchestration details to the caller. Inputs: el. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser hero ux audit v26 repository tool operation. Inputs: `el`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (el) => getComputedStyle(el).transitionDuration);
+    if (transitions.split(',').some(/** Callback contract: Processes the callback step for transitions.split(',') without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `value`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (value) => Number.parseFloat(value) > 0.05)) throw new Error(`readout still has long transitions under reduced motion: ${transitions}`);
   } catch (error) {
     record('reduced motion', error);
   } finally {
@@ -213,7 +253,7 @@ await reducedMotionAudit(browser);
 await browser.close();
 
 if (failures.length) {
-  console.error(`[hero-ux-v26-audit] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: failure. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[hero-ux-v26-audit] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

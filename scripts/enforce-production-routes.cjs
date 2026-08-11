@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/enforce-production-routes.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for enforce production routes.
+ * Purpose: Apply the enforce production routes production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -43,6 +43,13 @@ for (const name of ['audit-remediations.css', 'stable-layout.css', 'final-ui-fix
  * Inputs: file.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: parseRedirects
+ * Purpose: Convert redirects into the structured representation consumed by the enforce production routes repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function parseRedirects(file) {
   if (!fs.existsSync(file)) return new Map();

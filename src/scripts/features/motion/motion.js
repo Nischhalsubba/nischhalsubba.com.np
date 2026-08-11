@@ -1,24 +1,24 @@
 /**
  * @fileoverview src/scripts/features/motion/motion.js
- * Purpose: Browser runtime feature in the motion domain responsible for motion behavior.
+ * Purpose: Implement motion behavior inside the motion browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the motion behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - src/scripts/shared/dom.js
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $$, prefersReducedMotion } from '../../shared/dom.js';
 
 /**
  * Function contract: initRevealObserver
- * Purpose: Implements the init reveal observer responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Initialize reveal observer for the motion browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function initRevealObserver() {
   const elements = $$('.reveal-on-scroll, .project-card, .impact-card, .writing-item, .achieve-item');
@@ -27,8 +27,8 @@ function initRevealObserver() {
   if (prefersReducedMotion()) return;
 
   const observer = new IntersectionObserver(
-    /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: entries. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (entries) => {
-      entries.forEach(/** Callback contract: Processes the callback step for entries without leaking orchestration details to the caller. Inputs: entry. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (entry) => {
+    /** Callback contract: Perform the local callback step required by the enclosing motion browser feature operation. Inputs: `entries`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (entries) => {
+      entries.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `entry`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (entry) => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
@@ -37,17 +37,17 @@ function initRevealObserver() {
     { threshold: 0.14, rootMargin: '0px 0px -8% 0px' }
   );
 
-  elements.forEach(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element, index) => {
+  elements.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element, index) => {
     observer.observe(element);
   });
 }
 
 /**
  * Function contract: initGsapReveals
- * Purpose: Implements the init gsap reveals responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Initialize gsap reveals for the motion browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function initGsapReveals() {
   if (prefersReducedMotion()) return false;
@@ -83,10 +83,10 @@ function initGsapReveals() {
   }
 
   const elements = $$('.reveal-on-scroll, .project-card, .impact-card, .writing-item, .journey-card, .prototype-link-card')
-    .filter(/** Callback contract: Processes the callback step for $$('.reveal on scroll, .project card, .impact card, .writing item, .journey card, .prototype link card') without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element) => !heroElements.includes(element));
+    .filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => !heroElements.includes(element));
   if (!elements.length) return true;
 
-  elements.forEach(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element, index. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (element, index) => {
+  elements.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`, `index`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element, index) => {
     const tween = {
       autoAlpha: 1,
       y: 0,
@@ -94,14 +94,14 @@ function initGsapReveals() {
       delay: Math.min(index % 5, 4) * 0.035,
       ease: 'power2.out',
       clearProps: 'transform,opacity,visibility',
-      onComplete: /**
+      /**
        * Function contract: onComplete
-       * Purpose: Handles on complete and coordinates the required state or UI response.
-       * Inputs: none; the function derives state from its enclosing module/runtime context.
-       * Side effects: may read or update browser DOM/state.
-       * Returns: no explicit value unless an invoked dependency throws/rejects.
+       * Purpose: Handle complete and coordinate the resulting motion browser feature state changes.
+       * Inputs: None; derives required state from the enclosing module/runtime context.
+       * Side effects: reads or updates DOM/browser state.
+       * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
        */
-      () => element.classList.add('is-visible'),
+      onComplete: () => element.classList.add('is-visible'),
     };
 
     if (ScrollTrigger) {
@@ -128,10 +128,10 @@ function initGsapReveals() {
 
 /**
  * Function contract: initMotionEnhancements
- * Purpose: Implements the init motion enhancements responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Initialize motion enhancements for the motion browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function initMotionEnhancements() {
   if (!initGsapReveals()) initRevealObserver();

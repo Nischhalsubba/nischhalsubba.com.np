@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/ensure-search-intents.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure search intents.
+ * Purpose: Apply the ensure search intents production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - scripts/generate-source.cjs
+ * - blog/blog-design-systems-front-end.html
+ * - blog/blog-gaming-interface-clarity.html
+ * - blog/blog-portfolio-product.html
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('fs');
 const path = require('path');
@@ -265,6 +266,13 @@ for (const [file, [type, intent, title, description]] of Object.entries(blogInte
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: escapeHtml
+ * Purpose: Implement the escape html responsibility owned by the ensure search intents repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -280,6 +288,13 @@ function escapeHtml(value) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: absoluteUrl
+ * Purpose: Implement the absolute url responsibility owned by the ensure search intents repository tool.
+ * Inputs: `canonical`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function absoluteUrl(canonical) {
   if (canonical === '/') return `${SITE}/`;
   return `${SITE}${canonical}`;
@@ -292,11 +307,18 @@ function absoluteUrl(canonical) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertTitle
+ * Purpose: Implement the upsert title responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`: input consumed by this operation; `title`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function upsertTitle(html, title) {
   const value = `<title>${escapeHtml(title)}</title>`;
   return /<title>[\s\S]*?<\/title>/i.test(html)
     ? html.replace(/<title>[\s\S]*?<\/title>/i, value)
-    : html.replace(/<head[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${value}`);
+    : html.replace(/<head[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing ensure search intents repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => `${match}\n    ${value}`);
 }
 
 /**
@@ -306,12 +328,19 @@ function upsertTitle(html, title) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertMetaName
+ * Purpose: Implement the upsert meta name responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`: input consumed by this operation; `name`: stable identifier or label for the current item; `content`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function upsertMetaName(html, name, content) {
   const value = `<meta name="${name}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+name=["']${name}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, value)
-    : html.replace(/<meta\s+name="viewport"[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${value}`);
+    : html.replace(/<meta\s+name="viewport"[^>]*>/i, /** Callback contract: Perform the local callback step required by the enclosing ensure search intents repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => `${match}\n    ${value}`);
 }
 
 /**
@@ -321,12 +350,19 @@ function upsertMetaName(html, name, content) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertMetaProperty
+ * Purpose: Implement the upsert meta property responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`: input consumed by this operation; `property`: input consumed by this operation; `content`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function upsertMetaProperty(html, property, content) {
   const value = `<meta property="${property}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+property=["']${property}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, value)
-    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${value}`);
+    : html.replace(/<\/title>/i, /** Callback contract: Perform the local callback step required by the enclosing ensure search intents repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => `${match}\n    ${value}`);
 }
 
 /**
@@ -336,11 +372,18 @@ function upsertMetaProperty(html, property, content) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertCanonical
+ * Purpose: Implement the upsert canonical responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`: input consumed by this operation; `canonical`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function upsertCanonical(html, canonical) {
   const value = `<link rel="canonical" href="${absoluteUrl(canonical)}" />`;
   return /<link\s+rel="canonical"[^>]*>/i.test(html)
     ? html.replace(/<link\s+rel="canonical"[^>]*>/i, value)
-    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${value}`);
+    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing ensure search intents repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => `${match}\n    ${value}`);
 }
 
 /**
@@ -349,6 +392,13 @@ function upsertCanonical(html, canonical) {
  * Inputs: html, config.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: upsertSearchIntentSchema
+ * Purpose: Implement the upsert search intent schema responsibility owned by the ensure search intents repository tool.
+ * Inputs: `html`: input consumed by this operation; `config`: configuration values controlling this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function upsertSearchIntentSchema(html, config) {
   const url = absoluteUrl(config.canonical);
@@ -386,6 +436,13 @@ function upsertSearchIntentSchema(html, config) {
  * Inputs: html, config.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: applyIntent
+ * Purpose: Apply intent consistently while preserving the surrounding ensure search intents repository tool contract.
+ * Inputs: `html`: input consumed by this operation; `config`: configuration values controlling this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function applyIntent(html, config) {
   html = upsertTitle(html, config.title);

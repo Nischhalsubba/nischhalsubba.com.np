@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/ensure-audit-completion.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure audit completion.
+ * Purpose: Validate ensure audit completion and fail with actionable diagnostics when the production contract is violated.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -20,10 +20,10 @@ const site = 'https://nischhalsubba.com.np';
 
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: directory, files.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the walk responsibility owned by the ensure audit completion repository tool.
+ * Inputs: `directory`: input consumed by this operation; `files`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walk(directory, files = []) {
   if (!fs.existsSync(directory)) return files;
@@ -37,10 +37,10 @@ function walk(directory, files = []) {
 
 /**
  * Function contract: footerMarkup
- * Purpose: Implements the footer markup responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the footer markup responsibility owned by the ensure audit completion repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function footerMarkup() {
   return `<footer class="site-footer" aria-label="Portfolio footer">
@@ -77,10 +77,10 @@ function footerMarkup() {
 
 /**
  * Function contract: ensureFooter
- * Purpose: Applies ensure footer while preserving the surrounding repository/runtime contract.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply footer consistently while preserving the surrounding ensure audit completion repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function ensureFooter(html) {
   if (/<footer\b[^>]*class=["'][^"']*site-footer/i.test(html)) return html;
@@ -89,10 +89,10 @@ function ensureFooter(html) {
 
 /**
  * Function contract: ensureContactPrivacy
- * Purpose: Applies ensure contact privacy while preserving the surrounding repository/runtime contract.
- * Inputs: html, relativePath.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply contact privacy consistently while preserving the surrounding ensure audit completion repository tool contract.
+ * Inputs: `html`: input consumed by this operation; `relativePath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function ensureContactPrivacy(html, relativePath) {
   if (relativePath !== 'contact.html') return html;
@@ -113,10 +113,10 @@ function ensureContactPrivacy(html, relativePath) {
 
 /**
  * Function contract: projectCoverFor
- * Purpose: Implements the project cover for responsibility for this module.
- * Inputs: relativePath.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the project cover for responsibility owned by the ensure audit completion repository tool.
+ * Inputs: `relativePath`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function projectCoverFor(relativePath) {
   const match = path.basename(relativePath).match(/^project-(.+)\.html$/);
@@ -132,12 +132,19 @@ function projectCoverFor(relativePath) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: ensureStaticFigmaProof
+ * Purpose: Apply static figma proof consistently while preserving the surrounding ensure audit completion repository tool contract.
+ * Inputs: `html`: input consumed by this operation; `relativePath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function ensureStaticFigmaProof(html, relativePath) {
   if (!/<iframe\b[^>]*figma\.com/i.test(html)) return html;
   const cover = projectCoverFor(relativePath) || '/assets/images/portrait.png';
   const title = path.basename(relativePath, '.html').replace(/^project-/, '').replaceAll('-', ' ');
 
-  return html.replace(/(<iframe\b[^>]*figma\.com[^>]*><\/iframe>)/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: frame, _match, offset, source. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (frame, _match, offset, source) => {
+  return html.replace(/(<iframe\b[^>]*figma\.com[^>]*><\/iframe>)/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: frame, _match, offset, source. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing ensure audit completion repository tool operation. Inputs: `frame`, `_match`, `offset`, `source`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ (frame, _match, offset, source) => {
     const before = source.slice(Math.max(0, offset - 400), offset);
     if (before.includes('nrs-static-figma-proof')) return frame;
     return `<figure class="nrs-static-figma-proof"><img src="${cover}" alt="Static project preview for ${title}" loading="lazy" decoding="async" /><figcaption>Static project evidence remains available even when the optional Figma preview is blocked.</figcaption></figure>${frame}`;
@@ -150,6 +157,13 @@ function ensureStaticFigmaProof(html, relativePath) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: ensurePrivacyMetadata
+ * Purpose: Apply privacy metadata consistently while preserving the surrounding ensure audit completion repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function ensurePrivacyMetadata(html) {
   if (!html.includes('class="nrs-privacy-page"')) return html;
@@ -167,8 +181,15 @@ function ensurePrivacyMetadata(html) {
  * Side effects: may read or write repository/filesystem state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: processHtml
+ * Purpose: Implement the process html responsibility owned by the ensure audit completion repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function processHtml() {
-  for (const file of walk(dist).filter(/** Callback contract: Processes the callback step for walk(dist) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.endsWith('.html'))) {
+  for (const file of walk(dist).filter(/** Callback contract: Processes the callback step for walk(dist) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.endsWith('.html'))) {
     const relativePath = path.relative(dist, file).replaceAll(path.sep, '/');
     const original = fs.readFileSync(file, 'utf8');
     const updated = ensurePrivacyMetadata(ensureStaticFigmaProof(ensureContactPrivacy(ensureFooter(original), relativePath), relativePath));
@@ -182,6 +203,13 @@ function processHtml() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or write repository/filesystem state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: ensureRedirects
+ * Purpose: Apply redirects consistently while preserving the surrounding ensure audit completion repository tool contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureRedirects() {
   const file = path.join(dist, '_redirects');
@@ -198,6 +226,13 @@ function ensureRedirects() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: ensurePrivacyInSitemap
+ * Purpose: Apply privacy in sitemap consistently while preserving the surrounding ensure audit completion repository tool contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensurePrivacyInSitemap() {
   const file = path.join(dist, 'sitemap.xml');

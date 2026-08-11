@@ -1,15 +1,14 @@
 /**
  * @fileoverview src/scripts/features/content/microcopy-polish.js
- * Purpose: Browser runtime feature in the content domain responsible for microcopy polish behavior.
+ * Purpose: Implement microcopy polish behavior inside the content browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the content behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/main.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const PAGE_COPY = {
   '/': {
@@ -50,10 +49,10 @@ const BLOG_COPY = {
 
 /**
  * Function contract: setText
- * Purpose: Applies set text while preserving the surrounding repository/runtime contract.
- * Inputs: element, text.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Synchronize text with the requested state while preserving related microcopy polish browser feature invariants.
+ * Inputs: `element`: DOM element currently being evaluated or updated; `text`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function setText(element, text) {
   if (!element || !text) return;
@@ -62,10 +61,10 @@ function setText(element, text) {
 
 /**
  * Function contract: updateHeroCopy
- * Purpose: Applies update hero copy while preserving the surrounding repository/runtime contract.
- * Inputs: copy.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply hero copy consistently while preserving the surrounding microcopy polish browser feature contract.
+ * Inputs: `copy`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateHeroCopy(copy) {
   if (!copy) return;
@@ -83,7 +82,7 @@ function updateHeroCopy(copy) {
 
   const proofItems = hero.querySelectorAll('.hero-proof-strip span');
   if (copy.proof && proofItems.length) {
-    proofItems.forEach(/** Callback contract: Processes the callback step for proof items without leaking orchestration details to the caller. Inputs: item, index. Side effects: may read or update browser DOM/state. No explicit return contract. */ (item, index) => {
+    proofItems.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item, index) => {
       if (copy.proof[index]) item.textContent = copy.proof[index];
     });
   }
@@ -91,10 +90,10 @@ function updateHeroCopy(copy) {
 
 /**
  * Function contract: polishProjectDetailCopy
- * Purpose: Applies polish project detail copy while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply project detail copy consistently while preserving the surrounding microcopy polish browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function polishProjectDetailCopy() {
   if (!document.body.classList.contains('nrs-project-detail-page')) return;
@@ -114,7 +113,7 @@ function polishProjectDetailCopy() {
     lead.dataset.microcopyPolished = 'true';
   }
 
-  document.querySelectorAll('.section-title, h2').forEach(/** Callback contract: Processes the callback step for document.query selector all('.section title, h2') without leaking orchestration details to the caller. Inputs: heading. Side effects: may read or update browser DOM/state. No explicit return contract. */ (heading) => {
+  document.querySelectorAll('.section-title, h2').forEach(/** Callback contract: Processes the callback step for document.query selector all('.section title, h2') without leaking orchestration details to the caller. Inputs: heading. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `heading`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (heading) => {
     const text = heading.textContent.trim();
     if (/what the design made easier/i.test(text)) heading.textContent = PROJECT_DETAIL_COPY.outcomeTitle;
     if (/how i approached the work/i.test(text)) heading.textContent = PROJECT_DETAIL_COPY.processTitle;
@@ -127,6 +126,13 @@ function polishProjectDetailCopy() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: polishBlogCopy
+ * Purpose: Apply blog copy consistently while preserving the surrounding microcopy polish browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function polishBlogCopy() {
   const path = window.location.pathname;
@@ -154,8 +160,15 @@ function polishBlogCopy() {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: polishCardCopy
+ * Purpose: Apply card copy consistently while preserving the surrounding microcopy polish browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function polishCardCopy() {
-  document.querySelectorAll('.project-card .card-summary').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card .card summary') without leaking orchestration details to the caller. Inputs: summary. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (summary) => {
+  document.querySelectorAll('.project-card .card-summary').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card .card summary') without leaking orchestration details to the caller. Inputs: summary. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `summary`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (summary) => {
     const text = summary.textContent.trim();
     if (!text || summary.dataset.microcopyPolished) return;
 
@@ -173,6 +186,13 @@ function polishCardCopy() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: polishMicrocopy
+ * Purpose: Apply microcopy consistently while preserving the surrounding microcopy polish browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function polishMicrocopy() {
   const copy = PAGE_COPY[window.location.pathname];

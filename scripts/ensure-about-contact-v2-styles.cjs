@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/ensure-about-contact-v2-styles.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure about contact v2 styles.
+ * Purpose: Apply the ensure about contact v2 styles production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('fs');
 const path = require('path');
@@ -345,10 +345,10 @@ html[data-theme='light'] .form-status[data-tone='error'] { color: #9b2323 !impor
 
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: dir, files.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the walk responsibility owned by the ensure about contact v2 styles repository tool.
+ * Inputs: `dir`: input consumed by this operation; `files`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -362,13 +362,13 @@ function walk(dir, files = []) {
 
 /**
  * Function contract: updateHtmlStylesheetVersion
- * Purpose: Applies update html stylesheet version while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply html stylesheet version consistently while preserving the surrounding ensure about contact v2 styles repository tool contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateHtmlStylesheetVersion() {
-  for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: filePath. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (filePath) => filePath.endsWith('.html'))) {
+  for (const file of walk(targetRoot).filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `filePath`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (filePath) => filePath.endsWith('.html'))) {
     const before = fs.readFileSync(file, 'utf8');
     const after = before.replace(/\/style\.css\?v=[0-9.]+/g, `/style.css?v=${version}`);
     if (after !== before) fs.writeFileSync(file, after, 'utf8');
@@ -381,6 +381,13 @@ function updateHtmlStylesheetVersion() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: updateStyle
+ * Purpose: Apply style consistently while preserving the surrounding ensure about contact v2 styles repository tool contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateStyle() {
   if (!fs.existsSync(stylePath)) return;

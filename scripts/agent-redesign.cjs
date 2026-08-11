@@ -1,22 +1,23 @@
 /**
  * @fileoverview scripts/agent-redesign.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for agent redesign.
+ * Purpose: Apply the agent redesign production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
- * - scripts/repository/fix-deep-style-contracts.cjs
+ * - src/scripts/entrypoints/agent-main.js
+ * - src/scripts/features/portfolio/agent-portfolio.js
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
-const parts = [1, 2, 3].map(/** Callback contract: Processes the callback step for [1, 2, 3] without leaking orchestration details to the caller. Inputs: part. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (part) => path.join(__dirname, `agent-redesign-part-${part}.cjsfrag`));
-if (parts.some(/** Callback contract: Processes the callback step for parts without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ (file) => !fs.existsSync(file))) throw new Error('[agent-redesign] source fragments are missing');
-const source = parts.map(/** Callback contract: Processes the callback step for parts without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ (file) => fs.readFileSync(file, 'utf8')).join('');
+const parts = [1, 2, 3].map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `part`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (part) => path.join(__dirname, `agent-redesign-part-${part}.cjsfrag`));
+if (parts.some(/** Callback contract: Processes the callback step for parts without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `file`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => !fs.existsSync(file))) throw new Error('[agent-redesign] source fragments are missing');
+const source = parts.map(/** Callback contract: Processes the callback step for parts without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => fs.readFileSync(file, 'utf8')).join('');
 new Function('require', '__dirname', '__filename', source)(require, __dirname, __filename);
 
 const repositoryRoot = path.join(__dirname, '..');
@@ -40,6 +41,13 @@ const customCaseTitles = new Map([
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: escapeAttribute
+ * Purpose: Implement the escape attribute responsibility owned by the agent redesign repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function escapeAttribute(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -54,6 +62,13 @@ function escapeAttribute(value) {
  * Inputs: raw.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: externalPrototypeUrl
+ * Purpose: Implement the external prototype url responsibility owned by the agent redesign repository tool.
+ * Inputs: `raw`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function externalPrototypeUrl(raw) {
   if (!raw) return '';
@@ -74,6 +89,13 @@ function externalPrototypeUrl(raw) {
  * Inputs: directory, output.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: htmlFiles
+ * Purpose: Implement the html files responsibility owned by the agent redesign repository tool.
+ * Inputs: `directory`: input consumed by this operation; `output`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function htmlFiles(directory, output = []) {
   if (!fs.existsSync(directory)) return output;
@@ -109,11 +131,11 @@ if (fs.existsSync(contactPath)) {
   fs.writeFileSync(contactPath, contactHtml, 'utf8');
 }
 
-for (const fileName of fs.readdirSync(dist).filter(/** Callback contract: Processes the callback step for fs.readdir sync(dist) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => /^project-.*\.html$/.test(name))) {
+for (const fileName of fs.readdirSync(dist).filter(/** Callback contract: Processes the callback step for fs.readdir sync(dist) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => /^project-.*\.html$/.test(name))) {
   const filePath = path.join(dist, fileName);
   let html = fs.readFileSync(filePath, 'utf8');
   let replaced = 0;
-  html = html.replace(/<iframe\b([^>]*)>[\s\S]*?<\/iframe>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: _match, attrs. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (_match, attrs) => {
+  html = html.replace(/<iframe\b([^>]*)>[\s\S]*?<\/iframe>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: _match, attrs. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing agent redesign repository tool operation. Inputs: `_match`, `attrs`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (_match, attrs) => {
     replaced += 1;
     const src = attrs.match(/\bsrc=["']([^"']+)["']/i)?.[1] || '';
     const href = externalPrototypeUrl(src);

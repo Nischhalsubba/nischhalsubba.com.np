@@ -1,25 +1,23 @@
 /**
  * @fileoverview scripts/run-build-stages.cjs
- * Purpose: Runs named build/generation stages with consistent logging, error handling, and process execution.
+ * Purpose: Execute named build stages consistently with readable diagnostics and fail-fast process handling.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - scripts/build-dist.cjs
- * - scripts/generate-source.cjs
- * - scripts/repository/apply-deep-organization.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const { spawnSync } = require('node:child_process');
 
 /**
  * Function contract: runStages
- * Purpose: Implements the run stages responsibility for this module.
- * Inputs: stages, scope.
- * Side effects: may emit diagnostics or inspect process state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Execute the ordered build-stage definitions sequentially, surface the active stage in logs, and stop immediately when a stage fails.
+ * Inputs: `stages`: input consumed by this operation; `scope`: input consumed by this operation
+ * Side effects: spawns child processes; emits diagnostics or changes process failure state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function runStages(stages, scope) {
   for (const [label, [command, ...args]] of stages) {

@@ -1,15 +1,14 @@
 /**
  * @fileoverview src/scripts/features/accessibility/ui-audit-resolutions.js
- * Purpose: Browser runtime feature in the accessibility domain responsible for ui audit resolutions behavior.
+ * Purpose: Implement ui audit resolutions behavior inside the accessibility browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the accessibility behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const UI_AUDIT_STYLE_ID = 'nrs-ui-audit-resolutions';
 
@@ -25,10 +24,10 @@ const LEGACY_ARTIFACT_SELECTORS = [
 
 /**
  * Function contract: ensureAuditResolutionStyles
- * Purpose: Applies ensure audit resolution styles while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply audit resolution styles consistently while preserving the surrounding ui audit resolutions browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureAuditResolutionStyles() {
   let style = document.getElementById(UI_AUDIT_STYLE_ID);
@@ -209,8 +208,15 @@ function ensureAuditResolutionStyles() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: removeLegacyArtifacts
+ * Purpose: Remove legacy artifacts without disturbing required surrounding ui audit resolutions browser feature state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function removeLegacyArtifacts() {
-  document.querySelectorAll(LEGACY_ARTIFACT_SELECTORS).forEach(/** Callback contract: Processes the callback step for document.query selector all(legacy artifact selectors) without leaking orchestration details to the caller. Inputs: node. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (node) => node.remove());
+  document.querySelectorAll(LEGACY_ARTIFACT_SELECTORS).forEach(/** Callback contract: Processes the callback step for document.query selector all(legacy artifact selectors) without leaking orchestration details to the caller. Inputs: node. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `node`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (node) => node.remove());
 }
 
 /**
@@ -220,18 +226,25 @@ function removeLegacyArtifacts() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: normalizeNavigationA11y
+ * Purpose: Apply navigation a11y consistently while preserving the surrounding ui audit resolutions browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function normalizeNavigationA11y() {
   const path = window.location.pathname === '/index.html' ? '/' : window.location.pathname;
 
-  document.querySelectorAll('.nav-wrapper').forEach(/** Callback contract: Processes the callback step for document.query selector all('.nav wrapper') without leaking orchestration details to the caller. Inputs: nav. Side effects: may read or update browser DOM/state. No explicit return contract. */ (nav) => {
+  document.querySelectorAll('.nav-wrapper').forEach(/** Callback contract: Processes the callback step for document.query selector all('.nav wrapper') without leaking orchestration details to the caller. Inputs: nav. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `nav`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (nav) => {
     nav.setAttribute('aria-label', 'Primary navigation');
   });
 
-  document.querySelectorAll('.mobile-nav-links').forEach(/** Callback contract: Processes the callback step for document.query selector all('.mobile nav links') without leaking orchestration details to the caller. Inputs: nav. Side effects: may read or update browser DOM/state. No explicit return contract. */ (nav) => {
+  document.querySelectorAll('.mobile-nav-links').forEach(/** Callback contract: Processes the callback step for document.query selector all('.mobile nav links') without leaking orchestration details to the caller. Inputs: nav. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `nav`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (nav) => {
     nav.setAttribute('aria-label', 'Mobile navigation');
   });
 
-  document.querySelectorAll('.nav-link, .mobile-nav-links a').forEach(/** Callback contract: Processes the callback step for document.query selector all('.nav link, .mobile nav links a') without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ (link) => {
+  document.querySelectorAll('.nav-link, .mobile-nav-links a').forEach(/** Callback contract: Processes the callback step for document.query selector all('.nav link, .mobile nav links a') without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
     const href = new URL(link.getAttribute('href') || '/', window.location.origin).pathname;
     const normalizedHref = href === '/index.html' ? '/' : href;
     const isActive = normalizedHref === path || (path.startsWith('/blog/') && normalizedHref === '/blog/');
@@ -247,6 +260,13 @@ function normalizeNavigationA11y() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: improveContactTrustCopy
+ * Purpose: Implement the improve contact trust copy responsibility owned by the ui audit resolutions browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function improveContactTrustCopy() {
   const form = document.getElementById('contact-form');
@@ -265,8 +285,15 @@ function improveContactTrustCopy() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: renamePublicCaseStudyPlaceholders
+ * Purpose: Implement the rename public case study placeholders responsibility owned by the ui audit resolutions browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function renamePublicCaseStudyPlaceholders() {
-  document.querySelectorAll('.case-label, .section-title').forEach(/** Callback contract: Processes the callback step for document.query selector all('.case label, .section title') without leaking orchestration details to the caller. Inputs: node. Side effects: may read or update browser DOM/state. No explicit return contract. */ (node) => {
+  document.querySelectorAll('.case-label, .section-title').forEach(/** Callback contract: Processes the callback step for document.query selector all('.case label, .section title') without leaking orchestration details to the caller. Inputs: node. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `node`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (node) => {
     const text = node.textContent?.trim();
     if (text === 'Visual story plan') node.textContent = 'Evidence';
     if (text === 'What to show in the walkthrough') node.textContent = 'Evidence to review';
@@ -280,10 +307,17 @@ function renamePublicCaseStudyPlaceholders() {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: softenUnlinkedProofClaims
+ * Purpose: Implement the soften unlinked proof claims responsibility owned by the ui audit resolutions browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function softenUnlinkedProofClaims() {
   if (window.location.pathname !== '/about.html') return;
 
-  document.querySelectorAll('.journey-card').forEach(/** Callback contract: Processes the callback step for document.query selector all('.journey card') without leaking orchestration details to the caller. Inputs: card. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (card) => {
+  document.querySelectorAll('.journey-card').forEach(/** Callback contract: Processes the callback step for document.query selector all('.journey card') without leaking orchestration details to the caller. Inputs: card. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (card) => {
     const heading = card.querySelector('h3');
     const body = card.querySelector('p');
     if (!heading || !body) return;
@@ -311,8 +345,15 @@ function softenUnlinkedProofClaims() {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: tagProjectCardsByDepth
+ * Purpose: Implement the tag project cards by depth responsibility owned by the ui audit resolutions browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function tagProjectCardsByDepth() {
-  document.querySelectorAll('.project-card').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card') without leaking orchestration details to the caller. Inputs: card. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (card) => {
+  document.querySelectorAll('.project-card').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card') without leaking orchestration details to the caller. Inputs: card. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (card) => {
     const href = card.getAttribute('href') || '';
     const hasFullRuntimeStudy = [
       'project-yarsha.html',
@@ -344,7 +385,7 @@ function tagProjectCardsByDepth() {
       'project zakra furniture.html',
       'project designerex.html',
       'project sassboilerplate.html',
-    ] without leaking orchestration details to the caller. Inputs: slug. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (slug) => href.includes(slug));
+    ] without leaking orchestration details to the caller. Inputs: slug. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `slug`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (slug) => href.includes(slug));
 
     if (!hasFullRuntimeStudy || card.querySelector('.nrs-card-depth')) return;
     const depth = document.createElement('span');
@@ -361,6 +402,13 @@ function tagProjectCardsByDepth() {
  * Side effects: may read or write repository/filesystem state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: resolveUiAuditIssues
+ * Purpose: Resolve ui audit issues from the supplied inputs and the current repository/runtime context.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 export function resolveUiAuditIssues() {
   ensureAuditResolutionStyles();
   removeLegacyArtifacts();
@@ -370,7 +418,7 @@ export function resolveUiAuditIssues() {
   softenUnlinkedProofClaims();
   tagProjectCardsByDepth();
 
-  requestAnimationFrame(/** Callback contract: Processes the callback step for request animation frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or write repository/filesystem state. No explicit return contract. */ () => {
+  requestAnimationFrame(/** Callback contract: Processes the callback step for request animation frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or write repository/filesystem state. No explicit return contract. */ /** Callback contract: Defer the enclosed DOM update until the next animation frame so layout/state changes apply in a stable order. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     ensureAuditResolutionStyles();
     removeLegacyArtifacts();
     normalizeNavigationA11y();

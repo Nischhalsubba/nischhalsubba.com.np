@@ -1,24 +1,23 @@
 /**
  * @fileoverview src/scripts/features/navigation/page-transitions.js
- * Purpose: Browser runtime feature in the navigation domain responsible for page transitions behavior.
+ * Purpose: Implement page transitions behavior inside the navigation browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the navigation behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const TRANSITION_MS = 220;
 
 /**
  * Function contract: prefersReducedMotion
- * Purpose: Implements the prefers reduced motion responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the prefers reduced motion responsibility owned by the page transitions browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function prefersReducedMotion() {
   return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -26,10 +25,10 @@ function prefersReducedMotion() {
 
 /**
  * Function contract: isModifiedClick
- * Purpose: Implements the is modified click responsibility for this module.
- * Inputs: event.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Determine whether modified click satisfies the condition represented by this page transitions browser feature.
+ * Inputs: `event`: browser/DOM event being handled
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean indicating whether modified click satisfies the documented condition.
  */
 function isModifiedClick(event) {
   return event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
@@ -37,10 +36,10 @@ function isModifiedClick(event) {
 
 /**
  * Function contract: shouldTransition
- * Purpose: Implements the should transition responsibility for this module.
- * Inputs: link.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Determine whether transition satisfies the condition represented by this page transitions browser feature.
+ * Inputs: `link`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Boolean indicating whether transition satisfies the documented condition.
  */
 function shouldTransition(link) {
   if (!link) return false;
@@ -63,24 +62,24 @@ function shouldTransition(link) {
 
 /**
  * Function contract: initPageTransitions
- * Purpose: Implements the init page transitions responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Initialize page transitions for the page transitions browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function initPageTransitions() {
   if (prefersReducedMotion()) return;
 
   document.body.classList.add('nrs-page-enter');
-  window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => document.body.classList.remove('nrs-page-enter'), 520);
+  window.setTimeout(/** Callback contract: Perform the local callback step required by the enclosing page transitions browser feature operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => document.body.classList.remove('nrs-page-enter'), 520);
 
-  window.addEventListener('pageshow', /** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
+  window.addEventListener('pageshow', /** Callback contract: Handle the pageshow event for `window` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     document.body.classList.remove('nrs-page-leave');
     document.body.classList.add('nrs-page-enter');
-    window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => document.body.classList.remove('nrs-page-enter'), 520);
+    window.setTimeout(/** Callback contract: Perform the local callback step required by the enclosing page transitions browser feature operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => document.body.classList.remove('nrs-page-enter'), 520);
   });
 
-  document.addEventListener('click', /** Callback contract: Processes the callback step for document without leaking orchestration details to the caller. Inputs: event. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (event) => {
+  document.addEventListener('click', /** Callback contract: Handle the click event for `document` and apply this module's related state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
     if (isModifiedClick(event)) return;
 
     const link = event.target.closest?.('a[href]');
@@ -90,7 +89,7 @@ export function initPageTransitions() {
     document.body.classList.remove('nrs-page-enter');
     document.body.classList.add('nrs-page-leave');
 
-    window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
+    window.setTimeout(/** Callback contract: Perform the local callback step required by the enclosing page transitions browser feature operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
       window.location.href = link.href;
     }, TRANSITION_MS);
   });

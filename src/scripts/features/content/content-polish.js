@@ -1,15 +1,14 @@
 /**
  * @fileoverview src/scripts/features/content/content-polish.js
- * Purpose: Browser runtime feature in the content domain responsible for content polish behavior.
+ * Purpose: Implement content polish behavior inside the content browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the content behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const projectCopy = {
   '/project-yarsha.html': {
@@ -113,10 +112,10 @@ const writingCopy = {
 
 /**
  * Function contract: normalizePath
- * Purpose: Applies normalize path while preserving the surrounding repository/runtime contract.
- * Inputs: href.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply path consistently while preserving the surrounding content polish browser feature contract.
+ * Inputs: `href`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function normalizePath(href) {
   try {
@@ -128,13 +127,13 @@ function normalizePath(href) {
 
 /**
  * Function contract: updateProjectCards
- * Purpose: Applies update project cards while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply project cards consistently while preserving the surrounding content polish browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateProjectCards() {
-  document.querySelectorAll('.project-card[href]').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card[href]') without leaking orchestration details to the caller. Inputs: card. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (card) => {
+  document.querySelectorAll('.project-card[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (card) => {
     const copy = projectCopy[normalizePath(card.getAttribute('href'))];
     if (!copy) return;
 
@@ -144,7 +143,7 @@ function updateProjectCards() {
 
     if (title) title.textContent = copy.title;
     if (summary) summary.textContent = copy.summary;
-    metaItems.forEach(/** Callback contract: Processes the callback step for meta items without leaking orchestration details to the caller. Inputs: item, index. Side effects: may read or update browser DOM/state. No explicit return contract. */ (item, index) => {
+    metaItems.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item, index) => {
       if (copy.meta[index]) item.textContent = copy.meta[index];
     });
   });
@@ -152,13 +151,13 @@ function updateProjectCards() {
 
 /**
  * Function contract: updateWritingItems
- * Purpose: Applies update writing items while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply writing items consistently while preserving the surrounding content polish browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateWritingItems() {
-  document.querySelectorAll('.writing-item[href]').forEach(/** Callback contract: Processes the callback step for document.query selector all('.writing item[href]') without leaking orchestration details to the caller. Inputs: item. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (item) => {
+  document.querySelectorAll('.writing-item[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => {
     const copy = writingCopy[normalizePath(item.getAttribute('href'))];
     if (!copy) return;
 
@@ -172,10 +171,10 @@ function updateWritingItems() {
 
 /**
  * Function contract: updatePageIntros
- * Purpose: Applies update page intros while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply page intros consistently while preserving the surrounding content polish browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updatePageIntros() {
   const path = window.location.pathname;
@@ -192,10 +191,10 @@ function updatePageIntros() {
 
 /**
  * Function contract: polishContent
- * Purpose: Applies polish content while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply content consistently while preserving the surrounding content polish browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function polishContent() {
   updateProjectCards();

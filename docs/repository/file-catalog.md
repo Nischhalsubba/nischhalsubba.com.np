@@ -21,13 +21,13 @@ Connections list direct textual references when available, then ownership/build-
 | `.github/deployment-replays/final-04-2da3aad.md` | Project documentation for Final 04 2da3aad. | `docs/repository/file-map.md` |
 | `.github/deployment-replays/final-05-c8d5dc3.md` | Project documentation for Final 05 C8d5dc3. | `docs/repository/file-map.md` |
 | `.github/redeploy-signal-hero` | Repository asset/support file for Redeploy Signal Hero. | `docs/repository/file-map.md` |
-| `.github/workflows/apply-interactive-readme.yml` | GitHub Actions workflow for Apply Interactive Readme automation and QA. | `README.md`, `docs/repository/file-map.md`, `scripts/repository/generate-file-catalog.cjs`, `package.json` |
-| `.github/workflows/browser-audit.yml` | GitHub Actions workflow for Browser Audit automation and QA. | `README.md`, `scripts/browser-audit.mjs`, `scripts/browser-contact-audit.mjs`, `scripts/browser-sticky-responsive-audit.mjs` |
+| `.github/workflows/apply-interactive-readme.yml` | GitHub Actions workflow for Apply Interactive Readme automation and QA. | `README.md`, `docs/repository/file-map.md`, `package.json`, `scripts/` |
+| `.github/workflows/browser-audit.yml` | GitHub Actions workflow for Browser Audit automation and QA. | `README.md`, `tests/smoke.spec.ts`, `package.json`, `scripts/` |
 | `.github/workflows/deploy-cloudflare.yml` | GitHub Actions workflow for Deploy Cloudflare automation and QA. | `README.md`, `package.json`, `scripts/` |
-| `.github/workflows/hero-ux-audit.yml` | GitHub Actions workflow for Hero Ux Audit automation and QA. | `README.md`, `scripts/browser-hero-ux-audit-v26.mjs`, `package.json`, `scripts/` |
-| `.github/workflows/interface-polish-audit.yml` | GitHub Actions workflow for Interface Polish Audit automation and QA. | `README.md`, `scripts/browser-interface-polish-audit.mjs`, `package.json`, `scripts/` |
-| `.github/workflows/production-qa.yml` | GitHub Actions workflow for Production Qa automation and QA. | `README.md`, `scripts/browser-audit.mjs`, `scripts/browser-contact-audit.mjs`, `scripts/browser-mobile-menu-expanded-audit.mjs` |
-| `.github/workflows/production-route-audit.yml` | GitHub Actions workflow for Production Route Audit automation and QA. | `README.md`, `scripts/audit-production-routes.mjs`, `package.json`, `scripts/` |
+| `.github/workflows/hero-ux-audit.yml` | GitHub Actions workflow for Hero Ux Audit automation and QA. | `README.md`, `package.json`, `scripts/` |
+| `.github/workflows/interface-polish-audit.yml` | GitHub Actions workflow for Interface Polish Audit automation and QA. | `README.md`, `package.json`, `scripts/` |
+| `.github/workflows/production-qa.yml` | GitHub Actions workflow for Production Qa automation and QA. | `README.md`, `package.json`, `scripts/` |
+| `.github/workflows/production-route-audit.yml` | GitHub Actions workflow for Production Route Audit automation and QA. | `README.md`, `package.json`, `scripts/` |
 | `.github/workflows/validate.yml` | GitHub Actions workflow for Validate automation and QA. | `README.md`, `package.json`, `scripts/` |
 | `.gitignore` | Git ignore policy, including generated build output and temporary root compatibility sources. | `README.md`, `config/repository/root-policy.json`, `docs/repository/file-map.md`, `scripts/repository/generate-file-catalog.cjs` |
 | `AGENTS.md` | Automation and deployment safety contract for repository-changing agents. | `README.md`, `config/repository/root-policy.json`, `docs/repository/file-map.md`, `scripts/ensure-signal-demo-hero-v16.cjs` |
@@ -187,8 +187,8 @@ Connections list direct textual references when available, then ownership/build-
 | `assets/vendor/ScrollTrigger.min.js` | Authored static asset for ScrollTrigger.Min. | `src/compat/legacy-pages/home.html`, `vite.config.ts`, `scripts/copy-static-assets.cjs`, `src/pages/ or blog/` |
 | `assets/vendor/gsap.min.js` | Authored static asset for Gsap.Min. | `scripts/ensure-signal-demo-hero-v14.cjs`, `scripts/ensure-signal-demo-hero-v16.cjs`, `scripts/finalize-signal-story-v21.cjs`, `src/compat/legacy-pages/home.html` |
 | `assets/viewport-responsive-polish-B7vMzSB-.js` | Authored static asset for Viewport Responsive Polish B7vMzSB . | `assets/script.js_v_32-B_qKUDlB.js`, `scripts/copy-static-assets.cjs`, `src/pages/ or blog/` |
-| `blog/ai-assisted-product-design-workflows-small-teams.html` | Canonical Ai Assisted Product Design Workflows Small Teams writing/article HTML source. | `src/pages/core/about.html`, `src/pages/core/contact.html`, `src/pages/core/projects.html`, `src/pages/projects/project-mokshya.html` |
-| `blog/beautiful-interface-poor-ux.html` | Canonical Beautiful Interface Poor Ux writing/article HTML source. | `config/canonical-routes.json`, `src/runtime/script.js`, `src/styles/style.css`, `vite.config.ts` |
+| `blog/ai-assisted-product-design-workflows-small-teams.html` | Canonical Ai Assisted Product Design Workflows Small Teams writing/article HTML source. | `config/canonical-routes.json`, `vite.config.ts`, `scripts/build-dist.cjs` |
+| `blog/beautiful-interface-poor-ux.html` | Canonical Beautiful Interface Poor Ux writing/article HTML source. | `config/canonical-routes.json`, `vite.config.ts`, `scripts/build-dist.cjs` |
 | `blog/blog-design-systems-front-end.html` | Canonical Design Systems Front End writing/article HTML source. | `docs/CODEBASE_GUIDE.md`, `docs/root-route-map.md`, `public/detail-navigation.js`, `public/sitemap.xml` |
 | `blog/blog-gaming-interface-clarity.html` | Canonical Gaming Interface Clarity writing/article HTML source. | `docs/CODEBASE_GUIDE.md`, `docs/root-route-map.md`, `public/detail-navigation.js`, `public/sitemap.xml` |
 | `blog/blog-good-handoff.html` | Canonical Good Handoff writing/article HTML source. | `blog/figma-handoff-notes-for-developers.html`, `blog/ux-audit-checklist-before-redesign.html`, `docs/CODEBASE_GUIDE.md`, `docs/root-route-map.md` |
@@ -203,12 +203,12 @@ Connections list direct textual references when available, then ownership/build-
 | `blog/index.html` | Canonical writing/blog index HTML source. | `assets/blog-visuals-DWMKHFlK.js`, `assets/microcopy-polish-p7eLqmCp.js`, `blog/design-handoff-checklist-startup-product-teams.html`, `blog/design-systems-small-product-teams.html` |
 | `blog/prioritize-ux-audit-findings-before-redesign.html` | Canonical Prioritize Ux Audit Findings Before Redesign writing/article HTML source. | `blog/design-handoff-checklist-startup-product-teams.html`, `blog/ux-audit-checklist-before-redesign.html`, `blog/when-startup-needs-ux-audit-before-redesign.html`, `config/canonical-routes.json` |
 | `blog/responsive-saas-dashboard-handoff-notes.html` | Canonical Responsive Saas Dashboard Handoff Notes writing/article HTML source. | `blog/index.html`, `config/canonical-routes.json`, `public/blog/index.html`, `public/blog/responsive-saas-dashboard-handoff-notes.html` |
-| `blog/role-based-saas-dashboard-ux.html` | Canonical Role Based Saas Dashboard Ux writing/article HTML source. | `blog/design-handoff-checklist-startup-product-teams.html`, `blog/design-systems-small-product-teams.html`, `blog/index.html`, `blog/saas-dashboard-empty-states-that-help-users-recover.html` |
+| `blog/role-based-saas-dashboard-ux.html` | Canonical Role Based Saas Dashboard Ux writing/article HTML source. | `blog/index.html`, `blog/saas-dashboard-empty-states-that-help-users-recover.html`, `blog/saas-dashboard-filter-ux.html`, `blog/saas-dashboard-ux-checklist.html` |
 | `blog/saas-dashboard-empty-state-ux-guide.html` | Canonical Saas Dashboard Empty State Ux Guide writing/article HTML source. | `public/blog/saas-dashboard-empty-state-ux-guide.html`, `config/canonical-routes.json`, `vite.config.ts`, `scripts/build-dist.cjs` |
 | `blog/saas-dashboard-empty-state-ux.html` | Canonical Saas Dashboard Empty State Ux writing/article HTML source. | `config/canonical-routes.json`, `vite.config.ts`, `scripts/build-dist.cjs` |
-| `blog/saas-dashboard-empty-states-product-clarity.html` | Canonical Saas Dashboard Empty States Product Clarity writing/article HTML source. | `blog/design-systems-small-product-teams.html`, `blog/saas-dashboard-ux-checklist.html`, `public/blog/saas-dashboard-empty-states-product-clarity.html`, `config/canonical-routes.json` |
-| `blog/saas-dashboard-empty-states-that-help-users-recover.html` | Canonical Saas Dashboard Empty States That Help Users Recover writing/article HTML source. | `blog/design-systems-small-product-teams.html`, `blog/index.html`, `blog/role-based-saas-dashboard-ux.html`, `blog/saas-dashboard-filter-ux.html` |
-| `blog/saas-dashboard-filter-ux.html` | Canonical Saas Dashboard Filter Ux writing/article HTML source. | `blog/index.html`, `blog/role-based-saas-dashboard-ux.html`, `blog/saas-dashboard-empty-states-that-help-users-recover.html`, `config/canonical-routes.json` |
+| `blog/saas-dashboard-empty-states-product-clarity.html` | Canonical Saas Dashboard Empty States Product Clarity writing/article HTML source. | `blog/saas-dashboard-ux-checklist.html`, `public/blog/saas-dashboard-empty-states-product-clarity.html`, `config/canonical-routes.json`, `vite.config.ts` |
+| `blog/saas-dashboard-empty-states-that-help-users-recover.html` | Canonical Saas Dashboard Empty States That Help Users Recover writing/article HTML source. | `blog/index.html`, `blog/role-based-saas-dashboard-ux.html`, `blog/saas-dashboard-filter-ux.html`, `config/canonical-routes.json` |
+| `blog/saas-dashboard-filter-ux.html` | Canonical Saas Dashboard Filter Ux writing/article HTML source. | `blog/index.html`, `config/canonical-routes.json`, `public/blog/index.html`, `public/blog/saas-dashboard-filter-ux.html` |
 | `blog/saas-dashboard-ux-checklist.html` | Canonical Saas Dashboard Ux Checklist writing/article HTML source. | `blog/design-systems-small-product-teams.html`, `blog/role-based-saas-dashboard-ux.html`, `blog/saas-dashboard-empty-states-product-clarity.html`, `blog/saas-dashboard-empty-states-that-help-users-recover.html` |
 | `blog/transaction-review-ux-crypto-apps.html` | Canonical Transaction Review Ux Crypto Apps writing/article HTML source. | `public/blog/transaction-review-ux-crypto-apps.html`, `public/detail-navigation.js`, `public/sitemap.xml`, `scripts/ensure-search-intents.cjs` |
 | `blog/ux-audit-checklist-before-redesign.html` | Canonical Ux Audit Checklist Before Redesign writing/article HTML source. | `blog/blog-good-handoff.html`, `blog/prioritize-ux-audit-findings-before-redesign.html`, `config/canonical-routes.json`, `public/blog/prioritize-ux-audit-findings-before-redesign.html` |
@@ -228,20 +228,20 @@ Connections list direct textual references when available, then ownership/build-
 | `docs/OPEN_DESIGN_UI_REDESIGN.md` | Repository documentation for OPEN DESIGN UI REDESIGN. | `README.md`, `related source/tooling folder` |
 | `docs/SEO-CHECKLIST.md` | Repository documentation for SEO CHECKLIST. | `README.md`, `related source/tooling folder` |
 | `docs/build-pipeline.md` | Repository documentation for Build Pipeline. | `blog/blog-web3-products.html`, `scripts/audit-build.cjs`, `scripts/audit-content-structure.cjs`, `scripts/copy-static-assets.cjs` |
-| `docs/codebase-structure.md` | Repository documentation for Codebase Structure. | `scripts/audit-content-structure.cjs`, `README.md`, `related source/tooling folder` |
+| `docs/codebase-structure.md` | Repository documentation for Codebase Structure. | `scripts/audit-content-structure.cjs`, `src/styles/style.css`, `README.md`, `related source/tooling folder` |
 | `docs/design-dna.json` | Repository documentation for Design Dna. | `scripts/ensure-case-study-specificity.cjs`, `scripts/ensure-senior-portfolio-v2.cjs`, `src/scripts/features/portfolio/agent-portfolio.js`, `README.md` |
-| `docs/design-system/README.md` | Repository documentation for README. | `scripts/audit-design-system-coverage.cjs`, `README.md`, `related source/tooling folder` |
+| `docs/design-system/README.md` | Repository documentation for README. | `scripts/audit-design-system-coverage.cjs`, `src/styles/style.css`, `README.md`, `related source/tooling folder` |
 | `docs/design-system/master.md` | Repository documentation for Master. | `docs/design-system/README.md`, `README.md`, `related source/tooling folder` |
 | `docs/portfolio-qa-release-plan.md` | Repository documentation for Portfolio Qa Release Plan. | `README.md`, `related source/tooling folder` |
 | `docs/production-delivery.md` | Repository documentation for Production Delivery. | `scripts/write-build-metadata.cjs`, `src/worker.js`, `README.md`, `related source/tooling folder` |
 | `docs/quality-gates.md` | Repository documentation for Quality Gates. | `scripts/browser-theme-contrast-audit.mjs`, `README.md`, `related source/tooling folder` |
 | `docs/remaining-portfolio-qa-release-plan.md` | Repository documentation for Remaining Portfolio Qa Release Plan. | `README.md`, `related source/tooling folder` |
-| `docs/repository/file-map.md` | Architectural ownership map for root files, source folders, build folders, and compatibility behavior. | `config/repository/root-policy.json`, `scripts/clean-vite-public-output.cjs`, `scripts/copy-static-assets.cjs`, `scripts/generate-seo-discovery.cjs` |
+| `docs/repository/file-map.md` | Architectural ownership map for root files, source folders, build folders, and compatibility behavior. | `config/repository/root-policy.json`, `scripts/repository/generate-file-catalog.cjs`, `src/README.md`, `README.md` |
 | `docs/reveal-visibility-hotfix.md` | Repository documentation for Reveal Visibility Hotfix. | `scripts/ensure-reveal-visibility.cjs`, `README.md`, `related source/tooling folder` |
 | `docs/root-route-map.md` | Repository documentation for Root Route Map. | `blog/blog-design-systems-front-end.html`, `blog/blog-gaming-interface-clarity.html`, `blog/blog-portfolio-product.html`, `blog/blog-service-websites.html` |
 | `docs/seo-ai-visibility-plan.md` | Repository documentation for Seo Ai Visibility Plan. | `scripts/ensure-seo-growth-assets.cjs`, `README.md`, `related source/tooling folder` |
-| `docs/seo-maintenance.md` | Repository documentation for Seo Maintenance. | `scripts/generate-seo-discovery.cjs`, `scripts/generate-social-previews.cjs`, `src/content/routes.js`, `src/scripts/features/navigation/navigation.js` |
-| `functions/api/contact.js` | Cloudflare Functions-compatible API handler for Contact. | `README.md`, `src/worker.js`, `contact form/runtime` |
+| `docs/seo-maintenance.md` | Repository documentation for Seo Maintenance. | `scripts/generate-seo-discovery.cjs`, `scripts/generate-social-previews.cjs`, `README.md`, `related source/tooling folder` |
+| `functions/api/contact.js` | Cloudflare Functions-compatible API handler for Contact. | `README.md`, `api/contact.js`, `src/worker.js`, `contact form/runtime` |
 | `package-lock.json` | Reproducible npm dependency graph consumed by npm ci and dependency security checks. | `README.md`, `config/repository/root-policy.json`, `docs/quality-gates.md`, `docs/repository/file-map.md` |
 | `package.json` | Node dependency declarations and the authoritative development, build, audit, and QA command surface. | `README.md`, `config/repository/root-policy.json`, `docs/quality-gates.md`, `docs/repository/file-map.md` |
 | `public/_headers` | Static passthrough deployment asset/configuration for  Headers. | `scripts/copy-static-assets.cjs`, `deployment output` |
@@ -293,19 +293,19 @@ Connections list direct textual references when available, then ownership/build-
 | `scripts/agent-redesign-part-1.cjsfrag` | Deterministic production transformation stage for Agent Redesign Part 1. | `docs/design-dna.json`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/agent-redesign-part-2.cjsfrag` | Deterministic production transformation stage for Agent Redesign Part 2. | `docs/design-dna.json`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/agent-redesign-part-3.cjsfrag` | Deterministic production transformation stage for Agent Redesign Part 3. | `docs/design-dna.json`, `scripts/build-dist.cjs`, `package.json` |
-| `scripts/agent-redesign.cjs` | Deterministic production transformation stage for Agent Redesign. | `scripts/build-dist.cjs`, `src/scripts/entrypoints/agent-main.js`, `src/scripts/features/portfolio/agent-portfolio.js`, `package.json` |
-| `scripts/agent-writing-redesign.cjs` | Deterministic production transformation stage for Agent Writing Redesign. | `scripts/agent-polish.cjs`, `scripts/build-dist.cjs`, `package.json` |
+| `scripts/agent-redesign.cjs` | Deterministic production transformation stage for Agent Redesign. | `scripts/build-dist.cjs`, `package.json` |
+| `scripts/agent-writing-redesign.cjs` | Deterministic production transformation stage for Agent Writing Redesign. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/audit-accessibility-tokens.cjs` | Build/QA verification script for Audit Accessibility Tokens. | `package.json`, `scripts/build-dist.cjs` |
 | `scripts/audit-build-provenance.cjs` | Build/QA verification script for Audit Build Provenance. | `package.json`, `scripts/build-dist.cjs` |
-| `scripts/audit-build.cjs` | Build/QA verification script for Audit Build. | `blog/index.html`, `docs/build-pipeline.md`, `docs/root-route-map.md`, `package.json` |
-| `scripts/audit-content-structure.cjs` | Build/QA verification script for Audit Content Structure. | `package.json`, `src/compat/legacy-pages/home.html`, `src/content/posts.js`, `src/content/projects.js` |
+| `scripts/audit-build.cjs` | Build/QA verification script for Audit Build. | `docs/build-pipeline.md`, `docs/root-route-map.md`, `package.json`, `scripts/build-dist.cjs` |
+| `scripts/audit-content-structure.cjs` | Build/QA verification script for Audit Content Structure. | `package.json`, `src/content/posts.js`, `src/content/projects.js`, `src/content/routes.js` |
 | `scripts/audit-content-voice.cjs` | Build/QA verification script for Audit Content Voice. | `package.json`, `scripts/build-dist.cjs` |
-| `scripts/audit-css-architecture.cjs` | Build/QA verification script for Audit Css Architecture. | `package.json`, `scripts/compile-single-stylesheet.cjs`, `scripts/repository/generate-file-catalog.cjs`, `src/styles/systems/case-study.css` |
+| `scripts/audit-css-architecture.cjs` | Build/QA verification script for Audit Css Architecture. | `package.json`, `scripts/compile-single-stylesheet.cjs`, `scripts/repository/generate-file-catalog.cjs`, `src/styles/style.css` |
 | `scripts/audit-design-system-coverage.cjs` | Build/QA verification script for Audit Design System Coverage. | `docs/design-system/README.md`, `package.json`, `scripts/build-dist.cjs` |
 | `scripts/audit-final-seo.cjs` | Build/QA verification script for Audit Final Seo. | `package.json`, `scripts/build-dist.cjs` |
 | `scripts/audit-production-routes.mjs` | Build/QA verification script for Audit Production Routes. | `.github/workflows/production-route-audit.yml`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/audit-seo-contract.cjs` | Build/QA verification script for Audit Seo Contract. | `package.json`, `scripts/build-dist.cjs` |
-| `scripts/audit-seo-discovery.cjs` | Build/QA verification script for Audit Seo Discovery. | `package.json`, `scripts/seo-discovery-lib.cjs`, `scripts/build-dist.cjs` |
+| `scripts/audit-seo-discovery.cjs` | Build/QA verification script for Audit Seo Discovery. | `package.json`, `scripts/build-dist.cjs` |
 | `scripts/audit-shared-shell.cjs` | Build/QA verification script for Audit Shared Shell. | `package.json`, `scripts/build-dist.cjs` |
 | `scripts/browser-audit.mjs` | Build/QA verification script for Browser Audit. | `.github/workflows/browser-audit.yml`, `.github/workflows/production-qa.yml`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/browser-contact-audit.mjs` | Build/QA verification script for Browser Contact Audit. | `.github/workflows/browser-audit.yml`, `.github/workflows/production-qa.yml`, `scripts/build-dist.cjs`, `package.json` |
@@ -315,8 +315,8 @@ Connections list direct textual references when available, then ownership/build-
 | `scripts/browser-performance-audit.mjs` | Build/QA verification script for Browser Performance Audit. | `.github/workflows/production-qa.yml`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/browser-sticky-responsive-audit.mjs` | Build/QA verification script for Browser Sticky Responsive Audit. | `.github/workflows/browser-audit.yml`, `.github/workflows/production-qa.yml`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/browser-theme-contrast-audit.mjs` | Build/QA verification script for Browser Theme Contrast Audit. | `.github/workflows/browser-audit.yml`, `.github/workflows/production-qa.yml`, `docs/quality-gates.md`, `scripts/build-dist.cjs` |
-| `scripts/build-dist.cjs` | Build-generation script for Build Dist. | `package.json`, `scripts/agent-redesign.cjs`, `scripts/agent-writing-redesign.cjs`, `scripts/audit-accessibility-tokens.cjs` |
-| `scripts/build-site.cjs` | Build-generation script for Build Site. | `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `package.json` |
+| `scripts/build-dist.cjs` | Build-generation script for Build Dist. | `package.json`, `scripts/agent-redesign.cjs`, `scripts/agent-writing-redesign.cjs`, `scripts/build-site.cjs` |
+| `scripts/build-site.cjs` | Build-generation script for Build Site. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/check-links.js` | Build/QA verification script for Check Links. | `package.json`, `scripts/build-dist.cjs` |
 | `scripts/clean-vite-public-output.cjs` | Build or maintenance utility for Clean Vite Public Output. | `docs/repository/file-map.md`, `scripts/build-dist.cjs`, `scripts/repository/generate-file-catalog.cjs`, `src/compat/README.md` |
 | `scripts/compile-single-stylesheet.cjs` | Build-generation script for Compile Single Stylesheet. | `scripts/audit-css-architecture.cjs`, `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `scripts/repository/generate-file-catalog.cjs` |
@@ -344,8 +344,8 @@ Connections list direct textual references when available, then ownership/build-
 | `scripts/ensure-case-study-card-visibility.cjs` | Build or maintenance utility for Ensure Case Study Card Visibility. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-case-study-specificity.cjs` | Build or maintenance utility for Ensure Case Study Specificity. | `docs/design-dna.json`, `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `package.json` |
 | `scripts/ensure-clean-sitemap.cjs` | Build or maintenance utility for Ensure Clean Sitemap. | `scripts/build-dist.cjs`, `package.json` |
-| `scripts/ensure-contact-redesign.cjs` | Deterministic production transformation stage for Ensure Contact Redesign. | `scripts/early-theme-bootstrap.cjs`, `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
-| `scripts/ensure-entity-proof-signals.cjs` | Build or maintenance utility for Ensure Entity Proof Signals. | `scripts/generate-source.cjs`, `src/pages/projects/project-neverwinter-parser.html`, `src/pages/projects/project-splashnode.html`, `scripts/build-dist.cjs` |
+| `scripts/ensure-contact-redesign.cjs` | Deterministic production transformation stage for Ensure Contact Redesign. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
+| `scripts/ensure-entity-proof-signals.cjs` | Build or maintenance utility for Ensure Entity Proof Signals. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-final-brand-contrast.cjs` | Build or maintenance utility for Ensure Final Brand Contrast. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-final-mobile-layout.cjs` | Build or maintenance utility for Ensure Final Mobile Layout. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-final-seo-canonical-cleanup.cjs` | Build or maintenance utility for Ensure Final Seo Canonical Cleanup. | `scripts/build-dist.cjs`, `package.json` |
@@ -353,8 +353,8 @@ Connections list direct textual references when available, then ownership/build-
 | `scripts/ensure-homepage-audit-copy.cjs` | Build/QA verification script for Ensure Homepage Audit Copy. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-homepage-hero-layout.cjs` | Build or maintenance utility for Ensure Homepage Hero Layout. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-human-seo-v2.cjs` | Build or maintenance utility for Ensure Human Seo V2. | `scripts/build-dist.cjs`, `package.json` |
-| `scripts/ensure-human-seo.cjs` | Build or maintenance utility for Ensure Human Seo. | `src/pages/projects/project-designerex.html`, `src/pages/projects/project-zakra-furniture.html`, `scripts/build-dist.cjs`, `package.json` |
-| `scripts/ensure-interface-polish.cjs` | Deterministic production transformation stage for Ensure Interface Polish. | `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `src/scripts/features/portfolio/agent-portfolio.js`, `package.json` |
+| `scripts/ensure-human-seo.cjs` | Build or maintenance utility for Ensure Human Seo. | `scripts/build-dist.cjs`, `package.json` |
+| `scripts/ensure-interface-polish.cjs` | Deterministic production transformation stage for Ensure Interface Polish. | `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `package.json` |
 | `scripts/ensure-mobile-brand-singleton-v11.cjs` | Build or maintenance utility for Ensure Mobile Brand Singleton V11. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-mobile-drawer-final.cjs` | Build or maintenance utility for Ensure Mobile Drawer Final. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-mobile-first-detail-layout.cjs` | Build or maintenance utility for Ensure Mobile First Detail Layout. | `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `package.json` |
@@ -369,38 +369,38 @@ Connections list direct textual references when available, then ownership/build-
 | `scripts/ensure-search-intents.cjs` | Build or maintenance utility for Ensure Search Intents. | `blog/blog-design-systems-front-end.html`, `blog/blog-gaming-interface-clarity.html`, `blog/blog-portfolio-product.html`, `blog/blog-service-websites.html` |
 | `scripts/ensure-semantic-headings.cjs` | Build or maintenance utility for Ensure Semantic Headings. | `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `package.json` |
 | `scripts/ensure-senior-case-studies.cjs` | Build or maintenance utility for Ensure Senior Case Studies. | `scripts/build-dist.cjs`, `package.json` |
-| `scripts/ensure-senior-portfolio-v2.cjs` | Build or maintenance utility for Ensure Senior Portfolio V2. | `docs/design-dna.json`, `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `package.json` |
+| `scripts/ensure-senior-portfolio-v2.cjs` | Build or maintenance utility for Ensure Senior Portfolio V2. | `docs/design-dna.json`, `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `src/scripts/features/portfolio/agent-portfolio.js` |
 | `scripts/ensure-seo-code-fixes.cjs` | Deterministic production transformation stage for Ensure Seo Code Fixes. | `blog/transaction-review-ux-crypto-apps.html`, `blog/web3-wallet-ux-checklist.html`, `blog/website-ux-checklist-software-companies.html`, `scripts/generate-source.cjs` |
-| `scripts/ensure-seo-growth-assets.cjs` | Build or maintenance utility for Ensure Seo Growth Assets. | `blog/fintech-verification-ux.html`, `scripts/early-theme-bootstrap.cjs`, `scripts/generate-source.cjs`, `scripts/build-dist.cjs` |
+| `scripts/ensure-seo-growth-assets.cjs` | Build or maintenance utility for Ensure Seo Growth Assets. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-service-containment-v9.cjs` | Build or maintenance utility for Ensure Service Containment V9. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-shared-site-shell.cjs` | Build or maintenance utility for Ensure Shared Site Shell. | `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `package.json` |
-| `scripts/ensure-signal-demo-hero-v14.cjs` | Build or maintenance utility for Ensure Signal Demo Hero V14. | `scripts/verify-signal-demo-source-v14.cjs`, `scripts/build-dist.cjs`, `package.json` |
-| `scripts/ensure-signal-demo-hero-v15.cjs` | Build or maintenance utility for Ensure Signal Demo Hero V15. | `scripts/ensure-signal-demo-hero-v16.cjs`, `scripts/preflight-build-scripts.cjs`, `scripts/build-dist.cjs`, `package.json` |
+| `scripts/ensure-signal-demo-hero-v14.cjs` | Build or maintenance utility for Ensure Signal Demo Hero V14. | `scripts/build-dist.cjs`, `package.json` |
+| `scripts/ensure-signal-demo-hero-v15.cjs` | Build or maintenance utility for Ensure Signal Demo Hero V15. | `scripts/preflight-build-scripts.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-signal-demo-hero-v16.cjs` | Build or maintenance utility for Ensure Signal Demo Hero V16. | `AGENTS.md`, `scripts/ensure-signal-demo-hero-v15.cjs`, `scripts/ensure-signal-portrait-asset-v13.cjs`, `scripts/build-dist.cjs` |
-| `scripts/ensure-signal-portrait-asset-v13.cjs` | Build or maintenance utility for Ensure Signal Portrait Asset V13. | `AGENTS.md`, `scripts/build-dist.cjs`, `scripts/ensure-signal-demo-hero-v16.cjs`, `package.json` |
+| `scripts/ensure-signal-portrait-asset-v13.cjs` | Build or maintenance utility for Ensure Signal Portrait Asset V13. | `AGENTS.md`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-signal-portrait-interaction-v12.cjs` | Build or maintenance utility for Ensure Signal Portrait Interaction V12. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-site-final-polish.cjs` | Deterministic production transformation stage for Ensure Site Final Polish. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-sitewide-editorial-v4.cjs` | Build or maintenance utility for Ensure Sitewide Editorial V4. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-sitewide-final-details.cjs` | Build or maintenance utility for Ensure Sitewide Final Details. | `scripts/build-dist.cjs`, `package.json` |
-| `scripts/ensure-spacious-core-pages.cjs` | Build or maintenance utility for Ensure Spacious Core Pages. | `scripts/generate-source.cjs`, `scripts/spacious-pages/about.cjs`, `scripts/spacious-pages/contact.cjs`, `scripts/spacious-pages/home-work.cjs` |
+| `scripts/ensure-spacious-core-pages.cjs` | Build or maintenance utility for Ensure Spacious Core Pages. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-sticky-responsive-shell.cjs` | Build or maintenance utility for Ensure Sticky Responsive Shell. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-theme-surface-v8.cjs` | Build or maintenance utility for Ensure Theme Surface V8. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/ensure-typography-system.cjs` | Build or maintenance utility for Ensure Typography System. | `scripts/build-dist.cjs`, `scripts/generate-source.cjs`, `package.json` |
 | `scripts/ensure-writing-service-visual-v10.cjs` | Build or maintenance utility for Ensure Writing Service Visual V10. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/finalize-hero-ux-remediations-v26.cjs` | Deterministic production transformation stage for Finalize Hero Ux Remediations V26. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/finalize-signal-reference-visual-v18-core.cjs` | Deterministic production transformation stage for Finalize Signal Reference Visual V18 Core. | `scripts/finalize-signal-reference-visual.cjs`, `scripts/build-dist.cjs`, `package.json` |
-| `scripts/finalize-signal-reference-visual.cjs` | Deterministic production transformation stage for Finalize Signal Reference Visual. | `scripts/build-dist.cjs`, `scripts/finalize-signal-reference-visual-v18-core.cjs`, `scripts/finalize-signal-story-v23.cjs`, `scripts/finalize-signal-typography-v24.cjs` |
+| `scripts/finalize-signal-reference-visual.cjs` | Deterministic production transformation stage for Finalize Signal Reference Visual. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/finalize-signal-story-v20.cjs` | Deterministic production transformation stage for Finalize Signal Story V20. | `scripts/finalize-signal-story-v21.cjs`, `scripts/finalize-signal-story-v23.cjs`, `scripts/build-dist.cjs`, `package.json` |
-| `scripts/finalize-signal-story-v21.cjs` | Deterministic production transformation stage for Finalize Signal Story V21. | `scripts/finalize-signal-story-v20.cjs`, `scripts/finalize-signal-story-v22.cjs`, `scripts/build-dist.cjs`, `package.json` |
+| `scripts/finalize-signal-story-v21.cjs` | Deterministic production transformation stage for Finalize Signal Story V21. | `scripts/finalize-signal-story-v22.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/finalize-signal-story-v22-polish.cjs` | Deterministic production transformation stage for Finalize Signal Story V22 Polish. | `scripts/build-dist.cjs`, `package.json` |
-| `scripts/finalize-signal-story-v22.cjs` | Deterministic production transformation stage for Finalize Signal Story V22. | `scripts/finalize-signal-story-v21.cjs`, `scripts/build-dist.cjs`, `package.json` |
-| `scripts/finalize-signal-story-v23.cjs` | Deterministic production transformation stage for Finalize Signal Story V23. | `scripts/finalize-signal-reference-visual.cjs`, `scripts/finalize-signal-story-v20.cjs`, `scripts/build-dist.cjs`, `package.json` |
+| `scripts/finalize-signal-story-v22.cjs` | Deterministic production transformation stage for Finalize Signal Story V22. | `scripts/build-dist.cjs`, `package.json` |
+| `scripts/finalize-signal-story-v23.cjs` | Deterministic production transformation stage for Finalize Signal Story V23. | `scripts/finalize-signal-reference-visual.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/finalize-signal-typography-v24.cjs` | Deterministic production transformation stage for Finalize Signal Typography V24. | `scripts/finalize-signal-reference-visual.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/generate-about-contact-pages.cjs` | Build-generation script for Generate About Contact Pages. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/generate-resume-pdf-v2.cjs` | Build-generation script for Generate Resume Pdf V2. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/generate-resume-pdf.cjs` | Build-generation script for Generate Resume Pdf. | `docs/build-pipeline.md`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/generate-seo-discovery.cjs` | Build-generation script for Generate Seo Discovery. | `docs/repository/file-map.md`, `docs/seo-maintenance.md`, `package.json`, `public/_redirects` |
-| `scripts/generate-social-previews.cjs` | Build-generation script for Generate Social Previews. | `docs/seo-maintenance.md`, `package.json`, `scripts/build-dist.cjs`, `scripts/seo-discovery-lib.cjs` |
+| `scripts/generate-social-previews.cjs` | Build-generation script for Generate Social Previews. | `docs/seo-maintenance.md`, `package.json`, `scripts/build-dist.cjs` |
 | `scripts/generate-source.cjs` | Build-generation script for Generate Source. | `package.json`, `scripts/build-site.cjs`, `scripts/compile-single-stylesheet.cjs`, `scripts/enforce-home-work-contract.cjs` |
 | `scripts/install-next-build-shim.cjs` | Build-generation script for Install Next Build Shim. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/link-experience-company-websites-v25.cjs` | Build or maintenance utility for Link Experience Company Websites V25. | `scripts/build-dist.cjs`, `package.json` |
@@ -414,11 +414,11 @@ Connections list direct textual references when available, then ownership/build-
 | `scripts/normalize-seo-contract.cjs` | Deterministic production transformation stage for Normalize Seo Contract. | `scripts/build-dist.cjs`, `package.json` |
 | `scripts/preflight-build-scripts.cjs` | Build-generation script for Preflight Build Scripts. | `package.json`, `scripts/build-dist.cjs`, `scripts/ensure-signal-demo-hero-v15.cjs`, `scripts/generate-source.cjs` |
 | `scripts/remove-signal-hero-legend.cjs` | Build or maintenance utility for Remove Signal Hero Legend. | `scripts/build-dist.cjs`, `package.json` |
-| `scripts/repository/README.md` | Repository architecture/documentation utility for README. | `config/repository/root-policy.json`, `scripts/repository/clean-root-sources.cjs`, `scripts/repository/source-layout.cjs`, `scripts/repository/sync-root-sources.cjs` |
+| `scripts/repository/README.md` | Repository architecture/documentation utility for README. | `config/repository/root-policy.json`, `package.json` |
 | `scripts/repository/audit-code-documentation.cjs` | Repository architecture/documentation utility for Audit Code Documentation. | `package.json`, `config/repository/root-policy.json` |
 | `scripts/repository/audit-repository-structure.cjs` | Repository architecture/documentation utility for Audit Repository Structure. | `config/repository/root-policy.json`, `docs/repository/file-map.md`, `package.json`, `scripts/repository/README.md` |
 | `scripts/repository/clean-root-sources.cjs` | Repository architecture/documentation utility for Clean Root Sources. | `package.json`, `scripts/repository/README.md`, `scripts/repository/source-layout.cjs`, `config/repository/root-policy.json` |
-| `scripts/repository/generate-file-catalog.cjs` | Repository architecture/documentation utility for Generate File Catalog. | `.github/workflows/apply-interactive-readme.yml`, `config/repository/root-policy.json`, `package.json`, `scripts/clean-vite-public-output.cjs` |
+| `scripts/repository/generate-file-catalog.cjs` | Repository architecture/documentation utility for Generate File Catalog. | `.github/workflows/apply-interactive-readme.yml`, `config/repository/root-policy.json`, `package.json`, `scripts/audit-css-architecture.cjs` |
 | `scripts/repository/materialize-root-sources.cjs` | Repository architecture/documentation utility for Materialize Root Sources. | `.gitignore`, `docs/repository/file-map.md`, `package.json`, `scripts/generate-seo-discovery.cjs` |
 | `scripts/repository/source-layout.cjs` | Repository architecture/documentation utility for Source Layout. | `config/repository/root-policy.json`, `docs/repository/file-map.md`, `scripts/repository/README.md`, `scripts/repository/audit-repository-structure.cjs` |
 | `scripts/repository/sync-root-sources.cjs` | Repository architecture/documentation utility for Sync Root Sources. | `package.json`, `scripts/repository/README.md`, `scripts/repository/source-layout.cjs`, `config/repository/root-policy.json` |
@@ -426,10 +426,10 @@ Connections list direct textual references when available, then ownership/build-
 | `scripts/sanitize-source-css.cjs` | Build or maintenance utility for Sanitize Source Css. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
 | `scripts/seo-discovery-lib.cjs` | Build or maintenance utility for Seo Discovery Lib. | `scripts/audit-seo-discovery.cjs`, `scripts/generate-seo-discovery.cjs`, `scripts/generate-social-previews.cjs`, `scripts/build-dist.cjs` |
 | `scripts/smoke-test-dist.mjs` | Build/QA verification script for Smoke Test Dist. | `package.json`, `scripts/build-dist.cjs` |
-| `scripts/spacious-pages/about.cjs` | Build or maintenance utility for About. | `scripts/build-dist.cjs`, `scripts/ensure-spacious-core-pages.cjs`, `scripts/spacious-pages/shared.cjs`, `package.json` |
-| `scripts/spacious-pages/contact.cjs` | Build or maintenance utility for Contact. | `scripts/build-dist.cjs`, `scripts/ensure-spacious-core-pages.cjs`, `scripts/generate-source.cjs`, `scripts/spacious-pages/shared.cjs` |
+| `scripts/spacious-pages/about.cjs` | Build or maintenance utility for About. | `scripts/build-dist.cjs`, `scripts/ensure-spacious-core-pages.cjs`, `package.json` |
+| `scripts/spacious-pages/contact.cjs` | Build or maintenance utility for Contact. | `scripts/build-dist.cjs`, `scripts/ensure-spacious-core-pages.cjs`, `scripts/generate-source.cjs`, `scripts/validate-about-contact.cjs` |
 | `scripts/spacious-pages/home-work.cjs` | Build or maintenance utility for Home Work. | `scripts/build-dist.cjs`, `scripts/ensure-spacious-core-pages.cjs`, `package.json` |
-| `scripts/spacious-pages/services.cjs` | Build or maintenance utility for Services. | `scripts/build-dist.cjs`, `scripts/ensure-spacious-core-pages.cjs`, `scripts/spacious-pages/shared.cjs`, `package.json` |
+| `scripts/spacious-pages/services.cjs` | Build or maintenance utility for Services. | `scripts/build-dist.cjs`, `scripts/ensure-spacious-core-pages.cjs`, `package.json` |
 | `scripts/spacious-pages/shared.cjs` | Build or maintenance utility for Shared. | `scripts/spacious-pages/about.cjs`, `scripts/spacious-pages/contact.cjs`, `scripts/spacious-pages/services.cjs`, `scripts/build-dist.cjs` |
 | `scripts/test-build-determinism.cjs` | Build/QA verification script for Test Build Determinism. | `package.json`, `scripts/build-dist.cjs` |
 | `scripts/update-portfolio-content.cjs` | Build or maintenance utility for Update Portfolio Content. | `scripts/generate-source.cjs`, `scripts/build-dist.cjs`, `package.json` |
@@ -441,14 +441,14 @@ Connections list direct textual references when available, then ownership/build-
 | `scripts/write-build-metadata.cjs` | Build-generation script for Write Build Metadata. | `docs/production-delivery.md`, `package.json`, `scripts/build-dist.cjs` |
 | `src/README.md` | Folder-level ownership and usage documentation for src. | `config/repository/root-policy.json`, `docs/repository/file-map.md` |
 | `src/app/design-system.css` | Stylesheet source for Design System. | `scripts/audit-build.cjs`, `src/app/layout.tsx`, `docs/repository/file-map.md` |
-| `src/app/layout.tsx` | Executable source/tooling module for Layout. | `README.md`, `src/app/design-system.css`, `docs/repository/file-map.md` |
-| `src/compat/README.md` | Folder-level ownership and usage documentation for src/compat. | `config/repository/root-policy.json`, `docs/repository/file-map.md` |
+| `src/app/layout.tsx` | Executable source/tooling module for Layout. | `README.md`, `docs/repository/file-map.md` |
+| `src/compat/README.md` | Folder-level ownership and usage documentation for src/compat. | `config/repository/root-policy.json`, `scripts/clean-vite-public-output.cjs`, `docs/repository/file-map.md` |
 | `src/compat/legacy-pages/blog.html` | Build-only legacy Blog HTML input retained for current Vite compatibility and removed from production output. | `assets/final-spacing-nav-proof-CQ08TYtx.js`, `assets/global-styles-CUTTR6kt.js`, `assets/microcopy-polish-p7eLqmCp.js`, `assets/navigation-CN5Gjsf4.js` |
 | `src/compat/legacy-pages/home-v2.html` | Build-only legacy Home V2 HTML input retained for current Vite compatibility and removed from production output. | `assets/final-spacing-nav-proof-CQ08TYtx.js`, `assets/navigation-CN5Gjsf4.js`, `config/canonical-routes.json`, `docs/CODEBASE_GUIDE.md` |
 | `src/compat/legacy-pages/home.html` | Build-only legacy Home HTML input retained for current Vite compatibility and removed from production output. | `assets/final-spacing-nav-proof-CQ08TYtx.js`, `assets/navigation-CN5Gjsf4.js`, `config/canonical-routes.json`, `docs/root-route-map.md` |
 | `src/components/GameModeCard.tsx` | Executable source/tooling module for GameModeCard. | `docs/repository/file-map.md` |
 | `src/components/StartScreen.tsx` | Executable source/tooling module for StartScreen. | `docs/repository/file-map.md` |
-| `src/content/README.md` | Folder-level ownership and usage documentation for src/content. | `scripts/audit-content-structure.cjs`, `src/content/posts.js`, `src/content/projects.js`, `src/content/services.js` |
+| `src/content/README.md` | Folder-level ownership and usage documentation for src/content. | `scripts/audit-content-structure.cjs`, `docs/repository/file-map.md` |
 | `src/content/posts.js` | Executable source/tooling module for Posts. | `scripts/audit-content-structure.cjs`, `src/content/README.md`, `docs/repository/file-map.md` |
 | `src/content/projects.js` | Executable source/tooling module for Projects. | `scripts/audit-content-structure.cjs`, `src/content/README.md`, `docs/repository/file-map.md` |
 | `src/content/routes.js` | Executable source/tooling module for Routes. | `README.md`, `blog/beautiful-interface-poor-ux.html`, `blog/figma-handoff-notes-for-developers.html`, `blog/hire-product-designer-nepal-saas-web3.html` |
@@ -497,7 +497,7 @@ Connections list direct textual references when available, then ownership/build-
 | `src/runtime/script.js` | Stable browser runtime compatibility entry that loads the modular source runtime. | `.gitignore`, `README.md`, `assets/article-layout-BQ0_7cQF.js`, `assets/contact-form-wI8mD1mO.js` |
 | `src/scripts/README.md` | Folder-level ownership and usage documentation for src/scripts. | `config/repository/root-policy.json`, `src/scripts/entrypoints/main.js`, `src/runtime/script.js` |
 | `src/scripts/entrypoints/README.md` | Folder-level ownership and usage documentation for src/scripts/entrypoints. | `config/repository/root-policy.json`, `src/scripts/entrypoints/main.js`, `src/runtime/script.js` |
-| `src/scripts/entrypoints/agent-main.js` | Modular browser-runtime feature for Agent Main behavior. | `scripts/agent-redesign.cjs`, `src/scripts/features/analytics/analytics-events.js`, `src/scripts/features/forms/contact-form.js`, `src/scripts/features/motion/signal-portrait.js` |
+| `src/scripts/entrypoints/agent-main.js` | Modular browser-runtime feature for Agent Main behavior. | `scripts/agent-redesign.cjs`, `src/runtime/script.js`, `src/scripts/entrypoints/main.js` |
 | `src/scripts/entrypoints/main.js` | Modular browser-runtime feature for Main behavior. | `docs/repository/file-map.md`, `scripts/repository/generate-file-catalog.cjs`, `src/runtime/README.md`, `src/runtime/script.js` |
 | `src/scripts/features/accessibility/README.md` | Folder-level ownership and usage documentation for src/scripts/features/accessibility. | `src/scripts/entrypoints/main.js`, `src/runtime/script.js` |
 | `src/scripts/features/accessibility/about-contact-standards.js` | Modular browser-runtime feature for About Contact Standards behavior. | `src/scripts/entrypoints/main.js`, `src/runtime/script.js` |
@@ -569,7 +569,7 @@ Connections list direct textual references when available, then ownership/build-
 | `src/styles/fragments/agent/sticky-cascade-lock.cssfrag` | Repository asset/support file for Sticky Cascade Lock. | `scripts/agent-polish.cjs`, `scripts/compile-single-stylesheet.cjs`, `scripts/audit-css-architecture.cjs` |
 | `src/styles/style.css` | Canonical global production stylesheet source. | `.gitignore`, `README.md`, `assets/vendor/ScrollTrigger.min.js`, `assets/vendor/gsap.min.js` |
 | `src/styles/systems/README.md` | Folder-level ownership and usage documentation for src/styles/systems. | `config/repository/root-policy.json`, `scripts/compile-single-stylesheet.cjs`, `scripts/audit-css-architecture.cjs` |
-| `src/styles/systems/case-study.css` | Frontend stylesheet module for Case Study. | `scripts/audit-css-architecture.cjs`, `scripts/compile-single-stylesheet.cjs` |
+| `src/styles/systems/case-study.css` | Frontend stylesheet module for Case Study. | `scripts/compile-single-stylesheet.cjs`, `scripts/audit-css-architecture.cjs` |
 | `src/styles/systems/inner-pages.css` | Frontend stylesheet module for Inner Pages. | `scripts/audit-css-architecture.cjs`, `scripts/compile-single-stylesheet.cjs`, `src/scripts/features/accessibility/audit-remediations.js`, `src/styles/style.css` |
 | `src/worker.js` | Cloudflare Worker request router for static delivery, redirects, and API behavior. | `README.md`, `api/contact.js`, `docs/production-delivery.md`, `docs/repository/file-map.md` |
 | `tests/smoke.spec.ts` | Automated QA fixture, baseline, helper, or evidence file for Smoke.Spec. | `.github/workflows/`, `scripts/` |

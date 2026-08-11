@@ -1,22 +1,21 @@
 /**
  * @fileoverview src/scripts/features/layout/site-consistency.js
- * Purpose: Browser runtime feature in the layout domain responsible for site consistency behavior.
+ * Purpose: Implement site consistency behavior inside the layout browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the layout behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 /**
  * Function contract: getCurrentFileName
- * Purpose: Retrieves get current file name and returns it in the form expected by its caller.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return current file name from the supplied inputs or current site consistency browser feature state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: The requested current file name; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getCurrentFileName() {
   const path = window.location.pathname;
@@ -25,10 +24,10 @@ function getCurrentFileName() {
 
 /**
  * Function contract: loadPortfolioFonts
- * Purpose: Retrieves load portfolio fonts and returns it in the form expected by its caller.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Return portfolio fonts from the supplied inputs or current site consistency browser feature state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function loadPortfolioFonts() {
   // The portfolio uses the system font stack declared in /style.css so every
@@ -37,10 +36,10 @@ function loadPortfolioFonts() {
 
 /**
  * Function contract: applyConsistencyPageClasses
- * Purpose: Applies apply consistency page classes while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply consistency page classes consistently while preserving the surrounding site consistency browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function applyConsistencyPageClasses() {
   const path = window.location.pathname;
@@ -55,10 +54,10 @@ function applyConsistencyPageClasses() {
 
 /**
  * Function contract: injectConsistencyStyles
- * Purpose: Implements the inject consistency styles responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the inject consistency styles responsibility owned by the site consistency browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function injectConsistencyStyles() {
   if (document.getElementById('nrs-site-consistency-styles')) return;
@@ -895,10 +894,10 @@ function injectConsistencyStyles() {
 
 /**
  * Function contract: polishSiteConsistency
- * Purpose: Applies polish site consistency while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply site consistency consistently while preserving the surrounding site consistency browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function polishSiteConsistency() {
   loadPortfolioFonts();

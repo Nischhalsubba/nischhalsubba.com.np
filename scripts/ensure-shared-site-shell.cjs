@@ -1,16 +1,16 @@
 /**
  * @fileoverview scripts/ensure-shared-site-shell.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure shared site shell.
+ * Purpose: Apply the ensure shared site shell production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - scripts/generate-source.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -36,10 +36,10 @@ const navigationItems = [
 
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: directory, output.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the walk responsibility owned by the ensure shared site shell repository tool.
+ * Inputs: `directory`: input consumed by this operation; `output`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walk(directory, output = []) {
   if (!fs.existsSync(directory)) return output;
@@ -54,10 +54,10 @@ function walk(directory, output = []) {
 
 /**
  * Function contract: relativePath
- * Purpose: Implements the relative path responsibility for this module.
- * Inputs: filePath.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the relative path responsibility owned by the ensure shared site shell repository tool.
+ * Inputs: `filePath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function relativePath(filePath) {
   return path.relative(target, filePath).replaceAll(path.sep, '/').replace(/^public\//, '');
@@ -65,10 +65,10 @@ function relativePath(filePath) {
 
 /**
  * Function contract: activeSection
- * Purpose: Implements the active section responsibility for this module.
- * Inputs: relativeFile.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the active section responsibility owned by the ensure shared site shell repository tool.
+ * Inputs: `relativeFile`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function activeSection(relativeFile) {
   const base = path.basename(relativeFile);
@@ -83,13 +83,13 @@ function activeSection(relativeFile) {
 
 /**
  * Function contract: links
- * Purpose: Implements the links responsibility for this module.
- * Inputs: active, className.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the links responsibility owned by the ensure shared site shell repository tool.
+ * Inputs: `active`: input consumed by this operation; `className`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function links(active, className) {
-  return navigationItems.map(/** Callback contract: Processes the callback step for navigation items without leaking orchestration details to the caller. Inputs: [key, href, label]. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ ([key, href, label]) => {
+  return navigationItems.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[key, href, label]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ ([key, href, label]) => {
     const activeClass = key === active ? ' active' : '';
     const current = key === active ? ' aria-current="page"' : '';
     return `<a href="${href}" class="${className}${activeClass}"${current}>${label}</a>`;
@@ -98,10 +98,10 @@ function links(active, className) {
 
 /**
  * Function contract: shell
- * Purpose: Implements the shell responsibility for this module.
- * Inputs: active.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the shell responsibility owned by the ensure shared site shell repository tool.
+ * Inputs: `active`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function shell(active) {
   return {
@@ -119,6 +119,13 @@ const footer = `<footer class="site-footer" aria-label="Portfolio footer"><div c
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: stripExistingShell
+ * Purpose: Remove existing shell without disturbing required surrounding ensure shared site shell repository tool state.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function stripExistingShell(html) {
   return html
     .replace(/<button\b[^>]*class=["'][^"']*mobile-nav-toggle[^"']*["'][\s\S]*?<\/button>/gi, '')
@@ -134,10 +141,17 @@ function stripExistingShell(html) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: insertShell
+ * Purpose: Implement the insert shell responsibility owned by the ensure shared site shell repository tool.
+ * Inputs: `html`: input consumed by this operation; `sharedShell`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function insertShell(html, sharedShell) {
   const themeToggle = /<button\b[^>]*id=["']theme-toggle["'][^>]*>[\s\S]*?<\/button>/i;
   if (themeToggle.test(html)) {
-    return html.replace(themeToggle, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: toggle. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (toggle) => `${sharedShell.mobile}${toggle}${sharedShell.desktop}`);
+    return html.replace(themeToggle, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: toggle. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing ensure shared site shell repository tool operation. Inputs: `toggle`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (toggle) => `${sharedShell.mobile}${toggle}${sharedShell.desktop}`);
   }
   if (/<main\b/i.test(html)) return html.replace(/<main\b/i, `${sharedShell.mobile}${sharedShell.desktop}<main`);
   throw new Error('Cannot insert shared shell because the page has neither a theme toggle nor a main element.');
@@ -149,6 +163,13 @@ function insertShell(html, sharedShell) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: normalizeFooter
+ * Purpose: Apply footer consistently while preserving the surrounding ensure shared site shell repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function normalizeFooter(html) {
   const existingFooter = /<footer\b[^>]*class=["'][^"']*site-footer[^"']*["'][\s\S]*?<\/footer>/i;
@@ -165,6 +186,13 @@ function normalizeFooter(html) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: normalize
+ * Purpose: Apply module behavior consistently while preserving the surrounding ensure shared site shell repository tool contract.
+ * Inputs: `html`: input consumed by this operation; `relativeFile`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function normalize(html, relativeFile) {
   const sharedShell = shell(activeSection(relativeFile));
   let output = insertShell(stripExistingShell(html), sharedShell);
@@ -176,7 +204,7 @@ function normalize(html, relativeFile) {
 }
 
 let changed = 0;
-for (const filePath of walk(target).filter(/** Callback contract: Processes the callback step for walk(target) without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => file.endsWith('.html'))) {
+for (const filePath of walk(target).filter(/** Callback contract: Processes the callback step for walk(target) without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => file.endsWith('.html'))) {
   const before = fs.readFileSync(filePath, 'utf8');
   const after = normalize(before, relativePath(filePath));
   if (after !== before) {

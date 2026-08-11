@@ -1,16 +1,15 @@
 /**
  * @fileoverview scripts/repository/clean-root-sources.cjs
- * Purpose: Repository architecture and maintenance utility for clean root sources.
+ * Purpose: Maintain the repository architecture, generated documentation, or structural policy for clean root sources.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - package.json
- * - scripts/repository/README.md
  * - scripts/repository/source-layout.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const { cleanRootSources } = require('./source-layout.cjs');
 

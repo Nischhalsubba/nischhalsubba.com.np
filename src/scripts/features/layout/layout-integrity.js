@@ -1,15 +1,14 @@
 /**
  * @fileoverview src/scripts/features/layout/layout-integrity.js
- * Purpose: Browser runtime feature in the layout domain responsible for layout integrity behavior.
+ * Purpose: Implement layout integrity behavior inside the layout browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the layout behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/main.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const RESPONSIVE_QUERY = '(max-width: 1100px)';
 const PHONE_QUERY = '(max-width: 850px)';
@@ -114,10 +113,10 @@ let geometryFrame = 0;
 
 /**
  * Function contract: rememberInlineStyle
- * Purpose: Implements the remember inline style responsibility for this module.
- * Inputs: element, property.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the remember inline style responsibility owned by the layout integrity browser feature.
+ * Inputs: `element`: DOM element currently being evaluated or updated; `property`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function rememberInlineStyle(element, property) {
   let styles = originalInlineStyles.get(element);
@@ -134,10 +133,10 @@ function rememberInlineStyle(element, property) {
 
 /**
  * Function contract: setImportantStyles
- * Purpose: Applies set important styles while preserving the surrounding repository/runtime contract.
- * Inputs: element, properties.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Synchronize important styles with the requested state while preserving related layout integrity browser feature invariants.
+ * Inputs: `element`: DOM element currently being evaluated or updated; `properties`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function setImportantStyles(element, properties) {
   if (!element) return;
@@ -150,10 +149,10 @@ function setImportantStyles(element, properties) {
 
 /**
  * Function contract: restoreInlineStyles
- * Purpose: Implements the restore inline styles responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply inline styles consistently while preserving the surrounding layout integrity browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function restoreInlineStyles() {
   for (const element of touchedElements) {
@@ -169,10 +168,10 @@ function restoreInlineStyles() {
 
 /**
  * Function contract: getFirstSurface
- * Purpose: Retrieves get first surface and returns it in the form expected by its caller.
- * Inputs: main.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return first surface from the supplied inputs or current layout integrity browser feature state.
+ * Inputs: `main`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested first surface; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getFirstSurface(main) {
   if (!main) return null;
@@ -190,8 +189,15 @@ function getFirstSurface(main) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: getVisibleHeading
+ * Purpose: Return visible heading from the supplied inputs or current layout integrity browser feature state.
+ * Inputs: `surface`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested visible heading; early-return/empty-state behavior follows the explicit branches in this function.
+ */
 function getVisibleHeading(surface) {
-  return [...surface.querySelectorAll('h1, .hero-title')].find(/** Callback contract: Processes the callback step for [...surface.query selector all('h1, .hero title')] without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
+  return [...surface.querySelectorAll('h1, .hero-title')].find(/** Callback contract: Processes the callback step for [...surface.query selector all('h1, .hero title')] without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (element) => {
     const style = getComputedStyle(element);
     const rect = element.getBoundingClientRect();
     return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
@@ -204,6 +210,13 @@ function getVisibleHeading(surface) {
  * Inputs: heading, surface.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: getHeadingAncestors
+ * Purpose: Return heading ancestors from the supplied inputs or current layout integrity browser feature state.
+ * Inputs: `heading`: input consumed by this operation; `surface`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested heading ancestors; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getHeadingAncestors(heading, surface) {
   const ancestors = [];
@@ -221,6 +234,13 @@ function getHeadingAncestors(heading, surface) {
  * Inputs: surface, heading.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: getInitialContent
+ * Purpose: Return initial content from the supplied inputs or current layout integrity browser feature state.
+ * Inputs: `surface`: input consumed by this operation; `heading`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested initial content; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getInitialContent(surface, heading) {
   const elements = [surface.firstElementChild, heading];
@@ -244,10 +264,17 @@ function getInitialContent(surface, heading) {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: applyGeometryFallback
+ * Purpose: Apply geometry fallback consistently while preserving the surrounding layout integrity browser feature contract.
+ * Inputs: `surface`: input consumed by this operation; `heading`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function applyGeometryFallback(surface, heading) {
   window.cancelAnimationFrame(geometryFrame);
-  geometryFrame = window.requestAnimationFrame(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
-    window.requestAnimationFrame(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
+  geometryFrame = window.requestAnimationFrame(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Defer the enclosed DOM update until the next animation frame so layout/state changes apply in a stable order. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
+    window.requestAnimationFrame(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Defer the enclosed DOM update until the next animation frame so layout/state changes apply in a stable order. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
       if (!window.matchMedia(RESPONSIVE_QUERY).matches || !heading.isConnected) return;
 
       const phone = window.matchMedia(PHONE_QUERY).matches;
@@ -273,6 +300,13 @@ function applyGeometryFallback(surface, heading) {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: applyResponsiveTopSpacingFix
+ * Purpose: Apply responsive top spacing fix consistently while preserving the surrounding layout integrity browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function applyResponsiveTopSpacingFix() {
   const main = document.querySelector('main');
@@ -300,8 +334,8 @@ function applyResponsiveTopSpacingFix() {
   const heading = getVisibleHeading(surface);
   setImportantStyles(main, MAIN_PROPERTIES);
   setImportantStyles(surface, SURFACE_PROPERTIES);
-  getHeadingAncestors(heading, surface).forEach(/** Callback contract: Processes the callback step for get heading ancestors(heading, surface) without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element) => setImportantStyles(element, ANCESTOR_PROPERTIES));
-  getInitialContent(surface, heading).forEach(/** Callback contract: Processes the callback step for get initial content(surface, heading) without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element) => setImportantStyles(element, INITIAL_CONTENT_PROPERTIES));
+  getHeadingAncestors(heading, surface).forEach(/** Callback contract: Processes the callback step for get heading ancestors(heading, surface) without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => setImportantStyles(element, ANCESTOR_PROPERTIES));
+  getInitialContent(surface, heading).forEach(/** Callback contract: Processes the callback step for get initial content(surface, heading) without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => setImportantStyles(element, INITIAL_CONTENT_PROPERTIES));
 
   surface.dataset.nrsResponsiveTopSpacingFixed = 'true';
   if (heading) applyGeometryFallback(surface, heading);
@@ -314,6 +348,13 @@ function applyResponsiveTopSpacingFix() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: applyLayoutIntegrity
+ * Purpose: Apply layout integrity consistently while preserving the surrounding layout integrity browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 export function applyLayoutIntegrity() {
   let frame = 0;
   /**
@@ -322,6 +363,13 @@ export function applyLayoutIntegrity() {
    * Inputs: none; the function derives state from its enclosing module/runtime context.
    * Side effects: may read or update browser DOM/state.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
+   */
+  /**
+   * Function contract: schedule
+   * Purpose: Implement the schedule responsibility owned by the layout integrity browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   const schedule = () => {
     window.cancelAnimationFrame(frame);

@@ -1,16 +1,14 @@
 /**
  * @fileoverview src/scripts/features/motion/signal-portrait.js
- * Purpose: Browser runtime feature in the motion domain responsible for signal portrait behavior.
+ * Purpose: Implement signal portrait behavior inside the motion browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the motion behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/agent-main.js
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const signalFigure = document.querySelector('[data-signal-portrait]');
 
@@ -63,10 +61,10 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
 
   /**
    * Function contract: setPanel
-   * Purpose: Applies set panel while preserving the surrounding repository/runtime contract.
-   * Inputs: panel, show, hiddenY.
-   * Side effects: may read or update browser DOM/state.
-   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   * Purpose: Synchronize panel with the requested state while preserving related signal portrait browser feature invariants.
+   * Inputs: `panel`: input consumed by this operation; `show`: input consumed by this operation; `hiddenY`: input consumed by this operation
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   const setPanel = (panel, show, hiddenY = 8) => {
     if (!panel) return;
@@ -92,6 +90,13 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
    * Inputs: node.
    * Side effects: may read or update browser DOM/state.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
+  /**
+   * Function contract: connect
+   * Purpose: Implement the connect responsibility owned by the signal portrait browser feature.
+   * Inputs: `node`: input consumed by this operation
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   const connect = (node) => {
     if (!connector || !node) return;
@@ -120,6 +125,13 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
    * Side effects: may read or update browser DOM/state.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
    */
+  /**
+   * Function contract: showInsight
+   * Purpose: Implement the show insight responsibility owned by the signal portrait browser feature.
+   * Inputs: `state`: input consumed by this operation
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   */
   const showInsight = (state) => {
     const meaning = meanings[state];
     if (!meaning) return;
@@ -136,12 +148,19 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
    * Side effects: may read or update browser DOM/state.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
    */
+  /**
+   * Function contract: activateState
+   * Purpose: Implement the activate state responsibility owned by the signal portrait browser feature.
+   * Inputs: `node`: input consumed by this operation
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   */
   const activateState = (node) => {
     const state = node?.dataset.signalState || '';
     if (!state || !meanings[state]) return;
     activeState = state;
 
-    stateNodes.forEach(/** Callback contract: Processes the callback step for state nodes without leaking orchestration details to the caller. Inputs: candidate. Side effects: may read or update browser DOM/state. No explicit return contract. */ (candidate) => {
+    stateNodes.forEach(/** Callback contract: Processes the callback step for state nodes without leaking orchestration details to the caller. Inputs: candidate. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `candidate`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (candidate) => {
       const active = candidate === node;
       candidate.classList.toggle('is-active', active);
       candidate.setAttribute('aria-pressed', String(active));
@@ -194,9 +213,16 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
    * Side effects: may read or update browser DOM/state.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
    */
+  /**
+   * Function contract: resetState
+   * Purpose: Implement the reset state responsibility owned by the signal portrait browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   */
   const resetState = () => {
     activeState = '';
-    stateNodes.forEach(/** Callback contract: Processes the callback step for state nodes without leaking orchestration details to the caller. Inputs: node. Side effects: may read or update browser DOM/state. No explicit return contract. */ (node) => {
+    stateNodes.forEach(/** Callback contract: Processes the callback step for state nodes without leaking orchestration details to the caller. Inputs: node. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `node`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (node) => {
       node.classList.remove('is-active');
       node.setAttribute('aria-pressed', 'false');
     });
@@ -238,6 +264,13 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
    * Inputs: next.
    * Side effects: may read or update browser DOM/state.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
+   */
+  /**
+   * Function contract: setSignalMode
+   * Purpose: Synchronize signal mode with the requested state while preserving related signal portrait browser feature invariants.
+   * Inputs: `next`: input consumed by this operation
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   const setSignalMode = (next) => {
     signalMode = next;
@@ -293,28 +326,28 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
 
     setPanel(thesis, next, 10);
     if (!next && activeState) {
-      const activeNode = stateNodes.find(/** Callback contract: Processes the callback step for state nodes without leaking orchestration details to the caller. Inputs: node. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (node) => node.dataset.signalState === activeState);
+      const activeNode = stateNodes.find(/** Callback contract: Processes the callback step for state nodes without leaking orchestration details to the caller. Inputs: node. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `node`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (node) => node.dataset.signalState === activeState);
       if (activeNode) activateState(activeNode);
     }
   };
 
-  stateNodes.forEach(/** Callback contract: Processes the callback step for state nodes without leaking orchestration details to the caller. Inputs: node. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (node) => {
-    node.addEventListener('click', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => activateState(node));
-    node.addEventListener('focus', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => activateState(node));
-    node.addEventListener('blur', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+  stateNodes.forEach(/** Callback contract: Processes the callback step for state nodes without leaking orchestration details to the caller. Inputs: node. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `node`. Side effects: registers or removes browser event listeners. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (node) => {
+    node.addEventListener('click', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the click event for `node` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => activateState(node));
+    node.addEventListener('focus', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the focus event for `node` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => activateState(node));
+    node.addEventListener('blur', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the blur event for `node` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
       if (!signalMode) resetState();
     });
     if (finePointer.matches) {
-      node.addEventListener('pointerenter', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => activateState(node));
-      node.addEventListener('pointerleave', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+      node.addEventListener('pointerenter', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the pointerenter event for `node` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => activateState(node));
+      node.addEventListener('pointerleave', /** Callback contract: Processes the callback step for node without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the pointerleave event for `node` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
         if (!signalMode) resetState();
       });
     }
   });
 
-  signalNode?.addEventListener('click', /** Callback contract: Processes the callback step for signal node? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => setSignalMode(!signalMode));
+  signalNode?.addEventListener('click', /** Callback contract: Processes the callback step for signal node? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the click event for `signalNode` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => setSignalMode(!signalMode));
 
-  document.addEventListener('keydown', /** Callback contract: Processes the callback step for document without leaking orchestration details to the caller. Inputs: event. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (event) => {
+  document.addEventListener('keydown', /** Callback contract: Processes the callback step for document without leaking orchestration details to the caller. Inputs: event. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Handle keydown input for Escape/Tab behavior and keyboard focus containment. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
     if (event.key !== 'Escape') return;
     setSignalMode(false);
     resetState();
@@ -326,6 +359,13 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
    * Inputs: none; the function derives state from its enclosing module/runtime context.
    * Side effects: may emit diagnostics or inspect process state.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
+  /**
+   * Function contract: setupGsap
+   * Purpose: Initialize gsap for the signal portrait browser feature, including the listeners/state needed for safe runtime use.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: registers or removes browser event listeners; emits diagnostics or changes process failure state.
+   * Returns: Promise that resolves when the asynchronous side effects complete.
    */
   const setupGsap = async () => {
     if (reduceMotion.matches) return;
@@ -379,7 +419,7 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
         const orbitX = gsap.quickTo(orbitSvg, 'x', { duration: 0.4, ease: 'power3.out' });
         const orbitY = gsap.quickTo(orbitSvg, 'y', { duration: 0.4, ease: 'power3.out' });
 
-        signalFigure.addEventListener('pointermove', /** Callback contract: Processes the callback step for signal figure without leaking orchestration details to the caller. Inputs: event. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (event) => {
+        signalFigure.addEventListener('pointermove', /** Callback contract: Processes the callback step for signal figure without leaking orchestration details to the caller. Inputs: event. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Handle the pointermove event for `signalFigure` and apply this module's related state update. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
           if (event.pointerType === 'touch') return;
           const rect = signalFigure.getBoundingClientRect();
           const nx = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
@@ -392,7 +432,7 @@ if (signalFigure && signalFigure.dataset.signalReady !== 'true') {
           orbitY(ny * 4);
         }, { passive: true });
 
-        signalFigure.addEventListener('pointerleave', /** Callback contract: Processes the callback step for signal figure without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+        signalFigure.addEventListener('pointerleave', /** Callback contract: Processes the callback step for signal figure without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the pointerleave event for `signalFigure` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
           posterX(0);
           posterY(0);
           ghostX(signalMode ? -4 : 12);

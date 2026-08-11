@@ -1,13 +1,13 @@
 /**
  * @fileoverview src/components/GameModeCard.tsx
- * Purpose: Reusable UI component implementing Game Mode Card.
+ * Purpose: Implement the reusable Game Mode Card UI component and its local rendering/interaction contract.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Repository build or application source.
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
+ * Execution context: TypeScript source consumed by build/runtime tooling.
  * Connected files:
- * - docs/repository/file-catalog.md
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - No direct tracked-file dependency; ownership is defined by this folder and its build/runtime convention.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -33,10 +33,10 @@ const toneClasses: Record<NonNullable<GameModeCardProps["tone"]>, string> = {
 
 /**
  * Function contract: GameModeCard
- * Purpose: Implements the game mode card responsibility for this module.
- * Inputs: { title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the game mode card responsibility owned by the game mode card module.
+ * Inputs: `{ title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 export default function GameModeCard({ title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }: GameModeCardProps) {
   const content = (

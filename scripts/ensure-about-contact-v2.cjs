@@ -1,16 +1,15 @@
 /**
  * @fileoverview scripts/ensure-about-contact-v2.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure about contact v2.
+ * Purpose: Apply the ensure about contact v2 production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/generate-source.cjs
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('fs');
 const path = require('path');
@@ -20,10 +19,10 @@ const email = 'hinischalsubba@gmail.com';
 
 /**
  * Function contract: head
- * Purpose: Implements the head responsibility for this module.
- * Inputs: { title, description, canonical }.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the head responsibility owned by the ensure about contact v2 repository tool.
+ * Inputs: `{ title, description, canonical }`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function head({ title, description, canonical }) {
   return `<!DOCTYPE html>
@@ -56,6 +55,13 @@ function head({ title, description, canonical }) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: nav
+ * Purpose: Implement the nav responsibility owned by the ensure about contact v2 repository tool.
+ * Inputs: `active`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function nav(active) {
   const items = [
     ['/', 'Home', 'home'],
@@ -66,8 +72,8 @@ function nav(active) {
     ['/contact', 'Contact', 'contact'],
   ];
 
-  const desktop = items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [href, label, key]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([href, label, key]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
-  const mobile = items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [href, label, key]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([href, label, key]) => `<a href="${href}"${active === key ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('');
+  const desktop = items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [href, label, key]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([href, label, key]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
+  const mobile = items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [href, label, key]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([href, label, key]) => `<a href="${href}"${active === key ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('');
 
   return `    <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button>
     <a href="/" class="mobile-logo">NRS</a>
@@ -82,6 +88,13 @@ function nav(active) {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: scripts
+ * Purpose: Implement the scripts responsibility owned by the ensure about contact v2 repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function scripts() {
   return `    <a class="floating-resume-btn" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a>

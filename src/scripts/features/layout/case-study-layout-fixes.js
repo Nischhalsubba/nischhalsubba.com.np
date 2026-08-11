@@ -1,22 +1,21 @@
 /**
  * @fileoverview src/scripts/features/layout/case-study-layout-fixes.js
- * Purpose: Browser runtime feature in the layout domain responsible for case study layout fixes behavior.
+ * Purpose: Implement case study layout fixes behavior inside the layout browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the layout behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/main.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 /**
  * Function contract: normalizeText
- * Purpose: Applies normalize text while preserving the surrounding repository/runtime contract.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply text consistently while preserving the surrounding case study layout fixes browser feature contract.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function normalizeText(value) {
   return String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -24,10 +23,10 @@ function normalizeText(value) {
 
 /**
  * Function contract: markSection
- * Purpose: Implements the mark section responsibility for this module.
- * Inputs: section.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the mark section responsibility owned by the case study layout fixes browser feature.
+ * Inputs: `section`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function markSection(section) {
   const heading = section.querySelector(':scope > h2, :scope > .section-title, :scope > .section-header h2');
@@ -46,10 +45,10 @@ function markSection(section) {
 
 /**
  * Function contract: improveCaseStudySections
- * Purpose: Implements the improve case study sections responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the improve case study sections responsibility owned by the case study layout fixes browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function improveCaseStudySections() {
   const path = (window.location.pathname || '/').replace(/\/+$/, '').replace(/\.html$/, '');

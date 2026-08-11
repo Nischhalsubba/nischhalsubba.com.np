@@ -1,24 +1,23 @@
 /**
  * @fileoverview src/scripts/features/system/design-system-standards.js
- * Purpose: Browser runtime feature in the system domain responsible for design system standards behavior.
+ * Purpose: Implement design system standards behavior inside the system browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the system behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const DESIGN_SYSTEM_STYLE_ID = 'nrs-design-system-standards';
 
 /**
  * Function contract: ensureDesignSystemStyles
- * Purpose: Applies ensure design system styles while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply design system styles consistently while preserving the surrounding design system standards browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureDesignSystemStyles() {
   let style = document.getElementById(DESIGN_SYSTEM_STYLE_ID);
@@ -534,10 +533,10 @@ function ensureDesignSystemStyles() {
 
 /**
  * Function contract: applyDesignSystemStandards
- * Purpose: Applies apply design system standards while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply design system standards consistently while preserving the surrounding design system standards browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function applyDesignSystemStandards() {
   ensureDesignSystemStyles();

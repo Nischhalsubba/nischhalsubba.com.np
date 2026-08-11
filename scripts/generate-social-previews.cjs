@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/generate-social-previews.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for generate social previews.
+ * Purpose: Generate or assemble generate social previews deterministically as part of the production toolchain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - scripts/seo-discovery-lib.cjs
  * - docs/seo-maintenance.md
  * - package.json
  * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -28,10 +29,10 @@ const HEIGHT = 630;
 
 /**
  * Function contract: crc32
- * Purpose: Implements the crc32 responsibility for this module.
- * Inputs: buffer.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the crc32 responsibility owned by the generate social previews repository tool.
+ * Inputs: `buffer`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function crc32(buffer) {
   let crc = 0xffffffff;
@@ -44,10 +45,10 @@ function crc32(buffer) {
 
 /**
  * Function contract: chunk
- * Purpose: Implements the chunk responsibility for this module.
- * Inputs: type, data.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the chunk responsibility owned by the generate social previews repository tool.
+ * Inputs: `type`: input consumed by this operation; `data`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function chunk(type, data) {
   const label = Buffer.from(type, 'ascii');
@@ -61,10 +62,10 @@ function chunk(type, data) {
 
 /**
  * Function contract: pngFromRows
- * Purpose: Implements the png from rows responsibility for this module.
- * Inputs: rows.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the png from rows responsibility owned by the generate social previews repository tool.
+ * Inputs: `rows`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function pngFromRows(rows) {
   const ihdr = Buffer.alloc(13);
@@ -72,7 +73,7 @@ function pngFromRows(rows) {
   ihdr.writeUInt32BE(HEIGHT, 4);
   ihdr[8] = 8;
   ihdr[9] = 2;
-  const raw = Buffer.concat(rows.map(/** Callback contract: Processes the callback step for rows without leaking orchestration details to the caller. Inputs: row. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (row) => Buffer.concat([Buffer.from([0]), row])));
+  const raw = Buffer.concat(rows.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `row`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (row) => Buffer.concat([Buffer.from([0]), row])));
   return Buffer.concat([
     Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
     chunk('IHDR', ihdr),
@@ -83,10 +84,10 @@ function pngFromRows(rows) {
 
 /**
  * Function contract: makeCard
- * Purpose: Implements the make card responsibility for this module.
- * Inputs: seed.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Build card from the supplied inputs in the form expected by downstream generate social previews repository tool consumers.
+ * Inputs: `seed`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function makeCard(seed) {
   const digest = crypto.createHash('sha256').update(seed).digest();
@@ -95,7 +96,7 @@ function makeCard(seed) {
   const foreground = [243, 246, 234];
   const accent = [216, 255, 72];
   const muted = [38, 45, 34];
-  const bars = Array.from({ length: 5 }, /** Callback contract: Processes the callback step for array without leaking orchestration details to the caller. Inputs: _, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (_, index) => ({
+  const bars = Array.from({ length: 5 }, /** Callback contract: Perform the local callback step required by the enclosing generate social previews repository tool operation. Inputs: `_`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (_, index) => ({
     x: 690 + (digest[index] % 130),
     y: 90 + index * 92,
     w: 230 + (digest[index + 5] % 250),
@@ -112,7 +113,7 @@ function makeCard(seed) {
       if (x >= 128 && x < 420 && y >= 221 && y < 233) color = muted;
       if (x >= 128 && x < 345 && y >= 257 && y < 269) color = muted;
       if (x >= 128 && x < 360 && y >= 482 && y < 490) color = accent;
-      if (bars.some(/** Callback contract: Processes the callback step for bars without leaking orchestration details to the caller. Inputs: bar. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (bar) => x >= bar.x && x < bar.x + bar.w && y >= bar.y && y < bar.y + bar.h)) color = (y % 2 ? accent : foreground);
+      if (bars.some(/** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `bar`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (bar) => x >= bar.x && x < bar.x + bar.w && y >= bar.y && y < bar.y + bar.h)) color = (y % 2 ? accent : foreground);
       const offset = x * 3;
       row[offset] = color[0];
       row[offset + 1] = color[1];
@@ -125,10 +126,10 @@ function makeCard(seed) {
 
 /**
  * Function contract: routeSlug
- * Purpose: Implements the route slug responsibility for this module.
- * Inputs: route.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the route slug responsibility owned by the generate social previews repository tool.
+ * Inputs: `route`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function routeSlug(route) {
   if (route === '/') return 'home';
@@ -138,10 +139,10 @@ function routeSlug(route) {
 
 /**
  * Function contract: setMeta
- * Purpose: Applies set meta while preserving the surrounding repository/runtime contract.
- * Inputs: html, attribute, key, value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Synchronize meta with the requested state while preserving related generate social previews repository tool invariants.
+ * Inputs: `html`: input consumed by this operation; `attribute`: input consumed by this operation; `key`: input consumed by this operation; `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function setMeta(html, attribute, key, value) {
   const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

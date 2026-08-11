@@ -1,16 +1,15 @@
 /**
  * @fileoverview scripts/finalize-signal-story-v23.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for finalize signal story v23.
+ * Purpose: Apply the finalize signal story v23 production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - scripts/finalize-signal-reference-visual.cjs
+ * - scripts/finalize-signal-story-v20.cjs
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -47,7 +46,7 @@ if ((storyStart < 0 || thesisStart < 0) && !hasV23Story) {
   throw new Error('[hero-story-v23] Story block boundaries were not found.');
 }
 
-const pixels = Array.from({ length: 62 }, /** Callback contract: Processes the callback step for array without leaking orchestration details to the caller. Inputs: _, index. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (_, index) => {
+const pixels = Array.from({ length: 62 }, /** Callback contract: Perform the local callback step required by the enclosing finalize signal story v23 repository tool operation. Inputs: `_`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (_, index) => {
   const x = 3 + ((index * 47 + 13) % 94);
   const y = 5 + ((index * 61 + 17) % 90);
   const size = [1, 1, 1, 2, 2, 3][index % 6];
@@ -189,5 +188,5 @@ html[data-theme="light"] .nrs-uploaded-hero-v19 .nrs-field-pixels{filter:opacity
 fs.writeFileSync(homePath, html, 'utf8');
 fs.writeFileSync(stylePath, css, 'utf8');
 const checks = [html.includes('nrs-decision-field'), html.includes('data-story="problem"'), html.includes('nrs-hero-story-v23-runtime:start'), !html.includes('nrs-hero-story-v21-runtime:start'), css.includes('nrs-hero-story-v23:start')];
-if (checks.some(/** Callback contract: Processes the callback step for checks without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => !value)) throw new Error('[hero-story-v23] Verification failed.');
+if (checks.some(/** Callback contract: Processes the callback step for checks without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `value`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (value) => !value)) throw new Error('[hero-story-v23] Verification failed.');
 console.log('[hero-story-v23] Rebuilt decision field: static broken arcs, compact product-design story, no hover parallax.');

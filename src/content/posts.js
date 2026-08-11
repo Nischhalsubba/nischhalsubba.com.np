@@ -1,15 +1,13 @@
 /**
  * @fileoverview src/content/posts.js
- * Purpose: Structured content module providing posts data to generators/runtime code.
+ * Purpose: Provide structured posts content consumed by generators or runtime presentation code.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Repository build or application source.
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
+ * Execution context: Repository application or build source.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/audit-content-structure.cjs
- * - src/content/README.md
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 /**
  * Canonical writing metadata for the portfolio.
@@ -99,4 +97,4 @@ export const posts = [
   },
 ];
 
-export const featuredPosts = posts.filter(/** Callback contract: Processes the callback step for posts without leaking orchestration details to the caller. Inputs: post. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (post) => post.featured);
+export const featuredPosts = posts.filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `post`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (post) => post.featured);

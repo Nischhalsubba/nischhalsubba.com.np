@@ -1,24 +1,23 @@
 /**
  * @fileoverview src/scripts/features/layout/final-spacing-nav-proof.js
- * Purpose: Browser runtime feature in the layout domain responsible for final spacing nav proof behavior.
+ * Purpose: Implement final spacing nav proof behavior inside the layout browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the layout behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const FINAL_SPACING_NAV_STYLE_ID = 'nrs-final-spacing-nav-proof';
 
 /**
  * Function contract: getSectionForPath
- * Purpose: Retrieves get section for path and returns it in the form expected by its caller.
- * Inputs: pathname.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return section for path from the supplied inputs or current final spacing nav proof browser feature state.
+ * Inputs: `pathname`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested section for path; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getSectionForPath(pathname) {
   const path = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
@@ -45,10 +44,10 @@ function getSectionForPath(pathname) {
 
 /**
  * Function contract: getSectionForHref
- * Purpose: Retrieves get section for href and returns it in the form expected by its caller.
- * Inputs: href.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return section for href from the supplied inputs or current final spacing nav proof browser feature state.
+ * Inputs: `href`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: The requested section for href; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getSectionForHref(href) {
   if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return '';
@@ -61,14 +60,14 @@ function getSectionForHref(href) {
 
 /**
  * Function contract: syncActiveNavigation
- * Purpose: Implements the sync active navigation responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Synchronize active navigation with the requested state while preserving related final spacing nav proof browser feature invariants.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function syncActiveNavigation() {
   const activeSection = getSectionForPath(window.location.pathname);
-  document.querySelectorAll('.nav-link, .mobile-nav-links a, .footer-col a').forEach(/** Callback contract: Processes the callback step for document.query selector all('.nav link, .mobile nav links a, .footer col a') without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ (link) => {
+  document.querySelectorAll('.nav-link, .mobile-nav-links a, .footer-col a').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
     const section = getSectionForHref(link.getAttribute('href'));
     const active = Boolean(section && activeSection && section === activeSection);
     link.classList.toggle('active', active);
@@ -79,10 +78,10 @@ function syncActiveNavigation() {
 
 /**
  * Function contract: ensureFinalSpacingNavStyles
- * Purpose: Applies ensure final spacing nav styles while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply final spacing nav styles consistently while preserving the surrounding final spacing nav proof browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureFinalSpacingNavStyles() {
   let style = document.getElementById(FINAL_SPACING_NAV_STYLE_ID);
@@ -378,23 +377,23 @@ function ensureFinalSpacingNavStyles() {
 
 /**
  * Function contract: applyFinalSpacingNavProof
- * Purpose: Applies apply final spacing nav proof while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply final spacing nav proof consistently while preserving the surrounding final spacing nav proof browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function applyFinalSpacingNavProof() {
   ensureFinalSpacingNavStyles();
   syncActiveNavigation();
-  requestAnimationFrame(/** Callback contract: Processes the callback step for request animation frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+  requestAnimationFrame(/** Callback contract: Defer the enclosed DOM update until the next animation frame so layout/state changes apply in a stable order. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     ensureFinalSpacingNavStyles();
     syncActiveNavigation();
   });
-  window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+  window.setTimeout(/** Callback contract: Perform the local callback step required by the enclosing final spacing nav proof browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     ensureFinalSpacingNavStyles();
     syncActiveNavigation();
   }, 250);
-  window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+  window.setTimeout(/** Callback contract: Perform the local callback step required by the enclosing final spacing nav proof browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     ensureFinalSpacingNavStyles();
     syncActiveNavigation();
   }, 1000);

@@ -1,15 +1,14 @@
 /**
  * @fileoverview src/scripts/features/accessibility/audit-remediations.js
- * Purpose: Browser runtime feature in the accessibility domain responsible for audit remediations behavior.
+ * Purpose: Implement audit remediations behavior inside the accessibility browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the accessibility behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/main.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const FIGMA_HOSTS = new Set(["www.figma.com", "figma.com", "embed.figma.com"]);
 
@@ -25,10 +24,10 @@ const SERVICE_PATHS = new Set([
 
 /**
  * Function contract: getCanonicalPathname
- * Purpose: Retrieves get canonical pathname and returns it in the form expected by its caller.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return canonical pathname from the supplied inputs or current audit remediations browser feature state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: The requested canonical pathname; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getCanonicalPathname() {
   const pathname = window.location.pathname || "/";
@@ -38,10 +37,10 @@ function getCanonicalPathname() {
 
 /**
  * Function contract: normalizeResponsivePageClasses
- * Purpose: Applies normalize responsive page classes while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply responsive page classes consistently while preserving the surrounding audit remediations browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function normalizeResponsivePageClasses() {
   const path = getCanonicalPathname();
@@ -67,10 +66,10 @@ function normalizeResponsivePageClasses() {
 
 /**
  * Function contract: ensureStylesheet
- * Purpose: Applies ensure stylesheet while preserving the surrounding repository/runtime contract.
- * Inputs: path, version.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply stylesheet consistently while preserving the surrounding audit remediations browser feature contract.
+ * Inputs: `path`: path identifying the resource being processed; `version`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureStylesheet(path, version) {
   // Audit and responsive rules are compiled into /style.css.
@@ -80,10 +79,10 @@ function ensureStylesheet(path, version) {
 
 /**
  * Function contract: ensureAuditStylesheet
- * Purpose: Applies ensure audit stylesheet while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply audit stylesheet consistently while preserving the surrounding audit remediations browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureAuditStylesheet() {
   ensureStylesheet("audit-remediations.css", "1.2");
@@ -91,10 +90,10 @@ function ensureAuditStylesheet() {
 
 /**
  * Function contract: ensureResponsiveStylesheet
- * Purpose: Applies ensure responsive stylesheet while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply responsive stylesheet consistently while preserving the surrounding audit remediations browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureResponsiveStylesheet() {
   ensureStylesheet("responsive-inner-pages.css", "1.1");
@@ -102,10 +101,10 @@ function ensureResponsiveStylesheet() {
 
 /**
  * Function contract: ensureMobileInnerPageReset
- * Purpose: Applies ensure mobile inner page reset while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply mobile inner page reset consistently while preserving the surrounding audit remediations browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureMobileInnerPageReset() {
   ensureStylesheet("mobile-inner-page-reset.css", "1.0");
@@ -113,10 +112,10 @@ function ensureMobileInnerPageReset() {
 
 /**
  * Function contract: ensureFinalUiFixes
- * Purpose: Applies ensure final ui fixes while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply final ui fixes consistently while preserving the surrounding audit remediations browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureFinalUiFixes() {
   ensureStylesheet("final-ui-fixes.css", "1.0");
@@ -124,10 +123,10 @@ function ensureFinalUiFixes() {
 
 /**
  * Function contract: ensureSkipLink
- * Purpose: Applies ensure skip link while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply skip link consistently while preserving the surrounding audit remediations browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureSkipLink() {
   const main = document.querySelector("main");
@@ -150,6 +149,13 @@ function ensureSkipLink() {
  * Inputs: rawUrl.
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: normalizeFigmaEmbedUrl
+ * Purpose: Apply figma embed url consistently while preserving the surrounding audit remediations browser feature contract.
+ * Inputs: `rawUrl`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function normalizeFigmaEmbedUrl(rawUrl) {
   try {
@@ -189,6 +195,13 @@ function normalizeFigmaEmbedUrl(rawUrl) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: getPublicFigmaUrl
+ * Purpose: Return public figma url from the supplied inputs or current audit remediations browser feature state.
+ * Inputs: `rawUrl`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested public figma url; early-return/empty-state behavior follows the explicit branches in this function.
+ */
 function getPublicFigmaUrl(rawUrl) {
   try {
     const url = new URL(normalizeFigmaEmbedUrl(rawUrl));
@@ -207,6 +220,13 @@ function getPublicFigmaUrl(rawUrl) {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: markFigmaUnavailable
+ * Purpose: Implement the mark figma unavailable responsibility owned by the audit remediations browser feature.
+ * Inputs: `frame`: input consumed by this operation; `fallback`: input consumed by this operation; `message`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function markFigmaUnavailable(frame, fallback, message) {
   frame.hidden = true;
   frame.setAttribute("aria-hidden", "true");
@@ -222,10 +242,17 @@ function markFigmaUnavailable(frame, fallback, message) {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: enhanceFigmaEmbeds
+ * Purpose: Implement the enhance figma embeds responsibility owned by the audit remediations browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function enhanceFigmaEmbeds() {
   const frames = [...document.querySelectorAll('iframe[src*="figma.com"]')];
 
-  frames.forEach(/** Callback contract: Processes the callback step for frames without leaking orchestration details to the caller. Inputs: frame, index. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (frame, index) => {
+  frames.forEach(/** Callback contract: Processes the callback step for frames without leaking orchestration details to the caller. Inputs: frame, index. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `frame`, `index`. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (frame, index) => {
     if (frame.dataset.auditEnhanced === "true") return;
     frame.dataset.auditEnhanced = "true";
 
@@ -263,7 +290,7 @@ function enhanceFigmaEmbeds() {
     }
 
     let loaded = false;
-    const timeout = window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+    const timeout = window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit remediations browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
       if (!loaded)
         markFigmaUnavailable(
           frame,
@@ -274,7 +301,7 @@ function enhanceFigmaEmbeds() {
 
     frame.addEventListener(
       "load",
-      /** Callback contract: Processes the callback step for frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
+      /** Callback contract: Processes the callback step for frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the load event for `frame` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
         loaded = true;
         window.clearTimeout(timeout);
         fallback.classList.add("is-ready");
@@ -284,7 +311,7 @@ function enhanceFigmaEmbeds() {
 
     frame.addEventListener(
       "error",
-      /** Callback contract: Processes the callback step for frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
+      /** Callback contract: Processes the callback step for frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the error event for `frame` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
         window.clearTimeout(timeout);
         markFigmaUnavailable(
           frame,
@@ -304,8 +331,15 @@ function enhanceFigmaEmbeds() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: protectExternalLinks
+ * Purpose: Implement the protect external links responsibility owned by the audit remediations browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function protectExternalLinks() {
-  document.querySelectorAll('a[target="_blank"]').forEach(/** Callback contract: Processes the callback step for document.query selector all('a[target=" blank"]') without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ (link) => {
+  document.querySelectorAll('a[target="_blank"]').forEach(/** Callback contract: Processes the callback step for document.query selector all('a[target=" blank"]') without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
     const rel = new Set(
       (link.getAttribute("rel") || "").split(/\s+/).filter(Boolean),
     );
@@ -321,6 +355,13 @@ function protectExternalLinks() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: initFloatingResumeVisibility
+ * Purpose: Initialize floating resume visibility for the audit remediations browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function initFloatingResumeVisibility() {
   const button = document.querySelector(".floating-resume-btn");
@@ -347,12 +388,19 @@ function initFloatingResumeVisibility() {
    * Side effects: may read or update browser DOM/state.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
    */
+  /**
+   * Function contract: update
+   * Purpose: Apply module behavior consistently while preserving the surrounding audit remediations browser feature contract.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   */
   const update = () =>
     button.classList.toggle("is-obscured", !pastHero || nearFooter);
 
   if (hero && "IntersectionObserver" in window) {
     const heroObserver = new IntersectionObserver(
-      /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: [entry]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([entry]) => {
+      /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: [entry]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit remediations browser feature operation. Inputs: `[entry]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([entry]) => {
         pastHero = !entry.isIntersecting && entry.boundingClientRect.bottom < 0;
         update();
       },
@@ -365,7 +413,7 @@ function initFloatingResumeVisibility() {
 
   if (footerTarget && "IntersectionObserver" in window) {
     const footerObserver = new IntersectionObserver(
-      /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: [entry]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([entry]) => {
+      /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: [entry]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit remediations browser feature operation. Inputs: `[entry]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([entry]) => {
         nearFooter = entry.isIntersecting;
         update();
       },
@@ -384,8 +432,15 @@ function initFloatingResumeVisibility() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: improveImageDefaults
+ * Purpose: Implement the improve image defaults responsibility owned by the audit remediations browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function improveImageDefaults() {
-  document.querySelectorAll("img").forEach(/** Callback contract: Processes the callback step for document.query selector all("img") without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (image) => {
+  document.querySelectorAll("img").forEach(/** Callback contract: Processes the callback step for document.query selector all("img") without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (image) => {
     if (!image.hasAttribute("decoding")) image.decoding = "async";
     if (
       !image.hasAttribute("loading") &&
@@ -402,11 +457,18 @@ function improveImageDefaults() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: addAnchorOffsetTargets
+ * Purpose: Implement the add anchor offset targets responsibility owned by the audit remediations browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function addAnchorOffsetTargets() {
   document
     .querySelectorAll("main [id]")
     .forEach(/** Callback contract: Processes the callback step for document
-    .query selector all("main [id]") without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ (element) => element.classList.add("nrs-anchor-target"));
+    .query selector all("main [id]") without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.classList.add("nrs-anchor-target"));
 }
 
 /**
@@ -415,6 +477,13 @@ function addAnchorOffsetTargets() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: applyAuditRemediations
+ * Purpose: Apply audit remediations consistently while preserving the surrounding audit remediations browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function applyAuditRemediations() {
   normalizeResponsivePageClasses();

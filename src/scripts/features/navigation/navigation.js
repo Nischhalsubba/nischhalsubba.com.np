@@ -1,25 +1,24 @@
 /**
  * @fileoverview src/scripts/features/navigation/navigation.js
- * Purpose: Browser runtime feature in the navigation domain responsible for navigation behavior.
+ * Purpose: Implement navigation behavior inside the navigation browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the navigation behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - docs/repository/file-map.md
- * - docs/seo-maintenance.md
- * - scripts/audit-build.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - src/scripts/shared/dom.js
+ * - src/runtime/script.js
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $$ } from '../../shared/dom.js';
 
 /**
  * Function contract: normalizePath
- * Purpose: Applies normalize path while preserving the surrounding repository/runtime contract.
- * Inputs: pathname.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply path consistently while preserving the surrounding navigation browser feature contract.
+ * Inputs: `pathname`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function normalizePath(pathname) {
   const path = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
@@ -36,10 +35,10 @@ function normalizePath(pathname) {
 
 /**
  * Function contract: getActiveSection
- * Purpose: Retrieves get active section and returns it in the form expected by its caller.
- * Inputs: pathname.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return active section from the supplied inputs or current navigation browser feature state.
+ * Inputs: `pathname`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested active section; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getActiveSection(pathname) {
   const path = normalizePath(pathname);
@@ -67,10 +66,10 @@ function getActiveSection(pathname) {
 
 /**
  * Function contract: getLinkSection
- * Purpose: Retrieves get link section and returns it in the form expected by its caller.
- * Inputs: href.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return link section from the supplied inputs or current navigation browser feature state.
+ * Inputs: `href`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: The requested link section; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getLinkSection(href) {
   const path = normalizePath(new URL(href, window.location.origin).pathname);
@@ -87,15 +86,15 @@ function getLinkSection(href) {
 
 /**
  * Function contract: initActiveNavigation
- * Purpose: Implements the init active navigation responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Initialize active navigation for the navigation browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function initActiveNavigation() {
   const activeSection = getActiveSection(window.location.pathname);
 
-  $$('.nav-link, .mobile-nav-links a, .footer-col a').forEach(/** Callback contract: Processes the callback step for $$('.nav link, .mobile nav links a, .footer col a') without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (link) => {
+  $$('.nav-link, .mobile-nav-links a, .footer-col a').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
     const href = link.getAttribute('href');
     if (!href || href.startsWith('http') || href.startsWith('mailto:')) return;
 

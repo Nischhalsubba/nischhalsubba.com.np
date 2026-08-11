@@ -1,16 +1,17 @@
 /**
  * @fileoverview src/scripts/entrypoints/agent-main.js
- * Purpose: Bootstraps the agent-redesign browser runtime and conditionally loads contact and portfolio enhancement modules.
+ * Purpose: Bootstrap agent-era enhancement modules while keeping optional contact and portfolio behavior route-scoped.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Orchestrate feature loading and initialization order without absorbing feature-domain implementation details.
+ * - Keep route checks and lazy imports explicit so optional code runs only where it is needed.
+ * - Isolate one feature failure from unrelated features while still surfacing diagnostics.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - scripts/agent-redesign.cjs
- * - scripts/repository/apply-deep-organization.cjs
- * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - src/scripts/shared/dom.js
+ * - src/scripts/features/navigation/mobile-menu.js
+ * - src/scripts/features/navigation/theme.js
+ * - src/scripts/features/navigation/resume.js
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { onReady } from '../shared/dom.js';
 import { initMobileMenu } from '../features/navigation/mobile-menu.js';
@@ -18,7 +19,7 @@ import { initTheme } from '../features/navigation/theme.js';
 import { initResumeDownload } from '../features/navigation/resume.js';
 import { initAnalyticsEvents } from '../features/analytics/analytics-events.js';
 
-onReady(/** Callback contract: Processes the callback step for on ready without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state; may emit diagnostics or inspect process state. No explicit return contract. */ async () => {
+onReady(/** Callback contract: Lazy-load the contact form module. Inputs: none. Side effects: reads or updates DOM/browser state; emits diagnostics or changes process failure state. Returns: Promise that resolves when the asynchronous side effects complete. */ async () => {
   initMobileMenu();
   initTheme();
   initResumeDownload();

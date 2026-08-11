@@ -1,16 +1,16 @@
 /**
  * @fileoverview scripts/enforce-home-work-contract.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for enforce home work contract.
+ * Purpose: Apply the enforce home work contract production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - scripts/generate-source.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs=require('node:fs');
 const path=require('node:path');
@@ -20,10 +20,10 @@ const base=useDist?path.join(root,'dist'):root;
 const errors=[];
 /**
  * Function contract: read
- * Purpose: Retrieves read and returns it in the form expected by its caller.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return module behavior from the supplied inputs or current enforce home work contract repository tool state.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: reads repository/filesystem state.
+ * Returns: The requested module behavior; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function read(file){const target=path.join(base,file);if(!fs.existsSync(target)){errors.push(`Missing ${file}`);return '';}return fs.readFileSync(target,'utf8');}
 const home=read('index.html');

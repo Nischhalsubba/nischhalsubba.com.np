@@ -1,16 +1,15 @@
 /**
  * @fileoverview scripts/ensure-homepage-audit-copy.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure homepage audit copy.
+ * Purpose: Validate ensure homepage audit copy and fail with actionable diagnostics when the production contract is violated.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/generate-source.cjs
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('fs');
 const path = require('path');
@@ -47,10 +46,10 @@ const proofSection = `
 
 /**
  * Function contract: entitySchema
- * Purpose: Implements the entity schema responsibility for this module.
- * Inputs: canonical.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the entity schema responsibility owned by the ensure homepage audit copy repository tool.
+ * Inputs: `canonical`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function entitySchema(canonical) {
   const url = canonical === 'home-v2.html' ? `${SITE}/home-v2.html` : `${SITE}/`;
@@ -119,6 +118,13 @@ function entitySchema(canonical) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: replaceHero
+ * Purpose: Implement the replace hero responsibility owned by the ensure homepage audit copy repository tool.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function replaceHero(html) {
   return html.replace(/      <section class="hero-section center-aligned-hero nrs-home-hero"[\s\S]*?      <\/section>/, hero);
 }
@@ -129,6 +135,13 @@ function replaceHero(html) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: upsertProofSection
+ * Purpose: Implement the upsert proof section responsibility owned by the ensure homepage audit copy repository tool.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function upsertProofSection(html) {
   html = html.replace(/\s*<section id="homepage-proof-discovery"[\s\S]*?<\/section>/, '');
@@ -149,6 +162,13 @@ function upsertProofSection(html) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertEntitySchema
+ * Purpose: Implement the upsert entity schema responsibility owned by the ensure homepage audit copy repository tool.
+ * Inputs: `html`: input consumed by this operation; `target`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function upsertEntitySchema(html, target) {
   html = html.replace(/\s*<script\s+type="application\/ld\+json"\s+id="nrs-homepage-entity-schema">[\s\S]*?<\/script>/, '');
   return html.replace('</head>', `    ${entitySchema(target)}\n  </head>`);
@@ -160,6 +180,13 @@ function upsertEntitySchema(html, target) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: cleanOutdatedCopy
+ * Purpose: Remove outdated copy without disturbing required surrounding ensure homepage audit copy repository tool state.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function cleanOutdatedCopy(html) {
   return html

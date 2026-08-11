@@ -1,15 +1,15 @@
 /**
  * @fileoverview src/scripts/features/layout/site-footer.js
- * Purpose: Browser runtime feature in the layout domain responsible for site footer behavior.
+ * Purpose: Implement site footer behavior inside the layout browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the layout behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - src/scripts/shared/dom.js
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $ } from '../../shared/dom.js';
 
@@ -33,10 +33,10 @@ const footerMarkup = `
 
 /**
  * Function contract: buildFooter
- * Purpose: Creates build footer from the supplied inputs and repository state.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Build footer from the supplied inputs in the form expected by downstream site footer browser feature consumers.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function buildFooter() {
   const footer = document.createElement('footer');
@@ -48,10 +48,10 @@ function buildFooter() {
 
 /**
  * Function contract: ensureSiteFooter
- * Purpose: Applies ensure site footer while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply site footer consistently while preserving the surrounding site footer browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function ensureSiteFooter() {
   if ($('footer.site-footer, footer.nrs-auto-footer')) return;

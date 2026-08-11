@@ -1,16 +1,16 @@
 /**
  * @fileoverview scripts/spacious-pages/services.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for services.
+ * Purpose: Apply the services production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - scripts/spacious-pages/shared.cjs
  * - scripts/build-dist.cjs
- * - scripts/ensure-spacious-core-pages.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const { replaceMain } = require('./shared.cjs');
 
@@ -23,7 +23,7 @@ const services = [
   ['06', 'UX audit and remediation', 'Find the usability, accessibility, responsive and implementation issues that matter, then turn them into a practical fix plan.', 'Evidence, severity, priorities and fix guidance', '/ux-audit'],
 ];
 
-const serviceRows = services.map(/** Callback contract: Processes the callback step for services without leaking orchestration details to the caller. Inputs: [number, title, description, scope, href]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([number, title, description, scope, href]) => `
+const serviceRows = services.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[number, title, description, scope, href]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([number, title, description, scope, href]) => `
   <article class="nrs-service-index-row">
     <span class="nrs-service-index-number">${number}</span>
     <h3>${title}</h3>
@@ -41,7 +41,7 @@ const process = [
   ['02', 'structure', 'journeys, hierarchy, content priority, states and edge cases before visual polish.'],
   ['03', 'design', 'reusable interface patterns, responsive screens and prototypes that can be reviewed.'],
   ['04', 'ship', 'implementation notes, assets, design qa and support while the product is being built.'],
-] without leaking orchestration details to the caller. Inputs: [number, title, description]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([number, title, description]) => `<li><span>${number}</span><h3>${title}</h3><p>${description}</p></li>`).join('');
+] without leaking orchestration details to the caller. Inputs: [number, title, description]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[number, title, description]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([number, title, description]) => `<li><span>${number}</span><h3>${title}</h3><p>${description}</p></li>`).join('');
 
 const markup = `<main id="main-content" class="container nrs-spacious-page nrs-services-v49">
   <section class="nrs-services-v49-hero reveal-on-scroll" aria-labelledby="services-title">

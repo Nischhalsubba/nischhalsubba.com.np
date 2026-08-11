@@ -1,25 +1,20 @@
+/**
+ * @fileoverview scripts/audit-css-architecture.cjs
+ * Purpose: Validate audit css architecture and fail with actionable diagnostics when the production contract is violated.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * - scripts/compile-single-stylesheet.cjs
+ * - scripts/repository/generate-file-catalog.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
-
-/**
- * @fileoverview scripts/audit-css-architecture.cjs
- * Purpose: Enforce the authored CSS architecture after styles are grouped into global, reusable systems, and responsibility-based fragment folders.
- * Responsibilities:
- * - Recursively discover authored `.css` source under `src/styles/`.
- * - Treat only `src/styles/style.css` as the intentionally global production stylesheet.
- * - Preserve the historical compatibility exception for `src/styles/systems/inner-pages.css` while still checking its dangerous resource patterns.
- * - Reject `!important`, global document selectors, remote imports, and inline data URLs from modular CSS where those constructs are not allowed.
- * - Fail when the canonical global stylesheet or required compatibility system disappears.
- * Execution context: Node.js during `npm run audit:css-architecture` and the repository validation workflows.
- * Connected files:
- * - src/styles/style.css
- * - src/styles/systems/inner-pages.css
- * - src/styles/systems/case-study.css
- * - scripts/compile-single-stylesheet.cjs
- * - package.json
- * Maintenance: Keep exemptions path-specific. New nested folders should be discovered automatically instead of being added to manual allow-lists.
- */
 
 const root = path.resolve(__dirname, '..');
 const stylesRoot = path.join(root, 'src', 'styles');
@@ -29,10 +24,10 @@ const issues = [];
 
 /**
  * Function contract: walkCssFiles
- * Purpose: Recursively discover authored `.css` files so nested style systems remain inside the architecture audit instead of escaping it by moving folders.
- * Inputs: `directory`, the absolute directory currently being scanned; `output`, the mutable accumulator used during recursion.
- * Side effects: Reads filesystem directory metadata and appends discovered absolute CSS paths to `output`.
- * Returns: The accumulator containing every discovered absolute `.css` file path.
+ * Purpose: Recursively discover authored CSS files so nested style systems remain inside the architecture audit.
+ * Inputs: `directory`: input consumed by this operation; `output`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walkCssFiles(directory, output = []) {
   if (!fs.existsSync(directory)) return output;
@@ -51,10 +46,10 @@ function walkCssFiles(directory, output = []) {
 
 /**
  * Function contract: relativeStylePath
- * Purpose: Normalize an absolute stylesheet path into the stable forward-slash form used by policy comparisons and diagnostics.
- * Inputs: `file`, an absolute path beneath `src/styles/`.
- * Side effects: No external side effects.
- * Returns: A forward-slash path relative to `src/styles/`, such as `systems/inner-pages.css`.
+ * Purpose: Normalize an absolute stylesheet path into a stable forward-slash path relative to the style source root.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function relativeStylePath(file) {
   return path.relative(stylesRoot, file).split(path.sep).join('/');
@@ -62,10 +57,10 @@ function relativeStylePath(file) {
 
 /**
  * Function contract: readCommitted
- * Purpose: Read the committed compatibility stylesheet when possible so build-time working-tree mutations cannot hide architecture regressions.
- * Inputs: `relativePath`, a repository-relative path for `git show`; `fallbackPath`, the absolute working-tree file used when the committed version is unavailable.
- * Side effects: Spawns a read-only Git command and may read the fallback file from disk.
- * Returns: CSS source text from the current commit or the fallback working tree.
+ * Purpose: Read the committed version of a compatibility stylesheet when available so generated working-tree mutations cannot hide architecture regressions.
+ * Inputs: `relativePath`: input consumed by this operation; `fallbackPath`: input consumed by this operation
+ * Side effects: reads repository/filesystem state; spawns child processes.
+ * Returns: The requested committed; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function readCommitted(relativePath, fallbackPath) {
   const result = spawnSync('git', ['show', `HEAD:${relativePath}`], {
@@ -83,6 +78,13 @@ function readCommitted(relativePath, fallbackPath) {
  * Inputs: `css`, complete stylesheet source text.
  * Side effects: No external side effects.
  * Returns: CSS source with block comments removed.
+ */
+/**
+ * Function contract: withoutComments
+ * Purpose: Remove CSS block comments before selector and declaration policy checks to avoid false positives from commented examples.
+ * Inputs: `css`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function withoutComments(css) {
   return css.replace(/\/\*[\s\S]*?\*\//g, '');
@@ -135,7 +137,7 @@ if (!files.length) {
 }
 
 if (issues.length) {
-  console.error('[css-architecture] Failed\n' + issues.map(/** Callback contract: Processes the callback step for issues without leaking orchestration details to the caller. Inputs: issue. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (issue) => `- ${issue}`).join('\n'));
+  console.error('[css-architecture] Failed\n' + issues.map(/** Callback contract: Processes the callback step for issues without leaking orchestration details to the caller. Inputs: issue. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `issue`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (issue) => `- ${issue}`).join('\n'));
   process.exit(1);
 }
 

@@ -1,24 +1,24 @@
 /**
  * @fileoverview src/scripts/features/content/article-layout.js
- * Purpose: Browser runtime feature in the content domain responsible for article layout behavior.
+ * Purpose: Implement article layout behavior inside the content browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the content behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/main.js
+ * - src/scripts/shared/dom.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $, $$ } from '../../shared/dom.js';
 
 /**
  * Function contract: isArticlePage
- * Purpose: Implements the is article page responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Determine whether article page satisfies the condition represented by this article layout browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Boolean indicating whether article page satisfies the documented condition.
  */
 function isArticlePage() {
   return window.location.pathname.startsWith('/blog/') || Boolean($('article'));
@@ -26,10 +26,10 @@ function isArticlePage() {
 
 /**
  * Function contract: ensureContainer
- * Purpose: Applies ensure container while preserving the surrounding repository/runtime contract.
- * Inputs: element.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply container consistently while preserving the surrounding article layout browser feature contract.
+ * Inputs: `element`: DOM element currently being evaluated or updated
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureContainer(element) {
   if (!element || element.classList.contains('container')) return;
@@ -39,10 +39,10 @@ function ensureContainer(element) {
 
 /**
  * Function contract: normalizeArticle
- * Purpose: Applies normalize article while preserving the surrounding repository/runtime contract.
- * Inputs: article.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply article consistently while preserving the surrounding article layout browser feature contract.
+ * Inputs: `article`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function normalizeArticle(article) {
   article.classList.add('nrs-article', 'blog-prose');
@@ -50,11 +50,11 @@ function normalizeArticle(article) {
   const header = $('header', article);
   if (header) header.classList.add('nrs-article-header');
 
-  $$('section', article).forEach(/** Callback contract: Processes the callback step for $$('section', article) without leaking orchestration details to the caller. Inputs: section. Side effects: may read or update browser DOM/state. No explicit return contract. */ (section) => {
+  $$('section', article).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `section`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (section) => {
     section.classList.add('nrs-article-section');
   });
 
-  $$('article img').forEach(/** Callback contract: Processes the callback step for $$('article img') without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (image) => {
+  $$('article img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (image) => {
     image.loading = image.loading || 'lazy';
     image.decoding = image.decoding || 'async';
   });
@@ -62,10 +62,10 @@ function normalizeArticle(article) {
 
 /**
  * Function contract: normalizeArticleLayout
- * Purpose: Applies normalize article layout while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply article layout consistently while preserving the surrounding article layout browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function normalizeArticleLayout() {
   if (!isArticlePage()) return;

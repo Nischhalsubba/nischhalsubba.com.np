@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/copy-static-assets.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for copy static assets.
+ * Purpose: Generate or assemble copy static assets deterministically as part of the production toolchain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
+ * - scripts/early-theme-bootstrap.cjs
  * - docs/build-pipeline.md
- * - docs/repository/file-catalog.md
- * - docs/repository/file-map.md
  * - docs/root-route-map.md
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - scripts/build-dist.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -26,38 +27,38 @@ const forbiddenPublicFiles = new Set(['sitemap.xml', 'robots.txt', 'llms.txt', '
 
 /**
  * Function contract: ensureDir
- * Purpose: Applies ensure dir while preserving the surrounding repository/runtime contract.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply dir consistently while preserving the surrounding copy static assets repository tool contract.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureDir(file) { fs.mkdirSync(path.dirname(file), { recursive: true }); }
 /**
  * Function contract: copyFile
- * Purpose: Implements the copy file responsibility for this module.
- * Inputs: source, target.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the copy file responsibility owned by the copy static assets repository tool.
+ * Inputs: `source`: source text or source object being processed; `target`: input consumed by this operation
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function copyFile(source, target) { if (!fs.existsSync(source)) return; ensureDir(target); fs.copyFileSync(source, target); }
 /**
  * Function contract: copyText
- * Purpose: Implements the copy text responsibility for this module.
- * Inputs: source, target, transform.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the copy text responsibility owned by the copy static assets repository tool.
+ * Inputs: `source`: source text or source object being processed; `target`: input consumed by this operation; `transform`: input consumed by this operation
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
-function copyText(source, target, transform = /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => value) {
+function copyText(source, target, transform = /** Callback contract: Perform the local callback step required by the enclosing copy static assets repository tool operation. Inputs: `value`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (value) => value) {
   if (!fs.existsSync(source)) return;
   ensureDir(target);
   fs.writeFileSync(target, transform(fs.readFileSync(source, 'utf8')), 'utf8');
 }
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: dir, files.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the walk responsibility owned by the copy static assets repository tool.
+ * Inputs: `dir`: input consumed by this operation; `files`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -69,20 +70,20 @@ function walk(dir, files = []) {
 }
 /**
  * Function contract: copyDirectory
- * Purpose: Implements the copy directory responsibility for this module.
- * Inputs: source, target.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the copy directory responsibility owned by the copy static assets repository tool.
+ * Inputs: `source`: source text or source object being processed; `target`: input consumed by this operation
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function copyDirectory(source, target) {
   for (const file of walk(source)) copyFile(file, path.join(target, path.relative(source, file)));
 }
 /**
  * Function contract: copyPublicAssets
- * Purpose: Implements the copy public assets responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the copy public assets responsibility owned by the copy static assets repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function copyPublicAssets() {
   for (const file of walk(publicDir)) {
@@ -94,10 +95,10 @@ function copyPublicAssets() {
 }
 /**
  * Function contract: removeRemoteFonts
- * Purpose: Removes or cleans remove remote fonts while keeping required outputs intact.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Remove remote fonts without disturbing required surrounding copy static assets repository tool state.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function removeRemoteFonts(html) {
   return html
@@ -106,23 +107,23 @@ function removeRemoteFonts(html) {
 }
 /**
  * Function contract: ensureSingleStylesheet
- * Purpose: Applies ensure single stylesheet while preserving the surrounding repository/runtime contract.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply single stylesheet consistently while preserving the surrounding copy static assets repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function ensureSingleStylesheet(html) {
-  let output = html.replace(/\s*<link[^>]+rel=["']stylesheet["'][^>]*>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: tag. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (tag) => /\/style\.css(?:\?|["'])/i.test(tag) ? tag : '');
+  let output = html.replace(/\s*<link[^>]+rel=["']stylesheet["'][^>]*>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: tag. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing copy static assets repository tool operation. Inputs: `tag`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (tag) => /\/style\.css(?:\?|["'])/i.test(tag) ? tag : '');
   if (/\/style\.css/i.test(output)) output = output.replace(/\/style\.css(?:\?v=[^"']+)?/g, styleHref);
   else output = output.replace('</head>', `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
   return output;
 }
 /**
  * Function contract: ensureRuntime
- * Purpose: Applies ensure runtime while preserving the surrounding repository/runtime contract.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply runtime consistently while preserving the surrounding copy static assets repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function ensureRuntime(html) {
   const entryScriptPattern = /\s*<script\b[^>]*src=["'](?:\/script\.js(?:\?[^"']*)?|\/assets\/(?:script|main|index)[^"']*\.js)["'][^>]*><\/script>\s*/gi;
@@ -131,10 +132,10 @@ function ensureRuntime(html) {
 }
 /**
  * Function contract: ensureTheme
- * Purpose: Applies ensure theme while preserving the surrounding repository/runtime contract.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply theme consistently while preserving the surrounding copy static assets repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function ensureTheme(html) {
   const cleaned = html.replace(/\s*<script id="nrs-early-theme-bootstrap">[\s\S]*?<\/script>/, '');
@@ -146,6 +147,13 @@ function ensureTheme(html) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: ensureAccessibility
+ * Purpose: Apply accessibility consistently while preserving the surrounding copy static assets repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function ensureAccessibility(html) {
   if (!/<body/i.test(html) || !/<main/i.test(html)) return html;
@@ -161,8 +169,15 @@ function ensureAccessibility(html) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: normalizeFrames
+ * Purpose: Apply frames consistently while preserving the surrounding copy static assets repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function normalizeFrames(html) {
-  return html.replace(/<iframe\b([^>]*figma\.com[^>]*)>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: _match, attrs. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (_match, attrs) => {
+  return html.replace(/<iframe\b([^>]*figma\.com[^>]*)>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: _match, attrs. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing copy static assets repository tool operation. Inputs: `_match`, `attrs`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (_match, attrs) => {
     let next = attrs.replace(/\sloading=["'](?:eager|lazy)["']/i, '');
     if (!/\stitle=["']/i.test(next)) next += ' title="Interactive Figma project preview"';
     if (!/\sreferrerpolicy=["']/i.test(next)) next += ' referrerpolicy="strict-origin-when-cross-origin"';
@@ -176,8 +191,15 @@ function normalizeFrames(html) {
  * Side effects: may read or write repository/filesystem state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: optimizeHtml
+ * Purpose: Implement the optimize html responsibility owned by the copy static assets repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function optimizeHtml() {
-  for (const file of walk(dist).filter(/** Callback contract: Processes the callback step for walk(dist) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.endsWith('.html'))) {
+  for (const file of walk(dist).filter(/** Callback contract: Processes the callback step for walk(dist) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.endsWith('.html'))) {
     const original = fs.readFileSync(file, 'utf8');
     const updated = ensureRuntime(ensureSingleStylesheet(ensureTheme(ensureAccessibility(normalizeFrames(removeRemoteFonts(original))))));
     if (updated !== original) fs.writeFileSync(file, updated, 'utf8');
@@ -189,6 +211,13 @@ function optimizeHtml() {
  * Inputs: css.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: stripRemoteFontImports
+ * Purpose: Remove remote font imports without disturbing required surrounding copy static assets repository tool state.
+ * Inputs: `css`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function stripRemoteFontImports(css) {
   return css.replace(/@import\s+url\(["']?https:\/\/fonts\.googleapis\.com\/[^;]+;\s*/gi, '');

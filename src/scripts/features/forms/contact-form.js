@@ -1,16 +1,15 @@
 /**
  * @fileoverview src/scripts/features/forms/contact-form.js
- * Purpose: Browser runtime feature in the forms domain responsible for contact form behavior.
+ * Purpose: Implement contact form behavior inside the forms browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the forms behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/agent-main.js
- * - src/scripts/entrypoints/main.js
+ * - src/scripts/shared/dom.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $ } from '../../shared/dom.js';
 
@@ -27,6 +26,13 @@ const REQUEST_TIMEOUT_MS = 20000;
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: errorId
+ * Purpose: Implement the error id responsibility owned by the contact form browser feature.
+ * Inputs: `field`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function errorId(field) {
   const name = (field.name || field.id || 'field').replace(/[^a-z0-9_-]/gi, '-');
   return `contact-error-${name}`;
@@ -38,6 +44,13 @@ function errorId(field) {
  * Inputs: field.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: validationMessage
+ * Purpose: Implement the validation message responsibility owned by the contact form browser feature.
+ * Inputs: `field`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function validationMessage(field) {
   if (field.validity.valueMissing) return 'Add this detail before sending.';
@@ -54,6 +67,13 @@ function validationMessage(field) {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: clearFieldError
+ * Purpose: Implement the clear field error responsibility owned by the contact form browser feature.
+ * Inputs: `field`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function clearFieldError(field) {
   field.removeAttribute('aria-invalid');
   const id = errorId(field);
@@ -63,7 +83,7 @@ function clearFieldError(field) {
     .filter(Boolean)
     .filter(/** Callback contract: Processes the callback step for (field.get attribute('aria describedby') || '')
     .split(/\s+/)
-    .filter(boolean) without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => value !== id);
+    .filter(boolean) without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `value`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (value) => value !== id);
   if (values.length) field.setAttribute('aria-describedby', values.join(' '));
   else field.removeAttribute('aria-describedby');
 }
@@ -74,6 +94,13 @@ function clearFieldError(field) {
  * Inputs: field, message.
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: showFieldError
+ * Purpose: Implement the show field error responsibility owned by the contact form browser feature.
+ * Inputs: `field`: input consumed by this operation; `message`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function showFieldError(field, message = validationMessage(field)) {
   clearFieldError(field);
@@ -95,6 +122,13 @@ function showFieldError(field, message = validationMessage(field)) {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: canRestoreInvalidFocus
+ * Purpose: Determine whether restore invalid focus satisfies the condition represented by this contact form browser feature.
+ * Inputs: `field`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Boolean indicating whether restore invalid focus satisfies the documented condition.
+ */
 function canRestoreInvalidFocus(field) {
   const active = document.activeElement;
   if (!active || active === document.body || active === document.documentElement) return true;
@@ -109,6 +143,13 @@ function canRestoreInvalidFocus(field) {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: focusInvalid
+ * Purpose: Implement the focus invalid responsibility owned by the contact form browser feature.
+ * Inputs: `field`: input consumed by this operation; `{ persistent = false }`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function focusInvalid(field, { persistent = false } = {}) {
   if (!field) return;
 
@@ -119,6 +160,13 @@ function focusInvalid(field, { persistent = false } = {}) {
    * Side effects: may read or update browser DOM/state.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
    */
+  /**
+   * Function contract: restore
+   * Purpose: Apply module behavior consistently while preserving the surrounding contact form browser feature contract.
+   * Inputs: `force`: input consumed by this operation
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   */
   const restore = (force = false) => {
     if (!field.isConnected || document.activeElement === field) return;
     if (!force && !canRestoreInvalidFocus(field)) return;
@@ -126,10 +174,10 @@ function focusInvalid(field, { persistent = false } = {}) {
   };
 
   restore(true);
-  queueMicrotask(/** Callback contract: Processes the callback step for queue microtask without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => restore());
-  requestAnimationFrame(/** Callback contract: Processes the callback step for request animation frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
+  queueMicrotask(/** Callback contract: Processes the callback step for queue microtask without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing contact form browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => restore());
+  requestAnimationFrame(/** Callback contract: Processes the callback step for request animation frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Defer the enclosed DOM update until the next animation frame so layout/state changes apply in a stable order. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     restore();
-    window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => restore(), 0);
+    window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing contact form browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => restore(), 0);
   });
 
   if (persistent) {
@@ -140,6 +188,13 @@ function focusInvalid(field, { persistent = false } = {}) {
      * Inputs: none; the function derives state from its enclosing module/runtime context.
      * Side effects: may read or update browser DOM/state.
      * Returns: no explicit value unless an invoked dependency throws/rejects.
+     */
+    /**
+     * Function contract: keepRestoring
+     * Purpose: Implement the keep restoring responsibility owned by the contact form browser feature.
+     * Inputs: None; derives required state from the enclosing module/runtime context.
+     * Side effects: reads or updates DOM/browser state.
+     * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
      */
     const keepRestoring = () => {
       restore();
@@ -156,12 +211,19 @@ function focusInvalid(field, { persistent = false } = {}) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: validate
+ * Purpose: Validate module behavior and surface actionable failures when the contact form browser feature contract is violated.
+ * Inputs: `form`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function validate(form) {
   let firstInvalid = null;
   [...form.querySelectorAll('input, select, textarea')]
-    .filter(/** Callback contract: Processes the callback step for [...form.query selector all('input, select, textarea')] without leaking orchestration details to the caller. Inputs: field. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (field) => field.type !== 'hidden' && field.name !== '_honey')
+    .filter(/** Callback contract: Processes the callback step for [...form.query selector all('input, select, textarea')] without leaking orchestration details to the caller. Inputs: field. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `field`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (field) => field.type !== 'hidden' && field.name !== '_honey')
     .forEach(/** Callback contract: Processes the callback step for [...form.query selector all('input, select, textarea')]
-    .filter((field) => field.type !== 'hidden' && field.name !== ' honey') without leaking orchestration details to the caller. Inputs: field. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (field) => {
+    .filter((field) => field.type !== 'hidden' && field.name !== ' honey') without leaking orchestration details to the caller. Inputs: field. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `field`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (field) => {
       clearFieldError(field);
       if (!field.checkValidity()) {
         showFieldError(field);
@@ -179,9 +241,16 @@ function validate(form) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: applyServerErrors
+ * Purpose: Apply server errors consistently while preserving the surrounding contact form browser feature contract.
+ * Inputs: `form`: input consumed by this operation; `errors`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function applyServerErrors(form, errors = {}) {
   let firstInvalid = null;
-  Object.entries(errors).forEach(/** Callback contract: Processes the callback step for object.entries(errors) without leaking orchestration details to the caller. Inputs: [name, message]. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ ([name, message]) => {
+  Object.entries(errors).forEach(/** Callback contract: Processes the callback step for object.entries(errors) without leaking orchestration details to the caller. Inputs: [name, message]. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[name, message]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([name, message]) => {
     const field = form.elements.namedItem(name);
     if (!(field instanceof HTMLElement)) return;
     showFieldError(field, String(message));
@@ -196,6 +265,13 @@ function applyServerErrors(form, errors = {}) {
  * Inputs: form.
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: buildPayload
+ * Purpose: Build payload from the supplied inputs in the form expected by downstream contact form browser feature consumers.
+ * Inputs: `form`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function buildPayload(form) {
   const payload = new FormData(form);
@@ -217,17 +293,24 @@ function buildPayload(form) {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: loadTurnstile
+ * Purpose: Return turnstile from the supplied inputs or current contact form browser feature state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: The requested turnstile; early-return/empty-state behavior follows the explicit branches in this function.
+ */
 function loadTurnstile() {
   if (window.turnstile) return Promise.resolve();
   const base = TURNSTILE_SCRIPT.split('?')[0];
   const existing = document.querySelector(`script[src^="${base}"]`);
   if (existing) {
-    return new Promise(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: resolve, reject. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (resolve, reject) => {
+    return new Promise(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: resolve, reject. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing contact form browser feature operation. Inputs: `resolve`, `reject`. Side effects: registers or removes browser event listeners. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (resolve, reject) => {
       existing.addEventListener('load', resolve, { once: true });
       existing.addEventListener('error', reject, { once: true });
     });
   }
-  return new Promise(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: resolve, reject. Side effects: may read or update browser DOM/state. No explicit return contract. */ (resolve, reject) => {
+  return new Promise(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: resolve, reject. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing contact form browser feature operation. Inputs: `resolve`, `reject`. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (resolve, reject) => {
     const script = document.createElement('script');
     script.src = TURNSTILE_SCRIPT;
     script.async = true;
@@ -244,6 +327,13 @@ function loadTurnstile() {
  * Inputs: form.
  * Side effects: may read or update browser DOM/state; may emit diagnostics or inspect process state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: initializeTurnstile
+ * Purpose: Initialize turnstile for the contact form browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: `form`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state; emits diagnostics or changes process failure state.
+ * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
  */
 async function initializeTurnstile(form) {
   const siteKey = form.dataset.turnstileSiteKey
@@ -277,6 +367,13 @@ async function initializeTurnstile(form) {
  * Side effects: may perform network I/O.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: sendPayload
+ * Purpose: Implement the send payload responsibility owned by the contact form browser feature.
+ * Inputs: `endpoint`: input consumed by this operation; `form`: input consumed by this operation; `signal`: input consumed by this operation
+ * Side effects: performs network I/O.
+ * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
+ */
 async function sendPayload(endpoint, form, signal) {
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -284,7 +381,7 @@ async function sendPayload(endpoint, form, signal) {
     headers: { Accept: 'application/json' },
     signal,
   });
-  const result = await response.json().catch(/** Callback contract: Processes the callback step for response.json() without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => ({}));
+  const result = await response.json().catch(/** Callback contract: Processes the callback step for response.json() without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Convert or report the rejected asynchronous operation according to this module’s failure-handling policy. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => ({}));
   return { response, result };
 }
 
@@ -294,6 +391,13 @@ async function sendPayload(endpoint, form, signal) {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or update browser DOM/state; may emit diagnostics or inspect process state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: initContactForm
+ * Purpose: Initialize contact form for the contact form browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state; emits diagnostics or changes process failure state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function initContactForm() {
   const form = $('#contact-form');
@@ -315,6 +419,13 @@ export function initContactForm() {
    * Side effects: may read or update browser DOM/state.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
    */
+  /**
+   * Function contract: setStatus
+   * Purpose: Synchronize status with the requested state while preserving related contact form browser feature invariants.
+   * Inputs: `message`: input consumed by this operation; `tone`: input consumed by this operation
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   */
   const setStatus = (message, tone = 'neutral') => {
     if (!status) return;
     status.textContent = message;
@@ -322,14 +433,14 @@ export function initContactForm() {
   };
 
   const turnstileState = initializeTurnstile(form);
-  form.querySelectorAll('input, select, textarea').forEach(/** Callback contract: Processes the callback step for form.query selector all('input, select, textarea') without leaking orchestration details to the caller. Inputs: field. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (field) => {
+  form.querySelectorAll('input, select, textarea').forEach(/** Callback contract: Processes the callback step for form.query selector all('input, select, textarea') without leaking orchestration details to the caller. Inputs: field. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `field`. Side effects: registers or removes browser event listeners. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (field) => {
     if (field.type === 'hidden') return;
-    field.addEventListener('input', /** Callback contract: Processes the callback step for field without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => clearFieldError(field));
-    field.addEventListener('change', /** Callback contract: Processes the callback step for field without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => clearFieldError(field));
+    field.addEventListener('input', /** Callback contract: Processes the callback step for field without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the input event for `field` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => clearFieldError(field));
+    field.addEventListener('change', /** Callback contract: Processes the callback step for field without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the change event for `field` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => clearFieldError(field));
   });
-  emailLink?.addEventListener('click', /** Callback contract: Processes the callback step for email link? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => setStatus('Opening your email app. Nothing you typed here has been cleared.', 'neutral'));
+  emailLink?.addEventListener('click', /** Callback contract: Processes the callback step for email link? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the click event for `emailLink` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => setStatus('Opening your email app. Nothing you typed here has been cleared.', 'neutral'));
 
-  form.addEventListener('submit', /** Callback contract: Processes the callback step for form without leaking orchestration details to the caller. Inputs: event. Side effects: may read or update browser DOM/state; may emit diagnostics or inspect process state. Returns a value to the invoking API. */ async (event) => {
+  form.addEventListener('submit', /** Callback contract: Processes the callback step for form without leaking orchestration details to the caller. Inputs: event. Side effects: may read or update browser DOM/state; may emit diagnostics or inspect process state. Returns a value to the invoking API. */ /** Callback contract: Handle the submit event for `form` and apply this module's related state update. Inputs: `event`. Side effects: reads or updates DOM/browser state; emits diagnostics or changes process failure state. Returns: Promise that resolves when the asynchronous side effects complete. */ async (event) => {
     event.preventDefault();
     if (!validate(form)) {
       setStatus('Review the highlighted fields, then send again.', 'error');
@@ -353,7 +464,7 @@ export function initContactForm() {
 
     let useFirstParty = Boolean(turnstile.ready && token);
     const controller = new AbortController();
-    const timeout = window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => controller.abort(), REQUEST_TIMEOUT_MS);
+    const timeout = window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing contact form browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => controller.abort(), REQUEST_TIMEOUT_MS);
 
     try {
       let { response, result } = await sendPayload(

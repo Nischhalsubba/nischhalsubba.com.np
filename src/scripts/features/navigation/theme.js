@@ -1,16 +1,15 @@
 /**
  * @fileoverview src/scripts/features/navigation/theme.js
- * Purpose: Browser runtime feature in the navigation domain responsible for theme behavior.
+ * Purpose: Implement theme behavior inside the navigation browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the navigation behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/agent-main.js
- * - src/scripts/entrypoints/main.js
+ * - src/scripts/shared/dom.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $, $$ } from '../../shared/dom.js';
 
@@ -22,10 +21,10 @@ const moonIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9
 
 /**
  * Function contract: systemTheme
- * Purpose: Implements the system theme responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the system theme responsibility owned by the theme browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function systemTheme() {
   return window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
@@ -33,10 +32,10 @@ function systemTheme() {
 
 /**
  * Function contract: sessionTheme
- * Purpose: Implements the session theme responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state; may read or update browser persistence.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the session theme responsibility owned by the theme browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state; reads or updates browser persistence.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function sessionTheme() {
   try {
@@ -49,10 +48,10 @@ function sessionTheme() {
 
 /**
  * Function contract: saveSessionTheme
- * Purpose: Implements the save session theme responsibility for this module.
- * Inputs: theme.
- * Side effects: may read or update browser DOM/state; may read or update browser persistence.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the save session theme responsibility owned by the theme browser feature.
+ * Inputs: `theme`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state; reads or updates browser persistence.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function saveSessionTheme(theme) {
   try {
@@ -65,19 +64,19 @@ function saveSessionTheme(theme) {
 
 /**
  * Function contract: updatePortraitImages
- * Purpose: Applies update portrait images while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply portrait images consistently while preserving the surrounding theme browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updatePortraitImages() {
-  $$('.hero-portrait-img, .footer-portrait-img, .profile-img').forEach(/** Callback contract: Processes the callback step for $$('.hero portrait img, .footer portrait img, .profile img') without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (image) => {
+  $$('.hero-portrait-img, .footer-portrait-img, .profile-img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (image) => {
     if (image.dataset.localPortraitReady === 'true') return;
 
     image.dataset.localPortraitReady = 'true';
     image.src = PORTRAIT_IMG;
     image.decoding = 'async';
-    image.onerror = /** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+    image.onerror = /** Callback contract: Perform the local callback step required by the enclosing theme browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
       image.onerror = null;
       image.src = FALLBACK_PORTRAIT_IMG;
     };
@@ -86,10 +85,10 @@ function updatePortraitImages() {
 
 /**
  * Function contract: updateThemeButton
- * Purpose: Applies update theme button while preserving the surrounding repository/runtime contract.
- * Inputs: button, theme.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply theme button consistently while preserving the surrounding theme browser feature contract.
+ * Inputs: `button`: interactive trigger/control element; `theme`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateThemeButton(button, theme) {
   if (!button) return;
@@ -105,6 +104,13 @@ function updateThemeButton(button, theme) {
  * Inputs: theme, button, source.
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: applyTheme
+ * Purpose: Apply theme consistently while preserving the surrounding theme browser feature contract.
+ * Inputs: `theme`: input consumed by this operation; `button`: interactive trigger/control element; `source`: source text or source object being processed
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function applyTheme(theme, button, source = 'system') {
   const nextTheme = theme === 'light' ? 'light' : 'dark';
@@ -123,6 +129,13 @@ function applyTheme(theme, button, source = 'system') {
  * Side effects: may read or update browser DOM/state; may read or update browser persistence.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: initTheme
+ * Purpose: Initialize theme for the theme browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state; reads or updates browser persistence.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 export function initTheme() {
   const button = $('#theme-toggle');
   const mediaQuery = window.matchMedia?.('(prefers-color-scheme: light)');
@@ -136,14 +149,14 @@ export function initTheme() {
 
   applyTheme(override || systemTheme(), button, override ? 'session' : 'system');
 
-  button?.addEventListener('click', /** Callback contract: Processes the callback step for button? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
+  button?.addEventListener('click', /** Callback contract: Processes the callback step for button? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the click event for `button` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     const currentTheme = document.documentElement.getAttribute('data-theme') || systemTheme();
     const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
     saveSessionTheme(nextTheme);
     applyTheme(nextTheme, button, 'session');
   });
 
-  mediaQuery?.addEventListener?.('change', /** Callback contract: Processes the callback step for media query? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+  mediaQuery?.addEventListener?.('change', /** Callback contract: Processes the callback step for media query? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the change event for `mediaQuery` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     if (!sessionTheme()) applyTheme(systemTheme(), button, 'system');
   });
 }

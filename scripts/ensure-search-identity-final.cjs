@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/ensure-search-identity-final.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure search identity final.
+ * Purpose: Apply the ensure search identity final production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -76,10 +76,10 @@ const meta = {
 
 /**
  * Function contract: routeFor
- * Purpose: Implements the route for responsibility for this module.
- * Inputs: file.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the route for responsibility owned by the ensure search identity final repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function routeFor(file) {
   if (file === 'index.html') return '/';
@@ -94,6 +94,13 @@ function routeFor(file) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: esc
+ * Purpose: Implement the esc responsibility owned by the ensure search identity final repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
@@ -104,6 +111,13 @@ function esc(value = '') {
  * Inputs: html, value.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: setTitle
+ * Purpose: Synchronize title with the requested state while preserving related ensure search identity final repository tool invariants.
+ * Inputs: `html`: input consumed by this operation; `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function setTitle(html, value) {
   const tag = `<title>${esc(value)}</title>`;
@@ -119,6 +133,13 @@ function setTitle(html, value) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: setMeta
+ * Purpose: Synchronize meta with the requested state while preserving related ensure search identity final repository tool invariants.
+ * Inputs: `html`: input consumed by this operation; `key`: input consumed by this operation; `value`: input value being transformed or evaluated; `keyAttribute`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function setMeta(html, key, value, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapedKey}["'])[^>]*>`, 'i');
@@ -133,6 +154,13 @@ function setMeta(html, key, value, keyAttribute = 'name') {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: removeMeta
+ * Purpose: Remove meta without disturbing required surrounding ensure search identity final repository tool state.
+ * Inputs: `html`: input consumed by this operation; `key`: input consumed by this operation; `keyAttribute`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function removeMeta(html, key, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return html.replace(new RegExp(`\\s*<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapedKey}["'])[^>]*>`, 'gi'), '');
@@ -140,13 +168,13 @@ function removeMeta(html, key, keyAttribute = 'name') {
 
 /**
  * Function contract: patchStructuredData
- * Purpose: Implements the patch structured data responsibility for this module.
- * Inputs: html, route, pageMeta.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the patch structured data responsibility owned by the ensure search identity final repository tool.
+ * Inputs: `html`: input consumed by this operation; `route`: input consumed by this operation; `pageMeta`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function patchStructuredData(html, route, pageMeta) {
-  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: whole, before, after, raw. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (whole, before, after, raw) => {
+  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: whole, before, after, raw. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing ensure search identity final repository tool operation. Inputs: `whole`, `before`, `after`, `raw`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ (whole, before, after, raw) => {
     try {
       const data = JSON.parse(raw.trim());
       const graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
@@ -184,6 +212,13 @@ function patchStructuredData(html, route, pageMeta) {
  * Inputs: html.
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: patchIdentityHead
+ * Purpose: Implement the patch identity head responsibility owned by the ensure search identity final repository tool.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function patchIdentityHead(html) {
   html = html

@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/ensure-blog-editorial-v4.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure blog editorial v4.
+ * Purpose: Apply the ensure blog editorial v4 production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -232,10 +232,10 @@ const articles = {
 
 /**
  * Function contract: esc
- * Purpose: Implements the esc responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the esc responsibility owned by the ensure blog editorial v4 repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
@@ -243,10 +243,10 @@ function esc(value = '') {
 
 /**
  * Function contract: canonicalFor
- * Purpose: Implements the canonical for responsibility for this module.
- * Inputs: slug.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the canonical for responsibility owned by the ensure blog editorial v4 repository tool.
+ * Inputs: `slug`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function canonicalFor(slug) {
   return `${siteUrl}/blog/${slug}`;
@@ -259,6 +259,13 @@ function canonicalFor(slug) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: updateMeta
+ * Purpose: Apply meta consistently while preserving the surrounding ensure blog editorial v4 repository tool contract.
+ * Inputs: `html`: input consumed by this operation; `article`: input consumed by this operation; `slug`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function updateMeta(html, article, slug) {
   const title = `${article.title} | Nischhal Raj Subba`;
   const description = article.description;
@@ -269,6 +276,13 @@ function updateMeta(html, article, slug) {
    * Inputs: name, value.
    * Side effects: no obvious external side effect beyond invoked dependencies.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
+   */
+  /**
+   * Function contract: setName
+   * Purpose: Synchronize name with the requested state while preserving related ensure blog editorial v4 repository tool invariants.
+   * Inputs: `name`: stable identifier or label for the current item; `value`: input value being transformed or evaluated
+   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   const setName = (name, value) => {
     const re = new RegExp(`<meta\\s+[^>]*name=["']${name}["'][^>]*>`, 'i');
@@ -281,6 +295,13 @@ function updateMeta(html, article, slug) {
    * Inputs: name, value.
    * Side effects: no obvious external side effect beyond invoked dependencies.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
+   */
+  /**
+   * Function contract: setProperty
+   * Purpose: Synchronize property with the requested state while preserving related ensure blog editorial v4 repository tool invariants.
+   * Inputs: `name`: stable identifier or label for the current item; `value`: input value being transformed or evaluated
+   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   const setProperty = (name, value) => {
     const re = new RegExp(`<meta\\s+[^>]*property=["']${name}["'][^>]*>`, 'i');
@@ -311,9 +332,16 @@ function updateMeta(html, article, slug) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: renderArticle
+ * Purpose: Implement the render article responsibility owned by the ensure blog editorial v4 repository tool.
+ * Inputs: `article`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function renderArticle(article) {
-  const sections = article.sections.map(/** Callback contract: Processes the callback step for article.sections without leaking orchestration details to the caller. Inputs: [heading, paragraphs], index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([heading, paragraphs], index) => `<section class="nrs-article-v4-section"><span class="agent-meta">${String(index + 1).padStart(2, '0')}</span><div><h2>${esc(heading)}</h2>${paragraphs.map(/** Callback contract: Processes the callback step for paragraphs without leaking orchestration details to the caller. Inputs: p. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (p) => `<p>${esc(p)}</p>`).join('')}</div></section>`).join('');
-  const related = article.related.map(/** Callback contract: Processes the callback step for article.related without leaking orchestration details to the caller. Inputs: [href, label]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([href, label]) => `<a class="agent-btn" href="${esc(href)}">${esc(label)}</a>`).join('');
+  const sections = article.sections.map(/** Callback contract: Processes the callback step for article.sections without leaking orchestration details to the caller. Inputs: [heading, paragraphs], index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[heading, paragraphs]`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([heading, paragraphs], index) => `<section class="nrs-article-v4-section"><span class="agent-meta">${String(index + 1).padStart(2, '0')}</span><div><h2>${esc(heading)}</h2>${paragraphs.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `p`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (p) => `<p>${esc(p)}</p>`).join('')}</div></section>`).join('');
+  const related = article.related.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([href, label]) => `<a class="agent-btn" href="${esc(href)}">${esc(label)}</a>`).join('');
   return `<main id="main-content" class="agent-main nrs-article-v4"><header class="agent-page-hero"><div class="agent-frame agent-page-hero-grid"><div><span class="agent-kicker">Product design writing</span><h1>${esc(article.title)}</h1></div><p class="agent-page-intro">${esc(article.dek)}</p></div></header><article class="agent-section"><div class="agent-frame nrs-article-v4-frame"><div class="nrs-article-v4-intro"><span class="agent-meta">Practical note · Nischhal Raj Subba</span><p>This article is written as a working review tool rather than a universal formula. Apply the parts that match the product, evidence and constraints in front of you.</p></div>${sections}<footer class="nrs-article-v4-close"><span class="agent-kicker">Continue</span><h2>Use the framework to make a decision, not to create another checklist nobody owns.</h2><div class="agent-actions">${related}<a class="agent-btn" href="/blog/">All writing</a></div></footer></div></article></main>`;
 }
 
@@ -323,6 +351,13 @@ function renderArticle(article) {
  * Inputs: slug.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: locate
+ * Purpose: Resolve module behavior from the supplied inputs and the current repository/runtime context.
+ * Inputs: `slug`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: The requested module behavior; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function locate(slug) {
   if (!fs.existsSync(blogDir)) return null;

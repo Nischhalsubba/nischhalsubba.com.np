@@ -1,15 +1,14 @@
 /**
  * @fileoverview src/scripts/features/portfolio/project-images.js
- * Purpose: Browser runtime feature in the portfolio domain responsible for project images behavior.
+ * Purpose: Implement project images behavior inside the portfolio browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the portfolio behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/main.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const PROJECT_IMAGES = {
   '/project-yarsha.html': {
@@ -72,10 +71,10 @@ const PROJECT_IMAGES = {
 
 /**
  * Function contract: normalizeProjectPath
- * Purpose: Applies normalize project path while preserving the surrounding repository/runtime contract.
- * Inputs: pathname.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply project path consistently while preserving the surrounding project images browser feature contract.
+ * Inputs: `pathname`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function normalizeProjectPath(pathname) {
   return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
@@ -83,10 +82,10 @@ function normalizeProjectPath(pathname) {
 
 /**
  * Function contract: absoluteUrl
- * Purpose: Implements the absolute url responsibility for this module.
- * Inputs: path.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the absolute url responsibility owned by the project images browser feature.
+ * Inputs: `path`: path identifying the resource being processed
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function absoluteUrl(path) {
   return new URL(path, window.location.origin).href;
@@ -94,10 +93,10 @@ function absoluteUrl(path) {
 
 /**
  * Function contract: ensureProjectHeroImage
- * Purpose: Applies ensure project hero image while preserving the surrounding repository/runtime contract.
- * Inputs: project.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply project hero image consistently while preserving the surrounding project images browser feature contract.
+ * Inputs: `project`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureProjectHeroImage(project) {
   let image = document.querySelector('.case-hero-img, .project-detail-hero img, .case-hero-img-container img');
@@ -127,13 +126,13 @@ function ensureProjectHeroImage(project) {
 
 /**
  * Function contract: updateProjectMeta
- * Purpose: Applies update project meta while preserving the surrounding repository/runtime contract.
- * Inputs: project.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply project meta consistently while preserving the surrounding project images browser feature contract.
+ * Inputs: `project`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateProjectMeta(project) {
-  document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach(/** Callback contract: Processes the callback step for document.query selector all('meta[property="og:image"], meta[name="twitter:image"]') without leaking orchestration details to the caller. Inputs: meta. Side effects: may read or update browser DOM/state. No explicit return contract. */ (meta) => {
+  document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `meta`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (meta) => {
     meta.setAttribute('content', absoluteUrl(project.src));
   });
 
@@ -153,10 +152,10 @@ function updateProjectMeta(project) {
 
 /**
  * Function contract: injectProjectImageStyles
- * Purpose: Implements the inject project image styles responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the inject project image styles responsibility owned by the project images browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function injectProjectImageStyles() {
   if (document.getElementById('nrs-project-image-styles')) return;
@@ -196,10 +195,10 @@ function injectProjectImageStyles() {
 
 /**
  * Function contract: useProjectDetailImages
- * Purpose: Implements the use project detail images responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the use project detail images responsibility owned by the project images browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function useProjectDetailImages() {
   const project = PROJECT_IMAGES[normalizeProjectPath(window.location.pathname)];

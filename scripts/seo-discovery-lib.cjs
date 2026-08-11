@@ -1,16 +1,14 @@
 /**
  * @fileoverview scripts/seo-discovery-lib.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for seo discovery lib.
+ * Purpose: Apply the seo discovery lib production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - scripts/audit-seo-discovery.cjs
- * - scripts/generate-seo-discovery.cjs
- * - scripts/generate-social-previews.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -29,10 +27,10 @@ const OWNED_STATIC_PATHS = new Set([
 
 /**
  * Function contract: loadManifest
- * Purpose: Retrieves load manifest and returns it in the form expected by its caller.
- * Inputs: root.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return manifest from the supplied inputs or current seo discovery lib repository tool state.
+ * Inputs: `root`: repository or processing root directory
+ * Side effects: reads repository/filesystem state.
+ * Returns: The requested manifest; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function loadManifest(root) {
   return JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
@@ -40,10 +38,10 @@ function loadManifest(root) {
 
 /**
  * Function contract: routeForFile
- * Purpose: Implements the route for file responsibility for this module.
- * Inputs: file.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the route for file responsibility owned by the seo discovery lib repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function routeForFile(file) {
   if (file === 'index.html') return '/';
@@ -58,6 +56,13 @@ function routeForFile(file) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: canonicalRouteSet
+ * Purpose: Implement the canonical route set responsibility owned by the seo discovery lib repository tool.
+ * Inputs: `manifest`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function canonicalRouteSet(manifest) {
   return new Set(manifest.html.map(routeForFile));
 }
@@ -68,6 +73,13 @@ function canonicalRouteSet(manifest) {
  * Inputs: pathname, manifest.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: resolveRedirect
+ * Purpose: Resolve redirect from the supplied inputs and the current repository/runtime context.
+ * Inputs: `pathname`: input consumed by this operation; `manifest`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested redirect; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function resolveRedirect(pathname, manifest) {
   let current = pathname;
@@ -86,6 +98,13 @@ function resolveRedirect(pathname, manifest) {
  * Inputs: pathname, manifest.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: canonicalPathForPathname
+ * Purpose: Implement the canonical path for pathname responsibility owned by the seo discovery lib repository tool.
+ * Inputs: `pathname`: input consumed by this operation; `manifest`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function canonicalPathForPathname(pathname, manifest) {
   if (!pathname.startsWith('/')) return null;
@@ -112,6 +131,13 @@ function canonicalPathForPathname(pathname, manifest) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: canonicalizeOwnedUrl
+ * Purpose: Implement the canonicalize owned url responsibility owned by the seo discovery lib repository tool.
+ * Inputs: `value`: input value being transformed or evaluated; `manifest`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function canonicalizeOwnedUrl(value, manifest) {
   let parsed;
   try {
@@ -137,6 +163,13 @@ function canonicalizeOwnedUrl(value, manifest) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: extractOwnedUrls
+ * Purpose: Convert owned urls into the structured representation consumed by the seo discovery lib repository tool.
+ * Inputs: `text`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function extractOwnedUrls(text) {
   const pattern = /https:\/\/nischhalsubba\.com\.np(?:\/[A-Za-z0-9._~%!$&'()*+,;=:@/-]*)?(?:\?[A-Za-z0-9._~%!$&'()*+,;=:@/?-]*)?(?:#[A-Za-z0-9._~%!$&'()*+,;=:@/?-]*)?/g;
   return text.match(pattern) || [];
@@ -149,10 +182,17 @@ function extractOwnedUrls(text) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: normalizeOwnedUrlsInText
+ * Purpose: Apply owned urls in text consistently while preserving the surrounding seo discovery lib repository tool contract.
+ * Inputs: `text`: input consumed by this operation; `manifest`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function normalizeOwnedUrlsInText(text, manifest) {
   const unknown = new Set();
   let output = text;
-  const urls = [...new Set(extractOwnedUrls(text))].sort(/** Callback contract: Processes the callback step for [...new set(extract owned urls(text))] without leaking orchestration details to the caller. Inputs: a, b. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (a, b) => b.length - a.length);
+  const urls = [...new Set(extractOwnedUrls(text))].sort(/** Callback contract: Processes the callback step for [...new set(extract owned urls(text))] without leaking orchestration details to the caller. Inputs: a, b. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Compare two collection items and return their deterministic ordering for the enclosing sort. Inputs: `a`, `b`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (a, b) => b.length - a.length);
 
   for (const url of urls) {
     const normalized = canonicalizeOwnedUrl(url, manifest);
@@ -173,10 +213,17 @@ function normalizeOwnedUrlsInText(text, manifest) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: normalizeJsonUrls
+ * Purpose: Apply json urls consistently while preserving the surrounding seo discovery lib repository tool contract.
+ * Inputs: `value`: input value being transformed or evaluated; `manifest`: input consumed by this operation; `unknown`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function normalizeJsonUrls(value, manifest, unknown = new Set()) {
-  if (Array.isArray(value)) return value.map(/** Callback contract: Processes the callback step for value without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => normalizeJsonUrls(item, manifest, unknown));
+  if (Array.isArray(value)) return value.map(/** Callback contract: Processes the callback step for value without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => normalizeJsonUrls(item, manifest, unknown));
   if (value && typeof value === 'object') {
-    return Object.fromEntries(Object.entries(value).map(/** Callback contract: Processes the callback step for object.entries(value) without leaking orchestration details to the caller. Inputs: [key, item]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([key, item]) => [key, normalizeJsonUrls(item, manifest, unknown)]));
+    return Object.fromEntries(Object.entries(value).map(/** Callback contract: Processes the callback step for object.entries(value) without leaking orchestration details to the caller. Inputs: [key, item]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[key, item]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([key, item]) => [key, normalizeJsonUrls(item, manifest, unknown)]));
   }
   if (typeof value !== 'string') return value;
 
@@ -195,6 +242,13 @@ function normalizeJsonUrls(value, manifest, unknown = new Set()) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: xmlEscape
+ * Purpose: Implement the xml escape responsibility owned by the seo discovery lib repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function xmlEscape(value) {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 }
@@ -206,9 +260,16 @@ function xmlEscape(value) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: buildSitemap
+ * Purpose: Build sitemap from the supplied inputs in the form expected by downstream seo discovery lib repository tool consumers.
+ * Inputs: `manifest`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function buildSitemap(manifest) {
   const entries = manifest.html
-    .map(/** Callback contract: Processes the callback step for manifest.html without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => `  <url><loc>${xmlEscape(`${SITE}${routeForFile(file)}`)}</loc></url>`)
+    .map(/** Callback contract: Processes the callback step for manifest.html without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => `  <url><loc>${xmlEscape(`${SITE}${routeForFile(file)}`)}</loc></url>`)
     .join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`;
 }
@@ -220,6 +281,13 @@ function buildSitemap(manifest) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: buildRobots
+ * Purpose: Build robots from the supplied inputs in the form expected by downstream seo discovery lib repository tool consumers.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function buildRobots() {
   return `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`;
 }
@@ -230,6 +298,13 @@ function buildRobots() {
  * Inputs: manifest.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: buildRedirectFile
+ * Purpose: Build redirect file from the supplied inputs in the form expected by downstream seo discovery lib repository tool consumers.
+ * Inputs: `manifest`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function buildRedirectFile(manifest) {
   const lines = [
@@ -248,9 +323,16 @@ function buildRedirectFile(manifest) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: buildRedirectModule
+ * Purpose: Build redirect module from the supplied inputs in the form expected by downstream seo discovery lib repository tool consumers.
+ * Inputs: `manifest`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function buildRedirectModule(manifest) {
   const entries = Object.entries(manifest.redirects)
-    .map(/** Callback contract: Processes the callback step for object.entries(manifest.redirects) without leaking orchestration details to the caller. Inputs: [from, to]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([from, to]) => `  [${JSON.stringify(from)}, ${JSON.stringify(to)}],`)
+    .map(/** Callback contract: Processes the callback step for object.entries(manifest.redirects) without leaking orchestration details to the caller. Inputs: [from, to]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[from, to]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([from, to]) => `  [${JSON.stringify(from)}, ${JSON.stringify(to)}],`)
     .join('\n');
   return `// Generated from config/canonical-routes.json. Do not edit by hand.\nexport const LEGACY_REDIRECTS = new Map([\n${entries}\n]);\n`;
 }

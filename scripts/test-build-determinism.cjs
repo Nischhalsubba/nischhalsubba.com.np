@@ -1,15 +1,14 @@
 /**
  * @fileoverview scripts/test-build-determinism.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for test build determinism.
+ * Purpose: Validate test build determinism and fail with actionable diagnostics when the production contract is violated.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const crypto = require('node:crypto');
 const fs = require('node:fs');
@@ -21,10 +20,10 @@ const dist = path.join(root, 'dist');
 
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: directory, files.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the walk responsibility owned by the test build determinism repository tool.
+ * Inputs: `directory`: input consumed by this operation; `files`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walk(directory, files = []) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -37,10 +36,10 @@ function walk(directory, files = []) {
 
 /**
  * Function contract: snapshot
- * Purpose: Implements the snapshot responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the snapshot responsibility owned by the test build determinism repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function snapshot() {
   if (!fs.existsSync(dist)) throw new Error('dist is missing; run the production build first.');
@@ -54,14 +53,14 @@ function snapshot() {
 
 /**
  * Function contract: compare
- * Purpose: Implements the compare responsibility for this module.
- * Inputs: before, after.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the compare responsibility owned by the test build determinism repository tool.
+ * Inputs: `before`: input consumed by this operation; `after`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function compare(before, after) {
   const paths = new Set([...before.keys(), ...after.keys()]);
-  return [...paths].filter(/** Callback contract: Processes the callback step for [...paths] without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => before.get(file) !== after.get(file)).sort();
+  return [...paths].filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => before.get(file) !== after.get(file)).sort();
 }
 
 const first = snapshot();

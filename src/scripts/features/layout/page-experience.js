@@ -1,25 +1,24 @@
 /**
  * @fileoverview src/scripts/features/layout/page-experience.js
- * Purpose: Browser runtime feature in the layout domain responsible for page experience behavior.
+ * Purpose: Implement page experience behavior inside the layout browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the layout behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const PAGE_EXPERIENCE_STYLE_ID = 'nrs-page-experience-style';
 const SCROLL_BAR_ID = 'nrs-scroll-progress';
 
 /**
  * Function contract: ensurePageExperienceStyle
- * Purpose: Applies ensure page experience style while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply page experience style consistently while preserving the surrounding page experience browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensurePageExperienceStyle() {
   let style = document.getElementById(PAGE_EXPERIENCE_STYLE_ID);
@@ -142,6 +141,13 @@ function ensurePageExperienceStyle() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: forceProgressBarStyles
+ * Purpose: Implement the force progress bar styles responsibility owned by the page experience browser feature.
+ * Inputs: `bar`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function forceProgressBarStyles(bar) {
   const isMobile = window.matchMedia('(max-width: 760px)').matches;
   Object.assign(bar.style, {
@@ -176,6 +182,13 @@ function forceProgressBarStyles(bar) {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: ensureScrollProgressBar
+ * Purpose: Apply scroll progress bar consistently while preserving the surrounding page experience browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function ensureScrollProgressBar() {
   let bar = document.getElementById(SCROLL_BAR_ID);
   if (!bar) {
@@ -199,6 +212,13 @@ function ensureScrollProgressBar() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: updateScrollProgress
+ * Purpose: Apply scroll progress consistently while preserving the surrounding page experience browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function updateScrollProgress() {
   ensurePageExperienceStyle();
   const bar = ensureScrollProgressBar();
@@ -215,10 +235,17 @@ function updateScrollProgress() {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: initPageTransitions
+ * Purpose: Initialize page transitions for the page experience browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function initPageTransitions() {
-  requestAnimationFrame(/** Callback contract: Processes the callback step for request animation frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => document.body.classList.add('nrs-page-visible'));
+  requestAnimationFrame(/** Callback contract: Processes the callback step for request animation frame without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Defer the enclosed DOM update until the next animation frame so layout/state changes apply in a stable order. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => document.body.classList.add('nrs-page-visible'));
 
-  document.addEventListener('click', /** Callback contract: Processes the callback step for document without leaking orchestration details to the caller. Inputs: event. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (event) => {
+  document.addEventListener('click', /** Callback contract: Processes the callback step for document without leaking orchestration details to the caller. Inputs: event. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Handle the click event for `document` and apply this module's related state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
     const link = event.target.closest('a[href]');
     if (!link) return;
 
@@ -239,7 +266,7 @@ function initPageTransitions() {
 
     event.preventDefault();
     document.body.classList.add('nrs-page-exiting');
-    window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
+    window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing page experience browser feature operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
       window.location.href = url.href;
     }, 160);
   });
@@ -252,8 +279,15 @@ function initPageTransitions() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: keepProgressBarAlive
+ * Purpose: Implement the keep progress bar alive responsibility owned by the page experience browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function keepProgressBarAlive() {
-  const observer = new MutationObserver(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+  const observer = new MutationObserver(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing page experience browser feature operation. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     updateScrollProgress();
   });
 
@@ -274,6 +308,13 @@ function keepProgressBarAlive() {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: initPageExperience
+ * Purpose: Initialize page experience for the page experience browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 export function initPageExperience() {
   ensurePageExperienceStyle();
   ensureScrollProgressBar();
@@ -284,7 +325,7 @@ export function initPageExperience() {
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
   window.addEventListener('resize', updateScrollProgress);
   window.addEventListener('visibilitychange', updateScrollProgress);
-  window.addEventListener('pageshow', /** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
+  window.addEventListener('pageshow', /** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the pageshow event for `window` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     document.body.classList.remove('nrs-page-exiting');
     document.body.classList.add('nrs-page-visible');
     updateScrollProgress();

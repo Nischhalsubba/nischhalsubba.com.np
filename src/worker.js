@@ -1,16 +1,16 @@
 /**
  * @fileoverview src/worker.js
- * Purpose: Routes Cloudflare Worker requests for static assets, canonical redirects, and API behavior.
+ * Purpose: Route Cloudflare Worker requests across canonical redirects, static assets, and server-side API behavior.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
  * Execution context: Cloudflare Workers runtime.
  * Connected files:
+ * - functions/api/contact.js
  * - README.md
+ * - api/contact.js
  * - docs/production-delivery.md
- * - docs/repository/file-catalog.md
- * - docs/repository/file-map.md
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { onRequestOptions, onRequestPost } from '../functions/api/contact.js';
 import { LEGACY_REDIRECTS } from './generated/legacy-redirects.js';
@@ -27,10 +27,10 @@ const ANALYTICS_EVENTS = new Set([
 
 /**
  * Function contract: methodNotAllowed
- * Purpose: Implements the method not allowed responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the method not allowed responsibility owned by the worker module.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function methodNotAllowed() {
   return new Response(JSON.stringify({
@@ -49,10 +49,10 @@ function methodNotAllowed() {
 
 /**
  * Function contract: legacyRedirect
- * Purpose: Implements the legacy redirect responsibility for this module.
- * Inputs: request, url.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the legacy redirect responsibility owned by the worker module.
+ * Inputs: `request`: incoming request object; `url`: URL being inspected, normalized, or requested
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function legacyRedirect(request, url) {
   if (request.method !== 'GET' && request.method !== 'HEAD') return null;
@@ -66,10 +66,10 @@ function legacyRedirect(request, url) {
 
 /**
  * Function contract: analyticsResponse
- * Purpose: Implements the analytics response responsibility for this module.
- * Inputs: status.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the analytics response responsibility owned by the worker module.
+ * Inputs: `status`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function analyticsResponse(status = 204) {
   return new Response(null, {
@@ -86,10 +86,10 @@ function analyticsResponse(status = 204) {
 
 /**
  * Function contract: recordAnalytics
- * Purpose: Implements the record analytics responsibility for this module.
- * Inputs: request.
- * Side effects: may emit diagnostics or inspect process state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the record analytics responsibility owned by the worker module.
+ * Inputs: `request`: incoming request object
+ * Side effects: emits diagnostics or changes process failure state.
+ * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
  */
 async function recordAnalytics(request) {
   if (request.method === 'OPTIONS') return analyticsResponse();
@@ -129,10 +129,10 @@ async function recordAnalytics(request) {
 export default {
   /**
    * Function contract: fetch
-   * Purpose: Retrieves fetch and returns it in the form expected by its caller.
-   * Inputs: request, env.
-   * Side effects: may perform network I/O.
-   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   * Purpose: Return module behavior from the supplied inputs or current worker module state.
+   * Inputs: `request`: incoming request object; `env`: input consumed by this operation
+   * Side effects: performs network I/O.
+   * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
    */
   async fetch(request, env) {
     const url = new URL(request.url);

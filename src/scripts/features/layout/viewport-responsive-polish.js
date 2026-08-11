@@ -1,22 +1,21 @@
 /**
  * @fileoverview src/scripts/features/layout/viewport-responsive-polish.js
- * Purpose: Browser runtime feature in the layout domain responsible for viewport responsive polish behavior.
+ * Purpose: Implement viewport responsive polish behavior inside the layout browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the layout behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 /**
  * Function contract: injectViewportResponsivePolish
- * Purpose: Implements the inject viewport responsive polish responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the inject viewport responsive polish responsibility owned by the viewport responsive polish browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function injectViewportResponsivePolish() {
   if (document.getElementById('nrs-viewport-responsive-polish')) return;
@@ -433,10 +432,10 @@ function injectViewportResponsivePolish() {
 
 /**
  * Function contract: applyViewportResponsivePolish
- * Purpose: Applies apply viewport responsive polish while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply viewport responsive polish consistently while preserving the surrounding viewport responsive polish browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function applyViewportResponsivePolish() {
   injectViewportResponsivePolish();

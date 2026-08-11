@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/ensure-senior-case-studies.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure senior case studies.
+ * Purpose: Apply the ensure senior case studies production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -232,10 +232,10 @@ const cases = {
 
 /**
  * Function contract: esc
- * Purpose: Implements the esc responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the esc responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function esc(value) {
   return String(value ?? '')
@@ -247,10 +247,10 @@ function esc(value) {
 
 /**
  * Function contract: strip
- * Purpose: Implements the strip responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Remove module behavior without disturbing required surrounding ensure senior case studies repository tool state.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function strip(value) {
   return String(value ?? '')
@@ -265,10 +265,10 @@ function strip(value) {
 
 /**
  * Function contract: fact
- * Purpose: Implements the fact responsibility for this module.
- * Inputs: main, label.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the fact responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `main`: input consumed by this operation; `label`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function fact(main, label) {
   const dt = new RegExp(`<dt[^>]*>\\s*${label}\\s*<\\/dt>\\s*<dd[^>]*>([\\s\\S]*?)<\\/dd>`, 'i').exec(main);
@@ -284,9 +284,16 @@ function fact(main, label) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: year
+ * Purpose: Implement the year responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `main`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function year(main) {
-  const badges = [...main.matchAll(/<span[^>]*class=["'][^"']*badge-pill[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi)].map(/** Callback contract: Processes the callback step for [...main.match all(/<span[^>]*class=["'][^"']*badge pill[^"']*["'][^>]*>([\s\s]*?)<\/span>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => strip(match[1]));
-  return fact(main, 'Year') || badges.find(/** Callback contract: Processes the callback step for badges without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => /\b20\d{2}/.test(value)) || '';
+  const badges = [...main.matchAll(/<span[^>]*class=["'][^"']*badge-pill[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi)].map(/** Callback contract: Processes the callback step for [...main.match all(/<span[^>]*class=["'][^"']*badge pill[^"']*["'][^>]*>([\s\s]*?)<\/span>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => strip(match[1]));
+  return fact(main, 'Year') || badges.find(/** Callback contract: Processes the callback step for badges without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `value`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (value) => /\b20\d{2}/.test(value)) || '';
 }
 
 /**
@@ -295,6 +302,13 @@ function year(main) {
  * Inputs: main, item.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: cover
+ * Purpose: Implement the cover responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `main`: input consumed by this operation; `item`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function cover(main, item) {
   const source = main.match(/<figure[^>]*class=["'][^"']*agent-case-cover[^"']*["'][^>]*>[\s\S]*?<\/figure>/i)?.[0]
@@ -312,6 +326,13 @@ function cover(main, item) {
  * Inputs: main.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: externalLinks
+ * Purpose: Implement the external links responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `main`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function externalLinks(main) {
   const seen = new Set();
@@ -331,27 +352,34 @@ function externalLinks(main) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: list
+ * Purpose: Return module behavior from the supplied inputs or current ensure senior case studies repository tool state.
+ * Inputs: `items`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested module behavior; early-return/empty-state behavior follows the explicit branches in this function.
+ */
 function list(items) {
-  return `<ul class="nrs-case-list">${items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => `<li>${esc(item)}</li>`).join('')}</ul>`;
+  return `<ul class="nrs-case-list">${items.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => `<li>${esc(item)}</li>`).join('')}</ul>`;
 }
 
 /**
  * Function contract: cards
- * Purpose: Implements the cards responsibility for this module.
- * Inputs: items.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the cards responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `items`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function cards(items) {
-  return `<div class="agent-decision-grid nrs-case-decision-grid">${items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [title, text]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([title, text]) => `<article class="agent-decision nrs-case-decision-card"><span class="agent-meta">Design move</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div>`;
+  return `<div class="agent-decision-grid nrs-case-decision-grid">${items.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[title, text]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([title, text]) => `<article class="agent-decision nrs-case-decision-card"><span class="agent-meta">Design move</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div>`;
 }
 
 /**
  * Function contract: section
- * Purpose: Implements the section responsibility for this module.
- * Inputs: number, label, title, body, className.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the section responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `number`: input consumed by this operation; `label`: input consumed by this operation; `title`: input consumed by this operation; `body`: input consumed by this operation; `className`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function section(number, label, title, body, className = '') {
   return `<section class="agent-section ${className}"><div class="agent-frame nrs-case-section"><header class="nrs-case-section-head"><span class="agent-meta">${String(number).padStart(2, '0')} · ${esc(label)}</span><h2>${esc(title)}</h2></header><div class="nrs-case-section-body">${body}</div></div></section>`;
@@ -359,10 +387,10 @@ function section(number, label, title, body, className = '') {
 
 /**
  * Function contract: facts
- * Purpose: Implements the facts responsibility for this module.
- * Inputs: main, item.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the facts responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `main`: input consumed by this operation; `item`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function facts(main, item) {
   const role = fact(main, 'Role') || 'Product design contribution';
@@ -371,36 +399,31 @@ function facts(main, item) {
     ['Year', year(main)],
     ['Domain', fact(main, 'Domain') || item.domain],
     ['Audience', fact(main, 'Users') || fact(main, 'Audience') || item.audience],
-  ].filter(/** Callback contract: Processes the callback step for [
-    ['role', role],
-    ['year', year(main)],
-    ['domain', fact(main, 'domain') || item.domain],
-    ['audience', fact(main, 'users') || fact(main, 'audience') || item.audience],
-  ] without leaking orchestration details to the caller. Inputs: [, value]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([, value]) => value);
-  return `<dl class="agent-case-facts nrs-hireable-case-facts">${values.map(/** Callback contract: Processes the callback step for values without leaking orchestration details to the caller. Inputs: [label, value]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
+  ].filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `[, value]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([, value]) => value);
+  return `<dl class="agent-case-facts nrs-hireable-case-facts">${values.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[label, value]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
 }
 
 /**
  * Function contract: evidence
- * Purpose: Implements the evidence responsibility for this module.
- * Inputs: main.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the evidence responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `main`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function evidence(main) {
   const links = externalLinks(main);
   if (!links.length) {
     return '<p class="nrs-case-evidence-note">No public interactive artifact is attached to this case. The write-up is limited to work I can describe and defend publicly.</p>';
   }
-  return `<div class="agent-evidence-links nrs-case-evidence-links">${links.map(/** Callback contract: Processes the callback step for links without leaking orchestration details to the caller. Inputs: [label, url]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([label, url]) => `<a class="agent-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`).join('')}</div>`;
+  return `<div class="agent-evidence-links nrs-case-evidence-links">${links.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[label, url]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([label, url]) => `<a class="agent-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`).join('')}</div>`;
 }
 
 /**
  * Function contract: render
- * Purpose: Implements the render responsibility for this module.
- * Inputs: slug, main, item.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the render responsibility owned by the ensure senior case studies repository tool.
+ * Inputs: `slug`: input consumed by this operation; `main`: input consumed by this operation; `item`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function render(slug, main, item) {
   const hero = `<header class="agent-case-hero nrs-hireable-case-hero"><div class="agent-frame agent-case-grid"><nav class="nrs-case-breadcrumb" aria-label="Breadcrumb"><a href="/projects">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(item.title)}</span></nav><div class="agent-case-title-wrap"><span class="agent-kicker">${esc(item.domain)}</span><h1 class="agent-case-title">${esc(item.title)}</h1></div><p class="agent-case-deck">${esc(item.deck)}</p>${facts(main, item)}${cover(main, item)}</div></header>`;
@@ -412,7 +435,7 @@ function render(slug, main, item) {
   const result = section(6, 'Result', 'What the design resolved', `${list(item.result)}<p class="nrs-case-evidence-note">Quantitative product metrics are not public for this work, so this section describes the delivered design outcome rather than inventing business impact.</p>`);
   const success = section(7, 'Success criteria', 'How I would know it is working', list(item.success), 'agent-section--inverse');
   const proof = section(8, 'Evidence', 'Public work and references', evidence(main), 'agent-section--compact');
-  const close = section(9, 'Takeaway', 'What this case says about my practice', `<div class="nrs-case-signal-grid">${item.strengths.map(/** Callback contract: Processes the callback step for item.strengths without leaking orchestration details to the caller. Inputs: strength. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (strength) => `<article><strong>${esc(strength)}</strong></article>`).join('')}</div><div class="agent-actions nrs-case-actions"><a class="agent-btn agent-btn--primary" href="/projects">View all work</a><a class="agent-btn" href="/contact">Discuss similar work</a></div>`);
+  const close = section(9, 'Takeaway', 'What this case says about my practice', `<div class="nrs-case-signal-grid">${item.strengths.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `strength`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (strength) => `<article><strong>${esc(strength)}</strong></article>`).join('')}</div><div class="agent-actions nrs-case-actions"><a class="agent-btn agent-btn--primary" href="/projects">View all work</a><a class="agent-btn" href="/contact">Discuss similar work</a></div>`);
   return `<main id="main-content" class="agent-main nrs-hireable-case nrs-senior-case nrs-editorial-case" data-project-slug="${esc(slug)}">${hero}${context}${remit}${moves}${system}${delivery}${result}${success}${proof}${close}</main>`;
 }
 

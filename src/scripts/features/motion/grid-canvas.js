@@ -1,24 +1,24 @@
 /**
  * @fileoverview src/scripts/features/motion/grid-canvas.js
- * Purpose: Browser runtime feature in the motion domain responsible for grid canvas behavior.
+ * Purpose: Implement grid canvas behavior inside the motion browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the motion behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - src/scripts/shared/dom.js
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $, isTouchDevice, prefersReducedMotion } from '../../shared/dom.js';
 
 /**
  * Function contract: initGridCanvas
- * Purpose: Implements the init grid canvas responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Initialize grid canvas for the grid canvas browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function initGridCanvas() {
   const canvas = $('#grid-canvas');
@@ -35,10 +35,10 @@ export function initGridCanvas() {
 
   /**
    * Function contract: isLightTheme
-   * Purpose: Implements the is light theme responsibility for this module.
-   * Inputs: none; the function derives state from its enclosing module/runtime context.
-   * Side effects: may read or update browser DOM/state.
-   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   * Purpose: Determine whether light theme satisfies the condition represented by this grid canvas browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Boolean indicating whether light theme satisfies the documented condition.
    */
   function isLightTheme() {
     return document.documentElement.getAttribute('data-theme') === 'light';
@@ -46,10 +46,10 @@ export function initGridCanvas() {
 
   /**
    * Function contract: shouldRun
-   * Purpose: Implements the should run responsibility for this module.
-   * Inputs: none; the function derives state from its enclosing module/runtime context.
-   * Side effects: may read or update browser DOM/state.
-   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   * Purpose: Determine whether run satisfies the condition represented by this grid canvas browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Boolean indicating whether run satisfies the documented condition.
    */
   function shouldRun() {
     return !document.hidden && window.innerWidth >= 900;
@@ -57,10 +57,10 @@ export function initGridCanvas() {
 
   /**
    * Function contract: resize
-   * Purpose: Implements the resize responsibility for this module.
-   * Inputs: none; the function derives state from its enclosing module/runtime context.
-   * Side effects: may read or update browser DOM/state.
-   * Returns: no explicit value unless an invoked dependency throws/rejects.
+   * Purpose: Implement the resize responsibility owned by the grid canvas browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   function resize() {
     const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -79,6 +79,13 @@ export function initGridCanvas() {
    * Inputs: none; the function derives state from its enclosing module/runtime context.
    * Side effects: may read or update browser DOM/state.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
+  /**
+   * Function contract: renderFrame
+   * Purpose: Implement the render frame responsibility owned by the grid canvas browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   function renderFrame() {
     if (!running || !shouldRun()) {
@@ -135,6 +142,13 @@ export function initGridCanvas() {
    * Side effects: may read or update browser DOM/state.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
    */
+  /**
+   * Function contract: start
+   * Purpose: Implement the start responsibility owned by the grid canvas browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   */
   function start() {
     if (running || !shouldRun()) return;
     running = true;
@@ -147,6 +161,13 @@ export function initGridCanvas() {
    * Inputs: none; the function derives state from its enclosing module/runtime context.
    * Side effects: may read or update browser DOM/state.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
+   */
+  /**
+   * Function contract: stop
+   * Purpose: Implement the stop responsibility owned by the grid canvas browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   function stop() {
     running = false;
@@ -163,6 +184,13 @@ export function initGridCanvas() {
    * Side effects: no obvious external side effect beyond invoked dependencies.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
    */
+  /**
+   * Function contract: syncAnimationState
+   * Purpose: Synchronize animation state with the requested state while preserving related grid canvas browser feature invariants.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   */
   function syncAnimationState() {
     if (shouldRun()) start();
     else stop();
@@ -171,12 +199,12 @@ export function initGridCanvas() {
   resize();
   syncAnimationState();
 
-  window.addEventListener('resize', /** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+  window.addEventListener('resize', /** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the resize event for `window` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     resize();
     syncAnimationState();
   }, { passive: true });
 
-  window.addEventListener('mousemove', /** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: event. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (event) => {
+  window.addEventListener('mousemove', /** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: event. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the mousemove event for `window` and apply this module's related state update. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
     mouse = { x: event.clientX, y: event.clientY };
   }, { passive: true });
 

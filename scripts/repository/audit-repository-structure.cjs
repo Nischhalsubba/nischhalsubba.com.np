@@ -1,24 +1,21 @@
+/**
+ * @fileoverview scripts/repository/audit-repository-structure.cjs
+ * Purpose: Enforce repository ownership boundaries, canonical source mappings, and required architecture documentation.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - scripts/repository/source-layout.cjs
+ * - config/repository/root-policy.json
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const { ROOT, ROOT_PAGE_NAMES, DISCOVERY_NAMES, mappings } = require('./source-layout.cjs');
-
-/**
- * @fileoverview scripts/repository/audit-repository-structure.cjs
- * Purpose: Enforce repository ownership boundaries without assuming that canonical pages live directly under one flat source folder.
- * Responsibilities:
- * - Reject tracked production source that drifts back into the repository root.
- * - Reject forbidden retired source prefixes such as the removed WordPress tree.
- * - Verify every canonical root-compatible page through the source-layout mapping contract rather than hardcoded folder paths.
- * - Verify compatibility pages, canonical runtime/style/discovery sources, and required architecture documentation remain tracked.
- * Execution context: Node.js during `npm run audit:repo-structure` and the main validation workflows.
- * Connected files:
- * - scripts/repository/source-layout.cjs
- * - config/repository/root-policy.json
- * - config/canonical-routes.json
- * - package.json
- * Maintenance: Add or move canonical source through `source-layout.cjs`; this audit should consume that mapping instead of duplicating folder assumptions.
- */
 
 const policyPath = path.join(ROOT, 'config', 'repository', 'root-policy.json');
 const policy = JSON.parse(fs.readFileSync(policyPath, 'utf8'));
@@ -29,8 +26,8 @@ if (result.status !== 0) {
 }
 
 const tracked = result.stdout.split('\0').filter(Boolean);
-const rootFiles = tracked.filter(/** Callback contract: Processes the callback step for tracked without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => !file.includes('/')).sort();
-const unexpectedRoot = rootFiles.filter(/** Callback contract: Processes the callback step for root files without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => !policy.allowedRootFiles.includes(file));
+const rootFiles = tracked.filter(/** Callback contract: Processes the callback step for tracked without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => !file.includes('/')).sort();
+const unexpectedRoot = rootFiles.filter(/** Callback contract: Processes the callback step for root files without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => !policy.allowedRootFiles.includes(file));
 const failures = [];
 
 /**
@@ -40,8 +37,15 @@ const failures = [];
  * Side effects: No external side effects; reads the in-memory `mappings` contract.
  * Returns: The repository-relative organized source path, or an empty string when no mapping exists.
  */
+/**
+ * Function contract: sourceForRootTarget
+ * Purpose: Resolve a root-compatible target filename through the materialization mapping instead of duplicating source-folder assumptions.
+ * Inputs: `target`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function sourceForRootTarget(target) {
-  return mappings.find(/** Callback contract: Processes the callback step for mappings without leaking orchestration details to the caller. Inputs: mapping. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (mapping) => mapping.target === target && mapping.sync)?.source || '';
+  return mappings.find(/** Callback contract: Processes the callback step for mappings without leaking orchestration details to the caller. Inputs: mapping. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `mapping`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (mapping) => mapping.target === target && mapping.sync)?.source || '';
 }
 
 if (unexpectedRoot.length) {
@@ -49,7 +53,7 @@ if (unexpectedRoot.length) {
 }
 
 for (const prefix of policy.forbiddenTrackedPrefixes) {
-  const matches = tracked.filter(/** Callback contract: Processes the callback step for tracked without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => file.startsWith(prefix));
+  const matches = tracked.filter(/** Callback contract: Processes the callback step for tracked without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => file.startsWith(prefix));
   if (matches.length) {
     failures.push(`Forbidden tracked prefix ${prefix}: ${matches.length} file(s)`);
   }
@@ -93,7 +97,7 @@ for (const doc of policy.requiredDocumentation) {
 }
 
 if (failures.length) {
-  console.error(`[repository-structure] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => `- ${item}`).join('\n')}`);
+  console.error(`[repository-structure] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => `- ${item}`).join('\n')}`);
   process.exit(1);
 }
 

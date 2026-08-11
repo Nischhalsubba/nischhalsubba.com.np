@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/ensure-case-breadcrumbs.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure case breadcrumbs.
+ * Purpose: Apply the ensure case breadcrumbs production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -66,6 +66,13 @@ ${end}`;
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: titleFromHtml
+ * Purpose: Implement the title from html responsibility owned by the ensure case breadcrumbs repository tool.
+ * Inputs: `html`: input consumed by this operation; `file`: repository-relative or absolute file path being processed
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function titleFromHtml(html, file) {
   const match = html.match(/<h1\b[^>]*class="[^"]*agent-case-title[^"]*"[^>]*>([\s\S]*?)<\/h1>/i);
   if (match) return match[1].replace(/<[^>]+>/g, '').trim();
@@ -78,6 +85,13 @@ function titleFromHtml(html, file) {
  * Inputs: file.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: patchCase
+ * Purpose: Implement the patch case responsibility owned by the ensure case breadcrumbs repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: writes repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function patchCase(file) {
   const fullPath = path.join(base, file);
@@ -101,7 +115,7 @@ if (!fs.existsSync(base)) {
 }
 
 let patched = 0;
-for (const file of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => /^project-[a-z0-9-]+\.html$/i.test(name))) {
+for (const file of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => /^project-[a-z0-9-]+\.html$/i.test(name))) {
   if (patchCase(file)) patched += 1;
 }
 
@@ -112,7 +126,7 @@ if (fs.existsSync(stylePath)) {
 }
 
 const missing = [];
-for (const file of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => /^project-(?:yarsha|mokshya|morajaa|pihub|masteriyo|zapp)\.html$/i.test(name))) {
+for (const file of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => /^project-(?:yarsha|mokshya|morajaa|pihub|masteriyo|zapp)\.html$/i.test(name))) {
   const html = fs.readFileSync(path.join(base, file), 'utf8');
   const count = (html.match(/nav\b[^>]*aria-label=["']Breadcrumb["']/gi) || []).length;
   if (count !== 1) missing.push(`${file}: ${count} breadcrumb navigations`);

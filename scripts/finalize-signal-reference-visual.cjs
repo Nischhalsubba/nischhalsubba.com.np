@@ -1,15 +1,17 @@
 /**
  * @fileoverview scripts/finalize-signal-reference-visual.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for finalize signal reference visual.
+ * Purpose: Apply the finalize signal reference visual production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - scripts/finalize-signal-reference-visual-v18-core.cjs
+ * - scripts/finalize-signal-story-v23.cjs
+ * - scripts/finalize-signal-typography-v24.cjs
  * - scripts/build-dist.cjs
- * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -18,21 +20,21 @@ const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const sourceDir = path.join(root, 'assets', 'images', 'hero-original-v19.parts');
 const temporaryTargets = ['part-01.b64', 'part-02.b64'];
-const originals = new Map(temporaryTargets.map(/** Callback contract: Processes the callback step for temporary targets without leaking orchestration details to the caller. Inputs: name. Side effects: may read or write repository/filesystem state. Returns a value to the invoking API. */ (name) => {
+const originals = new Map(temporaryTargets.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads repository/filesystem state. Returns: Array containing the values selected or transformed by this function. */ (name) => {
   const file = path.join(sourceDir, name);
   return [name, fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null];
 }));
 
 /**
  * Function contract: restore
- * Purpose: Implements the restore responsibility for this module.
- * Inputs: targetName, chunkNames, expectedBytes, expectedHash.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply module behavior consistently while preserving the surrounding finalize signal reference visual repository tool contract.
+ * Inputs: `targetName`: input consumed by this operation; `chunkNames`: input consumed by this operation; `expectedBytes`: input consumed by this operation; `expectedHash`: input consumed by this operation
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function restore(targetName, chunkNames, expectedBytes, expectedHash) {
   const restored = chunkNames
-    .map(/** Callback contract: Processes the callback step for chunk names without leaking orchestration details to the caller. Inputs: name. Side effects: may read or write repository/filesystem state. No explicit return contract. */ (name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
+    .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
     .join('');
   const hash = crypto.createHash('sha256').update(restored, 'utf8').digest('hex');
   if (restored.length !== expectedBytes || hash !== expectedHash) {
@@ -47,6 +49,13 @@ function restore(targetName, chunkNames, expectedBytes, expectedHash) {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or write repository/filesystem state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: restoreTrackedSources
+ * Purpose: Apply tracked sources consistently while preserving the surrounding finalize signal reference visual repository tool contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function restoreTrackedSources() {
   for (const [name, original] of originals) {

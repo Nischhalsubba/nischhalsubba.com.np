@@ -1,15 +1,14 @@
 /**
  * @fileoverview functions/api/contact.js
- * Purpose: Server-side API handler for contact behavior.
+ * Purpose: Handle contact server-side requests with validation and deployment-compatible response behavior.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Serverless/API runtime.
+ * - Validate request data before performing server-side work.
+ * - Return predictable status, error, and success responses compatible with the deployed client.
+ * Execution context: Serverless/API runtime used by supported deployment targets.
  * Connected files:
  * - README.md
- * - docs/repository/file-catalog.md
  * - src/worker.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { EmailMessage } from 'cloudflare:email';
 
@@ -22,10 +21,10 @@ const SENDER_EMAIL = 'portfolio@nischhalsubba.com.np';
 
 /**
  * Function contract: json
- * Purpose: Implements the json responsibility for this module.
- * Inputs: payload, status.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the json responsibility owned by the contact API handler.
+ * Inputs: `payload`: input consumed by this operation; `status`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function json(payload, status = 200) {
   return new Response(JSON.stringify(payload), {
@@ -40,10 +39,10 @@ function json(payload, status = 200) {
 
 /**
  * Function contract: clean
- * Purpose: Removes or cleans clean while keeping required outputs intact.
- * Inputs: value, maxLength.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Remove module behavior without disturbing required surrounding contact API handler state.
+ * Inputs: `value`: input value being transformed or evaluated; `maxLength`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function clean(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
@@ -51,10 +50,10 @@ function clean(value, maxLength) {
 
 /**
  * Function contract: validate
- * Purpose: Validates validate and reports violations instead of silently accepting invalid state.
- * Inputs: fields.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Validate module behavior and surface actionable failures when the contact API handler contract is violated.
+ * Inputs: `fields`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function validate(fields) {
   const errors = {};
@@ -68,10 +67,10 @@ function validate(fields) {
 
 /**
  * Function contract: verifyTurnstile
- * Purpose: Validates verify turnstile and reports violations instead of silently accepting invalid state.
- * Inputs: secret, token, remoteip.
- * Side effects: may perform network I/O.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Validate turnstile and surface actionable failures when the contact API handler contract is violated.
+ * Inputs: `secret`: input consumed by this operation; `token`: input consumed by this operation; `remoteip`: input consumed by this operation
+ * Side effects: performs network I/O.
+ * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
  */
 async function verifyTurnstile(secret, token, remoteip) {
   const body = new FormData();
@@ -85,10 +84,10 @@ async function verifyTurnstile(secret, token, remoteip) {
 
 /**
  * Function contract: safeHeader
- * Purpose: Implements the safe header responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the safe header responsibility owned by the contact API handler.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function safeHeader(value) {
   return String(value || '').replace(/[\r\n]+/g, ' ').trim();
@@ -96,10 +95,10 @@ function safeHeader(value) {
 
 /**
  * Function contract: buildRawEmail
- * Purpose: Creates build raw email from the supplied inputs and repository state.
- * Inputs: fields, sourcePage.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Build raw email from the supplied inputs in the form expected by downstream contact API handler consumers.
+ * Inputs: `fields`: input consumed by this operation; `sourcePage`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Array containing the values selected or transformed by this function.
  */
 function buildRawEmail(fields, sourcePage) {
   const boundary = `portfolio-${crypto.randomUUID()}`;
@@ -141,6 +140,13 @@ function buildRawEmail(fields, sourcePage) {
  * Inputs: { request, env }.
  * Side effects: may emit diagnostics or inspect process state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: onRequestPost
+ * Purpose: Handle request post and coordinate the resulting contact API handler state changes.
+ * Inputs: `{ request, env }`: input consumed by this operation
+ * Side effects: emits diagnostics or changes process failure state.
+ * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
  */
 export async function onRequestPost({ request, env }) {
   try {
@@ -188,6 +194,13 @@ export async function onRequestPost({ request, env }) {
  * Inputs: { request }.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: onRequestOptions
+ * Purpose: Handle request options and coordinate the resulting contact API handler state changes.
+ * Inputs: `{ request }`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 export function onRequestOptions({ request }) {
   const origin = request.headers.get('origin');

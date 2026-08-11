@@ -1,24 +1,24 @@
 /**
  * @fileoverview src/scripts/features/content/filters.js
- * Purpose: Browser runtime feature in the content domain responsible for filters behavior.
+ * Purpose: Implement filters behavior inside the content browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the content behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/main.js
+ * - src/scripts/shared/dom.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $, $$ } from '../../shared/dom.js';
 
 /**
  * Function contract: getActiveFilter
- * Purpose: Retrieves get active filter and returns it in the form expected by its caller.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return active filter from the supplied inputs or current filters browser feature state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested active filter; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getActiveFilter() {
   return $('.filter-btn.active, .blog-filter-btn.active')?.dataset.filter || 'all';
@@ -26,10 +26,10 @@ function getActiveFilter() {
 
 /**
  * Function contract: getSearchQuery
- * Purpose: Retrieves get search query and returns it in the form expected by its caller.
- * Inputs: searchWork, searchBlog.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return search query from the supplied inputs or current filters browser feature state.
+ * Inputs: `searchWork`: input consumed by this operation; `searchBlog`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested search query; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getSearchQuery(searchWork, searchBlog) {
   return (searchWork?.value || searchBlog?.value || '').toLowerCase().trim();
@@ -37,10 +37,10 @@ function getSearchQuery(searchWork, searchBlog) {
 
 /**
  * Function contract: getSearchableText
- * Purpose: Retrieves get searchable text and returns it in the form expected by its caller.
- * Inputs: item.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return searchable text from the supplied inputs or current filters browser feature state.
+ * Inputs: `item`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: The requested searchable text; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getSearchableText(item) {
   return [item.textContent || '', item.dataset.category || '', item.getAttribute('href') || ''].join(' ').toLowerCase();
@@ -48,10 +48,10 @@ function getSearchableText(item) {
 
 /**
  * Function contract: updateWorkSummary
- * Purpose: Applies update work summary while preserving the surrounding repository/runtime contract.
- * Inputs: { visibleCount, totalCount, activeFilter, query }.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply work summary consistently while preserving the surrounding filters browser feature contract.
+ * Inputs: `{ visibleCount, totalCount, activeFilter, query }`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function updateWorkSummary({ visibleCount, totalCount, activeFilter, query }) {
   const summary = $('#nrs-work-summary');
@@ -69,6 +69,13 @@ function updateWorkSummary({ visibleCount, totalCount, activeFilter, query }) {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: updateNoResults
+ * Purpose: Apply no results consistently while preserving the surrounding filters browser feature contract.
+ * Inputs: `visibleCount`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function updateNoResults(visibleCount) {
   const noResults = $('#nrs-no-results');
   if (!noResults) return;
@@ -83,17 +90,24 @@ function updateNoResults(visibleCount) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: applyFilters
+ * Purpose: Apply filters consistently while preserving the surrounding filters browser feature contract.
+ * Inputs: `{ searchWork, searchBlog }`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function applyFilters({ searchWork, searchBlog }) {
   const activeFilter = getActiveFilter();
   const query = getSearchQuery(searchWork, searchBlog);
   const items = $$('.project-card, .writing-item');
   let visibleCount = 0;
 
-  items.forEach(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => {
+  items.forEach(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => {
     const tags = (item.dataset.category || '').toLowerCase();
     const searchableText = getSearchableText(item);
     const matchesFilter = activeFilter === 'all' || tags.includes(activeFilter);
-    const matchesQuery = !query || query.split(/\s+/).every(/** Callback contract: Processes the callback step for query.split(/\s+/) without leaking orchestration details to the caller. Inputs: term. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (term) => searchableText.includes(term));
+    const matchesQuery = !query || query.split(/\s+/).every(/** Callback contract: Processes the callback step for query.split(/\s+/) without leaking orchestration details to the caller. Inputs: term. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition required by the enclosing all-items check. Inputs: `term`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (term) => searchableText.includes(term));
     const visible = matchesFilter && matchesQuery;
     item.hidden = !visible;
     item.style.display = visible ? '' : 'none';
@@ -113,8 +127,15 @@ function applyFilters({ searchWork, searchBlog }) {
  * Side effects: may read or update browser DOM/state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: setActiveFilter
+ * Purpose: Synchronize active filter with the requested state while preserving related filters browser feature invariants.
+ * Inputs: `button`: interactive trigger/control element; `selector`: input consumed by this operation
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function setActiveFilter(button, selector) {
-  $$(selector).forEach(/** Callback contract: Processes the callback step for $$(selector) without leaking orchestration details to the caller. Inputs: item. Side effects: may read or update browser DOM/state. No explicit return contract. */ (item) => {
+  $$(selector).forEach(/** Callback contract: Processes the callback step for $$(selector) without leaking orchestration details to the caller. Inputs: item. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => {
     item.classList.remove('active');
     item.setAttribute('aria-pressed', 'false');
   });
@@ -129,25 +150,32 @@ function setActiveFilter(button, selector) {
  * Side effects: may read or update browser DOM/state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: initFilters
+ * Purpose: Initialize filters for the filters browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 export function initFilters() {
   const searchWork = $('#search-work');
   const searchBlog = $('#search-blog');
   const controls = { searchWork, searchBlog };
 
-  $$('.filter-btn, .blog-filter-btn').forEach(/** Callback contract: Processes the callback step for $$('.filter btn, .blog filter btn') without leaking orchestration details to the caller. Inputs: button. Side effects: may read or update browser DOM/state. No explicit return contract. */ (button) => {
+  $$('.filter-btn, .blog-filter-btn').forEach(/** Callback contract: Processes the callback step for $$('.filter btn, .blog filter btn') without leaking orchestration details to the caller. Inputs: button. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `button`. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (button) => {
     button.setAttribute('aria-pressed', button.classList.contains('active') ? 'true' : 'false');
-    button.addEventListener('click', /** Callback contract: Processes the callback step for button without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => {
+    button.addEventListener('click', /** Callback contract: Processes the callback step for button without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the click event for `button` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
       const selector = button.classList.contains('blog-filter-btn') ? '.blog-filter-btn' : '.filter-btn';
       setActiveFilter(button, selector);
       applyFilters(controls);
     });
   });
 
-  [searchWork, searchBlog].filter(Boolean).forEach(/** Callback contract: Processes the callback step for [search work, search blog].filter(boolean) without leaking orchestration details to the caller. Inputs: input. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (input) => {
-    input.addEventListener('input', /** Callback contract: Processes the callback step for input without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => applyFilters(controls));
+  [searchWork, searchBlog].filter(Boolean).forEach(/** Callback contract: Processes the callback step for [search work, search blog].filter(boolean) without leaking orchestration details to the caller. Inputs: input. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `input`. Side effects: registers or removes browser event listeners. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (input) => {
+    input.addEventListener('input', /** Callback contract: Processes the callback step for input without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the input event for `input` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => applyFilters(controls));
   });
 
-  $('#clear-work')?.addEventListener('click', /** Callback contract: Processes the callback step for $('#clear work')? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ () => {
+  $('#clear-work')?.addEventListener('click', /** Callback contract: Processes the callback step for $('#clear work')? without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Handle the click event for `$('#clear-work')` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
     if (!searchWork) return;
     searchWork.value = '';
     const allButton = $('.filter-btn[data-filter="all"]');

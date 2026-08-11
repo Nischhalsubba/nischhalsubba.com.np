@@ -1,16 +1,16 @@
 /**
  * @fileoverview scripts/preflight-build-scripts.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for preflight build scripts.
+ * Purpose: Generate or assemble preflight build scripts deterministically as part of the production toolchain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - package.json
  * - scripts/build-dist.cjs
  * - scripts/ensure-signal-demo-hero-v15.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -22,10 +22,10 @@ const files = [];
 
 /**
  * Function contract: collect
- * Purpose: Implements the collect responsibility for this module.
- * Inputs: directory.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Return module behavior from the supplied inputs or current preflight build scripts repository tool state.
+ * Inputs: `directory`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function collect(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {

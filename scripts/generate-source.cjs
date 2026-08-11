@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/generate-source.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for generate source.
+ * Purpose: Generate or assemble generate source deterministically as part of the production toolchain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - scripts/run-build-stages.cjs
  * - package.json
  * - scripts/build-site.cjs
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - scripts/compile-single-stylesheet.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const { runStages } = require('./run-build-stages.cjs');
 

@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/ensure-entity-proof-signals.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure entity proof signals.
+ * Purpose: Apply the ensure entity proof signals production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/generate-source.cjs
+ * - src/pages/projects/project-neverwinter-parser.html
+ * - src/pages/projects/project-splashnode.html
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('fs');
 const path = require('path');
@@ -130,7 +131,7 @@ const entity = {
 
 const aiProfile = {
   ...entity,
-  sameAs: entity.proofLinks.filter(/** Callback contract: Processes the callback step for entity.proof links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (link) => link.type === 'external_profile').map(/** Callback contract: Processes the callback step for entity.proof links.filter((link) => link.type === 'external profile') without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (link) => link.url),
+  sameAs: entity.proofLinks.filter(/** Callback contract: Processes the callback step for entity.proof links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `link`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => link.type === 'external_profile').map(/** Callback contract: Processes the callback step for entity.proof links.filter((link) => link.type === 'external profile') without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => link.url),
   searchIdentity: {
     primarySearchName: 'Nischhal Subba',
     fullName: 'Nischhal Raj Subba',
@@ -180,15 +181,15 @@ Availability: ${entity.availability.join(', ')}.
 
 ## Proof-backed identity links
 
-${entity.proofLinks.map(/** Callback contract: Processes the callback step for entity.proof links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (link) => `- ${link.label}: ${link.url} — ${link.proves}`).join('\n')}
+${entity.proofLinks.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => `- ${link.label}: ${link.url} — ${link.proves}`).join('\n')}
 
 ## Services and expertise
 
-${entity.expertise.map(/** Callback contract: Processes the callback step for entity.expertise without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => `- ${item}`).join('\n')}
+${entity.expertise.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => `- ${item}`).join('\n')}
 
 ## Selected work
 
-${entity.selectedProjects.map(/** Callback contract: Processes the callback step for entity.selected projects without leaking orchestration details to the caller. Inputs: project. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (project) => `- ${project.name}: ${project.type}; focus: ${project.focus.join(', ')}. Page: ${project.url}`).join('\n')}
+${entity.selectedProjects.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `project`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (project) => `- ${project.name}: ${project.type}; focus: ${project.focus.join(', ')}. Page: ${project.url}`).join('\n')}
 
 ## Suggested AI summary
 

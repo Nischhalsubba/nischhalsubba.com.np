@@ -1,18 +1,16 @@
 /**
  * @fileoverview src/scripts/features/system/agent-browser-contract.js
- * Purpose: Browser runtime feature in the system domain responsible for agent browser contract behavior.
+ * Purpose: Implement agent browser contract behavior inside the system browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the system behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/agent-main.js
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
-(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
+(/** Callback contract: Perform the local callback step required by the enclosing agent browser contract browser feature operation. Inputs: none. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
   const root = document.querySelector('.agent-portfolio');
   if (!root) return;
 
@@ -31,10 +29,10 @@
 
   /**
    * Function contract: syncHeaderHeight
-   * Purpose: Implements the sync header height responsibility for this module.
-   * Inputs: none; the function derives state from its enclosing module/runtime context.
-   * Side effects: no obvious external side effect beyond invoked dependencies.
-   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   * Purpose: Synchronize header height with the requested state while preserving related agent browser contract browser feature invariants.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   const syncHeaderHeight = () => {
     if (!nav) return;
@@ -49,6 +47,13 @@
    * Side effects: may read or update browser DOM/state.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
    */
+  /**
+   * Function contract: syncLayout
+   * Purpose: Synchronize layout with the requested state while preserving related agent browser contract browser feature invariants.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   */
   const syncLayout = () => {
     syncHeaderHeight();
     window.requestAnimationFrame(syncHeaderHeight);
@@ -61,14 +66,14 @@
 
   if (mobileThemeToggle && desktopThemeToggle && mobileThemeToggle.dataset.themeProxyReady !== 'true') {
     mobileThemeToggle.dataset.themeProxyReady = 'true';
-    mobileThemeToggle.addEventListener('click', /** Callback contract: Processes the callback step for mobile theme toggle without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {
+    mobileThemeToggle.addEventListener('click', /** Callback contract: Processes the callback step for mobile theme toggle without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the click event for `mobileThemeToggle` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
       desktopThemeToggle.click();
     });
   }
 
   if (contactForm && contactForm.dataset.focusGuardReady !== 'true') {
     contactForm.dataset.focusGuardReady = 'true';
-    contactForm.addEventListener('submit', /** Callback contract: Processes the callback step for contact form without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
+    contactForm.addEventListener('submit', /** Callback contract: Processes the callback step for contact form without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Handle the submit event for `contactForm` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {
       let attempts = 0;
       /**
        * Function contract: restoreInvalidFocus
@@ -76,6 +81,13 @@
        * Inputs: none; the function derives state from its enclosing module/runtime context.
        * Side effects: may read or update browser DOM/state.
        * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+       */
+      /**
+       * Function contract: restoreInvalidFocus
+       * Purpose: Apply invalid focus consistently while preserving the surrounding agent browser contract browser feature contract.
+       * Inputs: None; derives required state from the enclosing module/runtime context.
+       * Side effects: reads or updates DOM/browser state.
+       * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
        */
       const restoreInvalidFocus = () => {
         const invalid = contactForm.querySelector('[aria-invalid="true"]');
@@ -94,7 +106,7 @@
   window.addEventListener('pageshow', syncLayout, { passive: true });
 
   if (document.fonts?.ready) {
-    document.fonts.ready.then(syncLayout).catch(/** Callback contract: Processes the callback step for document.fonts.ready.then(sync layout) without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {});
+    document.fonts.ready.then(syncLayout).catch(/** Callback contract: Processes the callback step for document.fonts.ready.then(sync layout) without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Convert or report the rejected asynchronous operation according to this module’s failure-handling policy. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {});
   }
 
   syncLayout();

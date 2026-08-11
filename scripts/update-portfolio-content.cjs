@@ -1,16 +1,16 @@
 /**
  * @fileoverview scripts/update-portfolio-content.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for update portfolio content.
+ * Purpose: Apply the update portfolio content production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - scripts/early-theme-bootstrap.cjs
  * - scripts/generate-source.cjs
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require("fs");
 const path = require("path");
@@ -43,18 +43,18 @@ const info = {
 
 /**
  * Function contract: e
- * Purpose: Implements the e responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the e responsibility owned by the update portfolio content repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 const e = (value) => String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 /**
  * Function contract: nav
- * Purpose: Implements the nav responsibility for this module.
- * Inputs: active.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the nav responsibility owned by the update portfolio content repository tool.
+ * Inputs: `active`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 const nav = (active) => `<button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button><a href="/" class="mobile-logo">NRS</a><div class="mobile-nav-overlay" id="mobile-nav-overlay"><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="/"${active === "home" ? ' class="active"' : ""}>Home</a><a href="/projects.html"${active === "work" ? ' class="active"' : ""}>Work</a><a href="/about.html"${active === "about" ? ' class="active"' : ""}>About</a><a href="/blog/">Writing</a><a href="/contact.html"${active === "contact" ? ' class="active"' : ""}>Contact</a></nav></div><button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button><nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div><a href="/" class="nav-link${active === "home" ? " active" : ""}">Home</a><a href="/projects.html" class="nav-link${active === "work" ? " active" : ""}">Work</a><a href="/about.html" class="nav-link${active === "about" ? " active" : ""}">About</a><a href="/blog/" class="nav-link">Writing</a><a href="/contact.html" class="nav-link${active === "contact" ? " active" : ""}">Contact</a></div></nav>`;
 /**
@@ -63,6 +63,13 @@ const nav = (active) => `<button class="mobile-nav-toggle" aria-label="Open navi
  * Inputs: { title, description, canonical, image = "/assets/images/portrait.png", type = "website" }.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: head
+ * Purpose: Implement the head responsibility owned by the update portfolio content repository tool.
+ * Inputs: `{ title, description, canonical, image = "/assets/images/portrait.png", type = "website" }`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 const head = ({ title, description, canonical, image = "/assets/images/portrait.png", type = "website" }) => `<!DOCTYPE html>
 <html lang="en">
@@ -95,6 +102,13 @@ const script = `<script type="module" src="/script.js?v=21.0"></script>`;
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: card
+ * Purpose: Implement the card responsibility owned by the update portfolio content repository tool.
+ * Inputs: `project`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function card(project) {
   const details = info[project.id] || [];
   return `<a href="/${project.href}" class="project-card reveal-on-scroll" data-category="${e(project.category)}"><div class="card-media-wrap"><img src="/${project.thumbnail}" alt="${e(project.alt)}" loading="lazy" decoding="async"></div><div class="card-content"><span class="eyebrow">${e(project.meta[0])}</span><h3>${e(project.title)}</h3><div class="card-meta-line"><span>${e(project.meta[1] || details[1] || "Product design")}</span><span>${e(details[0] || "")}</span></div><p class="card-summary">${e(project.summary)}</p></div></a>`;
@@ -106,6 +120,13 @@ function card(project) {
  * Inputs: item.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: focusText
+ * Purpose: Implement the focus text responsibility owned by the update portfolio content repository tool.
+ * Inputs: `item`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function focusText(item) {
   const text = String(item).toLowerCase();
@@ -124,6 +145,13 @@ function focusText(item) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: processItems
+ * Purpose: Implement the process items responsibility owned by the update portfolio content repository tool.
+ * Inputs: `project`: input consumed by this operation; `details`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Array containing the values selected or transformed by this function.
+ */
 function processItems(project, details) {
   return [
     ["Understand", `Mapped the product context, primary users, and domain risks for ${project.title} before shaping interface details.`],
@@ -140,12 +168,19 @@ function processItems(project, details) {
  * Side effects: may read or write repository/filesystem state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: page
+ * Purpose: Implement the page responsibility owned by the update portfolio content repository tool.
+ * Inputs: `name`: stable identifier or label for the current item; `html`: input consumed by this operation
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function page(name, html) {
   fs.writeFileSync(path.join(root, name), `${html}\n`, "utf8");
 }
 
 const selected = ["yarsha", "mokshya", "hamro-idea", "pihub", "zapp", "morajaa"]
-  .map(/** Callback contract: Processes the callback step for ["yarsha", "mokshya", "hamro idea", "pihub", "zapp", "morajaa"] without leaking orchestration details to the caller. Inputs: id. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (id) => projects.find(/** Callback contract: Processes the callback step for projects without leaking orchestration details to the caller. Inputs: project. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (project) => project.id === id))
+  .map(/** Callback contract: Processes the callback step for ["yarsha", "mokshya", "hamro idea", "pihub", "zapp", "morajaa"] without leaking orchestration details to the caller. Inputs: id. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `id`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (id) => projects.find(/** Callback contract: Processes the callback step for projects without leaking orchestration details to the caller. Inputs: project. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `project`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (project) => project.id === id))
   .filter(Boolean);
 
 const indexHtml = `${head({ title: "Nischhal Raj Subba | Senior UI/Product Designer", description: "Senior UI/Product Designer from Nepal helping teams design clearer mobile apps, SaaS products, Web3 flows, websites, dashboards, and design systems.", canonical: "", image: "/assets/images/portrait.png" }).replace("https://nischhalsubba.com.np/assets/images/portrait.png", "https://i.imgur.com/oFHdPUS.png")}
@@ -221,16 +256,23 @@ page("about.html", `${head({ title: "About Nischhal Raj Subba | Product Designer
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: projectPage
+ * Purpose: Implement the project page responsibility owned by the update portfolio content repository tool.
+ * Inputs: `project`: input consumed by this operation; `index`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function projectPage(project, index) {
   const details = info[project.id] || ["", project.meta[1], project.meta[0], "Product users and internal teams", project.summary, "I worked on product design direction, interface structure, and UX decisions for this project.", project.meta, "The project page uses actual portfolio assets and avoids invented metrics, awards, or testimonials."];
   const links = project.links || [];
   const prev = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
   const linkCards = links.length
-    ? links.map(/** Callback contract: Processes the callback step for links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (link) => `<a class="prototype-link-card" href="${e(link.url)}" target="_blank" rel="noopener noreferrer" style="padding:22px;border:1px solid var(--border-faint);border-radius:18px;background:var(--bg-surface);"><span style="display:block;font-weight:700;">${e(link.label)}</span><span style="color:var(--text-secondary);font-size:.92rem;">Open ${e(link.type || "resource")}</span></a>`).join("")
+    ? links.map(/** Callback contract: Processes the callback step for links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => `<a class="prototype-link-card" href="${e(link.url)}" target="_blank" rel="noopener noreferrer" style="padding:22px;border:1px solid var(--border-faint);border-radius:18px;background:var(--bg-surface);"><span style="display:block;font-weight:700;">${e(link.label)}</span><span style="color:var(--text-secondary);font-size:.92rem;">Open ${e(link.type || "resource")}</span></a>`).join("")
     : `<div class="case-callout">No public prototype link is attached to this project yet. I can walk through the available file or context during a hiring conversation.</div>`;
   const embeds = links.length
-    ? links.map(/** Callback contract: Processes the callback step for links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (link) => `<div class="embed-frame-wrapper" style="margin-top:28px;border-radius:20px;overflow:hidden;border:1px solid var(--border-faint);background:var(--bg-surface);"><div style="padding:14px 18px;border-bottom:1px solid var(--border-faint);font-weight:700;">${e(link.label)}</div><iframe src="${e(link.url)}" width="100%" height="620" style="border:0;" allowfullscreen loading="eager"></iframe></div>`).join("")
+    ? links.map(/** Callback contract: Processes the callback step for links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => `<div class="embed-frame-wrapper" style="margin-top:28px;border-radius:20px;overflow:hidden;border:1px solid var(--border-faint);background:var(--bg-surface);"><div style="padding:14px 18px;border-bottom:1px solid var(--border-faint);font-weight:700;">${e(link.label)}</div><iframe src="${e(link.url)}" width="100%" height="620" style="border:0;" allowfullscreen loading="eager"></iframe></div>`).join("")
     : "";
   return `${head({ title: `${project.title} Case Study | Nischhal Raj Subba`, description: project.summary, canonical: project.href, image: "/" + project.thumbnail, type: "article" })}
   <body>
@@ -240,8 +282,8 @@ function projectPage(project, index) {
       <div class="case-hero-img-container reveal-on-scroll" style="margin-bottom:56px;"><img src="/${project.thumbnail}" class="case-hero-img" alt="${e(project.alt)}" style="width:100%;border-radius:16px;border:1px solid var(--border-faint);" loading="eager" /></div>
       <section class="section-container"><div class="snapshot-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;"><div><h5 style="color:var(--text-tertiary);margin-bottom:8px;text-transform:uppercase;">Role</h5><p>${e(details[1])}</p></div><div><h5 style="color:var(--text-tertiary);margin-bottom:8px;text-transform:uppercase;">Domain</h5><p>${e(details[2])}</p></div><div><h5 style="color:var(--text-tertiary);margin-bottom:8px;text-transform:uppercase;">Users</h5><p>${e(details[3])}</p></div></div></section>
       <section class="section-container reveal-on-scroll"><div class="case-label">PRODUCT CONTEXT</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">What needed to be made clearer</h2><p class="body-large" style="color:var(--text-secondary);max-width:860px;">${e(details[4])}</p></section>
-      <section class="section-container reveal-on-scroll"><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">My role</h2><p class="body-large" style="color:var(--text-secondary);max-width:860px;">${e(details[5])}</p><div class="journey-grid" style="margin-top:28px;">${details[6].map(/** Callback contract: Processes the callback step for details[6] without leaking orchestration details to the caller. Inputs: item, itemIndex. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item, itemIndex) => `<div class="journey-card"><span class="eyebrow">Focus ${itemIndex + 1}</span><h3>${e(item)}</h3><p>${e(focusText(item))}</p></div>`).join("")}</div></section>
-      <section class="section-container reveal-on-scroll"><div class="case-label">DESIGN DECISIONS</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">How I approached the work</h2><div class="journey-grid">${processItems(project, details).map(/** Callback contract: Processes the callback step for process items(project, details) without leaking orchestration details to the caller. Inputs: [title, text]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ ([title, text]) => `<div class="journey-card"><span class="eyebrow">Decision</span><h3>${e(title)}</h3><p>${e(text)}</p></div>`).join("")}</div></section>
+      <section class="section-container reveal-on-scroll"><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">My role</h2><p class="body-large" style="color:var(--text-secondary);max-width:860px;">${e(details[5])}</p><div class="journey-grid" style="margin-top:28px;">${details[6].map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`, `itemIndex`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item, itemIndex) => `<div class="journey-card"><span class="eyebrow">Focus ${itemIndex + 1}</span><h3>${e(item)}</h3><p>${e(focusText(item))}</p></div>`).join("")}</div></section>
+      <section class="section-container reveal-on-scroll"><div class="case-label">DESIGN DECISIONS</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">How I approached the work</h2><div class="journey-grid">${processItems(project, details).map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[title, text]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ ([title, text]) => `<div class="journey-card"><span class="eyebrow">Decision</span><h3>${e(title)}</h3><p>${e(text)}</p></div>`).join("")}</div></section>
       <section class="section-container reveal-on-scroll"><div class="case-label">OUTCOME</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">What the design made easier</h2><ul class="case-list"><li>Clearer entry points for the main user roles and use cases.</li><li>More explicit labels, hierarchy, and state language around important actions.</li><li>Reusable UI decisions that can scale beyond one screen.</li><li>A stronger hiring walkthrough because scope, artifacts, and constraints are visible.</li></ul></section>
       <section id="proof" class="section-container reveal-on-scroll"><div class="section-header" style="margin-bottom:28px;"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.12em;">Proof</p><h2 class="section-title" style="margin-bottom:14px;">Project image and resources</h2><p class="section-lead">${e(details[7])}</p></div><div class="prototype-link-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:18px;">${linkCards}</div>${embeds}</section>
       <section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);"><h2 class="section-title">What I would discuss in an interview</h2><ul class="case-list"><li>Product context, user roles, and constraints.</li><li>Flow decisions, screen states, and content hierarchy.</li><li>How design assets were prepared for handoff or implementation.</li><li>What I would measure next if the team wanted stronger product evidence.</li></ul><p class="case-callout">This page uses available project assets, linked resources, and clearly scoped contribution notes instead of invented impact numbers or stock imagery.</p></section>
@@ -253,7 +295,7 @@ function projectPage(project, index) {
 </html>`;
 }
 
-projects.forEach(/** Callback contract: Processes the callback step for projects without leaking orchestration details to the caller. Inputs: project, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (project, index) => page(project.href, projectPage(project, index)));
+projects.forEach(/** Callback contract: Processes the callback step for projects without leaking orchestration details to the caller. Inputs: project, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `project`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (project, index) => page(project.href, projectPage(project, index)));
 
 page("products.html", `${head({ title: "Products Removed | Nischhal Raj Subba", description: "This page no longer lists digital products. Visit the work page for real product design case studies and portfolio projects by Nischhal Raj Subba.", canonical: "products.html", image: "/assets/images/portrait.png" })}
   <body>
@@ -264,6 +306,6 @@ page("products.html", `${head({ title: "Products Removed | Nischhal Raj Subba", 
   </body>
 </html>`);
 
-["project-detail.html", "project-archive.html", "project-jeweltrek.html"].forEach(/** Callback contract: Processes the callback step for ["project detail.html", "project archive.html", "project jeweltrek.html"] without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (name) => {
+["project-detail.html", "project-archive.html", "project-jeweltrek.html"].forEach(/** Callback contract: Processes the callback step for ["project detail.html", "project archive.html", "project jeweltrek.html"] without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (name) => {
   page(name, `${head({ title: "Work Archive | Nischhal Raj Subba", description: "This legacy page has been replaced by the current product design work archive.", canonical: "projects.html", image: "/assets/images/portrait.png" })}<body>${nav("work")}<main class="container"><section class="hero-section" style="min-height:auto;padding-top:160px;padding-bottom:90px;align-items:flex-start;text-align:left;"><p class="eyebrow" style="color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.14em;">Legacy page</p><h1 class="hero-title">This page has moved.</h1><p class="body-large" style="max-width:760px;color:var(--text-secondary);">I removed the older case-study content because it mixed outdated and placeholder material. The current work archive has the real, scoped project pages.</p><div class="hero-actions" style="margin-top:32px;"><a href="/projects.html" class="btn btn-primary">Go to current work</a></div></section></main>${footer}${script}</body></html>`);
 });

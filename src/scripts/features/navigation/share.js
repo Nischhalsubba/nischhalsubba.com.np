@@ -1,24 +1,24 @@
 /**
  * @fileoverview src/scripts/features/navigation/share.js
- * Purpose: Browser runtime feature in the navigation domain responsible for share behavior.
+ * Purpose: Implement share behavior inside the navigation browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the navigation behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - src/scripts/shared/dom.js
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $$ } from '../../shared/dom.js';
 
 /**
  * Function contract: getShareText
- * Purpose: Retrieves get share text and returns it in the form expected by its caller.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return share text from the supplied inputs or current share browser feature state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: The requested share text; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getShareText() {
   return encodeURIComponent(document.querySelector('h1')?.innerText || document.title);
@@ -26,14 +26,14 @@ function getShareText() {
 
 /**
  * Function contract: initShareButtons
- * Purpose: Implements the init share buttons responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Initialize share buttons for the share browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function initShareButtons() {
-  $$('[data-share]').forEach(/** Callback contract: Processes the callback step for $$('[data share]') without leaking orchestration details to the caller. Inputs: button. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ (button) => {
-    button.addEventListener('click', /** Callback contract: Processes the callback step for button without leaking orchestration details to the caller. Inputs: event. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ async (event) => {
+  $$('[data-share]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `button`. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (button) => {
+    button.addEventListener('click', /** Callback contract: Handle the click event for `button` and apply this module's related state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Promise that resolves when the asynchronous side effects complete. */ async (event) => {
       event.preventDefault();
 
       const platform = button.dataset.share;
@@ -43,12 +43,12 @@ export function initShareButtons() {
       if (platform === 'copy' && navigator.clipboard) {
         await navigator.clipboard.writeText(window.location.href);
         button.classList.add('copied');
-        window.setTimeout(/** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => button.classList.remove('copied'), 1600);
+        window.setTimeout(/** Callback contract: Perform the local callback step required by the enclosing share browser feature operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => button.classList.remove('copied'), 1600);
         return;
       }
 
       if (platform === 'native' && navigator.share) {
-        await navigator.share({ title: document.title, url: window.location.href }).catch(/** Callback contract: Processes the callback step for navigator.share({ title: document.title, url: window.location.href }) without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ () => {});
+        await navigator.share({ title: document.title, url: window.location.href }).catch(/** Callback contract: Convert or report the rejected asynchronous operation according to this module’s failure-handling policy. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => {});
         return;
       }
 

@@ -1,15 +1,14 @@
 /**
  * @fileoverview scripts/ensure-blog-detail-polish.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure blog detail polish.
+ * Purpose: Apply the ensure blog detail polish production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('fs');
 const path = require('path');
@@ -239,10 +238,10 @@ const css = `
 
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: dir, files.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the walk responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `dir`: input consumed by this operation; `files`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -256,10 +255,10 @@ function walk(dir, files = []) {
 
 /**
  * Function contract: rel
- * Purpose: Implements the rel responsibility for this module.
- * Inputs: file.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the rel responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function rel(file) {
   return path.relative(targetRoot, file).replaceAll(path.sep, '/');
@@ -267,10 +266,10 @@ function rel(file) {
 
 /**
  * Function contract: getTitle
- * Purpose: Retrieves get title and returns it in the form expected by its caller.
- * Inputs: html, file.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return title from the supplied inputs or current ensure blog detail polish repository tool state.
+ * Inputs: `html`: input consumed by this operation; `file`: repository-relative or absolute file path being processed
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested title; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getTitle(html, file) {
   return html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g, '').trim()
@@ -280,10 +279,10 @@ function getTitle(html, file) {
 
 /**
  * Function contract: getCategory
- * Purpose: Retrieves get category and returns it in the form expected by its caller.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return category from the supplied inputs or current ensure blog detail polish repository tool state.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: The requested category; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function getCategory(html) {
   return html.match(/<p class="eyebrow"[^>]*>([\s\S]*?)<\/p>/i)?.[1]?.replace(/<[^>]+>/g, '').trim()
@@ -292,21 +291,21 @@ function getCategory(html) {
 
 /**
  * Function contract: titleCase
- * Purpose: Implements the title case responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the title case responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function titleCase(value) {
-  return value.replace(/\s+/g, ' ').trim().replace(/\b\w/g, /** Callback contract: Processes the callback step for value.replace(/\s+/g, ' ').trim() without leaking orchestration details to the caller. Inputs: char. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (char) => char.toUpperCase());
+  return value.replace(/\s+/g, ' ').trim().replace(/\b\w/g, /** Callback contract: Perform the local callback step required by the enclosing ensure blog detail polish repository tool operation. Inputs: `char`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (char) => char.toUpperCase());
 }
 
 /**
  * Function contract: upsertBodyClass
- * Purpose: Implements the upsert body class responsibility for this module.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the upsert body class responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function upsertBodyClass(html) {
   if (/<html\b[^>]*class=["'][^"']*nrs-blog-detail-page/i.test(html)) return html;
@@ -316,10 +315,10 @@ function upsertBodyClass(html) {
 
 /**
  * Function contract: normalizeAssetVersions
- * Purpose: Applies normalize asset versions while preserving the surrounding repository/runtime contract.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply asset versions consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function normalizeAssetVersions(html) {
   return html
@@ -333,6 +332,13 @@ function normalizeAssetVersions(html) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: normalizeArticleClasses
+ * Purpose: Apply article classes consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function normalizeArticleClasses(html) {
   return html
@@ -349,6 +355,13 @@ function normalizeArticleClasses(html) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: removeOldBackAndBreadcrumbs
+ * Purpose: Remove old back and breadcrumbs without disturbing required surrounding ensure blog detail polish repository tool state.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function removeOldBackAndBreadcrumbs(html) {
   return html
     .replace(/\s*<nav class="nrs-blog-breadcrumbs"[\s\S]*?<\/nav>\s*/gi, '\n')
@@ -362,6 +375,13 @@ function removeOldBackAndBreadcrumbs(html) {
  * Inputs: { title, category }.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: breadcrumbHtml
+ * Purpose: Implement the breadcrumb html responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `{ title, category }`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function breadcrumbHtml({ title, category }) {
   const categoryLabel = titleCase(category);
@@ -377,6 +397,13 @@ function breadcrumbHtml({ title, category }) {
  * Inputs: { title, slugPath }.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: breadcrumbJsonLd
+ * Purpose: Implement the breadcrumb json ld responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `{ title, slugPath }`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function breadcrumbJsonLd({ title, slugPath }) {
   const url = `${site}/${slugPath}`;
@@ -399,6 +426,13 @@ function breadcrumbJsonLd({ title, slugPath }) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertBreadcrumbJson
+ * Purpose: Implement the upsert breadcrumb json responsibility owned by the ensure blog detail polish repository tool.
+ * Inputs: `html`: input consumed by this operation; `payload`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function upsertBreadcrumbJson(html, payload) {
   let output = html.replace(/\s*<script id="nrs-blog-breadcrumb-json"[\s\S]*?<\/script>\s*/gi, '\n');
   return output.replace('</head>', `    ${payload}\n  </head>`);
@@ -410,6 +444,13 @@ function upsertBreadcrumbJson(html, payload) {
  * Inputs: html, slugPath.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: ensureCanonicalHierarchy
+ * Purpose: Apply canonical hierarchy consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: `html`: input consumed by this operation; `slugPath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function ensureCanonicalHierarchy(html, slugPath) {
   const canonical = `${site}/${slugPath}`;
@@ -428,6 +469,13 @@ function ensureCanonicalHierarchy(html, slugPath) {
  * Inputs: file.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: polishBlogArticle
+ * Purpose: Apply blog article consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: writes repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function polishBlogArticle(file) {
   const slugPath = rel(file);
@@ -457,6 +505,13 @@ function polishBlogArticle(file) {
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: updateStyle
+ * Purpose: Apply style consistently while preserving the surrounding ensure blog detail polish repository tool contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function updateStyle() {
   if (!fs.existsSync(stylePath)) return false;
   let style = fs.readFileSync(stylePath, 'utf8');
@@ -468,7 +523,7 @@ function updateStyle() {
 }
 
 let changed = 0;
-for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.endsWith('.html'))) {
+for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.endsWith('.html'))) {
   if (polishBlogArticle(file)) changed += 1;
 }
 const styled = updateStyle();

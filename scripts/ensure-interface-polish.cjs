@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/ensure-interface-polish.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure interface polish.
+ * Purpose: Apply the ensure interface polish production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - scripts/generate-source.cjs
+ * - src/scripts/features/portfolio/agent-portfolio.js
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -237,6 +238,13 @@ ${endMarker}`;
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: appendPolishCss
+ * Purpose: Implement the append polish css responsibility owned by the ensure interface polish repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: writes repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function appendPolishCss(file) {
   if (!fs.existsSync(file)) return false;
   const before = fs.readFileSync(file, 'utf8');
@@ -251,6 +259,13 @@ function appendPolishCss(file) {
  * Inputs: file.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: patchRuntime
+ * Purpose: Implement the patch runtime responsibility owned by the ensure interface polish repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: writes repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function patchRuntime(file) {
   if (!fs.existsSync(file)) return false;
@@ -295,7 +310,7 @@ const requiredSelectors = [
   '.agent-portfolio .agent-project-row:focus-visible',
   '@media (prefers-reduced-motion: reduce)'
 ];
-const missing = requiredSelectors.filter(/** Callback contract: Processes the callback step for required selectors without leaking orchestration details to the caller. Inputs: selector. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (selector) => !finalCss.includes(selector));
+const missing = requiredSelectors.filter(/** Callback contract: Processes the callback step for required selectors without leaking orchestration details to the caller. Inputs: selector. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `selector`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (selector) => !finalCss.includes(selector));
 if (missing.length) {
   console.error(`[interface-polish] Missing required CSS contracts: ${missing.join(', ')}`);
   process.exit(1);

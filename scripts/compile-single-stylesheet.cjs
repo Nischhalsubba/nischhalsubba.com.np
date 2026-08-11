@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/compile-single-stylesheet.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for compile single stylesheet.
+ * Purpose: Generate or assemble compile single stylesheet deterministically as part of the production toolchain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/audit-css-architecture.cjs
  * - scripts/build-dist.cjs
  * - scripts/generate-source.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -27,18 +28,15 @@ const endMarker = '/* nrs-single-source-inner-pages-v50:compiled:end */';
 
 let stylesheet = fs.readFileSync(stylesheetPath, 'utf8');
 const fragments = fragmentFiles
-  .filter(/** Callback contract: Processes the callback step for fragment files without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ (file) => fs.existsSync(file))
-  .map(/** Callback contract: Processes the callback step for fragment files
-  .filter((file) => fs.exists sync(file)) without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ (file) => fs.readFileSync(file, 'utf8').trim())
+  .filter(/** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => fs.existsSync(file))
+  .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => fs.readFileSync(file, 'utf8').trim())
   .filter(Boolean)
   .join('\n\n');
 
 stylesheet = stylesheet
   .replace(/^\s*500;600;700;800&display=swap'\);\s*$/m, '')
   .replace(/Version:\s*[0-9.]+/, 'Version: 51.0')
-  .replace(/html\[data-theme='light'\]([\s\S]*?)--text-tertiary:\s*#[0-9a-f]{6};/i, /** Callback contract: Processes the callback step for stylesheet
-  .replace(/^\s*500;600;700;800&display=swap'\);\s*$/m, '')
-  .replace(/version:\s*[0 9.]+/, 'version: 51.0') without leaking orchestration details to the caller. Inputs: match, prefix. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match, prefix) => `html[data-theme='light']${prefix}--text-tertiary: #5f655b;`)
+  .replace(/html\[data-theme='light'\]([\s\S]*?)--text-tertiary:\s*#[0-9a-f]{6};/i, /** Callback contract: Perform the local callback step required by the enclosing compile single stylesheet repository tool operation. Inputs: `match`, `prefix`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match, prefix) => `html[data-theme='light']${prefix}--text-tertiary: #5f655b;`)
   .replace(/\/\* nrs-single-source-inner-pages-v\d+:compiled:start \*\/[\s\S]*?\/\* nrs-single-source-inner-pages-v\d+:compiled:end \*\/\s*/g, '')
   .trimEnd();
 

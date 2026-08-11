@@ -1,16 +1,14 @@
 /**
  * @fileoverview scripts/browser-interface-polish-audit.mjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for browser interface polish audit.
+ * Purpose: Validate browser interface polish audit and fail with actionable diagnostics when the production contract is violated.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - .github/workflows/interface-polish-audit.yml
- * - docs/repository/file-catalog.md
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { chromium } from 'playwright';
 
@@ -20,10 +18,10 @@ const failures = [];
 
 /**
  * Function contract: fail
- * Purpose: Implements the fail responsibility for this module.
- * Inputs: label, message.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the fail responsibility owned by the browser interface polish audit repository tool.
+ * Inputs: `label`: input consumed by this operation; `message`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function fail(label, message) {
   failures.push(`${label}: ${message}`);
@@ -35,6 +33,13 @@ function fail(label, message) {
  * Inputs: context, route, viewport.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: openPage
+ * Purpose: Implement the open page responsibility owned by the browser interface polish audit repository tool.
+ * Inputs: `context`: input consumed by this operation; `route`: input consumed by this operation; `viewport`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
  */
 async function openPage(context, route, viewport) {
   const page = await context.newPage();
@@ -59,7 +64,7 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/project-zapp', viewport);
-    const metrics = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
+    const metrics = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ () => {
       const wrapper = document.querySelector('.agent-case-title-wrap');
       const title = document.querySelector('.agent-case-title');
       const frame = document.querySelector('.agent-case-grid');
@@ -67,8 +72,8 @@ for (const viewport of [
 
       const range = document.createRange();
       range.selectNodeContents(title);
-      const lineRects = [...range.getClientRects()].filter(/** Callback contract: Processes the callback step for [...range.get client rects()] without leaking orchestration details to the caller. Inputs: rect. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (rect) => rect.width > 0 && rect.height > 0);
-      const uniqueLines = [...new Set(lineRects.map(/** Callback contract: Processes the callback step for line rects without leaking orchestration details to the caller. Inputs: rect. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (rect) => Math.round(rect.top)))];
+      const lineRects = [...range.getClientRects()].filter(/** Callback contract: Processes the callback step for [...range.get client rects()] without leaking orchestration details to the caller. Inputs: rect. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `rect`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (rect) => rect.width > 0 && rect.height > 0);
+      const uniqueLines = [...new Set(lineRects.map(/** Callback contract: Processes the callback step for line rects without leaking orchestration details to the caller. Inputs: rect. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `rect`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (rect) => Math.round(rect.top)))];
       const wrapperRect = wrapper.getBoundingClientRect();
       const titleRect = title.getBoundingClientRect();
       const frameRect = frame.getBoundingClientRect();
@@ -112,7 +117,7 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/about', viewport);
-    const metrics = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ () => {
+    const metrics = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ () => {
       const grid = document.querySelector('.agent-about-grid');
       const copy = document.querySelector('.agent-about-copy');
       const aside = document.querySelector('.agent-about-aside');
@@ -151,14 +156,14 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
-    const geometry = await page.locator('.nrs-home-habit').evaluateAll(/** Callback contract: Processes the callback step for page.locator('.nrs home habit') without leaking orchestration details to the caller. Inputs: elements. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (elements) => elements.map(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
+    const geometry = await page.locator('.nrs-home-habit').evaluateAll(/** Callback contract: Processes the callback step for page.locator('.nrs home habit') without leaking orchestration details to the caller. Inputs: elements. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: `elements`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (elements) => elements.map(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ (element) => {
       const rect = element.getBoundingClientRect();
       return { top: rect.top, width: rect.width };
     }));
     if (geometry.length !== 3) throw new Error(`expected 3 habit cards, found ${geometry.length}`);
-    const topDelta = Math.max(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.top)) - Math.min(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.top));
+    const topDelta = Math.max(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.top)) - Math.min(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.top));
     if (topDelta > 2) throw new Error(`habit cards are vertically staggered by ${topDelta.toFixed(1)}px`);
-    const widthDelta = Math.max(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.width)) - Math.min(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (item) => item.width));
+    const widthDelta = Math.max(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.width)) - Math.min(...geometry.map(/** Callback contract: Processes the callback step for geometry without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (item) => item.width));
     if (widthDelta > 3) throw new Error(`habit columns differ in width by ${widthDelta.toFixed(1)}px`);
   } catch (error) {
     fail(label, error.message);
@@ -173,13 +178,13 @@ for (const viewport of [
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
     const row = page.locator('.agent-project-row').first();
-    const before = await row.evaluate(/** Callback contract: Processes the callback step for row without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element) => ({
+    const before = await row.evaluate(/** Callback contract: Processes the callback step for row without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => ({
       background: getComputedStyle(element).backgroundColor,
       title: getComputedStyle(element.querySelector('h3')).color,
     }));
     await row.hover();
     await page.waitForTimeout(220);
-    const after = await row.evaluate(/** Callback contract: Processes the callback step for row without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element) => ({
+    const after = await row.evaluate(/** Callback contract: Processes the callback step for row without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => ({
       background: getComputedStyle(element).backgroundColor,
       title: getComputedStyle(element.querySelector('h3')).color,
     }));
@@ -189,7 +194,7 @@ for (const viewport of [
 
     const button = page.locator('.agent-btn').first();
     await button.focus();
-    const focus = await button.evaluate(/** Callback contract: Processes the callback step for button without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
+    const focus = await button.evaluate(/** Callback contract: Processes the callback step for button without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ (element) => {
       const style = getComputedStyle(element);
       const afterStyle = getComputedStyle(element, '::after');
       return {
@@ -212,10 +217,10 @@ for (const viewport of [
   let page;
   try {
     page = await openPage(standard, '/', { width: 1440, height: 900 });
-    await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+    await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
     await page.waitForTimeout(900);
-    const hidden = await page.locator('[data-agent-reveal]').evaluateAll(/** Callback contract: Processes the callback step for page.locator('[data agent reveal]') without leaking orchestration details to the caller. Inputs: elements. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (elements) => elements
-      .filter(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
+    const hidden = await page.locator('[data-agent-reveal]').evaluateAll(/** Callback contract: Processes the callback step for page.locator('[data agent reveal]') without leaking orchestration details to the caller. Inputs: elements. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: `elements`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (elements) => elements
+      .filter(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Keep only elements that are rendered, visible, and eligible for the surrounding focus/layout operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (element) => {
         const style = getComputedStyle(element);
         const rect = element.getBoundingClientRect();
         return rect.width > 0 && rect.height > 0 && (Number.parseFloat(style.opacity) < 0.95 || style.visibility === 'hidden');
@@ -225,7 +230,7 @@ for (const viewport of [
         const style = get computed style(element);
         const rect = element.get bounding client rect();
         return rect.width > 0 && rect.height > 0 && (number.parse float(style.opacity) < 0.95 || style.visibility === 'hidden');
-      }) without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (element) => element.className || element.tagName));
+      }) without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.className || element.tagName));
     if (hidden.length) throw new Error(`reveal targets remained hidden after animation: ${hidden.slice(0, 5).join(', ')}`);
   } catch (error) {
     fail(label, error.message);
@@ -242,16 +247,16 @@ await standard.close();
   let page;
   try {
     page = await openPage(reduced, '/', { width: 1440, height: 900 });
-    await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+    await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
     await page.waitForTimeout(250);
-    const result = await page.locator('[data-agent-reveal]').evaluateAll(/** Callback contract: Processes the callback step for page.locator('[data agent reveal]') without leaking orchestration details to the caller. Inputs: elements. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (elements) => ({
-      hidden: elements.filter(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
+    const result = await page.locator('[data-agent-reveal]').evaluateAll(/** Callback contract: Processes the callback step for page.locator('[data agent reveal]') without leaking orchestration details to the caller. Inputs: elements. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser interface polish audit repository tool operation. Inputs: `elements`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (elements) => ({
+      hidden: elements.filter(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Keep only elements that are rendered, visible, and eligible for the surrounding focus/layout operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (element) => {
         const style = getComputedStyle(element);
         return Number.parseFloat(style.opacity) < 0.95 || style.visibility === 'hidden';
       }).length,
-      longTransitions: elements.filter(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (element) => {
-        const durations = getComputedStyle(element).transitionDuration.split(',').map(/** Callback contract: Processes the callback step for get computed style(element).transition duration.split(',') without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (value) => Number.parseFloat(value) || 0);
-        return durations.some(/** Callback contract: Processes the callback step for durations without leaking orchestration details to the caller. Inputs: duration. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (duration) => duration > 0.05);
+      longTransitions: elements.filter(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Keep only elements that are rendered, visible, and eligible for the surrounding focus/layout operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (element) => {
+        const durations = getComputedStyle(element).transitionDuration.split(',').map(/** Callback contract: Processes the callback step for get computed style(element).transition duration.split(',') without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `value`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (value) => Number.parseFloat(value) || 0);
+        return durations.some(/** Callback contract: Processes the callback step for durations without leaking orchestration details to the caller. Inputs: duration. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `duration`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (duration) => duration > 0.05);
       }).length,
     }));
     if (result.hidden) throw new Error(`${result.hidden} reveal targets are hidden with reduced motion`);
@@ -266,7 +271,7 @@ await standard.close();
 await browser.close();
 
 if (failures.length) {
-  console.error(`[interface-polish-audit] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: failure. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[interface-polish-audit] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

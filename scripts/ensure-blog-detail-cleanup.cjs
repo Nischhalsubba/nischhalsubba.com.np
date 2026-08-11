@@ -1,16 +1,16 @@
 /**
  * @fileoverview scripts/ensure-blog-detail-cleanup.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure blog detail cleanup.
+ * Purpose: Apply the ensure blog detail cleanup production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - scripts/generate-source.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),target=process.argv.includes('--dist')?path.join(root,'dist'):root,file=path.join(target,'style.css');

@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/build-dist.cjs
- * Purpose: Defines the ordered production build pipeline and invokes every deterministic transformation stage.
+ * Purpose: Declare the deterministic production build pipeline and the exact order of every transformation and validation stage.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - scripts/run-build-stages.cjs
  * - package.json
- * - scripts/build-site.cjs
- * - scripts/ensure-signal-portrait-asset-v13.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - scripts/agent-redesign.cjs
+ * - scripts/agent-writing-redesign.cjs
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const { runStages } = require('./run-build-stages.cjs');
 

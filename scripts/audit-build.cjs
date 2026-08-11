@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/audit-build.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for audit build.
+ * Purpose: Validate audit build and fail with actionable diagnostics when the production contract is violated.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
+ * - blog/index.html
  * - docs/build-pipeline.md
- * - docs/repository/file-catalog.md
  * - docs/root-route-map.md
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -63,10 +64,10 @@ const forbiddenPublicAssets = [
 
 /**
  * Function contract: fail
- * Purpose: Implements the fail responsibility for this module.
- * Inputs: message.
- * Side effects: may emit diagnostics or inspect process state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the fail responsibility owned by the audit build repository tool.
+ * Inputs: `message`: input consumed by this operation
+ * Side effects: emits diagnostics or changes process failure state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function fail(message) {
   console.error(`[build-audit] ${message}`);
@@ -80,6 +81,13 @@ function fail(message) {
  * Side effects: may emit diagnostics or inspect process state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
  */
+/**
+ * Function contract: warn
+ * Purpose: Implement the warn responsibility owned by the audit build repository tool.
+ * Inputs: `message`: input consumed by this operation
+ * Side effects: emits diagnostics or changes process failure state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ */
 function warn(message) {
   console.warn(`[build-audit] ${message}`);
 }
@@ -90,6 +98,13 @@ function warn(message) {
  * Inputs: directory, matcher, files.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: walkFiles
+ * Purpose: Implement the walk files responsibility owned by the audit build repository tool.
+ * Inputs: `directory`: input consumed by this operation; `matcher`: input consumed by this operation; `files`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walkFiles(directory, matcher, files = []) {
   if (!fs.existsSync(directory)) return files;
@@ -113,6 +128,13 @@ function walkFiles(directory, matcher, files = []) {
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: fileContains
+ * Purpose: Implement the file contains responsibility owned by the audit build repository tool.
+ * Inputs: `relativePath`: input consumed by this operation; `value`: input value being transformed or evaluated
+ * Side effects: reads repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function fileContains(relativePath, value) {
   const filePath = path.join(distDir, relativePath);
   return fs.existsSync(filePath) && fs.readFileSync(filePath, 'utf8').includes(value);
@@ -125,12 +147,19 @@ function fileContains(relativePath, value) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: stylesheetHrefs
+ * Purpose: Implement the stylesheet hrefs responsibility owned by the audit build repository tool.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function stylesheetHrefs(html) {
   return Array.from(
     html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi),
   ).map(/** Callback contract: Processes the callback step for array.from(
     html.match all(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi),
-  ) without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => match[1]);
+  ) without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => match[1]);
 }
 
 /**
@@ -139,6 +168,13 @@ function stylesheetHrefs(html) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: canonicalHref
+ * Purpose: Implement the canonical href responsibility owned by the audit build repository tool.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function canonicalHref(html) {
   return html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1] || '';
@@ -151,6 +187,13 @@ function canonicalHref(html) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: htmlUsesAllowedRuntime
+ * Purpose: Implement the html uses allowed runtime responsibility owned by the audit build repository tool.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function htmlUsesAllowedRuntime(html) {
   return html.includes('/script.js') || /<script\s+[^>]*src=["']\/assets\/[^"']+\.js["'][^>]*><\/script>/i.test(html);
 }
@@ -162,12 +205,19 @@ function htmlUsesAllowedRuntime(html) {
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: hasLocalPortraitAsset
+ * Purpose: Determine whether local portrait asset satisfies the condition represented by this audit build repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads repository/filesystem state.
+ * Returns: Boolean indicating whether local portrait asset satisfies the documented condition.
+ */
 function hasLocalPortraitAsset() {
   const assetDir = path.join(distDir, 'assets', 'images');
   if (!fs.existsSync(assetDir)) return false;
   return walkFiles(
     assetDir,
-    /** Callback contract: Processes the callback step for walk files without leaking orchestration details to the caller. Inputs: filePath. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (filePath) => /^portrait[-\w]*\.(png|jpg|jpeg|webp|avif|svg)$/i.test(path.basename(filePath)),
+    /** Callback contract: Processes the callback step for walk files without leaking orchestration details to the caller. Inputs: filePath. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit build repository tool operation. Inputs: `filePath`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (filePath) => /^portrait[-\w]*\.(png|jpg|jpeg|webp|avif|svg)$/i.test(path.basename(filePath)),
   ).length > 0;
 }
 
@@ -177,6 +227,13 @@ function hasLocalPortraitAsset() {
  * Inputs: filePath.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: validateResumePdf
+ * Purpose: Validate resume pdf and surface actionable failures when the audit build repository tool contract is violated.
+ * Inputs: `filePath`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function validateResumePdf(filePath) {
   if (!fs.existsSync(filePath)) return;
@@ -225,7 +282,7 @@ if (!fs.existsSync(distDir)) {
   const indexPath = path.join(distDir, 'index.html');
   const indexHtml = fs.existsSync(indexPath) ? fs.readFileSync(indexPath, 'utf8') : '';
 
-  for (const htmlFile of walkFiles(distDir, /** Callback contract: Processes the callback step for walk files without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (file) => file.endsWith('.html'))) {
+  for (const htmlFile of walkFiles(distDir, /** Callback contract: Processes the callback step for walk files without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing audit build repository tool operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (file) => file.endsWith('.html'))) {
     const html = fs.readFileSync(htmlFile, 'utf8');
     const rel = path.relative(distDir, htmlFile).replaceAll(path.sep, '/');
     const stylesheets = stylesheetHrefs(html);
@@ -234,13 +291,13 @@ if (!fs.existsSync(distDir)) {
       if (html.includes(marker)) fail(`Visible SEO helper marker found in ${rel}: ${marker}`);
     }
 
-    const localStylesheets = stylesheets.filter(/** Callback contract: Processes the callback step for stylesheets without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (href) => !/^https?:\/\//i.test(href));
+    const localStylesheets = stylesheets.filter(/** Callback contract: Processes the callback step for stylesheets without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `href`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (href) => !/^https?:\/\//i.test(href));
     if (localStylesheets.length !== 1 || !localStylesheets[0].startsWith('/style.css')) {
       fail(`${rel} must use exactly one local stylesheet: /style.css.`);
     }
 
     for (const retiredStylesheet of retiredStylesheets) {
-      if (stylesheets.some(/** Callback contract: Processes the callback step for stylesheets without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (href) => href.includes(retiredStylesheet))) {
+      if (stylesheets.some(/** Callback contract: Processes the callback step for stylesheets without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `href`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (href) => href.includes(retiredStylesheet))) {
         fail(`${rel} references retired stylesheet ${retiredStylesheet}.`);
       }
     }

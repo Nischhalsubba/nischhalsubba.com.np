@@ -1,23 +1,20 @@
 /**
  * @fileoverview src/scripts/shared/dom.js
- * Purpose: Provides shared DOM readiness and browser-element helpers used by runtime feature modules.
+ * Purpose: Provide small dependency-light DOM query and readiness helpers shared by browser feature domains.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Expose small dependency-light primitives that can be reused across feature domains.
+ * - Avoid page-specific policy, feature state, or styling decisions in shared helpers.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - scripts/repository/apply-deep-organization.cjs
- * - src/scripts/entrypoints/agent-main.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - src/runtime/script.js
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 /**
  * Function contract: onReady
- * Purpose: Handles on ready and coordinates the required state or UI response.
- * Inputs: callback.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Run the supplied initializer after the DOM is ready, or immediately when document parsing has already completed.
+ * Inputs: `callback`: input consumed by this operation
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function onReady(callback) {
   if (document.readyState === 'loading') {
@@ -30,10 +27,10 @@ export function onReady(callback) {
 
 /**
  * Function contract: $
- * Purpose: Implements the $ responsibility for this module.
- * Inputs: selector, scope.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the $ responsibility owned by the dom module.
+ * Inputs: `selector`: input consumed by this operation; `scope`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 export function $(selector, scope = document) {
   return scope.querySelector(selector);
@@ -41,10 +38,10 @@ export function $(selector, scope = document) {
 
 /**
  * Function contract: $$
- * Purpose: Implements the $$ responsibility for this module.
- * Inputs: selector, scope.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the $$ responsibility owned by the dom module.
+ * Inputs: `selector`: input consumed by this operation; `scope`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 export function $$(selector, scope = document) {
   return Array.from(scope.querySelectorAll(selector));
@@ -52,10 +49,10 @@ export function $$(selector, scope = document) {
 
 /**
  * Function contract: getStorage
- * Purpose: Retrieves get storage and returns it in the form expected by its caller.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state; may read or update browser persistence.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return storage from the supplied inputs or current dom module state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state; reads or updates browser persistence.
+ * Returns: The requested storage; early-return/empty-state behavior follows the explicit branches in this function.
  */
 export function getStorage() {
   try {
@@ -67,10 +64,10 @@ export function getStorage() {
 
 /**
  * Function contract: prefersReducedMotion
- * Purpose: Implements the prefers reduced motion responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the prefers reduced motion responsibility owned by the dom module.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 export function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -78,10 +75,10 @@ export function prefersReducedMotion() {
 
 /**
  * Function contract: isTouchDevice
- * Purpose: Implements the is touch device responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Determine whether touch device satisfies the condition represented by this dom module.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Boolean indicating whether touch device satisfies the documented condition.
  */
 export function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0;

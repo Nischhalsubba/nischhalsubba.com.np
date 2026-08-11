@@ -1,16 +1,15 @@
 /**
  * @fileoverview src/scripts/features/navigation/resume.js
- * Purpose: Browser runtime feature in the navigation domain responsible for resume behavior.
+ * Purpose: Implement resume behavior inside the navigation browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the navigation behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/agent-main.js
- * - src/scripts/entrypoints/main.js
+ * - src/scripts/shared/dom.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import { $$ } from '../../shared/dom.js';
 
@@ -19,33 +18,33 @@ const RESUME_FILENAME = 'Nischhal-Raj-Subba-Resume.pdf';
 
 /**
  * Function contract: removeDuplicateFloatingResumeControls
- * Purpose: Removes or cleans remove duplicate floating resume controls while keeping required outputs intact.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Remove duplicate floating resume controls without disturbing required surrounding resume browser feature state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function removeDuplicateFloatingResumeControls() {
   const floatingControls = $$('.floating-resume-btn');
 
-  floatingControls.slice(1).forEach(/** Callback contract: Processes the callback step for floating controls.slice(1) without leaking orchestration details to the caller. Inputs: control. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (control) => control.remove());
+  floatingControls.slice(1).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `control`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (control) => control.remove());
 }
 
 /**
  * Function contract: initResumeDownload
- * Purpose: Implements the init resume download responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Initialize resume download for the resume browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function initResumeDownload() {
   removeDuplicateFloatingResumeControls();
 
-  $$('a[href$="resume.pdf"], .floating-resume-btn, [data-resume-download]').forEach(/** Callback contract: Processes the callback step for $$('a[href$="resume.pdf"], .floating resume btn, [data resume download]') without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ (link) => {
+  $$('a[href$="resume.pdf"], .floating-resume-btn, [data-resume-download]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: registers or removes browser event listeners; reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (link) => {
     link.setAttribute('href', RESUME_URL);
     link.setAttribute('download', RESUME_FILENAME);
     link.setAttribute('type', 'application/pdf');
 
-    link.addEventListener('click', /** Callback contract: Processes the callback step for link without leaking orchestration details to the caller. Inputs: event. Side effects: may read or update browser DOM/state. No explicit return contract. */ (event) => {
+    link.addEventListener('click', /** Callback contract: Handle the click event for `link` and apply this module's related state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (event) => {
       event.preventDefault();
 
       const downloadLink = document.createElement('a');

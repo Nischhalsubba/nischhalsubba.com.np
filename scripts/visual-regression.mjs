@@ -1,16 +1,14 @@
 /**
  * @fileoverview scripts/visual-regression.mjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for visual regression.
+ * Purpose: Apply the visual regression production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - .github/workflows/browser-audit.yml
- * - .github/workflows/production-qa.yml
- * - docs/repository/file-catalog.md
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -59,7 +57,7 @@ for (const theme of themes) {
     });
     const page = await context.newPage();
 
-    await page.route('**/*', /** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: route. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ async (route) => {
+    await page.route('**/*', /** Callback contract: Perform the local callback step required by the enclosing visual regression repository tool operation. Inputs: `route`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented. */ async (route) => {
       const url = new URL(route.request().url());
       if (url.origin === new URL(base).origin || url.protocol === 'data:' || url.protocol === 'blob:') return route.continue();
       return route.abort();
@@ -74,11 +72,11 @@ for (const theme of themes) {
       try {
         const response = await page.goto(`${base}${routePath}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
         if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
-        await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: resolvedTheme. Side effects: may read or update browser DOM/state. No explicit return contract. */ async (resolvedTheme) => {
+        await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: resolvedTheme. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing visual regression repository tool operation. Inputs: `resolvedTheme`. Side effects: reads or updates DOM/browser state. Returns: Promise that resolves when the asynchronous side effects complete. */ async (resolvedTheme) => {
           await document.fonts?.ready;
           document.documentElement.dataset.theme = resolvedTheme;
           document.documentElement.style.colorScheme = resolvedTheme;
-          document.querySelectorAll('iframe, video').forEach(/** Callback contract: Processes the callback step for document.query selector all('iframe, video') without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ (element) => element.setAttribute('hidden', ''));
+          document.querySelectorAll('iframe, video').forEach(/** Callback contract: Processes the callback step for document.query selector all('iframe, video') without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.setAttribute('hidden', ''));
           const turnstile = document.querySelector('.nrs-turnstile');
           if (turnstile) {
             turnstile.innerHTML = '<div aria-hidden="true">Anti-spam verification</div>';
@@ -128,7 +126,7 @@ for (const theme of themes) {
 
 await browser.close();
 if (failures.length) {
-  console.error(`[visual-regression] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Processes the callback step for failures without leaking orchestration details to the caller. Inputs: failure. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[visual-regression] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 console.log(`[visual-regression] ${routes.length * viewports.length * themes.length} snapshots ${update ? 'updated' : 'passed'} at ${(maximumDifferenceRatio * 100).toFixed(2)}% tolerance.`);

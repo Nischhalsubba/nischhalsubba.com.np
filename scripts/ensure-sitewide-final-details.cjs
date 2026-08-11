@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/ensure-sitewide-final-details.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure sitewide final details.
+ * Purpose: Apply the ensure sitewide final details production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -20,10 +20,10 @@ const siteUrl = 'https://nischhalsubba.com.np';
 
 /**
  * Function contract: esc
- * Purpose: Implements the esc responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the esc responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
@@ -31,10 +31,10 @@ function esc(value = '') {
 
 /**
  * Function contract: setMeta
- * Purpose: Applies set meta while preserving the surrounding repository/runtime contract.
- * Inputs: html, selector, tag.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Synchronize meta with the requested state while preserving related ensure sitewide final details repository tool invariants.
+ * Inputs: `html`: input consumed by this operation; `selector`: input consumed by this operation; `tag`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function setMeta(html, selector, tag) {
   return selector.test(html) ? html.replace(selector, tag) : html.replace('</head>', `${tag}\n</head>`);
@@ -46,6 +46,13 @@ function setMeta(html, selector, tag) {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: rewritePrivacy
+ * Purpose: Implement the rewrite privacy responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function rewritePrivacy() {
   const file = path.join(base, 'privacy.html');
@@ -68,6 +75,13 @@ function rewritePrivacy() {
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: rewrite404
+ * Purpose: Implement the rewrite404 responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function rewrite404() {
   const file = path.join(base, '404.html');
   if (!fs.existsSync(file)) return false;
@@ -87,6 +101,13 @@ function rewrite404() {
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: sanitizeMetadata
+ * Purpose: Implement the sanitize metadata responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function sanitizeMetadata() {
   const files = [];
   (/**
@@ -95,6 +116,13 @@ function sanitizeMetadata() {
    * Inputs: directory.
    * Side effects: may read or write repository/filesystem state.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
+  /**
+   * Function contract: walk
+   * Purpose: Implement the walk responsibility owned by the ensure sitewide final details repository tool.
+   * Inputs: `directory`: input consumed by this operation
+   * Side effects: reads repository/filesystem state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   function walk(directory) {
     if (!fs.existsSync(directory)) return;
@@ -129,6 +157,13 @@ function sanitizeMetadata() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: appendStyles
+ * Purpose: Implement the append styles responsibility owned by the ensure sitewide final details repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function appendStyles() {
   const file = path.join(base, 'style.css');

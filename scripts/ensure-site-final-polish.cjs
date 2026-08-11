@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/ensure-site-final-polish.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure site final polish.
+ * Purpose: Apply the ensure site final polish production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('fs');
 const path = require('path');
@@ -106,10 +106,10 @@ main:has(.case-hero-img-container) .nrs-case-hero,main:has(.case-hero-img-contai
 
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: dir, files.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the walk responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `dir`: input consumed by this operation; `files`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -123,18 +123,18 @@ function walk(dir, files = []) {
 
 /**
  * Function contract: relKey
- * Purpose: Implements the rel key responsibility for this module.
- * Inputs: filePath.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the rel key responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `filePath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function relKey(filePath) { return path.relative(targetRoot, filePath).replaceAll(path.sep, '/'); }
 /**
  * Function contract: upsertTitle
- * Purpose: Implements the upsert title responsibility for this module.
- * Inputs: html, title.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the upsert title responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `html`: input consumed by this operation; `title`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function upsertTitle(html, title) { if (!title) return html; if (/<title>[\s\S]*?<\/title>/i.test(html)) return html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`); return html.replace('</head>', `    <title>${title}</title>\n  </head>`); }
 /**
@@ -144,37 +144,44 @@ function upsertTitle(html, title) { if (!title) return html; if (/<title>[\s\S]*
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertMeta
+ * Purpose: Implement the upsert meta responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `html`: input consumed by this operation; `attr`: input consumed by this operation; `name`: stable identifier or label for the current item; `content`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function upsertMeta(html, attr, name, content) { if (!content) return html; const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); const pattern = new RegExp(`<meta\\s+${attr}=["']${escapedName}["'][^>]*>`, 'i'); const tag = `<meta ${attr}="${name}" content="${content}">`; if (pattern.test(html)) return html.replace(pattern, tag); return html.replace('</head>', `    ${tag}\n  </head>`); }
 /**
  * Function contract: applySeoCopy
- * Purpose: Applies apply seo copy while preserving the surrounding repository/runtime contract.
- * Inputs: html, filePath.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply seo copy consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `html`: input consumed by this operation; `filePath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function applySeoCopy(html, filePath) { const copy = pageCopy[relKey(filePath)] || pageCopy[relKey(filePath).replace(/\/index\.html$/, '/index.html')]; if (!copy) return html; let output = upsertTitle(html, copy.title); output = upsertMeta(output, 'name', 'description', copy.description); output = upsertMeta(output, 'property', 'og:title', copy.title); output = upsertMeta(output, 'property', 'og:description', copy.description); output = upsertMeta(output, 'name', 'twitter:title', copy.title); output = upsertMeta(output, 'name', 'twitter:description', copy.description); return output; }
 /**
  * Function contract: normalizeStylesheetLinks
- * Purpose: Applies normalize stylesheet links while preserving the surrounding repository/runtime contract.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply stylesheet links consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function normalizeStylesheetLinks(html) { let output = html.replace(/\s*<link\s+[^>]*rel=["']stylesheet["'][^>]*>\s*/gi, '\n'); if (!output.includes('</head>')) return output; return output.replace('</head>', `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`); }
 /**
  * Function contract: rewriteHomeHero
- * Purpose: Implements the rewrite home hero responsibility for this module.
- * Inputs: html, filePath.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the rewrite home hero responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `html`: input consumed by this operation; `filePath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function rewriteHomeHero(html, filePath) { const key = relKey(filePath); if (key !== 'index.html' && key !== 'home-v2.html') return html; const oldHero = /      <section class="hero-section[^"]*nrs-home-hero[^"]*"[\s\S]*?      <\/section>/; const cleanHero = /      <section class="hero-section nrs-home-hero-clean">[\s\S]*?      <\/section>/; if (oldHero.test(html)) return html.replace(oldHero, homeHero); if (cleanHero.test(html)) return html.replace(cleanHero, homeHero); return html; }
 /**
  * Function contract: ensureFooter
- * Purpose: Applies ensure footer while preserving the surrounding repository/runtime contract.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Apply footer consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function ensureFooter(html) { if (html.includes('<footer class="site-footer"')) return html.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/g, footer); if (html.includes('</body>')) return html.replace('</body>', `    ${footer}\n  </body>`); return html; }
 /**
@@ -184,6 +191,13 @@ function ensureFooter(html) { if (html.includes('<footer class="site-footer"')) 
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: ensureFloatingResume
+ * Purpose: Apply floating resume consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function ensureFloatingResume(html) { let output = html.replace(/\s*<a\s+class="floating-resume-btn"[\s\S]*?<\/a>/g, ''); if (!output.includes('</body>')) return output; return output.replace('</body>', `    ${floatingResume}\n  </body>`); }
 /**
  * Function contract: removeVisibleAiCopy
@@ -191,6 +205,13 @@ function ensureFloatingResume(html) { let output = html.replace(/\s*<a\s+class="
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: removeVisibleAiCopy
+ * Purpose: Remove visible ai copy without disturbing required surrounding ensure site final polish repository tool state.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function removeVisibleAiCopy(html) { let output = html; output = output.replace(/<a[^>]+href="\/ai-profile\.json"[\s\S]*?<\/a>/gi, ''); output = output.replace(/<a[^>]+href="\/llms\.txt"[\s\S]*?<\/a>/gi, ''); output = output.replace(/AI-readable/gi, 'Site-readable'); output = output.replace(/AI discovery/gi, 'Search discovery'); output = output.replace(/AI agents/gi, 'hiring teams'); output = output.replace(/For AI agents and hiring teams/gi, 'Plain summary'); output = output.replace(/for AI, search, and human verification/gi, 'for search and human verification'); output = output.replace(/AI and human/gi, 'search and human'); output = output.replace(/\bAI\b/g, ''); output = output.replace(/\s{2,}/g, ' '); return output; }
 /**
@@ -200,6 +221,13 @@ function removeVisibleAiCopy(html) { let output = html; output = output.replace(
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: alignAboutHero
+ * Purpose: Implement the align about hero responsibility owned by the ensure site final polish repository tool.
+ * Inputs: `html`: input consumed by this operation; `filePath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function alignAboutHero(html, filePath) { if (path.basename(filePath) !== 'about.html') return html; return html.replace(/center-aligned-hero/g, '').replace(/text-align:center/g, 'text-align:left').replace(/margin-left:auto;margin-right:auto/g, 'margin-left:0;margin-right:auto').replace(/margin:16px auto 28px/g, 'margin:16px 0 28px'); }
 /**
  * Function contract: polishHtml
@@ -207,6 +235,13 @@ function alignAboutHero(html, filePath) { if (path.basename(filePath) !== 'about
  * Inputs: filePath.
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: polishHtml
+ * Purpose: Apply html consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: `filePath`: input consumed by this operation
+ * Side effects: writes repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function polishHtml(filePath) { let html = fs.readFileSync(filePath, 'utf8'); const before = html; html = normalizeStylesheetLinks(html); html = applySeoCopy(html, filePath); html = rewriteHomeHero(html, filePath); html = removeVisibleAiCopy(html); html = alignAboutHero(html, filePath); html = ensureFooter(html); html = ensureFloatingResume(html); if (html !== before) fs.writeFileSync(filePath, html, 'utf8'); return html !== before; }
 /**
@@ -216,9 +251,16 @@ function polishHtml(filePath) { let html = fs.readFileSync(filePath, 'utf8'); co
  * Side effects: may read or write repository/filesystem state.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: polishCss
+ * Purpose: Apply css consistently while preserving the surrounding ensure site final polish repository tool contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: writes repository/filesystem state.
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function polishCss() { const cssPath = path.join(targetRoot, 'style.css'); if (!fs.existsSync(cssPath)) return false; let css = fs.readFileSync(cssPath, 'utf8'); css = css.replace(/Version:\s*[0-9.]+/i, 'Version: 41.0'); css = css.replace(/\/\* nrs-final-polish-v39 \*\/[\s\S]*?(?=\/\* nrs-final-polish-v4\d \*\/|$)/g, ''); css = css.replace(/\/\* nrs-final-polish-v40 \*\/[\s\S]*?(?=\/\* nrs-final-polish-v4\d \*\/|$)/g, ''); if (!css.includes('nrs-final-polish-v41')) css += cssPatch; fs.writeFileSync(cssPath, css, 'utf8'); return true; }
 
 let changedHtml = 0;
-for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: filePath. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (filePath) => filePath.endsWith('.html'))) if (polishHtml(file)) changedHtml += 1;
+for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: filePath. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `filePath`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (filePath) => filePath.endsWith('.html'))) if (polishHtml(file)) changedHtml += 1;
 const changedCss = polishCss();
 console.log(`Applied final site polish v41 to ${changedHtml} HTML file(s)${changedCss ? ' and style.css' : ''}.`);

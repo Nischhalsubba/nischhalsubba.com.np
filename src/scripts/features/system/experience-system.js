@@ -1,15 +1,14 @@
 /**
  * @fileoverview src/scripts/features/system/experience-system.js
- * Purpose: Browser runtime feature in the system domain responsible for experience system behavior.
+ * Purpose: Implement experience system behavior inside the system browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the system behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - src/scripts/entrypoints/main.js
  * - src/runtime/script.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const ROUTE_LABELS = new Map([
   ['/', 'Home'],
@@ -23,10 +22,10 @@ const ROUTE_LABELS = new Map([
 
 /**
  * Function contract: canonicalPath
- * Purpose: Implements the canonical path responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the canonical path responsibility owned by the experience system browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function canonicalPath() {
   const path = window.location.pathname || '/';
@@ -36,10 +35,10 @@ function canonicalPath() {
 
 /**
  * Function contract: pageTitle
- * Purpose: Implements the page title responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the page title responsibility owned by the experience system browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function pageTitle() {
   const heading = document.querySelector('main h1, main .hero-title');
@@ -50,10 +49,10 @@ function pageTitle() {
 
 /**
  * Function contract: routeContext
- * Purpose: Implements the route context responsibility for this module.
- * Inputs: path.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the route context responsibility owned by the experience system browser feature.
+ * Inputs: `path`: path identifying the resource being processed
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function routeContext(path) {
   if (/^\/project-[^/]+$/.test(path)) return { parentHref: '/projects', parentLabel: 'Work', backLabel: 'Back to work', showBack: true };
@@ -66,10 +65,10 @@ function routeContext(path) {
 
 /**
  * Function contract: ensureExperienceStylesheet
- * Purpose: Applies ensure experience stylesheet while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply experience stylesheet consistently while preserving the surrounding experience system browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureExperienceStylesheet() {
   // Experience-system styles are compiled into /style.css.
@@ -77,10 +76,10 @@ function ensureExperienceStylesheet() {
 
 /**
  * Function contract: addWayfinding
- * Purpose: Implements the add wayfinding responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the add wayfinding responsibility owned by the experience system browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function addWayfinding() {
   const path = canonicalPath();
@@ -132,10 +131,10 @@ function addWayfinding() {
 
 /**
  * Function contract: addSkeleton
- * Purpose: Implements the add skeleton responsibility for this module.
- * Inputs: media.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the add skeleton responsibility owned by the experience system browser feature.
+ * Inputs: `media`: input consumed by this operation
+ * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function addSkeleton(media) {
   if (media.dataset.nrsLoadingReady === 'true') return;
@@ -159,10 +158,10 @@ function addSkeleton(media) {
 
   /**
    * Function contract: ready
-   * Purpose: Retrieves ready and returns it in the form expected by its caller.
-   * Inputs: none; the function derives state from its enclosing module/runtime context.
-   * Side effects: may read or update browser DOM/state.
-   * Returns: no explicit value unless an invoked dependency throws/rejects.
+   * Purpose: Implement the ready responsibility owned by the experience system browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   const ready = () => {
     media.classList.add('is-loaded');
@@ -170,10 +169,10 @@ function addSkeleton(media) {
   };
   /**
    * Function contract: failed
-   * Purpose: Implements the failed responsibility for this module.
-   * Inputs: none; the function derives state from its enclosing module/runtime context.
-   * Side effects: may read or update browser DOM/state.
-   * Returns: no explicit value unless an invoked dependency throws/rejects.
+   * Purpose: Implement the failed responsibility owned by the experience system browser feature.
+   * Inputs: None; derives required state from the enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state.
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   const failed = () => parent.classList.add('nrs-media-error');
 
@@ -191,14 +190,14 @@ function addSkeleton(media) {
 
 /**
  * Function contract: improveMediaLoading
- * Purpose: Implements the improve media loading responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the improve media loading responsibility owned by the experience system browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function improveMediaLoading() {
   const heroMedia = new Set(document.querySelectorAll('.hero-section img, .nrs-services-hero img, .nrs-contact-v3-hero img, .case-hero-img-container img'));
-  document.querySelectorAll('main img').forEach(/** Callback contract: Processes the callback step for document.query selector all('main img') without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (image) => {
+  document.querySelectorAll('main img').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (image) => {
     image.decoding = 'async';
     if (heroMedia.has(image)) {
       image.loading = 'eager';
@@ -206,7 +205,7 @@ function improveMediaLoading() {
     } else image.loading = 'lazy';
     addSkeleton(image);
   });
-  document.querySelectorAll('main iframe').forEach(/** Callback contract: Processes the callback step for document.query selector all('main iframe') without leaking orchestration details to the caller. Inputs: frame. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (frame) => {
+  document.querySelectorAll('main iframe').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `frame`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (frame) => {
     frame.loading = 'lazy';
     addSkeleton(frame);
   });
@@ -214,10 +213,10 @@ function improveMediaLoading() {
 
 /**
  * Function contract: markInteractiveElements
- * Purpose: Implements the mark interactive elements responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the mark interactive elements responsibility owned by the experience system browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function markInteractiveElements() {
   const selector = [
@@ -228,18 +227,18 @@ function markInteractiveElements() {
     '.case-list li', '.filter-btn', '.btn', '.nav-link', '.mobile-nav-links a',
   ].join(',');
 
-  document.querySelectorAll(selector).forEach(/** Callback contract: Processes the callback step for document.query selector all(selector) without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ (element) => element.classList.add('nrs-cursor-target'));
-  document.querySelectorAll('main img, main video, main iframe').forEach(/** Callback contract: Processes the callback step for document.query selector all('main img, main video, main iframe') without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ (element) => element.setAttribute('data-cursor-mode', 'media'));
-  document.querySelectorAll('main p, main li, main h1, main h2, main h3, main h4').forEach(/** Callback contract: Processes the callback step for document.query selector all('main p, main li, main h1, main h2, main h3, main h4') without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ (element) => element.setAttribute('data-cursor-mode', 'text'));
-  document.querySelectorAll('[data-cursor-label]').forEach(/** Callback contract: Processes the callback step for document.query selector all('[data cursor label]') without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ (element) => element.classList.add('nrs-cursor-target'));
+  document.querySelectorAll(selector).forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.classList.add('nrs-cursor-target'));
+  document.querySelectorAll('main img, main video, main iframe').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.setAttribute('data-cursor-mode', 'media'));
+  document.querySelectorAll('main p, main li, main h1, main h2, main h3, main h4').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.setAttribute('data-cursor-mode', 'text'));
+  document.querySelectorAll('[data-cursor-label]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (element) => element.classList.add('nrs-cursor-target'));
 }
 
 /**
  * Function contract: initExperienceSystem
- * Purpose: Implements the init experience system responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Initialize experience system for the experience system browser feature, including the listeners/state needed for safe runtime use.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function initExperienceSystem() {
   ensureExperienceStylesheet();

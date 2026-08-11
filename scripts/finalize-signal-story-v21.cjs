@@ -1,16 +1,15 @@
 /**
  * @fileoverview scripts/finalize-signal-story-v21.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for finalize signal story v21.
+ * Purpose: Apply the finalize signal story v21 production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - scripts/finalize-signal-story-v22.cjs
+ * - scripts/finalize-signal-story-v20.cjs
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -35,7 +34,7 @@ if (!html.includes('id="nrsStoryReadout"') || !html.includes('data-story="signal
 }
 
 if (!html.includes('class="nrs-story-noise"')) {
-  const specks = Array.from({ length: 30 }, /** Callback contract: Processes the callback step for array without leaking orchestration details to the caller. Inputs: _, index. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ (_, index) => {
+  const specks = Array.from({ length: 30 }, /** Callback contract: Perform the local callback step required by the enclosing finalize signal story v21 repository tool operation. Inputs: `_`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ (_, index) => {
     const x = 8 + ((index * 37) % 85);
     const y = 9 + ((index * 53) % 78);
     const size = 1 + (index % 3);

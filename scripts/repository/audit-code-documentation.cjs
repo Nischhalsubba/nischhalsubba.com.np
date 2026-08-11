@@ -1,26 +1,19 @@
+/**
+ * @fileoverview scripts/repository/audit-code-documentation.cjs
+ * Purpose: Enforce structured file and function documentation across authored application and tooling code.
+ * Responsibilities:
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * Connected files:
+ * - package.json
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ */
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const ts = require('typescript');
-
-/**
- * @fileoverview Enforces the repository's source-documentation contract.
- *
- * Responsibilities:
- * - Verify that authored code files start with a structured purpose/connection header.
- * - Verify that JavaScript and TypeScript function-like nodes have nearby explanatory comments.
- * - Ignore generated, vendored, binary, and machine-owned files that should not be hand-documented.
- * - Fail CI with exact file/line diagnostics so documentation debt cannot silently accumulate.
- *
- * Connected files:
- * - config/repository/code-documentation-policy.json: declares roots, extensions, and exclusions.
- * - scripts/repository/apply-deep-organization.cjs: migration that initially applies the contract.
- * - package.json: exposes this audit through npm scripts and the main validation command.
- *
- * Maintenance notes:
- * - Keep this audit syntax-aware. It uses the existing TypeScript compiler dependency instead of regex-only parsing.
- * - The audit intentionally accepts compact comments for trivial inline callbacks while requiring richer file headers.
- */
 
 const ROOT = path.resolve(__dirname, '../..');
 const POLICY_PATH = path.join(ROOT, 'config/repository/code-documentation-policy.json');
@@ -36,10 +29,10 @@ const FUNCTION_COMMENT_PATTERN = /(?:\/\*\*[\s\S]*?\*\/|\/\*[\s\S]*?\*\/|\/\/[^\
  */
 /**
  * Function contract: loadPolicy
- * Purpose: Retrieves load policy and returns it in the form expected by its caller.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Return policy from the supplied inputs or current audit code documentation repository tool state.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads repository/filesystem state.
+ * Returns: The requested policy; early-return/empty-state behavior follows the explicit branches in this function.
  */
 function loadPolicy() {
   if (!fs.existsSync(POLICY_PATH)) {
@@ -61,6 +54,13 @@ function loadPolicy() {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: gitTrackedFiles
+ * Purpose: Implement the git tracked files responsibility owned by the audit code documentation repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: spawns child processes.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function gitTrackedFiles() {
   const result = spawnSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' });
@@ -86,8 +86,15 @@ function gitTrackedFiles() {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: isExcluded
+ * Purpose: Determine whether excluded satisfies the condition represented by this audit code documentation repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed; `policy`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean indicating whether excluded satisfies the documented condition.
+ */
 function isExcluded(file, policy) {
-  return policy.excludedPrefixes.some(/** Callback contract: Processes the callback step for policy.excluded prefixes without leaking orchestration details to the caller. Inputs: prefix. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (prefix) => file.startsWith(prefix)) ||
+  return policy.excludedPrefixes.some(/** Callback contract: Processes the callback step for policy.excluded prefixes without leaking orchestration details to the caller. Inputs: prefix. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `prefix`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (prefix) => file.startsWith(prefix)) ||
     policy.excludedFiles.includes(file);
 }
 
@@ -107,9 +114,16 @@ function isExcluded(file, policy) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: isAuthoredFile
+ * Purpose: Determine whether authored file satisfies the condition represented by this audit code documentation repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed; `policy`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean indicating whether authored file satisfies the documented condition.
+ */
 function isAuthoredFile(file, policy) {
   if (isExcluded(file, policy)) return false;
-  return policy.codeRoots.some(/** Callback contract: Processes the callback step for policy.code roots without leaking orchestration details to the caller. Inputs: root. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (root) => file === root || file.startsWith(`${root}/`));
+  return policy.codeRoots.some(/** Callback contract: Processes the callback step for policy.code roots without leaking orchestration details to the caller. Inputs: root. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `root`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (root) => file === root || file.startsWith(`${root}/`));
 }
 
 /**
@@ -125,6 +139,13 @@ function isAuthoredFile(file, policy) {
  * Inputs: file.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: scriptKindFor
+ * Purpose: Implement the script kind for responsibility owned by the audit code documentation repository tool.
+ * Inputs: `file`: repository-relative or absolute file path being processed
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function scriptKindFor(file) {
   if (file.endsWith('.tsx')) return ts.ScriptKind.TSX;
@@ -149,6 +170,13 @@ function scriptKindFor(file) {
  * Inputs: node.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: documentationOwner
+ * Purpose: Implement the documentation owner responsibility owned by the audit code documentation repository tool.
+ * Inputs: `node`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function documentationOwner(node) {
   let current = node;
@@ -183,6 +211,13 @@ function documentationOwner(node) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: hasLeadingExplanation
+ * Purpose: Determine whether leading explanation satisfies the condition represented by this audit code documentation repository tool.
+ * Inputs: `source`: source text or source object being processed; `position`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean indicating whether leading explanation satisfies the documented condition.
+ */
 function hasLeadingExplanation(source, position) {
   const prefix = source.slice(Math.max(0, position - 1400), position);
   return FUNCTION_COMMENT_PATTERN.test(prefix);
@@ -202,6 +237,13 @@ function hasLeadingExplanation(source, position) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: lineNumberAt
+ * Purpose: Implement the line number at responsibility owned by the audit code documentation repository tool.
+ * Inputs: `source`: source text or source object being processed; `position`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function lineNumberAt(source, position) {
   return source.slice(0, position).split('\n').length;
 }
@@ -219,6 +261,13 @@ function lineNumberAt(source, position) {
  * Inputs: node.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: isDocumentableFunction
+ * Purpose: Determine whether documentable function satisfies the condition represented by this audit code documentation repository tool.
+ * Inputs: `node`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean indicating whether documentable function satisfies the documented condition.
  */
 function isDocumentableFunction(node) {
   return ts.isFunctionDeclaration(node) ||
@@ -246,6 +295,13 @@ function isDocumentableFunction(node) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: auditFunctions
+ * Purpose: Validate functions and surface actionable failures when the audit code documentation repository tool contract is violated.
+ * Inputs: `file`: repository-relative or absolute file path being processed; `source`: source text or source object being processed
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function auditFunctions(file, source) {
   const sourceFile = ts.createSourceFile(
     file,
@@ -269,6 +325,13 @@ function auditFunctions(file, source) {
    * Inputs: node.
    * Side effects: no obvious external side effect beyond invoked dependencies.
    * Returns: no explicit value unless an invoked dependency throws/rejects.
+   */
+  /**
+   * Function contract: visit
+   * Purpose: Implement the visit responsibility owned by the audit code documentation repository tool.
+   * Inputs: `node`: input consumed by this operation
+   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
    */
   function visit(node) {
     if (isDocumentableFunction(node) && node.body) {
@@ -299,6 +362,13 @@ function auditFunctions(file, source) {
  * Inputs: none; the function derives state from its enclosing module/runtime context.
  * Side effects: may read or write repository/filesystem state; may emit diagnostics or inspect process state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: main
+ * Purpose: Implement the main responsibility owned by the audit code documentation repository tool.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads repository/filesystem state; emits diagnostics or changes process failure state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function main() {
   const policy = loadPolicy();

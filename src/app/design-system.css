@@ -1,15 +1,13 @@
 /**
  * @fileoverview src/app/design-system.css
- * Purpose: Authored source file responsible for Design System.
+ * Purpose: Own the authored design system source for this repository.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Stylesheet source assembled or copied into production CSS.
+ * - Keep this file focused on its stated responsibility and stable public/build interfaces.
+ * - Update connected owners whenever this file changes a shared contract.
+ * Execution context: Authored stylesheet source assembled or copied into the canonical production CSS.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - scripts/audit-build.cjs
- * - src/app/layout.tsx
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * - No direct tracked-file dependency; ownership is defined by this folder and its build/runtime convention.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 :root {
   --font-body: "Inter", "Atkinson Hyperlegible", "SF Pro Text", "Segoe UI", system-ui, -apple-system, sans-serif;

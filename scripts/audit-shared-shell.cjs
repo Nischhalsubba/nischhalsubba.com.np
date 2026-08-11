@@ -1,15 +1,14 @@
 /**
  * @fileoverview scripts/audit-shared-shell.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for audit shared shell.
+ * Purpose: Validate audit shared shell and fail with actionable diagnostics when the production contract is violated.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs=require('node:fs');
 const path=require('node:path');
@@ -18,10 +17,10 @@ if(!fs.existsSync(dist)){console.error('[shell] dist missing');process.exit(1)}
 const files=[];
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: dir.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the walk responsibility owned by the audit shared shell repository tool.
+ * Inputs: `dir`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())walk(p);else if(e.name.endsWith('.html'))files.push(p)}}
 walk(dist);
@@ -41,5 +40,5 @@ for(const file of files){
  if(!html.includes('© 2026 Nischhal Raj Subba'))issues.push(`${rel}: copyright missing`);
  if(/\(c\)\s*2026/i.test(html))issues.push(`${rel}: stale copyright`);
 }
-if(issues.length){console.error('[shell] Failed\n'+issues.map(/** Callback contract: Processes the callback step for issues without leaking orchestration details to the caller. Inputs: x. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ x=>`- ${x}`).join('\n'));process.exit(1)}
+if(issues.length){console.error('[shell] Failed\n'+issues.map(/** Callback contract: Processes the callback step for issues without leaking orchestration details to the caller. Inputs: x. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `x`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ x=>`- ${x}`).join('\n'));process.exit(1)}
 console.log(`[shell] ${files.length} HTML files passed.`);

@@ -1,24 +1,23 @@
 /**
  * @fileoverview src/scripts/features/layout/mobile-header-icon-proof.js
- * Purpose: Browser runtime feature in the layout domain responsible for mobile header icon proof behavior.
+ * Purpose: Implement mobile header icon proof behavior inside the layout browser-runtime domain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Browser ES module loaded by the portfolio runtime.
+ * - Own the layout behavior represented by this module and keep unrelated domains outside the file.
+ * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
+ * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - src/runtime/script.js
- * - src/scripts/entrypoints/main.js
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const STYLE_ID = 'nrs-mobile-header-icon-proof';
 
 /**
  * Function contract: ensureMobileHeaderIconStyle
- * Purpose: Applies ensure mobile header icon style while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Apply mobile header icon style consistently while preserving the surrounding mobile header icon proof browser feature contract.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function ensureMobileHeaderIconStyle() {
   let style = document.getElementById(STYLE_ID);
@@ -62,10 +61,10 @@ function ensureMobileHeaderIconStyle() {
 
 /**
  * Function contract: proveMobileHeaderIcon
- * Purpose: Implements the prove mobile header icon responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
+ * Purpose: Implement the prove mobile header icon responsibility owned by the mobile header icon proof browser feature.
+ * Inputs: None; derives required state from the enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 export function proveMobileHeaderIcon() {
   ensureMobileHeaderIconStyle();

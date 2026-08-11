@@ -1,15 +1,15 @@
 /**
  * @fileoverview scripts/normalize-portrait-assets.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for normalize portrait assets.
+ * Purpose: Apply the normalize portrait assets production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
  * - scripts/build-dist.cjs
  * - package.json
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -22,10 +22,10 @@ const supported = new Set(['.html', '.json', '.js', '.txt']);
 
 /**
  * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: directory, files.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the walk responsibility owned by the normalize portrait assets repository tool.
+ * Inputs: `directory`: input consumed by this operation; `files`: input consumed by this operation
+ * Side effects: reads repository/filesystem state.
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function walk(directory, files = []) {
   if (!fs.existsSync(directory)) return files;
@@ -41,7 +41,7 @@ function walk(directory, files = []) {
 let changed = 0;
 for (const filePath of walk(target)) {
   const before = fs.readFileSync(filePath, 'utf8');
-  const after = before.replace(portraitReferences, /** Callback contract: Processes the callback step for before without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => match.startsWith('/') ? '/assets/images/portrait.svg' : localPortrait);
+  const after = before.replace(portraitReferences, /** Callback contract: Perform the local callback step required by the enclosing normalize portrait assets repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => match.startsWith('/') ? '/assets/images/portrait.svg' : localPortrait);
   if (after !== before) {
     fs.writeFileSync(filePath, after);
     changed += 1;

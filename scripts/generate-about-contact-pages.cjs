@@ -1,16 +1,16 @@
 /**
  * @fileoverview scripts/generate-about-contact-pages.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for generate about contact pages.
+ * Purpose: Generate or assemble generate about contact pages deterministically as part of the production toolchain.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
+ * - scripts/early-theme-bootstrap.cjs
  * - scripts/generate-source.cjs
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('fs');
 const path = require('path');
@@ -21,10 +21,10 @@ const email = 'hinischalsubba@gmail.com';
 
 /**
  * Function contract: head
- * Purpose: Implements the head responsibility for this module.
- * Inputs: { title, description, canonical, image = '/assets/images/portrait.png', schema = '' }.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the head responsibility owned by the generate about contact pages repository tool.
+ * Inputs: `{ title, description, canonical, image = '/assets/images/portrait.png', schema = '' }`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function head({ title, description, canonical, image = '/assets/images/portrait.png', schema = '' }) {
   return `<!DOCTYPE html>
@@ -58,6 +58,13 @@ function head({ title, description, canonical, image = '/assets/images/portrait.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: nav
+ * Purpose: Implement the nav responsibility owned by the generate about contact pages repository tool.
+ * Inputs: `active`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function nav(active) {
   /**
    * Function contract: item
@@ -65,6 +72,13 @@ function nav(active) {
    * Inputs: section, href, label, cls.
    * Side effects: no obvious external side effect beyond invoked dependencies.
    * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+   */
+  /**
+   * Function contract: item
+   * Purpose: Implement the item responsibility owned by the generate about contact pages repository tool.
+   * Inputs: `section`: input consumed by this operation; `href`: input consumed by this operation; `label`: input consumed by this operation; `cls`: input consumed by this operation
+   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+   * Returns: Boolean predicate result consumed by the caller.
    */
   const item = (section, href, label, cls = 'nav-link') => {
     const isActive = active === section;
@@ -82,6 +96,13 @@ const script = `<script type="module" src="/script.js?v=32.0"></script>`;
  * Inputs: name, html.
  * Side effects: may read or write repository/filesystem state.
  * Returns: no explicit value unless an invoked dependency throws/rejects.
+ */
+/**
+ * Function contract: page
+ * Purpose: Implement the page responsibility owned by the generate about contact pages repository tool.
+ * Inputs: `name`: stable identifier or label for the current item; `html`: input consumed by this operation
+ * Side effects: writes repository/filesystem state.
+ * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
  */
 function page(name, html) {
   fs.writeFileSync(path.join(root, name), `${html}\n`, 'utf8');

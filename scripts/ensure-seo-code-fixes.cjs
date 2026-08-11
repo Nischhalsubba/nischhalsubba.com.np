@@ -1,16 +1,17 @@
 /**
  * @fileoverview scripts/ensure-seo-code-fixes.cjs
- * Purpose: Node-based build, content transformation, QA, or maintenance tool for ensure seo code fixes.
+ * Purpose: Apply the ensure seo code fixes production transformation or maintenance step while preserving canonical source/build contracts.
  * Responsibilities:
- * - Own the behavior/content implied by this file's single responsibility.
- * - Keep public routes, build contracts, and imported module boundaries stable unless the connected owners are updated together.
- * Execution context: Node.js CLI during local development, CI, build, or maintenance.
+ * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
+ * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
+ * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
- * - docs/repository/file-catalog.md
- * - scripts/generate-source.cjs
+ * - blog/transaction-review-ux-crypto-apps.html
+ * - blog/web3-wallet-ux-checklist.html
+ * - blog/website-ux-checklist-software-companies.html
  * - package.json
- * - scripts/build-dist.cjs
- * Maintenance: Update this header when responsibility or dependencies change; generated/vendor files are documented at their source instead.
+ * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
 const fs = require('fs');
 const path = require('path');
@@ -191,10 +192,10 @@ const seoOverrides = {
 
 /**
  * Function contract: escapeHtml
- * Purpose: Implements the escape html responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the escape html responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `value`: input value being transformed or evaluated
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function escapeHtml(value) {
   return String(value)
@@ -206,10 +207,10 @@ function escapeHtml(value) {
 
 /**
  * Function contract: absoluteUrl
- * Purpose: Implements the absolute url responsibility for this module.
- * Inputs: canonical.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ * Purpose: Implement the absolute url responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `canonical`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function absoluteUrl(canonical) {
   if (canonical === '/') return `${SITE}/`;
@@ -222,6 +223,13 @@ function absoluteUrl(canonical) {
  * Inputs: relativePath.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: routeForFile
+ * Purpose: Implement the route for file responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `relativePath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function routeForFile(relativePath) {
   if (relativePath === 'index.html') return '/';
@@ -241,11 +249,18 @@ function routeForFile(relativePath) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertTitle
+ * Purpose: Implement the upsert title responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`: input consumed by this operation; `title`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function upsertTitle(html, title) {
   const tag = `<title>${escapeHtml(title)}</title>`;
   return /<title>[\s\S]*?<\/title>/i.test(html)
     ? html.replace(/<title>[\s\S]*?<\/title>/i, tag)
-    : html.replace(/<head[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${tag}`);
+    : html.replace(/<head[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing ensure seo code fixes repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => `${match}\n    ${tag}`);
 }
 
 /**
@@ -255,12 +270,19 @@ function upsertTitle(html, title) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertMetaName
+ * Purpose: Implement the upsert meta name responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`: input consumed by this operation; `name`: stable identifier or label for the current item; `content`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function upsertMetaName(html, name, content) {
   const tag = `<meta name="${name}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+name=["']${name}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, tag)
-    : html.replace(/<meta\s+name="viewport"[^>]*>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${tag}`);
+    : html.replace(/<meta\s+name="viewport"[^>]*>/i, /** Callback contract: Perform the local callback step required by the enclosing ensure seo code fixes repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => `${match}\n    ${tag}`);
 }
 
 /**
@@ -270,12 +292,19 @@ function upsertMetaName(html, name, content) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertMetaProperty
+ * Purpose: Implement the upsert meta property responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`: input consumed by this operation; `property`: input consumed by this operation; `content`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function upsertMetaProperty(html, property, content) {
   const tag = `<meta property="${property}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(`<meta\\s+property=["']${property}["'][^>]*>`, 'i');
   return regex.test(html)
     ? html.replace(regex, tag)
-    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${tag}`);
+    : html.replace(/<\/title>/i, /** Callback contract: Perform the local callback step required by the enclosing ensure seo code fixes repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => `${match}\n    ${tag}`);
 }
 
 /**
@@ -285,11 +314,18 @@ function upsertMetaProperty(html, property, content) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: upsertCanonical
+ * Purpose: Implement the upsert canonical responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`: input consumed by this operation; `canonical`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
+ */
 function upsertCanonical(html, canonical) {
   const tag = `<link rel="canonical" href="${absoluteUrl(canonical)}" />`;
   return /<link\s+rel="canonical"[^>]*>/i.test(html)
     ? html.replace(/<link\s+rel="canonical"[^>]*>/i, tag)
-    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ (match) => `${match}\n    ${tag}`);
+    : html.replace(/<\/title>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing ensure seo code fixes repository tool operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ (match) => `${match}\n    ${tag}`);
 }
 
 /**
@@ -298,6 +334,13 @@ function upsertCanonical(html, canonical) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: stripMetaKeywords
+ * Purpose: Remove meta keywords without disturbing required surrounding ensure seo code fixes repository tool state.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Boolean predicate result consumed by the caller.
  */
 function stripMetaKeywords(html) {
   return html.replace(/\s*<meta\s+name=["']keywords["'][^>]*>/gi, '');
@@ -309,6 +352,13 @@ function stripMetaKeywords(html) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: rewriteCleanUrls
+ * Purpose: Implement the rewrite clean urls responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function rewriteCleanUrls(html) {
   let output = html;
@@ -330,6 +380,13 @@ function rewriteCleanUrls(html) {
  * Inputs: html.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: ensureServicesNav
+ * Purpose: Apply services nav consistently while preserving the surrounding ensure seo code fixes repository tool contract.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function ensureServicesNav(html) {
   let output = html;
@@ -359,6 +416,13 @@ function ensureServicesNav(html) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: addHomepageServiceBlock
+ * Purpose: Implement the add homepage service block responsibility owned by the ensure seo code fixes repository tool.
+ * Inputs: `html`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function addHomepageServiceBlock(html) {
   if (!html.includes('nrs-home-services')) {
     const block = `
@@ -382,6 +446,13 @@ function addHomepageServiceBlock(html) {
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
  */
+/**
+ * Function contract: applySeoOverride
+ * Purpose: Apply seo override consistently while preserving the surrounding ensure seo code fixes repository tool contract.
+ * Inputs: `html`: input consumed by this operation; `config`: configuration values controlling this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ */
 function applySeoOverride(html, config) {
   let output = html;
   output = upsertTitle(output, config.title);
@@ -403,6 +474,13 @@ function applySeoOverride(html, config) {
  * Inputs: html, relativePath.
  * Side effects: no obvious external side effect beyond invoked dependencies.
  * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
+ */
+/**
+ * Function contract: applyGenericCleanCanonical
+ * Purpose: Apply generic clean canonical consistently while preserving the surrounding ensure seo code fixes repository tool contract.
+ * Inputs: `html`: input consumed by this operation; `relativePath`: input consumed by this operation
+ * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
  */
 function applyGenericCleanCanonical(html, relativePath) {
   const cleanRoute = routeForFile(relativePath);
