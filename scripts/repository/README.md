@@ -2,11 +2,17 @@
 
 Repository-architecture tooling.
 
-- `source-layout.cjs` defines canonical organized sources and temporary compatibility mappings.
-- `materialize-root-sources.cjs` copies organized source to legacy root paths before dev/build.
-- `sync-root-sources.cjs` copies intentional generated changes back into organized source.
-- `clean-root-sources.cjs` removes local compatibility copies.
-- `generate-file-catalog.cjs` inventories every Git-tracked file, assigns its purpose, and records direct or ownership-level connections in `docs/repository/file-catalog.md`.
-- `audit-repository-structure.cjs` enforces the root allow-list and required documentation in CI.
+- `source-layout.cjs` defines canonical organized source and the temporary compatibility mappings required by historical build stages.
+- `materialize-root-sources.cjs` copies canonical source to compatibility paths before development or production builds.
+- `sync-root-sources.cjs` copies intentional changes from sync-enabled compatibility files back into canonical source.
+- `clean-root-sources.cjs` removes temporary compatibility copies.
+- `audit-repository-structure.cjs` enforces the repository-root allow-list and required architecture documentation.
+- `audit-code-documentation.cjs` validates the file and function documentation contract for authored source.
 
-Connected configuration: `config/repository/root-policy.json` and `config/canonical-routes.json`. The generated catalog is refreshed with `npm run docs:file-catalog`; the normal validation workflow catches catalog drift through its clean-tree check.
+Connected configuration:
+
+- `config/repository/root-policy.json`
+- `config/repository/code-documentation-policy.json`
+- `config/canonical-routes.json`
+
+Human-maintained repository ownership and folder responsibilities are documented in `docs/repository/file-map.md`. The repository deliberately avoids maintaining a generated per-file catalog because the Git tree already provides the inventory and generated catalogs create noisy drift without improving architectural ownership.
