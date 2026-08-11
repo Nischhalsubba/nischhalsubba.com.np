@@ -1,0 +1,66 @@
+name: Apply deep code organization
+
+# @fileoverview .github/workflows/apply-deep-code-organization.yml
+# Purpose: One-shot migration runner for the responsibility-based source reorganization and documentation pass.
+# Responsibilities:
+# - Run the syntax-aware migration against a real Git checkout with installed project dependencies.
+# - Validate the migrated tree before committing it back to the dedicated branch.
+# - Remove this workflow and the migration script so temporary migration machinery never reaches main.
+# Execution context: GitHub Actions on pull requests from agent/deep-code-organization.
+# Connected files:
+# - scripts/repository/apply-deep-organization.cjs
+# - scripts/repository/audit-code-documentation.cjs
+# - config/repository/code-documentation-policy.json
+# Maintenance: Temporary workflow; it deletes itself after a successful migration.
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deep-code-organization-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  migrate:
+    if: github.head_ref == 'agent/deep-code-organization'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout migration branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/deep-code-organization
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install repository dependencies
+        run: npm ci
+
+      - name: Apply responsibility-based source migration and documentation contracts
+        run: node scripts/repository/apply-deep-organization.cjs
+
+      - name: Remove one-shot migration machinery
+        run: git rm scripts/repository/apply-deep-organization.cjs .github/workflows/apply-deep-code-organization.yml
+
+      - name: Regenerate tracked-file catalog
+        run: npm run docs:file-catalog
+
+      - name: Validate migrated repository before committing
+        run: npm run validate
+
+      - name: Commit migrated tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'refactor: deepen source organization and documentation'
+          git push origin HEAD:agent/deep-code-organization
