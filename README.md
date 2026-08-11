@@ -4,27 +4,27 @@
 
 # nischhalsubba.com.np
 
-**Branch-aware technical guide for [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main)**
+**Branch-aware technical guide for [`agent/seo-discovery-hardening`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening)**
 
-<p><img alt="branch: main" src="https://img.shields.io/static/v1?label=&message=branch%3A%20main&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+<p><img alt="branch: agent/seo-discovery-hardening" src="https://img.shields.io/static/v1?label=&message=branch%3A%20agent%2Fseo-discovery-hardening&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
 
 <p>
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main"><strong>Browse source</strong></a> ·
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening"><strong>Browse source</strong></a> ·
   <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/issues"><strong>Issues</strong></a> ·
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=main"><strong>Open in Codespaces</strong></a>
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=agent%2Fseo-discovery-hardening"><strong>Open in Codespaces</strong></a>
 </p>
 
 </div>
 
 > [!IMPORTANT]
-> This guide is generated from the files actually present on `main`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
+> This guide is generated from the files actually present on `agent/seo-discovery-hardening`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
 
 ## At a glance
 
 | Item | Detected value |
 |---|---|
 | Purpose | Production portfolio for Nischhal Raj Subba, a Nepal-based product designer focused on Web3, SaaS, fintech, UX systems, and developer-ready design handoff. |
-| Branch role | Default branch |
+| Branch role | Compared with `main` |
 | Stack | Vite, TypeScript, WordPress, JavaScript, HTML, PHP, CSS |
 | Manifests | package.json |
 | Prerequisites | Node.js |
@@ -33,9 +33,20 @@
 
 ## Branch scope
 
-This is the repository's default branch.
+This branch differs from the default branch in the following detected paths:
 
-
+- [`_headers`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/_headers)
+- [`ai-profile.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/ai-profile.json)
+- [`config/canonical-routes.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/config/canonical-routes.json)
+- [`docs/seo-maintenance.md`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/docs/seo-maintenance.md)
+- [`llms-full.txt`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/llms-full.txt)
+- [`llms.txt`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/llms.txt)
+- [`package.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/package.json)
+- [`public/_redirects`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/public/_redirects)
+- [`public/nischhal-raj-subba.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/public/nischhal-raj-subba.html)
+- [`robots.txt`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/robots.txt)
+- [`scripts/audit-seo-discovery.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/scripts/audit-seo-discovery.cjs)
+- [`scripts/generate-seo-discovery.cjs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/scripts/generate-seo-discovery.cjs)
 
 ## Quick start
 
@@ -57,7 +68,7 @@ npm run preview
 
 ```mermaid
 flowchart TD
-    ROOT["nischhalsubba.com.np / main"]
+    ROOT["nischhalsubba.com.np / agent/seo-discovery-hardening"]
     ROOT --> P0[".github/"]
     ROOT --> P1["api/"]
     ROOT --> P2["assets/"]
@@ -81,12 +92,12 @@ flowchart TD
 
 | Responsibility | Detected source paths |
 |---|---|
-| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/src) |
-| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api) |
-| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data) |
-| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests) |
-| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/docs) |
-| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/scripts) |
+| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/src) |
+| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/api) |
+| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/data) |
+| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/tests) |
+| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/docs) |
+| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/scripts) |
 
 ## Website or application map
 
@@ -97,16 +108,16 @@ flowchart TD
     APP --> R1["public"]
     R0 --> F0["src/app/layout.tsx"]
     R1 --> F1["public/services.html"]
-    R1 --> F2["public/nischhal-raj-subba.html"]
-    R1 --> F3["public/privacy.html"]
-    R1 --> F4["public/blog/prioritize-ux-audit-findings-before-redesign.html"]
-    R1 --> F5["public/blog/saas-dashboard-empty-states-that-help-users-recover.html"]
-    R1 --> F6["public/blog/responsive-saas-dashboard-handoff-notes.html"]
-    R1 --> F7["public/blog/when-startup-needs-ux-audit-before-redesign.html"]
-    R1 --> F8["public/blog/figma-handoff-notes-for-developers.html"]
-    R1 --> F9["public/blog/web3-wallet-connection-ux.html"]
-    R1 --> F10["public/blog/index.html"]
-    R1 --> F11["public/blog/role-based-saas-dashboard-ux.html"]
+    R1 --> F2["public/privacy.html"]
+    R1 --> F3["public/blog/prioritize-ux-audit-findings-before-redesign.html"]
+    R1 --> F4["public/blog/saas-dashboard-empty-states-that-help-users-recover.html"]
+    R1 --> F5["public/blog/responsive-saas-dashboard-handoff-notes.html"]
+    R1 --> F6["public/blog/when-startup-needs-ux-audit-before-redesign.html"]
+    R1 --> F7["public/blog/figma-handoff-notes-for-developers.html"]
+    R1 --> F8["public/blog/web3-wallet-connection-ux.html"]
+    R1 --> F9["public/blog/index.html"]
+    R1 --> F10["public/blog/role-based-saas-dashboard-ux.html"]
+    R1 --> F11["public/blog/ux-audit-checklist-before-redesign.html"]
 ```
 
 ## Architecture and responsibility flow
@@ -141,7 +152,7 @@ sequenceDiagram
     I-->>U: Render success or error state
 ```
 
-Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api).
+Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/api).
 
 </details>
 <details>
@@ -156,7 +167,7 @@ flowchart LR
     READ --> OUTPUT["UI, API, report, or export"]
 ```
 
-Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data).
+Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/data).
 
 </details>
 <details>
@@ -170,7 +181,7 @@ flowchart LR
     WORKER -->|failure| RETRY["Retry, alert, or dead-letter path"]
 ```
 
-Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/worker.js).
+Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/src/worker.js).
 
 </details>
 
@@ -182,7 +193,7 @@ Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nisc
 
 ### Quality
 
-- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests)
+- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening/tests)
 
 Detected commands:
 - `npm run dev`
@@ -204,8 +215,8 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/scripts/features/analytics-events.js)
-- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/assets/analytics-events-Bq4IAYSg.js)
+- [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/src/scripts/features/analytics-events.js)
+- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/assets/analytics-events-Bq4IAYSg.js)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
@@ -217,7 +228,7 @@ Define useful logs, metrics, traces, alerts, and rollback signals for production
 
 ```mermaid
 flowchart LR
-    CHANGE["Change on main"] --> CHECK["Tests and quality checks"]
+    CHANGE["Change on agent/seo-discovery-hardening"] --> CHECK["Tests and quality checks"]
     CHECK --> REVIEW["Review architecture and documentation impact"]
     REVIEW --> BUILD["Build or package"]
     BUILD --> DEPLOY["Deploy or release"]
@@ -226,14 +237,14 @@ flowchart LR
 
 ### Automation detected
 
-- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/apply-interactive-readme.yml)
-- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/browser-audit.yml)
-- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/deploy-cloudflare.yml)
-- [`.github/workflows/hero-ux-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/hero-ux-audit.yml)
-- [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/interface-polish-audit.yml)
-- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-qa.yml)
-- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-route-audit.yml)
-- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/validate.yml)
+- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/.github/workflows/apply-interactive-readme.yml)
+- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/.github/workflows/browser-audit.yml)
+- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/.github/workflows/deploy-cloudflare.yml)
+- [`.github/workflows/hero-ux-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/.github/workflows/hero-ux-audit.yml)
+- [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/.github/workflows/interface-polish-audit.yml)
+- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/.github/workflows/production-qa.yml)
+- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/.github/workflows/production-route-audit.yml)
+- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/seo-discovery-hardening/.github/workflows/validate.yml)
 
 ## Contribution flow
 
@@ -258,7 +269,7 @@ flowchart LR
 | Topic | Source |
 |---|---|
 | Repository | [`Nischhalsubba/nischhalsubba.com.np`](https://github.com/Nischhalsubba/nischhalsubba.com.np) |
-| Branch | [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main) |
+| Branch | [`agent/seo-discovery-hardening`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/seo-discovery-hardening) |
 | Ownership | No CODEOWNERS file detected |
 | Contributing | Use the contribution flow above |
 | Support | [Open or review issues](https://github.com/Nischhalsubba/nischhalsubba.com.np/issues) |
