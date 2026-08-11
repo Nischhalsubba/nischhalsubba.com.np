@@ -1,19 +1,16 @@
 /**
  * @fileoverview src/runtime/script.js
- * Purpose: Preserve the stable browser entry URL while delegating behavior to the organized runtime entrypoint.
+ * Purpose: Preserve the stable public browser entry URL while delegating application behavior to the organized runtime entrypoint.
  * Responsibilities:
- * - Keep this file focused on its stated responsibility and stable public/build interfaces.
- * - Update connected owners whenever this file changes a shared contract.
- * Execution context: Repository application or build source.
+ * - Keep existing HTML and deployment contracts working through the historical `/script.js` entry path.
+ * - Delegate feature loading to the organized browser runtime instead of duplicating behavior here.
+ * - Keep visual styling outside the runtime entry and under the canonical stylesheet source.
+ * Execution context: Canonical compatibility source that is materialized as the root browser entry before development and production builds.
  * Connected files:
- * - scripts/repository/audit-repository-structure.cjs
- * - scripts/repository/generate-file-catalog.cjs
- * - src/scripts/entrypoints/agent-main.js
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
- */
-/*
- * Compatibility entrypoint for existing HTML files.
- * Runtime modules live in src/scripts/ for maintainability.
- * Visual styling is owned by /style.css only.
+ * - src/scripts/entrypoints/main.js
+ * - scripts/repository/source-layout.cjs
+ * - scripts/repository/materialize-root-sources.cjs
+ * - src/styles/style.css
+ * Maintenance: Keep this file intentionally small. New browser features belong under `src/scripts/features/` and should be wired through an appropriate entrypoint.
  */
 import './src/scripts/entrypoints/main.js';
