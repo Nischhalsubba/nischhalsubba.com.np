@@ -54,7 +54,7 @@ The exact root allow-list is enforced by `config/repository/root-policy.json` an
 | `data/` | Structured legacy or supporting data consumed by generators and scripts. | Generation and migration tooling. |
 | `docs/` | Architecture, quality, deployment, SEO, and maintenance documentation. | Maintainers and repository checks. |
 | `scripts/` | Build stages, generators, normalizers, audits, migrations, and QA utilities. | `package.json`, workflows, production build. |
-| `scripts/repository/` | Repository organization, materialization, catalog, and policy tooling. | Root policy, source layout, documentation generation. |
+| `scripts/repository/` | Repository organization, compatibility materialization, documentation audit, and policy tooling. | Root policy, source layout, code-documentation policy. |
 | `tests/` | Browser, responsive, visual-regression, fixture, and smoke-test contracts. | Validation and production QA workflows. |
 
 ## Compatibility materialization
@@ -89,8 +89,9 @@ Important examples include:
 - `dist/` production output;
 - `src/generated/` generated modules;
 - generated social previews;
-- materialized root compatibility files;
-- `docs/repository/file-catalog.md`, which is produced by repository catalog tooling.
+- materialized root compatibility files.
+
+The repository intentionally does not keep a generated per-file catalog. Git already owns the file inventory; this map documents architectural ownership and relationships that are actually useful to maintainers.
 
 Hand-editing generated output may appear to work until the next build politely erases the evidence.
 
