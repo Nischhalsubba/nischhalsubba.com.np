@@ -1,136 +1,157 @@
-# Root Route Map
+# Route and Compatibility Map
 
-This project intentionally keeps many HTML files at the repository root because they are public routes for a static Vite/Cloudflare Pages site.
+The repository no longer treats root-level HTML as the canonical authored source. Canonical pages are organized under `src/pages/`, while repository tooling materializes selected historical root paths when development or build tools still require them.
 
-Moving these files without updating `vite.config.ts`, sitemap entries, redirects, internal links, and build audits can break production URLs. Yes, the root looks crowded. No, that does not mean it is safe to throw files into folders like a digital laundry pile.
+This distinction matters. A file can appear at repository root during a build without becoming a second source of truth.
 
-## Why root HTML files exist
+## Canonical page source
 
-Vite uses the root HTML files listed in `vite.config.ts` as multi-page build entries. Cloudflare Pages then serves the generated files from `dist/`.
+Pages are grouped by responsibility:
 
-A file such as:
-
-```txt
-project-yarsha.html
+```text
+src/pages/
+├── core/       # Homepage, About, Contact, Projects, Services, Privacy, and other primary routes
+├── projects/   # Project and case-study pages
+└── services/   # Focused service and search-intent pages
 ```
 
-becomes the public route:
+Blog/article source is maintained through the repository's blog and content-generation owners. Route membership itself is controlled centrally rather than inferred from whichever HTML files happen to exist.
 
-```txt
-/project-yarsha.html
+## Route source of truth
+
+The authoritative public route and redirect inventory is:
+
+```text
+config/canonical-routes.json
 ```
 
-That route is linked from project cards, sitemap entries, AI discovery files, and SEO metadata.
+It defines:
 
-## Route groups
+- canonical HTML outputs;
+- retired routes;
+- legacy redirects;
+- the route set used by sitemap generation;
+- the route set used by production redirect tooling.
 
-### Core pages
+Do not create another manually maintained canonical route list in a script or document.
 
-```txt
-index.html              # Canonical homepage
-home.html               # Legacy/home experiment retained in build
-home-v2.html            # Legacy/home experiment retained in build
-about.html              # About page
-contact.html            # Contact page
-projects.html           # Work listing page
-blog.html               # Legacy blog listing fallback
-blog/index.html         # Canonical folder route for /blog/
+## Compatibility materialization
+
+The mapping between organized source and temporary root-compatible files is owned by:
+
+```text
+scripts/repository/source-layout.cjs
 ```
 
-### Service pages
+Related tooling includes:
 
-```txt
-product-design-nepal.html
-web3-ux-designer.html
-saas-ux-designer.html
-website-ux-design.html
-figma-design-systems.html
-ux-audit.html
+```text
+scripts/repository/materialize-root-sources.cjs
+scripts/repository/sync-root-sources.cjs
+scripts/repository/clean-root-sources.cjs
 ```
 
-### Blog detail pages built by Vite
+These tools allow historical build stages to keep working while the repository itself remains organized.
 
-```txt
-blog/blog-web3-products.html
-blog/blog-good-handoff.html
-blog/blog-portfolio-product.html
-blog/blog-service-websites.html
-blog/blog-gaming-interface-clarity.html
-blog/blog-design-systems-front-end.html
+A compatibility path should exist only when an active consumer requires it. New code should depend on canonical source wherever practical.
+
+## Core route group
+
+Typical core source files live under:
+
+```text
+src/pages/core/
 ```
 
-### Project detail pages built by Vite
+This group owns primary navigation destinations such as Home, Work, About, Services, Contact, Privacy, and other top-level public pages defined by the canonical route manifest.
 
-```txt
-project-yarsha.html
-project-mokshya.html
-project-hamro-idea.html
-project-morajaa.html
-project-pihub.html
-project-masteriyo.html
-project-zapp.html
-project-neverwinter-parser.html
-project-orkest.html
-project-splashnode.html
-project-grid-labs.html
-project-zakra-furniture.html
-project-designerex.html
-project-sassboilerplate.html
+## Project route group
+
+Project and case-study pages live under:
+
+```text
+src/pages/projects/
 ```
 
-## Files that should stay modular
+Examples include routes for Yarsha, Mokshya, Hamro Idea, piHub, Masteriyo, Zapp, Orkest, Splashnode, Grid Labs, Zakra Furniture, Designerex, SassBoilerplate, and the Neverwinter parser project.
 
-Runtime behavior should not be added as inline scripts inside every HTML file. Put browser behavior here instead:
+The canonical route manifest, not this prose list, determines which pages are currently part of production.
 
-```txt
-src/scripts/features/
+## Service route group
+
+Focused service pages live under:
+
+```text
+src/pages/services/
 ```
 
-Shared utilities belong here:
+Examples include product-design, Web3, SaaS, website UX, design-system, and UX-audit pages.
 
-```txt
-src/scripts/utils/
+## Browser runtime
+
+Do not add copies of shared JavaScript directly to each HTML page.
+
+Browser code belongs under:
+
+```text
+src/scripts/
+├── entrypoints/
+├── features/
+└── shared/
 ```
 
-Build-only logic belongs here:
+Feature implementation should stay with the domain that owns the behavior. Entrypoints should coordinate initialization rather than become another miscellaneous application file.
 
-```txt
+## Styles
+
+Canonical styles belong under:
+
+```text
+src/styles/
+```
+
+`src/styles/style.css` owns the production stylesheet contract. Supporting systems and fragments should remain organized beneath the style source tree rather than accumulating as unrelated root-level patch files.
+
+## Build tooling
+
+Build-only logic belongs under:
+
+```text
 scripts/
 ```
 
-Static assets belong here:
+Repository organization and compatibility tooling belongs under:
 
-```txt
-assets/
+```text
+scripts/repository/
 ```
 
-AI/search/discovery files currently live at the root because they are served as root URLs and copied to `dist/` by `scripts/copy-static-assets.cjs`.
+Generated output should be repaired at its generator rather than hand-edited in `dist/` or another machine-owned location.
 
-```txt
-robots.txt
-sitemap.xml
-llms.txt
-ai-profile.json
-site.webmanifest
+## Static and discovery files
+
+Static assets belong in `assets/` or `public/` according to how the build consumes them.
+
+Canonical crawler, manifest, ownership, and response-header source lives under:
+
+```text
+src/discovery/
 ```
 
-## Safe cleanup rule
+The build materializes or copies these files to the required public locations.
 
-Before moving or deleting any root file, check all of these:
+## Safe route cleanup
 
-1. `vite.config.ts` build input
-2. `sitemap.xml`
-3. `robots.txt`
-4. `llms.txt`
-5. `ai-profile.json`
-6. internal links in HTML
-7. `scripts/audit-build.cjs`
-8. Cloudflare redirects
+Before moving, renaming, or deleting a page:
 
-Then run:
+1. Check `config/canonical-routes.json`.
+2. Check `scripts/repository/source-layout.cjs` for compatibility mappings.
+3. Check `vite.config.ts` and the production build pipeline.
+4. Search internal links and structured metadata for the existing route.
+5. Check Worker and static redirect consumers.
+6. Add a permanent redirect when an existing public route has a replacement.
+7. Run search-discovery synchronization.
+8. Run the relevant build and validation checks.
+9. Verify the route after deployment.
 
-```bash
-npm run build
-```
-
-If the route is public, add a redirect before removing it. Future-you will complain less. Barely.
+A tidy folder tree is useful. A tidy folder tree that silently deletes public URLs is merely well-organized damage.
