@@ -18,12 +18,13 @@ const { spawnSync } = require('node:child_process');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the test build determinism repository tool.
- * Inputs: `directory`: input consumed by this operation; `files`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `directory`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function walk(directory, files = []) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -34,12 +35,13 @@ function walk(directory, files = []) {
   return files;
 }
 
+
 /**
  * Function contract: snapshot
  * Purpose: Implement the snapshot responsibility owned by the test build determinism repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function snapshot() {
   if (!fs.existsSync(dist)) throw new Error('dist is missing; run the production build first.');
@@ -51,16 +53,17 @@ function snapshot() {
   return hashes;
 }
 
+
 /**
  * Function contract: compare
  * Purpose: Implement the compare responsibility owned by the test build determinism repository tool.
- * Inputs: `before`: input consumed by this operation; `after`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `before`, `after`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function compare(before, after) {
   const paths = new Set([...before.keys(), ...after.keys()]);
-  return [...paths].filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (file) => before.get(file) !== after.get(file)).sort();
+  return [...paths].filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => before.get(file) !== after.get(file)).sort();
 }
 
 const first = snapshot();

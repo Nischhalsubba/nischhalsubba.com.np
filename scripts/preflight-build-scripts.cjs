@@ -20,12 +20,13 @@ const root = path.resolve(__dirname);
 const extensions = new Set(['.cjs', '.js', '.mjs']);
 const files = [];
 
+
 /**
  * Function contract: collect
  * Purpose: Return module behavior from the supplied inputs or current preflight build scripts repository tool state.
- * Inputs: `directory`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `directory`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function collect(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {

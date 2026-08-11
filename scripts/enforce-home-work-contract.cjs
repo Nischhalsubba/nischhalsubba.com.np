@@ -18,12 +18,13 @@ const root=path.resolve(__dirname,'..');
 const useDist=process.argv.includes('--dist');
 const base=useDist?path.join(root,'dist'):root;
 const errors=[];
+
 /**
  * Function contract: read
  * Purpose: Return module behavior from the supplied inputs or current enforce home work contract repository tool state.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: reads repository/filesystem state.
- * Returns: The requested module behavior; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: `file`
+ * Side effects: reads filesystem state
+ * Returns: The requested module behavior; explicit early-return branches define empty/fallback behavior.
  */
 function read(file){const target=path.join(base,file);if(!fs.existsSync(target)){errors.push(`Missing ${file}`);return '';}return fs.readFileSync(target,'utf8');}
 const home=read('index.html');

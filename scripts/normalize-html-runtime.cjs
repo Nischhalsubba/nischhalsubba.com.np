@@ -22,12 +22,13 @@ const htmlFiles = [];
 const styleHref = '/style.css?v=50.0';
 const scriptSrc = '/script.js?v=35.0';
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the normalize html runtime repository tool.
- * Inputs: `directory`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `directory`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -38,12 +39,13 @@ function walk(directory) {
   }
 }
 
+
 /**
  * Function contract: normalizeFontLinks
  * Purpose: Apply font links consistently while preserving the surrounding normalize html runtime repository tool contract.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeFontLinks(html) {
   return html
@@ -51,12 +53,13 @@ function normalizeFontLinks(html) {
     .replace(/\s*<link\s+rel="stylesheet"\s+href="https:\/\/fonts\.googleapis\.com\/css2\?[^>]*>\s*/gi, '\n');
 }
 
+
 /**
  * Function contract: normalizeStylesheets
  * Purpose: Apply stylesheets consistently while preserving the surrounding normalize html runtime repository tool contract.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeStylesheets(html) {
   let output = html.replace(/\s*<link\s+rel="stylesheet"\s+href="\/(?!style\.css)[^"]+\.css[^>]*>\s*/gi, '\n');
@@ -67,12 +70,13 @@ function normalizeStylesheets(html) {
   return output.replace(/<\/head>/i, `    <link rel="stylesheet" href="${styleHref}" />\n  </head>`);
 }
 
+
 /**
  * Function contract: normalizeScriptTags
  * Purpose: Apply script tags consistently while preserving the surrounding normalize html runtime repository tool contract.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeScriptTags(html) {
   const localRuntimePattern = /\s*<script\b[^>]*src=["'](?:\/script\.js(?:\?[^"']*)?|\/assets\/(?:script|main|index)[^"']*\.js)["'][^>]*><\/script>\s*/gi;
@@ -83,12 +87,13 @@ function normalizeScriptTags(html) {
   return output.replace(/<\/body>/i, `    <script type="module" src="${scriptSrc}"></script>\n  </body>`);
 }
 
+
 /**
  * Function contract: normalize
  * Purpose: Apply module behavior consistently while preserving the surrounding normalize html runtime repository tool contract.
- * Inputs: `content`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `content`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalize(content) {
   let output = content

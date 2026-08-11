@@ -10,23 +10,25 @@
  * - src/runtime/script.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
+
 /**
  * Function contract: normalizeText
  * Purpose: Apply text consistently while preserving the surrounding case study layout fixes browser feature contract.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeText(value) {
   return String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
 }
 
+
 /**
  * Function contract: markSection
  * Purpose: Implement the mark section responsibility owned by the case study layout fixes browser feature.
- * Inputs: `section`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `section`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function markSection(section) {
   const heading = section.querySelector(':scope > h2, :scope > .section-title, :scope > .section-header h2');
@@ -43,12 +45,13 @@ function markSection(section) {
   }
 }
 
+
 /**
  * Function contract: improveCaseStudySections
  * Purpose: Implement the improve case study sections responsibility owned by the case study layout fixes browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function improveCaseStudySections() {
   const path = (window.location.pathname || '/').replace(/\/+$/, '').replace(/\.html$/, '');

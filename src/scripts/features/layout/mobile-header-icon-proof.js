@@ -12,12 +12,13 @@
  */
 const STYLE_ID = 'nrs-mobile-header-icon-proof';
 
+
 /**
  * Function contract: ensureMobileHeaderIconStyle
  * Purpose: Apply mobile header icon style consistently while preserving the surrounding mobile header icon proof browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureMobileHeaderIconStyle() {
   let style = document.getElementById(STYLE_ID);
@@ -59,12 +60,13 @@ function ensureMobileHeaderIconStyle() {
   `;
 }
 
+
 /**
  * Function contract: proveMobileHeaderIcon
  * Purpose: Implement the prove mobile header icon responsibility owned by the mobile header icon proof browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function proveMobileHeaderIcon() {
   ensureMobileHeaderIconStyle();

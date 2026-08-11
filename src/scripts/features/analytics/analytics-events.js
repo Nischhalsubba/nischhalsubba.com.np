@@ -13,12 +13,13 @@
  */
 const TRACKING_ATTR = 'data-nrs-tracked';
 
+
 /**
  * Function contract: normalizePath
  * Purpose: Apply path consistently while preserving the surrounding analytics events browser feature contract.
- * Inputs: `href`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `href`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizePath(href) {
   try {
@@ -28,12 +29,13 @@ function normalizePath(href) {
   }
 }
 
+
 /**
  * Function contract: eventNameForLink
  * Purpose: Implement the event name for link responsibility owned by the analytics events browser feature.
- * Inputs: `link`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `link`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function eventNameForLink(link) {
   const href = link.getAttribute('href') || '';
@@ -50,12 +52,13 @@ function eventNameForLink(link) {
   return '';
 }
 
+
 /**
  * Function contract: emitEvent
  * Purpose: Implement the emit event responsibility owned by the analytics events browser feature.
- * Inputs: `name`: stable identifier or label for the current item; `detail`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `name`, `detail`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function emitEvent(name, detail) {
   if (!name) return;
@@ -67,15 +70,16 @@ function emitEvent(name, detail) {
   if (typeof window.plausible === 'function') window.plausible(name, { props: detail });
 }
 
+
 /**
  * Function contract: initAnalyticsEvents
  * Purpose: Initialize analytics events for the analytics events browser feature, including the listeners/state needed for safe runtime use.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: registers or removes browser listeners; reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function initAnalyticsEvents() {
-  document.querySelectorAll('a[href], button[data-analytics-event]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: registers or removes browser listeners; reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (element) => {
+  document.querySelectorAll('a[href], button[data-analytics-event]').forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element` Side effects: registers or removes browser listeners; reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (element) => {
     if (element.dataset.nrsTracked === 'true') return;
 
     const explicitName = element.getAttribute('data-analytics-event');
@@ -83,7 +87,7 @@ export function initAnalyticsEvents() {
     if (!eventName) return;
 
     element.setAttribute(TRACKING_ATTR, 'true');
-    element.addEventListener('click', /** Callback contract: Handle the click event for `element` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
+    element.addEventListener('click',  /** Callback contract: Handle the click event for `element` and apply the related local state update. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ () => {
       emitEvent(eventName, {
         href: element.getAttribute('href') || '',
         label: element.textContent?.trim().replace(/\s+/g, ' ').slice(0, 120) || '',

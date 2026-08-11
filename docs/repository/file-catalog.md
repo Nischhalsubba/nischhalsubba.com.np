@@ -228,7 +228,7 @@ Connections list direct textual references when available, then ownership/build-
 | `docs/OPEN_DESIGN_UI_REDESIGN.md` | Repository documentation for OPEN DESIGN UI REDESIGN. | `README.md`, `related source/tooling folder` |
 | `docs/SEO-CHECKLIST.md` | Repository documentation for SEO CHECKLIST. | `README.md`, `related source/tooling folder` |
 | `docs/build-pipeline.md` | Repository documentation for Build Pipeline. | `blog/blog-web3-products.html`, `scripts/audit-build.cjs`, `scripts/audit-content-structure.cjs`, `scripts/copy-static-assets.cjs` |
-| `docs/codebase-structure.md` | Repository documentation for Codebase Structure. | `scripts/audit-content-structure.cjs`, `src/styles/style.css`, `README.md`, `related source/tooling folder` |
+| `docs/codebase-structure.md` | Repository documentation for Codebase Structure. | `scripts/audit-content-structure.cjs`, `scripts/repository/audit-code-documentation.cjs`, `src/styles/style.css`, `README.md` |
 | `docs/design-dna.json` | Repository documentation for Design Dna. | `scripts/ensure-case-study-specificity.cjs`, `scripts/ensure-senior-portfolio-v2.cjs`, `src/scripts/features/portfolio/agent-portfolio.js`, `README.md` |
 | `docs/design-system/README.md` | Repository documentation for README. | `scripts/audit-design-system-coverage.cjs`, `src/styles/style.css`, `README.md`, `related source/tooling folder` |
 | `docs/design-system/master.md` | Repository documentation for Master. | `docs/design-system/README.md`, `README.md`, `related source/tooling folder` |

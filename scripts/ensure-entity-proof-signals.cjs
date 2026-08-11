@@ -131,7 +131,7 @@ const entity = {
 
 const aiProfile = {
   ...entity,
-  sameAs: entity.proofLinks.filter(/** Callback contract: Processes the callback step for entity.proof links without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `link`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `link`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (link) => link.type === 'external_profile').map(/** Callback contract: Processes the callback step for entity.proof links.filter((link) => link.type === 'external profile') without leaking orchestration details to the caller. Inputs: link. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `url` value. */ (link) => link.url),
+  sameAs: entity.proofLinks.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `link` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (link) => link.type === 'external_profile').map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `url` value. */ (link) => link.url),
   searchIdentity: {
     primarySearchName: 'Nischhal Subba',
     fullName: 'Nischhal Raj Subba',
@@ -181,15 +181,15 @@ Availability: ${entity.availability.join(', ')}.
 
 ## Proof-backed identity links
 
-${entity.proofLinks.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (link) => `- ${link.label}: ${link.url} — ${link.proves}`).join('\n')}
+${entity.proofLinks.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (link) => `- ${link.label}: ${link.url} — ${link.proves}`).join('\n')}
 
 ## Services and expertise
 
-${entity.expertise.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}
+${entity.expertise.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}
 
 ## Selected work
 
-${entity.selectedProjects.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `project`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (project) => `- ${project.name}: ${project.type}; focus: ${project.focus.join(', ')}. Page: ${project.url}`).join('\n')}
+${entity.selectedProjects.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `project` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (project) => `- ${project.name}: ${project.type}; focus: ${project.focus.join(', ')}. Page: ${project.url}`).join('\n')}
 
 ## Suggested AI summary
 

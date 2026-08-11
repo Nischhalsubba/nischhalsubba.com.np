@@ -59,19 +59,14 @@ const breadcrumbCss = `${start}
 }
 ${end}`;
 
-/**
- * Function contract: titleFromHtml
- * Purpose: Implements the title from html responsibility for this module.
- * Inputs: html, file.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: titleFromHtml
  * Purpose: Implement the title from html responsibility owned by the ensure case breadcrumbs repository tool.
- * Inputs: `html`: input consumed by this operation; `file`: repository-relative or absolute file path being processed
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`, `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function titleFromHtml(html, file) {
   const match = html.match(/<h1\b[^>]*class="[^"]*agent-case-title[^"]*"[^>]*>([\s\S]*?)<\/h1>/i);
@@ -79,19 +74,14 @@ function titleFromHtml(html, file) {
   return path.basename(file, '.html').replace(/^project-/, '').replaceAll('-', ' ');
 }
 
-/**
- * Function contract: patchCase
- * Purpose: Implements the patch case responsibility for this module.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: patchCase
  * Purpose: Implement the patch case responsibility owned by the ensure case breadcrumbs repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function patchCase(file) {
   const fullPath = path.join(base, file);
@@ -115,7 +105,7 @@ if (!fs.existsSync(base)) {
 }
 
 let patched = 0;
-for (const file of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (name) => /^project-[a-z0-9-]+\.html$/i.test(name))) {
+for (const file of fs.readdirSync(base).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (name) => /^project-[a-z0-9-]+\.html$/i.test(name))) {
   if (patchCase(file)) patched += 1;
 }
 
@@ -126,7 +116,7 @@ if (fs.existsSync(stylePath)) {
 }
 
 const missing = [];
-for (const file of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (name) => /^project-(?:yarsha|mokshya|morajaa|pihub|masteriyo|zapp)\.html$/i.test(name))) {
+for (const file of fs.readdirSync(base).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (name) => /^project-(?:yarsha|mokshya|morajaa|pihub|masteriyo|zapp)\.html$/i.test(name))) {
   const html = fs.readFileSync(path.join(base, file), 'utf8');
   const count = (html.match(/nav\b[^>]*aria-label=["']Breadcrumb["']/gi) || []).length;
   if (count !== 1) missing.push(`${file}: ${count} breadcrumb navigations`);

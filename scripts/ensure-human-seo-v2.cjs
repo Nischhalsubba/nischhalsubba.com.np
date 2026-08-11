@@ -68,19 +68,14 @@ const proofRoute = {
 
 const serviceRoutes = new Set(['/product-design-nepal', '/web3-ux-designer', '/saas-ux-designer', '/website-ux-design', '/figma-design-systems', '/ux-audit']);
 
-/**
- * Function contract: routeFor
- * Purpose: Implements the route for responsibility for this module.
- * Inputs: file.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: routeFor
  * Purpose: Implement the route for responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function routeFor(file) {
   if (file === 'index.html') return '/';
@@ -88,19 +83,14 @@ function routeFor(file) {
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
-/**
- * Function contract: fileFor
- * Purpose: Implements the file for responsibility for this module.
- * Inputs: route.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: fileFor
  * Purpose: Implement the file for responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `route`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function fileFor(route) {
   if (route === '/') return path.join(base, 'index.html');
@@ -108,23 +98,25 @@ function fileFor(route) {
   return path.join(base, `${route.replace(/^\//, '')}.html`);
 }
 
+
 /**
  * Function contract: esc
  * Purpose: Implement the esc responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
+
 /**
  * Function contract: strip
  * Purpose: Remove module behavior without disturbing required surrounding ensure human seo v2 repository tool state.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function strip(value = '') {
   return String(value)
@@ -139,30 +131,26 @@ function strip(value = '') {
     .trim();
 }
 
+
 /**
  * Function contract: attribute
  * Purpose: Implement the attribute responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `tag`: input consumed by this operation; `name`: stable identifier or label for the current item
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `tag`, `name`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function attribute(tag, name) {
   return tag.match(new RegExp(`\\b${name}=["']([^"']*)["']`, 'i'))?.[1] || '';
 }
 
-/**
- * Function contract: metaValue
- * Purpose: Implements the meta value responsibility for this module.
- * Inputs: html, key, keyAttribute.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: metaValue
  * Purpose: Implement the meta value responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `html`: input consumed by this operation; `key`: input consumed by this operation; `keyAttribute`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`, `key`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function metaValue(html, key, keyAttribute = 'name') {
   for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
@@ -172,19 +160,14 @@ function metaValue(html, key, keyAttribute = 'name') {
   return '';
 }
 
-/**
- * Function contract: setMeta
- * Purpose: Applies set meta while preserving the surrounding repository/runtime contract.
- * Inputs: html, key, value, keyAttribute.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: setMeta
  * Purpose: Synchronize meta with the requested state while preserving related ensure human seo v2 repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `key`: input consumed by this operation; `value`: input value being transformed or evaluated; `keyAttribute`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `key`, `value`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setMeta(html, key, value, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -193,31 +176,27 @@ function setMeta(html, key, value, keyAttribute = 'name') {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-/**
- * Function contract: removeMeta
- * Purpose: Removes or cleans remove meta while keeping required outputs intact.
- * Inputs: html, key, keyAttribute.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: removeMeta
  * Purpose: Remove meta without disturbing required surrounding ensure human seo v2 repository tool state.
- * Inputs: `html`: input consumed by this operation; `key`: input consumed by this operation; `keyAttribute`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `key`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function removeMeta(html, key, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return html.replace(new RegExp(`\\s*<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapedKey}["'])[^>]*>`, 'gi'), '');
 }
 
+
 /**
  * Function contract: setTitle
  * Purpose: Synchronize title with the requested state while preserving related ensure human seo v2 repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setTitle(html, value) {
   const tag = `<title>${esc(value)}</title>`;
@@ -226,19 +205,14 @@ function setTitle(html, value) {
     : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-/**
- * Function contract: setCanonical
- * Purpose: Applies set canonical while preserving the surrounding repository/runtime contract.
- * Inputs: html, canonical.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: setCanonical
  * Purpose: Synchronize canonical with the requested state while preserving related ensure human seo v2 repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `canonical`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `canonical`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setCanonical(html, canonical) {
   const tag = `<link rel="canonical" href="${esc(canonical)}" />`;
@@ -247,86 +221,67 @@ function setCanonical(html, canonical) {
     : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-/**
- * Function contract: currentTitle
- * Purpose: Implements the current title responsibility for this module.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: currentTitle
  * Purpose: Implement the current title responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function currentTitle(html) {
   return strip(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '');
 }
 
-/**
- * Function contract: h1
- * Purpose: Implements the h1 responsibility for this module.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: h1
  * Purpose: Implement the h1 responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function h1(html) {
   return strip(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || '');
 }
 
-/**
- * Function contract: classText
- * Purpose: Implements the class text responsibility for this module.
- * Inputs: html, className.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: classText
  * Purpose: Implement the class text responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `html`: input consumed by this operation; `className`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `className`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function classText(html, className) {
   const pattern = new RegExp(`<[^>]*class=["'][^"']*\\b${className}\\b[^"']*["'][^>]*>([\\s\\S]*?)<\\/[^>]+>`, 'i');
   return strip(pattern.exec(html)?.[1] || '');
 }
 
+
 /**
  * Function contract: absoluteImage
  * Purpose: Implement the absolute image responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `src`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `src`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function absoluteImage(src) {
   if (!src || /^data:/i.test(src)) return '';
   try { return new URL(src, `${site}/`).href; } catch { return ''; }
 }
 
-/**
- * Function contract: pageImages
- * Purpose: Implements the page images responsibility for this module.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: pageImages
  * Purpose: Implement the page images responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function pageImages(html) {
   const images = [];
@@ -340,19 +295,14 @@ function pageImages(html) {
   return images;
 }
 
-/**
- * Function contract: realImage
- * Purpose: Implements the real image responsibility for this module.
- * Inputs: route, html.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: realImage
  * Purpose: Implement the real image responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `route`: input consumed by this operation; `html`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `route`, `html`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function realImage(route, html) {
   if (['/', '/about', '/contact', '/blog/', '/privacy'].includes(route) || (route.startsWith('/blog/') && route !== '/blog/')) return portrait;
@@ -361,26 +311,21 @@ function realImage(route, html) {
     const proofFile = fileFor(proof);
     if (fs.existsSync(proofFile)) {
       const images = pageImages(fs.readFileSync(proofFile, 'utf8'));
-      if (images.length) return images.find(/** Callback contract: Processes the callback step for images without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `image`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (image) => /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(image)) || images[0];
+      if (images.length) return images.find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `image` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (image) => /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(image)) || images[0];
     }
   }
   const images = pageImages(html);
-  return images.find(/** Callback contract: Processes the callback step for images without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `image`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (image) => /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(image)) || images[0] || portrait;
+  return images.find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `image` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (image) => /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(image)) || images[0] || portrait;
 }
+
+
 
 /**
  * Function contract: pageTitle
- * Purpose: Implements the page title responsibility for this module.
- * Inputs: route, html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: pageTitle
  * Purpose: Implement the page title responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `route`: input consumed by this operation; `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `route`, `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function pageTitle(route, html) {
   if (coreMeta[route]) return coreMeta[route][0];
@@ -392,19 +337,14 @@ function pageTitle(route, html) {
   return currentTitle(html) || h1(html) || 'Nischhal Raj Subba';
 }
 
-/**
- * Function contract: pageDescription
- * Purpose: Implements the page description responsibility for this module.
- * Inputs: route, html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: pageDescription
  * Purpose: Implement the page description responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `route`: input consumed by this operation; `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `route`, `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function pageDescription(route, html) {
   if (coreMeta[route]) return coreMeta[route][1];
@@ -412,19 +352,14 @@ function pageDescription(route, html) {
   return metaValue(html, 'description') || classText(html, 'agent-page-intro') || classText(html, 'article-dek') || 'Product design work and writing by Nischhal Raj Subba.';
 }
 
-/**
- * Function contract: breadcrumbs
- * Purpose: Implements the breadcrumbs responsibility for this module.
- * Inputs: route, name.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: breadcrumbs
  * Purpose: Implement the breadcrumbs responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `route`: input consumed by this operation; `name`: stable identifier or label for the current item
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `route`, `name`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function breadcrumbs(route, name) {
   if (route === '/') return null;
@@ -436,19 +371,14 @@ function breadcrumbs(route, name) {
   return { '@type': 'BreadcrumbList', itemListElement: entries };
 }
 
-/**
- * Function contract: structuredData
- * Purpose: Implements the structured data responsibility for this module.
- * Inputs: route, title, description, image, html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: structuredData
  * Purpose: Implement the structured data responsibility owned by the ensure human seo v2 repository tool.
- * Inputs: `route`: input consumed by this operation; `title`: input consumed by this operation; `description`: input consumed by this operation; `image`: input consumed by this operation; `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `route`, `title`, `description`, `image`, `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function structuredData(route, title, description, image, html) {
   const canonical = route === '/' ? `${site}/` : `${site}${route}`;
@@ -493,19 +423,14 @@ function structuredData(route, title, description, image, html) {
   return { '@context': 'https://schema.org', '@graph': graph };
 }
 
-/**
- * Function contract: setJsonLd
- * Purpose: Applies set json ld while preserving the surrounding repository/runtime contract.
- * Inputs: html, data.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: setJsonLd
  * Purpose: Synchronize json ld with the requested state while preserving related ensure human seo v2 repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `data`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `data`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setJsonLd(html, data) {
   html = html.replace(/\s*<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi, '');
@@ -576,7 +501,7 @@ if (fs.existsSync(retiredProfile)) {
   fs.writeFileSync(retiredProfile, html, 'utf8');
 }
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/sitemap/0.9">\n${manifest.html.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ (file) => {
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/sitemap/0.9">\n${manifest.html.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (file) => {
   const route = routeFor(file);
   return `  <url><loc>${route === '/' ? `${site}/` : `${site}${route}`}</loc></url>`;
 }).join('\n')}\n</urlset>\n`;

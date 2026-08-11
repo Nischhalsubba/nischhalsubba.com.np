@@ -18,8 +18,8 @@ const base = (process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173').replace(/\/
 const sitemapPath = 'dist/sitemap.xml';
 const sitemap = fs.existsSync(sitemapPath) ? fs.readFileSync(sitemapPath, 'utf8') : '';
 const discovered = [...sitemap.matchAll(/<loc>https?:\/\/[^/]+([^<]*)<\/loc>/gi)]
-  .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (match) => match[1] || '/')
-  .filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `route`, `index`, `array`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (route, index, array) => array.indexOf(route) === index);
+  .map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result. */ (match) => match[1] || '/')
+  .filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `route`, `index`, `array` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (route, index, array) => array.indexOf(route) === index);
 const routes = discovered.length ? discovered : ['/', '/projects', '/services', '/about', '/contact', '/project-yarsha', '/blog/'];
 const themes = ['light', 'dark'];
 const viewports = [[390, 844], [1440, 1000]];
@@ -38,7 +38,7 @@ for (const [width, height] of viewports) {
         const response = await page.goto(`${base}${route}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
         if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
 
-        await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: nextTheme. Side effects: may read or update browser DOM/state; may read or update browser persistence. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser theme contrast audit repository tool operation. Inputs: `nextTheme`. Side effects: reads or updates DOM/browser state; reads or updates browser persistence. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `nextTheme`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (nextTheme) => {
+        await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser theme contrast audit repository tool operation. Inputs: `nextTheme` Side effects: reads or updates DOM/browser state Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ (nextTheme) => {
           try { sessionStorage.setItem('nrs-theme-override', nextTheme); } catch {}
           document.documentElement.setAttribute('data-theme', nextTheme);
           document.documentElement.style.colorScheme = nextTheme;
@@ -56,20 +56,15 @@ for (const [width, height] of viewports) {
           }
         }
 
-        const result = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser theme contrast audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed value consumed by the enclosing operation. */ () => {
-          /**
-           * Function contract: parseColor
-           * Purpose: Parses parse color into the structured form consumed by downstream logic.
-           * Inputs: value.
-           * Side effects: no obvious external side effect beyond invoked dependencies.
-           * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-           */
+        const result = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser theme contrast audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
+          
+          
           /**
            * Function contract: parseColor
            * Purpose: Convert color into the structured representation consumed by the browser theme contrast audit repository tool.
-           * Inputs: `value`: input value being transformed or evaluated
-           * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-           * Returns: Array containing the values selected or transformed by this function.
+           * Inputs: `value`
+           * Side effects: No direct external side effect beyond invoked dependencies.
+           * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
            */
           const parseColor = (value) => {
             if (!value) return null;
@@ -80,19 +75,14 @@ for (const [width, height] of viewports) {
             return [parts[0], parts[1], parts[2], Number.isFinite(parts[3]) ? parts[3] : 1];
           };
 
-          /**
-           * Function contract: blend
-           * Purpose: Implements the blend responsibility for this module.
-           * Inputs: top, bottom.
-           * Side effects: no obvious external side effect beyond invoked dependencies.
-           * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-           */
+          
+          
           /**
            * Function contract: blend
            * Purpose: Implement the blend responsibility owned by the browser theme contrast audit repository tool.
-           * Inputs: `top`: input consumed by this operation; `bottom`: input consumed by this operation
-           * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-           * Returns: Array containing the values selected or transformed by this function.
+           * Inputs: `top`, `bottom`
+           * Side effects: No direct external side effect beyond invoked dependencies.
+           * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
            */
           const blend = (top, bottom) => {
             const alpha = top[3] + bottom[3] * (1 - top[3]);
@@ -105,41 +95,31 @@ for (const [width, height] of viewports) {
             ];
           };
 
-          /**
-           * Function contract: luminance
-           * Purpose: Implements the luminance responsibility for this module.
-           * Inputs: [r, g, b].
-           * Side effects: no obvious external side effect beyond invoked dependencies.
-           * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-           */
+          
+          
           /**
            * Function contract: luminance
            * Purpose: Implement the luminance responsibility owned by the browser theme contrast audit repository tool.
-           * Inputs: `[r, g, b]`: input consumed by this operation
-           * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-           * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+           * Inputs: `[r, g, b]`
+           * Side effects: No direct external side effect beyond invoked dependencies.
+           * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
            */
           const luminance = ([r, g, b]) => {
-            const linear = [r, g, b].map(/** Callback contract: Processes the callback step for [r, g, b] without leaking orchestration details to the caller. Inputs: channel. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `channel`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `channel`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ (channel) => {
+            const linear = [r, g, b].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `channel` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (channel) => {
               const value = channel / 255;
               return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
             });
             return linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722;
           };
 
-          /**
-           * Function contract: contrast
-           * Purpose: Implements the contrast responsibility for this module.
-           * Inputs: a, b.
-           * Side effects: no obvious external side effect beyond invoked dependencies.
-           * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-           */
+          
+          
           /**
            * Function contract: contrast
            * Purpose: Implement the contrast responsibility owned by the browser theme contrast audit repository tool.
-           * Inputs: `a`: input consumed by this operation; `b`: input consumed by this operation
-           * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-           * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+           * Inputs: `a`, `b`
+           * Side effects: No direct external side effect beyond invoked dependencies.
+           * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
            */
           const contrast = (a, b) => {
             const first = luminance(a);
@@ -147,18 +127,13 @@ for (const [width, height] of viewports) {
             return (Math.max(first, second) + 0.05) / (Math.min(first, second) + 0.05);
           };
 
-          /**
-           * Function contract: isVisible
-           * Purpose: Implements the is visible responsibility for this module.
-           * Inputs: element.
-           * Side effects: no obvious external side effect beyond invoked dependencies.
-           * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-           */
+          
+          
           /**
            * Function contract: isVisible
            * Purpose: Determine whether visible satisfies the condition represented by this browser theme contrast audit repository tool.
-           * Inputs: `element`: DOM element currently being evaluated or updated
-           * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+           * Inputs: `element`
+           * Side effects: No direct external side effect beyond invoked dependencies.
            * Returns: Boolean indicating whether visible satisfies the documented condition.
            */
           const isVisible = (element) => {
@@ -179,19 +154,14 @@ for (const [width, height] of viewports) {
             return true;
           };
 
-          /**
-           * Function contract: backgroundFor
-           * Purpose: Implements the background for responsibility for this module.
-           * Inputs: element.
-           * Side effects: no obvious external side effect beyond invoked dependencies.
-           * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-           */
+          
+          
           /**
            * Function contract: backgroundFor
            * Purpose: Implement the background for responsibility owned by the browser theme contrast audit repository tool.
-           * Inputs: `element`: DOM element currently being evaluated or updated
-           * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-           * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+           * Inputs: `element`
+           * Side effects: No direct external side effect beyond invoked dependencies.
+           * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
            */
           const backgroundFor = (element) => {
             const chain = [];
@@ -205,19 +175,14 @@ for (const [width, height] of viewports) {
             return result;
           };
 
-          /**
-           * Function contract: pathFor
-           * Purpose: Implements the path for responsibility for this module.
-           * Inputs: element.
-           * Side effects: may read or update browser DOM/state.
-           * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-           */
+          
+          
           /**
            * Function contract: pathFor
            * Purpose: Implement the path for responsibility owned by the browser theme contrast audit repository tool.
-           * Inputs: `element`: DOM element currently being evaluated or updated
-           * Side effects: reads or updates DOM/browser state.
-           * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+           * Inputs: `element`
+           * Side effects: reads or updates DOM/browser state
+           * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
            */
           const pathFor = (element) => {
             if (element.id) return `#${element.id}`;
@@ -230,8 +195,8 @@ for (const [width, height] of viewports) {
           for (const element of document.querySelectorAll('body *')) {
             if (!isVisible(element)) continue;
             const directText = [...element.childNodes]
-              .filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `node`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (node) => node.nodeType === Node.TEXT_NODE)
-              .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `node`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ (node) => node.textContent || '')
+              .filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `node` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (node) => node.nodeType === Node.TEXT_NODE)
+              .map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `node` Side effects: reads or updates DOM/browser state Returns: Boolean predicate result. */ (node) => node.textContent || '')
               .join(' ')
               .replace(/\s+/g, ' ')
               .trim();
@@ -289,7 +254,7 @@ for (const [width, height] of viewports) {
 await browser.close();
 
 if (failures.length) {
-  console.error(`[theme-contrast-audit] ${failures.length} failure(s) across ${inspected} visible text runs\n${failures.slice(0, 250).map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[theme-contrast-audit] ${failures.length} failure(s) across ${inspected} visible text runs\n${failures.slice(0, 250).map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   if (failures.length > 250) console.error(`- … ${failures.length - 250} additional failure(s) omitted from console output`);
   process.exit(1);
 }

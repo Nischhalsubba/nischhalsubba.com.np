@@ -12,12 +12,13 @@
  */
 const ABOUT_CONTACT_STYLE_ID = 'nrs-about-contact-standards';
 
+
 /**
  * Function contract: ensureAboutContactStyles
  * Purpose: Apply about contact styles consistently while preserving the surrounding about contact standards browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureAboutContactStyles() {
   let style = document.getElementById(ABOUT_CONTACT_STYLE_ID);
@@ -173,12 +174,13 @@ function ensureAboutContactStyles() {
   `;
 }
 
+
 /**
  * Function contract: applyAboutContactStandards
  * Purpose: Apply about contact standards consistently while preserving the surrounding about contact standards browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function applyAboutContactStandards() {
   ensureAboutContactStyles();

@@ -31,12 +31,13 @@ const footerMarkup = `
     <div class="footer-bottom-bar"><span>© 2026 Nischhal Raj Subba.</span><span>Based in Nepal · UTC+5:45</span><a href="/privacy">Privacy</a></div>
   </div>`;
 
+
 /**
  * Function contract: buildFooter
  * Purpose: Build footer from the supplied inputs in the form expected by downstream site footer browser feature consumers.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function buildFooter() {
   const footer = document.createElement('footer');
@@ -46,12 +47,13 @@ function buildFooter() {
   return footer;
 }
 
+
 /**
  * Function contract: ensureSiteFooter
  * Purpose: Apply site footer consistently while preserving the surrounding site footer browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function ensureSiteFooter() {
   if ($('footer.site-footer, footer.nrs-auto-footer')) return;

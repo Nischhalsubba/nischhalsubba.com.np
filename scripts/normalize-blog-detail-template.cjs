@@ -19,12 +19,13 @@ const root = path.resolve(__dirname, '..');
 const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const styleVersion = '51.0';
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the normalize blog detail template repository tool.
- * Inputs: `dir`: input consumed by this operation; `files`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -37,23 +38,25 @@ function walk(dir, files = []) {
   return files;
 }
 
+
 /**
  * Function contract: text
  * Purpose: Implement the text responsibility owned by the normalize blog detail template repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function text(html) {
   return String(html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+
 /**
  * Function contract: ensurePageClass
  * Purpose: Apply page class consistently while preserving the surrounding normalize blog detail template repository tool contract.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function ensurePageClass(html) {
   if (/class=["'][^"']*nrs-blog-detail-page/i.test(html)) return html;
@@ -63,12 +66,13 @@ function ensurePageClass(html) {
   return html.replace(/<html\b([^>]*)>/i, '<html$1 class="nrs-blog-detail-page">');
 }
 
+
 /**
  * Function contract: normalizeArticle
  * Purpose: Apply article consistently while preserving the surrounding normalize blog detail template repository tool contract.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeArticle(file) {
   const rel = path.relative(targetRoot, file).replaceAll(path.sep, '/');

@@ -32,12 +32,13 @@ const redirects = new Map([
 
 const errors = [];
 
+
 /**
  * Function contract: verifyRoute
  * Purpose: Validate route and surface actionable failures when the verify live routes repository tool contract is violated.
- * Inputs: `route`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state; performs network I/O.
- * Returns: Promise that resolves when the asynchronous side effects complete.
+ * Inputs: `route`
+ * Side effects: reads or updates DOM/browser state; performs network I/O
+ * Returns: Promise resolving after the documented asynchronous side effects complete.
  */
 async function verifyRoute(route) {
   const response = await fetch(new URL(route, BASE_URL), { redirect: 'manual' });
@@ -49,19 +50,14 @@ async function verifyRoute(route) {
   if (!/<h1\b/i.test(text)) errors.push(`${route}: missing H1`);
 }
 
-/**
- * Function contract: verifyRedirect
- * Purpose: Validates verify redirect and reports violations instead of silently accepting invalid state.
- * Inputs: route, expected.
- * Side effects: may perform network I/O.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: verifyRedirect
  * Purpose: Validate redirect and surface actionable failures when the verify live routes repository tool contract is violated.
- * Inputs: `route`: input consumed by this operation; `expected`: input consumed by this operation
- * Side effects: performs network I/O.
- * Returns: Promise that resolves when the asynchronous side effects complete.
+ * Inputs: `route`, `expected`
+ * Side effects: performs network I/O
+ * Returns: Promise resolving after the documented asynchronous side effects complete.
  */
 async function verifyRedirect(route, expected) {
   const response = await fetch(new URL(route, BASE_URL), { redirect: 'manual' });

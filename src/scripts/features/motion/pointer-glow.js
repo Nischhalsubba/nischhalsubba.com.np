@@ -34,12 +34,13 @@ const INTERACTIVE_SELECTOR = [
   '.nrs-cursor-target',
 ].join(',');
 
+
 /**
  * Function contract: ensureCursorStyle
  * Purpose: Apply cursor style consistently while preserving the surrounding pointer glow browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureCursorStyle() {
   let style = document.getElementById(CURSOR_STYLE_ID);
@@ -130,12 +131,13 @@ function ensureCursorStyle() {
   `;
 }
 
+
 /**
  * Function contract: createCursorElement
  * Purpose: Build cursor element from the supplied inputs in the form expected by downstream pointer glow browser feature consumers.
- * Inputs: `className`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `className`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function createCursorElement(className) {
   const element = document.createElement('div');
@@ -145,12 +147,13 @@ function createCursorElement(className) {
   return element;
 }
 
+
 /**
  * Function contract: initPointerGlow
  * Purpose: Initialize pointer glow for the pointer glow browser feature, including the listeners/state needed for safe runtime use.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: registers or removes browser listeners; reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function initPointerGlow() {
   if (prefersReducedMotion() || isTouchDevice()) return;
@@ -169,12 +172,13 @@ export function initPointerGlow() {
 
   document.body.classList.add('nrs-premium-cursor');
 
+  
   /**
    * Function contract: animate
    * Purpose: Implement the animate responsibility owned by the pointer glow browser feature.
-   * Inputs: None; derives required state from the enclosing module/runtime context.
-   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   * Inputs: None; derives required state from its enclosing module/runtime context.
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
    */
   function animate() {
     ringX += (mouseX - ringX) * 0.18;
@@ -186,45 +190,35 @@ export function initPointerGlow() {
     frame = requestAnimationFrame(animate);
   }
 
-  /**
-   * Function contract: showCursor
-   * Purpose: Implements the show cursor responsibility for this module.
-   * Inputs: none; the function derives state from its enclosing module/runtime context.
-   * Side effects: may read or update browser DOM/state.
-   * Returns: no explicit value unless an invoked dependency throws/rejects.
-   */
+  
+  
   /**
    * Function contract: showCursor
    * Purpose: Implement the show cursor responsibility owned by the pointer glow browser feature.
-   * Inputs: None; derives required state from the enclosing module/runtime context.
-   * Side effects: reads or updates DOM/browser state.
-   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   * Inputs: None; derives required state from its enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state
+   * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
    */
   function showCursor() {
     ensureCursorStyle();
     document.body.classList.add('nrs-cursor-visible');
   }
 
-  /**
-   * Function contract: hideCursor
-   * Purpose: Implements the hide cursor responsibility for this module.
-   * Inputs: none; the function derives state from its enclosing module/runtime context.
-   * Side effects: may read or update browser DOM/state.
-   * Returns: no explicit value unless an invoked dependency throws/rejects.
-   */
+  
+  
   /**
    * Function contract: hideCursor
    * Purpose: Implement the hide cursor responsibility owned by the pointer glow browser feature.
-   * Inputs: None; derives required state from the enclosing module/runtime context.
-   * Side effects: reads or updates DOM/browser state.
-   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   * Inputs: None; derives required state from its enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state
+   * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
    */
   function hideCursor() {
     document.body.classList.remove('nrs-cursor-visible', 'nrs-cursor-interactive', 'nrs-cursor-pressed', 'nrs-cursor-text', 'nrs-cursor-media', 'nrs-cursor-labeled');
     ring.removeAttribute('data-label');
   }
 
-  window.addEventListener('pointermove', /** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: event. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Handle the pointermove event for `window` and apply this module's related state update. Inputs: `event`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the pointermove event for `window` and apply the related local state update. Inputs: `event`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (event) => {
+  window.addEventListener('pointermove',    /** Callback contract: Handle the pointermove event for `window` and apply the related local state update. Inputs: `event` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (event) => {
     if (event.pointerType && event.pointerType !== 'mouse') return;
     mouseX = event.clientX;
     mouseY = event.clientY;
@@ -236,7 +230,7 @@ export function initPointerGlow() {
   window.addEventListener('pointerleave', hideCursor, { passive: true });
   document.addEventListener('mouseleave', hideCursor, { passive: true });
 
-  document.addEventListener('pointerover', /** Callback contract: Processes the callback step for document without leaking orchestration details to the caller. Inputs: event. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Handle the pointerover event for `document` and apply this module's related state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the pointerover event for `document` and apply the related local state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (event) => {
+  document.addEventListener('pointerover',    /** Callback contract: Handle the pointerover event for `document` and apply the related local state update. Inputs: `event` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (event) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
 
@@ -255,17 +249,17 @@ export function initPointerGlow() {
     else ring.removeAttribute('data-label');
   }, { passive: true });
 
-  document.addEventListener('pointerdown', /** Callback contract: Processes the callback step for document without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the pointerdown event for `document` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the pointerdown event for `document` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
+  document.addEventListener('pointerdown',    /** Callback contract: Handle the pointerdown event for `document` and apply the related local state update. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ () => {
     document.body.classList.add('nrs-cursor-pressed');
   }, { passive: true });
 
-  document.addEventListener('pointerup', /** Callback contract: Processes the callback step for document without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Handle the pointerup event for `document` and apply this module's related state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the pointerup event for `document` and apply the related local state update. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
+  document.addEventListener('pointerup',    /** Callback contract: Handle the pointerup event for `document` and apply the related local state update. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ () => {
     document.body.classList.remove('nrs-cursor-pressed');
   }, { passive: true });
 
   frame = requestAnimationFrame(animate);
 
-  window.addEventListener('beforeunload', /** Callback contract: Processes the callback step for window without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Handle the beforeunload event for `window` and apply this module's related state update. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Handle the beforeunload event for `window` and apply the related local state update. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
+  window.addEventListener('beforeunload',    /** Callback contract: Handle the beforeunload event for `window` and apply the related local state update. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ () => {
     if (frame) cancelAnimationFrame(frame);
   }, { once: true });
 }

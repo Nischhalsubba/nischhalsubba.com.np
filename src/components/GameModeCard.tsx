@@ -31,12 +31,13 @@ const toneClasses: Record<NonNullable<GameModeCardProps["tone"]>, string> = {
   soft: "from-violet-100 via-fuchsia-100 to-pink-100 text-violet-950 border-violet-200",
 };
 
+
 /**
  * Function contract: GameModeCard
  * Purpose: Implement the game mode card responsibility owned by the game mode card module.
- * Inputs: `{ title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `{ title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 export default function GameModeCard({ title, description, eyebrow, href, actionLabel = "Open", tone = "warm", onClick }: GameModeCardProps) {
   const content = (

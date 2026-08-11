@@ -35,7 +35,7 @@ if (!html.includes('class="nrs-uploaded-visual"') || !html.includes('data-story=
 
 // Add a completely separate orange pixel/noise layer. The portrait image is never edited.
 if (!html.includes('class="nrs-pixel-field"')) {
-  const pixels = Array.from({ length: 84 }, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `_`, `index`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ (_, index) => {
+  const pixels = Array.from({ length: 84 },  /** Callback contract: Perform the local callback step required by the immediately enclosing finalize signal story v22 repository tool operation. Inputs: `_`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (_, index) => {
     const x = 4 + ((index * 37 + 11) % 92);
     const y = 5 + ((index * 53 + 7) % 89);
     const size = [1, 1, 1, 2, 2, 3][index % 6];

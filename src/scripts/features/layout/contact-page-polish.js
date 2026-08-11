@@ -10,12 +10,13 @@
  * - src/runtime/script.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
+
 /**
  * Function contract: ensureContactPagePolishStyle
  * Purpose: Apply contact page polish style consistently while preserving the surrounding contact page polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureContactPagePolishStyle() {
   let style = document.getElementById('nrs-contact-page-polish');
@@ -236,12 +237,13 @@ function ensureContactPagePolishStyle() {
   `;
 }
 
+
 /**
  * Function contract: polishContactPage
  * Purpose: Apply contact page consistently while preserving the surrounding contact page polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function polishContactPage() {
   ensureContactPagePolishStyle();

@@ -40,11 +40,12 @@ const BLOG_COVERS = [
 
 const DEFAULT_COVER = BLOG_COVERS[1];
 
+
 /**
  * Function contract: isBlogDetailPage
  * Purpose: Determine whether blog detail page satisfies the condition represented by this blog visuals browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
  * Returns: Boolean indicating whether blog detail page satisfies the documented condition.
  */
 function isBlogDetailPage() {
@@ -52,52 +53,43 @@ function isBlogDetailPage() {
   return path.startsWith('/blog/') && path !== '/blog/' && !path.endsWith('/blog/index.html');
 }
 
+
 /**
  * Function contract: currentCover
  * Purpose: Implement the current cover responsibility owned by the blog visuals browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function currentCover() {
   const title = document.title || '';
   const heading = document.querySelector('h1')?.textContent || '';
   const path = window.location.pathname;
   const key = `${path} ${title} ${heading}`;
-  return BLOG_COVERS.find(/** Callback contract: Processes the callback step for blog covers without leaking orchestration details to the caller. Inputs: cover. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `cover`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `cover`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (cover) => cover.match.test(key)) || DEFAULT_COVER;
+  return BLOG_COVERS.find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `cover` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (cover) => cover.match.test(key)) || DEFAULT_COVER;
 }
+
+
 
 /**
  * Function contract: absoluteUrl
- * Purpose: Implements the absolute url responsibility for this module.
- * Inputs: src.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: absoluteUrl
  * Purpose: Implement the absolute url responsibility owned by the blog visuals browser feature.
- * Inputs: `src`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `src`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function absoluteUrl(src) {
   return new URL(src, window.location.origin).href;
 }
 
-/**
- * Function contract: upsertMeta
- * Purpose: Implements the upsert meta responsibility for this module.
- * Inputs: selector, attrs.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: upsertMeta
  * Purpose: Implement the upsert meta responsibility owned by the blog visuals browser feature.
- * Inputs: `selector`: input consumed by this operation; `attrs`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `selector`, `attrs`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function upsertMeta(selector, attrs) {
   let meta = document.head.querySelector(selector);
@@ -105,22 +97,17 @@ function upsertMeta(selector, attrs) {
     meta = document.createElement('meta');
     document.head.appendChild(meta);
   }
-  Object.entries(attrs).forEach(/** Callback contract: Processes the callback step for object.entries(attrs) without leaking orchestration details to the caller. Inputs: [key, value]. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[key, value]`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[key, value]`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ ([key, value]) => meta.setAttribute(key, value));
+  Object.entries(attrs).forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[key, value]` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ ([key, value]) => meta.setAttribute(key, value));
 }
+
+
 
 /**
  * Function contract: ensureCoverImage
- * Purpose: Applies ensure cover image while preserving the surrounding repository/runtime contract.
- * Inputs: cover.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: ensureCoverImage
  * Purpose: Apply cover image consistently while preserving the surrounding blog visuals browser feature contract.
- * Inputs: `cover`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `cover`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureCoverImage(cover) {
   const article = document.querySelector('article');
@@ -152,19 +139,14 @@ function ensureCoverImage(cover) {
   image.decoding = 'async';
 }
 
-/**
- * Function contract: injectBlogVisualStyles
- * Purpose: Implements the inject blog visual styles responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: injectBlogVisualStyles
  * Purpose: Implement the inject blog visual styles responsibility owned by the blog visuals browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function injectBlogVisualStyles() {
   if (document.getElementById('nrs-blog-visuals-style')) return;
@@ -240,19 +222,14 @@ function injectBlogVisualStyles() {
   document.head.appendChild(style);
 }
 
-/**
- * Function contract: ensureBlogGeneratedVisuals
- * Purpose: Applies ensure blog generated visuals while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: ensureBlogGeneratedVisuals
  * Purpose: Apply blog generated visuals consistently while preserving the surrounding blog visuals browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function ensureBlogGeneratedVisuals() {
   if (!isBlogDetailPage()) return;

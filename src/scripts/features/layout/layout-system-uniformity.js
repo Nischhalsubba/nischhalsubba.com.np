@@ -12,12 +12,13 @@
  */
 const STYLE_ID = 'nrs-layout-system-uniformity';
 
+
 /**
  * Function contract: ensureUniformityStyles
  * Purpose: Apply uniformity styles consistently while preserving the surrounding layout system uniformity browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureUniformityStyles() {
   let style = document.getElementById(STYLE_ID);
@@ -301,12 +302,13 @@ function ensureUniformityStyles() {
   `;
 }
 
+
 /**
  * Function contract: applyLayoutSystemUniformity
  * Purpose: Apply layout system uniformity consistently while preserving the surrounding layout system uniformity browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function applyLayoutSystemUniformity() {
   ensureUniformityStyles();

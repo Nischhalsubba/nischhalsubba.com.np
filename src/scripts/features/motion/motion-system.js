@@ -33,23 +33,25 @@ const HOVER_SELECTOR = [
   '.quote-card',
 ].join(',');
 
+
 /**
  * Function contract: prefersReducedMotion
  * Purpose: Implement the prefers reduced motion responsibility owned by the motion system browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+
 /**
  * Function contract: ensureMotionStyle
  * Purpose: Apply motion style consistently while preserving the surrounding motion system browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureMotionStyle() {
   let style = document.getElementById(MOTION_STYLE_ID);
@@ -119,37 +121,27 @@ function ensureMotionStyle() {
   `;
 }
 
-/**
- * Function contract: getRevealElements
- * Purpose: Retrieves get reveal elements and returns it in the form expected by its caller.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: getRevealElements
  * Purpose: Return reveal elements from the supplied inputs or current motion system browser feature state.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: The requested reveal elements; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: The requested reveal elements; explicit early-return branches define empty/fallback behavior.
  */
 function getRevealElements() {
-  return Array.from(document.querySelectorAll(REVEAL_SELECTOR)).filter(/** Callback contract: Processes the callback step for array.from(document.query selector all(reveal selector)) without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `element`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (element) => element instanceof HTMLElement);
+  return Array.from(document.querySelectorAll(REVEAL_SELECTOR)).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (element) => element instanceof HTMLElement);
 }
+
+
 
 /**
  * Function contract: runGsapMotion
- * Purpose: Implements the run gsap motion responsibility for this module.
- * Inputs: elements.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: runGsapMotion
  * Purpose: Execute gsap motion in the required order and propagate failures through the motion system browser feature contract.
- * Inputs: `elements`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `elements`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function runGsapMotion(elements) {
   const gsap = window.gsap;
@@ -158,7 +150,7 @@ function runGsapMotion(elements) {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  elements.forEach(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`, `index`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (element, index) => {
+  elements.forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (element, index) => {
     gsap.fromTo(
       element,
       { autoAlpha: 0, y: 12 },
@@ -181,23 +173,18 @@ function runGsapMotion(elements) {
   return true;
 }
 
-/**
- * Function contract: runFallbackMotion
- * Purpose: Implements the run fallback motion responsibility for this module.
- * Inputs: elements.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: runFallbackMotion
  * Purpose: Execute fallback motion in the required order and propagate failures through the motion system browser feature contract.
- * Inputs: `elements`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `elements`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function runFallbackMotion(elements) {
-  const observer = new IntersectionObserver(/** Callback contract: Processes the callback step for anonymous without leaking orchestration details to the caller. Inputs: entries. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing motion system browser feature operation. Inputs: `entries`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `entries`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (entries) => {
-    entries.forEach(/** Callback contract: Processes the callback step for entries without leaking orchestration details to the caller. Inputs: entry. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `entry`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `entry`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (entry) => {
+  const observer = new IntersectionObserver(   /** Callback contract: Perform the local callback step required by the immediately enclosing motion system browser feature operation. Inputs: `entries` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ (entries) => {
+    entries.forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `entry` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (entry) => {
       if (!entry.isIntersecting) return;
       entry.target.animate(
         [
@@ -210,22 +197,17 @@ function runFallbackMotion(elements) {
     });
   }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
 
-  elements.forEach(/** Callback contract: Processes the callback step for elements without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (element) => observer.observe(element));
+  elements.forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (element) => observer.observe(element));
 }
+
+
 
 /**
  * Function contract: initProfessionalMotionSystem
- * Purpose: Implements the init professional motion system responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: initProfessionalMotionSystem
  * Purpose: Initialize professional motion system for the motion system browser feature, including the listeners/state needed for safe runtime use.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function initProfessionalMotionSystem() {
   if (prefersReducedMotion()) return;

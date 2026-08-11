@@ -36,35 +36,38 @@ fs.mkdirSync(screenshotRoot, { recursive: true });
 const failures = [];
 const browser = await chromium.launch({ headless: true });
 
+
 /**
  * Function contract: intersects
  * Purpose: Implement the intersects responsibility owned by the browser sticky responsive audit repository tool.
- * Inputs: `a`: input consumed by this operation; `b`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `a`, `b`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function intersects(a, b) {
   if (!a || !b) return false;
   return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
 }
 
+
 /**
  * Function contract: routeSlug
  * Purpose: Implement the route slug responsibility owned by the browser sticky responsive audit repository tool.
- * Inputs: `route`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function routeSlug(route) {
   return route === '/' ? 'home' : route.replace(/^\/+|\/+$/g, '').replaceAll('/', '-');
 }
 
+
 /**
  * Function contract: capture
  * Purpose: Implement the capture responsibility owned by the browser sticky responsive audit repository tool.
- * Inputs: `page`: input consumed by this operation; `width`: input consumed by this operation; `route`: input consumed by this operation; `position`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Promise that resolves when the asynchronous side effects complete.
+ * Inputs: `page`, `width`, `route`, `position`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Promise resolving after the documented asynchronous side effects complete.
  */
 async function capture(page, width, route, position) {
   if (!screenshotWidths.has(width)) return;
@@ -82,20 +85,15 @@ for (const [width, height] of viewports) {
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
       await capture(page, width, route, 'top');
 
-      const initial = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser sticky responsive audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed value consumed by the enclosing operation. */ () => {
-        /**
-         * Function contract: visible
-         * Purpose: Implements the visible responsibility for this module.
-         * Inputs: element.
-         * Side effects: no obvious external side effect beyond invoked dependencies.
-         * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-         */
+      const initial = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser sticky responsive audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
+        
+        
         /**
          * Function contract: visible
          * Purpose: Implement the visible responsibility owned by the browser sticky responsive audit repository tool.
-         * Inputs: `element`: DOM element currently being evaluated or updated
-         * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-         * Returns: Boolean predicate result consumed by the caller.
+         * Inputs: `element`
+         * Side effects: No direct external side effect beyond invoked dependencies.
+         * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
          */
         const visible = (element) => {
           if (!element) return false;
@@ -103,19 +101,14 @@ for (const [width, height] of viewports) {
           const rect = element.getBoundingClientRect();
           return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
         };
-        /**
-         * Function contract: rect
-         * Purpose: Implements the rect responsibility for this module.
-         * Inputs: element.
-         * Side effects: no obvious external side effect beyond invoked dependencies.
-         * Returns: no explicit value unless an invoked dependency throws/rejects.
-         */
+        
+        
         /**
          * Function contract: rect
          * Purpose: Implement the rect responsibility owned by the browser sticky responsive audit repository tool.
-         * Inputs: `element`: DOM element currently being evaluated or updated
-         * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-         * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+         * Inputs: `element`
+         * Side effects: No direct external side effect beyond invoked dependencies.
+         * Returns: Computed expression result consumed by the enclosing operation.
          */
         const rect = (element) => element ? element.getBoundingClientRect().toJSON() : null;
         const root = document.querySelector('.agent-portfolio');
@@ -129,9 +122,8 @@ for (const [width, height] of viewports) {
         const brandStrong = brand?.querySelector('strong') || null;
         const brandDetail = brand?.querySelector('span') || null;
         const fields = [...document.querySelectorAll('#contact-form input:not([type="hidden"]), #contact-form select, #contact-form textarea')]
-          .filter(/** Callback contract: Processes the callback step for [...document.query selector all('#contact form input:not([type="hidden"]), #contact form select, #contact form textarea')] without leaking orchestration details to the caller. Inputs: field. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `field`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `field`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (field) => field.name !== '_honey' && visible(field))
-          .map(/** Callback contract: Processes the callback step for [...document.query selector all('#contact form input:not([type="hidden"]), #contact form select, #contact form textarea')]
-          .filter((field) => field.name !== ' honey' && visible(field)) without leaking orchestration details to the caller. Inputs: field. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `field`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `field`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (field) => ({
+          .filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `field` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (field) => field.name !== '_honey' && visible(field))
+          .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `field` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (field) => ({
             tag: field.tagName,
             name: field.getAttribute('name') || field.id,
             height: field.getBoundingClientRect().height,
@@ -140,25 +132,18 @@ for (const [width, height] of viewports) {
           }));
         const importantButtons = [...document.querySelectorAll('.agent-btn, .mobile-nav-toggle, .theme-toggle-btn')]
           .filter(visible)
-          .map(/** Callback contract: Processes the callback step for [...document.query selector all('.agent btn, .mobile nav toggle, .theme toggle btn')]
-          .filter(visible) without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ (element) => ({
+          .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element` Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ (element) => ({
             label: element.getAttribute('aria-label') || element.textContent?.trim().slice(0, 40) || element.className,
             width: element.getBoundingClientRect().width,
             height: element.getBoundingClientRect().height,
           }));
         const mediaOverflow = [...document.querySelectorAll('main img, main video, main iframe, main canvas')]
           .filter(visible)
-          .filter(/** Callback contract: Processes the callback step for [...document.query selector all('main img, main video, main iframe, main canvas')]
-          .filter(visible) without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Keep only elements that are rendered, visible, and eligible for the surrounding focus/layout operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Boolean predicate result consumed by the caller. */ /** Callback contract: Keep only elements that are rendered, visible, and eligible for the enclosing focus/layout operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate/result. */ (element) => {
+          .filter(   /** Callback contract: Keep only elements that are rendered, visible, and eligible for the enclosing focus/layout operation. Inputs: `element` Side effects: reads or updates DOM/browser state Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (element) => {
             const box = element.getBoundingClientRect();
             return box.left < -1 || box.right > document.documentElement.clientWidth + 1;
           })
-          .map(/** Callback contract: Processes the callback step for [...document.query selector all('main img, main video, main iframe, main canvas')]
-          .filter(visible)
-          .filter((element) => {
-            const box = element.get bounding client rect();
-            return box.left <  1 || box.right > document.document element.client width + 1;
-          }) without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (element) => element.currentSrc || element.src || element.tagName);
+          .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result. */ (element) => element.currentSrc || element.src || element.tagName);
 
         return {
           docWidth: document.documentElement.scrollWidth,
@@ -230,10 +215,10 @@ for (const [width, height] of viewports) {
         }
 
         if (route === '/') {
-          const themeBefore = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser sticky responsive audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ () => document.documentElement.dataset.theme || '');
+          const themeBefore = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser sticky responsive audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Boolean predicate result. */ () => document.documentElement.dataset.theme || '');
           await page.click('.mobile-nav-toggle');
           await page.waitForTimeout(80);
-          const drawerControl = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser sticky responsive audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed value consumed by the enclosing operation. */ () => {
+          const drawerControl = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser sticky responsive audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
             const element = document.querySelector('.agent-mobile-theme-toggle');
             if (!element) return null;
             const style = getComputedStyle(element);
@@ -248,20 +233,20 @@ for (const [width, height] of viewports) {
           if (drawerControl.width < 44 || drawerControl.height < 44) throw new Error('mobile drawer theme control is below the 44px target');
           await page.click('.agent-mobile-theme-toggle');
           await page.waitForTimeout(40);
-          const themeAfter = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser sticky responsive audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ () => document.documentElement.dataset.theme || '');
+          const themeAfter = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser sticky responsive audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Boolean predicate result. */ () => document.documentElement.dataset.theme || '');
           if (themeBefore === themeAfter) throw new Error('mobile drawer theme control did not switch theme');
           await page.keyboard.press('Escape');
           await page.waitForTimeout(40);
         }
       }
 
-      const scrollable = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser sticky responsive audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ () => document.documentElement.scrollHeight - window.innerHeight);
+      const scrollable = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser sticky responsive audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ () => document.documentElement.scrollHeight - window.innerHeight);
       if (scrollable > 100) {
-        await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser sticky responsive audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ () => window.scrollTo({ top: Math.round((document.documentElement.scrollHeight - window.innerHeight) * .58), behavior: 'instant' }));
+        await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser sticky responsive audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ () => window.scrollTo({ top: Math.round((document.documentElement.scrollHeight - window.innerHeight) * .58), behavior: 'instant' }));
         await page.waitForTimeout(100);
         await capture(page, width, route, 'scroll58');
 
-        const scrolled = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser sticky responsive audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed value consumed by the enclosing operation. */ () => {
+        const scrolled = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser sticky responsive audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
           const root = document.querySelector('.agent-portfolio');
           const nav = document.querySelector('.nav-wrapper');
           const progress = document.querySelector('#agent-progress');
@@ -301,7 +286,7 @@ for (const [width, height] of viewports) {
 
 await browser.close();
 if (failures.length) {
-  console.error(`[sticky-responsive-audit] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[sticky-responsive-audit] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

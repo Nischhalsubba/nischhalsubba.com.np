@@ -39,12 +39,13 @@ const retiredProductionFiles = [
   'blog.html',
 ];
 
+
 /**
  * Function contract: fail
  * Purpose: Implement the fail responsibility owned by the audit content structure repository tool.
- * Inputs: `message`: input consumed by this operation
- * Side effects: emits diagnostics or changes process failure state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `message`
+ * Side effects: emits diagnostics or changes process failure state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function fail(message) {
   console.error(`[content-structure] ${message}`);

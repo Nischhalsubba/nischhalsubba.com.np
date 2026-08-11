@@ -46,7 +46,7 @@ if ((storyStart < 0 || thesisStart < 0) && !hasV23Story) {
   throw new Error('[hero-story-v23] Story block boundaries were not found.');
 }
 
-const pixels = Array.from({ length: 62 }, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `_`, `index`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ (_, index) => {
+const pixels = Array.from({ length: 62 },  /** Callback contract: Perform the local callback step required by the immediately enclosing finalize signal story v23 repository tool operation. Inputs: `_`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (_, index) => {
   const x = 3 + ((index * 47 + 13) % 94);
   const y = 5 + ((index * 61 + 17) % 90);
   const size = [1, 1, 1, 2, 2, 3][index % 6];
@@ -188,5 +188,5 @@ html[data-theme="light"] .nrs-uploaded-hero-v19 .nrs-field-pixels{filter:opacity
 fs.writeFileSync(homePath, html, 'utf8');
 fs.writeFileSync(stylePath, css, 'utf8');
 const checks = [html.includes('nrs-decision-field'), html.includes('data-story="problem"'), html.includes('nrs-hero-story-v23-runtime:start'), !html.includes('nrs-hero-story-v21-runtime:start'), css.includes('nrs-hero-story-v23:start')];
-if (checks.some(/** Callback contract: Processes the callback step for checks without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `value`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `value`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (value) => !value)) throw new Error('[hero-story-v23] Verification failed.');
+if (checks.some(   /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `value` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (value) => !value)) throw new Error('[hero-story-v23] Verification failed.');
 console.log('[hero-story-v23] Rebuilt decision field: static broken arcs, compact product-design story, no hover parallax.');

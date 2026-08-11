@@ -44,12 +44,13 @@ const proofSection = `
         </div>
       </section>`;
 
+
 /**
  * Function contract: entitySchema
  * Purpose: Implement the entity schema responsibility owned by the ensure homepage audit copy repository tool.
- * Inputs: `canonical`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `canonical`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function entitySchema(canonical) {
   const url = canonical === 'home-v2.html' ? `${SITE}/home-v2.html` : `${SITE}/`;
@@ -111,37 +112,27 @@ function entitySchema(canonical) {
   return `<script type="application/ld+json" id="nrs-homepage-entity-schema">${JSON.stringify(graph)}</script>`;
 }
 
-/**
- * Function contract: replaceHero
- * Purpose: Implements the replace hero responsibility for this module.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: replaceHero
  * Purpose: Implement the replace hero responsibility owned by the ensure homepage audit copy repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function replaceHero(html) {
   return html.replace(/      <section class="hero-section center-aligned-hero nrs-home-hero"[\s\S]*?      <\/section>/, hero);
 }
 
-/**
- * Function contract: upsertProofSection
- * Purpose: Implements the upsert proof section responsibility for this module.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: upsertProofSection
  * Purpose: Implement the upsert proof section responsibility owned by the ensure homepage audit copy repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function upsertProofSection(html) {
   html = html.replace(/\s*<section id="homepage-proof-discovery"[\s\S]*?<\/section>/, '');
@@ -155,38 +146,28 @@ function upsertProofSection(html) {
   return html.replace('</main>', `${proofSection}\n    </main>`);
 }
 
-/**
- * Function contract: upsertEntitySchema
- * Purpose: Implements the upsert entity schema responsibility for this module.
- * Inputs: html, target.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: upsertEntitySchema
  * Purpose: Implement the upsert entity schema responsibility owned by the ensure homepage audit copy repository tool.
- * Inputs: `html`: input consumed by this operation; `target`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `target`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function upsertEntitySchema(html, target) {
   html = html.replace(/\s*<script\s+type="application\/ld\+json"\s+id="nrs-homepage-entity-schema">[\s\S]*?<\/script>/, '');
   return html.replace('</head>', `    ${entitySchema(target)}\n  </head>`);
 }
 
-/**
- * Function contract: cleanOutdatedCopy
- * Purpose: Removes or cleans clean outdated copy while keeping required outputs intact.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: cleanOutdatedCopy
  * Purpose: Remove outdated copy without disturbing required surrounding ensure homepage audit copy repository tool state.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function cleanOutdatedCopy(html) {
   return html

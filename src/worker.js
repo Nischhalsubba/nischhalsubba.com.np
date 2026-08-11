@@ -25,12 +25,13 @@ const ANALYTICS_EVENTS = new Set([
   'performance_metric',
 ]);
 
+
 /**
  * Function contract: methodNotAllowed
  * Purpose: Implement the method not allowed responsibility owned by the worker module.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function methodNotAllowed() {
   return new Response(JSON.stringify({
@@ -47,12 +48,13 @@ function methodNotAllowed() {
   });
 }
 
+
 /**
  * Function contract: legacyRedirect
  * Purpose: Implement the legacy redirect responsibility owned by the worker module.
- * Inputs: `request`: incoming request object; `url`: URL being inspected, normalized, or requested
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `request`, `url`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function legacyRedirect(request, url) {
   if (request.method !== 'GET' && request.method !== 'HEAD') return null;
@@ -64,12 +66,13 @@ function legacyRedirect(request, url) {
   return Response.redirect(target.toString(), 301);
 }
 
+
 /**
  * Function contract: analyticsResponse
  * Purpose: Implement the analytics response responsibility owned by the worker module.
- * Inputs: `status`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `status`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function analyticsResponse(status = 204) {
   return new Response(null, {
@@ -84,12 +87,13 @@ function analyticsResponse(status = 204) {
   });
 }
 
+
 /**
  * Function contract: recordAnalytics
  * Purpose: Implement the record analytics responsibility owned by the worker module.
- * Inputs: `request`: incoming request object
- * Side effects: emits diagnostics or changes process failure state.
- * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
+ * Inputs: `request`
+ * Side effects: emits diagnostics or changes process failure state
+ * Returns: Promise resolving to the computed function result.
  */
 async function recordAnalytics(request) {
   if (request.method === 'OPTIONS') return analyticsResponse();
@@ -127,12 +131,13 @@ async function recordAnalytics(request) {
 }
 
 export default {
+  
   /**
    * Function contract: fetch
    * Purpose: Return module behavior from the supplied inputs or current worker module state.
-   * Inputs: `request`: incoming request object; `env`: input consumed by this operation
-   * Side effects: performs network I/O.
-   * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
+   * Inputs: `request`, `env`
+   * Side effects: performs network I/O
+   * Returns: Promise resolving to the computed function result.
    */
   async fetch(request, env) {
     const url = new URL(request.url);

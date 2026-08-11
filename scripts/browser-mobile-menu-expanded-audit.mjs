@@ -47,24 +47,19 @@ for (const [width, height] of viewports) {
       const buttonBox = await button.boundingBox();
       if (!buttonBox || buttonBox.width < 44 || buttonBox.height < 44) throw new Error(`menu target is ${buttonBox?.width || 0}x${buttonBox?.height || 0}`);
 
-      const beforeScroll = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser mobile menu expanded audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: the selected `scrollY` value. */ () => window.scrollY);
+      const beforeScroll = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser mobile menu expanded audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: The selected `scrollY` value. */ () => window.scrollY);
       await button.click();
       await page.waitForTimeout(120);
 
-      const state = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser mobile menu expanded audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed value consumed by the enclosing operation. */ () => {
-        /**
-         * Function contract: visible
-         * Purpose: Implements the visible responsibility for this module.
-         * Inputs: element.
-         * Side effects: no obvious external side effect beyond invoked dependencies.
-         * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-         */
+      const state = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser mobile menu expanded audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
+        
+        
         /**
          * Function contract: visible
          * Purpose: Implement the visible responsibility owned by the browser mobile menu expanded audit repository tool.
-         * Inputs: `element`: DOM element currently being evaluated or updated
-         * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-         * Returns: Boolean predicate result consumed by the caller.
+         * Inputs: `element`
+         * Side effects: No direct external side effect beyond invoked dependencies.
+         * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
          */
         const visible = (element) => {
           if (!element) return false;
@@ -72,19 +67,14 @@ for (const [width, height] of viewports) {
           const rect = element.getBoundingClientRect();
           return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0' && rect.width > 0 && rect.height > 0;
         };
-        /**
-         * Function contract: box
-         * Purpose: Implements the box responsibility for this module.
-         * Inputs: element.
-         * Side effects: no obvious external side effect beyond invoked dependencies.
-         * Returns: no explicit value unless an invoked dependency throws/rejects.
-         */
+        
+        
         /**
          * Function contract: box
          * Purpose: Implement the box responsibility owned by the browser mobile menu expanded audit repository tool.
-         * Inputs: `element`: DOM element currently being evaluated or updated
-         * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-         * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+         * Inputs: `element`
+         * Side effects: No direct external side effect beyond invoked dependencies.
+         * Returns: Computed expression result consumed by the enclosing operation.
          */
         const box = (element) => element ? element.getBoundingClientRect().toJSON() : null;
         const overlay = document.querySelector('.mobile-nav-overlay');
@@ -92,7 +82,7 @@ for (const [width, height] of viewports) {
         const brand = document.querySelector('.agent-mobile-brand');
         const theme = document.querySelector('.theme-toggle-btn, #theme-toggle');
         const drawerTheme = document.querySelector('.agent-mobile-theme-toggle');
-        const links = [...document.querySelectorAll('.mobile-nav-links a')].map(/** Callback contract: Processes the callback step for [...document.query selector all('.mobile nav links a')] without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (link) => ({
+        const links = [...document.querySelectorAll('.mobile-nav-links a')].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ (link) => ({
           label: link.textContent.trim(),
           box: box(link),
           visible: visible(link),
@@ -147,7 +137,7 @@ for (const [width, height] of viewports) {
 
       await page.keyboard.press('Escape');
       await page.waitForTimeout(80);
-      const closed = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser mobile menu expanded audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ () => ({
+      const closed = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser mobile menu expanded audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ () => ({
         bodyOpen: document.body.classList.contains('menu-open'),
         expanded: document.querySelector('.mobile-nav-toggle')?.getAttribute('aria-expanded'),
         hidden: document.querySelector('.mobile-nav-overlay')?.hidden,
@@ -168,7 +158,7 @@ for (const [width, height] of viewports) {
 await browser.close();
 
 if (failures.length) {
-  console.error(`[mobile-menu-expanded-audit] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[mobile-menu-expanded-audit] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

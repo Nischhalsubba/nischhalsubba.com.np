@@ -20,21 +20,22 @@ const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const sourceDir = path.join(root, 'assets', 'images', 'hero-original-v19.parts');
 const temporaryTargets = ['part-01.b64', 'part-02.b64'];
-const originals = new Map(temporaryTargets.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads filesystem state. Returns: computed value consumed by the enclosing operation. */ (name) => {
+const originals = new Map(temporaryTargets.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: reads filesystem state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (name) => {
   const file = path.join(sourceDir, name);
   return [name, fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null];
 }));
 
+
 /**
  * Function contract: restore
  * Purpose: Apply module behavior consistently while preserving the surrounding finalize signal reference visual repository tool contract.
- * Inputs: `targetName`: input consumed by this operation; `chunkNames`: input consumed by this operation; `expectedBytes`: input consumed by this operation; `expectedHash`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `targetName`, `chunkNames`, `expectedBytes`, `expectedHash`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function restore(targetName, chunkNames, expectedBytes, expectedHash) {
   const restored = chunkNames
-    .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads filesystem state. Returns: computed expression result consumed by the enclosing operation. */ (name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
+    .map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: reads filesystem state Returns: Computed expression result consumed by the enclosing operation. */ (name) => fs.readFileSync(path.join(sourceDir, name), 'utf8').replace(/\s+/g, ''))
     .join('');
   const hash = crypto.createHash('sha256').update(restored, 'utf8').digest('hex');
   if (restored.length !== expectedBytes || hash !== expectedHash) {
@@ -43,19 +44,14 @@ function restore(targetName, chunkNames, expectedBytes, expectedHash) {
   fs.writeFileSync(path.join(sourceDir, targetName), restored, 'utf8');
 }
 
-/**
- * Function contract: restoreTrackedSources
- * Purpose: Implements the restore tracked sources responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: restoreTrackedSources
  * Purpose: Apply tracked sources consistently while preserving the surrounding finalize signal reference visual repository tool contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function restoreTrackedSources() {
   for (const [name, original] of originals) {

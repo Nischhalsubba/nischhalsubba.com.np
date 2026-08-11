@@ -21,39 +21,42 @@ if (/^\s*\d+(?:;\d+)+&display=swap'\);/m.test(css)) {
   failures.push('style.css contains a malformed font-query fragment');
 }
 
+
 /**
  * Function contract: hexToRgb
  * Purpose: Implement the hex to rgb responsibility owned by the audit accessibility tokens repository tool.
- * Inputs: `hex`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `hex`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function hexToRgb(hex) {
   const value = hex.replace('#', '');
-  return [0, 2, 4].map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `offset`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (offset) => Number.parseInt(value.slice(offset, offset + 2), 16));
+  return [0, 2, 4].map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `offset` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (offset) => Number.parseInt(value.slice(offset, offset + 2), 16));
 }
+
 
 /**
  * Function contract: luminance
  * Purpose: Implement the luminance responsibility owned by the audit accessibility tokens repository tool.
- * Inputs: `hex`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `hex`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function luminance(hex) {
-  const [r, g, b] = hexToRgb(hex).map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `channel`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ (channel) => {
+  const [r, g, b] = hexToRgb(hex).map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `channel` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (channel) => {
     const value = channel / 255;
     return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
   });
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
+
 /**
  * Function contract: contrast
  * Purpose: Implement the contrast responsibility owned by the audit accessibility tokens repository tool.
- * Inputs: `foreground`: input consumed by this operation; `background`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `foreground`, `background`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function contrast(foreground, background) {
   const lighter = Math.max(luminance(foreground), luminance(background));
@@ -78,7 +81,7 @@ if (page && tertiary && contrast(tertiary, page) < 4.5) {
 }
 
 if (failures.length) {
-  console.error(`[accessibility-tokens] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[accessibility-tokens] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

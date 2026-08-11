@@ -18,12 +18,13 @@ const path = require('node:path');
 const useDist = process.argv.includes('--dist');
 const root = path.resolve(__dirname, '..', useDist ? 'dist' : '');
 
+
 /**
  * Function contract: read
  * Purpose: Return module behavior from the supplied inputs or current validate about contact repository tool state.
- * Inputs: `name`: stable identifier or label for the current item
- * Side effects: reads repository/filesystem state.
- * Returns: The requested module behavior; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: `name`
+ * Side effects: reads filesystem state
+ * Returns: The requested module behavior; explicit early-return branches define empty/fallback behavior.
  */
 function read(name) {
   const file = path.join(root, name);
@@ -31,19 +32,14 @@ function read(name) {
   return fs.readFileSync(file, 'utf8');
 }
 
-/**
- * Function contract: count
- * Purpose: Implements the count responsibility for this module.
- * Inputs: html, token.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: count
  * Purpose: Implement the count responsibility owned by the validate about contact repository tool.
- * Inputs: `html`: input consumed by this operation; `token`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`, `token`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function count(html, token) {
   return html.split(token).length - 1;
@@ -55,17 +51,17 @@ const errors = [];
 
 if (count(about, '<h1') !== 1) errors.push('About must contain exactly one H1.');
 if (!about.includes('nrs-about-spacious')) errors.push('About spacious layout missing.');
-['about-title', 'about-approach', 'about-experience', 'about-capabilities'].forEach(/** Callback contract: Processes the callback step for ['about title', 'about approach', 'about experience', 'about capabilities'] without leaking orchestration details to the caller. Inputs: id. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `id`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `id`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (id) => {
+['about-title', 'about-approach', 'about-experience', 'about-capabilities'].forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `id` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (id) => {
   if (!about.includes(`id="${id}"`)) errors.push(`About section ${id} missing.`);
 });
 if (count(about, 'nrs-section reveal-on-scroll') > 5) errors.push('About has too many primary content sections.');
 
 if (count(contact, '<h1') !== 1) errors.push('Contact must contain exactly one H1.');
 if (!contact.includes('nrs-contact-spacious')) errors.push('Contact spacious layout missing.');
-['contact-name', 'contact-email', 'contact-need', 'contact-timeline', 'contact-message', 'contact-form-status', 'contact-privacy-note'].forEach(/** Callback contract: Processes the callback step for ['contact name', 'contact email', 'contact need', 'contact timeline', 'contact message', 'contact form status', 'contact privacy note'] without leaking orchestration details to the caller. Inputs: id. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `id`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `id`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (id) => {
+['contact-name', 'contact-email', 'contact-need', 'contact-timeline', 'contact-message', 'contact-form-status', 'contact-privacy-note'].forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `id` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (id) => {
   if (!contact.includes(`id="${id}"`)) errors.push(`Contact control ${id} missing.`);
 });
-['for="contact-name"', 'for="contact-email"', 'for="contact-need"', 'for="contact-timeline"', 'for="contact-message"'].forEach(/** Callback contract: Processes the callback step for ['for="contact name"', 'for="contact email"', 'for="contact need"', 'for="contact timeline"', 'for="contact message"'] without leaking orchestration details to the caller. Inputs: token. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `token`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `token`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (token) => {
+['for="contact-name"', 'for="contact-email"', 'for="contact-need"', 'for="contact-timeline"', 'for="contact-message"'].forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `token` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (token) => {
   if (!contact.includes(token)) errors.push(`Contact label ${token} missing.`);
 });
 if (!contact.includes('role="status"') || !contact.includes('aria-live="polite"')) errors.push('Contact live status region missing.');
@@ -77,7 +73,7 @@ if (!contact.includes('minlength="20"') || !contact.includes('maxlength="5000"')
 
 if (errors.length) {
   console.error(`[about-contact] ${useDist ? 'Build' : 'Source'} validation failed:`);
-  errors.forEach(/** Callback contract: Processes the callback step for errors without leaking orchestration details to the caller. Inputs: error. Side effects: may emit diagnostics or inspect process state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `error`. Side effects: emits diagnostics or changes process failure state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `error`. Side effects: emits diagnostics or changes process failure state. Returns: computed expression result consumed by the enclosing operation. */ (error) => console.error(`- ${error}`));
+  errors.forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `error` Side effects: emits diagnostics or changes process failure state Returns: Undefined; this callback is side-effect-only. */ (error) => console.error(`- ${error}`));
   process.exit(1);
 }
 

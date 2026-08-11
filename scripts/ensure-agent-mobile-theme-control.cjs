@@ -22,12 +22,13 @@ if (!fs.existsSync(dist)) {
 }
 
 const files = [];
-(/**
+(
+/**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the ensure agent mobile theme control repository tool.
- * Inputs: `directory`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `directory`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {

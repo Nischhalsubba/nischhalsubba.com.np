@@ -110,12 +110,13 @@ const writingCopy = {
   },
 };
 
+
 /**
  * Function contract: normalizePath
  * Purpose: Apply path consistently while preserving the surrounding content polish browser feature contract.
- * Inputs: `href`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `href`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizePath(href) {
   try {
@@ -125,15 +126,16 @@ function normalizePath(href) {
   }
 }
 
+
 /**
  * Function contract: updateProjectCards
  * Purpose: Apply project cards consistently while preserving the surrounding content polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function updateProjectCards() {
-  document.querySelectorAll('.project-card[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (card) => {
+  document.querySelectorAll('.project-card[href]').forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (card) => {
     const copy = projectCopy[normalizePath(card.getAttribute('href'))];
     if (!copy) return;
 
@@ -143,21 +145,22 @@ function updateProjectCards() {
 
     if (title) title.textContent = copy.title;
     if (summary) summary.textContent = copy.summary;
-    metaItems.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (item, index) => {
+    metaItems.forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (item, index) => {
       if (copy.meta[index]) item.textContent = copy.meta[index];
     });
   });
 }
 
+
 /**
  * Function contract: updateWritingItems
  * Purpose: Apply writing items consistently while preserving the surrounding content polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function updateWritingItems() {
-  document.querySelectorAll('.writing-item[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (item) => {
+  document.querySelectorAll('.writing-item[href]').forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (item) => {
     const copy = writingCopy[normalizePath(item.getAttribute('href'))];
     if (!copy) return;
 
@@ -169,12 +172,13 @@ function updateWritingItems() {
   });
 }
 
+
 /**
  * Function contract: updatePageIntros
  * Purpose: Apply page intros consistently while preserving the surrounding content polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function updatePageIntros() {
   const path = window.location.pathname;
@@ -189,12 +193,13 @@ function updatePageIntros() {
   }
 }
 
+
 /**
  * Function contract: polishContent
  * Purpose: Apply content consistently while preserving the surrounding content polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function polishContent() {
   updateProjectCards();

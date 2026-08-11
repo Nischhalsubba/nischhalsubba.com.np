@@ -16,39 +16,42 @@ import { chromium } from 'playwright';
 
 const base = process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173';
 const xml = fs.readFileSync(path.resolve('dist/sitemap.xml'), 'utf8');
-const routes = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `pathname` value. */ (match) => new URL(match[1]).pathname);
+const routes = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `pathname` value. */ (match) => new URL(match[1]).pathname);
 const viewports = [[360, 800], [390, 844], [430, 932], [768, 1024], [1024, 768], [1280, 720], [1440, 900], [1920, 1080]];
 const failures = [];
 const browser = await chromium.launch({ headless: true });
 const serviceRoutes = new Set(['/product-design-nepal', '/web3-ux-designer', '/saas-ux-designer', '/website-ux-design', '/figma-design-systems', '/ux-audit']);
 
+
 /**
  * Function contract: isHtmlRoute
  * Purpose: Determine whether html route satisfies the condition represented by this browser audit repository tool.
- * Inputs: `route`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Inputs: `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
  * Returns: Boolean indicating whether html route satisfies the documented condition.
  */
 function isHtmlRoute(route) {
   return !/\.(?:txt|json|xml|webmanifest)$/i.test(route);
 }
 
+
 /**
  * Function contract: isDetailRoute
  * Purpose: Determine whether detail route satisfies the condition represented by this browser audit repository tool.
- * Inputs: `route`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Inputs: `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
  * Returns: Boolean indicating whether detail route satisfies the documented condition.
  */
 function isDetailRoute(route) {
   return /^\/project-[^/]+$/.test(route) || (route.startsWith('/blog/') && route !== '/blog/') || serviceRoutes.has(route);
 }
 
+
 /**
  * Function contract: isSameOrigin
  * Purpose: Determine whether same origin satisfies the condition represented by this browser audit repository tool.
- * Inputs: `url`: URL being inspected, normalized, or requested
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Inputs: `url`
+ * Side effects: No direct external side effect beyond invoked dependencies.
  * Returns: Boolean indicating whether same origin satisfies the documented condition.
  */
 function isSameOrigin(url) {
@@ -59,11 +62,12 @@ function isSameOrigin(url) {
   }
 }
 
+
 /**
  * Function contract: isCloudflareTelemetry
  * Purpose: Determine whether cloudflare telemetry satisfies the condition represented by this browser audit repository tool.
- * Inputs: `url`: URL being inspected, normalized, or requested
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Inputs: `url`
+ * Side effects: No direct external side effect beyond invoked dependencies.
  * Returns: Boolean indicating whether cloudflare telemetry satisfies the documented condition.
  */
 function isCloudflareTelemetry(url) {
@@ -75,11 +79,12 @@ function isCloudflareTelemetry(url) {
   }
 }
 
+
 /**
  * Function contract: isTurnstileResource
  * Purpose: Determine whether turnstile resource satisfies the condition represented by this browser audit repository tool.
- * Inputs: `url`: URL being inspected, normalized, or requested
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Inputs: `url`
+ * Side effects: No direct external side effect beyond invoked dependencies.
  * Returns: Boolean indicating whether turnstile resource satisfies the documented condition.
  */
 function isTurnstileResource(url) {
@@ -90,11 +95,12 @@ function isTurnstileResource(url) {
   }
 }
 
+
 /**
  * Function contract: isAllowedConsoleMessage
  * Purpose: Determine whether allowed console message satisfies the condition represented by this browser audit repository tool.
- * Inputs: `message`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Inputs: `message`
+ * Side effects: No direct external side effect beyond invoked dependencies.
  * Returns: Boolean indicating whether allowed console message satisfies the documented condition.
  */
 function isAllowedConsoleMessage(message) {
@@ -114,39 +120,36 @@ for (const [width, height] of viewports) {
     const failedRequests = [];
     const consoleErrors = [];
 
+    
     /**
      * Function contract: onPageError
      * Purpose: Handle page error and coordinate the resulting browser audit repository tool state changes.
-     * Inputs: `error`: input consumed by this operation
-     * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-     * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+     * Inputs: `error`
+     * Side effects: No direct external side effect beyond invoked dependencies.
+     * Returns: Computed expression result consumed by the enclosing operation.
      */
     const onPageError = (error) => runtimeErrors.push(error.message || String(error));
+    
     /**
      * Function contract: onRequestFailed
      * Purpose: Handle request failed and coordinate the resulting browser audit repository tool state changes.
-     * Inputs: `request`: incoming request object
-     * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-     * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+     * Inputs: `request`
+     * Side effects: No direct external side effect beyond invoked dependencies.
+     * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
      */
     const onRequestFailed = (request) => {
       const url = request.url();
       if (!isSameOrigin(url) || isCloudflareTelemetry(url)) return;
       failedRequests.push(`${request.method()} ${url} (${request.failure()?.errorText || 'failed'})`);
     };
-    /**
-     * Function contract: onConsole
-     * Purpose: Handles on console and coordinates the required state or UI response.
-     * Inputs: message.
-     * Side effects: no obvious external side effect beyond invoked dependencies.
-     * Returns: no explicit value unless an invoked dependency throws/rejects.
-     */
+    
+    
     /**
      * Function contract: onConsole
      * Purpose: Handle console and coordinate the resulting browser audit repository tool state changes.
-     * Inputs: `message`: input consumed by this operation
-     * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-     * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+     * Inputs: `message`
+     * Side effects: No direct external side effect beyond invoked dependencies.
+     * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
      */
     const onConsole = (message) => {
       if (message.type() === 'error' && !isAllowedConsoleMessage(message)) consoleErrors.push(message.text());
@@ -164,35 +167,28 @@ for (const [width, height] of viewports) {
       if (failedRequests.length) throw new Error(`failed same-origin requests: ${failedRequests.join(' | ')}`);
       if (!isHtmlRoute(route)) continue;
 
-      const result = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed value consumed by the enclosing operation. */ () => {
-        /**
-         * Function contract: visible
-         * Purpose: Implements the visible responsibility for this module.
-         * Inputs: element.
-         * Side effects: no obvious external side effect beyond invoked dependencies.
-         * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-         */
+      const result = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
+        
+        
         /**
          * Function contract: visible
          * Purpose: Implement the visible responsibility owned by the browser audit repository tool.
-         * Inputs: `element`: DOM element currently being evaluated or updated
-         * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-         * Returns: Boolean predicate result consumed by the caller.
+         * Inputs: `element`
+         * Side effects: No direct external side effect beyond invoked dependencies.
+         * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
          */
         const visible = (element) => {
           const style = getComputedStyle(element);
           const rect = element.getBoundingClientRect();
           return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
         };
-        const ids = [...document.querySelectorAll('[id]')].map(/** Callback contract: Processes the callback step for [...document.query selector all('[id]')] without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `id` value. */ (element) => element.id).filter(Boolean);
+        const ids = [...document.querySelectorAll('[id]')].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `id` value. */ (element) => element.id).filter(Boolean);
         const css = [...document.querySelectorAll('link[rel="stylesheet"]')]
-          .map(/** Callback contract: Processes the callback step for [...document.query selector all('link[rel="stylesheet"]')] without leaking orchestration details to the caller. Inputs: element. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (element) => element.getAttribute('href'))
-          .filter(/** Callback contract: Processes the callback step for [...document.query selector all('link[rel="stylesheet"]')]
-          .map((element) => element.get attribute('href')) without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `href`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (href) => href && !/^https?:/i.test(href));
+          .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `element` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (element) => element.getAttribute('href'))
+          .filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (href) => href && !/^https?:/i.test(href));
         const activeByVisibleNav = [...document.querySelectorAll('nav')]
           .filter(visible)
-          .map(/** Callback contract: Processes the callback step for [...document.query selector all('nav')]
-          .filter(visible) without leaking orchestration details to the caller. Inputs: nav. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `nav`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `nav`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `length` value. */ (nav) => [...nav.querySelectorAll('[aria-current="page"]')].filter(visible).length);
+          .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `nav` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `length` value. */ (nav) => [...nav.querySelectorAll('[aria-current="page"]')].filter(visible).length);
         const h1 = [...document.querySelectorAll('h1')].find(visible);
         const progress = document.querySelector('#nrs-scroll-progress');
 
@@ -200,13 +196,13 @@ for (const [width, height] of viewports) {
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           h1Count: [...document.querySelectorAll('h1')].filter(visible).length,
           h1Top: h1?.getBoundingClientRect().top ?? null,
-          duplicates: [...new Set(ids.filter(/** Callback contract: Processes the callback step for ids without leaking orchestration details to the caller. Inputs: id, index. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `id`, `index`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `id`, `index`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (id, index) => ids.indexOf(id) !== index))],
-          broken: [...document.images].filter(/** Callback contract: Processes the callback step for [...document.images] without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `image`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (image) => image.complete && image.naturalWidth === 0).map(/** Callback contract: Processes the callback step for [...document.images].filter((image) => image.complete && image.natural width === 0) without leaking orchestration details to the caller. Inputs: image. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `image`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `image`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (image) => image.currentSrc || image.getAttribute('src')),
+          duplicates: [...new Set(ids.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `id`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (id, index) => ids.indexOf(id) !== index))],
+          broken: [...document.images].filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `image` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (image) => image.complete && image.naturalWidth === 0).map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `image` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result. */ (image) => image.currentSrc || image.getAttribute('src')),
           footer: Boolean(document.querySelector('.site-footer')),
           css,
           activeByVisibleNav,
           breadcrumbs: document.querySelectorAll('nav[aria-label="Breadcrumb"]').length,
-          legacyBackLinks: [...document.querySelectorAll('main a')].filter(/** Callback contract: Processes the callback step for [...document.query selector all('main a')] without leaking orchestration details to the caller. Inputs: link. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ (link) => /^\s*(?:←|&larr;)?\s*Back to/i.test(link.textContent || '')).length,
+          legacyBackLinks: [...document.querySelectorAll('main a')].filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `link` Side effects: reads or updates DOM/browser state Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (link) => /^\s*(?:←|&larr;)?\s*Back to/i.test(link.textContent || '')).length,
           progressOpacity: progress ? Number.parseFloat(getComputedStyle(progress).opacity) : 0,
         };
       });
@@ -217,7 +213,7 @@ for (const [width, height] of viewports) {
       if (result.broken.length) throw new Error(`broken images: ${result.broken.join(', ')}`);
       if (!result.footer) throw new Error('missing footer');
       if (result.css.length !== 1 || !result.css[0].startsWith('/style.css')) throw new Error(`local CSS: ${result.css.join(', ')}`);
-      if (result.activeByVisibleNav.some(/** Callback contract: Processes the callback step for result.active by visible nav without leaking orchestration details to the caller. Inputs: count. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `count`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `count`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (count) => count > 1)) throw new Error(`multiple active links in one visible navigation: ${result.activeByVisibleNav.join(', ')}`);
+      if (result.activeByVisibleNav.some(   /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `count` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (count) => count > 1)) throw new Error(`multiple active links in one visible navigation: ${result.activeByVisibleNav.join(', ')}`);
       if (result.progressOpacity > 0.05) throw new Error(`scroll progress visible at page top (${result.progressOpacity})`);
       if (isDetailRoute(route) && result.breadcrumbs !== 1) throw new Error(`${result.breadcrumbs} breadcrumb navigations`);
       if (isDetailRoute(route) && result.legacyBackLinks !== 0) throw new Error(`${result.legacyBackLinks} legacy back links`);
@@ -250,27 +246,27 @@ for (const [width, height] of viewports) {
       if (await toggle.getAttribute('aria-expanded') !== 'true') throw new Error('menu did not open');
       if (await overlay.getAttribute('aria-hidden') !== 'false') throw new Error('open menu remains aria-hidden');
       if (await overlay.getAttribute('hidden') !== null) throw new Error('open menu retains native hidden attribute');
-      if (!await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ () => document.querySelector('.mobile-nav-overlay')?.contains(document.activeElement))) {
-        const active = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ () => document.activeElement?.outerHTML || 'none');
+      if (!await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ () => document.querySelector('.mobile-nav-overlay')?.contains(document.activeElement))) {
+        const active = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Boolean predicate result. */ () => document.activeElement?.outerHTML || 'none');
         throw new Error(`focus did not enter menu; active element: ${active}`);
       }
-      if (!await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: the selected `inert` value. */ () => document.querySelector('main')?.inert)) throw new Error('background is not inert');
+      if (!await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: The selected `inert` value. */ () => document.querySelector('main')?.inert)) throw new Error('background is not inert');
 
       const count = await focusables.count();
       if (!count) throw new Error('menu has no focusable controls');
       await focusables.nth(count - 1).focus();
       await page.keyboard.press('Tab');
-      if (!await focusables.first().evaluate(/** Callback contract: Processes the callback step for focusables.first() without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser audit repository tool operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ (element) => element === document.activeElement)) throw new Error('focus trap did not wrap');
+      if (!await focusables.first().evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser audit repository tool operation. Inputs: `element` Side effects: reads or updates DOM/browser state Returns: Boolean predicate result. */ (element) => element === document.activeElement)) throw new Error('focus trap did not wrap');
 
       await page.keyboard.press('Escape');
       await page.waitForTimeout(100);
       if (await toggle.getAttribute('aria-expanded') !== 'false') throw new Error('Escape did not close menu');
       if (await overlay.getAttribute('aria-hidden') !== 'true') throw new Error('closed menu is not aria-hidden');
       if (await overlay.getAttribute('hidden') === null) throw new Error('closed menu is not natively hidden');
-      if (!await toggle.evaluate(/** Callback contract: Processes the callback step for toggle without leaking orchestration details to the caller. Inputs: element. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser audit repository tool operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ (element) => element === document.activeElement)) throw new Error('focus did not return to toggle');
-      if (await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: the selected `inert` value. */ () => document.querySelector('main')?.inert)) throw new Error('background remained inert');
+      if (!await toggle.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser audit repository tool operation. Inputs: `element` Side effects: reads or updates DOM/browser state Returns: Boolean predicate result. */ (element) => element === document.activeElement)) throw new Error('focus did not return to toggle');
+      if (await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: The selected `inert` value. */ () => document.querySelector('main')?.inert)) throw new Error('background remained inert');
       await page.keyboard.press('Tab');
-      if (await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing browser audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ () => document.querySelector('.mobile-nav-overlay')?.contains(document.activeElement))) throw new Error('closed menu remained keyboard reachable');
+      if (await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ () => document.querySelector('.mobile-nav-overlay')?.contains(document.activeElement))) throw new Error('closed menu remained keyboard reachable');
     } catch (error) {
       failures.push(`${width}x${height} mobile navigation: ${error.message}`);
     }
@@ -281,7 +277,7 @@ for (const [width, height] of viewports) {
 
 await browser.close();
 if (failures.length) {
-  console.error(`[browser-audit] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[browser-audit] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 console.log(`[browser-audit] ${routes.length} routes passed across ${viewports.length} viewports.`);

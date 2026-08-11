@@ -10,23 +10,25 @@
  * - src/runtime/script.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
+
 /**
  * Function contract: ensureSharedDesignStylesheet
  * Purpose: Apply shared design stylesheet consistently while preserving the surrounding global styles browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureSharedDesignStylesheet() {
   // Shared design rules are compiled into /style.css during the production build.
 }
 
+
 /**
  * Function contract: applyPageShellClasses
  * Purpose: Apply page shell classes consistently while preserving the surrounding global styles browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function applyPageShellClasses() {
   const path = window.location.pathname;
@@ -53,12 +55,13 @@ function applyPageShellClasses() {
   document.body.classList.toggle('nrs-service-page', isServicePage);
 }
 
+
 /**
  * Function contract: injectGlobalStyles
  * Purpose: Implement the inject global styles responsibility owned by the global styles browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function injectGlobalStyles() {
   document.documentElement.classList.add('js-enabled');

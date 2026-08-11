@@ -35,7 +35,7 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '../..');
 const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'config', 'canonical-routes.json'), 'utf8'));
 
-const ROOT_PAGE_NAMES = manifest.html.filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (file) => !file.includes('/'));
+const ROOT_PAGE_NAMES = manifest.html.filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => !file.includes('/'));
 const LEGACY_COMPATIBILITY_NAMES = ['home.html', 'home-v2.html', 'blog.html'];
 const DISCOVERY_NAMES = [
   '_headers',
@@ -57,12 +57,13 @@ const SERVICE_PAGE_NAMES = new Set([
   'website-ux-design.html',
 ]);
 
+
 /**
  * Function contract: organizedPageSource
  * Purpose: Resolve a historical root-compatible HTML filename to its canonical core, project, or service source folder.
- * Inputs: `name`: stable identifier or label for the current item
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `name`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function organizedPageSource(name) {
   if (name.startsWith('project-')) return path.join('src', 'pages', 'projects', name);
@@ -71,30 +72,32 @@ function organizedPageSource(name) {
 }
 
 const mappings = [
-  ...ROOT_PAGE_NAMES.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (name) => ({ source: organizedPageSource(name), target: name, sync: true })),
-  ...LEGACY_COMPATIBILITY_NAMES.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (name) => ({ source: path.join('src', 'compat', 'legacy-pages', name), target: name, sync: true })),
+  ...ROOT_PAGE_NAMES.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (name) => ({ source: organizedPageSource(name), target: name, sync: true })),
+  ...LEGACY_COMPATIBILITY_NAMES.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (name) => ({ source: path.join('src', 'compat', 'legacy-pages', name), target: name, sync: true })),
   { source: path.join('src', 'styles', 'style.css'), target: 'style.css', sync: true },
   { source: path.join('src', 'runtime', 'script.js'), target: 'script.js', sync: false },
-  ...DISCOVERY_NAMES.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (name) => ({ source: path.join('src', 'discovery', name), target: name, sync: false })),
+  ...DISCOVERY_NAMES.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (name) => ({ source: path.join('src', 'discovery', name), target: name, sync: false })),
 ];
+
 
 /**
  * Function contract: ensureParent
  * Purpose: Apply parent consistently while preserving the surrounding source layout repository tool contract.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureParent(file) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
 }
 
+
 /**
  * Function contract: copyRequired
  * Purpose: Implement the copy required responsibility owned by the source layout repository tool.
- * Inputs: `source`: source text or source object being processed; `target`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `source`, `target`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function copyRequired(source, target) {
   if (!fs.existsSync(source)) throw new Error(`Missing organized source: ${path.relative(ROOT, source)}`);
@@ -102,19 +105,14 @@ function copyRequired(source, target) {
   fs.copyFileSync(source, target);
 }
 
-/**
- * Function contract: materializeRootSources
- * Purpose: Implements the materialize root sources responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: materializeRootSources
  * Purpose: Implement the materialize root sources responsibility owned by the source layout repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function materializeRootSources() {
   for (const mapping of mappings) {
@@ -123,23 +121,18 @@ function materializeRootSources() {
   return mappings.length;
 }
 
-/**
- * Function contract: syncRootSources
- * Purpose: Implements the sync root sources responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: syncRootSources
  * Purpose: Synchronize root sources with the requested state while preserving related source layout repository tool invariants.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function syncRootSources() {
   let synced = 0;
-  for (const mapping of mappings.filter(/** Callback contract: Processes the callback step for mappings without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `sync` value. */ (item) => item.sync)) {
+  for (const mapping of mappings.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => item.sync)) {
     const rootFile = path.join(ROOT, mapping.target);
     if (!fs.existsSync(rootFile)) continue;
     const sourceFile = path.join(ROOT, mapping.source);
@@ -154,19 +147,14 @@ function syncRootSources() {
   return synced;
 }
 
-/**
- * Function contract: cleanRootSources
- * Purpose: Removes or cleans clean root sources while keeping required outputs intact.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: cleanRootSources
  * Purpose: Remove root sources without disturbing required surrounding source layout repository tool state.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function cleanRootSources() {
   let removed = 0;

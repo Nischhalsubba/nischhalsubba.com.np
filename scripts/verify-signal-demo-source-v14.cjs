@@ -22,12 +22,13 @@ const EXPECTED_WEBP_BYTES = 86144;
 const EXPECTED_WIDTH = 760;
 const EXPECTED_HEIGHT = 950;
 
+
 /**
  * Function contract: gitBlobSha1
  * Purpose: Implement the git blob sha1 responsibility owned by the verify signal demo source v14 repository tool.
- * Inputs: `buffer`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `buffer`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function gitBlobSha1(buffer) {
   return crypto.createHash('sha1')
@@ -36,19 +37,14 @@ function gitBlobSha1(buffer) {
     .digest('hex');
 }
 
-/**
- * Function contract: readVp8Dimensions
- * Purpose: Retrieves read vp8 dimensions and returns it in the form expected by its caller.
- * Inputs: buffer.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: readVp8Dimensions
  * Purpose: Return vp8 dimensions from the supplied inputs or current verify signal demo source v14 repository tool state.
- * Inputs: `buffer`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: The requested vp8 dimensions; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: `buffer`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: The requested vp8 dimensions; explicit early-return branches define empty/fallback behavior.
  */
 function readVp8Dimensions(buffer) {
   const signature = Buffer.from([0x9d, 0x01, 0x2a]);
@@ -62,19 +58,14 @@ function readVp8Dimensions(buffer) {
   };
 }
 
-/**
- * Function contract: verifySource
- * Purpose: Validates verify source and reports violations instead of silently accepting invalid state.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: verifySource
  * Purpose: Validate source and surface actionable failures when the verify signal demo source v14 repository tool contract is violated.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function verifySource() {
   if (!fs.existsSync(SOURCE_PATH)) {

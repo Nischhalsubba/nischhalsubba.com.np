@@ -12,12 +12,13 @@
  */
 const LIGHT_PALETTE_LOCK_ID = 'nrs-light-palette-lock';
 
+
 /**
  * Function contract: ensureLightPaletteLockStyle
  * Purpose: Apply light palette lock style consistently while preserving the surrounding light palette lock browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureLightPaletteLockStyle() {
   let style = document.getElementById(LIGHT_PALETTE_LOCK_ID);
@@ -293,12 +294,13 @@ function ensureLightPaletteLockStyle() {
   `;
 }
 
+
 /**
  * Function contract: lockLightThemePalette
  * Purpose: Implement the lock light theme palette responsibility owned by the light palette lock browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function lockLightThemePalette() {
   ensureLightPaletteLockStyle();

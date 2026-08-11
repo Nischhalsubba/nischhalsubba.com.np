@@ -10,12 +10,13 @@
  * - src/runtime/script.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
+
 /**
  * Function contract: injectEditorialDesignStyles
  * Purpose: Implement the inject editorial design styles responsibility owned by the editorial design browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function injectEditorialDesignStyles() {
   if (document.getElementById('nrs-editorial-design-styles')) return;
@@ -473,12 +474,13 @@ function injectEditorialDesignStyles() {
   document.head.appendChild(style);
 }
 
+
 /**
  * Function contract: refineEditorialDesign
  * Purpose: Implement the refine editorial design responsibility owned by the editorial design browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function refineEditorialDesign() {
   injectEditorialDesignStyles();

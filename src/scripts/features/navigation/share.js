@@ -13,27 +13,29 @@
  */
 import { $$ } from '../../shared/dom.js';
 
+
 /**
  * Function contract: getShareText
  * Purpose: Return share text from the supplied inputs or current share browser feature state.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: The requested share text; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: The requested share text; explicit early-return branches define empty/fallback behavior.
  */
 function getShareText() {
   return encodeURIComponent(document.querySelector('h1')?.innerText || document.title);
 }
 
+
 /**
  * Function contract: initShareButtons
  * Purpose: Initialize share buttons for the share browser feature, including the listeners/state needed for safe runtime use.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: registers or removes browser listeners; reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function initShareButtons() {
-  $$('[data-share]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `button`. Side effects: registers or removes browser listeners; reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (button) => {
-    button.addEventListener('click', /** Callback contract: Handle the click event for `button` and apply the related local state update. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: Promise resolving after the callback side effects complete. */ async (event) => {
+  $$('[data-share]').forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `button` Side effects: registers or removes browser listeners; reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (button) => {
+    button.addEventListener('click',  /** Callback contract: Handle the click event for `button` and apply the related local state update. Inputs: `event` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ async (event) => {
       event.preventDefault();
 
       const platform = button.dataset.share;
@@ -43,12 +45,12 @@ export function initShareButtons() {
       if (platform === 'copy' && navigator.clipboard) {
         await navigator.clipboard.writeText(window.location.href);
         button.classList.add('copied');
-        window.setTimeout(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ () => button.classList.remove('copied'), 1600);
+        window.setTimeout( /** Callback contract: Perform the local callback step required by the immediately enclosing share browser feature operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ () => button.classList.remove('copied'), 1600);
         return;
       }
 
       if (platform === 'native' && navigator.share) {
-        await navigator.share({ title: document.title, url: window.location.href }).catch(/** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {});
+        await navigator.share({ title: document.title, url: window.location.href }).catch( /** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ () => {});
         return;
       }
 

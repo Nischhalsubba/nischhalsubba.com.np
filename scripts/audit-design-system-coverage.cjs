@@ -19,12 +19,13 @@ const targetRoot = fs.existsSync(path.join(root, 'dist')) ? path.join(root, 'dis
 const htmlFiles = [];
 const ignoredDirs = new Set(['.git', 'node_modules', '.wrangler']);
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the audit design system coverage repository tool.
- * Inputs: `dir`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `dir`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -38,44 +39,48 @@ function walk(dir) {
   }
 }
 
+
 /**
  * Function contract: relative
  * Purpose: Implement the relative responsibility owned by the audit design system coverage repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function relative(file) {
   return path.relative(targetRoot, file).replaceAll(path.sep, '/');
 }
 
+
 /**
  * Function contract: stylesheetHrefs
  * Purpose: Implement the stylesheet hrefs responsibility owned by the audit design system coverage repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function stylesheetHrefs(html) {
-  return Array.from(html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)).map(/** Callback contract: Processes the callback step for array.from(html.match all(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)) without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => match[1]);
+  return Array.from(html.matchAll(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)).map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match[1]);
 }
+
 
 /**
  * Function contract: scriptSrcs
  * Purpose: Implement the script srcs responsibility owned by the audit design system coverage repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function scriptSrcs(html) {
-  return Array.from(html.matchAll(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/gi)).map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => match[1]);
+  return Array.from(html.matchAll(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/gi)).map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match[1]);
 }
+
 
 /**
  * Function contract: hasRuntimeScript
  * Purpose: Determine whether runtime script satisfies the condition represented by this audit design system coverage repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
  * Returns: Boolean indicating whether runtime script satisfies the documented condition.
  */
 function hasRuntimeScript(html) {

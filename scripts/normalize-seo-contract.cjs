@@ -20,19 +20,14 @@ const site = 'https://nischhalsubba.com.np';
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
 const fallbackImage = `${site}/assets/images/portrait.png`;
 
-/**
- * Function contract: routeFor
- * Purpose: Implements the route for responsibility for this module.
- * Inputs: file.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: routeFor
  * Purpose: Implement the route for responsibility owned by the normalize seo contract repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function routeFor(file) {
   if (file === 'index.html') return '/';
@@ -40,68 +35,54 @@ function routeFor(file) {
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
-/**
- * Function contract: escapePattern
- * Purpose: Implements the escape pattern responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: escapePattern
  * Purpose: Implement the escape pattern responsibility owned by the normalize seo contract repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function escapePattern(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+
 /**
  * Function contract: attribute
  * Purpose: Implement the attribute responsibility owned by the normalize seo contract repository tool.
- * Inputs: `tag`: input consumed by this operation; `name`: stable identifier or label for the current item
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `tag`, `name`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function attribute(tag, name) {
   return tag.match(new RegExp(`\\b${escapePattern(name)}=["']([^"']*)["']`, 'i'))?.[1]?.trim() || '';
 }
 
-/**
- * Function contract: metaValue
- * Purpose: Implements the meta value responsibility for this module.
- * Inputs: html, key, keyAttribute.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: metaValue
  * Purpose: Implement the meta value responsibility owned by the normalize seo contract repository tool.
- * Inputs: `html`: input consumed by this operation; `key`: input consumed by this operation; `keyAttribute`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`, `key`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function metaValue(html, key, keyAttribute = 'name') {
-  const tags = [...html.matchAll(/<meta\b[^>]*>/gi)].map(/** Callback contract: Processes the callback step for [...html.match all(/<meta\b[^>]*>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => match[0]);
-  const tag = tags.find(/** Callback contract: Processes the callback step for tags without leaking orchestration details to the caller. Inputs: candidate. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `candidate`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `candidate`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (candidate) => attribute(candidate, keyAttribute).toLowerCase() === key.toLowerCase());
+  const tags = [...html.matchAll(/<meta\b[^>]*>/gi)].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match[0]);
+  const tag = tags.find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `candidate` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (candidate) => attribute(candidate, keyAttribute).toLowerCase() === key.toLowerCase());
   return tag ? attribute(tag, 'content') : '';
 }
 
-/**
- * Function contract: setMeta
- * Purpose: Applies set meta while preserving the surrounding repository/runtime contract.
- * Inputs: html, key, value, keyAttribute.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: setMeta
  * Purpose: Synchronize meta with the requested state while preserving related normalize seo contract repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `key`: input consumed by this operation; `value`: input value being transformed or evaluated; `keyAttribute`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `key`, `value`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setMeta(html, key, value, keyAttribute = 'name') {
   const pattern = new RegExp(`<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapePattern(key)}["'])[^>]*>`, 'i');
@@ -110,37 +91,27 @@ function setMeta(html, key, value, keyAttribute = 'name') {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-/**
- * Function contract: titleValue
- * Purpose: Implements the title value responsibility for this module.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: titleValue
  * Purpose: Implement the title value responsibility owned by the normalize seo contract repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function titleValue(html) {
   return html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g, ' ').trim() || '';
 }
 
-/**
- * Function contract: conciseTitle
- * Purpose: Implements the concise title responsibility for this module.
- * Inputs: title.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: conciseTitle
  * Purpose: Implement the concise title responsibility owned by the normalize seo contract repository tool.
- * Inputs: `title`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `title`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function conciseTitle(title) {
   if (title.length <= 80) return title;
@@ -156,19 +127,14 @@ function conciseTitle(title) {
   return result || title.slice(0, 76).trim();
 }
 
-/**
- * Function contract: setTitle
- * Purpose: Applies set title while preserving the surrounding repository/runtime contract.
- * Inputs: html, title.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: setTitle
  * Purpose: Synchronize title with the requested state while preserving related normalize seo contract repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `title`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `title`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setTitle(html, title) {
   const safeTitle = title.replace(/[<>]/g, '');
@@ -207,7 +173,7 @@ for (const file of manifest.html) {
   }
 }
 
-const sitemapEntries = manifest.html.map(/** Callback contract: Processes the callback step for manifest.html without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (file) => `  <url><loc>${site}${routeFor(file)}</loc></url>`).join('\n');
+const sitemapEntries = manifest.html.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (file) => `  <url><loc>${site}${routeFor(file)}</loc></url>`).join('\n');
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`;
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap, 'utf8');
 console.log(`[seo-contract] Normalized ${updated} page(s) and rebuilt sitemap with ${manifest.html.length} canonical URLs.`);

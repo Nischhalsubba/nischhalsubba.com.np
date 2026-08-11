@@ -37,19 +37,14 @@ for (const name of ['audit-remediations.css', 'stable-layout.css', 'final-ui-fix
   if (fs.existsSync(path.join(dist, name))) errors.push(`Retired stylesheet survived build: ${name}`);
 }
 
-/**
- * Function contract: parseRedirects
- * Purpose: Parses parse redirects into the structured form consumed by downstream logic.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: parseRedirects
  * Purpose: Convert redirects into the structured representation consumed by the enforce production routes repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `file`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function parseRedirects(file) {
   if (!fs.existsSync(file)) return new Map();

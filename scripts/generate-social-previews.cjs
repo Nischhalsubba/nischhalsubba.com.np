@@ -27,12 +27,13 @@ const SITE = 'https://nischhalsubba.com.np';
 const WIDTH = 1200;
 const HEIGHT = 630;
 
+
 /**
  * Function contract: crc32
  * Purpose: Implement the crc32 responsibility owned by the generate social previews repository tool.
- * Inputs: `buffer`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `buffer`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function crc32(buffer) {
   let crc = 0xffffffff;
@@ -43,12 +44,13 @@ function crc32(buffer) {
   return (crc ^ 0xffffffff) >>> 0;
 }
 
+
 /**
  * Function contract: chunk
  * Purpose: Implement the chunk responsibility owned by the generate social previews repository tool.
- * Inputs: `type`: input consumed by this operation; `data`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `type`, `data`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function chunk(type, data) {
   const label = Buffer.from(type, 'ascii');
@@ -60,12 +62,13 @@ function chunk(type, data) {
   return out;
 }
 
+
 /**
  * Function contract: pngFromRows
  * Purpose: Implement the png from rows responsibility owned by the generate social previews repository tool.
- * Inputs: `rows`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `rows`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function pngFromRows(rows) {
   const ihdr = Buffer.alloc(13);
@@ -73,7 +76,7 @@ function pngFromRows(rows) {
   ihdr.writeUInt32BE(HEIGHT, 4);
   ihdr[8] = 8;
   ihdr[9] = 2;
-  const raw = Buffer.concat(rows.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `row`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (row) => Buffer.concat([Buffer.from([0]), row])));
+  const raw = Buffer.concat(rows.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `row` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (row) => Buffer.concat([Buffer.from([0]), row])));
   return Buffer.concat([
     Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
     chunk('IHDR', ihdr),
@@ -82,12 +85,13 @@ function pngFromRows(rows) {
   ]);
 }
 
+
 /**
  * Function contract: makeCard
  * Purpose: Build card from the supplied inputs in the form expected by downstream generate social previews repository tool consumers.
- * Inputs: `seed`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `seed`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function makeCard(seed) {
   const digest = crypto.createHash('sha256').update(seed).digest();
@@ -96,7 +100,7 @@ function makeCard(seed) {
   const foreground = [243, 246, 234];
   const accent = [216, 255, 72];
   const muted = [38, 45, 34];
-  const bars = Array.from({ length: 5 }, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `_`, `index`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (_, index) => ({
+  const bars = Array.from({ length: 5 },  /** Callback contract: Perform the local callback step required by the immediately enclosing generate social previews repository tool operation. Inputs: `_`, `index` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (_, index) => ({
     x: 690 + (digest[index] % 130),
     y: 90 + index * 92,
     w: 230 + (digest[index + 5] % 250),
@@ -113,7 +117,7 @@ function makeCard(seed) {
       if (x >= 128 && x < 420 && y >= 221 && y < 233) color = muted;
       if (x >= 128 && x < 345 && y >= 257 && y < 269) color = muted;
       if (x >= 128 && x < 360 && y >= 482 && y < 490) color = accent;
-      if (bars.some(/** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `bar`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (bar) => x >= bar.x && x < bar.x + bar.w && y >= bar.y && y < bar.y + bar.h)) color = (y % 2 ? accent : foreground);
+      if (bars.some( /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `bar` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (bar) => x >= bar.x && x < bar.x + bar.w && y >= bar.y && y < bar.y + bar.h)) color = (y % 2 ? accent : foreground);
       const offset = x * 3;
       row[offset] = color[0];
       row[offset + 1] = color[1];
@@ -124,12 +128,13 @@ function makeCard(seed) {
   return pngFromRows(rows);
 }
 
+
 /**
  * Function contract: routeSlug
  * Purpose: Implement the route slug responsibility owned by the generate social previews repository tool.
- * Inputs: `route`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `route`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function routeSlug(route) {
   if (route === '/') return 'home';
@@ -137,12 +142,13 @@ function routeSlug(route) {
   return route.replace(/^\//, '').replace(/\//g, '--').replace(/[^a-z0-9-]/gi, '-');
 }
 
+
 /**
  * Function contract: setMeta
  * Purpose: Synchronize meta with the requested state while preserving related generate social previews repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `attribute`: input consumed by this operation; `key`: input consumed by this operation; `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `attribute`, `key`, `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setMeta(html, attribute, key, value) {
   const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

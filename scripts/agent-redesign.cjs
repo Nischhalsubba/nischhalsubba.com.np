@@ -15,9 +15,9 @@
  */
 const fs = require('node:fs');
 const path = require('node:path');
-const parts = [1, 2, 3].map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `part`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (part) => path.join(__dirname, `agent-redesign-part-${part}.cjsfrag`));
-if (parts.some(/** Callback contract: Processes the callback step for parts without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `file`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `file`. Side effects: reads filesystem state. Returns: boolean predicate result. */ (file) => !fs.existsSync(file))) throw new Error('[agent-redesign] source fragments are missing');
-const source = parts.map(/** Callback contract: Processes the callback step for parts without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: reads filesystem state. Returns: computed expression result consumed by the enclosing operation. */ (file) => fs.readFileSync(file, 'utf8')).join('');
+const parts = [1, 2, 3].map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `part` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (part) => path.join(__dirname, `agent-redesign-part-${part}.cjsfrag`));
+if (parts.some(   /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `file` Side effects: reads filesystem state Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => !fs.existsSync(file))) throw new Error('[agent-redesign] source fragments are missing');
+const source = parts.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file` Side effects: reads filesystem state Returns: Computed expression result consumed by the enclosing operation. */ (file) => fs.readFileSync(file, 'utf8')).join('');
 new Function('require', '__dirname', '__filename', source)(require, __dirname, __filename);
 
 const repositoryRoot = path.join(__dirname, '..');
@@ -34,19 +34,14 @@ const customCaseTitles = new Map([
   ['project-hamro-idea.html', 'Hamro Idea'],
 ]);
 
-/**
- * Function contract: escapeAttribute
- * Purpose: Implements the escape attribute responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: escapeAttribute
  * Purpose: Implement the escape attribute responsibility owned by the agent redesign repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function escapeAttribute(value) {
   return String(value)
@@ -56,19 +51,14 @@ function escapeAttribute(value) {
     .replaceAll('>', '&gt;');
 }
 
-/**
- * Function contract: externalPrototypeUrl
- * Purpose: Implements the external prototype url responsibility for this module.
- * Inputs: raw.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: externalPrototypeUrl
  * Purpose: Implement the external prototype url responsibility owned by the agent redesign repository tool.
- * Inputs: `raw`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `raw`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function externalPrototypeUrl(raw) {
   if (!raw) return '';
@@ -83,19 +73,14 @@ function externalPrototypeUrl(raw) {
   }
 }
 
-/**
- * Function contract: htmlFiles
- * Purpose: Implements the html files responsibility for this module.
- * Inputs: directory, output.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: htmlFiles
  * Purpose: Implement the html files responsibility owned by the agent redesign repository tool.
- * Inputs: `directory`: input consumed by this operation; `output`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `directory`, `output`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function htmlFiles(directory, output = []) {
   if (!fs.existsSync(directory)) return output;
@@ -131,11 +116,11 @@ if (fs.existsSync(contactPath)) {
   fs.writeFileSync(contactPath, contactHtml, 'utf8');
 }
 
-for (const fileName of fs.readdirSync(dist).filter(/** Callback contract: Processes the callback step for fs.readdir sync(dist) without leaking orchestration details to the caller. Inputs: name. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `name`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `name`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (name) => /^project-.*\.html$/.test(name))) {
+for (const fileName of fs.readdirSync(dist).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `name` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (name) => /^project-.*\.html$/.test(name))) {
   const filePath = path.join(dist, fileName);
   let html = fs.readFileSync(filePath, 'utf8');
   let replaced = 0;
-  html = html.replace(/<iframe\b([^>]*)>[\s\S]*?<\/iframe>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: _match, attrs. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing agent redesign repository tool operation. Inputs: `_match`, `attrs`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `_match`, `attrs`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ (_match, attrs) => {
+  html = html.replace(/<iframe\b([^>]*)>[\s\S]*?<\/iframe>/gi,    /** Callback contract: Perform the local callback step required by the immediately enclosing agent redesign repository tool operation. Inputs: `_match`, `attrs` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (_match, attrs) => {
     replaced += 1;
     const src = attrs.match(/\bsrc=["']([^"']+)["']/i)?.[1] || '';
     const href = externalPrototypeUrl(src);

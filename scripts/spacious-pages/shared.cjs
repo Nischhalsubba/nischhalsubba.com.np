@@ -17,33 +17,29 @@ const root = path.resolve(__dirname, '../..');
 const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const email = 'hinischalsubba@gmail.com';
 
+
 /**
  * Function contract: addBodyClasses
  * Purpose: Implement the add body classes responsibility owned by the shared repository tool.
- * Inputs: `html`: input consumed by this operation; `classes`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `classes`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function addBodyClasses(html, classes) {
-  return html.replace(/<body(?:\s+class="([^"]*)")?([^>]*)>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: _match, current, rest. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing shared repository tool operation. Inputs: `_match`, `current`, `rest`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Boolean predicate result consumed by the caller. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `_match`, `current`, `rest`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ (_match, current = '', rest = '') => {
+  return html.replace(/<body(?:\s+class="([^"]*)")?([^>]*)>/i,    /** Callback contract: Perform the local callback step required by the immediately enclosing shared repository tool operation. Inputs: `_match`, `current`, `rest` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (_match, current = '', rest = '') => {
     const all = new Set(`${current} ${classes}`.trim().split(/\s+/).filter(Boolean));
     return `<body class="${[...all].join(' ')}"${rest}>`;
   });
 }
 
-/**
- * Function contract: replaceMain
- * Purpose: Implements the replace main responsibility for this module.
- * Inputs: file, markup, classes.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: replaceMain
  * Purpose: Implement the replace main responsibility owned by the shared repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed; `markup`: input consumed by this operation; `classes`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `file`, `markup`, `classes`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function replaceMain(file, markup, classes) {
   const target = path.join(targetRoot, file);

@@ -51,19 +51,14 @@ fs.writeFileSync(
 
 const marker = `<meta name="nrs-build-commit" content="${commit}">`;
 
-/**
- * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: directory.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the write build metadata repository tool.
- * Inputs: `directory`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `directory`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {

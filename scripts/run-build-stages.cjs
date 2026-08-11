@@ -12,12 +12,13 @@
  */
 const { spawnSync } = require('node:child_process');
 
+
 /**
  * Function contract: runStages
- * Purpose: Execute the ordered build-stage definitions sequentially, surface the active stage in logs, and stop immediately when a stage fails.
- * Inputs: `stages`: input consumed by this operation; `scope`: input consumed by this operation
- * Side effects: spawns child processes; emits diagnostics or changes process failure state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Purpose: Execute the ordered build stages sequentially with readable diagnostics and fail immediately when a stage exits unsuccessfully.
+ * Inputs: `stages`, `scope`
+ * Side effects: spawns child processes; emits diagnostics or changes process failure state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function runStages(stages, scope) {
   for (const [label, [command, ...args]] of stages) {

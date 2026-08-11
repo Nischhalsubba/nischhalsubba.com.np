@@ -19,12 +19,13 @@ const root = path.resolve(__dirname, '..');
 const base = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const stylePath = path.join(base, 'style.css');
 
+
 /**
  * Function contract: enhanceAbout
  * Purpose: Implement the enhance about responsibility owned by the ensure agent audit content enhancements repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function enhanceAbout() {
   const file = path.join(base, 'about.html');
@@ -53,26 +54,21 @@ const serviceMap = new Map([
   ['Design-to-dev', ['/product-design-nepal', '/project-splashnode', 'Splashnode']],
 ]);
 
-/**
- * Function contract: enhanceServices
- * Purpose: Implements the enhance services responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: enhanceServices
  * Purpose: Implement the enhance services responsibility owned by the ensure agent audit content enhancements repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function enhanceServices() {
   const file = path.join(base, 'services.html');
   if (!fs.existsSync(file)) return 0;
   let html = fs.readFileSync(file, 'utf8');
   let changed = 0;
-  html = html.replace(/<article\b([^>]*class=["'][^"']*agent-service\b[^"']*["'][^>]*)>([\s\S]*?)<\/article>/gi, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: article, attrs, body. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing ensure agent audit content enhancements repository tool operation. Inputs: `article`, `attrs`, `body`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `article`, `attrs`, `body`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed value consumed by the enclosing operation. */ (article, attrs, body) => {
+  html = html.replace(/<article\b([^>]*class=["'][^"']*agent-service\b[^"']*["'][^>]*)>([\s\S]*?)<\/article>/gi,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure agent audit content enhancements repository tool operation. Inputs: `article`, `attrs`, `body` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (article, attrs, body) => {
     if (/agent-service-link/.test(body)) return article;
     const title = body.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1]?.replace(/<[^>]+>/g, '').trim();
     const links = serviceMap.get(title);
@@ -93,19 +89,14 @@ const featuredWriting = new Set([
   '/blog/responsive-saas-dashboard-handoff-notes.html',
 ]);
 
-/**
- * Function contract: enhanceWritingFile
- * Purpose: Implements the enhance writing file responsibility for this module.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: enhanceWritingFile
  * Purpose: Implement the enhance writing file responsibility owned by the ensure agent audit content enhancements repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function enhanceWritingFile(file) {
   if (!fs.existsSync(file)) return false;
@@ -114,50 +105,40 @@ function enhanceWritingFile(file) {
   if (!main || !main.includes('agent-index-list') || main.includes('nrs-writing-featured')) return false;
   const hero = main.match(/<header\b[^>]*class=["'][^"']*agent-page-hero[^"']*["'][^>]*>[\s\S]*?<\/header>/i)?.[0] || '';
   const items = [...main.matchAll(/<a\b[^>]*class=["'][^"']*agent-index-item[^"']*["'][^>]*href=["']([^"']+)["'][^>]*>[\s\S]*?<\/a>/gi)]
-    .map(/** Callback contract: Processes the callback step for [...main.match all(/<a\b[^>]*class=["'][^"']*agent index item[^"']*["'][^>]*href=["']([^"']+)["'][^>]*>[\s\s]*?<\/a>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => ({ href: match[1], html: match[0] }));
+    .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => ({ href: match[1], html: match[0] }));
   if (!items.length) return false;
 
-  const picks = items.filter(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => featuredWriting.has(item.href));
+  const picks = items.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => featuredWriting.has(item.href));
   if (!picks.length) return false;
-  const rest = items.filter(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (item) => !featuredWriting.has(item.href));
-  const featured = `<section class="agent-section nrs-writing-featured"><div class="agent-frame"><div class="nrs-writing-featured-head"><span class="agent-kicker">Start with these</span><h2>Three opinionated notes from the work.</h2><p>Design trade-offs, systems thinking and the gap between a polished screen and a usable product.</p></div><div class="nrs-writing-featured-grid">${picks.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => item.html.replace('agent-index-item', 'agent-index-item nrs-writing-featured-item')).join('')}</div></div></section>`;
-  const archive = `<section class="agent-section agent-section--compact nrs-writing-archive"><div class="agent-frame"><header class="nrs-writing-archive-head"><span class="agent-kicker">Archive</span><h2>More product design writing</h2></header><div class="agent-index-list">${rest.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `html` value. */ (item) => item.html).join('')}</div></div></section>`;
+  const rest = items.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => !featuredWriting.has(item.href));
+  const featured = `<section class="agent-section nrs-writing-featured"><div class="agent-frame"><div class="nrs-writing-featured-head"><span class="agent-kicker">Start with these</span><h2>Three opinionated notes from the work.</h2><p>Design trade-offs, systems thinking and the gap between a polished screen and a usable product.</p></div><div class="nrs-writing-featured-grid">${picks.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => item.html.replace('agent-index-item', 'agent-index-item nrs-writing-featured-item')).join('')}</div></div></section>`;
+  const archive = `<section class="agent-section agent-section--compact nrs-writing-archive"><div class="agent-frame"><header class="nrs-writing-archive-head"><span class="agent-kicker">Archive</span><h2>More product design writing</h2></header><div class="agent-index-list">${rest.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: The selected `html` value. */ (item) => item.html).join('')}</div></div></section>`;
   html = html.replace(main, `<main id="main-content" class="agent-main nrs-writing-remediated">${hero}${featured}${archive}</main>`);
   fs.writeFileSync(file, html, 'utf8');
   return true;
 }
 
-/**
- * Function contract: enhanceWriting
- * Purpose: Implements the enhance writing responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: enhanceWriting
  * Purpose: Implement the enhance writing responsibility owned by the ensure agent audit content enhancements repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Array containing the values selected or transformed by this function.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function enhanceWriting() {
   return [path.join(base, 'blog', 'index.html'), path.join(base, 'blog.html')].filter(enhanceWritingFile).length;
 }
 
-/**
- * Function contract: appendStyles
- * Purpose: Implements the append styles responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: appendStyles
  * Purpose: Implement the append styles responsibility owned by the ensure agent audit content enhancements repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function appendStyles() {
   if (!fs.existsSync(stylePath)) throw new Error('[agent-audit-content] Missing style.css');

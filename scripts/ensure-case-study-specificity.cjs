@@ -33,29 +33,32 @@ const specifics={
 'yarsha':{decisions:[['Conversation first','Keep wallet actions inside the conversational context.'],['Review before signing','Create a deliberate review moment before consequential wallet approval.'],['State completeness','Design pending, declined, failed and completed states explicitly.'],['Return to context','Keep resolved transaction status legible inside the thread.']],outcomes:['A clearer connection between chat context and wallet actions.','More deliberate review before signing or sending.','Transaction states that remain understandable when the happy path breaks.','Handoff framed around behavior and state transitions rather than isolated screens.'],validation:['Can users explain what will happen before signing?','Do pending and failure states provide enough recovery context?','Does transaction status remain understandable when users return to the conversation?']},
 'zapp':{decisions:[['Role priority','Give customer, driver and operations interfaces different priorities while sharing one delivery state model.'],['Shared status language','Keep delivery states consistent across roles.'],['Progressive detail','Expose operational detail only when it becomes useful.'],['Exception paths','Design delayed, interrupted and failed delivery states instead of only completion.']],outcomes:['A more coherent state model across customer, driver and operational views.','Clearer task priority for drivers during active work.','Reduced exposure of internal complexity in the customer journey.','More room for operations to understand and recover from delivery exceptions.'],validation:['Do cross-role statuses stay consistent?','Can drivers identify the next action quickly?','Where do delayed or interrupted deliveries create confusion?']}
 };
+
 /**
  * Function contract: cards
  * Purpose: Implement the cards responsibility owned by the ensure case study specificity repository tool.
- * Inputs: `items`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `items`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
-function cards(items){return `<div class="journey-grid">${items.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[h,p]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([h,p])=>`<div class="journey-card"><span class="eyebrow">Decision</span><h3>${h}</h3><p>${p}</p></div>`).join('')}</div>`}
+function cards(items){return `<div class="journey-grid">${items.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[h,p]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([h,p])=>`<div class="journey-card"><span class="eyebrow">Decision</span><h3>${h}</h3><p>${p}</p></div>`).join('')}</div>`}
+
 /**
  * Function contract: list
  * Purpose: Return module behavior from the supplied inputs or current ensure case study specificity repository tool state.
- * Inputs: `items`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: The requested module behavior; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: `items`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: The requested module behavior; explicit early-return branches define empty/fallback behavior.
  */
-function list(items){return `<ul class="case-list">${items.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `x`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ x=>`<li>${x}</li>`).join('')}</ul>`}
+function list(items){return `<ul class="case-list">${items.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `x` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ x=>`<li>${x}</li>`).join('')}</ul>`}
+
 /**
  * Function contract: patch
  * Purpose: Implement the patch responsibility owned by the ensure case study specificity repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function patch(file){const slug=file.replace(/^project-/,'').replace(/\.html$/,'');const spec=specifics[slug];const p=path.join(base,file);if(!spec||!fs.existsSync(p))return;let h=fs.readFileSync(p,'utf8');h=h.replace(/\s*<section id="project-seo-asset"[\s\S]*?<\/section>/i,'');h=h.replace(/<section class="section-container reveal-on-scroll"><div class="case-label">DESIGN DECISIONS<\/div><h2 class="section-title"[^>]*>How I approached the work<\/h2>[\s\S]*?<\/section>/i,`<section class="section-container reveal-on-scroll"><div class="case-label">KEY DECISIONS</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">Decisions that shaped the product</h2>${cards(spec.decisions)}</section>`);h=h.replace(/<section(?: id="case-contribution")? class="section-container reveal-on-scroll"[^>]*>(?:<p class="case-label">[^<]*<\/p>|<div class="case-label">OUTCOME<\/div>)?<h2[^>]*>(?:What the design made easier|What the design aimed to make easier)<\/h2>[\s\S]*?<\/section>/i,`<section class="section-container reveal-on-scroll"><div class="case-label">DELIVERED DESIGN EFFECT</div><h2 class="section-title" style="font-size:2rem;margin-bottom:20px;">What changed in the design</h2>${list(spec.outcomes)}<p class="nrs-evidence-note">These are observable design changes, not fabricated business or product metrics.</p></section>`);h=h.replace(/<section[^>]*><h2 class="section-title">(?:What I would discuss in an interview|What I would validate next)<\/h2>[\s\S]*?<\/section>/i,`<section class="section-container reveal-on-scroll" style="border-top:1px solid var(--border-faint);"><div class="case-label">NEXT VALIDATION</div><h2 class="section-title">What I would validate next</h2>${list(spec.validation)}</section>`);h=h.replace(/<li>A stronger hiring walkthrough because scope, artifacts, and constraints are visible\.<\/li>/gi,'');fs.writeFileSync(p,h,'utf8')}
-if(fs.existsSync(base)){for(const f of fs.readdirSync(base).filter(/** Callback contract: Processes the callback step for fs.readdir sync(base) without leaking orchestration details to the caller. Inputs: n. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `n`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `n`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ n=>/^project-[a-z0-9-]+\.html$/i.test(n)))patch(f)}
+if(fs.existsSync(base)){for(const f of fs.readdirSync(base).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `n` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ n=>/^project-[a-z0-9-]+\.html$/i.test(n)))patch(f)}
 console.log(`[case-specificity] Replaced generic process/outcome/search copy in ${process.argv.includes('--dist')?'dist':'source'} project pages.`);

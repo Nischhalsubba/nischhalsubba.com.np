@@ -18,41 +18,38 @@ const root = path.resolve(__dirname, '..');
 const base = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const siteUrl = 'https://nischhalsubba.com.np';
 
+
 /**
  * Function contract: esc
  * Purpose: Implement the esc responsibility owned by the ensure sitewide final details repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 }
 
+
 /**
  * Function contract: setMeta
  * Purpose: Synchronize meta with the requested state while preserving related ensure sitewide final details repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `selector`: input consumed by this operation; `tag`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `selector`, `tag`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setMeta(html, selector, tag) {
   return selector.test(html) ? html.replace(selector, tag) : html.replace('</head>', `${tag}\n</head>`);
 }
 
-/**
- * Function contract: rewritePrivacy
- * Purpose: Implements the rewrite privacy responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: rewritePrivacy
  * Purpose: Implement the rewrite privacy responsibility owned by the ensure sitewide final details repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function rewritePrivacy() {
   const file = path.join(base, 'privacy.html');
@@ -68,19 +65,14 @@ function rewritePrivacy() {
   return true;
 }
 
-/**
- * Function contract: rewrite404
- * Purpose: Implements the rewrite404 responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: rewrite404
  * Purpose: Implement the rewrite404 responsibility owned by the ensure sitewide final details repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function rewrite404() {
   const file = path.join(base, '404.html');
@@ -94,35 +86,25 @@ function rewrite404() {
   return true;
 }
 
-/**
- * Function contract: sanitizeMetadata
- * Purpose: Implements the sanitize metadata responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: sanitizeMetadata
  * Purpose: Implement the sanitize metadata responsibility owned by the ensure sitewide final details repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function sanitizeMetadata() {
   const files = [];
-  (/**
-   * Function contract: walk
-   * Purpose: Implements the walk responsibility for this module.
-   * Inputs: directory.
-   * Side effects: may read or write repository/filesystem state.
-   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-   */
+  (
+  
   /**
    * Function contract: walk
    * Purpose: Implement the walk responsibility owned by the ensure sitewide final details repository tool.
-   * Inputs: `directory`: input consumed by this operation
-   * Side effects: reads repository/filesystem state.
-   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   * Inputs: `directory`
+   * Side effects: reads filesystem state
+   * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
    */
   function walk(directory) {
     if (!fs.existsSync(directory)) return;
@@ -151,19 +133,14 @@ function sanitizeMetadata() {
   return cleaned;
 }
 
-/**
- * Function contract: appendStyles
- * Purpose: Implements the append styles responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: appendStyles
  * Purpose: Implement the append styles responsibility owned by the ensure sitewide final details repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function appendStyles() {
   const file = path.join(base, 'style.css');

@@ -230,12 +230,13 @@ const cases = {
   }
 };
 
+
 /**
  * Function contract: esc
  * Purpose: Implement the esc responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function esc(value) {
   return String(value ?? '')
@@ -245,12 +246,13 @@ function esc(value) {
     .replaceAll('"', '&quot;');
 }
 
+
 /**
  * Function contract: strip
  * Purpose: Remove module behavior without disturbing required surrounding ensure senior case studies repository tool state.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function strip(value) {
   return String(value ?? '')
@@ -263,12 +265,13 @@ function strip(value) {
     .trim();
 }
 
+
 /**
  * Function contract: fact
  * Purpose: Implement the fact responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `main`: input consumed by this operation; `label`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `main`, `label`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function fact(main, label) {
   const dt = new RegExp(`<dt[^>]*>\\s*${label}\\s*<\\/dt>\\s*<dd[^>]*>([\\s\\S]*?)<\\/dd>`, 'i').exec(main);
@@ -277,38 +280,28 @@ function fact(main, label) {
   return old ? strip(old[1]) : '';
 }
 
-/**
- * Function contract: year
- * Purpose: Implements the year responsibility for this module.
- * Inputs: main.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: year
  * Purpose: Implement the year responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `main`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `main`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function year(main) {
-  const badges = [...main.matchAll(/<span[^>]*class=["'][^"']*badge-pill[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi)].map(/** Callback contract: Processes the callback step for [...main.match all(/<span[^>]*class=["'][^"']*badge pill[^"']*["'][^>]*>([\s\s]*?)<\/span>/gi)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => strip(match[1]));
-  return fact(main, 'Year') || badges.find(/** Callback contract: Processes the callback step for badges without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `value`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `value`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (value) => /\b20\d{2}/.test(value)) || '';
+  const badges = [...main.matchAll(/<span[^>]*class=["'][^"']*badge-pill[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi)].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => strip(match[1]));
+  return fact(main, 'Year') || badges.find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `value` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (value) => /\b20\d{2}/.test(value)) || '';
 }
+
+
 
 /**
  * Function contract: cover
- * Purpose: Implements the cover responsibility for this module.
- * Inputs: main, item.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: cover
  * Purpose: Implement the cover responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `main`: input consumed by this operation; `item`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `main`, `item`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function cover(main, item) {
   const source = main.match(/<figure[^>]*class=["'][^"']*agent-case-cover[^"']*["'][^>]*>[\s\S]*?<\/figure>/i)?.[0]
@@ -320,19 +313,14 @@ function cover(main, item) {
   return `<figure class="agent-case-cover nrs-hireable-case-cover"><img src="${esc(img[1])}" alt="${esc(alt)}" loading="eager" decoding="async"></figure>`;
 }
 
-/**
- * Function contract: externalLinks
- * Purpose: Implements the external links responsibility for this module.
- * Inputs: main.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: externalLinks
  * Purpose: Implement the external links responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `main`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `main`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function externalLinks(main) {
   const seen = new Set();
@@ -345,52 +333,50 @@ function externalLinks(main) {
   return links.slice(0, 6);
 }
 
-/**
- * Function contract: list
- * Purpose: Implements the list responsibility for this module.
- * Inputs: items.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: list
  * Purpose: Return module behavior from the supplied inputs or current ensure senior case studies repository tool state.
- * Inputs: `items`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: The requested module behavior; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: `items`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: The requested module behavior; explicit early-return branches define empty/fallback behavior.
  */
 function list(items) {
-  return `<ul class="nrs-case-list">${items.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (item) => `<li>${esc(item)}</li>`).join('')}</ul>`;
+  return `<ul class="nrs-case-list">${items.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => `<li>${esc(item)}</li>`).join('')}</ul>`;
 }
+
 
 /**
  * Function contract: cards
  * Purpose: Implement the cards responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `items`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `items`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function cards(items) {
-  return `<div class="agent-decision-grid nrs-case-decision-grid">${items.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[title, text]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([title, text]) => `<article class="agent-decision nrs-case-decision-card"><span class="agent-meta">Design move</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div>`;
+  return `<div class="agent-decision-grid nrs-case-decision-grid">${items.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[title, text]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([title, text]) => `<article class="agent-decision nrs-case-decision-card"><span class="agent-meta">Design move</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div>`;
 }
+
 
 /**
  * Function contract: section
  * Purpose: Implement the section responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `number`: input consumed by this operation; `label`: input consumed by this operation; `title`: input consumed by this operation; `body`: input consumed by this operation; `className`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `number`, `label`, `title`, `body`, `className`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function section(number, label, title, body, className = '') {
   return `<section class="agent-section ${className}"><div class="agent-frame nrs-case-section"><header class="nrs-case-section-head"><span class="agent-meta">${String(number).padStart(2, '0')} · ${esc(label)}</span><h2>${esc(title)}</h2></header><div class="nrs-case-section-body">${body}</div></div></section>`;
 }
 
+
 /**
  * Function contract: facts
  * Purpose: Implement the facts responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `main`: input consumed by this operation; `item`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `main`, `item`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function facts(main, item) {
   const role = fact(main, 'Role') || 'Product design contribution';
@@ -399,31 +385,33 @@ function facts(main, item) {
     ['Year', year(main)],
     ['Domain', fact(main, 'Domain') || item.domain],
     ['Audience', fact(main, 'Users') || fact(main, 'Audience') || item.audience],
-  ].filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `[, value]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ ([, value]) => value);
-  return `<dl class="agent-case-facts nrs-hireable-case-facts">${values.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[label, value]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
+  ].filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `[, value]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ ([, value]) => value);
+  return `<dl class="agent-case-facts nrs-hireable-case-facts">${values.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[label, value]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
 }
+
 
 /**
  * Function contract: evidence
  * Purpose: Implement the evidence responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `main`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `main`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function evidence(main) {
   const links = externalLinks(main);
   if (!links.length) {
     return '<p class="nrs-case-evidence-note">No public interactive artifact is attached to this case. The write-up is limited to work I can describe and defend publicly.</p>';
   }
-  return `<div class="agent-evidence-links nrs-case-evidence-links">${links.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[label, url]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([label, url]) => `<a class="agent-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`).join('')}</div>`;
+  return `<div class="agent-evidence-links nrs-case-evidence-links">${links.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[label, url]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([label, url]) => `<a class="agent-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`).join('')}</div>`;
 }
+
 
 /**
  * Function contract: render
  * Purpose: Implement the render responsibility owned by the ensure senior case studies repository tool.
- * Inputs: `slug`: input consumed by this operation; `main`: input consumed by this operation; `item`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `slug`, `main`, `item`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function render(slug, main, item) {
   const hero = `<header class="agent-case-hero nrs-hireable-case-hero"><div class="agent-frame agent-case-grid"><nav class="nrs-case-breadcrumb" aria-label="Breadcrumb"><a href="/projects">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(item.title)}</span></nav><div class="agent-case-title-wrap"><span class="agent-kicker">${esc(item.domain)}</span><h1 class="agent-case-title">${esc(item.title)}</h1></div><p class="agent-case-deck">${esc(item.deck)}</p>${facts(main, item)}${cover(main, item)}</div></header>`;
@@ -435,7 +423,7 @@ function render(slug, main, item) {
   const result = section(6, 'Result', 'What the design resolved', `${list(item.result)}<p class="nrs-case-evidence-note">Quantitative product metrics are not public for this work, so this section describes the delivered design outcome rather than inventing business impact.</p>`);
   const success = section(7, 'Success criteria', 'How I would know it is working', list(item.success), 'agent-section--inverse');
   const proof = section(8, 'Evidence', 'Public work and references', evidence(main), 'agent-section--compact');
-  const close = section(9, 'Takeaway', 'What this case says about my practice', `<div class="nrs-case-signal-grid">${item.strengths.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `strength`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (strength) => `<article><strong>${esc(strength)}</strong></article>`).join('')}</div><div class="agent-actions nrs-case-actions"><a class="agent-btn agent-btn--primary" href="/projects">View all work</a><a class="agent-btn" href="/contact">Discuss similar work</a></div>`);
+  const close = section(9, 'Takeaway', 'What this case says about my practice', `<div class="nrs-case-signal-grid">${item.strengths.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `strength` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (strength) => `<article><strong>${esc(strength)}</strong></article>`).join('')}</div><div class="agent-actions nrs-case-actions"><a class="agent-btn agent-btn--primary" href="/projects">View all work</a><a class="agent-btn" href="/contact">Discuss similar work</a></div>`);
   return `<main id="main-content" class="agent-main nrs-hireable-case nrs-senior-case nrs-editorial-case" data-project-slug="${esc(slug)}">${hero}${context}${remit}${moves}${system}${delivery}${result}${success}${proof}${close}</main>`;
 }
 

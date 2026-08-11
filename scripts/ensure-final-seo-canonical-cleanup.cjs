@@ -135,12 +135,13 @@ const preferredSitemap = [
   '/humans.txt',
 ];
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the ensure final seo canonical cleanup repository tool.
- * Inputs: `dir`: input consumed by this operation; `files`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -152,34 +153,37 @@ function walk(dir, files = []) {
   return files;
 }
 
+
 /**
  * Function contract: rel
  * Purpose: Implement the rel responsibility owned by the ensure final seo canonical cleanup repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function rel(file) {
   return path.relative(targetRoot, file).replaceAll(path.sep, '/');
 }
 
+
 /**
  * Function contract: escapeAttribute
  * Purpose: Implement the escape attribute responsibility owned by the ensure final seo canonical cleanup repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function escapeAttribute(value) {
   return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
+
 /**
  * Function contract: upsertTitle
  * Purpose: Implement the upsert title responsibility owned by the ensure final seo canonical cleanup repository tool.
- * Inputs: `html`: input consumed by this operation; `title`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `title`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function upsertTitle(html, title) {
   const tag = `<title>${title}</title>`;
@@ -187,19 +191,14 @@ function upsertTitle(html, title) {
   return html.replace('</head>', `    ${tag}\n  </head>`);
 }
 
-/**
- * Function contract: upsertMeta
- * Purpose: Implements the upsert meta responsibility for this module.
- * Inputs: html, attr, name, content.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: upsertMeta
  * Purpose: Implement the upsert meta responsibility owned by the ensure final seo canonical cleanup repository tool.
- * Inputs: `html`: input consumed by this operation; `attr`: input consumed by this operation; `name`: stable identifier or label for the current item; `content`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`, `attr`, `name`, `content`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function upsertMeta(html, attr, name, content) {
   const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -209,19 +208,14 @@ function upsertMeta(html, attr, name, content) {
   return html.replace('</head>', `    ${tag}\n  </head>`);
 }
 
-/**
- * Function contract: upsertCanonical
- * Purpose: Implements the upsert canonical responsibility for this module.
- * Inputs: html, canonicalPath.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: upsertCanonical
  * Purpose: Implement the upsert canonical responsibility owned by the ensure final seo canonical cleanup repository tool.
- * Inputs: `html`: input consumed by this operation; `canonicalPath`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `canonicalPath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function upsertCanonical(html, canonicalPath) {
   const href = `${site}${canonicalPath}`;
@@ -230,55 +224,40 @@ function upsertCanonical(html, canonicalPath) {
   return html.replace('</head>', `    ${tag}\n  </head>`);
 }
 
-/**
- * Function contract: removeKeywordMeta
- * Purpose: Removes or cleans remove keyword meta while keeping required outputs intact.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: removeKeywordMeta
  * Purpose: Remove keyword meta without disturbing required surrounding ensure final seo canonical cleanup repository tool state.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function removeKeywordMeta(html) {
   return html.replace(/\s*<meta\s+[^>]*name=["']keywords["'][^>]*>\s*/gi, '\n');
 }
 
-/**
- * Function contract: removeJsonLd
- * Purpose: Removes or cleans remove json ld while keeping required outputs intact.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: removeJsonLd
  * Purpose: Remove json ld without disturbing required surrounding ensure final seo canonical cleanup repository tool state.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function removeJsonLd(html) {
   return html.replace(/\s*<script\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>\s*/gi, '\n');
 }
 
-/**
- * Function contract: buildSchema
- * Purpose: Creates build schema from the supplied inputs and repository state.
- * Inputs: data.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: buildSchema
  * Purpose: Build schema from the supplied inputs in the form expected by downstream ensure final seo canonical cleanup repository tool consumers.
- * Inputs: `data`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `data`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function buildSchema(data) {
   const url = `${site}${data.canonical}`;
@@ -327,19 +306,14 @@ function buildSchema(data) {
   return `<script type="application/ld+json">${JSON.stringify(base)}</script>`;
 }
 
-/**
- * Function contract: applyMetadata
- * Purpose: Applies apply metadata while preserving the surrounding repository/runtime contract.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: applyMetadata
  * Purpose: Apply metadata consistently while preserving the surrounding ensure final seo canonical cleanup repository tool contract.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: writes repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function applyMetadata(file) {
   const key = rel(file);
@@ -377,40 +351,30 @@ function applyMetadata(file) {
   return 'updated';
 }
 
-/**
- * Function contract: writeSitemap
- * Purpose: Applies write sitemap while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: writeSitemap
  * Purpose: Implement the write sitemap responsibility owned by the ensure final seo canonical cleanup repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function writeSitemap() {
   const lastmod = new Date().toISOString().slice(0, 10);
-  const urls = preferredSitemap.map(/** Callback contract: Processes the callback step for preferred sitemap without leaking orchestration details to the caller. Inputs: url. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `url`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `url`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (url) => `  <url>\n    <loc>${site}${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`).join('\n');
+  const urls = preferredSitemap.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `url` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (url) => `  <url>\n    <loc>${site}${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`).join('\n');
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
   fs.writeFileSync(path.join(targetRoot, 'sitemap.xml'), xml, 'utf8');
 }
 
-/**
- * Function contract: validateCloudflareRedirects
- * Purpose: Validates validate cloudflare redirects and reports violations instead of silently accepting invalid state.
- * Inputs: redirects.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: validateCloudflareRedirects
  * Purpose: Validate cloudflare redirects and surface actionable failures when the ensure final seo canonical cleanup repository tool contract is violated.
- * Inputs: `redirects`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `redirects`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function validateCloudflareRedirects(redirects) {
   const map = new Map();
@@ -437,19 +401,14 @@ function validateCloudflareRedirects(redirects) {
   }
 }
 
-/**
- * Function contract: writeRedirects
- * Purpose: Applies write redirects while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: writeRedirects
  * Purpose: Implement the write redirects responsibility owned by the ensure final seo canonical cleanup repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function writeRedirects() {
   const redirects = `# Legacy URLs only. Clean routes are served directly by the platform.\n/home / 301\n/home.html / 301\n/home-v2 / 301\n/home-v2.html / 301\n/index.html / 301\n/blog /blog/ 301\n/blog.html /blog/ 301\n/products /figma-design-systems 301\n/products.html /figma-design-systems 301\n/project-detail.html /projects 301\n/project-jeweltrek.html /projects 301\n/blog-detail.html /blog/ 301\n/blog-saas-dashboard-ux-checklist.html /blog/saas-dashboard-ux-checklist 301\n/blog-web3-wallet-ux-checklist.html /blog/web3-wallet-ux-checklist 301\n/blog-figma-handoff-notes-for-developers.html /blog/figma-handoff-notes-for-developers 301\n/blog-ux-audit-checklist-before-redesign.html /blog/ux-audit-checklist-before-redesign 301\n/blog-website-ux-checklist-software-companies.html /blog/website-ux-checklist-software-companies 301\n/blog-role-based-saas-dashboard-ux.html /blog/role-based-saas-dashboard-ux 301\n`;
@@ -459,7 +418,7 @@ function writeRedirects() {
 
 let updated = 0;
 let legacy = 0;
-for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => item.endsWith('.html'))) {
+for (const file of walk(targetRoot).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => item.endsWith('.html'))) {
   const status = applyMetadata(file);
   if (status === 'updated') updated += 1;
   if (status === 'legacy') legacy += 1;

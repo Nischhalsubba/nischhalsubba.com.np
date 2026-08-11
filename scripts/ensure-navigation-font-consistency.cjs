@@ -20,12 +20,13 @@ const targetRoot = process.argv.includes('--dist') ? path.join(root, 'dist') : r
 const stylePath = path.join(targetRoot, 'style.css');
 const styleVersion = '50.0';
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the ensure navigation font consistency repository tool.
- * Inputs: `dir`: input consumed by this operation; `files`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -38,12 +39,13 @@ function walk(dir, files = []) {
   return files;
 }
 
+
 /**
  * Function contract: cleanBlogArticle
  * Purpose: Remove blog article without disturbing required surrounding ensure navigation font consistency repository tool state.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function cleanBlogArticle(file) {
   const rel = path.relative(targetRoot, file).replaceAll(path.sep, '/');
@@ -191,7 +193,7 @@ body.nrs-services-v49-page .nrs-services-v49 {
 `;
 
 let changed = 0;
-for (const file of walk(targetRoot).filter(/** Callback contract: Processes the callback step for walk(target root) without leaking orchestration details to the caller. Inputs: item. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `item`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => item.endsWith('.html'))) {
+for (const file of walk(targetRoot).filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => item.endsWith('.html'))) {
   if (cleanBlogArticle(file)) changed += 1;
 }
 

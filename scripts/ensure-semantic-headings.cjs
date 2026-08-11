@@ -20,12 +20,13 @@ const useDist = process.argv.includes('--dist');
 const targetRoot = useDist ? path.join(root, 'dist') : root;
 const ignored = new Set(['.git', 'node_modules', '.wrangler', 'dist', 'wordpress']);
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the ensure semantic headings repository tool.
- * Inputs: `dir`: input consumed by this operation; `files`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `dir`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function walk(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -38,26 +39,28 @@ function walk(dir, files = []) {
   return files;
 }
 
+
 /**
  * Function contract: stripTags
  * Purpose: Remove tags without disturbing required surrounding ensure semantic headings repository tool state.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function stripTags(value) {
   return value.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/\s+/g, ' ').trim();
 }
 
+
 /**
  * Function contract: normalizeLayeredHeading
  * Purpose: Apply layered heading consistently while preserving the surrounding ensure semantic headings repository tool contract.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeLayeredHeading(html) {
-  return html.replace(/<(h[1-3])([^>]*)>([\s\S]*?)<\/\1>/gi, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `full`, `tag`, `attrs`, `inner`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed value consumed by the enclosing operation. */ (full, tag, attrs, inner) => {
+  return html.replace(/<(h[1-3])([^>]*)>([\s\S]*?)<\/\1>/gi,  /** Callback contract: Perform the local callback step required by the immediately enclosing ensure semantic headings repository tool operation. Inputs: `full`, `tag`, `attrs`, `inner` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (full, tag, attrs, inner) => {
     const spans = Array.from(inner.matchAll(/<span\b([^>]*)class=["']([^"']*)["']([^>]*)>([\s\S]*?)<\/span>/gi));
     if (spans.length !== 2) return full;
 

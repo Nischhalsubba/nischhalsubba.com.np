@@ -26,19 +26,14 @@ const brandMarkup = '<a id="mobile-site-brand" class="agent-mobile-brand" href="
 if (!fs.existsSync(stylePath)) throw new Error(`[mobile-brand-singleton] Missing ${stylePath}`);
 
 const htmlFiles = [];
-(/**
- * Function contract: walk
- * Purpose: Implements the walk responsibility for this module.
- * Inputs: directory.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+(
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the ensure mobile brand singleton v11 repository tool.
- * Inputs: `directory`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `directory`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function walk(directory) {
   if (!fs.existsSync(directory)) return;

@@ -231,19 +231,14 @@ const polishCss = `${startMarker}
 }
 ${endMarker}`;
 
-/**
- * Function contract: appendPolishCss
- * Purpose: Implements the append polish css responsibility for this module.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: appendPolishCss
  * Purpose: Implement the append polish css responsibility owned by the ensure interface polish repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function appendPolishCss(file) {
   if (!fs.existsSync(file)) return false;
@@ -253,19 +248,14 @@ function appendPolishCss(file) {
   return true;
 }
 
-/**
- * Function contract: patchRuntime
- * Purpose: Implements the patch runtime responsibility for this module.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: patchRuntime
  * Purpose: Implement the patch runtime responsibility owned by the ensure interface polish repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `file`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function patchRuntime(file) {
   if (!fs.existsSync(file)) return false;
@@ -310,7 +300,7 @@ const requiredSelectors = [
   '.agent-portfolio .agent-project-row:focus-visible',
   '@media (prefers-reduced-motion: reduce)'
 ];
-const missing = requiredSelectors.filter(/** Callback contract: Processes the callback step for required selectors without leaking orchestration details to the caller. Inputs: selector. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `selector`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `selector`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (selector) => !finalCss.includes(selector));
+const missing = requiredSelectors.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `selector` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (selector) => !finalCss.includes(selector));
 if (missing.length) {
   console.error(`[interface-polish] Missing required CSS contracts: ${missing.join(', ')}`);
   process.exit(1);

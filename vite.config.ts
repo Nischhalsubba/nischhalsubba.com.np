@@ -18,12 +18,13 @@ import { defineConfig, loadEnv, type Plugin } from 'vite';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
 /**
  * Function contract: page
  * Purpose: Implement the page responsibility owned by the vite.config module.
- * Inputs: `filePath`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `filePath`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed expression result consumed by the enclosing operation.
  */
 const page = (filePath: string) => path.resolve(__dirname, filePath);
 const SITE = 'https://nischhalsubba.com.np';
@@ -368,12 +369,13 @@ const blogSeo: Record<string, SeoEntry> = {
 
 const staticSeoEntries: Record<string, SeoEntry> = { ...projectSeo, ...blogSeo };
 
+
 /**
  * Function contract: makeStaticSeoSection
  * Purpose: Build static seo section from the supplied inputs in the form expected by downstream vite.config module consumers.
- * Inputs: `pagePath`: input consumed by this operation; `data`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `pagePath`, `data`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
   const schema = {
@@ -401,7 +403,7 @@ function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
       },
       {
         '@type': 'FAQPage',
-        mainEntity: data.faqs.map(/** Callback contract: Processes the callback step for data.faqs without leaking orchestration details to the caller. Inputs: [name, text]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[name, text]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[name, text]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ ([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } }))
+        mainEntity: data.faqs.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[name, text]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } }))
       }
     ]
   };
@@ -417,35 +419,25 @@ function makeStaticSeoSection(pagePath: string, data: SeoEntry) {
  * not depend only on client-side JavaScript. Visible helper blocks are avoided
  * intentionally because they can leak into production UI and fail the build audit.
  */
-/**
- * Function contract: htmlEnhancementInjector
- * Purpose: Implements the html enhancement injector responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: htmlEnhancementInjector
  * Purpose: Implement the html enhancement injector responsibility owned by the vite.config module.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed expression result consumed by the enclosing operation.
  */
 const htmlEnhancementInjector = (): Plugin => ({
   name: 'nrs-html-enhancement-injector',
-  /**
-   * Function contract: transformIndexHtml
-   * Purpose: Implements the transform index html responsibility for this module.
-   * Inputs: html, ctx.
-   * Side effects: no obvious external side effect beyond invoked dependencies.
-   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-   */
+  
+  
   /**
    * Function contract: transformIndexHtml
    * Purpose: Implement the transform index html responsibility owned by the vite.config module.
-   * Inputs: `html`: input consumed by this operation; `ctx`: input consumed by this operation
-   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-   * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+   * Inputs: `html`, `ctx`
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
    */
   transformIndexHtml(html, ctx) {
     let output = html
@@ -470,7 +462,7 @@ const htmlEnhancementInjector = (): Plugin => ({
   }
 });
 
-export default defineConfig(/** Callback contract: Processes the callback step for define config without leaking orchestration details to the caller. Inputs: { mode }. Side effects: may emit diagnostics or inspect process state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing vite.config module operation. Inputs: `{ mode }`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `{ mode }`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed value consumed by the enclosing operation. */ ({ mode }) => {
+export default defineConfig(   /** Callback contract: Perform the local callback step required by the immediately enclosing vite.config module operation. Inputs: `{ mode }` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ ({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {

@@ -193,4 +193,4 @@ export const projects = [
   },
 ];
 
-export const featuredProjects = projects.filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `project`. Side effects: no direct external side effect beyond invoked dependencies. Returns: the selected `featured` value. */ (project) => project.featured);
+export const featuredProjects = projects.filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `project` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (project) => project.featured);

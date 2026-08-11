@@ -19,12 +19,13 @@ const { EARLY_THEME_BOOTSTRAP } = require('./early-theme-bootstrap.cjs');
 const root = path.resolve(__dirname, '..');
 const email = 'hinischalsubba@gmail.com';
 
+
 /**
  * Function contract: head
  * Purpose: Implement the head responsibility owned by the generate about contact pages repository tool.
- * Inputs: `{ title, description, canonical, image = '/assets/images/portrait.png', schema = '' }`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `{ title, description, canonical, image = '/assets/images/portrait.png', schema = '' }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function head({ title, description, canonical, image = '/assets/images/portrait.png', schema = '' }) {
   return `<!DOCTYPE html>
@@ -51,34 +52,24 @@ function head({ title, description, canonical, image = '/assets/images/portrait.
   </head>`;
 }
 
-/**
- * Function contract: nav
- * Purpose: Implements the nav responsibility for this module.
- * Inputs: active.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: nav
  * Purpose: Implement the nav responsibility owned by the generate about contact pages repository tool.
- * Inputs: `active`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `active`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function nav(active) {
-  /**
-   * Function contract: item
-   * Purpose: Implements the item responsibility for this module.
-   * Inputs: section, href, label, cls.
-   * Side effects: no obvious external side effect beyond invoked dependencies.
-   * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
-   */
+  
+  
   /**
    * Function contract: item
    * Purpose: Implement the item responsibility owned by the generate about contact pages repository tool.
-   * Inputs: `section`: input consumed by this operation; `href`: input consumed by this operation; `label`: input consumed by this operation; `cls`: input consumed by this operation
-   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-   * Returns: Boolean predicate result consumed by the caller.
+   * Inputs: `section`, `href`, `label`, `cls`
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
    */
   const item = (section, href, label, cls = 'nav-link') => {
     const isActive = active === section;
@@ -90,19 +81,14 @@ function nav(active) {
 const footer = `<footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:${email}" class="footer-email-btn">${email}</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>`;
 const script = `<script type="module" src="/script.js?v=32.0"></script>`;
 
-/**
- * Function contract: page
- * Purpose: Implements the page responsibility for this module.
- * Inputs: name, html.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: page
  * Purpose: Implement the page responsibility owned by the generate about contact pages repository tool.
- * Inputs: `name`: stable identifier or label for the current item; `html`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `name`, `html`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function page(name, html) {
   fs.writeFileSync(path.join(root, name), `${html}\n`, 'utf8');

@@ -31,15 +31,16 @@ const companies = [
   ['Gurzu', 'https://gurzu.com/'],
 ];
 
+
 /**
  * Function contract: htmlFiles
  * Purpose: Implement the html files responsibility owned by the link experience company websites v25 repository tool.
- * Inputs: `dir`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `dir`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function htmlFiles(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `entry`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed value consumed by the enclosing operation. */ (entry) => {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap( /** Callback contract: Perform the local callback step required by the immediately enclosing link experience company websites v25 repository tool operation. Inputs: `entry` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (entry) => {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) return htmlFiles(full);
     return entry.isFile() && entry.name.endsWith('.html') ? [full] : [];

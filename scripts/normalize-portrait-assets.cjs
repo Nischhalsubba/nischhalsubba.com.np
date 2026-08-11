@@ -20,12 +20,13 @@ const localPortrait = 'https://nischhalsubba.com.np/assets/images/portrait.svg';
 const portraitReferences = /(?:https:\/\/i\.imgur\.com\/(?:ixsEpYM|oFHdPUS)\.png|https:\/\/nischhalsubba\.com\.np\/assets\/images\/portrait\.png|\/assets\/images\/portrait\.png)/gi;
 const supported = new Set(['.html', '.json', '.js', '.txt']);
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the normalize portrait assets repository tool.
- * Inputs: `directory`: input consumed by this operation; `files`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `directory`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function walk(directory, files = []) {
   if (!fs.existsSync(directory)) return files;
@@ -41,7 +42,7 @@ function walk(directory, files = []) {
 let changed = 0;
 for (const filePath of walk(target)) {
   const before = fs.readFileSync(filePath, 'utf8');
-  const after = before.replace(portraitReferences, /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => match.startsWith('/') ? '/assets/images/portrait.svg' : localPortrait);
+  const after = before.replace(portraitReferences,  /** Callback contract: Perform the local callback step required by the immediately enclosing normalize portrait assets repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match.startsWith('/') ? '/assets/images/portrait.svg' : localPortrait);
   if (after !== before) {
     fs.writeFileSync(filePath, after);
     changed += 1;

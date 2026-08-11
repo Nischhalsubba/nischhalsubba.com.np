@@ -13,12 +13,13 @@
  */
 import { $$ } from '../../shared/dom.js';
 
+
 /**
  * Function contract: normalizePath
  * Purpose: Apply path consistently while preserving the surrounding navigation browser feature contract.
- * Inputs: `pathname`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `pathname`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizePath(pathname) {
   const path = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
@@ -33,12 +34,13 @@ function normalizePath(pathname) {
   return path;
 }
 
+
 /**
  * Function contract: getActiveSection
  * Purpose: Return active section from the supplied inputs or current navigation browser feature state.
- * Inputs: `pathname`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: The requested active section; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: `pathname`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: The requested active section; explicit early-return branches define empty/fallback behavior.
  */
 function getActiveSection(pathname) {
   const path = normalizePath(pathname);
@@ -64,12 +66,13 @@ function getActiveSection(pathname) {
   return '';
 }
 
+
 /**
  * Function contract: getLinkSection
  * Purpose: Return link section from the supplied inputs or current navigation browser feature state.
- * Inputs: `href`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: The requested link section; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: `href`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: The requested link section; explicit early-return branches define empty/fallback behavior.
  */
 function getLinkSection(href) {
   const path = normalizePath(new URL(href, window.location.origin).pathname);
@@ -84,17 +87,18 @@ function getLinkSection(href) {
   return '';
 }
 
+
 /**
  * Function contract: initActiveNavigation
  * Purpose: Initialize active navigation for the navigation browser feature, including the listeners/state needed for safe runtime use.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function initActiveNavigation() {
   const activeSection = getActiveSection(window.location.pathname);
 
-  $$('.nav-link, .mobile-nav-links a, .footer-col a').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (link) => {
+  $$('.nav-link, .mobile-nav-links a, .footer-col a').forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (link) => {
     const href = link.getAttribute('href');
     if (!href || href.startsWith('http') || href.startsWith('mailto:')) return;
 

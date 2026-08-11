@@ -28,17 +28,17 @@ for (const viewport of viewports) {
   const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
   const page = await context.newPage();
 
-  await page.addInitScript(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
+  await page.addInitScript( /** Callback contract: Perform the local callback step required by the immediately enclosing browser performance audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ () => {
     window.__nrsPerf = { lcp: 0, cls: 0 };
     try {
-      new PerformanceObserver(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `list`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (list) => {
+      new PerformanceObserver( /** Callback contract: Perform the local callback step required by the immediately enclosing browser performance audit repository tool operation. Inputs: `list` Side effects: reads or updates DOM/browser state Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ (list) => {
         const entries = list.getEntries();
         const latest = entries[entries.length - 1];
         if (latest) window.__nrsPerf.lcp = latest.startTime;
       }).observe({ type: 'largest-contentful-paint', buffered: true });
     } catch {}
     try {
-      new PerformanceObserver(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `list`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (list) => {
+      new PerformanceObserver( /** Callback contract: Perform the local callback step required by the immediately enclosing browser performance audit repository tool operation. Inputs: `list` Side effects: reads or updates DOM/browser state Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ (list) => {
         for (const entry of list.getEntries()) {
           if (!entry.hadRecentInput) window.__nrsPerf.cls += entry.value || 0;
         }
@@ -52,13 +52,13 @@ for (const viewport of viewports) {
       if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
       await page.waitForTimeout(900);
 
-      const metrics = await page.evaluate(/** Callback contract: Processes the callback step for page without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing browser performance audit repository tool operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: computed value consumed by the enclosing operation. */ () => {
+      const metrics = await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing browser performance audit repository tool operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ () => {
         const resources = performance.getEntriesByType('resource');
         const navigation = performance.getEntriesByType('navigation')[0];
         return {
           lcp: Math.round(window.__nrsPerf?.lcp || 0),
           cls: Number((window.__nrsPerf?.cls || 0).toFixed(3)),
-          transfer: Math.round(resources.reduce(/** Callback contract: Processes the callback step for resources without leaking orchestration details to the caller. Inputs: sum, entry. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Fold the current item into the accumulator used by the enclosing reduction. Inputs: `sum`, `entry`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Fold the current item into the accumulator used by the enclosing reduction. Inputs: `sum`, `entry`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (sum, entry) => sum + (entry.transferSize || 0), 0)),
+          transfer: Math.round(resources.reduce(   /** Callback contract: Fold the current item into the accumulator used by the enclosing reduction. Inputs: `sum`, `entry` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (sum, entry) => sum + (entry.transferSize || 0), 0)),
           requests: resources.length,
           domContentLoaded: Math.round(navigation?.domContentLoadedEventEnd || 0),
           load: Math.round(navigation?.loadEventEnd || 0),

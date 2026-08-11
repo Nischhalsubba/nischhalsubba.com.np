@@ -19,12 +19,13 @@ const NAV_ITEMS = [
   { href: '/contact.html', label: 'Contact', key: 'contact' },
 ];
 
+
 /**
  * Function contract: currentKey
  * Purpose: Implement the current key responsibility owned by the nav consistency browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function currentKey() {
   const path = window.location.pathname;
@@ -37,19 +38,20 @@ function currentKey() {
   return '';
 }
 
+
 /**
  * Function contract: syncLinks
  * Purpose: Synchronize links with the requested state while preserving related nav consistency browser feature invariants.
- * Inputs: `container`: input consumed by this operation; `selector`: input consumed by this operation; `className`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `container`, `selector`, `className`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function syncLinks(container, selector, className = '') {
   if (!container) return;
   const active = currentKey();
   const existing = Array.from(container.querySelectorAll(selector));
 
-  const byLabel = new Map(existing.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (link) => [link.textContent.trim().toLowerCase(), link]));
+  const byLabel = new Map(existing.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ (link) => [link.textContent.trim().toLowerCase(), link]));
 
   for (const item of NAV_ITEMS) {
     let link = byLabel.get(item.label.toLowerCase());
@@ -69,12 +71,13 @@ function syncLinks(container, selector, className = '') {
   }
 }
 
+
 /**
  * Function contract: normalizePrimaryNav
  * Purpose: Apply primary nav consistently while preserving the surrounding nav consistency browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function normalizePrimaryNav() {
   const desktopPill = document.querySelector('.nav-pill');
@@ -84,21 +87,22 @@ function normalizePrimaryNav() {
   syncLinks(mobileLinks, 'a');
 }
 
+
 /**
  * Function contract: normalizeFooterNav
  * Purpose: Apply footer nav consistently while preserving the surrounding nav consistency browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function normalizeFooterNav() {
   const pagesHeading = Array.from(document.querySelectorAll('.footer-col h5'))
-    .find(/** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `heading`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate result. */ (heading) => heading.textContent.trim().toLowerCase() === 'pages');
+    .find( /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `heading` Side effects: reads or updates DOM/browser state Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (heading) => heading.textContent.trim().toLowerCase() === 'pages');
   const footerColumn = pagesHeading?.parentElement;
   if (!footerColumn) return;
 
   const links = Array.from(footerColumn.querySelectorAll('a'));
-  const byLabel = new Map(links.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link`. Side effects: reads or updates DOM/browser state. Returns: computed expression result consumed by the enclosing operation. */ (link) => [link.textContent.trim().toLowerCase(), link]));
+  const byLabel = new Map(links.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `link` Side effects: reads or updates DOM/browser state Returns: Computed expression result consumed by the enclosing operation. */ (link) => [link.textContent.trim().toLowerCase(), link]));
 
   for (const item of NAV_ITEMS) {
     let link = byLabel.get(item.label.toLowerCase());
@@ -113,12 +117,13 @@ function normalizeFooterNav() {
   }
 }
 
+
 /**
  * Function contract: applyRouteClasses
  * Purpose: Apply route classes consistently while preserving the surrounding nav consistency browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function applyRouteClasses() {
   const path = window.location.pathname;
@@ -126,12 +131,13 @@ function applyRouteClasses() {
   document.body.classList.toggle('nrs-inner-page', path !== '/');
 }
 
+
 /**
  * Function contract: enforceDesignSystemShell
  * Purpose: Apply design system shell consistently while preserving the surrounding nav consistency browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function enforceDesignSystemShell() {
   applyRouteClasses();

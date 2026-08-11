@@ -39,12 +39,13 @@ const discoveryRoot = path.join(root, 'src', 'discovery');
 const manifest = loadManifest(root);
 const failures = [];
 
+
 /**
  * Function contract: writeFile
  * Purpose: Implement the write file responsibility owned by the generate seo discovery repository tool.
- * Inputs: `target`: input consumed by this operation; `content`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `target`, `content`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function writeFile(target, content) {
   fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -53,23 +54,25 @@ function writeFile(target, content) {
   return previous !== content;
 }
 
+
 /**
  * Function contract: writeDiscoveryText
  * Purpose: Implement the write discovery text responsibility owned by the generate seo discovery repository tool.
- * Inputs: `relativePath`: input consumed by this operation; `content`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `relativePath`, `content`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function writeDiscoveryText(relativePath, content) {
   return writeFile(path.join(discoveryRoot, relativePath), content);
 }
 
+
 /**
  * Function contract: normalizeTextFile
  * Purpose: Apply text file consistently while preserving the surrounding generate seo discovery repository tool contract.
- * Inputs: `relativePath`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `relativePath`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeTextFile(relativePath) {
   const target = path.join(discoveryRoot, relativePath);
@@ -80,19 +83,14 @@ function normalizeTextFile(relativePath) {
   if (!unknown.length && output !== source) fs.writeFileSync(target, output, 'utf8');
 }
 
-/**
- * Function contract: normalizeJsonFile
- * Purpose: Applies normalize json file while preserving the surrounding repository/runtime contract.
- * Inputs: relativePath.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: normalizeJsonFile
  * Purpose: Apply json file consistently while preserving the surrounding generate seo discovery repository tool contract.
- * Inputs: `relativePath`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `relativePath`
+ * Side effects: writes filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeJsonFile(relativePath) {
   const target = path.join(discoveryRoot, relativePath);
@@ -126,7 +124,7 @@ if (fs.existsSync(path.join(root, 'public', 'nischhal-raj-subba.html'))) {
 }
 
 if (failures.length) {
-  console.error(`[seo-discovery] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}`);
+  console.error(`[seo-discovery] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}`);
   process.exit(1);
 }
 

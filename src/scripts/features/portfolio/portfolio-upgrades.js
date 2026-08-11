@@ -10,12 +10,13 @@
  * - src/runtime/script.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
+
 /**
  * Function contract: injectUpgradeStyles
  * Purpose: Implement the inject upgrade styles responsibility owned by the portfolio upgrades browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function injectUpgradeStyles() {
   if (document.getElementById('nrs-portfolio-upgrade-styles')) return;
@@ -159,12 +160,13 @@ function injectUpgradeStyles() {
   document.head.appendChild(style);
 }
 
+
 /**
  * Function contract: createSection
  * Purpose: Build section from the supplied inputs in the form expected by downstream portfolio upgrades browser feature consumers.
- * Inputs: `{ id, kicker, title, lead, gridClass, cards }`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `{ id, kicker, title, lead, gridClass, cards }`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function createSection({ id, kicker, title, lead, gridClass, cards }) {
   if (document.getElementById(id)) return null;
@@ -179,7 +181,7 @@ function createSection({ id, kicker, title, lead, gridClass, cards }) {
       <p class="section-lead" style="margin:0 auto;">${lead}</p>
     </div>
     <div class="${gridClass}">
-      ${cards.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `card`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (card) => `
+      ${cards.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `card` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (card) => `
         <article class="${gridClass.replace('grid', 'card')}">
           <span class="nrs-card-kicker">${card.kicker}</span>
           <h3>${card.title}</h3>
@@ -190,12 +192,13 @@ function createSection({ id, kicker, title, lead, gridClass, cards }) {
   return section;
 }
 
+
 /**
  * Function contract: addHomepageSections
  * Purpose: Implement the add homepage sections responsibility owned by the portfolio upgrades browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function addHomepageSections() {
   const main = document.querySelector('main.container');
@@ -260,15 +263,16 @@ function addHomepageSections() {
   }
 }
 
+
 /**
  * Function contract: improveProjectCards
  * Purpose: Implement the improve project cards responsibility owned by the portfolio upgrades browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function improveProjectCards() {
-  document.querySelectorAll('.project-card[href]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (card) => {
+  document.querySelectorAll('.project-card[href]').forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `card` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (card) => {
     if (card.querySelector('.nrs-project-role-badge')) return;
     const href = card.getAttribute('href') || '';
     const role = href.includes('masteriyo') || href.includes('designerex') ? 'Design contribution' : href.includes('sassboilerplate') || href.includes('neverwinter') ? 'Designed + built' : 'Product design';
@@ -276,19 +280,14 @@ function improveProjectCards() {
   });
 }
 
-/**
- * Function contract: improveProjectDetailPages
- * Purpose: Implements the improve project detail pages responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: improveProjectDetailPages
  * Purpose: Implement the improve project detail pages responsibility owned by the portfolio upgrades browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function improveProjectDetailPages() {
   if (!location.pathname.includes('project-')) return;
@@ -312,19 +311,14 @@ function improveProjectDetailPages() {
   main.appendChild(section);
 }
 
-/**
- * Function contract: improveBlogPages
- * Purpose: Implements the improve blog pages responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: improveBlogPages
  * Purpose: Implement the improve blog pages responsibility owned by the portfolio upgrades browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function improveBlogPages() {
   if (!location.pathname.startsWith('/blog/')) return;
@@ -338,19 +332,14 @@ function improveBlogPages() {
     </section>`);
 }
 
-/**
- * Function contract: applyPortfolioUpgrades
- * Purpose: Applies apply portfolio upgrades while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: applyPortfolioUpgrades
  * Purpose: Apply portfolio upgrades consistently while preserving the surrounding portfolio upgrades browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function applyPortfolioUpgrades() {
   injectUpgradeStyles();

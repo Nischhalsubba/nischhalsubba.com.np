@@ -29,21 +29,23 @@ const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const manifest = loadManifest(root);
 const errors = [];
+
 /**
  * Function contract: read
  * Purpose: Return module behavior from the supplied inputs or current audit seo discovery repository tool state.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: reads repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `file`
+ * Side effects: reads filesystem state
+ * Returns: Computed expression result consumed by the enclosing operation.
  */
 const read = (file) => fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
+
 
 /**
  * Function contract: expectEqual
  * Purpose: Implement the expect equal responsibility owned by the audit seo discovery repository tool.
- * Inputs: `relativePath`: input consumed by this operation; `expected`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `relativePath`, `expected`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function expectEqual(relativePath, expected) {
   const actual = read(path.join(root, relativePath));
@@ -57,12 +59,12 @@ expectEqual('public/_redirects', buildRedirectFile(manifest));
 expectEqual('src/generated/legacy-redirects.js', buildRedirectModule(manifest));
 
 const sitemap = read(path.join(root, 'sitemap.xml'));
-const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(/** Callback contract: Processes the callback step for [...sitemap.match all(/<loc>(.*?)<\/loc>/g)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => match[1]);
-const expectedUrls = manifest.html.map(/** Callback contract: Processes the callback step for manifest.html without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (file) => `${SITE}${routeForFile(file)}`);
+const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match[1]);
+const expectedUrls = manifest.html.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (file) => `${SITE}${routeForFile(file)}`);
 if (sitemapUrls.length !== expectedUrls.length) errors.push(`sitemap: expected ${expectedUrls.length} URLs, found ${sitemapUrls.length}`);
 for (const url of expectedUrls) if (!sitemapUrls.includes(url)) errors.push(`sitemap: missing ${url}`);
 if (/<lastmod>|llms\.txt|llms-full\.txt|ai-profile\.json|humans\.txt/i.test(sitemap)) errors.push('sitemap: contains unverified dates or machine-only resources');
-if (sitemapUrls.some(/** Callback contract: Processes the callback step for sitemap urls without leaking orchestration details to the caller. Inputs: url. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `url`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `url`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (url) => url.endsWith('.html'))) errors.push('sitemap: exposes .html URLs');
+if (sitemapUrls.some(   /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `url` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (url) => url.endsWith('.html'))) errors.push('sitemap: exposes .html URLs');
 
 const robots = read(path.join(root, 'robots.txt'));
 if (/^AI-Profile:|^LLMs:/mi.test(robots)) errors.push('robots.txt: contains non-standard custom directives');
@@ -124,7 +126,7 @@ if (fs.existsSync(dist)) {
 }
 
 if (errors.length) {
-  console.error(`[seo-discovery-audit] ${errors.length} failure(s)\n${errors.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `error`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (error) => `- ${error}`).join('\n')}`);
+  console.error(`[seo-discovery-audit] ${errors.length} failure(s)\n${errors.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `error` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (error) => `- ${error}`).join('\n')}`);
   process.exit(1);
 }
 console.log(`[seo-discovery-audit] ${manifest.html.length} canonical routes, AI files, redirects, headers, clean URLs, and social previews passed.`);

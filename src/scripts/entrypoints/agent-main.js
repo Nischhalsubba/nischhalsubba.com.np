@@ -19,7 +19,7 @@ import { initTheme } from '../features/navigation/theme.js';
 import { initResumeDownload } from '../features/navigation/resume.js';
 import { initAnalyticsEvents } from '../features/analytics/analytics-events.js';
 
-onReady(/** Callback contract: Lazy-load the contact form module. Inputs: none. Side effects: dynamically imports code; reads or updates DOM/browser state; emits diagnostics or changes process failure state. Returns: Promise resolving after the callback side effects complete. */ async () => {
+onReady( /** Callback contract: Lazy-load the contact form module. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: dynamically imports code; reads or updates DOM/browser state; emits diagnostics or changes process failure state Returns: Promise resolving after the documented asynchronous side effects complete. */ async () => {
   initMobileMenu();
   initTheme();
   initResumeDownload();

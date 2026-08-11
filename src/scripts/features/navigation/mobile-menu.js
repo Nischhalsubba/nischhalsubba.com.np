@@ -22,16 +22,17 @@ const FOCUSABLE_SELECTOR = [
   '[tabindex]:not([tabindex="-1"])',
 ].join(',');
 
+
 /**
  * Function contract: getFocusableElements
- * Purpose: Collect descendants of the supplied overlay that are actually rendered, visible, and eligible for keyboard focus.
- * Inputs: `overlay`: navigation overlay/container element
- * Side effects: reads or updates DOM/browser state.
- * Returns: The requested focusable elements; early-return/empty-state behavior follows the explicit branches in this function.
+ * Purpose: Collect descendants of the supplied overlay that are rendered, visible, and eligible for keyboard focus.
+ * Inputs: `overlay`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: The requested focusable elements; explicit early-return branches define empty/fallback behavior.
  */
 function getFocusableElements(overlay) {
   if (!overlay || overlay.hidden) return [];
-  return [...overlay.querySelectorAll(FOCUSABLE_SELECTOR)].filter(/** Callback contract: Keep only elements that are rendered, visible, and eligible for the enclosing focus/layout operation. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: boolean predicate/result. */ (element) => {
+  return [...overlay.querySelectorAll(FOCUSABLE_SELECTOR)].filter( /** Callback contract: Keep only elements that are rendered, visible, and eligible for the enclosing focus/layout operation. Inputs: `element` Side effects: reads or updates DOM/browser state Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (element) => {
     const style = window.getComputedStyle(element);
     const rect = element.getBoundingClientRect();
     return !element.hasAttribute('hidden')
@@ -43,15 +44,16 @@ function getFocusableElements(overlay) {
   });
 }
 
+
 /**
  * Function contract: setBackgroundInert
  * Purpose: Apply or restore inert state on background page elements while the mobile navigation overlay is open, preserving any pre-existing inert state.
- * Inputs: `button`: interactive trigger/control element; `overlay`: navigation overlay/container element; `open`: desired boolean open state
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `button`, `overlay`, `open`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function setBackgroundInert(button, overlay, open) {
-  [...document.body.children].forEach(/** Callback contract: Apply or restore inert state for the current background element while preserving its previous value. Inputs: `element`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (element) => {
+  [...document.body.children].forEach( /** Callback contract: Apply or restore inert state for the current background element while preserving its previous value. Inputs: `element` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (element) => {
     if (element === overlay || element === button || element.classList.contains('skip-link')) return;
 
     if (open) {
@@ -64,12 +66,13 @@ function setBackgroundInert(button, overlay, open) {
   });
 }
 
+
 /**
  * Function contract: syncOpenState
  * Purpose: Synchronize menu classes, data attributes, labels, and ARIA state with the requested open/closed value.
- * Inputs: `button`: interactive trigger/control element; `overlay`: navigation overlay/container element; `open`: desired boolean open state
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `button`, `overlay`, `open`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function syncOpenState(button, overlay, open) {
   document.body.classList.toggle('menu-open', open);
@@ -83,12 +86,13 @@ function syncOpenState(button, overlay, open) {
   overlay.setAttribute('aria-hidden', String(!open));
 }
 
+
 /**
  * Function contract: setMenuState
- * Purpose: Open or close the mobile navigation, coordinate inert background behavior, and move focus at safe animation-frame boundaries.
- * Inputs: `button`: interactive trigger/control element; `overlay`: navigation overlay/container element; `open`: desired boolean open state; `{ restoreFocus = true }`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Purpose: Open or close the mobile navigation, coordinate inert background behavior, and move focus only after the related visibility/layout state is ready.
+ * Inputs: `button`, `overlay`, `open`, `{ restoreFocus = true }`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
   if (!overlay) return;
@@ -98,10 +102,10 @@ function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
   setBackgroundInert(button, overlay, open);
 
   if (open) {
-    window.requestAnimationFrame(/** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
+    window.requestAnimationFrame( /** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ () => {
       overlay.scrollTop = 0;
       overlay.focus({ preventScroll: true });
-      window.requestAnimationFrame(/** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
+      window.requestAnimationFrame( /** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ () => {
         const firstFocusable = getFocusableElements(overlay)[0];
         if (firstFocusable) firstFocusable.focus({ preventScroll: true });
       });
@@ -109,19 +113,20 @@ function setMenuState(button, overlay, open, { restoreFocus = true } = {}) {
     return;
   }
 
-  window.requestAnimationFrame(/** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: none. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ () => {
+  window.requestAnimationFrame( /** Callback contract: Wait one animation frame for visibility/layout changes before moving keyboard focus. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ () => {
     overlay.scrollTop = 0;
     overlay.hidden = true;
     if (restoreFocus && button.getClientRects().length) button.focus({ preventScroll: true });
   });
 }
 
+
 /**
  * Function contract: trapFocus
- * Purpose: Keep Tab and Shift+Tab focus inside the open mobile navigation overlay, including the empty-focusable fallback.
- * Inputs: `event`: browser/DOM event being handled; `overlay`: navigation overlay/container element
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Purpose: Keep Tab and Shift+Tab focus inside the open mobile navigation overlay, including the no-focusable-elements fallback.
+ * Inputs: `event`, `overlay`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function trapFocus(event, overlay) {
   if (event.key !== 'Tab') return;
@@ -145,12 +150,13 @@ function trapFocus(event, overlay) {
   }
 }
 
+
 /**
  * Function contract: initMobileMenu
- * Purpose: Initialize the mobile navigation once, establish its accessibility contract, and attach the click/keyboard/resize/navigation listeners that control it.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: registers or removes browser event listeners; reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Purpose: Initialize mobile navigation exactly once, establish its accessibility state, and attach the click, keyboard, resize, and navigation listeners that control it.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: registers or removes browser listeners; reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function initMobileMenu() {
   const button = $('.mobile-nav-toggle');
@@ -173,24 +179,24 @@ export function initMobileMenu() {
   overlay.setAttribute('aria-label', 'Site navigation');
   overlay.setAttribute('tabindex', '-1');
 
-  button.addEventListener('click', /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (event) => {
+  button.addEventListener('click',  /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: `event` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (event) => {
     event.preventDefault();
     event.stopPropagation();
     const open = !document.body.classList.contains('menu-open');
     setMenuState(button, overlay, open);
   });
 
-  $$('.mobile-nav-links a').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link`. Side effects: registers or removes browser listeners. Returns: undefined; callback is side-effect-only. */ (link) => {
-    link.addEventListener('click', /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
+  $$('.mobile-nav-links a').forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `link` Side effects: registers or removes browser listeners Returns: Undefined; this callback is side-effect-only. */ (link) => {
+    link.addEventListener('click',  /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ () => {
       setMenuState(button, overlay, false, { restoreFocus: false });
     });
   });
 
-  overlay.addEventListener('click', /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: `event`. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ (event) => {
+  overlay.addEventListener('click',  /** Callback contract: Handle the click by preventing conflicting default behavior and toggling the mobile-menu state. Inputs: `event` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ (event) => {
     if (event.target === overlay) setMenuState(button, overlay, false);
   });
 
-  window.addEventListener('keydown', /** Callback contract: Handle keydown input for Escape/Tab behavior and keyboard focus containment. Inputs: `event`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (event) => {
+  window.addEventListener('keydown',  /** Callback contract: Handle keydown input for Escape/Tab behavior and keyboard focus containment. Inputs: `event` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (event) => {
     if (!document.body.classList.contains('menu-open')) return;
 
     if (event.key === 'Escape') {
@@ -202,12 +208,13 @@ export function initMobileMenu() {
     trapFocus(event, overlay);
   });
 
+  
   /**
    * Function contract: closeWhenDesktopShellReturns
    * Purpose: Implement the close when desktop shell returns responsibility owned by the mobile menu browser feature.
-   * Inputs: None; derives required state from the enclosing module/runtime context.
-   * Side effects: reads or updates DOM/browser state.
-   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   * Inputs: None; derives required state from its enclosing module/runtime context.
+   * Side effects: reads or updates DOM/browser state
+   * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
    */
   const closeWhenDesktopShellReturns = () => {
     if (!document.body.classList.contains('menu-open')) return;

@@ -20,12 +20,13 @@ const ALLOWED_HOSTS = new Set([
 
 export const config = { runtime: 'edge' };
 
+
 /**
  * Function contract: json
  * Purpose: Implement the json responsibility owned by the contact API handler.
- * Inputs: `payload`: input consumed by this operation; `status`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `payload`, `status`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function json(payload, status = 200) {
   return new Response(JSON.stringify(payload), {
@@ -38,23 +39,25 @@ function json(payload, status = 200) {
   });
 }
 
+
 /**
  * Function contract: clean
  * Purpose: Remove module behavior without disturbing required surrounding contact API handler state.
- * Inputs: `value`: input value being transformed or evaluated; `maxLength`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `value`, `maxLength`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function clean(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+
 /**
  * Function contract: validate
  * Purpose: Validate module behavior and surface actionable failures when the contact API handler contract is violated.
- * Inputs: `fields`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `fields`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function validate(fields) {
   const errors = {};
@@ -66,12 +69,13 @@ function validate(fields) {
   return errors;
 }
 
+
 /**
  * Function contract: originAllowed
  * Purpose: Implement the origin allowed responsibility owned by the contact API handler.
- * Inputs: `request`: incoming request object
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `request`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function originAllowed(request) {
   const origin = request.headers.get('origin');
@@ -87,12 +91,13 @@ function originAllowed(request) {
   }
 }
 
+
 /**
  * Function contract: verifyTurnstile
  * Purpose: Validate turnstile and surface actionable failures when the contact API handler contract is violated.
- * Inputs: `secret`: input consumed by this operation; `token`: input consumed by this operation; `remoteip`: input consumed by this operation
- * Side effects: performs network I/O.
- * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
+ * Inputs: `secret`, `token`, `remoteip`
+ * Side effects: performs network I/O
+ * Returns: Promise resolving to the computed function result.
  */
 async function verifyTurnstile(secret, token, remoteip) {
   const body = new FormData();
@@ -109,12 +114,13 @@ async function verifyTurnstile(secret, token, remoteip) {
   return response.json();
 }
 
+
 /**
  * Function contract: handler
  * Purpose: Implement the handler responsibility owned by the contact API handler.
- * Inputs: `request`: incoming request object
- * Side effects: performs network I/O.
- * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
+ * Inputs: `request`
+ * Side effects: performs network I/O
+ * Returns: Promise resolving to the computed function result.
  */
 export default async function handler(request) {
   if (request.method === 'OPTIONS') {

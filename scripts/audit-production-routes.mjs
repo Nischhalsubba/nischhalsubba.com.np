@@ -26,12 +26,13 @@ const requiredRoutes = [
 
 const failures = [];
 
+
 /**
  * Function contract: requestWithRedirectAudit
  * Purpose: Implement the request with redirect audit responsibility owned by the audit production routes repository tool.
- * Inputs: `pathname`: input consumed by this operation
- * Side effects: performs network I/O.
- * Returns: Promise resolving to the computed result used by the caller; failure is propagated or handled inside the function as implemented.
+ * Inputs: `pathname`
+ * Side effects: performs network I/O
+ * Returns: Promise resolving to the computed function result.
  */
 async function requestWithRedirectAudit(pathname) {
   let current = new URL(pathname, base);
@@ -78,7 +79,7 @@ for (const route of requiredRoutes) {
 }
 
 if (failures.length) {
-  console.error(`[production-routes] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[production-routes] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
 

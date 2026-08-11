@@ -56,19 +56,14 @@ const required = {
 
 const retiredOutputs = ['home.html', 'home-v2.html', 'blog.html'];
 
-/**
- * Function contract: read
- * Purpose: Retrieves read and returns it in the form expected by its caller.
- * Inputs: file.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: read
  * Purpose: Return module behavior from the supplied inputs or current audit final seo repository tool state.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: reads repository/filesystem state.
- * Returns: The requested module behavior; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: `file`
+ * Side effects: reads filesystem state
+ * Returns: The requested module behavior; explicit early-return branches define empty/fallback behavior.
  */
 function read(file) {
   const full = path.join(targetRoot, file);
@@ -76,60 +71,52 @@ function read(file) {
   return fs.readFileSync(full, 'utf8');
 }
 
-/**
- * Function contract: titleOf
- * Purpose: Implements the title of responsibility for this module.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: titleOf
  * Purpose: Implement the title of responsibility owned by the audit final seo repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function titleOf(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() || '';
 }
 
-/**
- * Function contract: metaOf
- * Purpose: Implements the meta of responsibility for this module.
- * Inputs: html, name.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: metaOf
  * Purpose: Implement the meta of responsibility owned by the audit final seo repository tool.
- * Inputs: `html`: input consumed by this operation; `name`: stable identifier or label for the current item
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `name`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function metaOf(html, name) {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return html.match(new RegExp(`<meta\\s+[^>]*name=["']${escaped}["'][^>]*content=["']([^"']*)["'][^>]*>`, 'i'))?.[1]?.trim() || '';
 }
 
+
 /**
  * Function contract: canonicalOf
  * Purpose: Implement the canonical of responsibility owned by the audit final seo repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function canonicalOf(html) {
   return html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1]?.trim() || '';
 }
 
+
 /**
  * Function contract: assertContains
  * Purpose: Implement the assert contains responsibility owned by the audit final seo repository tool.
- * Inputs: `label`: input consumed by this operation; `value`: input value being transformed or evaluated; `parts`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `label`, `value`, `parts`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function assertContains(label, value, parts) {
   for (const part of parts || []) {

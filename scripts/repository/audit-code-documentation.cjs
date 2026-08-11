@@ -33,12 +33,13 @@ const FILE_HEADER_FIELDS = [
 const FUNCTION_FIELDS = ['Function contract:', 'Purpose:', 'Inputs:', 'Side effects:', 'Returns:'];
 const CALLBACK_FIELDS = ['Callback contract:', 'Inputs:', 'Side effects:', 'Returns:'];
 
+
 /**
  * Function contract: loadPolicy
- * Purpose: Load the repository's authored-code documentation scope and exclusions from the single policy source of truth.
- * Inputs: None; uses the fixed repository-relative policy path.
- * Side effects: Reads one JSON file from the repository filesystem.
- * Returns: Parsed documentation-policy object consumed by the audit.
+ * Purpose: Return policy from the supplied inputs or current audit code documentation repository tool state.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads filesystem state
+ * Returns: The requested policy; explicit early-return branches define empty/fallback behavior.
  */
 function loadPolicy() {
   if (!fs.existsSync(POLICY_PATH)) {
@@ -47,12 +48,13 @@ function loadPolicy() {
   return JSON.parse(fs.readFileSync(POLICY_PATH, 'utf8'));
 }
 
+
 /**
  * Function contract: gitTrackedFiles
- * Purpose: Return the Git-tracked repository paths so documentation enforcement follows version-controlled ownership rather than incidental working-tree files.
- * Inputs: None.
- * Side effects: Executes the read-only `git ls-files` command.
- * Returns: Sorted array of repository-relative tracked paths.
+ * Purpose: Implement the git tracked files responsibility owned by the audit code documentation repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: spawns child processes
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function gitTrackedFiles() {
   const result = spawnSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' });
@@ -62,36 +64,39 @@ function gitTrackedFiles() {
   return result.stdout.split('\0').filter(Boolean).sort();
 }
 
+
 /**
  * Function contract: isExcluded
- * Purpose: Determine whether a tracked path belongs to generated/vendor/machine-owned territory excluded from hand-authored documentation requirements.
- * Inputs: `file`, repository-relative path; `policy`, parsed documentation policy.
- * Side effects: None.
- * Returns: Boolean indicating whether the path is excluded.
+ * Purpose: Determine whether excluded satisfies the condition represented by this audit code documentation repository tool.
+ * Inputs: `file`, `policy`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Boolean indicating whether excluded satisfies the documented condition.
  */
 function isExcluded(file, policy) {
-  return policy.excludedPrefixes.some(/** Callback contract: Test the current excluded-prefix rule against the tracked path. Inputs: `prefix`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (prefix) => file.startsWith(prefix)) ||
+  return policy.excludedPrefixes.some( /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `prefix` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (prefix) => file.startsWith(prefix)) ||
     policy.excludedFiles.includes(file);
 }
 
+
 /**
  * Function contract: isAuthoredFile
- * Purpose: Determine whether a tracked path falls under an authored-code root governed by the documentation contract.
- * Inputs: `file`, repository-relative path; `policy`, parsed documentation policy.
- * Side effects: None.
- * Returns: Boolean indicating whether the file must be audited.
+ * Purpose: Determine whether authored file satisfies the condition represented by this audit code documentation repository tool.
+ * Inputs: `file`, `policy`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Boolean indicating whether authored file satisfies the documented condition.
  */
 function isAuthoredFile(file, policy) {
   if (isExcluded(file, policy)) return false;
-  return policy.codeRoots.some(/** Callback contract: Test whether the tracked path is the configured authored root or a descendant of it. Inputs: `root`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (root) => file === root || file.startsWith(`${root}/`));
+  return policy.codeRoots.some( /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `root` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (root) => file === root || file.startsWith(`${root}/`));
 }
+
 
 /**
  * Function contract: scriptKindFor
- * Purpose: Select the TypeScript parser mode that matches a JavaScript, JSX, TypeScript, or TSX source file.
- * Inputs: `file`, repository-relative source path.
- * Side effects: None.
- * Returns: TypeScript `ScriptKind` used by the compiler parser.
+ * Purpose: Implement the script kind for responsibility owned by the audit code documentation repository tool.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function scriptKindFor(file) {
   if (file.endsWith('.tsx')) return ts.ScriptKind.TSX;
@@ -100,12 +105,13 @@ function scriptKindFor(file) {
   return ts.ScriptKind.JS;
 }
 
+
 /**
  * Function contract: isDocumentableFunction
- * Purpose: Identify executable function-like syntax that must carry a detailed documentation contract.
- * Inputs: `node`, TypeScript AST node.
- * Side effects: None.
- * Returns: Boolean for function declarations/expressions, arrows, methods, constructors, getters, and setters with bodies.
+ * Purpose: Determine whether documentable function satisfies the condition represented by this audit code documentation repository tool.
+ * Inputs: `node`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Boolean indicating whether documentable function satisfies the documented condition.
  */
 function isDocumentableFunction(node) {
   return ts.isFunctionDeclaration(node) ||
@@ -117,12 +123,13 @@ function isDocumentableFunction(node) {
     ts.isSetAccessorDeclaration(node);
 }
 
+
 /**
  * Function contract: functionIdentity
- * Purpose: Classify a function as named/assigned or inline and select the syntax owner whose leading trivia must contain its contract.
- * Inputs: `node`, function-like AST node; `sourceFile`, parsed TypeScript source file.
- * Side effects: None.
- * Returns: Object containing a readable name, the documentation owner node, and `inline` classification.
+ * Purpose: Implement the function identity responsibility owned by the audit code documentation repository tool.
+ * Inputs: `node`, `sourceFile`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function functionIdentity(node, sourceFile) {
   if (node.name && node.name.getText) {
@@ -148,12 +155,13 @@ function functionIdentity(node, sourceFile) {
   return { name: 'inline callback', owner: node, inline: true };
 }
 
+
 /**
  * Function contract: contractCommentsInLeadingTrivia
- * Purpose: Extract only JSDoc-style comments from the exact leading trivia owned by a function/callback, avoiding unrelated comments elsewhere in the file.
- * Inputs: `source`, complete source text; `owner`, AST node; `sourceFile`, parsed source file.
- * Side effects: None.
- * Returns: Array of JSDoc comment strings immediately leading the documentation owner.
+ * Purpose: Implement the contract comments in leading trivia responsibility owned by the audit code documentation repository tool.
+ * Inputs: `source`, `owner`, `sourceFile`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function contractCommentsInLeadingTrivia(source, owner, sourceFile) {
   const fullStart = owner.getFullStart();
@@ -162,34 +170,37 @@ function contractCommentsInLeadingTrivia(source, owner, sourceFile) {
   return trivia.match(/\/\*\*[\s\S]*?\*\//g) || [];
 }
 
+
 /**
  * Function contract: lineNumberAt
- * Purpose: Convert a zero-based source offset to a one-based line number for actionable CI diagnostics.
- * Inputs: `source`, complete source text; `position`, zero-based character offset.
- * Side effects: None.
- * Returns: One-based source line number.
+ * Purpose: Implement the line number at responsibility owned by the audit code documentation repository tool.
+ * Inputs: `source`, `position`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function lineNumberAt(source, position) {
   return source.slice(0, position).split('\n').length;
 }
 
+
 /**
  * Function contract: missingFields
- * Purpose: Identify required documentation fields absent from one contract comment.
- * Inputs: `comment`, JSDoc contract text; `fields`, required marker/field list.
- * Side effects: None.
- * Returns: Array of missing field labels.
+ * Purpose: Implement the missing fields responsibility owned by the audit code documentation repository tool.
+ * Inputs: `comment`, `fields`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function missingFields(comment, fields) {
-  return fields.filter(/** Callback contract: Keep only required documentation fields that do not occur in the contract comment. Inputs: `field`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (field) => !comment.includes(field));
+  return fields.filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `field` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (field) => !comment.includes(field));
 }
+
 
 /**
  * Function contract: auditFunctions
- * Purpose: Parse one JavaScript/TypeScript source file and enforce one complete, non-duplicated contract for every function and callback.
- * Inputs: `file`, repository-relative source path; `source`, complete source text.
- * Side effects: Parses source into a TypeScript AST; does not modify files.
- * Returns: Array of human-readable documentation violations with file/line locations.
+ * Purpose: Validate functions and surface actionable failures when the audit code documentation repository tool contract is violated.
+ * Inputs: `file`, `source`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function auditFunctions(file, source) {
   const sourceFile = ts.createSourceFile(
@@ -201,12 +212,13 @@ function auditFunctions(file, source) {
   );
   const failures = [];
 
+  
   /**
    * Function contract: visit
-   * Purpose: Recursively inspect every syntax node and validate the exact leading contract attached to each function-like node.
-   * Inputs: `node`, current TypeScript AST node.
-   * Side effects: Appends diagnostics to the enclosing `failures` array.
-   * Returns: Undefined; traversal proceeds through child nodes.
+   * Purpose: Implement the visit responsibility owned by the audit code documentation repository tool.
+   * Inputs: `node`
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
    */
   function visit(node) {
     if (isDocumentableFunction(node) && node.body) {
@@ -214,7 +226,7 @@ function auditFunctions(file, source) {
       const comments = contractCommentsInLeadingTrivia(source, identity.owner, sourceFile);
       const marker = identity.inline ? 'Callback contract:' : 'Function contract:';
       const fields = identity.inline ? CALLBACK_FIELDS : FUNCTION_FIELDS;
-      const contracts = comments.filter(/** Callback contract: Keep only leading JSDoc comments containing the contract marker required for this function classification. Inputs: `comment`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (comment) => comment.includes(marker));
+      const contracts = comments.filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `comment` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (comment) => comment.includes(marker));
       const line = lineNumberAt(source, node.getStart(sourceFile));
 
       if (contracts.length !== 1) {
@@ -233,12 +245,13 @@ function auditFunctions(file, source) {
   return failures;
 }
 
+
 /**
  * Function contract: main
- * Purpose: Run file-header and function-contract checks across every tracked authored source file and fail CI on any documentation debt.
- * Inputs: None; reads repository policy, Git index, and authored source files.
- * Side effects: Reads files, prints diagnostics, and exits non-zero on violations.
- * Returns: Undefined.
+ * Purpose: Implement the main responsibility owned by the audit code documentation repository tool.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads filesystem state; emits diagnostics or changes process failure state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function main() {
   const policy = loadPolicy();
@@ -260,7 +273,7 @@ function main() {
     if (needsHeader) {
       headerCount += 1;
       const headerWindow = source.slice(0, policy.headerSearchCharacters);
-      const missing = FILE_HEADER_FIELDS.filter(/** Callback contract: Keep only structured file-header fields absent from the configured header search window. Inputs: `field`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (field) => !headerWindow.includes(field));
+      const missing = FILE_HEADER_FIELDS.filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `field` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (field) => !headerWindow.includes(field));
       if (missing.length) {
         failures.push(`${file}:1 file header is missing ${missing.join(', ')}`);
       }

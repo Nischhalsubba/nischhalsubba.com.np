@@ -22,12 +22,13 @@ const compatibilityRelativePath = 'systems/inner-pages.css';
 const globalStylesheetRelativePath = 'style.css';
 const issues = [];
 
+
 /**
  * Function contract: walkCssFiles
- * Purpose: Recursively discover authored CSS files so nested style systems remain inside the architecture audit.
- * Inputs: `directory`: input consumed by this operation; `output`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Purpose: Recursively discover authored CSS files so nested style systems cannot escape architecture validation.
+ * Inputs: `directory`, `output`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function walkCssFiles(directory, output = []) {
   if (!fs.existsSync(directory)) return output;
@@ -44,23 +45,25 @@ function walkCssFiles(directory, output = []) {
   return output;
 }
 
+
 /**
  * Function contract: relativeStylePath
- * Purpose: Normalize an absolute stylesheet path into a stable forward-slash path relative to the style source root.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Purpose: Normalize an absolute stylesheet path into the stable forward-slash form used by CSS policy checks and diagnostics.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function relativeStylePath(file) {
   return path.relative(stylesRoot, file).split(path.sep).join('/');
 }
 
+
 /**
  * Function contract: readCommitted
- * Purpose: Read the committed version of a compatibility stylesheet when available so generated working-tree mutations cannot hide architecture regressions.
- * Inputs: `relativePath`: input consumed by this operation; `fallbackPath`: input consumed by this operation
- * Side effects: reads repository/filesystem state; spawns child processes.
- * Returns: The requested committed; early-return/empty-state behavior follows the explicit branches in this function.
+ * Purpose: Read the committed compatibility stylesheet when available so build-time working-tree mutations cannot hide CSS architecture regressions.
+ * Inputs: `relativePath`, `fallbackPath`
+ * Side effects: reads filesystem state; spawns child processes
+ * Returns: The requested committed; explicit early-return branches define empty/fallback behavior.
  */
 function readCommitted(relativePath, fallbackPath) {
   const result = spawnSync('git', ['show', `HEAD:${relativePath}`], {
@@ -72,19 +75,14 @@ function readCommitted(relativePath, fallbackPath) {
   return fs.readFileSync(fallbackPath, 'utf8');
 }
 
+
+
 /**
  * Function contract: withoutComments
- * Purpose: Remove CSS block comments before selector/declaration policy checks so commented examples do not produce false violations.
- * Inputs: `css`, complete stylesheet source text.
- * Side effects: No external side effects.
- * Returns: CSS source with block comments removed.
- */
-/**
- * Function contract: withoutComments
- * Purpose: Remove CSS block comments before selector and declaration policy checks to avoid false positives from commented examples.
- * Inputs: `css`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Purpose: Remove CSS block comments before selector/declaration checks so commented examples do not create false policy violations.
+ * Inputs: `css`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function withoutComments(css) {
   return css.replace(/\/\*[\s\S]*?\*\//g, '');
@@ -137,7 +135,7 @@ if (!files.length) {
 }
 
 if (issues.length) {
-  console.error('[css-architecture] Failed\n' + issues.map(/** Callback contract: Processes the callback step for issues without leaking orchestration details to the caller. Inputs: issue. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `issue`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `issue`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (issue) => `- ${issue}`).join('\n'));
+  console.error('[css-architecture] Failed\n' + issues.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `issue` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (issue) => `- ${issue}`).join('\n'));
   process.exit(1);
 }
 

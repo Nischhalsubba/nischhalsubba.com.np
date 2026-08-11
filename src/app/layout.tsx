@@ -87,19 +87,14 @@ export const viewport: Viewport = {
 /**
  * Root layout for the entire app.
  */
-/**
- * Function contract: RootLayout
- * Purpose: Implements the root layout responsibility for this module.
- * Inputs: { children }.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: RootLayout
  * Purpose: Implement the root layout responsibility owned by the layout module.
- * Inputs: `{ children }`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `{ children }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

@@ -19,12 +19,13 @@ const ignoredDirs = new Set(['.git', 'node_modules', 'dist', '.wrangler']);
 const routeManifest = JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
 const redirects = readRedirects();
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the check links repository tool.
- * Inputs: `directory`: input consumed by this operation; `files`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `directory`, `files`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function walk(directory = root, files = []) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -38,23 +39,25 @@ function walk(directory = root, files = []) {
   return files;
 }
 
+
 /**
  * Function contract: readFile
  * Purpose: Return file from the supplied inputs or current check links repository tool state.
- * Inputs: `relativePath`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: The requested file; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: `relativePath`
+ * Side effects: reads filesystem state
+ * Returns: The requested file; explicit early-return branches define empty/fallback behavior.
  */
 function readFile(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), 'utf8');
 }
 
+
 /**
  * Function contract: readRedirects
  * Purpose: Return redirects from the supplied inputs or current check links repository tool state.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads repository/filesystem state.
- * Returns: The requested redirects; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads filesystem state
+ * Returns: The requested redirects; explicit early-return branches define empty/fallback behavior.
  */
 function readRedirects() {
   const result = new Map();
@@ -71,94 +74,89 @@ function readRedirects() {
   return result;
 }
 
+
 /**
  * Function contract: extractAttributes
  * Purpose: Convert attributes into the structured representation consumed by the check links repository tool.
- * Inputs: `html`: input consumed by this operation; `name`: stable identifier or label for the current item
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `name`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function extractAttributes(html, name) {
   const pattern = new RegExp(`\\b${name}=["']([^"']+)["']`, 'g');
-  return [...html.matchAll(pattern)].map(/** Callback contract: Processes the callback step for [...html.match all(pattern)] without leaking orchestration details to the caller. Inputs: match. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => match[1]);
+  return [...html.matchAll(pattern)].map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => match[1]);
 }
+
+
 
 /**
  * Function contract: extractIds
- * Purpose: Implements the extract ids responsibility for this module.
- * Inputs: html.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: extractIds
  * Purpose: Convert ids into the structured representation consumed by the check links repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `html`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function extractIds(html) {
   return new Set(extractAttributes(html, 'id'));
 }
 
-/**
- * Function contract: extractNavLinks
- * Purpose: Implements the extract nav links responsibility for this module.
- * Inputs: html, className.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: extractNavLinks
  * Purpose: Convert nav links into the structured representation consumed by the check links repository tool.
- * Inputs: `html`: input consumed by this operation; `className`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `className`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function extractNavLinks(html, className) {
   const pattern = new RegExp(`<nav[^>]*class=["'][^"']*${className}[^"']*["'][^>]*>([\\s\\S]*?)<\\/nav>`, 'g');
-  return [...html.matchAll(pattern)].flatMap(/** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `match`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (match) => extractAttributes(match[1], 'href'));
+  return [...html.matchAll(pattern)].flatMap( /** Callback contract: Perform the local callback step required by the immediately enclosing check links repository tool operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (match) => extractAttributes(match[1], 'href'));
 }
+
 
 /**
  * Function contract: isExternal
  * Purpose: Determine whether external satisfies the condition represented by this check links repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
  * Returns: Boolean indicating whether external satisfies the documented condition.
  */
 function isExternal(value) {
   return /^(?:https?:)?\/\//.test(value) || /^(?:mailto|tel|data|javascript):/.test(value);
 }
 
+
 /**
  * Function contract: stripQueryAndHash
  * Purpose: Remove query and hash without disturbing required surrounding check links repository tool state.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function stripQueryAndHash(value) {
   return value.split('#')[0].split('?')[0];
 }
 
+
 /**
  * Function contract: normalizeSlashes
  * Purpose: Apply slashes consistently while preserving the surrounding check links repository tool contract.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeSlashes(value) {
   return value.replaceAll(path.sep, '/').replace(/^\.\//, '');
 }
 
+
 /**
  * Function contract: sourceCandidates
  * Purpose: Implement the source candidates responsibility owned by the check links repository tool.
- * Inputs: `value`: input value being transformed or evaluated; `sourceFile`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Array containing the values selected or transformed by this function.
+ * Inputs: `value`, `sourceFile`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function sourceCandidates(value, sourceFile) {
   const clean = stripQueryAndHash(value);
@@ -180,36 +178,26 @@ function sourceCandidates(value, sourceFile) {
   return [...candidates].map(normalizeSlashes);
 }
 
+
+
 /**
  * Function contract: resolveInternalTarget
- * Purpose: Resolves resolve internal target using the current inputs and repository/runtime context.
- * Inputs: value, sourceFile.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: resolveInternalTarget
- * Purpose: Resolve internal target from the supplied inputs and the current repository/runtime context.
- * Inputs: `value`: input value being transformed or evaluated; `sourceFile`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: The requested internal target; early-return/empty-state behavior follows the explicit branches in this function.
+ * Purpose: Resolve internal target from the supplied inputs and current check links repository tool context.
+ * Inputs: `value`, `sourceFile`
+ * Side effects: reads filesystem state
+ * Returns: The requested internal target; explicit early-return branches define empty/fallback behavior.
  */
 function resolveInternalTarget(value, sourceFile) {
-  return sourceCandidates(value, sourceFile).find(/** Callback contract: Processes the callback step for source candidates(value, source file) without leaking orchestration details to the caller. Inputs: candidate. Side effects: may read or write repository/filesystem state. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `candidate`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `candidate`. Side effects: reads filesystem state. Returns: computed expression result consumed by the enclosing operation. */ (candidate) => fs.existsSync(path.join(root, candidate))) || null;
+  return sourceCandidates(value, sourceFile).find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `candidate` Side effects: reads filesystem state Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (candidate) => fs.existsSync(path.join(root, candidate))) || null;
 }
+
+
 
 /**
  * Function contract: hasRedirect
- * Purpose: Implements the has redirect responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: hasRedirect
  * Purpose: Determine whether redirect satisfies the condition represented by this check links repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
  * Returns: Boolean indicating whether redirect satisfies the documented condition.
  */
 function hasRedirect(value) {
@@ -217,19 +205,14 @@ function hasRedirect(value) {
   return Boolean(clean && (redirects.has(clean) || (!clean.startsWith('/') && redirects.has(`/${clean}`))));
 }
 
-/**
- * Function contract: canonicalNavPath
- * Purpose: Implements the canonical nav path responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: canonicalNavPath
  * Purpose: Implement the canonical nav path responsibility owned by the check links repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function canonicalNavPath(value) {
   if (isExternal(value)) return value;
@@ -239,19 +222,14 @@ function canonicalNavPath(value) {
   return absolute.replace(/\/index\.html$/, '/').replace(/\.html$/, '').replace(/\/$/, '') || '/';
 }
 
-/**
- * Function contract: checkLinks
- * Purpose: Validates check links and reports violations instead of silently accepting invalid state.
- * Inputs: htmlFiles.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: checkLinks
  * Purpose: Validate links and surface actionable failures when the check links repository tool contract is violated.
- * Inputs: `htmlFiles`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `htmlFiles`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function checkLinks(htmlFiles) {
   const parsed = new Map();
@@ -292,31 +270,26 @@ function checkLinks(htmlFiles) {
   return issues;
 }
 
-/**
- * Function contract: checkCanonicalNavigation
- * Purpose: Validates check canonical navigation and reports violations instead of silently accepting invalid state.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: checkCanonicalNavigation
  * Purpose: Validate canonical navigation and surface actionable failures when the check links repository tool contract is violated.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function checkCanonicalNavigation() {
-  const canonicalFiles = routeManifest.html.filter(/** Callback contract: Processes the callback step for route manifest.html without leaking orchestration details to the caller. Inputs: file. Side effects: may read or write repository/filesystem state. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file`. Side effects: reads filesystem state. Returns: computed expression result consumed by the enclosing operation. */ (file) => fs.existsSync(path.join(root, file)));
+  const canonicalFiles = routeManifest.html.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file` Side effects: reads filesystem state Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => fs.existsSync(path.join(root, file)));
   const baselineHtml = readFile('index.html');
-  const baselineDesktop = new Set(extractNavLinks(baselineHtml, 'nav-wrapper').filter(/** Callback contract: Processes the callback step for extract nav links(baseline html, 'nav wrapper') without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `href`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (href) => !isExternal(href)).map(canonicalNavPath));
-  const baselineMobile = new Set(extractNavLinks(baselineHtml, 'mobile-nav-links').filter(/** Callback contract: Processes the callback step for extract nav links(baseline html, 'mobile nav links') without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `href`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (href) => !isExternal(href)).map(canonicalNavPath));
+  const baselineDesktop = new Set(extractNavLinks(baselineHtml, 'nav-wrapper').filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (href) => !isExternal(href)).map(canonicalNavPath));
+  const baselineMobile = new Set(extractNavLinks(baselineHtml, 'mobile-nav-links').filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (href) => !isExternal(href)).map(canonicalNavPath));
   const issues = [];
 
   for (const file of canonicalFiles) {
     const html = readFile(file);
-    const desktop = new Set(extractNavLinks(html, 'nav-wrapper').filter(/** Callback contract: Processes the callback step for extract nav links(html, 'nav wrapper') without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `href`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (href) => !isExternal(href)).map(canonicalNavPath));
-    const mobile = new Set(extractNavLinks(html, 'mobile-nav-links').filter(/** Callback contract: Processes the callback step for extract nav links(html, 'mobile nav links') without leaking orchestration details to the caller. Inputs: href. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `href`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (href) => !isExternal(href)).map(canonicalNavPath));
+    const desktop = new Set(extractNavLinks(html, 'nav-wrapper').filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (href) => !isExternal(href)).map(canonicalNavPath));
+    const mobile = new Set(extractNavLinks(html, 'mobile-nav-links').filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `href` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (href) => !isExternal(href)).map(canonicalNavPath));
     if (desktop.size === 0 && mobile.size === 0) continue;
     for (const link of baselineDesktop) if (!desktop.has(link)) issues.push(`${file}: desktop nav missing ${link}`);
     for (const link of baselineMobile) if (!mobile.has(link)) issues.push(`${file}: mobile nav missing ${link}`);
@@ -324,19 +297,14 @@ function checkCanonicalNavigation() {
   return issues;
 }
 
-/**
- * Function contract: main
- * Purpose: Implements the main responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may emit diagnostics or inspect process state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: main
  * Purpose: Implement the main responsibility owned by the check links repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: emits diagnostics or changes process failure state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: emits diagnostics or changes process failure state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function main() {
   const htmlFiles = walk().sort();

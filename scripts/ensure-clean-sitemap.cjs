@@ -66,7 +66,7 @@ const routes = [
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
-  .map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[route, priority]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate/result. */ ([route, priority]) => {
+  .map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[route, priority]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ ([route, priority]) => {
     const loc = route === '/' ? `${SITE}/` : `${SITE}${route}`;
     return `  <url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><priority>${priority}</priority></url>`;
   })

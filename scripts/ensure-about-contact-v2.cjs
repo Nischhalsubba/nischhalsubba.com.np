@@ -17,12 +17,13 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const email = 'hinischalsubba@gmail.com';
 
+
 /**
  * Function contract: head
  * Purpose: Implement the head responsibility owned by the ensure about contact v2 repository tool.
- * Inputs: `{ title, description, canonical }`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `{ title, description, canonical }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function head({ title, description, canonical }) {
   return `<!DOCTYPE html>
@@ -48,19 +49,14 @@ function head({ title, description, canonical }) {
   </head>`;
 }
 
-/**
- * Function contract: nav
- * Purpose: Implements the nav responsibility for this module.
- * Inputs: active.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: nav
  * Purpose: Implement the nav responsibility owned by the ensure about contact v2 repository tool.
- * Inputs: `active`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `active`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function nav(active) {
   const items = [
@@ -72,8 +68,8 @@ function nav(active) {
     ['/contact', 'Contact', 'contact'],
   ];
 
-  const desktop = items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [href, label, key]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([href, label, key]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
-  const mobile = items.map(/** Callback contract: Processes the callback step for items without leaking orchestration details to the caller. Inputs: [href, label, key]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([href, label, key]) => `<a href="${href}"${active === key ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('');
+  const desktop = items.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([href, label, key]) => `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
+  const mobile = items.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[href, label, key]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([href, label, key]) => `<a href="${href}"${active === key ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('');
 
   return `    <button class="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-overlay"><span></span><span></span></button>
     <a href="/" class="mobile-logo">NRS</a>
@@ -82,19 +78,14 @@ function nav(active) {
     <nav class="nav-wrapper" aria-label="Primary navigation"><div class="nav-pill"><div class="nav-glider"></div>${desktop}</div></nav>`;
 }
 
-/**
- * Function contract: scripts
- * Purpose: Implements the scripts responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: scripts
  * Purpose: Implement the scripts responsibility owned by the ensure about contact v2 repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function scripts() {
   return `    <a class="floating-resume-btn" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Download Resume</a>

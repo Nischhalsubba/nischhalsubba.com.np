@@ -10,36 +10,39 @@
  * - src/runtime/script.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
+
 /**
  * Function contract: getCurrentFileName
  * Purpose: Return current file name from the supplied inputs or current site consistency browser feature state.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: The requested current file name; early-return/empty-state behavior follows the explicit branches in this function.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: The requested current file name; explicit early-return branches define empty/fallback behavior.
  */
 function getCurrentFileName() {
   const path = window.location.pathname;
   return path.split('/').filter(Boolean).pop() || 'index.html';
 }
 
+
 /**
  * Function contract: loadPortfolioFonts
  * Purpose: Return portfolio fonts from the supplied inputs or current site consistency browser feature state.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function loadPortfolioFonts() {
   // The portfolio uses the system font stack declared in /style.css so every
   // route paints consistently without a late remote-font stylesheet.
 }
 
+
 /**
  * Function contract: applyConsistencyPageClasses
  * Purpose: Apply consistency page classes consistently while preserving the surrounding site consistency browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function applyConsistencyPageClasses() {
   const path = window.location.pathname;
@@ -52,12 +55,13 @@ function applyConsistencyPageClasses() {
   document.body.classList.toggle('nrs-blog-detail-page', path.startsWith('/blog/') && path !== '/blog/');
 }
 
+
 /**
  * Function contract: injectConsistencyStyles
  * Purpose: Implement the inject consistency styles responsibility owned by the site consistency browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function injectConsistencyStyles() {
   if (document.getElementById('nrs-site-consistency-styles')) return;
@@ -892,12 +896,13 @@ function injectConsistencyStyles() {
   document.head.appendChild(style);
 }
 
+
 /**
  * Function contract: polishSiteConsistency
  * Purpose: Apply site consistency consistently while preserving the surrounding site consistency browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function polishSiteConsistency() {
   loadPortfolioFonts();

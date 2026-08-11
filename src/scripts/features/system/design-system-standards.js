@@ -12,12 +12,13 @@
  */
 const DESIGN_SYSTEM_STYLE_ID = 'nrs-design-system-standards';
 
+
 /**
  * Function contract: ensureDesignSystemStyles
  * Purpose: Apply design system styles consistently while preserving the surrounding design system standards browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureDesignSystemStyles() {
   let style = document.getElementById(DESIGN_SYSTEM_STYLE_ID);
@@ -531,12 +532,13 @@ function ensureDesignSystemStyles() {
   `;
 }
 
+
 /**
  * Function contract: applyDesignSystemStandards
  * Purpose: Apply design system standards consistently while preserving the surrounding design system standards browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function applyDesignSystemStandards() {
   ensureDesignSystemStyles();

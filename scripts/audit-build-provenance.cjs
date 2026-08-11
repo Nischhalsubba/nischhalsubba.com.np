@@ -33,12 +33,13 @@ try {
 if (!info.commit || !info.branch) issues.push('build metadata is incomplete');
 if ('builtAt' in info) issues.push('build metadata contains non-deterministic builtAt data');
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the audit build provenance repository tool.
- * Inputs: `directory`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `directory`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -61,7 +62,7 @@ function walk(directory) {
 walk(dist);
 
 if (issues.length) {
-  console.error(`[provenance] Failed\n${issues.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `issue`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (issue) => `- ${issue}`).join('\n')}`);
+  console.error(`[provenance] Failed\n${issues.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `issue` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (issue) => `- ${issue}`).join('\n')}`);
   process.exit(1);
 }
 

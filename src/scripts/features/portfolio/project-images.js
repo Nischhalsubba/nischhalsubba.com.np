@@ -69,34 +69,37 @@ const PROJECT_IMAGES = {
   },
 };
 
+
 /**
  * Function contract: normalizeProjectPath
  * Purpose: Apply project path consistently while preserving the surrounding project images browser feature contract.
- * Inputs: `pathname`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `pathname`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function normalizeProjectPath(pathname) {
   return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
 }
 
+
 /**
  * Function contract: absoluteUrl
  * Purpose: Implement the absolute url responsibility owned by the project images browser feature.
- * Inputs: `path`: path identifying the resource being processed
- * Side effects: reads or updates DOM/browser state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `path`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function absoluteUrl(path) {
   return new URL(path, window.location.origin).href;
 }
 
+
 /**
  * Function contract: ensureProjectHeroImage
  * Purpose: Apply project hero image consistently while preserving the surrounding project images browser feature contract.
- * Inputs: `project`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `project`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureProjectHeroImage(project) {
   let image = document.querySelector('.case-hero-img, .project-detail-hero img, .case-hero-img-container img');
@@ -124,15 +127,16 @@ function ensureProjectHeroImage(project) {
   container.classList.add('nrs-project-image-container');
 }
 
+
 /**
  * Function contract: updateProjectMeta
  * Purpose: Apply project meta consistently while preserving the surrounding project images browser feature contract.
- * Inputs: `project`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `project`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function updateProjectMeta(project) {
-  document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `meta`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (meta) => {
+  document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `meta` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (meta) => {
     meta.setAttribute('content', absoluteUrl(project.src));
   });
 
@@ -150,12 +154,13 @@ function updateProjectMeta(project) {
   }
 }
 
+
 /**
  * Function contract: injectProjectImageStyles
  * Purpose: Implement the inject project image styles responsibility owned by the project images browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function injectProjectImageStyles() {
   if (document.getElementById('nrs-project-image-styles')) return;
@@ -193,12 +198,13 @@ function injectProjectImageStyles() {
   document.head.appendChild(style);
 }
 
+
 /**
  * Function contract: useProjectDetailImages
  * Purpose: Implement the use project detail images responsibility owned by the project images browser feature.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function useProjectDetailImages() {
   const project = PROJECT_IMAGES[normalizeProjectPath(window.location.pathname)];

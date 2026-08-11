@@ -26,26 +26,21 @@ if (result.status !== 0) {
 }
 
 const tracked = result.stdout.split('\0').filter(Boolean);
-const rootFiles = tracked.filter(/** Callback contract: Processes the callback step for tracked without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (file) => !file.includes('/')).sort();
-const unexpectedRoot = rootFiles.filter(/** Callback contract: Processes the callback step for root files without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (file) => !policy.allowedRootFiles.includes(file));
+const rootFiles = tracked.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => !file.includes('/')).sort();
+const unexpectedRoot = rootFiles.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => !policy.allowedRootFiles.includes(file));
 const failures = [];
+
+
 
 /**
  * Function contract: sourceForRootTarget
- * Purpose: Resolve a historical/public root-compatible filename to the organized canonical source declared by the repository materialization contract.
- * Inputs: `target`, the root filename such as `index.html` or `project-yarsha.html`.
- * Side effects: No external side effects; reads the in-memory `mappings` contract.
- * Returns: The repository-relative organized source path, or an empty string when no mapping exists.
- */
-/**
- * Function contract: sourceForRootTarget
  * Purpose: Resolve a root-compatible target filename through the materialization mapping instead of duplicating source-folder assumptions.
- * Inputs: `target`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `target`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function sourceForRootTarget(target) {
-  return mappings.find(/** Callback contract: Processes the callback step for mappings without leaking orchestration details to the caller. Inputs: mapping. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Return true for the first collection item matching the lookup condition used by the enclosing operation. Inputs: `mapping`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `mapping`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (mapping) => mapping.target === target && mapping.sync)?.source || '';
+  return mappings.find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `mapping` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (mapping) => mapping.target === target && mapping.sync)?.source || '';
 }
 
 if (unexpectedRoot.length) {
@@ -53,7 +48,7 @@ if (unexpectedRoot.length) {
 }
 
 for (const prefix of policy.forbiddenTrackedPrefixes) {
-  const matches = tracked.filter(/** Callback contract: Processes the callback step for tracked without leaking orchestration details to the caller. Inputs: file. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `file`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (file) => file.startsWith(prefix));
+  const matches = tracked.filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `file` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (file) => file.startsWith(prefix));
   if (matches.length) {
     failures.push(`Forbidden tracked prefix ${prefix}: ${matches.length} file(s)`);
   }
@@ -97,7 +92,7 @@ for (const doc of policy.requiredDocumentation) {
 }
 
 if (failures.length) {
-  console.error(`[repository-structure] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}`);
+  console.error(`[repository-structure] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (item) => `- ${item}`).join('\n')}`);
   process.exit(1);
 }
 

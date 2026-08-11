@@ -10,12 +10,13 @@
  * - src/runtime/script.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
+
 /**
  * Function contract: ensureListSpacingStyle
  * Purpose: Apply list spacing style consistently while preserving the surrounding list spacing browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function ensureListSpacingStyle() {
   let style = document.getElementById('nrs-list-spacing-polish');
@@ -154,12 +155,13 @@ function ensureListSpacingStyle() {
   `;
 }
 
+
 /**
  * Function contract: polishListSpacing
  * Purpose: Apply list spacing consistently while preserving the surrounding list spacing browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function polishListSpacing() {
   ensureListSpacingStyle();

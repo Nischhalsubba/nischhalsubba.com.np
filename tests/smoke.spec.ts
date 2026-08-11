@@ -31,16 +31,16 @@ const routes = [
   { path: "/rules", heading: /Rules|How to Play/i },
 ];
 
-test.describe("core route smoke tests", /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: undefined; callback is side-effect-only. */ () => {
+test.describe("core route smoke tests",  /** Callback contract: Perform the local callback step required by the immediately enclosing smoke.spec quality check operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; the function exists for the documented side effects, validation, or orchestration. */ () => {
   for (const route of routes) {
-    test(`${route.path} renders`, /** Callback contract: Processes the callback step for test without leaking orchestration details to the caller. Inputs: { page }. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing smoke.spec quality check operation. Inputs: `{ page }`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Promise that resolves when the asynchronous side effects complete. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `{ page }`. Side effects: no direct external side effect beyond invoked dependencies. Returns: Promise resolving after the callback side effects complete. */ async ({ page }) => {
+    test(`${route.path} renders`,    /** Callback contract: Perform the local callback step required by the immediately enclosing smoke.spec quality check operation. Inputs: `{ page }` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving after the documented asynchronous side effects complete. */ async ({ page }) => {
       await page.goto(route.path);
       await expect(page.getByRole("heading", { name: route.heading }).first()).toBeVisible();
     });
   }
 });
 
-test("home explains the ClearPlay flow and exposes primary navigation", /** Callback contract: Processes the callback step for test without leaking orchestration details to the caller. Inputs: { page }. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing smoke.spec quality check operation. Inputs: `{ page }`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Promise that resolves when the asynchronous side effects complete. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `{ page }`. Side effects: no direct external side effect beyond invoked dependencies. Returns: Promise resolving after the callback side effects complete. */ async ({ page }) => {
+test("home explains the ClearPlay flow and exposes primary navigation",    /** Callback contract: Perform the local callback step required by the immediately enclosing smoke.spec quality check operation. Inputs: `{ page }` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving after the documented asynchronous side effects complete. */ async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByText(/shows you a number/i)).toBeVisible();
@@ -58,7 +58,7 @@ test("home explains the ClearPlay flow and exposes primary navigation", /** Call
   await expect(page.getByRole("link", { name: /Profile/i })).toBeVisible();
 });
 
-test("shared challenge sanitizes bad URL params without crashing", /** Callback contract: Processes the callback step for test without leaking orchestration details to the caller. Inputs: { page }. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing smoke.spec quality check operation. Inputs: `{ page }`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Promise that resolves when the asynchronous side effects complete. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `{ page }`. Side effects: no direct external side effect beyond invoked dependencies. Returns: Promise resolving after the callback side effects complete. */ async ({ page }) => {
+test("shared challenge sanitizes bad URL params without crashing",    /** Callback contract: Perform the local callback step required by the immediately enclosing smoke.spec quality check operation. Inputs: `{ page }` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving after the documented asynchronous side effects complete. */ async ({ page }) => {
   await page.goto("/challenge?seed=-999&size=banana&target=999999");
 
   await expect(page.getByRole("heading", { name: /Shared board/i })).toBeVisible();
@@ -66,13 +66,13 @@ test("shared challenge sanitizes bad URL params without crashing", /** Callback 
   await expect(page.getByRole("button", { name: /Copy Challenge Link/i })).toBeVisible();
 });
 
-test("online setup handles one-player rooms when Supabase is configured", /** Callback contract: Processes the callback step for test without leaking orchestration details to the caller. Inputs: { page }. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing smoke.spec quality check operation. Inputs: `{ page }`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Promise that resolves when the asynchronous side effects complete. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `{ page }`. Side effects: no direct external side effect beyond invoked dependencies. Returns: Promise resolving after the callback side effects complete. */ async ({ page }) => {
+test("online setup handles one-player rooms when Supabase is configured",    /** Callback contract: Perform the local callback step required by the immediately enclosing smoke.spec quality check operation. Inputs: `{ page }` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving after the documented asynchronous side effects complete. */ async ({ page }) => {
   await page.goto("/online");
 
   const setupHeading = page.getByRole("heading", { name: /Play with a friend/i });
   const missingConfigHeading = page.getByRole("heading", { name: /Online Play needs Supabase/i });
 
-  if (await missingConfigHeading.isVisible().catch(/** Callback contract: Processes the callback step for missing config heading.is visible() without leaking orchestration details to the caller. Inputs: no explicit parameters. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Convert or report the rejected asynchronous operation according to this module’s failure-handling policy. Inputs: none. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: none. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ () => false)) {
+  if (await missingConfigHeading.isVisible().catch(   /** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ () => false)) {
     await expect(missingConfigHeading).toBeVisible();
     return;
   }
@@ -84,7 +84,7 @@ test("online setup handles one-player rooms when Supabase is configured", /** Ca
   await expect(page.getByText(/start a solo online room/i)).toBeVisible();
 });
 
-test("shared challenge keeps the same seed in copied link UI", /** Callback contract: Processes the callback step for test without leaking orchestration details to the caller. Inputs: { page }. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing smoke.spec quality check operation. Inputs: `{ page }`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Promise that resolves when the asynchronous side effects complete. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `{ page }`. Side effects: no direct external side effect beyond invoked dependencies. Returns: Promise resolving after the callback side effects complete. */ async ({ page }) => {
+test("shared challenge keeps the same seed in copied link UI",    /** Callback contract: Perform the local callback step required by the immediately enclosing smoke.spec quality check operation. Inputs: `{ page }` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving after the documented asynchronous side effects complete. */ async ({ page }) => {
   await page.goto("/challenge?seed=123&size=100&target=42");
 
   await expect(page.getByText(/seed 123/i)).toBeVisible();
@@ -92,13 +92,13 @@ test("shared challenge keeps the same seed in copied link UI", /** Callback cont
   await expect(page.getByRole("button", { name: /Copy Challenge Link/i })).toBeVisible();
 });
 
-test("comfort mode can start a gentle round", /** Callback contract: Processes the callback step for test without leaking orchestration details to the caller. Inputs: { page }. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing smoke.spec quality check operation. Inputs: `{ page }`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Promise that resolves when the asynchronous side effects complete. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `{ page }`. Side effects: no direct external side effect beyond invoked dependencies. Returns: Promise resolving after the callback side effects complete. */ async ({ page }) => {
+test("comfort mode can start a gentle round",    /** Callback contract: Perform the local callback step required by the immediately enclosing smoke.spec quality check operation. Inputs: `{ page }` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving after the documented asynchronous side effects complete. */ async ({ page }) => {
   await page.goto("/comfort");
   await page.getByRole("button", { name: /^Start$/i }).click();
   await expect(page.getByText(/Target hides in|Look at the target/i)).toBeVisible();
 });
 
-test("sitemap includes production feature routes", /** Callback contract: Processes the callback step for test without leaking orchestration details to the caller. Inputs: { page }. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Perform the local callback step required by the enclosing smoke.spec quality check operation. Inputs: `{ page }`. Side effects: reads or updates DOM/browser state. Returns: Promise that resolves when the asynchronous side effects complete. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `{ page }`. Side effects: reads or updates DOM/browser state. Returns: Promise resolving after the callback side effects complete. */ async ({ page }) => {
+test("sitemap includes production feature routes",    /** Callback contract: Perform the local callback step required by the immediately enclosing smoke.spec quality check operation. Inputs: `{ page }` Side effects: reads or updates DOM/browser state Returns: Promise resolving after the documented asynchronous side effects complete. */ async ({ page }) => {
   const response = await page.goto("/sitemap.xml");
   expect(response?.ok()).toBeTruthy();
   const text = await page.textContent("body");

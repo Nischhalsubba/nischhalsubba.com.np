@@ -15,12 +15,13 @@ const path=require('node:path');
 const dist=path.resolve(__dirname,'..','dist');
 if(!fs.existsSync(dist)){console.error('[shell] dist missing');process.exit(1)}
 const files=[];
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the audit shared shell repository tool.
- * Inputs: `dir`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `dir`
+ * Side effects: reads filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())walk(p);else if(e.name.endsWith('.html'))files.push(p)}}
 walk(dist);
@@ -40,5 +41,5 @@ for(const file of files){
  if(!html.includes('© 2026 Nischhal Raj Subba'))issues.push(`${rel}: copyright missing`);
  if(/\(c\)\s*2026/i.test(html))issues.push(`${rel}: stale copyright`);
 }
-if(issues.length){console.error('[shell] Failed\n'+issues.map(/** Callback contract: Processes the callback step for issues without leaking orchestration details to the caller. Inputs: x. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `x`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `x`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ x=>`- ${x}`).join('\n'));process.exit(1)}
+if(issues.length){console.error('[shell] Failed\n'+issues.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `x` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ x=>`- ${x}`).join('\n'));process.exit(1)}
 console.log(`[shell] ${files.length} HTML files passed.`);

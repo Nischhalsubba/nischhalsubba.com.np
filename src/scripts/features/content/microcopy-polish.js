@@ -47,24 +47,26 @@ const BLOG_COPY = {
   lead: 'Short, practical writing on UX patterns, Web3 product flows, dashboards, design systems, and the small decisions that make interfaces easier to review, build, and use.',
 };
 
+
 /**
  * Function contract: setText
  * Purpose: Synchronize text with the requested state while preserving related microcopy polish browser feature invariants.
- * Inputs: `element`: DOM element currently being evaluated or updated; `text`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `element`, `text`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function setText(element, text) {
   if (!element || !text) return;
   element.textContent = text;
 }
 
+
 /**
  * Function contract: updateHeroCopy
  * Purpose: Apply hero copy consistently while preserving the surrounding microcopy polish browser feature contract.
- * Inputs: `copy`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `copy`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function updateHeroCopy(copy) {
   if (!copy) return;
@@ -82,18 +84,19 @@ function updateHeroCopy(copy) {
 
   const proofItems = hero.querySelectorAll('.hero-proof-strip span');
   if (copy.proof && proofItems.length) {
-    proofItems.forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (item, index) => {
+    proofItems.forEach( /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `item`, `index` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (item, index) => {
       if (copy.proof[index]) item.textContent = copy.proof[index];
     });
   }
 }
 
+
 /**
  * Function contract: polishProjectDetailCopy
  * Purpose: Apply project detail copy consistently while preserving the surrounding microcopy polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function polishProjectDetailCopy() {
   if (!document.body.classList.contains('nrs-project-detail-page')) return;
@@ -113,26 +116,21 @@ function polishProjectDetailCopy() {
     lead.dataset.microcopyPolished = 'true';
   }
 
-  document.querySelectorAll('.section-title, h2').forEach(/** Callback contract: Processes the callback step for document.query selector all('.section title, h2') without leaking orchestration details to the caller. Inputs: heading. Side effects: may read or update browser DOM/state. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `heading`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `heading`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (heading) => {
+  document.querySelectorAll('.section-title, h2').forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `heading` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (heading) => {
     const text = heading.textContent.trim();
     if (/what the design made easier/i.test(text)) heading.textContent = PROJECT_DETAIL_COPY.outcomeTitle;
     if (/how i approached the work/i.test(text)) heading.textContent = PROJECT_DETAIL_COPY.processTitle;
   });
 }
 
-/**
- * Function contract: polishBlogCopy
- * Purpose: Applies polish blog copy while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: polishBlogCopy
  * Purpose: Apply blog copy consistently while preserving the surrounding microcopy polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function polishBlogCopy() {
   const path = window.location.pathname;
@@ -153,22 +151,17 @@ function polishBlogCopy() {
   }
 }
 
-/**
- * Function contract: polishCardCopy
- * Purpose: Applies polish card copy while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: polishCardCopy
  * Purpose: Apply card copy consistently while preserving the surrounding microcopy polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function polishCardCopy() {
-  document.querySelectorAll('.project-card .card-summary').forEach(/** Callback contract: Processes the callback step for document.query selector all('.project card .card summary') without leaking orchestration details to the caller. Inputs: summary. Side effects: may read or update browser DOM/state. Returns a value to the invoking API. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `summary`. Side effects: reads or updates DOM/browser state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `summary`. Side effects: reads or updates DOM/browser state. Returns: undefined; callback is side-effect-only. */ (summary) => {
+  document.querySelectorAll('.project-card .card-summary').forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `summary` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (summary) => {
     const text = summary.textContent.trim();
     if (!text || summary.dataset.microcopyPolished) return;
 
@@ -180,19 +173,14 @@ function polishCardCopy() {
   });
 }
 
-/**
- * Function contract: polishMicrocopy
- * Purpose: Applies polish microcopy while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or update browser DOM/state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: polishMicrocopy
  * Purpose: Apply microcopy consistently while preserving the surrounding microcopy polish browser feature contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 export function polishMicrocopy() {
   const copy = PAGE_COPY[window.location.pathname];

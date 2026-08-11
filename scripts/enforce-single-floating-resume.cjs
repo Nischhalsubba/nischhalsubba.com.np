@@ -19,12 +19,13 @@ const target = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const floatingResume = '<a class="floating-resume-btn" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download aria-label="Download Resume"><span class="btn-text">Download Resume</span></a>';
 const anchorPattern = /\s*<a\b(?=[^>]*\bclass=["'][^"']*\bfloating-resume-btn\b[^"']*["'])[^>]*>[\s\S]*?<\/a>/gi;
 
+
 /**
  * Function contract: walk
  * Purpose: Implement the walk responsibility owned by the enforce single floating resume repository tool.
- * Inputs: `directory`: input consumed by this operation; `output`: input consumed by this operation
- * Side effects: reads repository/filesystem state.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `directory`, `output`
+ * Side effects: reads filesystem state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function walk(directory, output = []) {
   if (!fs.existsSync(directory)) return output;
@@ -39,7 +40,7 @@ function walk(directory, output = []) {
 
 let changed = 0;
 const errors = [];
-for (const file of walk(target).filter(/** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (item) => item.endsWith('.html'))) {
+for (const file of walk(target).filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `item` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (item) => item.endsWith('.html'))) {
   const original = fs.readFileSync(file, 'utf8');
   const matches = original.match(anchorPattern) || [];
   let updated = original.replace(anchorPattern, '');

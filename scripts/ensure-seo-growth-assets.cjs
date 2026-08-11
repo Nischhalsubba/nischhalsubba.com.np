@@ -22,12 +22,13 @@ const SITE = 'https://nischhalsubba.com.np';
 const email = 'hinischalsubba@gmail.com';
 const today = '2026-06-24';
 
+
 /**
  * Function contract: escapeHtml
  * Purpose: Implement the escape html responsibility owned by the ensure seo growth assets repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed expression result consumed by the enclosing operation.
  */
 const escapeHtml = (value) => String(value)
   .replace(/&/g, '&amp;')
@@ -35,20 +36,22 @@ const escapeHtml = (value) => String(value)
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;');
 
+
 /**
  * Function contract: nav
  * Purpose: Implement the nav responsibility owned by the ensure seo growth assets repository tool.
- * Inputs: `active`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `active`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function nav(active = 'writing') {
+  
   /**
    * Function contract: item
    * Purpose: Implement the item responsibility owned by the ensure seo growth assets repository tool.
-   * Inputs: `section`: input consumed by this operation; `href`: input consumed by this operation; `label`: input consumed by this operation; `cls`: input consumed by this operation
-   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-   * Returns: Boolean predicate result consumed by the caller.
+   * Inputs: `section`, `href`, `label`, `cls`
+   * Side effects: No direct external side effect beyond invoked dependencies.
+   * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
    */
   const item = (section, href, label, cls = 'nav-link') => {
     const isActive = active === section;
@@ -60,19 +63,14 @@ function nav(active = 'writing') {
 const footer = `<footer class="site-footer"><div class="container"><div class="footer-top-grid"><div class="footer-cta"><h2>Available for<br>product design<br><span style="font-style:italic;">roles and projects.</span></h2><p>I help teams clarify product flows, ship polished interfaces, document systems, and hand off work engineers can build.</p><a href="mailto:${email}" class="footer-email-btn">${email}</a></div><div class="footer-nav-grid"><div class="footer-col"><h5>Pages</h5><a href="/">Home</a><a href="/projects.html">Work</a><a href="/about.html">About</a><a href="/blog/">Writing</a><a href="/contact.html">Contact</a><a href="/media-kit.html">Media kit</a></div><div class="footer-col"><h5>Proof</h5><a href="https://www.behance.net/nischhal" target="_blank" rel="noopener">Behance</a><a href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener">Uxcel</a><a href="https://linkedin.com/in/nischhal/" target="_blank" rel="noopener">LinkedIn</a><a href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download>Resume</a></div></div></div><div class="footer-bottom-bar"><span>(c) 2026 Nischhal Raj Subba.</span></div></div></footer>`;
 const script = `<script type="module" src="/script.js?v=32.0"></script>`;
 
-/**
- * Function contract: head
- * Purpose: Implements the head responsibility for this module.
- * Inputs: { title, description, canonical, type = 'article', schema }.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: head
  * Purpose: Implement the head responsibility owned by the ensure seo growth assets repository tool.
- * Inputs: `{ title, description, canonical, type = 'article', schema }`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `{ title, description, canonical, type = 'article', schema }`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function head({ title, description, canonical, type = 'article', schema }) {
   const url = `${SITE}${canonical}`;
@@ -106,19 +104,14 @@ function head({ title, description, canonical, type = 'article', schema }) {
   </head>`;
 }
 
-/**
- * Function contract: articleSchema
- * Purpose: Implements the article schema responsibility for this module.
- * Inputs: article.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: articleSchema
  * Purpose: Implement the article schema responsibility owned by the ensure seo growth assets repository tool.
- * Inputs: `article`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `article`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function articleSchema(article) {
   return `<script type="application/ld+json" id="nrs-article-schema">${JSON.stringify({
@@ -238,12 +231,13 @@ const articles = [
   },
 ];
 
+
 /**
  * Function contract: articlePage
  * Purpose: Implement the article page responsibility owned by the ensure seo growth assets repository tool.
- * Inputs: `article`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `article`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function articlePage(article) {
   const canonical = `/blog/${article.slug}`;
@@ -260,13 +254,13 @@ function articlePage(article) {
       </article>
       <section class="section-container" style="padding-top:0;max-width:900px;">
         <ul class="case-list">
-          ${article.sections.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[heading, body]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([heading, body]) => `<li><strong>${escapeHtml(heading)}:</strong> ${escapeHtml(body)}</li>`).join('\n          ')}
+          ${article.sections.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[heading, body]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([heading, body]) => `<li><strong>${escapeHtml(heading)}:</strong> ${escapeHtml(body)}</li>`).join('\n          ')}
         </ul>
       </section>
       <section class="section-container" style="border-top:1px solid var(--border-faint);max-width:900px;">
         <div class="section-header"><p class="eyebrow">Related pages</p><h2 class="section-title">Use this with real portfolio context.</h2><p class="section-lead">These links connect the article to public proof, service intent, and contact paths.</p></div>
         <div class="prototype-link-list">
-          ${article.links.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[label, href]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ ([label, href]) => `<a class="prototype-link-card" href="${href}"><span style="display:block;font-weight:850;">${escapeHtml(label)}</span><span style="color:var(--text-secondary);">Open related page</span></a>`).join('\n          ')}
+          ${article.links.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `[label, href]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ ([label, href]) => `<a class="prototype-link-card" href="${href}"><span style="display:block;font-weight:850;">${escapeHtml(label)}</span><span style="color:var(--text-secondary);">Open related page</span></a>`).join('\n          ')}
           <a class="prototype-link-card" href="/media-kit.html"><span style="display:block;font-weight:850;">Media kit and proof links</span><span style="color:var(--text-secondary);">Use official profile and citation details</span></a>
         </div>
       </section>
@@ -277,19 +271,14 @@ function articlePage(article) {
 </html>`;
 }
 
-/**
- * Function contract: mediaKitPage
- * Purpose: Implements the media kit page responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: mediaKitPage
  * Purpose: Implement the media kit page responsibility owned by the ensure seo growth assets repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function mediaKitPage() {
   const schema = `<script type="application/ld+json" id="nrs-media-kit-schema">${JSON.stringify({
@@ -364,19 +353,14 @@ const projectSeo = {
   'project-sassboilerplate.html': ['Sass front-end starter structure case study', '/figma-design-systems.html'],
 };
 
-/**
- * Function contract: enhanceProjectPage
- * Purpose: Implements the enhance project page responsibility for this module.
- * Inputs: file, [intent, serviceLink].
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: enhanceProjectPage
  * Purpose: Implement the enhance project page responsibility owned by the ensure seo growth assets repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed; `[intent, serviceLink]`: input consumed by this operation
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: `file`, `[intent, serviceLink]`
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function enhanceProjectPage(file, [intent, serviceLink]) {
   const filePath = path.join(root, file);
@@ -397,26 +381,21 @@ function enhanceProjectPage(file, [intent, serviceLink]) {
   fs.writeFileSync(filePath, html, 'utf8');
 }
 
-/**
- * Function contract: updateBlogIndex
- * Purpose: Applies update blog index while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: updateBlogIndex
  * Purpose: Apply blog index consistently while preserving the surrounding ensure seo growth assets repository tool contract.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function updateBlogIndex() {
   const filePath = path.join(root, 'blog', 'index.html');
   if (!fs.existsSync(filePath)) return;
   let html = fs.readFileSync(filePath, 'utf8');
   html = html.replace(/\s*<section id="nrs-seo-growth-writing"[\s\S]*?<\/section>/, '');
-  const links = articles.map(/** Callback contract: Processes the callback step for articles without leaking orchestration details to the caller. Inputs: article. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `article`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `article`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (article) => `<a href="/blog/${article.slug}" class="writing-item" data-category="seo ux product design"><span class="w-date">Jun 24, 2026</span><div class="w-info"><span class="w-title">${escapeHtml(article.navTitle)}</span><span class="w-summary">${escapeHtml(article.description)}</span></div><span class="w-arrow">&rarr;</span></a>`).join('\n          ');
+  const links = articles.map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `article` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (article) => `<a href="/blog/${article.slug}" class="writing-item" data-category="seo ux product design"><span class="w-date">Jun 24, 2026</span><div class="w-info"><span class="w-title">${escapeHtml(article.navTitle)}</span><span class="w-summary">${escapeHtml(article.description)}</span></div><span class="w-arrow">&rarr;</span></a>`).join('\n          ');
   const section = `
       <section id="nrs-seo-growth-writing" class="section-container" style="border-top:1px solid var(--border-faint);">
         <div class="section-header"><p class="eyebrow">Practical SEO series</p><h2 class="section-title">Answers to hiring and client questions.</h2><p class="section-lead">Focused articles that connect product design expertise to real search intent, case studies, and service pages.</p></div>
@@ -428,19 +407,14 @@ function updateBlogIndex() {
   fs.writeFileSync(filePath, html, 'utf8');
 }
 
-/**
- * Function contract: writeDocs
- * Purpose: Applies write docs while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: writeDocs
  * Purpose: Implement the write docs responsibility owned by the ensure seo growth assets repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function writeDocs() {
   fs.mkdirSync(path.join(root, 'docs'), { recursive: true });
@@ -498,19 +472,14 @@ Runtime emits CustomEvent('nrs:analytics') and optional dataLayer/gtag/plausible
   fs.writeFileSync(path.join(root, 'docs', 'seo-ai-visibility-plan.md'), doc, 'utf8');
 }
 
-/**
- * Function contract: writeArticlePages
- * Purpose: Applies write article pages while preserving the surrounding repository/runtime contract.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
+
+
 /**
  * Function contract: writeArticlePages
  * Purpose: Implement the write article pages responsibility owned by the ensure seo growth assets repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: writes repository/filesystem state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Inputs: None; derives required state from its enclosing module/runtime context.
+ * Side effects: writes filesystem state
+ * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
  */
 function writeArticlePages() {
   fs.mkdirSync(path.join(root, 'blog'), { recursive: true });
@@ -521,7 +490,7 @@ function writeArticlePages() {
 
 writeArticlePages();
 fs.writeFileSync(path.join(root, 'media-kit.html'), `${mediaKitPage()}\n`, 'utf8');
-Object.entries(projectSeo).forEach(/** Callback contract: Processes the callback step for object.entries(project seo) without leaking orchestration details to the caller. Inputs: [file, config]. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[file, config]`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[file, config]`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ ([file, config]) => enhanceProjectPage(file, config));
+Object.entries(projectSeo).forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[file, config]` Side effects: No direct external side effect beyond invoked dependencies. Returns: Undefined; this callback is side-effect-only. */ ([file, config]) => enhanceProjectPage(file, config));
 updateBlogIndex();
 writeDocs();
 

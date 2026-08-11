@@ -74,12 +74,13 @@ const meta = {
   },
 };
 
+
 /**
  * Function contract: routeFor
  * Purpose: Implement the route for responsibility owned by the ensure search identity final repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Inputs: `file`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function routeFor(file) {
   if (file === 'index.html') return '/';
@@ -87,37 +88,27 @@ function routeFor(file) {
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
-/**
- * Function contract: esc
- * Purpose: Implements the esc responsibility for this module.
- * Inputs: value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: esc
  * Purpose: Implement the esc responsibility owned by the ensure search identity final repository tool.
- * Inputs: `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
-/**
- * Function contract: setTitle
- * Purpose: Applies set title while preserving the surrounding repository/runtime contract.
- * Inputs: html, value.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: setTitle
  * Purpose: Synchronize title with the requested state while preserving related ensure search identity final repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `value`: input value being transformed or evaluated
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `value`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setTitle(html, value) {
   const tag = `<title>${esc(value)}</title>`;
@@ -126,19 +117,14 @@ function setTitle(html, value) {
     : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-/**
- * Function contract: setMeta
- * Purpose: Applies set meta while preserving the surrounding repository/runtime contract.
- * Inputs: html, key, value, keyAttribute.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: setMeta
  * Purpose: Synchronize meta with the requested state while preserving related ensure search identity final repository tool invariants.
- * Inputs: `html`: input consumed by this operation; `key`: input consumed by this operation; `value`: input value being transformed or evaluated; `keyAttribute`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `key`, `value`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function setMeta(html, key, value, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -147,34 +133,30 @@ function setMeta(html, key, value, keyAttribute = 'name') {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-/**
- * Function contract: removeMeta
- * Purpose: Removes or cleans remove meta while keeping required outputs intact.
- * Inputs: html, key, keyAttribute.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: removeMeta
  * Purpose: Remove meta without disturbing required surrounding ensure search identity final repository tool state.
- * Inputs: `html`: input consumed by this operation; `key`: input consumed by this operation; `keyAttribute`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `key`, `keyAttribute`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function removeMeta(html, key, keyAttribute = 'name') {
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return html.replace(new RegExp(`\\s*<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapedKey}["'])[^>]*>`, 'gi'), '');
 }
 
+
 /**
  * Function contract: patchStructuredData
  * Purpose: Implement the patch structured data responsibility owned by the ensure search identity final repository tool.
- * Inputs: `html`: input consumed by this operation; `route`: input consumed by this operation; `pageMeta`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`, `route`, `pageMeta`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function patchStructuredData(html, route, pageMeta) {
-  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i, /** Callback contract: Processes the callback step for html without leaking orchestration details to the caller. Inputs: whole, before, after, raw. Side effects: no obvious external side effect beyond invoked dependencies. Returns a value to the invoking API. */ /** Callback contract: Perform the local callback step required by the enclosing ensure search identity final repository tool operation. Inputs: `whole`, `before`, `after`, `raw`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation. */ /** Callback contract: Perform the local callback step required by the immediately enclosing operation. Inputs: `whole`, `before`, `after`, `raw`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed value consumed by the enclosing operation. */ (whole, before, after, raw) => {
+  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure search identity final repository tool operation. Inputs: `whole`, `before`, `after`, `raw` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (whole, before, after, raw) => {
     try {
       const data = JSON.parse(raw.trim());
       const graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
@@ -206,19 +188,14 @@ function patchStructuredData(html, route, pageMeta) {
   });
 }
 
-/**
- * Function contract: patchIdentityHead
- * Purpose: Implements the patch identity head responsibility for this module.
- * Inputs: html.
- * Side effects: may read or update browser DOM/state.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
+
+
 /**
  * Function contract: patchIdentityHead
  * Purpose: Implement the patch identity head responsibility owned by the ensure search identity final repository tool.
- * Inputs: `html`: input consumed by this operation
- * Side effects: reads or updates DOM/browser state.
- * Returns: Boolean predicate result consumed by the caller.
+ * Inputs: `html`
+ * Side effects: reads or updates DOM/browser state
+ * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function patchIdentityHead(html) {
   html = html

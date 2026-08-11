@@ -23,7 +23,7 @@ if (!fs.existsSync(stylePath)) throw new Error(`[hero-photo-v19] Missing ${style
 
 const partDir = path.join(root, 'assets', 'images', 'hero-original-v19.parts');
 const encodedPortrait = ['part-00.b64','part-01.b64','part-02.b64','part-03.b64']
-  .map(/** Callback contract: Processes the callback step for ['part 00.b64','part 01.b64','part 02.b64','part 03.b64'] without leaking orchestration details to the caller. Inputs: name. Side effects: may read or write repository/filesystem state. No explicit return contract. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads repository/filesystem state. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name`. Side effects: reads filesystem state. Returns: computed expression result consumed by the enclosing operation. */ (name) => fs.readFileSync(path.join(partDir, name), 'utf8').replace(/\s+/g, ''))
+  .map(   /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `name` Side effects: reads filesystem state Returns: Computed expression result consumed by the enclosing operation. */ (name) => fs.readFileSync(path.join(partDir, name), 'utf8').replace(/\s+/g, ''))
   .join('');
 const portrait = Buffer.from(encodedPortrait, 'base64');
 const portraitHash = crypto.createHash('sha256').update(portrait).digest('hex');
@@ -40,12 +40,7 @@ const starts = [
   html.indexOf('<section class="nrs-uploaded-hero-v18"'),
   html.indexOf('<section class="nrs-exact-hero-v17"'),
   html.indexOf('<section class="agent-hero"'),
-].filter(/** Callback contract: Processes the callback step for [
-  html.index of('<section class="nrs uploaded hero v19"'),
-  html.index of('<section class="nrs uploaded hero v18"'),
-  html.index of('<section class="nrs exact hero v17"'),
-  html.index of('<section class="agent hero"'),
-] without leaking orchestration details to the caller. Inputs: value. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Decide whether the current item should remain in the filtered result used by the enclosing operation. Inputs: `value`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `value`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (value) => value >= 0);
+].filter(   /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `value` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (value) => value >= 0);
 const heroStart = starts.length ? Math.min(...starts) : -1;
 const nextSection = heroStart >= 0 ? html.indexOf('<section class="agent-section"', heroStart) : -1;
 if (heroStart < 0 || nextSection < 0) throw new Error('[hero-photo-v19] Stable homepage hero boundaries were not found.');
