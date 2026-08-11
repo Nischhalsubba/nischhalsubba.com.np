@@ -1,15 +1,17 @@
 /**
  * @fileoverview scripts/finalize-hero-ux-remediations-v26.cjs
- * Purpose: Apply the finalize hero ux remediations v26 production transformation or maintenance step while preserving canonical source/build contracts.
+ * Purpose: Apply the final accessibility and interaction safeguards to the homepage hero after the earlier visual composition stages have run.
  * Responsibilities:
- * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
- * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
- * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
+ * - Keep the story readout from blocking pointer interaction with nearby controls.
+ * - Maintain WCAG-friendly text contrast in both light and dark themes.
+ * - Increase story-node hit areas for keyboard, mouse, and touch input without changing the visible dot size.
+ * - Improve small-screen story typography and spacing while respecting reduced-motion preferences.
+ * Execution context: Node.js production-build stage that updates the generated homepage stylesheet in the selected build target.
  * Connected files:
  * - scripts/build-dist.cjs
- * - package.json
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * - scripts/finalize-signal-reference-visual.cjs
+ * - scripts/finalize-signal-story-v23.cjs
+ * Maintenance: Keep these overrides narrowly focused on final hero QA issues and prefer existing design tokens over one-off visual values when a suitable token exists.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -46,6 +48,11 @@ css += `
 /* The story kicker is tiny normal text, so preserve the orange hue while meeting WCAG AA in light mode. */
 html[data-theme="light"] .nrs-uploaded-hero-v19 .nrs-story-readout-head{
   color:#b44412!important;
+}
+
+/* Story-node labels are only seven pixels tall, so use the full ink token in dark mode instead of the softer secondary text token. */
+html[data-theme="dark"] .nrs-uploaded-hero-v19 .nrs-story-node-label{
+  color:var(--nrs-u-ink)!important;
 }
 
 /* Preserve the tiny visual nodes while giving mouse, keyboard and touch users a larger target. */
@@ -116,6 +123,7 @@ for (const check of [
   'nrs-hero-ux-v26:start',
   'pointer-events:none!important',
   'color:#b44412!important',
+  'color:var(--nrs-u-ink)!important',
   'width:48px!important',
   'font-size:11px!important',
   'bottom:24%!important',
@@ -123,4 +131,4 @@ for (const check of [
   if (!css.includes(check)) throw new Error(`[hero-ux-v26] Missing generated CSS contract: ${check}`);
 }
 
-console.log('[hero-ux-v26] Removed readout hit-area collisions, enforced accessible light-theme readout contrast, enlarged touch targets, and improved mobile story readability.');
+console.log('[hero-ux-v26] Removed readout hit-area collisions, enforced accessible hero text contrast, enlarged touch targets, and improved mobile story readability.');
