@@ -172,7 +172,7 @@ function callbackNeedsContract(node, sourceFile) {
  * Purpose: Collect JSDoc-style comments immediately preceding the syntax node that owns a documentation contract.
  * Inputs: `source` - complete source text; `owner` - AST node that owns the comment; `sourceFile` - parsed source file.
  * Side effects: None.
- * Returns: Array of leading `/** ... */` comment blocks.
+ * Returns: Array of leading JSDoc comment blocks.
  */
 function contractCommentsInLeadingTrivia(source, owner, sourceFile) {
   const fullStart = owner.getFullStart();
