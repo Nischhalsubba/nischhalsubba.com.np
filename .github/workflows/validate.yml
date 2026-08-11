@@ -32,6 +32,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Preview npm security lockfile remediation
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm audit fix --package-lock-only
+          echo '--- package-lock remediation diff ---'
+          git diff -- package-lock.json
+
       - name: Audit declared dependencies
         run: npm run audit:dependencies
 
