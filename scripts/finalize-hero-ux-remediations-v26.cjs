@@ -30,6 +30,11 @@ css += `
   pointer-events:none!important;
 }
 
+/* The story kicker is tiny normal text, so preserve the orange hue while meeting WCAG AA in light mode. */
+html[data-theme="light"] .nrs-uploaded-hero-v19 .nrs-story-readout-head{
+  color:#b44412!important;
+}
+
 /* Preserve the tiny visual nodes while giving mouse, keyboard and touch users a larger target. */
 .nrs-uploaded-hero-v19 .nrs-story-node{
   width:44px!important;
@@ -97,6 +102,7 @@ fs.writeFileSync(stylePath, css, 'utf8');
 for (const check of [
   'nrs-hero-ux-v26:start',
   'pointer-events:none!important',
+  'color:#b44412!important',
   'width:48px!important',
   'font-size:11px!important',
   'bottom:24%!important',
@@ -104,4 +110,4 @@ for (const check of [
   if (!css.includes(check)) throw new Error(`[hero-ux-v26] Missing generated CSS contract: ${check}`);
 }
 
-console.log('[hero-ux-v26] Removed readout hit-area collisions, enlarged touch targets, and improved mobile story readability.');
+console.log('[hero-ux-v26] Removed readout hit-area collisions, enforced accessible light-theme readout contrast, enlarged touch targets, and improved mobile story readability.');

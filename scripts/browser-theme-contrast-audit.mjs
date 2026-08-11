@@ -32,6 +32,17 @@ for (const [width, height] of viewports) {
         }, theme);
         await page.waitForTimeout(80);
 
+        // The homepage story readout is intentionally hidden until a story node is
+        // focused/hovered. Exercise one representative state so its tiny text is
+        // audited when it is actually rendered, rather than scoring hidden text.
+        if (route === '/') {
+          const storyNode = page.locator('[data-story="problem"]').first();
+          if (await storyNode.count()) {
+            await storyNode.focus();
+            await page.waitForTimeout(80);
+          }
+        }
+
         const result = await page.evaluate(() => {
           const parseColor = (value) => {
             if (!value) return null;
@@ -68,15 +79,21 @@ for (const [width, height] of viewports) {
           };
 
           const isVisible = (element) => {
-            const style = getComputedStyle(element);
             const rect = element.getBoundingClientRect();
-            return !element.hidden
-              && element.getAttribute('aria-hidden') !== 'true'
-              && style.display !== 'none'
-              && style.visibility !== 'hidden'
-              && Number.parseFloat(style.opacity || '1') > 0.01
-              && rect.width > 0
-              && rect.height > 0;
+            if (rect.width <= 0 || rect.height <= 0) return false;
+
+            // Visibility is inherited from ancestors. Without this walk, text
+            // inside an aria-hidden/opacity-zero panel is incorrectly treated as
+            // visible and its effective foreground blends to a bogus 1:1 ratio.
+            for (let node = element; node; node = node.parentElement) {
+              const style = getComputedStyle(node);
+              if (node.hidden
+                || node.getAttribute('aria-hidden') === 'true'
+                || style.display === 'none'
+                || style.visibility === 'hidden'
+                || Number.parseFloat(style.opacity || '1') <= 0.01) return false;
+            }
+            return true;
           };
 
           const backgroundFor = (element) => {
