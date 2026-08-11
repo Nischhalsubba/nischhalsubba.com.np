@@ -10,6 +10,7 @@ on:
     paths-ignore:
       - README.md
       - .github/README_AUTOMATION_REPORT.md
+      - docs/repository/file-catalog.md
 
 permissions:
   contents: write
@@ -19,3 +20,38 @@ jobs:
     permissions:
       contents: write
     uses: Nischhalsubba/Nischhalsubba/.github/workflows/reusable-interactive-readme.yml@main
+
+  sync-file-catalog:
+    name: Sync repository file catalog
+    needs: apply
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout latest main after README automation
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Regenerate tracked-file purpose and connection catalog
+        run: node scripts/repository/generate-file-catalog.cjs
+
+      - name: Commit catalog when README automation changes connections
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs/repository/file-catalog.md; then
+            echo 'Repository file catalog already matches the current tracked tree.'
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/repository/file-catalog.md
+          git commit -m 'docs: sync repository file catalog'
+          git push origin HEAD:main
