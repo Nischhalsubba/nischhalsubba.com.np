@@ -3,14 +3,14 @@ name: Apply deep code organization
 # @fileoverview .github/workflows/apply-deep-code-organization.yml
 # Purpose: One-shot migration runner for the responsibility-based source reorganization and documentation pass.
 # Responsibilities:
+# - Patch compatibility materialization before source paths move.
 # - Run the syntax-aware migration against a real Git checkout with installed project dependencies.
-# - Patch compatibility materialization for the categorized page-source layout.
 # - Validate the migrated tree before committing it back to the dedicated branch.
 # - Remove temporary migration files so one-shot machinery never reaches main.
 # Execution context: GitHub Actions on pull requests from agent/deep-code-organization.
 # Connected files:
-# - scripts/repository/apply-deep-organization.cjs
 # - scripts/repository/fix-deep-layout-contract.cjs
+# - scripts/repository/apply-deep-organization.cjs
 # - scripts/repository/audit-code-documentation.cjs
 # - config/repository/code-documentation-policy.json
 # Maintenance: Temporary workflow; it deletes itself after a successful migration.
@@ -45,11 +45,11 @@ jobs:
       - name: Install repository dependencies
         run: npm ci
 
-      - name: Apply responsibility-based source migration and documentation contracts
-        run: node scripts/repository/apply-deep-organization.cjs
-
       - name: Patch categorized page compatibility materialization
         run: node scripts/repository/fix-deep-layout-contract.cjs
+
+      - name: Apply responsibility-based source migration and documentation contracts
+        run: node scripts/repository/apply-deep-organization.cjs
 
       - name: Remove one-shot migration machinery
         run: git rm -f scripts/repository/apply-deep-organization.cjs scripts/repository/fix-deep-layout-contract.cjs .github/workflows/apply-deep-code-organization.yml
