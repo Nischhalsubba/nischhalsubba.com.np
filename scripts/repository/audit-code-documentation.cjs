@@ -1,38 +1,44 @@
-/**
- * @fileoverview scripts/repository/audit-code-documentation.cjs
- * Purpose: Enforce structured file and function documentation across authored application and tooling code.
- * Responsibilities:
- * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
- * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
- * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
- * Connected files:
- * - package.json
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
- */
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const ts = require('typescript');
 
+/**
+ * @fileoverview scripts/repository/audit-code-documentation.cjs
+ * Purpose: Enforce detailed, non-duplicated file and function documentation across authored application and tooling code.
+ * Responsibilities:
+ * - Require structured file headers with purpose, responsibilities, execution context, connected files, and maintenance guidance.
+ * - Parse JavaScript/TypeScript with the TypeScript compiler API so function checks follow real syntax rather than text patterns.
+ * - Require exactly one detailed `Function contract` for named/assigned functions and exactly one `Callback contract` for inline callbacks.
+ * - Require purpose/input/side-effect/return fields in every function contract and reject duplicate generated contracts.
+ * - Exclude generated, vendored, minified, workflow-orchestration, and machine-owned output according to repository policy.
+ * Execution context: Node.js during `npm run audit:code-docs` and the repository validation workflows.
+ * Connected files:
+ * - config/repository/code-documentation-policy.json
+ * - package.json
+ * - docs/codebase-structure.md
+ * Maintenance: Keep checks syntax-aware and strict enough that passing the audit means a maintainer receives one useful contract per executable function.
+ */
+
 const ROOT = path.resolve(__dirname, '../..');
 const POLICY_PATH = path.join(ROOT, 'config/repository/code-documentation-policy.json');
-const HEADER_MARKER = '@fileoverview';
-const FUNCTION_COMMENT_PATTERN = /(?:\/\*\*[\s\S]*?\*\/|\/\*[\s\S]*?\*\/|\/\/[^\n]*)\s*$/;
+const FILE_HEADER_FIELDS = [
+  '@fileoverview',
+  'Purpose:',
+  'Responsibilities:',
+  'Execution context:',
+  'Connected files:',
+  'Maintenance:',
+];
+const FUNCTION_FIELDS = ['Function contract:', 'Purpose:', 'Inputs:', 'Side effects:', 'Returns:'];
+const CALLBACK_FIELDS = ['Callback contract:', 'Inputs:', 'Side effects:', 'Returns:'];
 
 /**
- * Loads and parses the documentation policy used by this audit.
- *
- * Inputs: none. The policy path is repository-relative and fixed above.
- * Side effects: reads one JSON file from disk.
- * Returns: the parsed policy object.
- */
-/**
  * Function contract: loadPolicy
- * Purpose: Return policy from the supplied inputs or current audit code documentation repository tool state.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads repository/filesystem state.
- * Returns: The requested policy; early-return/empty-state behavior follows the explicit branches in this function.
+ * Purpose: Load the repository's authored-code documentation scope and exclusions from the single policy source of truth.
+ * Inputs: None; uses the fixed repository-relative policy path.
+ * Side effects: Reads one JSON file from the repository filesystem.
+ * Returns: Parsed documentation-policy object consumed by the audit.
  */
 function loadPolicy() {
   if (!fs.existsSync(POLICY_PATH)) {
@@ -42,25 +48,11 @@ function loadPolicy() {
 }
 
 /**
- * Returns every Git-tracked path so the audit follows repository ownership rather than filesystem accidents.
- *
- * Inputs: none.
- * Side effects: executes `git ls-files` in the repository root.
- * Returns: sorted repository-relative paths using forward slashes.
- */
-/**
  * Function contract: gitTrackedFiles
- * Purpose: Implements the git tracked files responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: gitTrackedFiles
- * Purpose: Implement the git tracked files responsibility owned by the audit code documentation repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: spawns child processes.
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Purpose: Return the Git-tracked repository paths so documentation enforcement follows version-controlled ownership rather than incidental working-tree files.
+ * Inputs: None.
+ * Side effects: Executes the read-only `git ls-files` command.
+ * Returns: Sorted array of repository-relative tracked paths.
  */
 function gitTrackedFiles() {
   const result = spawnSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' });
@@ -71,81 +63,35 @@ function gitTrackedFiles() {
 }
 
 /**
- * Determines whether a tracked path belongs to an excluded generated/vendor area.
- *
- * Inputs:
- * - file: repository-relative tracked path.
- * - policy: parsed documentation policy.
- * Side effects: none.
- * Returns: true when the path should not be inspected by this audit.
- */
-/**
  * Function contract: isExcluded
- * Purpose: Implements the is excluded responsibility for this module.
- * Inputs: file, policy.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: isExcluded
- * Purpose: Determine whether excluded satisfies the condition represented by this audit code documentation repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed; `policy`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean indicating whether excluded satisfies the documented condition.
+ * Purpose: Determine whether a tracked path belongs to generated/vendor/machine-owned territory excluded from hand-authored documentation requirements.
+ * Inputs: `file`, repository-relative path; `policy`, parsed documentation policy.
+ * Side effects: None.
+ * Returns: Boolean indicating whether the path is excluded.
  */
 function isExcluded(file, policy) {
-  return policy.excludedPrefixes.some(/** Callback contract: Processes the callback step for policy.excluded prefixes without leaking orchestration details to the caller. Inputs: prefix. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `prefix`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `prefix`. Side effects: no direct external side effect beyond invoked dependencies. Returns: computed expression result consumed by the enclosing operation. */ (prefix) => file.startsWith(prefix)) ||
+  return policy.excludedPrefixes.some(/** Callback contract: Test the current excluded-prefix rule against the tracked path. Inputs: `prefix`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (prefix) => file.startsWith(prefix)) ||
     policy.excludedFiles.includes(file);
 }
 
 /**
- * Determines whether a file is inside one of the authored roots controlled by the policy.
- *
- * Inputs:
- * - file: repository-relative tracked path.
- * - policy: parsed documentation policy.
- * Side effects: none.
- * Returns: true for authored files under a configured code root.
- */
-/**
  * Function contract: isAuthoredFile
- * Purpose: Implements the is authored file responsibility for this module.
- * Inputs: file, policy.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: isAuthoredFile
- * Purpose: Determine whether authored file satisfies the condition represented by this audit code documentation repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed; `policy`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean indicating whether authored file satisfies the documented condition.
+ * Purpose: Determine whether a tracked path falls under an authored-code root governed by the documentation contract.
+ * Inputs: `file`, repository-relative path; `policy`, parsed documentation policy.
+ * Side effects: None.
+ * Returns: Boolean indicating whether the file must be audited.
  */
 function isAuthoredFile(file, policy) {
   if (isExcluded(file, policy)) return false;
-  return policy.codeRoots.some(/** Callback contract: Processes the callback step for policy.code roots without leaking orchestration details to the caller. Inputs: root. Side effects: no obvious external side effect beyond invoked dependencies. No explicit return contract. */ /** Callback contract: Evaluate whether the current item satisfies the condition needed for the enclosing existential check. Inputs: `root`. Side effects: No obvious external side effect beyond calls to supplied/imported dependencies.. Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects. */ /** Callback contract: Evaluate whether the current item satisfies the enclosing existential condition. Inputs: `root`. Side effects: no direct external side effect beyond invoked dependencies. Returns: boolean predicate result. */ (root) => file === root || file.startsWith(`${root}/`));
+  return policy.codeRoots.some(/** Callback contract: Test whether the tracked path is the configured authored root or a descendant of it. Inputs: `root`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (root) => file === root || file.startsWith(`${root}/`));
 }
 
 /**
- * Maps a source filename to a TypeScript parser mode that understands its syntax.
- *
- * Inputs: repository-relative file path.
- * Side effects: none.
- * Returns: a TypeScript ScriptKind value.
- */
-/**
  * Function contract: scriptKindFor
- * Purpose: Implements the script kind for responsibility for this module.
- * Inputs: file.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: scriptKindFor
- * Purpose: Implement the script kind for responsibility owned by the audit code documentation repository tool.
- * Inputs: `file`: repository-relative or absolute file path being processed
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Purpose: Select the TypeScript parser mode that matches a JavaScript, JSX, TypeScript, or TSX source file.
+ * Inputs: `file`, repository-relative source path.
+ * Side effects: None.
+ * Returns: TypeScript `ScriptKind` used by the compiler parser.
  */
 function scriptKindFor(file) {
   if (file.endsWith('.tsx')) return ts.ScriptKind.TSX;
@@ -155,119 +101,11 @@ function scriptKindFor(file) {
 }
 
 /**
- * Returns the nearest syntactic owner whose leading comment may document a function expression.
- *
- * Arrow/function expressions assigned to variables are commonly documented above the variable statement,
- * while callbacks are documented immediately before the expression. This helper lets the audit accept both.
- *
- * Inputs: function-like TypeScript AST node.
- * Side effects: none.
- * Returns: node whose start position should also be checked for a documentation comment.
- */
-/**
- * Function contract: documentationOwner
- * Purpose: Implements the documentation owner responsibility for this module.
- * Inputs: node.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: documentationOwner
- * Purpose: Implement the documentation owner responsibility owned by the audit code documentation repository tool.
- * Inputs: `node`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
- */
-function documentationOwner(node) {
-  let current = node;
-  while (current.parent) {
-    const parent = current.parent;
-    if (ts.isVariableDeclaration(parent)) {
-      if (parent.parent && ts.isVariableDeclarationList(parent.parent) && parent.parent.parent) {
-        return parent.parent.parent;
-      }
-      return parent;
-    }
-    if (ts.isPropertyAssignment(parent) || ts.isPropertyDeclaration(parent)) return parent;
-    if (ts.isExportAssignment(parent)) return parent;
-    break;
-  }
-  return node;
-}
-
-/**
- * Tests whether meaningful explanatory prose appears directly before a syntax position.
- *
- * Inputs:
- * - source: complete source text.
- * - position: zero-based character offset returned by the parser.
- * Side effects: none.
- * Returns: true when a block/JSDoc/line comment immediately precedes the node.
- */
-/**
- * Function contract: hasLeadingExplanation
- * Purpose: Implements the has leading explanation responsibility for this module.
- * Inputs: source, position.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: hasLeadingExplanation
- * Purpose: Determine whether leading explanation satisfies the condition represented by this audit code documentation repository tool.
- * Inputs: `source`: source text or source object being processed; `position`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean indicating whether leading explanation satisfies the documented condition.
- */
-function hasLeadingExplanation(source, position) {
-  const prefix = source.slice(Math.max(0, position - 1400), position);
-  return FUNCTION_COMMENT_PATTERN.test(prefix);
-}
-
-/**
- * Converts a source offset to a one-based line number for actionable CI diagnostics.
- *
- * Inputs: source text and zero-based character offset.
- * Side effects: none.
- * Returns: one-based line number.
- */
-/**
- * Function contract: lineNumberAt
- * Purpose: Implements the line number at responsibility for this module.
- * Inputs: source, position.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: lineNumberAt
- * Purpose: Implement the line number at responsibility owned by the audit code documentation repository tool.
- * Inputs: `source`: source text or source object being processed; `position`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
- */
-function lineNumberAt(source, position) {
-  return source.slice(0, position).split('\n').length;
-}
-
-/**
- * Identifies function-like AST nodes whose behavior should be documented.
- *
- * Inputs: TypeScript AST node.
- * Side effects: none.
- * Returns: true for functions, methods, constructors, getters, setters, and arrow functions with bodies.
- */
-/**
  * Function contract: isDocumentableFunction
- * Purpose: Implements the is documentable function responsibility for this module.
- * Inputs: node.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: isDocumentableFunction
- * Purpose: Determine whether documentable function satisfies the condition represented by this audit code documentation repository tool.
- * Inputs: `node`: input consumed by this operation
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Boolean indicating whether documentable function satisfies the documented condition.
+ * Purpose: Identify executable function-like syntax that must carry a detailed documentation contract.
+ * Inputs: `node`, TypeScript AST node.
+ * Side effects: None.
+ * Returns: Boolean for function declarations/expressions, arrows, methods, constructors, getters, and setters with bodies.
  */
 function isDocumentableFunction(node) {
   return ts.isFunctionDeclaration(node) ||
@@ -280,27 +118,78 @@ function isDocumentableFunction(node) {
 }
 
 /**
- * Walks one JavaScript/TypeScript source file and reports undocumented function-like nodes.
- *
- * Inputs:
- * - file: repository-relative source path.
- * - source: complete source text.
- * Side effects: parses source into a TypeScript AST.
- * Returns: diagnostic strings for every function without nearby explanatory documentation.
+ * Function contract: functionIdentity
+ * Purpose: Classify a function as named/assigned or inline and select the syntax owner whose leading trivia must contain its contract.
+ * Inputs: `node`, function-like AST node; `sourceFile`, parsed TypeScript source file.
+ * Side effects: None.
+ * Returns: Object containing a readable name, the documentation owner node, and `inline` classification.
  */
+function functionIdentity(node, sourceFile) {
+  if (node.name && node.name.getText) {
+    return { name: node.name.getText(sourceFile), owner: node, inline: false };
+  }
+  if (ts.isConstructorDeclaration(node)) {
+    return { name: 'constructor', owner: node, inline: false };
+  }
+
+  const parent = node.parent;
+  if (parent && ts.isVariableDeclaration(parent) && parent.name) {
+    const owner = parent.parent &&
+      ts.isVariableDeclarationList(parent.parent) &&
+      parent.parent.declarations.length === 1 &&
+      parent.parent.parent
+      ? parent.parent.parent
+      : parent;
+    return { name: parent.name.getText(sourceFile), owner, inline: false };
+  }
+  if (parent && ts.isPropertyAssignment(parent) && parent.name) {
+    return { name: parent.name.getText(sourceFile), owner: parent, inline: false };
+  }
+  return { name: 'inline callback', owner: node, inline: true };
+}
+
+/**
+ * Function contract: contractCommentsInLeadingTrivia
+ * Purpose: Extract only JSDoc-style comments from the exact leading trivia owned by a function/callback, avoiding unrelated comments elsewhere in the file.
+ * Inputs: `source`, complete source text; `owner`, AST node; `sourceFile`, parsed source file.
+ * Side effects: None.
+ * Returns: Array of JSDoc comment strings immediately leading the documentation owner.
+ */
+function contractCommentsInLeadingTrivia(source, owner, sourceFile) {
+  const fullStart = owner.getFullStart();
+  const start = owner.getStart(sourceFile);
+  const trivia = source.slice(fullStart, start);
+  return trivia.match(/\/\*\*[\s\S]*?\*\//g) || [];
+}
+
+/**
+ * Function contract: lineNumberAt
+ * Purpose: Convert a zero-based source offset to a one-based line number for actionable CI diagnostics.
+ * Inputs: `source`, complete source text; `position`, zero-based character offset.
+ * Side effects: None.
+ * Returns: One-based source line number.
+ */
+function lineNumberAt(source, position) {
+  return source.slice(0, position).split('\n').length;
+}
+
+/**
+ * Function contract: missingFields
+ * Purpose: Identify required documentation fields absent from one contract comment.
+ * Inputs: `comment`, JSDoc contract text; `fields`, required marker/field list.
+ * Side effects: None.
+ * Returns: Array of missing field labels.
+ */
+function missingFields(comment, fields) {
+  return fields.filter(/** Callback contract: Keep only required documentation fields that do not occur in the contract comment. Inputs: `field`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (field) => !comment.includes(field));
+}
+
 /**
  * Function contract: auditFunctions
- * Purpose: Validates audit functions and reports violations instead of silently accepting invalid state.
- * Inputs: file, source.
- * Side effects: no obvious external side effect beyond invoked dependencies.
- * Returns: a value consumed by the caller; inspect the implementation for the exact shape.
- */
-/**
- * Function contract: auditFunctions
- * Purpose: Validate functions and surface actionable failures when the audit code documentation repository tool contract is violated.
- * Inputs: `file`: repository-relative or absolute file path being processed; `source`: source text or source object being processed
- * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
- * Returns: Computed result consumed by the caller; each early-return branch is intentionally preserved by the implementation.
+ * Purpose: Parse one JavaScript/TypeScript source file and enforce one complete, non-duplicated contract for every function and callback.
+ * Inputs: `file`, repository-relative source path; `source`, complete source text.
+ * Side effects: Parses source into a TypeScript AST; does not modify files.
+ * Returns: Array of human-readable documentation violations with file/line locations.
  */
 function auditFunctions(file, source) {
   const sourceFile = ts.createSourceFile(
@@ -313,33 +202,28 @@ function auditFunctions(file, source) {
   const failures = [];
 
   /**
-   * Recursively visits syntax nodes and checks function documentation at the most natural owner position.
-   *
-   * Inputs: current TypeScript AST node.
-   * Side effects: appends human-readable failures to the enclosing `failures` array.
-   * Returns: nothing; traversal continues through child nodes.
-   */
-  /**
    * Function contract: visit
-   * Purpose: Implements the visit responsibility for this module.
-   * Inputs: node.
-   * Side effects: no obvious external side effect beyond invoked dependencies.
-   * Returns: no explicit value unless an invoked dependency throws/rejects.
-   */
-  /**
-   * Function contract: visit
-   * Purpose: Implement the visit responsibility owned by the audit code documentation repository tool.
-   * Inputs: `node`: input consumed by this operation
-   * Side effects: No obvious external side effect beyond calls to supplied/imported dependencies..
-   * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+   * Purpose: Recursively inspect every syntax node and validate the exact leading contract attached to each function-like node.
+   * Inputs: `node`, current TypeScript AST node.
+   * Side effects: Appends diagnostics to the enclosing `failures` array.
+   * Returns: Undefined; traversal proceeds through child nodes.
    */
   function visit(node) {
     if (isDocumentableFunction(node) && node.body) {
-      const owner = documentationOwner(node);
-      const nodeStart = node.getStart(sourceFile);
-      const ownerStart = owner.getStart(sourceFile);
-      if (!hasLeadingExplanation(source, nodeStart) && !hasLeadingExplanation(source, ownerStart)) {
-        failures.push(`${file}:${lineNumberAt(source, nodeStart)} function/callback is missing an explanatory comment`);
+      const identity = functionIdentity(node, sourceFile);
+      const comments = contractCommentsInLeadingTrivia(source, identity.owner, sourceFile);
+      const marker = identity.inline ? 'Callback contract:' : 'Function contract:';
+      const fields = identity.inline ? CALLBACK_FIELDS : FUNCTION_FIELDS;
+      const contracts = comments.filter(/** Callback contract: Keep only leading JSDoc comments containing the contract marker required for this function classification. Inputs: `comment`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (comment) => comment.includes(marker));
+      const line = lineNumberAt(source, node.getStart(sourceFile));
+
+      if (contracts.length !== 1) {
+        failures.push(`${file}:${line} ${identity.name} requires exactly one ${marker} comment; found ${contracts.length}`);
+      } else {
+        const missing = missingFields(contracts[0], fields);
+        if (missing.length) {
+          failures.push(`${file}:${line} ${identity.name} contract is missing ${missing.join(', ')}`);
+        }
       }
     }
     ts.forEachChild(node, visit);
@@ -350,25 +234,11 @@ function auditFunctions(file, source) {
 }
 
 /**
- * Runs all header and function checks and exits non-zero when the repository violates its documentation contract.
- *
- * Inputs: none; reads policy and tracked source files from the current checkout.
- * Side effects: reads source files, prints diagnostics, and sets process exit status on failure.
- * Returns: nothing.
- */
-/**
  * Function contract: main
- * Purpose: Implements the main responsibility for this module.
- * Inputs: none; the function derives state from its enclosing module/runtime context.
- * Side effects: may read or write repository/filesystem state; may emit diagnostics or inspect process state.
- * Returns: no explicit value unless an invoked dependency throws/rejects.
- */
-/**
- * Function contract: main
- * Purpose: Implement the main responsibility owned by the audit code documentation repository tool.
- * Inputs: None; derives required state from the enclosing module/runtime context.
- * Side effects: reads repository/filesystem state; emits diagnostics or changes process failure state.
- * Returns: Undefined; the function exists for state changes, validation, orchestration, or other documented side effects.
+ * Purpose: Run file-header and function-contract checks across every tracked authored source file and fail CI on any documentation debt.
+ * Inputs: None; reads repository policy, Git index, and authored source files.
+ * Side effects: Reads files, prints diagnostics, and exits non-zero on violations.
+ * Returns: Undefined.
  */
 function main() {
   const policy = loadPolicy();
@@ -390,8 +260,9 @@ function main() {
     if (needsHeader) {
       headerCount += 1;
       const headerWindow = source.slice(0, policy.headerSearchCharacters);
-      if (!headerWindow.includes(HEADER_MARKER)) {
-        failures.push(`${file}:1 missing structured ${HEADER_MARKER} header`);
+      const missing = FILE_HEADER_FIELDS.filter(/** Callback contract: Keep only structured file-header fields absent from the configured header search window. Inputs: `field`. Side effects: no direct external side effect. Returns: boolean predicate result. */ (field) => !headerWindow.includes(field));
+      if (missing.length) {
+        failures.push(`${file}:1 file header is missing ${missing.join(', ')}`);
       }
     }
 
@@ -401,14 +272,14 @@ function main() {
     }
   }
 
-  if (failures.length > 0) {
+  if (failures.length) {
     console.error(`[code-docs] ${failures.length} documentation violation(s):`);
-    for (const failure of failures.slice(0, 250)) console.error(`- ${failure}`);
-    if (failures.length > 250) console.error(`- ...and ${failures.length - 250} more`);
+    for (const failure of failures.slice(0, 300)) console.error(`- ${failure}`);
+    if (failures.length > 300) console.error(`- ...and ${failures.length - 300} more`);
     process.exit(1);
   }
 
-  console.log(`[code-docs] Passed: ${headerCount} authored files have structured headers; ${functionFileCount} JS/TS files have function documentation.`);
+  console.log(`[code-docs] Passed: ${headerCount} authored files have complete structured headers; ${functionFileCount} JS/TS files have exactly one complete contract per function/callback.`);
 }
 
 main();
