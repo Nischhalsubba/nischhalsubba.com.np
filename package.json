@@ -16,6 +16,7 @@
     "preview": "vite preview",
     "preview:static": "npx http-server -p 4173 dist",
     "lint": "node scripts/lint-project.cjs",
+    "audit:dependencies": "npm audit --audit-level=high",
     "check:links": "node scripts/check-links.js",
     "audit:build": "node scripts/audit-build.cjs",
     "audit:css-architecture": "node scripts/audit-css-architecture.cjs",
@@ -36,6 +37,6 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "vite": "^6.4.3"
   }
 }
