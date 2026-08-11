@@ -47,7 +47,7 @@ jobs:
         run: node scripts/repository/apply-deep-organization.cjs
 
       - name: Remove one-shot migration machinery
-        run: git rm scripts/repository/apply-deep-organization.cjs .github/workflows/apply-deep-code-organization.yml
+        run: git rm -f scripts/repository/apply-deep-organization.cjs .github/workflows/apply-deep-code-organization.yml
 
       - name: Regenerate tracked-file catalog
         run: npm run docs:file-catalog
