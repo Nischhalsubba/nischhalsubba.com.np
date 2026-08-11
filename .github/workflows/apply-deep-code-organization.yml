@@ -5,6 +5,7 @@ name: Apply deep code organization
 # Responsibilities:
 # - Patch compatibility materialization and path-sensitive style/runtime owners before source paths move.
 # - Run the syntax-aware migration against a real Git checkout with installed project dependencies.
+# - Stage the complete candidate tree before validation so Git-index-based audits see new documentation and moved sources without committing them early.
 # - Validate the migrated tree before committing it back to the dedicated branch.
 # - Remove temporary migration files so one-shot machinery never reaches main.
 # Execution context: GitHub Actions on pull requests from agent/deep-code-organization.
@@ -60,6 +61,9 @@ jobs:
 
       - name: Regenerate tracked-file catalog
         run: npm run docs:file-catalog
+
+      - name: Stage candidate tree for Git-index-based audits
+        run: git add -A
 
       - name: Validate migrated repository before committing
         run: npm run validate
