@@ -32,5 +32,4 @@ See:
 
 - `docs/codebase-structure.md`
 - `docs/repository/file-map.md`
-- `docs/repository/file-catalog.md`
 - `scripts/repository/README.md`
