@@ -21,6 +21,7 @@ jobs:
       contents: write
     uses: Nischhalsubba/Nischhalsubba/.github/workflows/reusable-interactive-readme.yml@main
 
+  # README updates can change documentation-derived connection metadata; keep the generated catalog aligned.
   sync-file-catalog:
     name: Sync repository file catalog
     needs: apply
