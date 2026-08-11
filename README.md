@@ -4,28 +4,28 @@
 
 # nischhalsubba.com.np
 
-**Branch-aware technical guide for [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main)**
+**Branch-aware technical guide for [`agent/repository-structure-cleanup`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup)**
 
-<p><img alt="branch: main" src="https://img.shields.io/static/v1?label=&message=branch%3A%20main&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+<p><img alt="branch: agent/repository-structure-cleanup" src="https://img.shields.io/static/v1?label=&message=branch%3A%20agent%2Frepository-structure-cleanup&color=5965F2&style=flat-square"> <img alt="Vite" src="https://img.shields.io/static/v1?label=&message=Vite&color=24292F&style=flat-square"> <img alt="TypeScript" src="https://img.shields.io/static/v1?label=&message=TypeScript&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
 
 <p>
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main"><strong>Browse source</strong></a> ·
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup"><strong>Browse source</strong></a> ·
   <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/issues"><strong>Issues</strong></a> ·
-  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=main"><strong>Open in Codespaces</strong></a>
+  <a href="https://github.com/Nischhalsubba/nischhalsubba.com.np/codespaces/new?ref=agent%2Frepository-structure-cleanup"><strong>Open in Codespaces</strong></a>
 </p>
 
 </div>
 
 > [!IMPORTANT]
-> This guide is generated from the files actually present on `main`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
+> This guide is generated from the files actually present on `agent/repository-structure-cleanup`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
 
 ## At a glance
 
 | Item | Detected value |
 |---|---|
 | Purpose | Production portfolio for Nischhal Raj Subba, a Nepal-based product designer focused on Web3, SaaS, fintech, UX systems, and developer-ready design handoff. |
-| Branch role | Default branch |
-| Stack | Vite, TypeScript, WordPress, JavaScript, HTML, PHP, CSS |
+| Branch role | Compared with `main` |
+| Stack | Vite, TypeScript, JavaScript, HTML, CSS |
 | Manifests | package.json |
 | Prerequisites | Node.js |
 | Delivery | vercel.json, GitHub Actions |
@@ -33,9 +33,20 @@
 
 ## Branch scope
 
-This is the repository's default branch.
+This branch differs from the default branch in the following detected paths:
 
-
+- [`.editorconfig`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.editorconfig)
+- [`.gitignore`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.gitignore)
+- [`blog-accessibility-fintech.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-accessibility-fintech.html)
+- [`blog-ai-ops.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-ai-ops.html)
+- [`blog-design-metrics.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-design-metrics.html)
+- [`blog-enterprise-ux.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-enterprise-ux.html)
+- [`blog-governance.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-governance.html)
+- [`blog-handoff.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-handoff.html)
+- [`blog-pricing-ux.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-pricing-ux.html)
+- [`blog-research-emerging.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-research-emerging.html)
+- [`blog-web3-ux.html`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/blog-web3-ux.html)
+- [`config/canonical-routes.json`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/config/canonical-routes.json)
 
 ## Quick start
 
@@ -57,7 +68,7 @@ npm run preview
 
 ```mermaid
 flowchart TD
-    ROOT["nischhalsubba.com.np / main"]
+    ROOT["nischhalsubba.com.np / agent/repository-structure-cleanup"]
     ROOT --> P0[".github/"]
     ROOT --> P1["api/"]
     ROOT --> P2["assets/"]
@@ -70,23 +81,23 @@ flowchart TD
     ROOT --> P9["scripts/"]
     ROOT --> P10["src/"]
     ROOT --> P11["tests/"]
-    ROOT --> P12["wordpress/"]
-    ROOT --> P13[".editorconfig"]
-    ROOT --> P14[".gitignore"]
-    ROOT --> P15["_headers"]
-    ROOT --> P16["about.html"]
-    ROOT --> P17["AGENTS.md"]
-    ROOT --> MORE["+ 76 more top-level entries"]
+    ROOT --> P12[".editorconfig"]
+    ROOT --> P13[".gitignore"]
+    ROOT --> P14["AGENTS.md"]
+    ROOT --> P15["package-lock.json"]
+    ROOT --> P16["package.json"]
+    ROOT --> P17["tsconfig.json"]
+    ROOT --> MORE["+ 3 more top-level entries"]
 ```
 
 | Responsibility | Detected source paths |
 |---|---|
-| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/src) |
-| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api) |
-| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data) |
-| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests) |
-| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/docs) |
-| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/scripts) |
+| Interface | [`public`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/public), [`src`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/src) |
+| Application logic | [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/api) |
+| Data | [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/data) |
+| Quality | [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/tests) |
+| Documentation | [`docs`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/docs) |
+| Delivery | [`.github`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/.github), [`scripts`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/scripts) |
 
 ## Website or application map
 
@@ -94,19 +105,20 @@ flowchart TD
 flowchart TD
     APP["nischhalsubba.com.np"]
     APP --> R0["src/app"]
-    APP --> R1["public"]
+    APP --> R1["src/pages"]
+    APP --> R2["public"]
     R0 --> F0["src/app/layout.tsx"]
-    R1 --> F1["public/services.html"]
-    R1 --> F2["public/privacy.html"]
-    R1 --> F3["public/blog/prioritize-ux-audit-findings-before-redesign.html"]
-    R1 --> F4["public/blog/saas-dashboard-empty-states-that-help-users-recover.html"]
-    R1 --> F5["public/blog/responsive-saas-dashboard-handoff-notes.html"]
-    R1 --> F6["public/blog/when-startup-needs-ux-audit-before-redesign.html"]
-    R1 --> F7["public/blog/figma-handoff-notes-for-developers.html"]
-    R1 --> F8["public/blog/web3-wallet-connection-ux.html"]
-    R1 --> F9["public/blog/index.html"]
-    R1 --> F10["public/blog/role-based-saas-dashboard-ux.html"]
-    R1 --> F11["public/blog/ux-audit-checklist-before-redesign.html"]
+    R1 --> F1["src/pages/figma-design-systems.html"]
+    R1 --> F2["src/pages/project-sassboilerplate.html"]
+    R1 --> F3["src/pages/project-orkest.html"]
+    R1 --> F4["src/pages/project-grid-labs.html"]
+    R1 --> F5["src/pages/project-morajaa.html"]
+    R1 --> F6["src/pages/services.html"]
+    R1 --> F7["src/pages/website-ux-design.html"]
+    R1 --> F8["src/pages/about.html"]
+    R1 --> F9["src/pages/projects.html"]
+    R1 --> F10["src/pages/project-pihub.html"]
+    R1 --> F11["src/pages/product-design-nepal.html"]
 ```
 
 ## Architecture and responsibility flow
@@ -141,7 +153,7 @@ sequenceDiagram
     I-->>U: Render success or error state
 ```
 
-Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/api).
+Detected API or server areas: [`api`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/api).
 
 </details>
 <details>
@@ -156,7 +168,7 @@ flowchart LR
     READ --> OUTPUT["UI, API, report, or export"]
 ```
 
-Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/data).
+Detected data areas: [`data`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/data).
 
 </details>
 <details>
@@ -170,7 +182,7 @@ flowchart LR
     WORKER -->|failure| RETRY["Retry, alert, or dead-letter path"]
 ```
 
-Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/worker.js).
+Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/src/worker.js).
 
 </details>
 
@@ -182,7 +194,7 @@ Relevant detected files: [`src/worker.js`](https://github.com/Nischhalsubba/nisc
 
 ### Quality
 
-- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main/tests)
+- [`tests`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup/tests)
 
 Detected commands:
 - `npm run dev`
@@ -204,8 +216,8 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/src/scripts/features/analytics-events.js)
-- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/assets/analytics-events-Bq4IAYSg.js)
+- [`src/scripts/features/analytics-events.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/src/scripts/features/analytics-events.js)
+- [`assets/analytics-events-Bq4IAYSg.js`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/assets/analytics-events-Bq4IAYSg.js)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
@@ -217,7 +229,7 @@ Define useful logs, metrics, traces, alerts, and rollback signals for production
 
 ```mermaid
 flowchart LR
-    CHANGE["Change on main"] --> CHECK["Tests and quality checks"]
+    CHANGE["Change on agent/repository-structure-cleanup"] --> CHECK["Tests and quality checks"]
     CHECK --> REVIEW["Review architecture and documentation impact"]
     REVIEW --> BUILD["Build or package"]
     BUILD --> DEPLOY["Deploy or release"]
@@ -226,14 +238,14 @@ flowchart LR
 
 ### Automation detected
 
-- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/apply-interactive-readme.yml)
-- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/browser-audit.yml)
-- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/deploy-cloudflare.yml)
-- [`.github/workflows/hero-ux-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/hero-ux-audit.yml)
-- [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/interface-polish-audit.yml)
-- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-qa.yml)
-- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/production-route-audit.yml)
-- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/main/.github/workflows/validate.yml)
+- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.github/workflows/apply-interactive-readme.yml)
+- [`.github/workflows/browser-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.github/workflows/browser-audit.yml)
+- [`.github/workflows/deploy-cloudflare.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.github/workflows/deploy-cloudflare.yml)
+- [`.github/workflows/hero-ux-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.github/workflows/hero-ux-audit.yml)
+- [`.github/workflows/interface-polish-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.github/workflows/interface-polish-audit.yml)
+- [`.github/workflows/production-qa.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.github/workflows/production-qa.yml)
+- [`.github/workflows/production-route-audit.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.github/workflows/production-route-audit.yml)
+- [`.github/workflows/validate.yml`](https://github.com/Nischhalsubba/nischhalsubba.com.np/blob/agent/repository-structure-cleanup/.github/workflows/validate.yml)
 
 ## Contribution flow
 
@@ -258,7 +270,7 @@ flowchart LR
 | Topic | Source |
 |---|---|
 | Repository | [`Nischhalsubba/nischhalsubba.com.np`](https://github.com/Nischhalsubba/nischhalsubba.com.np) |
-| Branch | [`main`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/main) |
+| Branch | [`agent/repository-structure-cleanup`](https://github.com/Nischhalsubba/nischhalsubba.com.np/tree/agent/repository-structure-cleanup) |
 | Ownership | No CODEOWNERS file detected |
 | Contributing | Use the contribution flow above |
 | Support | [Open or review issues](https://github.com/Nischhalsubba/nischhalsubba.com.np/issues) |
