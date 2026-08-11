@@ -34,20 +34,6 @@
 /robots.txt
   Cache-Control: public, max-age=300, must-revalidate
 
-# AI discovery resources remain crawlable, but are not intended as traditional
-# search-result documents. X-Robots-Tag is the correct non-HTML noindex control.
-/llms.txt
-  Cache-Control: public, max-age=300, must-revalidate
-  X-Robots-Tag: noindex
-
-/llms-full.txt
-  Cache-Control: public, max-age=300, must-revalidate
-  X-Robots-Tag: noindex
-
-/ai-profile.json
-  Cache-Control: public, max-age=300, must-revalidate
-  X-Robots-Tag: noindex
-
 /humans.txt
   Cache-Control: public, max-age=3600, must-revalidate
   X-Robots-Tag: noindex
