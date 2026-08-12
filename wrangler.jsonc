@@ -1,7 +1,7 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
+  "$schema": "./site/node_modules/wrangler/config-schema.json",
   "name": "portfolio-website-2026",
-  "main": "./src/worker.js",
+  "main": "./site/src/worker.js",
   "compatibility_date": "2026-02-05",
   "routes": [
     {
@@ -14,7 +14,7 @@
     }
   ],
   "assets": {
-    "directory": "./dist",
+    "directory": "./site/dist",
     "binding": "ASSETS",
     "run_worker_first": true,
     "html_handling": "auto-trailing-slash"

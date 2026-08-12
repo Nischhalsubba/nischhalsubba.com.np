@@ -18,6 +18,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: site
 
     steps:
       - name: Checkout repository
@@ -28,6 +31,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: site/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -58,31 +62,16 @@ jobs:
             const { owner, repo } = context.repo;
             const outcome = process.env.VALIDATION_OUTCOME;
             const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
-            const issues = await github.paginate(github.rest.issues.listForRepo, {
-              owner,
-              repo,
-              state: 'all',
-              per_page: 100,
-            });
+            const issues = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'all', per_page: 100 });
             const existing = issues.find((issue) => !issue.pull_request && issue.title === title);
-
             if (outcome === 'success') {
               if (existing && existing.state === 'open') {
-                await github.rest.issues.update({
-                  owner,
-                  repo,
-                  issue_number: existing.number,
-                  state: 'closed',
-                  body: `Validation passed on ${context.sha}.\n\nRun: ${runUrl}`,
-                });
+                await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: 'closed', body: `Validation passed on ${context.sha}.\n\nRun: ${runUrl}` });
               }
               return;
             }
-
-            const rawLog = fs.existsSync('validation.log')
-              ? fs.readFileSync('validation.log', 'utf8')
-              : 'validation.log was not created.';
-            const logTail = rawLog.slice(-55000);
+            const logPath = 'site/validation.log';
+            const rawLog = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : 'validation.log was not created.';
             const body = [
               `Validation failed on commit \`${context.sha}\`.`,
               '',
@@ -91,29 +80,19 @@ jobs:
               '<details><summary>Validation log</summary>',
               '',
               '```text',
-              logTail,
+              rawLog.slice(-55000),
               '```',
               '</details>',
             ].join('\n');
-
-            if (existing) {
-              await github.rest.issues.update({
-                owner,
-                repo,
-                issue_number: existing.number,
-                state: 'open',
-                body,
-              });
-            } else {
-              await github.rest.issues.create({ owner, repo, title, body });
-            }
+            if (existing) await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: 'open', body });
+            else await github.rest.issues.create({ owner, repo, title, body });
 
       - name: Upload validation log
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: portfolio-validation-log
-          path: validation.log
+          path: site/validation.log
           if-no-files-found: warn
           retention-days: 7
 
@@ -122,7 +101,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: portfolio-dist
-          path: dist
+          path: site/dist
           if-no-files-found: ignore
           retention-days: 7
 

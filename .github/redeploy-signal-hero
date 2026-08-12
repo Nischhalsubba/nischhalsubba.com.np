@@ -1,3 +1,0 @@
-Intentional deployment marker.
-
-Rebuild the complete Signal over Noise hero state from main after the earlier poster-chunk commits produced expected intermediate build failures. The current tree already contains the full v2 poster chunk set, repaired portrait reassembly script, demo-faithful hero implementation, and reviewed visual baselines.
