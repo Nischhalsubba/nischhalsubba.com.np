@@ -1,17 +1,18 @@
 /**
  * @fileoverview scripts/audit-seo-discovery.cjs
- * Purpose: Verify that canonical routes, crawler files, redirects, headers, and social preview assets agree with the production SEO contract.
+ * Purpose: Verify that canonical routes, crawler files, redirects, headers, social preview assets, and the repository-level Cloudflare bootstrap agree with the production SEO contract.
  * Responsibilities:
  * - Compare generated discovery files with the canonical route manifest.
  * - Reject stale, non-canonical, or accidental HTML URLs in the sitemap.
  * - Verify cache and indexing headers for stable runtime and non-page resources.
+ * - Read the Cloudflare Wrangler bootstrap from the repository boundary after the application was moved under `site/`.
  * - Validate generated social preview image references when a production build exists.
  * Execution context: Node.js quality check used by `npm run audit:seo-discovery` and the full validation pipeline.
  * Connected files:
  * - config/canonical-routes.json
  * - scripts/seo-discovery-lib.cjs
  * - src/discovery/_headers
- * - wrangler.jsonc
+ * - ../wrangler.jsonc
  * Maintenance: Keep these checks aligned with the public routing and deployment contracts. Add a rule only when the corresponding production behavior is intentional and testable.
  */
 const fs = require('node:fs');
@@ -27,6 +28,7 @@ const {
 } = require('./seo-discovery-lib.cjs');
 
 const root = path.resolve(__dirname, '..');
+const repositoryRoot = path.resolve(root, '..');
 const dist = path.join(root, 'dist');
 const manifest = loadManifest(root);
 const errors = [];
@@ -43,7 +45,7 @@ const read = (file) => (fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : ''
 /**
  * Function contract: expectEqual
  * Purpose: Compare a repository file with the deterministic content expected from the current route manifest.
- * Inputs: `relativePath` - Repository-relative file path; `expected` - expected complete file contents.
+ * Inputs: `relativePath` - Application-relative file path; `expected` - expected complete file contents.
  * Side effects: Reads filesystem state and appends validation messages to `errors`.
  * Returns: Nothing.
  */
@@ -113,9 +115,11 @@ for (const runtimeTarget of ['/*.js', '/detail-navigation.js', '/seo-enhancement
   }
 }
 
-const wrangler = read(path.join(root, 'wrangler.jsonc'));
-if (!/"html_handling"\s*:\s*"auto-trailing-slash"/.test(wrangler)) {
-  errors.push('wrangler.jsonc: clean HTML handling is not explicit');
+const wrangler = read(path.join(repositoryRoot, 'wrangler.jsonc'));
+if (!wrangler) {
+  errors.push('../wrangler.jsonc: repository-level Cloudflare deployment bootstrap is missing');
+} else if (!/"html_handling"\s*:\s*"auto-trailing-slash"/.test(wrangler)) {
+  errors.push('../wrangler.jsonc: clean HTML handling is not explicit');
 }
 
 if (fs.existsSync(dist)) {
