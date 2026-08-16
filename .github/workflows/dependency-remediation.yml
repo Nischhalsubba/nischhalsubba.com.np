@@ -1,0 +1,48 @@
+name: Refresh portfolio lockfile
+
+on:
+  push:
+    branches: [chore/2026-security-baseline]
+    paths:
+      - 'site/package.json'
+      - '.github/workflows/dependency-remediation.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: portfolio-dependency-remediation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  refresh-lockfile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - name: Check out hardening branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: chore/2026-security-baseline
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Rebuild lockfile from the manifest
+        run: |
+          rm -f package-lock.json
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+          npm audit --audit-level=low
+      - name: Commit lockfile if changed
+        working-directory: .
+        run: |
+          git add site/package-lock.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh portfolio lockfile"
+          git push origin HEAD:chore/2026-security-baseline
