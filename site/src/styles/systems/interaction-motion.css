@@ -1,25 +1,32 @@
 /*
  * @fileoverview src/styles/systems/interaction-motion.css
- * Purpose: Provide the visual layers for the approved kinetic GSAP button interaction system.
+ * Purpose: Provide the visual layers for the refined GSAP hover and held-active interaction system.
  * Responsibilities:
- * - Style pointer-origin fill, glow, impact, masked label rails, dual arrows, and navigation-dot layers.
- * - Preserve existing theme tokens, native focus states, responsive control sizing, and authored semantics while GSAP owns transforms.
- * - Keep reduced-motion users free from nonessential spatial animation while retaining clear active feedback.
+ * - Style pointer-origin fill, primary glow, press impact, single-label content, and navigation-dot layers.
+ * - Preserve existing button dimensions, typography, theme tokens, focus states, and baseline layout while GSAP owns transforms.
+ * - Keep reduced-motion users free from nonessential spatial animation while retaining immediate active feedback.
  * Execution context: Authored style-system fragment compiled into the canonical production stylesheet for every route.
  * Connected files:
  * - src/scripts/features/motion/button-motion.js
  * - scripts/compile-single-stylesheet.cjs
  * - src/styles/style.css
- * Maintenance: Keep this system role-based and token-aware; do not add page-specific motion patches here.
+ * Maintenance: Keep this system role-based and layout-neutral; motion decoration must not create a second semantic label.
  */
 
 .nrs-motion-control {
   --nrs-motion-hot: #f1552d;
+  --nrs-motion-fill-color: #11110f;
+  --nrs-motion-hover-fg: #f7f3eb;
   isolation: isolate;
   transform-origin: 50% 50%;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   will-change: transform;
+}
+
+.nrs-motion-control[data-nrs-motion-role='primary'] {
+  --nrs-motion-fill-color: #f66a46;
+  --nrs-motion-hover-fg: #ffffff;
 }
 
 .nrs-motion-control[data-nrs-motion-role='primary'],
@@ -35,69 +42,33 @@
   justify-content: center;
   gap: .68em;
   max-width: 100%;
+  color: inherit;
   pointer-events: none;
+  transform: translateZ(0);
   transform-style: preserve-3d;
   will-change: transform;
 }
 
-.nrs-motion-content--kinetic {
-  white-space: nowrap;
-}
-
-.nrs-motion-label-clip {
-  position: relative;
-  display: grid;
-  align-items: center;
-  overflow: hidden;
-  line-height: inherit;
-  white-space: nowrap;
-}
-
-.nrs-motion-label-clip > * {
-  grid-area: 1 / 1;
-}
-
-.nrs-motion-label-sizer {
-  visibility: hidden;
-  pointer-events: none;
-  user-select: none;
-}
-
 .nrs-motion-label,
-.nrs-motion-char {
+.nrs-motion-icon {
   position: relative;
   display: inline-block;
   color: inherit;
   line-height: inherit;
   backface-visibility: hidden;
-  transform-origin: 50% 70%;
+  will-change: transform;
 }
 
-.nrs-motion-label--alt {
-  opacity: 0;
+.nrs-motion-label {
+  font: inherit;
+  letter-spacing: inherit;
 }
 
-.nrs-motion-arrowbox {
-  position: relative;
-  display: grid;
-  place-items: center;
-  flex: 0 0 1.25em;
-  width: 1.25em;
-  height: 1.25em;
-  overflow: hidden;
-  line-height: 1;
-}
-
-.nrs-motion-arrow {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: inherit;
+.nrs-motion-icon {
+  flex: 0 0 auto;
   font-size: 1.08em;
   line-height: 1;
   transform-origin: 50% 50%;
-  backface-visibility: hidden;
 }
 
 .nrs-motion-fill,
@@ -113,12 +84,13 @@
   z-index: 1;
   top: 0;
   left: 0;
-  width: 66px;
-  height: 66px;
-  margin: -33px 0 0 -33px;
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
   border-radius: 50%;
-  background: var(--nrs-motion-hot);
+  background: var(--nrs-motion-fill-color);
   opacity: 1;
+  transform: translate3d(-120px, -120px, 0) scale(.001);
   transform-origin: 50% 50%;
   will-change: transform;
 }
@@ -127,13 +99,13 @@
   z-index: 2;
   top: 0;
   left: 0;
-  width: 124px;
-  height: 124px;
-  margin: -62px 0 0 -62px;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,.31) 0%, rgba(255,255,255,.10) 34%, rgba(255,255,255,0) 72%);
-  mix-blend-mode: soft-light;
+  background: radial-gradient(circle, rgba(255,255,255,.30), rgba(255,255,255,.08) 40%, rgba(255,255,255,0) 72%);
   opacity: 0;
+  mix-blend-mode: soft-light;
   will-change: transform, opacity;
 }
 
@@ -141,11 +113,11 @@
   z-index: 2;
   top: 0;
   left: 0;
-  width: 46px;
-  height: 46px;
-  margin: -23px 0 0 -23px;
-  border: 1.5px solid rgba(255,255,255,.80);
-  border-radius: 999px;
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
   opacity: 0;
   transform-origin: 50% 50%;
 }
@@ -153,14 +125,14 @@
 .nrs-motion-nav-dot {
   z-index: 1;
   left: 50%;
-  bottom: 4px;
-  width: 3px;
-  height: 3px;
-  margin-left: -1.5px;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
   border-radius: 50%;
-  background: currentColor;
+  background: var(--nrs-motion-hot);
   opacity: 0;
-  transform: scale(.2);
+  transform: scale(0);
   transform-origin: 50% 50%;
 }
 
@@ -203,8 +175,7 @@
 @media (prefers-reduced-motion: reduce) {
   .nrs-motion-content,
   .nrs-motion-label,
-  .nrs-motion-char,
-  .nrs-motion-arrow {
+  .nrs-motion-icon {
     transform: none;
   }
 }

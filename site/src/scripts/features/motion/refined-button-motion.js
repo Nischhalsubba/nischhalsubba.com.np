@@ -1,17 +1,18 @@
 /**
- * @fileoverview src/scripts/features/motion/button-motion.js
- * Purpose: Apply the refined GSAP hover and held-active interaction language to sitewide controls.
+ * @fileoverview src/scripts/features/motion/refined-button-motion.js
+ * Purpose: Apply the approved refined GSAP hover and held-active interaction language to every shared portfolio control family used by the final production templates.
  * Responsibilities:
- * - Load pinned GSAP and SplitText as progressive enhancements without blocking native control behavior.
- * - Keep one authored label per control while layering pointer-origin fill, restrained character motion, glow, and impact feedback.
- * - Preserve pointer, touch, keyboard, reduced-motion, dynamic-content, and teardown behavior across routes.
+ * - Load pinned GSAP 3.15 and SplitText as progressive enhancements without blocking native control behavior.
+ * - Preserve one semantic source label while layering pointer-origin fill, restrained character motion, pointer intent, glow, and impact feedback.
+ * - Cover legacy `.btn` controls plus the final `.nrs-uploaded-btn` and `.agent-btn` CTA families without requiring page-local listeners.
+ * - Preserve pointer, touch, keyboard, reduced-motion, dynamic-content, and teardown behavior across route transitions.
  * Execution context: Browser ES module initialized by the production portfolio entrypoint after DOM readiness.
  * Connected files:
  * - src/scripts/entrypoints/portfolio-main.js
  * - src/scripts/entrypoints/interaction-motion.js
  * - src/styles/systems/interaction-motion.css
- * - src/scripts/features/forms/contact-form.js
- * Maintenance: Keep the authored control text as the only semantic label; generated visual layers must remain decorative.
+ * - scripts/browser-button-motion-audit.mjs
+ * Maintenance: Keep authored control text as the only semantic label; generated visual layers must remain decorative and lifecycle-safe.
  */
 
 const GSAP_VERSION = '3.15.0';
@@ -23,6 +24,8 @@ const CONTROL_SELECTOR = [
   'a.btn',
   'a.btn-primary',
   'a.btn-secondary',
+  '.nrs-uploaded-btn',
+  '.agent-btn',
   '.footer-email-btn',
   '.floating-resume-btn',
   '.filter-btn',
@@ -32,8 +35,8 @@ const CONTROL_SELECTOR = [
   '.mobile-logo',
 ].join(',');
 const NAV_SELECTOR = '.nav-link, .mobile-nav-links a, .mobile-logo';
-const PRIMARY_SELECTOR = '.btn-primary, .footer-email-btn';
-const ICON_ONLY_SELECTOR = '.theme-toggle-btn, .mobile-nav-toggle';
+const PRIMARY_SELECTOR = '.btn-primary, .footer-email-btn, .nrs-uploaded-btn-primary, .agent-btn--primary';
+const ICON_ONLY_SELECTOR = '.theme-toggle-btn, .mobile-nav-toggle, .agent-mobile-theme-toggle';
 const GENERATED_LAYER_SELECTOR = '.nrs-motion-fill, .nrs-motion-glow, .nrs-motion-impact, .nrs-motion-nav-dot';
 const MOTION = {
   hoverEase: 'power4.out',
@@ -60,29 +63,41 @@ function loadExternalScript(source, key) {
   const existing = document.querySelector(selector);
   if (existing?.dataset.loaded === 'true') return Promise.resolve();
 
-  return new Promise(
-    /** Callback contract: Resolve or reject one dependency request. Inputs: `resolve`, `reject`. Side effects: Registers script listeners and may append a script element. Returns: Undefined. */
-    (resolve, reject) => {
-      const script = existing || document.createElement('script');
+  /**
+   * Function contract: dependencyExecutor
+   * Purpose: Resolve or reject one dependency request while reusing an existing matching script when available.
+   * Inputs: `resolve`, `reject` - Promise settlement callbacks.
+   * Side effects: Registers script listeners and may append a script element to document head.
+   * Returns: Undefined; settles the enclosing Promise.
+   */
+  function dependencyExecutor(resolve, reject) {
+    const script = existing || document.createElement('script');
 
-      /** Function contract: onLoad. Purpose: Mark the dependency ready and resolve the pending request. Inputs: None. Side effects: Updates script dataset state. Returns: Undefined. */
-      function onLoad() {
-        script.dataset.loaded = 'true';
-        resolve();
-      }
+    /**
+     * Function contract: dependencyLoaded
+     * Purpose: Mark the dependency ready before resolving its pending request.
+     * Inputs: None.
+     * Side effects: Updates script dataset state and resolves the enclosing Promise.
+     * Returns: Undefined.
+     */
+    function dependencyLoaded() {
+      script.dataset.loaded = 'true';
+      resolve();
+    }
 
-      script.addEventListener('load', onLoad, { once: true });
-      script.addEventListener('error', reject, { once: true });
+    script.addEventListener('load', dependencyLoaded, { once: true });
+    script.addEventListener('error', reject, { once: true });
 
-      if (!existing) {
-        script.src = source;
-        script.async = true;
-        script.crossOrigin = 'anonymous';
-        script.dataset.nrsMotionRuntime = key;
-        document.head.appendChild(script);
-      }
-    },
-  );
+    if (!existing) {
+      script.src = source;
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.dataset.nrsMotionRuntime = key;
+      document.head.appendChild(script);
+    }
+  }
+
+  return new Promise(dependencyExecutor);
 }
 
 /**
@@ -115,27 +130,33 @@ async function resolveGsapRuntime() {
 }
 
 /**
+ * Function contract: resetRuntimePromise
+ * Purpose: Clear failed shared dependency state before propagating the original initialization error.
+ * Inputs: `error` - dependency initialization error.
+ * Side effects: Clears the module-level runtime Promise reference.
+ * Returns: Never; rethrows the supplied error.
+ */
+function resetRuntimePromise(error) {
+  runtimePromise = null;
+  throw error;
+}
+
+/**
  * Function contract: loadGsapRuntime
- * Purpose: Reuse one in-flight or resolved GSAP dependency promise across repeated initialization attempts.
+ * Purpose: Reuse one in-flight or resolved GSAP dependency Promise across repeated initialization attempts.
  * Inputs: None.
- * Side effects: Initializes or clears shared runtime promise state.
+ * Side effects: Initializes shared runtime Promise state when needed.
  * Returns: Promise resolving to the motion runtime.
  */
 function loadGsapRuntime() {
   if (runtimePromise) return runtimePromise;
-  runtimePromise = resolveGsapRuntime().catch(
-    /** Callback contract: Reset failed shared runtime state before propagating the dependency error. Inputs: `error`. Side effects: Clears module runtime promise. Returns: Never; rethrows the original error. */
-    (error) => {
-      runtimePromise = null;
-      throw error;
-    },
-  );
+  runtimePromise = resolveGsapRuntime().catch(resetRuntimePromise);
   return runtimePromise;
 }
 
 /**
  * Function contract: controlRole
- * Purpose: Classify a site control so the shared motion language can use the appropriate visual weight.
+ * Purpose: Classify one shared control so the motion system can apply the appropriate interaction weight.
  * Inputs: `control` - candidate interactive HTMLElement.
  * Side effects: None.
  * Returns: `icon`, `nav`, `primary`, or `secondary`.
@@ -149,10 +170,10 @@ function controlRole(control) {
 
 /**
  * Function contract: isEligibleControl
- * Purpose: Reject hidden, inert, disabled, or explicitly opted-out controls before attaching motion behavior.
+ * Purpose: Reject hidden, disabled, or explicitly opted-out controls before attaching motion behavior.
  * Inputs: `control` - candidate Element.
- * Side effects: Reads DOM attributes and ancestor state.
- * Returns: Boolean indicating whether the element should participate.
+ * Side effects: Reads element and ancestor DOM state.
+ * Returns: Boolean indicating whether the control should participate.
  */
 function isEligibleControl(control) {
   if (!(control instanceof HTMLElement)) return false;
@@ -166,7 +187,7 @@ function isEligibleControl(control) {
  * Function contract: createSpan
  * Purpose: Create one motion-system span with optional text content.
  * Inputs: `className` - CSS class string; `text` - optional text value.
- * Side effects: Creates a DOM node.
+ * Side effects: Creates a DOM element.
  * Returns: Newly created span element.
  */
 function createSpan(className, text = '') {
@@ -177,6 +198,17 @@ function createSpan(className, text = '') {
 }
 
 /**
+ * Function contract: isGeneratedLayer
+ * Purpose: Identify visual layers previously generated by this motion system so authored content discovery does not treat them as source content.
+ * Inputs: `node` - candidate direct child node.
+ * Side effects: None.
+ * Returns: Boolean generated-layer predicate.
+ */
+function isGeneratedLayer(node) {
+  return node instanceof Element && node.matches(GENERATED_LAYER_SELECTOR);
+}
+
+/**
  * Function contract: meaningfulChildren
  * Purpose: Return direct child nodes that contribute authored visible control content.
  * Inputs: `control` - control or wrapper to inspect.
@@ -184,20 +216,36 @@ function createSpan(className, text = '') {
  * Returns: Array of meaningful text and element nodes.
  */
 function meaningfulChildren(control) {
-  return [...control.childNodes].filter(
-    /** Callback contract: Decide whether a direct child contributes authored visible content. Inputs: `node`. Side effects: None. Returns: Boolean predicate. */
-    (node) => {
-      if (node.nodeType === Node.TEXT_NODE) return Boolean(node.textContent?.trim());
-      return node.nodeType === Node.ELEMENT_NODE && !(node instanceof Element && node.matches(GENERATED_LAYER_SELECTOR));
-    },
-  );
+  const result = [];
+  for (const node of control.childNodes) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent?.trim()) result.push(node);
+      continue;
+    }
+    if (node.nodeType === Node.ELEMENT_NODE && !isGeneratedLayer(node)) result.push(node);
+  }
+  return result;
+}
+
+/**
+ * Function contract: isDecorativeArrow
+ * Purpose: Recognize the simple aria-hidden arrow span used by final homepage CTA markup so it can become the visual motion icon without duplication.
+ * Inputs: `node` - candidate authored element.
+ * Side effects: Reads element attributes/text.
+ * Returns: Boolean decorative-arrow predicate.
+ */
+function isDecorativeArrow(node) {
+  if (!(node instanceof HTMLElement)) return false;
+  if (node.getAttribute('aria-hidden') !== 'true') return false;
+  const text = (node.textContent || '').replace(/\s+/g, '').trim();
+  return text === '↗' || text === '→';
 }
 
 /**
  * Function contract: createContentLayer
- * Purpose: Wrap the existing authored content without duplicating its semantic label and expose a label span when the source is simple text.
+ * Purpose: Wrap existing authored control content without duplicating its semantic label and expose one label plus optional decorative arrow for refined choreography.
  * Inputs: `control` - control being decorated.
- * Side effects: Moves existing child nodes or replaces one text node with a single label span.
+ * Side effects: Moves existing child nodes, may replace one direct text node with one label span, and may classify an authored arrow span as the visual icon.
  * Returns: `{ content, label, icon }` references.
  */
 function createContentLayer(control) {
@@ -212,21 +260,29 @@ function createContentLayer(control) {
 
   const content = createSpan('nrs-motion-content');
   const children = meaningfulChildren(control);
+  const textNodes = [];
+  const elementNodes = [];
+
+  for (const node of children) {
+    if (node.nodeType === Node.TEXT_NODE) textNodes.push(node);
+    else if (node.nodeType === Node.ELEMENT_NODE) elementNodes.push(node);
+  }
+
+  const optionalArrow = elementNodes.length === 1 && isDecorativeArrow(elementNodes[0]) ? elementNodes[0] : null;
+  const canNormalizeLabel = textNodes.length === 1 && (elementNodes.length === 0 || optionalArrow);
   let label = null;
   let icon = null;
 
-  if (children.length === 1 && children[0].nodeType === Node.TEXT_NODE) {
-    const sourceText = children[0].textContent || '';
-    const arrowMatch = sourceText.match(/^(.*?)(\s*↗)\s*$/u);
-    const labelText = (arrowMatch?.[1] ?? sourceText).trim();
-    label = createSpan('nrs-motion-label', labelText);
+  if (canNormalizeLabel) {
+    label = createSpan('nrs-motion-label', textNodes[0].textContent?.trim() || '');
     content.appendChild(label);
-    if (arrowMatch) {
-      icon = createSpan('nrs-motion-icon', '↗');
-      icon.setAttribute('aria-hidden', 'true');
+    textNodes[0].remove();
+
+    if (optionalArrow) {
+      icon = optionalArrow;
+      icon.classList.add('nrs-motion-icon');
       content.appendChild(icon);
     }
-    children[0].remove();
   } else {
     for (const node of children) content.appendChild(node);
     label = content.querySelector('.nrs-motion-label');
@@ -293,7 +349,7 @@ function decorateControl(control) {
   const role = controlRole(control);
   control.classList.add('nrs-motion-control');
   control.dataset.nrsMotionRole = role;
-  control.style.transitionProperty = 'color, background-color, border-color, box-shadow, opacity';
+  control.style.setProperty('transition-property', 'color, background-color, border-color, box-shadow, opacity');
   if (window.getComputedStyle(control).position === 'static') control.style.position = 'relative';
 
   if (role === 'icon') {
@@ -301,7 +357,7 @@ function decorateControl(control) {
     return readStructure(control);
   }
 
-  const { content, label, icon } = createContentLayer(control);
+  const contentStructure = createContentLayer(control);
   let fill = null;
   let glow = null;
   let impact = null;
@@ -316,12 +372,22 @@ function decorateControl(control) {
   }
 
   control.dataset.nrsMotionDecorated = 'true';
-  return { control, role, content, label, icon, fill, glow, impact, dot };
+  return {
+    control,
+    role,
+    content: contentStructure.content,
+    label: contentStructure.label,
+    icon: contentStructure.icon,
+    fill,
+    glow,
+    impact,
+    dot,
+  };
 }
 
 /**
  * Function contract: structureIsIntact
- * Purpose: Detect when another feature has replaced a decorated control's children so motion can be safely rebuilt.
+ * Purpose: Detect when another feature has replaced a decorated control's children so motion can be safely rebuilt around current content.
  * Inputs: `structure` - stored decorated structure.
  * Side effects: Reads DOM connectivity.
  * Returns: Boolean indicating whether the structure can still be reused.
@@ -399,7 +465,7 @@ function splitExistingLabel(label, SplitText) {
 /**
  * Function contract: createPillMotion
  * Purpose: Apply pointer-origin fill, restrained character choreography, pointer intent, and held physical press feedback to CTA-style controls.
- * Inputs: `structure`, `gsap`, `SplitText`, `canHover`.
+ * Inputs: `structure` - decorated CTA structure; `gsap` - GSAP runtime; `SplitText` - optional plugin; `canHover` - fine-pointer capability.
  * Side effects: Creates GSAP timelines/tweens and registers pointer/keyboard listeners.
  * Returns: Motion instance exposing `destroy`.
  */
@@ -412,7 +478,7 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
   const state = { hovered: false, pressed: false, pointerId: null };
   const hoverScale = isPrimary ? 1.009 : 1.006;
   const hoverY = isPrimary ? -2 : -1.25;
-  const hoverForeground = window.getComputedStyle(control).getPropertyValue('--nrs-motion-hover-fg').trim() || (isPrimary ? '#ffffff' : '#f7f3eb');
+  const hoverForeground = isPrimary ? '#ffffff' : '#f7f3eb';
 
   gsap.set(control, { x: 0, y: 0, scaleX: 1, scaleY: 1, transformOrigin: '50% 50%' });
   gsap.set(content, { x: 0, y: 0 });
@@ -422,7 +488,7 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
   if (impact) gsap.set(impact, { opacity: 0, scale: 0.35 });
 
   const hover = gsap.timeline({ paused: true, defaults: { overwrite: 'auto' } });
-  hover.to(control, { color: hoverForeground, duration: 0.30, ease: 'power2.out' }, 0);
+  hover.to(content, { color: hoverForeground, duration: 0.30, ease: 'power2.out' }, 0);
   if (textTargets.length) {
     hover
       .to(textTargets, {
@@ -455,7 +521,13 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
   const moveGlowX = glow ? gsap.quickTo(glow, 'x', { duration: 0.22, ease: 'power3.out' }) : null;
   const moveGlowY = glow ? gsap.quickTo(glow, 'y', { duration: 0.22, ease: 'power3.out' }) : null;
 
-  /** Function contract: settleControl. Purpose: Resolve the outer control to the current hover/rest pose without interrupting a held press. Inputs: `immediate`. Side effects: Starts/replaces a GSAP transform tween. Returns: Undefined. */
+  /**
+   * Function contract: settleControl
+   * Purpose: Resolve the outer CTA to its current hover/rest pose without interrupting a held press.
+   * Inputs: `immediate` - whether to resolve without interpolation.
+   * Side effects: Starts or replaces a GSAP transform tween on the control.
+   * Returns: Undefined.
+   */
   function settleControl(immediate = false) {
     if (state.pressed) return;
     gsap.to(control, {
@@ -468,7 +540,13 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     });
   }
 
-  /** Function contract: enter. Purpose: Start hover choreography from the real pointer entry point. Inputs: `event`. Side effects: Updates state/classes and starts fill, glow, text, and transform tweens. Returns: Undefined. */
+  /**
+   * Function contract: enter
+   * Purpose: Start hover choreography from the real pointer entry point.
+   * Inputs: `event` - PointerEvent-like entry event.
+   * Side effects: Updates state/classes and starts fill, glow, text, icon, and transform tweens.
+   * Returns: Undefined.
+   */
   function enter(event) {
     if (!canHover) return;
     state.hovered = true;
@@ -493,7 +571,13 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     hover.play();
   }
 
-  /** Function contract: move. Purpose: Apply restrained high-frequency pointer intent to inner content and primary glow. Inputs: `event`. Side effects: Updates quickTo destinations. Returns: Undefined. */
+  /**
+   * Function contract: move
+   * Purpose: Apply restrained high-frequency pointer intent to inner content and primary glow.
+   * Inputs: `event` - PointerEvent.
+   * Side effects: Updates quickTo destinations without moving the native hit target.
+   * Returns: Undefined.
+   */
   function move(event) {
     if (!canHover) return;
     const point = pointIn(event, control);
@@ -504,7 +588,13 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     }
   }
 
-  /** Function contract: leave. Purpose: Reverse hover choreography while preserving a held active state until release. Inputs: None. Side effects: Updates hover state and reverses active tweens. Returns: Undefined. */
+  /**
+   * Function contract: leave
+   * Purpose: Reverse hover choreography while preserving a held active state until release.
+   * Inputs: None.
+   * Side effects: Updates hover state and reverses active tweens.
+   * Returns: Undefined.
+   */
   function leave() {
     if (!canHover) return;
     state.hovered = false;
@@ -516,7 +606,13 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     settleControl();
   }
 
-  /** Function contract: pressStart. Purpose: Enter the held physical active state at the actual pointer or keyboard activation point. Inputs: `event`. Side effects: Captures pointer when possible and starts compression/content/impact tweens. Returns: Undefined. */
+  /**
+   * Function contract: pressStart
+   * Purpose: Enter the held physical active state at the actual pointer or keyboard activation point.
+   * Inputs: `event` - PointerEvent/KeyboardEvent-like activation event.
+   * Side effects: Captures pointer when possible and starts compression/content/impact tweens.
+   * Returns: Undefined.
+   */
   function pressStart(event) {
     if (state.pressed) return;
     if (event?.type === 'pointerdown' && event.button !== 0) return;
@@ -561,7 +657,13 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     });
   }
 
-  /** Function contract: pressEnd. Purpose: Release the held active state back to the current hover/rest pose with controlled spring weight. Inputs: `event`. Side effects: Releases pointer capture and starts recovery tweens. Returns: Undefined. */
+  /**
+   * Function contract: pressEnd
+   * Purpose: Release the held active state back to the current hover/rest pose with controlled spring weight.
+   * Inputs: `event` - optional PointerEvent-like release event.
+   * Side effects: Releases pointer capture and starts recovery tweens.
+   * Returns: Undefined.
+   */
   function pressEnd(event) {
     if (!state.pressed) return;
     state.pressed = false;
@@ -588,12 +690,24 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     gsap.to(content, { y: 0, duration: 0.24, ease: MOTION.settleEase, overwrite: 'auto' });
   }
 
-  /** Function contract: keyDown. Purpose: Start held active feedback for Enter/Space without key-repeat duplication. Inputs: `event`. Side effects: Delegates to `pressStart`. Returns: Undefined. */
+  /**
+   * Function contract: keyDown
+   * Purpose: Start held CTA active feedback for Enter/Space without key-repeat duplication.
+   * Inputs: `event` - KeyboardEvent.
+   * Side effects: Delegates to `pressStart` when applicable.
+   * Returns: Undefined.
+   */
   function keyDown(event) {
     if (isActivationKey(event)) pressStart(event);
   }
 
-  /** Function contract: keyUp. Purpose: Release held active feedback when Enter/Space is released. Inputs: `event`. Side effects: Delegates to `pressEnd`. Returns: Undefined. */
+  /**
+   * Function contract: keyUp
+   * Purpose: Release held CTA active feedback when Enter/Space is released.
+   * Inputs: `event` - KeyboardEvent.
+   * Side effects: Delegates to `pressEnd` when applicable.
+   * Returns: Undefined.
+   */
   function keyUp(event) {
     if (isActivationKeyUp(event)) pressEnd(event);
   }
@@ -609,32 +723,37 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
   control.addEventListener('keyup', keyUp);
   control.addEventListener('blur', pressEnd);
 
-  return {
-    structure,
-    /** Function contract: destroy. Purpose: Tear down one CTA interaction instance and revert SplitText. Inputs: None. Side effects: Kills GSAP work, removes state classes/listeners, and reverts split text. Returns: Undefined. */
-    destroy() {
-      hover.kill();
-      split?.revert();
-      gsap.killTweensOf([control, content, fill, glow, impact, icon, ...textTargets].filter(Boolean));
-      control.classList.remove('is-motion-hovered', 'is-motion-pressed');
-      control.removeEventListener('pointerenter', enter);
-      control.removeEventListener('pointermove', move);
-      control.removeEventListener('pointerleave', leave);
-      control.removeEventListener('pointerdown', pressStart);
-      control.removeEventListener('pointerup', pressEnd);
-      control.removeEventListener('pointercancel', pressEnd);
-      control.removeEventListener('lostpointercapture', pressEnd);
-      control.removeEventListener('keydown', keyDown);
-      control.removeEventListener('keyup', keyUp);
-      control.removeEventListener('blur', pressEnd);
-    },
-  };
+  /**
+   * Function contract: destroy
+   * Purpose: Tear down one CTA interaction instance and revert SplitText.
+   * Inputs: None.
+   * Side effects: Kills GSAP work, removes state classes/listeners, and reverts split text.
+   * Returns: Undefined.
+   */
+  function destroy() {
+    hover.kill();
+    split?.revert();
+    gsap.killTweensOf([control, content, fill, glow, impact, icon, ...textTargets].filter(Boolean));
+    control.classList.remove('is-motion-hovered', 'is-motion-pressed');
+    control.removeEventListener('pointerenter', enter);
+    control.removeEventListener('pointermove', move);
+    control.removeEventListener('pointerleave', leave);
+    control.removeEventListener('pointerdown', pressStart);
+    control.removeEventListener('pointerup', pressEnd);
+    control.removeEventListener('pointercancel', pressEnd);
+    control.removeEventListener('lostpointercapture', pressEnd);
+    control.removeEventListener('keydown', keyDown);
+    control.removeEventListener('keyup', keyUp);
+    control.removeEventListener('blur', pressEnd);
+  }
+
+  return { structure, destroy };
 }
 
 /**
  * Function contract: createNavMotion
  * Purpose: Apply the smaller refined character lift, nav-dot response, and held compression used by navigation controls.
- * Inputs: `structure`, `gsap`, `SplitText`, `canHover`.
+ * Inputs: `structure` - decorated nav structure; `gsap` - GSAP runtime; `SplitText` - optional plugin; `canHover` - fine-pointer capability.
  * Side effects: Creates GSAP timeline/tweens and registers pointer/keyboard listeners.
  * Returns: Motion instance exposing `destroy`.
  */
@@ -677,7 +796,13 @@ function createNavMotion(structure, gsap, SplitText, canHover) {
     if (canHover) hover.reverse();
   }
 
-  /** Function contract: pressStart. Purpose: Enter the held nav active state. Inputs: `event`. Side effects: Captures pointer when possible and starts compression. Returns: Undefined. */
+  /**
+   * Function contract: pressStart
+   * Purpose: Enter the held navigation active state.
+   * Inputs: `event` - PointerEvent/KeyboardEvent-like activation event.
+   * Side effects: Captures pointer when possible and starts compression.
+   * Returns: Undefined.
+   */
   function pressStart(event) {
     if (state.pressed) return;
     if (event?.type === 'pointerdown' && event.button !== 0) return;
@@ -701,7 +826,13 @@ function createNavMotion(structure, gsap, SplitText, canHover) {
     });
   }
 
-  /** Function contract: pressEnd. Purpose: Release the held nav state with the refined spring recovery. Inputs: `event`. Side effects: Releases pointer capture and starts recovery. Returns: Undefined. */
+  /**
+   * Function contract: pressEnd
+   * Purpose: Release the held navigation state with refined spring recovery.
+   * Inputs: `event` - optional PointerEvent-like release event.
+   * Side effects: Releases pointer capture and starts recovery.
+   * Returns: Undefined.
+   */
   function pressEnd(event) {
     if (!state.pressed) return;
     state.pressed = false;
@@ -745,31 +876,30 @@ function createNavMotion(structure, gsap, SplitText, canHover) {
   control.addEventListener('keyup', keyUp);
   control.addEventListener('blur', pressEnd);
 
-  return {
-    structure,
-    /** Function contract: destroy. Purpose: Tear down one navigation interaction instance and revert SplitText. Inputs: None. Side effects: Kills GSAP work and removes listeners. Returns: Undefined. */
-    destroy() {
-      hover.kill();
-      split?.revert();
-      gsap.killTweensOf([control, dot, ...textTargets].filter(Boolean));
-      control.classList.remove('is-motion-pressed');
-      control.removeEventListener('pointerenter', enter);
-      control.removeEventListener('pointerleave', leave);
-      control.removeEventListener('pointerdown', pressStart);
-      control.removeEventListener('pointerup', pressEnd);
-      control.removeEventListener('pointercancel', pressEnd);
-      control.removeEventListener('lostpointercapture', pressEnd);
-      control.removeEventListener('keydown', keyDown);
-      control.removeEventListener('keyup', keyUp);
-      control.removeEventListener('blur', pressEnd);
-    },
-  };
+  /** Function contract: destroy. Purpose: Tear down one navigation interaction instance and revert SplitText. Inputs: None. Side effects: Kills GSAP work and removes listeners. Returns: Undefined. */
+  function destroy() {
+    hover.kill();
+    split?.revert();
+    gsap.killTweensOf([control, dot, ...textTargets].filter(Boolean));
+    control.classList.remove('is-motion-pressed');
+    control.removeEventListener('pointerenter', enter);
+    control.removeEventListener('pointerleave', leave);
+    control.removeEventListener('pointerdown', pressStart);
+    control.removeEventListener('pointerup', pressEnd);
+    control.removeEventListener('pointercancel', pressEnd);
+    control.removeEventListener('lostpointercapture', pressEnd);
+    control.removeEventListener('keydown', keyDown);
+    control.removeEventListener('keyup', keyUp);
+    control.removeEventListener('blur', pressEnd);
+  }
+
+  return { structure, destroy };
 }
 
 /**
  * Function contract: createIconMotion
  * Purpose: Give icon-only controls refined hover lift and held compression without altering their internal SVG/menu markup.
- * Inputs: `structure`, `gsap`, `canHover`.
+ * Inputs: `structure` - icon control structure; `gsap` - GSAP runtime; `canHover` - fine-pointer capability.
  * Side effects: Registers pointer/keyboard listeners and starts GSAP transform tweens.
  * Returns: Motion instance exposing `destroy`.
  */
@@ -805,7 +935,13 @@ function createIconMotion(structure, gsap, canHover) {
     settle();
   }
 
-  /** Function contract: pressStart. Purpose: Enter the held icon active state. Inputs: `event`. Side effects: Captures pointer when possible and starts compression. Returns: Undefined. */
+  /**
+   * Function contract: pressStart
+   * Purpose: Enter the held icon active state.
+   * Inputs: `event` - PointerEvent/KeyboardEvent-like activation event.
+   * Side effects: Captures pointer when possible and starts compression.
+   * Returns: Undefined.
+   */
   function pressStart(event) {
     if (state.pressed) return;
     if (event?.type === 'pointerdown' && event.button !== 0) return;
@@ -829,7 +965,13 @@ function createIconMotion(structure, gsap, canHover) {
     });
   }
 
-  /** Function contract: pressEnd. Purpose: Release the held icon state back to its current hover/rest pose. Inputs: `event`. Side effects: Releases pointer capture and starts recovery. Returns: Undefined. */
+  /**
+   * Function contract: pressEnd
+   * Purpose: Release the held icon state back to its current hover/rest pose.
+   * Inputs: `event` - optional PointerEvent-like release event.
+   * Side effects: Releases pointer capture and starts recovery.
+   * Returns: Undefined.
+   */
   function pressEnd(event) {
     if (!state.pressed) return;
     state.pressed = false;
@@ -873,29 +1015,28 @@ function createIconMotion(structure, gsap, canHover) {
   control.addEventListener('keyup', keyUp);
   control.addEventListener('blur', pressEnd);
 
-  return {
-    structure,
-    /** Function contract: destroy. Purpose: Tear down one icon interaction instance. Inputs: None. Side effects: Kills GSAP work and removes listeners. Returns: Undefined. */
-    destroy() {
-      gsap.killTweensOf(control);
-      control.classList.remove('is-motion-pressed');
-      control.removeEventListener('pointerenter', enter);
-      control.removeEventListener('pointerleave', leave);
-      control.removeEventListener('pointerdown', pressStart);
-      control.removeEventListener('pointerup', pressEnd);
-      control.removeEventListener('pointercancel', pressEnd);
-      control.removeEventListener('lostpointercapture', pressEnd);
-      control.removeEventListener('keydown', keyDown);
-      control.removeEventListener('keyup', keyUp);
-      control.removeEventListener('blur', pressEnd);
-    },
-  };
+  /** Function contract: destroy. Purpose: Tear down one icon interaction instance. Inputs: None. Side effects: Kills GSAP work and removes listeners. Returns: Undefined. */
+  function destroy() {
+    gsap.killTweensOf(control);
+    control.classList.remove('is-motion-pressed');
+    control.removeEventListener('pointerenter', enter);
+    control.removeEventListener('pointerleave', leave);
+    control.removeEventListener('pointerdown', pressStart);
+    control.removeEventListener('pointerup', pressEnd);
+    control.removeEventListener('pointercancel', pressEnd);
+    control.removeEventListener('lostpointercapture', pressEnd);
+    control.removeEventListener('keydown', keyDown);
+    control.removeEventListener('keyup', keyUp);
+    control.removeEventListener('blur', pressEnd);
+  }
+
+  return { structure, destroy };
 }
 
 /**
  * Function contract: createReducedMotion
  * Purpose: Preserve immediate held active-state feedback for reduced-motion users without spatial choreography.
- * Inputs: `structure`, `gsap`.
+ * Inputs: `structure` - decorated control; `gsap` - GSAP runtime.
  * Side effects: Registers pointer/keyboard listeners and starts short opacity tweens.
  * Returns: Motion instance exposing `destroy`.
  */
@@ -903,7 +1044,7 @@ function createReducedMotion(structure, gsap) {
   const { control } = structure;
   let pressed = false;
 
-  /** Function contract: pressStart. Purpose: Enter reduced-motion pressed feedback. Inputs: `event`. Side effects: Starts an opacity tween. Returns: Undefined. */
+  /** Function contract: pressStart. Purpose: Enter reduced-motion pressed feedback. Inputs: `event`. Side effects: Starts an opacity tween and state class. Returns: Undefined. */
   function pressStart(event) {
     if (pressed) return;
     if (event?.type === 'pointerdown' && event.button !== 0) return;
@@ -912,7 +1053,7 @@ function createReducedMotion(structure, gsap) {
     gsap.to(control, { opacity: 0.78, duration: 0.08, overwrite: 'auto' });
   }
 
-  /** Function contract: pressEnd. Purpose: Release reduced-motion pressed feedback. Inputs: None. Side effects: Restores opacity. Returns: Undefined. */
+  /** Function contract: pressEnd. Purpose: Release reduced-motion pressed feedback. Inputs: None. Side effects: Restores opacity and state class. Returns: Undefined. */
   function pressEnd() {
     if (!pressed) return;
     pressed = false;
@@ -937,26 +1078,25 @@ function createReducedMotion(structure, gsap) {
   control.addEventListener('keyup', keyUp);
   control.addEventListener('blur', pressEnd);
 
-  return {
-    structure,
-    /** Function contract: destroy. Purpose: Tear down one reduced-motion interaction instance. Inputs: None. Side effects: Kills opacity tweens and removes listeners. Returns: Undefined. */
-    destroy() {
-      gsap.killTweensOf(control);
-      control.classList.remove('is-motion-pressed');
-      control.removeEventListener('pointerdown', pressStart);
-      control.removeEventListener('pointerup', pressEnd);
-      control.removeEventListener('pointercancel', pressEnd);
-      control.removeEventListener('keydown', keyDown);
-      control.removeEventListener('keyup', keyUp);
-      control.removeEventListener('blur', pressEnd);
-    },
-  };
+  /** Function contract: destroy. Purpose: Tear down one reduced-motion interaction instance. Inputs: None. Side effects: Kills opacity tweens and removes listeners. Returns: Undefined. */
+  function destroy() {
+    gsap.killTweensOf(control);
+    control.classList.remove('is-motion-pressed');
+    control.removeEventListener('pointerdown', pressStart);
+    control.removeEventListener('pointerup', pressEnd);
+    control.removeEventListener('pointercancel', pressEnd);
+    control.removeEventListener('keydown', keyDown);
+    control.removeEventListener('keyup', keyUp);
+    control.removeEventListener('blur', pressEnd);
+  }
+
+  return { structure, destroy };
 }
 
 /**
  * Function contract: createControlMotion
  * Purpose: Route a decorated control to its role-appropriate full or reduced motion implementation.
- * Inputs: `structure`, `gsap`, `SplitText`, `conditions`.
+ * Inputs: `structure`, `gsap`, `SplitText`, `conditions` - decorated structure, runtime, plugin, and media capability state.
  * Side effects: Delegates listener/tween setup to the selected implementation.
  * Returns: Motion instance exposing `destroy`.
  */
@@ -970,22 +1110,33 @@ function createControlMotion(structure, gsap, SplitText, conditions) {
 /**
  * Function contract: initializeMotionScope
  * Purpose: Attach role-aware motion to current and future controls for one pointer/reduced-motion capability state.
- * Inputs: `gsap`, `SplitText`, `conditions`.
+ * Inputs: `gsap`, `SplitText`, `conditions` - runtime, plugin, and media capability state.
  * Side effects: Decorates controls, registers listeners, and starts a MutationObserver for dynamic content.
  * Returns: Cleanup function for the capability scope.
  */
 function initializeMotionScope(gsap, SplitText, conditions) {
   const instances = new Map();
 
-  /** Function contract: resetBrokenDecoration. Purpose: Remove stale generated layers when another feature replaced a decorated control's content. Inputs: `control`. Side effects: Mutates control children/data state. Returns: Undefined. */
+  /**
+   * Function contract: resetBrokenDecoration
+   * Purpose: Remove stale generated layers when another feature replaced a decorated control's content.
+   * Inputs: `control` - stale decorated control.
+   * Side effects: Mutates control children and dataset state.
+   * Returns: Undefined.
+   */
   function resetBrokenDecoration(control) {
-    for (const node of control.querySelectorAll(`:scope > ${GENERATED_LAYER_SELECTOR.split(', ').join(', :scope > ')}`)) {
-      node.remove();
-    }
+    const layers = control.querySelectorAll(':scope > .nrs-motion-fill, :scope > .nrs-motion-glow, :scope > .nrs-motion-impact, :scope > .nrs-motion-nav-dot');
+    for (const node of layers) node.remove();
     delete control.dataset.nrsMotionDecorated;
   }
 
-  /** Function contract: setupControl. Purpose: Decorate and initialize one eligible control, rebuilding stale dynamic content when necessary. Inputs: `control`. Side effects: May destroy stale motion, mutate control structure, and attach listeners/tweens. Returns: Undefined. */
+  /**
+   * Function contract: setupControl
+   * Purpose: Decorate and initialize one eligible control, rebuilding stale dynamic content when necessary.
+   * Inputs: `control` - candidate HTMLElement.
+   * Side effects: May destroy stale motion, mutate control structure, and attach listeners/tweens.
+   * Returns: Undefined.
+   */
   function setupControl(control) {
     if (!isEligibleControl(control)) return;
 
@@ -997,39 +1148,57 @@ function initializeMotionScope(gsap, SplitText, conditions) {
     }
 
     if (control.dataset.nrsMotionDecorated === 'true') {
-      const structure = readStructure(control);
-      if (!structureIsIntact(structure)) resetBrokenDecoration(control);
+      const stored = readStructure(control);
+      if (!structureIsIntact(stored)) resetBrokenDecoration(control);
     }
 
     const structure = decorateControl(control);
     instances.set(control, createControlMotion(structure, gsap, SplitText, conditions));
   }
 
-  /** Function contract: scanRoot. Purpose: Discover matching controls within one newly added DOM root. Inputs: `root`. Side effects: Calls `setupControl` for matching controls. Returns: Undefined. */
+  /**
+   * Function contract: scanRoot
+   * Purpose: Discover matching controls within one newly added DOM root.
+   * Inputs: `root` - Element-like added DOM root.
+   * Side effects: Calls `setupControl` for matching controls.
+   * Returns: Undefined.
+   */
   function scanRoot(root) {
     if (!(root instanceof Element)) return;
     if (root.matches(CONTROL_SELECTOR)) setupControl(root);
     for (const control of root.querySelectorAll(CONTROL_SELECTOR)) setupControl(control);
   }
 
+  /**
+   * Function contract: onMutations
+   * Purpose: Rebuild controls whose content was replaced and initialize controls inserted after initial page setup.
+   * Inputs: `records` - MutationRecord list.
+   * Side effects: May destroy/recreate motion instances and scan added DOM.
+   * Returns: Undefined.
+   */
+  function onMutations(records) {
+    for (const record of records) {
+      if (record.target instanceof Element) {
+        const owner = record.target.matches(CONTROL_SELECTOR) ? record.target : record.target.closest(CONTROL_SELECTOR);
+        const current = owner ? instances.get(owner) : null;
+        if (current && !structureIsIntact(current.structure)) setupControl(owner);
+      }
+      for (const node of record.addedNodes) scanRoot(node);
+    }
+  }
+
   for (const control of document.querySelectorAll(CONTROL_SELECTOR)) setupControl(control);
 
-  const observer = new MutationObserver(
-    /** Callback contract: Rebuild controls whose content was replaced and initialize newly inserted controls. Inputs: `records`. Side effects: May destroy/recreate motion instances and scan added DOM. Returns: Undefined. */
-    (records) => {
-      for (const record of records) {
-        if (record.target instanceof Element) {
-          const owner = record.target.matches(CONTROL_SELECTOR) ? record.target : record.target.closest(CONTROL_SELECTOR);
-          const current = owner ? instances.get(owner) : null;
-          if (current && !structureIsIntact(current.structure)) setupControl(owner);
-        }
-        for (const node of record.addedNodes) scanRoot(node);
-      }
-    },
-  );
+  const observer = new MutationObserver(onMutations);
   observer.observe(document.body, { childList: true, subtree: true });
 
-  /** Function contract: cleanupMotionScope. Purpose: Tear down dynamic discovery and all interaction instances in the current media capability scope. Inputs: None. Side effects: Disconnects observer and destroys motion instances. Returns: Undefined. */
+  /**
+   * Function contract: cleanupMotionScope
+   * Purpose: Tear down dynamic discovery and all interaction instances in the current media capability scope.
+   * Inputs: None.
+   * Side effects: Disconnects observer and destroys motion instances.
+   * Returns: Undefined.
+   */
   function cleanupMotionScope() {
     observer.disconnect();
     for (const instance of instances.values()) instance.destroy();
@@ -1040,65 +1209,100 @@ function initializeMotionScope(gsap, SplitText, conditions) {
 }
 
 /**
- * Function contract: destroyButtonMotion
- * Purpose: Tear down the active sitewide button motion scope so reinitialization cannot leave duplicate listeners or tweens.
+ * Function contract: destroyRefinedButtonMotion
+ * Purpose: Tear down the active sitewide refined button motion scope so reinitialization cannot leave duplicate listeners or tweens.
  * Inputs: None.
  * Side effects: Reverts GSAP matchMedia state and invalidates pending initialization.
  * Returns: Undefined.
  */
-export function destroyButtonMotion() {
+export function destroyRefinedButtonMotion() {
   activeTeardown?.();
   activeTeardown = null;
   initGeneration += 1;
 }
 
 /**
- * Function contract: initButtonMotion
- * Purpose: Initialize the refined sitewide GSAP button interaction system with pointer capability and reduced-motion branching.
+ * Function contract: applyMediaConditions
+ * Purpose: Initialize controls for the current pointer and reduced-motion capability state supplied by GSAP matchMedia.
+ * Inputs: `context`, `gsap`, `SplitText` - matchMedia context, runtime, and optional plugin.
+ * Side effects: Toggles reduced-motion root state and creates control listeners/observer.
+ * Returns: Cleanup function for the media capability state.
+ */
+function applyMediaConditions(context, gsap, SplitText) {
+  const conditions = {
+    canHover: Boolean(context.conditions?.canHover),
+    reduce: Boolean(context.conditions?.reduce),
+  };
+  document.documentElement.classList.toggle('nrs-motion-reduced', conditions.reduce);
+  return initializeMotionScope(gsap, SplitText, conditions);
+}
+
+/**
+ * Function contract: initRefinedButtonMotion
+ * Purpose: Initialize the approved sitewide GSAP button interaction system with pointer capability and reduced-motion branching.
  * Inputs: None.
  * Side effects: Loads GSAP dependencies, decorates controls, registers media/DOM listeners, and logs non-fatal enhancement failures.
  * Returns: Undefined; initialization continues asynchronously.
  */
-export function initButtonMotion() {
-  destroyButtonMotion();
+export function initRefinedButtonMotion() {
+  destroyRefinedButtonMotion();
   const generation = initGeneration;
 
-  loadGsapRuntime()
-    .then(
-      /** Callback contract: Build the responsive motion capability context after GSAP dependencies resolve. Inputs: `runtime`. Side effects: Registers matchMedia and page lifecycle cleanup. Returns: Undefined. */
-      ({ gsap, SplitText }) => {
-        if (generation !== initGeneration || !document.body) return;
+  /**
+   * Function contract: runtimeReady
+   * Purpose: Build the responsive motion capability context after GSAP dependencies resolve.
+   * Inputs: `runtime` - resolved `{ gsap, SplitText }` dependency object.
+   * Side effects: Registers matchMedia and page lifecycle cleanup.
+   * Returns: Undefined.
+   */
+  function runtimeReady(runtime) {
+    if (generation !== initGeneration || !document.body) return;
+    const { gsap, SplitText } = runtime;
+    const matchMedia = gsap.matchMedia();
 
-        const matchMedia = gsap.matchMedia();
-        matchMedia.add({
-          canHover: '(hover: hover) and (pointer: fine)',
-          reduce: '(prefers-reduced-motion: reduce)',
-        },
-        /** Callback contract: Initialize controls for current pointer and reduced-motion conditions. Inputs: `context`. Side effects: Toggles reduced-motion root state and creates listeners/observer. Returns: Cleanup function. */
-        (context) => {
-          const conditions = {
-            canHover: Boolean(context.conditions?.canHover),
-            reduce: Boolean(context.conditions?.reduce),
-          };
-          document.documentElement.classList.toggle('nrs-motion-reduced', conditions.reduce);
-          return initializeMotionScope(gsap, SplitText, conditions);
-        });
+    /**
+     * Function contract: mediaContext
+     * Purpose: Bridge GSAP matchMedia context into the shared refined-control initializer.
+     * Inputs: `context` - GSAP matchMedia context.
+     * Side effects: Delegates media capability setup to `applyMediaConditions`.
+     * Returns: Cleanup function for the current media state.
+     */
+    function mediaContext(context) {
+      return applyMediaConditions(context, gsap, SplitText);
+    }
 
-        /** Function contract: teardown. Purpose: Revert the active media-query motion context and remove its page lifecycle listener. Inputs: None. Side effects: Tears down matchMedia/listeners and clears root state. Returns: Undefined. */
-        function teardown() {
-          window.removeEventListener('pagehide', teardown);
-          matchMedia.revert();
-          document.documentElement.classList.remove('nrs-motion-reduced');
-        }
+    matchMedia.add({
+      canHover: '(hover: hover) and (pointer: fine)',
+      reduce: '(prefers-reduced-motion: reduce)',
+    }, mediaContext);
 
-        activeTeardown = teardown;
-        window.addEventListener('pagehide', teardown, { once: true });
-      },
-    )
-    .catch(
-      /** Callback contract: Report a non-fatal progressive-enhancement failure while leaving native controls usable. Inputs: `error`. Side effects: Writes a console warning. Returns: Undefined. */
-      (error) => {
-        console.warn('[portfolio] GSAP button motion enhancement unavailable; baseline controls remain active.', error);
-      },
-    );
+    /**
+     * Function contract: teardown
+     * Purpose: Revert the active media-query motion context and remove its page lifecycle listener.
+     * Inputs: None.
+     * Side effects: Tears down matchMedia/listeners and clears root reduced-motion state.
+     * Returns: Undefined.
+     */
+    function teardown() {
+      window.removeEventListener('pagehide', teardown);
+      matchMedia.revert();
+      document.documentElement.classList.remove('nrs-motion-reduced');
+    }
+
+    activeTeardown = teardown;
+    window.addEventListener('pagehide', teardown, { once: true });
+  }
+
+  /**
+   * Function contract: runtimeFailed
+   * Purpose: Report a non-fatal progressive-enhancement failure while leaving native controls usable.
+   * Inputs: `error` - dependency or initialization error.
+   * Side effects: Writes a console warning.
+   * Returns: Undefined.
+   */
+  function runtimeFailed(error) {
+    console.warn('[portfolio] Refined GSAP button motion enhancement unavailable; baseline controls remain active.', error);
+  }
+
+  loadGsapRuntime().then(runtimeReady).catch(runtimeFailed);
 }
