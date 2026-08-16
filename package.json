@@ -2,6 +2,11 @@
   "name": "nischhal-portfolio-cloudflare-bootstrap",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "npm@11.17.0",
+  "engines": {
+    "node": "24.x",
+    "npm": "11.x"
+  },
   "scripts": {
     "build": "npm --prefix site ci && npm --prefix site run build",
     "validate": "npm --prefix site ci && npm --prefix site run validate",

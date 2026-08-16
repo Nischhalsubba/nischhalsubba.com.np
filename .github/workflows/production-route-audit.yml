@@ -24,12 +24,15 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 22
+          node-version-file: .node-version
+
+      - name: Verify npm version
+        run: test "$(npm --version)" = "11.17.0"
 
       - name: Audit custom-domain clean routes
         id: audit
@@ -40,7 +43,7 @@ jobs:
 
       - name: Publish production route result
         if: always()
-        uses: actions/github-script@v8
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           AUDIT_OUTCOME: ${{ steps.audit.outcome }}
         with:
@@ -64,7 +67,7 @@ jobs:
 
       - name: Upload route audit log
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: production-route-audit
           path: production-route-audit.log

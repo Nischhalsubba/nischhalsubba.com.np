@@ -17,7 +17,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
-const ts = require('typescript');
+const typescript6 = require('@typescript/typescript6');
+const ts = typescript6.default || typescript6;
 
 const ROOT = path.resolve(__dirname, '../..');
 const POLICY_PATH = path.join(ROOT, 'config/repository/code-documentation-policy.json');

@@ -24,25 +24,29 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 22
+          node-version-file: .node-version
           cache: npm
           cache-dependency-path: site/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Verify npm version
+        run: test "$(npm --version)" = "11.17.0"
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Audit dependency graph
+        run: npm audit --audit-level=low
 
       - name: Build and validate static output
         run: npm run validate
 
-      - name: Install browser runtime
-        run: |
-          npm install --no-save playwright@1.54.1 pixelmatch@7.1.0 pngjs@7.0.0
-          npx playwright install --with-deps chromium
+      - name: Install Chromium
+        run: npx --no-install playwright install --with-deps chromium
 
       - name: Start preview server
         id: preview
@@ -100,7 +104,7 @@ jobs:
 
       - name: Publish browser audit result
         if: always() && !cancelled()
-        uses: actions/github-script@v8
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           PREVIEW_OUTCOME: ${{ steps.preview.outcome }}
           BROWSER_OUTCOME: ${{ steps.browser.outcome }}
@@ -146,7 +150,7 @@ jobs:
 
       - name: Upload browser and visual audit artifacts
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: browser-audit-artifacts
           path: |
