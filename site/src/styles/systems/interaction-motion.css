@@ -205,6 +205,6 @@
   .nrs-motion-label,
   .nrs-motion-char,
   .nrs-motion-arrow {
-    transform: none !important;
+    transform: none;
   }
 }
