@@ -1,0 +1,79 @@
+name: Update reviewed Work visual baselines once
+
+on:
+  push:
+    branches: [feat/flagship-case-study-proof]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-work-baselines-once
+  cancel-in-progress: true
+
+jobs:
+  update:
+    if: github.event.head_commit.message != 'update reviewed Work visual baselines'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: site
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: feat/flagship-case-study-proof
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Verify npm version
+        run: test "$(npm --version)" = "11.17.0"
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build exact branch output
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx --no-install playwright install --with-deps chromium
+
+      - name: Start branch preview
+        shell: bash
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/work-baseline-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            curl --fail --silent http://127.0.0.1:4173/projects >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/work-baseline-preview.log
+          exit 1
+
+      - name: Regenerate deterministic visual snapshots
+        env:
+          UPDATE_VISUAL_BASELINES: '1'
+        run: node scripts/visual-regression.mjs
+
+      - name: Commit reviewed Work baselines only
+        shell: bash
+        run: |
+          git config user.name "Nischhal Raj Subba"
+          git config user.email "hinischalsubba@gmail.com"
+          git add \
+            tests/visual/baselines/work-mobile-light.png \
+            tests/visual/baselines/work-mobile-dark.png \
+            tests/visual/baselines/work-desktop-light.png \
+            tests/visual/baselines/work-desktop-dark.png
+          if git diff --cached --quiet; then
+            echo 'Reviewed Work baselines already match the branch output.'
+            exit 0
+          fi
+          git commit -m "update reviewed Work visual baselines"
+          git push origin HEAD:feat/flagship-case-study-proof
