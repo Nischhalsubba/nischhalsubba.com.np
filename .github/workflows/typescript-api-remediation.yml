@@ -43,9 +43,9 @@ jobs:
           }
           if (source.includes(before)) fs.writeFileSync(path, source.replace(before, after));
           NODE
-      - name: Refresh lockfile
+      - name: Install updated dependency graph and refresh lockfile
         working-directory: site
-        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+        run: npm install --ignore-scripts --no-audit --no-fund
       - name: Verify dependency audit
         working-directory: site
         run: npm audit --audit-level=low
