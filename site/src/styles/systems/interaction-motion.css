@@ -200,12 +200,6 @@
   display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  body.nrs-page-enter {
-    opacity: 1 !important;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .nrs-motion-content,
   .nrs-motion-label,
