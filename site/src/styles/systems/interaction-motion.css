@@ -1,0 +1,155 @@
+/*
+ * @fileoverview src/styles/systems/interaction-motion.css
+ * Purpose: Provide the visual layers used by the shared sitewide GSAP button and navigation interaction system.
+ * Responsibilities:
+ * - Style generated fill, glow, impact, label, and navigation-dot layers without duplicating authored control text.
+ * - Preserve existing theme tokens, focus states, responsive sizing, and control semantics while GSAP owns transforms.
+ * - Keep reduced-motion users free from nonessential spatial animation while retaining baseline control styling.
+ * Execution context: Authored style-system fragment compiled into the canonical production stylesheet for every route.
+ * Connected files:
+ * - src/scripts/features/motion/button-motion.js
+ * - scripts/compile-single-stylesheet.cjs
+ * - src/styles/style.css
+ * Maintenance: Keep this system role-based and token-driven; do not add page-specific button patches here.
+ */
+
+.nrs-motion-control {
+  isolation: isolate;
+  transform-origin: 50% 50%;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  will-change: transform;
+}
+
+.nrs-motion-control[data-nrs-motion-role='primary'],
+.nrs-motion-control[data-nrs-motion-role='secondary'] {
+  overflow: hidden;
+}
+
+.nrs-motion-content {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+  max-width: 100%;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.nrs-motion-label,
+.nrs-motion-char {
+  position: relative;
+  display: inline-block;
+  backface-visibility: hidden;
+}
+
+.nrs-motion-fill,
+.nrs-motion-glow,
+.nrs-motion-impact,
+.nrs-motion-nav-dot {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+}
+
+.nrs-motion-fill {
+  top: 0;
+  left: 0;
+  width: 72px;
+  height: 72px;
+  margin: -36px 0 0 -36px;
+  border-radius: 50%;
+  opacity: 0.92;
+  transform-origin: 50% 50%;
+}
+
+.nrs-motion-control[data-nrs-motion-role='primary'] .nrs-motion-fill {
+  background: color-mix(in srgb, var(--accent) 78%, var(--bg-page) 22%);
+}
+
+.nrs-motion-control[data-nrs-motion-role='secondary'] .nrs-motion-fill {
+  background: color-mix(in srgb, var(--bg-surface-2) 74%, var(--text-primary) 12%);
+}
+
+.nrs-motion-glow {
+  top: 0;
+  left: 0;
+  width: 132px;
+  height: 132px;
+  margin: -66px 0 0 -66px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-ink) 20%, transparent) 0%, transparent 68%);
+  filter: blur(1px);
+  opacity: 0;
+}
+
+.nrs-motion-impact {
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  transform-origin: 50% 50%;
+}
+
+.nrs-motion-nav-dot {
+  left: 50%;
+  bottom: 4px;
+  width: 3px;
+  height: 3px;
+  margin-left: -1.5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  transform: scale(0.2);
+  transform-origin: 50% 50%;
+}
+
+.nrs-motion-control[data-nrs-motion-role='nav'] .nrs-motion-content {
+  z-index: 2;
+}
+
+.nrs-motion-control[data-nrs-motion-role='nav'][aria-current='page'] .nrs-motion-nav-dot,
+.nrs-motion-control[data-nrs-motion-role='nav'].active .nrs-motion-nav-dot {
+  opacity: 0.42;
+  transform: scale(0.72);
+}
+
+.nrs-motion-control:disabled,
+.nrs-motion-control[aria-disabled='true'] {
+  will-change: auto;
+}
+
+.nrs-motion-control:disabled .nrs-motion-fill,
+.nrs-motion-control:disabled .nrs-motion-glow,
+.nrs-motion-control:disabled .nrs-motion-impact,
+.nrs-motion-control[aria-disabled='true'] .nrs-motion-fill,
+.nrs-motion-control[aria-disabled='true'] .nrs-motion-glow,
+.nrs-motion-control[aria-disabled='true'] .nrs-motion-impact {
+  display: none;
+}
+
+.nrs-motion-reduced .nrs-motion-control {
+  will-change: opacity;
+}
+
+.nrs-motion-reduced .nrs-motion-fill,
+.nrs-motion-reduced .nrs-motion-glow,
+.nrs-motion-reduced .nrs-motion-impact,
+.nrs-motion-reduced .nrs-motion-nav-dot {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nrs-motion-content,
+  .nrs-motion-label,
+  .nrs-motion-char {
+    transform: none !important;
+  }
+}
