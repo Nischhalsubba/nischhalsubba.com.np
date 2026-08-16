@@ -25,21 +25,27 @@ if (!fs.existsSync(stylePath)) {
 }
 
 let css = fs.readFileSync(stylePath, 'utf8');
-const requiredAnchor = '.nrs-uploaded-hero-v19 .nrs-uploaded-btn{';
-if (!css.includes(requiredAnchor)) {
+const ctaBlockPattern = /\.nrs-uploaded-hero-v19 \.nrs-uploaded-btn\{[\s\S]*?\n\}/;
+const ctaBlockMatch = css.match(ctaBlockPattern);
+if (!ctaBlockMatch) {
   throw new Error('[refined-button-motion] Expected generated homepage CTA contract was not found.');
 }
 
 const original = css;
-css = css
-  .replace(
-    'overflow:visible!important;',
-    'overflow:hidden!important;',
-  )
+const originalCtaBlock = ctaBlockMatch[0];
+const normalizedCtaBlock = originalCtaBlock
+  .replace('overflow:visible!important;', 'overflow:hidden!important;')
   .replace(
     'transition:transform .16s cubic-bezier(.2,0,0,1),border-color .16s ease,background-color .16s ease!important;',
     'transition:border-color .16s ease,background-color .16s ease,color .16s ease!important;',
-  )
+  );
+
+if (normalizedCtaBlock === originalCtaBlock) {
+  throw new Error('[refined-button-motion] Homepage CTA block did not contain the expected transform/overflow compatibility declarations.');
+}
+
+css = css
+  .replace(ctaBlockPattern, normalizedCtaBlock)
   .replace(
     '.nrs-uploaded-hero-v19 .nrs-uploaded-btn span{',
     '.nrs-uploaded-hero-v19 .nrs-uploaded-btn > span[aria-hidden="true"]:not([class]){',
@@ -51,6 +57,15 @@ css = css
 
 if (css === original) {
   throw new Error('[refined-button-motion] No production CTA compatibility changes were applied.');
+}
+
+const finalCtaBlock = css.match(ctaBlockPattern)?.[0] || '';
+if (!finalCtaBlock.includes('overflow:hidden!important;')) {
+  throw new Error('[refined-button-motion] Homepage CTA overflow is not clipped for pointer-origin fill.');
+}
+
+if (finalCtaBlock.includes('transition:transform')) {
+  throw new Error('[refined-button-motion] Competing CSS transform transition remains in the homepage CTA block.');
 }
 
 if (/\.nrs-uploaded-hero-v19 \.nrs-uploaded-btn:hover\{transform:[^}]*!important\}/.test(css)) {
