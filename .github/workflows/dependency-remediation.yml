@@ -45,4 +45,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: refresh portfolio lockfile"
+          git pull --rebase origin chore/2026-security-baseline
           git push origin HEAD:chore/2026-security-baseline
