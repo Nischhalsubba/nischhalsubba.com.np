@@ -63,17 +63,17 @@ let activeTeardown = null;
 let runtimePromise = null;
 let initGeneration = 0;
 
-/** Function contract: loadExternalScript. Inputs: `source`, `key`. Side effects: May create a script node, mutate document head, and perform network I/O. Returns: Promise resolving when the dependency loads. */
+/** Function contract: loadExternalScript. Purpose: Implement loadExternalScript behavior for the kinetic button motion system. Inputs: `source`, `key`. Side effects: May create a script node, mutate document head, and perform network I/O. Returns: Promise resolving when the dependency loads. */
 function loadExternalScript(source, key) {
   const selector = `script[data-nrs-motion-runtime="${key}"]`;
   const existing = document.querySelector(selector);
   if (existing?.dataset.loaded === 'true') return Promise.resolve();
 
-  /** Function contract: scriptExecutor. Inputs: `resolve`, `reject`. Side effects: Creates or observes one dependency script and registers load/error listeners. Returns: Undefined; resolves or rejects the enclosing promise. */
+  /** Function contract: scriptExecutor. Purpose: Implement scriptExecutor behavior for the kinetic button motion system. Inputs: `resolve`, `reject`. Side effects: Creates or observes one dependency script and registers load/error listeners. Returns: Undefined; resolves or rejects the enclosing promise. */
   function scriptExecutor(resolve, reject) {
     const script = existing || document.createElement('script');
 
-    /** Function contract: onLoad. Inputs: None. Side effects: Marks the dependency script loaded and resolves the enclosing promise. Returns: Undefined. */
+    /** Function contract: onLoad. Purpose: Implement onLoad behavior for the kinetic button motion system. Inputs: None. Side effects: Marks the dependency script loaded and resolves the enclosing promise. Returns: Undefined. */
     function onLoad() {
       script.dataset.loaded = 'true';
       resolve();
@@ -93,7 +93,7 @@ function loadExternalScript(source, key) {
   return new Promise(scriptExecutor);
 }
 
-/** Function contract: resolveGsapRuntime. Inputs: None. Side effects: Loads GSAP/SplitText browser scripts and registers SplitText when available. Returns: Promise resolving to `{ gsap, SplitText }`. */
+/** Function contract: resolveGsapRuntime. Purpose: Implement resolveGsapRuntime behavior for the kinetic button motion system. Inputs: None. Side effects: Loads GSAP/SplitText browser scripts and registers SplitText when available. Returns: Promise resolving to `{ gsap, SplitText }`. */
 async function resolveGsapRuntime() {
   if (!window.gsap || window.gsap.version !== GSAP_VERSION) {
     await loadExternalScript(GSAP_SOURCE, `gsap-${GSAP_VERSION}`);
@@ -116,11 +116,11 @@ async function resolveGsapRuntime() {
   return { gsap, SplitText };
 }
 
-/** Function contract: loadGsapRuntime. Inputs: None. Side effects: Initializes or resets the shared dependency promise. Returns: Promise resolving to the pinned GSAP runtime. */
+/** Function contract: loadGsapRuntime. Purpose: Implement loadGsapRuntime behavior for the kinetic button motion system. Inputs: None. Side effects: Initializes or resets the shared dependency promise. Returns: Promise resolving to the pinned GSAP runtime. */
 function loadGsapRuntime() {
   if (runtimePromise) return runtimePromise;
 
-  /** Function contract: resetRuntime. Inputs: `error`. Side effects: Clears shared runtime state. Returns: Never; rethrows the original error. */
+  /** Function contract: resetRuntime. Purpose: Implement resetRuntime behavior for the kinetic button motion system. Inputs: `error`. Side effects: Clears shared runtime state. Returns: Never; rethrows the original error. */
   function resetRuntime(error) {
     runtimePromise = null;
     throw error;
@@ -130,12 +130,12 @@ function loadGsapRuntime() {
   return runtimePromise;
 }
 
-/** Function contract: normalizedLabel. Inputs: `value`. Side effects: None. Returns: Trimmed single-space text. */
+/** Function contract: normalizedLabel. Purpose: Implement normalizedLabel behavior for the kinetic button motion system. Inputs: `value`. Side effects: None. Returns: Trimmed single-space text. */
 function normalizedLabel(value) {
   return String(value || '').replace(/\s+/g, ' ').trim();
 }
 
-/** Function contract: roleFor. Inputs: `control`. Side effects: None. Returns: One of `icon`, `nav`, `primary`, or `secondary`. */
+/** Function contract: roleFor. Purpose: Implement roleFor behavior for the kinetic button motion system. Inputs: `control`. Side effects: None. Returns: One of `icon`, `nav`, `primary`, or `secondary`. */
 function roleFor(control) {
   if (control.matches(ICON_SELECTOR)) return 'icon';
   if (control.matches(NAV_SELECTOR)) return 'nav';
@@ -143,7 +143,7 @@ function roleFor(control) {
   return 'secondary';
 }
 
-/** Function contract: eligible. Inputs: `control`. Side effects: Reads DOM state. Returns: Boolean indicating whether the control should receive motion. */
+/** Function contract: eligible. Purpose: Implement eligible behavior for the kinetic button motion system. Inputs: `control`. Side effects: Reads DOM state. Returns: Boolean indicating whether the control should receive motion. */
 function eligible(control) {
   if (!(control instanceof HTMLElement)) return false;
   if (control.matches('[data-motion="off"], [aria-hidden="true"]')) return false;
@@ -152,7 +152,7 @@ function eligible(control) {
   return true;
 }
 
-/** Function contract: simpleTextOnly. Inputs: `control`. Side effects: Reads direct child nodes. Returns: Boolean true when visible authored content is one text node. */
+/** Function contract: simpleTextOnly. Purpose: Implement simpleTextOnly behavior for the kinetic button motion system. Inputs: `control`. Side effects: Reads direct child nodes. Returns: Boolean true when visible authored content is one text node. */
 function simpleTextOnly(control) {
   let count = 0;
   let textOnly = false;
@@ -168,7 +168,7 @@ function simpleTextOnly(control) {
   return count === 1 && textOnly;
 }
 
-/** Function contract: span. Inputs: `className`, `text`. Side effects: Creates a DOM element. Returns: Newly created span element. */
+/** Function contract: span. Purpose: Implement span behavior for the kinetic button motion system. Inputs: `className`, `text`. Side effects: Creates a DOM element. Returns: Newly created span element. */
 function span(className, text = '') {
   const node = document.createElement('span');
   node.className = className;
@@ -176,7 +176,7 @@ function span(className, text = '') {
   return node;
 }
 
-/** Function contract: generatedLayer. Inputs: `control`, `className`. Side effects: May append one aria-hidden visual layer. Returns: Existing or newly created visual layer. */
+/** Function contract: generatedLayer. Purpose: Implement generatedLayer behavior for the kinetic button motion system. Inputs: `control`, `className`. Side effects: May append one aria-hidden visual layer. Returns: Existing or newly created visual layer. */
 function generatedLayer(control, className) {
   const existing = control.querySelector(`:scope > .${className}`);
   if (existing) return existing;
@@ -186,7 +186,7 @@ function generatedLayer(control, className) {
   return layer;
 }
 
-/** Function contract: createKineticContent. Inputs: `control`, `sourceText`. Side effects: Replaces simple visual text with aria-hidden label and arrow rails while preserving the accessible name. Returns: Generated content references. */
+/** Function contract: createKineticContent. Purpose: Implement createKineticContent behavior for the kinetic button motion system. Inputs: `control`, `sourceText`. Side effects: Replaces simple visual text with aria-hidden label and arrow rails while preserving the accessible name. Returns: Generated content references. */
 function createKineticContent(control, sourceText) {
   const alternateText = ALT_LABELS.get(sourceText.toLowerCase()) || sourceText;
   if (!control.hasAttribute('aria-label')) control.setAttribute('aria-label', sourceText);
@@ -208,7 +208,7 @@ function createKineticContent(control, sourceText) {
   return { content, baseLabel, altLabel, arrowBase, arrowAlt };
 }
 
-/** Function contract: wrapAuthoredContent. Inputs: `control`. Side effects: Moves existing authored child nodes into one generated wrapper. Returns: Generated content wrapper. */
+/** Function contract: wrapAuthoredContent. Purpose: Implement wrapAuthoredContent behavior for the kinetic button motion system. Inputs: `control`. Side effects: Moves existing authored child nodes into one generated wrapper. Returns: Generated content wrapper. */
 function wrapAuthoredContent(control) {
   const content = span('nrs-motion-content');
   const preserved = [];
@@ -222,7 +222,7 @@ function wrapAuthoredContent(control) {
   return content;
 }
 
-/** Function contract: readStructure. Inputs: `control`. Side effects: Reads generated DOM. Returns: Structure references for an already decorated control. */
+/** Function contract: readStructure. Purpose: Implement readStructure behavior for the kinetic button motion system. Inputs: `control`. Side effects: Reads generated DOM. Returns: Structure references for an already decorated control. */
 function readStructure(control) {
   const role = control.dataset.nrsMotionRole || roleFor(control);
   return {
@@ -240,7 +240,7 @@ function readStructure(control) {
   };
 }
 
-/** Function contract: decorate. Inputs: `control`. Side effects: Adds generated presentation structure and role metadata while preserving native control semantics. Returns: Decorated control structure. */
+/** Function contract: decorate. Purpose: Implement decorate behavior for the kinetic button motion system. Inputs: `control`. Side effects: Adds generated presentation structure and role metadata while preserving native control semantics. Returns: Decorated control structure. */
 function decorate(control) {
   if (control.dataset.nrsMotionDecorated === 'true') return readStructure(control);
   const role = roleFor(control);
@@ -271,14 +271,14 @@ function decorate(control) {
   return readStructure(control);
 }
 
-/** Function contract: intact. Inputs: `structure`. Side effects: Reads DOM connectivity. Returns: Boolean indicating whether generated structure can be reused. */
+/** Function contract: intact. Purpose: Implement intact behavior for the kinetic button motion system. Inputs: `structure`. Side effects: Reads DOM connectivity. Returns: Boolean indicating whether generated structure can be reused. */
 function intact(structure) {
   if (!structure?.control?.isConnected) return false;
   if (structure.role === 'icon') return true;
   return Boolean(structure.content?.isConnected && structure.content.parentElement === structure.control);
 }
 
-/** Function contract: pointIn. Inputs: `event`, `element`. Side effects: Reads one bounding client rectangle. Returns: Local pointer coordinates, normalized intent, and radial fill scale. */
+/** Function contract: pointIn. Purpose: Implement pointIn behavior for the kinetic button motion system. Inputs: `event`, `element`. Side effects: Reads one bounding client rectangle. Returns: Local pointer coordinates, normalized intent, and radial fill scale. */
 function pointIn(event, element) {
   const rect = element.getBoundingClientRect();
   const clientX = Number.isFinite(event?.clientX) ? event.clientX : rect.left + rect.width * 0.5;
@@ -295,12 +295,12 @@ function pointIn(event, element) {
   };
 }
 
-/** Function contract: activationKey. Inputs: `event`. Side effects: None. Returns: Boolean true for a non-repeating Enter or Space press. */
+/** Function contract: activationKey. Purpose: Implement activationKey behavior for the kinetic button motion system. Inputs: `event`. Side effects: None. Returns: Boolean true for a non-repeating Enter or Space press. */
 function activationKey(event) {
   return !event.repeat && (event.key === 'Enter' || event.key === ' ');
 }
 
-/** Function contract: splitLabel. Inputs: `label`, `SplitText`. Side effects: May let SplitText replace visual label text with masked character spans until reverted. Returns: SplitText instance and animated targets. */
+/** Function contract: splitLabel. Purpose: Implement splitLabel behavior for the kinetic button motion system. Inputs: `label`, `SplitText`. Side effects: May let SplitText replace visual label text with masked character spans until reverted. Returns: SplitText instance and animated targets. */
 function splitLabel(label, SplitText) {
   if (!label) return { split: null, targets: [] };
   if (!SplitText) return { split: null, targets: [label] };
@@ -313,7 +313,7 @@ function splitLabel(label, SplitText) {
   return { split, targets: split.chars || [] };
 }
 
-/** Function contract: createPillMotion. Inputs: `structure`, `gsap`, `SplitText`, `canHover`. Side effects: Creates GSAP timelines/setters and registers pointer/keyboard listeners. Returns: Motion instance exposing `destroy`. */
+/** Function contract: createPillMotion. Purpose: Implement createPillMotion behavior for the kinetic button motion system. Inputs: `structure`, `gsap`, `SplitText`, `canHover`. Side effects: Creates GSAP timelines/setters and registers pointer/keyboard listeners. Returns: Motion instance exposing `destroy`. */
 function createPillMotion(structure, gsap, SplitText, canHover) {
   const { control, content, baseLabel, altLabel, arrowBase, arrowAlt, fill, glow, impact } = structure;
   const base = splitLabel(baseLabel, SplitText);
@@ -374,7 +374,7 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
   const moveGlowX = glow ? gsap.quickTo(glow, 'x', { duration: 0.28, ease: 'power3.out' }) : null;
   const moveGlowY = glow ? gsap.quickTo(glow, 'y', { duration: 0.28, ease: 'power3.out' }) : null;
 
-  /** Function contract: enter. Inputs: `event`. Side effects: Starts pointer-origin fill, glow, label, arrow, and control hover motion. Returns: Undefined. */
+  /** Function contract: enter. Purpose: Implement enter behavior for the kinetic button motion system. Inputs: `event`. Side effects: Starts pointer-origin fill, glow, label, arrow, and control hover motion. Returns: Undefined. */
   function enter(event) {
     if (!canHover) return;
     state.hovered = true;
@@ -390,7 +390,7 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     hover.play();
   }
 
-  /** Function contract: move. Inputs: `event`. Side effects: Updates quickTo pointer-intent destinations for content and glow. Returns: Undefined. */
+  /** Function contract: move. Purpose: Implement move behavior for the kinetic button motion system. Inputs: `event`. Side effects: Updates quickTo pointer-intent destinations for content and glow. Returns: Undefined. */
   function move(event) {
     if (!canHover) return;
     const point = pointIn(event, control);
@@ -402,7 +402,7 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     }
   }
 
-  /** Function contract: leave. Inputs: None. Side effects: Reverses hover motion and restores pointer-follow layers. Returns: Undefined. */
+  /** Function contract: leave. Purpose: Implement leave behavior for the kinetic button motion system. Inputs: None. Side effects: Reverses hover motion and restores pointer-follow layers. Returns: Undefined. */
   function leave() {
     if (!canHover) return;
     state.hovered = false;
@@ -413,7 +413,7 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     hover.reverse();
   }
 
-  /** Function contract: press. Inputs: `event`. Side effects: Starts pointer-origin impact, compression, overshoot, and elastic settle motion. Returns: Undefined. */
+  /** Function contract: press. Purpose: Implement press behavior for the kinetic button motion system. Inputs: `event`. Side effects: Starts pointer-origin impact, compression, overshoot, and elastic settle motion. Returns: Undefined. */
   function press(event) {
     if (event?.type === 'pointerdown' && event.button !== 0) return;
     const point = pointIn(event, control);
@@ -427,7 +427,7 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
     timeline.to(control, { scale: settleScale, y: settleY, duration: 0.34, ease: 'elastic.out(1, .42)' }, 0.20);
   }
 
-  /** Function contract: keyDown. Inputs: `event`. Side effects: Delegates Enter/Space activation to kinetic press feedback. Returns: Undefined. */
+  /** Function contract: keyDown. Purpose: Implement keyDown behavior for the kinetic button motion system. Inputs: `event`. Side effects: Delegates Enter/Space activation to kinetic press feedback. Returns: Undefined. */
   function keyDown(event) {
     if (activationKey(event)) press(event);
   }
@@ -438,7 +438,7 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
   control.addEventListener('pointerdown', press);
   control.addEventListener('keydown', keyDown);
 
-  /** Function contract: destroy. Inputs: None. Side effects: Kills GSAP work, reverts SplitText, and removes registered listeners. Returns: Undefined. */
+  /** Function contract: destroy. Purpose: Implement destroy behavior for the kinetic button motion system. Inputs: None. Side effects: Kills GSAP work, reverts SplitText, and removes registered listeners. Returns: Undefined. */
   function destroy() {
     hover.kill();
     base.split?.revert();
@@ -458,13 +458,13 @@ function createPillMotion(structure, gsap, SplitText, canHover) {
   return { structure, destroy };
 }
 
-/** Function contract: createNavMotion. Inputs: `structure`, `gsap`, `canHover`. Side effects: Registers navigation pointer/keyboard listeners and starts compact transform/dot tweens. Returns: Motion instance exposing `destroy`. */
+/** Function contract: createNavMotion. Purpose: Implement createNavMotion behavior for the kinetic button motion system. Inputs: `structure`, `gsap`, `canHover`. Side effects: Registers navigation pointer/keyboard listeners and starts compact transform/dot tweens. Returns: Motion instance exposing `destroy`. */
 function createNavMotion(structure, gsap, canHover) {
   const { control, dot } = structure;
   const state = { hovered: false };
   gsap.set(control, { x: 0, y: 0, scale: 1, transformOrigin: '50% 50%' });
 
-  /** Function contract: settle. Inputs: None. Side effects: Resolves navigation control and dot to current hover/rest pose. Returns: Undefined. */
+  /** Function contract: settle. Purpose: Implement settle behavior for the kinetic button motion system. Inputs: None. Side effects: Resolves navigation control and dot to current hover/rest pose. Returns: Undefined. */
   function settle() {
     gsap.to(control, {
       y: state.hovered && canHover ? -1 : 0,
@@ -483,21 +483,21 @@ function createNavMotion(structure, gsap, canHover) {
     });
   }
 
-  /** Function contract: enter. Inputs: None. Side effects: Marks navigation hovered and settles it. Returns: Undefined. */
+  /** Function contract: enter. Purpose: Implement enter behavior for the kinetic button motion system. Inputs: None. Side effects: Marks navigation hovered and settles it. Returns: Undefined. */
   function enter() {
     if (!canHover) return;
     state.hovered = true;
     settle();
   }
 
-  /** Function contract: leave. Inputs: None. Side effects: Clears navigation hover and settles it. Returns: Undefined. */
+  /** Function contract: leave. Purpose: Implement leave behavior for the kinetic button motion system. Inputs: None. Side effects: Clears navigation hover and settles it. Returns: Undefined. */
   function leave() {
     if (!canHover) return;
     state.hovered = false;
     settle();
   }
 
-  /** Function contract: press. Inputs: `event`. Side effects: Starts navigation active compression and rebound. Returns: Undefined. */
+  /** Function contract: press. Purpose: Implement press behavior for the kinetic button motion system. Inputs: `event`. Side effects: Starts navigation active compression and rebound. Returns: Undefined. */
   function press(event) {
     if (event?.type === 'pointerdown' && event.button !== 0) return;
     gsap.timeline({ defaults: { overwrite: 'auto' } })
@@ -505,12 +505,12 @@ function createNavMotion(structure, gsap, canHover) {
       .to(control, { scale: state.hovered && canHover ? 1.02 : 1, y: state.hovered && canHover ? -1 : 0, duration: 0.24, ease: 'back.out(1.4)' });
   }
 
-  /** Function contract: keyDown. Inputs: `event`. Side effects: Delegates Enter/Space activation to navigation press feedback. Returns: Undefined. */
+  /** Function contract: keyDown. Purpose: Implement keyDown behavior for the kinetic button motion system. Inputs: `event`. Side effects: Delegates Enter/Space activation to navigation press feedback. Returns: Undefined. */
   function keyDown(event) {
     if (activationKey(event)) press(event);
   }
 
-  /** Function contract: destroy. Inputs: None. Side effects: Kills navigation GSAP work and removes registered listeners. Returns: Undefined. */
+  /** Function contract: destroy. Purpose: Implement destroy behavior for the kinetic button motion system. Inputs: None. Side effects: Kills navigation GSAP work and removes registered listeners. Returns: Undefined. */
   function destroy() {
     gsap.killTweensOf(control);
     if (dot) gsap.killTweensOf(dot);
@@ -527,13 +527,13 @@ function createNavMotion(structure, gsap, canHover) {
   return { structure, destroy };
 }
 
-/** Function contract: createIconMotion. Inputs: `structure`, `gsap`, `canHover`. Side effects: Registers icon pointer/keyboard listeners and starts transform tweens. Returns: Motion instance exposing `destroy`. */
+/** Function contract: createIconMotion. Purpose: Implement createIconMotion behavior for the kinetic button motion system. Inputs: `structure`, `gsap`, `canHover`. Side effects: Registers icon pointer/keyboard listeners and starts transform tweens. Returns: Motion instance exposing `destroy`. */
 function createIconMotion(structure, gsap, canHover) {
   const { control } = structure;
   const state = { hovered: false };
   gsap.set(control, { x: 0, y: 0, scale: 1, transformOrigin: '50% 50%' });
 
-  /** Function contract: settle. Inputs: None. Side effects: Resolves icon to current hover/rest pose. Returns: Undefined. */
+  /** Function contract: settle. Purpose: Implement settle behavior for the kinetic button motion system. Inputs: None. Side effects: Resolves icon to current hover/rest pose. Returns: Undefined. */
   function settle() {
     gsap.to(control, {
       y: state.hovered && canHover ? -1 : 0,
@@ -544,21 +544,21 @@ function createIconMotion(structure, gsap, canHover) {
     });
   }
 
-  /** Function contract: enter. Inputs: None. Side effects: Marks icon hovered and settles it. Returns: Undefined. */
+  /** Function contract: enter. Purpose: Implement enter behavior for the kinetic button motion system. Inputs: None. Side effects: Marks icon hovered and settles it. Returns: Undefined. */
   function enter() {
     if (!canHover) return;
     state.hovered = true;
     settle();
   }
 
-  /** Function contract: leave. Inputs: None. Side effects: Clears icon hover and settles it. Returns: Undefined. */
+  /** Function contract: leave. Purpose: Implement leave behavior for the kinetic button motion system. Inputs: None. Side effects: Clears icon hover and settles it. Returns: Undefined. */
   function leave() {
     if (!canHover) return;
     state.hovered = false;
     settle();
   }
 
-  /** Function contract: press. Inputs: `event`. Side effects: Starts icon active compression and rebound. Returns: Undefined. */
+  /** Function contract: press. Purpose: Implement press behavior for the kinetic button motion system. Inputs: `event`. Side effects: Starts icon active compression and rebound. Returns: Undefined. */
   function press(event) {
     if (event?.type === 'pointerdown' && event.button !== 0) return;
     gsap.timeline({ defaults: { overwrite: 'auto' } })
@@ -566,12 +566,12 @@ function createIconMotion(structure, gsap, canHover) {
       .to(control, { scale: state.hovered && canHover ? 1.035 : 1, y: state.hovered && canHover ? -1 : 0, duration: 0.24, ease: 'back.out(1.5)' });
   }
 
-  /** Function contract: keyDown. Inputs: `event`. Side effects: Delegates Enter/Space activation to icon press feedback. Returns: Undefined. */
+  /** Function contract: keyDown. Purpose: Implement keyDown behavior for the kinetic button motion system. Inputs: `event`. Side effects: Delegates Enter/Space activation to icon press feedback. Returns: Undefined. */
   function keyDown(event) {
     if (activationKey(event)) press(event);
   }
 
-  /** Function contract: destroy. Inputs: None. Side effects: Kills icon GSAP work and removes registered listeners. Returns: Undefined. */
+  /** Function contract: destroy. Purpose: Implement destroy behavior for the kinetic button motion system. Inputs: None. Side effects: Kills icon GSAP work and removes registered listeners. Returns: Undefined. */
   function destroy() {
     gsap.killTweensOf(control);
     control.removeEventListener('pointerenter', enter);
@@ -587,11 +587,11 @@ function createIconMotion(structure, gsap, canHover) {
   return { structure, destroy };
 }
 
-/** Function contract: createReducedMotion. Inputs: `structure`, `gsap`. Side effects: Registers pointer/keyboard listeners and starts opacity-only active feedback. Returns: Motion instance exposing `destroy`. */
+/** Function contract: createReducedMotion. Purpose: Implement createReducedMotion behavior for the kinetic button motion system. Inputs: `structure`, `gsap`. Side effects: Registers pointer/keyboard listeners and starts opacity-only active feedback. Returns: Motion instance exposing `destroy`. */
 function createReducedMotion(structure, gsap) {
   const { control } = structure;
 
-  /** Function contract: press. Inputs: `event`. Side effects: Starts a short opacity down/up timeline. Returns: Undefined. */
+  /** Function contract: press. Purpose: Implement press behavior for the kinetic button motion system. Inputs: `event`. Side effects: Starts a short opacity down/up timeline. Returns: Undefined. */
   function press(event) {
     if (event?.type === 'pointerdown' && event.button !== 0) return;
     gsap.timeline({ defaults: { overwrite: 'auto' } })
@@ -599,12 +599,12 @@ function createReducedMotion(structure, gsap) {
       .to(control, { opacity: 1, duration: 0.10 });
   }
 
-  /** Function contract: keyDown. Inputs: `event`. Side effects: Delegates Enter/Space activation to reduced-motion feedback. Returns: Undefined. */
+  /** Function contract: keyDown. Purpose: Implement keyDown behavior for the kinetic button motion system. Inputs: `event`. Side effects: Delegates Enter/Space activation to reduced-motion feedback. Returns: Undefined. */
   function keyDown(event) {
     if (activationKey(event)) press(event);
   }
 
-  /** Function contract: destroy. Inputs: None. Side effects: Kills opacity GSAP work and removes registered listeners. Returns: Undefined. */
+  /** Function contract: destroy. Purpose: Implement destroy behavior for the kinetic button motion system. Inputs: None. Side effects: Kills opacity GSAP work and removes registered listeners. Returns: Undefined. */
   function destroy() {
     gsap.killTweensOf(control);
     control.removeEventListener('pointerdown', press);
@@ -616,7 +616,7 @@ function createReducedMotion(structure, gsap) {
   return { structure, destroy };
 }
 
-/** Function contract: createMotion. Inputs: `structure`, `gsap`, `SplitText`, `conditions`. Side effects: Delegates setup to the role-appropriate motion implementation. Returns: Motion instance exposing `destroy`. */
+/** Function contract: createMotion. Purpose: Implement createMotion behavior for the kinetic button motion system. Inputs: `structure`, `gsap`, `SplitText`, `conditions`. Side effects: Delegates setup to the role-appropriate motion implementation. Returns: Motion instance exposing `destroy`. */
 function createMotion(structure, gsap, SplitText, conditions) {
   if (conditions.reduce) return createReducedMotion(structure, gsap);
   if (structure.role === 'nav') return createNavMotion(structure, gsap, conditions.canHover);
@@ -624,11 +624,11 @@ function createMotion(structure, gsap, SplitText, conditions) {
   return createPillMotion(structure, gsap, SplitText, conditions.canHover);
 }
 
-/** Function contract: initializeScope. Inputs: `gsap`, `SplitText`, `conditions`. Side effects: Decorates current/future controls, registers listeners, and starts a MutationObserver. Returns: Cleanup function for the capability scope. */
+/** Function contract: initializeScope. Purpose: Implement initializeScope behavior for the kinetic button motion system. Inputs: `gsap`, `SplitText`, `conditions`. Side effects: Decorates current/future controls, registers listeners, and starts a MutationObserver. Returns: Cleanup function for the capability scope. */
 function initializeScope(gsap, SplitText, conditions) {
   const instances = new Map();
 
-  /** Function contract: setup. Inputs: `control`. Side effects: May destroy stale motion, mutate control DOM, and register listeners/tweens. Returns: Undefined. */
+  /** Function contract: setup. Purpose: Implement setup behavior for the kinetic button motion system. Inputs: `control`. Side effects: May destroy stale motion, mutate control DOM, and register listeners/tweens. Returns: Undefined. */
   function setup(control) {
     if (!eligible(control)) return;
     const current = instances.get(control);
@@ -649,14 +649,14 @@ function initializeScope(gsap, SplitText, conditions) {
     instances.set(control, createMotion(structure, gsap, SplitText, conditions));
   }
 
-  /** Function contract: scan. Inputs: `root`. Side effects: Discovers and initializes matching controls inside one added DOM root. Returns: Undefined. */
+  /** Function contract: scan. Purpose: Implement scan behavior for the kinetic button motion system. Inputs: `root`. Side effects: Discovers and initializes matching controls inside one added DOM root. Returns: Undefined. */
   function scan(root) {
     if (!(root instanceof Element)) return;
     if (root.matches(CONTROL_SELECTOR)) setup(root);
     for (const control of root.querySelectorAll(CONTROL_SELECTOR)) setup(control);
   }
 
-  /** Function contract: onMutations. Inputs: `records`. Side effects: Rebuilds stale controls and initializes controls inside newly added DOM nodes. Returns: Undefined. */
+  /** Function contract: onMutations. Purpose: Implement onMutations behavior for the kinetic button motion system. Inputs: `records`. Side effects: Rebuilds stale controls and initializes controls inside newly added DOM nodes. Returns: Undefined. */
   function onMutations(records) {
     for (const record of records) {
       if (record.target instanceof Element) {
@@ -672,7 +672,7 @@ function initializeScope(gsap, SplitText, conditions) {
   const observer = new MutationObserver(onMutations);
   observer.observe(document.body, { childList: true, subtree: true });
 
-  /** Function contract: cleanup. Inputs: None. Side effects: Disconnects dynamic discovery and destroys every active motion instance. Returns: Undefined. */
+  /** Function contract: cleanup. Purpose: Implement cleanup behavior for the kinetic button motion system. Inputs: None. Side effects: Disconnects dynamic discovery and destroys every active motion instance. Returns: Undefined. */
   function cleanup() {
     observer.disconnect();
     for (const instance of instances.values()) instance.destroy();
@@ -682,25 +682,25 @@ function initializeScope(gsap, SplitText, conditions) {
   return cleanup;
 }
 
-/** Function contract: destroyButtonMotion. Inputs: None. Side effects: Reverts the current GSAP media scope and invalidates pending initialization. Returns: Undefined. */
+/** Function contract: destroyButtonMotion. Purpose: Implement destroyButtonMotion behavior for the kinetic button motion system. Inputs: None. Side effects: Reverts the current GSAP media scope and invalidates pending initialization. Returns: Undefined. */
 export function destroyButtonMotion() {
   activeTeardown?.();
   activeTeardown = null;
   initGeneration += 1;
 }
 
-/** Function contract: initButtonMotion. Inputs: None. Side effects: Loads GSAP, decorates controls, registers responsive media behavior, and logs non-fatal enhancement failures. Returns: Undefined; initialization continues asynchronously. */
+/** Function contract: initButtonMotion. Purpose: Implement initButtonMotion behavior for the kinetic button motion system. Inputs: None. Side effects: Loads GSAP, decorates controls, registers responsive media behavior, and logs non-fatal enhancement failures. Returns: Undefined; initialization continues asynchronously. */
 export function initButtonMotion() {
   destroyButtonMotion();
   const generation = initGeneration;
 
-  /** Function contract: runtimeReady. Inputs: `runtime`. Side effects: Registers matchMedia, control motion, and page lifecycle cleanup. Returns: Undefined. */
+  /** Function contract: runtimeReady. Purpose: Implement runtimeReady behavior for the kinetic button motion system. Inputs: `runtime`. Side effects: Registers matchMedia, control motion, and page lifecycle cleanup. Returns: Undefined. */
   function runtimeReady(runtime) {
     if (generation !== initGeneration || !document.body) return;
     const { gsap, SplitText } = runtime;
     const matchMedia = gsap.matchMedia();
 
-    /** Function contract: applyMedia. Inputs: `context`. Side effects: Toggles reduced-motion state and initializes the current control scope. Returns: Cleanup function for the media capability state. */
+    /** Function contract: applyMedia. Purpose: Implement applyMedia behavior for the kinetic button motion system. Inputs: `context`. Side effects: Toggles reduced-motion state and initializes the current control scope. Returns: Cleanup function for the media capability state. */
     function applyMedia(context) {
       const conditions = {
         canHover: Boolean(context.conditions?.canHover),
@@ -715,7 +715,7 @@ export function initButtonMotion() {
       reduce: '(prefers-reduced-motion: reduce)',
     }, applyMedia);
 
-    /** Function contract: teardown. Inputs: None. Side effects: Reverts matchMedia control motion and removes page lifecycle state. Returns: Undefined. */
+    /** Function contract: teardown. Purpose: Implement teardown behavior for the kinetic button motion system. Inputs: None. Side effects: Reverts matchMedia control motion and removes page lifecycle state. Returns: Undefined. */
     function teardown() {
       window.removeEventListener('pagehide', teardown);
       matchMedia.revert();
@@ -726,7 +726,7 @@ export function initButtonMotion() {
     window.addEventListener('pagehide', teardown, { once: true });
   }
 
-  /** Function contract: runtimeFailed. Inputs: `error`. Side effects: Emits a non-fatal console warning. Returns: Undefined. */
+  /** Function contract: runtimeFailed. Purpose: Implement runtimeFailed behavior for the kinetic button motion system. Inputs: `error`. Side effects: Emits a non-fatal console warning. Returns: Undefined. */
   function runtimeFailed(error) {
     console.warn('[portfolio] GSAP button motion enhancement unavailable; baseline controls remain active.', error);
   }
