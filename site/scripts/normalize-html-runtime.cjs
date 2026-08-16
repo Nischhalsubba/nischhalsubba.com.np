@@ -20,7 +20,7 @@ const useDist = process.argv.includes('--dist');
 const root = useDist ? path.join(repositoryRoot, 'dist') : repositoryRoot;
 const htmlFiles = [];
 const styleHref = '/style.css?v=50.0';
-const scriptSrc = '/script.js?v=35.0';
+const scriptSrc = '/script.js?v=36.0';
 
 
 /**
