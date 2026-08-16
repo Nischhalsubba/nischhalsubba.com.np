@@ -1,15 +1,16 @@
 /**
  * @fileoverview scripts/compile-single-stylesheet.cjs
- * Purpose: Keep the site on one production stylesheet while folding the maintained inner-page and case-study style systems into that canonical CSS file.
+ * Purpose: Keep the site on one production stylesheet while folding the maintained inner-page, case-study, and interaction-motion style systems into that canonical CSS file.
  * Responsibilities:
  * - Read the selected source or production `style.css` depending on whether `--dist` is present.
- * - Load the maintained inner-page and case-study system fragments when they exist.
+ * - Load the maintained inner-page, case-study, and interaction-motion system fragments when they exist.
  * - Replace the previously compiled block instead of appending duplicate copies on repeated runs.
  * - Preserve the current light-theme contrast correction and stylesheet version marker used by the build.
  * Execution context: Node.js source-generation and production-build stage used by `scripts/generate-source.cjs` and `scripts/build-dist.cjs`.
  * Connected files:
  * - src/styles/systems/inner-pages.css
  * - src/styles/systems/case-study.css
+ * - src/styles/systems/interaction-motion.css
  * - scripts/audit-css-architecture.cjs
  * - scripts/generate-source.cjs
  * - scripts/build-dist.cjs
@@ -24,6 +25,7 @@ const stylesheetPath = path.join(targetRoot, 'style.css');
 const fragmentFiles = [
   path.join(root, 'src', 'styles', 'systems', 'inner-pages.css'),
   path.join(root, 'src', 'styles', 'systems', 'case-study.css'),
+  path.join(root, 'src', 'styles', 'systems', 'interaction-motion.css'),
 ];
 const startMarker = '/* nrs-single-source-inner-pages-v50:compiled:start */';
 const endMarker = '/* nrs-single-source-inner-pages-v50:compiled:end */';
