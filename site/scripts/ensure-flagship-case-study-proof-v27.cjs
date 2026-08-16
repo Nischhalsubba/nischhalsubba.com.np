@@ -26,12 +26,26 @@ const pihubCreditor = 'https://embed.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihu
 const pihubInvestor = 'https://embed.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-36&viewport=227%2C-238%2C0.53&scaling=min-zoom&content-scaling=fixed&page-id=1%3A2&embed-host=share';
 const pihubAdmin = 'https://embed.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-2821&p=f&viewport=25%2C237%2C0.12&scaling=min-zoom&content-scaling=fixed&page-id=1%3A3&embed-host=share';
 
+/**
+ * Function contract: readPage
+ * Purpose: Read one required portfolio page from the selected source or production-output base directory.
+ * Inputs: `name`
+ * Side effects: Reads filesystem state and throws when the required page is absent.
+ * Returns: The resolved file path and UTF-8 HTML content.
+ */
 function readPage(name) {
   const file = path.join(base, name);
   if (!fs.existsSync(file)) throw new Error(`[flagship-proof] Missing required page: ${file}`);
   return { file, html: fs.readFileSync(file, 'utf8') };
 }
 
+/**
+ * Function contract: removeExisting
+ * Purpose: Remove a previously generated flagship-proof block so repeated executions remain deterministic.
+ * Inputs: `html`
+ * Side effects: No external side effects; throws when marker structure is malformed.
+ * Returns: HTML with all prior flagship-proof blocks removed.
+ */
 function removeExisting(html) {
   let next = html;
   while (next.includes(startMarker)) {
@@ -43,6 +57,13 @@ function removeExisting(html) {
   return next;
 }
 
+/**
+ * Function contract: insertAfterLead
+ * Purpose: Place the generated proof block immediately after the page's first lead header or section inside main content.
+ * Inputs: `html`, `block`
+ * Side effects: No external side effects; throws when the page lacks a usable main-content insertion point.
+ * Returns: HTML with the proof block inserted near the page lead.
+ */
 function insertAfterLead(html, block) {
   const mainStart = html.search(/<main\b/i);
   if (mainStart < 0) throw new Error('[flagship-proof] Page is missing <main>.');
@@ -54,29 +75,71 @@ function insertAfterLead(html, block) {
   return `${html.slice(0, point)}${block}${html.slice(point)}`;
 }
 
+/**
+ * Function contract: identity
+ * Purpose: Keep structured professional identity on the targeted routes aligned with the current Senior Product Designer positioning.
+ * Inputs: `html`
+ * Side effects: No external side effects.
+ * Returns: HTML with legacy Product Designer structured-data job titles normalized where present.
+ */
 function identity(html) {
   return html
     .replaceAll('"jobTitle":"Product Designer"', '"jobTitle":"Senior Product Designer"')
     .replaceAll('"jobTitle": "Product Designer"', '"jobTitle": "Senior Product Designer"');
 }
 
+/**
+ * Function contract: proofCard
+ * Purpose: Render one inspectable flagship evidence card using existing portfolio card primitives.
+ * Inputs: `{ href, kicker, title, text, detail, external }`
+ * Side effects: No external side effects.
+ * Returns: HTML for one internal or external proof card.
+ */
 function proofCard({ href, kicker, title, text, detail, external = false }) {
   const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
   return `<a class="prototype-link-card" href="${href}"${attrs}><span class="eyebrow">${kicker}</span><strong>${title}</strong><span>${text}</span><span class="nrs-evidence-note">${detail}</span></a>`;
 }
 
+/**
+ * Function contract: flagshipIndexBlock
+ * Purpose: Render the Work archive section that prioritizes SaaS, fintech, and design-to-engineering hiring evidence.
+ * Inputs: None.
+ * Side effects: No external side effects.
+ * Returns: Marker-wrapped HTML for the flagship evidence section.
+ */
 function flagshipIndexBlock() {
   return `${startMarker}<section id="flagship-evidence" class="section-container reveal-on-scroll nrs-flagship-proof"><div class="section-header"><p class="eyebrow">Flagship evidence</p><h2 class="section-title">Three systems that show the range I want to be hired for.</h2><p class="section-lead">Complex SaaS architecture, financial-product state design, and design-to-engineering systems. The point is not project count. It is showing how I reason when the product has real structure, risk, and implementation constraints.</p></div><div class="prototype-link-list">${proofCard({ href: '/project-orkest', kicker: 'Complex SaaS / enterprise', title: 'Orkest HQ', text: 'A shared product grammar across CRM, Sales, Inventory, Finance, and workspace modules without flattening different business tasks into one admin template.', detail: 'Inspect: navigation scopes, information density, reusable patterns, and legitimate variation.' })}${proofCard({ href: '/project-pihub', kicker: 'Fintech / multi-role product', title: 'piHub', text: 'Investor, creditor, application, verification, and admin journeys organized around status, requirements, next actions, and recovery.', detail: 'Inspect: role divergence, verification states, task-based density, and recovery paths.' })}${proofCard({ href: designOpsUrl, kicker: 'Design systems / design-to-engineering', title: 'DesignOps Orchestrator', text: 'A public workflow connecting design tokens, content, media, motion, accessibility, performance, implementation, and release tasks.', detail: 'Public GitHub proof: token transformation, audit tasks, asset pipelines, release automation, and handoff-oriented documentation.', external: true })}</div><p class="nrs-evidence-note"><strong>Evidence boundary:</strong> public artifacts vary by project. Where client metrics, research data, or private files are unavailable, the portfolio stays explicit about that instead of manufacturing impact.</p></section>${endMarker}`;
 }
 
+/**
+ * Function contract: orkestBlock
+ * Purpose: Render evidence-specific inspection guidance for the Orkest complex-SaaS case study.
+ * Inputs: None.
+ * Side effects: No external side effects.
+ * Returns: Marker-wrapped HTML describing the system, navigation, density, variation, and related public systems proof.
+ */
 function orkestBlock() {
   return `${startMarker}<section id="flagship-proof" class="section-container reveal-on-scroll nrs-flagship-proof"><div class="section-header"><p class="eyebrow">Hiring evidence</p><h2 class="section-title">What to inspect in the Orkest work.</h2><p class="section-lead">The useful evidence here is systems thinking: deciding what should stay consistent across modules, where density changes with the task, and where a shared pattern should intentionally stop being shared.</p></div><div class="journey-grid"><article class="journey-card"><span class="eyebrow">System model</span><h3>Shared product grammar</h3><p>CRM, Sales, Inventory, Finance, and workspace areas use common structural rules without pretending their workflows are identical.</p></article><article class="journey-card"><span class="eyebrow">Navigation</span><h3>Global, module, and local scope</h3><p>Actions and navigation are separated by scope so users can move between business areas without losing orientation.</p></article><article class="journey-card"><span class="eyebrow">Density</span><h3>Scan first, inspect second</h3><p>Dense operational surfaces prioritize what must be readable at a glance, then move secondary detail behind deliberate inspection.</p></article><article class="journey-card"><span class="eyebrow">Variation</span><h3>Consistency with exceptions</h3><p>Reusable SaaS patterns are valuable only when the team also documents where the business task requires a different interaction.</p></article></div><div class="prototype-link-list"><a class="prototype-link-card" href="${designOpsUrl}" target="_blank" rel="noopener noreferrer"><span class="eyebrow">Related public systems proof</span><strong>DesignOps Orchestrator</strong><span>Inspect a separate public repository showing how I think about tokens, components, audits, implementation contracts, and release workflow.</span></a></div><p class="nrs-evidence-note"><strong>Orkest evidence boundary:</strong> this case publicly shows architecture and interface work. No product-performance metric or public Orkest prototype is claimed where one is not available.</p></section>${endMarker}`;
 }
 
+/**
+ * Function contract: pihubBlock
+ * Purpose: Render evidence-specific inspection guidance and direct public prototype entry points for the piHub fintech case study.
+ * Inputs: None.
+ * Side effects: No external side effects.
+ * Returns: Marker-wrapped HTML describing state, density, verification, role behavior, and the three public prototype flows.
+ */
 function pihubBlock() {
   return `${startMarker}<section id="flagship-proof" class="section-container reveal-on-scroll nrs-flagship-proof"><div class="section-header"><p class="eyebrow">Hiring evidence</p><h2 class="section-title">What to inspect in the piHub prototypes.</h2><p class="section-lead">The strongest proof is not visual polish. It is whether each role can understand current state, outstanding requirements, available actions, waiting, failure, and recovery without the product contradicting itself.</p></div><div class="journey-grid"><article class="journey-card"><span class="eyebrow">State + action</span><h3>Keep process state actionable</h3><p>Status, missing requirements, and the next available action stay close enough that users do not have to reconstruct the process from memory.</p></article><article class="journey-card"><span class="eyebrow">Density</span><h3>Change information density with the job</h3><p>Dashboards can support scanning and comparison while application and verification steps reduce competing information around consequential decisions.</p></article><article class="journey-card"><span class="eyebrow">Verification</span><h3>Waiting is a real product state</h3><p>Submitted, reviewing, approved, rejected, and resubmission states receive explicit treatment instead of being reduced to a passive badge.</p></article><article class="journey-card"><span class="eyebrow">Roles</span><h3>Share rules, not identical screens</h3><p>Investor, creditor, applicant, and admin journeys can diverge where permissions or tasks differ while retaining one understandable status language.</p></article></div><div class="prototype-link-list"><a class="prototype-link-card" href="${pihubCreditor}" target="_blank" rel="noopener noreferrer"><span class="eyebrow">Public prototype</span><strong>Creditor flow</strong><span>Inspect application, account, status, and credit-oriented interaction patterns.</span></a><a class="prototype-link-card" href="${pihubInvestor}" target="_blank" rel="noopener noreferrer"><span class="eyebrow">Public prototype</span><strong>Investor flow</strong><span>Inspect role-specific information hierarchy and investment-oriented product states.</span></a><a class="prototype-link-card" href="${pihubAdmin}" target="_blank" rel="noopener noreferrer"><span class="eyebrow">Public prototype</span><strong>Admin flow</strong><span>Inspect the operational side of the same product model and where permissions change available actions.</span></a></div><p class="nrs-evidence-note"><strong>Evidence boundary:</strong> these Figma prototypes are public design artifacts. The case does not claim confidential financial metrics, production conversion data, or engineering ownership.</p></section>${endMarker}`;
 }
 
+/**
+ * Function contract: patch
+ * Purpose: Normalize identity, remove stale generated proof, insert the current block, validate marker count, and persist one targeted route.
+ * Inputs: `name`, `block`
+ * Side effects: Reads and writes the selected HTML page and throws when the transform contract cannot be satisfied.
+ * Returns: Undefined; the function exists for deterministic filesystem transformation and validation.
+ */
 function patch(name, block) {
   const page = readPage(name);
   let html = identity(removeExisting(page.html));
