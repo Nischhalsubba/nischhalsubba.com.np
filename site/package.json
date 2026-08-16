@@ -6,6 +6,11 @@
   "description": "Production portfolio for Nischhal Raj Subba, a Nepal-based product designer focused on Web3, SaaS, fintech, UX systems, and developer-ready design handoff.",
   "author": "Nischhal Raj Subba",
   "license": "UNLICENSED",
+  "packageManager": "npm@11.17.0",
+  "engines": {
+    "node": "24.x",
+    "npm": "11.x"
+  },
   "scripts": {
     "prepare:sources": "node scripts/repository/materialize-root-sources.cjs",
     "sync:sources": "node scripts/repository/sync-root-sources.cjs",
@@ -18,9 +23,9 @@
     "build": "node scripts/build-dist.cjs && node scripts/generate-social-previews.cjs && node scripts/write-build-metadata.cjs",
     "build:dist": "npm run build",
     "preview": "vite preview",
-    "preview:static": "npx http-server -p 4173 dist",
+    "preview:static": "npx --no-install http-server -p 4173 dist",
     "lint": "node scripts/lint-project.cjs",
-    "audit:dependencies": "npm audit --audit-level=high",
+    "audit:dependencies": "npm audit --audit-level=low",
     "audit:repo-structure": "node scripts/repository/audit-repository-structure.cjs",
     "check:links": "node scripts/check-links.js",
     "audit:build": "node scripts/audit-build.cjs",
@@ -41,8 +46,9 @@
     "audit:code-docs": "node scripts/repository/audit-code-documentation.cjs"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.4.3"
+    "@types/node": "24.13.3",
+    "http-server": "14.1.1",
+    "typescript": "7.0.2",
+    "vite": "8.2.0"
   }
 }
