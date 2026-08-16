@@ -59,6 +59,7 @@ function recordFailure(message) {
  */
 async function waitForMotionRuntime() {
   await page.waitForFunction(
+    /** Callback contract: Inspect browser runtime state until GSAP 3.15 and one decorated control are present. Inputs: `selector`. Side effects: Reads page DOM and global GSAP state. Returns: Boolean readiness predicate. */
     (selector) => {
       const control = document.querySelector(selector);
       return Boolean(window.gsap?.version === '3.15.0' && control?.classList.contains('nrs-motion-control'));
@@ -76,30 +77,51 @@ async function waitForMotionRuntime() {
  * Returns: Promise resolving after route coverage checks complete.
  */
 async function auditRouteCoverage(route) {
-  const result = await page.evaluate((selector) => {
-    const controls = [...document.querySelectorAll(selector)].filter((control) => {
-      if (!(control instanceof HTMLElement)) return false;
-      if (control.matches('[data-motion="off"], [aria-hidden="true"]')) return false;
-      if (control.closest('[aria-hidden="true"]')) return false;
-      if ('disabled' in control && control.disabled) return false;
-      return true;
-    });
-    const missing = controls
-      .filter((control) => control.dataset.nrsMotionDecorated !== 'true')
-      .map((control) => `${control.tagName.toLowerCase()}${control.id ? `#${control.id}` : ''}.${[...control.classList].join('.')}`);
-    const runtimeSrcs = [...document.scripts].map((script) => script.getAttribute('src')).filter(Boolean);
-    return {
-      total: controls.length,
-      decorated: controls.length - missing.length,
-      missing,
-      runtimeSrcs,
-      gsapVersion: window.gsap?.version || null,
-    };
-  }, controlSelector);
+  const result = await page.evaluate(
+    /** Callback contract: Collect production runtime and control-decoration evidence from the current browser page. Inputs: `selector`. Side effects: Reads DOM/runtime state. Returns: Route coverage summary object. */
+    (selector) => {
+      const controls = [...document.querySelectorAll(selector)].filter(
+        /** Callback contract: Keep only visible semantic controls eligible for the refined motion system. Inputs: `control`. Side effects: Reads DOM attributes and ancestor state. Returns: Boolean eligibility predicate. */
+        (control) => {
+          if (!(control instanceof HTMLElement)) return false;
+          if (control.matches('[data-motion="off"], [aria-hidden="true"]')) return false;
+          if (control.closest('[aria-hidden="true"]')) return false;
+          if ('disabled' in control && control.disabled) return false;
+          return true;
+        },
+      );
+      const missing = controls
+        .filter(
+          /** Callback contract: Select eligible controls that were not decorated by the refined runtime. Inputs: `control`. Side effects: Reads dataset state. Returns: Boolean missing-decoration predicate. */
+          (control) => control.dataset.nrsMotionDecorated !== 'true',
+        )
+        .map(
+          /** Callback contract: Convert one undecorated control into an actionable selector-like diagnostic string. Inputs: `control`. Side effects: Reads element id/classes. Returns: Diagnostic string. */
+          (control) => `${control.tagName.toLowerCase()}${control.id ? `#${control.id}` : ''}.${[...control.classList].join('.')}`,
+        );
+      const runtimeSrcs = [...document.scripts]
+        .map(
+          /** Callback contract: Read one script element source for stable-runtime verification. Inputs: `script`. Side effects: Reads DOM attribute state. Returns: Script src value or null. */
+          (script) => script.getAttribute('src'),
+        )
+        .filter(Boolean);
+      return {
+        total: controls.length,
+        decorated: controls.length - missing.length,
+        missing,
+        runtimeSrcs,
+        gsapVersion: window.gsap?.version || null,
+      };
+    },
+    controlSelector,
+  );
 
   if (result.total === 0) recordFailure(`${route}: no eligible shared controls were discovered.`);
   if (result.missing.length) recordFailure(`${route}: undecorated controls: ${result.missing.join(', ')}`);
-  if (!result.runtimeSrcs.some((src) => src?.startsWith('/script.js?v=36.0'))) {
+  if (!result.runtimeSrcs.some(
+    /** Callback contract: Determine whether one loaded script uses the required stable production runtime entry. Inputs: `src`. Side effects: None. Returns: Boolean stable-runtime predicate. */
+    (src) => src?.startsWith('/script.js?v=36.0'),
+  )) {
     recordFailure(`${route}: final HTML is not using the stable /script.js?v=36.0 runtime entry.`);
   }
   if (result.gsapVersion !== '3.15.0') recordFailure(`${route}: expected GSAP 3.15.0, received ${result.gsapVersion || 'none'}.`);
@@ -113,11 +135,15 @@ async function auditRouteCoverage(route) {
  * Returns: Promise resolving to the current scaleY value.
  */
 async function readScaleY(selector) {
-  return page.$eval(selector, (element) => {
-    const transform = getComputedStyle(element).transform;
-    if (!transform || transform === 'none') return 1;
-    return new DOMMatrixReadOnly(transform).m22;
-  });
+  return page.$eval(
+    selector,
+    /** Callback contract: Read the target element's computed transform matrix and return its vertical scale. Inputs: `element`. Side effects: Reads computed CSS. Returns: Numeric scaleY. */
+    (element) => {
+      const transform = getComputedStyle(element).transform;
+      if (!transform || transform === 'none') return 1;
+      return new DOMMatrixReadOnly(transform).m22;
+    },
+  );
 }
 
 for (const route of routes) {
@@ -136,15 +162,19 @@ try {
   const selector = '.hero-actions .btn.btn-primary';
   await page.waitForSelector(selector, { state: 'visible' });
 
-  const structure = await page.$eval(selector, (control) => ({
-    labelCount: control.querySelectorAll('.nrs-motion-label').length,
-    alternateLabelCount: control.querySelectorAll('.nrs-motion-label--alt').length,
-    fillCount: control.querySelectorAll(':scope > .nrs-motion-fill').length,
-    glowCount: control.querySelectorAll(':scope > .nrs-motion-glow').length,
-    impactCount: control.querySelectorAll(':scope > .nrs-motion-impact').length,
-    charCount: control.querySelectorAll('[class^="nrs-motion-char"]').length,
-    visibleText: control.innerText.replace(/\s+/g, ' ').trim(),
-  }));
+  const structure = await page.$eval(
+    selector,
+    /** Callback contract: Collect the primary CTA's generated refined-motion structure for contract assertions. Inputs: `control`. Side effects: Reads DOM structure/text. Returns: Structure summary object. */
+    (control) => ({
+      labelCount: control.querySelectorAll('.nrs-motion-label').length,
+      alternateLabelCount: control.querySelectorAll('.nrs-motion-label--alt').length,
+      fillCount: control.querySelectorAll(':scope > .nrs-motion-fill').length,
+      glowCount: control.querySelectorAll(':scope > .nrs-motion-glow').length,
+      impactCount: control.querySelectorAll(':scope > .nrs-motion-impact').length,
+      charCount: control.querySelectorAll('[class^="nrs-motion-char"]').length,
+      visibleText: control.innerText.replace(/\s+/g, ' ').trim(),
+    }),
+  );
 
   if (structure.labelCount !== 1) recordFailure(`primary CTA: expected one real motion label, found ${structure.labelCount}.`);
   if (structure.alternateLabelCount !== 0) recordFailure(`primary CTA: retired alternate-label reel is still present (${structure.alternateLabelCount}).`);
@@ -154,16 +184,28 @@ try {
   if (structure.charCount < 2) recordFailure(`primary CTA: SplitText character layer did not initialize (${structure.charCount} chars).`);
   if (!/View selected work/i.test(structure.visibleText)) recordFailure(`primary CTA: authored label changed unexpectedly to "${structure.visibleText}".`);
 
-  await page.$eval(selector, (control) => {
-    control.addEventListener('click', (event) => event.preventDefault(), { once: true });
-  });
+  await page.$eval(
+    selector,
+    /** Callback contract: Prevent one primary CTA navigation so the browser audit can hold and release the control on the same page. Inputs: `control`. Side effects: Registers one click listener. Returns: Undefined. */
+    (control) => {
+      control.addEventListener('click',
+        /** Callback contract: Cancel the audited CTA's single click navigation while preserving pointer state transitions. Inputs: `event`. Side effects: Prevents default navigation. Returns: Undefined. */
+        (event) => event.preventDefault(),
+        { once: true },
+      );
+    },
+  );
   await page.locator(selector).hover();
   await page.waitForTimeout(240);
 
-  const hovered = await page.$eval(selector, (control) => ({
-    hovered: control.classList.contains('is-motion-hovered'),
-    fillTransform: getComputedStyle(control.querySelector('.nrs-motion-fill')).transform,
-  }));
+  const hovered = await page.$eval(
+    selector,
+    /** Callback contract: Read primary CTA hover state and pointer-origin fill transform after hover settles. Inputs: `control`. Side effects: Reads DOM state/computed CSS. Returns: Hover evidence object. */
+    (control) => ({
+      hovered: control.classList.contains('is-motion-hovered'),
+      fillTransform: getComputedStyle(control.querySelector('.nrs-motion-fill')).transform,
+    }),
+  );
   if (!hovered.hovered) recordFailure('primary CTA: hover state class was not applied.');
   if (!hovered.fillTransform || hovered.fillTransform === 'none') recordFailure('primary CTA: pointer-origin fill did not transform on hover.');
 
@@ -174,20 +216,32 @@ try {
     await page.mouse.move(box.x + box.width * 0.58, box.y + box.height * 0.48);
     await page.mouse.down();
     await page.waitForTimeout(140);
-    const pressClass = await page.$eval(selector, (control) => control.classList.contains('is-motion-pressed'));
+    const pressClass = await page.$eval(
+      selector,
+      /** Callback contract: Read whether pointerdown entered the refined held active state. Inputs: `control`. Side effects: Reads class state. Returns: Boolean held-state predicate. */
+      (control) => control.classList.contains('is-motion-pressed'),
+    );
     const pressedScaleY = await readScaleY(selector);
     if (!pressClass) recordFailure('primary CTA: pointerdown did not enter the held active state.');
     if (pressedScaleY >= 0.99) recordFailure(`primary CTA: press compression was not visible (scaleY=${pressedScaleY.toFixed(3)}).`);
 
     await page.waitForTimeout(280);
-    const stillHeld = await page.$eval(selector, (control) => control.classList.contains('is-motion-pressed'));
+    const stillHeld = await page.$eval(
+      selector,
+      /** Callback contract: Read whether the active state persists while the pointer remains held. Inputs: `control`. Side effects: Reads class state. Returns: Boolean held-state predicate. */
+      (control) => control.classList.contains('is-motion-pressed'),
+    );
     const heldScaleY = await readScaleY(selector);
     if (!stillHeld) recordFailure('primary CTA: active state auto-released before pointerup.');
     if (heldScaleY >= 0.99) recordFailure(`primary CTA: held compression did not persist (scaleY=${heldScaleY.toFixed(3)}).`);
 
     await page.mouse.up();
     await page.waitForTimeout(360);
-    const released = await page.$eval(selector, (control) => control.classList.contains('is-motion-pressed'));
+    const released = await page.$eval(
+      selector,
+      /** Callback contract: Read whether the held active-state marker clears after pointerup. Inputs: `control`. Side effects: Reads class state. Returns: Boolean remaining-state predicate. */
+      (control) => control.classList.contains('is-motion-pressed'),
+    );
     const releasedScaleY = await readScaleY(selector);
     if (released) recordFailure('primary CTA: active state remained after pointerup.');
     if (releasedScaleY <= 0.99) recordFailure(`primary CTA: release recovery did not settle (scaleY=${releasedScaleY.toFixed(3)}).`);
