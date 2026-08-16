@@ -143,13 +143,13 @@
 .nrs-motion-reduced .nrs-motion-glow,
 .nrs-motion-reduced .nrs-motion-impact,
 .nrs-motion-reduced .nrs-motion-nav-dot {
-  display: none !important;
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .nrs-motion-content,
   .nrs-motion-label,
   .nrs-motion-char {
-    transform: none !important;
+    transform: none;
   }
 }
