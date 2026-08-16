@@ -20,7 +20,7 @@
     "prebuild": "npm run prepare:sources && node scripts/preflight-build-scripts.cjs && node scripts/generate-seo-discovery.cjs && npm run prepare:sources",
     "generate": "npm run prepare:sources && node scripts/generate-source.cjs && npm run sync:sources && npm run prepare:sources",
     "sync:seo-discovery": "node scripts/generate-seo-discovery.cjs && npm run prepare:sources",
-    "build": "node scripts/build-dist.cjs && node scripts/normalize-html-runtime.cjs --dist && node scripts/generate-social-previews.cjs && node scripts/write-build-metadata.cjs",
+    "build": "node scripts/build-dist.cjs && node scripts/normalize-html-runtime.cjs --dist && node scripts/finalize-refined-button-motion.cjs --dist && node scripts/generate-social-previews.cjs && node scripts/write-build-metadata.cjs",
     "build:dist": "npm run build",
     "preview": "vite preview",
     "lint": "node scripts/lint-project.cjs",
