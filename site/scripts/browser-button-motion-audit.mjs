@@ -2,14 +2,15 @@
  * @fileoverview scripts/browser-button-motion-audit.mjs
  * Purpose: Verify that the production preview executes the refined sitewide GSAP button interaction rather than the retired generic hover treatment.
  * Responsibilities:
- * - Confirm canonical routes load the stable production runtime and decorate every eligible shared control.
- * - Assert the primary CTA keeps one semantic label and receives fill, glow, impact, and SplitText character layers.
+ * - Confirm canonical routes load the stable production runtime and decorate every eligible shared control family, including final uploaded/agent CTAs.
+ * - Assert the primary CTA keeps one semantic label and receives icon, fill, glow, impact, and SplitText character layers.
  * - Exercise hover plus a genuinely held pointer active state and verify release recovery.
  * Execution context: Playwright browser audit against the built Vite preview server in CI or local validation.
  * Connected files:
- * - src/scripts/features/motion/button-motion.js
+ * - src/scripts/features/motion/refined-button-motion.js
  * - src/styles/systems/interaction-motion.css
  * - scripts/normalize-html-runtime.cjs
+ * - scripts/finalize-refined-button-motion.cjs
  * - .github/workflows/browser-audit.yml
  * Maintenance: Keep assertions behavioral and production-facing; avoid snapshots of transient animation frames when state/property checks are more stable.
  */
@@ -23,6 +24,8 @@ const controlSelector = [
   'a.btn',
   'a.btn-primary',
   'a.btn-secondary',
+  '.nrs-uploaded-btn',
+  '.agent-btn',
   '.footer-email-btn',
   '.floating-resume-btn',
   '.filter-btn',
@@ -159,7 +162,7 @@ for (const route of routes) {
 await page.goto(new URL('/', base).href, { waitUntil: 'domcontentloaded' });
 try {
   await waitForMotionRuntime();
-  const selector = '.hero-actions .btn.btn-primary';
+  const selector = '.nrs-layout-home-hero-actions .nrs-uploaded-btn-primary, .nrs-uploaded-actions .nrs-uploaded-btn-primary, .hero-actions .btn.btn-primary';
   await page.waitForSelector(selector, { state: 'visible' });
 
   const structure = await page.$eval(
@@ -168,6 +171,7 @@ try {
     (control) => ({
       labelCount: control.querySelectorAll('.nrs-motion-label').length,
       alternateLabelCount: control.querySelectorAll('.nrs-motion-label--alt').length,
+      iconCount: control.querySelectorAll('.nrs-motion-icon').length,
       fillCount: control.querySelectorAll(':scope > .nrs-motion-fill').length,
       glowCount: control.querySelectorAll(':scope > .nrs-motion-glow').length,
       impactCount: control.querySelectorAll(':scope > .nrs-motion-impact').length,
@@ -178,6 +182,7 @@ try {
 
   if (structure.labelCount !== 1) recordFailure(`primary CTA: expected one real motion label, found ${structure.labelCount}.`);
   if (structure.alternateLabelCount !== 0) recordFailure(`primary CTA: retired alternate-label reel is still present (${structure.alternateLabelCount}).`);
+  if (structure.iconCount !== 1) recordFailure(`primary CTA: expected one authored arrow motion icon, found ${structure.iconCount}.`);
   if (structure.fillCount !== 1 || structure.glowCount !== 1 || structure.impactCount !== 1) {
     recordFailure(`primary CTA: expected one fill/glow/impact layer, got ${structure.fillCount}/${structure.glowCount}/${structure.impactCount}.`);
   }
@@ -195,7 +200,7 @@ try {
       );
     },
   );
-  await page.locator(selector).hover();
+  await page.locator(selector).first().hover();
   await page.waitForTimeout(240);
 
   const hovered = await page.$eval(
@@ -204,12 +209,16 @@ try {
     (control) => ({
       hovered: control.classList.contains('is-motion-hovered'),
       fillTransform: getComputedStyle(control.querySelector('.nrs-motion-fill')).transform,
+      fillPosition: getComputedStyle(control.querySelector('.nrs-motion-fill')).position,
+      overflow: getComputedStyle(control).overflow,
     }),
   );
   if (!hovered.hovered) recordFailure('primary CTA: hover state class was not applied.');
   if (!hovered.fillTransform || hovered.fillTransform === 'none') recordFailure('primary CTA: pointer-origin fill did not transform on hover.');
+  if (hovered.fillPosition !== 'absolute') recordFailure(`primary CTA: generated fill was overridden to position=${hovered.fillPosition}.`);
+  if (hovered.overflow !== 'hidden') recordFailure(`primary CTA: radial fill is not clipped by the button (overflow=${hovered.overflow}).`);
 
-  const box = await page.locator(selector).boundingBox();
+  const box = await page.locator(selector).first().boundingBox();
   if (!box) {
     recordFailure('primary CTA: could not resolve button bounds for held press audit.');
   } else {
