@@ -2,7 +2,7 @@
  * @fileoverview scripts/finalize-refined-button-motion.cjs
  * Purpose: Remove late-generated homepage CTA CSS declarations that would otherwise override the refined GSAP button transform and generated visual layers in the final production artifact.
  * Responsibilities:
- * - Operate only on the final source or dist stylesheet after all hero/style generators have completed.
+ * - Operate only on the final hero typography block after all hero/style generators have completed.
  * - Preserve the homepage CTA visual baseline while releasing transform, overflow, transition, and descendant-span ownership to the refined motion system.
  * - Fail explicitly when the expected generated hero contract is missing so build drift cannot silently reintroduce a competing hover implementation.
  * Execution context: Node.js CLI during the final production build stage after `build-dist.cjs` and runtime normalization.
@@ -25,13 +25,20 @@ if (!fs.existsSync(stylePath)) {
 }
 
 let css = fs.readFileSync(stylePath, 'utf8');
-const ctaBlockPattern = /\.nrs-uploaded-hero-v19 \.nrs-uploaded-btn\{[\s\S]*?\n\}/;
-const ctaBlockMatch = css.match(ctaBlockPattern);
-if (!ctaBlockMatch) {
-  throw new Error('[refined-button-motion] Expected generated homepage CTA contract was not found.');
+const heroTypePattern = /\/\* nrs-hero-type-v24:start \*\/[\s\S]*?\/\* nrs-hero-type-v24:end \*\//;
+const heroTypeMatch = css.match(heroTypePattern);
+if (!heroTypeMatch) {
+  throw new Error('[refined-button-motion] Expected final hero typography block was not found.');
 }
 
 const original = css;
+const originalHeroType = heroTypeMatch[0];
+const ctaBlockPattern = /\.nrs-uploaded-hero-v19 \.nrs-uploaded-btn\{[\s\S]*?\n\}/;
+const ctaBlockMatch = originalHeroType.match(ctaBlockPattern);
+if (!ctaBlockMatch) {
+  throw new Error('[refined-button-motion] Expected final homepage CTA block was not found inside hero typography v24.');
+}
+
 const originalCtaBlock = ctaBlockMatch[0];
 const normalizedCtaBlock = originalCtaBlock
   .replace('overflow:visible!important;', 'overflow:hidden!important;')
@@ -41,10 +48,10 @@ const normalizedCtaBlock = originalCtaBlock
   );
 
 if (normalizedCtaBlock === originalCtaBlock) {
-  throw new Error('[refined-button-motion] Homepage CTA block did not contain the expected transform/overflow compatibility declarations.');
+  throw new Error('[refined-button-motion] Final homepage CTA block did not contain the expected transform/overflow compatibility declarations.');
 }
 
-css = css
+const normalizedHeroType = originalHeroType
   .replace(ctaBlockPattern, normalizedCtaBlock)
   .replace(
     '.nrs-uploaded-hero-v19 .nrs-uploaded-btn span{',
@@ -55,25 +62,27 @@ css = css
     '',
   );
 
+css = css.replace(heroTypePattern, normalizedHeroType);
 if (css === original) {
   throw new Error('[refined-button-motion] No production CTA compatibility changes were applied.');
 }
 
-const finalCtaBlock = css.match(ctaBlockPattern)?.[0] || '';
+const finalHeroType = css.match(heroTypePattern)?.[0] || '';
+const finalCtaBlock = finalHeroType.match(ctaBlockPattern)?.[0] || '';
 if (!finalCtaBlock.includes('overflow:hidden!important;')) {
-  throw new Error('[refined-button-motion] Homepage CTA overflow is not clipped for pointer-origin fill.');
+  throw new Error('[refined-button-motion] Final homepage CTA overflow is not clipped for pointer-origin fill.');
 }
 
 if (finalCtaBlock.includes('transition:transform')) {
-  throw new Error('[refined-button-motion] Competing CSS transform transition remains in the homepage CTA block.');
+  throw new Error('[refined-button-motion] Competing CSS transform transition remains in the final homepage CTA block.');
 }
 
-if (/\.nrs-uploaded-hero-v19 \.nrs-uploaded-btn:hover\{transform:[^}]*!important\}/.test(css)) {
-  throw new Error('[refined-button-motion] Competing uploaded CTA hover transform remains in the final stylesheet.');
+if (/\.nrs-uploaded-hero-v19 \.nrs-uploaded-btn:hover\{transform:[^}]*!important\}/.test(finalHeroType)) {
+  throw new Error('[refined-button-motion] Competing uploaded CTA hover transform remains in final hero typography.');
 }
 
-if (/\.nrs-uploaded-hero-v19 \.nrs-uploaded-btn span\{/.test(css)) {
-  throw new Error('[refined-button-motion] Broad uploaded CTA descendant-span override remains in the final stylesheet.');
+if (/\.nrs-uploaded-hero-v19 \.nrs-uploaded-btn span\{/.test(finalHeroType)) {
+  throw new Error('[refined-button-motion] Broad uploaded CTA descendant-span override remains in final hero typography.');
 }
 
 fs.writeFileSync(stylePath, css, 'utf8');
