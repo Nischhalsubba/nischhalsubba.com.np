@@ -1,11 +1,18 @@
 {
   "name": "Nischhal Raj Subba",
   "title": "Senior Product Designer",
+  "positioning": "Senior Product Designer for complex SaaS and fintech products, specializing in complex workflows, design systems, and design-to-engineering delivery.",
   "location": "Kathmandu, Nepal",
   "remote": true,
   "email": "hinischalsubba@gmail.com",
   "website": "https://nischhalsubba.com.np/",
-  "summary": "Senior product designer with 6+ years across SaaS, Web3, fintech, enterprise software, learning products, design systems and implementation-aware product work. I focus on complex workflows, state design, interface systems and handoff that engineering can act on.",
+  "summary": "Senior product designer with 6+ years across SaaS, fintech, Web3, enterprise software, learning products, design systems and implementation-aware product work. I turn complex workflows into clear, trustworthy products that teams can actually ship.",
+  "specialties": [
+    "Complex SaaS and multi-role workflows",
+    "Fintech trust, verification and transaction UX",
+    "Design systems and reusable product patterns",
+    "Design-to-engineering handoff and UI QA"
+  ],
   "skills": [
     "Product UX and workflow architecture",
     "High-fidelity interface design",
@@ -33,6 +40,23 @@
     {"name":"Mokshya.io","summary":"Web3 protocol website structured for first-time comprehension, technical depth and responsive product storytelling."},
     {"name":"Zapp Today","summary":"Multi-role logistics product UX across customer, driver and operational delivery states."}
   ],
+  "proof": [
+    {
+      "name": "Uxcel Hall of Fame",
+      "url": "https://uxcel.com/designer-rankings/past-winners",
+      "detail": "Listed by Uxcel among past UX ranking winners as a Product Designer."
+    },
+    {
+      "name": "Uxcel Mentor",
+      "url": "https://app.uxcel.com/ux/nischhal",
+      "detail": "Public mentor profile with professional certification, projects and design review activity."
+    },
+    {
+      "name": "GitHub product work",
+      "url": "https://github.com/Nischhalsubba",
+      "detail": "Public product, design-system and implementation work that demonstrates front-end collaboration and engineering literacy."
+    }
+  ],
   "education": [
     "BA (Hons) Business Management — University of Wolverhampton, 2014–2018"
   ],
@@ -48,6 +72,7 @@
     "linkedin": "https://www.linkedin.com/in/nischhal/",
     "behance": "https://www.behance.net/nischhal",
     "github": "https://github.com/Nischhalsubba",
-    "uxcel": "https://app.uxcel.com/ux/nischhal"
+    "uxcel": "https://app.uxcel.com/ux/nischhal",
+    "uxcelHallOfFame": "https://uxcel.com/designer-rankings/past-winners"
   }
 }
