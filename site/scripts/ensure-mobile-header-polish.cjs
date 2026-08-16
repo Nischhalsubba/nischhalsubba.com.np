@@ -196,7 +196,7 @@ const css = `
 
   @keyframes nrsPageEnter {
     from {
-      opacity: 0;
+      opacity: 1;
       transform: translateY(10px);
       filter: blur(6px);
     }
