@@ -1,17 +1,17 @@
 /**
  * @fileoverview src/scripts/features/motion/hero-system-field.js
- * Purpose: Animate the homepage hero's systems-map particles around the approved portrait artwork without changing the artwork, hero copy, or native navigation behavior.
+ * Purpose: Animate the homepage hero's systems-map particles around the original portrait without changing hero copy or native navigation behavior.
  * Responsibilities:
- * - Draw deterministic orange and warm-white particles over the right-side portrait composition.
+ * - Draw deterministic orange and theme-aware neutral particles around the portrait composition.
  * - Repel nearby particles from fine-pointer movement and spring them back to their authored field positions.
- * - Use pinned GSAP for the cursor-orbit response when available, with a direct transform fallback.
- * - Keep coarse-pointer and reduced-motion experiences static and preserve lifecycle cleanup.
+ * - Reuse the pinned GSAP runtime for the cursor-orbit response when available, with a transform-only fallback.
+ * - Keep coarse-pointer and reduced-motion experiences static, react to theme changes, and preserve lifecycle cleanup.
  * Execution context: Browser ES module loaded by the portfolio entrypoint after DOM readiness.
  * Connected files:
  * - src/scripts/entrypoints/portfolio-main.js
  * - scripts/ensure-hero-system-visual-v28.cjs
  * - src/scripts/features/motion/refined-button-motion.js
- * Maintenance: Keep this module scoped to the right-side hero visual. The static composition remains owned by the production finalizer and approved artwork asset.
+ * Maintenance: Keep this module scoped to the right-side hero visual. Static portrait, halo, grid, orbit, labels, and quote remain owned by the production finalizer.
  */
 
 const figure = document.querySelector('[data-hero-system-field]');
@@ -36,6 +36,8 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
   let particles = [];
   let resizeObserver = null;
   let intersectionObserver = null;
+  let themeObserver = null;
+  let lightTheme = document.documentElement.dataset.theme === 'light';
   let gsapInstance = null;
   let cursorX = null;
   let cursorY = null;
@@ -63,7 +65,7 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
 
   /**
    * Function contract: seedParticles
-   * Purpose: Rebuild the portrait-surrounding particle field for the current rendered figure size while keeping the face and central body visually clear.
+   * Purpose: Rebuild the portrait-surrounding particle field for the current figure while keeping the face and central body visually clear.
    * Inputs: None.
    * Side effects: Replaces the in-memory particle collection.
    * Returns: Undefined.
@@ -82,8 +84,8 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
         const random = deterministicUnit(index);
         const nx = x / width;
         const ny = y / height;
-        const faceMask = ((nx - 0.57) / 0.19) ** 2 + ((ny - 0.34) / 0.24) ** 2 < 1;
-        const bodyMask = ((nx - 0.56) / 0.31) ** 2 + ((ny - 0.62) / 0.34) ** 2 < 1;
+        const faceMask = ((nx - 0.55) / 0.18) ** 2 + ((ny - 0.34) / 0.24) ** 2 < 1;
+        const bodyMask = ((nx - 0.54) / 0.30) ** 2 + ((ny - 0.63) / 0.34) ** 2 < 1;
         const sparseLabelZone = nx > 0.78 && random < 0.62;
 
         if (faceMask || bodyMask || sparseLabelZone || random < 0.46) {
@@ -110,32 +112,10 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
   }
 
   /**
-   * Function contract: resizeCanvas
-   * Purpose: Match the canvas backing store to the rendered figure while capping device-pixel density for predictable performance.
-   * Inputs: None.
-   * Side effects: Updates canvas dimensions, context transform, and particle seed positions.
-   * Returns: Undefined.
-   */
-  function resizeCanvas() {
-    if (!canvas || !context) return;
-    const bounds = figure.getBoundingClientRect();
-    width = Math.max(1, bounds.width);
-    height = Math.max(1, bounds.height);
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(height * dpr);
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    context.setTransform(dpr, 0, 0, dpr, 0, 0);
-    seedParticles();
-    if (reduceMotion.matches || !canHover.matches) drawParticles(performance.now());
-  }
-
-  /**
    * Function contract: drawParticles
-   * Purpose: Advance spring physics, render particle pulses, and draw temporary pointer connections for the active systems field.
+   * Purpose: Advance spring physics and render the theme-aware particle field plus temporary pointer connections.
    * Inputs: `timestamp` - requestAnimationFrame timestamp.
-   * Side effects: Clears and redraws the canvas and schedules the next animation frame when motion is active.
+   * Side effects: Clears and redraws the canvas and schedules the next frame when motion is active.
    * Returns: Undefined.
    */
   function drawParticles(timestamp = 0) {
@@ -178,7 +158,9 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
       context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
       context.fillStyle = particle.warm
         ? `rgba(255,90,0,${alpha})`
-        : `rgba(236,233,225,${alpha})`;
+        : lightTheme
+          ? `rgba(42,38,33,${alpha * 0.72})`
+          : `rgba(236,233,225,${alpha})`;
       context.fill();
 
       if (animated && pointer.inside && distance < influence * 0.74) {
@@ -196,8 +178,30 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
   }
 
   /**
+   * Function contract: resizeCanvas
+   * Purpose: Match the canvas backing store to the figure while capping device-pixel density for predictable performance.
+   * Inputs: None.
+   * Side effects: Updates canvas dimensions, context transform, and particle seed positions.
+   * Returns: Undefined.
+   */
+  function resizeCanvas() {
+    if (!canvas || !context) return;
+    const bounds = figure.getBoundingClientRect();
+    width = Math.max(1, bounds.width);
+    height = Math.max(1, bounds.height);
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    context.setTransform(dpr, 0, 0, dpr, 0, 0);
+    seedParticles();
+    if (reduceMotion.matches || !canHover.matches) drawParticles(performance.now());
+  }
+
+  /**
    * Function contract: startAnimation
-   * Purpose: Start the particle animation loop exactly once when the figure is visible and interactive motion is allowed.
+   * Purpose: Start the particle loop exactly once when the figure is visible and interactive motion is allowed.
    * Inputs: None.
    * Side effects: Schedules requestAnimationFrame work.
    * Returns: Undefined.
@@ -205,13 +209,10 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
   function startAnimation() {
     if (animationFrame || reduceMotion.matches || !canHover.matches || !visible) return;
     lastTime = 0;
-    animationFrame = window.requestAnimationFrame(
-      /** Callback contract: Run the first visible particle frame and hand scheduling back to the draw loop. Inputs: `timestamp`. Side effects: Clears the pending-frame marker and renders the particle field. Returns: Undefined; callback is side-effect-only. */
-      (timestamp) => {
-        animationFrame = 0;
-        drawParticles(timestamp);
-      },
-    );
+    animationFrame = window.requestAnimationFrame((timestamp) => {
+      animationFrame = 0;
+      drawParticles(timestamp);
+    });
   }
 
   /**
@@ -327,9 +328,7 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
     try {
       if (!window.gsap || window.gsap.version !== version) {
         const existing = document.querySelector(selector);
-        await new Promise(
-          /** Callback contract: Reuse or create the shared pinned GSAP script and settle when it loads. Inputs: `resolve`, `reject`. Side effects: Registers script listeners and may append a script element. Returns: Undefined; settles the enclosing Promise. */
-          (resolve, reject) => {
+        await new Promise((resolve, reject) => {
           const script = existing || document.createElement('script');
           if (existing?.dataset.loaded === 'true' || window.gsap?.version === version) {
             resolve();
@@ -344,8 +343,7 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
             script.dataset.nrsMotionRuntime = `gsap-${version}`;
             document.head.appendChild(script);
           }
-          },
-        );
+        });
       }
 
       gsapInstance = window.gsap || null;
@@ -362,7 +360,7 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
    * Function contract: syncMotionPreference
    * Purpose: Reconcile the field immediately after pointer or reduced-motion media conditions change.
    * Inputs: None.
-   * Side effects: Starts/stops animation, clears pointer state, and redraws a static field when required.
+   * Side effects: Starts or stops animation, clears pointer state, and redraws a static field when required.
    * Returns: Undefined.
    */
   function syncMotionPreference() {
@@ -373,6 +371,18 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
       loadGsap();
       startAnimation();
     }
+  }
+
+  /**
+   * Function contract: syncTheme
+   * Purpose: Keep neutral particles legible after the site switches between light and dark themes.
+   * Inputs: None.
+   * Side effects: Updates the cached theme flag and redraws static output when no animation loop is active.
+   * Returns: Undefined.
+   */
+  function syncTheme() {
+    lightTheme = document.documentElement.dataset.theme === 'light';
+    if (!animationFrame) drawParticles(performance.now());
   }
 
   /**
@@ -387,6 +397,7 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
     stopAnimation();
     resizeObserver?.disconnect();
     intersectionObserver?.disconnect();
+    themeObserver?.disconnect();
     if (gsapInstance && cursor) gsapInstance.killTweensOf(cursor);
   }
 
@@ -401,21 +412,19 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
     }
 
     if ('IntersectionObserver' in window) {
-      intersectionObserver = new IntersectionObserver(
-        /** Callback contract: Pause or resume particle frames as the hero visual enters or leaves the extended viewport. Inputs: `entries`. Side effects: Updates visibility state and animation scheduling. Returns: Undefined; callback is side-effect-only. */
-        (entries) => {
+      intersectionObserver = new IntersectionObserver((entries) => {
         visible = entries.some((entry) => entry.isIntersecting);
         if (visible) startAnimation();
         else stopAnimation();
-        },
-        { rootMargin: '120px 0px', threshold: 0.01 },
-      );
+      }, { rootMargin: '120px 0px', threshold: 0.01 });
       intersectionObserver.observe(figure);
     }
 
+    themeObserver = new MutationObserver(syncTheme);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
     figure.addEventListener('pointermove', updatePointer, { passive: true, signal });
     figure.addEventListener('pointerleave', releasePointer, { passive: true, signal });
-
     reduceMotion.addEventListener('change', syncMotionPreference, { signal });
     canHover.addEventListener('change', syncMotionPreference, { signal });
     window.addEventListener('pagehide', cleanup, { once: true, signal });
