@@ -1,16 +1,17 @@
 /**
  * @fileoverview src/worker.js
- * Purpose: Route Cloudflare Worker requests across canonical redirects, static assets, and server-side API behavior.
+ * Purpose: Route Cloudflare Worker requests across canonical redirects, static assets, pinned motion-runtime delivery, and server-side API behavior.
  * Responsibilities:
- * - Keep this file focused on its stated responsibility and stable public/build interfaces.
- * - Update connected owners whenever this file changes a shared contract.
+ * - Keep canonical redirects and first-party API endpoints deterministic.
+ * - Serve pinned GSAP runtime files through the portfolio origin so client-side motion does not depend on direct access to a third-party CDN.
+ * - Fall through all remaining requests to the generated static asset binding.
  * Execution context: Cloudflare Workers runtime.
  * Connected files:
  * - functions/api/contact.js
- * - README.md
- * - api/contact.js
+ * - src/scripts/features/motion/refined-button-motion.js
+ * - scripts/finalize-refined-button-motion.cjs
  * - docs/production-delivery.md
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * Maintenance: Keep pinned runtime routes version-aligned with the refined motion module and preserve immutable caching only for versioned assets.
  */
 import { onRequestOptions, onRequestPost } from '../functions/api/contact.js';
 import { LEGACY_REDIRECTS } from './generated/legacy-redirects.js';
@@ -25,13 +26,17 @@ const ANALYTICS_EVENTS = new Set([
   'performance_metric',
 ]);
 
+const MOTION_RUNTIME_ASSETS = new Map([
+  ['/runtime/gsap/gsap-3.15.0.min.js', 'https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js'],
+  ['/runtime/gsap/SplitText-3.15.0.min.js', 'https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js'],
+]);
 
 /**
  * Function contract: methodNotAllowed
- * Purpose: Implement the method not allowed responsibility owned by the worker module.
- * Inputs: None; derives required state from its enclosing module/runtime context.
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Return the API-specific method-not-allowed response used by POST/OPTIONS endpoints.
+ * Inputs: None.
+ * Side effects: None.
+ * Returns: HTTP 405 JSON response.
  */
 function methodNotAllowed() {
   return new Response(JSON.stringify({
@@ -48,13 +53,31 @@ function methodNotAllowed() {
   });
 }
 
+/**
+ * Function contract: runtimeMethodNotAllowed
+ * Purpose: Return a method-not-allowed response for immutable GET/HEAD motion-runtime assets.
+ * Inputs: None.
+ * Side effects: None.
+ * Returns: HTTP 405 plain-text response with the correct Allow header.
+ */
+function runtimeMethodNotAllowed() {
+  return new Response('Method not allowed.', {
+    status: 405,
+    headers: {
+      allow: 'GET, HEAD',
+      'cache-control': 'no-store',
+      'content-type': 'text/plain; charset=utf-8',
+      'x-content-type-options': 'nosniff',
+    },
+  });
+}
 
 /**
  * Function contract: legacyRedirect
- * Purpose: Implement the legacy redirect responsibility owned by the worker module.
- * Inputs: `request`, `url`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Resolve one canonical redirect for a legacy GET/HEAD path while preserving the incoming query string.
+ * Inputs: `request`, `url` - incoming request and parsed URL.
+ * Side effects: None.
+ * Returns: Redirect response when the path is known, otherwise null.
  */
 function legacyRedirect(request, url) {
   if (request.method !== 'GET' && request.method !== 'HEAD') return null;
@@ -66,13 +89,12 @@ function legacyRedirect(request, url) {
   return Response.redirect(target.toString(), 301);
 }
 
-
 /**
  * Function contract: analyticsResponse
- * Purpose: Implement the analytics response responsibility owned by the worker module.
- * Inputs: `status`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Build the compact no-store response shared by analytics ingestion outcomes.
+ * Inputs: `status` - HTTP status code, defaulting to 204.
+ * Side effects: None.
+ * Returns: Analytics endpoint response.
  */
 function analyticsResponse(status = 204) {
   return new Response(null, {
@@ -87,13 +109,12 @@ function analyticsResponse(status = 204) {
   });
 }
 
-
 /**
  * Function contract: recordAnalytics
- * Purpose: Implement the record analytics responsibility owned by the worker module.
- * Inputs: `request`
- * Side effects: emits diagnostics or changes process failure state
- * Returns: Promise resolving to the computed function result.
+ * Purpose: Validate and emit one bounded first-party portfolio analytics event.
+ * Inputs: `request` - incoming analytics request.
+ * Side effects: Reads request JSON and writes a structured event to Worker logs.
+ * Returns: Promise resolving to an analytics response.
  */
 async function recordAnalytics(request) {
   if (request.method === 'OPTIONS') return analyticsResponse();
@@ -130,20 +151,73 @@ async function recordAnalytics(request) {
   return analyticsResponse();
 }
 
+/**
+ * Function contract: motionRuntimeResponse
+ * Purpose: Proxy one pinned GSAP runtime asset through the portfolio origin with immutable versioned caching.
+ * Inputs: `request`, `upstreamUrl` - incoming GET/HEAD request and pinned jsDelivr source URL.
+ * Side effects: Performs one server-side network request to the pinned upstream asset.
+ * Returns: Promise resolving to a same-origin JavaScript response or an explicit upstream failure response.
+ */
+async function motionRuntimeResponse(request, upstreamUrl) {
+  if (request.method !== 'GET' && request.method !== 'HEAD') return runtimeMethodNotAllowed();
+
+  let upstream;
+  try {
+    upstream = await fetch(upstreamUrl, {
+      headers: {
+        accept: 'application/javascript,text/javascript,*/*;q=0.1',
+      },
+    });
+  } catch {
+    return new Response('Motion runtime upstream unavailable.', {
+      status: 502,
+      headers: {
+        'cache-control': 'no-store',
+        'content-type': 'text/plain; charset=utf-8',
+        'x-content-type-options': 'nosniff',
+      },
+    });
+  }
+
+  if (!upstream.ok) {
+    return new Response('Motion runtime upstream unavailable.', {
+      status: 502,
+      headers: {
+        'cache-control': 'no-store',
+        'content-type': 'text/plain; charset=utf-8',
+        'x-content-type-options': 'nosniff',
+      },
+    });
+  }
+
+  const headers = new Headers(upstream.headers);
+  headers.set('cache-control', 'public, max-age=31536000, immutable');
+  headers.set('content-type', 'application/javascript; charset=utf-8');
+  headers.set('x-content-type-options', 'nosniff');
+  headers.delete('set-cookie');
+
+  return new Response(request.method === 'HEAD' ? null : upstream.body, {
+    status: 200,
+    headers,
+  });
+}
+
 export default {
-  
   /**
    * Function contract: fetch
-   * Purpose: Return module behavior from the supplied inputs or current worker module state.
-   * Inputs: `request`, `env`
-   * Side effects: performs network I/O
-   * Returns: Promise resolving to the computed function result.
+   * Purpose: Route each incoming request to canonical redirect, motion runtime, first-party API, or static asset handling.
+   * Inputs: `request`, `env` - incoming Request and Worker environment bindings.
+   * Side effects: May perform network I/O, write analytics logs, or read the ASSETS binding.
+   * Returns: Promise resolving to the routed HTTP response.
    */
   async fetch(request, env) {
     const url = new URL(request.url);
 
     const redirect = legacyRedirect(request, url);
     if (redirect) return redirect;
+
+    const motionRuntimeUrl = MOTION_RUNTIME_ASSETS.get(url.pathname);
+    if (motionRuntimeUrl) return motionRuntimeResponse(request, motionRuntimeUrl);
 
     if (url.pathname === '/api/contact') {
       if (request.method === 'POST') return onRequestPost({ request, env });
