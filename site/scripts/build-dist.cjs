@@ -12,6 +12,7 @@
  * - package.json
  * - vite.config.ts
  * - scripts/copy-static-assets.cjs
+ * - scripts/ensure-hero-seamless-fade-v29.cjs
  * - docs/build-pipeline.md
  * Maintenance: Stage order is part of the production contract. Rename, remove, or reorder a stage only after tracing its inputs, outputs, and downstream consumers and then validating the resulting build.
  */
@@ -94,6 +95,7 @@ const stages = [
   ['Finalize hero QA remediations', ['node', 'scripts/finalize-hero-ux-remediations-v26.cjs', '--dist']],
   ['Add flagship case-study proof', ['node', 'scripts/ensure-flagship-case-study-proof-v27.cjs', '--dist']],
   ['Install approved right-side hero systems visual', ['node', 'scripts/ensure-hero-system-visual-v28.cjs', '--dist']],
+  ['Blend hero visual into the page background', ['node', 'scripts/ensure-hero-seamless-fade-v29.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
