@@ -15,7 +15,7 @@
 
 .nrs-motion-control {
   --nrs-motion-hot: #f1552d;
-  --nrs-motion-fill-color: #11110f;
+  --nrs-motion-fill-color: color-mix(in srgb, currentColor 30%, #11110f);
   --nrs-motion-hover-fg: #f7f3eb;
   isolation: isolate;
   transform-origin: 50% 50%;
