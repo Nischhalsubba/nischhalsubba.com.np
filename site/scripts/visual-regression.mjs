@@ -5,11 +5,13 @@
  * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
  * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
  * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
+ * - Lock the approved homepage redesign to exact rendered RGBA signatures while preserving pixel-diff baselines for all other routes.
  * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
  * - package.json
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import pixelmatch from 'pixelmatch';
@@ -38,6 +40,28 @@ const viewports = [
   ['desktop', { width: 1440, height: 900 }],
 ];
 const themes = ['light', 'dark'];
+const approvedHomeSignatures = {
+  'home-mobile-light.png': {
+    width: 390,
+    height: 7141,
+    rgbaSha256: '2cb7efda199954d55416b63bbfed52ddfe6e7b2944803aa18182d42af300b965',
+  },
+  'home-desktop-light.png': {
+    width: 1440,
+    height: 5888,
+    rgbaSha256: '086bf810fc3066ea914e6e3510062167764e9868b07cf8cd36d9d6003fcde2a7',
+  },
+  'home-mobile-dark.png': {
+    width: 390,
+    height: 7141,
+    rgbaSha256: '281fa4ba68a9dd4d53bd9cf8c15f572858be98efd19fdaad8d27f74e872a85fa',
+  },
+  'home-desktop-dark.png': {
+    width: 1440,
+    height: 5888,
+    rgbaSha256: 'af5350280557986798ee399fa86e47ea54f7671c28115792f20203b92fc93291',
+  },
+};
 
 if (update) fs.rmSync(baselineDirectory, { recursive: true, force: true });
 fs.mkdirSync(baselineDirectory, { recursive: true });
@@ -57,7 +81,7 @@ for (const theme of themes) {
     });
     const page = await context.newPage();
 
-    await page.route('**/*',  /** Callback contract: Perform the local callback step required by the immediately enclosing visual regression repository tool operation. Inputs: `route` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving to the computed function result. */ async (route) => {
+    await page.route('**/*', /** Callback contract: Perform the local callback step required by the immediately enclosing visual regression repository tool operation. Inputs: `route` Side effects: No direct external side effect beyond invoked dependencies. Returns: Promise resolving to the computed function result. */ async (route) => {
       const url = new URL(route.request().url());
       if (url.origin === new URL(base).origin || url.protocol === 'data:' || url.protocol === 'blob:') return route.continue();
       return route.abort();
@@ -72,11 +96,11 @@ for (const theme of themes) {
       try {
         const response = await page.goto(`${base}${routePath}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
         if (!response || response.status() >= 400) throw new Error(`HTTP ${response?.status() || 'none'}`);
-        await page.evaluate(   /** Callback contract: Perform the local callback step required by the immediately enclosing visual regression repository tool operation. Inputs: `resolvedTheme` Side effects: reads or updates DOM/browser state Returns: Promise resolving after the documented asynchronous side effects complete. */ async (resolvedTheme) => {
+        await page.evaluate(/** Callback contract: Perform the local callback step required by the immediately enclosing visual regression repository tool operation. Inputs: `resolvedTheme` Side effects: reads or updates DOM/browser state Returns: Promise resolving after the documented asynchronous side effects complete. */ async (resolvedTheme) => {
           await document.fonts?.ready;
           document.documentElement.dataset.theme = resolvedTheme;
           document.documentElement.style.colorScheme = resolvedTheme;
-          document.querySelectorAll('iframe, video').forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (element) => element.setAttribute('hidden', ''));
+          document.querySelectorAll('iframe, video').forEach(/** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `element` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ (element) => element.setAttribute('hidden', ''));
           const turnstile = document.querySelector('.nrs-turnstile');
           if (turnstile) {
             turnstile.innerHTML = '<div aria-hidden="true">Anti-spam verification</div>';
@@ -97,10 +121,25 @@ for (const theme of themes) {
           fs.copyFileSync(actualPath, baselinePath);
           continue;
         }
+
+        const actual = PNG.sync.read(fs.readFileSync(actualPath));
+        const approvedHome = approvedHomeSignatures[name];
+        if (routeName === 'home') {
+          if (!approvedHome) throw new Error(`missing approved homepage signature ${name}`);
+          if (actual.width !== approvedHome.width || actual.height !== approvedHome.height) {
+            throw new Error(`approved dimensions ${approvedHome.width}x${approvedHome.height}, received ${actual.width}x${actual.height}`);
+          }
+          const rgbaSha256 = crypto.createHash('sha256').update(actual.data).digest('hex');
+          if (rgbaSha256 !== approvedHome.rgbaSha256) {
+            throw new Error(`approved RGBA signature ${approvedHome.rgbaSha256}, received ${rgbaSha256}`);
+          }
+          fs.rmSync(actualPath, { force: true });
+          continue;
+        }
+
         if (!fs.existsSync(baselinePath)) throw new Error(`missing baseline ${name}`);
 
         const expected = PNG.sync.read(fs.readFileSync(baselinePath));
-        const actual = PNG.sync.read(fs.readFileSync(actualPath));
         if (expected.width !== actual.width || expected.height !== actual.height) {
           throw new Error(`dimensions changed from ${expected.width}x${expected.height} to ${actual.width}x${actual.height}`);
         }
@@ -126,7 +165,7 @@ for (const theme of themes) {
 
 await browser.close();
 if (failures.length) {
-  console.error(`[visual-regression] ${failures.length} failure(s)\n${failures.map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
+  console.error(`[visual-regression] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
-console.log(`[visual-regression] ${routes.length * viewports.length * themes.length} snapshots ${update ? 'updated' : 'passed'} at ${(maximumDifferenceRatio * 100).toFixed(2)}% tolerance.`);
+console.log(`[visual-regression] ${routes.length * viewports.length * themes.length} snapshots ${update ? 'updated' : 'passed'} at ${(maximumDifferenceRatio * 100).toFixed(2)}% tolerance; homepage signatures are exact.`);
