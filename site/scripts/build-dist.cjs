@@ -93,6 +93,7 @@ const stages = [
   ['Link experience companies to official websites', ['node', 'scripts/link-experience-company-websites-v25.cjs', '--dist']],
   ['Finalize hero QA remediations', ['node', 'scripts/finalize-hero-ux-remediations-v26.cjs', '--dist']],
   ['Add flagship case-study proof', ['node', 'scripts/ensure-flagship-case-study-proof-v27.cjs', '--dist']],
+  ['Install approved right-side hero systems visual', ['node', 'scripts/ensure-hero-system-visual-v28.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');
