@@ -209,10 +209,13 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
   function startAnimation() {
     if (animationFrame || reduceMotion.matches || !canHover.matches || !visible) return;
     lastTime = 0;
-    animationFrame = window.requestAnimationFrame((timestamp) => {
-      animationFrame = 0;
-      drawParticles(timestamp);
-    });
+    animationFrame = window.requestAnimationFrame(
+      /** Callback contract: Render the first active particle frame, clear the pending marker, and hand scheduling back to the normal draw loop. Inputs: `timestamp`. Side effects: Updates animation scheduling and renders canvas state. Returns: Undefined; callback is side-effect-only. */
+      (timestamp) => {
+        animationFrame = 0;
+        drawParticles(timestamp);
+      },
+    );
   }
 
   /**
@@ -328,22 +331,25 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
     try {
       if (!window.gsap || window.gsap.version !== version) {
         const existing = document.querySelector(selector);
-        await new Promise((resolve, reject) => {
-          const script = existing || document.createElement('script');
-          if (existing?.dataset.loaded === 'true' || window.gsap?.version === version) {
-            resolve();
-            return;
-          }
-          script.addEventListener('load', resolve, { once: true });
-          script.addEventListener('error', reject, { once: true });
-          if (!existing) {
-            script.src = source;
-            script.async = true;
-            script.crossOrigin = 'anonymous';
-            script.dataset.nrsMotionRuntime = `gsap-${version}`;
-            document.head.appendChild(script);
-          }
-        });
+        await new Promise(
+          /** Callback contract: Reuse or create the shared pinned GSAP script and settle after load or failure. Inputs: `resolve`, `reject`. Side effects: Registers script listeners and may append one script element. Returns: Undefined; settles the enclosing Promise. */
+          (resolve, reject) => {
+            const script = existing || document.createElement('script');
+            if (existing?.dataset.loaded === 'true' || window.gsap?.version === version) {
+              resolve();
+              return;
+            }
+            script.addEventListener('load', resolve, { once: true });
+            script.addEventListener('error', reject, { once: true });
+            if (!existing) {
+              script.src = source;
+              script.async = true;
+              script.crossOrigin = 'anonymous';
+              script.dataset.nrsMotionRuntime = `gsap-${version}`;
+              document.head.appendChild(script);
+            }
+          },
+        );
       }
 
       gsapInstance = window.gsap || null;
@@ -412,11 +418,15 @@ if (figure && figure.dataset.heroSystemReady !== 'true') {
     }
 
     if ('IntersectionObserver' in window) {
-      intersectionObserver = new IntersectionObserver((entries) => {
-        visible = entries.some((entry) => entry.isIntersecting);
-        if (visible) startAnimation();
-        else stopAnimation();
-      }, { rootMargin: '120px 0px', threshold: 0.01 });
+      intersectionObserver = new IntersectionObserver(
+        /** Callback contract: Pause or resume particle frames as the hero enters or leaves the extended viewport. Inputs: `entries`. Side effects: Updates visibility and animation scheduling. Returns: Undefined; callback is side-effect-only. */
+        (entries) => {
+          visible = entries.some((entry) => entry.isIntersecting);
+          if (visible) startAnimation();
+          else stopAnimation();
+        },
+        { rootMargin: '120px 0px', threshold: 0.01 },
+      );
       intersectionObserver.observe(figure);
     }
 
