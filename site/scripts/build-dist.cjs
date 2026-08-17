@@ -92,6 +92,7 @@ const stages = [
   ['Match approved Signal hero theme reference', ['node', 'scripts/finalize-signal-reference-visual.cjs', '--dist']],
   ['Link experience companies to official websites', ['node', 'scripts/link-experience-company-websites-v25.cjs', '--dist']],
   ['Finalize hero QA remediations', ['node', 'scripts/finalize-hero-ux-remediations-v26.cjs', '--dist']],
+  ['Add flagship case-study proof', ['node', 'scripts/ensure-flagship-case-study-proof-v27.cjs', '--dist']],
 ];
 
 runStages(stages, 'build');

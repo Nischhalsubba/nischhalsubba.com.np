@@ -49,6 +49,7 @@ const stages = [
   ['Replace generic case-study copy', ['node', 'scripts/ensure-case-study-specificity.cjs']],
   ['Enforce reveal visibility safety', ['node', 'scripts/ensure-reveal-visibility.cjs']],
   ['Apply interface layout and motion polish', ['node', 'scripts/ensure-interface-polish.cjs']],
+  ['Add flagship case-study proof', ['node', 'scripts/ensure-flagship-case-study-proof-v27.cjs']],
   ['Synchronize SEO discovery contract', ['node', 'scripts/generate-seo-discovery.cjs']],
 ];
 
