@@ -1,0 +1,41 @@
+name: Live button motion diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  live-motion:
+    if: github.head_ref == 'fix/live-button-motion-observability'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Verify npm version
+        run: test "$(npm --version)" = "11.17.0"
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx --no-install playwright install --with-deps chromium
+
+      - name: Audit live production button motion
+        env:
+          AUDIT_BASE_URL: https://nischhalsubba.com.np
+        run: npm run test:button-motion:browser
