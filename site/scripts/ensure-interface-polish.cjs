@@ -115,6 +115,11 @@ const polishCss = `${startMarker}
   color: var(--ap-signal);
 }
 
+.agent-portfolio .agent-project-row:hover,
+.agent-portfolio .agent-index-item:hover {
+  background: color-mix(in srgb, var(--ap-signal) 7%, transparent);
+}
+
 .agent-portfolio .agent-project-row:active,
 .agent-portfolio .agent-index-item:active {
   transform: translateY(1px);
@@ -153,11 +158,6 @@ const polishCss = `${startMarker}
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .agent-portfolio .agent-project-row:hover,
-  .agent-portfolio .agent-index-item:hover {
-    background: color-mix(in srgb, var(--ap-signal) 7%, transparent);
-  }
-
   .agent-portfolio .agent-project-row:hover .agent-project-copy h3,
   .agent-portfolio .agent-index-item:hover h2,
   .agent-portfolio .agent-index-item:hover h3 {

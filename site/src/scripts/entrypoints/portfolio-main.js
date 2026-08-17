@@ -11,6 +11,7 @@
  * - src/scripts/shared/dom.js
  * - src/scripts/features/forms/contact-form.js
  * - src/scripts/features/motion/refined-button-motion.js
+ * - src/scripts/features/motion/hero-system-field.js
  * - src/scripts/features/portfolio/portfolio-runtime.js
  * - src/scripts/features/system/browser-contract.js
  * Maintenance: Keep this entrypoint focused on initialization and route gating. Feature implementation belongs in the feature module that owns the behavior.
@@ -48,7 +49,7 @@ onReady(
 
     try {
       await import('../features/portfolio/portfolio-runtime.js');
-      await import('../features/motion/signal-portrait.js');
+      await import('../features/motion/hero-system-field.js');
       await import('../features/system/browser-contract.js');
     } catch (error) {
       console.error('[portfolio] redesign runtime failed to initialize', error);
