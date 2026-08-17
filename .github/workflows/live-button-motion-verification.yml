@@ -1,0 +1,133 @@
+name: Live button motion verification
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  live-motion:
+    if: github.head_ref == 'chore/verify-live-button-motion'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Verify npm version
+        run: test "$(npm --version)" = "11.17.0"
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx --no-install playwright install --with-deps chromium
+
+      - name: Run canonical button-motion audit against live production
+        env:
+          AUDIT_BASE_URL: https://nischhalsubba.com.np
+        run: npm run test:button-motion:browser
+
+      - name: Verify live runtime, hybrid capability, and touch press initialization
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+
+          const browser = await chromium.launch({ headless: true });
+          const selector = '.nrs-layout-home-hero-actions .nrs-uploaded-btn-primary, .nrs-uploaded-actions .nrs-uploaded-btn-primary, .hero-actions .btn.btn-primary';
+          const cases = [
+            ['desktop', { viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' }],
+            ['touch-capable', { viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference', hasTouch: true }],
+            ['reduced-motion', { viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' }],
+          ];
+          const results = [];
+
+          for (const [name, options] of cases) {
+            const context = await browser.newContext(options);
+            const page = await context.newPage();
+            const runtimeRequests = [];
+            page.on('request', (request) => {
+              const url = request.url();
+              if (url.includes('/runtime/gsap/') || url.includes('cdn.jsdelivr.net/npm/gsap')) runtimeRequests.push(url);
+            });
+
+            await page.goto('https://nischhalsubba.com.np/', { waitUntil: 'domcontentloaded' });
+            await page.waitForTimeout(1800);
+
+            const before = await page.evaluate((target) => {
+              const control = document.querySelector(target);
+              return {
+                fineHover: matchMedia('(hover: hover) and (pointer: fine)').matches,
+                anyFineHover: matchMedia('(any-hover: hover) and (any-pointer: fine)').matches,
+                reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+                gsap: window.gsap?.version || null,
+                decorated: control?.dataset.nrsMotionDecorated || null,
+                reducedClass: document.documentElement.classList.contains('nrs-motion-reduced'),
+              };
+            }, selector);
+
+            const target = page.locator(selector).first();
+            if (await target.count()) {
+              if (name === 'touch-capable') {
+                await target.dispatchEvent('pointerdown', { pointerType: 'touch', pointerId: 7, button: 0, isPrimary: true });
+                await page.waitForTimeout(140);
+              } else {
+                await target.hover({ force: true });
+                await page.waitForTimeout(280);
+              }
+            }
+
+            const after = await page.evaluate((target) => {
+              const control = document.querySelector(target);
+              return {
+                hovered: control?.classList.contains('is-motion-hovered') || false,
+                pressed: control?.classList.contains('is-motion-pressed') || false,
+                transform: control ? getComputedStyle(control).transform : null,
+              };
+            }, selector);
+
+            if (name === 'touch-capable' && await target.count()) {
+              await target.dispatchEvent('pointerup', { pointerType: 'touch', pointerId: 7, button: 0, isPrimary: true });
+            }
+
+            results.push({ name, ...before, ...after, runtimeRequests });
+            await context.close();
+          }
+
+          await browser.close();
+          for (const result of results) console.log(JSON.stringify(result));
+
+          const desktop = results.find((entry) => entry.name === 'desktop');
+          const touch = results.find((entry) => entry.name === 'touch-capable');
+          const reduced = results.find((entry) => entry.name === 'reduced-motion');
+          const allRuntimeRequests = results.flatMap((entry) => entry.runtimeRequests);
+
+          if (desktop?.gsap !== '3.15.0' || desktop?.decorated !== 'true' || !desktop?.hovered || desktop?.transform === 'none') {
+            throw new Error('Live desktop refined button hover is not active.');
+          }
+          if (touch?.gsap !== '3.15.0' || touch?.decorated !== 'true' || !touch?.pressed || touch?.transform === 'none') {
+            throw new Error('Live touch/coarse-pointer button press initialization is not active.');
+          }
+          if (!reduced?.reduce || reduced?.decorated !== 'true' || !reduced?.reducedClass || reduced?.hovered || reduced?.transform !== 'none') {
+            throw new Error('Live reduced-motion behavior is not preserving the accessibility contract.');
+          }
+          if (!allRuntimeRequests.some((url) => url.includes('nischhalsubba.com.np/runtime/gsap/gsap-3.15.0.min.js'))) {
+            throw new Error('Live production did not request the same-origin GSAP runtime.');
+          }
+          if (allRuntimeRequests.some((url) => url.includes('cdn.jsdelivr.net/npm/gsap'))) {
+            throw new Error('Live browser still depends directly on jsDelivr for GSAP.');
+          }
+          NODE
