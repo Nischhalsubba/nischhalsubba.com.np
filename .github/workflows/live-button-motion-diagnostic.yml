@@ -39,3 +39,42 @@ jobs:
         env:
           AUDIT_BASE_URL: https://nischhalsubba.com.np
         run: npm run test:button-motion:browser
+
+      - name: Probe live motion capability contexts
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({ headless: true });
+          const cases = [
+            ['desktop', { viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' }],
+            ['reduced-motion', { viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' }],
+            ['touch-capable', { viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference', hasTouch: true }],
+          ];
+          for (const [name, options] of cases) {
+            const context = await browser.newContext(options);
+            const page = await context.newPage();
+            await page.goto('https://nischhalsubba.com.np/', { waitUntil: 'domcontentloaded' });
+            await page.waitForTimeout(1600);
+            const selector = '.nrs-layout-home-hero-actions .nrs-uploaded-btn-primary, .nrs-uploaded-actions .nrs-uploaded-btn-primary, .hero-actions .btn.btn-primary';
+            const before = await page.evaluate((target) => ({
+              fineHover: matchMedia('(hover: hover) and (pointer: fine)').matches,
+              anyFineHover: matchMedia('(any-hover: hover) and (any-pointer: fine)').matches,
+              reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+              gsap: window.gsap?.version || null,
+              decorated: document.querySelector(target)?.dataset.nrsMotionDecorated || null,
+            }), selector);
+            const target = page.locator(selector).first();
+            if (await target.count()) {
+              await target.hover({ force: true });
+              await page.waitForTimeout(260);
+            }
+            const after = await page.evaluate((target) => ({
+              hovered: document.querySelector(target)?.classList.contains('is-motion-hovered') || false,
+              transform: document.querySelector(target) ? getComputedStyle(document.querySelector(target)).transform : null,
+            }), selector);
+            console.log(JSON.stringify({ name, ...before, ...after }));
+            await context.close();
+          }
+          await browser.close();
+          NODE
