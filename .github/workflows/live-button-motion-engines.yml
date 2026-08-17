@@ -1,0 +1,101 @@
+name: Live button motion engines
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  live-motion-engines:
+    if: github.head_ref == 'chore/verify-live-button-motion-engines'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Verify npm version
+        run: test "$(npm --version)" = "11.17.0"
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install browser engines
+        run: npx --no-install playwright install --with-deps chromium firefox webkit
+
+      - name: Verify refined hover across browser engines
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium, firefox, webkit } from 'playwright';
+
+          const engines = { chromium, firefox, webkit };
+          const selector = '.nrs-layout-home-hero-actions .nrs-uploaded-btn-primary, .nrs-uploaded-actions .nrs-uploaded-btn-primary, .hero-actions .btn.btn-primary';
+          const results = [];
+
+          for (const [name, engine] of Object.entries(engines)) {
+            const browser = await engine.launch({ headless: true });
+            const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' });
+            const page = await context.newPage();
+            const consoleErrors = [];
+            page.on('pageerror', (error) => consoleErrors.push(String(error)));
+            await page.goto('https://nischhalsubba.com.np/', { waitUntil: 'domcontentloaded' });
+            await page.waitForTimeout(1800);
+
+            const target = page.locator(selector).first();
+            if (!(await target.count())) throw new Error(`${name}: primary CTA was not found.`);
+
+            const before = await page.evaluate((targetSelector) => {
+              const control = document.querySelector(targetSelector);
+              return {
+                reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+                fineHover: matchMedia('(hover: hover) and (pointer: fine)').matches,
+                anyFineHover: matchMedia('(any-hover: hover) and (any-pointer: fine)').matches,
+                gsap: window.gsap?.version || null,
+                decorated: control?.dataset.nrsMotionDecorated || null,
+                transform: control ? getComputedStyle(control).transform : null,
+              };
+            }, selector);
+
+            await target.hover({ force: true });
+            await page.waitForTimeout(320);
+
+            const after = await page.evaluate((targetSelector) => {
+              const control = document.querySelector(targetSelector);
+              const fill = control?.querySelector(':scope > .nrs-motion-fill');
+              return {
+                hovered: control?.classList.contains('is-motion-hovered') || false,
+                transform: control ? getComputedStyle(control).transform : null,
+                fillTransform: fill ? getComputedStyle(fill).transform : null,
+              };
+            }, selector);
+
+            const result = { name, ...before, ...after, consoleErrors };
+            results.push(result);
+            console.log(JSON.stringify(result));
+
+            if (result.reduce) throw new Error(`${name}: no-preference context unexpectedly reports reduced motion.`);
+            if (result.gsap !== '3.15.0') throw new Error(`${name}: GSAP 3.15.0 is not active.`);
+            if (result.decorated !== 'true') throw new Error(`${name}: primary CTA was not decorated.`);
+            if (!result.hovered) throw new Error(`${name}: primary CTA did not enter refined hover state.`);
+            if (!result.transform || result.transform === 'none') throw new Error(`${name}: primary CTA transform did not animate.`);
+            if (!result.fillTransform || result.fillTransform === 'none') throw new Error(`${name}: pointer-origin fill did not animate.`);
+
+            await context.close();
+            await browser.close();
+          }
+
+          console.log(`[live-motion-engines] Passed ${results.length} browser engines.`);
+          NODE
