@@ -4,7 +4,7 @@
  * Responsibilities:
  * - Keep the verified original portrait asset unchanged.
  * - Fade the portrait, grid, orbit, and particle layers gradually toward transparent at the outer edge.
- * - Add a theme-aware page-color wash above the visual layers so dark and light themes blend without a visible rectangular boundary.
+ * - Add theme-aware page-color washes above the visual layers so every edge, including the portrait's lower boundary, blends without a visible rectangle.
  * - Preserve labels, quote card, cursor response, hero copy, navigation, and calls to action.
  * Execution context: Final production build stage immediately after the right-side hero systems visual is installed.
  * Connected files:
@@ -38,6 +38,15 @@ css += `
 .nrs-uploaded-hero-v19 .nrs-uploaded-visual.nrs-hero-system-v28{
   --nrs-hero-atmosphere-mask:radial-gradient(ellipse 76% 84% at 52% 45%,#000 0 38%,rgba(0,0,0,.98) 49%,rgba(0,0,0,.88) 60%,rgba(0,0,0,.70) 70%,rgba(0,0,0,.48) 79%,rgba(0,0,0,.27) 87%,rgba(0,0,0,.10) 94%,transparent 100%);
   --nrs-hero-portrait-mask:radial-gradient(ellipse 67% 88% at 52% 47%,#000 0 56%,rgba(0,0,0,.98) 64%,rgba(0,0,0,.88) 71%,rgba(0,0,0,.72) 78%,rgba(0,0,0,.50) 85%,rgba(0,0,0,.28) 91%,rgba(0,0,0,.10) 96%,transparent 100%);
+  --nrs-hero-bottom-wash:linear-gradient(to bottom,
+    transparent 0 68%,
+    color-mix(in srgb,var(--nrs-u-page) 4%,transparent) 74%,
+    color-mix(in srgb,var(--nrs-u-page) 11%,transparent) 79%,
+    color-mix(in srgb,var(--nrs-u-page) 24%,transparent) 84%,
+    color-mix(in srgb,var(--nrs-u-page) 43%,transparent) 89%,
+    color-mix(in srgb,var(--nrs-u-page) 64%,transparent) 93%,
+    color-mix(in srgb,var(--nrs-u-page) 82%,transparent) 97%,
+    var(--nrs-u-page) 100%);
 }
 .nrs-uploaded-hero-v19 .nrs-hero-system-v28__grid,
 .nrs-uploaded-hero-v19 .nrs-hero-system-v28__orbit,
@@ -56,35 +65,49 @@ css += `
   z-index:5!important;
   inset:-1.5%!important;
   pointer-events:none!important;
-  background:radial-gradient(ellipse 73% 84% at 52% 45%,
-    transparent 0 48%,
-    color-mix(in srgb,var(--nrs-u-page) 3%,transparent) 56%,
-    color-mix(in srgb,var(--nrs-u-page) 10%,transparent) 64%,
-    color-mix(in srgb,var(--nrs-u-page) 24%,transparent) 72%,
-    color-mix(in srgb,var(--nrs-u-page) 44%,transparent) 80%,
-    color-mix(in srgb,var(--nrs-u-page) 66%,transparent) 87%,
-    color-mix(in srgb,var(--nrs-u-page) 86%,transparent) 94%,
-    var(--nrs-u-page) 100%)!important;
+  background:
+    var(--nrs-hero-bottom-wash),
+    radial-gradient(ellipse 73% 84% at 52% 45%,
+      transparent 0 48%,
+      color-mix(in srgb,var(--nrs-u-page) 3%,transparent) 56%,
+      color-mix(in srgb,var(--nrs-u-page) 10%,transparent) 64%,
+      color-mix(in srgb,var(--nrs-u-page) 24%,transparent) 72%,
+      color-mix(in srgb,var(--nrs-u-page) 44%,transparent) 80%,
+      color-mix(in srgb,var(--nrs-u-page) 66%,transparent) 87%,
+      color-mix(in srgb,var(--nrs-u-page) 86%,transparent) 94%,
+      var(--nrs-u-page) 100%)!important;
 }
 html[data-theme="light"] .nrs-uploaded-hero-v19 .nrs-uploaded-visual.nrs-hero-system-v28::after{
-  background:radial-gradient(ellipse 73% 84% at 52% 45%,
-    transparent 0 48%,
-    color-mix(in srgb,var(--nrs-u-page) 4%,transparent) 56%,
-    color-mix(in srgb,var(--nrs-u-page) 13%,transparent) 64%,
-    color-mix(in srgb,var(--nrs-u-page) 29%,transparent) 72%,
-    color-mix(in srgb,var(--nrs-u-page) 51%,transparent) 80%,
-    color-mix(in srgb,var(--nrs-u-page) 72%,transparent) 87%,
-    color-mix(in srgb,var(--nrs-u-page) 90%,transparent) 94%,
-    var(--nrs-u-page) 100%)!important;
+  background:
+    var(--nrs-hero-bottom-wash),
+    radial-gradient(ellipse 73% 84% at 52% 45%,
+      transparent 0 48%,
+      color-mix(in srgb,var(--nrs-u-page) 4%,transparent) 56%,
+      color-mix(in srgb,var(--nrs-u-page) 13%,transparent) 64%,
+      color-mix(in srgb,var(--nrs-u-page) 29%,transparent) 72%,
+      color-mix(in srgb,var(--nrs-u-page) 51%,transparent) 80%,
+      color-mix(in srgb,var(--nrs-u-page) 72%,transparent) 87%,
+      color-mix(in srgb,var(--nrs-u-page) 90%,transparent) 94%,
+      var(--nrs-u-page) 100%)!important;
 }
 @media(max-width:620px){
   .nrs-uploaded-hero-v19 .nrs-uploaded-visual.nrs-hero-system-v28{
     --nrs-hero-atmosphere-mask:radial-gradient(ellipse 88% 92% at 52% 45%,#000 0 44%,rgba(0,0,0,.96) 58%,rgba(0,0,0,.78) 70%,rgba(0,0,0,.50) 82%,rgba(0,0,0,.22) 91%,transparent 100%);
     --nrs-hero-portrait-mask:radial-gradient(ellipse 82% 96% at 52% 48%,#000 0 62%,rgba(0,0,0,.96) 72%,rgba(0,0,0,.72) 82%,rgba(0,0,0,.38) 90%,rgba(0,0,0,.12) 96%,transparent 100%);
+    --nrs-hero-bottom-wash:linear-gradient(to bottom,
+      transparent 0 74%,
+      color-mix(in srgb,var(--nrs-u-page) 5%,transparent) 79%,
+      color-mix(in srgb,var(--nrs-u-page) 17%,transparent) 84%,
+      color-mix(in srgb,var(--nrs-u-page) 38%,transparent) 89%,
+      color-mix(in srgb,var(--nrs-u-page) 65%,transparent) 94%,
+      color-mix(in srgb,var(--nrs-u-page) 86%,transparent) 98%,
+      var(--nrs-u-page) 100%);
   }
   .nrs-uploaded-hero-v19 .nrs-uploaded-visual.nrs-hero-system-v28::after{
     inset:-1%!important;
-    background:radial-gradient(ellipse 88% 94% at 52% 46%,transparent 0 56%,color-mix(in srgb,var(--nrs-u-page) 8%,transparent) 66%,color-mix(in srgb,var(--nrs-u-page) 28%,transparent) 78%,color-mix(in srgb,var(--nrs-u-page) 62%,transparent) 89%,var(--nrs-u-page) 100%)!important;
+    background:
+      var(--nrs-hero-bottom-wash),
+      radial-gradient(ellipse 88% 94% at 52% 46%,transparent 0 56%,color-mix(in srgb,var(--nrs-u-page) 8%,transparent) 66%,color-mix(in srgb,var(--nrs-u-page) 28%,transparent) 78%,color-mix(in srgb,var(--nrs-u-page) 62%,transparent) 89%,var(--nrs-u-page) 100%)!important;
   }
 }
 /* nrs-hero-seamless-fade-v29:end */
@@ -96,9 +119,10 @@ for (const token of [
   'nrs-hero-seamless-fade-v29:start',
   '--nrs-hero-atmosphere-mask',
   '--nrs-hero-portrait-mask',
+  '--nrs-hero-bottom-wash',
   'var(--nrs-u-page) 100%',
 ]) {
   if (!css.includes(token)) throw new Error(`[hero-seamless-v29] Missing final contract token: ${token}.`);
 }
 
-console.log('[hero-seamless-v29] Applied progressive theme-aware edge fading around the original hero portrait and systems field.');
+console.log('[hero-seamless-v29] Applied progressive theme-aware edge and lower-boundary fading around the original hero portrait and systems field.');
