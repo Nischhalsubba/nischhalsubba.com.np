@@ -44,22 +44,22 @@ const approvedHomeSignatures = {
   'home-mobile-light.png': {
     width: 390,
     height: 7141,
-    rgbaSha256: 'ac341569f5246ce8244c7c112567257c64380aaec0673c039214111c3d7c332f',
+    rgbaSha256: '5ef37434498a4cd5c216b6a278e0a8b916fdfec781168766ba9525693bc564ef',
   },
   'home-desktop-light.png': {
     width: 1440,
     height: 5888,
-    rgbaSha256: '66a827181f5ac0cea675257f9ed806c4590ffe92ef495c92e8f0474def1ab360',
+    rgbaSha256: 'f4dffdbe1ab8dca3cdb8a9c8027405a6df0c1b0c1fb2ddcf6a9c9b0d67e36665',
   },
   'home-mobile-dark.png': {
     width: 390,
     height: 7141,
-    rgbaSha256: '1648bae163f672cdadf83b52bfc41b62dfa7042d52a730e37948e620b1adfb3b',
+    rgbaSha256: '9703d31a41d9156f4e45dd97506c7c3947e2263478b7c54882ae9029ea18caf1',
   },
   'home-desktop-dark.png': {
     width: 1440,
     height: 5888,
-    rgbaSha256: '1a9c10949bed71bc3f2344c14f8ca02269fdc49e28e4b27506ba14dec5830aed',
+    rgbaSha256: 'fe5bc4961d732a65ef5990f4784a42dbda17a65da85a7ab8ba75b1b9fe5d4f67',
   },
 };
 
