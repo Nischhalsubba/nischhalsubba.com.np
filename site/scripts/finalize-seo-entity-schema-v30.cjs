@@ -4,6 +4,7 @@
  * Responsibilities:
  * - Preserve article publication and modification dates from Open Graph article metadata in BlogPosting schema.
  * - Keep the canonical Person entity connected to verified professional profiles.
+ * - Reconcile known public name variants to the canonical professional identity.
  * - Fail explicitly if final structured data cannot be patched as expected.
  * Execution context: Final dist-only SEO pass during the production build.
  * Connected files:
@@ -22,12 +23,14 @@ const base = process.argv.includes('--dist') ? path.join(root, 'dist') : root;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
 const site = 'https://nischhalsubba.com.np';
 const personId = `${site}/#nischhal-raj-subba`;
+const identityAliases = ['Nischhal Subba', 'Nischhal Raj S.'];
 const verifiedProfiles = [
   'https://www.linkedin.com/in/nischhal/',
   'https://www.behance.net/nischhal',
   'https://github.com/Nischhalsubba',
   'https://app.uxcel.com/ux/nischhal',
   'https://dribbble.com/Nischhal',
+  'https://x.com/imnischhal',
 ];
 
 function routeFor(file) {
@@ -54,6 +57,12 @@ function graphNodes(data) {
   return [];
 }
 
+function asArray(value) {
+  if (Array.isArray(value)) return value;
+  if (value === undefined || value === null || value === '') return [];
+  return [value];
+}
+
 function patchJsonLd(html, route) {
   const published = metaValue(html, 'article:published_time');
   const modified = metaValue(html, 'article:modified_time');
@@ -68,7 +77,10 @@ function patchJsonLd(html, route) {
         const type = node?.['@type'];
         if (type === 'Person' && (node['@id'] === personId || node.name === 'Nischhal Raj Subba')) {
           node['@id'] = node['@id'] || personId;
-          node.sameAs = [...new Set([...(Array.isArray(node.sameAs) ? node.sameAs : []), ...verifiedProfiles])];
+          node.name = 'Nischhal Raj Subba';
+          node.jobTitle = 'Senior Product Designer';
+          node.alternateName = [...new Set([...asArray(node.alternateName), ...identityAliases])];
+          node.sameAs = [...new Set([...asArray(node.sameAs), ...verifiedProfiles])];
           personPatched = true;
         }
         if (route.startsWith('/blog/') && route !== '/blog/' && type === 'BlogPosting') {
