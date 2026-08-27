@@ -3,6 +3,7 @@
  * Purpose: Guard the final structured-data contract for personal identity and published articles.
  * Responsibilities:
  * - Require the canonical Person entity to reference verified professional profiles.
+ * - Require known public name variants to resolve to the canonical professional identity.
  * - Require BlogPosting publication and modification dates to match article meta tags when those tags exist.
  * - Reject malformed JSON-LD before production deployment.
  * Execution context: Repository validation after a production build.
@@ -19,12 +20,14 @@ const base = fs.existsSync(path.join(root, 'dist')) ? path.join(root, 'dist') : 
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
 const site = 'https://nischhalsubba.com.np';
 const personId = `${site}/#nischhal-raj-subba`;
+const requiredAliases = ['Nischhal Subba', 'Nischhal Raj S.'];
 const requiredProfiles = [
   'https://www.linkedin.com/in/nischhal/',
   'https://www.behance.net/nischhal',
   'https://github.com/Nischhalsubba',
   'https://app.uxcel.com/ux/nischhal',
   'https://dribbble.com/Nischhal',
+  'https://x.com/imnischhal',
 ];
 
 function routeFor(file) {
@@ -73,9 +76,15 @@ for (const file of manifest.html) {
   if (route === '/') {
     const person = nodes.find((node) => node?.['@type'] === 'Person' && (node['@id'] === personId || node.name === 'Nischhal Raj Subba'));
     if (!person) throw new Error('[seo-entity-audit] index.html: canonical Person entity missing');
+    if (person.name !== 'Nischhal Raj Subba') throw new Error(`[seo-entity-audit] index.html: canonical Person name mismatch: ${person.name || 'missing'}`);
+    if (person.jobTitle !== 'Senior Product Designer') throw new Error(`[seo-entity-audit] index.html: Person jobTitle mismatch: ${person.jobTitle || 'missing'}`);
     const sameAs = Array.isArray(person.sameAs) ? person.sameAs : [];
     for (const profile of requiredProfiles) {
       if (!sameAs.includes(profile)) throw new Error(`[seo-entity-audit] index.html: Person.sameAs missing ${profile}`);
+    }
+    const aliases = Array.isArray(person.alternateName) ? person.alternateName : person.alternateName ? [person.alternateName] : [];
+    for (const alias of requiredAliases) {
+      if (!aliases.includes(alias)) throw new Error(`[seo-entity-audit] index.html: Person.alternateName missing ${alias}`);
     }
   }
 
