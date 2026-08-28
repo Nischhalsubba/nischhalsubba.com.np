@@ -2,7 +2,7 @@
  * @fileoverview scripts/audit-seo-entity-schema.cjs
  * Purpose: Guard the final structured-data contract for personal identity and published articles.
  * Responsibilities:
- * - Require the canonical Person entity to reference verified professional profiles.
+ * - Require the canonical Person entity to reference only verified professional profiles.
  * - Require known public name variants to resolve to the canonical professional identity.
  * - Require BlogPosting publication and modification dates to match article meta tags when those tags exist.
  * - Reject malformed JSON-LD before production deployment.
@@ -77,10 +77,17 @@ for (const file of manifest.html) {
     const person = nodes.find((node) => node?.['@type'] === 'Person' && (node['@id'] === personId || node.name === 'Nischhal Raj Subba'));
     if (!person) throw new Error('[seo-entity-audit] index.html: canonical Person entity missing');
     if (person.name !== 'Nischhal Raj Subba') throw new Error(`[seo-entity-audit] index.html: canonical Person name mismatch: ${person.name || 'missing'}`);
+    if (person.url !== `${site}/`) throw new Error(`[seo-entity-audit] index.html: Person URL mismatch: ${person.url || 'missing'}`);
     if (person.jobTitle !== 'Senior Product Designer') throw new Error(`[seo-entity-audit] index.html: Person jobTitle mismatch: ${person.jobTitle || 'missing'}`);
     const sameAs = Array.isArray(person.sameAs) ? person.sameAs : [];
+    if (sameAs.length !== requiredProfiles.length) {
+      throw new Error(`[seo-entity-audit] index.html: Person.sameAs expected ${requiredProfiles.length} canonical profiles, found ${sameAs.length}`);
+    }
     for (const profile of requiredProfiles) {
       if (!sameAs.includes(profile)) throw new Error(`[seo-entity-audit] index.html: Person.sameAs missing ${profile}`);
+    }
+    for (const profile of sameAs) {
+      if (!requiredProfiles.includes(profile)) throw new Error(`[seo-entity-audit] index.html: Person.sameAs contains unapproved or stale profile URL ${profile}`);
     }
     const aliases = Array.isArray(person.alternateName) ? person.alternateName : person.alternateName ? [person.alternateName] : [];
     for (const alias of requiredAliases) {
@@ -105,4 +112,4 @@ for (const file of manifest.html) {
   }
 }
 
-console.log('[seo-entity-audit] Person identity and article structured-data contract passed.');
+console.log('[seo-entity-audit] Canonical Person identity and article structured-data contract passed.');
