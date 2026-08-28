@@ -78,9 +78,10 @@ function patchJsonLd(html, route) {
         if (type === 'Person' && (node['@id'] === personId || node.name === 'Nischhal Raj Subba')) {
           node['@id'] = node['@id'] || personId;
           node.name = 'Nischhal Raj Subba';
+          node.url = `${site}/`;
           node.jobTitle = 'Senior Product Designer';
           node.alternateName = [...new Set([...asArray(node.alternateName), ...identityAliases])];
-          node.sameAs = [...new Set([...asArray(node.sameAs), ...verifiedProfiles])];
+          node.sameAs = [...verifiedProfiles];
           personPatched = true;
         }
         if (route.startsWith('/blog/') && route !== '/blog/' && type === 'BlogPosting') {
