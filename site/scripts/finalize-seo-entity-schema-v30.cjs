@@ -33,16 +33,37 @@ const verifiedProfiles = [
   'https://x.com/imnischhal',
 ];
 
+/**
+ * Function contract: routeFor
+ * Purpose: Convert one canonical HTML filename into its clean public route.
+ * Inputs: `file` - canonical route filename.
+ * Side effects: None.
+ * Returns: Clean public route beginning with `/`.
+ */
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
+/**
+ * Function contract: attribute
+ * Purpose: Read one attribute value from an HTML opening tag.
+ * Inputs: `tag` - opening tag text; `name` - attribute name.
+ * Side effects: None.
+ * Returns: Attribute value or an empty string.
+ */
 function attribute(tag, name) {
   return tag.match(new RegExp(`\\b${name}=["']([^"']*)["']`, 'i'))?.[1] || '';
 }
 
+/**
+ * Function contract: metaValue
+ * Purpose: Read one final meta content value regardless of attribute order.
+ * Inputs: `html`, `key`, `keyAttribute`.
+ * Side effects: None.
+ * Returns: Matching content value or an empty string.
+ */
 function metaValue(html, key, keyAttribute = 'property') {
   for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
     const tag = match[0];
@@ -51,18 +72,39 @@ function metaValue(html, key, keyAttribute = 'property') {
   return '';
 }
 
+/**
+ * Function contract: graphNodes
+ * Purpose: Flatten one parsed JSON-LD value into the node list used by the patcher.
+ * Inputs: `data` - parsed JSON-LD object.
+ * Side effects: None.
+ * Returns: JSON-LD graph nodes or a single-node array.
+ */
 function graphNodes(data) {
   if (Array.isArray(data?.['@graph'])) return data['@graph'];
   if (data && typeof data === 'object') return [data];
   return [];
 }
 
+/**
+ * Function contract: asArray
+ * Purpose: Normalize optional scalar-or-array schema properties before merging.
+ * Inputs: `value` - optional schema value.
+ * Side effects: None.
+ * Returns: Array representation of the supplied value.
+ */
 function asArray(value) {
   if (Array.isArray(value)) return value;
   if (value === undefined || value === null || value === '') return [];
   return [value];
 }
 
+/**
+ * Function contract: patchJsonLd
+ * Purpose: Normalize canonical Person identity and preserve final BlogPosting publication metadata.
+ * Inputs: `html` - final page HTML; `route` - clean public route.
+ * Side effects: None.
+ * Returns: Patched HTML plus flags and article date metadata used by validation.
+ */
 function patchJsonLd(html, route) {
   const published = metaValue(html, 'article:published_time');
   const modified = metaValue(html, 'article:modified_time');
@@ -70,32 +112,37 @@ function patchJsonLd(html, route) {
   let personPatched = false;
   let articlePatched = false;
 
-  const nextHtml = html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/gi, (whole, before, after, raw) => {
-    try {
-      const data = JSON.parse(raw.trim());
-      for (const node of graphNodes(data)) {
-        const type = node?.['@type'];
-        if (type === 'Person' && (node['@id'] === personId || node.name === 'Nischhal Raj Subba')) {
-          node['@id'] = node['@id'] || personId;
-          node.name = 'Nischhal Raj Subba';
-          node.jobTitle = 'Senior Product Designer';
-          node.alternateName = [...new Set([...asArray(node.alternateName), ...identityAliases])];
-          node.sameAs = [...new Set([...asArray(node.sameAs), ...verifiedProfiles])];
-          personPatched = true;
+  const nextHtml = html.replace(
+    /<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/gi,
+    /** Callback contract: Parse and patch one JSON-LD block while preserving malformed blocks for explicit downstream validation. Inputs: `whole`, `before`, `after`, `raw` Side effects: Updates local patch flags. Returns: Rebuilt script block or original block. */
+    (whole, before, after, raw) => {
+      try {
+        const data = JSON.parse(raw.trim());
+        for (const node of graphNodes(data)) {
+          const type = node?.['@type'];
+          if (type === 'Person' && (node['@id'] === personId || node.name === 'Nischhal Raj Subba')) {
+            node['@id'] = node['@id'] || personId;
+            node.name = 'Nischhal Raj Subba';
+            node.url = `${site}/`;
+            node.jobTitle = 'Senior Product Designer';
+            node.alternateName = [...new Set([...asArray(node.alternateName), ...identityAliases])];
+            node.sameAs = [...verifiedProfiles];
+            personPatched = true;
+          }
+          if (route.startsWith('/blog/') && route !== '/blog/' && type === 'BlogPosting') {
+            if (published) node.datePublished = published;
+            if (modified) node.dateModified = modified;
+            if (section) node.articleSection = section;
+            node.publisher = { '@id': personId };
+            articlePatched = true;
+          }
         }
-        if (route.startsWith('/blog/') && route !== '/blog/' && type === 'BlogPosting') {
-          if (published) node.datePublished = published;
-          if (modified) node.dateModified = modified;
-          if (section) node.articleSection = section;
-          node.publisher = { '@id': personId };
-          articlePatched = true;
-        }
+        return `<script${before}type="application/ld+json"${after}>${JSON.stringify(data)}</script>`;
+      } catch {
+        return whole;
       }
-      return `<script${before}type="application/ld+json"${after}>${JSON.stringify(data)}</script>`;
-    } catch {
-      return whole;
-    }
-  });
+    },
+  );
 
   return { html: nextHtml, personPatched, articlePatched, published, modified };
 }

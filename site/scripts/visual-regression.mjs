@@ -6,6 +6,7 @@
  * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
  * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
  * - Lock the approved homepage redesign to exact rendered RGBA signatures while preserving pixel-diff baselines for all other routes.
+ * - Wait for page load, fonts, and settled paint frames before capturing asynchronous hero visuals.
  * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
  * - package.json
@@ -44,24 +45,48 @@ const approvedHomeSignatures = {
   'home-mobile-light.png': {
     width: 390,
     height: 7141,
-    rgbaSha256: '5ef37434498a4cd5c216b6a278e0a8b916fdfec781168766ba9525693bc564ef',
+    rgbaSha256: 'ac341569f5246ce8244c7c112567257c64380aaec0673c039214111c3d7c332f',
   },
   'home-desktop-light.png': {
     width: 1440,
     height: 5888,
-    rgbaSha256: 'f4dffdbe1ab8dca3cdb8a9c8027405a6df0c1b0c1fb2ddcf6a9c9b0d67e36665',
+    rgbaSha256: '66a827181f5ac0cea675257f9ed806c4590ffe92ef495c92e8f0474def1ab360',
   },
   'home-mobile-dark.png': {
     width: 390,
     height: 7141,
-    rgbaSha256: '9703d31a41d9156f4e45dd97506c7c3947e2263478b7c54882ae9029ea18caf1',
+    rgbaSha256: '62bd3d81911ac0a46eb4da3e823c1d4eea03c34b3d18f85a1956796dbc42ec7b',
   },
   'home-desktop-dark.png': {
     width: 1440,
     height: 5888,
-    rgbaSha256: 'fe5bc4961d732a65ef5990f4784a42dbda17a65da85a7ab8ba75b1b9fe5d4f67',
+    rgbaSha256: '1a9c10949bed71bc3f2344c14f8ca02269fdc49e28e4b27506ba14dec5830aed',
   },
 };
+
+/**
+ * Function contract: waitForStableVisualAssets
+ * Purpose: Wait until normal page-load resources, fonts, and a final layout/render cycle have settled before a screenshot is captured.
+ * Inputs: `page` - Playwright page for the current route.
+ * Side effects: Waits for browser lifecycle and paint boundaries; does not force lazy below-the-fold media to load or mutate product UI.
+ * Returns: Promise resolving after visual prerequisites for the initial rendered state have settled.
+ */
+async function waitForStableVisualAssets(page) {
+  await page.waitForLoadState('load', { timeout: 30000 });
+  await page.evaluate(
+    /** Callback contract: Await fonts and cross two paint boundaries so reduced-motion hero canvases and final layout are committed. Inputs: None Side effects: Waits on browser rendering primitives only. Returns: Promise resolving after two animation frames. */
+    async () => {
+      if (document.fonts?.ready) await document.fonts.ready;
+      await new Promise(
+        /** Callback contract: Wait through two requestAnimationFrame callbacks so lifecycle-scheduled layout and canvas work has painted. Inputs: `resolve` Side effects: Schedules browser paint callbacks. Returns: Undefined. */
+        (resolve) => requestAnimationFrame(
+          /** Callback contract: Schedule the second paint boundary after the first animation frame. Inputs: None Side effects: Schedules one additional animation frame. Returns: requestAnimationFrame handle. */
+          () => requestAnimationFrame(resolve),
+        ),
+      );
+    },
+  );
+}
 
 if (update) fs.rmSync(baselineDirectory, { recursive: true, force: true });
 fs.mkdirSync(baselineDirectory, { recursive: true });
@@ -114,7 +139,7 @@ for (const theme of themes) {
           [data-agent-reveal] { opacity: 1 !important; transform: none !important; }
           [data-visual-placeholder="true"] { min-height: 68px; display: grid; place-items: center; border: 1px solid var(--border-faint); border-radius: 0; }
         ` });
-        await page.waitForTimeout(250);
+        await waitForStableVisualAssets(page);
         await page.screenshot({ path: actualPath, fullPage: true, animations: 'disabled' });
 
         if (update) {
