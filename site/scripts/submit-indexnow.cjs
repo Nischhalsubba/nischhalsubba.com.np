@@ -67,7 +67,10 @@ async function main() {
   if (liveKey !== key) throw new Error(`IndexNow ownership check failed at ${keyUrl}`);
 
   const sitemap = await getText(sitemapUrl);
-  const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/gi)].map((match) => decodeXml(match[1].trim()));
+  const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/gi)].map(
+    /** Callback contract: Convert one sitemap location match into a decoded canonical URL. Inputs: `match` Side effects: None. Returns: Decoded absolute URL. */
+    (match) => decodeXml(match[1].trim()),
+  );
   const uniqueUrls = [...new Set(urls)];
   if (!uniqueUrls.length) throw new Error('Live sitemap contains no canonical URLs');
   if (uniqueUrls.length > 10000) throw new Error(`Live sitemap exceeds IndexNow batch limit: ${uniqueUrls.length}`);
@@ -99,7 +102,10 @@ async function main() {
   console.log(`[indexnow] Submitted ${uniqueUrls.length} canonical URLs from ${sitemapUrl}; response HTTP ${response.status}.`);
 }
 
-main().catch((error) => {
-  console.error(`[indexnow] ${error.message}`);
-  process.exit(1);
-});
+main().catch(
+  /** Callback contract: Report a failed ownership, sitemap, or IndexNow request and terminate CI with a failure code. Inputs: `error` Side effects: Writes stderr and exits process. Returns: Nothing. */
+  (error) => {
+    console.error(`[indexnow] ${error.message}`);
+    process.exit(1);
+  },
+);
