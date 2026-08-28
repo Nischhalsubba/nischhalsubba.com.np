@@ -12,6 +12,7 @@
  * - config/canonical-routes.json
  * - scripts/finalize-search-discovery-v31.cjs
  * - scripts/submit-indexnow.cjs
+ * Maintenance: Keep this audit aligned with the generated production discovery contract and canonical route manifest.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -104,7 +105,10 @@ for (const file of manifest.html) {
 
   if (file === 'index.html') {
     const nodes = jsonLdNodes(html, file);
-    const person = nodes.find((node) => node?.['@type'] === 'Person' && node.name === 'Nischhal Raj Subba');
+    const person = nodes.find(
+      /** Callback contract: Select the canonical professional Person entity. Inputs: `node` Side effects: None. Returns: `true` for the canonical Person node. */
+      (node) => node?.['@type'] === 'Person' && node.name === 'Nischhal Raj Subba',
+    );
     if (!person) {
       errors.push('index.html: canonical Person entity missing while auditing rel=me links');
     } else {
@@ -127,12 +131,24 @@ if (!fs.existsSync(feedPath)) {
   }
   if (/https:\/\/nischhalsubba\.com\.np\/[^<\s]*\.html(?:<|\s)/i.test(feed)) errors.push('feed.xml: exposes .html URLs');
 
-  const feedLinks = [...feed.matchAll(/<link>(https:\/\/nischhalsubba\.com\.np[^<]*)<\/link>/gi)].map((match) => match[1]);
+  const feedLinks = [...feed.matchAll(/<link>(https:\/\/nischhalsubba\.com\.np[^<]*)<\/link>/gi)].map(
+    /** Callback contract: Extract one URL from an RSS channel or item link match. Inputs: `match` Side effects: None. Returns: Captured absolute URL. */
+    (match) => match[1],
+  );
   const articleUrls = manifest.html
-    .filter((file) => file.startsWith('blog/') && file !== 'blog/index.html')
-    .map((file) => `${site}${routeForFile(file)}`);
+    .filter(
+      /** Callback contract: Select canonical blog-detail routes while excluding the writing index. Inputs: `file` Side effects: None. Returns: `true` for article routes. */
+      (file) => file.startsWith('blog/') && file !== 'blog/index.html',
+    )
+    .map(
+      /** Callback contract: Convert one canonical article file into its public clean URL. Inputs: `file` Side effects: None. Returns: Absolute canonical article URL. */
+      (file) => `${site}${routeForFile(file)}`,
+    );
   for (const url of articleUrls) {
-    const count = feedLinks.filter((candidate) => candidate === url).length;
+    const count = feedLinks.filter(
+      /** Callback contract: Count RSS links that exactly match the canonical article URL under review. Inputs: `candidate` Side effects: None. Returns: `true` for an exact URL match. */
+      (candidate) => candidate === url,
+    ).length;
     if (count !== 1) errors.push(`feed.xml: expected one item link for ${url}, found ${count}`);
   }
 }
@@ -145,7 +161,10 @@ if (!fs.existsSync(keyPath)) {
 }
 
 if (errors.length) {
-  console.error(`[search-discovery-v31-audit] ${errors.length} failure(s)\n${errors.map((error) => `- ${error}`).join('\n')}`);
+  console.error(`[search-discovery-v31-audit] ${errors.length} failure(s)\n${errors.map(
+    /** Callback contract: Format one discovery validation failure for console output. Inputs: `error` Side effects: None. Returns: Bullet-prefixed diagnostic text. */
+    (error) => `- ${error}`,
+  ).join('\n')}`);
   process.exit(1);
 }
 
