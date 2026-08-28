@@ -1,0 +1,12 @@
+{
+  "site": "https://nischhalsubba.com.np",
+  "feed": {
+    "path": "/feed.xml",
+    "title": "Nischhal Raj Subba - Product Design Writing",
+    "description": "Practical writing on product design, SaaS UX, Web3 UX, design systems, UX audits, websites, and design-to-engineering handoff."
+  },
+  "indexNow": {
+    "key": "b7c8d3f21a4e4f6c9b2d8e7a5c1f3049",
+    "endpoint": "https://api.indexnow.org/indexnow"
+  }
+}
