@@ -20,7 +20,7 @@ const footerMarkup = `
         <p class="eyebrow">Product designer in Nepal · Remote collaboration</p>
         <h2>Clear product thinking, polished interfaces and practical handoff.</h2>
         <p>Available for product design roles, focused UX/UI projects, design systems, Web3 and SaaS work, website UX and product audits.</p>
-        <a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischhalsubba@gmail.com</a>
+        <a href="mailto:hinischalsubba@gmail.com" class="footer-email-btn">hinischalsubba@gmail.com</a>
       </div>
       <div class="footer-nav-grid">
         <div class="footer-col"><h3>Pages</h3><a href="/">Home</a><a href="/projects">Work</a><a href="/services">Services</a><a href="/about">About</a><a href="/blog/">Writing</a><a href="/contact">Contact</a></div>
