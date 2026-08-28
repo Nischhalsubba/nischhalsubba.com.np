@@ -6,6 +6,7 @@
  * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
  * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
  * - Lock the approved homepage redesign to exact rendered RGBA signatures while preserving pixel-diff baselines for all other routes.
+ * - Wait for fonts, images, page load, and settled animation frames before capturing asynchronous hero visuals.
  * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
  * - package.json
@@ -63,6 +64,45 @@ const approvedHomeSignatures = {
   },
 };
 
+/**
+ * Function contract: waitForStableVisualAssets
+ * Purpose: Wait until deferred visual assets and one final layout/render cycle have settled before a screenshot is captured.
+ * Inputs: `page` - Playwright page for the current route.
+ * Side effects: Waits for browser load state, image decoding, fonts, and animation frames; does not mutate product UI.
+ * Returns: Promise resolving after visual prerequisites are stable enough for deterministic capture.
+ */
+async function waitForStableVisualAssets(page) {
+  await page.waitForLoadState('load', { timeout: 30000 });
+  await page.waitForFunction(
+    /** Callback contract: Report whether every document image has completed loading and has usable intrinsic dimensions. Inputs: None Side effects: Reads image readiness from the DOM. Returns: Boolean image-readiness state. */
+    () => [...document.images].every((image) => image.complete && image.naturalWidth > 0),
+    undefined,
+    { timeout: 15000 },
+  );
+  await page.evaluate(
+    /** Callback contract: Decode loaded images, await fonts, and cross two paint boundaries so reduced-motion hero canvases and final layout are committed. Inputs: None Side effects: Waits on browser rendering primitives only. Returns: Promise resolving after two animation frames. */
+    async () => {
+      if (document.fonts?.ready) await document.fonts.ready;
+      for (const image of document.images) {
+        if (typeof image.decode === 'function') {
+          try {
+            await image.decode();
+          } catch {
+            // The preceding readiness check already guarantees a usable loaded image.
+          }
+        }
+      }
+      await new Promise(
+        /** Callback contract: Wait through two requestAnimationFrame callbacks so layout/canvas work scheduled by asset readiness has painted. Inputs: `resolve` Side effects: Schedules browser paint callbacks. Returns: Undefined. */
+        (resolve) => requestAnimationFrame(
+          /** Callback contract: Schedule the second paint boundary after the first animation frame. Inputs: None Side effects: Schedules one additional animation frame. Returns: requestAnimationFrame handle. */
+          () => requestAnimationFrame(resolve),
+        ),
+      );
+    },
+  );
+}
+
 if (update) fs.rmSync(baselineDirectory, { recursive: true, force: true });
 fs.mkdirSync(baselineDirectory, { recursive: true });
 fs.rmSync(resultDirectory, { recursive: true, force: true });
@@ -114,7 +154,7 @@ for (const theme of themes) {
           [data-agent-reveal] { opacity: 1 !important; transform: none !important; }
           [data-visual-placeholder="true"] { min-height: 68px; display: grid; place-items: center; border: 1px solid var(--border-faint); border-radius: 0; }
         ` });
-        await page.waitForTimeout(250);
+        await waitForStableVisualAssets(page);
         await page.screenshot({ path: actualPath, fullPage: true, animations: 'disabled' });
 
         if (update) {
