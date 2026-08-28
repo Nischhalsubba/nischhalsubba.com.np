@@ -11,6 +11,7 @@
  * - scripts/finalize-seo-entity-schema-v30.cjs
  * - scripts/audit-final-seo.cjs
  * - config/canonical-routes.json
+ * Maintenance: Keep the asserted identity, profile URLs, and article metadata synchronized with the final SEO entity normalizer.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -30,16 +31,37 @@ const requiredProfiles = [
   'https://x.com/imnischhal',
 ];
 
+/**
+ * Function contract: routeFor
+ * Purpose: Convert one canonical HTML filename to its clean public route.
+ * Inputs: `file` - canonical manifest filename.
+ * Side effects: None.
+ * Returns: Clean route beginning with `/`.
+ */
 function routeFor(file) {
   if (file === 'index.html') return '/';
   if (file === 'blog/index.html') return '/blog/';
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
+/**
+ * Function contract: attribute
+ * Purpose: Read one attribute value from an HTML opening tag.
+ * Inputs: `tag` - opening tag text; `name` - attribute name.
+ * Side effects: None.
+ * Returns: Attribute value or an empty string.
+ */
 function attribute(tag, name) {
   return tag.match(new RegExp(`\\b${name}=["']([^"']*)["']`, 'i'))?.[1] || '';
 }
 
+/**
+ * Function contract: metaValue
+ * Purpose: Read a named or property-based meta content value regardless of attribute order.
+ * Inputs: `html`, `key`, `keyAttribute`.
+ * Side effects: None.
+ * Returns: Matching meta content or an empty string.
+ */
 function metaValue(html, key, keyAttribute = 'property') {
   for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
     const tag = match[0];
@@ -48,6 +70,13 @@ function metaValue(html, key, keyAttribute = 'property') {
   return '';
 }
 
+/**
+ * Function contract: jsonLdNodes
+ * Purpose: Parse and flatten every JSON-LD node from one HTML document.
+ * Inputs: `html` - complete document; `file` - diagnostic filename.
+ * Side effects: None; malformed JSON-LD throws an explicit validation error.
+ * Returns: Flattened structured-data node array.
+ */
 function jsonLdNodes(html, file) {
   const nodes = [];
   let blocks = 0;
@@ -74,7 +103,10 @@ for (const file of manifest.html) {
   const nodes = jsonLdNodes(html, file);
 
   if (route === '/') {
-    const person = nodes.find((node) => node?.['@type'] === 'Person' && (node['@id'] === personId || node.name === 'Nischhal Raj Subba'));
+    const person = nodes.find(
+      /** Callback contract: Select the canonical Person by stable ID or canonical name. Inputs: `node` Side effects: None. Returns: `true` for the canonical professional Person. */
+      (node) => node?.['@type'] === 'Person' && (node['@id'] === personId || node.name === 'Nischhal Raj Subba'),
+    );
     if (!person) throw new Error('[seo-entity-audit] index.html: canonical Person entity missing');
     if (person.name !== 'Nischhal Raj Subba') throw new Error(`[seo-entity-audit] index.html: canonical Person name mismatch: ${person.name || 'missing'}`);
     if (person.url !== `${site}/`) throw new Error(`[seo-entity-audit] index.html: Person URL mismatch: ${person.url || 'missing'}`);
@@ -98,7 +130,10 @@ for (const file of manifest.html) {
   if (route.startsWith('/blog/') && route !== '/blog/') {
     const published = metaValue(html, 'article:published_time');
     const modified = metaValue(html, 'article:modified_time');
-    const posting = nodes.find((node) => node?.['@type'] === 'BlogPosting');
+    const posting = nodes.find(
+      /** Callback contract: Select the BlogPosting structured-data node for a canonical article route. Inputs: `node` Side effects: None. Returns: `true` for BlogPosting. */
+      (node) => node?.['@type'] === 'BlogPosting',
+    );
     if (published && !posting) throw new Error(`[seo-entity-audit] ${file}: BlogPosting missing`);
     if (published && posting.datePublished !== published) {
       throw new Error(`[seo-entity-audit] ${file}: datePublished mismatch. Expected ${published}, found ${posting.datePublished || 'missing'}`);
