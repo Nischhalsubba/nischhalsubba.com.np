@@ -154,7 +154,10 @@ function hasLink(html, rel, href) {
 function appendHeadLinks(html, links) {
   if (!links.length) return html;
   if (!/<\/head>/i.test(html)) throw new Error('[search-discovery-v31] HTML document has no closing head tag');
-  return html.replace(/<\/head>/i, `${links.map((link) => `    ${link}`).join('\n')}\n  </head>`);
+  return html.replace(/<\/head>/i, `${links.map(
+    /** Callback contract: Indent one generated discovery link for insertion into the HTML head. Inputs: `link` Side effects: None. Returns: Indented link tag text. */
+    (link) => `    ${link}`,
+  ).join('\n')}\n  </head>`);
 }
 
 /**
@@ -166,48 +169,63 @@ function appendHeadLinks(html, links) {
  */
 function buildFeed() {
   const articles = manifest.html
-    .filter((file) => file.startsWith('blog/') && file !== 'blog/index.html')
-    .map((file) => {
-      const filePath = path.join(base, file);
-      if (!fs.existsSync(filePath)) throw new Error(`[search-discovery-v31] Missing article route: ${file}`);
-      const html = fs.readFileSync(filePath, 'utf8');
-      const title = titleValue(html);
-      const description = metaValue(html, 'description', 'name');
-      const published = metaValue(html, 'article:published_time');
-      const modified = metaValue(html, 'article:modified_time') || published;
-      const section = metaValue(html, 'article:section');
-      const url = `${site}${routeForFile(file)}`;
-      if (!title) throw new Error(`[search-discovery-v31] ${file}: feed title is missing`);
-      if (!description) throw new Error(`[search-discovery-v31] ${file}: feed description is missing`);
-      return { title, description, published, modified, section, url };
-    })
-    .sort((a, b) => {
-      const aTime = Date.parse(a.published || a.modified || '') || 0;
-      const bTime = Date.parse(b.published || b.modified || '') || 0;
-      return bTime - aTime || a.url.localeCompare(b.url);
-    });
+    .filter(
+      /** Callback contract: Select canonical blog-detail routes while excluding the writing index. Inputs: `file` Side effects: None. Returns: `true` for article routes. */
+      (file) => file.startsWith('blog/') && file !== 'blog/index.html',
+    )
+    .map(
+      /** Callback contract: Read one final article route and normalize the metadata required by the feed. Inputs: `file` Side effects: Reads final HTML. Returns: Normalized feed article object. */
+      (file) => {
+        const filePath = path.join(base, file);
+        if (!fs.existsSync(filePath)) throw new Error(`[search-discovery-v31] Missing article route: ${file}`);
+        const html = fs.readFileSync(filePath, 'utf8');
+        const title = titleValue(html);
+        const description = metaValue(html, 'description', 'name');
+        const published = metaValue(html, 'article:published_time');
+        const modified = metaValue(html, 'article:modified_time') || published;
+        const section = metaValue(html, 'article:section');
+        const url = `${site}${routeForFile(file)}`;
+        if (!title) throw new Error(`[search-discovery-v31] ${file}: feed title is missing`);
+        if (!description) throw new Error(`[search-discovery-v31] ${file}: feed description is missing`);
+        return { title, description, published, modified, section, url };
+      },
+    )
+    .sort(
+      /** Callback contract: Order feed articles by newest verified content date, then canonical URL for deterministic ties. Inputs: `a`, `b` Side effects: None. Returns: Standard numeric sort order. */
+      (a, b) => {
+        const aTime = Date.parse(a.published || a.modified || '') || 0;
+        const bTime = Date.parse(b.published || b.modified || '') || 0;
+        return bTime - aTime || a.url.localeCompare(b.url);
+      },
+    );
 
   const latest = articles
-    .map((article) => article.modified || article.published)
+    .map(
+      /** Callback contract: Select the best verified change date from one normalized feed article. Inputs: `article` Side effects: None. Returns: Modification date or publication date. */
+      (article) => article.modified || article.published,
+    )
     .filter(Boolean)
     .sort()
     .at(-1) || '';
   const lastBuildDate = rssDate(latest);
 
-  const items = articles.map((article) => {
-    const lines = [
-      '    <item>',
-      `      <title>${xmlEscape(article.title)}</title>`,
-      `      <link>${xmlEscape(article.url)}</link>`,
-      `      <guid isPermaLink="true">${xmlEscape(article.url)}</guid>`,
-      `      <description>${xmlEscape(article.description)}</description>`,
-    ];
-    const published = rssDate(article.published);
-    if (published) lines.push(`      <pubDate>${xmlEscape(published)}</pubDate>`);
-    if (article.section) lines.push(`      <category>${xmlEscape(article.section)}</category>`);
-    lines.push('    </item>');
-    return lines.join('\n');
-  }).join('\n');
+  const items = articles.map(
+    /** Callback contract: Serialize one normalized article as an RSS item using canonical metadata. Inputs: `article` Side effects: None. Returns: RSS item XML text. */
+    (article) => {
+      const lines = [
+        '    <item>',
+        `      <title>${xmlEscape(article.title)}</title>`,
+        `      <link>${xmlEscape(article.url)}</link>`,
+        `      <guid isPermaLink="true">${xmlEscape(article.url)}</guid>`,
+        `      <description>${xmlEscape(article.description)}</description>`,
+      ];
+      const published = rssDate(article.published);
+      if (published) lines.push(`      <pubDate>${xmlEscape(published)}</pubDate>`);
+      if (article.section) lines.push(`      <category>${xmlEscape(article.section)}</category>`);
+      lines.push('    </item>');
+      return lines.join('\n');
+    },
+  ).join('\n');
 
   const channel = [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -242,7 +260,10 @@ for (const file of manifest.html) {
 
   if (file === 'index.html') {
     const nodes = jsonLdNodes(html, file);
-    const person = nodes.find((node) => node?.['@type'] === 'Person' && node.name === 'Nischhal Raj Subba');
+    const person = nodes.find(
+      /** Callback contract: Select the canonical professional Person entity whose profiles should be advertised with rel=me. Inputs: `node` Side effects: None. Returns: `true` for the canonical Person. */
+      (node) => node?.['@type'] === 'Person' && node.name === 'Nischhal Raj Subba',
+    );
     if (!person) throw new Error('[search-discovery-v31] index.html: canonical Person entity is missing');
     const profiles = Array.isArray(person.sameAs) ? person.sameAs : [];
     if (!profiles.length) throw new Error('[search-discovery-v31] index.html: Person.sameAs is empty');
