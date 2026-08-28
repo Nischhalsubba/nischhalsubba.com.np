@@ -1,0 +1,54 @@
+name: Notify IndexNow after production
+
+on:
+  workflow_run:
+    workflows: ["Verify Cloudflare Workers production"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow-production
+  cancel-in-progress: true
+
+jobs:
+  notify:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.19.0'
+
+      - name: Submit live canonical URLs to IndexNow
+        id: indexnow
+        continue-on-error: true
+        run: node site/scripts/submit-indexnow.cjs https://nischhalsubba.com.np 2>&1 | tee indexnow.log
+
+      - name: Publish IndexNow summary
+        if: always()
+        shell: bash
+        env:
+          INDEXNOW_OUTCOME: ${{ steps.indexnow.outcome }}
+        run: |
+          {
+            echo "## IndexNow production notification"
+            echo
+            echo "Outcome: **$INDEXNOW_OUTCOME**"
+            echo
+            if [ -f indexnow.log ]; then
+              echo '```text'
+              tail -n 40 indexnow.log
+              echo '```'
+            fi
+            echo
+            echo "A successful submission confirms receipt by IndexNow participants; it does not guarantee crawling, indexing, or ranking."
+          } >> "$GITHUB_STEP_SUMMARY"
