@@ -41,10 +41,11 @@
     "audit:voice": "node scripts/audit-content-voice.cjs",
     "audit:accessibility-tokens": "node scripts/audit-accessibility-tokens.cjs",
     "test:build-determinism": "node scripts/test-build-determinism.cjs",
+    "test:contact-security": "node scripts/test-contact-security-contract.cjs",
     "test:smoke": "node scripts/smoke-test-dist.mjs",
     "test:routes:live": "node scripts/verify-live-routes.mjs",
     "test:button-motion:browser": "node scripts/browser-button-motion-audit.mjs",
-    "validate": "npm run build && npm run lint && npm run audit:repo-structure && npm run audit:code-docs && npm run test:build-determinism && npm run audit:seo && npm run audit:seo-entity-schema && npm run audit:seo-contract && npm run audit:seo-discovery && npm run audit:search-discovery-v31 && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:shared-shell && npm run audit:css-architecture && npm run audit:design-system && npm run audit:voice && npm run audit:accessibility-tokens && npm run audit:provenance && npm run test:smoke",
+    "validate": "npm run build && npm run lint && npm run audit:repo-structure && npm run audit:code-docs && npm run test:build-determinism && npm run audit:seo && npm run audit:seo-entity-schema && npm run audit:seo-contract && npm run audit:seo-discovery && npm run audit:search-discovery-v31 && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:shared-shell && npm run audit:css-architecture && npm run audit:design-system && npm run audit:voice && npm run audit:accessibility-tokens && npm run audit:provenance && npm run test:contact-security && npm run test:smoke",
     "audit:code-docs": "node scripts/repository/audit-code-documentation.cjs"
   },
   "devDependencies": {

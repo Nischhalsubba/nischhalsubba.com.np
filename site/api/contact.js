@@ -3,6 +3,7 @@
  * Purpose: Handle contact server-side requests with validation and deployment-compatible response behavior.
  * Responsibilities:
  * - Validate request data before performing server-side work.
+ * - Restrict browser submissions and anti-spam verification to known portfolio hosts.
  * - Return predictable status, error, and success responses compatible with the deployed client.
  * Execution context: Serverless/API runtime used by supported deployment targets.
  * Connected files:
@@ -11,15 +12,19 @@
  * - src/worker.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
-const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
-const ALLOWED_HOSTS = new Set([
-  'nischhalsubba.com.np',
-  'www.nischhalsubba.com.np',
-  'nischhalsubba-com-np.vercel.app',
+const CONTACT_EMAIL = 'hinischhalsubba@gmail.com';
+const ALLOWED_ORIGINS = new Set([
+  'https://nischhalsubba.com.np',
+  'https://www.nischhalsubba.com.np',
+  'https://nischhalsubba-com-np.vercel.app',
+  'https://nischhalsubba-com-np-cdx.pages.dev',
 ]);
+const ALLOWED_TURNSTILE_HOSTNAMES = new Set(
+  [...ALLOWED_ORIGINS].map((origin) => new URL(origin).hostname),
+);
+const MAX_REQUEST_BYTES = 32 * 1024;
 
 export const config = { runtime: 'edge' };
-
 
 /**
  * Function contract: json
@@ -34,11 +39,11 @@ function json(payload, status = 200) {
     headers: {
       'content-type': 'application/json; charset=utf-8',
       'cache-control': 'no-store',
+      'referrer-policy': 'no-referrer',
       'x-content-type-options': 'nosniff',
     },
   });
 }
-
 
 /**
  * Function contract: clean
@@ -51,6 +56,27 @@ function clean(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+/**
+ * Function contract: originAllowed
+ * Purpose: Accept only canonical HTTPS origins explicitly owned by a supported deployment.
+ * Inputs: `request`
+ * Side effects: No direct external side effect beyond invoked dependencies.
+ * Returns: Boolean indicating whether the browser Origin is trusted.
+ */
+function originAllowed(request) {
+  const origin = request.headers.get('origin');
+  if (!origin) return false;
+
+  try {
+    const parsed = new URL(origin);
+    if (parsed.protocol !== 'https:') return false;
+    if (parsed.username || parsed.password) return false;
+    if (parsed.pathname !== '/' || parsed.search || parsed.hash) return false;
+    return ALLOWED_ORIGINS.has(parsed.origin);
+  } catch {
+    return false;
+  }
+}
 
 /**
  * Function contract: validate
@@ -68,29 +94,6 @@ function validate(fields) {
   if (fields.message.length < 20) errors.message = 'Add at least 20 characters of project context.';
   return errors;
 }
-
-
-/**
- * Function contract: originAllowed
- * Purpose: Implement the origin allowed responsibility owned by the contact API handler.
- * Inputs: `request`
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
- */
-function originAllowed(request) {
-  const origin = request.headers.get('origin');
-  if (!origin) return true;
-
-  try {
-    const hostname = new URL(origin).hostname;
-    return ALLOWED_HOSTS.has(hostname)
-      || hostname.endsWith('-nischhalsubbas-projects.vercel.app')
-      || hostname.startsWith('nischhalsubba-com-') && hostname.endsWith('.vercel.app');
-  } catch {
-    return false;
-  }
-}
-
 
 /**
  * Function contract: verifyTurnstile
@@ -114,7 +117,6 @@ async function verifyTurnstile(secret, token, remoteip) {
   return response.json();
 }
 
-
 /**
  * Function contract: handler
  * Purpose: Implement the handler responsibility owned by the contact API handler.
@@ -124,12 +126,17 @@ async function verifyTurnstile(secret, token, remoteip) {
  */
 export default async function handler(request) {
   if (request.method === 'OPTIONS') {
+    const origin = request.headers.get('origin');
+    if (!originAllowed(request)) return new Response(null, { status: 403 });
     return new Response(null, {
       status: 204,
       headers: {
+        'access-control-allow-origin': origin,
         'access-control-allow-methods': 'POST, OPTIONS',
         'access-control-allow-headers': 'content-type',
         'access-control-max-age': '86400',
+        'cache-control': 'no-store',
+        vary: 'Origin',
       },
     });
   }
@@ -142,9 +149,24 @@ export default async function handler(request) {
     return json({ ok: false, message: 'This submission origin is not allowed.' }, 403);
   }
 
+  const contentLength = Number(request.headers.get('content-length') || 0);
+  if (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES) {
+    return json({ ok: false, message: 'This submission is too large.' }, 413);
+  }
+
+  const contentType = (request.headers.get('content-type') || '').toLowerCase();
+  const supportedContentType = contentType.startsWith('multipart/form-data')
+    || contentType.startsWith('application/x-www-form-urlencoded');
+  if (!supportedContentType) {
+    return json({ ok: false, message: 'Unsupported submission format.' }, 415);
+  }
+
   const secret = process.env.TURNSTILE_SECRET_KEY;
   if (!secret) {
-    return json({ ok: false, message: 'The protected contact form is not configured yet. Please use email instead.' }, 503);
+    return json({
+      ok: false,
+      message: 'The protected contact form is not configured yet. Please use email instead.',
+    }, 503);
   }
 
   let data;
@@ -169,12 +191,18 @@ export default async function handler(request) {
   }
 
   const token = clean(data.get('cf-turnstile-response'), 2048);
-  if (!token) return json({ ok: false, message: 'Complete the anti-spam check and try again.' }, 422);
+  if (!token) {
+    return json({ ok: false, message: 'Complete the anti-spam check and try again.' }, 422);
+  }
 
   const forwardedFor = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim();
   const verification = await verifyTurnstile(secret, token, forwardedFor);
-  if (!verification.success) {
-    return json({ ok: false, message: 'The anti-spam check could not be verified. Please try again.' }, 403);
+  const verifiedHostname = String(verification.hostname || '').toLowerCase();
+  if (!verification.success || !ALLOWED_TURNSTILE_HOSTNAMES.has(verifiedHostname)) {
+    return json({
+      ok: false,
+      message: 'The anti-spam check could not be verified. Please try again.',
+    }, 403);
   }
 
   const outbound = new FormData();
@@ -196,7 +224,10 @@ export default async function handler(request) {
   });
 
   if (!delivery.ok) {
-    return json({ ok: false, message: 'The message service is temporarily unavailable. Please use email instead.' }, 502);
+    return json({
+      ok: false,
+      message: 'The message service is temporarily unavailable. Please use email instead.',
+    }, 502);
   }
 
   return json({ ok: true, message: 'Thanks. Your message was sent successfully.' });
