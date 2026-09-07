@@ -3,6 +3,7 @@
  * Purpose: Handle contact server-side requests with validation and deployment-compatible response behavior.
  * Responsibilities:
  * - Validate request data before performing server-side work.
+ * - Restrict browser submissions and anti-spam verification to known portfolio hosts.
  * - Return predictable status, error, and success responses compatible with the deployed client.
  * Execution context: Serverless/API runtime used by supported deployment targets.
  * Connected files:
@@ -15,10 +16,14 @@ import { EmailMessage } from 'cloudflare:email';
 const ALLOWED_ORIGINS = new Set([
   'https://nischhalsubba.com.np',
   'https://www.nischhalsubba.com.np',
+  'https://nischhalsubba-com-np-cdx.pages.dev',
 ]);
+const ALLOWED_TURNSTILE_HOSTNAMES = new Set(
+  [...ALLOWED_ORIGINS].map((origin) => new URL(origin).hostname),
+);
+const MAX_REQUEST_BYTES = 32 * 1024;
 const DESTINATION_EMAIL = 'hinischalsubba@gmail.com';
 const SENDER_EMAIL = 'portfolio@nischhalsubba.com.np';
-
 
 /**
  * Function contract: json
@@ -33,11 +38,11 @@ function json(payload, status = 200) {
     headers: {
       'content-type': 'application/json; charset=utf-8',
       'cache-control': 'no-store',
+      'referrer-policy': 'no-referrer',
       'x-content-type-options': 'nosniff',
     },
   });
 }
-
 
 /**
  * Function contract: clean
@@ -50,6 +55,25 @@ function clean(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+/**
+ * Function contract: isAllowedOrigin
+ * Purpose: Accept only canonical HTTPS origins explicitly owned by the portfolio deployment.
+ * Inputs: `value`
+ * Side effects: None.
+ * Returns: Boolean indicating whether the browser Origin is trusted.
+ */
+function isAllowedOrigin(value) {
+  if (!value) return false;
+  try {
+    const parsed = new URL(value);
+    if (parsed.protocol !== 'https:') return false;
+    if (parsed.username || parsed.password) return false;
+    if (parsed.pathname !== '/' || parsed.search || parsed.hash) return false;
+    return ALLOWED_ORIGINS.has(parsed.origin);
+  } catch {
+    return false;
+  }
+}
 
 /**
  * Function contract: validate
@@ -68,7 +92,6 @@ function validate(fields) {
   return errors;
 }
 
-
 /**
  * Function contract: verifyTurnstile
  * Purpose: Validate turnstile and surface actionable failures when the contact API handler contract is violated.
@@ -81,11 +104,13 @@ async function verifyTurnstile(secret, token, remoteip) {
   body.set('secret', secret);
   body.set('response', token);
   if (remoteip) body.set('remoteip', remoteip);
-  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body });
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    body,
+  });
   if (!response.ok) return { success: false };
   return response.json();
 }
-
 
 /**
  * Function contract: safeHeader
@@ -97,7 +122,6 @@ async function verifyTurnstile(secret, token, remoteip) {
 function safeHeader(value) {
   return String(value || '').replace(/[\r\n]+/g, ' ').trim();
 }
-
 
 /**
  * Function contract: buildRawEmail
@@ -140,8 +164,6 @@ function buildRawEmail(fields, sourcePage) {
   ].join('\r\n');
 }
 
-
-
 /**
  * Function contract: onRequestPost
  * Purpose: Handle request post and coordinate the resulting contact API handler state changes.
@@ -152,9 +174,22 @@ function buildRawEmail(fields, sourcePage) {
 export async function onRequestPost({ request, env }) {
   try {
     const origin = request.headers.get('origin');
-    if (origin && !ALLOWED_ORIGINS.has(origin) && !origin.endsWith('.pages.dev')) {
+    if (!isAllowedOrigin(origin)) {
       return json({ ok: false, message: 'This submission origin is not allowed.' }, 403);
     }
+
+    const contentLength = Number(request.headers.get('content-length') || 0);
+    if (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES) {
+      return json({ ok: false, message: 'This submission is too large.' }, 413);
+    }
+
+    const contentType = (request.headers.get('content-type') || '').toLowerCase();
+    const supportedContentType = contentType.startsWith('multipart/form-data')
+      || contentType.startsWith('application/x-www-form-urlencoded');
+    if (!supportedContentType) {
+      return json({ ok: false, message: 'Unsupported submission format.' }, 415);
+    }
+
     if (!env.TURNSTILE_SECRET_KEY) {
       return json({ ok: false, message: 'The anti-spam service is not configured.' }, 503);
     }
@@ -173,23 +208,39 @@ export async function onRequestPost({ request, env }) {
       message: clean(data.get('message'), 5000),
     };
     const errors = validate(fields);
-    if (Object.keys(errors).length) return json({ ok: false, message: 'Review the highlighted fields.', errors }, 422);
+    if (Object.keys(errors).length) {
+      return json({ ok: false, message: 'Review the highlighted fields.', errors }, 422);
+    }
 
     const token = clean(data.get('cf-turnstile-response'), 2048);
-    if (!token) return json({ ok: false, message: 'Complete the anti-spam check and try again.' }, 422);
-    const verification = await verifyTurnstile(env.TURNSTILE_SECRET_KEY, token, request.headers.get('CF-Connecting-IP'));
-    if (!verification.success) return json({ ok: false, message: 'The anti-spam check could not be verified. Please try again.' }, 403);
+    if (!token) {
+      return json({ ok: false, message: 'Complete the anti-spam check and try again.' }, 422);
+    }
+
+    const verification = await verifyTurnstile(
+      env.TURNSTILE_SECRET_KEY,
+      token,
+      request.headers.get('CF-Connecting-IP'),
+    );
+    const verifiedHostname = String(verification.hostname || '').toLowerCase();
+    if (!verification.success || !ALLOWED_TURNSTILE_HOSTNAMES.has(verifiedHostname)) {
+      return json({
+        ok: false,
+        message: 'The anti-spam check could not be verified. Please try again.',
+      }, 403);
+    }
 
     const raw = buildRawEmail(fields, clean(data.get('source_page'), 500));
     await env.CONTACT_EMAIL.send(new EmailMessage(SENDER_EMAIL, DESTINATION_EMAIL, raw));
     return json({ ok: true, message: 'Thanks. Your message was sent successfully.' });
   } catch (error) {
     console.error('[portfolio] contact submission failed', error);
-    return json({ ok: false, message: 'The form could not send your message. Please use the email button while this is fixed.' }, 502);
+    return json({
+      ok: false,
+      message: 'The form could not send your message. Please use the email button while this is fixed.',
+    }, 502);
   }
 }
-
-
 
 /**
  * Function contract: onRequestOptions
@@ -200,14 +251,16 @@ export async function onRequestPost({ request, env }) {
  */
 export function onRequestOptions({ request }) {
   const origin = request.headers.get('origin');
-  if (origin && !ALLOWED_ORIGINS.has(origin) && !origin.endsWith('.pages.dev')) return new Response(null, { status: 403 });
+  if (!isAllowedOrigin(origin)) return new Response(null, { status: 403 });
   return new Response(null, {
     status: 204,
     headers: {
-      'access-control-allow-origin': origin || 'https://nischhalsubba.com.np',
+      'access-control-allow-origin': origin,
       'access-control-allow-methods': 'POST, OPTIONS',
       'access-control-allow-headers': 'content-type',
       'access-control-max-age': '86400',
+      'cache-control': 'no-store',
+      vary: 'Origin',
     },
   });
 }
