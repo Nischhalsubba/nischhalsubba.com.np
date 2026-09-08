@@ -146,36 +146,39 @@ function removeMeta(html, key, keyAttribute = 'name') {
  * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function patchStructuredData(html, route, pageMeta) {
-  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i, (whole, before, after, raw) => {
-    try {
-      const data = JSON.parse(raw.trim());
-      const graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
-      for (const node of graph) {
-        const type = node?.['@type'];
-        if (type === 'WebSite') {
-          node.name = 'Nischhal Raj Subba';
-          node.alternateName = ['Nischhal', 'nischhalsubba.com.np'];
-          node.url = `${site}/`;
+  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i,
+    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure search identity final repository tool operation. Inputs: `whole`, `before`, `after`, `raw` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */
+    (whole, before, after, raw) => {
+      try {
+        const data = JSON.parse(raw.trim());
+        const graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
+        for (const node of graph) {
+          const type = node?.['@type'];
+          if (type === 'WebSite') {
+            node.name = 'Nischhal Raj Subba';
+            node.alternateName = ['Nischhal', 'nischhalsubba.com.np'];
+            node.url = `${site}/`;
+          }
+          if (type === 'Person') {
+            node.name = 'Nischhal Raj Subba';
+            node.jobTitle = 'Senior Product Designer';
+            node.description = 'Senior product designer based in Kathmandu, Nepal, working across SaaS, Web3, fintech and complex software products.';
+            node.url = `${site}/`;
+            node.image = `${site}/assets/images/portrait.png`;
+          }
+          if (route === '/' && type === 'ProfilePage') {
+            node.name = pageMeta.title;
+            node.description = pageMeta.description;
+            node.url = `${site}/`;
+          }
         }
-        if (type === 'Person') {
-          node.name = 'Nischhal Raj Subba';
-          node.jobTitle = 'Senior Product Designer';
-          node.description = 'Senior product designer based in Kathmandu, Nepal, working across SaaS, Web3, fintech and complex software products.';
-          node.url = `${site}/`;
-          node.image = `${site}/assets/images/portrait.png`;
-        }
-        if (route === '/' && type === 'ProfilePage') {
-          node.name = pageMeta.title;
-          node.description = pageMeta.description;
-          node.url = `${site}/`;
-        }
+        const next = Array.isArray(data['@graph']) ? { ...data, '@graph': graph } : graph[0];
+        return `<script${before}type="application/ld+json"${after}>${JSON.stringify(next)}</script>`;
+      } catch {
+        return whole;
       }
-      const next = Array.isArray(data['@graph']) ? { ...data, '@graph': graph } : graph[0];
-      return `<script${before}type="application/ld+json"${after}>${JSON.stringify(next)}</script>`;
-    } catch {
-      return whole;
-    }
-  });
+    },
+  );
 }
 
 /**
