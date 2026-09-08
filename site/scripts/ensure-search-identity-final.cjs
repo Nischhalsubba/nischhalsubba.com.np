@@ -34,7 +34,7 @@ const meta = {
   },
   '/about': {
     title: 'About Nischhal Raj Subba | Senior Product Designer',
-    description: 'I’m a product designer based in Kathmandu with 6+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.',
+    description: 'I’m a senior product designer based in Kathmandu working across product teams, complex software, design systems and front-end collaboration. Read about my experience, approach and working style.',
   },
   '/contact': {
     title: 'Contact Nischhal Raj Subba | Product Design',
@@ -74,7 +74,6 @@ const meta = {
   },
 };
 
-
 /**
  * Function contract: routeFor
  * Purpose: Implement the route for responsibility owned by the ensure search identity final repository tool.
@@ -88,8 +87,6 @@ function routeFor(file) {
   return `/${file.replace(/\.html$/i, '')}`;
 }
 
-
-
 /**
  * Function contract: esc
  * Purpose: Implement the esc responsibility owned by the ensure search identity final repository tool.
@@ -100,8 +97,6 @@ function routeFor(file) {
 function esc(value = '') {
   return String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
-
-
 
 /**
  * Function contract: setTitle
@@ -117,8 +112,6 @@ function setTitle(html, value) {
     : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-
-
 /**
  * Function contract: setMeta
  * Purpose: Synchronize meta with the requested state while preserving related ensure search identity final repository tool invariants.
@@ -133,8 +126,6 @@ function setMeta(html, key, value, keyAttribute = 'name') {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
-
-
 /**
  * Function contract: removeMeta
  * Purpose: Remove meta without disturbing required surrounding ensure search identity final repository tool state.
@@ -147,7 +138,6 @@ function removeMeta(html, key, keyAttribute = 'name') {
   return html.replace(new RegExp(`\\s*<meta\\b(?=[^>]*\\b${keyAttribute}=["']${escapedKey}["'])[^>]*>`, 'gi'), '');
 }
 
-
 /**
  * Function contract: patchStructuredData
  * Purpose: Implement the patch structured data responsibility owned by the ensure search identity final repository tool.
@@ -156,7 +146,7 @@ function removeMeta(html, key, keyAttribute = 'name') {
  * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function patchStructuredData(html, route, pageMeta) {
-  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i,    /** Callback contract: Perform the local callback step required by the immediately enclosing ensure search identity final repository tool operation. Inputs: `whole`, `before`, `after`, `raw` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior. */ (whole, before, after, raw) => {
+  return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/i, (whole, before, after, raw) => {
     try {
       const data = JSON.parse(raw.trim());
       const graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
@@ -187,8 +177,6 @@ function patchStructuredData(html, route, pageMeta) {
     }
   });
 }
-
-
 
 /**
  * Function contract: patchIdentityHead
