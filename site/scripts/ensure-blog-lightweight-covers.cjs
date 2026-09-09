@@ -5,6 +5,7 @@
  * - Replace visible multi-megabyte blog PNG covers with local 16:9 SVG editorial covers.
  * - Preserve route-specific social preview metadata instead of reusing in-page cover assets for crawlers.
  * - Keep intrinsic dimensions and decoding/loading hints on the primary article cover to avoid layout shift.
+ * - Remove unused heavyweight legacy blog PNGs from final production output while preserving generated social previews.
  * - Fail when a transformed target still contains a visible blog PNG or an oversized SVG cover.
  * Execution context: Node.js CLI during canonical source generation and final production build normalization.
  * Connected files:
@@ -78,6 +79,24 @@ const TOPIC_COVERS = [
 ];
 
 const DEFAULT_COVER = TOPIC_COVERS[1];
+
+/**
+ * Function contract: walkFiles
+ * Purpose: Recursively list every file below the supplied directory without callback-based traversal.
+ * Inputs: `dir` - directory to inspect.
+ * Side effects: Reads filesystem directory state.
+ * Returns: Array of absolute file paths.
+ */
+function walkFiles(dir) {
+  if (!fs.existsSync(dir)) return [];
+  const files = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) files.push(...walkFiles(fullPath));
+    else if (entry.isFile()) files.push(fullPath);
+  }
+  return files;
+}
 
 /**
  * Function contract: walkHtml
@@ -256,6 +275,48 @@ function assertCoverAsset(cover) {
   if (bytes > MAX_DISPLAY_COVER_BYTES) throw new Error(`Blog cover exceeds ${MAX_DISPLAY_COVER_BYTES} bytes: ${relativePath} (${bytes})`);
 }
 
+/**
+ * Function contract: removeHeavyweightProductionBlogPngs
+ * Purpose: Remove obsolete multi-megabyte blog PNG artifacts after production HTML and social previews have been finalized.
+ * Inputs: None; uses the configured production target and byte budget.
+ * Side effects: Deletes matching legacy blog PNG files from `dist/assets` except generated `dist/assets/social` previews.
+ * Returns: Number of legacy production PNG files removed.
+ */
+function removeHeavyweightProductionBlogPngs() {
+  if (!useDist) return 0;
+  const assetsRoot = path.join(TARGET, 'assets');
+  let removed = 0;
+  for (const filePath of walkFiles(assetsRoot)) {
+    const relative = path.relative(TARGET, filePath).replaceAll(path.sep, '/');
+    if (relative.startsWith('assets/social/')) continue;
+    if (!/^blog-.+\.png$/i.test(path.basename(filePath))) continue;
+    if (fs.statSync(filePath).size <= MAX_DISPLAY_COVER_BYTES) continue;
+    fs.rmSync(filePath, { force: true });
+    removed += 1;
+  }
+  return removed;
+}
+
+/**
+ * Function contract: heavyweightProductionBlogPngs
+ * Purpose: List any oversized non-social blog PNGs that survive production cleanup.
+ * Inputs: None; uses the configured production target and byte budget.
+ * Side effects: Reads final production asset metadata.
+ * Returns: Array of relative production paths that still violate the legacy raster budget.
+ */
+function heavyweightProductionBlogPngs() {
+  if (!useDist) return [];
+  const assetsRoot = path.join(TARGET, 'assets');
+  const offenders = [];
+  for (const filePath of walkFiles(assetsRoot)) {
+    const relative = path.relative(TARGET, filePath).replaceAll(path.sep, '/');
+    if (relative.startsWith('assets/social/')) continue;
+    if (!/^blog-.+\.png$/i.test(path.basename(filePath))) continue;
+    if (fs.statSync(filePath).size > MAX_DISPLAY_COVER_BYTES) offenders.push(relative);
+  }
+  return offenders;
+}
+
 const files = [
   ...walkHtml(path.join(TARGET, 'blog')),
   ...fs.existsSync(TARGET)
@@ -287,8 +348,14 @@ for (const filePath of files) {
   }
 }
 
+const removedLegacyPngs = removeHeavyweightProductionBlogPngs();
+const remainingLegacyPngs = heavyweightProductionBlogPngs();
+if (remainingLegacyPngs.length) {
+  failures.push(`production still contains oversized legacy blog PNGs: ${remainingLegacyPngs.join(', ')}`);
+}
+
 if (failures.length) {
   throw new Error(`[blog-cover-performance] ${failures.length} failure(s)\n${failures.map((failure) => `- ${failure}`).join('\n')}`);
 }
 
-console.log(`[blog-cover-performance] ${useDist ? 'Production' : 'Source'} blog covers verified; ${changed} file(s) normalized to lightweight SVG delivery.`);
+console.log(`[blog-cover-performance] ${useDist ? 'Production' : 'Source'} blog covers verified; ${changed} file(s) normalized to lightweight SVG delivery; ${removedLegacyPngs} oversized legacy production PNG(s) removed.`);
