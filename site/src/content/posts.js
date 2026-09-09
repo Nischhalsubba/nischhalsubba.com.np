@@ -25,7 +25,7 @@ export const posts = [
     category: 'Web3 UX',
     date: '2026-04-26',
     readingTime: '5 min read',
-    cover: '/assets/images/blog-web3-wallet-ux-cover.png',
+    cover: '/assets/images/blog-web3-products.svg',
     summary:
       'A reflection on wallet clarity, transaction review, trust language, Yarsha, Mokshya.io, and designing crypto products that feel understandable.',
     featured: true,
@@ -38,7 +38,7 @@ export const posts = [
     category: 'Design Process',
     date: '2026-04-25',
     readingTime: '5 min read',
-    cover: '/assets/images/blog-design-systems-handoff-cover.png',
+    cover: '/assets/images/blog-good-handoff.svg',
     summary:
       'A note on Figma handoff, design-to-development clarity, UI states, edge cases, acceptance criteria, and front-end-aware product design.',
     featured: true,
@@ -51,7 +51,7 @@ export const posts = [
     category: 'Portfolio',
     date: '2026-04-24',
     readingTime: '4 min read',
-    cover: '/assets/images/blog-design-systems-handoff-cover.png',
+    cover: '/assets/images/blog-portfolio-product.svg',
     summary:
       'A reflection on building a truthful SEO-focused portfolio with clear contribution, case study structure, constraints, images, and honest outcomes.',
     featured: true,
@@ -64,7 +64,7 @@ export const posts = [
     category: 'Website UX',
     date: '2026-04-18',
     readingTime: '5 min read',
-    cover: '/assets/images/blog-service-pricing-ux-cover.png',
+    cover: '/assets/images/blog-service-websites.svg',
     summary:
       'Lessons from service websites, B2B consulting pages, software studio websites, SEO content structure, and conversion paths.',
     featured: true,
@@ -77,7 +77,7 @@ export const posts = [
     category: 'Gaming UX',
     date: '2026-04-12',
     readingTime: '4 min read',
-    cover: '/assets/images/blog-saas-empty-states-cover.png',
+    cover: '/assets/images/blog-gaming-interface-clarity.svg',
     summary:
       'How Neverwinter, combat logs, real-time feedback, status states, data visualization, and gameplay pressure shaped product design thinking.',
     featured: false,
@@ -90,7 +90,7 @@ export const posts = [
     category: 'Design Systems',
     date: '2026-04-08',
     readingTime: '4 min read',
-    cover: '/assets/images/blog-design-systems-handoff-cover.png',
+    cover: '/assets/images/blog-design-systems-front-end.svg',
     summary:
       'A reflection on reusable components, UI behavior, accessibility, tokens, front-end constraints, and practical design-to-code thinking.',
     featured: false,
