@@ -1,128 +1,131 @@
 /**
  * @fileoverview src/scripts/features/content/blog-visuals.js
- * Purpose: Implement blog visuals behavior inside the content browser-runtime domain.
+ * Purpose: Implement lightweight blog cover behavior inside the content browser-runtime domain.
  * Responsibilities:
- * - Own the content behavior represented by this module and keep unrelated domains outside the file.
- * - Read or update only the DOM/runtime state needed for this feature and preserve accessibility semantics.
- * - Expose stable initializer/helper exports consumed by runtime entrypoints or closely related features.
+ * - Resolve an approved article-specific or topic-level SVG cover for blog detail pages.
+ * - Keep the visible cover aligned with the production build without rewriting static social metadata at runtime.
+ * - Preserve intrinsic dimensions, accessible alternative text, and deterministic cover styling.
  * Execution context: Browser ES module loaded through the portfolio runtime.
  * Connected files:
  * - src/runtime/script.js
- * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
+ * - scripts/ensure-blog-lightweight-covers.cjs
+ * - scripts/generate-social-previews.cjs
+ * Maintenance: Keep cover mappings synchronized with the production build transformer and approved assets.
  */
-const BLOG_COVERS = [
+const EXACT_COVERS = [
   {
-    match: /saas|dashboard|empty-state|empty-states|enterprise|metric|data-dense/i,
-    src: '/assets/images/blog-saas-empty-states-cover.png',
-    alt: 'Generated product design cover showing SaaS dashboard empty states and product clarity artifacts',
+    match: /\/blog-web3-products(?:\.html)?$/i,
+    src: '/assets/images/blog-web3-products.svg',
+    alt: 'Editorial cover showing wallet review, transaction clarity, and Web3 product trust patterns',
   },
   {
-    match: /handoff|figma|design-system|design-systems|front-end|developer/i,
-    src: '/assets/images/blog-design-systems-handoff-cover.png',
-    alt: 'Generated product design cover showing design system components, handoff notes, and interface states',
+    match: /\/blog-good-handoff(?:\.html)?$/i,
+    src: '/assets/images/blog-good-handoff.svg',
+    alt: 'Editorial cover showing Figma handoff notes, interface states, and developer-ready product decisions',
   },
   {
-    match: /web3|wallet|crypto|transaction|governance/i,
-    src: '/assets/images/blog-web3-wallet-ux-cover.png',
-    alt: 'Generated product design cover showing Web3 wallet review, permissions, and trust-focused interface states',
+    match: /\/blog-portfolio-product(?:\.html)?$/i,
+    src: '/assets/images/blog-portfolio-product.svg',
+    alt: 'Editorial cover showing portfolio project cards, contribution labels, case study blocks, and SEO structure',
   },
   {
-    match: /audit|accessibility|research|redesign|emerging/i,
-    src: '/assets/images/blog-ux-audit-research-cover.png',
-    alt: 'Generated product design cover showing UX audit boards, research notes, and prioritization artifacts',
+    match: /\/blog-service-websites(?:\.html)?$/i,
+    src: '/assets/images/blog-service-websites.svg',
+    alt: 'Editorial cover showing service website structure, proof, pricing, and conversion paths',
   },
   {
-    match: /service|website|pricing|plans|software-companies|business/i,
-    src: '/assets/images/blog-service-pricing-ux-cover.png',
-    alt: 'Generated product design cover showing service website structure, pricing panels, and conversion paths',
+    match: /\/blog-gaming-interface-clarity(?:\.html)?$/i,
+    src: '/assets/images/blog-gaming-interface-clarity.svg',
+    alt: 'Editorial cover showing real-time feedback, status states, combat data, and interface clarity',
+  },
+  {
+    match: /\/blog-design-systems-front-end(?:\.html)?$/i,
+    src: '/assets/images/blog-design-systems-front-end.svg',
+    alt: 'Editorial cover showing reusable components, design tokens, responsive behavior, and front-end-aware design systems',
   },
 ];
 
-const DEFAULT_COVER = BLOG_COVERS[1];
+const TOPIC_COVERS = [
+  {
+    match: /saas|dashboard|empty-state|empty-states|enterprise|metric|data-dense/i,
+    src: '/assets/images/blog-saas-dashboard-cover.svg',
+    alt: 'SaaS dashboard UX cover showing filters, data cards, status states, and a trend chart',
+  },
+  {
+    match: /handoff|figma|design-system|design-systems|front-end|developer/i,
+    src: '/assets/images/blog-design-systems-handoff-cover.svg',
+    alt: 'Design systems and handoff cover showing components, interface states, specifications, and QA notes',
+  },
+  {
+    match: /web3|wallet|crypto|transaction|governance/i,
+    src: '/assets/images/blog-web3-wallet-ux-cover.svg',
+    alt: 'Web3 wallet UX cover showing review, permissions, signing clarity, and transaction trust patterns',
+  },
+  {
+    match: /audit|accessibility|research|redesign|emerging|usability/i,
+    src: '/assets/images/blog-ux-audit-research-cover.svg',
+    alt: 'UX audit and research cover showing evidence, usability findings, accessibility checks, and prioritization',
+  },
+  {
+    match: /service|website|pricing|plans|software-companies|business/i,
+    src: '/assets/images/blog-service-pricing-ux-cover.svg',
+    alt: 'Service website UX cover showing service hierarchy, pricing structure, proof, and conversion paths',
+  },
+];
 
+const DEFAULT_COVER = TOPIC_COVERS[1];
 
 /**
  * Function contract: isBlogDetailPage
- * Purpose: Determine whether blog detail page satisfies the condition represented by this blog visuals browser feature.
- * Inputs: None; derives required state from its enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state
- * Returns: Boolean indicating whether blog detail page satisfies the documented condition.
+ * Purpose: Determine whether the current route is a blog detail page.
+ * Inputs: None; reads browser location.
+ * Side effects: Reads browser state only.
+ * Returns: Boolean indicating whether blog-detail cover behavior should run.
  */
 function isBlogDetailPage() {
   const path = window.location.pathname;
   return path.startsWith('/blog/') && path !== '/blog/' && !path.endsWith('/blog/index.html');
 }
 
-
 /**
  * Function contract: currentCover
- * Purpose: Implement the current cover responsibility owned by the blog visuals browser feature.
- * Inputs: None; derives required state from its enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
+ * Purpose: Resolve the most specific approved lightweight cover for the current article.
+ * Inputs: None; reads pathname, title, and primary heading.
+ * Side effects: Reads DOM/browser state only.
+ * Returns: Cover descriptor with `src` and `alt`.
  */
 function currentCover() {
+  const path = window.location.pathname;
+  for (const cover of EXACT_COVERS) {
+    if (cover.match.test(path)) return cover;
+  }
+
   const title = document.title || '';
   const heading = document.querySelector('h1')?.textContent || '';
-  const path = window.location.pathname;
   const key = `${path} ${title} ${heading}`;
-  return BLOG_COVERS.find(   /** Callback contract: Identify whether the current item matches the lookup condition for the enclosing search. Inputs: `cover` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (cover) => cover.match.test(key)) || DEFAULT_COVER;
-}
-
-
-
-/**
- * Function contract: absoluteUrl
- * Purpose: Implement the absolute url responsibility owned by the blog visuals browser feature.
- * Inputs: `src`
- * Side effects: reads or updates DOM/browser state
- * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
- */
-function absoluteUrl(src) {
-  return new URL(src, window.location.origin).href;
-}
-
-
-
-/**
- * Function contract: upsertMeta
- * Purpose: Implement the upsert meta responsibility owned by the blog visuals browser feature.
- * Inputs: `selector`, `attrs`
- * Side effects: reads or updates DOM/browser state
- * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
- */
-function upsertMeta(selector, attrs) {
-  let meta = document.head.querySelector(selector);
-  if (!meta) {
-    meta = document.createElement('meta');
-    document.head.appendChild(meta);
+  for (const cover of TOPIC_COVERS) {
+    if (cover.match.test(key)) return cover;
   }
-  Object.entries(attrs).forEach(   /** Callback contract: Apply the enclosing side-effect operation to the current collection item. Inputs: `[key, value]` Side effects: reads or updates DOM/browser state Returns: Undefined; this callback is side-effect-only. */ ([key, value]) => meta.setAttribute(key, value));
+  return DEFAULT_COVER;
 }
-
-
 
 /**
  * Function contract: ensureCoverImage
- * Purpose: Apply cover image consistently while preserving the surrounding blog visuals browser feature contract.
- * Inputs: `cover`
- * Side effects: reads or updates DOM/browser state
- * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ * Purpose: Apply the selected lightweight SVG to the primary article cover while preserving accessibility and layout stability.
+ * Inputs: `cover` - approved cover descriptor.
+ * Side effects: Reads and updates article DOM state.
+ * Returns: Undefined; mutates the primary cover element when an article is present.
  */
 function ensureCoverImage(cover) {
   const article = document.querySelector('article');
   if (!article) return;
 
-  let image = article.querySelector('img[src*="blog-"][src$=".png"], img[src*="blog-"][src$=".svg"], img[src*="unsplash"]');
+  let image = article.querySelector('img[src*="blog-"], img[src*="unsplash"]');
   if (!image) {
     const figure = document.createElement('figure');
     figure.className = 'nrs-blog-cover';
     image = document.createElement('img');
     image.className = 'nrs-blog-cover-img';
-    image.width = 1600;
-    image.height = 900;
-    image.loading = 'eager';
-    image.decoding = 'async';
     figure.appendChild(image);
 
     const intro = article.querySelector('.body-large, h1 + p, header + section');
@@ -133,20 +136,18 @@ function ensureCoverImage(cover) {
   image.src = cover.src;
   image.alt = cover.alt;
   image.classList.add('nrs-blog-cover-img');
-  image.width = image.width || 1600;
-  image.height = image.height || 900;
+  image.width = 1200;
+  image.height = 675;
   image.loading = 'eager';
   image.decoding = 'async';
 }
 
-
-
 /**
  * Function contract: injectBlogVisualStyles
- * Purpose: Implement the inject blog visual styles responsibility owned by the blog visuals browser feature.
- * Inputs: None; derives required state from its enclosing module/runtime context.
- * Side effects: reads or updates DOM/browser state
- * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ * Purpose: Install the shared detail-cover and readable-article style contract once per page.
+ * Inputs: None.
+ * Side effects: Inserts one style element into the document head.
+ * Returns: Undefined.
  */
 function injectBlogVisualStyles() {
   if (document.getElementById('nrs-blog-visuals-style')) return;
@@ -222,21 +223,15 @@ function injectBlogVisualStyles() {
   document.head.appendChild(style);
 }
 
-
-
 /**
  * Function contract: ensureBlogGeneratedVisuals
- * Purpose: Apply blog generated visuals consistently while preserving the surrounding blog visuals browser feature contract.
- * Inputs: None; derives required state from its enclosing module/runtime context.
- * Side effects: No direct external side effect beyond invoked dependencies.
- * Returns: Undefined; the function exists for the documented side effects, validation, or orchestration.
+ * Purpose: Apply the lightweight visible-cover contract to blog detail pages without mutating static SEO/social metadata.
+ * Inputs: None.
+ * Side effects: Adds cover styles and normalizes the primary article image.
+ * Returns: Undefined.
  */
 export function ensureBlogGeneratedVisuals() {
   if (!isBlogDetailPage()) return;
-
-  const cover = currentCover();
   injectBlogVisualStyles();
-  ensureCoverImage(cover);
-  upsertMeta('meta[property="og:image"]', { property: 'og:image', content: absoluteUrl(cover.src) });
-  upsertMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: absoluteUrl(cover.src) });
+  ensureCoverImage(currentCover());
 }
