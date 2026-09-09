@@ -88,11 +88,14 @@ const DEFAULT_COVER = TOPIC_COVERS[1];
  */
 function walkHtml(dir) {
   if (!fs.existsSync(dir)) return [];
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) return walkHtml(fullPath);
-    return entry.isFile() && entry.name.endsWith('.html') ? [fullPath] : [];
-  });
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(
+    /** Callback contract: Expand each directory entry into nested HTML paths or the matching file path. Inputs: `entry` Side effects: Reads nested directory state through `walkHtml`. Returns: Array of HTML paths for the current entry. */
+    (entry) => {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) return walkHtml(fullPath);
+      return entry.isFile() && entry.name.endsWith('.html') ? [fullPath] : [];
+    },
+  );
 }
 
 /**
@@ -160,17 +163,21 @@ function ensureClass(tag) {
 function replaceVisibleCover(html, cover) {
   const expression = /<img\b[^>]*\bsrc=["'][^"']*(?:blog-[^"']+\.(?:png|svg|webp)|unsplash[^"']*)["'][^>]*>/i;
   if (!expression.test(html)) return html;
-  return html.replace(expression, (tag) => {
-    let next = tag;
-    next = setAttribute(next, 'src', cover.src);
-    next = setAttribute(next, 'alt', cover.alt);
-    next = setAttribute(next, 'width', '1200');
-    next = setAttribute(next, 'height', '675');
-    next = setAttribute(next, 'loading', 'eager');
-    next = setAttribute(next, 'decoding', 'async');
-    next = ensureClass(next);
-    return next;
-  });
+  return html.replace(
+    expression,
+    /** Callback contract: Rewrite the matched primary cover tag to the approved SVG while preserving unrelated attributes. Inputs: `tag` Side effects: None. Returns: Updated image tag string. */
+    (tag) => {
+      let next = tag;
+      next = setAttribute(next, 'src', cover.src);
+      next = setAttribute(next, 'alt', cover.alt);
+      next = setAttribute(next, 'width', '1200');
+      next = setAttribute(next, 'height', '675');
+      next = setAttribute(next, 'loading', 'eager');
+      next = setAttribute(next, 'decoding', 'async');
+      next = ensureClass(next);
+      return next;
+    },
+  );
 }
 
 /**
@@ -193,23 +200,34 @@ function socialImage(html) {
  */
 function updateStructuredImages(html, imageUrl) {
   if (!imageUrl) return html;
-  return html.replace(/<script type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi, (match, rawJson) => {
-    try {
-      const data = JSON.parse(rawJson.trim());
-      const visit = (node) => {
-        if (!node || typeof node !== 'object') return;
-        if (['Article', 'BlogPosting'].includes(node['@type']) || node.headline) node.image = imageUrl;
-        Object.values(node).forEach((value) => {
-          if (Array.isArray(value)) value.forEach(visit);
-          else visit(value);
-        });
-      };
-      visit(data);
-      return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
-    } catch {
-      return match;
-    }
-  });
+  return html.replace(
+    /<script type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi,
+    /** Callback contract: Parse one JSON-LD block and align article image fields to the generated static social preview. Inputs: `match`, `rawJson` Side effects: None. Returns: Updated JSON-LD script tag or the original tag when parsing fails. */
+    (match, rawJson) => {
+      try {
+        const data = JSON.parse(rawJson.trim());
+        /**
+         * Function contract: visit
+         * Purpose: Recursively align article-like JSON-LD nodes with the static social preview image.
+         * Inputs: `node` - current JSON-LD object or nested value.
+         * Side effects: Mutates matching object nodes inside the parsed JSON-LD data structure.
+         * Returns: Undefined; recursion updates the parsed structure in place.
+         */
+        const visit = (node) => {
+          if (!node || typeof node !== 'object') return;
+          if (['Article', 'BlogPosting'].includes(node['@type']) || node.headline) node.image = imageUrl;
+          Object.values(node).forEach((value) => {
+            if (Array.isArray(value)) value.forEach(visit);
+            else visit(value);
+          });
+        };
+        visit(data);
+        return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
+      } catch {
+        return match;
+      }
+    },
+  );
 }
 
 /**
