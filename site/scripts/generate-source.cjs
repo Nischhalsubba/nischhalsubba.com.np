@@ -28,6 +28,7 @@ const stages = [
   ['Apply search intent metadata', ['node', 'scripts/ensure-search-intents.cjs']],
   ['Apply SEO code fixes', ['node', 'scripts/ensure-seo-code-fixes.cjs']],
   ['Generate blog covers', ['node', 'scripts/ensure-blog-generated-covers.cjs']],
+  ['Optimize blog cover delivery', ['node', 'scripts/ensure-blog-lightweight-covers.cjs']],
   ['Apply homepage hero layout', ['node', 'scripts/ensure-homepage-hero-layout.cjs']],
   ['Apply spacious core page layouts', ['node', 'scripts/ensure-spacious-core-pages.cjs']],
   ['Normalize case study system', ['node', 'scripts/normalize-case-study-system.cjs']],
