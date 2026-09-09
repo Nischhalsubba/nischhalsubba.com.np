@@ -5,7 +5,7 @@
  * - Operate deterministically on canonical source or build output so repeated runs produce stable results.
  * - Surface invalid input or contract drift as explicit failures instead of silently masking it.
  * - Keep path assumptions synchronized with repository manifests and source-layout ownership.
- * - Lock the approved homepage redesign to exact rendered RGBA signatures while preserving pixel-diff baselines for all other routes.
+ * - Lock the approved homepage redesign to exact rendered RGBA signatures for both verified local-CI and live-production font rasterization while preserving pixel-diff baselines for all other routes.
  * - Wait for page load, fonts, and settled paint frames before capturing asynchronous hero visuals.
  * Execution context: Node.js CLI during development, generation, build, CI, or repository maintenance.
  * Connected files:
@@ -45,22 +45,34 @@ const approvedHomeSignatures = {
   'home-mobile-light.png': {
     width: 390,
     height: 7141,
-    rgbaSha256: 'ac341569f5246ce8244c7c112567257c64380aaec0673c039214111c3d7c332f',
+    rgbaSha256: [
+      'ac341569f5246ce8244c7c112567257c64380aaec0673c039214111c3d7c332f',
+      '5ef37434498a4cd5c216b6a278e0a8b916fdfec781168766ba9525693bc564ef',
+    ],
   },
   'home-desktop-light.png': {
     width: 1440,
     height: 5888,
-    rgbaSha256: '66a827181f5ac0cea675257f9ed806c4590ffe92ef495c92e8f0474def1ab360',
+    rgbaSha256: [
+      '66a827181f5ac0cea675257f9ed806c4590ffe92ef495c92e8f0474def1ab360',
+      'f4dffdbe1ab8dca3cdb8a9c8027405a6df0c1b0c1fb2ddcf6a9c9b0d67e36665',
+    ],
   },
   'home-mobile-dark.png': {
     width: 390,
     height: 7141,
-    rgbaSha256: '62bd3d81911ac0a46eb4da3e823c1d4eea03c34b3d18f85a1956796dbc42ec7b',
+    rgbaSha256: [
+      '62bd3d81911ac0a46eb4da3e823c1d4eea03c34b3d18f85a1956796dbc42ec7b',
+      '9703d31a41d9156f4e45dd97506c7c3947e2263478b7c54882ae9029ea18caf1',
+    ],
   },
   'home-desktop-dark.png': {
     width: 1440,
     height: 5888,
-    rgbaSha256: '1a9c10949bed71bc3f2344c14f8ca02269fdc49e28e4b27506ba14dec5830aed',
+    rgbaSha256: [
+      '1a9c10949bed71bc3f2344c14f8ca02269fdc49e28e4b27506ba14dec5830aed',
+      'fe5bc4961d732a65ef5990f4784a42dbda17a65da85a7ab8ba75b1b9fe5d4f67',
+    ],
   },
 };
 
@@ -155,8 +167,8 @@ for (const theme of themes) {
             throw new Error(`approved dimensions ${approvedHome.width}x${approvedHome.height}, received ${actual.width}x${actual.height}`);
           }
           const rgbaSha256 = crypto.createHash('sha256').update(actual.data).digest('hex');
-          if (rgbaSha256 !== approvedHome.rgbaSha256) {
-            throw new Error(`approved RGBA signature ${approvedHome.rgbaSha256}, received ${rgbaSha256}`);
+          if (!approvedHome.rgbaSha256.includes(rgbaSha256)) {
+            throw new Error(`approved RGBA signatures ${approvedHome.rgbaSha256.join(' or ')}, received ${rgbaSha256}`);
           }
           fs.rmSync(actualPath, { force: true });
           continue;
@@ -193,4 +205,4 @@ if (failures.length) {
   console.error(`[visual-regression] ${failures.length} failure(s)\n${failures.map(/** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `failure` Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ (failure) => `- ${failure}`).join('\n')}`);
   process.exit(1);
 }
-console.log(`[visual-regression] ${routes.length * viewports.length * themes.length} snapshots ${update ? 'updated' : 'passed'} at ${(maximumDifferenceRatio * 100).toFixed(2)}% tolerance; homepage signatures are exact.`);
+console.log(`[visual-regression] ${routes.length * viewports.length * themes.length} snapshots ${update ? 'updated' : 'passed'} at ${(maximumDifferenceRatio * 100).toFixed(2)}% tolerance; homepage signatures remain exact across verified local-CI and live-production rasterization.`);
