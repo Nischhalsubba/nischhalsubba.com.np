@@ -28,3 +28,9 @@ Maintenance: Keep assets under /workspace-home and verify behavior after edits.
 .fg-sel{transition:transform .6s cubic-bezier(.34,1.15,.64,1),opacity .4s!important}
 .sh-p .av,.sh-av>span{color:#07101c!important}
 .tb-dim{color:#b9b9c0!important}
+
+/* Blue/orange editor tags need dark ink; invisible navigation states must leave the accessibility tree. */
+.tq-al em,.sh-share,.sh-cur span,.ft-sel span,.ft-sel em{color:#06101c!important}
+.tb-tip{visibility:hidden}
+.tb-t:hover .tb-tip,.tb-t:focus-visible .tb-tip{visibility:visible}
+.tb-now>span[style*="opacity: 0;"]{visibility:hidden}
