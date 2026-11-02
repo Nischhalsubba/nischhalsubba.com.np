@@ -1841,7 +1841,7 @@ html.pr-dragging,html.pr-dragging *{cursor:grabbing!important;user-select:none!i
   </div>
   <h1 class="sr">Nischhal — Senior Product Designer</h1>
   <div class="cursor client" id="client" aria-hidden="true">
-    <svg width="20" height="20" viewBox="0 0 24 24"><path d="M3 2l7 19 2.5-8L20 10z" fill="#A259FF"/></svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 2l7 19 2.5-8L20 10z" fill="#A259FF"/></svg>
     <span class="lbl" style="background:var(--purple)">Client · Love this direction.</span>
   </div>
   <!-- hero: live Figma panels -->
@@ -2051,7 +2051,7 @@ html.pr-dragging,html.pr-dragging *{cursor:grabbing!important;user-select:none!i
         </div>
         <div class="sh-ft"><button type="button" class="sh-lk" id="shCopy"><svg class="hi" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.14339 10.691L9.35031 10.4841C11.329 8.50532 14.5372 8.50532 16.5159 10.4841C18.4947 12.4628 18.4947 15.671 16.5159 17.6497L13.6497 20.5159C11.671 22.4947 8.46279 22.4947 6.48405 20.5159C4.50532 18.5372 4.50532 15.329 6.48405 13.3503L6.9484 12.886" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M17.0516 11.114L17.5159 10.6497C19.4947 8.67095 19.4947 5.46279 17.5159 3.48405C15.5372 1.50532 12.329 1.50532 10.3503 3.48405L7.48405 6.35031C5.50532 8.32904 5.50532 11.5372 7.48405 13.5159C9.46279 15.4947 12.671 15.4947 14.6497 13.5159L14.8566 13.309" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>Copy email</button><a class="sh-lk" href="/workspace-home/assets/resume.pdf" target="_blank" rel="noopener"><svg class="hi" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.3789 2.27907 14.6926 2.78382 15.8877C3.06278 16.5481 3.20226 16.8784 3.21953 17.128C3.2368 17.3776 3.16334 17.6521 3.01642 18.2012L2 22L5.79877 20.9836C6.34788 20.8367 6.62244 20.7632 6.87202 20.7805C7.12161 20.7977 7.45185 20.9372 8.11235 21.2162C9.30745 21.7209 10.6211 22 12 22Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M8.58815 12.3773L9.45909 11.2956C9.82616 10.8397 10.2799 10.4153 10.3155 9.80826C10.3244 9.65494 10.2166 8.96657 10.0008 7.58986C9.91601 7.04881 9.41086 7 8.97332 7C8.40314 7 8.11805 7 7.83495 7.12931C7.47714 7.29275 7.10979 7.75231 7.02917 8.13733C6.96539 8.44196 7.01279 8.65187 7.10759 9.07169C7.51023 10.8548 8.45481 12.6158 9.91948 14.0805C11.3842 15.5452 13.1452 16.4898 14.9283 16.8924C15.3481 16.9872 15.558 17.0346 15.8627 16.9708C16.2477 16.8902 16.7072 16.5229 16.8707 16.165C17 15.8819 17 15.5969 17 15.0267C17 14.5891 16.9512 14.084 16.4101 13.9992C15.0334 13.7834 14.3451 13.6756 14.1917 13.6845C13.5847 13.7201 13.1603 14.1738 12.7044 14.5409L11.6227 15.4118" stroke="currentColor" stroke-width="1.5"/></svg>Download résumé</a></div>
       </div>
-      <div class="sh-cur" id="shCur" aria-hidden="true"><svg width="18" height="22" viewBox="0 0 18 22"><path d="M1 1l15 9-7 1.5L5.5 20z" fill="#FF6E28" stroke="#000"/></svg><span>You</span></div>
+      <div class="sh-cur" id="shCur" aria-hidden="true"><svg width="18" height="22" viewBox="0 0 18 22" aria-hidden="true" focusable="false"><path d="M1 1l15 9-7 1.5L5.5 20z" fill="#FF6E28" stroke="#000"/></svg><span>You</span></div>
     </div>
   </div>
 </section>
@@ -3155,7 +3155,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     C.forEach((v, i) => { const a = C[(i - 1 + C.length) % C.length], b = C[(i + 1) % C.length], ua = nrm(a, v), ub = nrm(b, v); d += (i ? 'L' : 'M') + (v[0] + ua[0] * R) + ' ' + (v[1] + ua[1] * R) + 'Q' + v[0] + ' ' + v[1] + ' ' + (v[0] + ub[0] * R) + ' ' + (v[1] + ub[1] * R); });
     d += 'Z';
     const pe = document.createElementNS(svgNS, 'path'); pe.setAttribute('d', d);
-    const tmp = document.createElementNS(svgNS, 'svg'); tmp.style.cssText = 'position:absolute;width:0;height:0'; tmp.appendChild(pe); document.body.appendChild(tmp);
+    const tmp = document.createElementNS(svgNS, 'svg'); tmp.setAttribute('aria-hidden', 'true'); tmp.setAttribute('focusable', 'false'); tmp.style.cssText = 'position:absolute;width:0;height:0'; tmp.appendChild(pe); document.body.appendChild(tmp);
     const shape = new Path2D(d), total = pe.getTotalLength(), PTS = [];
     for (let l = 0; l <= total; l += 3) { const q = pe.getPointAtLength(l); PTS.push([q.x, q.y]); }
     const lp = pe.getPointAtLength(total); PTS.push([lp.x, lp.y]);
