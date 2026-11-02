@@ -15,6 +15,8 @@ const html = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 assert.match(html, /data-portfolio-design="workspace-v1"/);
 assert.match(html, /<main id="main-content">/);
 assert.match(html, /class="skip-link"/);
+assert.doesNotMatch(html, /<link\b[^>]*rel="stylesheet"/, 'Homepage critical CSS must not wait for another request.');
+assert.match(html, /url\("\/workspace-home\/vendor\/fonts.gstatic.com\/ab38da6f5df1b377.woff2"\)/, 'Inlined font URLs must retain their original resource location.');
 assert.match(html, /Nischhal Raj Subba/);
 assert.match(html, /rel="canonical" href="https:\/\/nischhalsubba.com.np\/"/);
 assert.doesNotMatch(html, /hridoy|nischhal-design-portfolio\.grittytide4|track\.php|fetch\('contact\.php'/i);

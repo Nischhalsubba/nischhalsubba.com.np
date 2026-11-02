@@ -13,9 +13,26 @@ const source = path.join(root, 'src/workspace-home');
 const dist = path.join(root, 'dist');
 if (!fs.existsSync(path.join(dist, 'project-yarsha.html'))) throw new Error('Build retained routes before installing the homepage.');
 fs.cpSync(source, path.join(dist, 'workspace-home'), { recursive: true });
-fs.copyFileSync(path.join(source, 'index.html'), path.join(dist, 'index.html'));
+// These small stylesheets are required for the first frame. Inline them in their
+// original cascade position to avoid three serial requests on slow connections.
+// Resolve font URLs against their original stylesheet, not the document URL.
+const homepage = fs.readFileSync(path.join(source, 'index.html'), 'utf8').replace(
+  /<link rel="stylesheet" href="(\/workspace-home\/[^"]+\.css)">/g,
+  /** Callback contract: Inline critical CSS at its original cascade position. Inputs: link markup and asset URL. Side effects: reads CSS. Returns: equivalent style element. */ (link, href) => {
+    const css = fs.readFileSync(path.join(dist, href), 'utf8').replace(
+      /url\(([^)]+)\)/g,
+      /** Callback contract: Rebase relative CSS resources. Inputs: URL token and value. Side effects: none. Returns: root-relative URL token. */ (reference, value) => {
+        const resource = value.trim().replace(/^['"]|['"]$/g, '');
+        if (/^(?:data:|https?:|\/|#)/.test(resource)) return reference;
+        return `url("${new URL(resource, 'https://portfolio.invalid' + href).pathname}")`;
+      }
+    );
+    return `<style data-workspace-inline="${href}">${css}</style>`;
+  }
+);
+fs.writeFileSync(path.join(dist, 'index.html'), homepage);
 // Keep historical home aliases on the approved homepage while preserving canonical route behavior.
 for (const alias of ['home.html', 'home-v2.html']) {
-  if (fs.existsSync(path.join(dist, alias))) fs.copyFileSync(path.join(source, 'index.html'), path.join(dist, alias));
+  if (fs.existsSync(path.join(dist, alias))) fs.writeFileSync(path.join(dist, alias), homepage);
 }
 console.log('[workspace-home] Installed approved homepage and local assets.');

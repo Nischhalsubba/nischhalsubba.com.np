@@ -164,7 +164,8 @@ function assertHtml(route, relativePath) {
   if (!workspace && /fonts\.googleapis\.com|fonts\.gstatic\.com/i.test(html)) fail(`${route} (${relativePath}) still loads remote Google Fonts.`);
   if (/i\.imgur\.com\/oFHdPUS/i.test(html)) fail(`${route} (${relativePath}) still loads the external portrait.`);
 
-  if (workspaceHome && (!html.includes('/workspace-home/personal.js') || !stylesheets.includes('/workspace-home/personal.css'))) fail(`${route} is missing the workspace runtime or stylesheet.`);
+  const hasWorkspaceStyles = stylesheets.includes('/workspace-home/personal.css') || /<style data-workspace-inline="\/workspace-home\/personal\.css">[\s\S]+?<\/style>/.test(html);
+  if (workspaceHome && (!html.includes('/workspace-home/personal.js') || !hasWorkspaceStyles)) fail(`${route} is missing the workspace runtime or stylesheet.`);
   if (workspaceHome && /(?:src|href)=["']https:\/\/fonts\.(?:googleapis|gstatic)\.com/i.test(html)) fail(`${route} loads a remote font resource.`);
   if (workspaceInner && (!html.includes('/workspace-inner/inner.js') || !stylesheets.includes('/workspace-inner/inner.css'))) fail(`${route} is missing the shared inner-page system.`);
   const canonical = html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)/i)?.[1];

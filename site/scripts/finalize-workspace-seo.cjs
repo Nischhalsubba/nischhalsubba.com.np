@@ -115,7 +115,7 @@ for (const file of files) {
   const absolute = path.join(dist, file); let html = fs.readFileSync(absolute, 'utf8');
   const links = `<nav class="workspace-site-links mono" aria-label="Explore portfolio"><a href="/projects">Work</a><a href="/blog/">Writing</a><a href="/about">About</a><a href="/services">Services</a><a href="/contact">Contact</a><a href="/privacy">Privacy</a></nav>`;
   html = html.replace('</body>', links + '</body>');
-  if (file === 'index.html') html = html.replace('</head>', '<link rel="stylesheet" href="/workspace-inner/discovery.css"></head>'); fs.writeFileSync(absolute, html);
+  if (file === 'index.html') html = html.replace('</head>', `<style data-workspace-inline="/workspace-inner/discovery.css">${fs.readFileSync(path.join(dist, 'workspace-inner/discovery.css'), 'utf8')}</style></head>`); fs.writeFileSync(absolute, html);
 }
 for (const route of inventory) { const html = fs.readFileSync(path.join(dist, route.file), 'utf8'); route.contentHash = crypto.createHash('sha256').update(html.match(/<main\b[\s\S]*?<\/main>/)[0]).digest('hex'); }
 fs.writeFileSync(path.join(dist, 'workspace-inner/routes.json'), JSON.stringify(inventory,null,2)+'\n');
