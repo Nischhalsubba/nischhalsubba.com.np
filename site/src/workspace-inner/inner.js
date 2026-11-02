@@ -117,16 +117,25 @@ document.fonts?.ready.then(sizeWorkspace);
  */
 function decodeHeading(heading) {
   const text = heading.textContent.trim();
+  const reservedHeight = heading.getBoundingClientRect().height;
   const source = document.createElement('span'); source.className = 'workspace-heading-source'; source.textContent = text;
   const visual = document.createElement('span'); visual.className = 'workspace-heading-visual'; visual.setAttribute('aria-hidden', 'true');
+  visual.style.height = reservedHeight + 'px';
+  visual.style.overflow = 'hidden';
   visual.dataset.decode = JSON.stringify([[text, 'bright']]);
   heading.replaceChildren(source, visual);
   const decoder = new Decoder(visual);
+  /** Function contract: settleHeading
+   * Purpose: Restore responsive natural layout after identical full text is rendered.
+   * Inputs: none. Side effects: clears transient animation constraints. Returns: void.
+   */
+  const settleHeading = () => { visual.style.height = ''; visual.style.overflow = ''; };
   /** Function contract: playHeading
    * Purpose: Start one finite homepage glyph animation, immediately settled for reduced motion.
    * Inputs: none. Side effects: visual glyph text and animation frames. Returns: void.
    */
   const playHeading = () => {
+    visual.style.height = heading.getBoundingClientRect().height + 'px'; visual.style.overflow = 'hidden';
     decoder.play();
     if (reduce) return;
     const start = performance.now(); const speed = Math.max(1, text.length / 30);
@@ -134,15 +143,15 @@ function decodeHeading(heading) {
      * Purpose: Advance the extracted decoder until all real text is restored.
      * Inputs: frame timestamp. Side effects: decoder DOM. Returns: void.
      */
-    const tickHeading = now => { decoder.tick(start + (now - start) * speed); if (!decoder.finished) requestAnimationFrame(tickHeading); };
+    const tickHeading = now => { decoder.tick(start + (now - start) * speed); if (!decoder.finished) requestAnimationFrame(tickHeading); else settleHeading(); };
     requestAnimationFrame(tickHeading);
   };
-  if (reduce) { decoder.render(1e9); return; }
+  if (reduce) { decoder.render(1e9); settleHeading(); return; }
   const observer = new IntersectionObserver(entries => { if (entries.some(entry => entry.isIntersecting)) { playHeading(); observer.disconnect(); } }, { threshold: .2 });
   observer.observe(heading);
   visual.addEventListener('mouseenter', playHeading);
 }
-document.querySelectorAll('[data-workspace-decode]').forEach(decodeHeading);
+document.fonts.ready.then(() => document.querySelectorAll('[data-workspace-decode]').forEach(decodeHeading));
 if (!reduce) {
   const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('workspace-in'); revealObserver.unobserve(entry.target); } }), { threshold: .1 });
   document.querySelectorAll('.agent-decision,.agent-service,.nrs-writing-featured-item,.nrs-article-v4-section').forEach(/** Callback contract: Register a visible content reveal. Inputs: element. Side effects: classes and observer. Returns: void. */ element => { element.classList.add('workspace-reveal-ready'); revealObserver.observe(element); });

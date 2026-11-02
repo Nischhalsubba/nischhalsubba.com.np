@@ -6,6 +6,8 @@ The earlier inner-page pass reused colors but disabled the real homepage toolbar
 
 Legacy article roots are normalized into the same workspace typography and reading frame. Three accidentally published SEO-brief paragraphs (keywords, search intent and editorial instructions) are replaced with reader-facing context; case-study evidence and article guidance are retained. Mobile component tests measure visible buttons rather than the deliberately hidden toolbar CTA.
 
+The production performance audit identified layout shifts from transient empty decoder headings and late button conversion. Headings reserve their settled height after fonts load; button plates render in initial HTML. Doto and body fonts are preloaded to reduce first-paint font replacement.
+
 ## Implemented search improvements
 
 - Final HTML SEO pass covers all 53 retained pages, after both visual installers.

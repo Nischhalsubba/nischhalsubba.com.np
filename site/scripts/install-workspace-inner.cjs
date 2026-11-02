@@ -27,6 +27,20 @@ fs.writeFileSync(path.join(dist, 'workspace-inner/homepage-primitives.js'), prim
 const gradient = home.match(/<svg width="0" height="0"[\s\S]*?<\/svg>/)[0];
 const originalNav = home.match(/<nav class="tb"[\s\S]*?<\/nav>/)[0];
 const destinations = { top: '/', about: '/about', exp: '/#exp', work: '/projects', services: '/services', process: '/blog/', testi: '/#testi', pricing: '/#pricing', contact: '/contact' };
+const buttonFrame = '<svg class="fr" aria-hidden="true" preserveAspectRatio="none"><path class="body"/><path class="flood"/><path class="ringp"/><path class="brk"/></svg>';
+const buttonArrow = '<svg class="ar" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.5 12L4.99997 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>';
+/** Function contract: renderButtons
+ * Purpose: Render homepage plates in initial HTML so hydration never changes button layout.
+ * Inputs: HTML markup. Side effects: none. Returns: markup with equivalent accessible labels and stable button geometry.
+ */
+function renderButtons(html) {
+  return html.replace(/<(a|button)\b([^>]*class="[^"]*\b(?:agent-btn|workspace-button|agent-service-link|bracket-link|btn)\b[^"]*"[^>]*)>([\s\S]*?)<\/\1>/g, /** Callback contract: Replace an action with static homepage plate markup. Inputs: original tag, element, attributes and children. Side effects: none. Returns: equivalent stable HTML. */ (tag, element, attrs, inner) => {
+    const classes = attrs.match(/class="([^"]*)"/)[1].split(/\s+/);
+    const retained = ['chbtn', ...classes.filter(value => ['sm','isl-ct'].includes(value))].join(' ');
+    const label = inner.replace(/<[^>]+>/g, '').replace(/\s*↗\s*$/, '').trim();
+    return `<${element}${attrs.replace(/class="[^"]*"/, `class="${retained}"`)}>${buttonFrame}<span class="lb">${label}</span>${buttonArrow}</${element}>`;
+  });
+}
 const routes = [];
 /** Function contract: collect
  * Purpose: Collect generated public HTML, excluding the untouched homepage and asset namespaces.
@@ -79,9 +93,10 @@ for (const file of routes) {
   const bar = `<div class="workspace-filebar mono"><a href="/" aria-label="Homepage">NISCHHAL</a><span>/</span><span>${group}</span><span class="workspace-file-name">/ ${label}</span><span class="workspace-live"><i></i> DESIGN FILE</span></div>`;
   const connect = relative === 'contact.html' ? '' : `<section class="workspace-connect"><span class="mono">NEXT FILE / YOUR PRODUCT</span><h2>Got a product <span>in mind?</span></h2><a class="workspace-button" href="/contact">Let’s talk <span aria-hidden="true">↗</span></a></section>`;
   main = main.replace(/<h([12])([^>]*)>([\s\S]*?)<\/h\1>/g, (tag, level, attrs, text) => `<h${level}${attrs} data-workspace-decode>${text}</h${level}>`);
-  const output = `<!doctype html>\n<html lang="en" data-theme="dark"><head>${head}\n<meta name="theme-color" content="#07070A"><link rel="stylesheet" href="/workspace-home/vendor/fonts.googleapis.com/ceaca49b99bd7ce7.css"><link rel="stylesheet" href="/workspace-inner/home-system.css"><link rel="stylesheet" href="/workspace-home/personal.css"><link rel="stylesheet" href="/workspace-inner/inner.css"><link rel="stylesheet" href="/workspace-inner/parity.css"></head><body id="top" data-portfolio-design="workspace-inner-v1"><a class="skip-link" href="#main-content">Skip to main content</a><div class="workspace-progress" aria-hidden="true"></div>${gradient}<div class="atmo" aria-hidden="true"><div class="dots"></div></div><div class="grain" aria-hidden="true"></div><div class="workspace-grid" aria-hidden="true"></div>${bar}${main}${connect}${footer}${nav}<dialog id="mediaPreview" aria-label="Project image preview"><button type="button" id="closeMedia" aria-label="Close image preview">Close ×</button><img alt=""></dialog><script src="/workspace-home/vendor/unpkg.com/fc91f338f7a5e7ee.js"></script><script type="module" src="/workspace-inner/inner.js"></script></body></html>`;
-  fs.writeFileSync(file, output);
-  inventory.push({ file: relative, title, contentHash: crypto.createHash('sha256').update(main).digest('hex'), kind: isProject ? 'project' : isBlog ? (relative === 'blog/index.html' ? 'blog-index' : 'article') : 'page' });
+  const output = `<!doctype html>\n<html lang="en" data-theme="dark"><head>${head}\n<meta name="theme-color" content="#07070A"><link rel="preload" as="font" type="font/ttf" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/ab38da6f5df1b377.ttf"><link rel="preload" as="font" type="font/ttf" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/c2bef016fb9b4bcd.ttf"><link rel="preload" as="font" type="font/ttf" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/541119bccb21575e.ttf"><link rel="stylesheet" href="/workspace-home/vendor/fonts.googleapis.com/ceaca49b99bd7ce7.css"><link rel="stylesheet" href="/workspace-inner/home-system.css"><link rel="stylesheet" href="/workspace-home/personal.css"><link rel="stylesheet" href="/workspace-inner/inner.css"><link rel="stylesheet" href="/workspace-inner/parity.css"></head><body id="top" data-portfolio-design="workspace-inner-v1"><a class="skip-link" href="#main-content">Skip to main content</a><div class="workspace-progress" aria-hidden="true"></div>${gradient}<div class="atmo" aria-hidden="true"><div class="dots"></div></div><div class="grain" aria-hidden="true"></div><div class="workspace-grid" aria-hidden="true"></div>${bar}${main}${connect}${footer}${nav}<dialog id="mediaPreview" aria-label="Project image preview"><button type="button" id="closeMedia" aria-label="Close image preview">Close ×</button><img alt=""></dialog><script src="/workspace-home/vendor/unpkg.com/fc91f338f7a5e7ee.js"></script><script type="module" src="/workspace-inner/inner.js"></script></body></html>`;
+  const stableOutput = renderButtons(output);
+  fs.writeFileSync(file, stableOutput);
+  inventory.push({ file: relative, title, contentHash: crypto.createHash('sha256').update(stableOutput.match(/<main\b[\s\S]*?<\/main>/)[0]).digest('hex'), kind: isProject ? 'project' : isBlog ? (relative === 'blog/index.html' ? 'blog-index' : 'article') : 'page' });
 }
 fs.writeFileSync(path.join(dist, 'workspace-inner/routes.json'), JSON.stringify(inventory, null, 2) + '\n');
 console.log(`[workspace-inner] Rebuilt ${inventory.length} inner pages with the homepage design system.`);
