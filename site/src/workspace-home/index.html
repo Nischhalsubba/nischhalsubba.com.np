@@ -38,7 +38,7 @@ Maintenance: Keep assets under /workspace-home and verify behavior after edits.
 
 
 
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/ab38da6f5df1b377.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/c2bef016fb9b4bcd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/6b270e7e6da1b50c.woff2"><link rel="stylesheet" href="/workspace-home/vendor/fonts.googleapis.com/ceaca49b99bd7ce7.css">
+<link rel="preload" as="image" fetchpriority="high" href="/workspace-home/assets/portrait.webp"><link rel="preload" as="font" type="font/woff2" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/ab38da6f5df1b377.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/c2bef016fb9b4bcd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/6b270e7e6da1b50c.woff2"><link rel="stylesheet" href="/workspace-home/vendor/fonts.googleapis.com/ceaca49b99bd7ce7.css">
 <style>
 :root{
   --bg:#07070A; --fg:#F4F4F2; --muted:#8E8E97; --soft:#B9B9C0; --line:rgba(255,255,255,.08); --card:rgba(255,255,255,.028);
@@ -1678,7 +1678,7 @@ html.pr-dragging,html.pr-dragging *{cursor:grabbing!important;user-select:none!i
 #hrIntro.hri-bg{background-color:rgba(7,7,10,0)}
 #hrIntro.hri-out{opacity:0;pointer-events:none}
 /* safety net: whatever happens, the intro is gone 4.8s after it appears */
-#hrIntro{animation:hriEnd .2s 2s forwards}
+#hrIntro{animation:hriEnd .2s 1.2s forwards}
 @keyframes hriEnd{to{opacity:0}}
 #hrIntro canvas{position:absolute;left:0;top:0;width:100%;height:100%}
 #hrIntro .hri-c{position:absolute;left:0;right:0;bottom:max(9vh,48px);text-align:center;font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8E8E97;transition:opacity .3s}
@@ -1747,7 +1747,7 @@ html.pr-dragging,html.pr-dragging *{cursor:grabbing!important;user-select:none!i
   // then the black fades away behind the dots (0.45s) and the dots hand over to the hero's identical name (0.25s).
   // On a slow device the flight shortens or is skipped so the deadline always holds. Repeat visits are shorter.
   window.__hrIntroShown = true;
-  const MIN = seen ? 180 : 450, MAX = seen ? 400 : 900, FLY = seen ? 300 : 650, BGF = 180, FADE = 150, GAP = 30, END = 2200, t0 = performance.now();
+  const MIN = seen ? 120 : 200, MAX = seen ? 250 : 500, FLY = seen ? 220 : 400, BGF = 100, FADE = 100, GAP = 20, END = 1400, t0 = performance.now();
   const flyBy = END - BGF - FADE - GAP; let flyDur = FLY, finished = false;
   let real = .08, shown = 0, skip = false, run = 0, last = 0, mode = 'count', lit = new Map(), P = null, tFly = 0, raf = 0;
   document.addEventListener('DOMContentLoaded', () => { real = Math.max(real, .55); });
@@ -2284,7 +2284,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     if (!go) { photoEl.style.setProperty('--scan', '0%'); return; }
     if (reduce) { photoEl.style.setProperty('--scan', '100%'); return; }
     // no scan line any more: the real photo simply fades in over the blueprint
-    photoEl.style.setProperty('--scan', '100%'); photoEl.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1400, easing: 'cubic-bezier(.2,.7,.2,1)' }); hero.classList.add('bp-done'); return;
+    photoEl.style.setProperty('--scan', '100%'); photoEl.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 650, easing: 'cubic-bezier(.2,.7,.2,1)' }); hero.classList.add('bp-done'); return;
     hero.classList.add('bp-scan'); const s0 = performance.now(), dur = 2400;
     const f = now => {
       const p = Math.min(1, (now - s0) / dur), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
@@ -2314,7 +2314,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     parts.forEach(p => { p.x = p.tx; p.y = p.ty; p.vx = p.vy = 0; p.settled = true; });
     hero.classList.add('in');
     timers.push(setTimeout(() => hero.classList.add('bp-on'), 300));
-    timers.push(setTimeout(() => bpScan(true), 700));
+    timers.push(setTimeout(() => bpScan(true), 200));
     timers.push(setTimeout(() => hero.classList.add('cursor-on'), 1600));
   }
   (document.fonts ? document.fonts.load('800 100px Geist') : Promise.resolve()).catch(() => {}).then(() => {
@@ -2780,8 +2780,11 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
         g.append(path, dot, arr); svg.append(g); const len = path.getTotalLength(); path.style.strokeDasharray = len; path.style.strokeDashoffset = len; return { g, path, arr, len };
       });
     };
-    build();
-    frames.forEach((f, i) => { const im = f.querySelector('img'); const got = () => { if (im.naturalWidth) { ar[i] = im.naturalWidth / im.naturalHeight; build(); } }; im.complete ? got() : im.addEventListener('load', got); });
+    let workReady = false;
+    new IntersectionObserver((entries, observer) => {
+      if (entries.some(e => e.isIntersecting)) { build(); workReady = true; observer.disconnect(); }
+    }, { rootMargin: '600px' }).observe(wrap);
+    frames.forEach((f, i) => { const im = f.querySelector('img'); const got = () => { if (im.naturalWidth) { ar[i] = im.naturalWidth / im.naturalHeight; if (workReady) build(); } }; im.complete ? got() : im.addEventListener('load', got); });
     wrap.style.height = (W.length * 140 + 60) + 'vh';
     $('#wkNt').textContent = '/ ' + String(W.length).padStart(2, '0');
     const canHover = matchMedia('(hover:hover) and (pointer:fine)').matches;
@@ -2800,7 +2803,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
       el.href = w.url || '#contact'; if (w.url) { el.target = '_blank'; el.rel = 'noopener'; } else el.removeAttribute('target'); el.dataset.wk = w.n; el.setAttribute('aria-label', `${want}: ${w.n}`); };
     (function frame() {
       requestAnimationFrame(frame);
-      const r = wrap.getBoundingClientRect(), vh = innerHeight; if (r.bottom < -50 || r.top > vh + 50) { if (seen !== -2) { vids.forEach((v, i) => { if (!v) return; v._go = 0; if (!v.paused) v.pause(); frames[i].classList.remove('vid-on'); }); seen = -2; } return; }
+      const r = wrap.getBoundingClientRect(), vh = innerHeight; if (!workReady || r.bottom < -50 || r.top > vh + 50) { if (seen !== -2) { vids.forEach((v, i) => { if (!v) return; v._go = 0; if (!v.paused) v.pause(); frames[i].classList.remove('vid-on'); }); seen = -2; } return; }
       const p = clamp(-r.top / Math.max(1, wrap.offsetHeight - vh)), vw = pin.clientWidth, mob = vw < 760;
       // Apple-style hand-over: the black canvas and its diodes fade up as the section arrives and fade away as it leaves
       const inA = clamp((vh - r.top) / (vh * .9)), outA = clamp(r.bottom / (vh * .9));

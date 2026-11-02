@@ -34,3 +34,6 @@ Maintenance: Keep assets under /workspace-home and verify behavior after edits.
 .tb-tip{visibility:hidden}
 .tb-t:hover .tb-tip,.tb-t:focus-visible .tb-tip{visibility:visible}
 .tb-now>span[style*="opacity: 0;"]{visibility:hidden}
+/* Fade the preview surface while keeping its project metadata readable. */
+.wk-world{opacity:1}
+.wk-world .wsh{opacity:calc(.2 + var(--in) * .8)}
