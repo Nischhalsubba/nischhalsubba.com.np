@@ -84,21 +84,21 @@ jobs:
             echo "Accepted production commit $ACCEPTED_SHA for validated baseline $DEPLOY_SHA."
 
             CONTACT_HTML=$(curl -fsS --max-time 15 "$PRODUCTION_URL/contact")
-            printf '%s' "$CONTACT_HTML" | grep -q 'id="contact-form"' || {
+            grep -q 'id="contact-form"' <<< "$CONTACT_HTML" || {
               echo "Production contact page is missing the contact form."
               exit 1
             }
-            printf '%s' "$CONTACT_HTML" | grep -q 'action="/api/contact"' || {
+            grep -q 'action="/api/contact"' <<< "$CONTACT_HTML" || {
               echo "Production contact form is not using the first-party endpoint as its static action."
               exit 1
             }
-            if printf '%s' "$CONTACT_HTML" | grep -qi 'The protected form is unavailable'; then
+            if grep -qi 'The protected form is unavailable' <<< "$CONTACT_HTML"; then
               echo "Production contact page still contains the old unavailable-form state."
               exit 1
             fi
 
             HOME_HTML=$(curl -fsS --max-time 15 "$PRODUCTION_URL/")
-            printf '%s' "$HOME_HTML" | grep -q 'data-portfolio-design="workspace-v1"' || {
+            grep -q 'data-portfolio-design="workspace-v1"' <<< "$HOME_HTML" || {
               echo "Production homepage is not serving the approved workspace design."
               exit 1
             }
