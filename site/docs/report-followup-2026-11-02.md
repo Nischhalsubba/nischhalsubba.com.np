@@ -20,7 +20,9 @@ A regression assertion rejects external homepage stylesheets and checks the reba
 
 The CSS-only release was retested with PageSpeed `bo16f23z40`: mobile performance 88; accessibility, best practices and SEO 100; agentic browsing 3/3; LCP 1.4 s; TBT 420 ms; CLS 0. The render-blocking warning disappeared, but main-thread time remained excessive. This sample does not demonstrate an overall performance improvement over the earlier 93 score.
 
-The build now yields to the browser at eight explicit section boundaries inside the existing initializer. It preserves lexical scope and initialization order, and starts the shared animation loop after initialization completes. Every expected boundary is asserted so a source refactor fails clearly rather than silently dropping scheduling. Full validation and keyboard project-dialog checks accompany this change. Its external performance effect still requires a fresh deployed test.
+An experiment yielded at eight section boundaries inside the existing initializer. It passed functional and build checks, but its independent GTmetrix result was 44%, LCP 3.2 s, TBT 813 ms, CLS .02 (`o8nHUE4D`). The earlier CSS-only GTmetrix retest was 69%, LCP 3.3 s, TBT 88 ms, CLS .02 (`tcH6goUs`). These varying samples do not establish an overall improvement. The scheduling experiment was reverted; the verified stylesheet request removal remains. PageSpeed's attempted post-experiment test failed with “Unable to resolve” the domain. No score was inferred from that failure.
+
+Fresh WAVE remained at zero errors, zero contrast errors and 74 alerts. Further startup work needs profiling of individual animation initializers rather than inserting yields across their shared scope.
 
 ## Remaining work and limits
 
