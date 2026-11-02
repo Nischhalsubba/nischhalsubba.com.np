@@ -18,7 +18,8 @@ assert.match(html, /class="skip-link"/);
 assert.match(html, /Nischhal Raj Subba/);
 assert.match(html, /rel="canonical" href="https:\/\/nischhalsubba.com.np\/"/);
 assert.doesNotMatch(html, /hridoy|nischhal-design-portfolio\.grittytide4|track\.php|fetch\('contact\.php'/i);
-assert.match(html, /mailto:\$\{EMAIL\}/);
+assert.match(html, /mod\.sendPayload\(endpoint, payload/);
+assert.doesNotMatch(html, /location\.href = `mailto:/);
 let inline = 0;
 for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
   if (!match[2].trim() || match[1].includes('ld+json')) continue;

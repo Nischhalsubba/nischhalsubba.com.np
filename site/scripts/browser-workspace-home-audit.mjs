@@ -36,6 +36,24 @@ try {
     await page.locator('#prGo').click();
     await page.locator('#shAtt').waitFor({ state: 'visible' });
     assert.match(await page.locator('#shMsg').inputValue(), /Hi Nischhal/);
+    // Provider rejections may still be HTTP 200: retain the brief until mail is accepted.
+    if (width === 390) {
+      await page.route('**/api/contact/config', route => route.fulfill({ json: { siteKey: '' } }));
+      let accepted = false;
+      await page.route('https://formsubmit.co/ajax/**', route => route.fulfill({
+        json: accepted ? {success:'true'} : {success:'false',message:'This form needs Activation'},
+      }));
+      await page.locator('#shEm').fill('visitor@example.com');
+      const brief = 'Please help simplify the settings in our SaaS product.';
+      await page.locator('#shMsg').fill(brief);
+      await page.locator('#shGo').click();
+      await page.waitForFunction(() => document.querySelector('#shSt').textContent.includes('Not sent'));
+      assert.equal(await page.locator('#shMsg').inputValue(), brief);
+      accepted = true;
+      await page.locator('#shGo').click();
+      await page.waitForFunction(() => document.querySelector('#shSt').textContent === 'Message sent');
+      assert.equal(await page.locator('#shMsg').inputValue(), '');
+    }
     assert.deepEqual(errors, []);
     await page.close();
   }

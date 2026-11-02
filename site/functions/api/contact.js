@@ -84,7 +84,7 @@ function isAllowedOrigin(value) {
  */
 function validate(fields) {
   const errors = {};
-  if (fields.name.length < 2) errors.name = 'Enter your name.';
+  if (!fields.brief && fields.name.length < 2) errors.name = 'Enter your name.';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) errors.email = 'Enter a valid email address.';
   if (!fields.need) errors.need = 'Select a project type.';
   if (!fields.timeline) errors.timeline = 'Select a timeline.';
@@ -132,11 +132,11 @@ function safeHeader(value) {
  */
 function buildRawEmail(fields, sourcePage) {
   const boundary = `portfolio-${crypto.randomUUID()}`;
-  const subject = safeHeader(`Portfolio inquiry: ${fields.need} from ${fields.name}`);
+  const subject = safeHeader(`Portfolio inquiry: ${fields.need} from ${fields.name || fields.email}`);
   const text = [
     'New portfolio inquiry',
     '',
-    `Name: ${fields.name}`,
+    `Name: ${fields.name || fields.email}`,
     `Email: ${fields.email}`,
     `Project type: ${fields.need}`,
     `Timeline: ${fields.timeline}`,
@@ -201,6 +201,7 @@ export async function onRequestPost({ request, env }) {
     if (clean(data.get('_honey'), 200)) return json({ ok: true });
 
     const fields = {
+      brief: data.get('form_kind') === 'brief',
       name: clean(data.get('name'), 100),
       email: clean(data.get('email'), 254),
       need: clean(data.get('need'), 100),

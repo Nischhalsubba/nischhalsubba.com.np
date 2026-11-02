@@ -42,7 +42,7 @@
     "audit:voice": "node scripts/audit-content-voice.cjs",
     "audit:accessibility-tokens": "node scripts/audit-accessibility-tokens.cjs",
     "test:build-determinism": "node scripts/test-build-determinism.cjs",
-    "test:contact-security": "node scripts/test-contact-security-contract.cjs",
+    "test:contact-security": "node scripts/test-contact-security-contract.cjs && node scripts/test-contact-delivery.mjs && node scripts/test-contact-handler.mjs",
     "test:smoke": "node scripts/smoke-test-dist.mjs",
     "test:routes:live": "node scripts/verify-live-routes.mjs",
     "test:button-motion:browser": "node scripts/browser-button-motion-audit.mjs",

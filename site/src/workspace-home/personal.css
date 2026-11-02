@@ -9,3 +9,22 @@ Maintenance: Keep assets under /workspace-home and verify behavior after edits.
 .background-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;border-top:1px solid #ffffff14;padding-top:16px}.background-facts p{color:#b9b9c0;font-size:14px;line-height:1.8}.background-facts .mono{color:#7cc6ff}@media(max-width:700px){.background-facts{grid-template-columns:1fr;gap:0}}
 
 .skip-link{position:fixed;top:8px;left:8px;z-index:99999;background:#f4f4f2;color:#07070a;padding:12px;transform:translateY(-200%)}.skip-link:focus{transform:none}
+
+/* Readable selection-frame labels retain the original workspace palette. */
+#client .lbl{background:#7030ba!important;color:#fff}
+.fg-sel span,.fg-sel em{color:#06101c}
+.wmeta{color:#b9b9c0!important;opacity:1!important;background:#07070a;padding:3px 5px}
+.wk-pin{color:#b9b9c0}
+.tb-dim,.tb-now em,.tb-now span em,.sh-opt em{color:#b9b9c0}
+.sh-av{color:#07101c!important}
+.sh-menu .sh-opt:hover,.sh-menu .sh-opt:focus-visible{background:#16558a}
+.sh-menu{visibility:hidden}
+.sh-menu.on{visibility:visible}
+.sh-hp{display:none!important}
+.sh-go:disabled{opacity:.6;cursor:progress}
+.nrs-turnstile{margin:12px 0;min-height:65px}
+.pr-h{font-size:11px}
+
+.fg-sel{transition:transform .6s cubic-bezier(.34,1.15,.64,1),opacity .4s!important}
+.sh-p .av,.sh-av>span{color:#07101c!important}
+.tb-dim{color:#b9b9c0!important}

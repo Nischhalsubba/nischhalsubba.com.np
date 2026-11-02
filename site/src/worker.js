@@ -219,6 +219,12 @@ export default {
     const motionRuntimeUrl = MOTION_RUNTIME_ASSETS.get(url.pathname);
     if (motionRuntimeUrl) return motionRuntimeResponse(request, motionRuntimeUrl);
 
+    if (url.pathname === '/api/contact/config' && request.method === 'GET') {
+      return new Response(JSON.stringify({ siteKey: env.TURNSTILE_SITE_KEY || '' }), {
+        headers: { 'content-type': 'application/json', 'cache-control': 'no-store', 'x-content-type-options': 'nosniff' },
+      });
+    }
+
     if (url.pathname === '/api/contact') {
       if (request.method === 'POST') return onRequestPost({ request, env });
       if (request.method === 'OPTIONS') return onRequestOptions({ request, env });
@@ -229,6 +235,23 @@ export default {
       return recordAnalytics(request);
     }
 
-    return env.ASSETS.fetch(request);
+    const asset = await env.ASSETS.fetch(request);
+    if (!(asset.headers.get('content-type') || '').includes('text/html')) return asset;
+    // Each HTML response authorizes its own scripts; injected inline JavaScript stays blocked.
+    const nonce = crypto.randomUUID().replaceAll('-', '');
+    const headers = new Headers(asset.headers);
+    const existing = headers.get('content-security-policy') || "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com https://www.figma.com https://embed.figma.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'";
+    headers.set('content-security-policy', existing.replace(/script-src\s+([^;]+)/, (_, sources) => `script-src ${sources.replace(/'unsafe-inline'/g, '').trim()} 'nonce-${nonce}'`));
+    headers.set('cache-control', 'private, no-store');
+    return new HTMLRewriter().on('script', {
+      /**
+       * Function contract: element
+       * Purpose: Authorize an existing document script using this response's CSP nonce.
+       * Inputs: `element` - streamed script element from the trusted static document.
+       * Side effects: Adds one nonce attribute during HTML streaming.
+       * Returns: Nothing.
+       */
+      element(element) { element.setAttribute('nonce', nonce); },
+    }).transform(new Response(asset.body, { status: asset.status, headers }));
   },
 };

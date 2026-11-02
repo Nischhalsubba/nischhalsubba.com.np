@@ -216,7 +216,7 @@ function applyServerErrors(form, errors = {}) {
  * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function buildPayload(form) {
-  const payload = new FormData(form);
+  const payload = form instanceof FormData ? form : new FormData(form);
   const visitorEmail = payload.get('email');
 
   payload.set('_subject', 'Portfolio inquiry from nischhalsubba.com.np');
@@ -267,15 +267,22 @@ function loadTurnstile() {
  * Side effects: reads or updates DOM/browser state; emits diagnostics or changes process failure state
  * Returns: Promise resolving to the computed function result.
  */
-async function initializeTurnstile(form) {
-  const siteKey = form.dataset.turnstileSiteKey
+export async function initializeTurnstile(form) {
+  let siteKey = form.dataset.turnstileSiteKey
     || document.querySelector('meta[name="turnstile-site-key"]')?.content?.trim();
+  if (!siteKey) {
+    try {
+      const config = await fetch('/api/contact/config', { signal: AbortSignal.timeout(5000) });
+      if (config.ok) siteKey = (await config.json()).siteKey;
+    } catch { /* The existing provider fallback remains available on static previews. */ }
+  }
   if (!siteKey) return { configured: false, ready: false, widgetId: null };
 
   const host = document.createElement('div');
   host.className = 'nrs-turnstile';
   host.setAttribute('aria-label', 'Anti-spam verification');
-  form.querySelector('.nrs-form-actions, .nrs-contact-form-actions')?.before(host);
+  const actions = form.querySelector('.nrs-form-actions, .nrs-contact-form-actions, .sh-acc');
+  if (actions) actions.before(host); else form.append(host);
 
   try {
     await loadTurnstile();
@@ -301,7 +308,7 @@ async function initializeTurnstile(form) {
  * Side effects: performs network I/O
  * Returns: Promise resolving to the computed function result.
  */
-async function sendPayload(endpoint, form, signal) {
+export async function sendPayload(endpoint, form, signal) {
   const response = await fetch(endpoint, {
     method: 'POST',
     body: buildPayload(form),
@@ -309,7 +316,11 @@ async function sendPayload(endpoint, form, signal) {
     signal,
   });
   const result = await response.json().catch(   /** Callback contract: Convert or report the rejected asynchronous operation according to the surrounding failure-handling policy. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ () => ({}));
-  return { response, result };
+  const accepted = result.ok === true || result.success === true || result.success === 'true';
+  // Some providers return HTTP 200 for activation and delivery errors. HTTP alone proves nothing.
+  const deliveryResponse = response.ok && !accepted
+    ? new Response(null, { status: 502 }) : response;
+  return { response: deliveryResponse, result };
 }
 
 

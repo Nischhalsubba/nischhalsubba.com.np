@@ -12,7 +12,7 @@
  * - src/worker.js
  * Maintenance: Keep this description synchronized with behavior and dependency changes; document generated code at its generator rather than editing generated output.
  */
-const CONTACT_EMAIL = 'hinischhalsubba@gmail.com';
+const CONTACT_EMAIL = 'hinischalsubba@gmail.com';
 const ALLOWED_ORIGINS = new Set([
   'https://nischhalsubba.com.np',
   'https://www.nischhalsubba.com.np',
