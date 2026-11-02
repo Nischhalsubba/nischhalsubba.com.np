@@ -41,3 +41,12 @@ The existing FormSubmit provider was verified with a labeled delivery test; the 
 - https://web.dev/learn/performance/optimize-web-fonts
 - https://www.w3.org/TR/WOFF2/
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/container-type
+
+## Verified release observations
+
+- Both live homepage and separate contact-page test submissions returned success and their matching messages were found in the intended Gmail inbox.
+- Security Headers: A+ after nonce enforcement.
+- WAVE: zero errors, zero contrast errors, AIM 9.3/10. Remaining alerts include small editor chrome and PDF links; these are not automatically failures.
+- Fresh PageSpeed report: https://pagespeed.web.dev/analysis/https-nischhalsubba-com-np/2scrzt6i78?form_factor=mobile — mobile performance 93, accessibility 100, best practices 100, SEO 100, agentic browsing 3/3; LCP 1.5 s, TBT 250 ms, CLS 0.
+- The same report's desktop tab: performance 86, accessibility 100, best practices 100, SEO 100, agentic browsing 3/3; LCP 1.1 s, TBT 270 ms, CLS .019. These are single synthetic samples, not real-user percentiles or promises.
+- Nu's remaining 30 CSS findings concern container sizing, SVG styling, property registration and masks that its CSS parser does not recognize. Its additional mobile navigation label warning was corrected by giving the labeled container its navigation role. No intentional removal of supported design features to manufacture a validator score.
