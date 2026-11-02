@@ -109,7 +109,8 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          node scripts/browser-audit.mjs 2>&1 | tee production-browser.log
+          node scripts/browser-workspace-home-audit.mjs 2>&1 | tee production-browser.log
+          node scripts/browser-audit.mjs 2>&1 | tee -a production-browser.log
 
       - name: Audit exact sticky and responsive behavior
         id: sticky

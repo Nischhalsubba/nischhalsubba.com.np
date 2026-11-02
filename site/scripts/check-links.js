@@ -15,7 +15,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const ignoredDirs = new Set(['.git', 'node_modules', 'dist', '.wrangler']);
+// Workspace templates resolve against their deployed namespace; audit-workspace-home checks that final output.
+const ignoredDirs = new Set(['.git', 'node_modules', 'dist', '.wrangler', 'workspace-home']);
 const routeManifest = JSON.parse(fs.readFileSync(path.join(root, 'config', 'canonical-routes.json'), 'utf8'));
 const redirects = readRedirects();
 

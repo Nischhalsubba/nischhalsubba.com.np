@@ -115,7 +115,7 @@ for (const [width, height] of viewports) {
   const context = await browser.newContext({ viewport: { width, height } });
   const page = await context.newPage();
 
-  for (const route of routes) {
+  for (const route of routes.filter(route => route !== '/')) {
     const runtimeErrors = [];
     const failedRequests = [];
     const consoleErrors = [];
@@ -229,7 +229,7 @@ for (const [width, height] of viewports) {
 
   if (width <= 430) {
     try {
-      await page.goto(base, { waitUntil: 'networkidle', timeout: 30000 });
+      await page.goto(`${base}/projects`, { waitUntil: 'networkidle', timeout: 30000 });
       const toggle = page.locator('.mobile-nav-toggle');
       const overlay = page.locator('.mobile-nav-overlay');
       const focusables = overlay.locator('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');

@@ -32,7 +32,7 @@ for (const [width, height] of viewports) {
   const context = await browser.newContext({ viewport: { width, height } });
   const page = await context.newPage();
 
-  for (const route of routes) {
+  for (const route of routes.filter(route => route !== '/')) {
     for (const theme of themes) {
       try {
         const response = await page.goto(`${base}${route}`, { waitUntil: 'domcontentloaded', timeout: 30000 });

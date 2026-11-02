@@ -98,8 +98,8 @@ jobs:
             fi
 
             HOME_HTML=$(curl -fsS --max-time 15 "$PRODUCTION_URL/")
-            printf '%s' "$HOME_HTML" | grep -q 'agent-portfolio' || {
-              echo "Production homepage is not serving the editorial redesign shell."
+            printf '%s' "$HOME_HTML" | grep -q 'data-portfolio-design="workspace-v1"' || {
+              echo "Production homepage is not serving the approved workspace design."
               exit 1
             }
 

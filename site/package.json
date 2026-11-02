@@ -20,7 +20,7 @@
     "prebuild": "npm run prepare:sources && node scripts/preflight-build-scripts.cjs && node scripts/generate-seo-discovery.cjs && npm run prepare:sources",
     "generate": "npm run prepare:sources && node scripts/generate-source.cjs && npm run sync:sources && npm run prepare:sources",
     "sync:seo-discovery": "node scripts/generate-seo-discovery.cjs && npm run prepare:sources",
-    "build": "node scripts/build-dist.cjs && node scripts/normalize-html-runtime.cjs --dist && node scripts/finalize-refined-button-motion.cjs --dist && node scripts/generate-social-previews.cjs && node scripts/finalize-seo-entity-schema-v30.cjs --dist && node scripts/finalize-search-discovery-v31.cjs --dist && node scripts/ensure-blog-lightweight-covers.cjs --dist && node scripts/write-build-metadata.cjs",
+    "build": "node scripts/build-dist.cjs && node scripts/normalize-html-runtime.cjs --dist && node scripts/finalize-refined-button-motion.cjs --dist && node scripts/generate-social-previews.cjs && node scripts/finalize-seo-entity-schema-v30.cjs --dist && node scripts/finalize-search-discovery-v31.cjs --dist && node scripts/ensure-blog-lightweight-covers.cjs --dist && node scripts/write-build-metadata.cjs && node scripts/install-workspace-home.cjs && node scripts/write-build-metadata.cjs",
     "build:dist": "npm run build",
     "preview": "vite preview",
     "lint": "node scripts/lint-project.cjs",
@@ -46,8 +46,12 @@
     "test:smoke": "node scripts/smoke-test-dist.mjs",
     "test:routes:live": "node scripts/verify-live-routes.mjs",
     "test:button-motion:browser": "node scripts/browser-button-motion-audit.mjs",
-    "validate": "npm run build && npm run lint && npm run audit:repo-structure && npm run audit:code-docs && npm run test:build-determinism && npm run audit:seo && npm run audit:seo-entity-schema && npm run audit:seo-contract && npm run audit:seo-discovery && npm run audit:search-discovery-v31 && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:blog-covers && npm run audit:shared-shell && npm run audit:css-architecture && npm run audit:design-system && npm run audit:voice && npm run audit:accessibility-tokens && npm run audit:provenance && npm run test:contact-security && npm run test:smoke",
-    "audit:code-docs": "node scripts/repository/audit-code-documentation.cjs"
+    "validate": "npm run validate:legacy && node scripts/install-workspace-home.cjs && node scripts/write-build-metadata.cjs && npm run audit:workspace-home && npm run test:smoke && npm run test:build-determinism",
+    "audit:code-docs": "node scripts/repository/audit-code-documentation.cjs",
+    "build:legacy": "node scripts/build-dist.cjs && node scripts/normalize-html-runtime.cjs --dist && node scripts/finalize-refined-button-motion.cjs --dist && node scripts/generate-social-previews.cjs && node scripts/finalize-seo-entity-schema-v30.cjs --dist && node scripts/finalize-search-discovery-v31.cjs --dist && node scripts/ensure-blog-lightweight-covers.cjs --dist && node scripts/write-build-metadata.cjs",
+    "prebuild:legacy": "npm run prepare:sources && node scripts/preflight-build-scripts.cjs && node scripts/generate-seo-discovery.cjs && npm run prepare:sources",
+    "validate:legacy": "npm run build:legacy && npm run lint && npm run audit:repo-structure && npm run audit:code-docs && node scripts/test-build-determinism.cjs --legacy && npm run audit:seo && npm run audit:seo-entity-schema && npm run audit:seo-contract && npm run audit:seo-discovery && npm run audit:search-discovery-v31 && npm run audit:structure && npm run check:links && npm run audit:build && npm run audit:blog-covers && npm run audit:shared-shell && npm run audit:css-architecture && npm run audit:design-system && npm run audit:voice && npm run audit:accessibility-tokens && npm run audit:provenance && npm run test:contact-security && npm run test:smoke",
+    "audit:workspace-home": "node scripts/audit-workspace-home.cjs"
   },
   "devDependencies": {
     "@types/node": "26.5.1",

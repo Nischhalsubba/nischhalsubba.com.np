@@ -152,15 +152,18 @@ function assertHtml(route, relativePath) {
   if (!/class=["'][^"']*skip-link/i.test(html)) fail(`${route} (${relativePath}) has no skip link.`);
   if (!/id=["']main-content["']/i.test(html)) fail(`${route} (${relativePath}) has no #main-content target.`);
 
+  const workspaceHome = html.includes('data-portfolio-design="workspace-v1"');
   const stylesheets = localStylesheets(html);
-  if (stylesheets.length !== 1 || !stylesheets[0].startsWith('/style.css')) {
+  if (!workspaceHome && (stylesheets.length !== 1 || !stylesheets[0].startsWith('/style.css'))) {
     fail(`${route} (${relativePath}) must load exactly one local stylesheet: /style.css.`);
   }
 
-  if (!html.includes('/script.js') && !/<script[^>]+\/assets\/[^"']+\.js/i.test(html)) fail(`${route} (${relativePath}) is missing the runtime.`);
-  if (/fonts\.googleapis\.com|fonts\.gstatic\.com/i.test(html)) fail(`${route} (${relativePath}) still loads remote Google Fonts.`);
+  if (!workspaceHome && !html.includes('/script.js') && !/<script[^>]+\/assets\/[^"']+\.js/i.test(html)) fail(`${route} (${relativePath}) is missing the runtime.`);
+  if (!workspaceHome && /fonts\.googleapis\.com|fonts\.gstatic\.com/i.test(html)) fail(`${route} (${relativePath}) still loads remote Google Fonts.`);
   if (/i\.imgur\.com\/oFHdPUS/i.test(html)) fail(`${route} (${relativePath}) still loads the external portrait.`);
 
+  if (workspaceHome && (!html.includes('/workspace-home/personal.js') || !stylesheets.includes('/workspace-home/personal.css'))) fail(`${route} is missing the workspace runtime or stylesheet.`);
+  if (workspaceHome && /(?:src|href)=["']https:\/\/fonts\.(?:googleapis|gstatic)\.com/i.test(html)) fail(`${route} loads a remote font resource.`);
   const canonical = html.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)/i)?.[1];
   if (!canonical) fail(`${route} (${relativePath}) has no canonical URL.`);
   if (canonical?.endsWith('.html')) fail(`${route} (${relativePath}) has a .html canonical URL.`);

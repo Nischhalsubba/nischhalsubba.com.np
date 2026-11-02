@@ -15,7 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const base = process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173';
-const routes = ['/', '/projects', '/services', '/about', '/contact', '/project-yarsha'];
+const routes = ['/projects', '/services', '/about', '/contact', '/project-yarsha'];
 const viewports = [
   [320, 700],
   [360, 800],

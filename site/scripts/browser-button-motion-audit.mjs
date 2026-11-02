@@ -17,7 +17,7 @@
 import { chromium } from 'playwright';
 
 const base = process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173';
-const routes = ['/', '/projects', '/services', '/about', '/contact', '/blog/'];
+const routes = ['/projects', '/services', '/about', '/contact', '/blog/'];
 const primarySelector = '.nrs-layout-home-hero-actions .nrs-uploaded-btn-primary, .nrs-uploaded-actions .nrs-uploaded-btn-primary, .hero-actions .btn.btn-primary';
 const failures = [];
 

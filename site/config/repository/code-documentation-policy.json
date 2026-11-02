@@ -16,7 +16,8 @@
     "node_modules/",
     "public/",
     "src/generated/",
-    "tests/visual/baselines/"
+    "tests/visual/baselines/",
+    "src/workspace-home/vendor/"
   ],
   "excludedFiles": [],
   "headerExtensions": [

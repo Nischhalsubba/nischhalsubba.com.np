@@ -1,0 +1,112 @@
+@font-face {
+  font-family: 'Doto';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/ab38da6f5df1b377.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/900c1340657ef456.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/c2bef016fb9b4bcd.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/541119bccb21575e.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/011cb50bc76b8e25.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/e374eee52bb36e03.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/6b270e7e6da1b50c.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/460dc3935faa5867.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/706d7515d64b1e19.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/e858776f9ad0d058.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/7e0a56187ecaff85.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/c1e7453ea26a1d1e.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/00a65a8efb4038e1.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/beeb7fd59d9b2c10.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/b75124b8043e650f.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(../../vendor/fonts.gstatic.com/a4492460f001e1a2.ttf) format('truetype');
+}

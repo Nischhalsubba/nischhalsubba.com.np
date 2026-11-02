@@ -68,7 +68,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/browser-audit.mjs 2>&1 | tee browser-audit.log
+          node scripts/browser-workspace-home-audit.mjs 2>&1 | tee browser-audit.log
+          node scripts/browser-audit.mjs 2>&1 | tee -a browser-audit.log
           node scripts/browser-sticky-responsive-audit.mjs 2>&1 | tee -a browser-audit.log
 
       - name: Audit refined button motion

@@ -67,7 +67,7 @@ function compare(before, after) {
 }
 
 const first = snapshot();
-const result = spawnSync('npm', ['run', 'build'], {
+const result = spawnSync('npm', ['run', process.argv.includes('--legacy') ? 'build:legacy' : 'build'], {
   cwd: root,
   stdio: 'inherit',
   shell: process.platform === 'win32',

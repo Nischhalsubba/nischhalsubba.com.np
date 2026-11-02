@@ -60,4 +60,4 @@ jobs:
           exit 1
 
       - name: Run hero interaction regression audit
-        run: node scripts/browser-hero-ux-audit-v26.mjs
+        run: node scripts/browser-workspace-home-audit.mjs

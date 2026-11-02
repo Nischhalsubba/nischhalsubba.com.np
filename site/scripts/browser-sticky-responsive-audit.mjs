@@ -15,7 +15,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 
 const base = process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173';
-const routes = ['/', '/projects', '/services', '/about', '/blog/', '/contact', '/project-yarsha'];
+const routes = ['/projects', '/services', '/about', '/blog/', '/contact', '/project-yarsha'];
 const viewports = [
   [320, 700],
   [360, 800],
