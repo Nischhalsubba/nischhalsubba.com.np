@@ -4,6 +4,8 @@
 
 The earlier inner-page pass reused colors but disabled the real homepage toolbar, replaced the live file label, omitted its display scale and chamfered-button renderer, and retained editorial Manrope headings. The user's two screenshots are the acceptance reference. This pass reuses the homepage's actual `Decoder` and `chSize` implementations, CSS, SVG icons, frame markup, active tool tile, `--zk` display-scale formula, button flood gradient, Lenis easing and footer spotlight behavior. Content layouts use the same Doto/Geist/Geist Mono/Manrope roles, purple selection frames and dark workspace surfaces. Semantic content remains available before JavaScript.
 
+Legacy article roots are normalized into the same workspace typography and reading frame. Three accidentally published SEO-brief paragraphs (keywords, search intent and editorial instructions) are replaced with reader-facing context; case-study evidence and article guidance are retained. Mobile component tests measure visible buttons rather than the deliberately hidden toolbar CTA.
+
 ## Implemented search improvements
 
 - Final HTML SEO pass covers all 53 retained pages, after both visual installers.

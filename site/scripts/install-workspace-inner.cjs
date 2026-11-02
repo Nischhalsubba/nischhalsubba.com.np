@@ -46,7 +46,17 @@ for (const file of routes) {
   const html = fs.readFileSync(file, 'utf8');
   let main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0];
   if (!main) throw new Error(`Missing semantic content: ${file}`);
+  // Older articles predate the shared shell; apply the same root contract to them as well.
+  if (!/<main[^>]*class="[^"]*\bagent-main\b/.test(main)) {
+    main = main.replace(/<main([^>]*)>/, (tag, attrs) => attrs.includes('class="') ? tag.replace('class="', 'class="agent-main workspace-legacy-article ') : `<main${attrs} class="agent-main nrs-article-v4 workspace-legacy-article">`);
+  }
   const relative = path.relative(dist, file).replaceAll('\\', '/');
+  const readerIntroductions = {
+    'blog/saas-dashboard-empty-state-ux-guide.html': 'A useful empty state explains whether data is missing, a filter is too narrow, access is restricted or setup is unfinished. Start with the reason, then offer the next useful action.',
+    'blog/web3-wallet-connection-ux.html': 'This guide covers purpose, permissions, network requirements and recovery for teams designing wallet-enabled products. The aim is a connection flow that people can understand and engineers can implement.',
+    'blog/saas-dashboard-empty-states-product-clarity.html': 'This guide helps product teams distinguish missing data, active filters, permissions, unfinished setup and delayed synchronization, then design a useful next step for each state.'
+  };
+  if (readerIntroductions[relative]) main = main.replace(/<p\b[^>]*>[\s\S]*?<\/p>/g, paragraph => /Search intent:/.test(paragraph.replace(/<[^>]*>/g, '')) ? `<p>${readerIntroductions[relative]}</p>` : paragraph);
   const isBlog = relative.startsWith('blog/');
   const isProject = relative.startsWith('project-');
   const section = isProject || relative === 'projects.html' ? 'work' : isBlog ? 'process' : relative === 'about.html' ? 'about' : relative === 'contact.html' ? 'contact' : 'services';

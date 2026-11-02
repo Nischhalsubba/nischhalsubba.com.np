@@ -19,3 +19,8 @@ body[data-portfolio-design="workspace-inner-v1"]{isolation:isolate}.workspace-fi
 .ft-sel,.ft-ticks{display:block}.ft-nm{position:relative;z-index:1}
 /* The homepage's muted toolbar label uses the same palette at an AA-readable tone. */
 .tb-dim{color:#a7a7b0}
+
+/* Legacy articles retain their prose, but share the same workspace root, type and reading frame. */
+:root{--font-serif:var(--title);--accent-blue:#7cc6ff}
+.workspace-legacy-article>article{max-width:1000px;margin:0 auto;padding:60px 0}.workspace-legacy-article .hero-section{min-height:0!important;padding:0 0 48px!important;text-align:left!important}.workspace-legacy-article .hero-title{text-align:left}.workspace-legacy-article .container{width:100%;max-width:none;padding:0;margin:0}.workspace-legacy-article .nrs-blog-content{max-width:900px!important;margin:auto}.workspace-legacy-article .nrs-detail-breadcrumb{margin:26px 0}.nrs-detail-breadcrumb ol{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0}.nrs-detail-breadcrumb li+li:before{content:"/";margin-right:10px;color:#8e8e97}.workspace-legacy-article h3{font-family:var(--title)!important;letter-spacing:-.025em}.workspace-legacy-article>article>h1{padding-top:20px}.workspace-legacy-article .section-container{border:0}.workspace-legacy-article>article>p,.workspace-legacy-article>article>ul{max-width:850px}.workspace-legacy-article>article>h2{margin-top:48px}
+@media(max-width:700px){.workspace-legacy-article>article{padding-top:35px}.workspace-legacy-article .hero-section{padding-bottom:30px!important}.workspace-legacy-article .section-container{padding-top:0!important}.workspace-legacy-article .nrs-blog-content h3{font-size:25px!important;line-height:1.3}}

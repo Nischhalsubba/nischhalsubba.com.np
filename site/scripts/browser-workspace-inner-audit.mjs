@@ -39,7 +39,7 @@ try {
           font: getComputedStyle(document.body).fontFamily,
           headingFont: getComputedStyle(document.querySelector('main h1')).fontFamily,
           navFrame: document.querySelector('#pill svg.fr .brk')?.getAttribute('d') || '',
-          plate: document.querySelector('#pill .isl-ct svg.fr .body')?.getAttribute('d') || '',
+          plate: [...document.querySelectorAll('main .chbtn,.workspace-connect .chbtn,#pill .isl-ct')].find(button => button.offsetWidth > 0)?.querySelector('svg.fr .body')?.getAttribute('d') || '',
           active: getComputedStyle(document.querySelector('#tbAct')).display,
           background: getComputedStyle(document.body).backgroundColor,
           missing: [...document.querySelectorAll('main img')].filter(image => image.complete && image.currentSrc && image.naturalWidth === 0).map(image => image.getAttribute('src')),
