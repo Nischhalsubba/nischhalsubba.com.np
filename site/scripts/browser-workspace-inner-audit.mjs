@@ -37,12 +37,20 @@ try {
         const geometry = await page.evaluate(/** Callback contract: Read visible layout and media state for route assertions. Inputs: none. Side effects: none. Returns: serializable DOM measurements. */ () => ({
           overflow: document.documentElement.scrollWidth - innerWidth,
           font: getComputedStyle(document.body).fontFamily,
+          headingFont: getComputedStyle(document.querySelector('main h1')).fontFamily,
+          navFrame: document.querySelector('#pill svg.fr .brk')?.getAttribute('d') || '',
+          plate: document.querySelector('#pill .isl-ct svg.fr .body')?.getAttribute('d') || '',
+          active: getComputedStyle(document.querySelector('#tbAct')).display,
           background: getComputedStyle(document.body).backgroundColor,
           missing: [...document.querySelectorAll('main img')].filter(image => image.complete && image.currentSrc && image.naturalWidth === 0).map(image => image.getAttribute('src')),
           navigation: [...document.querySelectorAll('#tbTools a')].filter(link => link.getAttribute('aria-label') === 'Writing').length,
         }));
         assert.ok(geometry.overflow <= 2, `Horizontal overflow: ${geometry.overflow}px`);
         assert.match(geometry.font, /Geist/);
+        assert.match(geometry.headingFont, /Doto/);
+        assert.ok(geometry.navFrame.startsWith('M'), 'Homepage nav frame must be drawn');
+        assert.ok(geometry.plate.startsWith('M'), 'Homepage button plate must be drawn');
+        assert.notEqual(geometry.active, 'none', 'Homepage active-tool indicator must remain enabled');
         assert.equal(geometry.background, 'rgb(7, 7, 10)');
         assert.deepEqual(geometry.missing, []);
         assert.equal(geometry.navigation, 1);
