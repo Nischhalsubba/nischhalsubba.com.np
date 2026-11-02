@@ -2979,7 +2979,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     let run = 0, lastY = scrollY;
     (function loop() {
       requestAnimationFrame(loop);
-      const r = sn.getBoundingClientRect(); if (r.bottom < -200 || r.top > innerHeight + 200) return;
+      const r = sn.getBoundingClientRect(); if (!servicesReady || !len || r.bottom < -200 || r.top > innerHeight + 200) return;
       // title: hides while scrolling down through the section, comes back on scroll up
       const tr = title.getBoundingClientRect(), tq = clamp(-(tr.top - 40) / (tr.height * .9));
       title.style.opacity = (1 - tq).toFixed(3); title.style.transform = `translateY(${(-tq * 60).toFixed(1)}px)`; title.style.filter = tq > .01 ? `blur(${(tq * 8).toFixed(1)}px)` : '';
