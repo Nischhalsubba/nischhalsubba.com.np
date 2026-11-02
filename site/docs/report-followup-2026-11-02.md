@@ -8,7 +8,7 @@
 | Supplied GTmetrix `rjPNkIDo`, 09:16 -0700 | Performance 53%; structure 97%; LCP 2.6 s; TBT 911 ms; CLS .02; 594 KB, 27 requests | This is a real remaining performance concern. It uses a different Lighthouse version/location than PageSpeed. Do not dismiss it or promise a fixed score. |
 | WAVE live report | Zero errors; zero contrast errors; AIM 9.3/10; 74 alerts | Alerts comprise 14 repeated image alternatives, one redundant link, three PDFs and 56 small-text notices. Zero automated errors does not establish WCAG compliance. |
 | Nu live checker v26.11.1 | 30 CSS diagnostics; no non-CSS findings in the returned list | Diagnostics concern @property, container-type/cqw, vector-effect and gradient/mask syntax. Review against current CSS standards and actual browser support; do not delete working design features or hide validation results merely to make a score green. |
-| Semrush supplied URL | Public checker form, daily limit shown as 0/0; no domain results rendered | Current visibility cannot be confirmed from this session. Previously recorded zero visibility is an outcome metric, not a deterministic software defect. |
+| Semrush supplied URL, after delayed loading | AI visibility 0; mentions 0; citations 1, to `/blog/saas-dashboard-ux-checklist`; no history or topics | Visibility is an outcome metric, not a deterministic software defect. Promotional example charts on the page are not domain measurements. |
 
 ## Change in this release
 
