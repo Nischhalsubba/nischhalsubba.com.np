@@ -17,3 +17,5 @@ body[data-portfolio-design="workspace-inner-v1"]{isolation:isolate}.workspace-fi
 .workspace-all-writing h2{margin-bottom:32px}.workspace-writing-index{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}.workspace-writing-index a{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-top:1px solid var(--line);font:500 18px/1.5 var(--title);color:var(--fg)}.workspace-writing-index a>span:last-child{color:#7cc6ff}.workspace-writing-index a:hover{color:#7cc6ff}.workspace-site-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;padding:24px 20px 38px;border-top:1px solid var(--line);position:relative;z-index:1;color:#a7a7b0}.workspace-site-links a:hover{color:#7cc6ff}@media(max-width:700px){.workspace-writing-index{grid-template-columns:1fr}.workspace-site-links{gap:18px;font-size:10px}}
 
 .ft-sel,.ft-ticks{display:block}.ft-nm{position:relative;z-index:1}
+/* The homepage's muted toolbar label uses the same palette at an AA-readable tone. */
+.tb-dim{color:#a7a7b0}
