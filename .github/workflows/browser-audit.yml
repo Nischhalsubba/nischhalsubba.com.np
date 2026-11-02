@@ -80,7 +80,7 @@ jobs:
           set -o pipefail
           node scripts/browser-workspace-inner-audit.mjs --quick 2>&1 | tee button-motion-audit.log
 
-      - name: Audit text contrast in light and dark themes
+      - name: Audit workspace text contrast
         id: contrast
         if: steps.preview.outcome == 'success'
         continue-on-error: true

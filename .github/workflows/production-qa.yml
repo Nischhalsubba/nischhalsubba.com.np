@@ -89,8 +89,9 @@ jobs:
 
       - name: Fetch live sitemap for browser route discovery
         run: |
-          mkdir -p dist
+          mkdir -p dist/workspace-inner
           curl --fail --silent --show-error https://nischhalsubba.com.np/sitemap.xml -o dist/sitemap.xml
+          curl --fail --silent --show-error https://nischhalsubba.com.np/workspace-inner/routes.json -o dist/workspace-inner/routes.json
 
       - name: Install Chromium audit runtime
         run: npx --no-install playwright install --with-deps chromium
@@ -128,7 +129,7 @@ jobs:
           set -o pipefail
           node scripts/browser-workspace-inner-audit.mjs --quick 2>&1 | tee production-mobile-menu.log
 
-      - name: Audit text contrast in light and dark themes
+      - name: Audit workspace text contrast
         id: contrast
         continue-on-error: true
         shell: bash

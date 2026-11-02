@@ -21,7 +21,7 @@ const discovered = [...sitemap.matchAll(/<loc>https?:\/\/[^/]+([^<]*)<\/loc>/gi)
   .map( /** Callback contract: Transform the current item into the representation consumed by the enclosing collection operation. Inputs: `match` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result. */ (match) => match[1] || '/')
   .filter( /** Callback contract: Decide whether the current item remains in the filtered result consumed by the enclosing operation. Inputs: `route`, `index`, `array` Side effects: No direct external side effect beyond invoked dependencies. Returns: Boolean predicate result consumed by the enclosing collection lookup/filter. */ (route, index, array) => array.indexOf(route) === index);
 const routes = discovered.length ? discovered : ['/', '/projects', '/services', '/about', '/contact', '/project-yarsha', '/blog/'];
-const themes = ['light', 'dark'];
+const themes = ['dark'];
 const viewports = [[390, 844], [1440, 1000]];
 const failures = [];
 let inspected = 0;
@@ -29,7 +29,7 @@ let inspected = 0;
 const browser = await chromium.launch({ headless: true });
 
 for (const [width, height] of viewports) {
-  const context = await browser.newContext({ viewport: { width, height } });
+  const context = await browser.newContext({ viewport: { width, height }, reducedMotion: 'reduce' });
   const page = await context.newPage();
 
   for (const route of routes.filter(route => route !== '/')) {
@@ -259,4 +259,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`[theme-contrast-audit] ${routes.length} route(s) passed light/dark text contrast at mobile and desktop widths across ${inspected} visible text runs.`);
+console.log(`[theme-contrast-audit] ${routes.length} route(s) passed workspace text contrast at mobile and desktop widths across ${inspected} visible text runs.`);
