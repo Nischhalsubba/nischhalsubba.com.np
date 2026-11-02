@@ -61,5 +61,5 @@ jobs:
 
       - name: Run layout and micro-interaction E2E audit
         run: |
-          node scripts/browser-interface-polish-audit.mjs
+          node scripts/browser-workspace-inner-audit.mjs
           node scripts/browser-workspace-home-audit.mjs

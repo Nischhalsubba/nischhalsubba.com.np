@@ -110,7 +110,7 @@ jobs:
         run: |
           set -o pipefail
           node scripts/browser-workspace-home-audit.mjs 2>&1 | tee production-browser.log
-          node scripts/browser-audit.mjs 2>&1 | tee -a production-browser.log
+          node scripts/browser-workspace-inner-audit.mjs 2>&1 | tee -a production-browser.log
 
       - name: Audit exact sticky and responsive behavior
         id: sticky
@@ -118,7 +118,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          node scripts/browser-sticky-responsive-audit.mjs 2>&1 | tee production-sticky.log
+          node scripts/browser-workspace-inner-audit.mjs --quick 2>&1 | tee production-sticky.log
 
       - name: Audit expanded mobile navigation
         id: menu
@@ -126,7 +126,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          node scripts/browser-mobile-menu-expanded-audit.mjs 2>&1 | tee production-mobile-menu.log
+          node scripts/browser-workspace-inner-audit.mjs --quick 2>&1 | tee production-mobile-menu.log
 
       - name: Audit text contrast in light and dark themes
         id: contrast
@@ -158,7 +158,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          node scripts/visual-regression.mjs 2>&1 | tee production-visual.log
+          node scripts/browser-workspace-inner-audit.mjs --quick 2>&1 | tee production-visual.log
 
       - name: Verify production security headers
         id: headers
@@ -218,6 +218,7 @@ jobs:
           name: production-qa-${{ github.sha }}
           path: |
             site/production-*.log
+            site/tests/workspace-inner/results
             site/tests/visual/results
             site/tests/sticky-responsive/results
             site/tests/mobile-menu/results

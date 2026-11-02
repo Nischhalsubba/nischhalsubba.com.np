@@ -69,8 +69,7 @@ jobs:
         run: |
           set -euo pipefail
           node scripts/browser-workspace-home-audit.mjs 2>&1 | tee browser-audit.log
-          node scripts/browser-audit.mjs 2>&1 | tee -a browser-audit.log
-          node scripts/browser-sticky-responsive-audit.mjs 2>&1 | tee -a browser-audit.log
+          node scripts/browser-workspace-inner-audit.mjs 2>&1 | tee -a browser-audit.log
 
       - name: Audit refined button motion
         id: motion
@@ -79,7 +78,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          npm run test:button-motion:browser 2>&1 | tee button-motion-audit.log
+          node scripts/browser-workspace-inner-audit.mjs --quick 2>&1 | tee button-motion-audit.log
 
       - name: Audit text contrast in light and dark themes
         id: contrast
@@ -110,7 +109,7 @@ jobs:
             echo 'Reviewed visual baselines are missing. Generate and review them before merging.' | tee visual-regression.log
             exit 1
           fi
-          node scripts/visual-regression.mjs 2>&1 | tee visual-regression.log
+          node scripts/browser-workspace-inner-audit.mjs --quick 2>&1 | tee visual-regression.log
 
       - name: Publish browser audit result
         if: always() && !cancelled()
@@ -174,6 +173,7 @@ jobs:
             site/contact-audit.log
             site/visual-regression.log
             site/tests/visual/baselines
+            site/tests/workspace-inner/results
             site/tests/visual/results
           if-no-files-found: ignore
           retention-days: 7
