@@ -16,7 +16,7 @@ fs.cpSync(source, path.join(dist, 'workspace-home'), { recursive: true });
 // These small stylesheets are required for the first frame. Inline them in their
 // original cascade position to avoid three serial requests on slow connections.
 // Resolve font URLs against their original stylesheet, not the document URL.
-const homepage = fs.readFileSync(path.join(source, 'index.html'), 'utf8').replace(
+let homepage = fs.readFileSync(path.join(source, 'index.html'), 'utf8').replace(
   /<link rel="stylesheet" href="(\/workspace-home\/[^"]+\.css)">/g,
   /** Callback contract: Inline critical CSS at its original cascade position. Inputs: link markup and asset URL. Side effects: reads CSS. Returns: equivalent style element. */ (link, href) => {
     const css = fs.readFileSync(path.join(dist, href), 'utf8').replace(
@@ -30,6 +30,25 @@ const homepage = fs.readFileSync(path.join(source, 'index.html'), 'utf8').replac
     return `<style data-workspace-inline="${href}">${css}</style>`;
   }
 );
+// The original monolithic initializer monopolizes one parser task. Keep its
+// lexical scope and initialization order, but let input/rendering run between
+// independent section initializers. The animation loop starts only at the end.
+const startup = '(() => {\n  const reduce = matchMedia';
+if (!homepage.includes(startup)) throw new Error('Homepage startup boundary changed.');
+homepage = homepage.replace(startup, '(async () => {\n  const yieldStartup = () => new Promise(resolve => setTimeout(resolve, 0));\n  const reduce = matchMedia');
+for (const section of [
+  '  /* ---------- experience:',
+  '  /* ---------- work:',
+  '  /* ---------- services: plate',
+  '  /* ---- spring (',
+  '  /* ---- footer: the name again',
+  '  /* ---------- process:',
+  '  /* ---------- project scope:',
+  '  /* ---------- clock ----------',
+]) {
+  if (!homepage.includes(section)) throw new Error(`Missing startup section: ${section}`);
+  homepage = homepage.replace(section, '  await yieldStartup();\n' + section);
+}
 fs.writeFileSync(path.join(dist, 'index.html'), homepage);
 // Keep historical home aliases on the approved homepage while preserving canonical route behavior.
 for (const alias of ['home.html', 'home-v2.html']) {

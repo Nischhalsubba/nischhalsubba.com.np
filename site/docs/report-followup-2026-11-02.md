@@ -16,9 +16,15 @@ Inline the homepage's small font-definition and personalization stylesheets at t
 
 A regression assertion rejects external homepage stylesheets and checks the rebased Doto URL. Existing full build, determinism, content, SEO, contact-security and browser checks remain the release gates. No claim about a new external score is justified until the deployed change is retested.
 
+## Startup scheduling follow-up
+
+The CSS-only release was retested with PageSpeed `bo16f23z40`: mobile performance 88; accessibility, best practices and SEO 100; agentic browsing 3/3; LCP 1.4 s; TBT 420 ms; CLS 0. The render-blocking warning disappeared, but main-thread time remained excessive. This sample does not demonstrate an overall performance improvement over the earlier 93 score.
+
+The build now yields to the browser at eight explicit section boundaries inside the existing initializer. It preserves lexical scope and initialization order, and starts the shared animation loop after initialization completes. Every expected boundary is asserted so a source refactor fails clearly rather than silently dropping scheduling. Full validation and keyboard project-dialog checks accompany this change. Its external performance effect still requires a fresh deployed test.
+
 ## Remaining work and limits
 
-- Profile and split startup animation/layout work; PageSpeed attributes a 287 ms task to the smooth-scroll library call stack and identifies repeated geometry reads. Preserve scrolling and keyboard behavior when changing scheduling.
+- Continue profiling startup animation/layout work; PageSpeed attributes a 287 ms task to the smooth-scroll library call stack and identifies repeated geometry reads. Preserve scrolling and keyboard behavior when changing scheduling.
 - Review repeated project image alternatives and tiny editor labels with assistive technology and visual design together. PDF links are useful content, not bugs to remove.
 - Check field Core Web Vitals when sufficient real-user data exists. Lab scores can vary across servers and throttling configurations.
 - Search indexing, citations and brand mentions depend on external systems and useful original evidence. Do not fabricate testimonials, results, links or keyword content to manufacture visibility.
