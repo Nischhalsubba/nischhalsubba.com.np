@@ -2425,9 +2425,13 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     let last = '';
     const tickClock = () => { const t = new Date(Date.now() + 5.75 * 3600e3).toISOString().slice(11, 16); if (t !== last) { $$('i', clk).forEach((c, i) => { if (c.textContent !== t[i]) flipCell(c, t[i], i * 40, last ? 3 : 6); }); last = t; } };
     tickClock(); setInterval(tickClock, 5000);
+    // Read layout only near the viewport; preserve the board's arrival timing and transform.
+    let departureBoardNear = false;
+    new IntersectionObserver(([entry]) => { departureBoardNear = entry.isIntersecting; }, { rootMargin: '600px 0px' }).observe(dep);
     // the board tips up from the floor as it arrives
     (function loop() {
       requestAnimationFrame(loop);
+      if (!departureBoardNear || document.hidden) return;
       const r = dep.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
       const q = clamp((innerHeight - r.top) / (innerHeight * .75));
       const e = reduce ? 1 : 1 - Math.pow(1 - q, 3);
