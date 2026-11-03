@@ -48,7 +48,9 @@ try {
         compared++;
       }
     } finally { Math.random = originalRandom; }
-    return { samples: second.geometry.PTS.length, comparedStates: compared, yielded };
+    return { samples: second.geometry.PTS.length, comparedStates: compared, yielded, nativePoints: first.geometry.PTS };
   }, { current, reference });
+  console.log('[pen native points]', JSON.stringify(result.nativePoints));
+  delete result.nativePoints;
   console.log('[pen geometry]', JSON.stringify(result));
 } finally { await browser.close(); }
