@@ -36,10 +36,30 @@ jobs:
             if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then break; fi
             sleep 1
           done
-          node scripts/seo/browser-evidence.mjs
+          node scripts/seo/browser-evidence.mjs --axe-only
+      - name: Measure the unchanged base commit
+        if: github.event_name == 'pull_request'
+        env:
+          BASELINE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git fetch --depth=1 origin "$BASELINE_SHA"
+          baseline_path="$RUNNER_TEMP/portfolio-baseline"
+          git worktree add --detach "$baseline_path" "$BASELINE_SHA"
+          npm --prefix "$baseline_path/site" ci --no-audit --no-fund
+          npm --prefix "$baseline_path/site" run build
+          npm --prefix "$baseline_path/site" run preview -- --host 127.0.0.1 --port 4174 > /tmp/seo-baseline-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4174/ >/dev/null; then break; fi
+            sleep 1
+          done
+          AUDIT_BASE_URL=http://127.0.0.1:4174 AUDIT_OUTPUT=tests/seo-evidence/baseline AUDIT_SOURCE_SHA="$BASELINE_SHA" node scripts/seo/browser-evidence.mjs --performance-only
+      - name: Measure the review commit
+        run: node scripts/seo/browser-evidence.mjs --performance-only
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: seo-accessibility-performance-evidence
-          path: site/tests/seo-evidence/results
+          path: |
+            site/tests/seo-evidence/results
+            site/tests/seo-evidence/baseline
           retention-days: 14

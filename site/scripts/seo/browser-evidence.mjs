@@ -18,10 +18,12 @@ const output = process.env.AUDIT_OUTPUT || 'tests/seo-evidence/results';
 fs.mkdirSync(output, { recursive:true });
 const routes = ['/', '/projects', '/project-orkest', '/services', '/blog/', '/blog/figma-handoff-notes-for-developers'];
 const failures = []; const accessibility = []; const performance = [];
+if (!process.argv.includes('--performance-only')) {
 const browser = await chromium.launch({headless:true});
 try {
   for (const width of [320,375,390,768,1024,1440,1920]) {
-    const page = await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});
+    const context = await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
+    const page = await context.newPage();
     for (const route of routes) {
       const response = await page.goto(base+route,{waitUntil:'networkidle'});
       assert.ok(response.ok(), `${route}: HTTP ${response.status()}`);
@@ -43,10 +45,11 @@ try {
       }
       if ([320,390,1440].includes(width)) await page.screenshot({path:path.join(output,`${width}-${route.replaceAll('/','_')||'home'}.png`),fullPage:true});
     }
-    await page.close();
+    await context.close();
   }
 } finally {await browser.close();}
 fs.writeFileSync(path.join(output,'accessibility.json'),JSON.stringify({base,checkedAt:new Date().toISOString(),results:accessibility,failures},null,2));
+}
 if (!process.argv.includes('--axe-only')) {
   const chrome=await chromeLauncher.launch({chromePath:chromium.executablePath(),chromeFlags:['--headless','--no-sandbox','--disable-dev-shm-usage']});
   try {
@@ -62,7 +65,7 @@ if (!process.argv.includes('--axe-only')) {
       performance.push({device,route,runs,median});
     }
   } finally {await chrome.kill();}
-  fs.writeFileSync(path.join(output,'performance.json'),JSON.stringify({base,kind:'LAB_SIMULATED_NOT_FIELD_CWV',runsPerDeviceRoute:3,results:performance},null,2));
+  fs.writeFileSync(path.join(output,'performance.json'),JSON.stringify({base,sourceCommit:process.env.AUDIT_SOURCE_SHA || process.env.GITHUB_SHA || 'local',kind:'LAB_SIMULATED_NOT_FIELD_CWV',runsPerDeviceRoute:3,results:performance},null,2));
 }
 assert.deepEqual(failures,[],'Verified accessibility and reflow failures require repair');
 console.log(`[seo-evidence] ${accessibility.length} axe template/device scans, seven-width reflow and image dialog checks passed.`);
