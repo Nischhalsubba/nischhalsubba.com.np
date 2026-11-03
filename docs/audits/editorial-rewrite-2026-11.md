@@ -36,3 +36,9 @@ The native MCP output probe returned only five images from twenty renders; its n
 ## Release boundary
 
 This is a draft PR, not a production release. Content, new public assets and any needed team clearance require review. No merge, deployment, sitemap submission or indexing request occurred. Current Google observations and external follow-up instructions remain in the SEO reports. Manual screen-reader/WAVE/field-CWV and anonymous prototype playback are not verified.
+
+## Follow-up before release
+
+The execution environment became unavailable again during the larger archive checkpoint update. The already-saved 740-file private archive is confirmed; durable retention of the later 886-file working snapshot is not confirmed. The public code and eight curated images are safely committed. Remaining export/curation and local visual work remain blocked by the runtime and source/rights gaps, rather than being reported complete.
+
+A confirmed social-cache mismatch was also repaired: `/assets/*` is cached as immutable for a year, while social cards previously used fixed filenames. Social filenames now include the generated PNG's SHA-256 prefix; the SEO audit checks the name against actual bytes. Complete upstream font licenses and readable editorial review snapshots are included. The snapshots correspond to authored prose at code commit `00db48e`; JSON remains the source of truth. A fresh CI run must verify this final follow-up before release.

@@ -86,11 +86,14 @@ for (const file of files) {
   const isArticle = file.startsWith('blog/') && file !== 'blog/index.html'; const isProject = file.startsWith('project-');
   const category = isProject ? 'Case study' : isArticle ? 'Design writing' : file === 'index.html' ? 'Senior Product Designer' : 'Portfolio';
   const slug = file.replace(/\.html$/, '').replaceAll('/', '--');
-  const imageUrl = `${site}/assets/workspace-social/${slug}.png`;
+
   const contentImages = [...html.matchAll(/data-evidence-image="([^"]+)"/g)].map(match => evidenceImages.find(image => image.id === match[1])).filter(Boolean);
   if (isArticle && (contentImages.length || html.includes('data-editorial-revision='))) html = setMeta(html, 'property', 'article:modified_time', '2026-11-03');
   const coverSrc = contentImages[0]?.socialSrc || (isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null);
-  fs.writeFileSync(path.join(socialDirectory, slug + '.png'), card(file === 'index.html' ? 'Nischhal Raj Subba' : heading, description, category, coverSrc ? path.join(dist, coverSrc) : null));
+  const cardBytes = card(file === 'index.html' ? 'Nischhal Raj Subba' : heading, description, category, coverSrc ? path.join(dist, coverSrc) : null);
+  const cardName = `${slug}-${crypto.createHash('sha256').update(cardBytes).digest('hex').slice(0,12)}.png`;
+  const imageUrl = `${site}/assets/workspace-social/${cardName}`;
+  fs.writeFileSync(path.join(socialDirectory, cardName), cardBytes);
   for (const [key, value] of Object.entries({ 'og:title': title, 'og:description': description, 'og:url': url, 'og:type': isArticle ? 'article' : 'website', 'og:site_name': 'Nischhal Raj Subba', 'og:locale': 'en_US', 'og:image': imageUrl, 'og:image:secure_url': imageUrl, 'og:image:type': 'image/png', 'og:image:width': '1200', 'og:image:height': '630', 'og:image:alt': `${heading} — Nischhal Raj Subba` })) html = setMeta(html, 'property', key, value);
   for (const [key, value] of Object.entries({ 'twitter:card': 'summary_large_image', 'twitter:title': title, 'twitter:description': description, 'twitter:image': imageUrl, 'twitter:image:alt': `${heading} — Nischhal Raj Subba`, 'robots': 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1', 'author': 'Nischhal Raj Subba' })) html = setMeta(html, 'name', key, value);
   const graph = [];

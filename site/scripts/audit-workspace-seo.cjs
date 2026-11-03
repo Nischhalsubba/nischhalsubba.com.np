@@ -8,6 +8,7 @@
  */
 const fs = require('node:fs'); const path = require('node:path'); const assert = require('node:assert/strict');
 const { PNG } = require('pngjs');
+const crypto = require('node:crypto');
 const dist = path.resolve(__dirname, '../dist');
 const records = JSON.parse(fs.readFileSync(path.join(dist, 'workspace-inner/seo-inventory.json'), 'utf8'));
 const site = 'https://nischhalsubba.com.np'; const sitemap = fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8');
@@ -19,7 +20,10 @@ for (const record of records) {
   assert.equal((html.match(/rel="canonical"/g) || []).length, 1, record.file + ': one canonical');
   assert.ok(!record.url.endsWith('.html')); assert.ok(record.description.length >= 40, record.file + ': useful description');
   assert.match(html, /max-image-preview:large/); assert.match(html, /property="og:image:type" content="image\/png"/);
-  const png = PNG.sync.read(fs.readFileSync(path.join(dist, new URL(record.image).pathname)));
+  const imageBytes = fs.readFileSync(path.join(dist, new URL(record.image).pathname));
+  const imageHash = crypto.createHash('sha256').update(imageBytes).digest('hex').slice(0,12);
+  assert.ok(new URL(record.image).pathname.endsWith('-' + imageHash + '.png'), 'Immutable social URLs must match content hashes');
+  const png = PNG.sync.read(imageBytes);
   assert.equal(png.width, 1200); assert.equal(png.height, 630);
   const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
   assert.equal(graph.filter(node => node['@type'] === 'Person').length, 1);

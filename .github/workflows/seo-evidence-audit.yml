@@ -67,3 +67,34 @@ jobs:
             site/tests/seo-evidence/baseline
             site/tests/seo-evidence/production
           retention-days: 14
+
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - run: npx --no-install playwright install --with-deps chromium
+      - name: Profile real homepage startup
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/profile-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/seo/profile-home.mjs
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: homepage-cpu-profile
+          path: site/tests/seo-evidence/profile
+          retention-days: 14
