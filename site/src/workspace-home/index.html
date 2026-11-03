@@ -2360,9 +2360,21 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
   };
   const secIds = Object.keys(KF), secs = secIds.map(id => document.getElementById(id));
   const cur = KF.top.map(o => o.slice());
+  // Section layout changes on resize/content reflow, not on every animation frame.
+  let atmoCenters = secs.map(s => s.offsetTop + s.offsetHeight * .5), atmoMeasureFrame = 0;
+  function measureAtmoSections() {
+    if (atmoMeasureFrame) return;
+    atmoMeasureFrame = requestAnimationFrame(() => {
+      atmoMeasureFrame = 0;
+      atmoCenters = secs.map(s => s.offsetTop + s.offsetHeight * .5);
+    });
+  }
+  const atmoLayoutObserver = new ResizeObserver(measureAtmoSections);
+  secs.forEach(s => atmoLayoutObserver.observe(s));
+  window.addEventListener('resize', measureAtmoSections, { passive: true });
   function atmoTarget() {
     const mid = scrollY + innerHeight * .5;
-    const tops = secs.map(s => s.offsetTop + s.offsetHeight * .5);
+    const tops = atmoCenters;
     let i = 0; while (i < tops.length - 1 && mid > tops[i + 1]) i++;
     if (mid <= tops[0]) return KF[secIds[0]];
     if (i >= tops.length - 1) return KF[secIds[tops.length - 1]];
