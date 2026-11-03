@@ -47,5 +47,7 @@ for(const record of records) {
     }
   }
 }
-assert.equal(images.length,5);assert.equal(references,10);
+const editorial = require('../editorial/render.cjs');
+const authoredFigures = editorial.projects.flatMap(project => project.decisions.filter(decision => decision.image)).length + editorial.articles.flatMap(article => article.sections.filter(section => section.image)).length;
+assert.equal(images.length,8);assert.equal(references,authoredFigures);
 console.log(`[evidence] ${images.length} curated originals, ${references} figure placements, local responsive variants and 53 canonical source/output pairs passed.`);

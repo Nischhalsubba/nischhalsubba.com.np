@@ -88,20 +88,23 @@ for (const file of files) {
   const slug = file.replace(/\.html$/, '').replaceAll('/', '--');
   const imageUrl = `${site}/assets/workspace-social/${slug}.png`;
   const contentImages = [...html.matchAll(/data-evidence-image="([^"]+)"/g)].map(match => evidenceImages.find(image => image.id === match[1])).filter(Boolean);
-  if (isArticle && contentImages.length) html = setMeta(html, 'property', 'article:modified_time', '2026-11-03');
+  if (isArticle && (contentImages.length || html.includes('data-editorial-revision='))) html = setMeta(html, 'property', 'article:modified_time', '2026-11-03');
   const coverSrc = contentImages[0]?.socialSrc || (isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null);
   fs.writeFileSync(path.join(socialDirectory, slug + '.png'), card(file === 'index.html' ? 'Nischhal Raj Subba' : heading, description, category, coverSrc ? path.join(dist, coverSrc) : null));
   for (const [key, value] of Object.entries({ 'og:title': title, 'og:description': description, 'og:url': url, 'og:type': isArticle ? 'article' : 'website', 'og:site_name': 'Nischhal Raj Subba', 'og:locale': 'en_US', 'og:image': imageUrl, 'og:image:secure_url': imageUrl, 'og:image:type': 'image/png', 'og:image:width': '1200', 'og:image:height': '630', 'og:image:alt': `${heading} — Nischhal Raj Subba` })) html = setMeta(html, 'property', key, value);
   for (const [key, value] of Object.entries({ 'twitter:card': 'summary_large_image', 'twitter:title': title, 'twitter:description': description, 'twitter:image': imageUrl, 'twitter:image:alt': `${heading} — Nischhal Raj Subba`, 'robots': 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1', 'author': 'Nischhal Raj Subba' })) html = setMeta(html, 'name', key, value);
   const graph = [];
   for (const match of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) { const data = JSON.parse(match[1]); graph.push(...(data['@graph'] || [data])); }
-  const merged = graph.filter(node => !['Person', 'WebSite'].includes(node['@type']));
+  const merged = graph.filter(node => !['Person', 'WebSite'].includes(node['@type']) && !(html.includes('data-editorial-revision=') && node['@type'] === 'FAQPage'));
   const website = { '@type': 'WebSite', '@id': site + '/#website', name: 'Nischhal Raj Subba', alternateName: 'Nischhal', url: site + '/', inLanguage: 'en', publisher: { '@id': person['@id'] } };
   let webpage = merged.find(node => ['WebPage','ProfilePage','CollectionPage','ContactPage','AboutPage'].includes(node['@type']));
   if (!webpage) { webpage = { '@type': file === 'index.html' ? 'ProfilePage' : 'WebPage', '@id': url + '#webpage', url }; merged.push(webpage); }
   Object.assign(webpage, { name: title, description, inLanguage: 'en', isPartOf: { '@id': website['@id'] }, author: { '@id': person['@id'] }, primaryImageOfPage: { '@type': 'ImageObject', url: imageUrl, width:1200, height:630 } });
   for (const node of merged) {
-    if (['BlogPosting','Article','CreativeWork'].includes(node['@type'])) { node.image = { '@type':'ImageObject', url:imageUrl, width:1200, height:630 }; node.inLanguage = 'en'; node.author = { '@id':person['@id'] }; }
+    if (['BlogPosting','Article','CreativeWork'].includes(node['@type'])) {
+      node.image = { '@type':'ImageObject', url:imageUrl, width:1200, height:630 }; node.inLanguage = 'en'; node.author = { '@id':person['@id'] };
+      if (html.includes('data-editorial-revision=')) { node.description = description; delete node.articleBody; if (node['@type'] === 'CreativeWork') { node.name = heading + ' — design case study'; node.genre = 'Product design case study'; } else node.headline = heading; }
+    }
     if (node['@type'] === 'BlogPosting') { const published = metadata(html, 'article:published_time'); const modified = metadata(html, 'article:modified_time'); if (published) node.datePublished = published; if (modified) node.dateModified = modified; }
   }
   if (isArticle && !merged.some(node => ['BlogPosting','Article'].includes(node['@type']))) merged.push({ '@type':'BlogPosting', '@id':url+'#article', headline:heading, description, url, image:imageUrl, author:{'@id':person['@id']}, mainEntityOfPage:{'@id':webpage['@id']}, inLanguage:'en' });

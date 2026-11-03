@@ -1,14 +1,122 @@
 {
   "project-orkest.html": {
-    "description": "Explore UX architecture and interface design for Orkest HQ, with CRM screen evidence and shared patterns across sales, inventory and finance."
+    "description": "A shared interface language for business software, with CRM screens that make ownership, qualification and the next action easier to inspect."
   },
   "project-hamro-idea.html": {
-    "description": "A Nepal software studio website case study covering brand direction, service architecture, responsive interface design and static front-end implementation."
+    "description": "Connecting a Nepal-based studio's positioning, services, project proof and contact path in one maintainable website."
   },
   "project-zakra-furniture.html": {
-    "description": "A reusable furniture storefront design for WordPress and Elementor, with attention to product discovery, image consistency and adaptable content."
+    "description": "An image-led catalogue designed to remain coherent when real content replaces the demo."
   },
   "blog/saas-dashboard-empty-state-ux-guide.html": {
-    "description": "Choose useful explanations and next actions for empty results, missing records and unfinished setup, with a real contact-search design example."
+    "description": "Before writing an empty-state headline, identify what the interface actually knows. The next action should follow the cause, not a reusable illustration."
+  },
+  "project-pihub.html": {
+    "description": "Financial workflows organized around what has been submitted, who needs to act and what remains unresolved."
+  },
+  "project-yarsha.html": {
+    "description": "Keeping contact, asset selection and consequential actions understandable inside a conversational product."
+  },
+  "project-zapp.html": {
+    "description": "Different interfaces for people booking a delivery, carrying it out and resolving exceptions around it."
+  },
+  "project-morajaa.html": {
+    "description": "Helping a prospective client move from a recognizable business problem to a specific consulting service and a useful conversation."
+  },
+  "project-masteriyo.html": {
+    "description": "Designing authoring and learning interactions inside an established LMS, while keeping the contribution boundary clear."
+  },
+  "project-mokshya.html": {
+    "description": "A technical product story with an accessible first explanation and a deeper path for people evaluating the mechanism."
+  },
+  "project-designerex.html": {
+    "description": "Balancing image-led fashion discovery with the stable rental information needed to compare listings."
+  },
+  "project-splashnode.html": {
+    "description": "Explaining content, device and data-management capabilities through a website whose design and implementation can inform each other."
+  },
+  "project-grid-labs.html": {
+    "description": "A hosting offer organized around service fit, plan comparison and a clear route to the next commercial step."
+  },
+  "project-neverwinter-parser.html": {
+    "description": "Turning an event stream into an inspectable summary without making clean numbers look more certain than the underlying data."
+  },
+  "project-sassboilerplate.html": {
+    "description": "A small Sass starter that makes file responsibilities predictable without turning setup into a framework of its own."
+  },
+  "blog/ux-audit-evidence-before-redesign.html": {
+    "description": "A useful audit connects an observed problem to a task and a decision. Screenshots, analytics and opinions contribute different kinds of evidence; they should not be treated as interchangeable."
+  },
+  "blog/ux-audit-checklist-before-redesign.html": {
+    "description": "Use this checklist to inspect one important journey from entry to recovery. A page-by-page visual review can miss the behavior that makes the task succeed or fail."
+  },
+  "blog/prioritize-ux-audit-findings-before-redesign.html": {
+    "description": "A long issue list becomes useful when the team can explain why one problem deserves attention before another. Separate user consequence, evidence confidence and delivery effort."
+  },
+  "blog/when-startup-needs-ux-audit-before-redesign.html": {
+    "description": "A redesign is a commitment to change. An audit is useful when the team first needs to understand which change is warranted and which existing behavior should be preserved."
+  },
+  "blog/beautiful-interface-poor-ux.html": {
+    "description": "A polished screen can still leave the person unsure what to do, what changed or whether their work is safe. Review the decision the interface supports before judging the composition."
+  },
+  "blog/saas-dashboard-ux-checklist.html": {
+    "description": "A dashboard should help someone notice what matters and act on it. Use this checklist to review one role's work, not to collect every chart and table pattern in one screen."
+  },
+  "blog/website-ux-checklist-software-companies.html": {
+    "description": "A software website should help a serious visitor understand the offer, inspect relevant proof and choose a sensible next step. Review that journey before adding another visual effect."
+  },
+  "blog/blog-design-systems-front-end.html": {
+    "description": "A design system becomes useful when its concepts survive implementation. I look for clear responsibilities between tokens, components, content and product behavior."
+  },
+  "blog/design-systems-small-product-teams.html": {
+    "description": "A small team needs a reliable way to repeat and change decisions. It does not need to reproduce the operating model of a much larger organization."
+  },
+  "blog/blog-service-websites.html": {
+    "description": "A service page needs to help someone recognize their situation, understand the scope and decide whether a conversation is worthwhile. A list of capabilities is only the starting material."
+  },
+  "blog/blog-portfolio-product.html": {
+    "description": "I want a portfolio to help someone evaluate my judgment, not only recognize a visual style. That means treating evidence, navigation and performance as part of the same product."
+  },
+  "blog/blog-gaming-interface-clarity.html": {
+    "description": "Playing complex games and working on a combat-data tool keeps bringing me back to the same interface question: can I tell what matters now, and can I inspect why?"
+  },
+  "blog/hire-product-designer-nepal-saas-web3.html": {
+    "description": "Evaluate the work against your product's decisions, collaboration needs and evidence gaps. Location is one practical consideration; it should not substitute for examining the contribution."
+  },
+  "blog/blog-web3-products.html": {
+    "description": "Start with what the person is trying to do. Explain the wallet or network when it changes the decision, instead of making protocol vocabulary the entrance requirement."
+  },
+  "blog/web3-wallet-connection-ux.html": {
+    "description": "Wallet connection should answer why the wallet is needed, what is being requested and how to continue if the person declines or cannot connect."
+  },
+  "blog/transaction-review-ux-crypto-apps.html": {
+    "description": "A transaction review should help someone understand the change they are about to authorize. It should also be honest about what the product can and cannot establish before submission."
+  },
+  "blog/web3-wallet-ux-checklist.html": {
+    "description": "Review the whole journey: explanation, connection, intent, authorization, waiting, recovery and the result. A successful connection is only one checkpoint."
+  },
+  "blog/figma-handoff-notes-for-developers.html": {
+    "description": "A useful handoff note answers the questions the image cannot: what changes, what persists and what happens when the action does not work."
+  },
+  "blog/blog-good-handoff.html": {
+    "description": "Handoff is a shared understanding of the product decision. Exporting a polished screen is one part of it, not the point at which responsibility disappears."
+  },
+  "blog/design-handoff-checklist-startup-product-teams.html": {
+    "description": "A small team needs enough agreement to build safely, without turning every change into a specification project. Use this checklist for a release slice, not the entire product at once."
+  },
+  "blog/responsive-saas-dashboard-handoff-notes.html": {
+    "description": "A responsive dashboard needs rules for priority, overflow and continuation. A desktop frame and a mobile frame leave the hardest decisions between them."
+  },
+  "blog/saas-dashboard-filter-ux.html": {
+    "description": "A filter changes the answer a table gives. People need to see the question currently being asked, understand why a record is absent and change that question without losing context."
+  },
+  "blog/role-based-saas-dashboard-ux.html": {
+    "description": "Role-based UX is not a reason to duplicate every screen. Share the meaning of a record and its states, then change the information and actions according to the job."
+  },
+  "blog/saas-dashboard-empty-states-product-clarity.html": {
+    "description": "A product needs an empty-state model before it needs an empty-state component. Visually similar panels can represent different responsibilities and different risks."
+  },
+  "blog/saas-dashboard-empty-states-that-help-users-recover.html": {
+    "description": "An empty state is useful when someone can continue from it. Test the transition, retained input and result of the recovery action, not only the appearance of the panel."
   }
 }

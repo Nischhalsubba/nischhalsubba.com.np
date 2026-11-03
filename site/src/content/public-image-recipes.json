@@ -1,0 +1,95 @@
+[
+  {
+    "id": "morajaa-service-process",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "465:831",
+    "crop": [
+      100,
+      2690,
+      1340,
+      3650
+    ],
+    "redactions": [],
+    "alt": "Morajaa market-entry service design presents seven named stages in a scannable process section.",
+    "caption": "Curated process-section crop from the supplied Final Design v2 service screen. Photography and staff details are outside this crop. Source service statements are not independently verified legal or commercial claims.",
+    "privacy_review": "NO_PERSONAL_DATA_OR_PHOTOGRAPHY_IN_CROP",
+    "presentation": "Curated section crop",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/465-831.png",
+    "source_sha256": "6d7b931aca038922b7fc914233bd328baaa4582266a638d22a4be69ed61be16e",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "yarsha-token-selection",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253788",
+    "crop": null,
+    "redactions": [
+      [
+        260,
+        253,
+        352,
+        303
+      ],
+      [
+        260,
+        333,
+        352,
+        383
+      ],
+      [
+        260,
+        413,
+        352,
+        463
+      ],
+      [
+        260,
+        493,
+        352,
+        543
+      ],
+      [
+        260,
+        573,
+        352,
+        623
+      ],
+      [
+        260,
+        653,
+        352,
+        703
+      ],
+      [
+        260,
+        733,
+        352,
+        783
+      ]
+    ],
+    "alt": "Yarsha token-selection design offers token and NFT tabs, search and asset names with symbols; balance column redacted.",
+    "caption": "Source screen from Final Mobile Design. Balance and change values are redacted; asset names and symbols illustrate design structure, not holdings or investment information.",
+    "privacy_review": "BALANCE_COLUMN_REDACTED",
+    "presentation": "Native screen with disclosed redaction",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253788.png",
+    "source_sha256": "923cfe61006fb6b39fb2f2b670993674280a800849c32118613ae25171e0db87",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "zapp-parcel-details",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "113:153",
+    "crop": null,
+    "redactions": [],
+    "alt": "Zapp customer parcel-details screen groups package types, a contents field and the action to choose a delivery service.",
+    "caption": "Customer iOS parcel-details frame from the supplied primary Zapp 2.0 file. This is a design state, not evidence of working pricing, dispatch or delivery.",
+    "privacy_review": "NO_PERSONAL_DATA_IN_SCREEN",
+    "presentation": "Native screen",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/113-153.png",
+    "source_sha256": "84ac196696bd8b6d30d6a538d066e98d70cc6a1bf2143e9ded2b10f0567072d3",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  }
+]

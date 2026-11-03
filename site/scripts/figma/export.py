@@ -10,6 +10,14 @@ Maintenance: Never commit tokens, temporary URLs or originals; export does not g
 import argparse, csv, hashlib, json, os, pathlib, re, struct, time, urllib.error, urllib.parse, urllib.request
 
 
+def target_path(output, row):
+    """Use the same project/file/page/node layout as authenticated MCP checkpoints."""
+    aliases={'Orkest HQ':'orkest','Zapp Today':'zapp','Masteriyo LMS':'masteriyo','Morajaa':'morajaa','piHub':'pihub','Yarsha':'yarsha','Reconwithme':'reconwithme'}
+    if row['project'] not in aliases or not re.fullmatch(r'[A-Za-z0-9_-]+',row['fileKey']) or not re.fullmatch(r'\d+:\d+',row['page_id']) or not re.fullmatch(r'\d+:\d+',row['screen_node_id']):
+        raise ValueError('Unexpected source identifier in inventory')
+    return output/aliases[row['project']]/row['fileKey']/row['page_id'].replace(':','-')/(row['screen_node_id'].replace(':','-')+'.png')
+
+
 def request(url, token=None):
     """Fetch with bounded backoff, authenticating only the official REST origin."""
     for attempt in range(5):
@@ -30,12 +38,13 @@ def main():
     """Export only inventoried nodes into ignored storage; save a resumable JSONL log."""
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--inventory',type=pathlib.Path,default=pathlib.Path('docs/audits/figma-screen-inventory.csv'))
-    parser.add_argument('--output',type=pathlib.Path,default=pathlib.Path('artifacts/figma-exports-rest'))
+    parser.add_argument('--output',type=pathlib.Path,default=pathlib.Path('artifacts/figma-exports'))
     parser.add_argument('--file-key',action='append');parser.add_argument('--limit',type=int);parser.add_argument('--execute',action='store_true')
     args=parser.parse_args();rows=[r for r in csv.DictReader(args.inventory.open()) if r['export_intent']=='PRIVATE_ARCHIVE' and (not args.file_key or r['fileKey'] in args.file_key)]
     if args.limit:rows=rows[:args.limit]
     if not args.execute:
-        print(json.dumps({'mode':'DRY_RUN','candidate_nodes':len(rows),'files':len(set(r['fileKey'] for r in rows)),'publication':'NOT_AUTHORIZED_BY_EXPORT','next':'Run --execute only with an already authorized scoped token in the environment.'}));return
+        existing=sum(target_path(args.output,row).exists() for row in rows)
+        print(json.dumps({'mode':'DRY_RUN','candidate_nodes':len(rows),'existing_native_files':existing,'pending_candidates':len(rows)-existing,'files':len(set(r['fileKey'] for r in rows)),'publication':'NOT_AUTHORIZED_BY_EXPORT','next':'Run --execute only with an already authorized scoped token in the environment.'}));return
     token=os.environ.get('FIGMA_ACCESS_TOKEN')
     if not token:raise SystemExit('BLOCKED: no scoped FIGMA_ACCESS_TOKEN in the private environment. No export was attempted. Do not paste tokens into chat or commit them.')
     args.output.mkdir(parents=True,exist_ok=True)
@@ -46,7 +55,7 @@ def main():
             for offset in range(0,len(selected),20):
                 batch=selected[offset:offset+20];pending=[]
                 for row in batch:
-                    target=args.output/file_key/row['page_id'].replace(':','-')/(row['screen_node_id'].replace(':','-')+'.png')
+                    target=target_path(args.output,row)
                     if target.exists() and target.read_bytes()[:8]==b'\x89PNG\r\n\x1a\n':skipped+=1
                     else:pending.append((row,target))
                 if not pending:continue

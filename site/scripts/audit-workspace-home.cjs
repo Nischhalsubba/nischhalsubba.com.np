@@ -17,6 +17,13 @@ assert.match(html, /<main id="main-content">/);
 assert.match(html, /class="skip-link"/);
 assert.doesNotMatch(html, /<link\b[^>]*rel="stylesheet"/, 'Homepage critical CSS must not wait for another request.');
 assert.match(html, /url\("\/workspace-home\/vendor\/fonts.gstatic.com\/ab38da6f5df1b377.woff2"\)/, 'Inlined font URLs must retain their original resource location.');
+const fontSubsets = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../src/content/font-subsets.json'), 'utf8'));
+for (const font of fontSubsets) {
+  assert.ok(html.includes(font.output), 'Primary font subset must be emitted: ' + font.family);
+  assert.ok(html.includes(font.original), 'Original glyph coverage must remain available: ' + font.family);
+  assert.ok(fs.existsSync(path.join(dist, 'workspace-home/vendor/fonts.gstatic.com', font.output)));
+  assert.ok(font.bytes < font.originalBytes, 'Measured font transfer must decrease');
+}
 assert.match(html, /Nischhal Raj Subba/);
 assert.match(html, /rel="canonical" href="https:\/\/nischhalsubba.com.np\/"/);
 assert.doesNotMatch(html, /hridoy|nischhal-design-portfolio\.grittytide4|track\.php|fetch\('contact\.php'/i);

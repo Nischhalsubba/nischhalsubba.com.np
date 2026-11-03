@@ -155,5 +155,88 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/yarsha-contact-empty-social-566a184106ac.png"
+  },
+  {
+    "id": "morajaa-service-process",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "465:831",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/465-831.png",
+    "source_sha256": "6d7b931aca038922b7fc914233bd328baaa4582266a638d22a4be69ed61be16e",
+    "alt": "Morajaa market-entry service design presents seven named stages in a scannable process section.",
+    "caption": "Curated process-section crop from the supplied Final Design v2 service screen. Photography and staff details are outside this crop. Source service statements are not independently verified legal or commercial claims.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "NO_PERSONAL_DATA_OR_PHOTOGRAPHY_IN_CROP",
+    "presentation": "Curated section crop",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/morajaa-service-process-480-9a713b5b27e2.webp",
+        "width": 480,
+        "height": 372,
+        "bytes": 15944,
+        "sha256": "9a713b5b27e2cc428f76e668683ea63ebc194e21299a4d309f33776b5824d6d2"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-service-process-800-d6d0beced52d.webp",
+        "width": 800,
+        "height": 619,
+        "bytes": 35580,
+        "sha256": "d6d0beced52dfe9bb3d0205bfaa4b97261d071cb3d50a9745b2e25e7e8634cf2"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-service-process-1240-bb90f09912ee.webp",
+        "width": 1240,
+        "height": 960,
+        "bytes": 63092,
+        "sha256": "bb90f09912ee37b14d6cbb0a137b25870cc0f99c9dc9112a31198d1fe8b114f2"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/morajaa-service-process-social-e3a01e3ade62.png"
+  },
+  {
+    "id": "yarsha-token-selection",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253788",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253788.png",
+    "source_sha256": "923cfe61006fb6b39fb2f2b670993674280a800849c32118613ae25171e0db87",
+    "alt": "Yarsha token-selection design offers token and NFT tabs, search and asset names with symbols; balance column redacted.",
+    "caption": "Source screen from Final Mobile Design. Balance and change values are redacted; asset names and symbols illustrate design structure, not holdings or investment information.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "BALANCE_COLUMN_REDACTED",
+    "presentation": "Native screen with disclosed redaction",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-token-selection-375-cff2cac145aa.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 13688,
+        "sha256": "cff2cac145aa2d37a3f56670d5829d60ba141314746705bf5e462b3f46f8c136"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-token-selection-social-d9e81126e0ab.png"
+  },
+  {
+    "id": "zapp-parcel-details",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "113:153",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/113-153.png",
+    "source_sha256": "84ac196696bd8b6d30d6a538d066e98d70cc6a1bf2143e9ded2b10f0567072d3",
+    "alt": "Zapp customer parcel-details screen groups package types, a contents field and the action to choose a delivery service.",
+    "caption": "Customer iOS parcel-details frame from the supplied primary Zapp 2.0 file. This is a design state, not evidence of working pricing, dispatch or delivery.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "NO_PERSONAL_DATA_IN_SCREEN",
+    "presentation": "Native screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-parcel-details-402-d9eccd9e41f7.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 17336,
+        "sha256": "d9eccd9e41f7da5437bc5c2747180fdd3ac6bf62407073421ead3ec9b32291bd"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-parcel-details-social-dcee64e02fef.png"
   }
 ]

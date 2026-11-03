@@ -82,9 +82,10 @@ for (const slug of ['mokshya','hamro-idea','morajaa','splashnode','grid-labs','z
  * Inputs: main HTML and relative output filename. Side effects: none. Returns: final main HTML.
  */
 function applyEvidence(main, relative) {
+  if (main.includes('data-editorial-revision=')) return main;
   const data = sections[relative];
   const section = data ? `<section class="agent-section workspace-evidence" aria-label="Design evidence"><span class="mono sec-label">DESIGN EVIDENCE / SOURCE REVIEW</span><h2>${escape(data.title)}</h2>${data.paragraphs.map(text => `<p>${escape(text)}</p>`).join('')}${data.images.map(figure).join('')}${data.related ? `<p><a href="${data.related}">${escape(data.relatedLabel)}</a></p>` : ''}<p class="workspace-evidence-note">Screens illustrate design work. Redactions and crops are identified in captions. No measured product outcome is implied.</p></section>` : '';
   const links = reading[relative] ? `<section class="agent-section workspace-evidence"><h2>Related reading and services</h2><ul>${reading[relative].map(([label,url]) => `<li><a href="${url}">${escape(label)}</a></li>`).join('')}</ul></section>` : '';
   return main.replace('</main>', section + links + '</main>');
 }
-module.exports = { applyEvidence, sections };
+module.exports = { applyEvidence, sections, figure };

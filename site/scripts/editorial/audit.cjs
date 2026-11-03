@@ -1,0 +1,56 @@
+/**
+ * @fileoverview Editorial release contract for retained case studies and writing.
+ * Purpose: Detect missing routes, misplaced project screenshots and inconsistent author/date metadata.
+ * Responsibilities: Verify forty rewritten bodies, meaningful artifact provenance and accessible structured content.
+ * Execution context: Node validation after the final workspace installers.
+ * Connected files: render.cjs, portfolio-editorial.json, articles-editorial*.json, portfolio-evidence-images.json.
+ * Maintenance: This is a content integrity check, not proof of client claims, editorial excellence or WCAG certification.
+ */
+const fs = require('node:fs');
+const path = require('node:path');
+const assert = require('node:assert/strict');
+const { projects, articles } = require('./render.cjs');
+const root = path.resolve(__dirname, '../..');
+const images = JSON.parse(fs.readFileSync(path.join(root, 'src/content/portfolio-evidence-images.json'), 'utf8'));
+const inventory = JSON.parse(fs.readFileSync(path.join(root, 'dist/workspace-inner/seo-inventory.json'), 'utf8'));
+assert.equal(projects.length, 14);
+assert.equal(articles.length, 26);
+assert.equal(new Set(articles.map(article => article.intent)).size, articles.length, 'Retained articles need distinct declared intents');
+assert.equal(new Set(articles.map(article => article.slug)).size, articles.length);
+const used = new Set();
+for (const data of [...projects, ...articles]) {
+  const isProject = Boolean(data.decisions);
+  const file = isProject ? `project-${data.slug}.html` : `blog/${data.slug}.html`;
+  const record = inventory.find(item => item.file === file);
+  assert.ok(record, 'Retain canonical URL: ' + file);
+  const html = fs.readFileSync(path.join(root, 'dist', file), 'utf8');
+  assert.match(html, /data-editorial-revision="2026-11-03"/);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.doesNotMatch(html, /[\x00-\x08\x0b\x0c\x0e-\x1f]/);
+  const sections = isProject ? data.decisions : data.sections;
+  for (const section of sections) {
+    assert.ok(html.includes(section.heading.replace(/&/g, '&amp;')));
+    if (!section.image) continue;
+    const image = images.find(item => item.id === section.image);
+    assert.ok(image, 'Known original for illustration: ' + section.image);
+    if (isProject) assert.equal(image.project, data.title, 'A case must use its own project screenshot');
+    used.add(image.id);
+  }
+  if (!isProject) {
+    assert.match(html, /rel="author">Nischhal Raj Subba/);
+    assert.match(html, /<time datetime="2026-11-03">/);
+    assert.match(html, /property="article:modified_time" content="2026-11-03"/);
+    assert.match(html, /aria-label="On this page"/);
+    const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+    const article = graph['@graph'].find(item => ['BlogPosting','Article'].includes(item['@type']));
+    assert.ok(article);
+    assert.equal(article.dateModified, '2026-11-03', 'Visible and structured update dates agree');
+  }
+  for (const table of html.matchAll(/<table>([\s\S]*?)<\/table>/g)) {
+    assert.match(table[1], /<caption>/);
+    assert.match(table[1], /<th scope="col">/);
+    assert.match(table[1], /<th scope="row">/);
+  }
+}
+assert.deepEqual([...used].sort(), images.map(image => image.id).sort(), 'No orphan curated assets');
+console.log(`[editorial] 14 project bodies, 26 distinct article intents, source-matched images, author/date/schema and semantic tables passed.`);
