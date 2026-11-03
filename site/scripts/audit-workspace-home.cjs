@@ -41,6 +41,11 @@ for (const match of html.matchAll(/<(?:img|script|link)\b[^>]*(?:src|href)="([^"
   assert.ok(fs.existsSync(path.join(dist, ref.split('?')[0])), `Missing dependency ${ref}`);
 }
 const config = JSON.parse(html.match(/window\.__C=([\s\S]*?);<\/script>/)[1]);
+const recognition = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../src/content/uxcel-recognition.json'), 'utf8'));
+assert.equal(recognition.ranking.kind, 'DATED_WEEKLY_SNAPSHOT');
+assert.ok(config.testimonials.some(item => item.url === recognition.ranking.source && item.q.includes('90/100') && item.q.includes('3 November 2026') && item.q.includes('Pro-member')));
+assert.ok(config.testimonials.some(item => item.url === recognition.historical[0].source && item.q.includes('2023') && item.q.includes('Product Designer')));
+assert.doesNotMatch(html, /Uxcel Global Rankings 2024 · Ranked #1 Designer/, 'Do not conflate an unverified legacy annual claim with a verified current snapshot.');
 assert.equal(config.work.length, 14);
 assert.ok(config.pricing.every(service => service.p === 0), 'Do not invent rates.');
 for (const item of config.work) {

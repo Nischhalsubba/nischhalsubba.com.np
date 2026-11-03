@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-11-03",
+  "timezone": "Asia/Kathmandu",
+  "profile": "https://app.uxcel.com/ux/nischhal",
+  "ranking": {
+    "kind": "DATED_WEEKLY_SNAPSHOT",
+    "scope": "Uxcel Pro-member UX rankings",
+    "position": 1,
+    "score": 90,
+    "maximumScore": 100,
+    "source": "https://uxcel.com/uxcel-rankings",
+    "verification": "Rendered public rankings, matched by profile URL"
+  },
+  "historical": [{
+    "year": 2023,
+    "category": "Product Designer",
+    "recognition": "Uxcel Hall of Fame",
+    "badge": "Top",
+    "exactPosition": null,
+    "source": "https://uxcel.com/designer-rankings/past-winners",
+    "verification": "2023 year filter; matching profile URL; visible Top badge"
+  }]
+}

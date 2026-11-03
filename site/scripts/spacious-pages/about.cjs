@@ -75,10 +75,11 @@ const markup = `<main id="main-content" class="container nrs-spacious-page nrs-a
     </header>
     <div class="nrs-editorial-list">
       <a class="nrs-editorial-row" href="/projects"><span class="nrs-row-index">01</span><h3>Selected case studies</h3><p>Product work across SaaS, fintech, Web3, mobile products, websites and enterprise workflows.</p></a>
-      <a class="nrs-editorial-row" href="https://uxcel.com/designer-rankings/past-winners" target="_blank" rel="noopener"><span class="nrs-row-index">02</span><h3>Uxcel Hall of Fame</h3><p>Listed by Uxcel among past UX ranking winners as a Product Designer.</p></a>
-      <a class="nrs-editorial-row" href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener"><span class="nrs-row-index">03</span><h3>Uxcel Mentor profile</h3><p>Public mentor profile with professional certification, projects and design review activity.</p></a>
-      <a class="nrs-editorial-row" href="https://github.com/Nischhalsubba" target="_blank" rel="noopener"><span class="nrs-row-index">04</span><h3>GitHub product work</h3><p>Public design-system, product and implementation work showing front-end collaboration and engineering literacy.</p></a>
-      <a class="nrs-editorial-row" href="/assets/resume.pdf" download data-resume-download><span class="nrs-row-index">05</span><h3>Resume and experience</h3><p>Roles, skills, project history and contact details in one practical document.</p></a>
+      <a class="nrs-editorial-row" href="https://uxcel.com/uxcel-rankings" target="_blank" rel="noopener"><span class="nrs-row-index">02</span><h3>Uxcel UX Rankings · #1</h3><p>Score 90/100, checked on 3 November 2026. This is a dated snapshot of Uxcel’s Pro-member UX rankings, which change weekly.</p></a>
+      <a class="nrs-editorial-row" href="https://uxcel.com/designer-rankings/past-winners" target="_blank" rel="noopener"><span class="nrs-row-index">03</span><h3>Uxcel Hall of Fame · 2023</h3><p>Listed in Uxcel’s 2023 Hall of Fame in the Product Designer category.</p></a>
+      <a class="nrs-editorial-row" href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener"><span class="nrs-row-index">04</span><h3>Uxcel Mentor profile</h3><p>Public mentor profile with professional certification, projects and design review activity.</p></a>
+      <a class="nrs-editorial-row" href="https://github.com/Nischhalsubba" target="_blank" rel="noopener"><span class="nrs-row-index">05</span><h3>GitHub product work</h3><p>Public design-system, product and implementation work showing front-end collaboration and engineering literacy.</p></a>
+      <a class="nrs-editorial-row" href="/assets/resume.pdf" download data-resume-download><span class="nrs-row-index">06</span><h3>Resume and experience</h3><p>Roles, skills, project history and contact details in one practical document.</p></a>
     </div>
   </section>
 
