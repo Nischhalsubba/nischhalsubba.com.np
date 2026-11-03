@@ -5,12 +5,12 @@
   "pages_blocked": 10,
   "outer_candidates": 6613,
   "private_archive_candidates": 4063,
-  "persisted_screen_originals": 886,
-  "queued": 3177,
+  "persisted_screen_originals": 1074,
+  "queued": 2989,
   "excluded": 2550,
   "account_wide_complete": false,
-  "persisted_png_files": 886,
-  "unique_png_hashes": 869,
+  "persisted_png_files": 1074,
+  "unique_png_hashes": 1057,
   "duplicate_png_files": 17,
   "invalid_png_files": 0,
   "near_blank_candidates": 0,
@@ -22,6 +22,7 @@
   "case_studies_rewritten": 14,
   "articles_rewritten": 26,
   "production_images_published": 0,
-  "archive_availability": "886 native PNG originals validated and saved in a private durable archive on 2026-11-03; earlier 740-file checkpoint retained",
-  "export_coverage": "PARTIAL; known candidate queue remains"
+  "archive_availability": "1074 native PNG originals fully decoded and durably saved in private checkpoint version 1 on 2026-11-03; earlier 886-file archive retained",
+  "export_coverage": "PARTIAL; known candidate queue remains",
+  "dimension_review_candidates": 4
 }

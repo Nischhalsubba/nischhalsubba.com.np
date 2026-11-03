@@ -109,3 +109,6 @@ A confirmed social-cache mismatch was also repaired: `/assets/*` is cached as im
 ## Recovery and follow-up — 3 November 2026
 
 All six workflows passed on ee545f4, including the SEO evidence audit. The execution environment recovered and the full 886-original private archive was successfully saved and verified (ZIP integrity, all PNGs decoded); the earlier 740-original checkpoint is retained. Remaining extraction, manual accessibility, source permissions and homepage performance remain open. A focused cooperative geometry scheduling change is now being tested; no performance improvement or deployment is claimed before fresh measurements.
+
+
+Latest authoritative progress: [recovery-progress-2026-11.md](../audits/recovery-progress-2026-11.md). Archive checkpoint v1 now contains 1,074 decoded PNG originals / 1,057 unique hashes. Revision 91f7985 passed all six workflows and 108 Lighthouse measurements; mobile homepage 84 (target remains open). Exact precomputed geometry is a new candidate awaiting fresh CI. No production release.
