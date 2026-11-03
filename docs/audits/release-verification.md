@@ -34,3 +34,8 @@ Execution recovered; the earlier environment blocker is resolved. See editorial-
 The execution environment became unavailable again during the larger archive checkpoint update. The already-saved 740-file private archive is confirmed; durable retention of the later 886-file working snapshot is not confirmed. The public code and eight curated images are safely committed. Remaining export/curation and local visual work remain blocked by the runtime and source/rights gaps, rather than being reported complete.
 
 A confirmed social-cache mismatch was also repaired: `/assets/*` is cached as immutable for a year, while social cards previously used fixed filenames. Social filenames now include the generated PNG's SHA-256 prefix; the SEO audit checks the name against actual bytes. Complete upstream font licenses and readable editorial review snapshots are included. The snapshots correspond to authored prose at code commit `00db48e`; JSON remains the source of truth. A fresh CI run must verify this final follow-up before release.
+
+
+## Recovery and follow-up — 3 November 2026
+
+All six workflows passed on ee545f4, including the SEO evidence audit. The execution environment recovered and the full 886-original private archive was successfully saved and verified (ZIP integrity, all PNGs decoded); the earlier 740-original checkpoint is retained. Remaining extraction, manual accessibility, source permissions and homepage performance remain open. A focused cooperative geometry scheduling change is now being tested; no performance improvement or deployment is claimed before fresh measurements.

@@ -91,6 +91,7 @@ jobs:
             if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then break; fi
             sleep 1
           done
+          node scripts/seo/audit-pen-geometry.mjs
           node scripts/seo/profile-home.mjs
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()

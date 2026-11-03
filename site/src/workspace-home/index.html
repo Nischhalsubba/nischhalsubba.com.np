@@ -3149,7 +3149,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
   }
   const onView = (el, fn, margin = '0% 0% -20% 0%') => { const ob = new IntersectionObserver(([en]) => { if (en.isIntersecting) { fn(); ob.disconnect(); } }, { rootMargin: margin }); ob.observe(el); };
 
-  function makePen(cv, opt) {
+  async function makePen(cv, opt) {
     const ctx = cv.getContext('2d'), svgNS = 'http://www.w3.org/2000/svg';
     const C = [[0,0],[100,0],[300,280],[300,0],[400,0],[400,450],[300,450],[100,170],[100,450],[0,450]];
     const OUTER = [0, 4, 5, 9], R = 22, BW = 400, BH = 450;
@@ -3160,8 +3160,10 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     const pe = document.createElementNS(svgNS, 'path'); pe.setAttribute('d', d);
     const tmp = document.createElementNS(svgNS, 'svg'); tmp.setAttribute('aria-hidden', 'true'); tmp.setAttribute('focusable', 'false'); tmp.style.cssText = 'position:absolute;width:0;height:0'; tmp.appendChild(pe); document.body.appendChild(tmp);
     const shape = new Path2D(d), total = pe.getTotalLength(), PTS = [];
-    for (let l = 0; l <= total; l += 3) { const q = pe.getPointAtLength(l); PTS.push([q.x, q.y]); }
+    // Preserve native SVG geometry while yielding frequently enough to keep startup responsive.
+    for (let l = 0; l <= total; l += 3) { const q = pe.getPointAtLength(l); PTS.push([q.x, q.y]); if (PTS.length % 8 === 0) await new Promise(resolve => setTimeout(resolve, 0)); }
     const lp = pe.getPointAtLength(total); PTS.push([lp.x, lp.y]);
+    tmp.remove();
     const CUM = [0]; for (let i = 1; i < PTS.length; i++) CUM.push(CUM[i - 1] + Math.hypot(PTS[i][0] - PTS[i - 1][0], PTS[i][1] - PTS[i - 1][1]));
     const TOTAL = CUM[CUM.length - 1];
     const ANCH = C.map((v, k) => { let best = 0, bd = 1e9; PTS.forEach((p, i) => { const dd = Math.hypot(p[0] - v[0], p[1] - v[1]); if (dd < bd) { bd = dd; best = i; } }); return { x: v[0], y: v[1], d: CUM[best], outer: OUTER.includes(k), k }; });
@@ -3246,14 +3248,14 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
   }
 
   /* ---- About: your scroll is the pen. Three short chapters roll in as each third of the N is drawn ---- */
-  (() => {
+  (async () => {
     const wrap = $('#abx'), ch = $('#abCh'), glow = $('#abGlow');
     const CH = CMS('about', [{"t": "01 — Who", "h": ["Product designer.", "Systems thinker."], "p": "I’m <b>Nischhal Raj Subba</b>. For <b>7+ years</b>, I’ve designed enterprise SaaS, native mobile apps, fintech and Web3 products.", "f": ["7+ years", "Product ↔ code"]}, {"t": "02 — How", "h": ["Make complexity", "feel clear."], "p": "I turn product logic into <b>clear flows</b>, <b>explicit states</b> and <b>reusable systems</b>, from discovery to implementation QA.", "f": ["Figma · IBM Carbon", "Research → handoff"]}, {"t": "03 — Where", "h": ["Kathmandu.", "Working remotely."], "p": "Based in <b>Nepal</b>, open to <b>senior product design roles</b> and selected collaborations across complex web and mobile products.", "f": ["UTC+05:45", "Remote-friendly"]}]);
     const words = html => html.match(/<b>.*?<\/b>\S*|\S+/g).map((w, i) => `<span class="w" style="transition-delay:${200 + i * 22}ms">${w}</span>`).join(' ');
     ch.innerHTML = CH.map(c => `<div class="abx-c"><span class="mono tag">${c.t}</span><h3>${c.h.map(l => `<span class="ln"><span>${l}</span></span>`).join('')}</h3><p class="body">${words(c.p)}</p><div class="facts">${c.f.map((x, j) => `<span class="pillchip" style="transition-delay:${450 + j * 90}ms">${x}</span>`).join('')}</div></div>`).join('');
     const cs = $$('.abx-c', ch);
     let hbox = { x: 0, y: 0, w: 0, h: 0 };
-    const pen = makePen($('#abCv'), { box: (W, H) => { const wide = W > 1023; let h, y; if (wide) { h = Math.min(H * .62, W * .44 * 450 / 400); y = (H - h) / 2; }   /* tall screens (iPad Pro portrait): never wider than the right half */ else { const tl = document.querySelector('.abx-l'), textTop = tl ? tl.offsetTop : H * .5, top = 104, avail = textTop - top - 44; h = Math.max(110, Math.min(H * .34, avail)); y = top + Math.max(0, (avail - h) / 2); $('#abCv').style.opacity = avail < 110 ? '.18' : ''; }   /* short phones: no room above the words, so the drawing stays a faint backdrop instead of covering the heading */ const w = h * 400 / 450; hbox = { x: wide ? Math.min(W * .72 - w / 2, W - w - 150) : (W - w) / 2, y, w, h };   /* leave room for the coordinate tags on the right */ return hbox; } });
+    const pen = await makePen($('#abCv'), { box: (W, H) => { const wide = W > 1023; let h, y; if (wide) { h = Math.min(H * .62, W * .44 * 450 / 400); y = (H - h) / 2; }   /* tall screens (iPad Pro portrait): never wider than the right half */ else { const tl = document.querySelector('.abx-l'), textTop = tl ? tl.offsetTop : H * .5, top = 104, avail = textTop - top - 44; h = Math.max(110, Math.min(H * .34, avail)); y = top + Math.max(0, (avail - h) / 2); $('#abCv').style.opacity = avail < 110 ? '.18' : ''; }   /* short phones: no room above the words, so the drawing stays a faint backdrop instead of covering the heading */ const w = h * 400 / 450; hbox = { x: wide ? Math.min(W * .72 - w / 2, W - w - 150) : (W - w) / 2, y, w, h };   /* leave room for the coordinate tags on the right */ return hbox; } });
     let lap = 0, cur = -1;
     (function loop() {
       requestAnimationFrame(loop);
