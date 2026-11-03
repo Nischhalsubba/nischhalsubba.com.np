@@ -69,7 +69,11 @@ try {
   await motionPage.evaluate(/** Callback contract: Exercise native navigation into the work scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('work').scrollIntoView({block:'start',behavior:'instant'}));
   await motionPage.waitForFunction(/** Callback contract: Wait for a usable selected project. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('#wkWorld .wf.on .whit')?.tabIndex === 0);
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'work');
-  assert.equal(await motionPage.evaluate(/** Callback contract: Verify deferred pixel buffers initialize before visible use. Inputs: none. Side effects: none. Returns: ready flag. */ () => { const canvas=document.querySelector('#wkPx canvas.dio'); return canvas.width>1 && canvas.height>1; }),true);
+  assert.equal(await motionPage.evaluate(/** Callback contract: Verify deferred pixel buffers paint before visible use. Inputs: none. Side effects: reads canvas pixels. Returns: painted flag. */ () => {
+    const canvas=document.querySelector('#wkPx canvas.dio');
+    const pixels=canvas.getContext('2d').getImageData(0,0,20,20).data;
+    return pixels.some(/** Callback contract: Detect a painted alpha sample. Inputs: channel and index. Side effects: none. Returns: opaque flag. */ (value,index) => index%4===3 && value>0);
+  }),true);
   await motionPage.evaluate(/** Callback contract: Exercise reverse navigation into the About scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('about').scrollIntoView({block:'start',behavior:'instant'}));
   await motionPage.waitForFunction(/** Callback contract: Wait for the About chapter to remain usable. Inputs: none. Side effects: none. Returns: readiness. */ () => Boolean(document.querySelector('#abCh .abx-c.on')));
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'about');
