@@ -1,7 +1,7 @@
 /**
  * @fileoverview Generate a read-only native Figma PNG batch with source identity.
  * Purpose: Make parallel export attachments independently traceable to their frames.
- * Responsibilities: Validate identifiers and attach a reversible CRC-protected PNG text chunk.
+ * Responsibilities: Validate identifiers and attach a reversible CRC-protected PNG text chunk with current render bounds.
  * Execution context: Called by an authorized MCP operator; returned code runs through use_figma.
  * Connected files: accept-native-batch.py, export.py, figma-screen-inventory.csv.
  * Maintenance: Maximum five images per call. Strip transport metadata before retaining original bytes.
@@ -23,7 +23,7 @@ const page=await figma.getNodeByIdAsync(sourcePage);await figma.setCurrentPageAs
 await Promise.all(${JSON.stringify(nodeIds)}.map(async id=>{
  const node=await figma.getNodeByIdAsync(id);
  const original=await node.exportAsync({format:'PNG',constraint:{type:'SCALE',value:1}});
- const text='NS_SOURCE\\0'+sourceFile+'|'+sourcePage+'|'+id+'|'+original.length;
+ const text='NS_SOURCE\\0'+sourceFile+'|'+sourcePage+'|'+id+'|'+original.length+'|'+JSON.stringify({frame:{width:node.width,height:node.height},render:node.absoluteRenderBounds,visible:node.visible});
  const data=Uint8Array.from(Array.from(text).map(c=>c.charCodeAt(0)));
  const chunk=new Uint8Array(data.length+12), view=new DataView(chunk.buffer);
  view.setUint32(0,data.length);chunk.set([116,69,88,116],4);chunk.set(data,8);
