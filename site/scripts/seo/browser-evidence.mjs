@@ -59,7 +59,12 @@ if (!process.argv.includes('--axe-only')) {
         const report=await lighthouse(base+route,{port:chrome.port,output:'json',logLevel:'error',onlyCategories:['performance','accessibility','best-practices','seo'],...(device==='desktop'?{formFactor:'desktop',screenEmulation:{mobile:false,width:1440,height:900,deviceScaleFactor:1,disabled:false},throttling:{rttMs:40,throughputKbps:10240,cpuSlowdownMultiplier:1,requestLatencyMs:0,downloadThroughputKbps:0,uploadThroughputKbps:0}}:{})});
         const lhr=report.lhr;const metrics={iteration,performance:lhr.categories.performance.score*100,accessibility:lhr.categories.accessibility.score*100,seo:lhr.categories.seo.score*100,lcp:lhr.audits['largest-contentful-paint'].numericValue,cls:lhr.audits['cumulative-layout-shift'].numericValue,tbt:lhr.audits['total-blocking-time'].numericValue,lighthouseVersion:lhr.lighthouseVersion,fetchTime:lhr.fetchTime};
         runs.push(metrics);fs.writeFileSync(path.join(output,`${device}-${route.replaceAll('/','_')||'home'}-${iteration}.json`),report.report);
-        console.log(JSON.stringify({device,route,...metrics}));
+        console.log(JSON.stringify({base,device,route,...metrics}));
+        if (iteration === 1) {
+          const audits = {};
+          for (const [id, audit] of Object.entries(lhr.audits)) if (/(lcp|render-blocking|font|compression|document-latency|network-dependency|image-delivery|total-byte|unused)/i.test(id)) audits[id] = {title:audit.title,score:audit.score,displayValue:audit.displayValue,details:JSON.stringify(audit.details || null).slice(0,6000)};
+          console.log(JSON.stringify({portfolioDiagnostics:{base,device,route,audits}}));
+        }
       }
       const median=Object.fromEntries(['performance','accessibility','seo','lcp','cls','tbt'].map(key=>[key,runs.map(run=>run[key]).sort((a,b)=>a-b)[1]]));
       performance.push({device,route,runs,median});

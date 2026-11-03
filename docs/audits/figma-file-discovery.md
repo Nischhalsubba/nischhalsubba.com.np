@@ -52,3 +52,9 @@ Masteriyo: preserve multi-designer attribution; public reuse clearance remains r
 Missing-file list: Mokshya, Designerex, Splashnode, Grid Labs, Hamro Idea and Zakra Furniture — LINK_NOT_FOUND; Neverwinter Parser and SassBoilerplate — NO_FIGMA_ASSET_REQUIRED unless actual design sources are later supplied. Existing code/live references may be stronger proof. No Figma URLs or screenshots are fabricated for these cases.
 
 No Figma sharing, organization, ownership, billing, export restriction or team-policy setting was changed. View access was not treated as publication rights.
+
+## Archive availability after interruption
+
+The execution environment became unavailable during additional native export batches. The 147 PNGs in this committed inventory were verified in the working filesystem at that snapshot. Their durable retention and current recoverability are now UNVERIFIED. Saving a previously verified original through the file-saving service failed because no primary execution environment was available. Do not interpret `PNG_PERSISTED` in the snapshot as a currently downloadable archive. Additional successful batch exports were observed, but a final total and complete archive could not be verified after the interruption.
+
+The public five-illustration asset set is safely committed on GitHub. Raw originals and the full private frame-label inventory were intentionally excluded from this public repository. Recover and verify the working environment before claiming a complete private archive; otherwise re-export from known source IDs using the resumable workflow. No complete-account, complete-export or complete-publication claim is made.

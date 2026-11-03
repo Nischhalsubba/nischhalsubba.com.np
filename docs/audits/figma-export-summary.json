@@ -17,5 +17,9 @@
   "figure_placements": 10,
   "case_studies_with_new_figma_figures": 4,
   "articles_with_new_figma_figures": 5,
-  "production_images_published": 0
+  "production_images_published": 0,
+  "inventorySnapshotCommit": "82c860d191a6d35ee527973a539c447c85dc7a55",
+  "archive_availability": "UNVERIFIED_AFTER_EXECUTION_ENVIRONMENT_BECAME_UNAVAILABLE",
+  "durable_archive_save": "FAILED_NO_PRIMARY_TURN_ENVIRONMENT",
+  "final_export_total_after_interruption": null
 }

@@ -55,6 +55,9 @@ jobs:
           AUDIT_BASE_URL=http://127.0.0.1:4174 AUDIT_OUTPUT=tests/seo-evidence/baseline AUDIT_SOURCE_SHA="$BASELINE_SHA" node scripts/seo/browser-evidence.mjs --performance-only
       - name: Measure the review commit
         run: node scripts/seo/browser-evidence.mjs --performance-only
+      - name: Measure current production (read only, informational)
+        continue-on-error: true
+        run: AUDIT_BASE_URL=https://nischhalsubba.com.np AUDIT_OUTPUT=tests/seo-evidence/production node scripts/seo/browser-evidence.mjs --performance-only
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
@@ -62,4 +65,5 @@ jobs:
           path: |
             site/tests/seo-evidence/results
             site/tests/seo-evidence/baseline
+            site/tests/seo-evidence/production
           retention-days: 14

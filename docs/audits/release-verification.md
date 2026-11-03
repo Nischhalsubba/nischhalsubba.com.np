@@ -16,3 +16,11 @@ Base: `5311ce357aaaf64ef21bf90a7efbe3f4b03719e6`. No merge/deployment/indexing r
 | Production behavior of new code | PR not deployed | NOT_EXECUTED |
 
 A validation attempt while source was being authored failed determinism; the frozen rerun passed. No assertion was weakened. Remaining non-indexed pages require recrawl and owner actions after an approved release. Code readiness, live verification and Google indexing are separate states.
+
+## Verified follow-up and execution interruption
+
+All six workflows passed on code commit `2ca1608a9e840dc4fd98dfb6284f8b003043a5a6`: Validate portfolio, Browser audit, Interface polish audit, Hero UX audit, Security and SEO evidence audit. The new audit passed 12 axe scans, seven-width reflow and image-dialog keyboard/focus tests, and completed 72 controlled Lighthouse runs. See performance-measured.json. Mobile medians of 79/88/89 on home/projects/Orkest remain below the requested 90+ target.
+
+The execution environment then became unavailable during the broader Figma export pass. A direct attempt to save a known original also failed with `no primary turn environment is available`. A durable private archive is NOT CONFIRMED and no archive download is delivered. The committed 147-file export inventory is a prior verified filesystem snapshot, not proof those originals are recoverable now. Additional batch exports were observed before interruption, but their final count and recovery cannot be verified without the environment.
+
+Remaining work is BLOCKED BY EXECUTION ENVIRONMENT: archive recovery/verification and durable save, remaining screen export/curation, local visual review and performance remediation. Figma screenshot-endpoint plan limits were also observed; the documented read-only Plugin API batch export path worked for additional nodes. No sharing/billing changes were made. Masteriyo reuse and Reconwithme inclusion remain owner/rights decisions. No merge or production deployment occurred.

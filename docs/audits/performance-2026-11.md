@@ -1,17 +1,20 @@
-# Performance evidence — 2026-11
+# Verified performance evidence — 2026-11-03
 
-Local environment: Node 24.22.1/npm 11.9.0. Pinned axe 4.14.0 and Lighthouse 13.5.0. Public PSI returned HTTP 429 RESOURCE_EXHAUSTED; the owner's prior 78 mobile/93 desktop scores are not current verified measurements. Chromium binary download failed with empty/truncated ZIPs, so local Lighthouse/CrUX numbers are NOT VERIFIED.
+Controlled Lighthouse 13.5.0 measurements ran in GitHub Actions: base `5311ce3` and review `2ca1608`, six routes × two devices × three runs × two commits = 72 measured runs. Local Vite previews use the same runner/settings. These are lab results, not deployed PageSpeed or 28-day CrUX field data. Median = the middle value after sorting the three runs.
 
-The new CI workflow measures homepage, projects, Orkest case, services, blog index and Figma handoff article, three runs per mobile/desktop configuration; it saves full reports, LCP/CLS/TBT and medians. TBT is not INP. These remain lab data, separate from 28-day field metrics. Real-user p75 LCP/INP/CLS is unmeasured unless a field source becomes available. No score target is claimed as achieved.
+| Route | Mobile base → review | Desktop base → review | Review mobile LCP (ms) |
+|---|---:|---:|---:|
+| / | 79 → 79 | 99 → 99 | 3981 |
+| /projects | 88 → 88 | 100 → 100 | 3236 |
+| /project-orkest | 89 → 89 | 100 → 100 | 3162 |
+| /services | 94 → 94 | 100 → 100 | 2706 |
+| /blog/ | 94 → 94 | 100 → 100 | 2709 |
+| /blog/figma-handoff-notes-for-developers | 96 → 97 | 100 → 100 | 2287 |
 
-Five screenshot illustrations use local WebP sources and immutable hashed paths, width/height and lazy loading below the fold. The existing LCP/portrait and approved motion are preserved. New screenshots add no carousel/runtime dependency. Social PNGs are metadata assets, not eager content downloads.
+The mobile 90+ target is NOT MET on home, projects and Orkest. The new images did not materially regress those routes. Handoff improved from 96 to 97 in this run; small timing differences should not be overinterpreted. CLS stayed below 0.014 on all measured route/device medians. TBT is not INP; real-user INP and field CWV remain unverified.
 
-| Illustration | Largest responsive WebP bytes | Native source PNG bytes |
-|---|---:|---:|
-| orkest-lead-capture | 56308 | 129112 |
-| orkest-lead-list | 40794 | 126060 |
-| zapp-account-entry | 16020 | 27469 |
-| pihub-application-status | 23556 | 59697 |
-| yarsha-contact-empty | 15398 | 27950 |
+Lighthouse accessibility and SEO categories were 100 on all measured templates; those scores do not establish WCAG certification, indexing or ranking. Separate axe tests covered 12 template/device combinations and seven-width reflow checks. The public PSI API returned quota 429. Local Chromium downloads failed, so CI supplied the browser measurements.
 
-Before/after scores and field measurements remain NOT_VERIFIED until actual reports are collected. A new audit dependency introduced a moderate advisory chain; the version was moved to the npm-audit-recommended 13.5.0 pin and dependency audit rerun. See CI and dependency evidence for the final result.
+Further diagnostics are being collected in CI, including LCP/render-blocking/font/compression audit details and a read-only run against current production. The working environment became unavailable during Figma export, so local waterfall inspection, image processing and further original-file verification are blocked. No speculative production performance fix or deployment is claimed.
+
+Evidence: [successful controlled run](https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/41574327021), [full artifacts](https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/41574327021/artifacts/13203815587), and `performance-measured.json`.

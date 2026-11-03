@@ -87,3 +87,10 @@ Owner of repository changes: maintainer. External account, rights and editorial 
 | SF-065 | 113 | https://nischhalsubba.com.np/project-zapp.html | temporary_redirect_review; title  chars; description ; words ; inlinks  | P0-01: code-level permanent migration; production remains baseline until deployment | Review branch HEAD; source and final audits / post-deploy pending |
 | SF-066 | 115 | https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist.html | temporary_redirect_review; title  chars; description ; words ; inlinks  | P0-01: code-level permanent migration; production remains baseline until deployment | Review branch HEAD; source and final audits / post-deploy pending |
 | SF-067 | 45 | https://nischhalsubba.com.np/assets/resume.pdf | intentional_pdf_noindex_check; title  chars; description ; words ; inlinks  | Review candidate, not a demonstrated Google penalty; retain useful unique content | Review branch HEAD; source and final audits / post-deploy pending |
+
+## Newly verified open issues
+
+| ID | Severity | Verified evidence | Required next step | State |
+|---|---|---|---|---|
+| PERF-02 | High | Controlled mobile medians: home 79 / LCP 3981ms; projects 88 / 3236ms; Orkest 89 / 3162ms | Inspect saved LCP/render-blocking/font/compression diagnostics; compare live-host measurements; implement and remeasure a verified fix | TARGET_NOT_MET; local execution unavailable |
+| ENV-01 | High | Execution environment became unavailable during native export; known-file durable save failed with no primary turn environment | Restore/recover environment, verify original PNG bytes/counts, save a private archive; otherwise resume exports from source IDs | BLOCKED_BY_EXECUTION_ENVIRONMENT; archive availability unverified |
