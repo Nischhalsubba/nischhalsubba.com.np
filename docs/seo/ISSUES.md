@@ -112,3 +112,12 @@ All six workflows passed on ee545f4, including the SEO evidence audit. The execu
 
 
 Latest authoritative progress: [recovery-progress-2026-11.md](../audits/recovery-progress-2026-11.md). Archive checkpoint v1 now contains 1,074 decoded PNG originals / 1,057 unique hashes. Revision 91f7985 passed all six workflows and 108 Lighthouse measurements; mobile homepage 84 (target remains open). Exact precomputed geometry is a new candidate awaiting fresh CI. No production release.
+
+
+## Authoritative recovery update — 4 November 2026
+
+- PERF mobile score gate resolved on 8f712de: homepage 91 mobile/99 desktop; five inner routes 97–99 mobile/100 desktop. Homepage lab LCP 2779.8237 ms remains above 2500 ms; field CWV/INP and real assistive-technology review remain open.
+- All six CI workflows passed on 8f712de, including automated accessibility, reflow, image-dialog and normal-motion regressions.
+- Figma durable checkpoint reconciled to 2680 original PNGs / 2481 unique / 199 duplicates; 1381 known candidates remain. Thirteen primary no-byte exceptions, legacy timeout and Starter plan restrictions remain open. Raw source labels are redacted from the public inventory.
+- Fourteen cases / 26 articles rewritten; eight reviewed Figma illustrations remain the only new public figure set in the branch. Three official Uxcel badges and five professional certifications are verified separately. No deployment or indexing claim.
+- Explicit Masteriyo team-material reuse clearance and six missing project source links remain required for broader publication. See release-verification.md and recovery-progress-2026-11.md for current evidence; older dated entries are historical.
