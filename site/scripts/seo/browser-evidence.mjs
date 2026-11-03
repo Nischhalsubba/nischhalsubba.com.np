@@ -32,6 +32,7 @@ try {
       if (overflow>2) failures.push(`${width}px ${route}: ${overflow}px overflow`);
       if ([390,1440].includes(width)) {
         const result = await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();
+        if(result.violations.length) console.error(JSON.stringify({accessibilityFailure:{route,width,violations:result.violations}}));
         accessibility.push({route,width,violations:result.violations,incomplete:result.incomplete,passes:result.passes.length});
         for (const violation of result.violations) failures.push(`${width}px ${route}: ${violation.id}: ${violation.nodes.map(node=>node.target.join(' ')).join('; ')}`);
       }

@@ -37,3 +37,7 @@ Maintenance: Keep assets under /workspace-home and verify behavior after edits.
 /* Fade the preview surface while keeping its project metadata readable. */
 .wk-world{opacity:1}
 .wk-world .wsh{opacity:calc(.2 + var(--in) * .8)}
+
+/* Keep tiny editor labels legible through palette changes and reduced-motion rendering. */
+#fgSelN,#fgSelS{background:#7cc6ff!important;color:#06101c!important}
+@media(prefers-reduced-motion:reduce){.fg-sel{transition:none!important}}
