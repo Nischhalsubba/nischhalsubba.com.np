@@ -1,0 +1,14 @@
+{
+  "project-orkest.html": {
+    "description": "Explore UX architecture and interface design for Orkest HQ, with CRM screen evidence and shared patterns across sales, inventory and finance."
+  },
+  "project-hamro-idea.html": {
+    "description": "A Nepal software studio website case study covering brand direction, service architecture, responsive interface design and static front-end implementation."
+  },
+  "project-zakra-furniture.html": {
+    "description": "A reusable furniture storefront design for WordPress and Elementor, with attention to product discovery, image consistency and adaptable content."
+  },
+  "blog/saas-dashboard-empty-state-ux-guide.html": {
+    "description": "Choose useful explanations and next actions for empty results, missing records and unfinished setup, with a real contact-search design example."
+  }
+}

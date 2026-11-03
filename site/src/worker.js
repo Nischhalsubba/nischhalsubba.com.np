@@ -82,9 +82,11 @@ function runtimeMethodNotAllowed() {
 function legacyRedirect(request, url) {
   if (request.method !== 'GET' && request.method !== 'HEAD') return null;
   const targetPath = LEGACY_REDIRECTS.get(url.pathname);
-  if (!targetPath) return null;
+  const canonicalHost = url.hostname === 'www.nischhalsubba.com.np'
+    || (url.hostname === 'nischhalsubba.com.np' && url.protocol !== 'https:');
+  if (!targetPath && !canonicalHost) return null;
 
-  const target = new URL(targetPath, url.origin);
+  const target = new URL(targetPath || url.pathname, canonicalHost ? 'https://nischhalsubba.com.np' : url.origin);
   target.search = url.search;
   return Response.redirect(target.toString(), 301);
 }

@@ -1,0 +1,159 @@
+[
+  {
+    "id": "orkest-lead-capture",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "160:386",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-386.png",
+    "source_sha256": "2ffae670af1de943df404a1047fa5fb37b06ccd80bb48efad742fd6b35f56aac",
+    "alt": "Orkest create-lead form groups contact details and qualification alongside next steps and data quality checks.",
+    "caption": "Curated crop of the current Orkest CRM create-lead design. This is design evidence, not a claim about a shipped feature or conversion results.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "NO_PERSONAL_DATA_IN_CROP",
+    "presentation": "Curated crop",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/orkest-lead-capture-480-2b1d1cc4d315.webp",
+        "width": 480,
+        "height": 397,
+        "bytes": 15150,
+        "sha256": "2b1d1cc4d3152bf5166910f8fb3c7a4c1d448de4341df3a150a1782ce05f847f"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-capture-800-f5ae2e73b441.webp",
+        "width": 800,
+        "height": 662,
+        "bytes": 31458,
+        "sha256": "f5ae2e73b441cd5101c706fe68526c9a530c7e6eaab7cfe7d34d7322517573dd"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-capture-1173-b47a323d6998.webp",
+        "width": 1173,
+        "height": 970,
+        "bytes": 56308,
+        "sha256": "b47a323d6998a08665358cc6cf31d4b17aeecedeb0c68a179edb3e32bc99802b"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/orkest-lead-capture-social-328c98ecdd3e.png"
+  },
+  {
+    "id": "orkest-lead-list",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "160:380",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-380.png",
+    "source_sha256": "81a06b117f8d3a2d7d5c7026317b6c3290e4c84f50c3f5d35e49af8410345989",
+    "alt": "Orkest CRM leads table combines ownership views, search, filters and labeled qualification states. Record values are redacted.",
+    "caption": "Curated CRM screen crop; record identities, organizations and summary values are redacted. Status labels and navigation are retained.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "REDACTED",
+    "presentation": "Curated crop",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/orkest-lead-list-480-e1f0ee5674ff.webp",
+        "width": 480,
+        "height": 397,
+        "bytes": 11706,
+        "sha256": "e1f0ee5674ffaa4827fbfebdee96cd3d4bcf7133a14a2f756fea6688c12a30e6"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-list-800-fea468c75ee2.webp",
+        "width": 800,
+        "height": 662,
+        "bytes": 24672,
+        "sha256": "fea468c75ee2811a700b99e9adbc1fc561d040a0b6001d3f1f5d733b60a333ce"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-list-1173-d53f9bc4799e.webp",
+        "width": 1173,
+        "height": 970,
+        "bytes": 40794,
+        "sha256": "d53f9bc4799e682897275e3d1cda31d36c869988d7c4612c7e25a8d2b12abf26"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/orkest-lead-list-social-012fcfc647f9.png"
+  },
+  {
+    "id": "zapp-account-entry",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "114:30",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/114-30.png",
+    "source_sha256": "687068a4c358ea78c5df15c544278ddf8bd540ab0bb5d731be692ba10a270694",
+    "alt": "Zapp customer account-entry screen offers create-account and sign-in routes with explanatory labels.",
+    "caption": "Customer iOS account-entry screen from the primary Zapp design file. It shows the design state, not evidence of delivery performance.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "NO_PERSONAL_DATA_IN_CROP",
+    "presentation": "Original screen presentation",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-account-entry-402-fe847a76869d.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 16020,
+        "sha256": "fe847a76869dde113cec4bb257c5c057bdb33933004d668dbe2a2fe03f4bf3d3"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-account-entry-social-c438ffdcc1bc.png"
+  },
+  {
+    "id": "pihub-application-status",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:9102",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/0-1/2-9102.png",
+    "source_sha256": "69e634a39897a7a40fccf89d0c7eba3604ae23864e35a791d958fb4d3391ceda",
+    "alt": "piHub application list shows service, industry and explicit approved or awaiting-approval statuses; dates, counts and financial values are redacted.",
+    "caption": "Creditor application-list design. Dates, request counts and amounts are redacted; these rows are not reported business results.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "REDACTED",
+    "presentation": "Redacted screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-application-status-480-c94c355a4456.webp",
+        "width": 480,
+        "height": 317,
+        "bytes": 6366,
+        "sha256": "c94c355a4456d30bad6755f26031e08865443041d014246010bf645b8b607774"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-application-status-800-1cd34b589092.webp",
+        "width": 800,
+        "height": 529,
+        "bytes": 12424,
+        "sha256": "1cd34b589092bf737b291408198af8d63974c070e4f37c707bf4e775c7b5ed64"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-application-status-1200-dd73a6cea677.webp",
+        "width": 1200,
+        "height": 793,
+        "bytes": 23556,
+        "sha256": "dd73a6cea6772cf9324a629b4a2cab2be797f497d8c6004f4751a994b153fc0a"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-application-status-social-9fb091db2490.png"
+  },
+  {
+    "id": "yarsha-contact-empty",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253254",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253254.png",
+    "source_sha256": "8e10ae34d8f12ca9656fa1e604581164e5e21ae2b6cf939da4230a7d28cc5aa7",
+    "alt": "Yarsha contact search shows a no-contact-found message, Contacts and Invite tabs, and the on-screen keyboard. The search value is redacted.",
+    "caption": "Final Mobile Design page: a contact-search empty state. The entered name is redacted. This screen supports a discussion of recovery options; it does not demonstrate a wallet transaction.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "REDACTED",
+    "presentation": "Redacted screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-contact-empty-375-70911f32a346.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 15398,
+        "sha256": "70911f32a346ad40ab384845d9c9644c3087202ee175ec5f2b6eda85261710ea"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-contact-empty-social-566a184106ac.png"
+  }
+]

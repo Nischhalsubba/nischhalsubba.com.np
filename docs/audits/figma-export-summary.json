@@ -1,0 +1,21 @@
+{
+  "known_files": 10,
+  "pages_discovered": 103,
+  "pages_traversed": 93,
+  "pages_blocked": 10,
+  "outer_candidates": 6613,
+  "private_archive_candidates": 4063,
+  "persisted_screen_originals": 147,
+  "queued": 3916,
+  "excluded": 2550,
+  "account_wide_complete": false,
+  "persisted_png_files": 147,
+  "unique_png_hashes": 147,
+  "duplicate_png_files": 0,
+  "public_curated_illustrations": 5,
+  "public_derivative_files": 16,
+  "figure_placements": 10,
+  "case_studies_with_new_figma_figures": 4,
+  "articles_with_new_figma_figures": 5,
+  "production_images_published": 0
+}

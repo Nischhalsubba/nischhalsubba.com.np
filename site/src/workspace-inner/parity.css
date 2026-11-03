@@ -27,3 +27,13 @@ body[data-portfolio-design="workspace-inner-v1"]{isolation:isolate}.workspace-fi
 
 /* Decoder glyphs inherit settled heading metrics; transient scrambling never changes line layout. */
 .workspace-heading-visual .dot{font-family:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;text-transform:inherit}
+
+/* Curated source screenshots stay readable, sized, and consistent with the workspace shell. */
+.workspace-evidence { margin-top: 56px; }
+.workspace-evidence > p { max-width: 76ch; margin: 18px 0; color: #b9b9c0; line-height: 1.75; }
+.workspace-evidence-figure { position: relative; margin: 32px 0; border: 1px solid #293247; background: #0b1020; }
+.workspace-evidence-figure img { display: block; width: 100%; height: auto; }
+.workspace-evidence-figure figcaption { padding: 16px 18px; color: #b9b9c0; font-size: 14px; line-height: 1.6; }
+.workspace-evidence-mobile { max-width: 402px; }
+.workspace-evidence-note { font-size: 13px; }
+@media (max-width: 600px) { .workspace-evidence-figure figcaption { padding: 14px; } }

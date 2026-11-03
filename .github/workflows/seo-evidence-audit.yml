@@ -1,0 +1,45 @@
+# Purpose: Preserve reproducible SEO, accessibility and laboratory performance evidence for review.
+# Responsibilities: Audit previews only; never deploy, request indexing or publish private Figma originals.
+# Execution context: Pull-request and manually dispatched GitHub Actions.
+# Connected files: site/scripts/seo/browser-evidence.mjs, site/package.json.
+# Maintenance: Compare lab distributions separately from Search Console and field data.
+name: SEO evidence audit
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: seo-evidence-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - run: npx --no-install playwright install --with-deps chromium
+      - name: Audit the built review preview
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/seo-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/seo/browser-evidence.mjs
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: seo-accessibility-performance-evidence
+          path: site/tests/seo-evidence/results
+          retention-days: 14

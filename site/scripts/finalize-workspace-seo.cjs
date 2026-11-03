@@ -14,6 +14,8 @@ const root = path.resolve(__dirname, '..'); const dist = path.join(root, 'dist')
 const site = 'https://nischhalsubba.com.np';
 const inventory = JSON.parse(fs.readFileSync(path.join(dist, 'workspace-inner/routes.json'), 'utf8'));
 const files = ['index.html', ...inventory.map(route => route.file)];
+const evidenceImages = JSON.parse(fs.readFileSync(path.join(root, 'src/content/portfolio-evidence-images.json'), 'utf8'));
+const searchMetadata = JSON.parse(fs.readFileSync(path.join(root, 'src/content/search-metadata.json'), 'utf8'));
 const fontDirectory = path.join(root, 'src/workspace-home/vendor/fonts.gstatic.com');
 const fontFiles = fs.readdirSync(fontDirectory).filter(file => file.endsWith('.ttf')).map(file => path.join(fontDirectory, file));
 const socialDirectory = path.join(dist, 'assets/workspace-social'); fs.mkdirSync(socialDirectory, { recursive: true });
@@ -65,8 +67,7 @@ function card(title, description, category, cover) {
   let media = '<path d="M920 135V430M770 285H1070" stroke="#0d99ff" stroke-opacity=".4"/><circle cx="920" cy="285" r="108" fill="none" stroke="#a259ff" stroke-opacity=".5"/><circle cx="920" cy="285" r="68" fill="none" stroke="#0d99ff"/><rect x="907" y="272" width="26" height="26" fill="#0d99ff"/>';
   if (cover && fs.existsSync(cover)) {
     try {
-      const coverSvg = fs.readFileSync(cover, 'utf8');
-      const png = new Resvg(coverSvg, { fitTo: { mode: 'width', value: 680 }, font: { fontFiles, loadSystemFonts: false } }).render().asPng();
+      const png = cover.endsWith('.png') ? fs.readFileSync(cover) : new Resvg(fs.readFileSync(cover, 'utf8'), { fitTo: { mode: 'width', value: 680 }, font: { fontFiles, loadSystemFonts: false } }).render().asPng();
       media = `<rect x="730" y="143" width="398" height="304" fill="#0b1020" stroke="#a259ff"/><image href="data:image/png;base64,${png.toString('base64')}" x="732" y="145" width="394" height="300" preserveAspectRatio="xMidYMid meet"/><g fill="#f4f4f2" stroke="#a259ff"><rect x="725" y="138" width="10" height="10"/><rect x="1123" y="138" width="10" height="10"/><rect x="725" y="442" width="10" height="10"/><rect x="1123" y="442" width="10" height="10"/></g>`;
     } catch (error) { throw new Error(`Cannot render project media ${cover}: ${error.message}`); }
   }
@@ -80,12 +81,15 @@ for (const file of files) {
   const url = html.match(/rel="canonical" href="([^"]+)"/)?.[1]; if (!url || !url.startsWith(site)) throw new Error(`Canonical missing: ${file}`);
   const title = plain(html.match(/<title[^>]*>([\s\S]*?)<\/title>/)?.[1] || 'Nischhal Raj Subba');
   const heading = plain(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] || 'Nischhal Raj Subba');
-  const description = metadata(html, 'description');
+  const description = searchMetadata[file]?.description || metadata(html, 'description');
+  if (searchMetadata[file]?.description) html = setMeta(html, 'name', 'description', description);
   const isArticle = file.startsWith('blog/') && file !== 'blog/index.html'; const isProject = file.startsWith('project-');
   const category = isProject ? 'Case study' : isArticle ? 'Design writing' : file === 'index.html' ? 'Senior Product Designer' : 'Portfolio';
   const slug = file.replace(/\.html$/, '').replaceAll('/', '--');
   const imageUrl = `${site}/assets/workspace-social/${slug}.png`;
-  const coverSrc = isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null;
+  const contentImages = [...html.matchAll(/data-evidence-image="([^"]+)"/g)].map(match => evidenceImages.find(image => image.id === match[1])).filter(Boolean);
+  if (isArticle && contentImages.length) html = setMeta(html, 'property', 'article:modified_time', '2026-11-03');
+  const coverSrc = contentImages[0]?.socialSrc || (isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null);
   fs.writeFileSync(path.join(socialDirectory, slug + '.png'), card(file === 'index.html' ? 'Nischhal Raj Subba' : heading, description, category, coverSrc ? path.join(dist, coverSrc) : null));
   for (const [key, value] of Object.entries({ 'og:title': title, 'og:description': description, 'og:url': url, 'og:type': isArticle ? 'article' : 'website', 'og:site_name': 'Nischhal Raj Subba', 'og:locale': 'en_US', 'og:image': imageUrl, 'og:image:secure_url': imageUrl, 'og:image:type': 'image/png', 'og:image:width': '1200', 'og:image:height': '630', 'og:image:alt': `${heading} — Nischhal Raj Subba` })) html = setMeta(html, 'property', key, value);
   for (const [key, value] of Object.entries({ 'twitter:card': 'summary_large_image', 'twitter:title': title, 'twitter:description': description, 'twitter:image': imageUrl, 'twitter:image:alt': `${heading} — Nischhal Raj Subba`, 'robots': 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1', 'author': 'Nischhal Raj Subba' })) html = setMeta(html, 'name', key, value);
@@ -104,7 +108,7 @@ for (const file of files) {
   if (file === 'index.html') webpage.mainEntity = { '@id':person['@id'] };
   html = html.replace(/<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g, '');
   html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@graph':[website,person,...merged]}).replace(/</g,'\\u003c')}</script>\n</head>`);
-  records.push({ file, url, title, heading, description, image:imageUrl, category, isArticle }); fs.writeFileSync(absolute, html);
+  records.push({ file, url, title, heading, description, image:imageUrl, category, isArticle, contentImages:contentImages.map(image => site + image.variants.at(-1).src) }); fs.writeFileSync(absolute, html);
 }
 // Make every retained article findable through real HTML rather than hidden browser-only data.
 const articles = records.filter(record => record.isArticle);
@@ -119,7 +123,7 @@ for (const file of files) {
 }
 for (const route of inventory) { const html = fs.readFileSync(path.join(dist, route.file), 'utf8'); route.contentHash = crypto.createHash('sha256').update(html.match(/<main\b[\s\S]*?<\/main>/)[0]).digest('hex'); }
 fs.writeFileSync(path.join(dist, 'workspace-inner/routes.json'), JSON.stringify(inventory,null,2)+'\n');
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${records.map(record => `<url><loc>${escape(record.url)}</loc><image:image><image:loc>${escape(record.image)}</image:loc></image:image></url>`).join('')}</urlset>\n`;
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${records.map(record => `<url><loc>${escape(record.url)}</loc>${[record.image,...record.contentImages].map(image => `<image:image><image:loc>${escape(image)}</image:loc></image:image>`).join('')}</url>`).join('')}</urlset>\n`;
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
 const markdown = ['# Nischhal Raj Subba', '> Senior Product Designer. 7+ years across enterprise SaaS, mobile, fintech and Web3.', '', 'This is a public portfolio, not a product documentation or support service. Case studies describe contribution boundaries and publicly available evidence.', '', '## Portfolio', ...records.filter(record=>!record.isArticle).map(record=>`- [${record.heading}](${record.url}): ${record.description}`), '', '## Writing', ...articles.map(record=>`- [${record.heading}](${record.url}): ${record.description}`), '', '## Contact', '- Email: hinischalsubba@gmail.com', '- Location stated in portfolio: Kathmandu, Nepal', '- Availability and complete current résumé: '+site+'/about', ''].join('\n');
 fs.writeFileSync(path.join(dist, 'llms.txt'), markdown);

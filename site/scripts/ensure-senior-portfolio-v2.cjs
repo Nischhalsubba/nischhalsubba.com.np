@@ -33,7 +33,7 @@ const cases = {
       ['Failure states', 'Design the uncomfortable states before celebrating the happy path.', 'Pending, declined, failed and completed outcomes are first-class states because wallet trust is won or lost when the flow stops behaving ideally.'],
       ['Engineering contract', 'Handoff should describe behavior, not just screen appearance.', 'The useful artifact is a state model: what changes, what persists, what the user can do next and which transitions depend on the wallet or network.'],
     ],
-    links: [['Open Yarsha design', 'https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/Yarsha?node-id=2379-17138&m=dev']],
+    links: [['Open Yarsha design', 'https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/Yarsha?node-id=0-1&m=dev']],
     next: ['/project-pihub', 'Next: piHub'],
   },
   'project-pihub.html': {
@@ -62,9 +62,10 @@ const cases = {
       ['Operational visibility', 'Design for exceptions, not only the ideal delivery.', 'Admin and support views need enough state visibility to understand what happened when a task stalls, changes hands or fails to complete normally.'],
     ],
     links: [
-      ['Read design case study', 'https://www.figma.com/design/UVuc0LuF7Ykb0yxfPmzOHX/Design-Case-Study?node-id=0-1'],
-      ['Customer prototype', 'https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=3-8&page-id=0%3A1'],
-      ['Driver prototype', 'https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=82-0&page-id=2%3A3'],
+      ['Primary Zapp design source', 'https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/Zapp?node-id=4-5'],
+      ['Legacy design case study', 'https://www.figma.com/design/UVuc0LuF7Ykb0yxfPmzOHX/Design-Case-Study?node-id=0-1'],
+      ['Legacy customer prototype', 'https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=3-8&page-id=0%3A1'],
+      ['Legacy driver prototype', 'https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=82-0&page-id=2%3A3'],
     ],
     next: ['/project-mokshya', 'Next: Mokshya.io'],
   },
@@ -89,7 +90,7 @@ const cases = {
       ['Learning states', 'The learner needs progress and feedback, not the administration model behind the content.', 'Quiz, course and completion states should make the next action obvious and keep system language out of the learning experience wherever possible.'],
       ['Team contribution', 'Contribute consistently inside an existing product and design system.', 'This was multi-designer work. The contribution is strongest when new screens respect existing patterns, make missing states explicit and are easy for the team to review and extend.'],
     ],
-    links: [['Open Masteriyo Figma file', 'https://www.figma.com/design/FdQeGFEGG7kP4q4FkDHQYP/LMS-Plugin--Copy-?node-id=277-1231']],
+    links: [['Open Masteriyo Figma file', 'https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/Masteriyo?node-id=277-1231']],
     next: ['/project-morajaa', 'Next: Morajaa'],
   },
   'project-morajaa.html': {
