@@ -31,6 +31,7 @@ for(const record of records) {
   assert.doesNotMatch(html,/(?:src|srcset)="[^"]*(?:figma\.com\/api\/mcp\/asset|figma-exports|artifacts\/)/,'No ephemeral or private image source');
   for(const figure of html.matchAll(/<figure\b[^>]*data-evidence-image="([^"]+)"[^>]*>([\s\S]*?)<\/figure>/g)) {
     const image=images.find(item=>item.id===figure[1]); assert.ok(image);
+    assert.ok(html.includes(`https://www.figma.com/design/${image.fileKey}/?node-id=${image.nodeId.replaceAll(':', '-')}`), 'Each published figure must link to its exact Figma frame');
     assert.match(figure[2],/loading="lazy"/); assert.match(figure[2],/decoding="async"/); assert.match(figure[2],/width="\d+" height="\d+"/); assert.match(figure[2],/srcset="/);assert.match(figure[2],/<figcaption>/); references++;
     assert.ok(record.contentImages.includes('https://nischhalsubba.com.np'+image.variants.at(-1).src));
   }

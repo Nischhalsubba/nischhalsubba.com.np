@@ -21,7 +21,8 @@ function figure(id) {
   const image = images.find(item => item.id === id);
   if (!image || image.permission !== 'OWNER_AUTHORIZED_REVIEW_BRANCH') throw new Error(`Unreviewed image: ${id}`);
   const largest = image.variants.at(-1);
-  return `<figure class="workspace-evidence-figure${largest.width < 600 ? ' workspace-evidence-mobile' : ''}" data-evidence-image="${escape(id)}"><img src="${escape(largest.src)}" srcset="${image.variants.map(item => `${escape(item.src)} ${item.width}w`).join(', ')}" sizes="${largest.width < 600 ? `(max-width: 460px) calc(100vw - 48px), ${largest.width}px` : '(max-width: 768px) calc(100vw - 48px), (max-width: 1200px) calc(100vw - 80px), 1000px'}" width="${largest.width}" height="${largest.height}" loading="lazy" decoding="async" alt="${escape(image.alt)}"><figcaption>${escape(image.caption)}</figcaption></figure>`;
+  const source = `https://www.figma.com/design/${image.fileKey}/?node-id=${image.nodeId.replaceAll(':', '-')}`;
+  return `<figure class="workspace-evidence-figure${largest.width < 600 ? ' workspace-evidence-mobile' : ''}" data-evidence-image="${escape(id)}"><img src="${escape(largest.src)}" srcset="${image.variants.map(item => `${escape(item.src)} ${item.width}w`).join(', ')}" sizes="${largest.width < 600 ? `(max-width: 460px) calc(100vw - 48px), ${largest.width}px` : '(max-width: 768px) calc(100vw - 48px), (max-width: 1200px) calc(100vw - 80px), 1000px'}" width="${largest.width}" height="${largest.height}" loading="lazy" decoding="async" alt="${escape(image.alt)}"><figcaption>${escape(image.caption)}</figcaption></figure><p class="workspace-evidence-source"><a href="${escape(source)}" target="_blank" rel="noopener noreferrer">Inspect the original Figma frame (access may be required)</a></p>`;
 }
 const sections = {
   'project-orkest.html': { title:'CRM decisions in the current design', paragraphs:[
