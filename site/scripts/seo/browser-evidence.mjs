@@ -48,6 +48,33 @@ try {
     }
     await context.close();
   }
+  const motionContext = await browser.newContext({viewport:{width:390,height:844},reducedMotion:'no-preference'});
+  const motionPage = await motionContext.newPage();
+  await motionPage.addInitScript(/** Callback contract: Count layout reads on the offscreen work scene. Inputs: none. Side effects: wraps a native DOM reader in this test context only. Returns: void. */ () => {
+    const original = Element.prototype.getBoundingClientRect;
+    window.__workLayoutReads = 0;
+    Element.prototype.getBoundingClientRect = /** Callback contract: Preserve the native rectangle while counting work-scene reads. Inputs: DOM receiver. Side effects: updates a test-only counter. Returns: native DOMRect. */ function () {
+      if (this.id === 'wk') window.__workLayoutReads++;
+      return original.call(this);
+    };
+  });
+  await motionPage.goto(base+'/',{waitUntil:'networkidle'});
+  await motionPage.evaluate(/** Callback contract: Confirm offscreen position and start the idle measurement. Inputs: none. Side effects: resets a test counter. Returns: offscreen flag. */ () => {
+    const away = document.getElementById('wk').getBoundingClientRect().top > innerHeight + 600;
+    window.__workLayoutReads = 0;
+    return away;
+  }).then(/** Callback contract: Require the intended offscreen test precondition. Inputs: flag. Side effects: assertion only. Returns: void. */ away => assert.equal(away,true));
+  await motionPage.waitForTimeout(250);
+  assert.equal(await motionPage.evaluate(/** Callback contract: Read the isolated work-layout counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__workLayoutReads),0,'Offscreen work scene must not read layout every frame');
+  await motionPage.evaluate(/** Callback contract: Exercise native navigation into the work scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('work').scrollIntoView({block:'start',behavior:'instant'}));
+  await motionPage.waitForFunction(/** Callback contract: Wait for a usable selected project. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('#wkWorld .wf.on .whit')?.tabIndex === 0);
+  assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'work');
+  assert.equal(await motionPage.evaluate(/** Callback contract: Verify deferred pixel buffers initialize before visible use. Inputs: none. Side effects: none. Returns: ready flag. */ () => { const canvas=document.querySelector('#wkPx canvas.dio'); return canvas.width>1 && canvas.height>1; }),true);
+  await motionPage.evaluate(/** Callback contract: Exercise reverse navigation into the About scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('about').scrollIntoView({block:'start',behavior:'instant'}));
+  await motionPage.waitForFunction(/** Callback contract: Wait for the About chapter to remain usable. Inputs: none. Side effects: none. Returns: readiness. */ () => Boolean(document.querySelector('#abCh .abx-c.on')));
+  assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'about');
+  await motionContext.close();
+  console.log('[homepage-motion] Offscreen layout, deferred buffers and bidirectional section navigation passed.');
 } finally {await browser.close();}
 fs.writeFileSync(path.join(output,'accessibility.json'),JSON.stringify({base,checkedAt:new Date().toISOString(),results:accessibility,failures},null,2));
 }

@@ -2751,7 +2751,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     tgt.addEventListener('pointerleave', () => { lx = ly = -1; inside = false; });
     if (o.tap !== false) tgt.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse') return; const [x, y] = local(e); ripple(x, y); });
     new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis) { size(); kick(); } }, { rootMargin: '100px' }).observe(host);
-    new ResizeObserver(() => { base = null; W = 0; size(); }).observe(host);
+    new ResizeObserver(() => { base = null; W = 0; if (vis) size(); }).observe(host);
     return { ripple, size, get fine() { return fine; } };
   };
 
@@ -2798,9 +2798,10 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
         g.append(path, dot, arr); svg.append(g); const len = path.getTotalLength(); path.style.strokeDasharray = len; path.style.strokeDashoffset = len; return { g, path, arr, len };
       });
     };
-    let workReady = false;
-    new IntersectionObserver((entries, observer) => {
-      if (entries.some(e => e.isIntersecting)) { build(); workReady = true; observer.disconnect(); }
+    let workReady = false, workNearby = false;
+    new IntersectionObserver(entries => {
+      workNearby = entries.some(e => e.isIntersecting);
+      if (workNearby && !workReady) { build(); workReady = true; }
     }, { rootMargin: '600px' }).observe(wrap);
     frames.forEach((f, i) => { const im = f.querySelector('img'); const got = () => { if (im.naturalWidth) { ar[i] = im.naturalWidth / im.naturalHeight; if (workReady) build(); } }; im.complete ? got() : im.addEventListener('load', got); });
     wrap.style.height = (W.length * 140 + 60) + 'vh';
@@ -2821,7 +2822,8 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
       el.href = w.url || '#contact'; if (w.url) { el.target = '_blank'; el.rel = 'noopener'; } else el.removeAttribute('target'); el.dataset.wk = w.n; el.setAttribute('aria-label', `${want}: ${w.n}`); };
     (function frame() {
       requestAnimationFrame(frame);
-      const r = wrap.getBoundingClientRect(), vh = innerHeight; if (!workReady || r.bottom < -50 || r.top > vh + 50) { if (seen !== -2) { vids.forEach((v, i) => { if (!v) return; v._go = 0; if (!v.paused) v.pause(); frames[i].classList.remove('vid-on'); }); seen = -2; } return; }
+      if (!workReady || !workNearby || document.hidden) { if (seen !== -2) { vids.forEach((v, i) => { if (!v) return; v._go = 0; if (!v.paused) v.pause(); frames[i].classList.remove('vid-on'); }); seen = -2; } return; }
+      const r = wrap.getBoundingClientRect(), vh = innerHeight; if (r.bottom < -50 || r.top > vh + 50) { if (seen !== -2) { vids.forEach((v, i) => { if (!v) return; v._go = 0; if (!v.paused) v.pause(); frames[i].classList.remove('vid-on'); }); seen = -2; } return; }
       const p = clamp(-r.top / Math.max(1, wrap.offsetHeight - vh)), vw = pin.clientWidth, mob = vw < 760;
       // Apple-style hand-over: the black canvas and its diodes fade up as the section arrives and fade away as it leaves
       const inA = clamp((vh - r.top) / (vh * .9)), outA = clamp(r.bottom / (vh * .9));
@@ -3827,6 +3829,10 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
   /* ---------- nav + ring ---------- */
   const pill = $('#pill'), ring = $('#ring');
   const NAV_ORDER = ['top', 'about', 'exp', 'work', 'services', 'process', 'testi', 'pricing', 'contact']; let navAct;
+  let navDirty = true, navLastY = NaN, navLastWidth = 0, navLastHeight = 0;
+  const navLayoutObserver = new ResizeObserver(() => { navDirty = true; });
+  NAV_ORDER.forEach(id => { const section = document.getElementById(id); if (section) navLayoutObserver.observe(section); });
+  if (document.fonts) document.fonts.ready.then(() => { navDirty = true; });
   const ISL = [["top", "Home", "01"], ["about", "About", "02"], ["exp", "Experience", "03"], ["work", "Work", "04"], ["services", "Services", "05"], ["process", "Process", "06"], ["testi", "Credentials", "07"], ["pricing", "Project scope", "08"], ["contact", "Contact", "09"]];
   $('#islNow').innerHTML = ISL.map(([, n, k]) => `<span><em>${k}</em>${n}</span>`).join('');
   pill._fr = $('svg.fr', pill); chSize(pill); chRO.observe(pill);
@@ -3848,7 +3854,10 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
   })();
   function navTick() {
-    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight, p = clamp(y / max);
+    const y = scrollY;
+    if (!navDirty && y === navLastY && innerWidth === navLastWidth && innerHeight === navLastHeight && navAct != null) return;
+    navDirty = false; navLastY = y; navLastWidth = innerWidth; navLastHeight = innerHeight;
+    const max = document.documentElement.scrollHeight - innerHeight, p = clamp(y / max);
     ring.style.strokeDashoffset = 282.7 * (1 - p);
     pill.style.setProperty('--p', p.toFixed(4));
     // sheets stack, so the current section is the last one whose top has reached the middle of the screen
