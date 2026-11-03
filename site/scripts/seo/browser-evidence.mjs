@@ -67,7 +67,7 @@ try {
   await motionPage.waitForTimeout(250);
   assert.equal(await motionPage.evaluate(/** Callback contract: Read the isolated work-layout counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__workLayoutReads),0,'Offscreen work scene must not read layout every frame');
   await motionPage.evaluate(/** Callback contract: Exercise native navigation into the work scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('work').scrollIntoView({block:'start',behavior:'instant'}));
-  await motionPage.waitForFunction(/** Callback contract: Wait for a usable selected project. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('#wkWorld .wf.on .whit')?.tabIndex === 0);
+  await motionPage.waitForFunction(/** Callback contract: Wait for a usable project and completed navigation frame. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('#wkWorld .wf.on .whit')?.tabIndex === 0 && document.querySelector('.tb-t.act')?.dataset.sec === 'work');
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'work');
   assert.equal(await motionPage.evaluate(/** Callback contract: Verify deferred pixel buffers paint before visible use. Inputs: none. Side effects: reads canvas pixels. Returns: painted flag. */ () => {
     const canvas=document.querySelector('#wkPx canvas.dio');
@@ -75,7 +75,7 @@ try {
     return pixels.some(/** Callback contract: Detect a painted alpha sample. Inputs: channel and index. Side effects: none. Returns: opaque flag. */ (value,index) => index%4===3 && value>0);
   }),true);
   await motionPage.evaluate(/** Callback contract: Exercise reverse navigation into the About scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('about').scrollIntoView({block:'start',behavior:'instant'}));
-  await motionPage.waitForFunction(/** Callback contract: Wait for the About chapter to remain usable. Inputs: none. Side effects: none. Returns: readiness. */ () => Boolean(document.querySelector('#abCh .abx-c.on')));
+  await motionPage.waitForFunction(/** Callback contract: Wait for the About chapter and completed reverse-navigation frame. Inputs: none. Side effects: none. Returns: readiness. */ () => Boolean(document.querySelector('#abCh .abx-c.on')) && document.querySelector('.tb-t.act')?.dataset.sec === 'about');
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'about');
   await motionContext.close();
   console.log('[homepage-motion] Offscreen layout, deferred buffers and bidirectional section navigation passed.');
