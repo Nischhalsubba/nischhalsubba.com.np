@@ -22,7 +22,8 @@ const socialDirectory = path.join(dist, 'assets/workspace-social'); fs.mkdirSync
 const person = { '@type': 'Person', '@id': site + '/#nischhal-raj-subba', name: 'Nischhal Raj Subba', alternateName: 'Nischhal Subba', jobTitle: 'Senior Product Designer', url: site + '/', image: site + '/workspace-home/assets/portrait.webp', sameAs: ['https://www.linkedin.com/in/nischhal/', 'https://www.behance.net/nischhal', 'https://github.com/Nischhalsubba', 'https://app.uxcel.com/ux/nischhal'] };
 // A weekly leaderboard snapshot is not an annual award. Only verified historical recognition belongs here.
 const recognition = JSON.parse(fs.readFileSync(path.join(root, 'src/content/uxcel-recognition.json'), 'utf8'));
-person.award = recognition.historical.map(item => `${item.recognition} — ${item.category} (${item.year})`);
+person.hasCredential = recognition.certifications.map(item => ({ '@type': 'EducationalOccupationalCredential', name: `Uxcel ${item.name}`, credentialCategory: 'Professional certification', url: item.source, recognizedBy: { '@type': 'Organization', name: 'Uxcel', url: 'https://uxcel.com/' } }));
+person.award = recognition.historical.map(item => `${item.recognition} — #${item.exactPosition} ${item.category} (${item.year})`);
 /** Function contract: escape
  * Purpose: Encode text for XML and HTML attributes. Inputs: text. Side effects: none. Returns: escaped text.
  */
