@@ -76,7 +76,11 @@
           "Carry context into conversion"
         ],
         "reflection": "The important consistency is continuity of work. Reusing a table is useful only if ownership, qualification and the next action keep their meaning as a record moves forward. I would extend the shared grammar module by module, with explicit exceptions where the business object changes."
-      }
+      },
+      "evaluation": [
+        "Find an unassigned lead, apply a filter and switch ownership views. Can the person explain which records are now included?",
+        "Follow a failed save into retry and conversion. Check that ownership, input and record history survive each transition."
+      ]
     },
     {
       "slug": "pihub",
@@ -98,7 +102,7 @@
           "heading": "Keep application state in the comparison view",
           "body": [
             "The creditor screen places service, industry, timing and a text status in the same table. Approved and Awaiting Approval remain readable labels rather than color alone. Someone comparing applications can therefore inspect state without opening each record just to discover whether it is still under review.",
-            "The public derivative removes financial and identifying values. What remains is the information structure, which is the evidence relevant to this case. The image does not prove that an approval was genuine or that a process became faster."
+            "The public detail crop isolates the written status labels and excludes amounts, dates and counts. The image does not prove that an approval was genuine or that a process became faster."
           ],
           "image": "pihub-application-status",
           "leadIn": "The creditor’s first need is an overview of what has already been submitted.",
@@ -111,7 +115,6 @@
             "The source file separates these role journeys. In review, I would trace one example across them and check that Submitted, Reviewing and Approved have consistent meanings. A matched set of screens is a design model, not proof that cross-role updates or authorization are implemented.",
             "The investor product list makes service, industry and approval state comparable. It is a different object from a creditor application list, even though both use status labels. Keeping that distinction visible helps explain why the roles share vocabulary without sharing every table column."
           ],
-          "image": "pihub-investor-products",
           "leadIn": "That view is only one side of the process. Investor priorities require a different object and information hierarchy.",
           "tradeoff": "Consistent status language supports cross-role understanding; identical columns would obscure the different jobs."
         },
@@ -153,7 +156,11 @@
           "Recover at the access boundary"
         ],
         "reflection": "The state model is part of the product experience. A shorter form cannot compensate for a person who has submitted information and no longer understands who is responsible. The next evaluation should trace one application across the role boundaries, including a request for changes."
-      }
+      },
+      "evaluation": [
+        "Ask a creditor to identify who owns the next step after submission and what would require a response.",
+        "Trace an application returned for changes across creditor, investor and administrator views; check that their status language describes the same event."
+      ]
     },
     {
       "slug": "yarsha",
@@ -163,7 +170,7 @@
       "summary": "Keeping contact, asset selection and consequential actions understandable inside a conversational product.",
       "context": [
         "Yarsha combines messaging with Solana-related actions and bot interactions. A conversation encourages quick movement, while a wallet action needs a more deliberate check of intent and consequence. My design focus was the boundary between those behaviors, including the context a person needs before leaving a conversation to authorize an action.",
-        "The images here come from the file's Final Mobile Design page. That page label establishes the source version; it is not a claim that every frame is production-ready. The reviewed examples show contact search and token selection. They do not prove a completed transfer, network confirmation or the behavior of an external wallet."
+        "The images here come from the file's Final Mobile Design page. That page label establishes the source version; it is not a claim that every frame is production-ready. The public illustration shows a contact-search empty-state detail; asset and transaction screens informed the source review. They do not prove a completed transfer, network confirmation or the behavior of an external wallet."
       ],
       "constraints": [
         "Wallet and network behavior extends beyond the messaging interface.",
@@ -185,19 +192,17 @@
           "heading": "Identify the asset before asking for an action",
           "body": [
             "The token-selection design pairs the asset name with its symbol and separates tokens from NFTs. Search sits above the list. This gives the person a place to establish what they are acting on before a later review or wallet request.",
-            "Balance-like values are redacted in the public image. They are irrelevant to the interface argument and must not be presented as holdings, returns or evidence of product usage. A production review would still need to consider duplicate symbols, unavailable assets and ambiguous search results."
+            "The source frame is retained privately because its balance-like values add little to the interface argument. A production review would still need to consider duplicate symbols, unavailable assets and ambiguous search results."
           ],
-          "image": "yarsha-token-selection",
           "leadIn": "With a contact context established, the next risk is ambiguity about the asset.",
           "tradeoff": "Symbols make scanning faster but cannot be the only disambiguation for similarly named assets."
         },
         {
           "heading": "Separate transaction details from authorization",
           "body": [
-            "The final-mobile source contains a transaction-detail panel with spent and received assets, destination, network fee and an explorer action. The public crop removes artwork and redacts values and the address while keeping those field relationships visible.",
+            "The final-mobile source contains a transaction-detail panel with spent and received assets, destination, network fee and an explorer action. That source remains private; no completed transfer is asserted from its visual state.",
             "A detail panel is not a wallet approval request or proof of a confirmed transaction. The source explorer wording also needs to be reconciled with the intended chain before implementation. I would review that link alongside rejection, pending and unknown-result behavior instead of treating a completed-looking frame as integration evidence."
           ],
-          "image": "yarsha-transaction-detail",
           "leadIn": "Identifying an asset still leaves the transaction itself to explain.",
           "tradeoff": "Transaction detail improves inspectability, but must remain distinct from wallet permission and network confirmation."
         }
@@ -228,7 +233,11 @@
           "Inspect the transaction context"
         ],
         "reflection": "The lesson is to design the boundary between conversation and consequence. More confirmation screens are not automatically safer; the information must let someone recognize a wrong person, asset or destination before authorization. The explorer label mismatch in the source is an example of detail that needs resolution before implementation."
-      }
+      },
+      "evaluation": [
+        "Ask someone to detect an incorrect recipient, asset or network before authorizing a transfer.",
+        "Exercise rejection, a delayed confirmation and returning from an explorer. Check whether retrying could accidentally duplicate the action."
+      ]
     },
     {
       "slug": "zapp",
@@ -314,7 +323,11 @@
           "Close the handoff"
         ],
         "reflection": "The most consequential design work sits between the roles. A customer-facing milestone and a driver action must describe the same event, while delivery completion and financial settlement remain separate. The prototype makes those distinctions visible; a service review must still exercise delayed, failed and duplicate events."
-      }
+      },
+      "evaluation": [
+        "Compare the customer milestone with the driver action for pickup, arrival and completion; each pair should describe the same service event.",
+        "Walk through an intermediate-stop failure and delayed completion update. Check that the next action remains clear without implying settlement has occurred."
+      ]
     },
     {
       "slug": "morajaa",
@@ -387,7 +400,11 @@
           "Choose a relevant next path"
         ],
         "reflection": "For a service website, clarity is the progression from a broad promise to an inspectable scope. The process is useful because it gives a visitor something concrete to evaluate. Its commercial and regulatory statements still belong to the consultancy, and inquiry conversion is not measured here."
-      }
+      },
+      "evaluation": [
+        "Ask a prospective client to identify the relevant engagement stage and explain what the consultancy would deliver.",
+        "Check whether the process section answers the question raised by the service promise before the visitor reaches contact."
+      ]
     },
     {
       "slug": "masteriyo",
@@ -473,7 +490,11 @@
           "Configure a question"
         ],
         "reflection": "The useful system is a stable relationship between structure and detail. Section, lesson, quiz and answer are different levels, and the interface has to make the current level obvious. The visible tab highlight and icon-only actions also deserve implementation review: source artifacts are valuable because they expose unfinished decisions as well as strong ones."
-      }
+      },
+      "evaluation": [
+        "Ask a course author to create a section, add a lesson and configure a quiz without losing their place in the course outline.",
+        "Review question reordering, an invalid answer and cancellation with unsaved changes; verify keyboard access and feedback alongside the visual hierarchy."
+      ]
     },
     {
       "slug": "mokshya",
@@ -544,8 +565,12 @@
           "Expose the mechanism",
           "Keep proof beside the claim"
         ],
-        "reflection": "The editorial test is whether each layer answers the question raised by the previous one. A newcomer and a developer can share the opening without needing the same depth. The missing matching Figma source limits the visual evidence available in this case; it does not justify replacing it with an invented product screen."
-      }
+        "reflection": "Each layer should answer the question raised by the previous one. A newcomer and a developer can share the opening without needing the same depth. The strongest editorial structure makes the next useful question easy to pursue."
+      },
+      "evaluation": [
+        "Ask a newcomer to explain the protocol’s purpose after the opening, then find the route to deeper technical information.",
+        "Ask a technical evaluator to locate the evidence behind a capability claim without repeatedly returning to the top-level introduction."
+      ]
     },
     {
       "slug": "designerex",
@@ -616,8 +641,12 @@
           "Compare practical details",
           "Continue without losing context"
         ],
-        "reflection": "Premium presentation earns its place when it helps someone judge a garment without hiding the rental decision. The unresolved visual evidence is the matching Figma source; current source material does not support a claim about conversion or end-to-end marketplace ownership."
-      }
+        "reflection": "Premium presentation earns its place when it helps someone judge a garment without hiding the rental decision. Photography creates interest; stable metadata lets a renter turn that interest into a dependable comparison."
+      },
+      "evaluation": [
+        "Ask a renter to compare two garments for occasion, size, price and availability without relying on memory.",
+        "Review a long garment name, an unavailable date and a missing photograph to check whether the rental decision remains understandable."
+      ]
     },
     {
       "slug": "splashnode",
@@ -689,7 +718,11 @@
           "Test the composition in code"
         ],
         "reflection": "A technical website becomes useful when a visitor can connect the offer to their own job and identify a next step with enough context. Frontend work is valuable here because actual content challenges the composition before it becomes a fixed visual specification."
-      }
+      },
+      "evaluation": [
+        "Ask a buyer to connect one platform capability to a task in their own work, then find an appropriate evaluation step.",
+        "Review the page with real copy lengths and narrow viewports; check that the use-case explanation still leads naturally into capability detail."
+      ]
     },
     {
       "slug": "grid-labs",
@@ -761,7 +794,11 @@
           "Understand the next commercial step"
         ],
         "reflection": "The comparison pattern should reduce the amount of information a buyer has to remember. Stable labels and units are more useful than decorative emphasis on every plan. Provisioning, billing and current offer accuracy remain service-owner responsibilities."
-      }
+      },
+      "evaluation": [
+        "Ask a buyer to choose between adjacent plans and explain which specification drove that choice.",
+        "Repeat the comparison on a narrow screen with longer plan labels; preserve units and distinctions without requiring horizontal page scrolling."
+      ]
     },
     {
       "slug": "hamro-idea",
@@ -834,7 +871,11 @@
           "Start a relevant conversation"
         ],
         "reflection": "Service architecture and implementation meet in the content contract. A new service or longer project description should fit the structure without weakening the story. The case demonstrates the intended relationship between offer, proof and contact; lead quality and search growth need separate measurement."
-      }
+      },
+      "evaluation": [
+        "Ask a prospect to choose a relevant service, locate supporting work and reach contact with enough context to describe their need.",
+        "Review the form using keyboard input, invalid email, submission failure and success; check persistent labels and meaningful feedback."
+      ]
     },
     {
       "slug": "zakra-furniture",
@@ -906,7 +947,11 @@
           "Let the owner change the catalogue"
         ],
         "reflection": "A template is a set of decisions that someone else keeps using. Its quality becomes clearer under ordinary content variation than under a perfectly art-directed demo. The next review needs varied catalogue fixtures; checkout behavior and sales performance are outside this design account."
-      }
+      },
+      "evaluation": [
+        "Replace demo content with long product names, inconsistent photograph proportions and missing descriptions; check that the catalogue hierarchy survives.",
+        "Ask a site owner to edit a category and product card, then inspect the result on a narrow screen without manually repairing the layout."
+      ]
     },
     {
       "slug": "neverwinter-parser",
@@ -1001,6 +1046,10 @@
           "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/package.json",
           "Read the Electron application and runtime manifest"
         ]
+      ],
+      "evaluation": [
+        "Trace one displayed metric back to known combat events and the documented calculation rule.",
+        "Use empty, malformed and interrupted log fixtures before evaluating parsing correctness, session recovery or speed."
       ]
     },
     {
@@ -1092,6 +1141,10 @@
           "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
           "Follow the Sass entry point"
         ]
+      ],
+      "evaluation": [
+        "Ask a developer unfamiliar with the archive to locate the source styles, build entry point and generated output.",
+        "Review upstream attribution and dependency age before deciding what can be learned from the structure or reused in a maintained project."
       ]
     }
   ]

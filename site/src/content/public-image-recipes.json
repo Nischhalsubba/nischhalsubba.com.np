@@ -20,64 +20,6 @@
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
   },
   {
-    "id": "yarsha-token-selection",
-    "project": "Yarsha",
-    "fileKey": "pYismUGSJo9vLjViMjZENz",
-    "nodeId": "6092:253788",
-    "crop": null,
-    "redactions": [
-      [
-        260,
-        253,
-        352,
-        303
-      ],
-      [
-        260,
-        333,
-        352,
-        383
-      ],
-      [
-        260,
-        413,
-        352,
-        463
-      ],
-      [
-        260,
-        493,
-        352,
-        543
-      ],
-      [
-        260,
-        573,
-        352,
-        623
-      ],
-      [
-        260,
-        653,
-        352,
-        703
-      ],
-      [
-        260,
-        733,
-        352,
-        783
-      ]
-    ],
-    "alt": "Yarsha token-selection design offers token and NFT tabs, search and asset names with symbols; balance column redacted.",
-    "caption": "Source screen from Final Mobile Design. Balance and change values are redacted; asset names and symbols illustrate design structure, not holdings or investment information.",
-    "privacy_review": "BALANCE_COLUMN_REDACTED",
-    "presentation": "Native screen with disclosed redaction",
-    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253788.png",
-    "source_sha256": "923cfe61006fb6b39fb2f2b670993674280a800849c32118613ae25171e0db87",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
-  },
-  {
     "id": "zapp-parcel-details",
     "project": "Zapp Today",
     "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
@@ -110,33 +52,6 @@
     "nodeId": "160:387",
     "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-387.png",
     "source_sha256": "cabfdf00f4b319d966da9f6a45015bc9793dd5c4d3242dc22dee864df5b5a6d9",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
-  },
-  {
-    "id": "pihub-investor-products",
-    "crop": [
-      265,
-      125,
-      1375,
-      991
-    ],
-    "redactions": [
-      [
-        505,
-        222,
-        928,
-        780
-      ]
-    ],
-    "alt": "piHub investor product list places service and industry beside an awaiting-approval status. Financial columns are redacted.",
-    "caption": "Investor product-list design. Financial values are redacted; repeated status labels are prototype data, not investment or approval results.",
-    "privacy_review": "FINANCIAL_COLUMNS_REDACTED;NO_PERSONAL_IDENTIFIERS",
-    "presentation": "Redacted product-list crop",
-    "project": "piHub",
-    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
-    "nodeId": "2:1272",
-    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-2/2-1272.png",
-    "source_sha256": "b89f8ba1fd7bb075e603dd9949214a34c3308bfd77db62a23694fbf42d72ebbb",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
   },
   {
@@ -176,69 +91,22 @@
   },
   {
     "id": "zapp-delivery-complete",
-    "crop": null,
-    "redactions": [
-      [
-        28,
-        191,
-        180,
-        218
-      ]
+    "crop": [
+      0,
+      275,
+      402,
+      555
     ],
-    "alt": "Zapp delivery-completion design separates the completed handoff from settlement and provides a return-to-dashboard action. The sample delivery identifier is redacted.",
-    "caption": "Driver completion design, explicitly labeled as a demonstration. The sample identifier is redacted. Settlement and earnings still require verified server records.",
-    "privacy_review": "DELIVERY_IDENTIFIER_REDACTED;NO_PERSONAL_DATA",
-    "presentation": "Redacted driver prototype screen",
+    "redactions": [],
+    "alt": "Zapp completion detail offers Return to availability and Return to dashboard beneath a demonstration notice.",
+    "caption": "Completion and next-action detail from the driver prototype. The sample delivery identifier is outside the crop. The design explicitly distinguishes demonstration completion from verified settlement.",
+    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
+    "presentation": "Focused original-screen detail",
     "project": "Zapp Today",
     "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
     "nodeId": "20:26",
     "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/20-26.png",
     "source_sha256": "11fb4db28ef295cdfaf336e0e41bb3bc6447eee192e15dcfff48a5af1caf148f",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
-  },
-  {
-    "id": "yarsha-transaction-detail",
-    "crop": [
-      0,
-      270,
-      375,
-      812
-    ],
-    "redactions": [
-      [
-        260,
-        15,
-        360,
-        55
-      ],
-      [
-        205,
-        55,
-        360,
-        91
-      ],
-      [
-        195,
-        128,
-        365,
-        158
-      ],
-      [
-        236,
-        167,
-        362,
-        201
-      ]
-    ],
-    "alt": "Yarsha transaction-detail panel separates spent and received assets, destination and network fee, with an external explorer action. Values and address are redacted.",
-    "caption": "Cropped transaction-detail design. Amounts, destination and fee are redacted. Explorer wording is retained from the source and needs chain-specific review before implementation.",
-    "privacy_review": "AMOUNTS_ADDRESS_FEE_REDACTED;ARTWORK_EXCLUDED",
-    "presentation": "Redacted transaction-detail crop",
-    "project": "Yarsha",
-    "fileKey": "pYismUGSJo9vLjViMjZENz",
-    "nodeId": "6092:262038",
-    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-262038.png",
-    "source_sha256": "a4c50043c42fb4320ef1c41ab31043114513d1c4275bb9b1574bd75a42ec0bdc",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
   },
   {
@@ -320,5 +188,65 @@
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
     "privacy_review": "VISUALLY_REVIEWED_EMPTY_FORM_ONLY",
     "presentation": "Cropped historical Figma design screen"
+  },
+  {
+    "id": "orkest-lead-list",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "160:380",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-380.png",
+    "source_sha256": "81a06b117f8d3a2d7d5c7026317b6c3290e4c84f50c3f5d35e49af8410345989",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "crop": [
+      275,
+      331,
+      1408,
+      393
+    ],
+    "redactions": [],
+    "alt": "Orkest ownership views All leads, My leads and Unassigned sit alongside search, Filters and Export.",
+    "caption": "Focused crop of the original CRM ownership toolbar. Record identities and summary values are outside the crop.",
+    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
+    "presentation": "Focused original-screen detail"
+  },
+  {
+    "id": "pihub-application-status",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:9102",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/0-1/2-9102.png",
+    "source_sha256": "69e634a39897a7a40fccf89d0c7eba3604ae23864e35a791d958fb4d3391ceda",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "crop": [
+      1220,
+      195,
+      1375,
+      440
+    ],
+    "redactions": [],
+    "alt": "piHub status column uses the written labels Awaiting Approval and Approved as well as yellow and green treatments.",
+    "caption": "Status-column detail from the original creditor application list. Amounts, dates and request counts are outside the crop; these are designed states, not financial results.",
+    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
+    "presentation": "Focused original-screen detail"
+  },
+  {
+    "id": "yarsha-contact-empty",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253254",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253254.png",
+    "source_sha256": "8e10ae34d8f12ca9656fa1e604581164e5e21ae2b6cf939da4230a7d28cc5aa7",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "crop": [
+      0,
+      150,
+      375,
+      812
+    ],
+    "redactions": [],
+    "alt": "Yarsha Contacts and Invite tabs sit above a No contact found message and the on-screen keyboard.",
+    "caption": "Contact-search empty-state detail from Final Mobile Design. The entered search value is outside the crop; recovery options and keyboard context remain visible.",
+    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
+    "presentation": "Focused original-screen detail"
   }
 ]

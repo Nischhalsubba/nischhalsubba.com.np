@@ -37,43 +37,6 @@
     "socialSrc": "/assets/images/evidence/orkest-lead-capture-social-328c98ecdd3e.png"
   },
   {
-    "id": "orkest-lead-list",
-    "project": "Orkest HQ",
-    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
-    "nodeId": "160:380",
-    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-380.png",
-    "source_sha256": "81a06b117f8d3a2d7d5c7026317b6c3290e4c84f50c3f5d35e49af8410345989",
-    "alt": "Orkest CRM leads table combines ownership views, search, filters and labeled qualification states. Record values are redacted.",
-    "caption": "Curated CRM screen crop; record identities, organizations and summary values are redacted. Status labels and navigation are retained.",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "REDACTED",
-    "presentation": "Curated crop",
-    "variants": [
-      {
-        "src": "/assets/images/evidence/orkest-lead-list-480-e1f0ee5674ff.webp",
-        "width": 480,
-        "height": 397,
-        "bytes": 11706,
-        "sha256": "e1f0ee5674ffaa4827fbfebdee96cd3d4bcf7133a14a2f756fea6688c12a30e6"
-      },
-      {
-        "src": "/assets/images/evidence/orkest-lead-list-800-fea468c75ee2.webp",
-        "width": 800,
-        "height": 662,
-        "bytes": 24672,
-        "sha256": "fea468c75ee2811a700b99e9adbc1fc561d040a0b6001d3f1f5d733b60a333ce"
-      },
-      {
-        "src": "/assets/images/evidence/orkest-lead-list-1173-d53f9bc4799e.webp",
-        "width": 1173,
-        "height": 970,
-        "bytes": 40794,
-        "sha256": "d53f9bc4799e682897275e3d1cda31d36c869988d7c4612c7e25a8d2b12abf26"
-      }
-    ],
-    "socialSrc": "/assets/images/evidence/orkest-lead-list-social-012fcfc647f9.png"
-  },
-  {
     "id": "zapp-account-entry",
     "project": "Zapp Today",
     "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
@@ -95,66 +58,6 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/zapp-account-entry-social-c438ffdcc1bc.png"
-  },
-  {
-    "id": "pihub-application-status",
-    "project": "piHub",
-    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
-    "nodeId": "2:9102",
-    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/0-1/2-9102.png",
-    "source_sha256": "69e634a39897a7a40fccf89d0c7eba3604ae23864e35a791d958fb4d3391ceda",
-    "alt": "piHub application list shows service, industry and explicit approved or awaiting-approval statuses; dates, counts and financial values are redacted.",
-    "caption": "Creditor application-list design. Dates, request counts and amounts are redacted; these rows are not reported business results.",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "REDACTED",
-    "presentation": "Redacted screen",
-    "variants": [
-      {
-        "src": "/assets/images/evidence/pihub-application-status-480-c94c355a4456.webp",
-        "width": 480,
-        "height": 317,
-        "bytes": 6366,
-        "sha256": "c94c355a4456d30bad6755f26031e08865443041d014246010bf645b8b607774"
-      },
-      {
-        "src": "/assets/images/evidence/pihub-application-status-800-1cd34b589092.webp",
-        "width": 800,
-        "height": 529,
-        "bytes": 12424,
-        "sha256": "1cd34b589092bf737b291408198af8d63974c070e4f37c707bf4e775c7b5ed64"
-      },
-      {
-        "src": "/assets/images/evidence/pihub-application-status-1200-dd73a6cea677.webp",
-        "width": 1200,
-        "height": 793,
-        "bytes": 23556,
-        "sha256": "dd73a6cea6772cf9324a629b4a2cab2be797f497d8c6004f4751a994b153fc0a"
-      }
-    ],
-    "socialSrc": "/assets/images/evidence/pihub-application-status-social-9fb091db2490.png"
-  },
-  {
-    "id": "yarsha-contact-empty",
-    "project": "Yarsha",
-    "fileKey": "pYismUGSJo9vLjViMjZENz",
-    "nodeId": "6092:253254",
-    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253254.png",
-    "source_sha256": "8e10ae34d8f12ca9656fa1e604581164e5e21ae2b6cf939da4230a7d28cc5aa7",
-    "alt": "Yarsha contact search shows a no-contact-found message, Contacts and Invite tabs, and the on-screen keyboard. The search value is redacted.",
-    "caption": "Final Mobile Design page: a contact-search empty state. The entered name is redacted. This screen supports a discussion of recovery options; it does not demonstrate a wallet transaction.",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "REDACTED",
-    "presentation": "Redacted screen",
-    "variants": [
-      {
-        "src": "/assets/images/evidence/yarsha-contact-empty-375-70911f32a346.webp",
-        "width": 375,
-        "height": 812,
-        "bytes": 15398,
-        "sha256": "70911f32a346ad40ab384845d9c9644c3087202ee175ec5f2b6eda85261710ea"
-      }
-    ],
-    "socialSrc": "/assets/images/evidence/yarsha-contact-empty-social-566a184106ac.png"
   },
   {
     "id": "morajaa-service-process",
@@ -192,29 +95,6 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/morajaa-service-process-social-e3a01e3ade62.png"
-  },
-  {
-    "id": "yarsha-token-selection",
-    "project": "Yarsha",
-    "fileKey": "pYismUGSJo9vLjViMjZENz",
-    "nodeId": "6092:253788",
-    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253788.png",
-    "source_sha256": "923cfe61006fb6b39fb2f2b670993674280a800849c32118613ae25171e0db87",
-    "alt": "Yarsha token-selection design offers token and NFT tabs, search and asset names with symbols; balance column redacted.",
-    "caption": "Source screen from Final Mobile Design. Balance and change values are redacted; asset names and symbols illustrate design structure, not holdings or investment information.",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "BALANCE_COLUMN_REDACTED",
-    "presentation": "Native screen with disclosed redaction",
-    "variants": [
-      {
-        "src": "/assets/images/evidence/yarsha-token-selection-375-cff2cac145aa.webp",
-        "width": 375,
-        "height": 812,
-        "bytes": 13688,
-        "sha256": "cff2cac145aa2d37a3f56670d5829d60ba141314746705bf5e462b3f46f8c136"
-      }
-    ],
-    "socialSrc": "/assets/images/evidence/yarsha-token-selection-social-d9e81126e0ab.png"
   },
   {
     "id": "zapp-parcel-details",
@@ -261,43 +141,6 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/orkest-conversion-readiness-social-598faa672fad.png"
-  },
-  {
-    "id": "pihub-investor-products",
-    "project": "piHub",
-    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
-    "nodeId": "2:1272",
-    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-2/2-1272.png",
-    "source_sha256": "b89f8ba1fd7bb075e603dd9949214a34c3308bfd77db62a23694fbf42d72ebbb",
-    "alt": "piHub investor product list places service and industry beside an awaiting-approval status. Financial columns are redacted.",
-    "caption": "Investor product-list design. Financial values are redacted; repeated status labels are prototype data, not investment or approval results.",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "FINANCIAL_COLUMNS_REDACTED;NO_PERSONAL_IDENTIFIERS",
-    "presentation": "Redacted product-list crop",
-    "variants": [
-      {
-        "src": "/assets/images/evidence/pihub-investor-products-480-15e864869c67.webp",
-        "width": 480,
-        "height": 374,
-        "bytes": 10018,
-        "sha256": "15e864869c677865360542dba26fae5c341acc165b391a08349f41cf58ec3e90"
-      },
-      {
-        "src": "/assets/images/evidence/pihub-investor-products-800-00987f8a0873.webp",
-        "width": 800,
-        "height": 624,
-        "bytes": 23304,
-        "sha256": "00987f8a08731009cd2d29a68ab999e96e9081832fe803f6d4a90485fe8dd7ad"
-      },
-      {
-        "src": "/assets/images/evidence/pihub-investor-products-1110-3ef837c49a66.webp",
-        "width": 1110,
-        "height": 866,
-        "bytes": 38144,
-        "sha256": "3ef837c49a6642ec980ba486a891966b8a369fed7871ec9f9d65804a1007716a"
-      }
-    ],
-    "socialSrc": "/assets/images/evidence/pihub-investor-products-social-107ba1865b74.png"
   },
   {
     "id": "pihub-access-denied",
@@ -358,52 +201,6 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/zapp-driver-next-stop-social-e87b5d97b250.png"
-  },
-  {
-    "id": "zapp-delivery-complete",
-    "project": "Zapp Today",
-    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
-    "nodeId": "20:26",
-    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/20-26.png",
-    "source_sha256": "11fb4db28ef295cdfaf336e0e41bb3bc6447eee192e15dcfff48a5af1caf148f",
-    "alt": "Zapp delivery-completion design separates the completed handoff from settlement and provides a return-to-dashboard action. The sample delivery identifier is redacted.",
-    "caption": "Driver completion design, explicitly labeled as a demonstration. The sample identifier is redacted. Settlement and earnings still require verified server records.",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "DELIVERY_IDENTIFIER_REDACTED;NO_PERSONAL_DATA",
-    "presentation": "Redacted driver prototype screen",
-    "variants": [
-      {
-        "src": "/assets/images/evidence/zapp-delivery-complete-402-ef77d4f4fcd7.webp",
-        "width": 402,
-        "height": 874,
-        "bytes": 18388,
-        "sha256": "ef77d4f4fcd75ec9f9a2bf04139101ad9b9879b9614155befca5dedd2f735f86"
-      }
-    ],
-    "socialSrc": "/assets/images/evidence/zapp-delivery-complete-social-086bb273c003.png"
-  },
-  {
-    "id": "yarsha-transaction-detail",
-    "project": "Yarsha",
-    "fileKey": "pYismUGSJo9vLjViMjZENz",
-    "nodeId": "6092:262038",
-    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-262038.png",
-    "source_sha256": "a4c50043c42fb4320ef1c41ab31043114513d1c4275bb9b1574bd75a42ec0bdc",
-    "alt": "Yarsha transaction-detail panel separates spent and received assets, destination and network fee, with an external explorer action. Values and address are redacted.",
-    "caption": "Cropped transaction-detail design. Amounts, destination and fee are redacted. Explorer wording is retained from the source and needs chain-specific review before implementation.",
-    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "AMOUNTS_ADDRESS_FEE_REDACTED;ARTWORK_EXCLUDED",
-    "presentation": "Redacted transaction-detail crop",
-    "variants": [
-      {
-        "src": "/assets/images/evidence/yarsha-transaction-detail-375-591933797f29.webp",
-        "width": 375,
-        "height": 542,
-        "bytes": 5974,
-        "sha256": "591933797f2987343923776a43a191826bc728f162acad16d4a6cf30ef720f28"
-      }
-    ],
-    "socialSrc": "/assets/images/evidence/yarsha-transaction-detail-social-e130490c9d84.png"
   },
   {
     "id": "masteriyo-first-content",
@@ -589,5 +386,111 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/hamro-idea-contact-form-social-5e6e97c2f8b6.png"
+  },
+  {
+    "id": "zapp-delivery-complete",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "20:26",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/20-26.png",
+    "source_sha256": "11fb4db28ef295cdfaf336e0e41bb3bc6447eee192e15dcfff48a5af1caf148f",
+    "alt": "Zapp completion detail offers Return to availability and Return to dashboard beneath a demonstration notice.",
+    "caption": "Completion and next-action detail from the driver prototype. The sample delivery identifier is outside the crop. The design explicitly distinguishes demonstration completion from verified settlement.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
+    "presentation": "Focused original-screen detail",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-delivery-complete-402-cd4df88584ad.webp",
+        "width": 402,
+        "height": 280,
+        "bytes": 10724,
+        "sha256": "cd4df88584adc21cf44df0fe815413357c2e7b7c6984e380fa47e167832d34b6"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-delivery-complete-social-c797031a660e.png"
+  },
+  {
+    "id": "orkest-lead-list",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "160:380",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-380.png",
+    "source_sha256": "81a06b117f8d3a2d7d5c7026317b6c3290e4c84f50c3f5d35e49af8410345989",
+    "alt": "Orkest ownership views All leads, My leads and Unassigned sit alongside search, Filters and Export.",
+    "caption": "Focused crop of the original CRM ownership toolbar. Record identities and summary values are outside the crop.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
+    "presentation": "Focused original-screen detail",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/orkest-lead-list-480-8b886eae9a35.webp",
+        "width": 480,
+        "height": 26,
+        "bytes": 1172,
+        "sha256": "8b886eae9a35315f34e17bdc0f07962bd431da6e8497555cc7114655423d8e6d"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-list-800-b58076088e12.webp",
+        "width": 800,
+        "height": 44,
+        "bytes": 2302,
+        "sha256": "b58076088e121cfc55b04a8372d73b69c4cf4986d1620753cfb2afaacbebcec1"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-list-1133-27106e81aa23.webp",
+        "width": 1133,
+        "height": 62,
+        "bytes": 3230,
+        "sha256": "27106e81aa23863fd7fc3df103906b4d00b626d7d0bdb7659297b89be31f2e08"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/orkest-lead-list-social-db83d80fd416.png"
+  },
+  {
+    "id": "pihub-application-status",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:9102",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/0-1/2-9102.png",
+    "source_sha256": "69e634a39897a7a40fccf89d0c7eba3604ae23864e35a791d958fb4d3391ceda",
+    "alt": "piHub status column uses the written labels Awaiting Approval and Approved as well as yellow and green treatments.",
+    "caption": "Status-column detail from the original creditor application list. Amounts, dates and request counts are outside the crop; these are designed states, not financial results.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
+    "presentation": "Focused original-screen detail",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-application-status-155-47a194cd5058.webp",
+        "width": 155,
+        "height": 245,
+        "bytes": 3454,
+        "sha256": "47a194cd50580cb18439c9922133eac9d6ad0c55233e43b8a791f5cbe81542b7"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-application-status-social-86250c587e67.png"
+  },
+  {
+    "id": "yarsha-contact-empty",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253254",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253254.png",
+    "source_sha256": "8e10ae34d8f12ca9656fa1e604581164e5e21ae2b6cf939da4230a7d28cc5aa7",
+    "alt": "Yarsha Contacts and Invite tabs sit above a No contact found message and the on-screen keyboard.",
+    "caption": "Contact-search empty-state detail from Final Mobile Design. The entered search value is outside the crop; recovery options and keyboard context remain visible.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
+    "presentation": "Focused original-screen detail",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-contact-empty-375-0c7e45b52feb.webp",
+        "width": 375,
+        "height": 662,
+        "bytes": 11150,
+        "sha256": "0c7e45b52feb78c7ff9b1e6c8bde008a9cb640b6e868447e8c2da05395e097ce"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-contact-empty-social-58bee6a5d364.png"
   }
 ]

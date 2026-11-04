@@ -31,6 +31,8 @@ for (const data of [...projects, ...articles]) {
   assert.doesNotMatch(html, /[\x00-\x08\x0b\x0c\x0e-\x1f]/);
   const sections = isProject ? data.decisions : data.sections;
   if (isProject) {
+    assert.equal(data.evaluation?.length, 2, 'Each case needs two specific proposed evaluation tasks');
+    assert.doesNotMatch(html, /<h2[^>]*data-workspace-decode/, 'Body headings must be immediately readable');
     assert.ok(data.journey?.question && data.journey?.opening && data.journey?.reflection, 'A case needs a product question, connected account and reflection');
     assert.equal(data.journey.steps.length, sections.length, 'Each journey step must resolve to a chapter');
     assert.match(html, /aria-label="Case study chapters"/);
