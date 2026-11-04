@@ -3323,7 +3323,8 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     new IntersectionObserver(([e]) => { if (e.isIntersecting && !seen) { seen = true; t0 = performance.now(); } }, { threshold: .2 }).observe(cv);
     (function loop(now) {
       requestAnimationFrame(loop);
-      const r = cv.getBoundingClientRect(); if (!seen || r.bottom < 0 || r.top > innerHeight || !P.length) return;
+      if (!seen || document.hidden || !P.length) return;
+      const r = cv.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
       ctx.clearRect(0, 0, cv.width, cv.height);
       const R2 = (120 * d) ** 2, hot = [];
       ctx.fillStyle = '#F4F4F2';

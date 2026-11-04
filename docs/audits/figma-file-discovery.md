@@ -17,50 +17,8 @@ The private inventory includes full frame/section labels. The public CSV withhol
 | Zapp Today | `j0HdOWReS3ZxCJf0SgYPci` | LEGACY PROTOTYPES | Legacy prototypes, not Zapp 2.0 canonical |
 | Masteriyo LMS | `FdQeGFEGG7kP4q4FkDHQYP` | LEGACY COPY | Legacy similar file; do not assume identical to user new primary |
 
-## Actual bytes and remaining work
+## Current counts — 4 November 2026
 
-{
-  "known_files": 10,
-  "pages_discovered": 103,
-  "pages_traversed": 93,
-  "pages_blocked": 10,
-  "outer_candidates": 6613,
-  "private_archive_candidates": 4063,
-  "persisted_screen_originals": 147,
-  "queued": 3916,
-  "excluded": 2550,
-  "account_wide_complete": false,
-  "persisted_png_files": 147,
-  "unique_png_hashes": 147,
-  "duplicate_png_files": 0,
-  "public_curated_illustrations": 5,
-  "public_derivative_files": 16,
-  "figure_placements": 10,
-  "case_studies_with_new_figma_figures": 4,
-  "articles_with_new_figma_figures": 5,
-  "production_images_published": 0
-}
+3,889 original PNGs persisted, 3,554 hash unique and 335 duplicate-node exports. 172 known eligible legacy Project-Iron candidates remain plan limited. The public frame CSV remains the earlier 2,680-original checkpoint; the current full inventory stays private in continuation archive v9. This does not establish account-wide completeness or publication clearance for every screen.
 
-Counts refer to saved PNG files with signatures and native dimensions checked, not metadata responses or render URLs. Hash-unique images are counted separately from node exports. Five privacy-reviewed illustrations are present in the review branch, in ten figure placements across four cases and five articles. Production publication count is zero: this PR is not merged/deployed.
-
-The temporary download path returned HTTP 202 with empty bodies in this environment. Authenticated inline screenshots recovered long Morajaa pages at 1441×6959 and other natural dimensions; the Plugin API also exported native screen PNGs. A large Plugin API JSON return was rejected by its explicit 48,000-byte limit; no such failed response is counted as a saved image. No temporary asset URL appears in production HTML.
-
-The broader archive queue is incomplete. Rows marked QUEUED_NOT_EXPORTED are not claimed as exported or approved. Ten legacy pages remain plan-blocked. Full account discovery is unavailable. `site/scripts/figma/export.py` offers dry-run planning, native PNG REST batches, bounded 429/5xx retries, resume, dimensions and hash logs when an already authorized scoped credential exists privately. No REST credential was present or requested in chat; authenticated REST export execution is NOT VERIFIED. MCP export evidence and private originals are archived separately.
-
-Masteriyo: preserve multi-designer attribution; public reuse clearance remains required for the newly exported screens. Reconwithme: retain as a candidate, not a fifteenth case; no public derivative or case was added. Morajaa: long-frame originals remain private pending editorial segmentation and imagery-rights review. Orkest Screens are kept separate from Prototype copies; Yarsha's final-mobile page is preferred over the published staging anchor. Historical Zapp prototypes are retained and labeled separately; anonymous interactive loading is not verified.
-
-Missing-file list: Mokshya, Designerex, Splashnode, Grid Labs, Hamro Idea and Zakra Furniture — LINK_NOT_FOUND; Neverwinter Parser and SassBoilerplate — NO_FIGMA_ASSET_REQUIRED unless actual design sources are later supplied. Existing code/live references may be stronger proof. No Figma URLs or screenshots are fabricated for these cases.
-
-No Figma sharing, organization, ownership, billing, export restriction or team-policy setting was changed. View access was not treated as publication rights.
-
-## Archive availability after interruption
-
-The execution environment became unavailable during additional native export batches. The 147 PNGs in this committed inventory were verified in the working filesystem at that snapshot. Their durable retention and current recoverability are now UNVERIFIED. Saving a previously verified original through the file-saving service failed because no primary execution environment was available. Do not interpret `PNG_PERSISTED` in the snapshot as a currently downloadable archive. Additional successful batch exports were observed, but a final total and complete archive could not be verified after the interruption.
-
-The public five-illustration asset set is safely committed on GitHub. Raw originals and the full private frame-label inventory were intentionally excluded from this public repository. Recover and verify the working environment before claiming a complete private archive; otherwise re-export from known source IDs using the resumable workflow. No complete-account, complete-export or complete-publication claim is made.
-
-## Recovered execution checkpoint
-
-The interruption section above describes an earlier state. Execution recovered, and the current working archive has 886 fully decodable PNGs, 869 hash-unique. The recovered 740-file private checkpoint was durably saved, with follow-up checkpoint replacement pending. The current JSON/CSV inventory supersedes the historical 147-file count. Eight reviewed illustrations / 24 derivative files are committed for 21 placements across five cases and thirteen articles; production publication remains zero. All fourteen case bodies and twenty-six existing articles were rewritten. 3,177 candidates remain queued; account-wide completeness and full archive visual QA are not claimed.
-
-A 20-render native output probe returned only five inline images. A data-output TAR probe returned no file bytes and is not counted as an archive. REST export can resume against the same project/file/page/node layout but has not executed without privately authorized scoped credentials. Browser workspace listing redirected to sign-in; known-file connector reads remain available.
+14 reviewed illustrations / 40 local derivative files / 37 placements across five cases and 20 articles are in PR #103. They are prepared on the review branch; production publication has not been verified. See `figma-export-summary.json`, `project-evidence-matrix.csv` and `screenshot-to-content-map.csv` for current aggregate and curated-public evidence. No access, sharing or paid plan changes were needed or performed.

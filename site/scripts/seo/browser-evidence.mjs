@@ -54,9 +54,11 @@ try {
     const original = Element.prototype.getBoundingClientRect;
     window.__workLayoutReads = 0;
     window.__aboutLayoutReads = 0;
+    window.__footerLayoutReads = 0;
     Element.prototype.getBoundingClientRect = /** Callback contract: Preserve the native rectangle while counting work-scene reads. Inputs: DOM receiver. Side effects: updates a test-only counter. Returns: native DOMRect. */ function () {
       if (this.id === 'wk') window.__workLayoutReads++;
       if (this.id === 'abx') window.__aboutLayoutReads++;
+      if (this.id === 'ftName') window.__footerLayoutReads++;
       return original.call(this);
     };
   });
@@ -65,11 +67,13 @@ try {
     const away = document.getElementById('wk').getBoundingClientRect().top > innerHeight + 600 && document.getElementById('abx').getBoundingClientRect().top >= innerHeight;
     window.__workLayoutReads = 0;
     window.__aboutLayoutReads = 0;
+    window.__footerLayoutReads = 0;
     return away;
   }).then(/** Callback contract: Require the intended offscreen test precondition. Inputs: flag. Side effects: assertion only. Returns: void. */ away => assert.equal(away,true));
   await motionPage.waitForTimeout(250);
   assert.equal(await motionPage.evaluate(/** Callback contract: Read the isolated work-layout counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__workLayoutReads),0,'Offscreen work scene must not read layout every frame');
   assert.equal(await motionPage.evaluate(/** Callback contract: Read the offscreen About-scene counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__aboutLayoutReads),0,'Offscreen About scene must not read layout every frame');
+  assert.equal(await motionPage.evaluate(/** Callback contract: Read the unseen footer-scene counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__footerLayoutReads),0,'Unseen footer must not read layout every frame');
   await motionPage.evaluate(/** Callback contract: Exercise native navigation into the work scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('work').scrollIntoView({block:'start',behavior:'instant'}));
   await motionPage.waitForFunction(/** Callback contract: Wait for a usable project and completed navigation frame. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('#wkWorld .wf.on .whit')?.tabIndex === 0 && document.querySelector('.tb-t.act')?.dataset.sec === 'work');
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'work');

@@ -1,15 +1,15 @@
 route,evidence,status,contribution_boundary,owner
 /project-yarsha,Primary/current Figma screen evidence,REVIEW_BRANCH_NOT_DEPLOYED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
-/project-mokshya,Existing project references; matching Figma file not established,LINK_NOT_FOUND_OR_NO_FIGMA_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
-/project-hamro-idea,Existing project references; matching Figma file not established,LINK_NOT_FOUND_OR_NO_FIGMA_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
-/project-morajaa,"Final-v2 website screens, private archive",LONG_EXPORTS_PRIVATE_CURATION_PENDING,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
+/project-mokshya,Existing project references; matching Figma file not established,LINK_NOT_FOUND,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
+/project-hamro-idea,Existing project references; matching Figma file not established,LINK_NOT_FOUND,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
+/project-morajaa,Reviewed final-v2 website crop with local derivatives,REVIEW_BRANCH_NOT_DEPLOYED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
 /project-pihub,Primary/current Figma screen evidence,REVIEW_BRANCH_NOT_DEPLOYED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
 /project-masteriyo,Team design file; private exports,PUBLICATION_PERMISSION_NEEDED,Collaborative product-design contribution; no sole-designer claim,Nischhal / rights holders
 /project-zapp,Primary/current Figma screen evidence,REVIEW_BRANCH_NOT_DEPLOYED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
-/project-neverwinter-parser,Existing project references; matching Figma file not established,LINK_NOT_FOUND_OR_NO_FIGMA_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
+/project-neverwinter-parser,Code-focused project; repository artifacts are the appropriate evidence,NO_FIGMA_ASSET_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
 /project-orkest,Primary/current Figma screen evidence,REVIEW_BRANCH_NOT_DEPLOYED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
-/project-splashnode,Existing project references; matching Figma file not established,LINK_NOT_FOUND_OR_NO_FIGMA_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
-/project-grid-labs,Existing project references; matching Figma file not established,LINK_NOT_FOUND_OR_NO_FIGMA_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
-/project-zakra-furniture,Existing project references; matching Figma file not established,LINK_NOT_FOUND_OR_NO_FIGMA_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
-/project-designerex,Existing project references; matching Figma file not established,LINK_NOT_FOUND_OR_NO_FIGMA_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
-/project-sassboilerplate,Existing project references; matching Figma file not established,LINK_NOT_FOUND_OR_NO_FIGMA_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
+/project-splashnode,Existing project references; matching Figma file not established,LINK_NOT_FOUND,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
+/project-grid-labs,Existing project references; matching Figma file not established,LINK_NOT_FOUND,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
+/project-zakra-furniture,Existing project references; matching Figma file not established,LINK_NOT_FOUND,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
+/project-designerex,Existing project references; matching Figma file not established,LINK_NOT_FOUND,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders
+/project-sassboilerplate,Code-focused project; repository artifacts are the appropriate evidence,NO_FIGMA_ASSET_REQUIRED,"Existing role retained; no new research, shipped or quantitative outcome claims",Nischhal / rights holders

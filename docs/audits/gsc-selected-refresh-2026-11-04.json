@@ -99,5 +99,151 @@
         ]
       }
     }
+  },
+  {
+    "url": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-product-clarity",
+    "result": {
+      "indexStatusResult": {
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-11-03T23:03:53Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-product-clarity",
+        "userCanonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-product-clarity",
+        "referringUrls": [
+          "https://nischhalsubba.com.np/blog/"
+        ],
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      },
+      "richResultsResult": {
+        "verdict": "PASS",
+        "detectedItems": [
+          {
+            "richResultType": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "checkedAt": "2026-11-04"
+  },
+  {
+    "url": "https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist",
+    "result": {
+      "indexStatusResult": {
+        "verdict": "NEUTRAL",
+        "coverageState": "Crawled - currently not indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-09-28T16:03:17Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist",
+        "userCanonical": "https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist",
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      }
+    },
+    "checkedAt": "2026-11-04"
+  },
+  {
+    "url": "https://nischhalsubba.com.np/blog/web3-wallet-connection-ux",
+    "result": {
+      "indexStatusResult": {
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-11-03T14:06:57Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/blog/web3-wallet-connection-ux",
+        "userCanonical": "https://nischhalsubba.com.np/blog/web3-wallet-connection-ux",
+        "referringUrls": [
+          "https://nischhalsubba.com.np/blog/"
+        ],
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      },
+      "richResultsResult": {
+        "verdict": "PASS",
+        "detectedItems": [
+          {
+            "richResultType": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "checkedAt": "2026-11-04"
+  },
+  {
+    "url": "https://nischhalsubba.com.np/project-zakra-furniture",
+    "result": {
+      "indexStatusResult": {
+        "verdict": "NEUTRAL",
+        "coverageState": "Crawled - currently not indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-09-02T05:16:08Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/project-zakra-furniture",
+        "userCanonical": "https://nischhalsubba.com.np/project-zakra-furniture",
+        "sitemap": [
+          "https://nischhalsubba.com.np/sitemap.xml"
+        ],
+        "referringUrls": [
+          "https://nischhalsubba.com.np/project-zakra-furniture.html"
+        ],
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      }
+    },
+    "checkedAt": "2026-11-04"
+  },
+  {
+    "url": "https://nischhalsubba.com.np/saas-ux-designer",
+    "result": {
+      "indexStatusResult": {
+        "verdict": "NEUTRAL",
+        "coverageState": "Crawled - currently not indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-09-25T23:29:35Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/saas-ux-designer",
+        "userCanonical": "https://nischhalsubba.com.np/saas-ux-designer",
+        "sitemap": [
+          "https://nischhalsubba.com.np/sitemap.xml"
+        ],
+        "referringUrls": [
+          "https://nischhalsubba.com.np/services",
+          "https://nischhalsubba.com.np/saas-ux-designer.html",
+          "https://nischhalsubba.com.np/"
+        ],
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      }
+    },
+    "checkedAt": "2026-11-04"
   }
 ]
