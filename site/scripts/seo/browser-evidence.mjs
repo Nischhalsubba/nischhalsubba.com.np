@@ -104,7 +104,8 @@ try {
   await motionPage.waitForFunction(/** Callback contract: Verify the contact field paints when visible. Inputs: none. Side effects: reads canvas pixels. Returns: painted flag. */ () => document.querySelector('#cpDots').getContext('2d').getImageData(0,0,30,30).data.some((value,index) => index%4===3 && value>0));
   const chapters = ['top','about','exp','work','services','process','testi','pricing','contact'];
   for (const id of [...chapters, ...chapters.slice(0,-1).reverse()]) {
-    await motionPage.evaluate(/** Callback contract: Exercise every chapter in both directions. Inputs: chapter ID. Side effects: scrolls the page. Returns: void. */ id => document.getElementById(id).scrollIntoView({block:'start',behavior:'instant'}),id);
+    console.log('[chapter-navigation]',id);
+    await motionPage.evaluate(/** Callback contract: Exercise every chapter in both directions, matching the Home control's explicit zero destination. Inputs: chapter ID. Side effects: scrolls the page. Returns: void. */ id => { if (id === 'top') scrollTo({top:0,behavior:'instant'}); else document.getElementById(id).scrollIntoView({block:'start',behavior:'instant'}); },id);
     await motionPage.waitForFunction(/** Callback contract: Wait for the current chapter indicator. Inputs: chapter ID. Side effects: none. Returns: readiness. */ id => document.querySelector('.tb-t.act')?.dataset.sec === id,id);
     assert.equal(await motionPage.locator('#'+id).isVisible(),true,'Navigated chapter must remain visible: '+id);
   }
