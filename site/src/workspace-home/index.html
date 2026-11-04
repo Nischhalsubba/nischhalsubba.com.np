@@ -2133,10 +2133,26 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
   if (!reduce && window.Lenis) {
     lenis = new Lenis({ duration: 1.15, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
   }
+  /** Function contract: navigationTop
+   * Purpose: Resolve chapter links from normal document flow even after their sticky sheets are covered.
+   * Inputs: destination element. Side effects: reads current layout on navigation only. Returns: document scroll position.
+   */
+  function navigationTop(el) {
+    if (el === document.body || el.id === 'top') return 0;
+    const layer = el.closest('.layer');
+    if (!layer) return Math.max(0, el.getBoundingClientRect().top + scrollY);
+    const stack = layer.parentElement;
+    let top = stack.getBoundingClientRect().top + scrollY;
+    for (const sibling of stack.children) {
+      if (sibling === layer) break;
+      top += sibling.getBoundingClientRect().height;
+    }
+    return Math.max(0, top + el.getBoundingClientRect().top - layer.getBoundingClientRect().top);
+  }
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const id = a.getAttribute('href'); const el = id === '#top' ? document.body : $(id);
     if (!el) return; e.preventDefault();
-    if (lenis) lenis.scrollTo(id === '#top' ? 0 : el, { offset: 0, duration: 1.6 }); else (id === '#top' ? scrollTo({ top: 0, behavior: 'smooth' }) : el.scrollIntoView({ behavior: 'smooth' }));
+    if (lenis) lenis.scrollTo(navigationTop(el), { offset: 0, duration: 1.6 }); else scrollTo({ top: navigationTop(el), behavior: reduce ? 'auto' : 'smooth' });
   }));
 
   /* ---------- decode headings ---------- */
@@ -3679,7 +3695,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     $('#shCopy').addEventListener('click', copyEmail);
     // ⌘K / Ctrl+K: jump here and start typing
     addEventListener('keydown', e => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); if (lenis) lenis.scrollTo(sec, { duration: 1.2 }); else sec.scrollIntoView({ behavior: 'smooth' }); setTimeout(() => { open(false); em.focus({ preventScroll: true }); }, 1300); }
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); if (lenis) lenis.scrollTo(navigationTop(sec), { duration: 1.2 }); else scrollTo({ top: navigationTop(sec), behavior: reduce ? 'auto' : 'smooth' }); setTimeout(() => { open(false); em.focus({ preventScroll: true }); }, 1300); }
     });
     // spotlight inside the dialog
     let mx = -1e4, my = -1e4;
@@ -3832,7 +3848,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
       const items = added.map(i => ({ n: S[i].n, sh: S[i].sh, price: money(S[i].p) }));
       const detail = { items, name: items.length === 1 ? items[0].sh : `${items[0].sh} + ${items.length - 1} more`, total: money(added.reduce((t, i) => t + S[i].p, 0)), weeks: weeks() };
       const sec = $('#contact'), target = $('#shFn'), b = goB.getBoundingClientRect();
-      if (lenis) lenis.scrollTo(sec, { duration: 1.4 }); else sec.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      if (lenis) lenis.scrollTo(navigationTop(sec), { duration: 1.4 }); else scrollTo({ top: navigationTop(sec), behavior: reduce ? 'auto' : 'smooth' });
       if (reduce) { document.dispatchEvent(new CustomEvent('hr:project', { detail })); return; }
       const fly = document.createElement('div'); fly.className = 'pr-fly'; fly.textContent = `◇ ${detail.name}`; document.body.appendChild(fly);
       const t0 = performance.now(), D = 1450;
@@ -3863,7 +3879,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
   addEventListener('keydown', ev => {
     if (ev.metaKey || ev.ctrlKey || !ev.altKey || /input|textarea|select/i.test(document.activeElement.tagName) || document.activeElement.isContentEditable) return;
     const id = KEYS[ev.key.toLowerCase()]; if (!id) return; const el = document.getElementById(id); if (!el) return; ev.preventDefault();
-    if (lenis) lenis.scrollTo(el); else el.scrollIntoView({ behavior: 'smooth' });
+    if (lenis) lenis.scrollTo(navigationTop(el)); else scrollTo({ top: navigationTop(el), behavior: reduce ? 'auto' : 'smooth' });
   });
   // phone menu: the square Menu box opens the section list
   (() => {
