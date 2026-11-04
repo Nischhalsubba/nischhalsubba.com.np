@@ -20,3 +20,7 @@ All fourteen canonical cases remain. Screen evidence does not prove research, sh
 | /project-sassboilerplate | Existing project references; matching Figma file not established | LINK_NOT_FOUND_OR_NO_FIGMA_REQUIRED | Existing role retained; no new research, shipped or quantitative outcome claims |
 
 All 14 narratives rewritten; eight reviewed illustrations across five cases. Source-matched route/heading detail is in screenshot-to-content-map.csv. Existing role statements remain owner-supplied history, not newly verified outcome data.
+
+## Masteriyo permission update — 4 November 2026
+
+The owner confirmed permission to publish reviewed Masteriyo screens with team attribution. The current branch now integrates primary-file nodes 277:1275, 277:1310, 277:1579 and 277:3142 from the already persisted archive. All four were visually reviewed for placeholder content and privacy. They support the course/quiz authoring contribution; no ownership of the whole LMS is claimed. The six missing source links remain pending.

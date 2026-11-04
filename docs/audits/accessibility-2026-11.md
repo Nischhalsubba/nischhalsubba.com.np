@@ -16,3 +16,7 @@ Reference: https://www.w3.org/WAI/WCAG22/quickref/
 ## Verified c295423 CI and follow-up
 
 Run 41765628443 completed 12 representative axe scans with zero reported violations and no recorded browser assertion failures; reflow, image-dialog and normal-motion checks passed. This does not mean every accessibility concern passed: axe marked two aria-prohibited-attr occurrences on the award-badge containers and twelve color-contrast occurrences as incomplete (manual review required). This revision gives the badge containers a group role so their accessible labels have a supported semantic role. Gradient contrast remains unverified manually. No WAVE or real screen-reader session was completed. Follow-up commit CI must verify the new markup.
+
+## Case-study continuation
+
+Chapter links use native fragment navigation to focusable sections, with visible focus treatment. The screenshot dialog opens the largest reviewed derivative. The all-case browser mode checks all fourteen case routes at seven widths, axe at 390/1440px, keyboard chapter activation and modal focus restoration for cases with verified images. Execution pending CI because local Chromium download failed; this is not an actual screen-reader session or completed manual contrast review.

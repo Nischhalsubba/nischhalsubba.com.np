@@ -37,6 +37,7 @@ jobs:
             sleep 1
           done
           node scripts/seo/browser-evidence.mjs --axe-only
+          AUDIT_OUTPUT=tests/seo-evidence/case-studies node scripts/seo/browser-evidence.mjs --axe-only --case-studies
       - name: Measure the unchanged base commit
         if: github.event_name == 'pull_request'
         env:
@@ -66,6 +67,7 @@ jobs:
             site/tests/seo-evidence/results
             site/tests/seo-evidence/baseline
             site/tests/seo-evidence/production
+            site/tests/seo-evidence/case-studies
           retention-days: 14
 
   profile:

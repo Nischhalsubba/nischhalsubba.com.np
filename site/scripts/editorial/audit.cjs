@@ -30,6 +30,15 @@ for (const data of [...projects, ...articles]) {
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
   assert.doesNotMatch(html, /[\x00-\x08\x0b\x0c\x0e-\x1f]/);
   const sections = isProject ? data.decisions : data.sections;
+  if (isProject) {
+    assert.ok(data.journey?.question && data.journey?.opening && data.journey?.reflection, 'A case needs a product question, connected account and reflection');
+    assert.equal(data.journey.steps.length, sections.length, 'Each journey step must resolve to a chapter');
+    assert.match(html, /aria-label="Case study chapters"/);
+    for (const [index, section] of sections.entries()) {
+      assert.ok(section.leadIn && section.tradeoff, 'Explain the transition and trade-off: ' + data.slug);
+      assert.ok(html.includes(`href="#chapter-${index + 1}"`) && html.includes(`id="chapter-${index + 1}"`));
+    }
+  }
   for (const section of sections) {
     assert.ok(html.includes(section.heading.replace(/&/g, '&amp;')));
     if (!section.image) continue;

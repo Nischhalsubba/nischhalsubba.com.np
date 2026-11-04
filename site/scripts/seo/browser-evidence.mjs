@@ -16,7 +16,8 @@ import * as chromeLauncher from 'chrome-launcher';
 const base = (process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173').replace(/\/$/, '');
 const output = process.env.AUDIT_OUTPUT || 'tests/seo-evidence/results';
 fs.mkdirSync(output, { recursive:true });
-const routes = process.argv.includes('--home-only') ? ['/'] : ['/', '/projects', '/project-orkest', '/services', '/blog/', '/blog/figma-handoff-notes-for-developers'];
+const caseStudies = process.argv.includes('--case-studies');
+const routes = caseStudies ? JSON.parse(fs.readFileSync(new URL('../../src/content/portfolio-editorial.json', import.meta.url), 'utf8')).projects.map(/** Callback contract: Select each retained case route. Inputs: project metadata. Side effects: none. Returns: canonical path. */ project => '/project-' + project.slug) : process.argv.includes('--home-only') ? ['/'] : ['/', '/projects', '/project-orkest', '/services', '/blog/', '/blog/figma-handoff-notes-for-developers'];
 const failures = []; const accessibility = []; const performance = [];
 if (!process.argv.includes('--performance-only')) {
 const browser = await chromium.launch({headless:true});
@@ -30,15 +31,22 @@ try {
       await page.evaluate(/** Callback contract: Wait for loaded fonts before measuring settled layout. Inputs: none. Side effects: none. Returns: font readiness. */ () => document.fonts.ready);
       const overflow = await page.evaluate(/** Callback contract: Measure page-level reflow. Inputs: none. Side effects: none. Returns: overflow in CSS pixels. */ () => document.documentElement.scrollWidth-innerWidth);
       if (overflow>2) failures.push(`${width}px ${route}: ${overflow}px overflow`);
+      if (caseStudies && width === 390) {
+        const chapter = page.locator('.editorial-journey a').first();
+        await chapter.focus(); await page.keyboard.press('Enter');
+        assert.equal(new URL(page.url()).hash, '#chapter-1', 'Chapter index must activate from the keyboard');
+        assert.equal(await page.locator('#chapter-1').evaluate(/** Callback contract: Check fragment focus on the chapter target. Inputs: section. Side effects: none. Returns: focus equality. */ section => section === document.activeElement), true);
+      }
       if ([390,1440].includes(width)) {
         const result = await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();
         if(result.violations.length) console.error(JSON.stringify({accessibilityFailure:{route,width,violations:result.violations}}));
         accessibility.push({route,width,violations:result.violations,incomplete:result.incomplete,passes:result.passes.length});
         for (const violation of result.violations) failures.push(`${width}px ${route}: ${violation.id}: ${violation.nodes.map(node=>node.target.join(' ')).join('; ')}`);
       }
-      if (route.includes('project-orkest') && width===390) {
+      if ((caseStudies || route.includes('project-orkest')) && width===390 && await page.locator('.workspace-evidence-figure').count()) {
         const figure = page.locator('.workspace-evidence-figure').first(); await figure.scrollIntoViewIfNeeded();
         await figure.locator('button').click(); await page.locator('#mediaPreview').waitFor({state:'visible'});
+        assert.equal(await page.locator('#mediaPreview img').getAttribute('src'), await figure.locator('img').getAttribute('src'), 'Expansion must load the largest approved derivative');
         await page.keyboard.press('Escape');
         assert.equal(await page.locator('#mediaPreview').evaluate(/** Callback contract: Read native modal state. Inputs: dialog. Side effects: none. Returns: open flag. */ dialog=>dialog.open),false);
         assert.equal(await figure.locator('button').evaluate(/** Callback contract: Verify focus restoration to the image trigger. Inputs: button. Side effects: none. Returns: focus equality. */ button=>button===document.activeElement),true);
@@ -69,6 +77,7 @@ try {
     };
   });
   await motionPage.goto(base+'/',{waitUntil:'networkidle'});
+  assert.equal(await motionPage.locator('#hrIntro').count(), 0, 'Mobile content must not wait for the decorative loading overlay');
   await motionPage.waitForFunction(/** Callback contract: Measure stationary reads after intro, font and adaptive-tier startup settles. Inputs: none. Side effects: none. Returns: readiness. */ () => performance.now() > 10000 && document.fonts.status === 'loaded' && !document.getElementById('hrIntro'));
   const startupPaint = await motionPage.evaluate(/** Callback contract: Read native paint and workspace-start timings. Inputs: none. Side effects: none. Returns: timing evidence. */ () => ({paint:performance.getEntriesByType('paint').find(entry=>entry.name==='first-contentful-paint')?.startTime,init:performance.getEntriesByName('workspace-init-start')[0]?.startTime}));
   assert.ok(Number.isFinite(startupPaint.paint) && Number.isFinite(startupPaint.init) && startupPaint.paint <= startupPaint.init,'Authored content must paint before interaction initialization: '+JSON.stringify(startupPaint));

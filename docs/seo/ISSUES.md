@@ -150,3 +150,12 @@ This section supersedes earlier aggregate counts and performance claims. See `do
 ### c295423 completed CI checkpoint and guarded animation follow-up
 
 All six workflows succeeded. Latest controlled homepage mobile median remains 89 / LCP 2746.70 ms; desktop 99 / LCP 623.31 ms. Twelve axe scans report no violations, with incomplete gradient-contrast and badge-label checks distinguished. This follow-up adds a group role to badge containers and guards Process/contact loops before offscreen geometry reads; failing-before/passing-after callback diagnostics are verified locally, and new browser CI must verify activation. Full measurement ledger: docs/audits/performance-measured-c295423.json. Subsequent final CI status belongs in the PR description; this paragraph is an authoring-time checkpoint.
+
+### Case-study journey continuation, 4 November 2026
+
+- EDITORIAL-JOURNEY: All fourteen retained cases now have project-specific narrative arcs, connected chapters, consequential trade-offs, reflection and accessible chapter links. No invented interview, research chronology, team ownership or outcome metrics.
+- FIGMA-RIGHTS: Owner confirmed Masteriyo publication permission with team attribution in this continuation. Four existing archived primary-file authoring screens visually reviewed; 12 WebP variants plus four social PNGs added. This closes the permission blocker for that curated set, not all frames in the team file.
+- MEDIA-DETAIL: Expansion previously selected the mobile `currentSrc` thumbnail. It now loads the largest approved derivative; new browser assertion checks the chosen URL and focus restoration.
+- PERF-INTRO: Mobile previously executed the full-screen decorative loading canvas before content. Small screens now bypass it. Preserve desktop intro and main hero behavior; measure before signing off performance.
+- QA-ENV: Local Chromium v1243 installation returned truncated ZIP data. Static/full repository validation can run; browser measurements and all-case checks must complete in CI. Do not report attempted browser runs as successful.
+- FIGMA-LINK remains open for six sources; owner will provide links. No source replacements invented.

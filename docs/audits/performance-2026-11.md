@@ -50,3 +50,7 @@ Local final HTML: 348198 bytes / 65986 bytes gzip; runtime: 219676 bytes / 71622
 The final bootstrap waits for a native first-contentful-paint entry when supported, starting immediately if that entry already exists. It schedules initialization once, disconnects the observer, and has a 500 ms deadline plus a frame-based compatibility path. The strict native paint-order assertion remains enabled. A separate reduced-motion context removes optional paint APIs and verifies initialization plus Contact/Credentials/Home navigation.
 
 The execution environment disconnected after a successful 595-file deterministic local validation of the native-paint bootstrap. The additional fallback test's documentation check found one missing contract on an object-property arrow; it is now a named documented function. These recovered changes require CI verification; no new local execution is claimed after the environment became unavailable.
+
+## Mobile decorative intro experiment
+
+The pre-change 7c7c3ba controlled homepage median was mobile 88 / LCP 2779.68ms / TBT 319.5ms / CLS 0; desktop 98 / LCP 823.25ms. The small-screen full-screen loading canvas performs glyph sampling and dot animation before the main experience. This continuation bypasses that overlay at <=700px while preserving desktop intro and the main hero interactions. New performance measurements are required before retaining a success claim. Local Chromium installation failed with a truncated ZIP; no local Lighthouse result was produced. CI is the browser measurement path.

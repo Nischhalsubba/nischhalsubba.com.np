@@ -24,7 +24,9 @@
             "The leads design places All leads, My leads and Unassigned near search and Filters. These views describe ownership; qualification is represented inside the record list. Keeping those concepts separate gives a reviewer two useful questions: whose work is this, and what state is it in?",
             "That separation also sets a handoff requirement. Switching an ownership view should have an explicit rule for existing filters, selection and the result count. The screenshot establishes the hierarchy, while the behavior still needs an agreed contract."
           ],
-          "image": "orkest-lead-list"
+          "image": "orkest-lead-list",
+          "leadIn": "First, the list has to explain whose work is visible.",
+          "tradeoff": "Quick ownership views reduce navigation effort, but need clear rules for filters and selection when the view changes."
         },
         {
           "heading": "Make dependencies visible before saving",
@@ -32,7 +34,9 @@
             "The create-lead design groups contact information and qualification instead of scattering both across an undifferentiated form. Its side panel explains the capture-to-conversion sequence and says that the score is calculated after saving. That is a useful boundary: the interface should not imply that an unsaved value is already a reliable qualification result.",
             "The remaining design-to-engineering questions are concrete: what may a draft omit, when is duplicate checking performed, who may assign an owner, and which values survive a failed save? Those questions belong beside this form rather than in a separate generic handoff document."
           ],
-          "image": "orkest-lead-capture"
+          "image": "orkest-lead-capture",
+          "leadIn": "Once a lead needs to be added, the interface changes from comparison to careful entry.",
+          "tradeoff": "Grouping reduces visual competition; it also makes the required-versus-draft distinction more important."
         },
         {
           "heading": "Reuse grammar where the operational job repeats",
@@ -41,7 +45,9 @@
             "I would judge reuse by whether the next task remains understandable, not by counting identical cards. For CRM, that means keeping the record identity and owner legible while allowing qualification and conversion to receive their own treatment.",
             "The current lead-detail panel makes conversion readiness explicit: core information is complete, and conversion should preserve history while creating a contact and opportunity. That visible promise gives engineering a concrete consistency rule to implement and test."
           ],
-          "image": "orkest-conversion-readiness"
+          "image": "orkest-conversion-readiness",
+          "leadIn": "Saving is an intermediate step. The next design problem is moving the record forward without losing its context.",
+          "tradeoff": "Shared components help orientation, while conversion needs its own consequential action and data rules."
         }
       ],
       "delivery": "The useful handoff unit is a record workflow: entry conditions, data requirements, state changes and recovery, supported by reusable interface patterns. The reviewed exports show the visible design; they do not verify server validation, access control or synchronization between modules.",
@@ -60,7 +66,17 @@
           "Operational filter UX"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can one workspace support different business jobs without making people relearn the interface at every module?",
+        "opening": "The CRM story starts before a form is opened: someone needs to recognize which leads require their attention. From there, capture should establish a usable record, and conversion should carry its history forward. I used that path to connect navigation, table hierarchy and action design instead of treating them as separate screens.",
+        "steps": [
+          "Find the work",
+          "Capture a usable lead",
+          "Carry context into conversion"
+        ],
+        "reflection": "The important consistency is continuity of work. Reusing a table is useful only if ownership, qualification and the next action keep their meaning as a record moves forward. I would extend the shared grammar module by module, with explicit exceptions where the business object changes."
+      }
     },
     {
       "slug": "pihub",
@@ -84,7 +100,9 @@
             "The creditor screen places service, industry, timing and a text status in the same table. Approved and Awaiting Approval remain readable labels rather than color alone. Someone comparing applications can therefore inspect state without opening each record just to discover whether it is still under review.",
             "The public derivative removes financial and identifying values. What remains is the information structure, which is the evidence relevant to this case. The image does not prove that an approval was genuine or that a process became faster."
           ],
-          "image": "pihub-application-status"
+          "image": "pihub-application-status",
+          "leadIn": "The creditor’s first need is an overview of what has already been submitted.",
+          "tradeoff": "A table supports comparison but cannot replace a specific explanation of an individual application’s requirements."
         },
         {
           "heading": "Share status language without flattening the roles",
@@ -93,7 +111,9 @@
             "The source file separates these role journeys. In review, I would trace one example across them and check that Submitted, Reviewing and Approved have consistent meanings. A matched set of screens is a design model, not proof that cross-role updates or authorization are implemented.",
             "The investor product list makes service, industry and approval state comparable. It is a different object from a creditor application list, even though both use status labels. Keeping that distinction visible helps explain why the roles share vocabulary without sharing every table column."
           ],
-          "image": "pihub-investor-products"
+          "image": "pihub-investor-products",
+          "leadIn": "That view is only one side of the process. Investor priorities require a different object and information hierarchy.",
+          "tradeoff": "Consistent status language supports cross-role understanding; identical columns would obscure the different jobs."
         },
         {
           "heading": "Give review and recovery their own requirements",
@@ -102,7 +122,9 @@
             "Those are acceptance conditions for the workflow, not financial promises. They make the handoff discussion more useful than a blanket requirement to make the onboarding shorter.",
             "The administrator source also contains an access-denied design with a Go Back action. That is a proposed recovery surface. The account and server still need to decide whether a direct request is allowed; an error screen does not establish that enforcement."
           ],
-          "image": "pihub-access-denied"
+          "image": "pihub-access-denied",
+          "leadIn": "The journey also needs a boundary: some actions or records are not available to the current account.",
+          "tradeoff": "Recovery copy should be useful without exposing restricted record details."
         }
       ],
       "delivery": "I organize the discussion around role, current state, outstanding requirement and next action. The linked creditor, investor and admin prototypes provide paths for inspecting the design. Production permissions, uploads, persistence and real financial processing require separate engineering verification.",
@@ -121,7 +143,17 @@
           "Related enterprise workflow work"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How does a financial workflow remain understandable when the next step belongs to another person?",
+        "opening": "For piHub, the journey is not a straight line from application to approval. It crosses creditor, investor and administrator roles, and includes legitimate waiting. I organized the case around that handover: make the current state visible, keep each role’s job distinct, and explain what happens when a person cannot continue.",
+        "steps": [
+          "Understand the application",
+          "Change role without changing meaning",
+          "Recover at the access boundary"
+        ],
+        "reflection": "The state model is part of the product experience. A shorter form cannot compensate for a person who has submitted information and no longer understands who is responsible. The next evaluation should trace one application across the role boundaries, including a request for changes."
+      }
     },
     {
       "slug": "yarsha",
@@ -145,7 +177,9 @@
             "The contact-search frame reports No contact found while retaining the query and keyboard. Contacts and Invite remain separate tabs. That makes the zero-result situation visible, but it also exposes an unanswered recovery question: should the person revise the query, clear it or invite someone?",
             "I treat that question as part of the design review. The image supports a discussion of the existing state; it does not justify claiming that recovery has already been validated."
           ],
-          "image": "yarsha-contact-empty"
+          "image": "yarsha-contact-empty",
+          "leadIn": "The path begins with finding someone, including the ordinary case where search finds nobody.",
+          "tradeoff": "Keeping the keyboard preserves momentum; the empty result still needs a clear route to revision or invitation."
         },
         {
           "heading": "Identify the asset before asking for an action",
@@ -153,7 +187,9 @@
             "The token-selection design pairs the asset name with its symbol and separates tokens from NFTs. Search sits above the list. This gives the person a place to establish what they are acting on before a later review or wallet request.",
             "Balance-like values are redacted in the public image. They are irrelevant to the interface argument and must not be presented as holdings, returns or evidence of product usage. A production review would still need to consider duplicate symbols, unavailable assets and ambiguous search results."
           ],
-          "image": "yarsha-token-selection"
+          "image": "yarsha-token-selection",
+          "leadIn": "With a contact context established, the next risk is ambiguity about the asset.",
+          "tradeoff": "Symbols make scanning faster but cannot be the only disambiguation for similarly named assets."
         },
         {
           "heading": "Separate transaction details from authorization",
@@ -161,7 +197,9 @@
             "The final-mobile source contains a transaction-detail panel with spent and received assets, destination, network fee and an explorer action. The public crop removes artwork and redacts values and the address while keeping those field relationships visible.",
             "A detail panel is not a wallet approval request or proof of a confirmed transaction. The source explorer wording also needs to be reconciled with the intended chain before implementation. I would review that link alongside rejection, pending and unknown-result behavior instead of treating a completed-looking frame as integration evidence."
           ],
-          "image": "yarsha-transaction-detail"
+          "image": "yarsha-transaction-detail",
+          "leadIn": "Identifying an asset still leaves the transaction itself to explain.",
+          "tradeoff": "Transaction detail improves inspectability, but must remain distinct from wallet permission and network confirmation."
         }
       ],
       "delivery": "The handoff discussion needs both screen structure and state rules: what context persists, what is controlled by the wallet, and how the product explains an unresolved outcome. Contact search and asset selection are inspectable artifacts; a complete transaction acceptance test must also exercise the wallet and network integration.",
@@ -180,7 +218,17 @@
           "Transaction review decisions"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can a conversational product slow down at the moments when an action carries financial consequences?",
+        "opening": "A familiar conversation surface can make everything feel equally lightweight. Yarsha’s design challenge is to preserve that familiarity while making contact identity, asset identity and transaction detail more deliberate. These three screen moments show where the interaction needs to change pace.",
+        "steps": [
+          "Find the right person",
+          "Identify the asset",
+          "Inspect the transaction context"
+        ],
+        "reflection": "The lesson is to design the boundary between conversation and consequence. More confirmation screens are not automatically safer; the information must let someone recognize a wrong person, asset or destination before authorization. The explorer label mismatch in the source is an example of detail that needs resolution before implementation."
+      }
     },
     {
       "slug": "zapp",
@@ -204,7 +252,9 @@
             "The account-entry frame distinguishes Create account from Sign in and gives each a short explanation. The primary action gives the new-customer path more emphasis without hiding the returning-user route.",
             "That is a narrow but useful decision to inspect. It shows onboarding hierarchy, not evidence that registration became faster or that the full delivery service was implemented."
           ],
-          "image": "zapp-account-entry"
+          "image": "zapp-account-entry",
+          "leadIn": "Before the delivery request, account entry needs to make the two starting paths understandable.",
+          "tradeoff": "A dominant new-account route helps first-time customers, while returning users still need a visible sign-in path."
         },
         {
           "heading": "Ask for parcel context at the point it matters",
@@ -212,7 +262,9 @@
             "The parcel-details frame presents Documents, Small parcel and Large parcel with short descriptions, then asks for contents. Its visible step indicator places the task inside a longer request. The action says Choose delivery service, which tells the customer what the next screen is for.",
             "This structure keeps package description separate from the choice of service. Before implementation, the team still needs rules for unsupported items, size limits, edited answers and validation. The screenshot shows the proposed sequence rather than proving those rules exist."
           ],
-          "image": "zapp-parcel-details"
+          "image": "zapp-parcel-details",
+          "leadIn": "After entry, the question becomes what the service needs to know about the item.",
+          "tradeoff": "Early parcel context makes the next service choice meaningful; unnecessary fields would slow down booking."
         },
         {
           "heading": "Review one lifecycle across the role boundaries",
@@ -220,7 +272,9 @@
             "The driver stop-order screen distinguishes a confirmed pickup from the next drop-off. It shows progress and separates arrival from an intermediate-stop issue. The screen explicitly says navigation is inactive in the prototype, so I present it as a proposed task sequence.",
             "This makes a cross-role review more specific: confirm which stop is current, which event changes its state, and what the customer or operations team should see after an issue. Separate screens still need synchronized data and real routing before that lifecycle can be called implemented."
           ],
-          "image": "zapp-driver-next-stop"
+          "image": "zapp-driver-next-stop",
+          "leadIn": "The viewpoint now changes from preparing a request to carrying out a stop.",
+          "tradeoff": "A focused current-stop action supports execution, but exception reporting must remain reachable."
         },
         {
           "heading": "Separate delivery completion from settlement",
@@ -228,7 +282,9 @@
             "The driver completion frame names the completed handoff, offers a return to availability and states that settlement and earnings require verified server records. Those are different responsibilities, and the completion message keeps them separate.",
             "For acceptance testing, I would check an interrupted handoff, a duplicate completion attempt and the return-to-dashboard state. The sample frame provides the wording and hierarchy to inspect; it does not establish that a delivery or payment occurred."
           ],
-          "image": "zapp-delivery-complete"
+          "image": "zapp-delivery-complete",
+          "leadIn": "The final moment is not simply a success graphic: it must explain which responsibility has ended.",
+          "tradeoff": "A clear completion message closes the operational task without making unsupported payment promises."
         }
       ],
       "delivery": "The handoff combines customer parcel entry with driver stop progress and completion states. Routing, delivery estimates, payments and updates across roles remain integration requirements. The screenshots describe the prototype sequence and its stated limits.",
@@ -247,7 +303,18 @@
           "Another multi-role product"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can the same delivery feel clear to the person booking it and the person carrying it out?",
+        "opening": "I treated the delivery as a shared lifecycle with different viewpoints. A customer first establishes an account and describes the parcel. A driver later needs the current stop and a clear completion boundary. Reading those moments together reveals the handovers that isolated mobile mockups tend to hide.",
+        "steps": [
+          "Enter as a customer",
+          "Describe the parcel",
+          "Act on the next stop",
+          "Close the handoff"
+        ],
+        "reflection": "The most consequential design work sits between the roles. A customer-facing milestone and a driver action must describe the same event, while delivery completion and financial settlement remain separate. The prototype makes those distinctions visible; a service review must still exercise delayed, failed and duplicate events."
+      }
     },
     {
       "slug": "morajaa",
@@ -270,7 +337,9 @@
           "body": [
             "A consulting category becomes more useful when a visitor can see the work involved. The market-entry design moves from an introduction into setup services, ongoing support and a named process. That sequence gives the call to action more context than a standalone contact button.",
             "My editorial priority is the relationship between those sections. The first scan should establish relevance; deeper reading should explain the scope and sequence well enough to support a more informed inquiry."
-          ]
+          ],
+          "leadIn": "The opening needs to earn attention by making the service recognizable.",
+          "tradeoff": "A concise introduction helps scanning but must lead into service depth rather than replace it."
         },
         {
           "heading": "Use a process section to reveal the shape of the engagement",
@@ -278,14 +347,18 @@
             "The source design breaks the process into named stages, including entry planning, sector feasibility and operationalization. The stage titles carry the scan; supporting text supplies detail. A visitor can inspect the structure before committing to reading every paragraph.",
             "The public crop isolates that information design and excludes photography and staff identities. The consultancy's process wording is shown as source content; the portfolio does not endorse it as legal or regulatory guidance."
           ],
-          "image": "morajaa-service-process"
+          "image": "morajaa-service-process",
+          "leadIn": "Once relevance is established, the visitor needs a more concrete picture of the work.",
+          "tradeoff": "A staged process makes a long engagement scannable while supporting detail preserves its complexity."
         },
         {
           "heading": "Allow more than one sensible entry path",
           "body": [
             "Services describe the kind of support offered, while sectors describe the visitor's operating context. Both can be useful routes into the same business. The design task is to connect them without forcing one taxonomy to stand in for the other.",
             "On smaller screens, that relationship needs descriptive links and a deliberate reading order. Stacking a desktop layout is not enough if the explanation and its supporting action become separated."
-          ]
+          ],
+          "leadIn": "A visitor may arrive by service or by sector, so the page must reconnect those paths.",
+          "tradeoff": "Two entry taxonomies broaden access; descriptive crosslinks prevent duplicate explanation."
         }
       ],
       "delivery": "The deliverable is an information structure and responsive visual system that can accommodate service depth. The linked prototype remains an interactive reference; the images here are readable crops of individual source screens. I have not treated every page on the file's canvas as approved marketing material.",
@@ -304,7 +377,17 @@
           "Review website decision paths"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can a visitor evaluate a complex consulting engagement before speaking to sales?",
+        "opening": "The useful journey begins with a business situation, not with the consultancy’s service taxonomy. I connected the page sequence around three questions: is this relevant to me, what does the engagement involve, and where can I go next? The market-entry process crop is the strongest available visual example of that structure.",
+        "steps": [
+          "Recognize the service fit",
+          "Understand the engagement",
+          "Choose a relevant next path"
+        ],
+        "reflection": "For a service website, clarity is the progression from a broad promise to an inspectable scope. The process is useful because it gives a visitor something concrete to evaluate. Its commercial and regulatory statements still belong to the consultancy, and inquiry conversion is not measured here."
+      }
     },
     {
       "slug": "masteriyo",
@@ -313,39 +396,58 @@
       "role": "Product UI and UX contribution within a team",
       "summary": "Designing authoring and learning interactions inside an established LMS, while keeping the contribution boundary clear.",
       "context": [
-        "A course has several users. Its creator organizes topics, lessons, settings and questions. A learner needs orientation, feedback and a next step. An administrator needs oversight. Sharing a content model does not make those jobs interchangeable.",
-        "My existing portfolio records a contribution to course and quiz flows, learner states, hierarchy and reusable UI patterns within a larger product team. This is not a claim of sole ownership of Masteriyo, its design system or every screen in the Figma file."
+        "Masteriyo brings course creation and learning into an established WordPress LMS. A creator organizes sections, lessons and assessments; a learner encounters the resulting sequence. My product UI and UX contribution was part of the wider team’s work, including course and quiz flows and reusable interaction patterns.",
+        "This case follows the authoring side through four screens from the supplied primary file. They are team design artifacts that I have permission to present with attribution. They do not establish sole authorship of the product, or measured changes in learner completion."
       ],
       "constraints": [
-        "New work needs to fit the conventions of an existing WordPress learning product.",
-        "Creator configuration and learner activity need different priorities.",
-        "The newly supplied primary file and older copy must remain distinct; team reuse clearance for new screenshots is still pending."
+        "Work within an existing WordPress LMS and the wider product team’s conventions.",
+        "Expose different levels of content without confusing course structure with question configuration.",
+        "Keep the team contribution explicit and treat save, scoring and keyboard behavior as implementation requirements."
       ],
       "decisions": [
         {
-          "heading": "Keep authoring structure separate from learner progress",
+          "heading": "Make a blank course actionable",
           "body": [
-            "Creators need to understand how content is assembled and configured. Learners need to understand where they are and what they can do next. I approach those surfaces with different information priorities while retaining familiar controls and terminology where the underlying action is genuinely the same.",
-            "That avoids a misleading kind of consistency: two screens can look similar while requiring very different decisions. A shared component should not dictate the entire hierarchy of a role."
-          ]
+            "The empty builder offers Add Section, Add Assignment and Add Quiz, with documentation below. Rather than describing an absence, it gives the author concrete ways to begin. The design places help beside creation without making documentation a prerequisite.",
+            "The unresolved hierarchy is worth examining: the three actions have equal visual weight even though a section and an assessment belong to different levels of the content model. A first-use review should establish whether authors know which one to choose."
+          ],
+          "image": "masteriyo-first-content",
+          "leadIn": "An empty course is the first authoring task, not a dead end.",
+          "tradeoff": "Several creation routes expose capability, but equally weighted buttons leave authors to choose the appropriate starting unit."
         },
         {
-          "heading": "Make complex configuration reviewable in parts",
+          "heading": "Let the outline carry the course structure",
           "body": [
-            "Course and quiz authoring contain related settings that become harder to reason about when presented as one uninterrupted form. Grouping them by purpose gives a creator a smaller set of decisions to inspect at a time.",
-            "The important trade-off is visibility. Progressive disclosure should reduce competing detail without making it difficult to discover a requirement or understand why an option is unavailable. That balance belongs in the interaction review, not just the final screen composition."
-          ]
+            "The populated builder groups lesson rows inside an Introduction section. A section-level menu and collapse control are separate from each lesson’s edit, duplicate and delete actions. Add New Content stays inside the group; Add New Section sits outside it. That spatial distinction communicates the parent-child relationship.",
+            "Reordering is visible through drag handles, but the design still needs a keyboard alternative and meaningful names for compact actions. The header also shows Course selected while the screen contains builder content; that active-state inconsistency belongs in the implementation review."
+          ],
+          "image": "masteriyo-course-outline",
+          "leadIn": "Once content exists, the interface must explain how it belongs together.",
+          "tradeoff": "Compact row actions preserve a readable outline; their icons need names, focus states and safe destructive behavior in implementation."
         },
         {
-          "heading": "Contribute in a way another designer can continue",
+          "heading": "Introduce quiz complexity in stages",
           "body": [
-            "In a team product, a coherent addition is more useful than a parallel visual language. My contribution needs to be understandable in terms of existing components, content patterns and state behavior, with exceptions called out rather than silently introduced.",
-            "The current primary file contains dashboard, quiz, frontend and checkout areas. Access to that file does not establish authorship of all of them. New source exports remain private until the team-use boundary is confirmed; the case retains its existing public preview and source reference."
-          ]
+            "Quiz setup separates Info, Questions and Settings. The first surface asks for a name and description and provides Next and Cancel. It establishes the assessment before introducing the denser work of writing and configuring questions.",
+            "The sequence needs an explicit state contract: what Next validates, whether a partially written quiz can be saved, and what Cancel discards. These are requirements for completing the interaction, rather than behaviors proved by a static frame."
+          ],
+          "image": "masteriyo-quiz-setup",
+          "leadIn": "A quiz adds a different configuration task inside that course structure.",
+          "tradeoff": "Tabs break the setup into parts, while each step still needs clear completion and validation rules."
+        },
+        {
+          "heading": "Keep question detail connected to its place in the quiz",
+          "body": [
+            "The question editor keeps the list of questions above the expanded question. Within that editor, question type and points are separate from answer rows. Required and Randomize settings sit below the answers. This gives the author several layers of context without opening an unrelated screen for every adjustment.",
+            "For a true-or-false question, the selected correct answer must remain understandable beyond its green treatment. Reorder controls, duplication, deletion and saving need the same interaction conventions as the broader authoring system. That consistency is where a team contribution becomes easier for others to continue."
+          ],
+          "image": "masteriyo-question-editor",
+          "leadIn": "Question editing is the deepest level shown here, where configuration density grows quickly.",
+          "tradeoff": "Keeping the question list visible supports context, but answer configuration must remain clearly subordinate to the selected question."
         }
       ],
-      "delivery": "The work is presented as a collaborative design contribution with an established product context. The primary Figma reference is retained, and the older copy is treated as a historical source. New team screenshots are withheld from this review's public asset set pending reuse clearance.",
-      "outcome": "Course authors and learners need different hierarchies within the same LMS. My contribution is presented within that team context. The next review should exercise course setup and learner continuation separately; neither ownership of the entire product nor learner-completion results are claimed.",
+      "delivery": "Four authoring states connect a blank course to its outline, quiz setup and question configuration. They are presented as team design work within my contribution to course and quiz UI/UX. The primary file is the source; the older copy remains a separate historical reference. Saving, scoring, accessibility and learner behavior require implementation evidence.",
+      "outcome": "The artifact-backed result is an authoring structure that separates course organization from assessment detail. The screenshots make the hierarchy and its remaining review questions inspectable. No learner-completion, adoption or task-time measurements are available.",
       "related": [
         [
           "/figma-design-systems",
@@ -360,7 +462,18 @@
           "Handoff as shared understanding"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How do you help a course author build something complex without making every configuration decision compete at once?",
+        "opening": "The authoring journey starts with a blank course, grows into an outline, then narrows into a quiz and its questions. My contribution sits within Masteriyo’s wider product team. The screens below let the case follow that growing complexity while showing how repeated patterns maintain orientation.",
+        "steps": [
+          "Create the first content",
+          "Build the course outline",
+          "Set up an assessment",
+          "Configure a question"
+        ],
+        "reflection": "The useful system is a stable relationship between structure and detail. Section, lesson, quiz and answer are different levels, and the interface has to make the current level obvious. The visible tab highlight and icon-only actions also deserve implementation review: source artifacts are valuable because they expose unfinished decisions as well as strong ones."
+      }
     },
     {
       "slug": "mokshya",
@@ -383,21 +496,27 @@
           "body": [
             "I structure the opening around what the product makes possible before asking the visitor to learn its terminology. That gives technical detail a purpose: it answers a question the page has already helped the visitor form.",
             "The trade-off is precision. A short statement should narrow the claim rather than replace an explanation with a sweeping Web3 promise. Where the mechanism matters, the next section must supply it."
-          ]
+          ],
+          "leadIn": "Start with the reason a visitor should care.",
+          "tradeoff": "Plain language lowers the entry barrier; narrowing the claim preserves technical precision."
         },
         {
           "heading": "Connect the summary to deeper evaluation",
           "body": [
             "An introductory path and a developer path can share one coherent story without requiring the same reading depth. The summary explains the proposition; deeper material exposes the mechanism and the evidence available to inspect.",
             "This is a content-hierarchy decision rather than a measured finding about visitor behavior. I would test whether a newcomer can explain the offer and whether a technical evaluator can find the detail they need without reading the entire page."
-          ]
+          ],
+          "leadIn": "Relevance creates the next question: how does this actually work?",
+          "tradeoff": "Progressive depth accommodates different readers without forcing everyone through the longest explanation."
         },
         {
           "heading": "Preserve explanation and proof as a pair",
           "body": [
             "A supporting artifact is most useful near the statement it helps assess. On mobile, I keep that relationship in the reading order instead of letting a desktop column arrangement separate the explanation from its supporting visual.",
             "That requires reviewing actual headings, paragraph lengths and image behavior at narrow widths. A responsive page can fit the viewport while still telling its story in an unhelpful order."
-          ]
+          ],
+          "leadIn": "The explanation only holds together when its supporting material remains nearby.",
+          "tradeoff": "A responsive rearrangement must preserve meaning as well as fit the viewport."
         }
       ],
       "delivery": "The portfolio scope is the website's narrative structure, responsive hierarchy and interface composition. The retained website preview provides context; the contribution described here is the narrative structure and interface composition.",
@@ -416,7 +535,17 @@
           "Related content architecture work"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can a protocol website explain enough for a newcomer without frustrating a technical evaluator?",
+        "opening": "The website has to introduce an idea before it can ask someone to evaluate a mechanism. My approach connects the opening proposition to deeper technical reading, then keeps explanation and proof together as the layout changes. This case follows that reading path within my website design contribution.",
+        "steps": [
+          "Establish relevance",
+          "Expose the mechanism",
+          "Keep proof beside the claim"
+        ],
+        "reflection": "The editorial test is whether each layer answers the question raised by the previous one. A newcomer and a developer can share the opening without needing the same depth. The missing matching Figma source limits the visual evidence available in this case; it does not justify replacing it with an invented product screen."
+      }
     },
     {
       "slug": "designerex",
@@ -439,21 +568,27 @@
           "body": [
             "The photograph is the entry point to the item. The repeated listing structure is what lets someone evaluate several items without reconstructing the information every time. I approach the card as a relationship between both, rather than choosing between a purely editorial tile and a specification-heavy product block.",
             "The design trade-off is density. Adding every rental condition to a grid can obscure the garments, while removing every practical attribute pushes too much work into detail pages."
-          ]
+          ],
+          "leadIn": "The first job of the listing is to invite a closer look.",
+          "tradeoff": "Image prominence creates interest, but essential rental attributes must remain visible."
         },
         {
           "heading": "Keep comparable information in comparable places",
           "body": [
             "Stable labels and placement make the repeated pattern useful. A person should not have to inspect a different part of each card to find an equivalent rental attribute. The detail page can then carry the depth that would overfill the browse view.",
             "A practical review would compare several listings with different image crops, long names and unavailable options. That is a proposed evaluation, not a claim that the current marketplace has passed it."
-          ]
+          ],
+          "leadIn": "Interest is not enough to choose a rental; comparable details become the priority.",
+          "tradeoff": "Stable card metadata supports comparison; detailed terms belong at a deeper level."
         },
         {
           "heading": "Keep premium presentation out of the way of the task",
           "body": [
             "Visual restraint helps the product remain the focus. Navigation, filtering and actions should support the catalogue instead of demanding their own performance. A quieter interaction convention can still express the brand through typography, spacing and image treatment.",
             "I would inspect keyboard access, filter feedback and returning from a detail page alongside visual craft. A premium browse experience still needs a predictable route back to the person's previous context."
-          ]
+          ],
+          "leadIn": "As the person moves into detail and back, interaction must protect the work they have already done.",
+          "tradeoff": "Quiet controls support the catalogue while still needing clear focus and active-filter feedback."
         }
       ],
       "delivery": "This is a scoped account of marketplace UI contribution. Existing public references are preserved. The public account stays within the contribution and artifacts I can describe without claiming ownership of the whole marketplace.",
@@ -472,7 +607,17 @@
           "When polish hides a decision problem"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can fashion discovery stay expressive while making rental decisions dependable?",
+        "opening": "A rental browse journey moves from attraction to comparison. My contribution focuses on that shift: let photography introduce the garment, give recurring details a stable place, and preserve the browsing context as a person explores. The case stays within that contribution to the wider marketplace.",
+        "steps": [
+          "Notice the garment",
+          "Compare practical details",
+          "Continue without losing context"
+        ],
+        "reflection": "Premium presentation earns its place when it helps someone judge a garment without hiding the rental decision. The unresolved visual evidence is the matching Figma source; current source material does not support a claim about conversion or end-to-end marketplace ownership."
+      }
     },
     {
       "slug": "splashnode",
@@ -495,21 +640,27 @@
           "body": [
             "A feature name is only useful when the visitor can connect it to something they need to accomplish. I organize the story around the problem or use case first, then explain the capability that supports it.",
             "That order helps distinguish an introductory promise from the detail needed for evaluation. It also sets an editorial check: if a paragraph could describe any technical platform, it needs a more specific task or a narrower claim."
-          ]
+          ],
+          "leadIn": "Begin with the buyer’s task rather than a wall of feature names.",
+          "tradeoff": "Use cases make features meaningful; specific mechanism detail prevents the story becoming generic."
         },
         {
           "heading": "Keep the route to evaluation visible",
           "body": [
             "The page should help a visitor decide whether to inspect more detail, view an example or make contact. Repeating the same high-pressure action after every section can interrupt that evaluation instead of supporting it.",
             "I treat action placement as part of the information sequence. A call to action should follow enough context for the visitor to understand what the next step offers, without hiding that route until the end of a long page."
-          ]
+          ],
+          "leadIn": "Once the capability is relevant, the visitor needs a way to investigate further.",
+          "tradeoff": "Repeated calls to action improve availability but can interrupt evaluation when placed before enough context."
         },
         {
           "heading": "Let the browser challenge the composition",
           "body": [
             "Because my contribution includes frontend work, a layout can be reviewed with actual copy lengths, wrapping and navigation behavior. That feedback is useful while decisions are still easy to change.",
             "The existing public preview is retained as evidence of the work's visual context. The implementation is part of the design discussion, rather than a separate downstream deliverable."
-          ]
+          ],
+          "leadIn": "The reading sequence then has to work outside the ideal desktop artboard.",
+          "tradeoff": "Reusable sections support implementation while real content may require a deliberate exception."
         }
       ],
       "delivery": "The scope joins website UX with implementation-aware composition. Responsive layout, section hierarchy and reusable frontend patterns are part of the same deliverable. Backend platform capability and operational reliability remain outside the evidence shown by this case.",
@@ -528,7 +679,17 @@
           "Another design-to-code website"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can a technical platform website help a buyer connect capabilities to a real use case?",
+        "opening": "The design path moves from recognizing a task to understanding a capability and choosing a way to evaluate it. Because my contribution includes frontend work, that path also has to survive real text and browser behavior. The website is the scope of this case, separate from the underlying platform.",
+        "steps": [
+          "Recognize a use case",
+          "Find the evaluation path",
+          "Test the composition in code"
+        ],
+        "reflection": "A technical website becomes useful when a visitor can connect the offer to their own job and identify a next step with enough context. Frontend work is valuable here because actual content challenges the composition before it becomes a fixed visual specification."
+      }
     },
     {
       "slug": "grid-labs",
@@ -551,21 +712,27 @@
           "body": [
             "I start with the attributes that change the decision between plans. Those should remain in a stable order so the visitor can compare rather than remember a previous card. Supporting technical detail can remain available without giving every specification equal emphasis.",
             "The review needs realistic prices, units and billing periods. Where current commercial terms are not verified, the portfolio should discuss the comparison pattern instead of repeating potentially outdated offers."
-          ]
+          ],
+          "leadIn": "Start by making equivalent plan attributes genuinely comparable.",
+          "tradeoff": "A compact plan card supports scanning, while secondary specifications still need a reachable home."
         },
         {
           "heading": "Treat mobile comparison as an information problem",
           "body": [
             "Stacking plan cards preserves content but weakens direct comparison. A useful narrow layout needs stable headings, repeated attribute labels and a clear association between price, period and included capability.",
             "I would test a person comparing two plans with one meaningful difference. If the answer depends on remembering an offscreen card, the layout needs a stronger comparison aid or a more concise set of decision attributes."
-          ]
+          ],
+          "leadIn": "That structure faces its hardest test when the plans no longer fit side by side.",
+          "tradeoff": "Stacked cards preserve content but weaken direct comparison; repeated labels help maintain context."
         },
         {
           "heading": "Keep scope visible at the boundary of the site",
           "body": [
             "A domain-search affordance can communicate a next step, but it must not imply a service the static implementation does not provide. Its actual destination and response behavior belong in the build review.",
             "The same discipline applies to purchase calls to action. The website should establish what the visitor is continuing toward without inventing a complete account, checkout or hosting-management platform in the case study."
-          ]
+          ],
+          "leadIn": "Choosing a plan then leads beyond the limits of the static website.",
+          "tradeoff": "A clear commercial affordance must describe its real destination rather than imply an unbuilt service."
         }
       ],
       "delivery": "The deliverable is a commercial website and maintainable frontend structure. The public account stays focused on commercial hierarchy, responsive comparison and the limits of a static implementation.",
@@ -584,7 +751,17 @@
           "Technical product storytelling"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can a hosting buyer compare plans without carrying every specification in memory?",
+        "opening": "The journey is a comparison problem before it is a purchase problem. My website contribution organizes the plan differences, considers what happens when cards stack on mobile, and makes the static frontend’s commercial boundary explicit.",
+        "steps": [
+          "Locate the meaningful difference",
+          "Compare on a narrow screen",
+          "Understand the next commercial step"
+        ],
+        "reflection": "The comparison pattern should reduce the amount of information a buyer has to remember. Stable labels and units are more useful than decorative emphasis on every plan. Provisioning, billing and current offer accuracy remain service-owner responsibilities."
+      }
     },
     {
       "slug": "hamro-idea",
@@ -607,21 +784,27 @@
           "body": [
             "I structure a service page around fit: what problem the service addresses, what work it includes and what proof helps someone evaluate it. That makes the service architecture more useful than a list of internal disciplines.",
             "The practical editorial test is whether a prospect can select a relevant service and explain why it fits. That is a proposed test, not a claim about measured lead quality."
-          ]
+          ],
+          "leadIn": "The prospect first needs to recognize a service that fits the problem.",
+          "tradeoff": "Client-facing language improves recognition, while precise scope prevents the service promise becoming too broad."
         },
         {
           "heading": "Keep project proof near the service explanation",
           "body": [
             "A project example is most useful when it answers doubt created by the adjacent service claim. I prefer a small number of relevant examples over a detached wall of logos or repeated assertions of quality.",
             "The existing website preview is retained in this case. Its role is to support the description of my website contribution, rather than stand in for a measured commercial result."
-          ]
+          ],
+          "leadIn": "A relevant service creates a reasonable demand for evidence.",
+          "tradeoff": "Nearby project proof answers a specific doubt; a large detached gallery makes the visitor connect the dots."
         },
         {
           "heading": "Use implementation to test the reusable system",
           "body": [
             "Real headings, longer service names and smaller screens expose problems that ideal artboards can hide. I use those conditions to review section spacing, reading order, navigation and the route to contact.",
             "Reusable sections still need a clear content contract: what is required, what can be omitted and what happens when an image or description is longer than expected. Semantic markup and predictable structure support that contract; they do not guarantee ranking outcomes."
-          ]
+          ],
+          "leadIn": "The relationship between explanation and proof has to remain maintainable after delivery.",
+          "tradeoff": "Reusable sections reduce maintenance cost, but need explicit rules for optional and unusually long content."
         }
       ],
       "delivery": "The work joins service information architecture with a static multi-page frontend. The useful handoff is not only a visual style: it includes section responsibilities, responsive rules and a content structure the site can keep using.",
@@ -640,7 +823,17 @@
           "Clearer service websites"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can a software studio make its offer understandable and give a prospect a reason to believe it?",
+        "opening": "The website needs to connect three things that often drift apart: what the studio offers, which work supports that offer, and how a prospect starts a relevant conversation. My design and development contribution brings them into one reading path and a reusable frontend structure.",
+        "steps": [
+          "Choose a relevant service",
+          "Inspect supporting work",
+          "Carry the structure into implementation"
+        ],
+        "reflection": "Service architecture and implementation meet in the content contract. A new service or longer project description should fit the structure without weakening the story. The case demonstrates the intended relationship between offer, proof and contact; lead quality and search growth need separate measurement."
+      }
     },
     {
       "slug": "zakra-furniture",
@@ -663,21 +856,27 @@
           "body": [
             "The catalogue needs a repeatable image treatment so a mix of product photographs still reads as one system. The choice is a trade-off: a fixed crop can improve rhythm but remove part of a product, while an uncropped image can create uneven whitespace.",
             "I would review both approaches with varied source images and decide according to the product category. The rule should be explicit rather than dependent on manually preparing every demo asset."
-          ]
+          ],
+          "leadIn": "The first source of variation is the photography itself.",
+          "tradeoff": "Fixed crops create rhythm but can remove product detail; uncropped images preserve detail with less uniform whitespace."
         },
         {
           "heading": "Keep the product-card contract stable",
           "body": [
             "Names, category cues and decision details need predictable placement. A shopper should not have to relearn a card because a product name wraps onto another line or an optional field is absent.",
             "For a template, that means reviewing long names, missing images, different product counts and narrow layouts. Those cases are part of the design brief for reusable content, not exceptions to be hidden from the portfolio."
-          ]
+          ],
+          "leadIn": "A stable image treatment still leaves the rest of the product card to handle change.",
+          "tradeoff": "A stable card hierarchy supports scanning without assuming every product has identical content."
         },
         {
           "heading": "Make editability part of the UX",
           "body": [
             "A site owner needs to understand which sections can be repeated, removed or rearranged. Simple spacing and typography rules give the editor useful freedom while limiting accidental visual drift.",
             "The work is therefore more than a single storefront screenshot. Its value lies in the rules that help a catalogue survive ordinary editing. Those rules need to be evaluated with varied catalogue content, rather than judged only against the demo composition."
-          ]
+          ],
+          "leadIn": "Those repeated cards belong to sections a site owner needs to edit over time.",
+          "tradeoff": "Editing freedom helps the owner; a small set of spacing and type rules limits accidental drift."
         }
       ],
       "delivery": "The scope is a reusable starter-site interface and its content behavior. Existing public material is retained. The design discussion stays distinct from claims about checkout, stock accuracy, order fulfillment or sales performance.",
@@ -696,7 +895,17 @@
           "Content contracts for reusable UI"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can a furniture starter site remain coherent after a site owner replaces the demo content?",
+        "opening": "The polished demo is only the starting condition. My template design contribution considers what happens next: mixed photography enters the catalogue, product names wrap, and the site owner changes sections. This case follows those pressures from image treatment to the editing system.",
+        "steps": [
+          "Accommodate varied photography",
+          "Keep product details predictable",
+          "Let the owner change the catalogue"
+        ],
+        "reflection": "A template is a set of decisions that someone else keeps using. Its quality becomes clearer under ordinary content variation than under a perfectly art-directed demo. The next review needs varied catalogue fixtures; checkout behavior and sales performance are outside this design account."
+      }
     },
     {
       "slug": "neverwinter-parser",
@@ -719,21 +928,27 @@
           "body": [
             "Encounter, actor, time range and active filters change the meaning of a metric. I treat those as part of the information hierarchy rather than a separate configuration area someone must remember.",
             "A review should be able to move from a summary to the events that support it. That is the evidence chain I want the interface to expose; the portfolio does not assert that every underlying calculation has been independently validated."
-          ]
+          ],
+          "leadIn": "A number first needs enough context to be interpreted.",
+          "tradeoff": "A compact summary helps orientation but cannot hide the encounter and filter boundaries that define it."
         },
         {
           "heading": "Separate overview from diagnosis",
           "body": [
             "An overview should help a player find a question worth investigating. A diagnostic view should help answer that question with more specific data. Giving every event equal prominence makes both jobs harder.",
             "The trade-off is discoverability. Hiding detail is only useful when the route to it is clear and the summary does not imply a conclusion that the detail cannot support. Sort and filter labels need to make their effect understandable."
-          ]
+          ],
+          "leadIn": "With the context established, the overview should lead into a specific question.",
+          "tradeoff": "Progressive detail reduces noise while a clear route to events preserves inspectability."
         },
         {
           "heading": "Show uncertainty as a state of the data",
           "body": [
             "A partial capture, an unknown value and a genuine zero should not collapse into the same visual result. They call for different interpretation and different next steps.",
             "The useful implementation test uses a known input fixture and checks the visible result against the calculation contract. It should also include interrupted and repeated events. I do not convert this design principle into an invented accuracy or performance percentage."
-          ]
+          ],
+          "leadIn": "That investigation must also reveal when the source data cannot support an answer.",
+          "tradeoff": "Visible uncertainty is less tidy than a zero, but avoids turning missing input into a false conclusion."
         }
       ],
       "delivery": "The strongest proof for this kind of work is code, fixtures, calculation definitions and inspectable interface behavior. The public account is therefore centered on the information model and implementation questions rather than a gallery of conceptual screens.",
@@ -752,7 +967,17 @@
           "Related developer tooling"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How can a combat summary make complex events readable without hiding the assumptions behind its numbers?",
+        "opening": "The useful journey is from an encounter overview to the events behind a question. My information-design and frontend work focuses on keeping that connection inspectable, then making incomplete input distinguishable from a real zero. Code and calculation fixtures are the relevant artifacts for this personal tool.",
+        "steps": [
+          "Establish the encounter context",
+          "Move from overview to diagnosis",
+          "Expose uncertainty in the input"
+        ],
+        "reflection": "A clean dashboard is only persuasive when its numbers can be traced back to the relevant events and calculation rules. I would prioritize that traceability over adding another headline statistic. Known input fixtures are required before reporting accuracy or performance improvements."
+      }
     },
     {
       "slug": "sassboilerplate",
@@ -775,21 +1000,27 @@
           "body": [
             "A folder name earns its place when it helps answer where a change belongs. I prefer a structure that separates broadly shared decisions from component-specific styling without requiring a long verbal explanation.",
             "The test is practical: can another developer locate a type rule, a layout rule and a component rule from the names and imports? That is a validation task, not a measured onboarding result."
-          ]
+          ],
+          "leadIn": "The first task is locating the file that owns the change.",
+          "tradeoff": "Clear responsibilities help navigation; excessive folders create another naming system to learn."
         },
         {
           "heading": "Keep the dependency direction legible",
           "body": [
             "A starter should make it possible to understand what depends on what. Hidden coupling makes an apparently local style change difficult to reason about and increases the cost of deleting unused code.",
             "I treat import structure and documentation as part of the product interface for a developer. The aim is not the largest possible file tree; it is a small set of conventions that correspond to actual responsibilities."
-          ]
+          ],
+          "leadIn": "Finding that file is only useful if its dependencies are understandable.",
+          "tradeoff": "Explicit dependency direction improves reasoning without requiring the largest possible architecture."
         },
         {
           "heading": "Make removal a normal use case",
           "body": [
             "A team may adopt only part of a starter or outgrow its original assumptions. Loosely coupled conventions are useful because they can be replaced without preserving the entire setup indefinitely.",
             "That restraint is the design decision this case is meant to show. It does not imply that every frontend project needs the same architecture or that Sass is the correct choice for every team."
-          ]
+          ],
+          "leadIn": "Finally, adoption needs to remain reversible as the project changes.",
+          "tradeoff": "Easy removal gives teams flexibility at the cost of fewer enforced conventions."
         }
       ],
       "delivery": "The deliverable is the structure and the explanation that makes it usable. Repository evidence is more relevant here than a screenshot. Existing code references are preserved; their current maintenance and compatibility still need to be assessed before adopting the utility in a new project.",
@@ -808,7 +1039,17 @@
           "Related personal tooling"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "journey": {
+        "question": "How much structure does a small frontend project need before the starter becomes more work than it removes?",
+        "opening": "The developer journey is deliberately small: find where a change belongs, understand its dependencies, then keep or remove the structure as the project evolves. SassBoilerplate treats those ordinary maintenance actions as the interface of the tool.",
+        "steps": [
+          "Find the right responsibility",
+          "Understand dependency direction",
+          "Remove what the project does not need"
+        ],
+        "reflection": "Restraint is the central design choice. A starter earns its complexity when another developer can locate, change and delete code without learning hidden rules. The artifact is the structure and documentation, rather than a fictional product interface or an unmeasured setup-time claim."
+      }
     }
   ]
 }

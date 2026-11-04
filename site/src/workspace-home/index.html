@@ -1695,8 +1695,9 @@ html.pr-dragging,html.pr-dragging *{cursor:grabbing!important;user-select:none!i
 (() => {
   const ov = document.getElementById('hrIntro'), de = document.documentElement;
   const quiet = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } })();
-  // no intro inside the admin preview, for reduced motion, or when a link points straight at a section
-  if (window.__PREVIEW || quiet || (location.hash && location.hash.length > 1)) { ov.remove(); return; }
+  // The mobile reading path starts immediately; retain the particle intro on larger screens.
+  // Reduced motion, preview and deep links also bypass the decorative overlay.
+  if (window.__PREVIEW || quiet || matchMedia('(max-width: 700px)').matches || (location.hash && location.hash.length > 1)) { ov.remove(); return; }
   let seen = false; try { seen = sessionStorage.getItem('hrIntro') === '1'; sessionStorage.setItem('hrIntro', '1'); } catch (e) {}
   de.classList.add('hr-intro');
   const cv = ov.querySelector('canvas'), ctx = cv.getContext('2d'), cap = ov.querySelector('.hri-c');

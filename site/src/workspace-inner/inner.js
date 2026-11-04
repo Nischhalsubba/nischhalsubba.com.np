@@ -165,7 +165,7 @@ document.querySelectorAll('.agent-case-cover,.nrs-case-v4-gallery figure,.worksp
   const image = figure.querySelector('img'); if (!image) return;
   figure.dataset.frameLabel = '❖ ' + (document.querySelector('h1 .workspace-heading-source')?.textContent || 'Project preview');
   const button = document.createElement('button'); button.type = 'button'; button.className = 'workspace-zoom'; button.textContent = 'Open image ↗'; button.setAttribute('aria-label', 'Open preview: ' + image.alt);
-  button.addEventListener('click', /** Callback contract: Open the selected original image. Inputs: none. Side effects: dialog image and open state. Returns: void. */ () => { const target = preview.querySelector('img'); target.src = image.currentSrc || image.src; target.alt = image.alt; preview.showModal(); });
+  button.addEventListener('click', /** Callback contract: Open the largest approved public derivative rather than a mobile srcset thumbnail. Inputs: none. Side effects: dialog image and open state. Returns: void. */ () => { const target = preview.querySelector('img'); target.src = image.src; target.alt = image.alt; preview.showModal(); });
   figure.appendChild(button);
 });
 document.querySelector('#closeMedia')?.addEventListener('click', () => preview.close());

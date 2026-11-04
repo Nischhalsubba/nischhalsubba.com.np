@@ -44,6 +44,14 @@
             "Some product tasks need a different pattern. Record the reason, the scope and the owner. If the same exception keeps appearing, it may belong in the shared system; if it is local, avoid forcing every product to carry it.",
             "I judge system quality by whether a team can make and review the next change coherently. Component counts and token coverage are useful inventory measures, but they do not prove that the system is understandable or maintainable."
           ]
+        },
+        {
+          "heading": "Follow the content model through an authoring journey",
+          "paragraphs": [
+            "Masteriyo’s course outline and quiz setup illustrate why a component library needs a shared content model. A section contains lesson rows; a quiz introduces its own Info, Questions and Settings. These are different levels of work, even when buttons, fields and menus share a visual language.",
+            "In a team handoff, define the owner and meaning of each action before mapping it to a reusable component. For the question editor, that includes which question is active, what an answer selection means, what Save persists, and how a keyboard user moves a row. These are proposed implementation checks; the team design screenshot establishes visible hierarchy, rather than tested scoring or persistence."
+          ],
+          "image": "masteriyo-question-editor"
         }
       ],
       "related": [
@@ -58,8 +66,13 @@
         [
           "/blog/design-systems-small-product-teams",
           "Keep a small system proportional"
+        ],
+        [
+          "/project-masteriyo",
+          "Follow the Masteriyo authoring design journey"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "design-systems-small-product-teams",

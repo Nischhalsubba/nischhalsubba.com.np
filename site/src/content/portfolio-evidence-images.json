@@ -404,5 +404,153 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/yarsha-transaction-detail-social-e130490c9d84.png"
+  },
+  {
+    "id": "masteriyo-first-content",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:1275",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1275.png",
+    "source_sha256": "2e1169e5d39b666dac24f19c590e5d35e570ceab4fc5168e9e44cc4b4075952d",
+    "alt": "Masteriyo empty course builder offers Add Section, Add Assignment and Add Quiz, with a separate documentation link.",
+    "caption": "Empty authoring state from the primary Masteriyo design file. Team design work; my contribution concerns course and quiz UI/UX within the wider product team.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
+    "presentation": "Native team design screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/masteriyo-first-content-480-648bc520e9f1.webp",
+        "width": 480,
+        "height": 255,
+        "bytes": 4208,
+        "sha256": "648bc520e9f17a3175a046a1bab8ff13f86ed2f8d8d0745843f785912922fb70"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-first-content-800-b4ab452ccb94.webp",
+        "width": 800,
+        "height": 425,
+        "bytes": 8818,
+        "sha256": "b4ab452ccb940483d30468acc901ccab91d37ed2aa07ca944c4b70221dfaa1a5"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-first-content-1240-7890942ded3a.webp",
+        "width": 1240,
+        "height": 658,
+        "bytes": 16092,
+        "sha256": "7890942ded3a2f7c943672737b7da86087f0aab9c69cb5adae66fe385fbbaf69"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/masteriyo-first-content-social-d9acb3cff0bc.png"
+  },
+  {
+    "id": "masteriyo-course-outline",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:1310",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1310.png",
+    "source_sha256": "86872f4c815d46ab829165e402a6c52027e8e4180c34b1949964e204fef41d9d",
+    "alt": "Masteriyo course outline groups lessons inside an Introduction section, with reorder, edit, duplicate and delete controls.",
+    "caption": "Course outline from the primary Masteriyo file. Repeated lesson rows and section actions show the authoring hierarchy. Team design work; no sole-designer claim.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
+    "presentation": "Native team design screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/masteriyo-course-outline-480-fe7885699610.webp",
+        "width": 480,
+        "height": 252,
+        "bytes": 4678,
+        "sha256": "fe7885699610fafd35eb4ffdc3fd326411b796fe8f5dcb412c5f8433b229b4dd"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-course-outline-800-c55b66a35730.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 8918,
+        "sha256": "c55b66a357308187e61f41bddb640a390b532925d0a2269a7cd47021d988fb00"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-course-outline-1240-fe6e2a5f042b.webp",
+        "width": 1240,
+        "height": 652,
+        "bytes": 15888,
+        "sha256": "fe6e2a5f042b5fced1626de9706b4a1c4287fe77116fb5b46f29b0ab0a617b0d"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/masteriyo-course-outline-social-65210bc28ea4.png"
+  },
+  {
+    "id": "masteriyo-quiz-setup",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:1579",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1579.png",
+    "source_sha256": "ecc0a469cfbb68119df4e330b50f62ba4ab876c682750d03a899b2861ee9415e",
+    "alt": "Masteriyo Add New Quiz form separates Info, Questions and Settings and offers Next and Cancel actions.",
+    "caption": "Quiz setup from the primary Masteriyo file. The staged form is a design artifact, not evidence of a completed learner assessment. Team contribution.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
+    "presentation": "Native team design screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/masteriyo-quiz-setup-480-1db2e3a3a58e.webp",
+        "width": 480,
+        "height": 306,
+        "bytes": 4090,
+        "sha256": "1db2e3a3a58e9e225f243350d00952e5fe4dfef5d86ae340b58bcccc667e5d47"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-quiz-setup-800-d1708483b8d5.webp",
+        "width": 800,
+        "height": 510,
+        "bytes": 8490,
+        "sha256": "d1708483b8d570df98d871681bc948584dc5c12cdd8b82b8e3495cf08cf73c9a"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-quiz-setup-1240-a429324e5499.webp",
+        "width": 1240,
+        "height": 791,
+        "bytes": 15434,
+        "sha256": "a429324e54991836c6aa7b050fe10fcd9f90ae36868ccf14622f44f72905c106"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/masteriyo-quiz-setup-social-8c9debdf8a87.png"
+  },
+  {
+    "id": "masteriyo-question-editor",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:3142",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-3142.png",
+    "source_sha256": "8b1e5da42da23d15cf2273cae3cb43f0ceaed7bcd3419276134202599b9d2f49",
+    "alt": "Masteriyo quiz editor keeps a question list above the expanded true-or-false editor, with answer selection and required and randomize settings.",
+    "caption": "Question editor from the primary Masteriyo file. Sample content and selected answer illustrate configuration. Team contribution; production saving and scoring are outside this screenshot.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
+    "presentation": "Native team design screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/masteriyo-question-editor-480-e440fa512c3f.webp",
+        "width": 480,
+        "height": 589,
+        "bytes": 9840,
+        "sha256": "e440fa512c3fa179ec8d6e07f8ccfe41eb8218fd6447efb2bf6c4b7ff2010b0c"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-question-editor-800-2b62957b974e.webp",
+        "width": 800,
+        "height": 981,
+        "bytes": 20374,
+        "sha256": "2b62957b974ed58239d7bdc34bd2f999b5f3ecf4dd565047d5d38fb0ab6c2098"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-question-editor-1240-091fcee9523f.webp",
+        "width": 1240,
+        "height": 1521,
+        "bytes": 36780,
+        "sha256": "091fcee9523fe540bd7fe92fe7d067a1fc9547579fb2b7e89e3688b7e2c27d58"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/masteriyo-question-editor-social-02476d57803b.png"
   }
 ]

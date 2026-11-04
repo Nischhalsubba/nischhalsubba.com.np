@@ -14,10 +14,10 @@
   "duplicate_png_files": 335,
   "invalid_png_files": 0,
   "near_blank_candidates": null,
-  "public_curated_illustrations": 14,
-  "public_derivative_files": 40,
-  "figure_placements": 37,
-  "case_studies_with_new_figma_figures": 5,
+  "public_curated_illustrations": 18,
+  "public_derivative_files": 56,
+  "figure_placements": 42,
+  "case_studies_with_new_figma_figures": 6,
   "articles_with_new_figma_figures": 20,
   "case_studies_rewritten": 14,
   "articles_rewritten": 26,
@@ -29,5 +29,6 @@
   "plan_limited_candidates": 172,
   "production_publication_status": "REVIEW_BRANCH_ONLY; live build 5311ce3 observed 2026-11-04; no deployment performed",
   "public_frame_inventory_persisted_screen_originals": 2680,
-  "frame_inventory_publication": "Updated per-frame inventory retained privately in continuation v9; public CSV remains the earlier checkpoint."
+  "frame_inventory_publication": "Updated per-frame inventory retained privately in continuation v9; public CSV remains the earlier checkpoint.",
+  "masteriyo_publication_permission": "Owner confirmed permission with team attribution on 2026-11-04; four previously archived primary-file screens visually reviewed and integrated. Original export count unchanged."
 }
