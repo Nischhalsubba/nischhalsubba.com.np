@@ -105,8 +105,16 @@ try {
   const chapters = ['top','about','exp','work','services','process','testi','pricing','contact'];
   for (const id of [...chapters, ...chapters.slice(0,-1).reverse()]) {
     console.log('[chapter-navigation]',id);
-    await motionPage.evaluate(/** Callback contract: Exercise every chapter in both directions, matching the Home control's explicit zero destination. Inputs: chapter ID. Side effects: scrolls the page. Returns: void. */ id => { if (id === 'top') scrollTo({top:0,behavior:'instant'}); else document.getElementById(id).scrollIntoView({block:'start',behavior:'instant'}); },id);
-    await motionPage.waitForFunction(/** Callback contract: Check the universal chapter indicator, including Contact's separate CTA. Inputs: chapter ID. Side effects: none. Returns: readiness. */ id => document.querySelector('#tbMp a.act[data-sec]')?.dataset.sec === id,id);
+    await motionPage.locator('#tbMb').click();
+    await motionPage.locator('#tbMp a[data-sec="'+id+'"]').click();
+    await motionPage.waitForFunction(/** Callback contract: Wait for the actual navigation animation to settle before the next action. Inputs: none. Side effects: none. Returns: readiness. */ () => !document.documentElement.classList.contains('lenis-scrolling'));
+    try {
+      await motionPage.waitForFunction(/** Callback contract: Check the universal chapter indicator, including Contact's separate CTA. Inputs: chapter ID. Side effects: none. Returns: readiness. */ id => document.querySelector('#tbMp a.act[data-sec]')?.dataset.sec === id,id);
+    } catch (error) {
+      console.log('[chapter-failure]',JSON.stringify(await motionPage.evaluate(/** Callback contract: Preserve public navigation geometry on failure. Inputs: target ID. Side effects: none. Returns: diagnostic positions and active chapter. */ target => ({target,y:scrollY,active:document.querySelector('#tbMp a.act[data-sec]')?.dataset.sec,positions:['top','about','exp','work','services','process','testi','pricing','contact'].map(id=>({id,top:document.getElementById(id).getBoundingClientRect().top,visibility:getComputedStyle(document.getElementById(id)).visibility}))}),id)));
+      await motionPage.screenshot({path:path.join(output,'chapter-failure-'+id+'.png')});
+      throw error;
+    }
     assert.equal(await motionPage.locator('#'+id).isVisible(),true,'Navigated chapter must remain visible: '+id);
   }
   await motionPage.setViewportSize({width:768,height:1024});
