@@ -77,6 +77,7 @@ for (const file of routes) {
   let nav = originalNav.replace(/class="tb-t on"/g, 'class="tb-t"').replace(/href="#([^"]+)"/g, (match, id) => `href="${destinations[id] || '/#' + id}"`)
     .replace(/Process/g, 'Writing').replace(/aria-label="Nischhal, back to top"/, 'aria-label="Nischhal, homepage"')
     .replace(new RegExp(`data-sec="${section}"`, 'g'), `data-sec="${section}" aria-current="page"`);
+  if (isBlog) nav = nav.replace(/data-sec="process" aria-current="page"/g, 'data-sec="process"').replace('class="tb-t tb-blog"', 'class="tb-t tb-blog" aria-current="page"');
   let head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)[1]
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '')
     .replace(/<link\b[^>]*>/gi, tag => /stylesheet|preconnect|preload.*font/.test(tag) ? '' : tag)
