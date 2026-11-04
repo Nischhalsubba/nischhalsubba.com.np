@@ -167,3 +167,7 @@ P0-03 is now DIAGNOSED: authenticated GSC reports incorrect namespace, one insta
 QA follow-up: the first CI attempt failed because the new image assertion compared an absolute DOM URL with a relative authored URL. Both refer to the correct largest derivative. The assertion now normalizes both URLs before comparison. No image functionality is weakened or skipped.
 
 CODE-PROVENANCE: Verified public code repositories for Neverwinter Live Parser and SassBoilerplate; linked actual parser/view-model fixtures and Sass/build files. Corrected SassBoilerplate from creator framing to a learning archive with JR Cologne attribution in canonical metadata, final case, search description and related article. Read-only inspection, not independent execution. See `code-project-evidence-2026-11-04.md`.
+
+## 4 November — full indexing verification
+
+Individual HYPD URL inspections covered all 53 canonicals: 50 indexed, three crawled but not indexed. Project coverage is 13/14; articles 25/26. Exceptions are `/project-zakra-furniture`, `/blog/saas-dashboard-ux-checklist` and `/saas-ux-designer`. The sitemap still reports one historical error. No GSC writes were made. Details: [indexing audit](../audits/indexing-and-favicon-2026-11-04.md) and [URL register](../audits/indexing-url-status-2026-11-04.csv).
