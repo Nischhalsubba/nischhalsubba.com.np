@@ -55,3 +55,8 @@ Cloudflare's repository bot reports automatic deployment of 2588e2d, but a subse
 | Keyword validation / authority roadmap | Nischhal; available research data and editorial outreach decisions | Tests Nepal/international intent hypotheses; no ranking guarantee |
 
 Known-candidate export calculation: 3,889 / 4,061 × 100 = 95.76% (rounded). This is only original export coverage, not task completion or editorial approval coverage. No numeric overall completion rate is defensible across these different gates.
+
+
+## Completed CI checkpoint and final follow-up
+
+All six workflows passed on c295423. Fresh controlled medians are preserved in performance-measured-c295423.json: mobile home 82 baseline / 89 review, LCP 3695.74 / 2746.70 ms; desktop home 99 / 99, LCP 795.49 / 623.31 ms. Five inner routes score 97–99 mobile and 100 desktop. Twelve axe scans reported no violations, but incomplete gradient-contrast and badge-label checks require separate treatment. The badge semantic role is fixed in the follow-up; gradient contrast still needs manual review. Follow-up Process/contact visibility guards have local failing-before/passing-after diagnostics and await CI. Earlier pending-status statements above are dated checkpoints, superseded by this section.

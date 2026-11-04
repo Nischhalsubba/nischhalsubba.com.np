@@ -1,0 +1,1157 @@
+{
+  "workflow_run": 41765628443,
+  "head_commit": "c295423438af7a8ceef3bb8bfccb4362fda6f89c",
+  "baseline": {
+    "base": "http://127.0.0.1:4174",
+    "sourceCommit": "5311ce357aaaf64ef21bf90a7efbe3f4b03719e6",
+    "kind": "LAB_SIMULATED_NOT_FIELD_CWV",
+    "runsPerDeviceRoute": 3,
+    "results": [
+      {
+        "device": "mobile",
+        "route": "/",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 82,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 3695.7397999999994,
+            "cls": 0,
+            "tbt": 140,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:14:45.189Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 82,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 3687.6246,
+            "cls": 0,
+            "tbt": 130,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:14:56.645Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 64,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 3901.16,
+            "cls": 0,
+            "tbt": 720.5,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:15:08.006Z"
+          }
+        ],
+        "median": {
+          "performance": 82,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 3695.7397999999994,
+          "cls": 0,
+          "tbt": 140
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/projects",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 88,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 3244.8814,
+            "cls": 0.0010627694729513425,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:15:18.599Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 90,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 3093.3225999999995,
+            "cls": 0.0011146938744056156,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:15:26.276Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 90,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 3016.7464500000006,
+            "cls": 0.0011127588035439659,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:15:33.856Z"
+          }
+        ],
+        "median": {
+          "performance": 90,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 3093.3225999999995,
+          "cls": 0.0011127588035439659,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/project-orkest",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 89,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 3172.7546,
+            "cls": 0.003416196831760081,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:15:41.502Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 90,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 3166.0801999999994,
+            "cls": 0.003416196831760081,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:15:48.695Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 89,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 3167.8756,
+            "cls": 0.003416196831760081,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:15:55.903Z"
+          }
+        ],
+        "median": {
+          "performance": 89,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 3167.8756,
+          "cls": 0.003416196831760081,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/services",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 95,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2587.54425,
+            "cls": 0.0011724508123620973,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:16:03.088Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 95,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2591.7397499999997,
+            "cls": 0.0011735213723989824,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:16:10.257Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 94,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2708.0905499999994,
+            "cls": 0.0011745964117665657,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:16:17.378Z"
+          }
+        ],
+        "median": {
+          "performance": 95,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 2591.7397499999997,
+          "cls": 0.0011735213723989824,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/blog/",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 94,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2713.6972499999997,
+            "cls": 0.0018388632369962822,
+            "tbt": 5,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:16:24.510Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 94,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2713.3675499999995,
+            "cls": 0.0017410346545462024,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:16:32.288Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 94,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2714.6935499999995,
+            "cls": 0.0018016178262067546,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:16:39.974Z"
+          }
+        ],
+        "median": {
+          "performance": 94,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 2713.6972499999997,
+          "cls": 0.0018016178262067546,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/blog/figma-handoff-notes-for-developers",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 97,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2291.094,
+            "cls": 0.0007828520662192138,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:16:47.629Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 97,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2287.9942,
+            "cls": 0.0007828520662192138,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:16:54.594Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 96,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2450.958,
+            "cls": 0.0007828520662192138,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:17:01.597Z"
+          }
+        ],
+        "median": {
+          "performance": 97,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 2291.094,
+          "cls": 0.0007828520662192138,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 787.3746000000001,
+            "cls": 0.014324852005872035,
+            "tbt": 25,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:17:08.596Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 93,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 944.0448000000001,
+            "cls": 0.0145581506294793,
+            "tbt": 166.5,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:17:23.364Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 795.488,
+            "cls": 0.014694566971490047,
+            "tbt": 25.807999999999936,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:17:37.534Z"
+          }
+        ],
+        "median": {
+          "performance": 99,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 795.488,
+          "cls": 0.0145581506294793,
+          "tbt": 25.807999999999936
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/projects",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 705.1565,
+            "cls": 0.0010855882232084153,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:17:51.424Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 670.6488,
+            "cls": 0.0010855882232084153,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:17:59.638Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 659.6961999999996,
+            "cls": 0.0010855882232084153,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:18:07.821Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 670.6488,
+          "cls": 0.0010855882232084153,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/project-orkest",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 694.289,
+            "cls": 0.0008006068875277791,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:18:15.887Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 691.1148000000001,
+            "cls": 0.0008006068875277791,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:18:23.952Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 693.9208,
+            "cls": 0.0008006068875277791,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:18:32.094Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 693.9208,
+          "cls": 0.0008006068875277791,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/services",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 575.3334,
+            "cls": 0.0014849720137089027,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:18:40.114Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 574.75,
+            "cls": 0.0014362763850853891,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:18:48.068Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 617.3602000000001,
+            "cls": 0.0014996367996805073,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:18:55.566Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 575.3334,
+          "cls": 0.0014849720137089027,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/blog/",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 615.8582,
+            "cls": 0.002083173068433122,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:19:03.244Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 618.633,
+            "cls": 0.0021285163615036877,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:19:11.854Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 612.1,
+            "cls": 0.0021223219876956778,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:19:20.406Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 615.8582,
+          "cls": 0.0021223219876956778,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/blog/figma-handoff-notes-for-developers",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 534.9172,
+            "cls": 0.0010378320931205545,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:19:29.231Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 571.9116,
+            "cls": 0.0010378320931205545,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:19:37.007Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 576.1502,
+            "cls": 0.0010378320931205545,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:19:44.871Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 571.9116,
+          "cls": 0.0010378320931205545,
+          "tbt": 0
+        }
+      }
+    ]
+  },
+  "review": {
+    "base": "http://127.0.0.1:4173",
+    "sourceCommit": "a94365dd85e48f64cf91eb02b7852312a0cc4244",
+    "kind": "LAB_SIMULATED_NOT_FIELD_CWV",
+    "runsPerDeviceRoute": 3,
+    "results": [
+      {
+        "device": "mobile",
+        "route": "/",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 90,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2409.3507,
+            "cls": 0,
+            "tbt": 282.44155,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:19:56.939Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 88,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2746.6974,
+            "cls": 0,
+            "tbt": 227,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:20:07.771Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 89,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2855.5785,
+            "cls": 0,
+            "tbt": 199,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:20:18.231Z"
+          }
+        ],
+        "median": {
+          "performance": 89,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 2746.6974,
+          "cls": 0,
+          "tbt": 227
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/projects",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 97,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2158.09825,
+            "cls": 0.0010605118902794176,
+            "tbt": 10.5,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:20:28.717Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 97,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2172.2817,
+            "cls": 0.0011156614098364408,
+            "tbt": 13.5,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:20:36.422Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 97,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2121.8465,
+            "cls": 0.0010598668666588675,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:20:44.012Z"
+          }
+        ],
+        "median": {
+          "performance": 97,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 2158.09825,
+          "cls": 0.0010605118902794176,
+          "tbt": 10.5
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/project-orkest",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1962.7867999999999,
+            "cls": 0.001763540267756757,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:20:51.661Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1971.12975,
+            "cls": 0.001763540267756757,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:20:59.074Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 98,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1995.4295,
+            "cls": 0.001763540267756757,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:21:06.423Z"
+          }
+        ],
+        "median": {
+          "performance": 99,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 1971.12975,
+          "cls": 0.001763540267756757,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/services",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1957.1702,
+            "cls": 0.0011735213723989824,
+            "tbt": 5,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:21:13.793Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1962.6287000000002,
+            "cls": 0.0011638376193456733,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:21:21.038Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1959.1374999999998,
+            "cls": 0.0011638376193456733,
+            "tbt": 14.146875000000023,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:21:28.441Z"
+          }
+        ],
+        "median": {
+          "performance": 99,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 1959.1374999999998,
+          "cls": 0.0011638376193456733,
+          "tbt": 5
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/blog/",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 98,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1994.355,
+            "cls": 0.0016977690232982084,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:21:35.674Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 98,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1993.2235,
+            "cls": 0.001844883457454749,
+            "tbt": 9.5,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:21:43.459Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 98,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 2000.6685,
+            "cls": 0.0016988931113369376,
+            "tbt": 2,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:21:51.171Z"
+          }
+        ],
+        "median": {
+          "performance": 98,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 1994.355,
+          "cls": 0.0016988931113369376,
+          "tbt": 2
+        }
+      },
+      {
+        "device": "mobile",
+        "route": "/blog/figma-handoff-notes-for-developers",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1894.2066,
+            "cls": 0.0007828520662192138,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:21:58.892Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1885.990175,
+            "cls": 0.0007828520662192138,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:22:05.993Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 1887.4341,
+            "cls": 0.0007828520662192138,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:22:13.249Z"
+          }
+        ],
+        "median": {
+          "performance": 99,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 1887.4341,
+          "cls": 0.0007828520662192138,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 625.4662500000002,
+            "cls": 0.014319967289897359,
+            "tbt": 16.500000000000057,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:22:20.338Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 618.3215,
+            "cls": 0.014642707237308199,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:22:34.925Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 623.3100000000002,
+            "cls": 0.014642707237308199,
+            "tbt": 12.500000000000057,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:22:48.120Z"
+          }
+        ],
+        "median": {
+          "performance": 99,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 623.3100000000002,
+          "cls": 0.014642707237308199,
+          "tbt": 12.500000000000057
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/projects",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 519.1987999999999,
+            "cls": 0.0010855882232084153,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:23:01.454Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 516.3755999999998,
+            "cls": 0.0010855882232084153,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:23:09.812Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 510.3616999999999,
+            "cls": 0.0010855882232084153,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:23:18.228Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 516.3755999999998,
+          "cls": 0.0010855882232084153,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/project-orkest",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 472.92350000000005,
+            "cls": 0.0007133268368189696,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:23:26.502Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 467.05349999999993,
+            "cls": 0.0007133268368189696,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:23:34.728Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 470.145,
+            "cls": 0.0007133268368189696,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:23:42.954Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 470.145,
+          "cls": 0.0007133268368189696,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/services",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 431.9421,
+            "cls": 0.0015054326379719746,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:23:51.082Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 450.03329999999994,
+            "cls": 0.001531190867456166,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:23:58.789Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 471.2025,
+            "cls": 0.0015471202323802862,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:24:06.561Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 450.03329999999994,
+          "cls": 0.001531190867456166,
+          "tbt": 0
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/blog/",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 463.35799999999995,
+            "cls": 0.0021628810971468324,
+            "tbt": 1.9999999999999716,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:24:14.436Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 466.1025,
+            "cls": 0.002066984674950148,
+            "tbt": 1.0000000000000284,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:24:23.355Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 468.95025,
+            "cls": 0.002115349645255678,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:24:32.284Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 466.1025,
+          "cls": 0.002115349645255678,
+          "tbt": 1.0000000000000284
+        }
+      },
+      {
+        "device": "desktop",
+        "route": "/blog/figma-handoff-notes-for-developers",
+        "runs": [
+          {
+            "iteration": 1,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 429.7938999999999,
+            "cls": 0.0010158864906461057,
+            "tbt": 27.5,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:24:40.926Z"
+          },
+          {
+            "iteration": 2,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 423.2755,
+            "cls": 0.0010429946655908194,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:24:48.960Z"
+          },
+          {
+            "iteration": 3,
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "lcp": 428.4266,
+            "cls": 0.0010429946655908194,
+            "tbt": 0,
+            "lighthouseVersion": "13.5.0",
+            "fetchTime": "2026-11-04T03:24:56.916Z"
+          }
+        ],
+        "median": {
+          "performance": 100,
+          "accessibility": 100,
+          "seo": 100,
+          "lcp": 428.4266,
+          "cls": 0.0010429946655908194,
+          "tbt": 0
+        }
+      }
+    ]
+  },
+  "accessibility": {
+    "checkedAt": "2026-11-04T03:14:21.460Z",
+    "scans": 12,
+    "violations": 0,
+    "incomplete_rule_occurrences": {
+      "aria-prohibited-attr": 2,
+      "color-contrast": 12
+    }
+  }
+}

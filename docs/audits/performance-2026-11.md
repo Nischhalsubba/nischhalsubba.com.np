@@ -1,16 +1,22 @@
 # Performance evidence — 4 November 2026
 
-Latest completed evidence run before this revision: https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/41741887235 (workflow head f9b66b17bb2f82ac5cf7d476df8ce91b577ac98a; tested merge source 6d36f4d5ee22ba290423e0a43f3ba0dd3d25119f). 108 lab observations, three repetitions per route/device/build group. Historical 8f712de home score 91 is superseded by this observation; it is not a reliable current pass.
+Completed code c295423438af7a8ceef3bb8bfccb4362fda6f89c passed all six workflows. Evidence: https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/41765628443 . Tested PR merge source: a94365dd85e48f64cf91eb02b7852312a0cc4244. Lighthouse 13.5.0, Chromium, GitHub-hosted Ubuntu, three repetitions per route/device; lab simulation, not field CWV/INP. Baseline is unchanged main 5311ce3, built on a separate localhost port in the same workflow. Full saved distributions: performance-measured-c295423.json.
 
-| Route | Review mobile median | Review mobile LCP ms |
-|---|---:|---:|
-| / | 89 | 2724.64 |
-| /projects | 97 | 2135.92 |
-| /project-orkest | 98 | 1982.31 |
-| /services | 98 | 1957.29 |
-| /blog/ | 98 | 1983.99 |
-| /blog/figma-handoff-notes-for-developers | 99 | 1886.58 |
+| Device | Route | Baseline score | Review score | Baseline LCP ms | Review LCP ms |
+|---|---|---:|---:|---:|---:|
+| mobile | / | 82 | 89 | 3695.74 | 2746.70 |
+| mobile | /projects | 90 | 97 | 3093.32 | 2158.10 |
+| mobile | /project-orkest | 89 | 99 | 3167.88 | 1971.13 |
+| mobile | /services | 95 | 99 | 2591.74 | 1959.14 |
+| mobile | /blog/ | 94 | 98 | 2713.70 | 1994.36 |
+| mobile | /blog/figma-handoff-notes-for-developers | 97 | 99 | 2291.09 | 1887.43 |
+| desktop | / | 99 | 99 | 795.49 | 623.31 |
+| desktop | /projects | 100 | 100 | 670.65 | 516.38 |
+| desktop | /project-orkest | 100 | 100 | 693.92 | 470.14 |
+| desktop | /services | 100 | 100 | 575.33 | 450.03 |
+| desktop | /blog/ | 100 | 100 | 615.86 | 466.10 |
+| desktop | /blog/figma-handoff-notes-for-developers | 100 | 100 | 571.91 | 428.43 |
 
-Home desktop: 99, LCP 601.05 ms, CLS 0.01404, TBT 0. Home mobile: CLS 0, TBT 195 ms. Baseline main home mobile: 66, LCP 3891.41 ms, TBT 624 ms. This is lab evidence, not field CWV or real-user INP. Mobile score 90+ and homepage LCP below 2.5 seconds remain open.
+Review home mobile: score runs 90/88/89, median 89; LCP median 2746.70 ms, CLS 0, TBT 227 ms. Mobile 90+ and homepage LCP <2500 ms remain OPEN. Home desktop median 99 / LCP 623.31 ms. Historical 91 is not a stable latest pass. Do not compare one favorable score with a different run's baseline; variability exists even for the unchanged main.
 
-CPU profile identified repeated offscreen About animation layout reads (loop 475 ms self / 591 ms inclusive). This revision gates the loop on IntersectionObserver visibility and document visibility before geometry reads. The normal-motion regression asserts zero offscreen About reads while retaining bidirectional navigation. This candidate fix has no new measured performance result yet. Exact N geometry and visible animation behavior are retained.
+The About and unseen-footer guards passed the expanded motion regression, including activation and reverse navigation. CPU profile then identified the still-offscreen Process dial loop (428.70 ms self / 430.59 ms inclusive). Its read occurred before its viewport check. The contact canvas had the same source-confirmed ordering. This next revision adds positive-area visibility guards to both and verifies zero offscreen reads plus activation on navigation. Diagnostics executing the actual prior callbacks each failed with one offscreen read; corrected callbacks pass with zero. Fresh browser CI and lab measurements are required before claiming any improvement from this revision. N geometry and visible drawing algorithms are retained.

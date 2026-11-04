@@ -11,3 +11,8 @@ Local Chromium installation failed with empty/truncated ZIP downloads. CI browse
 Manual reviewer checklist: use Tab/Shift+Tab through nav and image controls; open/close mobile menu and native image dialog; confirm focus restoration and no obscured focus; inspect captions/alt with NVDA/VoiceOver; test reduced motion, form errors and reflow. Record assistive technology/version and observed outcomes.
 
 Reference: https://www.w3.org/WAI/WCAG22/quickref/
+
+
+## Verified c295423 CI and follow-up
+
+Run 41765628443 completed 12 representative axe scans with zero reported violations and no recorded browser assertion failures; reflow, image-dialog and normal-motion checks passed. This does not mean every accessibility concern passed: axe marked two aria-prohibited-attr occurrences on the award-badge containers and twelve color-contrast occurrences as incomplete (manual review required). This revision gives the badge containers a group role so their accessible labels have a supported semantic role. Gradient contrast remains unverified manually. No WAVE or real screen-reader session was completed. Follow-up commit CI must verify the new markup.

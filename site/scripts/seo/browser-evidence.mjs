@@ -55,10 +55,14 @@ try {
     window.__workLayoutReads = 0;
     window.__aboutLayoutReads = 0;
     window.__footerLayoutReads = 0;
+    window.__processLayoutReads = 0;
+    window.__contactLayoutReads = 0;
     Element.prototype.getBoundingClientRect = /** Callback contract: Preserve the native rectangle while counting work-scene reads. Inputs: DOM receiver. Side effects: updates a test-only counter. Returns: native DOMRect. */ function () {
       if (this.id === 'wk') window.__workLayoutReads++;
       if (this.id === 'abx') window.__aboutLayoutReads++;
       if (this.id === 'ftName') window.__footerLayoutReads++;
+      if (this.id === 'od') window.__processLayoutReads++;
+      if (this.id === 'contact') window.__contactLayoutReads++;
       return original.call(this);
     };
   });
@@ -68,12 +72,16 @@ try {
     window.__workLayoutReads = 0;
     window.__aboutLayoutReads = 0;
     window.__footerLayoutReads = 0;
+    window.__processLayoutReads = 0;
+    window.__contactLayoutReads = 0;
     return away;
   }).then(/** Callback contract: Require the intended offscreen test precondition. Inputs: flag. Side effects: assertion only. Returns: void. */ away => assert.equal(away,true));
   await motionPage.waitForTimeout(250);
   assert.equal(await motionPage.evaluate(/** Callback contract: Read the isolated work-layout counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__workLayoutReads),0,'Offscreen work scene must not read layout every frame');
   assert.equal(await motionPage.evaluate(/** Callback contract: Read the offscreen About-scene counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__aboutLayoutReads),0,'Offscreen About scene must not read layout every frame');
   assert.equal(await motionPage.evaluate(/** Callback contract: Read the unseen footer-scene counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__footerLayoutReads),0,'Unseen footer must not read layout every frame');
+  assert.equal(await motionPage.evaluate(/** Callback contract: Read the offscreen process-scene counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__processLayoutReads),0,'Offscreen process scene must not read layout every frame');
+  assert.equal(await motionPage.evaluate(/** Callback contract: Read the offscreen contact-scene counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__contactLayoutReads),0,'Offscreen contact scene must not read layout every frame');
   await motionPage.evaluate(/** Callback contract: Exercise native navigation into the work scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('work').scrollIntoView({block:'start',behavior:'instant'}));
   await motionPage.waitForFunction(/** Callback contract: Wait for a usable project and completed navigation frame. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('#wkWorld .wf.on .whit')?.tabIndex === 0 && document.querySelector('.tb-t.act')?.dataset.sec === 'work');
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'work');
@@ -85,6 +93,10 @@ try {
   await motionPage.evaluate(/** Callback contract: Exercise reverse navigation into the About scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('about').scrollIntoView({block:'start',behavior:'instant'}));
   await motionPage.waitForFunction(/** Callback contract: Wait for the About chapter and completed reverse-navigation frame. Inputs: none. Side effects: none. Returns: readiness. */ () => Boolean(document.querySelector('#abCh .abx-c.on')) && document.querySelector('.tb-t.act')?.dataset.sec === 'about');
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'about');
+  await motionPage.evaluate(/** Callback contract: Activate the deferred process dial. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('process').scrollIntoView({block:'start',behavior:'instant'}));
+  await motionPage.waitForFunction(/** Callback contract: Require the process dial to initialize visibly. Inputs: none. Side effects: none. Returns: readiness. */ () => Boolean(document.querySelector('#odC #odN')) && document.querySelector('.tb-t.act')?.dataset.sec === 'process');
+  await motionPage.evaluate(/** Callback contract: Activate the deferred contact canvas. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('contact').scrollIntoView({block:'start',behavior:'instant'}));
+  await motionPage.waitForFunction(/** Callback contract: Verify the contact field paints when visible. Inputs: none. Side effects: reads canvas pixels. Returns: painted flag. */ () => document.querySelector('#cpDots').getContext('2d').getImageData(0,0,30,30).data.some((value,index) => index%4===3 && value>0));
   await motionContext.close();
   console.log('[homepage-motion] Offscreen layout, deferred buffers and bidirectional section navigation passed.');
 } finally {await browser.close();}
