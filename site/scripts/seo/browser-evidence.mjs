@@ -106,7 +106,7 @@ try {
   for (const id of [...chapters, ...chapters.slice(0,-1).reverse()]) {
     console.log('[chapter-navigation]',id);
     await motionPage.evaluate(/** Callback contract: Exercise every chapter in both directions, matching the Home control's explicit zero destination. Inputs: chapter ID. Side effects: scrolls the page. Returns: void. */ id => { if (id === 'top') scrollTo({top:0,behavior:'instant'}); else document.getElementById(id).scrollIntoView({block:'start',behavior:'instant'}); },id);
-    await motionPage.waitForFunction(/** Callback contract: Wait for the current chapter indicator. Inputs: chapter ID. Side effects: none. Returns: readiness. */ id => document.querySelector('.tb-t.act')?.dataset.sec === id,id);
+    await motionPage.waitForFunction(/** Callback contract: Check the universal chapter indicator, including Contact's separate CTA. Inputs: chapter ID. Side effects: none. Returns: readiness. */ id => document.querySelector('#tbMp a.act[data-sec]')?.dataset.sec === id,id);
     assert.equal(await motionPage.locator('#'+id).isVisible(),true,'Navigated chapter must remain visible: '+id);
   }
   await motionPage.setViewportSize({width:768,height:1024});
