@@ -552,5 +552,42 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/masteriyo-question-editor-social-02476d57803b.png"
+  },
+  {
+    "id": "hamro-idea-contact-form",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "31:1490",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-1490.png",
+    "source_sha256": "6d188f6598eb7db0262675b18f050444f2031bbbd4c6049080c2fe973608b278",
+    "alt": "Hamro Idea contact design with name, email and message prompts above a wide Submit message button.",
+    "caption": "Cropped contact form from the historical Hamro idea UI Design file. Surrounding stock photography, placeholder contact details and unverified claims are excluded. The frame shows visual intent, not a tested or shipped form.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_EMPTY_FORM_ONLY",
+    "presentation": "Cropped historical Figma design screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/hamro-idea-contact-form-480-0291cb9e5a5e.webp",
+        "width": 480,
+        "height": 255,
+        "bytes": 6188,
+        "sha256": "0291cb9e5a5efbbaf30d48bd535879a9e659f38206f48a2a74a7f569884f3ea7"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-contact-form-800-e725e0f8fc7e.webp",
+        "width": 800,
+        "height": 424,
+        "bytes": 12200,
+        "sha256": "e725e0f8fc7e5cc20e6e7af5774cebb5733393392ff011c104e2881a6b5679e9"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-contact-form-905-efe3bed696d1.webp",
+        "width": 905,
+        "height": 480,
+        "bytes": 14072,
+        "sha256": "efe3bed696d11b2a8ad80c031df48c7f068028e917d13227e37f6c3f3929c850"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/hamro-idea-contact-form-social-5e6e97c2f8b6.png"
   }
 ]

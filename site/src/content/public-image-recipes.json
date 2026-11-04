@@ -300,5 +300,25 @@
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
     "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
     "presentation": "Native team design screen"
+  },
+  {
+    "id": "hamro-idea-contact-form",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "31:1490",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-1490.png",
+    "source_sha256": "6d188f6598eb7db0262675b18f050444f2031bbbd4c6049080c2fe973608b278",
+    "crop": [
+      465,
+      1070,
+      1370,
+      1550
+    ],
+    "redactions": [],
+    "alt": "Hamro Idea contact design with name, email and message prompts above a wide Submit message button.",
+    "caption": "Cropped contact form from the historical Hamro idea UI Design file. Surrounding stock photography, placeholder contact details and unverified claims are excluded. The frame shows visual intent, not a tested or shipped form.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_EMPTY_FORM_ONLY",
+    "presentation": "Cropped historical Figma design screen"
   }
 ]

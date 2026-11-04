@@ -798,13 +798,14 @@
           "tradeoff": "Nearby project proof answers a specific doubt; a large detached gallery makes the visitor connect the dots."
         },
         {
-          "heading": "Use implementation to test the reusable system",
+          "heading": "Make the next conversation easy to start",
           "body": [
-            "Real headings, longer service names and smaller screens expose problems that ideal artboards can hide. I use those conditions to review section spacing, reading order, navigation and the route to contact.",
-            "Reusable sections still need a clear content contract: what is required, what can be omitted and what happens when an image or description is longer than expected. Semantic markup and predictable structure support that contract; they do not guarantee ranking outcomes."
+            "The historical contact frame reduces the initial request to a name, email and message, with one prominent submission action. That keeps the visual commitment small after a visitor has spent time evaluating the studio. This genuine source artifact shows the intended composition; it does not establish implementation or inquiry growth.",
+            "The artifact also exposes work still needed: prompts must become persistent programmatic labels, the email field needs appropriate input semantics, and validation, submission progress and success feedback need explicit states. Preserving the simple composition requires making those behaviors part of the implementation contract."
           ],
-          "leadIn": "The relationship between explanation and proof has to remain maintainable after delivery.",
-          "tradeoff": "Reusable sections reduce maintenance cost, but need explicit rules for optional and unusually long content."
+          "leadIn": "After understanding the offer and inspecting relevant work, the prospect needs a clear route to a conversation.",
+          "tradeoff": "A short form reduces the information requested upfront, while qualification and useful feedback still need a deliberate interaction design.",
+          "image": "hamro-idea-contact-form"
         }
       ],
       "delivery": "The work joins service information architecture with a static multi-page frontend. The useful handoff is not only a visual style: it includes section responsibilities, responsive rules and a content structure the site can keep using.",
@@ -830,7 +831,7 @@
         "steps": [
           "Choose a relevant service",
           "Inspect supporting work",
-          "Carry the structure into implementation"
+          "Start a relevant conversation"
         ],
         "reflection": "Service architecture and implementation meet in the content contract. A new service or longer project description should fit the structure without weakening the story. The case demonstrates the intended relationship between offer, proof and contact; lead quality and search growth need separate measurement."
       }
