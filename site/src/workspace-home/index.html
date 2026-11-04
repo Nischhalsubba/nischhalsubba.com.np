@@ -3274,7 +3274,7 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     const pen = makePen($('#abCv'), { box: (W, H) => { const wide = W > 1023; let h, y; if (wide) { h = Math.min(H * .62, W * .44 * 450 / 400); y = (H - h) / 2; }   /* tall screens (iPad Pro portrait): never wider than the right half */ else { const tl = document.querySelector('.abx-l'), textTop = tl ? tl.offsetTop : H * .5, top = 104, avail = textTop - top - 44; h = Math.max(110, Math.min(H * .34, avail)); y = top + Math.max(0, (avail - h) / 2); $('#abCv').style.opacity = avail < 110 ? '.18' : ''; }   /* short phones: no room above the words, so the drawing stays a faint backdrop instead of covering the heading */ const w = h * 400 / 450; hbox = { x: wide ? Math.min(W * .72 - w / 2, W - w - 150) : (W - w) / 2, y, w, h };   /* leave room for the coordinate tags on the right */ return hbox; } });
     let lap = 0, cur = -1, aboutVisible = false;
     // The sampled startup profile traced repeated offscreen layout reads to this scene.
-    new IntersectionObserver(([entry]) => { aboutVisible = entry.isIntersecting; }).observe(wrap);
+    new IntersectionObserver(([entry]) => { aboutVisible = entry.isIntersecting && entry.intersectionRect.height > 0 && entry.intersectionRect.width > 0; }, { threshold: [0, 0.000001] }).observe(wrap);
     (function loop() {
       requestAnimationFrame(loop);
       if (!aboutVisible || document.hidden) return;

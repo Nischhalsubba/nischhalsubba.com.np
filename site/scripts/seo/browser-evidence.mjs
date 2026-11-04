@@ -62,7 +62,7 @@ try {
   });
   await motionPage.goto(base+'/',{waitUntil:'networkidle'});
   await motionPage.evaluate(/** Callback contract: Confirm offscreen position and start the idle measurement. Inputs: none. Side effects: resets a test counter. Returns: offscreen flag. */ () => {
-    const away = document.getElementById('wk').getBoundingClientRect().top > innerHeight + 600;
+    const away = document.getElementById('wk').getBoundingClientRect().top > innerHeight + 600 && document.getElementById('abx').getBoundingClientRect().top >= innerHeight;
     window.__workLayoutReads = 0;
     window.__aboutLayoutReads = 0;
     return away;
