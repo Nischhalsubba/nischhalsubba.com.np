@@ -269,7 +269,7 @@
         {
           "heading": "Make the evidence boundary visible",
           "paragraphs": [
-            "In the current editorial revision, Figma exports are separated from public derivatives. Screens are selected for the decision they help explain, sensitive regions are excluded from public crops and the source is recorded. Drafts and legacy prototypes are not silently presented as current releases.",
+            "In the current editorial revision, Figma exports are separated from public derivatives. Screens are selected for the decision they help explain, complete source frames are retained with their dummy content and the source is recorded. Drafts and legacy prototypes are not silently presented as current releases.",
             "Where a matching file is missing, the case keeps the gap visible. Code or an existing website artifact may be better evidence than a design screenshot. No visual placeholder can establish a result that was never measured."
           ]
         },
@@ -461,7 +461,7 @@
           "heading": "Keep familiar context around the unfamiliar step",
           "paragraphs": [
             "Yarsha puts wallet-related activity inside a messaging context. The reviewed token-selection frame identifies assets using names and symbols and offers a search. It gives a concrete discussion point: establish what the person is acting on before any later authorization step.",
-            "The source was reviewed privately. Balance-like values are not published or treated as holdings, returns or evidence of a complete transaction flow."
+            "The complete source frame is included in the Yarsha case. Its balance-like values are dummy content; the useful design question is how a person distinguishes assets before a consequential action."
           ]
         },
         {
@@ -669,7 +669,7 @@
         {
           "heading": "Inspect a result panel without calling it authorization",
           "paragraphs": [
-            "The Yarsha detail panel separates spent and received assets from destination and fee. The identifying values and address are not published here. It is a result-detail design, not the screen where a person approves a wallet request.",
+            "The Yarsha detail panel separates spent and received assets from destination and fee. The complete frame in the Yarsha case retains the original dummy values and address. It is a result-detail design, not the screen where a person approves a wallet request.",
             "The source explorer wording also needs chain-specific review. Check the supported network, link destination and result evidence before using that action to reassure someone that an operation is confirmed."
           ]
         }

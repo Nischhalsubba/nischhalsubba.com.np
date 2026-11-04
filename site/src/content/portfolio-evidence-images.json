@@ -6,35 +6,35 @@
     "nodeId": "160:386",
     "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-386.png",
     "source_sha256": "2ffae670af1de943df404a1047fa5fb37b06ccd80bb48efad742fd6b35f56aac",
-    "alt": "Orkest create-lead form groups contact details and qualification alongside next steps and data quality checks.",
-    "caption": "Curated crop of the current Orkest CRM create-lead design. This is design evidence, not a claim about a shipped feature or conversion results.",
+    "alt": "Orkest create-lead screen with grouped contact and qualification fields and a next-step explanation.",
+    "caption": "Orkest create-lead screen with grouped contact and qualification fields and a next-step explanation. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "NO_PERSONAL_DATA_IN_CROP",
-    "presentation": "Curated crop",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/orkest-lead-capture-480-2b1d1cc4d315.webp",
+        "src": "/assets/images/evidence/orkest-lead-capture-480-ca6c3112ca49.webp",
         "width": 480,
-        "height": 397,
-        "bytes": 15150,
-        "sha256": "2b1d1cc4d3152bf5166910f8fb3c7a4c1d448de4341df3a150a1782ce05f847f"
+        "height": 350,
+        "bytes": 13312,
+        "sha256": "ca6c3112ca49555bcae00d5ed80d6d0e8c048c5084baa7bf2786d1427ad0c009"
       },
       {
-        "src": "/assets/images/evidence/orkest-lead-capture-800-f5ae2e73b441.webp",
+        "src": "/assets/images/evidence/orkest-lead-capture-800-8108256e5d88.webp",
         "width": 800,
-        "height": 662,
-        "bytes": 31458,
-        "sha256": "f5ae2e73b441cd5101c706fe68526c9a530c7e6eaab7cfe7d34d7322517573dd"
+        "height": 583,
+        "bytes": 30186,
+        "sha256": "8108256e5d88e64d6fa9419450fcaef13aad017701216d435a316cf74a598ca9"
       },
       {
-        "src": "/assets/images/evidence/orkest-lead-capture-1173-b47a323d6998.webp",
-        "width": 1173,
-        "height": 970,
-        "bytes": 56308,
-        "sha256": "b47a323d6998a08665358cc6cf31d4b17aeecedeb0c68a179edb3e32bc99802b"
+        "src": "/assets/images/evidence/orkest-lead-capture-1240-c7e16c798757.webp",
+        "width": 1240,
+        "height": 904,
+        "bytes": 56972,
+        "sha256": "c7e16c7987578e24eeb01b377f5216bd7a11834c296f9a2a51f242bf966be6e6"
       }
     ],
-    "socialSrc": "/assets/images/evidence/orkest-lead-capture-social-328c98ecdd3e.png"
+    "socialSrc": "/assets/images/evidence/orkest-lead-capture-social-e119b1cfef76.png"
   },
   {
     "id": "zapp-account-entry",
@@ -44,20 +44,20 @@
     "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/114-30.png",
     "source_sha256": "687068a4c358ea78c5df15c544278ddf8bd540ab0bb5d731be692ba10a270694",
     "alt": "Zapp customer account-entry screen offers create-account and sign-in routes with explanatory labels.",
-    "caption": "Customer iOS account-entry screen from the primary Zapp design file. It shows the design state, not evidence of delivery performance.",
+    "caption": "Zapp customer account-entry screen offers create-account and sign-in routes with explanatory labels. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "NO_PERSONAL_DATA_IN_CROP",
-    "presentation": "Original screen presentation",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/zapp-account-entry-402-fe847a76869d.webp",
+        "src": "/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp",
         "width": 402,
         "height": 874,
-        "bytes": 16020,
-        "sha256": "fe847a76869dde113cec4bb257c5c057bdb33933004d668dbe2a2fe03f4bf3d3"
+        "bytes": 14812,
+        "sha256": "008fb155a75b392ba1b0ec697f44b3a7149fa04d3976d7249dd9366663973487"
       }
     ],
-    "socialSrc": "/assets/images/evidence/zapp-account-entry-social-c438ffdcc1bc.png"
+    "socialSrc": "/assets/images/evidence/zapp-account-entry-social-684a468a493b.png"
   },
   {
     "id": "morajaa-service-process",
@@ -66,35 +66,35 @@
     "nodeId": "465:831",
     "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/465-831.png",
     "source_sha256": "6d7b931aca038922b7fc914233bd328baaa4582266a638d22a4be69ed61be16e",
-    "alt": "Morajaa market-entry service design presents seven named stages in a scannable process section.",
-    "caption": "Curated process-section crop from the supplied Final Design v2 service screen. Photography and staff details are outside this crop. Source service statements are not independently verified legal or commercial claims.",
+    "alt": "Morajaa full market-entry service page connects the opening promise, services, process and contact.",
+    "caption": "Morajaa full market-entry service page connects the opening promise, services, process and contact. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "NO_PERSONAL_DATA_OR_PHOTOGRAPHY_IN_CROP",
-    "presentation": "Curated section crop",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/morajaa-service-process-480-9a713b5b27e2.webp",
+        "src": "/assets/images/evidence/morajaa-service-process-480-a2cd075e3dea.webp",
         "width": 480,
-        "height": 372,
-        "bytes": 15944,
-        "sha256": "9a713b5b27e2cc428f76e668683ea63ebc194e21299a4d309f33776b5824d6d2"
+        "height": 2092,
+        "bytes": 97726,
+        "sha256": "a2cd075e3dead7bedce34f92ed07974d0ca6feb80456436fe6bbe678c6d65359"
       },
       {
-        "src": "/assets/images/evidence/morajaa-service-process-800-d6d0beced52d.webp",
+        "src": "/assets/images/evidence/morajaa-service-process-800-2973ce338076.webp",
         "width": 800,
-        "height": 619,
-        "bytes": 35580,
-        "sha256": "d6d0beced52dfe9bb3d0205bfaa4b97261d071cb3d50a9745b2e25e7e8634cf2"
+        "height": 3487,
+        "bytes": 212372,
+        "sha256": "2973ce338076b855c679a4088a23cbc7475fec359f827ec8f04dbf934f40614c"
       },
       {
-        "src": "/assets/images/evidence/morajaa-service-process-1240-bb90f09912ee.webp",
+        "src": "/assets/images/evidence/morajaa-service-process-1240-f20ab3d0b75b.webp",
         "width": 1240,
-        "height": 960,
-        "bytes": 63092,
-        "sha256": "bb90f09912ee37b14d6cbb0a137b25870cc0f99c9dc9112a31198d1fe8b114f2"
+        "height": 5404,
+        "bytes": 385940,
+        "sha256": "f20ab3d0b75b954ac24389b03eb4f4e29afae0fcde0620b2184c0e70a68c5a95"
       }
     ],
-    "socialSrc": "/assets/images/evidence/morajaa-service-process-social-e3a01e3ade62.png"
+    "socialSrc": "/assets/images/evidence/morajaa-service-process-social-159cde267cfb.png"
   },
   {
     "id": "zapp-parcel-details",
@@ -104,10 +104,10 @@
     "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/113-153.png",
     "source_sha256": "84ac196696bd8b6d30d6a538d066e98d70cc6a1bf2143e9ded2b10f0567072d3",
     "alt": "Zapp customer parcel-details screen groups package types, a contents field and the action to choose a delivery service.",
-    "caption": "Customer iOS parcel-details frame from the supplied primary Zapp 2.0 file. This is a design state, not evidence of working pricing, dispatch or delivery.",
+    "caption": "Zapp customer parcel-details screen groups package types, a contents field and the action to choose a delivery service. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "NO_PERSONAL_DATA_IN_SCREEN",
-    "presentation": "Native screen",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
     "variants": [
       {
         "src": "/assets/images/evidence/zapp-parcel-details-402-d9eccd9e41f7.webp",
@@ -117,7 +117,7 @@
         "sha256": "d9eccd9e41f7da5437bc5c2747180fdd3ac6bf62407073421ead3ec9b32291bd"
       }
     ],
-    "socialSrc": "/assets/images/evidence/zapp-parcel-details-social-dcee64e02fef.png"
+    "socialSrc": "/assets/images/evidence/zapp-parcel-details-social-b5d329371935.png"
   },
   {
     "id": "orkest-conversion-readiness",
@@ -126,21 +126,35 @@
     "nodeId": "160:387",
     "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-387.png",
     "source_sha256": "cabfdf00f4b319d966da9f6a45015bc9793dd5c4d3242dc22dee864df5b5a6d9",
-    "alt": "Orkest lead-detail panel pairs a core-information check with the action to convert a lead into an opportunity.",
-    "caption": "Cropped conversion-readiness panel from the current-labeled CRM lead detail. The copy describes an intended handoff; it does not verify record conversion.",
+    "alt": "Orkest full lead-detail workspace connects record identity, activity history and conversion readiness.",
+    "caption": "Orkest full lead-detail workspace connects record identity, activity history and conversion readiness. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "CROP_EXCLUDES_ALL_RECORD_IDENTITIES_AND_VALUES",
-    "presentation": "Curated detail-panel crop",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/orkest-conversion-readiness-340-4e370d2b4c8c.webp",
-        "width": 340,
-        "height": 205,
-        "bytes": 8280,
-        "sha256": "4e370d2b4c8c650dc4815a275280a4bb909e3181c0852fc5f493026623fe1475"
+        "src": "/assets/images/evidence/orkest-conversion-readiness-480-9445d84d687d.webp",
+        "width": 480,
+        "height": 350,
+        "bytes": 14112,
+        "sha256": "9445d84d687de58aecebb596ac0814f1959edcf215c9225e698d25937af3a806"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-conversion-readiness-800-636577d28dee.webp",
+        "width": 800,
+        "height": 583,
+        "bytes": 32018,
+        "sha256": "636577d28dee2f185df995db4b969665cebae96a99a80103d597014a805aac29"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-conversion-readiness-1240-02f790e40a01.webp",
+        "width": 1240,
+        "height": 904,
+        "bytes": 60044,
+        "sha256": "02f790e40a0140f04c37abdf6010a93b9ede16c7fd2c5006a4632659d0b7c9e9"
       }
     ],
-    "socialSrc": "/assets/images/evidence/orkest-conversion-readiness-social-598faa672fad.png"
+    "socialSrc": "/assets/images/evidence/orkest-conversion-readiness-social-0fc4fb9f21ac.png"
   },
   {
     "id": "pihub-access-denied",
@@ -149,35 +163,35 @@
     "nodeId": "2228:545",
     "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-3/2228-545.png",
     "source_sha256": "69df55450d41d32b7d11813e41b74b3ec3fdadd0fc56c651a8fa2d2835cc7c36",
-    "alt": "piHub access-denied design says that the page cannot be accessed and offers a Go Back action.",
-    "caption": "Access-denied design state from the administrator page. It illustrates denial copy and recovery, not tested server authorization.",
+    "alt": "PiHub administrator access-denied screen gives the person an explanation and a Go Back action.",
+    "caption": "PiHub administrator access-denied screen gives the person an explanation and a Go Back action. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "NO_PERSONAL_OR_FINANCIAL_DATA_IN_CROP",
-    "presentation": "Curated access-state crop",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/pihub-access-denied-480-9b9728e13d9c.webp",
+        "src": "/assets/images/evidence/pihub-access-denied-480-f051411248ee.webp",
         "width": 480,
-        "height": 289,
-        "bytes": 2902,
-        "sha256": "9b9728e13d9cadf3695304a6ede4e6722fc15832a9409c1ab1a0bb01beda870e"
+        "height": 257,
+        "bytes": 2524,
+        "sha256": "f051411248ee2e7e2e4df9a467e2265e7a2e469d5f7874bd5dd13d7b9a581659"
       },
       {
-        "src": "/assets/images/evidence/pihub-access-denied-800-a1592393676b.webp",
+        "src": "/assets/images/evidence/pihub-access-denied-800-e26aceab518d.webp",
         "width": 800,
-        "height": 482,
-        "bytes": 5376,
-        "sha256": "a1592393676bad7d9ce5ebdad4af66ab027a978f3d5920d7db1c51137cd61e04"
+        "height": 428,
+        "bytes": 4860,
+        "sha256": "e26aceab518d6b4bbb9541e0079a703d8c264a322076954d2aa4fa6313cc1b21"
       },
       {
-        "src": "/assets/images/evidence/pihub-access-denied-1170-ef2106598df1.webp",
-        "width": 1170,
-        "height": 705,
-        "bytes": 8384,
-        "sha256": "ef2106598df15177fae13a187fbfd6b66799525d7979bfcb8e30ffb0965bfd3b"
+        "src": "/assets/images/evidence/pihub-access-denied-1240-0a2848339d9a.webp",
+        "width": 1240,
+        "height": 664,
+        "bytes": 8728,
+        "sha256": "0a2848339d9a7e4bf31d151f5243e0477d213d5746b2a9a22e8826f87dbc3f1d"
       }
     ],
-    "socialSrc": "/assets/images/evidence/pihub-access-denied-social-844e0199ddad.png"
+    "socialSrc": "/assets/images/evidence/pihub-access-denied-social-71e217997866.png"
   },
   {
     "id": "zapp-driver-next-stop",
@@ -187,10 +201,10 @@
     "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/19-149.png",
     "source_sha256": "489a4e4ddf5c3376078b8e74e5599d1e99fa6e66594195eae0bba8d2ef8a370d",
     "alt": "Zapp driver screen distinguishes a confirmed pickup from the next drop-off and offers arrival and intermediate-stop issue actions.",
-    "caption": "Driver iOS stop-order design. District names and route progress are demonstration content; navigation is explicitly inactive in this prototype.",
+    "caption": "Zapp driver screen distinguishes a confirmed pickup from the next drop-off and offers arrival and intermediate-stop issue actions. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "DEMONSTRATION_DISTRICTS_ONLY;NO_PERSONAL_ADDRESS_OR_CONTACT",
-    "presentation": "Native driver prototype screen",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
     "variants": [
       {
         "src": "/assets/images/evidence/zapp-driver-next-stop-402-40c7ba3e9540.webp",
@@ -210,10 +224,10 @@
     "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1275.png",
     "source_sha256": "2e1169e5d39b666dac24f19c590e5d35e570ceab4fc5168e9e44cc4b4075952d",
     "alt": "Masteriyo empty course builder offers Add Section, Add Assignment and Add Quiz, with a separate documentation link.",
-    "caption": "Empty authoring state from the primary Masteriyo design file. Team design work; my contribution concerns course and quiz UI/UX within the wider product team.",
+    "caption": "Masteriyo empty course builder offers Add Section, Add Assignment and Add Quiz, with a separate documentation link. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
-    "presentation": "Native team design screen",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
         "src": "/assets/images/evidence/masteriyo-first-content-480-648bc520e9f1.webp",
@@ -247,10 +261,10 @@
     "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1310.png",
     "source_sha256": "86872f4c815d46ab829165e402a6c52027e8e4180c34b1949964e204fef41d9d",
     "alt": "Masteriyo course outline groups lessons inside an Introduction section, with reorder, edit, duplicate and delete controls.",
-    "caption": "Course outline from the primary Masteriyo file. Repeated lesson rows and section actions show the authoring hierarchy. Team design work; no sole-designer claim.",
+    "caption": "Masteriyo course outline groups lessons inside an Introduction section, with reorder, edit, duplicate and delete controls. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
-    "presentation": "Native team design screen",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
         "src": "/assets/images/evidence/masteriyo-course-outline-480-fe7885699610.webp",
@@ -284,10 +298,10 @@
     "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1579.png",
     "source_sha256": "ecc0a469cfbb68119df4e330b50f62ba4ab876c682750d03a899b2861ee9415e",
     "alt": "Masteriyo Add New Quiz form separates Info, Questions and Settings and offers Next and Cancel actions.",
-    "caption": "Quiz setup from the primary Masteriyo file. The staged form is a design artifact, not evidence of a completed learner assessment. Team contribution.",
+    "caption": "Masteriyo Add New Quiz form separates Info, Questions and Settings and offers Next and Cancel actions. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
-    "presentation": "Native team design screen",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
         "src": "/assets/images/evidence/masteriyo-quiz-setup-480-1db2e3a3a58e.webp",
@@ -321,10 +335,10 @@
     "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-3142.png",
     "source_sha256": "8b1e5da42da23d15cf2273cae3cb43f0ceaed7bcd3419276134202599b9d2f49",
     "alt": "Masteriyo quiz editor keeps a question list above the expanded true-or-false editor, with answer selection and required and randomize settings.",
-    "caption": "Question editor from the primary Masteriyo file. Sample content and selected answer illustrate configuration. Team contribution; production saving and scoring are outside this screenshot.",
+    "caption": "Masteriyo quiz editor keeps a question list above the expanded true-or-false editor, with answer selection and required and randomize settings. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
-    "presentation": "Native team design screen",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
         "src": "/assets/images/evidence/masteriyo-question-editor-480-e440fa512c3f.webp",
@@ -357,35 +371,35 @@
     "nodeId": "31:1490",
     "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-1490.png",
     "source_sha256": "6d188f6598eb7db0262675b18f050444f2031bbbd4c6049080c2fe973608b278",
-    "alt": "Hamro Idea contact design with name, email and message prompts above a wide Submit message button.",
-    "caption": "Cropped contact form from the historical Hamro idea UI Design file. Surrounding stock photography, placeholder contact details and unverified claims are excluded. The frame shows visual intent, not a tested or shipped form.",
+    "alt": "Hamro Idea full contact page combines the contact introduction, message form, newsletter and footer.",
+    "caption": "Hamro Idea full contact page combines the contact introduction, message form, newsletter and footer. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "VISUALLY_REVIEWED_EMPTY_FORM_ONLY",
-    "presentation": "Cropped historical Figma design screen",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/hamro-idea-contact-form-480-0291cb9e5a5e.webp",
+        "src": "/assets/images/evidence/hamro-idea-contact-form-480-1ef6792e54c3.webp",
         "width": 480,
-        "height": 255,
-        "bytes": 6188,
-        "sha256": "0291cb9e5a5efbbaf30d48bd535879a9e659f38206f48a2a74a7f569884f3ea7"
+        "height": 958,
+        "bytes": 49678,
+        "sha256": "1ef6792e54c39bbdd6dcadebe67dbd9f5e9d515bb10224f8e1994036b7a0b2b1"
       },
       {
-        "src": "/assets/images/evidence/hamro-idea-contact-form-800-e725e0f8fc7e.webp",
+        "src": "/assets/images/evidence/hamro-idea-contact-form-800-9ed7fbdceb3c.webp",
         "width": 800,
-        "height": 424,
-        "bytes": 12200,
-        "sha256": "e725e0f8fc7e5cc20e6e7af5774cebb5733393392ff011c104e2881a6b5679e9"
+        "height": 1596,
+        "bytes": 99890,
+        "sha256": "9ed7fbdceb3c50e6d914ec94cf5ed1a5cb84676739da6befa1e72106c26ea8b5"
       },
       {
-        "src": "/assets/images/evidence/hamro-idea-contact-form-905-efe3bed696d1.webp",
-        "width": 905,
-        "height": 480,
-        "bytes": 14072,
-        "sha256": "efe3bed696d11b2a8ad80c031df48c7f068028e917d13227e37f6c3f3929c850"
+        "src": "/assets/images/evidence/hamro-idea-contact-form-1240-2feeb192210b.webp",
+        "width": 1240,
+        "height": 2474,
+        "bytes": 178334,
+        "sha256": "2feeb192210b3ac0a615003c3d0eb84cf6c4801a375fb8d04c8e3cacfa104984"
       }
     ],
-    "socialSrc": "/assets/images/evidence/hamro-idea-contact-form-social-5e6e97c2f8b6.png"
+    "socialSrc": "/assets/images/evidence/hamro-idea-contact-form-social-9582e95e807b.png"
   },
   {
     "id": "zapp-delivery-complete",
@@ -394,21 +408,21 @@
     "nodeId": "20:26",
     "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/20-26.png",
     "source_sha256": "11fb4db28ef295cdfaf336e0e41bb3bc6447eee192e15dcfff48a5af1caf148f",
-    "alt": "Zapp completion detail offers Return to availability and Return to dashboard beneath a demonstration notice.",
-    "caption": "Completion and next-action detail from the driver prototype. The sample delivery identifier is outside the crop. The design explicitly distinguishes demonstration completion from verified settlement.",
+    "alt": "Zapp driver completion screen closes the demonstrated handoff and offers a return to availability.",
+    "caption": "Zapp driver completion screen closes the demonstrated handoff and offers a return to availability. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
-    "presentation": "Focused original-screen detail",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/zapp-delivery-complete-402-cd4df88584ad.webp",
+        "src": "/assets/images/evidence/zapp-delivery-complete-402-ed4d663d85fc.webp",
         "width": 402,
-        "height": 280,
-        "bytes": 10724,
-        "sha256": "cd4df88584adc21cf44df0fe815413357c2e7b7c6984e380fa47e167832d34b6"
+        "height": 874,
+        "bytes": 18520,
+        "sha256": "ed4d663d85fc0c6133f111a7d9ce8a5b850a7d52e87f4190efdd97ae80b678b1"
       }
     ],
-    "socialSrc": "/assets/images/evidence/zapp-delivery-complete-social-c797031a660e.png"
+    "socialSrc": "/assets/images/evidence/zapp-delivery-complete-social-07a0c6ba3da7.png"
   },
   {
     "id": "orkest-lead-list",
@@ -417,35 +431,35 @@
     "nodeId": "160:380",
     "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-380.png",
     "source_sha256": "81a06b117f8d3a2d7d5c7026317b6c3290e4c84f50c3f5d35e49af8410345989",
-    "alt": "Orkest ownership views All leads, My leads and Unassigned sit alongside search, Filters and Export.",
-    "caption": "Focused crop of the original CRM ownership toolbar. Record identities and summary values are outside the crop.",
+    "alt": "Orkest leads workspace with summary cards, ownership views, search, filters and the complete record table.",
+    "caption": "Orkest leads workspace with summary cards, ownership views, search, filters and the complete record table. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
-    "presentation": "Focused original-screen detail",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/orkest-lead-list-480-8b886eae9a35.webp",
+        "src": "/assets/images/evidence/orkest-lead-list-480-ca7e452bdbcd.webp",
         "width": 480,
-        "height": 26,
-        "bytes": 1172,
-        "sha256": "8b886eae9a35315f34e17bdc0f07962bd431da6e8497555cc7114655423d8e6d"
+        "height": 350,
+        "bytes": 13712,
+        "sha256": "ca7e452bdbcdbd7afb0c0bf1e46ca95698d0017e9e466c9536133e4312e937ff"
       },
       {
-        "src": "/assets/images/evidence/orkest-lead-list-800-b58076088e12.webp",
+        "src": "/assets/images/evidence/orkest-lead-list-800-b51f2daf43cc.webp",
         "width": 800,
-        "height": 44,
-        "bytes": 2302,
-        "sha256": "b58076088e121cfc55b04a8372d73b69c4cf4986d1620753cfb2afaacbebcec1"
+        "height": 583,
+        "bytes": 29728,
+        "sha256": "b51f2daf43cc1cf33e1a96d157879031df9742c8fba2093904dfb86cb6ebcb97"
       },
       {
-        "src": "/assets/images/evidence/orkest-lead-list-1133-27106e81aa23.webp",
-        "width": 1133,
-        "height": 62,
-        "bytes": 3230,
-        "sha256": "27106e81aa23863fd7fc3df103906b4d00b626d7d0bdb7659297b89be31f2e08"
+        "src": "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp",
+        "width": 1240,
+        "height": 904,
+        "bytes": 55878,
+        "sha256": "e6745d9b7a8699308f86fa31d709fe47c39be5f9ffec692932343fb8ae5f9443"
       }
     ],
-    "socialSrc": "/assets/images/evidence/orkest-lead-list-social-db83d80fd416.png"
+    "socialSrc": "/assets/images/evidence/orkest-lead-list-social-649b4a4e0554.png"
   },
   {
     "id": "pihub-application-status",
@@ -454,21 +468,35 @@
     "nodeId": "2:9102",
     "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/0-1/2-9102.png",
     "source_sha256": "69e634a39897a7a40fccf89d0c7eba3604ae23864e35a791d958fb4d3391ceda",
-    "alt": "piHub status column uses the written labels Awaiting Approval and Approved as well as yellow and green treatments.",
-    "caption": "Status-column detail from the original creditor application list. Amounts, dates and request counts are outside the crop; these are designed states, not financial results.",
+    "alt": "PiHub creditor application list keeps service, industry, dates, amounts and written approval status together.",
+    "caption": "PiHub creditor application list keeps service, industry, dates, amounts and written approval status together. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
-    "presentation": "Focused original-screen detail",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/pihub-application-status-155-47a194cd5058.webp",
-        "width": 155,
-        "height": 245,
-        "bytes": 3454,
-        "sha256": "47a194cd50580cb18439c9922133eac9d6ad0c55233e43b8a791f5cbe81542b7"
+        "src": "/assets/images/evidence/pihub-application-status-480-d22faadbcdf4.webp",
+        "width": 480,
+        "height": 317,
+        "bytes": 6198,
+        "sha256": "d22faadbcdf4fd781cb8ebd1f9a7b9cb27ad728c54c5e41d0c830b56894ca7e2"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-application-status-800-f8eecce987d0.webp",
+        "width": 800,
+        "height": 529,
+        "bytes": 12416,
+        "sha256": "f8eecce987d02bfcdd2ff140b36f3d95522368fe5bd69e6f1d6c876612423dbe"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp",
+        "width": 1240,
+        "height": 820,
+        "bytes": 25118,
+        "sha256": "b23302d6bda97e7436acd1d2762d5c33da699917d95ebdea1a774a750905c559"
       }
     ],
-    "socialSrc": "/assets/images/evidence/pihub-application-status-social-86250c587e67.png"
+    "socialSrc": "/assets/images/evidence/pihub-application-status-social-6b01861caea0.png"
   },
   {
     "id": "yarsha-contact-empty",
@@ -477,20 +505,1024 @@
     "nodeId": "6092:253254",
     "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253254.png",
     "source_sha256": "8e10ae34d8f12ca9656fa1e604581164e5e21ae2b6cf939da4230a7d28cc5aa7",
-    "alt": "Yarsha Contacts and Invite tabs sit above a No contact found message and the on-screen keyboard.",
-    "caption": "Contact-search empty-state detail from Final Mobile Design. The entered search value is outside the crop; recovery options and keyboard context remain visible.",
+    "alt": "Yarsha contact search preserves the entered query, Contacts and Invite tabs, empty result and keyboard.",
+    "caption": "Yarsha contact search preserves the entered query, Contacts and Invite tabs, empty result and keyboard. Full original Figma frame; design content is sample data.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
-    "privacy_review": "VISUALLY_REVIEWED_SENSITIVE_REGIONS_EXCLUDED",
-    "presentation": "Focused original-screen detail",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
     "variants": [
       {
-        "src": "/assets/images/evidence/yarsha-contact-empty-375-0c7e45b52feb.webp",
+        "src": "/assets/images/evidence/yarsha-contact-empty-375-4a45626e359e.webp",
         "width": 375,
-        "height": 662,
-        "bytes": 11150,
-        "sha256": "0c7e45b52feb78c7ff9b1e6c8bde008a9cb640b6e868447e8c2da05395e097ce"
+        "height": 812,
+        "bytes": 14066,
+        "sha256": "4a45626e359e8273ed96967f075dd8d542b6aaf925b5a1e77a6ab7300da3b02d"
       }
     ],
-    "socialSrc": "/assets/images/evidence/yarsha-contact-empty-social-58bee6a5d364.png"
+    "socialSrc": "/assets/images/evidence/yarsha-contact-empty-social-829d7bf9a993.png"
+  },
+  {
+    "id": "yarsha-contacts",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253000",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253000.png",
+    "source_sha256": "aedad8dd29d87c729fe2e0555a622b90eec90868ba0aaf2452fbc2fcd3311a73",
+    "alt": "Yarsha contact directory pairs names and wallet identifiers with search and an add-contact action.",
+    "caption": "Yarsha contact directory pairs names and wallet identifiers with search and an add-contact action. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 24308,
+        "sha256": "5f5e83c6eea7355e68a7549ab26bc4c3abc779191ccb5c7067695a50c9652b06"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-contacts-social-2aa746755c98.png"
+  },
+  {
+    "id": "yarsha-conversation",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253307",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253307.png",
+    "source_sha256": "e92a7265788418913332d45e02e80134447fda87ece927efb87533b0bcad4301",
+    "alt": "Yarsha direct conversation keeps the contact identity, search and message composer in one screen.",
+    "caption": "Yarsha direct conversation keeps the contact identity, search and message composer in one screen. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-conversation-375-8710318fbee6.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 19428,
+        "sha256": "8710318fbee68db088c21100674f1759a234c23d20b2d7f1e7ad58a8ad78bf2b"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-conversation-social-d448f77431ef.png"
+  },
+  {
+    "id": "yarsha-profile",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253312",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253312.png",
+    "source_sha256": "1a8274d20c0c978e93b12691cdfd76901298021b145bad11f6d134f3cc5ee7fb",
+    "alt": "Yarsha profile connects a display identity, wallet address and shared media, groups and links.",
+    "caption": "Yarsha profile connects a display identity, wallet address and shared media, groups and links. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-profile-375-3f59ed4b2ac4.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 43802,
+        "sha256": "3f59ed4b2ac43091750aaef66b46a22e0c411aac06f697f108d9d552942784a0"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-profile-social-6fdc5d05ffea.png"
+  },
+  {
+    "id": "yarsha-recipient-selection",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253681",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253681.png",
+    "source_sha256": "e8aea4a446dabc2789eaa4e7fd40804dc16d8756b0fb59b21deda69a139273ce",
+    "alt": "Yarsha Send Money starts with username or wallet-address search and familiar contacts.",
+    "caption": "Yarsha Send Money starts with username or wallet-address search and familiar contacts. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-recipient-selection-375-22133880749e.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 28638,
+        "sha256": "22133880749ed6005e37f5211b5e16d0bccb0b07fb761dddf87da4df75553b60"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-recipient-selection-social-a4bbf8ef0ce7.png"
+  },
+  {
+    "id": "yarsha-token-selection",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253788",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253788.png",
+    "source_sha256": "923cfe61006fb6b39fb2f2b670993674280a800849c32118613ae25171e0db87",
+    "alt": "Yarsha token selection separates tokens from NFTs and pairs asset names with symbols and sample balances.",
+    "caption": "Yarsha token selection separates tokens from NFTs and pairs asset names with symbols and sample balances. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-token-selection-375-d3363b9c13f8.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 17108,
+        "sha256": "d3363b9c13f8210682af9dd6f2960ac1cb0f726b54e1b2a1c04a42af1029903b"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-token-selection-social-474c9dd33499.png"
+  },
+  {
+    "id": "yarsha-nft-selection",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:254051",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-254051.png",
+    "source_sha256": "121aacb4608bce79185f37e316b36aa4d41d0c77fa9f654d82860a16ff3803d2",
+    "alt": "Yarsha NFT selection uses collection artwork, collection names and sample counts.",
+    "caption": "Yarsha NFT selection uses collection artwork, collection names and sample counts. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-nft-selection-375-cb560d0601de.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 22578,
+        "sha256": "cb560d0601dec792bb237a9cdc6f1da4cd0cfb2eb441278e13ad2bc75d4a05c7"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-nft-selection-social-fd168837b2ae.png"
+  },
+  {
+    "id": "yarsha-new-group",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:256565",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-256565.png",
+    "source_sha256": "bd18df388b4146e103dc0498be366e0aa17eb699baf63c08888a0c2b250e7445",
+    "alt": "Yarsha new-group screen lets the person select members before continuing.",
+    "caption": "Yarsha new-group screen lets the person select members before continuing. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-new-group-375-6f99bae6ad3d.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 25746,
+        "sha256": "6f99bae6ad3d70bfb82e976ae4372acb722d4274d5d522ca658151108b014ed3"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-new-group-social-6643563fc1c8.png"
+  },
+  {
+    "id": "yarsha-group-detail",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:255588",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-255588.png",
+    "source_sha256": "16a10ea26901a686369a7b168bee77b5331eca9cf3bffb19b30dbeada8a98318",
+    "alt": "Yarsha group details show the group identity, description, member roles and shared-content tabs.",
+    "caption": "Yarsha group details show the group identity, description, member roles and shared-content tabs. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-group-detail-375-87b8f658368f.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 20470,
+        "sha256": "87b8f658368f4b804e5fb3ed022ade9c448b6be9a7cb3b49b033bec1fe910422"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-group-detail-social-c25c8e4edec2.png"
+  },
+  {
+    "id": "yarsha-group-invite",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:255626",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-255626.png",
+    "source_sha256": "6dcb5ec818bd933aef5dac246579c4ff0c0ad272eec7ce244338190fbf99b30d",
+    "alt": "Yarsha group invitation offers an invite link with separate Copy and Share actions.",
+    "caption": "Yarsha group invitation offers an invite link with separate Copy and Share actions. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-group-invite-375-7288c5ee6bdc.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 9660,
+        "sha256": "7288c5ee6bdcce928eda0d34dafd0e37ce7266cac1f5b555f0dcc4ab8b3567c0"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-group-invite-social-db12322403da.png"
+  },
+  {
+    "id": "yarsha-chat-search",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:256260",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-256260.png",
+    "source_sha256": "5358d7abaa7067a32013d6bfca91b674ae758d5bf083797e686daa629d15fbd0",
+    "alt": "Yarsha in-conversation search retains the thread, a match count and previous and next controls.",
+    "caption": "Yarsha in-conversation search retains the thread, a match count and previous and next controls. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-chat-search-375-72ad7cc318c6.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 34038,
+        "sha256": "72ad7cc318c6041549e03b751af620c7d2d698a4d584bd17ecc990fc9b055175"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-chat-search-social-9f0644f0b4e1.png"
+  },
+  {
+    "id": "yarsha-transaction-detail",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:262038",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-262038.png",
+    "source_sha256": "a4c50043c42fb4320ef1c41ab31043114513d1c4275bb9b1574bd75a42ec0bdc",
+    "alt": "Yarsha transaction-detail design separates spent and received assets, destination, fee and explorer action.",
+    "caption": "Yarsha transaction-detail design separates spent and received assets, destination, fee and explorer action. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-transaction-detail-375-f191eb3d983e.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 15126,
+        "sha256": "f191eb3d983e81230d57eeafda3d04a8cfb3fd2e1a5bb4c5d02a2b485fe25635"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-transaction-detail-social-bf1e40b21a54.png"
+  },
+  {
+    "id": "orkest-lead-filters",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "246:14560",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/246-14560.png",
+    "source_sha256": "a9dca854baaf817eabc4729afa400013d93fabc15ed4dd2da56999a9783c8338",
+    "alt": "Orkest lead-filter form separates criteria from scope and the action to apply filters.",
+    "caption": "Orkest lead-filter form separates criteria from scope and the action to apply filters. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/orkest-lead-filters-480-10239e3c71a7.webp",
+        "width": 480,
+        "height": 350,
+        "bytes": 13098,
+        "sha256": "10239e3c71a7a7d0510c4d6b115d4ed4bb880c3c8e3c3955e1121409b7a04ac4"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-filters-800-af66f7153942.webp",
+        "width": 800,
+        "height": 583,
+        "bytes": 30570,
+        "sha256": "af66f7153942aefde45a4d3ac39f8ebc5c9d05a8e1814496cf5b8aa2d8bb68ed"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-filters-1240-5bb33ef5f6c1.webp",
+        "width": 1240,
+        "height": 904,
+        "bytes": 57130,
+        "sha256": "5bb33ef5f6c191dd252a384ae10717a9cbbc6b0b00edbca1f71d1fad1b319b2c"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/orkest-lead-filters-social-f149950484f0.png"
+  },
+  {
+    "id": "orkest-lead-filter-error",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "246:15008",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/246-15008.png",
+    "source_sha256": "158f15375d1e9b6e3ddebc60aa28f14237fbc941aa7aeca100a877522e53897c",
+    "alt": "Orkest filter review state presents field feedback while retaining the surrounding workspace.",
+    "caption": "Orkest filter review state presents field feedback while retaining the surrounding workspace. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/orkest-lead-filter-error-480-9076c88a1f17.webp",
+        "width": 480,
+        "height": 350,
+        "bytes": 13476,
+        "sha256": "9076c88a1f17e6134afc39949b567458da1dd4fa4f71ad4cee9f697bbd4680af"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-filter-error-800-3ece43adb272.webp",
+        "width": 800,
+        "height": 583,
+        "bytes": 30922,
+        "sha256": "3ece43adb272188de624e54be21491da5c56320c2a1af6be7366d1e465f999ac"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-filter-error-1240-3348586a0934.webp",
+        "width": 1240,
+        "height": 904,
+        "bytes": 57636,
+        "sha256": "3348586a0934f79b5f48462e37372f866605943ca415c99e692e7a5d7bb9ff48"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/orkest-lead-filter-error-social-62d490e9571c.png"
+  },
+  {
+    "id": "orkest-lead-filter-confirmation",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "246:15456",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/246-15456.png",
+    "source_sha256": "2fc775ba6429c99051db49076fd787e49b5da34fadfff8f82c85fd453e0fca1b",
+    "alt": "Orkest filter confirmation presents the reviewed request and the next available action.",
+    "caption": "Orkest filter confirmation presents the reviewed request and the next available action. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/orkest-lead-filter-confirmation-480-947e42e57ecc.webp",
+        "width": 480,
+        "height": 350,
+        "bytes": 12522,
+        "sha256": "947e42e57ecc3cc3c85db596537eb9681c5c087c3bd0af7f4851afe326af1bec"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-filter-confirmation-800-1ac1f8bf0d22.webp",
+        "width": 800,
+        "height": 583,
+        "bytes": 28936,
+        "sha256": "1ac1f8bf0d221a94b43c3798598f8efcc40282c1c347e61f67e9550ea5895d31"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-lead-filter-confirmation-1240-c78be47020d9.webp",
+        "width": 1240,
+        "height": 904,
+        "bytes": 53494,
+        "sha256": "c78be47020d9baad1abf0dfbcbe30e8294e308fd7e2c0d2b519fab43da9326a9"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/orkest-lead-filter-confirmation-social-819ca5a6b66d.png"
+  },
+  {
+    "id": "pihub-investor-products",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:1272",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-2/2-1272.png",
+    "source_sha256": "b89f8ba1fd7bb075e603dd9949214a34c3308bfd77db62a23694fbf42d72ebbb",
+    "alt": "PiHub investor product directory compares services, industries, credit amounts and status.",
+    "caption": "PiHub investor product directory compares services, industries, credit amounts and status. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-investor-products-480-465120696bcd.webp",
+        "width": 480,
+        "height": 374,
+        "bytes": 10058,
+        "sha256": "465120696bcded782eee3dac3797302ae8d3fb87a9805e57a821618ee949e5df"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-investor-products-800-1dae9bcaf33d.webp",
+        "width": 800,
+        "height": 623,
+        "bytes": 20582,
+        "sha256": "1dae9bcaf33d5644040e5807ab8a80abc48c657c49b7d927ddd5a78ac255a9cb"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-investor-products-1240-520e10fbcba4.webp",
+        "width": 1240,
+        "height": 966,
+        "bytes": 42336,
+        "sha256": "520e10fbcba4756af9590b1fc2c63d5f1996511c7b126319d5f4f068d852019b"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-investor-products-social-8890e5aa4335.png"
+  },
+  {
+    "id": "pihub-create-product",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:252",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-2/2-252.png",
+    "source_sha256": "9ec7ea132da0f0564f8c7159c15329a3de54443560957df397c7a41a9fa9408e",
+    "alt": "PiHub investor product creation combines credit type, industry, amount range and product description.",
+    "caption": "PiHub investor product creation combines credit type, industry, amount range and product description. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-create-product-480-173640e680a6.webp",
+        "width": 480,
+        "height": 476,
+        "bytes": 10610,
+        "sha256": "173640e680a6cff89594157160f76821f73752dce1ee8110a163e2e12cf466c1"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-create-product-800-2b2ec3d77c44.webp",
+        "width": 800,
+        "height": 793,
+        "bytes": 22810,
+        "sha256": "2b2ec3d77c4458d475f1b7fbaa401036c49a01b4fa5911311f67e3a452d2c919"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-create-product-1240-a22b1349e182.webp",
+        "width": 1240,
+        "height": 1229,
+        "bytes": 41280,
+        "sha256": "a22b1349e182406b6e148a526ca489d069626c5f3c5027ca833b0f9c0137ba85"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-create-product-social-e09b18499590.png"
+  },
+  {
+    "id": "pihub-credit-requests",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:1094",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-2/2-1094.png",
+    "source_sha256": "74c3e0a0db312c8d5f7206db915ce99a123692d39b42e2016442e88a62d61f11",
+    "alt": "PiHub credit-request list makes incoming requests and their review status inspectable.",
+    "caption": "PiHub credit-request list makes incoming requests and their review status inspectable. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-credit-requests-480-8618b590aa09.webp",
+        "width": 480,
+        "height": 370,
+        "bytes": 10572,
+        "sha256": "8618b590aa09998e46fa925ff287595da147ba5e058efb105c3721b28aba849c"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-credit-requests-800-d907dfbc9d0a.webp",
+        "width": 800,
+        "height": 617,
+        "bytes": 24458,
+        "sha256": "d907dfbc9d0afb4299f28fe0d00597a3edd6bdb9117755301937a56b410d29c2"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-credit-requests-1240-10243a318707.webp",
+        "width": 1240,
+        "height": 957,
+        "bytes": 49202,
+        "sha256": "10243a318707739513a04d84bc9d0aaeadf383fa9cf8458303eef3f4eace329a"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-credit-requests-social-33cb46ba5782.png"
+  },
+  {
+    "id": "zapp-home",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "113:2",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/113-2.png",
+    "source_sha256": "a87f0e1903ca66ab1e9eb04f29bc684c899e7d5b03cdd8d917c6566d64cc3b06",
+    "alt": "Zapp customer home introduces package booking, pickup and destination entry and an active delivery card.",
+    "caption": "Zapp customer home introduces package booking, pickup and destination entry and an active delivery card. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-home-402-7fc35a4351f6.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 30554,
+        "sha256": "7fc35a4351f6d8f7e0a8099b9f85ff8ebd7185ade81f73d2fa085cae0590b67f"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-home-social-d436840bd865.png"
+  },
+  {
+    "id": "zapp-signup",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "114:49",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/114-49.png",
+    "source_sha256": "b097bac5dfc9bf3a91fbdc7cc14a2ea4b25b21219d013dfb5ae13aa905f0d3de",
+    "alt": "Zapp account creation groups name, mobile and email before the agreement action.",
+    "caption": "Zapp account creation groups name, mobile and email before the agreement action. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-signup-402-31f72a5731a4.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 15862,
+        "sha256": "31f72a5731a411b75539ea5ff165a829cf5f096aa37a95aa8cc3294381c4d96b"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-signup-social-9c9e47794dbc.png"
+  },
+  {
+    "id": "zapp-verification",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "114:117",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/114-117.png",
+    "source_sha256": "03c6e37928f9aa918c687b4efd3875559f7884fa82dcd6479d25d40aaa98cc55",
+    "alt": "Zapp verification code screen keeps code entry, resend timing and help together.",
+    "caption": "Zapp verification code screen keeps code entry, resend timing and help together. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-verification-402-6cd34db2efd3.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 14118,
+        "sha256": "6cd34db2efd32c4370f867fd0081de9740e7a898215f6b9921ab5018e4fbe992"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-verification-social-22b4e94af769.png"
+  },
+  {
+    "id": "zapp-service-selection",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "115:75",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/115-75.png",
+    "source_sha256": "031cdb749fc0e235fc9a15bc76e127a8055ac0ee06a68c2067ff1a6eac584d4d",
+    "alt": "Zapp service selection explains delivery timing choices beside a route summary before vehicle selection.",
+    "caption": "Zapp service selection explains delivery timing choices beside a route summary before vehicle selection. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete mobile screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-service-selection-402-bb1104439a88.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 21226,
+        "sha256": "bb1104439a887aa34079cb15dcac98873bf71d6667e7bc02a926fefdda53af15"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-service-selection-social-a78f47a1eebe.png"
+  },
+  {
+    "id": "morajaa-home",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "452:6770",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/452-6770.png",
+    "source_sha256": "07c32f54dade6193acc637bef53e89ea36c68ee500ce691cb0f3b61acf004c44",
+    "alt": "Morajaa homepage introduces the consultancy, services, sector expertise and routes into deeper information.",
+    "caption": "Morajaa homepage introduces the consultancy, services, sector expertise and routes into deeper information. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/morajaa-home-480-afc376a005c8.webp",
+        "width": 480,
+        "height": 2318,
+        "bytes": 129730,
+        "sha256": "afc376a005c8c7db2f824516efa48a9954926de4675d682e94a96081167f89c4"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-home-800-ba35c114fa8e.webp",
+        "width": 800,
+        "height": 3863,
+        "bytes": 298092,
+        "sha256": "ba35c114fa8e9b6ac51eebb31945d56ec2d8fcd1e58a0707711d7ee10f4dc356"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-home-1240-880b7071e88c.webp",
+        "width": 1240,
+        "height": 5988,
+        "bytes": 576500,
+        "sha256": "880b7071e88c9cd97297f9fa8d4c47e54c75a6c165a83e40b4218a2d6a03df12"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/morajaa-home-social-2fe968242895.png"
+  },
+  {
+    "id": "morajaa-sector",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "465:6628",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/465-6628.png",
+    "source_sha256": "1ac3c64db8075b0cc304cf3b4a3ca92a3a615d7429401e01b67e38ce1b0d025d",
+    "alt": "Morajaa construction-sector page connects the sector introduction with capabilities, process and contact.",
+    "caption": "Morajaa construction-sector page connects the sector introduction with capabilities, process and contact. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/morajaa-sector-480-005050ad0d18.webp",
+        "width": 480,
+        "height": 1926,
+        "bytes": 75674,
+        "sha256": "005050ad0d180c70f6c0fe5be5e8edd40017e0d1c8a1101544f2a2c591865d4c"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-sector-800-b31a4893f827.webp",
+        "width": 800,
+        "height": 3209,
+        "bytes": 170846,
+        "sha256": "b31a4893f827c0435f6b515e3a1a25f9bd34f170eaea26ce2b50e4ed0697fd2e"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-sector-1240-c73e93cf332e.webp",
+        "width": 1240,
+        "height": 4975,
+        "bytes": 312962,
+        "sha256": "c73e93cf332eed9fc8d9c28445c78bf49fb5d6aaed51bcddce3f727be5b5c109"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/morajaa-sector-social-ca5c06a0351f.png"
+  },
+  {
+    "id": "masteriyo-course-details",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:1232",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1232.png",
+    "source_sha256": "f46a6a3d44ffabbe4ada41379ea503dd6271d0c7ffc1c5968ef66422700817e5",
+    "alt": "Masteriyo course creation starts with a course title and description before content building.",
+    "caption": "Masteriyo course creation starts with a course title and description before content building. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/masteriyo-course-details-480-14d4f73f5ee5.webp",
+        "width": 480,
+        "height": 255,
+        "bytes": 5518,
+        "sha256": "14d4f73f5ee5c05c830de6c254bd47ef8fa2c5a7f45e62ccb4621fbc1b536f1a"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-course-details-800-ef9db0c4f691.webp",
+        "width": 800,
+        "height": 425,
+        "bytes": 10832,
+        "sha256": "ef9db0c4f691ba91e66d75d552d4efe30f66dff667a8bc19c8433fe7602b04fd"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp",
+        "width": 1240,
+        "height": 658,
+        "bytes": 19514,
+        "sha256": "defb2d59fa74e9d00605f50ec379ade848069a4e5a8952f812b9cdeec698594c"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/masteriyo-course-details-social-ef9f29c6251a.png"
+  },
+  {
+    "id": "masteriyo-section-editor",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:1401",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1401.png",
+    "source_sha256": "711a4f570ad3c591b6e4faa0e15feae866477f4c416af69765aaacb06865092c",
+    "alt": "Masteriyo section editing keeps section-level settings beside the course outline.",
+    "caption": "Masteriyo section editing keeps section-level settings beside the course outline. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/masteriyo-section-editor-480-6870f5ea10f6.webp",
+        "width": 480,
+        "height": 483,
+        "bytes": 6244,
+        "sha256": "6870f5ea10f6cb3dea2d80b46d8a1d8e113233f05277471c3cfc7be6408588a2"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-section-editor-800-0f98338bfcad.webp",
+        "width": 800,
+        "height": 804,
+        "bytes": 12624,
+        "sha256": "0f98338bfcad518fe2abf62c41a2a04b10ca35b58dea7190c23cc0b60f41afe1"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-section-editor-1240-5c9e85e12117.webp",
+        "width": 1240,
+        "height": 1247,
+        "bytes": 23530,
+        "sha256": "5c9e85e121176b0408cb156668ecbe7d7d70ada87ede33d2e380d93242131740"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/masteriyo-section-editor-social-05fc5d713f2d.png"
+  },
+  {
+    "id": "masteriyo-lesson-editor",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:1508",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1508.png",
+    "source_sha256": "528be3ce9c32a26c7eb7a4cd90443d311ee169b1c8550aa3d2e34e23a47e88b8",
+    "alt": "Masteriyo lesson editor groups content, attachments and lesson-specific settings.",
+    "caption": "Masteriyo lesson editor groups content, attachments and lesson-specific settings. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/masteriyo-lesson-editor-480-fb1ab9ad2fbd.webp",
+        "width": 480,
+        "height": 580,
+        "bytes": 9816,
+        "sha256": "fb1ab9ad2fbd03ccd86de0630c493d202faec4a971ba768d819c2e575e7959c9"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-lesson-editor-800-6765a05fd9a3.webp",
+        "width": 800,
+        "height": 966,
+        "bytes": 20468,
+        "sha256": "6765a05fd9a3bd7b1915f73b5e85879db451744e0ceaad362962f09afbd0a6da"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-lesson-editor-1240-fd2ca4a959d4.webp",
+        "width": 1240,
+        "height": 1498,
+        "bytes": 38410,
+        "sha256": "fd2ca4a959d452bae6b3f3dbe537f8484e1a557d96fc2ba9375ec4d1231834e2"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/masteriyo-lesson-editor-social-716c7d608ce6.png"
+  },
+  {
+    "id": "masteriyo-multiple-choice",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "289:2042",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/289-2042.png",
+    "source_sha256": "abc5315b0f9f958ae4ceada5f7e3d7a78f082550a5cf31c477ac261ef07bea2b",
+    "alt": "Masteriyo multiple-choice question design keeps answers, correct-answer selection and question settings together.",
+    "caption": "Masteriyo multiple-choice question design keeps answers, correct-answer selection and question settings together. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/masteriyo-multiple-choice-480-4d4149605e7a.webp",
+        "width": 480,
+        "height": 624,
+        "bytes": 11472,
+        "sha256": "4d4149605e7ad9c80909115e4539d4873e950418e86cc0ad729ccc4a15218afe"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-multiple-choice-800-1aea50d39d7c.webp",
+        "width": 800,
+        "height": 1040,
+        "bytes": 22868,
+        "sha256": "1aea50d39d7c8ac28a6261e76f2c1d072f9be31c6e0f475c71453c2a3fd12585"
+      },
+      {
+        "src": "/assets/images/evidence/masteriyo-multiple-choice-1240-439b00a1d8a4.webp",
+        "width": 1240,
+        "height": 1612,
+        "bytes": 41542,
+        "sha256": "439b00a1d8a437d20d7612c54266d866621a1f7ecbda49d8ef33caffcb0036b5"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/masteriyo-multiple-choice-social-2a93fd82f8a9.png"
+  },
+  {
+    "id": "hamro-idea-home",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "2:261",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/2-261.png",
+    "source_sha256": "3797361b33bbcb8c937cdaf60ee72d926355fe58de348ea69503256c96cd9f64",
+    "alt": "Hamro Idea historical homepage connects positioning, services, selected-work examples, process and contact.",
+    "caption": "Hamro Idea historical homepage connects positioning, services, selected-work examples, process and contact. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/hamro-idea-home-480-5d5ddaa06601.webp",
+        "width": 480,
+        "height": 2464,
+        "bytes": 151566,
+        "sha256": "5d5ddaa066013e62f45e0c6d99eb6ee5d891cf15b1b9a2ec4686c700d432fc59"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-home-798-7ea731ecdd57.webp",
+        "width": 798,
+        "height": 4096,
+        "bytes": 316250,
+        "sha256": "7ea731ecdd57048b04178b7f6232f4db237a9eb89ef33c43702b271904c5f6cb"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/hamro-idea-home-social-c9bf42c75cf8.png"
+  },
+  {
+    "id": "hamro-idea-about",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "31:526",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-526.png",
+    "source_sha256": "c61fd2fe1e097c42939a56569ebd0192e3b7737a45bdcd19953423c086cf0a3c",
+    "alt": "Hamro Idea historical About page presents studio positioning, team imagery and working principles.",
+    "caption": "Hamro Idea historical About page presents studio positioning, team imagery and working principles. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/hamro-idea-about-480-abaaf28dc911.webp",
+        "width": 480,
+        "height": 2234,
+        "bytes": 122404,
+        "sha256": "abaaf28dc91163e8e83b0d2a12ce26e84eee39a9124316ecf3c595b822ab30be"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-about-800-44e329d82bff.webp",
+        "width": 800,
+        "height": 3724,
+        "bytes": 235092,
+        "sha256": "44e329d82bffa86c9fbd2f4493a6bb8c5ac143206c7eef17c17f98d69256a9d8"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-about-880-7190a1b833f8.webp",
+        "width": 880,
+        "height": 4096,
+        "bytes": 264398,
+        "sha256": "7190a1b833f836ce6aa00eea2b971733412fff93c13b0170956bdbecd3790d66"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/hamro-idea-about-social-ad1ab80fb641.png"
+  },
+  {
+    "id": "hamro-idea-services",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "31:1671",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-1671.png",
+    "source_sha256": "963359373b1cf62bcc8c3cf1189a5f4900172b735836364dd3632ae4ac67a9ef",
+    "alt": "Hamro Idea historical services page organizes the studio offer into design and development disciplines.",
+    "caption": "Hamro Idea historical services page organizes the studio offer into design and development disciplines. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/hamro-idea-services-480-402d8e3f30b8.webp",
+        "width": 480,
+        "height": 1964,
+        "bytes": 127978,
+        "sha256": "402d8e3f30b8c151a840c838715d40f6a930ce8ea6b8695e1630454b62f6e622"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-services-800-bf54fb7c3e78.webp",
+        "width": 800,
+        "height": 3274,
+        "bytes": 283082,
+        "sha256": "bf54fb7c3e787f6c04ba8b8ab2029393588e1cc97cc02a7629b2d90e205ec5c0"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-services-1001-b841e913956f.webp",
+        "width": 1001,
+        "height": 4096,
+        "bytes": 386930,
+        "sha256": "b841e913956f2448656392e519d980d456ea5683cf100486981339d51adf6391"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/hamro-idea-services-social-92824879cd35.png"
+  },
+  {
+    "id": "pihub-corporate-information",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:8777",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/0-1/2-8777.png",
+    "source_sha256": "ad6863c6416c3ab539fef23d5416eaf7222e58c394b6dc66cc4725f2f65774a2",
+    "alt": "PiHub corporate-information form groups company, contact and business details before an application.",
+    "caption": "PiHub corporate-information form groups company, contact and business details before an application. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-corporate-information-480-5b88600d5ffc.webp",
+        "width": 480,
+        "height": 654,
+        "bytes": 17744,
+        "sha256": "5b88600d5ffcf61bfd49128f176a3e9c32753c9e651d2eaf76b505281cbb3939"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-corporate-information-800-770cc4ceccfe.webp",
+        "width": 800,
+        "height": 1090,
+        "bytes": 38374,
+        "sha256": "770cc4ceccfe9c62b6cf1a0da23256e6ad37602b0698d0695e299ce7d8281e7a"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-corporate-information-1240-1002deb169ce.webp",
+        "width": 1240,
+        "height": 1689,
+        "bytes": 71874,
+        "sha256": "1002deb169ce3e078c55069c2435778a568f061145de351d1a998728d4d1ebfd"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-corporate-information-social-0c315931fa52.png"
+  },
+  {
+    "id": "pihub-product-application",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:9046",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/0-1/2-9046.png",
+    "source_sha256": "39b50f022f8ef86667ea958e25ce021c8b54a8d2de42e9075ef6de524eec84d5",
+    "alt": "PiHub product-application screen carries product context into the creditor application form.",
+    "caption": "PiHub product-application screen carries product context into the creditor application form. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-product-application-480-0270d01de63c.webp",
+        "width": 480,
+        "height": 385,
+        "bytes": 18264,
+        "sha256": "0270d01de63cf5676f8ab86132f961b12f792af0c4fba07c7521d6d13de094a2"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-product-application-800-e3a690b14dcd.webp",
+        "width": 800,
+        "height": 642,
+        "bytes": 43476,
+        "sha256": "e3a690b14dcddd7dc9f9f6b221b892afa7c383a908b0478f13a97547ed715ad4"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-product-application-1240-df95434b5f67.webp",
+        "width": 1240,
+        "height": 996,
+        "bytes": 90156,
+        "sha256": "df95434b5f6785bbda9a2909002414c8fd7ead03b072f8ea046f118e8cb5d375"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-product-application-social-748894295df9.png"
+  },
+  {
+    "id": "pihub-signup",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:9611",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/0-1/2-9611.png",
+    "source_sha256": "c27f9000af8d986826600c8cc5ae8f0e901f95831e7b46a6dfd9be502ea41c5d",
+    "alt": "PiHub historical sign-up design places account creation beside the product introduction.",
+    "caption": "PiHub historical sign-up design places account creation beside the product introduction. Full original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-signup-480-f01537818f18.webp",
+        "width": 480,
+        "height": 334,
+        "bytes": 11136,
+        "sha256": "f01537818f18f4043a6907a700b018b7e2989a9b26d27070c015bbc25c75a371"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-signup-800-98d6c7cef5b5.webp",
+        "width": 800,
+        "height": 556,
+        "bytes": 23762,
+        "sha256": "98d6c7cef5b558b8a8d79179208cb1715f72880bb283165a8ada9f66abfa0a04"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-signup-1240-30e98be3fcf9.webp",
+        "width": 1240,
+        "height": 862,
+        "bytes": 41878,
+        "sha256": "30e98be3fcf94d3548a2e8e647e39b3e20a185c6dc66f932c311c8910991bb5f"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-signup-social-f5ec608df29c.png"
   }
 ]

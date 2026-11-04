@@ -1,3 +1,5 @@
+> Superseded image policy and counts: see [complete-screen story follow-up](complete-screen-story-2026-11-04.md). The owner explicitly confirmed all design content is dummy and NDA-free and requested full frames instead of privacy crops.
+
 > Current visual/editorial status: see [4 November follow-up review](portfolio-visual-editorial-review-2026-11-04.md). It supersedes the earlier image totals and clearance/source gaps below: 16 images, 50 derivatives, 35 placements in 7 cases and 17 articles; five matching Figma sources are owner-deferred.
 
 # Original execution bundle: completion review, 4 November 2026

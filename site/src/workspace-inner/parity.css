@@ -58,3 +58,11 @@ body[data-portfolio-design="workspace-inner-v1"]{isolation:isolate}.workspace-fi
 .editorial-code pre{max-width:100%;overflow-x:auto;padding:20px;border:1px solid var(--line);background:#0b0c14;color:#f4f4f2;font:13px/1.8 var(--mono);white-space:pre}
 .editorial-code figcaption{color:#b9b9c0;font-size:14px;line-height:1.6}
 .editorial-code pre:focus-visible{outline:2px solid #7cc6ff;outline-offset:4px}
+
+/* Complete screens stay intact; mobile sequences compare related moments without cropping. */
+.editorial-screen-sequence{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;margin-block:28px}
+.editorial-screen-sequence.is-mobile{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}
+.editorial-screen-step{min-width:0}.editorial-screen-step figure{margin-top:0}
+.editorial-screen-sequence img{object-fit:contain;height:auto;max-width:100%}
+@media(max-width:1000px){.editorial-screen-sequence.is-mobile{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.editorial-screen-sequence.is-mobile{grid-template-columns:minmax(0,1fr)}}

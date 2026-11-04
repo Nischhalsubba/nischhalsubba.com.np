@@ -1,3 +1,5 @@
+> Superseded image policy and counts: see [complete-screen story follow-up](complete-screen-story-2026-11-04.md). The owner explicitly confirmed all design content is dummy and NDA-free and requested full frames instead of privacy crops.
+
 # Portfolio visual and editorial review — 4 November 2026
 
 ## Scope and evidence limits

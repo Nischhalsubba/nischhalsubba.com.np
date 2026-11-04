@@ -43,11 +43,12 @@ for (const data of [...projects, ...articles]) {
   }
   for (const section of sections) {
     assert.ok(html.includes(section.heading.replace(/&/g, '&amp;')));
-    if (!section.image) continue;
-    const image = images.find(item => item.id === section.image);
-    assert.ok(image, 'Known original for illustration: ' + section.image);
+    for (const identity of section.images || (section.image ? [section.image] : [])) {
+    const image = images.find(item => item.id === identity);
+    assert.ok(image, 'Known original for illustration: ' + identity);
     if (isProject) assert.equal(image.project, data.title, 'A case must use its own project screenshot');
     used.add(image.id);
+    }
   }
   if (!isProject) {
     assert.match(html, /rel="author">Nischhal Raj Subba/);

@@ -1057,7 +1057,7 @@ canvas.dio{position:absolute;inset:0;width:100%;height:100%;display:block;pointe
 .wk-world .flow g{transition:opacity .4s}
 .wf{position:absolute;border-radius:6px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .wf .wsh{position:absolute;inset:0;border-radius:6px;overflow:hidden;background:#111;box-shadow:0 0 0 2px rgba(255,255,255,.1);transition:box-shadow .3s,filter .5s}
-.wf .wsh img,.wf .wsh video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.wf .wsh img,.wf .wsh video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .wf .wsh video{opacity:0;transition:opacity .5s}
 .wf.on.is-hover.vid-on .wsh video,.wf.on.va.vid-on .wsh video{opacity:1}   /* a project video shows while the selected card is hovered; a video-only project shows it on its own */
 .wf:not(.on) .wsh{filter:brightness(.3) saturate(.65)}
@@ -1072,8 +1072,8 @@ canvas.dio{position:absolute;inset:0;width:100%;height:100%;display:block;pointe
 .wf:not(.on) .wlbl,.wf:not(.on) .wmeta{opacity:.35}
 .wf .wveil{position:absolute;inset:0;background:rgba(7,7,10,.46);opacity:0;transition:opacity .25s;pointer-events:none}
 .wf.on.is-hover{transform:translateY(-6px)}
-.wf.on.is-hover .wsh img{transform:scale(1.012)}
-.wf.on.is-hover .wveil{opacity:1}
+.wf.on.is-hover .wsh img{transform:none}
+.wf.on.is-hover .wveil{opacity:0}
 .wf .whit{position:absolute;inset:0;border-radius:6px;z-index:2}
 .wf:not(.on) .whit{pointer-events:none}
 .wk-hud{position:absolute;left:0;right:0;top:84px;z-index:5;display:flex;justify-content:space-between;align-items:flex-start;padding:0 max(20px,env(safe-area-inset-right,0px)) 0 max(20px,env(safe-area-inset-left,0px));pointer-events:none}
@@ -1698,6 +1698,12 @@ html.pr-dragging,html.pr-dragging *{cursor:grabbing!important;user-select:none!i
 .tq-proof-label{display:block;color:#7cc6ff;font-size:11px;letter-spacing:.06em;padding-bottom:12px;border-bottom:1px solid #23334c}
 .tq-c:not(.tq-award){justify-content:center}.tq-c a:focus-visible{outline:2px solid #7cc6ff;outline-offset:5px}
 @media(max-width:640px){.testi .tv{gap:28px;padding-block:84px 48px}.tq-c{flex-basis:min(84vw,360px);min-height:360px}.tq-badge img{width:128px;height:128px}.tq-summary{font-size:14px}}
+</style>
+<style data-work-preview-contrast>
+/* Hover identifies the link without changing the contrast of the design preview. */
+.wf.on .wsh{filter:none}.wf.on .wmeta{color:#d3d3df;background:#07070a;padding:4px 8px}
+.wf.on .wlbl{background:#07070a;padding:4px 8px}.wk-hov .chbtn{background:#0b1020;color:#eaf4ff}
+.wf:focus-within .wsh{box-shadow:0 0 0 3px #7cc6ff}
 </style>
 </head>
 <body data-portfolio-design="workspace-v1"><a class="skip-link" href="#main-content">Skip to main content</a>
