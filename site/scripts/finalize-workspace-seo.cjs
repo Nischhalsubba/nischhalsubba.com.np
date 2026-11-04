@@ -141,3 +141,4 @@ fs.writeFileSync(path.join(dist, 'llms.txt'), markdown);
 fs.writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\n\nUser-agent: OAI-SearchBot\nAllow: /\nDisallow: /api/\n\nSitemap: ${site}/sitemap.xml\n`);
 fs.writeFileSync(path.join(dist, 'workspace-inner/seo-inventory.json'), JSON.stringify(records,null,2)+'\n');
 console.log(`[workspace-seo] ${records.length} real PNG previews, entity graphs, image sitemap and crawlable article links generated.`);
+require('./workspace-icons.cjs').publishIcons(root, dist, files);

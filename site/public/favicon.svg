@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Nischhal Raj Subba">
-  <rect width="64" height="64" rx="12" fill="#ff4d00"/>
-  <path fill="#11110f" d="M14 14h8v36h-8zM42 14h8v36h-8zM22 14h8l12 36h-8z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Nischhal</title><path d="M3 3H61V48L48 61H3Z" fill="#07070a" stroke="#0d99ff" stroke-width="3"/><path d="M16 46V18H23L41 36V18H48V46H41L23 28V46Z" fill="#f4f4f2"/></svg>
