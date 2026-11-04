@@ -93,6 +93,7 @@ jobs:
           done
           node scripts/seo/audit-pen-geometry.mjs
           node scripts/seo/profile-home.mjs
+          AUDIT_OUTPUT=tests/seo-evidence/profile/home-preview node scripts/seo/browser-evidence.mjs --performance-only --home-only
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:

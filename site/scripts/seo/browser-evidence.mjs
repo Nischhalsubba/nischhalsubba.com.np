@@ -16,7 +16,7 @@ import * as chromeLauncher from 'chrome-launcher';
 const base = (process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4173').replace(/\/$/, '');
 const output = process.env.AUDIT_OUTPUT || 'tests/seo-evidence/results';
 fs.mkdirSync(output, { recursive:true });
-const routes = ['/', '/projects', '/project-orkest', '/services', '/blog/', '/blog/figma-handoff-notes-for-developers'];
+const routes = process.argv.includes('--home-only') ? ['/'] : ['/', '/projects', '/project-orkest', '/services', '/blog/', '/blog/figma-handoff-notes-for-developers'];
 const failures = []; const accessibility = []; const performance = [];
 if (!process.argv.includes('--performance-only')) {
 const browser = await chromium.launch({headless:true});
@@ -57,16 +57,19 @@ try {
     window.__footerLayoutReads = 0;
     window.__processLayoutReads = 0;
     window.__contactLayoutReads = 0;
+    window.__layerLayoutReads = 0;
     Element.prototype.getBoundingClientRect = /** Callback contract: Preserve the native rectangle while counting work-scene reads. Inputs: DOM receiver. Side effects: updates a test-only counter. Returns: native DOMRect. */ function () {
       if (this.id === 'wk') window.__workLayoutReads++;
       if (this.id === 'abx') window.__aboutLayoutReads++;
       if (this.id === 'ftName') window.__footerLayoutReads++;
       if (this.id === 'od') window.__processLayoutReads++;
       if (this.id === 'contact') window.__contactLayoutReads++;
+      if (this.classList.contains('layer')) window.__layerLayoutReads++;
       return original.call(this);
     };
   });
   await motionPage.goto(base+'/',{waitUntil:'networkidle'});
+  await motionPage.waitForFunction(/** Callback contract: Measure stationary reads after intro, font and adaptive-tier startup settles. Inputs: none. Side effects: none. Returns: readiness. */ () => performance.now() > 10000 && document.fonts.status === 'loaded' && !document.getElementById('hrIntro'));
   await motionPage.evaluate(/** Callback contract: Confirm offscreen position and start the idle measurement. Inputs: none. Side effects: resets a test counter. Returns: offscreen flag. */ () => {
     const away = document.getElementById('wk').getBoundingClientRect().top > innerHeight + 600 && document.getElementById('abx').getBoundingClientRect().top >= innerHeight;
     window.__workLayoutReads = 0;
@@ -74,6 +77,7 @@ try {
     window.__footerLayoutReads = 0;
     window.__processLayoutReads = 0;
     window.__contactLayoutReads = 0;
+    window.__layerLayoutReads = 0;
     return away;
   }).then(/** Callback contract: Require the intended offscreen test precondition. Inputs: flag. Side effects: assertion only. Returns: void. */ away => assert.equal(away,true));
   await motionPage.waitForTimeout(250);
@@ -82,6 +86,7 @@ try {
   assert.equal(await motionPage.evaluate(/** Callback contract: Read the unseen footer-scene counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__footerLayoutReads),0,'Unseen footer must not read layout every frame');
   assert.equal(await motionPage.evaluate(/** Callback contract: Read the offscreen process-scene counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__processLayoutReads),0,'Offscreen process scene must not read layout every frame');
   assert.equal(await motionPage.evaluate(/** Callback contract: Read the offscreen contact-scene counter. Inputs: none. Side effects: none. Returns: count. */ () => window.__contactLayoutReads),0,'Offscreen contact scene must not read layout every frame');
+  assert.equal(await motionPage.evaluate(/** Callback contract: Read stationary scroll-layer geometry calls. Inputs: none. Side effects: none. Returns: count. */ () => window.__layerLayoutReads),0,'Stationary scroll layers must not reread geometry every frame');
   await motionPage.evaluate(/** Callback contract: Exercise native navigation into the work scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('work').scrollIntoView({block:'start',behavior:'instant'}));
   await motionPage.waitForFunction(/** Callback contract: Wait for a usable project and completed navigation frame. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('#wkWorld .wf.on .whit')?.tabIndex === 0 && document.querySelector('.tb-t.act')?.dataset.sec === 'work');
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'work');
@@ -97,6 +102,16 @@ try {
   await motionPage.waitForFunction(/** Callback contract: Require the process dial to initialize visibly. Inputs: none. Side effects: none. Returns: readiness. */ () => Boolean(document.querySelector('#odC #odN')) && document.querySelector('.tb-t.act')?.dataset.sec === 'process');
   await motionPage.evaluate(/** Callback contract: Activate the deferred contact canvas. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('contact').scrollIntoView({block:'start',behavior:'instant'}));
   await motionPage.waitForFunction(/** Callback contract: Verify the contact field paints when visible. Inputs: none. Side effects: reads canvas pixels. Returns: painted flag. */ () => document.querySelector('#cpDots').getContext('2d').getImageData(0,0,30,30).data.some((value,index) => index%4===3 && value>0));
+  const chapters = ['top','about','exp','work','services','process','testi','pricing','contact'];
+  for (const id of [...chapters, ...chapters.slice(0,-1).reverse()]) {
+    await motionPage.evaluate(/** Callback contract: Exercise every chapter in both directions. Inputs: chapter ID. Side effects: scrolls the page. Returns: void. */ id => document.getElementById(id).scrollIntoView({block:'start',behavior:'instant'}),id);
+    await motionPage.waitForFunction(/** Callback contract: Wait for the current chapter indicator. Inputs: chapter ID. Side effects: none. Returns: readiness. */ id => document.querySelector('.tb-t.act')?.dataset.sec === id,id);
+    assert.equal(await motionPage.locator('#'+id).isVisible(),true,'Navigated chapter must remain visible: '+id);
+  }
+  await motionPage.setViewportSize({width:768,height:1024});
+  await motionPage.evaluate(/** Callback contract: Verify navigation after viewport geometry invalidation. Inputs: none. Side effects: scrolls the page. Returns: void. */ () => document.getElementById('process').scrollIntoView({block:'start',behavior:'instant'}));
+  await motionPage.waitForFunction(/** Callback contract: Require the resized process chapter to become current and visible. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('.tb-t.act')?.dataset.sec === 'process' && getComputedStyle(document.getElementById('process')).visibility === 'visible');
+  await motionPage.screenshot({path:path.join(output,'normal-motion-process-resized.png')});
   await motionContext.close();
   console.log('[homepage-motion] Offscreen layout, deferred buffers and bidirectional section navigation passed.');
 } finally {await browser.close();}
