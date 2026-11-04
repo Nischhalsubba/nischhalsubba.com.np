@@ -615,6 +615,16 @@
       "evaluation": [
         "Ask a course author to create a section, add a lesson and configure a quiz without losing their place in the course outline.",
         "Review question reordering, an invalid answer and cancellation with unsaved changes; verify keyboard access and feedback alongside the visual hierarchy."
+      ],
+      "artifacts": [
+        [
+          "https://masteriyo.com/",
+          "Explore Masteriyo — current product website"
+        ],
+        [
+          "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/Masteriyo",
+          "Explore the original Masteriyo design file"
+        ]
       ]
     },
     {
@@ -919,6 +929,16 @@
       "evaluation": [
         "Ask a buyer to choose between adjacent plans and explain which specification drove that choice.",
         "Repeat the comparison on a narrow screen with longer plan labels; preserve units and distinctions without requiring horizontal page scrolling."
+      ],
+      "artifacts": [
+        [
+          "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+          "Explore the Grid Labs hosting website"
+        ],
+        [
+          "https://github.com/Nischhalsubba/Grid-Labs-Hosting",
+          "Inspect the implementation"
+        ]
       ]
     },
     {
@@ -1099,6 +1119,12 @@
       "evaluation": [
         "Replace demo content with long product names, inconsistent photograph proportions and missing descriptions; check that the catalogue hierarchy survives.",
         "Ask a site owner to edit a category and product card, then inspect the result on a narrow screen without manually repairing the layout."
+      ],
+      "artifacts": [
+        [
+          "https://zakratheme.com/starter-sites/#/preview/zakra-furniture",
+          "View Zakra Furniture starter-site preview"
+        ]
       ]
     },
     {

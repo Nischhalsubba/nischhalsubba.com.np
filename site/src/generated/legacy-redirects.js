@@ -140,4 +140,6 @@ export const LEGACY_REDIRECTS = new Map([
   ["/blog/web3-wallet-connection-ux.html", "/blog/web3-wallet-connection-ux"],
   ["/blog/web3-wallet-connection-ux/", "/blog/web3-wallet-connection-ux"],
   ["/blog-design-systems-front-end.html", "/blog/blog-design-systems-front-end"],
+  ["/blog/designing-handoffs-between-people.html", "/blog/designing-handoffs-between-people"],
+  ["/blog/designing-handoffs-between-people/", "/blog/designing-handoffs-between-people"],
 ]);
