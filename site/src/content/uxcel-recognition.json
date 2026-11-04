@@ -1,0 +1,136 @@
+{
+  "checkedAt": "2026-11-03",
+  "timezone": "Asia/Kathmandu",
+  "profile": "https://app.uxcel.com/ux/nischhal",
+  "ranking": {
+    "kind": "DATED_WEEKLY_SNAPSHOT",
+    "scope": "Uxcel Pro-member UX rankings",
+    "position": 1,
+    "score": 90,
+    "maximumScore": 100,
+    "source": "https://uxcel.com/uxcel-rankings",
+    "verification": "Rendered public rankings, matched by profile URL"
+  },
+  "historical": [
+    {
+      "year": 2024,
+      "category": "All Designers",
+      "recognition": "Uxcel Designer Rankings",
+      "exactPosition": 1,
+      "source": "https://app.uxcel.com/ux/nischhal",
+      "verification": "Uxcel annual ranking confirmation dated 10 January 2025; official supplied badge"
+    },
+    {
+      "year": 2024,
+      "category": "Product Designer",
+      "recognition": "Uxcel Designer Rankings",
+      "exactPosition": 1,
+      "source": "https://app.uxcel.com/ux/nischhal",
+      "verification": "Uxcel annual ranking confirmation dated 10 January 2025; official supplied badge"
+    },
+    {
+      "year": 2023,
+      "category": "Product Designer",
+      "recognition": "Uxcel Designer Rankings / Hall of Fame",
+      "exactPosition": 3,
+      "source": "https://uxcel.com/designer-rankings/past-winners",
+      "verification": "Uxcel annual ranking confirmation dated 18 January 2024 and public 2023 Hall of Fame row; supplied Top 10 badge"
+    }
+  ],
+  "assets": [
+    {
+      "id": "uxcel-2024-global-first",
+      "src": "/assets/images/awards/uxcel-2024-global-first-1cb3fe8d65b2.svg",
+      "width": 440,
+      "height": 440,
+      "sha256": "1cb3fe8d65b2172935b857dfecb4aa6c10563c55d3f343c08c753dd39866ce96",
+      "bytes": 19174,
+      "permission": "Issuer supplied for portfolio use with Uxcel profile backlink",
+      "backlink": "https://app.uxcel.com/ux/nischhal"
+    },
+    {
+      "id": "uxcel-2024-product-first",
+      "src": "/assets/images/awards/uxcel-2024-product-first-01d6ecf1c5f3.svg",
+      "width": 440,
+      "height": 440,
+      "sha256": "01d6ecf1c5f35f9d84943208d981acb4a6d46ac6b345f33e19fd608e1c09096a",
+      "bytes": 24707,
+      "permission": "Issuer supplied for portfolio use with Uxcel profile backlink",
+      "backlink": "https://app.uxcel.com/ux/nischhal"
+    },
+    {
+      "id": "uxcel-2023-product-top10",
+      "src": "/assets/images/awards/uxcel-2023-product-top10-0187eafd7a8b.svg",
+      "width": 440,
+      "height": 440,
+      "sha256": "0187eafd7a8b8cdc9f86910aa294540ad27118df3a55df9aebf556fd978a5415",
+      "bytes": 23547,
+      "permission": "Issuer supplied for portfolio use with Uxcel profile backlink",
+      "backlink": "https://app.uxcel.com/ux/nischhal"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Product Designer",
+      "confirmedOn": "2024-12-01",
+      "source": "https://app.uxcel.com/certificates/XSXW99G6EE2R",
+      "type": "Professional certification"
+    },
+    {
+      "name": "UX Designer",
+      "confirmedOn": "2024-12-02",
+      "source": "https://app.uxcel.com/certificates/DKNOJSV20WQ7",
+      "type": "Professional certification"
+    },
+    {
+      "name": "UX Researcher",
+      "confirmedOn": "2024-12-10",
+      "source": "https://app.uxcel.com/certificates/LSF8UPX6EGN5",
+      "type": "Professional certification"
+    },
+    {
+      "name": "UX Writer",
+      "confirmedOn": "2025-01-21",
+      "source": "https://app.uxcel.com/certificates/S9YU2TUDMMT1",
+      "type": "Professional certification"
+    },
+    {
+      "name": "UI Designer",
+      "confirmedOn": "2025-01-23",
+      "source": "https://app.uxcel.com/certificates/I4YTY0556KCY",
+      "type": "Professional certification"
+    }
+  ],
+  "courseCompletions": [
+    {
+      "name": "Human-Centered AI",
+      "confirmedOn": "2025-10-29",
+      "source": "https://app.uxcel.com/certificates/C17333VT6OIN",
+      "type": "Course completion"
+    },
+    {
+      "name": "AI Fundamentals for UX",
+      "confirmedOn": "2025-10-29",
+      "source": "https://app.uxcel.com/certificates/DG1LQ8WZA7MN",
+      "type": "Course completion"
+    },
+    {
+      "name": "Introduction to ChatGPT",
+      "confirmedOn": "2025-11-28",
+      "source": "https://app.uxcel.com/certificates/8B2XWEOITTQ9",
+      "type": "Course completion"
+    },
+    {
+      "name": "AI Prompts Foundations",
+      "confirmedOn": "2025-11-28",
+      "source": "https://app.uxcel.com/certificates/IV0SES53BBDE",
+      "type": "Course completion"
+    },
+    {
+      "name": "Building Agile Teams",
+      "confirmedOn": "2025-11-28",
+      "source": "https://app.uxcel.com/certificates/L4KGTW9W8TOK",
+      "type": "Course completion"
+    }
+  ]
+}

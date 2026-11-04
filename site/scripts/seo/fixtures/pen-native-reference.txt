@@ -1,0 +1,97 @@
+function makePen(cv, opt) {
+    const ctx = cv.getContext('2d'), svgNS = 'http://www.w3.org/2000/svg';
+    const C = [[0,0],[100,0],[300,280],[300,0],[400,0],[400,450],[300,450],[100,170],[100,450],[0,450]];
+    const OUTER = [0, 4, 5, 9], R = 22, BW = 400, BH = 450;
+    const nrm = (a, v) => { const dx = a[0] - v[0], dy = a[1] - v[1], l = Math.hypot(dx, dy) || 1; return [dx / l, dy / l]; };
+    let d = '';
+    C.forEach((v, i) => { const a = C[(i - 1 + C.length) % C.length], b = C[(i + 1) % C.length], ua = nrm(a, v), ub = nrm(b, v); d += (i ? 'L' : 'M') + (v[0] + ua[0] * R) + ' ' + (v[1] + ua[1] * R) + 'Q' + v[0] + ' ' + v[1] + ' ' + (v[0] + ub[0] * R) + ' ' + (v[1] + ub[1] * R); });
+    d += 'Z';
+    const pe = document.createElementNS(svgNS, 'path'); pe.setAttribute('d', d);
+    const tmp = document.createElementNS(svgNS, 'svg'); tmp.setAttribute('aria-hidden', 'true'); tmp.setAttribute('focusable', 'false'); tmp.style.cssText = 'position:absolute;width:0;height:0'; tmp.appendChild(pe); document.body.appendChild(tmp);
+    const shape = new Path2D(d), total = pe.getTotalLength(), PTS = [];
+    // Preserve native SVG geometry while yielding frequently enough to keep startup responsive.
+    for (let l = 0; l <= total; l += 3) { const q = pe.getPointAtLength(l); PTS.push([q.x, q.y]);  }
+    const lp = pe.getPointAtLength(total); PTS.push([lp.x, lp.y]);
+    tmp.remove();
+    const CUM = [0]; for (let i = 1; i < PTS.length; i++) CUM.push(CUM[i - 1] + Math.hypot(PTS[i][0] - PTS[i - 1][0], PTS[i][1] - PTS[i - 1][1]));
+    const TOTAL = CUM[CUM.length - 1];
+    const ANCH = C.map((v, k) => { let best = 0, bd = 1e9; PTS.forEach((p, i) => { const dd = Math.hypot(p[0] - v[0], p[1] - v[1]); if (dd < bd) { bd = dd; best = i; } }); return { x: v[0], y: v[1], d: CUM[best], outer: OUTER.includes(k), k }; });
+    const TIME_AT = (() => {
+      const n = PTS.length, turn = new Array(n).fill(0);
+      for (let i = 1; i < n - 1; i++) { const ux = PTS[i][0] - PTS[i - 1][0], uy = PTS[i][1] - PTS[i - 1][1], vx = PTS[i + 1][0] - PTS[i][0], vy = PTS[i + 1][1] - PTS[i][1]; const L = (Math.hypot(ux, uy) || 1) * (Math.hypot(vx, vy) || 1); turn[i] = Math.acos(clamp((ux * vx + uy * vy) / L, -1, 1)); }
+      const sm = turn.map((_, i) => { let s2 = 0, c = 0; for (let j = Math.max(0, i - 6); j <= Math.min(n - 1, i + 6); j++) { s2 += turn[j]; c++; } return s2 / c; });
+      const acc = [0]; for (let i = 1; i < n; i++) acc.push(acc[i - 1] + (CUM[i] - CUM[i - 1]) * (1 + 9 * sm[i]));
+      const T = acc[n - 1] || 1; return acc.map(v => v / T);
+    })();
+    const distAt = t => { if (t <= 0) return 0; if (t >= 1) return TOTAL; let lo = 0, hi = TIME_AT.length - 1; while (lo < hi - 1) { const m = (lo + hi) >> 1; if (TIME_AT[m] <= t) lo = m; else hi = m; } const r = (t - TIME_AT[lo]) / ((TIME_AT[hi] - TIME_AT[lo]) || 1); return CUM[lo] + (CUM[hi] - CUM[lo]) * r; };
+    const trailTo = dist => { const out = []; for (let i = 0; i < PTS.length; i++) { if (CUM[i] <= dist) { out.push(PTS[i]); continue; } const a = PTS[i - 1], b = PTS[i], r = (dist - CUM[i - 1]) / (CUM[i] - CUM[i - 1]); out.push([a[0] + (b[0] - a[0]) * r, a[1] + (b[1] - a[1]) * r]); break; } return out; };
+    const ACC = [13, 153, 255], BRI = [157, 200, 255], WHI = [255, 255, 255], ORA = [255, 110, 40];
+    const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`, mixc = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+    const strokeP = (pts, from = 0) => { ctx.beginPath(); ctx.moveTo(pts[from][0], pts[from][1]); for (let i = from + 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]); ctx.stroke(); };
+    const st = { lap: 0, heat: 1, fill: 0 };
+    let ratio = 1, W = 0, H = 0;
+    const size = () => { ratio = RS(); W = cv.clientWidth; H = cv.clientHeight; cv.width = Math.round(W * ratio); cv.height = Math.round(H * ratio); };
+    size(); new ResizeObserver(size).observe(cv);
+    function render() {
+      const box = opt.box(W, H), sc = Math.min(box.w / BW, box.h / BH), ox = box.x + (box.w - BW * sc) / 2, oy = box.y + (box.h - BH * sc) / 2;
+      st.map = (x, y) => [ox + x * sc, oy + y * sc];
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+      ctx.setTransform(ratio * sc, 0, 0, ratio * sc, ratio * ox, ratio * oy);
+      const dist = distAt(st.lap), pts = trailTo(dist), k1 = 1 / sc;
+      if (st.fill > 0) { ctx.fillStyle = rgba(ACC, .08 * st.fill); ctx.fill(shape); }
+      if (pts.length > 1) {
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.save(); ctx.globalCompositeOperation = 'lighter';
+        ctx.strokeStyle = rgba(ACC, .06); ctx.lineWidth = 16 * k1; strokeP(pts);
+        ctx.strokeStyle = rgba(ACC, .12); ctx.lineWidth = 7 * k1; strokeP(pts); ctx.restore();
+        ctx.strokeStyle = rgba(ACC, .85); ctx.lineWidth = 2 * k1; strokeP(pts);
+        const head = 70, from = Math.max(0, pts.length - head), tip = pts[pts.length - 1];
+        if (st.heat > .01) {
+          const g = ctx.createLinearGradient(pts[from][0], pts[from][1], tip[0], tip[1]);
+          g.addColorStop(0, rgba(ACC, 0)); g.addColorStop(.45, rgba(ACC, .9)); g.addColorStop(1, rgba(mixc(ACC, BRI, st.heat), 1));
+          ctx.strokeStyle = g; ctx.lineWidth = 3 * k1; strokeP(pts, from);
+          // a sleek craft rides the tip, nose first, with a thin blue light plume behind it
+          const back = pts[Math.max(0, pts.length - 5)], ang = Math.atan2(tip[1] - back[1], tip[0] - back[0]), s = k1 * 1.15, fl = .85 + Math.random() * .25;
+          ctx.save(); ctx.translate(tip[0], tip[1]); ctx.rotate(ang); ctx.globalAlpha = st.heat;
+          ctx.save(); ctx.globalCompositeOperation = 'lighter';
+          const hz = ctx.createRadialGradient(-28 * s, 0, 0, -28 * s, 0, 40 * s); hz.addColorStop(0, 'rgba(79,178,255,.35)'); hz.addColorStop(1, 'rgba(79,178,255,0)');
+          ctx.fillStyle = hz; ctx.beginPath(); ctx.ellipse(-28 * s, 0, 40 * s, 8 * s, 0, 0, 6.283); ctx.fill();
+          const fg = ctx.createLinearGradient(-9 * s, 0, -74 * s * fl, 0); fg.addColorStop(0, '#fff'); fg.addColorStop(.25, 'rgba(157,216,255,1)'); fg.addColorStop(.6, 'rgba(13,153,255,.55)'); fg.addColorStop(1, 'rgba(123,77,255,0)');
+          ctx.fillStyle = fg; ctx.beginPath(); ctx.moveTo(-9 * s, -1.6 * s * fl); ctx.lineTo(-74 * s * fl, 0); ctx.lineTo(-9 * s, 1.6 * s * fl); ctx.closePath(); ctx.fill();
+          ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(-9 * s, -.7 * s); ctx.lineTo(-40 * s * fl, 0); ctx.lineTo(-9 * s, .7 * s); ctx.closePath(); ctx.fill();
+          ctx.restore();
+          ctx.shadowColor = 'rgba(13,153,255,.9)'; ctx.shadowBlur = 12 * s / k1 * ratio;
+          const hg = ctx.createLinearGradient(-10 * s, 0, 21 * s, 0); hg.addColorStop(0, '#9DB8FF'); hg.addColorStop(.6, '#E9F1FF'); hg.addColorStop(1, '#fff');
+          ctx.fillStyle = hg; ctx.beginPath(); ctx.moveTo(21 * s, 0); ctx.lineTo(-7 * s, -10.5 * s); ctx.lineTo(-3.5 * s, -3.2 * s); ctx.lineTo(-10 * s, -3.2 * s); ctx.lineTo(-10 * s, 3.2 * s); ctx.lineTo(-3.5 * s, 3.2 * s); ctx.lineTo(-7 * s, 10.5 * s); ctx.closePath(); ctx.fill();
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = '#0D99FF'; ctx.beginPath(); ctx.moveTo(12 * s, 0); ctx.lineTo(3 * s, -2 * s); ctx.lineTo(3 * s, 2 * s); ctx.closePath(); ctx.fill();
+          ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(-10 * s, 0, 2.4 * s, 0, 6.283); ctx.fill();
+          ctx.restore();
+        }
+      }
+      ctx.font = `500 ${11 * k1}px "Geist Mono", ui-monospace, monospace`;
+      for (const a of ANCH) {
+        if (dist < a.d) continue;
+        const age = Math.min(1, (dist - a.d) / 90);
+        if (age < 1) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; const rr = (12 + (1 - age) * 14) * k1, g = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, rr); g.addColorStop(0, rgba(BRI, .5 + .45 * (1 - age))); g.addColorStop(.45, rgba(ACC, .32)); g.addColorStop(1, rgba(ACC, 0)); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(a.x, a.y, rr, 0, 6.283); ctx.fill(); ctx.restore(); }
+        if (a.outer) {
+          const dx = a.x < 200 ? 1 : -1, dy = a.y < 225 ? 1 : -1, hl = 46 * k1;
+          ctx.strokeStyle = rgba(BRI, .55); ctx.lineWidth = k1;
+          ctx.beginPath(); ctx.moveTo(a.x - dx * hl, a.y); ctx.lineTo(a.x + dx * hl, a.y); ctx.moveTo(a.x, a.y - dy * hl); ctx.lineTo(a.x, a.y + dy * hl); ctx.stroke();
+          ctx.fillStyle = '#fff'; [[a.x - dx * hl, a.y], [a.x + dx * hl, a.y], [a.x, a.y - dy * hl], [a.x, a.y + dy * hl]].forEach(([hx, hy]) => { ctx.beginPath(); ctx.arc(hx, hy, 3 * k1, 0, 6.283); ctx.fill(); });
+          const tag = opt.tag ? opt.tag(a) : `X ${a.x + 880}  Y ${a.y + 250}`;
+          if (tag) {
+            ctx.font = `${opt.tagBig ? 600 : 500} ${(opt.tagBig ? 13 : 11) * k1}px "Geist Mono", ui-monospace, monospace`;
+            const tw = ctx.measureText(tag).width + 16 * k1, th = (opt.tagBig ? 24 : 18) * k1, tx = dx > 0 ? a.x - tw - 18 * k1 : a.x + 18 * k1, ty = a.y + (dy < 0 ? 14 * k1 : -th - 14 * k1);
+            const ap = Math.min(1, age * 2);
+            ctx.fillStyle = opt.tagBig ? `rgba(244,244,242,${.95 * ap})` : rgba(ACC, .9 * ap); ctx.fillRect(tx, ty, tw * ap, th);
+            ctx.fillStyle = opt.tagBig ? `rgba(7,7,10,${ap})` : rgba(WHI, ap); if (ap > .6) ctx.fillText(tag, tx + 8 * k1, ty + th * .68);
+          }
+        }
+        const sz = (a.outer ? 9 : 6) * k1;
+        ctx.fillStyle = '#07070A'; ctx.fillRect(a.x - sz / 2, a.y - sz / 2, sz, sz);
+        ctx.strokeStyle = a.outer ? '#FFFFFF' : rgba(BRI, .8); ctx.lineWidth = k1; ctx.strokeRect(a.x - sz / 2, a.y - sz / 2, sz, sz);
+      }
+    }
+    return { st, render, TOTAL };
+  }

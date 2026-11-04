@@ -1,0 +1,104 @@
+# Purpose: Preserve reproducible SEO, accessibility and laboratory performance evidence for review.
+# Responsibilities: Audit previews only; never deploy, request indexing or publish private Figma originals.
+# Execution context: Pull-request and manually dispatched GitHub Actions.
+# Connected files: site/scripts/seo/browser-evidence.mjs, site/package.json.
+# Maintenance: Compare lab distributions separately from Search Console and field data.
+name: SEO evidence audit
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: seo-evidence-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - run: npx --no-install playwright install --with-deps chromium
+      - name: Audit the built review preview
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/seo-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/seo/browser-evidence.mjs --axe-only
+          AUDIT_OUTPUT=tests/seo-evidence/case-studies node scripts/seo/browser-evidence.mjs --axe-only --case-studies
+      - name: Measure the unchanged base commit
+        if: github.event_name == 'pull_request'
+        env:
+          BASELINE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git fetch --depth=1 origin "$BASELINE_SHA"
+          baseline_path="$RUNNER_TEMP/portfolio-baseline"
+          git worktree add --detach "$baseline_path" "$BASELINE_SHA"
+          npm --prefix "$baseline_path/site" ci --no-audit --no-fund
+          npm --prefix "$baseline_path/site" run build
+          npm --prefix "$baseline_path/site" run preview -- --host 127.0.0.1 --port 4174 > /tmp/seo-baseline-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4174/ >/dev/null; then break; fi
+            sleep 1
+          done
+          AUDIT_BASE_URL=http://127.0.0.1:4174 AUDIT_OUTPUT=tests/seo-evidence/baseline AUDIT_SOURCE_SHA="$BASELINE_SHA" node scripts/seo/browser-evidence.mjs --performance-only
+      - name: Measure the review commit
+        run: node scripts/seo/browser-evidence.mjs --performance-only
+      - name: Measure current production (read only, informational)
+        continue-on-error: true
+        run: AUDIT_BASE_URL=https://nischhalsubba.com.np AUDIT_OUTPUT=tests/seo-evidence/production node scripts/seo/browser-evidence.mjs --performance-only
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: seo-accessibility-performance-evidence
+          path: |
+            site/tests/seo-evidence/results
+            site/tests/seo-evidence/baseline
+            site/tests/seo-evidence/production
+            site/tests/seo-evidence/case-studies
+          retention-days: 14
+
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - run: npx --no-install playwright install --with-deps chromium
+      - name: Profile real homepage startup
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/profile-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/seo/audit-pen-geometry.mjs
+          node scripts/seo/profile-home.mjs
+          AUDIT_OUTPUT=tests/seo-evidence/profile/home-preview node scripts/seo/browser-evidence.mjs --performance-only --home-only
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: homepage-cpu-profile
+          path: site/tests/seo-evidence/profile
+          retention-days: 14

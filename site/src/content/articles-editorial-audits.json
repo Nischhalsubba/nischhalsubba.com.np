@@ -1,0 +1,629 @@
+{
+  "reviewedAt": "2026-11-04",
+  "articles": [
+    {
+      "slug": "ux-audit-evidence-before-redesign",
+      "intent": "Build an evidence pack before deciding what to redesign",
+      "dek": "A useful audit connects an observed problem to a task and a decision. Screenshots, analytics and opinions contribute different kinds of evidence; they should not be treated as interchangeable.",
+      "sections": [
+        {
+          "heading": "Begin with a question the evidence can answer",
+          "paragraphs": [
+            "Why is onboarding difficult is too broad to investigate in one pass. Can a new administrator identify the next required setup action is a more workable question. It names a role, task and point in the journey.",
+            "Record what you already know and what remains a hypothesis. A support complaint may identify a symptom. An event funnel may locate a drop. Neither automatically explains the cause. Use the initial question to decide which evidence to collect next."
+          ]
+        },
+        {
+          "heading": "Collect complementary evidence",
+          "table": {
+            "columns": [
+              "Source",
+              "What it can establish",
+              "What it cannot establish alone"
+            ],
+            "rows": [
+              [
+                "Observed task",
+                "What happened in that session",
+                "How common it is across all users"
+              ],
+              [
+                "Product analytics",
+                "Recorded event patterns",
+                "Why the person acted that way"
+              ],
+              [
+                "Support material",
+                "Reported friction and vocabulary",
+                "The experience of people who never contacted support"
+              ],
+              [
+                "Interface inspection",
+                "Visible structure and behavior",
+                "A measured business consequence"
+              ],
+              [
+                "Technical logs",
+                "Recorded failures and timing",
+                "The person's understanding of the failure"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Attach provenance to each finding",
+          "paragraphs": [
+            "Capture the build or environment, role, viewport, starting state, steps and result. Add a screenshot or recording only when it helps another person inspect the observation. Remove personal and client data from the version that will be shared.",
+            "Keep the original observation separate from the interpretation. For example: the save failed and the form cleared is an observation; people will abandon because of this is a hypothesis unless further evidence supports it."
+          ]
+        },
+        {
+          "heading": "Use a reproducible finding format",
+          "bullets": [
+            "Task: what the person was trying to do.",
+            "Observation: what actually happened and where.",
+            "Consequence: what was blocked, lost or made ambiguous.",
+            "Evidence: source, date and reproduction steps.",
+            "Confidence: confirmed, observed once or needs reproduction.",
+            "Next decision: repair, investigate, accept or redesign."
+          ]
+        },
+        {
+          "heading": "End with a decision-ready pack",
+          "paragraphs": [
+            "Group findings by the decision they inform. Several navigation symptoms may share one naming problem; a failed integration may need an engineering repair rather than new screens. The point is to narrow the redesign question, not make the issue count impressive.",
+            "For portfolio work, be equally careful about evidence. A Figma screenshot can demonstrate a proposed hierarchy. It cannot stand in for an observed usability session or a shipped outcome. Keeping those categories separate makes both the audit and the case study more credible."
+          ]
+        },
+        {
+          "heading": "Read the evidence boundary inside the artifact",
+          "paragraphs": [
+            "The Zapp completion design explicitly labels its state as a demonstration and says settlement and earnings require server records. A screenshot of that frame establishes the proposed explanation and return action.",
+            "It cannot establish that a parcel was delivered or a payment settled. Preserve that distinction when the same artifact appears in an audit or portfolio account."
+          ],
+          "image": "zapp-delivery-complete"
+        }
+      ],
+      "related": [
+        [
+          "/ux-audit",
+          "Evidence-led UX audits"
+        ],
+        [
+          "/blog/prioritize-ux-audit-findings-before-redesign",
+          "Prioritize the findings"
+        ],
+        [
+          "/project-pihub",
+          "A workflow with review dependencies"
+        ]
+      ],
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "slug": "ux-audit-checklist-before-redesign",
+      "intent": "Run a reproducible task-based interface audit",
+      "dek": "Use this checklist to inspect one important journey from entry to recovery. A page-by-page visual review can miss the behavior that makes the task succeed or fail.",
+      "sections": [
+        {
+          "heading": "Set up a real starting condition",
+          "paragraphs": [
+            "Choose a role, a task and a realistic account state. Note the environment, viewport and any unavailable integration. If the test uses seeded data or a prototype, say so. A successful prototype click does not prove that saving, permissions or synchronization work.",
+            "Start from a route a person could actually use, including a deep link where appropriate. A flow that works only after a guided tour from the homepage has an entry problem worth recording."
+          ]
+        },
+        {
+          "heading": "Walk the task, then the exception",
+          "table": {
+            "columns": [
+              "Area",
+              "Inspection question",
+              "Evidence to capture"
+            ],
+            "rows": [
+              [
+                "Orientation",
+                "Can the person identify location and purpose?",
+                "Labels, current state and entry path"
+              ],
+              [
+                "Action",
+                "Is the consequence understandable before commitment?",
+                "Action text and review context"
+              ],
+              [
+                "Input",
+                "Are requirements and correction paths clear?",
+                "Validation and retained values"
+              ],
+              [
+                "Waiting",
+                "Does the interface explain what it is waiting for?",
+                "Progress or pending state"
+              ],
+              [
+                "Failure",
+                "Can the person continue without losing useful work?",
+                "Error and recovery sequence"
+              ],
+              [
+                "Completion",
+                "Is the result distinguishable from an attempt?",
+                "Saved record, confirmation or next state"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Inspect access and alternate input",
+          "paragraphs": [
+            "Repeat the core path with a keyboard and a narrow viewport. Check meaningful names, visible focus, logical order and whether fixed controls cover the current task. Review zoom and the mobile keyboard rather than treating a small screenshot as responsive verification.",
+            "For role-based software, try a direct route and an unavailable action with the correct test account. Record what the server and interface actually do; a hidden button is not evidence of authorization enforcement."
+          ]
+        },
+        {
+          "heading": "Use one concrete design example",
+          "paragraphs": [
+            "The Zapp parcel-details frame asks for package type and contents before choosing a delivery service. It gives an audit a specific sequence to inspect: can the customer understand the options, revise an answer and continue after a validation problem? The image establishes the proposed layout; the task test must establish behavior."
+          ],
+          "image": "zapp-parcel-details"
+        },
+        {
+          "heading": "Turn the result into a bounded decision",
+          "paragraphs": [
+            "Record the failure at the task level and separate confirmed behavior from a suspected cause. Preserve the conditions needed to reproduce it. Then decide whether the repair belongs in copy, layout, interaction, business rules or engineering.",
+            "The checklist is complete when it produces decisions someone can act on. It is not a certification that every state, role or assistive technology has been covered. State the tested scope and the remaining gaps explicitly."
+          ]
+        }
+      ],
+      "related": [
+        [
+          "/project-zapp",
+          "Zapp customer journey evidence"
+        ],
+        [
+          "/ux-audit",
+          "Product UX review"
+        ],
+        [
+          "/blog/ux-audit-evidence-before-redesign",
+          "Build the evidence pack"
+        ]
+      ]
+    },
+    {
+      "slug": "prioritize-ux-audit-findings-before-redesign",
+      "intent": "Choose a defensible repair order without false numerical precision",
+      "dek": "A long issue list becomes useful when the team can explain why one problem deserves attention before another. Separate user consequence, evidence confidence and delivery effort.",
+      "sections": [
+        {
+          "heading": "Start with consequence, not the screenshot",
+          "paragraphs": [
+            "A visually obvious issue can be less consequential than a rare failure that loses work or prevents access. Describe what happens to the task: blocked, completed incorrectly, recoverable with extra work or merely less comfortable.",
+            "Keep severity separate from frequency. A single observed destructive failure may deserve immediate investigation even when its prevalence is unknown. Conversely, a frequently seen cosmetic difference does not automatically justify structural redesign."
+          ]
+        },
+        {
+          "heading": "Keep confidence visible",
+          "table": {
+            "columns": [
+              "Evidence state",
+              "Reasonable action"
+            ],
+            "rows": [
+              [
+                "Reproduced failure",
+                "Repair or explicitly accept the known consequence"
+              ],
+              [
+                "Observed once with clear conditions",
+                "Reproduce and investigate while preserving evidence"
+              ],
+              [
+                "Consistent reported theme",
+                "Inspect the affected task and corroborate the cause"
+              ],
+              [
+                "Expert concern",
+                "Frame as a hypothesis or targeted review"
+              ],
+              [
+                "Preference",
+                "Treat as a design choice unless a consequence is established"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Use an order the team can defend",
+          "paragraphs": [
+            "My preferred starting order is access and data integrity, blocked core tasks, repeated recovery costs, confusing decisions and then polish. The exact order depends on the product, but naming the reason makes it possible to challenge the decision constructively.",
+            "Do not multiply guessed values into a precise-looking score. If occurrence is unknown, write unknown. If delivery effort has not been assessed by engineering, keep it provisional. The discussion should reveal uncertainty rather than hide it inside arithmetic."
+          ]
+        },
+        {
+          "heading": "Separate quick repair from structural work",
+          "paragraphs": [
+            "An incorrect label may be a small repair with a meaningful benefit. Several inconsistent states may indicate a shared component or data-model problem. Group related symptoms before estimating fixes so the team does not repeatedly patch the same cause.",
+            "Also record dependencies. A design repair can be ready while an API contract is unresolved. That does not make the whole item complete, and it should not prevent unrelated verified repairs from moving forward."
+          ]
+        },
+        {
+          "heading": "Keep a decision ledger",
+          "bullets": [
+            "Finding and affected task.",
+            "Observed consequence and evidence link.",
+            "Severity and confidence, recorded separately.",
+            "Proposed repair and accountable owner.",
+            "Dependency or decision that blocks progress.",
+            "Verification that will demonstrate the repair.",
+            "Reason for accepting or deferring the issue."
+          ]
+        },
+        {
+          "heading": "Revisit priority after learning",
+          "paragraphs": [
+            "Priority is a current decision, not a permanent property of a ticket. A reproduced failure, a changed release scope or new evidence can change the order. Keep the original observation and record why the decision changed.",
+            "A good audit creates a smaller set of consequential decisions and a reliable verification path. Closing a large number of low-value tickets is not a substitute for resolving the task failures that matter."
+          ]
+        }
+      ],
+      "related": [
+        [
+          "/ux-audit",
+          "UX audit and remediation"
+        ],
+        [
+          "/blog/ux-audit-evidence-before-redesign",
+          "Collect better evidence"
+        ],
+        [
+          "/blog/when-startup-needs-ux-audit-before-redesign",
+          "Decide whether an audit is the next step"
+        ]
+      ]
+    },
+    {
+      "slug": "when-startup-needs-ux-audit-before-redesign",
+      "intent": "Decide whether to audit, repair or redesign a startup product",
+      "dek": "A redesign is a commitment to change. An audit is useful when the team first needs to understand which change is warranted and which existing behavior should be preserved.",
+      "sections": [
+        {
+          "heading": "Identify the decision you cannot yet make",
+          "paragraphs": [
+            "The interface looks old is not enough to choose a redesign scope. The useful uncertainty might be why onboarding stalls, whether navigation matches user tasks or whether a feature is hidden behind an access problem. Name that uncertainty before commissioning a broad visual refresh.",
+            "An audit is a good next step when the team has symptoms but cannot connect them to a defensible repair. If the defect is already known and reproducible, fixing it may be more useful than paying for another report."
+          ]
+        },
+        {
+          "heading": "Choose a response that matches the evidence",
+          "table": {
+            "columns": [
+              "Situation",
+              "Useful next move"
+            ],
+            "rows": [
+              [
+                "A known broken save",
+                "Repair and regression-test the failure"
+              ],
+              [
+                "Conflicting explanations for abandonment",
+                "Collect evidence around the affected task"
+              ],
+              [
+                "A new role or business model",
+                "Review the task and information architecture"
+              ],
+              [
+                "Inconsistent UI with stable behavior",
+                "Assess component and content-system repair"
+              ],
+              [
+                "A new visual direction only",
+                "Bound the visual work and protect existing behavior"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Scope the audit around a consequential journey",
+          "paragraphs": [
+            "For a small team, start with one important role and one end-to-end task. Include entry, input, waiting, failure and completion. Identify the integrations and account states needed to test it.",
+            "The Zapp parcel step is an example of a bounded review object. It can be inspected as part of a booking journey without pretending that a single screen explains dispatch, payment and delivery operations. A sensible scope makes those boundaries explicit."
+          ]
+        },
+        {
+          "heading": "Ask for a decision-ready deliverable",
+          "paragraphs": [
+            "The output should contain reproducible findings, consequences, confidence, a proposed repair order and a verification plan. It should distinguish copy fixes, interaction changes, structural redesign and engineering defects.",
+            "Avoid a scope that promises a predetermined redesign regardless of what the evidence shows. An audit should be able to conclude that a smaller repair is enough, that more evidence is needed or that a part of the existing product deserves protection."
+          ]
+        },
+        {
+          "heading": "Do not delay urgent repairs for the perfect study",
+          "paragraphs": [
+            "A clear access failure, data loss or broken critical path deserves attention while broader investigation continues. Record the original condition and test the repair. There is no need to wait for every secondary finding before addressing a verified problem.",
+            "For less certain concerns, make the next experiment small and reversible. The goal is a better product decision with a known basis, not a larger design programme justified by the existence of an audit."
+          ]
+        },
+        {
+          "heading": "Bound a review around one driver decision",
+          "paragraphs": [
+            "The Zapp driver design has a confirmed pickup, a named next drop-off, progress, an arrival action and an intermediate-stop issue route. That is enough to define a focused review: can the driver identify the current stop and explain the two actions?",
+            "The prototype says navigation is inactive. An audit scope should therefore separate task comprehension from real routing, live location and dispatch integration."
+          ],
+          "image": "zapp-driver-next-stop"
+        }
+      ],
+      "related": [
+        [
+          "/ux-audit",
+          "Scope an evidence-led review"
+        ],
+        [
+          "/blog/ux-audit-checklist-before-redesign",
+          "Run the journey checklist"
+        ],
+        [
+          "/blog/prioritize-ux-audit-findings-before-redesign",
+          "Choose a repair order"
+        ]
+      ],
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "slug": "beautiful-interface-poor-ux",
+      "intent": "Diagnose task problems concealed by visual polish",
+      "dek": "A polished screen can still leave the person unsure what to do, what changed or whether their work is safe. Review the decision the interface supports before judging the composition.",
+      "sections": [
+        {
+          "heading": "Ask what the person can explain",
+          "paragraphs": [
+            "A screenshot can look balanced while every action competes equally. Try a more specific review: what needs attention, what is the next action and what consequence will it have? If those answers are unclear, visual hierarchy is not yet supporting decision hierarchy.",
+            "This does not make visual craft unimportant. Typography, spacing and contrast are valuable because they help a person read relationships and priorities. The problem is treating their presence as evidence that the task works."
+          ]
+        },
+        {
+          "heading": "Look for the state the presentation omits",
+          "paragraphs": [
+            "The default screen rarely shows what happens after a failed save, an unavailable permission or an empty result. Those states often carry the explanation a person most needs. Review them with the same care as the ideal composition.",
+            "The Yarsha contact-search frame is a useful example. It clearly reports No contact found, but the continuation still deserves inspection. Does the person know whether to change the query or use Invite? A clean layout can expose a good design question without proving it has been solved."
+          ],
+          "image": "yarsha-contact-empty"
+        },
+        {
+          "heading": "Use four small diagnostic tasks",
+          "bullets": [
+            "Explain the main action before selecting it.",
+            "Find the state and next action without relying on a color cue.",
+            "Trigger one error and recover without re-entering valid work.",
+            "Reach the same result using a keyboard and a narrow viewport."
+          ]
+        },
+        {
+          "heading": "Distinguish motion from feedback",
+          "paragraphs": [
+            "A movement or color change can signal activity without explaining the result. For a consequential action, feedback should establish whether the operation is still pending, completed, rejected or unresolved. Animation can support that explanation; it should not replace it.",
+            "Also review reduced-motion behavior. If the only way to understand a result is to follow an animated sequence, the product needs an equivalent explanation that remains usable without that sequence."
+          ]
+        },
+        {
+          "heading": "Repair the model before adding emphasis",
+          "paragraphs": [
+            "A larger primary button will not resolve an action whose meaning is unclear. First decide the task, state and consequence. Then use the visual system to make that decision easier to read.",
+            "For portfolio review, I prefer to connect a specific screen to the decision it supports and the questions still open. An attractive interface is evidence of craft. A task-based review supplies the additional evidence needed to judge the experience."
+          ]
+        }
+      ],
+      "related": [
+        [
+          "/project-yarsha",
+          "Inspect the source example"
+        ],
+        [
+          "/ux-audit",
+          "Review task behavior"
+        ],
+        [
+          "/blog/saas-dashboard-empty-state-ux-guide",
+          "Write a useful zero-result explanation"
+        ]
+      ]
+    },
+    {
+      "slug": "saas-dashboard-ux-checklist",
+      "intent": "Review the core task hierarchy of an operational dashboard",
+      "dek": "A dashboard should help someone notice what matters and act on it. Use this checklist to review one role's work, not to collect every chart and table pattern in one screen.",
+      "sections": [
+        {
+          "heading": "Start with the decision the dashboard supports",
+          "paragraphs": [
+            "Write a task such as identify leads that need assignment or inspect applications waiting for review. Then identify the information required to make that decision. This gives the layout a reason to emphasize one state, action or comparison before another.",
+            "A summary metric earns its place when it changes what the person should inspect or do. If it is only decorative reassurance, it may belong elsewhere or need a clearer relationship to the task."
+          ]
+        },
+        {
+          "heading": "Review the dashboard in six passes",
+          "table": {
+            "columns": [
+              "Pass",
+              "Question"
+            ],
+            "rows": [
+              [
+                "Location",
+                "Which workspace, module and scope am I viewing?"
+              ],
+              [
+                "Priority",
+                "What requires attention before routine work?"
+              ],
+              [
+                "Records",
+                "Can I identify the object and compare relevant values?"
+              ],
+              [
+                "Query",
+                "Which search, filters and sort explain this result?"
+              ],
+              [
+                "Action",
+                "What can I do, and what changes if I do it?"
+              ],
+              [
+                "Recovery",
+                "What happens if data, permission or the request is unavailable?"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Inspect one source-backed example",
+          "paragraphs": [
+            "The piHub creditor design puts application details and explicit status in the same comparison view. Its value as evidence is the relationship between the record and state. Redacted sample amounts are not product performance, and the image does not verify the approval workflow."
+          ],
+          "image": "pihub-application-status"
+        },
+        {
+          "heading": "Check density against the job",
+          "paragraphs": [
+            "Dense views can support comparison when labels, units and identifiers are stable. A review or creation step may need a quieter hierarchy because the consequence deserves attention. Do not use whitespace as the sole measure of clarity.",
+            "At narrow widths, decide which relationships survive. A person should still be able to identify a record and reach its relevant action even if secondary columns move to a detail view. Test with realistic names and missing optional values."
+          ]
+        },
+        {
+          "heading": "Exercise the state, not just the layout",
+          "bullets": [
+            "Load the view with no records and with no matching records.",
+            "Apply a filter, inspect a record and return.",
+            "Change the selected workspace or role.",
+            "Interrupt a request and inspect retained context.",
+            "Use a keyboard to reach search, filters and a row action.",
+            "Check whether a stale or partial result is distinguishable from a genuine zero."
+          ]
+        },
+        {
+          "heading": "Record a task-level conclusion",
+          "paragraphs": [
+            "Summarize what the dashboard enables and which decision remains difficult. A useful conclusion might be that record status is clear but ownership is hidden, or that the next action disappears on mobile. That is more actionable than saying the dashboard needs a modern look.",
+            "Keep the tested role, data and viewport in the report. A checklist pass on one template is not evidence that every module or authorization boundary has been verified."
+          ]
+        },
+        {
+          "heading": "Compare the object as well as the layout",
+          "paragraphs": [
+            "The piHub investor list places products, service categories and approval state in one table. A creditor application and an investor product may share table styling, but they are different records with different actions.",
+            "Review the heading, columns and status together before declaring the pattern reusable. Financial values are redacted here because they are unnecessary to that comparison."
+          ],
+          "image": "pihub-investor-products"
+        }
+      ],
+      "related": [
+        [
+          "/project-pihub",
+          "Application-status design"
+        ],
+        [
+          "/blog/saas-dashboard-filter-ux",
+          "Review filter behavior"
+        ],
+        [
+          "/saas-ux-designer",
+          "SaaS dashboard design"
+        ]
+      ],
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "slug": "website-ux-checklist-software-companies",
+      "intent": "Review a software website as an evaluation journey",
+      "dek": "A software website should help a serious visitor understand the offer, inspect relevant proof and choose a sensible next step. Review that journey before adding another visual effect.",
+      "sections": [
+        {
+          "heading": "Test the opening explanation",
+          "paragraphs": [
+            "After a short scan, can a visitor explain who the product is for and what it helps them do? A category label may be necessary, but it should not carry the entire explanation. Replace a broad claim with a concrete task or outcome the product can actually support.",
+            "For a technical product, keep a route to deeper detail. The first explanation and the implementation explanation have different jobs. A newcomer should not need to read documentation to establish relevance, and an evaluator should not be trapped in marketing summaries."
+          ]
+        },
+        {
+          "heading": "Review the evaluation path",
+          "table": {
+            "columns": [
+              "Visitor question",
+              "Useful page evidence"
+            ],
+            "rows": [
+              [
+                "Does this fit my problem?",
+                "Specific audience, use case and scope"
+              ],
+              [
+                "What does it do?",
+                "Capabilities explained through tasks"
+              ],
+              [
+                "Why should I believe it?",
+                "Relevant examples and inspectable references"
+              ],
+              [
+                "What are the limits?",
+                "Clear exclusions and dependencies"
+              ],
+              [
+                "How do I continue?",
+                "An appropriate demo, documentation or contact action"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Keep proof next to the claim",
+          "paragraphs": [
+            "A screenshot is useful when it helps inspect a capability or a design decision. A logo or decorative interface image does not establish a customer result. Narrow the claim when the available evidence is narrow.",
+            "The Mokshya case concerns website communication and technical reading depth. The Splashnode case concerns a technical platform website and frontend contribution. Neither should be inflated into ownership of the underlying protocol or platform just to make a stronger sales story."
+          ]
+        },
+        {
+          "heading": "Inspect navigation and contact in context",
+          "paragraphs": [
+            "Use descriptive links and check whether the visitor can find a relevant capability from several reasonable entry points. A service page may be a better landing page than the homepage for a specific search or referral.",
+            "Review the contact step with the explanation that precedes it. Does the person know what the conversation is for and what information to provide? Avoid asking for sensitive or excessive details before they are needed."
+          ]
+        },
+        {
+          "heading": "Review the actual page, not only the design",
+          "bullets": [
+            "Read meaningful content with scripts unavailable where feasible.",
+            "Check headings, descriptive links and image alternatives.",
+            "Use the navigation and contact path with a keyboard.",
+            "Review long headings, zoom and narrow screens.",
+            "Measure image, font and script loading with real page data.",
+            "Verify metadata, canonical URLs and the intended destination of old links."
+          ]
+        },
+        {
+          "heading": "Use findings to refine the offer",
+          "paragraphs": [
+            "If visitors cannot identify the right service, the repair may be information architecture rather than a new hero. If the page makes unsupported claims, the repair is evidence or narrower wording. Technical SEO and performance support discovery and access; they cannot make an unclear offer useful on their own."
+          ]
+        }
+      ],
+      "related": [
+        [
+          "/website-ux-design",
+          "Website UX services"
+        ],
+        [
+          "/project-mokshya",
+          "Technical product communication"
+        ],
+        [
+          "/blog/blog-service-websites",
+          "Service-page content structure"
+        ]
+      ]
+    }
+  ]
+}

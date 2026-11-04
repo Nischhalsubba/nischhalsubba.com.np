@@ -1,0 +1,324 @@
+[
+  {
+    "id": "morajaa-service-process",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "465:831",
+    "crop": [
+      100,
+      2690,
+      1340,
+      3650
+    ],
+    "redactions": [],
+    "alt": "Morajaa market-entry service design presents seven named stages in a scannable process section.",
+    "caption": "Curated process-section crop from the supplied Final Design v2 service screen. Photography and staff details are outside this crop. Source service statements are not independently verified legal or commercial claims.",
+    "privacy_review": "NO_PERSONAL_DATA_OR_PHOTOGRAPHY_IN_CROP",
+    "presentation": "Curated section crop",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/465-831.png",
+    "source_sha256": "6d7b931aca038922b7fc914233bd328baaa4582266a638d22a4be69ed61be16e",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "yarsha-token-selection",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:253788",
+    "crop": null,
+    "redactions": [
+      [
+        260,
+        253,
+        352,
+        303
+      ],
+      [
+        260,
+        333,
+        352,
+        383
+      ],
+      [
+        260,
+        413,
+        352,
+        463
+      ],
+      [
+        260,
+        493,
+        352,
+        543
+      ],
+      [
+        260,
+        573,
+        352,
+        623
+      ],
+      [
+        260,
+        653,
+        352,
+        703
+      ],
+      [
+        260,
+        733,
+        352,
+        783
+      ]
+    ],
+    "alt": "Yarsha token-selection design offers token and NFT tabs, search and asset names with symbols; balance column redacted.",
+    "caption": "Source screen from Final Mobile Design. Balance and change values are redacted; asset names and symbols illustrate design structure, not holdings or investment information.",
+    "privacy_review": "BALANCE_COLUMN_REDACTED",
+    "presentation": "Native screen with disclosed redaction",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-253788.png",
+    "source_sha256": "923cfe61006fb6b39fb2f2b670993674280a800849c32118613ae25171e0db87",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "zapp-parcel-details",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "113:153",
+    "crop": null,
+    "redactions": [],
+    "alt": "Zapp customer parcel-details screen groups package types, a contents field and the action to choose a delivery service.",
+    "caption": "Customer iOS parcel-details frame from the supplied primary Zapp 2.0 file. This is a design state, not evidence of working pricing, dispatch or delivery.",
+    "privacy_review": "NO_PERSONAL_DATA_IN_SCREEN",
+    "presentation": "Native screen",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/113-153.png",
+    "source_sha256": "84ac196696bd8b6d30d6a538d066e98d70cc6a1bf2143e9ded2b10f0567072d3",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "orkest-conversion-readiness",
+    "crop": [
+      1068,
+      799,
+      1408,
+      1004
+    ],
+    "redactions": [],
+    "alt": "Orkest lead-detail panel pairs a core-information check with the action to convert a lead into an opportunity.",
+    "caption": "Cropped conversion-readiness panel from the current-labeled CRM lead detail. The copy describes an intended handoff; it does not verify record conversion.",
+    "privacy_review": "CROP_EXCLUDES_ALL_RECORD_IDENTITIES_AND_VALUES",
+    "presentation": "Curated detail-panel crop",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "160:387",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-387.png",
+    "source_sha256": "cabfdf00f4b319d966da9f6a45015bc9793dd5c4d3242dc22dee864df5b5a6d9",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "pihub-investor-products",
+    "crop": [
+      265,
+      125,
+      1375,
+      991
+    ],
+    "redactions": [
+      [
+        505,
+        222,
+        928,
+        780
+      ]
+    ],
+    "alt": "piHub investor product list places service and industry beside an awaiting-approval status. Financial columns are redacted.",
+    "caption": "Investor product-list design. Financial values are redacted; repeated status labels are prototype data, not investment or approval results.",
+    "privacy_review": "FINANCIAL_COLUMNS_REDACTED;NO_PERSONAL_IDENTIFIERS",
+    "presentation": "Redacted product-list crop",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:1272",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-2/2-1272.png",
+    "source_sha256": "b89f8ba1fd7bb075e603dd9949214a34c3308bfd77db62a23694fbf42d72ebbb",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "pihub-access-denied",
+    "crop": [
+      240,
+      50,
+      1410,
+      755
+    ],
+    "redactions": [],
+    "alt": "piHub access-denied design says that the page cannot be accessed and offers a Go Back action.",
+    "caption": "Access-denied design state from the administrator page. It illustrates denial copy and recovery, not tested server authorization.",
+    "privacy_review": "NO_PERSONAL_OR_FINANCIAL_DATA_IN_CROP",
+    "presentation": "Curated access-state crop",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2228:545",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-3/2228-545.png",
+    "source_sha256": "69df55450d41d32b7d11813e41b74b3ec3fdadd0fc56c651a8fa2d2835cc7c36",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "zapp-driver-next-stop",
+    "crop": null,
+    "redactions": [],
+    "alt": "Zapp driver screen distinguishes a confirmed pickup from the next drop-off and offers arrival and intermediate-stop issue actions.",
+    "caption": "Driver iOS stop-order design. District names and route progress are demonstration content; navigation is explicitly inactive in this prototype.",
+    "privacy_review": "DEMONSTRATION_DISTRICTS_ONLY;NO_PERSONAL_ADDRESS_OR_CONTACT",
+    "presentation": "Native driver prototype screen",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "19:149",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/19-149.png",
+    "source_sha256": "489a4e4ddf5c3376078b8e74e5599d1e99fa6e66594195eae0bba8d2ef8a370d",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "zapp-delivery-complete",
+    "crop": null,
+    "redactions": [
+      [
+        28,
+        191,
+        180,
+        218
+      ]
+    ],
+    "alt": "Zapp delivery-completion design separates the completed handoff from settlement and provides a return-to-dashboard action. The sample delivery identifier is redacted.",
+    "caption": "Driver completion design, explicitly labeled as a demonstration. The sample identifier is redacted. Settlement and earnings still require verified server records.",
+    "privacy_review": "DELIVERY_IDENTIFIER_REDACTED;NO_PERSONAL_DATA",
+    "presentation": "Redacted driver prototype screen",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "20:26",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/20-26.png",
+    "source_sha256": "11fb4db28ef295cdfaf336e0e41bb3bc6447eee192e15dcfff48a5af1caf148f",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "yarsha-transaction-detail",
+    "crop": [
+      0,
+      270,
+      375,
+      812
+    ],
+    "redactions": [
+      [
+        260,
+        15,
+        360,
+        55
+      ],
+      [
+        205,
+        55,
+        360,
+        91
+      ],
+      [
+        195,
+        128,
+        365,
+        158
+      ],
+      [
+        236,
+        167,
+        362,
+        201
+      ]
+    ],
+    "alt": "Yarsha transaction-detail panel separates spent and received assets, destination and network fee, with an external explorer action. Values and address are redacted.",
+    "caption": "Cropped transaction-detail design. Amounts, destination and fee are redacted. Explorer wording is retained from the source and needs chain-specific review before implementation.",
+    "privacy_review": "AMOUNTS_ADDRESS_FEE_REDACTED;ARTWORK_EXCLUDED",
+    "presentation": "Redacted transaction-detail crop",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:262038",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-262038.png",
+    "source_sha256": "a4c50043c42fb4320ef1c41ab31043114513d1c4275bb9b1574bd75a42ec0bdc",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "masteriyo-first-content",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:1275",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1275.png",
+    "source_sha256": "2e1169e5d39b666dac24f19c590e5d35e570ceab4fc5168e9e44cc4b4075952d",
+    "crop": null,
+    "redactions": [],
+    "alt": "Masteriyo empty course builder offers Add Section, Add Assignment and Add Quiz, with a separate documentation link.",
+    "caption": "Empty authoring state from the primary Masteriyo design file. Team design work; my contribution concerns course and quiz UI/UX within the wider product team.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
+    "presentation": "Native team design screen"
+  },
+  {
+    "id": "masteriyo-course-outline",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:1310",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1310.png",
+    "source_sha256": "86872f4c815d46ab829165e402a6c52027e8e4180c34b1949964e204fef41d9d",
+    "crop": null,
+    "redactions": [],
+    "alt": "Masteriyo course outline groups lessons inside an Introduction section, with reorder, edit, duplicate and delete controls.",
+    "caption": "Course outline from the primary Masteriyo file. Repeated lesson rows and section actions show the authoring hierarchy. Team design work; no sole-designer claim.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
+    "presentation": "Native team design screen"
+  },
+  {
+    "id": "masteriyo-quiz-setup",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:1579",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-1579.png",
+    "source_sha256": "ecc0a469cfbb68119df4e330b50f62ba4ab876c682750d03a899b2861ee9415e",
+    "crop": null,
+    "redactions": [],
+    "alt": "Masteriyo Add New Quiz form separates Info, Questions and Settings and offers Next and Cancel actions.",
+    "caption": "Quiz setup from the primary Masteriyo file. The staged form is a design artifact, not evidence of a completed learner assessment. Team contribution.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
+    "presentation": "Native team design screen"
+  },
+  {
+    "id": "masteriyo-question-editor",
+    "project": "Masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "277:3142",
+    "source": "artifacts/figma-exports/masteriyo/hBVZ96hJzIPNvrFwvmY8Wh/277-1231/277-3142.png",
+    "source_sha256": "8b1e5da42da23d15cf2273cae3cb43f0ceaed7bcd3419276134202599b9d2f49",
+    "crop": null,
+    "redactions": [],
+    "alt": "Masteriyo quiz editor keeps a question list above the expanded true-or-false editor, with answer selection and required and randomize settings.",
+    "caption": "Question editor from the primary Masteriyo file. Sample content and selected answer illustrate configuration. Team contribution; production saving and scoring are outside this screenshot.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_PLACEHOLDER_CONTENT_ONLY",
+    "presentation": "Native team design screen"
+  },
+  {
+    "id": "hamro-idea-contact-form",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "31:1490",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-1490.png",
+    "source_sha256": "6d188f6598eb7db0262675b18f050444f2031bbbd4c6049080c2fe973608b278",
+    "crop": [
+      465,
+      1070,
+      1370,
+      1550
+    ],
+    "redactions": [],
+    "alt": "Hamro Idea contact design with name, email and message prompts above a wide Submit message button.",
+    "caption": "Cropped contact form from the historical Hamro idea UI Design file. Surrounding stock photography, placeholder contact details and unverified claims are excluded. The frame shows visual intent, not a tested or shipped form.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "VISUALLY_REVIEWED_EMPTY_FORM_ONLY",
+    "presentation": "Cropped historical Figma design screen"
+  }
+]
