@@ -2118,7 +2118,9 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
 (function(){const f=()=>document.documentElement.style.setProperty('--zk',Math.min(1.8,Math.max(1,Math.min(innerWidth/1440,innerHeight/900))).toFixed(4));f();addEventListener('resize',f);})();
 </script>
 <script>
-(() => {
+// Paint the authored page before initializing the interactive scenes.
+requestAnimationFrame(/** Callback contract: Yield a rendering opportunity before workspace initialization. Inputs: frame time. Side effects: schedules initialization. Returns: timer ID. */ () => setTimeout(/** Callback contract: Initialize unchanged scenes and interactions after the first paint. Inputs: none. Side effects: initializes workspace UI. Returns: void. */ () => {
+  performance.mark('workspace-init-start');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -3928,7 +3930,8 @@ window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);
-})();
+  performance.mark('workspace-init-end');
+}, 0));
 </script>
 
 

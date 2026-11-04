@@ -34,3 +34,8 @@ The profile job now also emits a three-run-per-device homepage-only diagnostic e
 ## Navigation regression exposed by expanded coverage
 
 The actual mobile-control regression confirmed reverse Credentials navigation could land on the still-visible Project scope sheet. On failure, scrollY was 30724, Credentials top -338/hidden and Project scope remained active. The handler passed a sticky element's current visual position to Lenis. The follow-up resolves document-flow destinations from the stack's unpinned origin and preceding layer heights, preserving in-layer offsets. The same resolver covers menu links, keyboard shortcuts and Contact jumps. A callback diagnostic failed before (element argument) and passes after (correct document coordinate). The complete 17-action forward/reverse control sequence, visibility checks and resize test remain enabled. Earlier Home/Contact test-selector errors were corrected separately; the real reverse-navigation defect is not waived.
+
+
+## First-paint experiment
+
+After the corrected navigation passes the complete actual-control and resize regression, the remaining LCP target is addressed separately: schedule the existing interaction initializer after a rendering opportunity, with native performance marks and a browser assertion that first contentful paint precedes initialization. Drawing geometry, intro implementation and scene algorithms are retained. This is a candidate until fresh Lighthouse and browser/intro checks pass; moving work does not establish field INP. Background: https://web.dev/articles/optimize-inp and https://web.dev/articles/optimize-long-tasks . The About page also uses Nepal rather than an unverified Kathmandu location claim, consistent with the homepage.

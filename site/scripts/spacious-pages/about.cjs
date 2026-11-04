@@ -19,14 +19,14 @@ const markup = `<main id="main-content" class="container nrs-spacious-page nrs-a
     <div class="nrs-page-hero__title">
       <p class="eyebrow">About</p>
       <h1 id="about-title" class="hero-title">I design clear product experiences for complicated software.</h1>
-      <p class="body-large">I am Nischhal Raj Subba, a Senior Product Designer based in Kathmandu, Nepal. I focus on complex SaaS and fintech products, design systems, and design-to-engineering delivery, with additional experience across Web3, mobile products, websites and enterprise software.</p>
+      <p class="body-large">I am Nischhal Raj Subba, a Senior Product Designer based in Nepal. I focus on complex SaaS and fintech products, design systems, and design-to-engineering delivery, with additional experience across Web3, mobile products, websites and enterprise software.</p>
       ${actions}
     </div>
     <aside class="nrs-page-hero__aside" aria-label="Professional summary">
       <p class="nrs-aside-intro">My work connects product thinking, visual craft and implementation detail so teams can make decisions earlier and build with fewer assumptions.</p>
       <dl class="nrs-facts">
         <div><dt>Experience</dt><dd>6+ years</dd></div>
-        <div><dt>Based in</dt><dd>Kathmandu, working remotely</dd></div>
+        <div><dt>Based in</dt><dd>Nepal, working remotely</dd></div>
         <div><dt>Focus</dt><dd>Complex SaaS, fintech and design systems</dd></div>
       </dl>
     </aside>
