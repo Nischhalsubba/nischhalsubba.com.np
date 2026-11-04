@@ -92,7 +92,8 @@ for (const file of files) {
   const slug = file.replace(/\.html$/, '').replaceAll('/', '--');
 
   const contentImages = [...html.matchAll(/data-evidence-image="([^"]+)"/g)].map(match => evidenceImages.find(image => image.id === match[1])).filter(Boolean);
-  if (isArticle && (contentImages.length || html.includes('data-editorial-revision='))) html = setMeta(html, 'property', 'article:modified_time', '2026-11-03');
+  const editorialRevision = html.match(/data-editorial-revision="(\d{4}-\d{2}-\d{2})"/)?.[1];
+  if (isArticle && editorialRevision) html = setMeta(html, 'property', 'article:modified_time', editorialRevision);
   const coverSrc = contentImages[0]?.socialSrc || (isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null);
   const cardBytes = card(file === 'index.html' ? 'Nischhal Raj Subba' : heading, description, category, coverSrc ? path.join(dist, coverSrc) : null);
   const cardName = `${slug}-${crypto.createHash('sha256').update(cardBytes).digest('hex').slice(0,12)}.png`;
@@ -135,7 +136,7 @@ for (const route of inventory) { const html = fs.readFileSync(path.join(dist, ro
 fs.writeFileSync(path.join(dist, 'workspace-inner/routes.json'), JSON.stringify(inventory,null,2)+'\n');
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${records.map(record => `<url><loc>${escape(record.url)}</loc>${[record.image,...record.contentImages].map(image => `<image:image><image:loc>${escape(image)}</image:loc></image:image>`).join('')}</url>`).join('')}</urlset>\n`;
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
-const markdown = ['# Nischhal Raj Subba', '> Senior Product Designer. 7+ years across enterprise SaaS, mobile, fintech and Web3.', '', 'This is a public portfolio, not a product documentation or support service. Case studies describe contribution boundaries and publicly available evidence.', '', '## Portfolio', ...records.filter(record=>!record.isArticle).map(record=>`- [${record.heading}](${record.url}): ${record.description}`), '', '## Writing', ...articles.map(record=>`- [${record.heading}](${record.url}): ${record.description}`), '', '## Contact', '- Email: hinischalsubba@gmail.com', '- Location stated in portfolio: Kathmandu, Nepal', '- Availability and complete current résumé: '+site+'/about', ''].join('\n');
+const markdown = ['# Nischhal Raj Subba', '> Senior Product Designer. 7+ years across enterprise SaaS, mobile, fintech and Web3.', '', 'This is a public portfolio, not a product documentation or support service. Case studies describe contribution boundaries and publicly available evidence.', '', '## Portfolio', ...records.filter(record=>!record.isArticle).map(record=>`- [${record.heading}](${record.url}): ${record.description}`), '', '## Writing', ...articles.map(record=>`- [${record.heading}](${record.url}): ${record.description}`), '', '## Contact', '- Email: hinischalsubba@gmail.com', '- Location: Nepal', '- Availability and complete current résumé: '+site+'/about', ''].join('\n');
 fs.writeFileSync(path.join(dist, 'llms.txt'), markdown);
 fs.writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\n\nUser-agent: OAI-SearchBot\nAllow: /\nDisallow: /api/\n\nSitemap: ${site}/sitemap.xml\n`);
 fs.writeFileSync(path.join(dist, 'workspace-inner/seo-inventory.json'), JSON.stringify(records,null,2)+'\n');

@@ -1,5 +1,5 @@
 {
-  "reviewedAt": "2026-11-03",
+  "reviewedAt": "2026-11-04",
   "basis": "Existing owner-authored portfolio scope, repository artifacts and individually reviewed Figma exports. Design intent is not a measured outcome.",
   "projects": [
     {
@@ -38,12 +38,14 @@
           "heading": "Reuse grammar where the operational job repeats",
           "body": [
             "The shared system is a set of rules for location, records, status and action priority. It should reduce relearning when someone moves from a list into a detail view. It should also permit an exception when a module needs a different sequence or a more consequential review step.",
-            "I would judge reuse by whether the next task remains understandable, not by counting identical cards. For CRM, that means keeping the record identity and owner legible while allowing qualification and conversion to receive their own treatment."
-          ]
+            "I would judge reuse by whether the next task remains understandable, not by counting identical cards. For CRM, that means keeping the record identity and owner legible while allowing qualification and conversion to receive their own treatment.",
+            "The current lead-detail panel makes conversion readiness explicit: core information is complete, and conversion should preserve history while creating a contact and opportunity. That visible promise gives engineering a concrete consistency rule to implement and test."
+          ],
+          "image": "orkest-conversion-readiness"
         }
       ],
       "delivery": "The useful handoff unit is a record workflow: entry conditions, data requirements, state changes and recovery, supported by reusable interface patterns. The reviewed exports show the visible design; they do not verify server validation, access control or synchronization between modules.",
-      "outcome": "This work demonstrates how I structure a broad product before detailing individual screens. No adoption, revenue, conversion or task-time result is claimed. The next validation would ask people to locate an unassigned lead, explain its status, create a draft and recover from a rejected save.",
+      "outcome": "Ownership views, qualification and conversion are the central CRM decisions in this case. The current screens make those relationships inspectable. A useful task review would follow an unassigned lead through capture and conversion, including a failed save; no task-time or adoption measurement is available.",
       "related": [
         [
           "/saas-ux-designer",
@@ -57,7 +59,8 @@
           "/blog/saas-dashboard-filter-ux",
           "Operational filter UX"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "pihub",
@@ -87,19 +90,23 @@
           "heading": "Share status language without flattening the roles",
           "body": [
             "A creditor needs to understand an application they submitted. An investor needs a different view of opportunities and commitments. An administrator needs review context and permitted actions. The common element is the meaning of a state; the information priority should change with the job.",
-            "The source file separates these role journeys. In review, I would trace one example across them and check that Submitted, Reviewing and Approved have consistent meanings. A matched set of screens is a design model, not proof that cross-role updates or authorization are implemented."
-          ]
+            "The source file separates these role journeys. In review, I would trace one example across them and check that Submitted, Reviewing and Approved have consistent meanings. A matched set of screens is a design model, not proof that cross-role updates or authorization are implemented.",
+            "The investor product list makes service, industry and approval state comparable. It is a different object from a creditor application list, even though both use status labels. Keeping that distinction visible helps explain why the roles share vocabulary without sharing every table column."
+          ],
+          "image": "pihub-investor-products"
         },
         {
           "heading": "Give review and recovery their own requirements",
           "body": [
             "A verification request should say what information needs attention and preserve what is already valid. A waiting state should identify the dependency when that information can safely be disclosed. An error should distinguish a correctable input problem from a service interruption.",
-            "Those are acceptance conditions for the workflow, not financial promises. They make the handoff discussion more useful than a blanket requirement to make the onboarding shorter."
-          ]
+            "Those are acceptance conditions for the workflow, not financial promises. They make the handoff discussion more useful than a blanket requirement to make the onboarding shorter.",
+            "The administrator source also contains an access-denied design with a Go Back action. That is a proposed recovery surface. The account and server still need to decide whether a direct request is allowed; an error screen does not establish that enforcement."
+          ],
+          "image": "pihub-access-denied"
         }
       ],
       "delivery": "I organize the discussion around role, current state, outstanding requirement and next action. The linked creditor, investor and admin prototypes provide paths for inspecting the design. Production permissions, uploads, persistence and real financial processing require separate engineering verification.",
-      "outcome": "The case demonstrates multi-role information architecture and status-oriented fintech UX. I do not have a verified conversion or processing-time result to attach to it. Useful follow-up testing would ask each role to explain what is happening, who must act next and how an incomplete submission can be corrected.",
+      "outcome": "The role split is visible in the artifacts: creditors submit applications, investors manage products and requests, and administrators review access and records. The remaining evaluation is whether the same status has a consistent meaning across those roles and whether a person knows who must act next.",
       "related": [
         [
           "/ux-audit",
@@ -113,7 +120,8 @@
           "/project-orkest",
           "Related enterprise workflow work"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "yarsha",
@@ -148,15 +156,16 @@
           "image": "yarsha-token-selection"
         },
         {
-          "heading": "Keep connection, review and authorization distinct",
+          "heading": "Separate transaction details from authorization",
           "body": [
-            "The broader interaction model separates selecting an action from authorizing it. A useful review would retain the originating conversation and explain the destination, asset and consequence in product language. Connecting a wallet should not silently stand in for consent to a later action.",
-            "The reviewed screenshots stop before that full sequence. Pending, rejection and resolved transaction behavior therefore remain validation questions here rather than illustrated completion claims."
-          ]
+            "The final-mobile source contains a transaction-detail panel with spent and received assets, destination, network fee and an explorer action. The public crop removes artwork and redacts values and the address while keeping those field relationships visible.",
+            "A detail panel is not a wallet approval request or proof of a confirmed transaction. The source explorer wording also needs to be reconciled with the intended chain before implementation. I would review that link alongside rejection, pending and unknown-result behavior instead of treating a completed-looking frame as integration evidence."
+          ],
+          "image": "yarsha-transaction-detail"
         }
       ],
       "delivery": "The handoff discussion needs both screen structure and state rules: what context persists, what is controlled by the wallet, and how the product explains an unresolved outcome. Contact search and asset selection are inspectable artifacts; a complete transaction acceptance test must also exercise the wallet and network integration.",
-      "outcome": "This case shows my approach to keeping familiar mobile interaction and higher-consequence actions in the same product. No financial-safety, transaction-success or conversion improvement is asserted. I would validate whether people can identify the chosen asset, explain the requested action and return to the conversation without losing context.",
+      "outcome": "The strongest evidence is in the transition between familiar contact interaction and financial detail. The screens expose useful questions about recovery, asset identity and transaction explanation. Wallet authorization and network outcomes need their own implementation evidence.",
       "related": [
         [
           "/web3-ux-designer",
@@ -170,7 +179,8 @@
           "/blog/transaction-review-ux-crypto-apps",
           "Transaction review decisions"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "zapp",
@@ -207,13 +217,22 @@
         {
           "heading": "Review one lifecycle across the role boundaries",
           "body": [
-            "For the wider logistics model, the important consistency is the meaning of a delivery state. A role-specific screen can show a different amount of detail while still agreeing on whether the delivery is requested, assigned, underway or unresolved.",
-            "My review would follow the same delivery identifier through customer, driver and operations views, then test delay and reassignment. Those are explicit validation scenarios; separate prototypes do not demonstrate real-time synchronization or a functioning dispatch service."
-          ]
+            "The driver stop-order screen distinguishes a confirmed pickup from the next drop-off. It shows progress and separates arrival from an intermediate-stop issue. The screen explicitly says navigation is inactive in the prototype, so I present it as a proposed task sequence.",
+            "This makes a cross-role review more specific: confirm which stop is current, which event changes its state, and what the customer or operations team should see after an issue. Separate screens still need synchronized data and real routing before that lifecycle can be called implemented."
+          ],
+          "image": "zapp-driver-next-stop"
+        },
+        {
+          "heading": "Separate delivery completion from settlement",
+          "body": [
+            "The driver completion frame names the completed handoff, offers a return to availability and states that settlement and earnings require verified server records. Those are different responsibilities, and the completion message keeps them separate.",
+            "For acceptance testing, I would check an interrupted handoff, a duplicate completion attempt and the return-to-dashboard state. The sample frame provides the wording and hierarchy to inspect; it does not establish that a delivery or payment occurred."
+          ],
+          "image": "zapp-delivery-complete"
         }
       ],
-      "delivery": "The handoff needs a shared lifecycle, the actions available to each role and the information retained after an interruption. The current parcel and account screens provide concrete visual evidence. Live route calculation, delivery estimates, payments and operational permissions need independent integration tests.",
-      "outcome": "The work demonstrates role-aware mobile information architecture and a booking sequence that can be discussed step by step. No delivery-volume, completion-rate or task-time result is claimed. The next useful test is a complete booking with an edited parcel answer, an unavailable service and a recoverable interruption.",
+      "delivery": "The handoff combines customer parcel entry with driver stop progress and completion states. Routing, delivery estimates, payments and updates across roles remain integration requirements. The screenshots describe the prototype sequence and its stated limits.",
+      "outcome": "The customer and driver views give the delivery lifecycle different priorities. Parcel entry, the next stop and the completion boundary can now be inspected in the case itself. A working routing or dispatch service, and any improvement in delivery performance, require evidence beyond these designs.",
       "related": [
         [
           "/services",
@@ -227,7 +246,8 @@
           "/project-pihub",
           "Another multi-role product"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "morajaa",
@@ -269,7 +289,7 @@
         }
       ],
       "delivery": "The deliverable is an information structure and responsive visual system that can accommodate service depth. The linked prototype remains an interactive reference; the images here are readable crops of individual source screens. I have not treated every page on the file's canvas as approved marketing material.",
-      "outcome": "The case demonstrates B2B content hierarchy and a service narrative that can support a qualified conversation. There is no verified inquiry-volume or commercial-performance result. The next validation would ask visitors to identify the relevant service, describe its scope and find the next useful step without a sales explanation.",
+      "outcome": "The process crop makes the content decision visible: named stages let a visitor scan the engagement before reading its detail. The next question is whether someone can choose the relevant service and explain its scope without a sales presentation. Inquiry performance has not been measured for this case.",
       "related": [
         [
           "/website-ux-design",
@@ -283,7 +303,8 @@
           "/blog/website-ux-checklist-software-companies",
           "Review website decision paths"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "masteriyo",
@@ -324,7 +345,7 @@
         }
       ],
       "delivery": "The work is presented as a collaborative design contribution with an established product context. The primary Figma reference is retained, and the older copy is treated as a historical source. New team screenshots are withheld from this review's public asset set pending reuse clearance.",
-      "outcome": "This case demonstrates how I reason about different roles within one product and contribute without overstating ownership. No learner-completion, adoption or authoring-time improvement is asserted. Follow-up evaluation would test a creator's course setup and a learner's next-action comprehension separately.",
+      "outcome": "Course authors and learners need different hierarchies within the same LMS. My contribution is presented within that team context. The next review should exercise course setup and learner continuation separately; neither ownership of the entire product nor learner-completion results are claimed.",
       "related": [
         [
           "/figma-design-systems",
@@ -338,7 +359,8 @@
           "/blog/blog-good-handoff",
           "Handoff as shared understanding"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "mokshya",
@@ -379,7 +401,7 @@
         }
       ],
       "delivery": "The portfolio scope is the website's narrative structure, responsive hierarchy and interface composition. The retained website preview provides context; the contribution described here is the narrative structure and interface composition.",
-      "outcome": "The work demonstrates technical information architecture and restraint in product communication. I do not have a verified visitor-comprehension or inquiry result to report. The next step would be a short first-impression review followed by a developer-information retrieval task.",
+      "outcome": "The website account focuses on the order of explanation: establish relevance, then expose the technical mechanism. A first-impression task and a developer-information retrieval task would test those two reading paths. The available material does not include a measured comprehension result.",
       "related": [
         [
           "/website-ux-design",
@@ -393,7 +415,8 @@
           "/project-morajaa",
           "Related content architecture work"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "designerex",
@@ -434,7 +457,7 @@
         }
       ],
       "delivery": "This is a scoped account of marketplace UI contribution. Existing public references are preserved. The public account stays within the contribution and artifacts I can describe without claiming ownership of the whole marketplace.",
-      "outcome": "The work demonstrates comparison-oriented hierarchy inside an image-led marketplace. No rental conversion or browsing-speed result is asserted. The most useful next test would ask someone to compare a small set of plausible rentals and explain which details informed their choice.",
+      "outcome": "The design tension is between image-led browsing and dependable rental comparison. The card and detail hierarchy should be reviewed with varied garment photos, long names and unavailable options. That is the contribution described here, within the broader marketplace team.",
       "related": [
         [
           "/website-ux-design",
@@ -448,7 +471,8 @@
           "/blog/beautiful-interface-poor-ux",
           "When polish hides a decision problem"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "splashnode",
@@ -489,7 +513,7 @@
         }
       ],
       "delivery": "The scope joins website UX with implementation-aware composition. Responsive layout, section hierarchy and reusable frontend patterns are part of the same deliverable. Backend platform capability and operational reliability remain outside the evidence shown by this case.",
-      "outcome": "This work demonstrates a design-to-frontend approach to a technical B2B website. No lead-volume or product-usage improvement is claimed. I would validate whether a visitor can identify a relevant use case, find its supporting detail and choose an appropriate next step.",
+      "outcome": "Design and frontend work meet in the browser: headings wrap, capability sections compete for attention and the route to evaluation has to remain visible. Those are inspectable delivery questions. Usage of the underlying platform and commercial outcomes are outside this website case.",
       "related": [
         [
           "/website-ux-design",
@@ -503,7 +527,8 @@
           "/project-hamro-idea",
           "Another design-to-code website"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "grid-labs",
@@ -544,7 +569,7 @@
         }
       ],
       "delivery": "The deliverable is a commercial website and maintainable frontend structure. The public account stays focused on commercial hierarchy, responsive comparison and the limits of a static implementation.",
-      "outcome": "The work demonstrates comparison hierarchy and scope discipline. It does not claim sales growth or a working infrastructure backend. A useful next validation would ask someone to explain a plan difference and identify the action that follows their choice.",
+      "outcome": "Plan comparison depends on stable attributes, units and billing periods. The static website scope also limits what a domain-search or purchase affordance can promise. The case centers on those design and implementation boundaries, with current commercial terms left to the service owner.",
       "related": [
         [
           "/website-ux-design",
@@ -558,7 +583,8 @@
           "/project-splashnode",
           "Technical product storytelling"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "hamro-idea",
@@ -599,7 +625,7 @@
         }
       ],
       "delivery": "The work joins service information architecture with a static multi-page frontend. The useful handoff is not only a visual style: it includes section responsibilities, responsive rules and a content structure the site can keep using.",
-      "outcome": "This case demonstrates design-to-code ownership within the recorded scope. No traffic, ranking or inquiry increase is asserted. I would evaluate service selection, proof discovery and contact comprehension before treating the website's commercial objectives as achieved.",
+      "outcome": "The contribution joins service structure, project proof and a maintainable frontend. I would evaluate it by asking a visitor to choose a service, locate supporting work and reach contact with the right context. Search rankings and inquiry growth are not measured outcomes of this case.",
       "related": [
         [
           "/website-ux-design",
@@ -613,7 +639,8 @@
           "/blog/blog-service-websites",
           "Clearer service websites"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "zakra-furniture",
@@ -654,7 +681,7 @@
         }
       ],
       "delivery": "The scope is a reusable starter-site interface and its content behavior. Existing public material is retained. The design discussion stays distinct from claims about checkout, stock accuracy, order fulfillment or sales performance.",
-      "outcome": "The case demonstrates CMS-aware visual systems and content resilience. No conversion or maintenance-time improvement is claimed. The next validation would let a site owner replace the demo catalogue and inspect the result at narrow, medium and wide viewports.",
+      "outcome": "A reusable storefront has to survive ordinary catalogue editing. Varied image crops, longer names and missing optional content are practical tests for the card and section rules described here. A polished demo alone cannot establish checkout or sales performance.",
       "related": [
         [
           "/website-ux-design",
@@ -668,7 +695,8 @@
           "/blog/blog-design-systems-front-end",
           "Content contracts for reusable UI"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "neverwinter-parser",
@@ -709,7 +737,7 @@
         }
       ],
       "delivery": "The strongest proof for this kind of work is code, fixtures, calculation definitions and inspectable interface behavior. The public account is therefore centered on the information model and implementation questions rather than a gallery of conceptual screens.",
-      "outcome": "The project demonstrates data-product thinking and attention to provenance. No verified parser-speed, damage-accuracy or player-performance improvement is claimed. The next evaluation would ask a player to explain a summary and then locate the event context behind that explanation.",
+      "outcome": "An encounter summary is useful when its actor, time range and supporting events remain inspectable. Known fixtures are the right way to check those relationships and calculation limits. The portfolio account does not substitute a clean dashboard for parser-accuracy evidence.",
       "related": [
         [
           "/blog/blog-gaming-interface-clarity",
@@ -723,7 +751,8 @@
           "/project-sassboilerplate",
           "Related developer tooling"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "sassboilerplate",
@@ -764,7 +793,7 @@
         }
       ],
       "delivery": "The deliverable is the structure and the explanation that makes it usable. Repository evidence is more relevant here than a screenshot. Existing code references are preserved; their current maintenance and compatibility still need to be assessed before adopting the utility in a new project.",
-      "outcome": "The project demonstrates developer-experience thinking and a preference for explicit responsibilities. I do not have a verified setup-time reduction to report. A useful evaluation would ask another developer to change a shared token, add a component and remove an unused layer without help from the author.",
+      "outcome": "The useful artifact is the file structure and its documentation. A developer should be able to find a shared token, add a component and remove an unused layer from those conventions. There is no measured setup-time saving to report.",
       "related": [
         [
           "/figma-design-systems",
@@ -778,7 +807,8 @@
           "/project-neverwinter-parser",
           "Related personal tooling"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-04"
     }
   ]
 }

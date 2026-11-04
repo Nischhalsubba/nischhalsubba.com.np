@@ -238,5 +238,171 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/zapp-parcel-details-social-dcee64e02fef.png"
+  },
+  {
+    "id": "orkest-conversion-readiness",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "160:387",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-387.png",
+    "source_sha256": "cabfdf00f4b319d966da9f6a45015bc9793dd5c4d3242dc22dee864df5b5a6d9",
+    "alt": "Orkest lead-detail panel pairs a core-information check with the action to convert a lead into an opportunity.",
+    "caption": "Cropped conversion-readiness panel from the current-labeled CRM lead detail. The copy describes an intended handoff; it does not verify record conversion.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "CROP_EXCLUDES_ALL_RECORD_IDENTITIES_AND_VALUES",
+    "presentation": "Curated detail-panel crop",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/orkest-conversion-readiness-340-4e370d2b4c8c.webp",
+        "width": 340,
+        "height": 205,
+        "bytes": 8280,
+        "sha256": "4e370d2b4c8c650dc4815a275280a4bb909e3181c0852fc5f493026623fe1475"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/orkest-conversion-readiness-social-598faa672fad.png"
+  },
+  {
+    "id": "pihub-investor-products",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:1272",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-2/2-1272.png",
+    "source_sha256": "b89f8ba1fd7bb075e603dd9949214a34c3308bfd77db62a23694fbf42d72ebbb",
+    "alt": "piHub investor product list places service and industry beside an awaiting-approval status. Financial columns are redacted.",
+    "caption": "Investor product-list design. Financial values are redacted; repeated status labels are prototype data, not investment or approval results.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "FINANCIAL_COLUMNS_REDACTED;NO_PERSONAL_IDENTIFIERS",
+    "presentation": "Redacted product-list crop",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-investor-products-480-15e864869c67.webp",
+        "width": 480,
+        "height": 374,
+        "bytes": 10018,
+        "sha256": "15e864869c677865360542dba26fae5c341acc165b391a08349f41cf58ec3e90"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-investor-products-800-00987f8a0873.webp",
+        "width": 800,
+        "height": 624,
+        "bytes": 23304,
+        "sha256": "00987f8a08731009cd2d29a68ab999e96e9081832fe803f6d4a90485fe8dd7ad"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-investor-products-1110-3ef837c49a66.webp",
+        "width": 1110,
+        "height": 866,
+        "bytes": 38144,
+        "sha256": "3ef837c49a6642ec980ba486a891966b8a369fed7871ec9f9d65804a1007716a"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-investor-products-social-107ba1865b74.png"
+  },
+  {
+    "id": "pihub-access-denied",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2228:545",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-3/2228-545.png",
+    "source_sha256": "69df55450d41d32b7d11813e41b74b3ec3fdadd0fc56c651a8fa2d2835cc7c36",
+    "alt": "piHub access-denied design says that the page cannot be accessed and offers a Go Back action.",
+    "caption": "Access-denied design state from the administrator page. It illustrates denial copy and recovery, not tested server authorization.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "NO_PERSONAL_OR_FINANCIAL_DATA_IN_CROP",
+    "presentation": "Curated access-state crop",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-access-denied-480-9b9728e13d9c.webp",
+        "width": 480,
+        "height": 289,
+        "bytes": 2902,
+        "sha256": "9b9728e13d9cadf3695304a6ede4e6722fc15832a9409c1ab1a0bb01beda870e"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-access-denied-800-a1592393676b.webp",
+        "width": 800,
+        "height": 482,
+        "bytes": 5376,
+        "sha256": "a1592393676bad7d9ce5ebdad4af66ab027a978f3d5920d7db1c51137cd61e04"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-access-denied-1170-ef2106598df1.webp",
+        "width": 1170,
+        "height": 705,
+        "bytes": 8384,
+        "sha256": "ef2106598df15177fae13a187fbfd6b66799525d7979bfcb8e30ffb0965bfd3b"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-access-denied-social-844e0199ddad.png"
+  },
+  {
+    "id": "zapp-driver-next-stop",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "19:149",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/19-149.png",
+    "source_sha256": "489a4e4ddf5c3376078b8e74e5599d1e99fa6e66594195eae0bba8d2ef8a370d",
+    "alt": "Zapp driver screen distinguishes a confirmed pickup from the next drop-off and offers arrival and intermediate-stop issue actions.",
+    "caption": "Driver iOS stop-order design. District names and route progress are demonstration content; navigation is explicitly inactive in this prototype.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "DEMONSTRATION_DISTRICTS_ONLY;NO_PERSONAL_ADDRESS_OR_CONTACT",
+    "presentation": "Native driver prototype screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-driver-next-stop-402-40c7ba3e9540.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 23600,
+        "sha256": "40c7ba3e9540ef15be5147d36d8c276f5c887d385d1ae183e533f2c546b3fe02"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-driver-next-stop-social-e87b5d97b250.png"
+  },
+  {
+    "id": "zapp-delivery-complete",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "20:26",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/20-26.png",
+    "source_sha256": "11fb4db28ef295cdfaf336e0e41bb3bc6447eee192e15dcfff48a5af1caf148f",
+    "alt": "Zapp delivery-completion design separates the completed handoff from settlement and provides a return-to-dashboard action. The sample delivery identifier is redacted.",
+    "caption": "Driver completion design, explicitly labeled as a demonstration. The sample identifier is redacted. Settlement and earnings still require verified server records.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "DELIVERY_IDENTIFIER_REDACTED;NO_PERSONAL_DATA",
+    "presentation": "Redacted driver prototype screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-delivery-complete-402-ef77d4f4fcd7.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 18388,
+        "sha256": "ef77d4f4fcd75ec9f9a2bf04139101ad9b9879b9614155befca5dedd2f735f86"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-delivery-complete-social-086bb273c003.png"
+  },
+  {
+    "id": "yarsha-transaction-detail",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:262038",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-262038.png",
+    "source_sha256": "a4c50043c42fb4320ef1c41ab31043114513d1c4275bb9b1574bd75a42ec0bdc",
+    "alt": "Yarsha transaction-detail panel separates spent and received assets, destination and network fee, with an external explorer action. Values and address are redacted.",
+    "caption": "Cropped transaction-detail design. Amounts, destination and fee are redacted. Explorer wording is retained from the source and needs chain-specific review before implementation.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "AMOUNTS_ADDRESS_FEE_REDACTED;ARTWORK_EXCLUDED",
+    "presentation": "Redacted transaction-detail crop",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-transaction-detail-375-591933797f29.webp",
+        "width": 375,
+        "height": 542,
+        "bytes": 5974,
+        "sha256": "591933797f2987343923776a43a191826bc728f162acad16d4a6cf30ef720f28"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-transaction-detail-social-e130490c9d84.png"
   }
 ]

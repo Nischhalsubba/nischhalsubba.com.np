@@ -24,7 +24,9 @@ for (const data of [...projects, ...articles]) {
   const record = inventory.find(item => item.file === file);
   assert.ok(record, 'Retain canonical URL: ' + file);
   const html = fs.readFileSync(path.join(root, 'dist', file), 'utf8');
-  assert.match(html, /data-editorial-revision="2026-11-03"/);
+  const updated = data.updatedAt || '2026-11-03';
+  assert.match(updated, /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(html.includes(`data-editorial-revision="${updated}"`));
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
   assert.doesNotMatch(html, /[\x00-\x08\x0b\x0c\x0e-\x1f]/);
   const sections = isProject ? data.decisions : data.sections;
@@ -38,13 +40,13 @@ for (const data of [...projects, ...articles]) {
   }
   if (!isProject) {
     assert.match(html, /rel="author">Nischhal Raj Subba/);
-    assert.match(html, /<time datetime="2026-11-03">/);
-    assert.match(html, /property="article:modified_time" content="2026-11-03"/);
+    assert.ok(html.includes(`<time datetime="${updated}">`));
+    assert.ok(html.includes(`property="article:modified_time" content="${updated}"`));
     assert.match(html, /aria-label="On this page"/);
     const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
     const article = graph['@graph'].find(item => ['BlogPosting','Article'].includes(item['@type']));
     assert.ok(article);
-    assert.equal(article.dateModified, '2026-11-03', 'Visible and structured update dates agree');
+    assert.equal(article.dateModified, updated, 'Visible and structured update dates agree');
   }
   for (const table of html.matchAll(/<table>([\s\S]*?)<\/table>/g)) {
     assert.match(table[1], /<caption>/);

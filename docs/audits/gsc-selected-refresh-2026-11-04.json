@@ -1,0 +1,103 @@
+[
+  {
+    "url": "https://nischhalsubba.com.np/",
+    "checkedAt": "2026-11-04",
+    "result": {
+      "indexStatusResult": {
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-10-24T02:24:45Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/",
+        "userCanonical": "https://nischhalsubba.com.np/",
+        "sitemap": [
+          "https://nischhalsubba.com.np/sitemap.xml"
+        ],
+        "referringUrls": [
+          "https://nischhalsubba.com.np/figma-design-systems",
+          "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-product-clarity",
+          "http://nischhalsubba.com.np/",
+          "https://github.com/Nischhalsubba"
+        ],
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      },
+      "richResultsResult": {
+        "verdict": "PASS",
+        "detectedItems": [
+          {
+            "richResultType": "",
+            "items": [
+              {
+                "name": "Nischhal Raj Subba"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-state-ux-guide",
+    "checkedAt": "2026-11-04",
+    "result": {
+      "indexStatusResult": {
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-11-03T14:25:43Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-state-ux-guide",
+        "userCanonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-state-ux-guide",
+        "referringUrls": [
+          "https://nischhalsubba.com.np/blog/"
+        ],
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      }
+    }
+  },
+  {
+    "url": "https://nischhalsubba.com.np/project-pihub",
+    "checkedAt": "2026-11-04",
+    "result": {
+      "indexStatusResult": {
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-11-03T19:16:51Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/project-pihub",
+        "userCanonical": "https://nischhalsubba.com.np/project-pihub",
+        "referringUrls": [
+          "https://nischhalsubba.com.np/project-pihub.html"
+        ],
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      },
+      "richResultsResult": {
+        "verdict": "PASS",
+        "detectedItems": [
+          {
+            "richResultType": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

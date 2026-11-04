@@ -1,123 +1,839 @@
 {
-  "reviewedAt": "2026-11-03",
+  "reviewedAt": "2026-11-04",
   "articles": [
     {
       "slug": "figma-handoff-notes-for-developers",
       "intent": "Write a behavior contract beside a specific Figma screen",
       "dek": "A useful handoff note answers the questions the image cannot: what changes, what persists and what happens when the action does not work.",
       "sections": [
-        {"heading": "Start with the decision, not the measurements", "paragraphs": ["A developer can inspect a frame and still not know what the screen is responsible for. Start the note with the user, the task and the expected result. For example: a CRM operator is creating a lead; a successful save creates a record and returns a stable identifier. That purpose helps resolve implementation choices that a pixel measurement cannot.", "Keep the note close to the frame and identify the version it describes. If a newer frame changes the action, update the contract rather than leaving two contradictory explanations on the canvas."]},
-        {"heading": "Use the form to expose unresolved behavior", "paragraphs": ["The Orkest create-lead design groups contact information and qualification and states that the score is calculated after saving. That establishes a visible dependency. It does not establish which values a draft requires, when duplicate checking occurs or what survives a failed request.", "Those are the questions I would resolve before calling the form ready for implementation. The screenshot below is source evidence; the accompanying contract is a proposed way to specify behavior, not proof that the product already implements it."], "image": "orkest-lead-capture"},
-        {"heading": "Write a state contract someone can test", "table": {"columns": ["State", "Specify", "Check"], "rows": [["Editing", "Required values, defaults and draft rules", "Leaving or changing a field does not silently discard work"], ["Submitting", "Progress feedback and duplicate-submit behavior", "A repeated action cannot accidentally create a second intent"], ["Validation error", "Field message, summary and focus behavior", "The person can identify and correct the problem"], ["Request failure", "Retained values and retry boundary", "Recovery preserves valid input"], ["Success", "Saved identifier and destination", "The result is distinct from a merely attempted save"]]}},
-        {"heading": "Describe responsive and keyboard rules", "paragraphs": ["Explain what changes when space runs out. Which field groups stay together? Does the side panel move after the form, become a disclosure or disappear because the same information exists elsewhere? A screenshot at one width is an example of a rule, not the rule itself.", "For a modal step, include focus entry, Tab behavior, dismissal and return focus. W3C's modal-dialog pattern is a useful reference for that interaction. Keep the note focused on the behavior the team actually needs to build."], "links": [["https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/", "W3C modal-dialog pattern"]]},
-        {"heading": "Finish with an owner for every open question", "paragraphs": ["Do not convert an unresolved business rule into a confident annotation. Mark the question, name the decision owner and identify the screen or component it affects. A short list of explicit unknowns is more useful than a complete-looking specification that invents behavior.", "Before closing handoff, ask an engineer and reviewer to walk through one success, one invalid input and one interruption using the note. If they need to reconstruct the intended behavior from a meeting, the contract still needs work."]}
+        {
+          "heading": "Start with the decision, not the measurements",
+          "paragraphs": [
+            "A developer can inspect a frame and still not know what the screen is responsible for. Start the note with the user, the task and the expected result. For example: a CRM operator is creating a lead; a successful save creates a record and returns a stable identifier. That purpose helps resolve implementation choices that a pixel measurement cannot.",
+            "Keep the note close to the frame and identify the version it describes. If a newer frame changes the action, update the contract rather than leaving two contradictory explanations on the canvas."
+          ]
+        },
+        {
+          "heading": "Use the form to expose unresolved behavior",
+          "paragraphs": [
+            "The Orkest create-lead design groups contact information and qualification and states that the score is calculated after saving. That establishes a visible dependency. It does not establish which values a draft requires, when duplicate checking occurs or what survives a failed request.",
+            "Those are the questions I would resolve before calling the form ready for implementation. The screenshot below is source evidence; the accompanying contract is a proposed way to specify behavior, not proof that the product already implements it."
+          ],
+          "image": "orkest-lead-capture"
+        },
+        {
+          "heading": "Write a state contract someone can test",
+          "table": {
+            "columns": [
+              "State",
+              "Specify",
+              "Check"
+            ],
+            "rows": [
+              [
+                "Editing",
+                "Required values, defaults and draft rules",
+                "Leaving or changing a field does not silently discard work"
+              ],
+              [
+                "Submitting",
+                "Progress feedback and duplicate-submit behavior",
+                "A repeated action cannot accidentally create a second intent"
+              ],
+              [
+                "Validation error",
+                "Field message, summary and focus behavior",
+                "The person can identify and correct the problem"
+              ],
+              [
+                "Request failure",
+                "Retained values and retry boundary",
+                "Recovery preserves valid input"
+              ],
+              [
+                "Success",
+                "Saved identifier and destination",
+                "The result is distinct from a merely attempted save"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Describe responsive and keyboard rules",
+          "paragraphs": [
+            "Explain what changes when space runs out. Which field groups stay together? Does the side panel move after the form, become a disclosure or disappear because the same information exists elsewhere? A screenshot at one width is an example of a rule, not the rule itself.",
+            "For a modal step, include focus entry, Tab behavior, dismissal and return focus. W3C's modal-dialog pattern is a useful reference for that interaction. Keep the note focused on the behavior the team actually needs to build."
+          ],
+          "links": [
+            [
+              "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+              "W3C modal-dialog pattern"
+            ]
+          ]
+        },
+        {
+          "heading": "Finish with an owner for every open question",
+          "paragraphs": [
+            "Do not convert an unresolved business rule into a confident annotation. Mark the question, name the decision owner and identify the screen or component it affects. A short list of explicit unknowns is more useful than a complete-looking specification that invents behavior.",
+            "Before closing handoff, ask an engineer and reviewer to walk through one success, one invalid input and one interruption using the note. If they need to reconstruct the intended behavior from a meeting, the contract still needs work."
+          ]
+        }
       ],
-      "related": [["/figma-design-systems", "Figma design-system work"], ["/project-orkest", "Inspect the Orkest case"], ["/blog/design-handoff-checklist-startup-product-teams", "Coordinate a startup handoff"]]
+      "related": [
+        [
+          "/figma-design-systems",
+          "Figma design-system work"
+        ],
+        [
+          "/project-orkest",
+          "Inspect the Orkest case"
+        ],
+        [
+          "/blog/design-handoff-checklist-startup-product-teams",
+          "Coordinate a startup handoff"
+        ]
+      ]
     },
     {
       "slug": "blog-good-handoff",
       "intent": "Coordinate responsibility and resolve ambiguity between design and engineering",
       "dek": "Handoff is a shared understanding of the product decision. Exporting a polished screen is one part of it, not the point at which responsibility disappears.",
       "sections": [
-        {"heading": "Separate a delivered file from an agreed decision", "paragraphs": ["A file can be complete while the team still disagrees about what a button does. That is why I treat handoff as a review of intent, constraints and unresolved behavior. The useful question is whether another person can continue the work without guessing.", "Three kinds of uncertainty tend to get mixed together: a design choice that has not been made, a business rule that belongs to someone else, and a technical constraint that has not been checked. Calling all three a design annotation hides who needs to act."]},
-        {"heading": "Give ambiguity a place and an owner", "table": {"columns": ["Question", "Decision needed", "Likely participant"], "rows": [["May a draft omit a required field?", "Draft and submission rules", "Product and engineering"], ["What happens after access is revoked?", "Authorization and recovery behavior", "Engineering and product"], ["Which action is primary on mobile?", "Task hierarchy", "Design with implementation review"], ["What counts as accepted?", "Observable release conditions", "Design, engineering and QA"]]}},
-        {"heading": "Review a real example instead of a generic checklist", "paragraphs": ["The Orkest create-lead form is a useful review object because it exposes specific dependencies: an owner, an initial state and a score calculated after saving. The handoff conversation should resolve those behaviors, including what remains after failure. It should not stop at whether the fields match the artboard."], "image": "orkest-lead-capture"},
-        {"heading": "Keep a small decision record", "paragraphs": ["For each consequential change, record the decision, its reason, the affected frame or component and the implementation status. A sentence can be enough. For example: preserve entered values after a recoverable save failure so retrying does not require rebuilding the form.", "Do not bury a changed requirement in a chat thread while leaving the old design marked ready. Update the artifact people will actually use, then identify which existing screens or tests need to change."]},
-        {"heading": "Close the loop in the built product", "paragraphs": ["Review the implementation with realistic content, a keyboard and at least one interrupted task. Compare the behavior with the agreed contract, not only the screenshot. Distinguish a visual difference that preserves intent from a behavioral difference that changes the task.", "A handoff is useful when it reduces uncertainty and supports continuation. I would evaluate it by the quality of the questions resolved and the decisions retained through implementation, rather than the number of exported screens or pages of annotations."]}
+        {
+          "heading": "Separate a delivered file from an agreed decision",
+          "paragraphs": [
+            "A file can be complete while the team still disagrees about what a button does. That is why I treat handoff as a review of intent, constraints and unresolved behavior. The useful question is whether another person can continue the work without guessing.",
+            "Three kinds of uncertainty tend to get mixed together: a design choice that has not been made, a business rule that belongs to someone else, and a technical constraint that has not been checked. Calling all three a design annotation hides who needs to act."
+          ]
+        },
+        {
+          "heading": "Give ambiguity a place and an owner",
+          "table": {
+            "columns": [
+              "Question",
+              "Decision needed",
+              "Likely participant"
+            ],
+            "rows": [
+              [
+                "May a draft omit a required field?",
+                "Draft and submission rules",
+                "Product and engineering"
+              ],
+              [
+                "What happens after access is revoked?",
+                "Authorization and recovery behavior",
+                "Engineering and product"
+              ],
+              [
+                "Which action is primary on mobile?",
+                "Task hierarchy",
+                "Design with implementation review"
+              ],
+              [
+                "What counts as accepted?",
+                "Observable release conditions",
+                "Design, engineering and QA"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Review a real example instead of a generic checklist",
+          "paragraphs": [
+            "The Orkest create-lead form is a useful review object because it exposes specific dependencies: an owner, an initial state and a score calculated after saving. The handoff conversation should resolve those behaviors, including what remains after failure. It should not stop at whether the fields match the artboard."
+          ],
+          "image": "orkest-lead-capture"
+        },
+        {
+          "heading": "Keep a small decision record",
+          "paragraphs": [
+            "For each consequential change, record the decision, its reason, the affected frame or component and the implementation status. A sentence can be enough. For example: preserve entered values after a recoverable save failure so retrying does not require rebuilding the form.",
+            "Do not bury a changed requirement in a chat thread while leaving the old design marked ready. Update the artifact people will actually use, then identify which existing screens or tests need to change."
+          ]
+        },
+        {
+          "heading": "Close the loop in the built product",
+          "paragraphs": [
+            "Review the implementation with realistic content, a keyboard and at least one interrupted task. Compare the behavior with the agreed contract, not only the screenshot. Distinguish a visual difference that preserves intent from a behavioral difference that changes the task.",
+            "A handoff is useful when it reduces uncertainty and supports continuation. I would evaluate it by the quality of the questions resolved and the decisions retained through implementation, rather than the number of exported screens or pages of annotations."
+          ]
+        }
       ],
-      "related": [["/project-orkest", "A form with explicit dependencies"], ["/blog/figma-handoff-notes-for-developers", "Write the screen-level contract"], ["/figma-design-systems", "Design-to-engineering systems"]]
+      "related": [
+        [
+          "/project-orkest",
+          "A form with explicit dependencies"
+        ],
+        [
+          "/blog/figma-handoff-notes-for-developers",
+          "Write the screen-level contract"
+        ],
+        [
+          "/figma-design-systems",
+          "Design-to-engineering systems"
+        ]
+      ]
     },
     {
       "slug": "design-handoff-checklist-startup-product-teams",
       "intent": "Prepare a bounded design slice for a startup release",
       "dek": "A small team needs enough agreement to build safely, without turning every change into a specification project. Use this checklist for a release slice, not the entire product at once.",
       "sections": [
-        {"heading": "Define the slice and its boundary", "paragraphs": ["Name the user, starting point, task and endpoint. Creating a lead is a manageable slice; redesigning CRM is not. List what is deliberately outside the release so an attractive prototype does not quietly become a promise of unsupported behavior.", "Attach one primary frame or flow as the current source. Keep older alternatives available if they explain a decision, but label them so engineering does not have to infer which version is approved."]},
-        {"heading": "Check readiness across four responsibilities", "table": {"columns": ["Responsibility", "Ready means", "Evidence"], "rows": [["Product", "Rules and exceptions are decided", "A short state or decision table"], ["Design", "Task, content and states are understandable", "Reviewed frames and behavior notes"], ["Engineering", "Dependencies and failure boundaries are known", "Integration assumptions and constraints"], ["QA", "Acceptance is observable", "A short set of task-based checks"]]}},
-        {"heading": "Run the minimum state review", "bullets": ["Start with realistic data, including a long label and a missing optional value.", "Complete the main task and identify the saved result.", "Trigger a correctable error and confirm that valid input is preserved.", "Interrupt the operation and define what retry means.", "Check an unavailable action or permission boundary.", "Use a keyboard and a narrow viewport to reach the same endpoint."]},
-        {"heading": "Assign open questions before estimating completion", "paragraphs": ["A release checklist should make uncertainty visible. Give each open question an owner and explain which task it blocks. If the integration is unavailable, the team can still review layout and content, but it should not describe that review as end-to-end validation.", "Keep conditional acceptance explicit. A flow may be visually ready while its authorization behavior is unverified. Recording both states is more useful than one green label for the entire feature."]},
-        {"heading": "Review the implementation, then preserve the decision", "paragraphs": ["Before release, repeat the agreed checks in the build. Record material differences, their consequence and the decision to repair or accept them. Do not make an acceptance test less demanding simply because the implementation took a different path.", "Afterward, update the current artifact and retain a short change record. A startup does not need a large design-operations system to preserve why a consequential choice was made; it needs one reliable place where the next person can find it."]}
+        {
+          "heading": "Define the slice and its boundary",
+          "paragraphs": [
+            "Name the user, starting point, task and endpoint. Creating a lead is a manageable slice; redesigning CRM is not. List what is deliberately outside the release so an attractive prototype does not quietly become a promise of unsupported behavior.",
+            "Attach one primary frame or flow as the current source. Keep older alternatives available if they explain a decision, but label them so engineering does not have to infer which version is approved."
+          ]
+        },
+        {
+          "heading": "Check readiness across four responsibilities",
+          "table": {
+            "columns": [
+              "Responsibility",
+              "Ready means",
+              "Evidence"
+            ],
+            "rows": [
+              [
+                "Product",
+                "Rules and exceptions are decided",
+                "A short state or decision table"
+              ],
+              [
+                "Design",
+                "Task, content and states are understandable",
+                "Reviewed frames and behavior notes"
+              ],
+              [
+                "Engineering",
+                "Dependencies and failure boundaries are known",
+                "Integration assumptions and constraints"
+              ],
+              [
+                "QA",
+                "Acceptance is observable",
+                "A short set of task-based checks"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Run the minimum state review",
+          "bullets": [
+            "Start with realistic data, including a long label and a missing optional value.",
+            "Complete the main task and identify the saved result.",
+            "Trigger a correctable error and confirm that valid input is preserved.",
+            "Interrupt the operation and define what retry means.",
+            "Check an unavailable action or permission boundary.",
+            "Use a keyboard and a narrow viewport to reach the same endpoint."
+          ]
+        },
+        {
+          "heading": "Assign open questions before estimating completion",
+          "paragraphs": [
+            "A release checklist should make uncertainty visible. Give each open question an owner and explain which task it blocks. If the integration is unavailable, the team can still review layout and content, but it should not describe that review as end-to-end validation.",
+            "Keep conditional acceptance explicit. A flow may be visually ready while its authorization behavior is unverified. Recording both states is more useful than one green label for the entire feature."
+          ]
+        },
+        {
+          "heading": "Review the implementation, then preserve the decision",
+          "paragraphs": [
+            "Before release, repeat the agreed checks in the build. Record material differences, their consequence and the decision to repair or accept them. Do not make an acceptance test less demanding simply because the implementation took a different path.",
+            "Afterward, update the current artifact and retain a short change record. A startup does not need a large design-operations system to preserve why a consequential choice was made; it needs one reliable place where the next person can find it."
+          ]
+        },
+        {
+          "heading": "Turn a visible promise into a release check",
+          "paragraphs": [
+            "The current Orkest lead-detail panel says conversion should preserve history and create a contact and opportunity. That gives a handoff checklist a concrete question: after conversion, can the reviewer trace the new records back to the lead and its activity?",
+            "The panel shows the intended rule. A release check still needs a valid record, a failed attempt and a repeated action so the team can verify what actually persists."
+          ],
+          "image": "orkest-conversion-readiness"
+        }
       ],
-      "related": [["/blog/figma-handoff-notes-for-developers", "Screen-level handoff notes"], ["/blog/blog-good-handoff", "Resolve ownership and ambiguity"], ["/services", "Product design collaboration"]]
+      "related": [
+        [
+          "/blog/figma-handoff-notes-for-developers",
+          "Screen-level handoff notes"
+        ],
+        [
+          "/blog/blog-good-handoff",
+          "Resolve ownership and ambiguity"
+        ],
+        [
+          "/services",
+          "Product design collaboration"
+        ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "responsive-saas-dashboard-handoff-notes",
       "intent": "Specify responsive behavior for dense operational interfaces",
       "dek": "A responsive dashboard needs rules for priority, overflow and continuation. A desktop frame and a mobile frame leave the hardest decisions between them.",
       "sections": [
-        {"heading": "Write the task that must survive", "paragraphs": ["Start with a concrete task such as locating an unassigned lead and inspecting its status. That gives the responsive design a priority. A small screen may not need every desktop column, but it still needs record identity, current state and a usable route to the next action.", "Do not describe responsive behavior as simply hiding secondary information. Name what is secondary for this task, where it remains available and what the person can no longer do in the condensed view."]},
-        {"heading": "Specify behavior by constraint", "table": {"columns": ["Element", "Rule to document", "Review condition"], "rows": [["Navigation", "When and how it condenses", "Location and current module remain understandable"], ["Table", "Column priority and overflow behavior", "A record can still be identified"], ["Filters", "Panel entry, applied state and dismissal", "The result context remains visible"], ["Actions", "Which remain persistent", "The primary task is reachable without overlap"], ["Detail", "Reading order and expandable groups", "Labels stay associated with their values"]]}},
-        {"heading": "Use the desktop evidence honestly", "paragraphs": ["The Orkest leads screen gives a concrete desktop hierarchy: ownership views, search, Filters and qualification states. It is useful for deciding which relationships to protect. It does not show a reviewed mobile filter panel or prove that all responsive states are implemented.", "When mobile evidence is incomplete, write the proposed behavior as a requirement and test it in the build. Do not place an unrelated phone screenshot next to the article and call it responsive proof."], "image": "orkest-lead-list"},
-        {"heading": "Document overflow and interruption", "paragraphs": ["Decide whether wide data scrolls inside a labeled region, changes representation or moves into a detail view. If columns are removed, say how the person reaches them. Keep sort and selection behavior explicit when the representation changes.", "Also inspect the mobile keyboard, fixed navigation, long translated labels and zoom. A layout that fits in a static screenshot can still hide the save action when the keyboard opens or leave focus behind a fixed control."]},
-        {"heading": "Test the transition, not only the endpoints", "paragraphs": ["Resize with a selected row, an open panel and active filters. Check what persists and where focus goes. Review intermediate widths where neither the ideal desktop nor ideal mobile composition fits comfortably.", "A useful acceptance note names an observable result: the record identifier remains visible; the selected action is reachable; the page itself does not overflow; closing a panel returns focus sensibly. Those checks are more durable than one breakpoint number copied from an artboard."]}
+        {
+          "heading": "Write the task that must survive",
+          "paragraphs": [
+            "Start with a concrete task such as locating an unassigned lead and inspecting its status. That gives the responsive design a priority. A small screen may not need every desktop column, but it still needs record identity, current state and a usable route to the next action.",
+            "Do not describe responsive behavior as simply hiding secondary information. Name what is secondary for this task, where it remains available and what the person can no longer do in the condensed view."
+          ]
+        },
+        {
+          "heading": "Specify behavior by constraint",
+          "table": {
+            "columns": [
+              "Element",
+              "Rule to document",
+              "Review condition"
+            ],
+            "rows": [
+              [
+                "Navigation",
+                "When and how it condenses",
+                "Location and current module remain understandable"
+              ],
+              [
+                "Table",
+                "Column priority and overflow behavior",
+                "A record can still be identified"
+              ],
+              [
+                "Filters",
+                "Panel entry, applied state and dismissal",
+                "The result context remains visible"
+              ],
+              [
+                "Actions",
+                "Which remain persistent",
+                "The primary task is reachable without overlap"
+              ],
+              [
+                "Detail",
+                "Reading order and expandable groups",
+                "Labels stay associated with their values"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Use the desktop evidence honestly",
+          "paragraphs": [
+            "The Orkest leads screen gives a concrete desktop hierarchy: ownership views, search, Filters and qualification states. It is useful for deciding which relationships to protect. It does not show a reviewed mobile filter panel or prove that all responsive states are implemented.",
+            "When mobile evidence is incomplete, write the proposed behavior as a requirement and test it in the build. Do not place an unrelated phone screenshot next to the article and call it responsive proof."
+          ],
+          "image": "orkest-lead-list"
+        },
+        {
+          "heading": "Document overflow and interruption",
+          "paragraphs": [
+            "Decide whether wide data scrolls inside a labeled region, changes representation or moves into a detail view. If columns are removed, say how the person reaches them. Keep sort and selection behavior explicit when the representation changes.",
+            "Also inspect the mobile keyboard, fixed navigation, long translated labels and zoom. A layout that fits in a static screenshot can still hide the save action when the keyboard opens or leave focus behind a fixed control."
+          ]
+        },
+        {
+          "heading": "Test the transition, not only the endpoints",
+          "paragraphs": [
+            "Resize with a selected row, an open panel and active filters. Check what persists and where focus goes. Review intermediate widths where neither the ideal desktop nor ideal mobile composition fits comfortably.",
+            "A useful acceptance note names an observable result: the record identifier remains visible; the selected action is reachable; the page itself does not overflow; closing a panel returns focus sensibly. Those checks are more durable than one breakpoint number copied from an artboard."
+          ]
+        }
       ],
-      "related": [["/project-orkest", "Orkest record and table design"], ["/blog/saas-dashboard-filter-ux", "Filter state and persistence"], ["/saas-ux-designer", "SaaS product design"]]
+      "related": [
+        [
+          "/project-orkest",
+          "Orkest record and table design"
+        ],
+        [
+          "/blog/saas-dashboard-filter-ux",
+          "Filter state and persistence"
+        ],
+        [
+          "/saas-ux-designer",
+          "SaaS product design"
+        ]
+      ]
     },
     {
       "slug": "saas-dashboard-filter-ux",
       "intent": "Design inspectable filter state for operational record lists",
       "dek": "A filter changes the answer a table gives. People need to see the question currently being asked, understand why a record is absent and change that question without losing context.",
       "sections": [
-        {"heading": "Separate a recurring view from a temporary condition", "paragraphs": ["A recurring view answers a familiar question such as which leads belong to me. A filter narrows that view with conditions such as status or date. A saved view may combine both, but the distinction should still be understandable.", "The Orkest design separates All leads, My leads and Unassigned from search and Filters. That is visible evidence of the hierarchy, not proof of the open panel's behavior. The design review still needs to decide how conditions combine and persist."], "image": "orkest-lead-list"},
-        {"heading": "Make the current query inspectable", "paragraphs": ["After applying conditions, show enough information to explain the result. A generic Filters badge with a count may be sufficient for a small panel, but a complex query often needs readable conditions. Define whether status is A or B and whether that group is combined with another condition using AND.", "Avoid making a person reopen the panel just to explain why a record is missing. A compact summary should be understandable without exposing the entire query builder at all times."]},
-        {"heading": "Decide persistence before building the panel", "table": {"columns": ["Transition", "Question to resolve"], "rows": [["Switch ownership view", "Are compatible conditions retained, reset or explicitly changed?"], ["Open a record and return", "Are filters, sort, page and scroll restored?"], ["Refresh or share a URL", "Which query state is encoded and safe to share?"], ["Remove one condition", "Does focus remain in a predictable place?"], ["Clear all", "Does it also clear search and the selected view?"]]}},
-        {"heading": "Make zero results recoverable", "paragraphs": ["An empty filtered table should retain the conditions that explain it. Use language such as No leads match these filters when that is the known cause, then offer a relevant change. Do not replace the query with a blank onboarding state that suggests no data exists.", "Keep a useful result count and check how its update is communicated. For implementations that update without moving focus, W3C's status-message guidance helps distinguish a result announcement from an unnecessary focus change."], "links": [["https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html", "W3C guidance on status messages"]]},
-        {"heading": "Review with an operational question", "paragraphs": ["Ask someone to find their unassigned work, add a condition, inspect a record and return. Then create a zero-result query and ask them to explain the absence. Observe where the interface forces them to remember hidden state.", "The success condition is not that the panel opens. It is that the person understands the active query and can revise it. Keep performance and access restrictions in the review too: a slow result and a restricted result need different explanations."]}
+        {
+          "heading": "Separate a recurring view from a temporary condition",
+          "paragraphs": [
+            "A recurring view answers a familiar question such as which leads belong to me. A filter narrows that view with conditions such as status or date. A saved view may combine both, but the distinction should still be understandable.",
+            "The Orkest design separates All leads, My leads and Unassigned from search and Filters. That is visible evidence of the hierarchy, not proof of the open panel's behavior. The design review still needs to decide how conditions combine and persist."
+          ],
+          "image": "orkest-lead-list"
+        },
+        {
+          "heading": "Make the current query inspectable",
+          "paragraphs": [
+            "After applying conditions, show enough information to explain the result. A generic Filters badge with a count may be sufficient for a small panel, but a complex query often needs readable conditions. Define whether status is A or B and whether that group is combined with another condition using AND.",
+            "Avoid making a person reopen the panel just to explain why a record is missing. A compact summary should be understandable without exposing the entire query builder at all times."
+          ]
+        },
+        {
+          "heading": "Decide persistence before building the panel",
+          "table": {
+            "columns": [
+              "Transition",
+              "Question to resolve"
+            ],
+            "rows": [
+              [
+                "Switch ownership view",
+                "Are compatible conditions retained, reset or explicitly changed?"
+              ],
+              [
+                "Open a record and return",
+                "Are filters, sort, page and scroll restored?"
+              ],
+              [
+                "Refresh or share a URL",
+                "Which query state is encoded and safe to share?"
+              ],
+              [
+                "Remove one condition",
+                "Does focus remain in a predictable place?"
+              ],
+              [
+                "Clear all",
+                "Does it also clear search and the selected view?"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Make zero results recoverable",
+          "paragraphs": [
+            "An empty filtered table should retain the conditions that explain it. Use language such as No leads match these filters when that is the known cause, then offer a relevant change. Do not replace the query with a blank onboarding state that suggests no data exists.",
+            "Keep a useful result count and check how its update is communicated. For implementations that update without moving focus, W3C's status-message guidance helps distinguish a result announcement from an unnecessary focus change."
+          ],
+          "links": [
+            [
+              "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+              "W3C guidance on status messages"
+            ]
+          ]
+        },
+        {
+          "heading": "Review with an operational question",
+          "paragraphs": [
+            "Ask someone to find their unassigned work, add a condition, inspect a record and return. Then create a zero-result query and ask them to explain the absence. Observe where the interface forces them to remember hidden state.",
+            "The success condition is not that the panel opens. It is that the person understands the active query and can revise it. Keep performance and access restrictions in the review too: a slow result and a restricted result need different explanations."
+          ]
+        }
       ],
-      "related": [["/project-orkest", "The Orkest CRM example"], ["/blog/saas-dashboard-empty-state-ux-guide", "Write a zero-result state"], ["/saas-ux-designer", "Operational SaaS UX"]]
+      "related": [
+        [
+          "/project-orkest",
+          "The Orkest CRM example"
+        ],
+        [
+          "/blog/saas-dashboard-empty-state-ux-guide",
+          "Write a zero-result state"
+        ],
+        [
+          "/saas-ux-designer",
+          "Operational SaaS UX"
+        ]
+      ]
     },
     {
       "slug": "role-based-saas-dashboard-ux",
       "intent": "Separate role tasks, ownership views and authorization",
       "dek": "Role-based UX is not a reason to duplicate every screen. Share the meaning of a record and its states, then change the information and actions according to the job.",
       "sections": [
-        {"heading": "Distinguish three different concepts", "paragraphs": ["A role describes a responsibility or access context. Ownership describes a relationship to a record. A view organizes a question someone regularly asks. Mixing those concepts produces interfaces where a label such as My leads appears to promise an authorization boundary that may not exist.", "In the Orkest CRM design, All leads, My leads and Unassigned are visible views. They show an ownership model, not evidence that the backend enforces who can read or change a record."], "image": "orkest-lead-list"},
-        {"heading": "Map tasks and actions before designing variants", "table": {"columns": ["Review dimension", "Specify separately"], "rows": [["Record visibility", "Which records may this person read?"], ["Field visibility", "Which details may be disclosed?"], ["Action", "May they create, edit, assign, approve or export?"], ["Transition", "What state change can that action cause?"], ["Recovery", "What happens after access changes or an operation is denied?"]]}},
-        {"heading": "Share the language, vary the priority", "paragraphs": ["piHub's creditor, investor and administrator journeys provide another useful design context. Different people inspect the same broader process for different reasons. A creditor may need outstanding requirements, while an administrator needs review context. Reusing the state vocabulary can help the product remain coherent without making both screens identical.", "Those prototypes are separate design artifacts. They do not establish synchronized updates or real permission enforcement. A source-linked case study should keep that distinction visible rather than presenting visual role coverage as security verification."]},
-        {"heading": "Design denial without leaking information", "paragraphs": ["An unavailable action needs an explanation appropriate to the situation. Hiding an action may simplify a routine view; showing a disabled action can explain a dependency. Neither choice by itself establishes security. The server must decide whether the request is allowed.", "Be careful about revealing the existence of restricted records. Work with the product and engineering owners to decide what can safely be said, then make the recovery path useful within that boundary."]},
-        {"heading": "Test the boundary outside the happy path", "bullets": ["Open a direct record URL with a different role.", "Attempt the same action after ownership or access changes.", "Check export, search and bulk actions as well as individual buttons.", "Return to a stale tab after a session or permission change.", "Confirm that the interface explains the result without claiming a save that did not occur."]},
-        {"heading": "Judge the model by a shared scenario", "paragraphs": ["Trace one example record across the relevant roles and write down what each person sees and may do. This makes inconsistencies easier to discuss than a gallery of disconnected dashboards. It also separates a design proposal from the engineering evidence required to call the permission model verified."]}
+        {
+          "heading": "Distinguish three different concepts",
+          "paragraphs": [
+            "A role describes a responsibility or access context. Ownership describes a relationship to a record. A view organizes a question someone regularly asks. Mixing those concepts produces interfaces where a label such as My leads appears to promise an authorization boundary that may not exist.",
+            "In the Orkest CRM design, All leads, My leads and Unassigned are visible views. They show an ownership model, not evidence that the backend enforces who can read or change a record."
+          ],
+          "image": "orkest-lead-list"
+        },
+        {
+          "heading": "Map tasks and actions before designing variants",
+          "table": {
+            "columns": [
+              "Review dimension",
+              "Specify separately"
+            ],
+            "rows": [
+              [
+                "Record visibility",
+                "Which records may this person read?"
+              ],
+              [
+                "Field visibility",
+                "Which details may be disclosed?"
+              ],
+              [
+                "Action",
+                "May they create, edit, assign, approve or export?"
+              ],
+              [
+                "Transition",
+                "What state change can that action cause?"
+              ],
+              [
+                "Recovery",
+                "What happens after access changes or an operation is denied?"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Share the language, vary the priority",
+          "paragraphs": [
+            "piHub's creditor, investor and administrator journeys provide another useful design context. Different people inspect the same broader process for different reasons. A creditor may need outstanding requirements, while an administrator needs review context. Reusing the state vocabulary can help the product remain coherent without making both screens identical.",
+            "Those prototypes are separate design artifacts. They do not establish synchronized updates or real permission enforcement. A source-linked case study should keep that distinction visible rather than presenting visual role coverage as security verification."
+          ]
+        },
+        {
+          "heading": "Design denial without leaking information",
+          "paragraphs": [
+            "An unavailable action needs an explanation appropriate to the situation. Hiding an action may simplify a routine view; showing a disabled action can explain a dependency. Neither choice by itself establishes security. The server must decide whether the request is allowed.",
+            "Be careful about revealing the existence of restricted records. Work with the product and engineering owners to decide what can safely be said, then make the recovery path useful within that boundary."
+          ]
+        },
+        {
+          "heading": "Test the boundary outside the happy path",
+          "bullets": [
+            "Open a direct record URL with a different role.",
+            "Attempt the same action after ownership or access changes.",
+            "Check export, search and bulk actions as well as individual buttons.",
+            "Return to a stale tab after a session or permission change.",
+            "Confirm that the interface explains the result without claiming a save that did not occur."
+          ]
+        },
+        {
+          "heading": "Judge the model by a shared scenario",
+          "paragraphs": [
+            "Trace one example record across the relevant roles and write down what each person sees and may do. This makes inconsistencies easier to discuss than a gallery of disconnected dashboards. It also separates a design proposal from the engineering evidence required to call the permission model verified."
+          ]
+        },
+        {
+          "heading": "Inspect the denied state as a design artifact",
+          "paragraphs": [
+            "The piHub administrator page includes the denial design below. It gives the person a Go Back route, but the screenshot cannot answer whether a direct request is blocked correctly or whether the explanation discloses too much.",
+            "Use an authorized test account to check those questions in the implementation. Keep the visual state, the permission rule and server enforcement as separate evidence."
+          ],
+          "image": "pihub-access-denied"
+        }
       ],
-      "related": [["/project-pihub", "Multi-role fintech design"], ["/project-orkest", "CRM ownership views"], ["/saas-ux-designer", "Enterprise workflow design"]]
+      "related": [
+        [
+          "/project-pihub",
+          "Multi-role fintech design"
+        ],
+        [
+          "/project-orkest",
+          "CRM ownership views"
+        ],
+        [
+          "/saas-ux-designer",
+          "Enterprise workflow design"
+        ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "saas-dashboard-empty-state-ux-guide",
       "intent": "Write concise explanation and recovery copy for one zero-result state",
       "dek": "Before writing an empty-state headline, identify what the interface actually knows. The next action should follow the cause, not a reusable illustration.",
       "sections": [
-        {"heading": "Write the cause before the call to action", "paragraphs": ["No data is a description of the display, not an explanation. A new workspace, an over-restrictive filter and a failed request may all leave an empty panel, but they require different messages. Start by writing one sentence about why this result is empty, using only information the application can establish.", "Then choose an action that changes that cause. Create your first lead fits an eligible new workspace. Clear filters fits a filtered result. Retry fits some request failures. Using one button for all three can send the person in the wrong direction."]},
-        {"heading": "Use a small cause-to-copy worksheet", "table": {"columns": ["Known cause", "Possible explanation", "Relevant action"], "rows": [["No matching records", "No leads match these filters", "Change or clear conditions"], ["No records created", "This workspace has no leads yet", "Create or import, if permitted"], ["Request failed", "We could not load the leads", "Retry with retained context"], ["Access is insufficient", "Use an approved access explanation", "Request access when supported"], ["Setup is incomplete", "Name the missing setup step", "Continue setup"]]}},
-        {"heading": "Inspect a real zero-result frame", "paragraphs": ["The Yarsha contact-search design reports No contact found while retaining the search context and keyboard. It is a mobile example of the same writing problem, not a SaaS dashboard screenshot. Contacts and Invite are visible, but the frame does not explain whether invitation is the right recovery for this query.", "A useful revision discussion would ask whether the person can broaden the search, clear it or understand the Invite route. The image supports those questions; it does not establish that they have already been answered."], "image": "yarsha-contact-empty"},
-        {"heading": "Keep the message proportionate", "paragraphs": ["A routine search with no matches rarely needs a large celebratory illustration or a paragraph about the product's value. Name the result, keep the query visible and provide a concise continuation. A first-use state may need more explanation because the person has not yet learned the model.", "Avoid blame. Invalid input can be described precisely without suggesting carelessness. When the cause is unknown, use an honest loading or error explanation instead of confidently stating that the account contains no records."]},
-        {"heading": "Review the words in a transition", "paragraphs": ["Enter a zero-result query, change it and return after data becomes available. Check that the explanation updates with the state and that the recovery action does not discard useful input. Review how the result is announced without forcing unnecessary focus movement.", "This guide focuses on the copy and action for one observed state. For product-wide consistency, classify the causes first; for implementation acceptance, test persistence and recovery separately."]}
+        {
+          "heading": "Write the cause before the call to action",
+          "paragraphs": [
+            "No data is a description of the display, not an explanation. A new workspace, an over-restrictive filter and a failed request may all leave an empty panel, but they require different messages. Start by writing one sentence about why this result is empty, using only information the application can establish.",
+            "Then choose an action that changes that cause. Create your first lead fits an eligible new workspace. Clear filters fits a filtered result. Retry fits some request failures. Using one button for all three can send the person in the wrong direction."
+          ]
+        },
+        {
+          "heading": "Use a small cause-to-copy worksheet",
+          "table": {
+            "columns": [
+              "Known cause",
+              "Possible explanation",
+              "Relevant action"
+            ],
+            "rows": [
+              [
+                "No matching records",
+                "No leads match these filters",
+                "Change or clear conditions"
+              ],
+              [
+                "No records created",
+                "This workspace has no leads yet",
+                "Create or import, if permitted"
+              ],
+              [
+                "Request failed",
+                "We could not load the leads",
+                "Retry with retained context"
+              ],
+              [
+                "Access is insufficient",
+                "Use an approved access explanation",
+                "Request access when supported"
+              ],
+              [
+                "Setup is incomplete",
+                "Name the missing setup step",
+                "Continue setup"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Inspect a real zero-result frame",
+          "paragraphs": [
+            "The Yarsha contact-search design reports No contact found while retaining the search context and keyboard. It is a mobile example of the same writing problem, not a SaaS dashboard screenshot. Contacts and Invite are visible, but the frame does not explain whether invitation is the right recovery for this query.",
+            "A useful revision discussion would ask whether the person can broaden the search, clear it or understand the Invite route. The image supports those questions; it does not establish that they have already been answered."
+          ],
+          "image": "yarsha-contact-empty"
+        },
+        {
+          "heading": "Keep the message proportionate",
+          "paragraphs": [
+            "A routine search with no matches rarely needs a large celebratory illustration or a paragraph about the product's value. Name the result, keep the query visible and provide a concise continuation. A first-use state may need more explanation because the person has not yet learned the model.",
+            "Avoid blame. Invalid input can be described precisely without suggesting carelessness. When the cause is unknown, use an honest loading or error explanation instead of confidently stating that the account contains no records."
+          ]
+        },
+        {
+          "heading": "Review the words in a transition",
+          "paragraphs": [
+            "Enter a zero-result query, change it and return after data becomes available. Check that the explanation updates with the state and that the recovery action does not discard useful input. Review how the result is announced without forcing unnecessary focus movement.",
+            "This guide focuses on the copy and action for one observed state. For product-wide consistency, classify the causes first; for implementation acceptance, test persistence and recovery separately."
+          ]
+        }
       ],
-      "related": [["/blog/saas-dashboard-empty-states-product-clarity", "Build a product-wide empty-state taxonomy"], ["/blog/saas-dashboard-empty-states-that-help-users-recover", "Test recovery and persistence"], ["/saas-ux-designer", "SaaS design work"]]
+      "related": [
+        [
+          "/blog/saas-dashboard-empty-states-product-clarity",
+          "Build a product-wide empty-state taxonomy"
+        ],
+        [
+          "/blog/saas-dashboard-empty-states-that-help-users-recover",
+          "Test recovery and persistence"
+        ],
+        [
+          "/saas-ux-designer",
+          "SaaS design work"
+        ]
+      ]
     },
     {
       "slug": "saas-dashboard-empty-states-product-clarity",
       "intent": "Classify empty-state causes across a product",
       "dek": "A product needs an empty-state model before it needs an empty-state component. Visually similar panels can represent different responsibilities and different risks.",
       "sections": [
-        {"heading": "Use two axes: cause and agency", "paragraphs": ["First identify why the surface is empty. Then identify who can change that situation: the current user, another person, a background process or nobody within the product. The combination gives the design a more useful starting point than a generic list of empty-screen layouts.", "A first-use state with an enabled creation action is different from the same first-use state shown to a read-only role. The visible absence may be identical, but the available continuation is not."]},
-        {"heading": "Create a small taxonomy", "table": {"columns": ["Cause", "What needs explanation", "Agency"], "rows": [["First use", "What belongs here and how it arrives", "Creator or administrator"], ["Filtered result", "Which conditions produced no matches", "Current user"], ["Incomplete setup", "What prerequisite is missing", "Setup owner"], ["Permission", "What may safely be disclosed", "Access owner"], ["Synchronization", "Whether the result is still pending", "System or integration"], ["Failure", "What is known and what remains intact", "User, support or system"]]}},
-        {"heading": "Make classification part of the component API", "paragraphs": ["A reusable component needs enough inputs to express a meaningful state: title, explanation, optional context and an appropriate action. It should not force every cause into the same primary button or celebratory visual.", "Keep authorization and data fetching outside the presentational component. A UI variant can represent a permission state, but it cannot decide whether a person is entitled to see a record. That decision belongs to the product's actual access model."]},
-        {"heading": "Review adjacent states together", "paragraphs": ["Place loading, loaded, empty, stale and failed states beside each other during design review. Ask whether they can be distinguished without relying on color. A delayed synchronization should not briefly look like an authoritative statement that no data exists.", "Also review how the state changes after a successful action. If a new record arrives, the empty message should give way to the relevant content. If another person must act first, the interface should preserve the explanation rather than offering a misleading retry loop."]},
-        {"heading": "Keep an inventory with named owners", "paragraphs": ["For each module, record the cause, role, source of truth, recovery action and open question. This exposes places where a visually shared pattern masks different business rules. It also helps the team identify which parts of the model can be reused and which need an exception.", "This is a product-wide classification exercise, not the short copywriting task covered by the focused empty-state guide. A consistent taxonomy makes the component useful because the team understands what each variant means."]}
+        {
+          "heading": "Use two axes: cause and agency",
+          "paragraphs": [
+            "First identify why the surface is empty. Then identify who can change that situation: the current user, another person, a background process or nobody within the product. The combination gives the design a more useful starting point than a generic list of empty-screen layouts.",
+            "A first-use state with an enabled creation action is different from the same first-use state shown to a read-only role. The visible absence may be identical, but the available continuation is not."
+          ]
+        },
+        {
+          "heading": "Create a small taxonomy",
+          "table": {
+            "columns": [
+              "Cause",
+              "What needs explanation",
+              "Agency"
+            ],
+            "rows": [
+              [
+                "First use",
+                "What belongs here and how it arrives",
+                "Creator or administrator"
+              ],
+              [
+                "Filtered result",
+                "Which conditions produced no matches",
+                "Current user"
+              ],
+              [
+                "Incomplete setup",
+                "What prerequisite is missing",
+                "Setup owner"
+              ],
+              [
+                "Permission",
+                "What may safely be disclosed",
+                "Access owner"
+              ],
+              [
+                "Synchronization",
+                "Whether the result is still pending",
+                "System or integration"
+              ],
+              [
+                "Failure",
+                "What is known and what remains intact",
+                "User, support or system"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Make classification part of the component API",
+          "paragraphs": [
+            "A reusable component needs enough inputs to express a meaningful state: title, explanation, optional context and an appropriate action. It should not force every cause into the same primary button or celebratory visual.",
+            "Keep authorization and data fetching outside the presentational component. A UI variant can represent a permission state, but it cannot decide whether a person is entitled to see a record. That decision belongs to the product's actual access model."
+          ]
+        },
+        {
+          "heading": "Review adjacent states together",
+          "paragraphs": [
+            "Place loading, loaded, empty, stale and failed states beside each other during design review. Ask whether they can be distinguished without relying on color. A delayed synchronization should not briefly look like an authoritative statement that no data exists.",
+            "Also review how the state changes after a successful action. If a new record arrives, the empty message should give way to the relevant content. If another person must act first, the interface should preserve the explanation rather than offering a misleading retry loop."
+          ]
+        },
+        {
+          "heading": "Keep an inventory with named owners",
+          "paragraphs": [
+            "For each module, record the cause, role, source of truth, recovery action and open question. This exposes places where a visually shared pattern masks different business rules. It also helps the team identify which parts of the model can be reused and which need an exception.",
+            "This is a product-wide classification exercise, not the short copywriting task covered by the focused empty-state guide. A consistent taxonomy makes the component useful because the team understands what each variant means."
+          ]
+        },
+        {
+          "heading": "Keep access denial out of the no-results bucket",
+          "paragraphs": [
+            "The piHub source gives access denial its own screen. That distinction matters: no matching products and no permission to view a page can both remove records from sight, but they need different explanations and different recovery.",
+            "The artifact supports a taxonomy discussion. It does not prove who should receive the state or that the server applies the rule correctly."
+          ],
+          "image": "pihub-access-denied"
+        }
       ],
-      "related": [["/blog/saas-dashboard-empty-state-ux-guide", "Write the individual message"], ["/blog/saas-dashboard-empty-states-that-help-users-recover", "Verify the recovery path"], ["/figma-design-systems", "Reusable component systems"]]
+      "related": [
+        [
+          "/blog/saas-dashboard-empty-state-ux-guide",
+          "Write the individual message"
+        ],
+        [
+          "/blog/saas-dashboard-empty-states-that-help-users-recover",
+          "Verify the recovery path"
+        ],
+        [
+          "/figma-design-systems",
+          "Reusable component systems"
+        ]
+      ],
+      "updatedAt": "2026-11-04"
     },
     {
       "slug": "saas-dashboard-empty-states-that-help-users-recover",
       "intent": "Acceptance-test empty-state recovery and retained context",
       "dek": "An empty state is useful when someone can continue from it. Test the transition, retained input and result of the recovery action, not only the appearance of the panel.",
       "sections": [
-        {"heading": "Name what must remain intact", "paragraphs": ["Before designing a recovery action, list the context the person may still need: search terms, active filters, selected workspace, sort order, page position and unsaved input. A recovery that silently resets all of it can create more work than the original empty result.", "Separate recoverable context from stale or unsafe context. A selection from a previous permission scope may need to be cleared. The important point is to decide and explain the rule rather than letting it emerge accidentally from a rerender."]},
-        {"heading": "Test a transition matrix", "table": {"columns": ["Scenario", "Recovery action", "Acceptance question"], "rows": [["No search matches", "Edit or clear the query", "Does the query remain available to revise?"], ["Conflicting filters", "Remove one condition", "Can the person see which condition changed?"], ["Loading failed", "Retry", "Is valid context retained and the request outcome explained?"], ["Setup completed", "Return to the module", "Does the new state reflect the completed prerequisite?"], ["Access changed", "Reload or request access", "Is restricted context handled consistently?"], ["New data arrives", "Refresh or observe an update", "Does empty become loaded without a misleading intermediate result?"]]}},
-        {"heading": "Keep focus and announcements useful", "paragraphs": ["A changed result does not always need a focus jump. Keep the person near the control they are using unless the next task genuinely requires moving them. If a brief status changes without receiving focus, make that information available to assistive technology in an appropriate way.", "W3C's status-message guidance distinguishes those updates from a change of context. Use it to review the behavior, then test the actual implementation rather than assuming an accessibility attribute is sufficient."], "links": [["https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html", "W3C status-message guidance"]]},
-        {"heading": "Prevent recovery from becoming a repeated mistake", "paragraphs": ["A retry button needs a meaningful retry boundary. If the underlying prerequisite is still absent, repeating the same request may accomplish nothing. Explain the dependency or offer the action that can change it.", "For record creation or other consequential operations, determine whether the first attempt may already have succeeded before offering another submission. The interface should not imply certainty when the request outcome is unknown."]},
-        {"heading": "Record the result at task level", "paragraphs": ["Write a short observation: the query was retained, the person removed one filter, the result returned and focus remained on the relevant control. That is stronger evidence than marking the empty-state component complete because its spacing matches the design.", "This article covers recovery verification. Use the taxonomy article to classify causes and the concise guide to write the message that introduces the recovery."]}
+        {
+          "heading": "Name what must remain intact",
+          "paragraphs": [
+            "Before designing a recovery action, list the context the person may still need: search terms, active filters, selected workspace, sort order, page position and unsaved input. A recovery that silently resets all of it can create more work than the original empty result.",
+            "Separate recoverable context from stale or unsafe context. A selection from a previous permission scope may need to be cleared. The important point is to decide and explain the rule rather than letting it emerge accidentally from a rerender."
+          ]
+        },
+        {
+          "heading": "Test a transition matrix",
+          "table": {
+            "columns": [
+              "Scenario",
+              "Recovery action",
+              "Acceptance question"
+            ],
+            "rows": [
+              [
+                "No search matches",
+                "Edit or clear the query",
+                "Does the query remain available to revise?"
+              ],
+              [
+                "Conflicting filters",
+                "Remove one condition",
+                "Can the person see which condition changed?"
+              ],
+              [
+                "Loading failed",
+                "Retry",
+                "Is valid context retained and the request outcome explained?"
+              ],
+              [
+                "Setup completed",
+                "Return to the module",
+                "Does the new state reflect the completed prerequisite?"
+              ],
+              [
+                "Access changed",
+                "Reload or request access",
+                "Is restricted context handled consistently?"
+              ],
+              [
+                "New data arrives",
+                "Refresh or observe an update",
+                "Does empty become loaded without a misleading intermediate result?"
+              ]
+            ]
+          }
+        },
+        {
+          "heading": "Keep focus and announcements useful",
+          "paragraphs": [
+            "A changed result does not always need a focus jump. Keep the person near the control they are using unless the next task genuinely requires moving them. If a brief status changes without receiving focus, make that information available to assistive technology in an appropriate way.",
+            "W3C's status-message guidance distinguishes those updates from a change of context. Use it to review the behavior, then test the actual implementation rather than assuming an accessibility attribute is sufficient."
+          ],
+          "links": [
+            [
+              "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+              "W3C status-message guidance"
+            ]
+          ]
+        },
+        {
+          "heading": "Prevent recovery from becoming a repeated mistake",
+          "paragraphs": [
+            "A retry button needs a meaningful retry boundary. If the underlying prerequisite is still absent, repeating the same request may accomplish nothing. Explain the dependency or offer the action that can change it.",
+            "For record creation or other consequential operations, determine whether the first attempt may already have succeeded before offering another submission. The interface should not imply certainty when the request outcome is unknown."
+          ]
+        },
+        {
+          "heading": "Record the result at task level",
+          "paragraphs": [
+            "Write a short observation: the query was retained, the person removed one filter, the result returned and focus remained on the relevant control. That is stronger evidence than marking the empty-state component complete because its spacing matches the design.",
+            "This article covers recovery verification. Use the taxonomy article to classify causes and the concise guide to write the message that introduces the recovery."
+          ]
+        },
+        {
+          "heading": "Review what a return action can recover",
+          "paragraphs": [
+            "The piHub denial state offers Go Back. In an implementation review, test where that action leads after a direct deep link as well as after normal navigation. Browser history may not contain a useful permitted page.",
+            "That is a recovery requirement exposed by the design, not a reproduced defect in a live piHub service. The result belongs in the ledger only after the actual route and account conditions have been tested."
+          ],
+          "image": "pihub-access-denied"
+        }
       ],
-      "related": [["/blog/saas-dashboard-empty-states-product-clarity", "Classify the cause"], ["/blog/saas-dashboard-empty-state-ux-guide", "Write a useful explanation"], ["/ux-audit", "Review states and recovery"]]
+      "related": [
+        [
+          "/blog/saas-dashboard-empty-states-product-clarity",
+          "Classify the cause"
+        ],
+        [
+          "/blog/saas-dashboard-empty-state-ux-guide",
+          "Write a useful explanation"
+        ],
+        [
+          "/ux-audit",
+          "Review states and recovery"
+        ]
+      ],
+      "updatedAt": "2026-11-04"
     }
   ]
 }

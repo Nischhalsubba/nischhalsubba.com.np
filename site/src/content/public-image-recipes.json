@@ -91,5 +91,154 @@
     "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-5/113-153.png",
     "source_sha256": "84ac196696bd8b6d30d6a538d066e98d70cc6a1bf2143e9ded2b10f0567072d3",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "orkest-conversion-readiness",
+    "crop": [
+      1068,
+      799,
+      1408,
+      1004
+    ],
+    "redactions": [],
+    "alt": "Orkest lead-detail panel pairs a core-information check with the action to convert a lead into an opportunity.",
+    "caption": "Cropped conversion-readiness panel from the current-labeled CRM lead detail. The copy describes an intended handoff; it does not verify record conversion.",
+    "privacy_review": "CROP_EXCLUDES_ALL_RECORD_IDENTITIES_AND_VALUES",
+    "presentation": "Curated detail-panel crop",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "160:387",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/160-387.png",
+    "source_sha256": "cabfdf00f4b319d966da9f6a45015bc9793dd5c4d3242dc22dee864df5b5a6d9",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "pihub-investor-products",
+    "crop": [
+      265,
+      125,
+      1375,
+      991
+    ],
+    "redactions": [
+      [
+        505,
+        222,
+        928,
+        780
+      ]
+    ],
+    "alt": "piHub investor product list places service and industry beside an awaiting-approval status. Financial columns are redacted.",
+    "caption": "Investor product-list design. Financial values are redacted; repeated status labels are prototype data, not investment or approval results.",
+    "privacy_review": "FINANCIAL_COLUMNS_REDACTED;NO_PERSONAL_IDENTIFIERS",
+    "presentation": "Redacted product-list crop",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:1272",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-2/2-1272.png",
+    "source_sha256": "b89f8ba1fd7bb075e603dd9949214a34c3308bfd77db62a23694fbf42d72ebbb",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "pihub-access-denied",
+    "crop": [
+      240,
+      50,
+      1410,
+      755
+    ],
+    "redactions": [],
+    "alt": "piHub access-denied design says that the page cannot be accessed and offers a Go Back action.",
+    "caption": "Access-denied design state from the administrator page. It illustrates denial copy and recovery, not tested server authorization.",
+    "privacy_review": "NO_PERSONAL_OR_FINANCIAL_DATA_IN_CROP",
+    "presentation": "Curated access-state crop",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2228:545",
+    "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/1-3/2228-545.png",
+    "source_sha256": "69df55450d41d32b7d11813e41b74b3ec3fdadd0fc56c651a8fa2d2835cc7c36",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "zapp-driver-next-stop",
+    "crop": null,
+    "redactions": [],
+    "alt": "Zapp driver screen distinguishes a confirmed pickup from the next drop-off and offers arrival and intermediate-stop issue actions.",
+    "caption": "Driver iOS stop-order design. District names and route progress are demonstration content; navigation is explicitly inactive in this prototype.",
+    "privacy_review": "DEMONSTRATION_DISTRICTS_ONLY;NO_PERSONAL_ADDRESS_OR_CONTACT",
+    "presentation": "Native driver prototype screen",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "19:149",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/19-149.png",
+    "source_sha256": "489a4e4ddf5c3376078b8e74e5599d1e99fa6e66594195eae0bba8d2ef8a370d",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "zapp-delivery-complete",
+    "crop": null,
+    "redactions": [
+      [
+        28,
+        191,
+        180,
+        218
+      ]
+    ],
+    "alt": "Zapp delivery-completion design separates the completed handoff from settlement and provides a return-to-dashboard action. The sample delivery identifier is redacted.",
+    "caption": "Driver completion design, explicitly labeled as a demonstration. The sample identifier is redacted. Settlement and earnings still require verified server records.",
+    "privacy_review": "DELIVERY_IDENTIFIER_REDACTED;NO_PERSONAL_DATA",
+    "presentation": "Redacted driver prototype screen",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "20:26",
+    "source": "artifacts/figma-exports/zapp/dRPI1NQ1uEFJTgdGKSwoaL/4-7/20-26.png",
+    "source_sha256": "11fb4db28ef295cdfaf336e0e41bb3bc6447eee192e15dcfff48a5af1caf148f",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
+  },
+  {
+    "id": "yarsha-transaction-detail",
+    "crop": [
+      0,
+      270,
+      375,
+      812
+    ],
+    "redactions": [
+      [
+        260,
+        15,
+        360,
+        55
+      ],
+      [
+        205,
+        55,
+        360,
+        91
+      ],
+      [
+        195,
+        128,
+        365,
+        158
+      ],
+      [
+        236,
+        167,
+        362,
+        201
+      ]
+    ],
+    "alt": "Yarsha transaction-detail panel separates spent and received assets, destination and network fee, with an external explorer action. Values and address are redacted.",
+    "caption": "Cropped transaction-detail design. Amounts, destination and fee are redacted. Explorer wording is retained from the source and needs chain-specific review before implementation.",
+    "privacy_review": "AMOUNTS_ADDRESS_FEE_REDACTED;ARTWORK_EXCLUDED",
+    "presentation": "Redacted transaction-detail crop",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:262038",
+    "source": "artifacts/figma-exports/yarsha/pYismUGSJo9vLjViMjZENz/0-1/6092-262038.png",
+    "source_sha256": "a4c50043c42fb4320ef1c41ab31043114513d1c4275bb9b1574bd75a42ec0bdc",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH"
   }
 ]

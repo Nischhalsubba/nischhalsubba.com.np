@@ -121,3 +121,14 @@ Latest authoritative progress: [recovery-progress-2026-11.md](../audits/recovery
 - Figma durable checkpoint reconciled to 2680 original PNGs / 2481 unique / 199 duplicates; 1381 known candidates remain. Thirteen primary no-byte exceptions, legacy timeout and Starter plan restrictions remain open. Raw source labels are redacted from the public inventory.
 - Fourteen cases / 26 articles rewritten; eight reviewed Figma illustrations remain the only new public figure set in the branch. Three official Uxcel badges and five professional certifications are verified separately. No deployment or indexing claim.
 - Explicit Masteriyo team-material reuse clearance and six missing project source links remain required for broader publication. See release-verification.md and recovery-progress-2026-11.md for current evidence; older dated entries are historical.
+
+## Current authoritative review — 4 November 2026
+
+This section supersedes earlier aggregate counts and performance claims. See `docs/audits/original-request-completion-2026-11-04.md` for the requirement-by-requirement assessment.
+
+- Implemented: 14 case studies and 26 articles with bounded claims; 14 reviewed figures, 40 local derivatives, 37 placements across five cases and 20 articles. No temporary Figma URLs.
+- Export backlog OPEN: 3889 native originals saved; 172 plan-limited legacy candidates remain; six missing case source links and Masteriyo team reuse clearance remain external dependencies.
+- Performance OPEN: latest completed run f9b66b1 home mobile 89 / LCP 2724.64 ms. Historical 91 is not the current stable target result. New offscreen About guard awaits CI measurement.
+- Verification OPEN: new CI, real assistive technology/WAVE, field CWV/INP, post-deploy verification and authenticated Google sitemap processing detail. Local validation passes.
+- Google read-only refresh: homepage, piHub and empty-state guide indexed on Nov 4; sitemap still reports one error. No causal indexing/deployment claim.
+- Publication: PR remains review only; observed live build 5311ce3. No merge or deployment.
