@@ -21,7 +21,7 @@ for (const route of inventory) {
   assert.match(html, /data-portfolio-design="workspace-inner-v1"/);
   assert.equal((html.match(/<main\b/g) || []).length, 1, route.file + ': one main');
   assert.equal((html.match(/aria-label="Breadcrumb"/g) || []).length, 1, route.file + ': one location trail');
-  assert.ok(html.includes('class="tb-blog"'), route.file + ': visible Blog destination');
+  assert.ok(html.includes('class="tb-t tb-blog"'), route.file + ': visible Blog destination');
   if (route.kind === 'blog-index') assert.equal((html.match(/class="workspace-story-card"/g) || []).length, 27, 'Every article has a visual discovery card');
   assert.equal((html.match(/<h1\b/g) || []).length, 1, route.file + ': one h1');
   assert.match(html, /class="skip-link"/);
