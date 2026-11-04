@@ -1524,5 +1524,412 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/pihub-signup-social-f5ec608df29c.png"
+  },
+  {
+    "id": "morajaa-healthcare",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "491:16282",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/491-16282.png",
+    "source_sha256": "f9b9549128f8dfe0f0efc4c69482b6d1235ed4d9abf1d8fce8d10a8806dae82b",
+    "alt": "Morajaa healthcare sector page adapts the consultancy story to sector-specific capabilities and contact.",
+    "caption": "Morajaa healthcare sector page adapts the consultancy story to sector-specific capabilities and contact. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/morajaa-healthcare-480-f2aa2ecc00b7.webp",
+        "width": 480,
+        "height": 2108,
+        "bytes": 86402,
+        "sha256": "f2aa2ecc00b7b3ae19fb97386bbe4624905b9c2ec40d5b2b00d306e7cd21e264"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-healthcare-800-f64a2517dee9.webp",
+        "width": 800,
+        "height": 3514,
+        "bytes": 182552,
+        "sha256": "f64a2517dee9831d7fc2a46594b381e6b3b98f0029a987753288cfa25c2559c0"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-healthcare-1240-390ef96da12f.webp",
+        "width": 1240,
+        "height": 5447,
+        "bytes": 335888,
+        "sha256": "390ef96da12f62d5217d46fbab8d31950adfe2f5bbf07d1dd655103384d5a6b4"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/morajaa-healthcare-social-424b5fad0af4.png"
+  },
+  {
+    "id": "morajaa-technology",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "465:8668",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/465-8668.png",
+    "source_sha256": "b3bcc6e3fe19f879a6fe7949846acc1b6209337b7ddae0ac9c2b71dbc09bf24f",
+    "alt": "Morajaa technology sector page connects the introduction to technology capabilities, process and contact.",
+    "caption": "Morajaa technology sector page connects the introduction to technology capabilities, process and contact. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/morajaa-technology-480-0ac3038e69b2.webp",
+        "width": 480,
+        "height": 1963,
+        "bytes": 111306,
+        "sha256": "0ac3038e69b29ae6dbc688079b25ea4e74aa23a38e1df0354b0c795119f73b85"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-technology-800-7b06267c4e84.webp",
+        "width": 800,
+        "height": 3272,
+        "bytes": 246802,
+        "sha256": "7b06267c4e843f4eb8d55c2ab27158fe374dbe37b5844251bf9bc9f4d700c3b3"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-technology-1240-8abfbc5d2ff7.webp",
+        "width": 1240,
+        "height": 5072,
+        "bytes": 448350,
+        "sha256": "8abfbc5d2ff747311e1668f1be50226a4e444fcc2004573cf3b73866bf6747f3"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/morajaa-technology-social-87c5576c0a0c.png"
+  },
+  {
+    "id": "morajaa-joint-ventures",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "465:5857",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/465-5857.png",
+    "source_sha256": "434ed25033aec05ee968a0481cc18da7f668e8a902c2d4129e6fae7364fa6fb7",
+    "alt": "Morajaa joint-venture service page explains the offer, supporting service areas and engagement process.",
+    "caption": "Morajaa joint-venture service page explains the offer, supporting service areas and engagement process. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/morajaa-joint-ventures-480-a08323a8c144.webp",
+        "width": 480,
+        "height": 1924,
+        "bytes": 86978,
+        "sha256": "a08323a8c1446a74ac125a7cf016187275efc6eca19a65aac72fb9665f5512e2"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-joint-ventures-800-f1ddde519db3.webp",
+        "width": 800,
+        "height": 3207,
+        "bytes": 189054,
+        "sha256": "f1ddde519db30938ca786c9f4a88c4d2c23993e9e1e9ced44fc18ff35132328d"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-joint-ventures-1240-1d6aea38baae.webp",
+        "width": 1240,
+        "height": 4970,
+        "bytes": 356474,
+        "sha256": "1d6aea38baae257b3a82d3464607dffb0c1d3127bd3b7a1d905e4ed43f6a74ab"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/morajaa-joint-ventures-social-f887d8c97c50.png"
+  },
+  {
+    "id": "morajaa-tender-management",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "487:12635",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/487-12635.png",
+    "source_sha256": "7dfa7bb25b58e0a074940bbcda55e8a4f6823c44f86c5cc629e96ad4aa747b63",
+    "alt": "Morajaa tender-management service page presents the service scope, benefits, process and next contact step.",
+    "caption": "Morajaa tender-management service page presents the service scope, benefits, process and next contact step. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/morajaa-tender-management-480-389b390a87b6.webp",
+        "width": 480,
+        "height": 1822,
+        "bytes": 72642,
+        "sha256": "389b390a87b63e2d597f94a05421da31acfc670de62459e2c2ac36d196e5ca79"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-tender-management-800-c86a7727ed29.webp",
+        "width": 800,
+        "height": 3037,
+        "bytes": 155866,
+        "sha256": "c86a7727ed2934249392e11fccf9b9aa1a80108ba87cd7792175ff08fc0e6d7b"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-tender-management-1240-6825ffd6d665.webp",
+        "width": 1240,
+        "height": 4708,
+        "bytes": 295784,
+        "sha256": "6825ffd6d665881b92584674e7c7a186fa9bc31b174275cbfbe518ee10c8f809"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/morajaa-tender-management-social-8ee8f2e8ef69.png"
+  },
+  {
+    "id": "morajaa-hr-outsourcing",
+    "project": "Morajaa",
+    "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+    "nodeId": "487:14801",
+    "source": "artifacts/figma-exports/morajaa/E9BBrx6PdFTqoG3YLvqRX6/452-6769/487-14801.png",
+    "source_sha256": "c330405607d1cc57460ae5a130262afd7f9d76e6757e957fa7f62b08fdd64051",
+    "alt": "Morajaa HR-outsourcing service page organizes the offer into capabilities, benefits and process.",
+    "caption": "Morajaa HR-outsourcing service page organizes the offer into capabilities, benefits and process. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/morajaa-hr-outsourcing-480-64e63e093a7f.webp",
+        "width": 480,
+        "height": 1760,
+        "bytes": 66316,
+        "sha256": "64e63e093a7f052d4d2402fb055c4f7207d3fdd6108196fe945d509fbd80dcf0"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-hr-outsourcing-800-028f57b2ece1.webp",
+        "width": 800,
+        "height": 2934,
+        "bytes": 143760,
+        "sha256": "028f57b2ece13ea04e3d5b6b76e3167fe2e5cb08bf34a3dd9380e6b411d1aeed"
+      },
+      {
+        "src": "/assets/images/evidence/morajaa-hr-outsourcing-1240-748cf6d25a8d.webp",
+        "width": 1240,
+        "height": 4548,
+        "bytes": 262638,
+        "sha256": "748cf6d25a8d10ed067844ffadbe8b4ed2327ffdaedce1209c8bf139cdefafaf"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/morajaa-hr-outsourcing-social-1ac71dd8fcae.png"
+  },
+  {
+    "id": "hamro-idea-blog",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "31:953",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-953.png",
+    "source_sha256": "64f2a2813730065a06badb96d411d2bd74adbc6bf91661b35ff1d810820fadb0",
+    "alt": "Hamro Idea historical blog index presents article previews and a route into longer design content.",
+    "caption": "Hamro Idea historical blog index presents article previews and a route into longer design content. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/hamro-idea-blog-480-e0aaa6fa9454.webp",
+        "width": 480,
+        "height": 1696,
+        "bytes": 106698,
+        "sha256": "e0aaa6fa945481df18698d1d3dda6d5b7b390636b2888b8a8543e1297603830f"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-blog-800-8ec99a5806aa.webp",
+        "width": 800,
+        "height": 2827,
+        "bytes": 224128,
+        "sha256": "8ec99a5806aa82f2f109028d44ec8a1f3e0d427dcdd48c873f46de1eeb64bead"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-blog-1159-55e23a616141.webp",
+        "width": 1159,
+        "height": 4096,
+        "bytes": 378212,
+        "sha256": "55e23a6161418796a97e0083902e0a0e85dddd24b771318c9e0dec582d603cff"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/hamro-idea-blog-social-dc2e1c61cb77.png"
+  },
+  {
+    "id": "hamro-idea-blog-detail",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "31:1238",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-1238.png",
+    "source_sha256": "9d132be415fc020ce90df88efcb42547ab968a35e60f6353b03ce035fba727eb",
+    "alt": "Hamro Idea historical article layout connects a long-form design explanation with related reading.",
+    "caption": "Hamro Idea historical article layout connects a long-form design explanation with related reading. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/hamro-idea-blog-detail-480-5c299db202a3.webp",
+        "width": 480,
+        "height": 1984,
+        "bytes": 113478,
+        "sha256": "5c299db202a37c00ae24a1ac9697b2a2e49f1996ed51ddaebe44b7bbc0e057b7"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-blog-detail-800-224e9eca6c7b.webp",
+        "width": 800,
+        "height": 3307,
+        "bytes": 252296,
+        "sha256": "224e9eca6c7b7d8d3ad2ba03a2f76da596f85b8bb7b4bcfa067a7771adadf87e"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-blog-detail-991-555705f3ce5d.webp",
+        "width": 991,
+        "height": 4096,
+        "bytes": 338362,
+        "sha256": "555705f3ce5d9221fd5a6af51fc1d79b4dee2c459e064c19eb6fa799817e68f0"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/hamro-idea-blog-detail-social-21247294239d.png"
+  },
+  {
+    "id": "hamro-idea-project-list",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "31:2022",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-2022.png",
+    "source_sha256": "dd8dbba144bad6e1cee9fb3d0e7fa14f67384bd87d4d6998f8e02e0210f49936",
+    "alt": "Hamro Idea historical project index introduces work through a repeatable project-card structure.",
+    "caption": "Hamro Idea historical project index introduces work through a repeatable project-card structure. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/hamro-idea-project-list-480-683aabe7031d.webp",
+        "width": 480,
+        "height": 1614,
+        "bytes": 87846,
+        "sha256": "683aabe7031d75f23658b98dceba6445f386d8415d10f0f9a393874b8682a9aa"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-project-list-800-b3c2fce92498.webp",
+        "width": 800,
+        "height": 2690,
+        "bytes": 189580,
+        "sha256": "b3c2fce92498b0f6389b52d859270237445baae5371e2d7a64fb0ece98b6fed0"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-project-list-1218-6086bcbd2646.webp",
+        "width": 1218,
+        "height": 4096,
+        "bytes": 343846,
+        "sha256": "6086bcbd2646c2da1b2fc7185e921e97d0a3df24469a4b18a7d39bfa5682c50a"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/hamro-idea-project-list-social-d67f386256f6.png"
+  },
+  {
+    "id": "hamro-idea-project-detail",
+    "project": "Hamro Idea",
+    "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+    "nodeId": "31:2342",
+    "source": "artifacts/figma-exports/hamro-idea/6SRJo2F3Dhu1js0c7CHwrb/0-1/31-2342.png",
+    "source_sha256": "85ff96501e0a59faab249967b1a1656d87fd13ffda9f9f66a6d7f83c0844f732",
+    "alt": "Hamro Idea historical project-detail layout presents a sample software project in greater depth.",
+    "caption": "Hamro Idea historical project-detail layout presents a sample software project in greater depth. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/hamro-idea-project-detail-480-744bbcb41a29.webp",
+        "width": 480,
+        "height": 2070,
+        "bytes": 140540,
+        "sha256": "744bbcb41a298ad1e90ffeaedc31199621b0650465fa82059d0febff3a89931b"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-project-detail-800-4b0bbf52dee5.webp",
+        "width": 800,
+        "height": 3449,
+        "bytes": 279360,
+        "sha256": "4b0bbf52dee5ab4f49039347c1d2fc56aaebef9879423638a12177d492013045"
+      },
+      {
+        "src": "/assets/images/evidence/hamro-idea-project-detail-950-b31bf4d0fcc2.webp",
+        "width": 950,
+        "height": 4096,
+        "bytes": 351168,
+        "sha256": "b31bf4d0fcc2f249b1774a65a0663261fb5c05eb438b35d6562820e7c02811a8"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/hamro-idea-project-detail-social-13b63ba4b2f9.png"
+  },
+  {
+    "id": "orkest-module-directory",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "404:33597",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/404-33597.png",
+    "source_sha256": "dc7921f0b3b8b68855fccefb1cad521570de70a52dd671b0ec0ea0f2d0ea96c4",
+    "alt": "Orkest current module directory groups workspace capabilities into navigable business areas.",
+    "caption": "Orkest current module directory groups workspace capabilities into navigable business areas. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/orkest-module-directory-480-1c2e9e3a5eb7.webp",
+        "width": 480,
+        "height": 350,
+        "bytes": 11244,
+        "sha256": "1c2e9e3a5eb7b1dfde9c26d978a2e213913f263798ebc9ab900d637f311ad632"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-module-directory-800-a225bfe79f67.webp",
+        "width": 800,
+        "height": 583,
+        "bytes": 25366,
+        "sha256": "a225bfe79f6702af84bfd80f1204f6dd178ed97ecf95eb845059cecd1995be9a"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-module-directory-1240-0d3ebfcef26d.webp",
+        "width": 1240,
+        "height": 904,
+        "bytes": 49996,
+        "sha256": "0d3ebfcef26dafd9b78a2a4544f5060d0479e57189ed4823a9429562382956ed"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/orkest-module-directory-social-de2903fa1e16.png"
+  },
+  {
+    "id": "orkest-edit-lead",
+    "project": "Orkest HQ",
+    "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+    "nodeId": "247:19849",
+    "source": "artifacts/figma-exports/orkest/k2qY1tdrTDdm1iFry9Qq4F/157-2/247-19849.png",
+    "source_sha256": "b4aba863d13c9dc15cbb1b2175c9518a60e6424fea535d85f84c1a98f29571ae",
+    "alt": "Orkest supporting edit-lead form keeps record fields, save behavior and duplicate-check guidance together.",
+    "caption": "Orkest supporting edit-lead form keeps record fields, save behavior and duplicate-check guidance together. Complete original Figma frame; design content is sample data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/orkest-edit-lead-480-69dec461a993.webp",
+        "width": 480,
+        "height": 350,
+        "bytes": 12288,
+        "sha256": "69dec461a9936421b6255d21f495a5721bad762e0def40ee2f1d5bfeed36f587"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-edit-lead-800-1946f582beda.webp",
+        "width": 800,
+        "height": 583,
+        "bytes": 28412,
+        "sha256": "1946f582beda7c483f943a56e48fea683c9374512a745d6b842df7e4d751e9e7"
+      },
+      {
+        "src": "/assets/images/evidence/orkest-edit-lead-1240-6597e7b7e0e3.webp",
+        "width": 1240,
+        "height": 904,
+        "bytes": 53254,
+        "sha256": "6597e7b7e0e3666a39c874d899b440c1f2ee8773df922bdfadc49b5ca9459d7c"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/orkest-edit-lead-social-c9ac7b5badfa.png"
   }
 ]

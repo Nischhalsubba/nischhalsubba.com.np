@@ -21,6 +21,7 @@
         {
           "heading": "Separate ownership from record qualification",
           "body": [
+            "The module directory establishes the broader workspace before the CRM list narrows the task. It groups business areas without requiring the person to remember where every capability lives. Entering CRM should preserve that sense of location while giving lead ownership and qualification their own hierarchy.",
             "The leads design places All leads, My leads and Unassigned near search and Filters. These views describe ownership; qualification is represented inside the record list. Keeping those concepts separate gives a reviewer two useful questions: whose work is this, and what state is it in?",
             "That separation also sets a handoff requirement. Switching an ownership view should have an explicit rule for existing filters, selection and the result count. The screenshot establishes the hierarchy, while the behavior still needs an agreed contract.",
             "The complete filter sequence adds the next part of that list story: choose criteria, review a problem and inspect the resulting confirmation. These supporting form states are shown as designed scenarios alongside the current-labeled CRM core, not as proof of server behavior."
@@ -28,6 +29,7 @@
           "leadIn": "First, the list has to explain whose work is visible.",
           "tradeoff": "Quick ownership views reduce navigation effort, but need clear rules for filters and selection when the view changes.",
           "images": [
+            "orkest-module-directory",
             "orkest-lead-list",
             "orkest-lead-filters",
             "orkest-lead-filter-error",
@@ -38,12 +40,14 @@
           "heading": "Make dependencies visible before saving",
           "body": [
             "The create-lead design groups contact information and qualification instead of scattering both across an undifferentiated form. Its side panel explains the capture-to-conversion sequence and says that the score is calculated after saving. That is a useful boundary: the interface should not imply that an unsaved value is already a reliable qualification result.",
-            "The remaining design-to-engineering questions are concrete: what may a draft omit, when is duplicate checking performed, who may assign an owner, and which values survive a failed save? Those questions belong beside this form rather than in a separate generic handoff document."
+            "The remaining design-to-engineering questions are concrete: what may a draft omit, when is duplicate checking performed, who may assign an owner, and which values survive a failed save? Those questions belong beside this form rather than in a separate generic handoff document.",
+            "Editing is a different commitment from first capture. The edit form retains the record fields but adds explicit save behavior and duplicate-check guidance. That gives the handoff a concrete continuity rule: distinguish new input from an existing record and make the consequence of saving understandable."
           ],
           "leadIn": "Once a lead needs to be added, the interface changes from comparison to careful entry.",
           "tradeoff": "Grouping reduces visual competition; it also makes the required-versus-draft distinction more important.",
           "images": [
-            "orkest-lead-capture"
+            "orkest-lead-capture",
+            "orkest-edit-lead"
           ]
         },
         {
@@ -447,12 +451,16 @@
           "heading": "Use a process section to reveal the shape of the engagement",
           "body": [
             "The source design breaks the process into named stages, including entry planning, sector feasibility and operationalization. The stage titles carry the scan; supporting text supplies detail. A visitor can inspect the structure before committing to reading every paragraph.",
-            "The complete service page shows how the process connects to the opening, capabilities, imagery and contact path. The consultancy's process wording is shown as source content; the portfolio does not endorse it as legal or regulatory guidance."
+            "The complete service page shows how the process connects to the opening, capabilities, imagery and contact path. The consultancy's process wording is shown as source content; the portfolio does not endorse it as legal or regulatory guidance.",
+            "The service pages offer alternative routes rather than a sequence every visitor must complete. Joint ventures, tender management and HR outsourcing reuse the same broad reading rhythm while changing the scope, benefits and engagement detail. The design question is whether someone can recognize the relevant offer without learning a new page structure each time."
           ],
           "leadIn": "Once relevance is established, the visitor needs a more concrete picture of the work.",
           "tradeoff": "A staged process makes a long engagement scannable while supporting detail preserves its complexity.",
           "images": [
-            "morajaa-service-process"
+            "morajaa-service-process",
+            "morajaa-joint-ventures",
+            "morajaa-tender-management",
+            "morajaa-hr-outsourcing"
           ]
         },
         {
@@ -460,12 +468,15 @@
           "body": [
             "Services describe the kind of support offered, while sectors describe the visitor's operating context. Both can be useful routes into the same business. The design task is to connect them without forcing one taxonomy to stand in for the other.",
             "On smaller screens, that relationship needs descriptive links and a deliberate reading order. Stacking a desktop layout is not enough if the explanation and its supporting action become separated.",
-            "The construction-sector page carries the same idea into a more specific context. Its job is to translate the broad offer into a recognizable sector need, then retain a route into the relevant service and contact."
+            "The construction-sector page carries the same idea into a more specific context. Its job is to translate the broad offer into a recognizable sector need, then retain a route into the relevant service and contact.",
+            "Construction, healthcare and technology show how the same evaluation path branches by sector. The repeated structure helps orientation; the sector-specific explanation must still earn its place by answering a different client question."
           ],
           "leadIn": "A visitor may arrive by service or by sector, so the page must reconnect those paths.",
           "tradeoff": "Two entry taxonomies broaden access; descriptive crosslinks prevent duplicate explanation.",
           "images": [
-            "morajaa-sector"
+            "morajaa-sector",
+            "morajaa-healthcare",
+            "morajaa-technology"
           ]
         }
       ],
@@ -943,13 +954,29 @@
         {
           "heading": "Keep project proof near the service explanation",
           "body": [
+            "The project index offers a first scan of work, and the project-detail layout gives one example room for explanation. The About page answers a related trust question about the studio behind that work. These are different kinds of proof and should not compete as an undifferentiated gallery.",
             "The About page gives a prospective client another way to evaluate the studio after reading the service offer. Positioning, team presentation and working principles should support the promise made by the earlier pages rather than introduce a disconnected brand story.",
             "I treat that transition as a trust question: what does the visitor still need to understand before starting a conversation? The source contains demonstration imagery and sample claims, so the case discusses their placement and role without presenting them as verified company achievements."
           ],
           "leadIn": "A relevant service creates a reasonable demand for evidence.",
           "tradeoff": "Nearby project proof answers a specific doubt; a large detached gallery makes the visitor connect the dots.",
           "images": [
+            "hamro-idea-project-list",
+            "hamro-idea-project-detail",
             "hamro-idea-about"
+          ]
+        },
+        {
+          "heading": "Give a curious visitor another way to go deeper",
+          "leadIn": "A visitor may want to understand the studio’s thinking before starting a project conversation.",
+          "body": [
+            "The article index and long-form article layout create that optional route. A short preview helps someone decide what is worth opening; the article page then needs a clear reading hierarchy and a useful route back to related material.",
+            "I treat editorial content as part of evaluation, not filler between services and contact. In these historical designs the article text and project claims are sample content; the inspectable decision is how the index, detail and next step connect."
+          ],
+          "tradeoff": "Long-form content can build understanding, but it needs clear entry points and a route back into the service or contact journey.",
+          "images": [
+            "hamro-idea-blog",
+            "hamro-idea-blog-detail"
           ]
         },
         {
@@ -987,7 +1014,8 @@
         "opening": "The website needs to connect three things that often drift apart: what the studio offers, which work supports that offer, and how a prospect starts a relevant conversation. My design and development contribution brings them into one reading path and a reusable frontend structure.",
         "steps": [
           "Choose a relevant service",
-          "Inspect supporting work",
+          "Inspect the work and studio",
+          "Explore the studio’s thinking",
           "Start a relevant conversation"
         ],
         "reflection": "Service architecture and implementation meet in the content contract. A new service or longer project description should fit the structure without weakening the story. The case demonstrates the intended relationship between offer, proof and contact; lead quality and search growth need separate measurement."
