@@ -39,3 +39,14 @@ The actual mobile-control regression confirmed reverse Credentials navigation co
 ## First-paint experiment
 
 After the corrected navigation passes the complete actual-control and resize regression, the remaining LCP target is addressed separately: schedule the existing interaction initializer after a rendering opportunity, with native performance marks and a browser assertion that first contentful paint precedes initialization. Drawing geometry, intro implementation and scene algorithms are retained. This is a candidate until fresh Lighthouse and browser/intro checks pass; moving work does not establish field INP. Background: https://web.dev/articles/optimize-inp and https://web.dev/articles/optimize-long-tasks . The About page also uses Nepal rather than an unverified Kathmandu location claim, consistent with the homepage.
+
+## Critical-document separation candidate
+
+The single-frame scheduling candidate measured 92 mobile / TBT 48.42 ms in the early diagnostic, but LCP remained 2710.53 ms and the stricter native paint-order assertion failed. It is not a signed-off release result. The next candidate separates the unchanged source-owned runtime into a content-hashed deferred local script, preloads it at low priority, and awaits native content paint before initialization with a bounded compatibility fallback. The build audit checks exact source/runtime byte parity and syntax, keeping contact/security assertions against the combined owned code. Native paint timings are included in any assertion failure.
+
+Local final HTML: 348198 bytes / 65986 bytes gzip; runtime: 219676 bytes / 71622 bytes gzip (analysis compression, not a field transfer measurement). The earlier full report's combined HTML transfer was 137763 bytes. Runtime separation reduces the critical document path while retaining all authored content. Local npm run validate passes with 595 byte-stable generated files. Fresh browser, intro and Lighthouse verification remains required. Old runtime hashes are cleaned only from owned generated output.
+
+
+The final bootstrap waits for a native first-contentful-paint entry when supported, starting immediately if that entry already exists. It schedules initialization once, disconnects the observer, and has a 500 ms deadline plus a frame-based compatibility path. The strict native paint-order assertion remains enabled. A separate reduced-motion context removes optional paint APIs and verifies initialization plus Contact/Credentials/Home navigation.
+
+The execution environment disconnected after a successful 595-file deterministic local validation of the native-paint bootstrap. The additional fallback test's documentation check found one missing contract on an object-property arrow; it is now a named documented function. These recovered changes require CI verification; no new local execution is claimed after the environment became unavailable.

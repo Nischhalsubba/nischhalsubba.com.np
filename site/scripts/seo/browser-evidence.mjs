@@ -71,7 +71,7 @@ try {
   await motionPage.goto(base+'/',{waitUntil:'networkidle'});
   await motionPage.waitForFunction(/** Callback contract: Measure stationary reads after intro, font and adaptive-tier startup settles. Inputs: none. Side effects: none. Returns: readiness. */ () => performance.now() > 10000 && document.fonts.status === 'loaded' && !document.getElementById('hrIntro'));
   const startupPaint = await motionPage.evaluate(/** Callback contract: Read native paint and workspace-start timings. Inputs: none. Side effects: none. Returns: timing evidence. */ () => ({paint:performance.getEntriesByType('paint').find(entry=>entry.name==='first-contentful-paint')?.startTime,init:performance.getEntriesByName('workspace-init-start')[0]?.startTime}));
-  assert.ok(Number.isFinite(startupPaint.paint) && Number.isFinite(startupPaint.init) && startupPaint.paint <= startupPaint.init,'Authored content must paint before interaction initialization');
+  assert.ok(Number.isFinite(startupPaint.paint) && Number.isFinite(startupPaint.init) && startupPaint.paint <= startupPaint.init,'Authored content must paint before interaction initialization: '+JSON.stringify(startupPaint));
   await motionPage.evaluate(/** Callback contract: Confirm offscreen position and start the idle measurement. Inputs: none. Side effects: resets a test counter. Returns: offscreen flag. */ () => {
     const away = document.getElementById('wk').getBoundingClientRect().top > innerHeight + 600 && document.getElementById('abx').getBoundingClientRect().top >= innerHeight;
     window.__workLayoutReads = 0;
@@ -124,6 +124,27 @@ try {
   await motionPage.waitForFunction(/** Callback contract: Require the resized process chapter to become current and visible. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('.tb-t.act')?.dataset.sec === 'process' && getComputedStyle(document.getElementById('process')).visibility === 'visible');
   await motionPage.screenshot({path:path.join(output,'normal-motion-process-resized.png')});
   await motionContext.close();
+  const fallbackContext = await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
+  const fallbackPage = await fallbackContext.newPage();
+  await fallbackPage.addInitScript(/** Callback contract: Exercise the production bootstrap without optional paint timing APIs. Inputs: none. Side effects: hides optional APIs in this isolated test context. Returns: void. */ () => {
+    Object.defineProperty(window,'PerformanceObserver',{value:undefined,configurable:true});
+    const entries = performance.getEntriesByType.bind(performance);
+    /** Function contract: getEntriesByType
+     * Purpose: Simulate absence of optional paint timing while preserving other native performance entries.
+     * Inputs: entry type. Side effects: none. Returns: native entries or an empty paint list.
+     */
+    function getEntriesByType(type) { return type === 'paint' ? [] : entries(type); }
+    Object.defineProperty(performance,'getEntriesByType',{value:getEntriesByType,configurable:true});
+  });
+  await fallbackPage.goto(base+'/',{waitUntil:'networkidle'});
+  await fallbackPage.waitForFunction(/** Callback contract: Require fallback initialization to complete exactly once. Inputs: none. Side effects: none. Returns: readiness. */ () => performance.getEntriesByName('workspace-init-end').length === 1);
+  for (const id of ['contact','testi','top']) {
+    await fallbackPage.locator('#tbMb').click();
+    await fallbackPage.locator('#tbMp a[data-sec="'+id+'"]').click();
+    await fallbackPage.waitForFunction(/** Callback contract: Verify fallback native navigation in both directions. Inputs: destination ID. Side effects: none. Returns: readiness. */ id => document.querySelector('#tbMp a.act[data-sec]')?.dataset.sec === id,id);
+    assert.equal(await fallbackPage.locator('#'+id).isVisible(),true);
+  }
+  await fallbackContext.close();
   console.log('[homepage-motion] Offscreen layout, deferred buffers and bidirectional section navigation passed.');
 } finally {await browser.close();}
 fs.writeFileSync(path.join(output,'accessibility.json'),JSON.stringify({base,checkedAt:new Date().toISOString(),results:accessibility,failures},null,2));

@@ -2117,9 +2117,31 @@ window.CMSV = (p, d) => { const v = p.split('.').reduce((o, k) => o && o[k], win
 window.RS = () => Math.min(devicePixelRatio || 1, 2, Math.max(1, Math.sqrt(8.3e6 / ((innerWidth * innerHeight) || 1))), window.LITE ? Math.max(1, 2400 / innerWidth) : 2);
 (function(){const f=()=>document.documentElement.style.setProperty('--zk',Math.min(1.8,Math.max(1,Math.min(innerWidth/1440,innerHeight/900))).toFixed(4));f();addEventListener('resize',f);})();
 </script>
-<script>
+<script data-workspace-runtime>
 // Paint the authored page before initializing the interactive scenes.
-requestAnimationFrame(/** Callback contract: Yield a rendering opportunity before workspace initialization. Inputs: frame time. Side effects: schedules initialization. Returns: timer ID. */ () => setTimeout(/** Callback contract: Initialize unchanged scenes and interactions after the first paint. Inputs: none. Side effects: initializes workspace UI. Returns: void. */ () => {
+/** Function contract: workspaceAfterFirstPaint
+ * Purpose: Keep interaction initialization behind native content paint, with a bounded compatibility fallback.
+ * Inputs: initialization callback. Side effects: observes paint and schedules one callback. Returns: void.
+ */
+function workspaceAfterFirstPaint(start) {
+  let started = false, observer, fallback;
+  const run = /** Callback contract: Run initialization once and release the observer and deadline. Inputs: none. Side effects: schedules initialization. Returns: void. */ () => {
+    if (started) return;
+    started = true; clearTimeout(fallback); if (observer) observer.disconnect();
+    setTimeout(start, 0);
+  };
+  if (performance.getEntriesByType('paint').some(entry => entry.name === 'first-contentful-paint')) { run(); return; }
+  fallback = setTimeout(run, 500);
+  if (typeof PerformanceObserver === 'function' && PerformanceObserver.supportedEntryTypes?.includes('paint')) {
+    observer = new PerformanceObserver(/** Callback contract: Start after the browser reports content paint. Inputs: native paint entries. Side effects: schedules initialization. Returns: void. */ list => {
+      if (list.getEntries().some(entry => entry.name === 'first-contentful-paint')) run();
+    });
+    observer.observe({ type: 'paint', buffered: true });
+  } else {
+    requestAnimationFrame(() => requestAnimationFrame(run));
+  }
+}
+workspaceAfterFirstPaint(/** Callback contract: Initialize unchanged scenes and interactions after paint. Inputs: none. Side effects: initializes workspace UI. Returns: void. */ () => {
   performance.mark('workspace-init-start');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
@@ -3931,7 +3953,7 @@ requestAnimationFrame(/** Callback contract: Yield a rendering opportunity befor
   };
   requestAnimationFrame(loop);
   performance.mark('workspace-init-end');
-}, 0));
+});
 </script>
 
 

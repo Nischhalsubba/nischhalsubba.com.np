@@ -12,6 +12,12 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const dist = path.resolve(__dirname, '../dist');
 const html = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
+const runtimeHref = html.match(/<script defer data-workspace-runtime src="([^"]+)"/)?.[1];
+assert.ok(runtimeHref, 'Interaction runtime must be deferred behind authored content.');
+const runtime = fs.readFileSync(path.join(dist, runtimeHref), 'utf8');
+const sourceRuntime = fs.readFileSync(path.resolve(__dirname, '../src/workspace-home/index.html'), 'utf8').match(/<script data-workspace-runtime>([\s\S]*?)<\/script>/)?.[1];
+assert.equal(runtime, sourceRuntime.trim() + '\n', 'Extraction must preserve every runtime byte.');
+const authoredCode = html + '\n' + runtime;
 assert.match(html, /data-portfolio-design="workspace-v1"/);
 assert.match(html, /<main id="main-content">/);
 assert.match(html, /class="skip-link"/);
@@ -26,15 +32,16 @@ for (const font of fontSubsets) {
 }
 assert.match(html, /Nischhal Raj Subba/);
 assert.match(html, /rel="canonical" href="https:\/\/nischhalsubba.com.np\/"/);
-assert.doesNotMatch(html, /hridoy|nischhal-design-portfolio\.grittytide4|track\.php|fetch\('contact\.php'/i);
-assert.match(html, /mod\.sendPayload\(endpoint, payload/);
-assert.doesNotMatch(html, /location\.href = `mailto:/);
+assert.doesNotMatch(authoredCode, /hridoy|nischhal-design-portfolio\.grittytide4|track\.php|fetch\('contact\.php'/i);
+assert.match(authoredCode, /mod\.sendPayload\(endpoint, payload/);
+assert.doesNotMatch(authoredCode, /location\.href = `mailto:/);
 let inline = 0;
 for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
   if (!match[2].trim() || match[1].includes('ld+json')) continue;
   new vm.Script(match[2]); inline++;
 }
 new vm.Script(fs.readFileSync(path.join(dist, 'workspace-home/personal.js'), 'utf8'));
+new vm.Script(runtime);
 for (const match of html.matchAll(/<(?:img|script|link)\b[^>]*(?:src|href)="([^"]+)"/g)) {
   const ref = match[1];
   if (!ref.startsWith('/workspace-home/')) continue;
