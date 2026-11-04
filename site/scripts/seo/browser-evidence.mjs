@@ -43,6 +43,14 @@ try {
         accessibility.push({route,width,violations:result.violations,incomplete:result.incomplete,passes:result.passes.length});
         for (const violation of result.violations) failures.push(`${width}px ${route}: ${violation.id}: ${violation.nodes.map(node=>node.target.join(' ')).join('; ')}`);
       }
+      if (caseStudies && width === 1440) {
+        for (const figure of await page.locator('.workspace-evidence-figure').all()) {
+          await figure.scrollIntoViewIfNeeded();
+          await figure.locator('img').evaluate(/** Callback contract: Decode each complete source-derived screen before capture. Inputs: image. Side effects: image decoding only. Returns: decode promise. */ image => image.decode());
+          const identity = await figure.getAttribute('data-evidence-image');
+          await figure.screenshot({path:path.join(output,`screen-${identity}.png`)});
+        }
+      }
       if ((caseStudies || route.includes('project-orkest')) && width===390 && await page.locator('.workspace-evidence-figure').count()) {
         const figure = page.locator('.workspace-evidence-figure').first(); await figure.scrollIntoViewIfNeeded();
         await figure.locator('button').click(); await page.locator('#mediaPreview').waitFor({state:'visible'});
@@ -101,6 +109,11 @@ try {
   await motionPage.evaluate(/** Callback contract: Exercise native navigation into the work scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('work').scrollIntoView({block:'start',behavior:'instant'}));
   await motionPage.waitForFunction(/** Callback contract: Wait for a usable project and completed navigation frame. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('#wkWorld .wf.on .whit')?.tabIndex === 0 && document.querySelector('.tb-t.act')?.dataset.sec === 'work');
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'work');
+  await motionPage.locator('#wkWorld .wf.on .whit').hover();
+  await motionPage.locator('#wkWorld .wf.on.is-hover').waitFor({state:'visible'});
+  assert.equal(await motionPage.locator('#wkWorld .wf.on .wveil').evaluate(/** Callback contract: Check that hovering preserves the preview contrast. Inputs: veil. Side effects: none. Returns: computed opacity. */ veil => Number(getComputedStyle(veil).opacity)),0,'Selected Work hover must not dim the design image');
+  await motionPage.screenshot({path:path.join(output,'selected-work-hover.png')});
+
   assert.equal(await motionPage.evaluate(/** Callback contract: Verify deferred pixel buffers paint before visible use. Inputs: none. Side effects: reads canvas pixels. Returns: painted flag. */ () => {
     const canvas=document.querySelector('#wkPx canvas.dio');
     const pixels=canvas.getContext('2d').getImageData(0,0,20,20).data;
