@@ -1,0 +1,70 @@
+{
+  "articles": [
+    {
+      "slug": "designing-handoffs-between-people",
+      "updatedAt": "2026-11-04",
+      "intent": "Explain cross-role handoffs with original product screens",
+      "dek": "A workflow is only as clear as the moment responsibility changes hands. Three interface examples show how I reason about ownership, waiting and recovery.",
+      "sections": [
+        {
+          "heading": "The difficult moment is often between screens",
+          "paragraphs": [
+            "A lead looks qualified. An application looks complete. A delivery looks close to finished. None of those states tells us, by itself, who should act next. When I review an operational workflow, I follow responsibility as carefully as I follow navigation. The useful question is: what can this person decide now, and what information will the next person need?",
+            "The examples here come from my portfolio designs for Orkest, piHub and Zapp. I use them to explain design decisions and the questions I would resolve before implementation. They are sample-data design screens, not evidence of measured business results."
+          ]
+        },
+        {
+          "heading": "First, make ownership visible before asking for action",
+          "paragraphs": [
+            "In Orkest, the lead list separates All leads, My leads and Unassigned. That distinction matters before a score or a conversion action: a record without an owner is a different operational problem from an owned record that is not ready. Keeping ownership near search and filters makes it part of the working context.",
+            "The trade-off is density. Adding every signal to the list would make comparison harder. I would keep the list focused on triage, then use the detail view for the supporting information needed to convert. A useful review task is to ask someone to find a qualified but unassigned lead and explain what they would do next. That is an evaluation proposal, not a result from a completed study."
+          ],
+          "image": "orkest-lead-list"
+        },
+        {
+          "heading": "Then, design waiting as a legitimate state",
+          "paragraphs": [
+            "The piHub creditor view shows Approved and Awaiting Approval as written statuses. In a workflow that crosses creditor, investor and administrator roles, waiting is part of the product. A person should be able to distinguish a submitted application from a draft without guessing from a colored badge.",
+            "The screenshot establishes the comparison view; it does not settle the notification rules. Before handoff, I would specify who can change each status, what explanation accompanies a rejection, and where the creditor returns to correct information. The design responsibility is to make those transitions explicit rather than hiding them behind a generic success message."
+          ],
+          "image": "pihub-application-status"
+        },
+        {
+          "heading": "Finally, separate progress from completion",
+          "paragraphs": [
+            "Zapp has a driver next-stop screen and a separate delivery-completion screen. That separation creates a useful boundary: arriving near an address and finishing a delivery are different events. The customer and driver need compatible accounts of what has happened, even though they see different interfaces.",
+            "I would document what counts as completion, what the driver can do when the recipient is unavailable, and what evidence is retained if the network fails. A completion animation cannot answer those questions. The next-stop design below is a starting point for specifying them."
+          ],
+          "image": "zapp-driver-next-stop"
+        },
+        {
+          "heading": "The handoff note I want beside the frame",
+          "paragraphs": [
+            "I finish this kind of review with a short behavior contract. It records the current owner, permitted action, information carried forward, next owner and recovery path. If the team cannot agree on one of those, another polished screen is unlikely to resolve the ambiguity.",
+            "The journey is complete when a reader can explain the next decision and its consequences. In a portfolio, that means showing enough of the original screen to preserve context, explaining the trade-off, and being clear about what still needs validation."
+          ],
+          "bullets": [
+            "Name the role that owns the next action.",
+            "Show whether the item is editable, submitted, waiting or complete.",
+            "Specify what persists when the transition fails.",
+            "Test the transition across roles, not only each screen in isolation."
+          ]
+        }
+      ],
+      "related": [
+        [
+          "/project-orkest",
+          "Orkest: lead ownership and conversion"
+        ],
+        [
+          "/project-pihub",
+          "piHub: creditor and investor journeys"
+        ],
+        [
+          "/project-zapp",
+          "Zapp: customer and driver journeys"
+        ]
+      ]
+    }
+  ]
+}

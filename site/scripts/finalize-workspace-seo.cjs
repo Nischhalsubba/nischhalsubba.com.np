@@ -69,6 +69,7 @@ function card(title, description, category, cover) {
   const titleMarkup = titleLines.map((line, index) => `<text x="72" y="${218 + index * (fontSize + 9)}" fill="#f4f4f2" font-family="Doto" font-weight="900" font-size="${fontSize}">${escape(line)}</text>`).join('');
   const descriptionMarkup = wrap(description, cover ? 48 : 78, 2).map((line, index) => `<text x="72" y="${458 + index * 29}" fill="#b9b9c0" font-family="Geist" font-size="20">${escape(line)}</text>`).join('');
   let media = '<path d="M920 135V430M770 285H1070" stroke="#0d99ff" stroke-opacity=".4"/><circle cx="920" cy="285" r="108" fill="none" stroke="#a259ff" stroke-opacity=".5"/><circle cx="920" cy="285" r="68" fill="none" stroke="#0d99ff"/><rect x="907" y="272" width="26" height="26" fill="#0d99ff"/>';
+  if (cover?.endsWith('.webp') && fs.existsSync(cover.replace(/\.webp$/, '.png'))) cover = cover.replace(/\.webp$/, '.png');
   if (cover && fs.existsSync(cover)) {
     try {
       const png = cover.endsWith('.png') ? fs.readFileSync(cover) : new Resvg(fs.readFileSync(cover, 'utf8'), { fitTo: { mode: 'width', value: 680 }, font: { fontFiles, loadSystemFonts: false } }).render().asPng();
