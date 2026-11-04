@@ -514,9 +514,8 @@
           "heading": "Compare the object as well as the layout",
           "paragraphs": [
             "The piHub investor list places products, service categories and approval state in one table. A creditor application and an investor product may share table styling, but they are different records with different actions.",
-            "Review the heading, columns and status together before declaring the pattern reusable. Financial values are redacted here because they are unnecessary to that comparison."
-          ],
-          "image": "pihub-investor-products"
+            "Review the heading, columns and status together before declaring the pattern reusable. Financial values are excluded from the public illustration because they are unnecessary to that comparison."
+          ]
         }
       ],
       "related": [

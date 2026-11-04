@@ -54,6 +54,8 @@ assert.ok(config.testimonials.some(item => item.url === recognition.ranking.sour
 assert.ok(config.testimonials.some(item => item.url === recognition.historical.find(record => record.year === 2023).source && item.q.includes('2023') && item.q.includes('Product Designer')));
 assert.doesNotMatch(html, /Uxcel Global Rankings 2024 · Ranked #1 Designer/, 'Do not conflate an unverified legacy annual claim with a verified current snapshot.');
 assert.equal(config.work.length, 14);
+assert.equal(config.testimonials.filter(item => item.badge && recognition.assets.some(asset => asset.src === item.img)).length, 3, 'Use the three original issuer badges');
+assert.doesNotMatch(html, /gap 24 · scroll snap/, 'Remove internal layout annotations from credentials');
 assert.ok(config.pricing.every(service => service.p === 0), 'Do not invent rates.');
 for (const item of config.work) {
   assert.ok(fs.existsSync(path.join(dist, item.img)), `Missing project image ${item.img}`);

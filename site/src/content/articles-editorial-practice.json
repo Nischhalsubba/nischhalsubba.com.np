@@ -269,7 +269,7 @@
         {
           "heading": "Make the evidence boundary visible",
           "paragraphs": [
-            "In the current editorial revision, Figma exports are separated from public derivatives. Screens are selected for the decision they help explain, identifying values are redacted where necessary and the source is recorded. Drafts and legacy prototypes are not silently presented as current releases.",
+            "In the current editorial revision, Figma exports are separated from public derivatives. Screens are selected for the decision they help explain, sensitive regions are excluded from public crops and the source is recorded. Drafts and legacy prototypes are not silently presented as current releases.",
             "Where a matching file is missing, the case keeps the gap visible. Code or an existing website artifact may be better evidence than a design screenshot. No visual placeholder can establish a result that was never measured."
           ]
         },
@@ -461,9 +461,8 @@
           "heading": "Keep familiar context around the unfamiliar step",
           "paragraphs": [
             "Yarsha puts wallet-related activity inside a messaging context. The reviewed token-selection frame identifies assets using names and symbols and offers a search. It gives a concrete discussion point: establish what the person is acting on before any later authorization step.",
-            "The public image redacts balance-like values. It demonstrates interface structure, not holdings, financial returns or a complete transaction flow."
-          ],
-          "image": "yarsha-token-selection"
+            "The source was reviewed privately. Balance-like values are not published or treated as holdings, returns or evidence of a complete transaction flow."
+          ]
         },
         {
           "heading": "Avoid three kinds of false reassurance",
@@ -610,8 +609,7 @@
           "paragraphs": [
             "The reviewed Yarsha token-selection screen identifies the asset before any later transaction review. It is useful evidence of that earlier step. It is not itself a transaction confirmation screen, and I do not relabel it as one.",
             "A source-backed case should keep those stages distinct. Selecting an asset, reviewing an operation, approving a wallet request and observing a result are different events even when the product makes them feel connected."
-          ],
-          "image": "yarsha-token-selection"
+          ]
         },
         {
           "heading": "Keep the result model more precise than a spinner",
@@ -671,10 +669,9 @@
         {
           "heading": "Inspect a result panel without calling it authorization",
           "paragraphs": [
-            "The Yarsha detail panel separates spent and received assets from destination and fee. Values and the address are redacted below. It is a result-detail design, not the screen where a person approves a wallet request.",
+            "The Yarsha detail panel separates spent and received assets from destination and fee. The identifying values and address are not published here. It is a result-detail design, not the screen where a person approves a wallet request.",
             "The source explorer wording also needs chain-specific review. Check the supported network, link destination and result evidence before using that action to reassure someone that an operation is confirmed."
-          ],
-          "image": "yarsha-transaction-detail"
+          ]
         }
       ],
       "related": [
@@ -774,8 +771,7 @@
           "paragraphs": [
             "The Yarsha source includes a transaction-detail panel with an external explorer action. The panel is useful for checking which fields the product intends to explain after an operation.",
             "The explorer label must match the actual integration, and the product must know what result it can establish. The screenshot does not verify connection, signing, confirmation or recovery."
-          ],
-          "image": "yarsha-transaction-detail"
+          ]
         }
       ],
       "related": [

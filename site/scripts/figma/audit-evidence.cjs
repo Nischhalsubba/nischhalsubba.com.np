@@ -15,6 +15,10 @@ assert.deepEqual(records.map(record=>record.file).sort(),[...manifest.html].sort
 assert.ok(!fs.existsSync(path.join(dist,'artifacts')),'Private originals must never be deployed');
 const routes = new Map(records.map(record=>[new URL(record.url).pathname,record]));
 let references=0;
+const recipes = JSON.parse(fs.readFileSync(path.join(root,'src/content/public-image-recipes.json')));
+for (const recipe of recipes) assert.equal((recipe.redactions || []).length, 0, 'Publish a reviewed detail crop instead of opaque masks: ' + recipe.id);
+const approvedFiles = new Set(images.flatMap(image => [...image.variants.map(v => path.basename(v.src)), path.basename(image.socialSrc)]));
+for (const file of fs.readdirSync(path.join(root,'assets/images/evidence'))) assert.ok(approvedFiles.has(file), 'Retired image bytes must not remain public: ' + file);
 for(const image of images) {
   assert.equal(image.permission,'OWNER_AUTHORIZED_REVIEW_BRANCH'); assert.match(image.source_sha256,/^[a-f0-9]{64}$/); assert.ok(image.alt.length>30);
   for(const variant of image.variants) {
