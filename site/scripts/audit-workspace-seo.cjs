@@ -14,7 +14,7 @@ const records = JSON.parse(fs.readFileSync(path.join(dist, 'workspace-inner/seo-
 const site = 'https://nischhalsubba.com.np'; const sitemap = fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8');
 assert.equal(records.length, 53); assert.equal(new Set(records.map(record => record.url)).size, 53);
 assert.equal(new Set(records.map(record => record.image)).size, 53);
-assert.match(sitemap, /http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9/);
+assert.match(sitemap, /<urlset\b[^>]*\sxmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9"/, 'The root element must declare the exact sitemap namespace');
 for (const record of records) {
   const html = fs.readFileSync(path.join(dist, record.file), 'utf8');
   assert.equal((html.match(/rel="canonical"/g) || []).length, 1, record.file + ': one canonical');

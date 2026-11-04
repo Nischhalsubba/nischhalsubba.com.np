@@ -42,7 +42,7 @@
     "description": "Turning an event stream into an inspectable summary without making clean numbers look more certain than the underlying data."
   },
   "project-sassboilerplate.html": {
-    "description": "A small Sass starter that makes file responsibilities predictable without turning setup into a framework of its own."
+    "description": "A frontend learning archive of Sass imports and a Gulp build workflow, with attribution to JR Cologne’s original starter kit."
   },
   "blog/ux-audit-evidence-before-redesign.html": {
     "description": "A useful audit connects an observed problem to a task and a decision. Screenshots, analytics and opinions contribute different kinds of evidence; they should not be treated as interchangeable."

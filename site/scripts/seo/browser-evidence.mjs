@@ -46,7 +46,7 @@ try {
       if ((caseStudies || route.includes('project-orkest')) && width===390 && await page.locator('.workspace-evidence-figure').count()) {
         const figure = page.locator('.workspace-evidence-figure').first(); await figure.scrollIntoViewIfNeeded();
         await figure.locator('button').click(); await page.locator('#mediaPreview').waitFor({state:'visible'});
-        assert.equal(await page.locator('#mediaPreview img').getAttribute('src'), await figure.locator('img').getAttribute('src'), 'Expansion must load the largest approved derivative');
+        assert.equal(new URL(await page.locator('#mediaPreview img').getAttribute('src'), base).href, new URL(await figure.locator('img').getAttribute('src'), base).href, 'Expansion must load the largest approved derivative');
         await page.keyboard.press('Escape');
         assert.equal(await page.locator('#mediaPreview').evaluate(/** Callback contract: Read native modal state. Inputs: dialog. Side effects: none. Returns: open flag. */ dialog=>dialog.open),false);
         assert.equal(await figure.locator('button').evaluate(/** Callback contract: Verify focus restoration to the image trigger. Inputs: button. Side effects: none. Returns: focus equality. */ button=>button===document.activeElement),true);

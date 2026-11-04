@@ -54,3 +54,7 @@ body[data-portfolio-design="workspace-inner-v1"]{isolation:isolate}.workspace-fi
 .editorial-chapter{scroll-margin-top:90px}
 @media(max-width:600px){.editorial-journey ol{grid-template-columns:1fr}.editorial-tradeoff{padding-left:14px}}
 .editorial-chapter:focus-visible{outline:2px solid #7cc6ff;outline-offset:8px}
+.editorial-code{min-width:0;max-width:100%;margin:24px 0}
+.editorial-code pre{max-width:100%;overflow-x:auto;padding:20px;border:1px solid var(--line);background:#0b0c14;color:#f4f4f2;font:13px/1.8 var(--mono);white-space:pre}
+.editorial-code figcaption{color:#b9b9c0;font-size:14px;line-height:1.6}
+.editorial-code pre:focus-visible{outline:2px solid #7cc6ff;outline-offset:4px}

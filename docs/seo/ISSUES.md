@@ -159,3 +159,11 @@ All six workflows succeeded. Latest controlled homepage mobile median remains 89
 - PERF-INTRO: Mobile previously executed the full-screen decorative loading canvas before content. Small screens now bypass it. Preserve desktop intro and main hero behavior; measure before signing off performance.
 - QA-ENV: Local Chromium v1243 installation returned truncated ZIP data. Static/full repository validation can run; browser measurements and all-case checks must complete in CI. Do not report attempted browser runs as successful.
 - FIGMA-LINK remains open for six sources; owner will provide links. No source replacements invented.
+
+### Sitemap root cause and current live evidence
+
+P0-03 is now DIAGNOSED: authenticated GSC reports incorrect namespace, one instance, line 2 / urlset from its 30 October read. Two legacy generators contain the malformed namespace and are corrected. The final PR generator and independently read current production sitemap both declare the correct namespace; live XML contains 53 URLs and no parser error. GOOGLE_REPROCESSING_PENDING; resubmission NOT EXECUTED pending explicit approval required by the original brief. See `docs/audits/gsc-sitemap-error-2026-11-04.json`.
+
+QA follow-up: the first CI attempt failed because the new image assertion compared an absolute DOM URL with a relative authored URL. Both refer to the correct largest derivative. The assertion now normalizes both URLs before comparison. No image functionality is weakened or skipped.
+
+CODE-PROVENANCE: Verified public code repositories for Neverwinter Live Parser and SassBoilerplate; linked actual parser/view-model fixtures and Sass/build files. Corrected SassBoilerplate from creator framing to a learning archive with JR Cologne attribution in canonical metadata, final case, search description and related article. Read-only inspection, not independent execution. See `code-project-evidence-2026-11-04.md`.

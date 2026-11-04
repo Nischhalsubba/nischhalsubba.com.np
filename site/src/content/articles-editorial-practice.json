@@ -35,7 +35,7 @@
           "heading": "Review the boundary in both tools",
           "paragraphs": [
             "A Figma variant and a coded prop do not need identical syntax, but they should represent compatible decisions. Compare a few real usages and inspect where the models diverge. Is a design variant encoding a one-off layout? Is a coded option hiding a shared behavior that deserves documentation?",
-            "For my SassBoilerplate work, the same concern appears at a smaller scale: file responsibilities should make change easier to locate. A larger toolchain does not automatically produce a clearer system."
+            "In my SassBoilerplate learning archive, based on JR Cologne’s starter kit, the same concern appears at a smaller scale: file responsibilities should make change easier to locate. A larger toolchain does not automatically produce a clearer system."
           ]
         },
         {

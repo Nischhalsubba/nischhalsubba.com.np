@@ -915,7 +915,7 @@
       "summary": "Turning an event stream into an inspectable summary without making clean numbers look more certain than the underlying data.",
       "context": [
         "A combat parser sits between raw events and a player's explanation of an encounter. The interface needs to group and summarize information while retaining enough context to judge what a number represents. A polished total is not useful if the player cannot tell which encounter, actor, filter or time range produced it.",
-        "My existing portfolio scope covers the information model, parser-facing UI, summary hierarchy and implementation-aware tooling. This is a personal technical project, not a claim to own Neverwinter or its game data. A verified Figma source is not required to explain code and information-design work."
+        "The public implementation is a Windows-oriented Electron application with a React renderer. Its repository separates parsing, encounter aggregation and renderer view-model tests. My portfolio scope concerns the information model, summary hierarchy and implementation-aware tooling; this is a personal project, separate from ownership of Neverwinter or its game data."
       ],
       "constraints": [
         "A summary depends on grouping and calculation assumptions that the interface must not conceal.",
@@ -926,8 +926,8 @@
         {
           "heading": "Keep the summary attached to its context",
           "body": [
-            "Encounter, actor, time range and active filters change the meaning of a metric. I treat those as part of the information hierarchy rather than a separate configuration area someone must remember.",
-            "A review should be able to move from a summary to the events that support it. That is the evidence chain I want the interface to expose; the portfolio does not assert that every underlying calculation has been independently validated."
+            "Encounter scope changes the meaning of every number. The renderer view-model tests include a case where a player has 999 total damage across the available data but only 120 in the selected encounter. The expected row uses the selected encounter’s 120 and derives 12 DPS for its ten-second duration. These are fixture values, not player performance claims.",
+            "That example makes the interface requirement specific: the selected encounter is part of the metric, and the summary should not silently fall back to a broader total. The linked source is an inspectable contract; this portfolio review has not independently executed that repository’s tests."
           ],
           "leadIn": "A number first needs enough context to be interpreted.",
           "tradeoff": "A compact summary helps orientation but cannot hide the encounter and filter boundaries that define it."
@@ -935,8 +935,8 @@
         {
           "heading": "Separate overview from diagnosis",
           "body": [
-            "An overview should help a player find a question worth investigating. A diagnostic view should help answer that question with more specific data. Giving every event equal prominence makes both jobs harder.",
-            "The trade-off is discoverability. Hiding detail is only useful when the route to it is clear and the summary does not imply a conclusion that the detail cannot support. Sort and filter labels need to make their effect understandable."
+            "The implementation keeps raw-line parsing, encounter aggregation and renderer row construction in separate source areas. This supports an important distinction: an event’s applied amount, the way events are grouped, and the row a person reads are related but different decisions.",
+            "The parser tests specifically distinguish applied damage or healing from base magnitude. The renderer tests then cover ownership grouping, including player-owned summons and companions. An overview must make its grouping understandable so a clean total does not imply a different calculation."
           ],
           "leadIn": "With the context established, the overview should lead into a specific question.",
           "tradeoff": "Progressive detail reduces noise while a clear route to events preserves inspectability."
@@ -944,14 +944,19 @@
         {
           "heading": "Show uncertainty as a state of the data",
           "body": [
-            "A partial capture, an unknown value and a genuine zero should not collapse into the same visual result. They call for different interpretation and different next steps.",
-            "The useful implementation test uses a known input fixture and checks the visible result against the calculation contract. It should also include interrupted and repeated events. I do not convert this design principle into an invented accuracy or performance percentage."
+            "The parser test suite contains an explicit malformed-line case. It expects an issue result and an unknown event type, rather than silently treating the input as valid combat damage. The renderer tests also distinguish zeroed placeholder encounters from encounters with meaningful combat totals.",
+            "These source cases give the uncertainty discussion something concrete to point to. They do not prove complete parser accuracy or the way every issue is announced in the UI; that requires execution and inspection of the application with representative logs."
           ],
           "leadIn": "That investigation must also reveal when the source data cannot support an answer.",
-          "tradeoff": "Visible uncertainty is less tidy than a zero, but avoids turning missing input into a false conclusion."
+          "tradeoff": "Visible uncertainty is less tidy than a zero, but avoids turning missing input into a false conclusion.",
+          "code": {
+            "label": "Malformed-input contract from the actual parser test, excerpt",
+            "text": "expect(result.kind).toBe(\"issue\");\nif (result.kind === \"issue\") {\n  expect(result.issue.reason).toMatch(/separator|field count/i);\n  expect(result.event.eventType).toBe(\"unknown\");\n}",
+            "source": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/parser/parseLine.test.ts"
+          }
         }
       ],
-      "delivery": "The strongest proof for this kind of work is code, fixtures, calculation definitions and inspectable interface behavior. The public account is therefore centered on the information model and implementation questions rather than a gallery of conceptual screens.",
+      "delivery": "The public source provides the strongest evidence here: parser cases, encounter aggregation and renderer view-model fixtures can be inspected separately. This review read those contracts and the application manifest; it did not run the Windows application or independently establish calculation accuracy.",
       "outcome": "An encounter summary is useful when its actor, time range and supporting events remain inspectable. Known fixtures are the right way to check those relationships and calculation limits. The portfolio account does not substitute a clean dashboard for parser-accuracy evidence.",
       "related": [
         [
@@ -977,54 +982,77 @@
           "Expose uncertainty in the input"
         ],
         "reflection": "A clean dashboard is only persuasive when its numbers can be traced back to the relevant events and calculation rules. I would prioritize that traceability over adding another headline statistic. Known input fixtures are required before reporting accuracy or performance improvements."
-      }
+      },
+      "artifacts": [
+        [
+          "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/parser/parseLine.test.ts",
+          "Inspect real parser cases and malformed-input expectations"
+        ],
+        [
+          "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/aggregation/encounterAggregator.test.ts",
+          "Inspect encounter aggregation fixture"
+        ],
+        [
+          "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/renderer/analysisViewModel.test.ts",
+          "Inspect encounter-scoped rows and ownership grouping"
+        ],
+        [
+          "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/package.json",
+          "Read the Electron application and runtime manifest"
+        ]
+      ]
     },
     {
       "slug": "sassboilerplate",
       "title": "SassBoilerplate",
-      "category": "Frontend utility · Style architecture",
-      "role": "Frontend creator",
-      "summary": "A small Sass starter that makes file responsibilities predictable without turning setup into a framework of its own.",
+      "category": "Archived frontend learning · Sass and build workflow",
+      "role": "Frontend learning and starter-workflow adaptation",
+      "summary": "A learning archive that traces a small Sass structure through an existing Gulp-based build, with its upstream origin kept explicit.",
       "context": [
-        "A starter is useful when it removes repeated decisions and remains easy to change. It becomes a cost when a developer has to learn hidden conventions before doing the actual work. SassBoilerplate is a deliberately modest developer-experience project around that boundary.",
-        "My existing scope covers Sass structure, file responsibilities, naming and workflow documentation for small frontend projects. It is code-oriented work. I do not present a fabricated Figma interface as evidence of a style architecture."
+        "SassBoilerplate is an earlier frontend learning archive, not an independently authored framework. The archived README identifies it as a historical copy of JR Cologne’s Gulp Starter Kit, with Sass, Pug, Babel, BrowserSync and image-processing tasks. That provenance is part of the project, not a detail to omit from the portfolio.",
+        "The useful story is what the files make inspectable: an entry point, a small shared import layer and build tasks that turn authored assets into output. My contribution is presented as learning and adaptation around that workflow, rather than ownership of the upstream kit or a maintained npm package."
       ],
       "constraints": [
-        "A small project should not inherit abstractions it is unlikely to use.",
-        "Import order and naming need to be understandable to someone who did not create the starter.",
-        "The structure should be cheap to shrink, replace or remove as a project changes."
+        "Attribute the original JR Cologne starter kit and preserve its distinction from this learning archive.",
+        "Describe the source that exists: the current shared Sass import points to the base rules; empty architecture placeholders were removed.",
+        "Historical tooling and dependencies are not a verified recommendation for a new production project."
       ],
       "decisions": [
         {
-          "heading": "Make responsibility easier to locate",
+          "heading": "Start with the files that actually contribute styles",
+          "leadIn": "The entry point gives the first concrete place to inspect the workflow.",
           "body": [
-            "A folder name earns its place when it helps answer where a change belongs. I prefer a structure that separates broadly shared decisions from component-specific styling without requiring a long verbal explanation.",
-            "The test is practical: can another developer locate a type rule, a layout rule and a component rule from the names and imports? That is a validation task, not a measured onboarding result."
+            "The archived app.sass imports _includes; _includes imports base/_base. That is a small, visible dependency path. The source comments explicitly say that empty helper, module, partial and global placeholders were removed, so the case should not describe a large token or component architecture that is no longer there.",
+            "The design principle is legibility: a file’s name and import should explain its responsibility. For this archive, the honest example is a short chain a reader can inspect directly."
           ],
-          "leadIn": "The first task is locating the file that owns the change.",
-          "tradeoff": "Clear responsibilities help navigation; excessive folders create another naming system to learn."
+          "tradeoff": "A small import layer is easy to follow; adding categories before they own real styles creates structure without a useful responsibility.",
+          "code": {
+            "label": "Actual entry and shared import, excerpted from the learning archive",
+            "text": "// app.sass\n@import '_includes'\n\n// _includes.sass\n@import 'base/_base'",
+            "source": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/_includes.sass"
+          }
         },
         {
-          "heading": "Keep the dependency direction legible",
+          "heading": "Read the build as a sequence of responsibilities",
+          "leadIn": "After locating the Sass source, the next question is how it becomes browser output.",
           "body": [
-            "A starter should make it possible to understand what depends on what. Hidden coupling makes an apparently local style change difficult to reason about and increases the cost of deleting unused code.",
-            "I treat import structure and documentation as part of the product interface for a developer. The aim is not the largest possible file tree; it is a small set of conventions that correspond to actual responsibilities."
+            "The archived sassTask reads Sass and SCSS, initializes source maps, handles errors, resolves dependents, compiles, prefixes and minifies CSS, writes maps and sends the result to the output directory and BrowserSync. Separate named tasks handle templates, JavaScript, images and copied dependencies.",
+            "Those boundaries make the workflow easier to explain than a list of tools alone. They also expose where a modern migration needs care: an old compiler or image dependency can fail even when the Sass source itself is simple."
           ],
-          "leadIn": "Finding that file is only useful if its dependencies are understandable.",
-          "tradeoff": "Explicit dependency direction improves reasoning without requiring the largest possible architecture."
+          "tradeoff": "Automation removes repetitive work, while every additional transform introduces another compatibility and debugging boundary."
         },
         {
-          "heading": "Make removal a normal use case",
+          "heading": "Treat the archive as evidence of learning",
+          "leadIn": "The last decision is how to present and reuse the work responsibly.",
           "body": [
-            "A team may adopt only part of a starter or outgrow its original assumptions. Loosely coupled conventions are useful because they can be replaced without preserving the entire setup indefinitely.",
-            "That restraint is the design decision this case is meant to show. It does not imply that every frontend project needs the same architecture or that Sass is the correct choice for every team."
+            "The archived README names the upstream package, original author, repository and MIT license. It also warns that the historical Node requirement and dependencies do not establish compatibility with a current runtime. That is the appropriate boundary for this portfolio entry.",
+            "The artifact is useful for explaining how I learned to connect source organization and build behavior. It is not a new framework release, a currently maintained package, or evidence of measured developer onboarding gains."
           ],
-          "leadIn": "Finally, adoption needs to remain reversible as the project changes.",
-          "tradeoff": "Easy removal gives teams flexibility at the cost of fewer enforced conventions."
+          "tradeoff": "Keeping historical work shows the learning path, provided its attribution and present-day limits remain clear."
         }
       ],
-      "delivery": "The deliverable is the structure and the explanation that makes it usable. Repository evidence is more relevant here than a screenshot. Existing code references are preserved; their current maintenance and compatibility still need to be assessed before adopting the utility in a new project.",
-      "outcome": "The useful artifact is the file structure and its documentation. A developer should be able to find a shared token, add a component and remove an unused layer from those conventions. There is no measured setup-time saving to report.",
+      "delivery": "A public learning archive with inspectable Sass imports and named Gulp build tasks. The original starter kit is credited to JR Cologne. This review inspected the source and documentation; it did not install or execute the historical dependency tree.",
+      "outcome": "The archive supports a concrete explanation of source ownership, import direction and build responsibilities. Its value in the portfolio is the learning and adaptation, with upstream attribution and maintenance limits visible.",
       "related": [
         [
           "/figma-design-systems",
@@ -1041,15 +1069,29 @@
       ],
       "updatedAt": "2026-11-04",
       "journey": {
-        "question": "How much structure does a small frontend project need before the starter becomes more work than it removes?",
-        "opening": "The developer journey is deliberately small: find where a change belongs, understand its dependencies, then keep or remove the structure as the project evolves. SassBoilerplate treats those ordinary maintenance actions as the interface of the tool.",
+        "question": "What did a small starter workflow teach me about making frontend structure understandable?",
+        "opening": "This case is a deliberately modest learning story. Start at the Sass entry, follow the shared import into base rules, then look at how the build transforms the files. The archive makes that path inspectable without turning a borrowed starter into a claim of original framework authorship.",
         "steps": [
-          "Find the right responsibility",
-          "Understand dependency direction",
-          "Remove what the project does not need"
+          "Follow the Sass entry",
+          "Inspect the build responsibilities",
+          "Keep the archive in its proper scope"
         ],
-        "reflection": "Restraint is the central design choice. A starter earns its complexity when another developer can locate, change and delete code without learning hidden rules. The artifact is the structure and documentation, rather than a fictional product interface or an unmeasured setup-time claim."
-      }
+        "reflection": "The useful lesson is to make responsibility and provenance easy to follow. A starter can support learning without needing to become a product claim. Today I would review a small maintained toolchain against the actual project rather than recommend this historical dependency set unchanged."
+      },
+      "artifacts": [
+        [
+          "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/README.md",
+          "Read the archive status and upstream attribution"
+        ],
+        [
+          "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/gulpfile.js",
+          "Inspect the actual named build tasks"
+        ],
+        [
+          "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
+          "Follow the Sass entry point"
+        ]
+      ]
     }
   ]
 }

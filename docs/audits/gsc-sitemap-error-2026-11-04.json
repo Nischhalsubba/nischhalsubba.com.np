@@ -1,0 +1,31 @@
+{
+  "property": "sc-domain:nischhalsubba.com.np",
+  "observed_date": "2026-11-04",
+  "source": "Authenticated Search Console rendered dashboard",
+  "sitemap": "https://nischhalsubba.com.np/sitemap.xml",
+  "last_read": "2026-10-30",
+  "discovered_pages": 43,
+  "error": "Incorrect namespace",
+  "instances": 1,
+  "line": 2,
+  "tag": "urlset",
+  "message": "Your Sitemap or Sitemap index file doesn't properly declare the namespace.",
+  "live_check": {
+    "url": "https://nischhalsubba.com.np/sitemap.xml",
+    "namespace": "http://www.sitemaps.org/schemas/sitemap/0.9",
+    "url_count": 53,
+    "parser_error": false,
+    "method": "Browser XML document DOM; same-day independent read"
+  },
+  "code_check": {
+    "legacy_generators": [
+      "site/scripts/ensure-human-seo.cjs",
+      "site/scripts/ensure-human-seo-v2.cjs"
+    ],
+    "malformed_namespace": "http://www.sitemaps.org/sitemap/0.9",
+    "correction": "http://www.sitemaps.org/schemas/sitemap/0.9",
+    "final_generator": "Already correct before this continuation"
+  },
+  "submission": "NOT_EXECUTED; original brief requires explicit approval before GSC write",
+  "interpretation": "Google report reflects older read; current live XML is correct. No claim that Google processing has cleared."
+}

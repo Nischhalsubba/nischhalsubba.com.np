@@ -75,3 +75,11 @@ In the discovered domain property, open Indexing → Sitemaps → sitemap.xml an
 For the six non-indexed URLs above, review distinctive content, internal discovery and live fetch eligibility. Use the owner UI's Test live URL and Request indexing manually where warranted after deployment. The HYPD connector cannot perform either submission or indexing requests. Check again after recrawl; a code test is not an indexing result.
 
 Official guidance: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap ; https://developers.google.com/search/docs/appearance/ai-features ; https://developers.google.com/search/docs/appearance/structured-data/article
+
+## Authenticated sitemap diagnosis — 4 November 2026
+
+Search Console confirms “Incorrect namespace”, one instance, line 2, tag `urlset`; its last read remains 30 October with 43 discovered pages. The live XML was independently opened in the browser: correct `http://www.sitemaps.org/schemas/sitemap/0.9` namespace, 53 URL elements and no parser error. This separates Google's historical processing report from the current live bytes.
+
+Two legacy generators still emitted `http://www.sitemaps.org/sitemap/0.9` (missing `/schemas/`). They are corrected in this continuation; the final generator was already correct. The final audit now checks the namespace declaration on the root element explicitly. Official specification: https://www.sitemaps.org/protocol.html. The historical source defect is consistent with the reported error, but the exact 30 October response bytes were not retained.
+
+Resubmission is NOT EXECUTED. The original user brief explicitly requires approval for GSC writes. Once approved, resubmit the existing `https://nischhalsubba.com.np/sitemap.xml` and recheck processing; do not remove the existing record or claim indexing is guaranteed. The authenticated overview also reports no Core Web Vitals field data for mobile or desktop; lab scores remain separate. Sanitized evidence: `gsc-sitemap-error-2026-11-04.json`.

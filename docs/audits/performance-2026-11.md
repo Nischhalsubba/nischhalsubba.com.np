@@ -54,3 +54,7 @@ The execution environment disconnected after a successful 595-file deterministic
 ## Mobile decorative intro experiment
 
 The pre-change 7c7c3ba controlled homepage median was mobile 88 / LCP 2779.68ms / TBT 319.5ms / CLS 0; desktop 98 / LCP 823.25ms. The small-screen full-screen loading canvas performs glyph sampling and dot animation before the main experience. This continuation bypasses that overlay at <=700px while preserving desktop intro and the main hero interactions. New performance measurements are required before retaining a success claim. Local Chromium installation failed with a truncated ZIP; no local Lighthouse result was produced. CI is the browser measurement path.
+
+### Bounded startup task splitting
+
+The 1d6595c diagnostic did not establish the mobile target (three runs 93, 86, 86). The sampled mobile trace shows a 435ms startup task. The next revision yields between five ordered independent initialization groups, allowing paint/input between them; the drawing geometry and interaction implementations are retained. This is a testable scheduling change, not a measured improvement claim. Browser evidence must verify full initialization, native paint order and bidirectional navigation.

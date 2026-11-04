@@ -2142,7 +2142,14 @@ function workspaceAfterFirstPaint(start) {
     requestAnimationFrame(() => requestAnimationFrame(run));
   }
 }
-workspaceAfterFirstPaint(/** Callback contract: Initialize unchanged scenes and interactions after paint. Inputs: none. Side effects: initializes workspace UI. Returns: void. */ () => {
+/** Function contract: workspaceYield
+ * Purpose: Split independent startup groups so the browser can paint and handle input between them.
+ * Inputs: none. Side effects: schedules a new task. Returns: a promise resolved by that task.
+ */
+function workspaceYield() {
+  return new Promise(/** Callback contract: Resume startup in a separate browser task. Inputs: resolver. Side effects: schedules timer. Returns: void. */ resolve => setTimeout(resolve, 0));
+}
+workspaceAfterFirstPaint(/** Callback contract: Initialize scenes in ordered groups after paint, yielding between groups. Inputs: none. Side effects: initializes workspace UI. Returns: completion promise. */ async () => {
   performance.mark('workspace-init-start');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
@@ -2385,6 +2392,8 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize unchanged scenes and 
   hero.addEventListener('mouseleave', () => { mouse.x = mouse.y = -9999; heroPar.x = heroPar.y = 0; });
   const heroPar = { x: 0, y: 0, cx: 0, cy: 0 };
   new IntersectionObserver(([en]) => { heroVisible = en.isIntersecting; }).observe(hero);
+
+  await workspaceYield();
 
   /* ---------- global atmosphere: blobs flow between sections ---------- */
   const orbs = [$('#o1'), $('#o2'), $('#o3')];
@@ -2796,6 +2805,8 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize unchanged scenes and 
     return { ripple, size, get fine() { return fine; } };
   };
 
+  await workspaceYield();
+
   /* ---------- work: an infinite canvas. Projects sit on one Figma-like page; scrolling flies the camera from one to the
      next along a user-flow line. The selected card shows component handles; hovering it shows a button named after
      the place the link opens (View on Behance, Visit live site...). Behind it all, the diode field. ---------- */
@@ -3125,6 +3136,8 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize unchanged scenes and 
   $$('.hs-panel p').forEach(p => revealWords(p, 22, [150, 24], 120));
 
 
+  await workspaceYield();
+
   /* ---- every button is the chamfered plate: dark slab, cyan-blue brackets, gradient flood ---- */
   const ARROW = '<svg class="ar" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.5 12L4.99997 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>';
   function chSize(el) {
@@ -3396,6 +3409,8 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize unchanged scenes and 
     addEventListener('scroll', () => { const m = document.documentElement.scrollHeight - innerHeight; pc.textContent = Math.round(clamp(scrollY / m) * 100); }, { passive: true });
   })();
 
+  await workspaceYield();
+
   /* ---- sticky stack: the covered block recedes to 0.9 and darkens to 55% ---- */
   const layers = $$('.layer:not(.last)').map(l => ({ l, inner: l.querySelector('.layer-in'), shade: l.querySelector('.layer-shade'), next: l.nextElementSibling, top: 0 }));
   const phone = matchMedia('(max-width: 639px)');
@@ -3615,6 +3630,8 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize unchanged scenes and 
   const toast = $('#toast'); let toT;
   const say = m => { toast.textContent = m; toast.classList.add('on'); clearTimeout(toT); toT = setTimeout(() => toast.classList.remove('on'), 2200); };
   const copyEmail = () => { const ok = () => say('Email copied. Talk soon!'), fail = () => say(CMSV('contact.email', 'hinischalsubba@gmail.com')); try { navigator.clipboard.writeText(CMSV('contact.email', 'hinischalsubba@gmail.com')).then(ok, fail); } catch (e) { fail(); } };
+
+  await workspaceYield();
 
   /* ---------- contact: a Figma file bar; a cursor clicks Share and the invite dialog opens ---------- */
   (() => {

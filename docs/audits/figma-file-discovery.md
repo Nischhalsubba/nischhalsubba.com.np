@@ -22,3 +22,7 @@ The private inventory includes full frame/section labels. The public CSV withhol
 3,889 original PNGs persisted, 3,554 hash unique and 335 duplicate-node exports. 172 known eligible legacy Project-Iron candidates remain plan limited. The public frame CSV remains the earlier 2,680-original checkpoint; the current full inventory stays private in continuation archive v9. This does not establish account-wide completeness or publication clearance for every screen.
 
 14 reviewed illustrations / 40 local derivative files / 37 placements across five cases and 20 articles are in PR #103. They are prepared on the review branch; production publication has not been verified. See `figma-export-summary.json`, `project-evidence-matrix.csv` and `screenshot-to-content-map.csv` for current aggregate and curated-public evidence. No access, sharing or paid plan changes were needed or performed.
+
+## Authenticated file-browser discovery, 4 November 2026
+
+Figma web sign-in succeeded. The account browser has a starred Mokshya folder containing a file named Website and a starred Hamro Idea Landing Page Design folder. These are source candidates, not verified project-screen exports. The editor reported that WebGL is unavailable and returned to Recents. File-browser Copy link showed a success toast, but the browser clipboard API returned no item, so no source file key was recovered from that operation. No permissions or plan settings were changed. Account-wide completeness remains unestablished and matching permanent links are still needed for the six missing cases.
