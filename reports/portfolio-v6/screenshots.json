@@ -133,46 +133,46 @@
   },
   {
     "file": "evidence/after-ux-audit-1440.png",
-    "sha256": "85ed2d48dae0ea0f1baf9f22b9552a703b43bac395b1823a07a65680cb80d49c",
+    "sha256": "b8e6ba5c484ce60babd65671844a058a1d63fbe5c9ea4903004050b0e9a2b656",
     "url": "http://127.0.0.1:4173/ux-audit",
     "viewport": {
       "width": 1440,
       "height": 900
     },
-    "capturedAt": "2026-11-05T11:24:38.771986+00:00",
+    "capturedAt": "2026-11-05T11:40:17.245826+00:00",
     "scope": "Final local changed-page QA, not independent product-source evidence"
   },
   {
     "file": "evidence/after-about-1440.png",
-    "sha256": "60a04f92365346bfaa9737e7f1b5ed4d3bf85aabbcfa5901ae1e956706ce20c7",
+    "sha256": "c944dfe38ab6383bbd98319bb791208015ad5addca7c3c2433b0d859c0d5635a",
     "url": "http://127.0.0.1:4173/about",
     "viewport": {
       "width": 1440,
       "height": 900
     },
-    "capturedAt": "2026-11-05T11:24:36.935982+00:00",
+    "capturedAt": "2026-11-05T11:40:15.157824+00:00",
     "scope": "Final local changed-page QA, not independent product-source evidence"
   },
   {
     "file": "evidence/after-about-390.png",
-    "sha256": "be4df2b1048e3274ef985637f564777ae0c5af04183a2a97c88f4f1fa3600faa",
+    "sha256": "83a1fbd9da06a586690114e104b40558d489a9cb4262750325af37d7d4e3b19c",
     "url": "http://127.0.0.1:4173/about",
     "viewport": {
       "width": 390,
       "height": 900
     },
-    "capturedAt": "2026-11-05T11:24:32.979975+00:00",
+    "capturedAt": "2026-11-05T11:40:10.797821+00:00",
     "scope": "Final local changed-page QA, not independent product-source evidence"
   },
   {
     "file": "evidence/after-ux-audit-390.png",
-    "sha256": "7360c7b49f3a74705a21126fe13793f80fca03e9ed02374b005b9c7b90ea1232",
+    "sha256": "ae9f046a54665a650db315e14db97fca718e30295b5b656cfaa3e5228c0be2a7",
     "url": "http://127.0.0.1:4173/ux-audit",
     "viewport": {
       "width": 390,
       "height": 900
     },
-    "capturedAt": "2026-11-05T11:24:34.763978+00:00",
+    "capturedAt": "2026-11-05T11:40:12.457822+00:00",
     "scope": "Final local changed-page QA, not independent product-source evidence"
   }
 ]
