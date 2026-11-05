@@ -1,0 +1,409 @@
+[
+  {
+    "slug": "figma-handoff-notes-for-developers",
+    "intent": "Write a behavior contract beside a specific Figma screen",
+    "evidence": [
+      "orkest-lead-capture"
+    ],
+    "headings": [
+      "Start with the decision, not the measurements",
+      "Use the form to expose unresolved behavior",
+      "Write a state contract someone can test",
+      "Describe responsive and keyboard rules",
+      "Finish with an owner for every open question"
+    ],
+    "source": "site/src/content/articles-editorial.json"
+  },
+  {
+    "slug": "blog-good-handoff",
+    "intent": "Coordinate responsibility and resolve ambiguity between design and engineering",
+    "evidence": [
+      "orkest-lead-capture"
+    ],
+    "headings": [
+      "Separate a delivered file from an agreed decision",
+      "Give ambiguity a place and an owner",
+      "Review a real example instead of a generic checklist",
+      "Keep a small decision record",
+      "Close the loop in the built product"
+    ],
+    "source": "site/src/content/articles-editorial.json"
+  },
+  {
+    "slug": "design-handoff-checklist-startup-product-teams",
+    "intent": "Prepare a bounded design slice for a startup release",
+    "evidence": [
+      "orkest-conversion-readiness"
+    ],
+    "headings": [
+      "Define the slice and its boundary",
+      "Check readiness across four responsibilities",
+      "Run the minimum state review",
+      "Assign open questions before estimating completion",
+      "Review the implementation, then preserve the decision",
+      "Turn a visible promise into a release check"
+    ],
+    "source": "site/src/content/articles-editorial.json"
+  },
+  {
+    "slug": "responsive-saas-dashboard-handoff-notes",
+    "intent": "Specify responsive behavior for dense operational interfaces",
+    "evidence": [
+      "orkest-lead-list"
+    ],
+    "headings": [
+      "Write the task that must survive",
+      "Specify behavior by constraint",
+      "Use the desktop evidence honestly",
+      "Document overflow and interruption",
+      "Test the transition, not only the endpoints"
+    ],
+    "source": "site/src/content/articles-editorial.json"
+  },
+  {
+    "slug": "saas-dashboard-filter-ux",
+    "intent": "Design inspectable filter state for operational record lists",
+    "evidence": [
+      "orkest-lead-list"
+    ],
+    "headings": [
+      "Separate a recurring view from a temporary condition",
+      "Make the current query inspectable",
+      "Decide persistence before building the panel",
+      "Make zero results recoverable",
+      "Review with an operational question"
+    ],
+    "source": "site/src/content/articles-editorial.json"
+  },
+  {
+    "slug": "role-based-saas-dashboard-ux",
+    "intent": "Separate role tasks, ownership views and authorization",
+    "evidence": [
+      "orkest-lead-list",
+      "pihub-access-denied"
+    ],
+    "headings": [
+      "Distinguish three different concepts",
+      "Map tasks and actions before designing variants",
+      "Share the language, vary the priority",
+      "Design denial without leaking information",
+      "Test the boundary outside the happy path",
+      "Judge the model by a shared scenario",
+      "Inspect the denied state as a design artifact"
+    ],
+    "source": "site/src/content/articles-editorial.json"
+  },
+  {
+    "slug": "saas-dashboard-empty-state-ux-guide",
+    "intent": "Write concise explanation and recovery copy for one zero-result state",
+    "evidence": [
+      "yarsha-contact-empty"
+    ],
+    "headings": [
+      "Write the cause before the call to action",
+      "Use a small cause-to-copy worksheet",
+      "Inspect a real zero-result frame",
+      "Keep the message proportionate",
+      "Review the words in a transition"
+    ],
+    "source": "site/src/content/articles-editorial.json"
+  },
+  {
+    "slug": "saas-dashboard-empty-states-product-clarity",
+    "intent": "Classify empty-state causes across a product",
+    "evidence": [
+      "pihub-access-denied"
+    ],
+    "headings": [
+      "Use two axes: cause and agency",
+      "Create a small taxonomy",
+      "Make classification part of the component API",
+      "Review adjacent states together",
+      "Keep an inventory with named owners",
+      "Keep access denial out of the no-results bucket"
+    ],
+    "source": "site/src/content/articles-editorial.json"
+  },
+  {
+    "slug": "saas-dashboard-empty-states-that-help-users-recover",
+    "intent": "Acceptance-test empty-state recovery and retained context",
+    "evidence": [
+      "pihub-access-denied"
+    ],
+    "headings": [
+      "Name what must remain intact",
+      "Test a transition matrix",
+      "Keep focus and announcements useful",
+      "Prevent recovery from becoming a repeated mistake",
+      "Record the result at task level",
+      "Review what a return action can recover"
+    ],
+    "source": "site/src/content/articles-editorial.json"
+  },
+  {
+    "slug": "blog-design-systems-front-end",
+    "intent": "Connect design-system decisions to frontend responsibilities",
+    "evidence": [
+      "orkest-lead-capture",
+      "masteriyo-question-editor"
+    ],
+    "headings": [
+      "Share meaning before sharing names",
+      "Define the component beyond its default frame",
+      "Treat content variation as part of the API",
+      "Review the boundary in both tools",
+      "Govern exceptions instead of denying them",
+      "Follow the content model through an authoring journey"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "design-systems-small-product-teams",
+    "intent": "Build a proportional design system for a small team",
+    "evidence": [
+      "orkest-conversion-readiness"
+    ],
+    "headings": [
+      "Start where repetition already costs something",
+      "Give each shared pattern a small contract",
+      "Use real examples to limit variants",
+      "Document the escape hatch",
+      "Measure continuation rather than library size",
+      "Use a small product panel to test the boundary"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "blog-service-websites",
+    "intent": "Write a service website around client evaluation",
+    "evidence": [
+      "morajaa-service-process"
+    ],
+    "headings": [
+      "Begin with the client's question",
+      "Use scope and sequence as evidence",
+      "Give the page a useful sequence",
+      "Keep proof specific and permission-aware",
+      "Carry context into the inquiry"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "blog-portfolio-product",
+    "intent": "Explain portfolio editorial and interaction decisions using the current site",
+    "evidence": [],
+    "headings": [
+      "Give the visitor a question to answer",
+      "Keep the visual identity, reduce the evaluation cost",
+      "Make the evidence boundary visible",
+      "Treat performance as part of access",
+      "Choose an honest next improvement"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "blog-gaming-interface-clarity",
+    "intent": "Apply gaming-interface observations to data-product design without invented research",
+    "evidence": [],
+    "headings": [
+      "Separate immediate action from later analysis",
+      "Make state legible without remembering every detail",
+      "Use progressive detail to answer a question",
+      "Review four conditions",
+      "Carry the lesson without copying the game UI"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "hire-product-designer-nepal-saas-web3",
+    "intent": "Help a hiring team evaluate a Nepal-based product designer for complex software",
+    "evidence": [],
+    "headings": [
+      "Start with the kind of complexity you need help with",
+      "Inspect contribution, artifact and boundary together",
+      "Use a focused conversation",
+      "Check collaboration with a real problem",
+      "Choose the engagement that fits the uncertainty"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "blog-web3-products",
+    "intent": "Translate Web3 mechanisms into understandable product decisions",
+    "evidence": [],
+    "headings": [
+      "Separate the product task from the mechanism",
+      "Keep familiar context around the unfamiliar step",
+      "Avoid three kinds of false reassurance",
+      "Use product language with inspectable detail",
+      "Review the handoff between systems"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "web3-wallet-connection-ux",
+    "intent": "Design wallet connection as a bounded permission and recovery step",
+    "evidence": [],
+    "headings": [
+      "Explain the purpose before opening the wallet",
+      "Distinguish connection from the next authorization",
+      "Design the recovery branches",
+      "Preserve the task across the external handoff",
+      "Write acceptance criteria for actual behavior",
+      "Keep the evidence boundary clear"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "transaction-review-ux-crypto-apps",
+    "intent": "Define the information and uncertainty boundary of transaction review",
+    "evidence": [],
+    "headings": [
+      "Lead with the proposed change",
+      "Distinguish selection from signing",
+      "Keep the result model more precise than a spinner",
+      "Do not generalize technical outcomes across networks",
+      "Test uncertainty before writing reassurance",
+      "Inspect a result panel without calling it authorization"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "web3-wallet-ux-checklist",
+    "intent": "Acceptance-review a complete wallet-enabled product journey",
+    "evidence": [],
+    "headings": [
+      "Set the integration boundary first",
+      "Walk the journey in order",
+      "Add the interruptions",
+      "Review comprehension alongside mechanics",
+      "Keep a verification ledger",
+      "Use the detail view to identify an implementation check"
+    ],
+    "source": "site/src/content/articles-editorial-practice.json"
+  },
+  {
+    "slug": "designing-handoffs-between-people",
+    "intent": "Explain cross-role handoffs with original product screens",
+    "evidence": [
+      "orkest-lead-list",
+      "pihub-application-status",
+      "zapp-driver-next-stop"
+    ],
+    "headings": [
+      "The difficult moment is often between screens",
+      "First, make ownership visible before asking for action",
+      "Then, design waiting as a legitimate state",
+      "Finally, separate progress from completion",
+      "The handoff note I want beside the frame"
+    ],
+    "source": "site/src/content/articles-editorial-journeys.json"
+  },
+  {
+    "slug": "ux-audit-evidence-before-redesign",
+    "intent": "Build an evidence pack before deciding what to redesign",
+    "evidence": [
+      "zapp-delivery-complete"
+    ],
+    "headings": [
+      "Begin with a question the evidence can answer",
+      "Collect complementary evidence",
+      "Attach provenance to each finding",
+      "Use a reproducible finding format",
+      "End with a decision-ready pack",
+      "Read the evidence boundary inside the artifact"
+    ],
+    "source": "site/src/content/articles-editorial-audits.json"
+  },
+  {
+    "slug": "ux-audit-checklist-before-redesign",
+    "intent": "Run a reproducible task-based interface audit",
+    "evidence": [
+      "zapp-parcel-details"
+    ],
+    "headings": [
+      "Set up a real starting condition",
+      "Walk the task, then the exception",
+      "Inspect access and alternate input",
+      "Use one concrete design example",
+      "Turn the result into a bounded decision"
+    ],
+    "source": "site/src/content/articles-editorial-audits.json"
+  },
+  {
+    "slug": "prioritize-ux-audit-findings-before-redesign",
+    "intent": "Choose a defensible repair order without false numerical precision",
+    "evidence": [],
+    "headings": [
+      "Start with consequence, not the screenshot",
+      "Keep confidence visible",
+      "Use an order the team can defend",
+      "Separate quick repair from structural work",
+      "Keep a decision ledger",
+      "Revisit priority after learning"
+    ],
+    "source": "site/src/content/articles-editorial-audits.json"
+  },
+  {
+    "slug": "when-startup-needs-ux-audit-before-redesign",
+    "intent": "Decide whether to audit, repair or redesign a startup product",
+    "evidence": [
+      "zapp-driver-next-stop"
+    ],
+    "headings": [
+      "Identify the decision you cannot yet make",
+      "Choose a response that matches the evidence",
+      "Scope the audit around a consequential journey",
+      "Ask for a decision-ready deliverable",
+      "Do not delay urgent repairs for the perfect study",
+      "Bound a review around one driver decision"
+    ],
+    "source": "site/src/content/articles-editorial-audits.json"
+  },
+  {
+    "slug": "beautiful-interface-poor-ux",
+    "intent": "Diagnose task problems concealed by visual polish",
+    "evidence": [
+      "yarsha-contact-empty"
+    ],
+    "headings": [
+      "Ask what the person can explain",
+      "Look for the state the presentation omits",
+      "Use four small diagnostic tasks",
+      "Distinguish motion from feedback",
+      "Repair the model before adding emphasis"
+    ],
+    "source": "site/src/content/articles-editorial-audits.json"
+  },
+  {
+    "slug": "saas-dashboard-ux-checklist",
+    "intent": "Review the core task hierarchy of an operational dashboard",
+    "evidence": [
+      "pihub-application-status"
+    ],
+    "headings": [
+      "Start with the decision the dashboard supports",
+      "Review the dashboard in six passes",
+      "Inspect one source-backed example",
+      "Check density against the job",
+      "Exercise the state, not just the layout",
+      "Record a task-level conclusion",
+      "Compare the object as well as the layout"
+    ],
+    "source": "site/src/content/articles-editorial-audits.json"
+  },
+  {
+    "slug": "website-ux-checklist-software-companies",
+    "intent": "Review a software website as an evaluation journey",
+    "evidence": [],
+    "headings": [
+      "Test the opening explanation",
+      "Review the evaluation path",
+      "Keep proof next to the claim",
+      "Inspect navigation and contact in context",
+      "Review the actual page, not only the design",
+      "Use findings to refine the offer"
+    ],
+    "source": "site/src/content/articles-editorial-audits.json"
+  }
+]

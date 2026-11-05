@@ -40,6 +40,8 @@ for (const route of inventory) {
     assert.ok(exists, `${route.file}: missing ${ref}`); links++;
   }
 }
+const about = fs.readFileSync(path.join(dist, 'about.html'), 'utf8');
+assert.match(about, /I’m a Nepal-based product designer working remotely\./, 'Current About biography must use the approved Nepal-based remote wording');
 const contact = fs.readFileSync(path.join(dist, 'contact.html'), 'utf8');
 assert.match(contact, /action="\/api\/contact"/);
 assert.match(contact, /id="contact-form"/);

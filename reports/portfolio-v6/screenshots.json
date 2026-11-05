@@ -1,0 +1,178 @@
+[
+  {
+    "file": "evidence/index-1440.png",
+    "sha256": "a166614bdea49e517dc09ea6a5880d5e830a9f846220cc5f0bb306d1b07a141b",
+    "url": "http://127.0.0.1:4173/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:19:44.984Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/projects-1440.png",
+    "sha256": "7cc3e856b1ab112e22dec5afb51c3f5cab3ac0fca57a7a69c1e12e6469da0559",
+    "url": "http://127.0.0.1:4173/projects",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:19:44.984Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/about-1440.png",
+    "sha256": "5ded789549f9adbe6effd0a6c142ed4a6da2366dcd4e304cf4cfe5b5f263d0ce",
+    "url": "http://127.0.0.1:4173/about",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:19:44.984Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/contact-1440.png",
+    "sha256": "b8728d3b4a7c2b4f1a81cec89a2aecbe66c1d3a8599152041fd08d8c37a357de",
+    "url": "http://127.0.0.1:4173/contact",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:19:44.984Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/blog-index-1440.png",
+    "sha256": "6ae3156e8561d8146d1fe34717624e77c4c5b26ead0761ebd8d166a25fef6508",
+    "url": "http://127.0.0.1:4173/blog/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:19:44.984Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/project-zapp-1440.png",
+    "sha256": "a0e2ac8fa77960144efcbfd528ce68da9c43c107030f7b4f49b02c9a2ad9bd25",
+    "url": "http://127.0.0.1:4173/project-zapp",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:19:44.985Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/index-390.png",
+    "sha256": "63f97c05da7fef085489e303a53fcce72defe9eddc2d61c9e3e5a875777ca92f",
+    "url": "http://127.0.0.1:4173/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T11:19:44.985Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/projects-390.png",
+    "sha256": "e9b7ff4de7c5b966201cec29f26d9f7811d496e1053a1d6f379b30a097f9f6ca",
+    "url": "http://127.0.0.1:4173/projects",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T11:19:44.985Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/about-390.png",
+    "sha256": "2228b4e13423770a0e52e131057b4754b98499b47148d2ef0f5040b9060b2e1a",
+    "url": "http://127.0.0.1:4173/about",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T11:19:44.985Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/contact-390.png",
+    "sha256": "96abe7f712e7240fa4d8ff0e4ba52603e639d57e2edb972ea4c426f5f5f46ec8",
+    "url": "http://127.0.0.1:4173/contact",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T11:19:44.985Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/blog-index-390.png",
+    "sha256": "0bda7fa7ed7f29250f3ef3d7af68c4f6c2b2784b6359eaa4136c77f53ace1545",
+    "url": "http://127.0.0.1:4173/blog/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T11:19:44.985Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/project-zapp-390.png",
+    "sha256": "716e073aca2ca7f62dc4707011531a4552e1537bcd6e8d566cdc4b986f0a4242",
+    "url": "http://127.0.0.1:4173/project-zapp",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T11:19:44.985Z",
+    "scope": "Local portfolio QA, not independent third-party product evidence"
+  },
+  {
+    "file": "evidence/after-ux-audit-1440.png",
+    "sha256": "85ed2d48dae0ea0f1baf9f22b9552a703b43bac395b1823a07a65680cb80d49c",
+    "url": "http://127.0.0.1:4173/ux-audit",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:24:38.771986+00:00",
+    "scope": "Final local changed-page QA, not independent product-source evidence"
+  },
+  {
+    "file": "evidence/after-about-1440.png",
+    "sha256": "60a04f92365346bfaa9737e7f1b5ed4d3bf85aabbcfa5901ae1e956706ce20c7",
+    "url": "http://127.0.0.1:4173/about",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:24:36.935982+00:00",
+    "scope": "Final local changed-page QA, not independent product-source evidence"
+  },
+  {
+    "file": "evidence/after-about-390.png",
+    "sha256": "be4df2b1048e3274ef985637f564777ae0c5af04183a2a97c88f4f1fa3600faa",
+    "url": "http://127.0.0.1:4173/about",
+    "viewport": {
+      "width": 390,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:24:32.979975+00:00",
+    "scope": "Final local changed-page QA, not independent product-source evidence"
+  },
+  {
+    "file": "evidence/after-ux-audit-390.png",
+    "sha256": "7360c7b49f3a74705a21126fe13793f80fca03e9ed02374b005b9c7b90ea1232",
+    "url": "http://127.0.0.1:4173/ux-audit",
+    "viewport": {
+      "width": 390,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:24:34.763978+00:00",
+    "scope": "Final local changed-page QA, not independent product-source evidence"
+  }
+]

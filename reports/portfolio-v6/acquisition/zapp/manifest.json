@@ -1,0 +1,22 @@
+[
+  {
+    "source": "https://zapp.today/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "status": "BLOCKED_SOURCE",
+    "error": "Error: page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://zapp.today/\nCall log:\n\u001b[2m  - navigating to \"https://zapp.today/\", waiting until \"networkidle\"\u001b[22m\n",
+    "observedAt": "2026-11-05T11:16:45.174Z"
+  },
+  {
+    "source": "https://zapp.today/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "status": "BLOCKED_SOURCE",
+    "error": "Error: page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://zapp.today/\nCall log:\n\u001b[2m  - navigating to \"https://zapp.today/\", waiting until \"networkidle\"\u001b[22m\n",
+    "observedAt": "2026-11-05T11:16:45.331Z"
+  }
+]

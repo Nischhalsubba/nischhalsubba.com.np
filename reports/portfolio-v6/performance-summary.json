@@ -1,0 +1,60 @@
+{
+  "mobile": [
+    {
+      "file": "mobile-3.json",
+      "score": 0.93,
+      "LCP_ms": 2809.7412500000005,
+      "CLS": 1.64937914971467e-05,
+      "TBT_ms": 95.24825000000101,
+      "warnings": [],
+      "runtimeError": null
+    },
+    {
+      "file": "mobile-2.json",
+      "score": 0.92,
+      "LCP_ms": 2908.9665999999997,
+      "CLS": 0,
+      "TBT_ms": 93.42959999999903,
+      "warnings": [],
+      "runtimeError": null
+    },
+    {
+      "file": "mobile-1.json",
+      "score": 0.81,
+      "LCP_ms": 3334.0619749999996,
+      "CLS": 0,
+      "TBT_ms": 342.5,
+      "warnings": [],
+      "runtimeError": null
+    }
+  ],
+  "desktop": [
+    {
+      "file": "desktop-1.json",
+      "score": 0.98,
+      "LCP_ms": 831.6016750000001,
+      "CLS": 0.015639094367381007,
+      "TBT_ms": 0,
+      "warnings": [],
+      "runtimeError": null
+    },
+    {
+      "file": "desktop-2.json",
+      "score": 0.99,
+      "LCP_ms": 867.7277750000001,
+      "CLS": 0.014860143899936812,
+      "TBT_ms": 11,
+      "warnings": [],
+      "runtimeError": null
+    },
+    {
+      "file": "desktop-3.json",
+      "score": 0.99,
+      "LCP_ms": 871.091075,
+      "CLS": 0.01516802521299072,
+      "TBT_ms": 8.5,
+      "warnings": [],
+      "runtimeError": null
+    }
+  ]
+}
