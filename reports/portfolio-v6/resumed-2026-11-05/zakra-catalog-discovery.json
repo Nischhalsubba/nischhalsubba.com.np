@@ -1,0 +1,56 @@
+{
+  "source": "https://zakratheme.com/starter-sites/#/",
+  "observedAt": "2026-11-05T17:26:45.238Z",
+  "inputs": [
+    {
+      "placeholder": "Search...",
+      "type": "text"
+    },
+    {
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "placeholder": "",
+      "type": "text"
+    },
+    {
+      "placeholder": "",
+      "type": "text"
+    },
+    {
+      "placeholder": "",
+      "type": "email"
+    },
+    {
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "placeholder": "",
+      "type": "text"
+    },
+    {
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "placeholder": "",
+      "type": "hidden"
+    }
+  ],
+  "links": [],
+  "images": []
+}

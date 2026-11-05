@@ -1,0 +1,6 @@
+Official Zakra Furniture catalog screenshot
+Source creator: ThemeGrill / Zakra
+Source: https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg
+License: GPL-3.0, reproduced in themegrill-demo-pack-GPL-3.0.txt.
+Original JPEG is preserved. PNG is a lossless decode/re-encode; WebP variants only resize and encode the complete image. No product UI was redrawn.
+The catalog image does not establish live-shop operation, mobile behavior, historical personal authorship or measured sales.

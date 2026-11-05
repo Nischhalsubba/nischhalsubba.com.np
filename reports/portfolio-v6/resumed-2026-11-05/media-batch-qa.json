@@ -1,0 +1,261 @@
+{
+  "checkedAt": "2026-11-05T18:52:19.019Z",
+  "results": [
+    {
+      "route": "project-zakra-furniture",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-zapp",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/web3-wallet-connection-ux",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/blog-web3-products",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/website-ux-checklist-software-companies",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/prioritize-ux-audit-findings-before-redesign",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/transaction-review-ux-crypto-apps",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/web3-wallet-ux-checklist",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-zakra-furniture",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-zapp",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/web3-wallet-connection-ux",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/blog-web3-products",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/website-ux-checklist-software-companies",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/prioritize-ux-audit-findings-before-redesign",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/transaction-review-ux-crypto-apps",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/web3-wallet-ux-checklist",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-zakra-furniture",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-zapp",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/web3-wallet-connection-ux",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/blog-web3-products",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/website-ux-checklist-software-companies",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/prioritize-ux-audit-findings-before-redesign",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/transaction-review-ux-crypto-apps",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/web3-wallet-ux-checklist",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-zakra-furniture",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-zapp",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/web3-wallet-connection-ux",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/blog-web3-products",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/website-ux-checklist-software-companies",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/prioritize-ux-audit-findings-before-redesign",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/transaction-review-ux-crypto-apps",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "blog/web3-wallet-ux-checklist",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    }
+  ]
+}

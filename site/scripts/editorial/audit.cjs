@@ -10,6 +10,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const { projects, articles } = require('./render.cjs');
+const publicCaptures = require('../public-site-captures.cjs');
 const root = path.resolve(__dirname, '../..');
 const images = JSON.parse(fs.readFileSync(path.join(root, 'src/content/portfolio-evidence-images.json'), 'utf8'));
 const inventory = JSON.parse(fs.readFileSync(path.join(root, 'dist/workspace-inner/seo-inventory.json'), 'utf8'));
@@ -42,6 +43,11 @@ for (const data of [...projects, ...articles]) {
     }
   }
   for (const section of sections) {
+    if (section.publicCapture) {
+      const capture = publicCaptures.byId(section.publicCapture);
+      assert.ok(html.includes(`data-site-capture="${capture.id}"`), 'Selected public reference must appear in its article body');
+      assert.ok(html.includes(capture.socialSrc) && html.includes(capture.fullOriginal) && html.includes(capture.sourceUrl), 'Public reference must preserve image, original and source');
+    }
     assert.ok(html.includes(section.heading.replace(/&/g, '&amp;')));
     for (const identity of section.images || (section.image ? [section.image] : [])) {
     const image = images.find(item => item.id === identity);

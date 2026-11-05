@@ -1,0 +1,20 @@
+[
+  {
+    "source": "https://anza-xyz.github.io/wallet-adapter/example/",
+    "finalUrl": "https://anza-xyz.github.io/wallet-adapter/example/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T18:08:18.295Z",
+    "filename": "1440.png",
+    "sha256": "b8bb01de33c10e9895abff80f88bf8d2e1e984d15712e9e43af89ff93347bc22",
+    "layoutOverflow": 0,
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  }
+]

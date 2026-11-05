@@ -454,8 +454,10 @@
           "heading": "Separate the product task from the mechanism",
           "paragraphs": [
             "A person may want to join, send, collect or review. A wallet request is a mechanism within that task. Explain why it is needed and what it enables before asking the person to follow it.",
-            "This does not mean hiding technical detail. It means placing that detail where it helps a decision. Someone evaluating an address, network or transaction needs access to the relevant specifics; someone establishing basic product fit should not have to decode them first."
-          ]
+            "This does not mean hiding technical detail. It means placing that detail where it helps a decision. Someone evaluating an address, network or transaction needs access to the relevant specifics; someone establishing basic product fit should not have to decode them first.",
+            "The public Wallet Adapter example makes one boundary inspectable: wallet selection is available while transaction actions remain disabled in the unconnected state. This is an external component-gallery reference, not a product I designed or proof of the complete authorization flow."
+          ],
+          "publicCapture": "wallet-adapter-gallery"
         },
         {
           "heading": "Keep familiar context around the unfamiliar step",
@@ -500,7 +502,8 @@
           "/web3-ux-designer",
           "Web3 UX design"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-05"
     },
     {
       "slug": "web3-wallet-connection-ux",
@@ -511,8 +514,10 @@
           "heading": "Explain the purpose before opening the wallet",
           "paragraphs": [
             "Connect wallet is an action label, not a complete explanation. State what connecting enables in this product and whether useful exploration remains possible without it. Ask at the point the task needs the connection rather than using it as an unexplained gate.",
-            "Keep the explanation proportional. A short purpose statement can be enough for a familiar task, while a new or consequential permission needs more context. The exact request should match what the integration actually asks for."
-          ]
+            "Keep the explanation proportional. A short purpose statement can be enough for a familiar task, while a new or consequential permission needs more context. The exact request should match what the integration actually asks for.",
+            "The public Wallet Adapter development example offers a concrete connection boundary: its chooser names the available option before any wallet is selected. The captured anonymous session shows the Burner Wallet development option. It does not demonstrate a real-account connection, production security or a completed transaction."
+          ],
+          "publicCapture": "wallet-adapter-chooser"
         },
         {
           "heading": "Distinguish connection from the next authorization",
@@ -590,7 +595,8 @@
           "/web3-ux-designer",
           "Wallet-related product UX"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-05"
     },
     {
       "slug": "transaction-review-ux-crypto-apps",
@@ -671,7 +677,8 @@
           "paragraphs": [
             "The Yarsha detail panel separates spent and received assets from destination and fee. The complete frame in the Yarsha case retains the original dummy values and address. It is a result-detail design, not the screen where a person approves a wallet request.",
             "The source explorer wording also needs chain-specific review. Check the supported network, link destination and result evidence before using that action to reassure someone that an operation is confirmed."
-          ]
+          ],
+          "image": "yarsha-transaction-detail"
         }
       ],
       "related": [
@@ -688,7 +695,7 @@
           "Web3 product design"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-05"
     },
     {
       "slug": "web3-wallet-ux-checklist",
@@ -739,7 +746,11 @@
                 "Is the established result recorded where the task began?"
               ]
             ]
-          }
+          },
+          "image": "yarsha-recipient-selection",
+          "paragraphs": [
+            "The Yarsha recipient-selection design makes identity a separate decision before asset selection. Use the frame to review what should persist into the next step; it does not establish a working wallet connection or authorization flow."
+          ]
         },
         {
           "heading": "Add the interruptions",
@@ -771,7 +782,8 @@
           "paragraphs": [
             "The Yarsha source includes a transaction-detail panel with an external explorer action. The panel is useful for checking which fields the product intends to explain after an operation.",
             "The explorer label must match the actual integration, and the product must know what result it can establish. The screenshot does not verify connection, signing, confirmation or recovery."
-          ]
+          ],
+          "image": "yarsha-transaction-detail"
         }
       ],
       "related": [
@@ -788,7 +800,7 @@
           "Yarsha design evidence"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-05"
     }
   ]
 }

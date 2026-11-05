@@ -1,0 +1,24 @@
+{
+  "verifiedAt": "2026-11-05T17:36:24.635179+00:00",
+  "sourcePage": "https://zakratheme.com/starter-sites/",
+  "sourceScript": "https://zakratheme.com/wp-content/plugins/tg-demo-helper/build/showcase.js?ver=1.0.0",
+  "discovery": "Official catalog key zakra-furniture points to https://zakrademos.com/furniture/. Official showcase JavaScript uses resources/{theme}/{id}/screenshot.jpg; GitHub contents API confirms the exact image, rather than guessing a URL.",
+  "sourceImage": {
+    "download_url": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+    "path": "resources/zakra/zakra-furniture/screenshot.jpg",
+    "sha": "1a28cfc3049ce85b8209130a1a00f0b4466968e6",
+    "size": 80030
+  },
+  "originalSha256": "b2b8578b0f8d285b192c45c902f0261e6f06607950aa5947b368c9182f190ed4",
+  "sourceDimensions": {
+    "width": 1200,
+    "height": 900
+  },
+  "sourceCreator": "ThemeGrill / Zakra",
+  "license": "GPL-3.0",
+  "licenseUrl": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/LICENSE",
+  "licenseSha256": "cc44091294288838b66629856fe577c622af984a9b1724d84aeae74d1c0009ad",
+  "scope": "Official published desktop catalog screenshot; not a claim that the live demo or mobile storefront works. Sample company/number-one copy belongs to the template. No historical authorship or measured commerce outcome inferred.",
+  "selection": "Original screenshot visually inspected; retain original JPEG and GPL source attribution. Independently browser-verify this exact resource before integration.",
+  "sourceBlobHashVerified": true
+}

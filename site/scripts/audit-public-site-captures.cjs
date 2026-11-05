@@ -31,18 +31,24 @@ for (const record of captures) {
  assert.match(record.id, /^[a-z0-9-]+$/);
  assert.ok(!ids.has(record.id), 'Capture IDs must be unique'); ids.add(record.id);
  assert.equal(new URL(record.sourceUrl).protocol, 'https:');
- assert.ok(['OWNER_REQUESTED_PUBLIC_DEMO_CAPTURE', 'OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE'].includes(record.permission), 'Unapproved publication record');
+ assert.ok(['OWNER_REQUESTED_PUBLIC_DEMO_CAPTURE', 'OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE', 'GPL_3_0_OFFICIAL_REFERENCE', 'OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE', 'APACHE_2_0_PUBLIC_COMPONENT_REFERENCE'].includes(record.permission), 'Unapproved publication record');
+ if(record.kind === 'INDEPENDENT_COMPONENT_CAPTURE') { assert.equal(record.permission,'APACHE_2_0_PUBLIC_COMPONENT_REFERENCE'); assert.equal(record.license,'Apache-2.0'); assert.ok(record.sourceImageDimensions && record.sourceElementBounds && record.sourceViewport.deviceScaleFactor===2); }
+ if(record.licenseUrl) assert.equal(digest(asset(record.licenseUrl)),record.licenseSha256);
+ if(record.displayMaxWidth) assert.ok(Number.isFinite(record.displayMaxWidth)&&record.displayMaxWidth>0&&record.displayMaxWidth<=1440);
+ if(record.kind === 'STATIC_PUBLIC_WEBSITE_REFERENCE') { assert.equal(record.permission,'OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE'); assert.equal(record.useAsPreview,false,'A scoped reference must not displace authored previews'); assert.ok(record.sourceCreator && record.sourceDiagnostics && record.roleBoundary); }
+ if(record.kind === 'OFFICIAL_SOURCE_SCREENSHOT') { assert.equal(record.permission,'GPL_3_0_OFFICIAL_REFERENCE'); assert.equal(record.license,'GPL-3.0'); assert.equal(digest(asset(record.licenseUrl)),record.licenseSha256); assert.ok(record.sourceCreator && record.noticeUrl && record.sourceOriginalSha256 === record.fullOriginalSha256); }
  assert.ok(record.caption && record.alt && record.roleBoundary && record.capturedAt);
  assert.ok(Number.isFinite(Date.parse(record.capturedAt)));
  const file = record.route.slice(1) + '.html'; assert.ok(routes.includes(file));
+ const dimensions = record.sourceImageDimensions || record.sourceViewport;
  const png = asset(record.socialSrc); assert.equal(digest(png), record.sourceSha256);
  assert.equal(png.subarray(0,8).toString('hex'), '89504e470d0a1a0a');
- assert.equal(png.readUInt32BE(16), record.sourceViewport.width); assert.equal(png.readUInt32BE(20), record.sourceViewport.height);
+ assert.equal(png.readUInt32BE(16), dimensions.width); assert.equal(png.readUInt32BE(20), dimensions.height);
  assert.equal(digest(asset(record.fullOriginal)), record.fullOriginalSha256);
  const widths = new Set();
  for (const variant of record.variants) {
   assert.ok(variant.width > 0 && variant.height > 0 && !widths.has(variant.width)); widths.add(variant.width);
-  assert.equal(variant.width / variant.height, record.sourceViewport.width / record.sourceViewport.height);
+  assert.ok(Math.abs(variant.height - variant.width * dimensions.height / dimensions.width) <= 1, 'Preserve aspect within one rounding pixel');
   const bytes = asset(variant.src); assert.equal(digest(bytes), variant.sha256); assert.equal(bytes.length, variant.bytes);
   assert.equal(bytes.subarray(0,4).toString(), 'RIFF'); assert.equal(bytes.subarray(8,12).toString(), 'WEBP');
  }

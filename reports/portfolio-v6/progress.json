@@ -253,12 +253,12 @@
       "depends_on": "T06",
       "acceptance_criteria": "Document actual component/token/handoff example and related cases",
       "evidence_status": "source review",
-      "status": "CODE_DONE_NEEDS_CI",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "Added concrete current-portfolio component handoff example with source case/article links; explicitly avoids claiming a private client Figma library. Eight final-build service viewport checks at 320/390/768/1440 passed with axe, image decode and overflow checks; full validation passed.",
-      "evidence": "resumed-2026-11-05/service-batch-qa.json; resumed-2026-11-05/validation-service-batch.log",
-      "blocker": "New service/media review branch needs CI and owner review; no automatic merge/deployment.",
+      "observation": "Added concrete current-portfolio component handoff example with source case/article links; explicitly avoids claiming a private client Figma library. Eight final-build service viewport checks at 320/390/768/1440 passed with axe, image decode and overflow checks; full validation passed. All reported PR checks now pass, including Cloudflare Workers build; local browser verification is recorded. Completion covers acceptance in the review branch, not deployment.",
+      "evidence": "resumed-2026-11-05/service-batch-qa.json; resumed-2026-11-05/validation-service-batch.log; resumed-2026-11-05/pr112-latest-checks.json",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -293,12 +293,12 @@
       "depends_on": "T06",
       "acceptance_criteria": "Wallet confirmation states and truthful design-only boundaries linked",
       "evidence_status": "proposed",
-      "status": "CODE_DONE_NEEDS_CI",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "Added distinct wallet review/signing/status/recovery explanation and explicit design-versus-production/security boundary with Yarsha and wallet article links. Eight final-build service viewport checks at 320/390/768/1440 passed with axe, image decode and overflow checks; full validation passed.",
-      "evidence": "resumed-2026-11-05/service-batch-qa.json; resumed-2026-11-05/validation-service-batch.log",
-      "blocker": "New service/media review branch needs CI and owner review; no automatic merge/deployment.",
+      "observation": "Added distinct wallet review/signing/status/recovery explanation and explicit design-versus-production/security boundary with Yarsha and wallet article links. Eight final-build service viewport checks at 320/390/768/1440 passed with axe, image decode and overflow checks; full validation passed. All reported PR checks now pass, including Cloudflare Workers build; local browser verification is recorded. Completion covers acceptance in the review branch, not deployment.",
+      "evidence": "resumed-2026-11-05/service-batch-qa.json; resumed-2026-11-05/validation-service-batch.log; resumed-2026-11-05/pr112-latest-checks.json",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -737,8 +737,8 @@
       "skills_to_load": "nrs-repo-inventory;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
       "observation": "Verified current official site and added visible safe link with accurate contribution boundary. Current-site capture rejected for third-party resource errors.",
-      "evidence": "resumed-2026-11-05/browser-qa.json",
-      "blocker": "Publish validated code and verify resulting live link.",
+      "evidence": "resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
+      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -757,8 +757,8 @@
       "skills_to_load": "nrs-repo-inventory;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
       "observation": "Verified and linked current official Designerex marketplace, with scoped team contribution; current source runtime errors prevent approving its capture.",
-      "evidence": "resumed-2026-11-05/browser-qa.json",
-      "blocker": "Publish validated code and verify resulting live link.",
+      "evidence": "resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
+      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -777,8 +777,8 @@
       "skills_to_load": "nrs-repo-inventory;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
       "observation": "Public Hamro demo independently opened, captured, inspected and linked; distinguishes current demo from earlier studio work.",
-      "evidence": "resumed-2026-11-05/browser-qa.json",
-      "blocker": "Publish validated code and verify resulting live link.",
+      "evidence": "resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
+      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -837,8 +837,8 @@
       "skills_to_load": "nrs-media-evidence;nrs-ux-a11y;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
       "observation": "Immutable public Hamro full-page and viewport originals retained with SHA, source URL and UTC. Uncropped WebP derivatives and full-original link verified at four widths.",
-      "evidence": "resumed-2026-11-05/verify-captures.cjs; resumed-2026-11-05/browser-qa.json",
-      "blocker": "Publish validated code and verify live capture delivery.",
+      "evidence": "resumed-2026-11-05/verify-captures.cjs; resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
+      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -1837,8 +1837,8 @@
       "skills_to_load": "nrs-search-appearance;nrs-content-and-cases;nrs-seo-page-audit",
       "batch": "A_SOURCE_RELEASE",
       "observation": "Current owned biography, metadata, humans.txt and profile labels now consistently use Nepal and owner-approved 7+. Historical role cities remain intact. New assertions reject stale present-city wording.",
-      "evidence": "resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/browser-qa.json",
-      "blocker": "Publish and verify the corrected current source; historical owner r\u00e9sum\u00e9 remains a dated source.",
+      "evidence": "resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
+      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -1913,12 +1913,12 @@
       "depends_on": "T91;T92",
       "acceptance_criteria": "Final build and browser verify all icon links, image bytes and current bio without conflicting source outputs",
       "evidence_status": "SITE_SOURCE_AND_USER_SCREENSHOT_OBSERVED",
-      "status": "CODE_DONE_NEEDS_CI",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-search-appearance;nrs-performance-release;nrs-repo-inventory",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Deterministic final-artifact checks verify icon links on 54 routes, six PNG sizes, three ICO frames, SVG bytes and current bio/location; passes after full final build.",
-      "evidence": "resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/validation-release.log",
-      "blocker": "CI/release verification.",
+      "observation": "Deterministic final-artifact checks verify icon links on 54 routes, six PNG sizes, three ICO frames, SVG bytes and current bio/location; passes after full final build. All reported PR checks now pass, including Cloudflare Workers build; local browser verification is recorded. Completion covers acceptance in the review branch, not deployment.",
+      "evidence": "resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/validation-release.log; resumed-2026-11-05/pr111-latest-checks.json",
+      "blocker": "",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -2017,8 +2017,8 @@
       "skills_to_load": "nrs-social-identity;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "A_SOURCE_RELEASE",
       "observation": "Official Uxcel 2023 row names owner, Product Designer category and TOP 10 badge. Removed unsupported third-place claims from visible copy/CMS and schema; no exact numeric rank inferred.",
-      "evidence": "resumed-2026-11-05/uxcel-visible-row.json; resumed-2026-11-05/uxcel-2023-owner.png; resumed-2026-11-05/verify-identity.py",
-      "blocker": "Publish and verify corrected claims in live HTML.",
+      "evidence": "resumed-2026-11-05/uxcel-visible-row.json; resumed-2026-11-05/uxcel-2023-owner.png; resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/pr111-latest-checks.json",
+      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -2142,6 +2142,6 @@
       "confidence": "CONFIRMED_SOURCE"
     }
   ],
-  "updated_at": "2026-11-05",
+  "updated_at": "2026-11-05T18:49:59.793341+00:00",
   "scope_note": "All 107 tickets tracked. Reopened stale network blockers; not-started and in-progress do not imply blocked or complete. DONE_VERIFIED applies only to stated ticket acceptance. New source changes await release verification; full-program signoff is not claimed. Latest owner instruction: no automatic merge or deploy."
 }
