@@ -1,0 +1,20 @@
+[
+  {
+    "source": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
+    "finalUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T18:29:06.811Z",
+    "filename": "1440.png",
+    "sha256": "a085d48fad9b68d8b8305c9a5858fc625a64dcdbcc1ef382c636997abb00cb83",
+    "layoutOverflow": 0,
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  }
+]

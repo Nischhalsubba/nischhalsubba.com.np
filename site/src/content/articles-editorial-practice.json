@@ -263,8 +263,10 @@
           "heading": "Keep the visual identity, reduce the evaluation cost",
           "paragraphs": [
             "This site uses an editor-inspired workspace with expressive type and motion. I want that personality to remain, while the project and article pages use the same navigation, fonts and interaction language. A strong homepage followed by unrelated inner-page styling makes the experience harder to trust and maintain.",
-            "Shared presentation does not mean shared prose. A logistics journey, a consulting website and a Sass utility need different explanations and different kinds of proof."
-          ]
+            "Shared presentation does not mean shared prose. A logistics journey, a consulting website and a Sass utility need different explanations and different kinds of proof.",
+            "The dated homepage reference below shows the visual identity I am preserving: the dark canvas, portrait, personal introduction and blue accents. It is a concrete starting point for evaluating how quickly a visitor can understand the role and find supporting work. A polished first screen alone does not establish whether the underlying cases are persuasive; those artifacts and their contribution boundaries still need inspection."
+          ],
+          "publicCapture": "portfolio-published-baseline"
         },
         {
           "heading": "Make the evidence boundary visible",
@@ -301,7 +303,8 @@
           "/contact",
           "Discuss a product"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "blog-gaming-interface-clarity",
@@ -319,8 +322,10 @@
           "heading": "Make state legible without remembering every detail",
           "paragraphs": [
             "A useful interface keeps the context that changes meaning close to the value. In a combat-data tool, encounter, actor, time range and filters affect interpretation. In a business dashboard, workspace, role and record state do similar work.",
-            "My Neverwinter Live Parser case is about that information-design problem. It is not a claim that the tool makes someone perform better in the game or that every calculation has been independently validated."
-          ]
+            "My Neverwinter Live Parser case is about that information-design problem. It is not a claim that the tool makes someone perform better in the game or that every calculation has been independently validated.",
+            "The public Neverwinter Live Parser browser view makes the dependency visible before any analysis: the status is idle, no combat log is linked, and the setup panel explains the next action. The browser-mode notice also separates recorded-log analysis from live monitoring in the desktop app. This screenshot supports an analysis of visible setup and state communication; it does not show a completed combat session or verified live telemetry."
+          ],
+          "publicCapture": "neverwinter-public-setup"
         },
         {
           "heading": "Use progressive detail to answer a question",
@@ -359,7 +364,8 @@
           "/projects",
           "Other information-design work"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "hire-product-designer-nepal-saas-web3",
@@ -377,8 +383,10 @@
           "heading": "Inspect contribution, artifact and boundary together",
           "paragraphs": [
             "A strong case should explain what the designer did and provide a relevant artifact. It should also say what the artifact cannot establish. A Figma prototype can show an interaction model; it does not prove revenue, research quality or production adoption.",
-            "In my portfolio, Orkest supplies CRM hierarchy and shared-system discussion, piHub supplies multi-role financial workflow context, and Yarsha supplies a messaging-and-wallet design context. Those are distinct examples to inspect, not interchangeable labels on the same template."
-          ]
+            "In my portfolio, Orkest supplies CRM hierarchy and shared-system discussion, piHub supplies multi-role financial workflow context, and Yarsha supplies a messaging-and-wallet design context. Those are distinct examples to inspect, not interchangeable labels on the same template.",
+            "The dated portfolio homepage below is a first-party introduction, not independent validation of every claim. Use it to find the case studies, then inspect the actual artifact, contribution and outcome limits together. For experience duration, check the role chronology and overlapping dates in the résumé rather than adding simultaneous jobs as separate years."
+          ],
+          "publicCapture": "portfolio-published-baseline"
         },
         {
           "heading": "Use a focused conversation",
@@ -443,7 +451,8 @@
           "/contact",
           "Discuss the role or project"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "blog-web3-products",

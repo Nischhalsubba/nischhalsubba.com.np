@@ -1,0 +1,143 @@
+{
+  "source": "https://neverwinter-live-parser.vercel.app/",
+  "observedAt": "2026-11-05T18:14:17.458Z",
+  "status": 200,
+  "errors": [],
+  "title": "Neverwinter Live Parser",
+  "text": "architecture\nNeverwinter\n\nLIVE PARSER\n\nmenu\nsensors\nLive\nexpand_more\nOVERVIEW\nTIMELINE & POWERS\nDAMAGE OUT\nHEALING\nDAMAGE TAKEN\nTIMING\nPOSITIONING\nOTHER\nHIGHEST HIT\nDEBUFFS\nDEATHS\nARTIFACT DAMAGE\nhistory_edu\nHistory\nmenu_book\nLibrary\nbug_report\nDebug\nsettings\nSettings\ninfo\nAbout\nNP\nNo player selected\nReviewing No source linked\nNEW SESSION\nIDLE\nNot running\narchitecture\nNEVERWINTER LIVE PARSERWindows combat utility\nIDLE\nIDLE\n00:00:00\nNO COMBAT LOG LINKED\nIDLE\nNo combat log linked\nfolder_open\nnotifications\nmemory\nSTART HERE\nTo begin, open session setup and connect your combat log.\n\nClick the folder button in the top-right corner, then either choose your Neverwinter log folder and press Start Monitoring, or select a single log file to analyze.\n\nfolder_open\nOPEN SETUP\nclose\nDISMISS\n\nCONFIGURATION & SETUP\n\nConnect the Neverwinter combat log\n\nStart here the first time you open the app. Live monitoring only watches Neverwinter files named combatlog_YYYY-MM-DD_HH-MM-SS. Recorded analysis can open a local .log or .txt file directly.\n\nfolder_special\nCOMBAT LOG SOURCE\n\nChoose the folder or file you want to track\n1. Auto Detect\n\nSearch this Windows PC for real Neverwinter combatlog files only.\n\n2. Confirm the correct result\n\nPick the candidate that shows your latest combatlog file and timestamp.\n\n3. Start live or analyze recorded\n\nLive tracking follows the newest combatlog in that folder. Recorded analysis opens one file only.\n\nCombat log path\nterminal\nBROWSE\nCHOOSE LOG FILE\nplay_arrow\nSTART MONITORING\nstop\nSTOP\ntravel_explore\nAUTO DETECT\nLatest tracked combat log\n\nNo active combat log selected\n\nTimestamp: Awaiting combatlog_YYYY-MM-DD_HH-MM-SS.log\n\nOnly files that begin with combatlog_ are monitored.\n\nArchived combat log\nhistory_edu\nCHOOSE FILE\nplay_circle\nTRACK SELECTED FILE LIVE\nupload_file\nANALYZE RECORDED LOG\n\nmonitor_heart\nCOMBAT LOG PARSE HEALTH\n\nSignal integrity\nLINES PROCESSED\n0\n\n+0 lps\n\nUNKNOWN LINES\n0\n\n0.00% total\n\nPARSE ERRORS\n0\n\nNo active parser faults\n\nmemory\nRUNTIME FROM CURRENT LOG\n\nRuntime profile\nRuntime\nIDLE\nAnalysis Mode\nidle\nWatcher\nidle\nSource\nNo source linked\nDuration\n00:00\nProcess CPU\n0.0%\nProcess Memory\n0.0 MB\nSystem Memory\n0 / 0 MB\nSource path, parser state, and system usage are sampled live from the running app.\n\nterminal\nSYSTEM STREAM\n\nRecent engine output\n[idle] Waiting for stream...\nBrowser mode: recorded log analysis is available. Live folder monitoring and auto-detect require the Electron desktop app.\nIDLE\nNot running",
+  "buttons": [
+    {
+      "text": "menu",
+      "disabled": false
+    },
+    {
+      "text": "sensors\nLive\nexpand_more",
+      "disabled": false
+    },
+    {
+      "text": "OVERVIEW",
+      "disabled": false
+    },
+    {
+      "text": "TIMELINE & POWERS",
+      "disabled": false
+    },
+    {
+      "text": "DAMAGE OUT",
+      "disabled": false
+    },
+    {
+      "text": "HEALING",
+      "disabled": false
+    },
+    {
+      "text": "DAMAGE TAKEN",
+      "disabled": false
+    },
+    {
+      "text": "TIMING",
+      "disabled": false
+    },
+    {
+      "text": "POSITIONING",
+      "disabled": false
+    },
+    {
+      "text": "OTHER",
+      "disabled": false
+    },
+    {
+      "text": "HIGHEST HIT",
+      "disabled": false
+    },
+    {
+      "text": "DEBUFFS",
+      "disabled": false
+    },
+    {
+      "text": "DEATHS",
+      "disabled": false
+    },
+    {
+      "text": "ARTIFACT DAMAGE",
+      "disabled": false
+    },
+    {
+      "text": "history_edu\nHistory",
+      "disabled": false
+    },
+    {
+      "text": "menu_book\nLibrary",
+      "disabled": false
+    },
+    {
+      "text": "bug_report\nDebug",
+      "disabled": false
+    },
+    {
+      "text": "settings\nSettings",
+      "disabled": false
+    },
+    {
+      "text": "info\nAbout",
+      "disabled": false
+    },
+    {
+      "text": "NEW SESSION",
+      "disabled": false
+    },
+    {
+      "text": "folder_open",
+      "disabled": false
+    },
+    {
+      "text": "notifications",
+      "disabled": false
+    },
+    {
+      "text": "memory",
+      "disabled": false
+    },
+    {
+      "text": "folder_open\nOPEN SETUP",
+      "disabled": false
+    },
+    {
+      "text": "close\nDISMISS",
+      "disabled": false
+    },
+    {
+      "text": "BROWSE",
+      "disabled": true
+    },
+    {
+      "text": "CHOOSE LOG FILE",
+      "disabled": false
+    },
+    {
+      "text": "play_arrow\nSTART MONITORING",
+      "disabled": true
+    },
+    {
+      "text": "stop\nSTOP",
+      "disabled": true
+    },
+    {
+      "text": "travel_explore\nAUTO DETECT",
+      "disabled": true
+    },
+    {
+      "text": "CHOOSE FILE",
+      "disabled": false
+    },
+    {
+      "text": "play_circle\nTRACK SELECTED FILE LIVE",
+      "disabled": true
+    },
+    {
+      "text": "upload_file\nANALYZE RECORDED LOG",
+      "disabled": true
+    }
+  ],
+  "links": []
+}
