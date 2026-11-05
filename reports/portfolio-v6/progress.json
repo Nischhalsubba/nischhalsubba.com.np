@@ -413,11 +413,11 @@
       "depends_on": "T10,T12,T13",
       "acceptance_criteria": "Anchor crawl map; no orphan important routes or .html internal links",
       "evidence_status": "historical Screaming Frog",
-      "status": "NOT_STARTED",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
+      "observation": "Dated live anchor graph covers all 54 canonical routes: zero orphans, zero legacy .html internal anchors and zero unmapped internal routes. Existing contextual links reused; no duplicate fix.",
+      "evidence": "resumed-2026-11-05/internal-anchor-map.json",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1098,7 +1098,7 @@
       "batch": "A_SOURCE_RELEASE",
       "observation": "Local build and current source inspected; live production/Google and remote PR state unverified. Owner authorized merge; main fast-forwarded to 8ac11e4. Public Cloudflare production-verification run 42022566819 completed Success for that commit; direct dashboard/API access remains denied.",
       "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; cloudflare-verification.json; merge-authorization.md",
-      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
+      "blocker": "Whole-program acceptance remains incomplete. Latest instruction requires review PRs only, without automatic merge or deployment.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1698,7 +1698,7 @@
       "batch": "A_SOURCE_RELEASE",
       "observation": "Local build and current source inspected; live production/Google and remote PR state unverified. Owner authorized merge; main fast-forwarded to 8ac11e4. Public Cloudflare production-verification run 42022566819 completed Success for that commit; direct dashboard/API access remains denied.",
       "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; cloudflare-verification.json; merge-authorization.md",
-      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
+      "blocker": "Whole-program acceptance remains incomplete. Latest instruction requires review PRs only, without automatic merge or deployment.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1733,11 +1733,11 @@
       "depends_on": "T86",
       "acceptance_criteria": "Dated native reports and per-finding ledger, lab vs field distinguished; blocked items explicit",
       "evidence_status": "NOT_EXECUTED",
-      "status": "NOT_STARTED",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-audit-recovery;nrs-performance-release;nrs-seo-page-audit;nrs-ux-a11y",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
+      "observation": "Six dated native final-build Lighthouse samples, complete per-audit observation ledger, live 54-route technical crawl and responsive axe evidence retained. Lab results explicitly separated from field data; public PSI API returned 429. Historical tiny reports are not claimed recovered.",
+      "evidence": "resumed-2026-11-05/performance.md; resumed-2026-11-05/native-performance-findings.csv; resumed-2026-11-05/production-http.json; resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pagespeed-public-api.json",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1753,11 +1753,11 @@
       "depends_on": "T87",
       "acceptance_criteria": "Each genuine issue has source/DOM proof, precise fix and evidence; suspected false positives labeled",
       "evidence_status": "NOT_EXECUTED",
-      "status": "NOT_STARTED",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-audit-recovery;nrs-seo-page-audit;nrs-ux-a11y;nrs-performance-release",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
+      "observation": "PR CI exposed a missing Process link in the mobile menu. Desktop section/link existed; restored mobile entry with existing icon/style and sequential numbering. Targeted existing navigation audit pending. Unchanged full navigation/browser audit now passes through every forward/reverse chapter; build/home/doc checks pass. Fresh PR CI pending.",
+      "evidence": "PR #111 evidence job 127285623527; site/src/workspace-home/index.html; resumed-2026-11-05/mobile-navigation-audit.log",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -2143,5 +2143,5 @@
     }
   ],
   "updated_at": "2026-11-05",
-  "scope_note": "All 107 tickets tracked. Reopened stale network blockers; not-started and in-progress do not imply blocked or complete. DONE_VERIFIED applies only to stated ticket acceptance. New source changes await release verification; full-program signoff is not claimed."
+  "scope_note": "All 107 tickets tracked. Reopened stale network blockers; not-started and in-progress do not imply blocked or complete. DONE_VERIFIED applies only to stated ticket acceptance. New source changes await release verification; full-program signoff is not claimed. Latest owner instruction: no automatic merge or deploy."
 }

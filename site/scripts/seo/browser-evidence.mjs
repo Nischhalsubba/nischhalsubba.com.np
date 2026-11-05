@@ -20,7 +20,8 @@ const caseStudies = process.argv.includes('--case-studies');
 const routes = caseStudies ? JSON.parse(fs.readFileSync(new URL('../../src/content/portfolio-editorial.json', import.meta.url), 'utf8')).projects.map(/** Callback contract: Select each retained case route. Inputs: project metadata. Side effects: none. Returns: canonical path. */ project => '/project-' + project.slug) : process.argv.includes('--home-only') ? ['/'] : ['/', '/projects', '/project-orkest', '/services', '/blog/', '/blog/figma-handoff-notes-for-developers'];
 const failures = []; const accessibility = []; const performance = [];
 if (!process.argv.includes('--performance-only')) {
-const browser = await chromium.launch({headless:true});
+// CHROME_PATH permits system Chromium in managed environments; CI retains the pinned Playwright browser.
+const browser = await chromium.launch({headless:true,...(process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : {})});
 try {
   for (const width of [320,375,390,768,1024,1440,1920]) {
     const context = await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});

@@ -1,0 +1,22 @@
+[
+  {
+    "file": "01_MASTER_CODEX_PROMPT.md",
+    "identical": true,
+    "sha256": "4998e730317b78546c363345ad704ccff5f9c04a6de5ae2c8aaec8c8bf85a044"
+  },
+  {
+    "file": "02_ISSUES_AND_PRIORITIES.md",
+    "identical": true,
+    "sha256": "94be0eb9bd44deb91b6b02eed6e005d68b9930777aca2036c66d7d0f8e23c96f"
+  },
+  {
+    "file": "ledgers/BATCH_ASSIGNMENTS.json",
+    "identical": true,
+    "sha256": "51930abed6b5f4c016d657405fceebb3a3bd28a5da0b5111fb0db61aa9d572c0"
+  },
+  {
+    "file": "ledgers/TASKS_107.csv",
+    "identical": true,
+    "sha256": "b1d9b9b7773e3d97395f8f8064456e02d1a31012d008486fda20547deab1fa0e"
+  }
+]
