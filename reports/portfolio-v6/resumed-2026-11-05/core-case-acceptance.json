@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-11-05T19:00:54.492097+00:00",
+  "cases": [
+    {
+      "project": "yarsha",
+      "expectedUniqueFrames": 12,
+      "verifiedUniqueFrames": 12,
+      "sourceIds": [
+        "yarsha-contacts",
+        "yarsha-contact-empty",
+        "yarsha-conversation",
+        "yarsha-profile",
+        "yarsha-chat-search",
+        "yarsha-recipient-selection",
+        "yarsha-token-selection",
+        "yarsha-nft-selection",
+        "yarsha-new-group",
+        "yarsha-group-detail",
+        "yarsha-group-invite",
+        "yarsha-transaction-detail"
+      ],
+      "role": "Product design contribution",
+      "deliveryBoundary": "Twelve complete original frames make the designed path inspectable from contact discovery through conversation, asset selection, group membership and transaction detail. Dummy content is shown unchanged under the owner\u2019s publication authorization. Wallet authorization, transaction execution and cross-device state remain integration work.",
+      "outcomeBoundary": "The design account now exposes the relationships between the app\u2019s social and financial surfaces. The strongest questions are continuity questions: whether the person, asset and group context remain clear at the handoff between screens. No adoption or transaction-performance measurement is reported.",
+      "decisionHeadings": [
+        "Start with recognition, then handle the miss",
+        "Keep a conversation connected to its identity and history",
+        "Change the pace when the action concerns an asset",
+        "Make membership and sharing understandable",
+        "Give the consequential action an inspectable record"
+      ],
+      "review": "Existing artifact-led narrative retained; role-scoped design discussion and proposed evaluation distinguished from production/backend/outcome verification."
+    },
+    {
+      "project": "pihub",
+      "expectedUniqueFrames": 8,
+      "verifiedUniqueFrames": 8,
+      "sourceIds": [
+        "pihub-corporate-information",
+        "pihub-product-application",
+        "pihub-application-status",
+        "pihub-signup",
+        "pihub-create-product",
+        "pihub-investor-products",
+        "pihub-credit-requests",
+        "pihub-access-denied"
+      ],
+      "role": "Product design contribution",
+      "deliveryBoundary": "I organize the discussion around role, current state, outstanding requirement and next action. The linked creditor, investor and admin prototypes provide paths for inspecting the design. Production permissions, uploads, persistence and real financial processing require separate engineering verification.",
+      "outcomeBoundary": "The role split is visible in the artifacts: creditors submit applications, investors manage products and requests, and administrators review access and records. The remaining evaluation is whether the same status has a consistent meaning across those roles and whether a person knows who must act next.",
+      "decisionHeadings": [
+        "Keep application state in the comparison view",
+        "Share status language without flattening the roles",
+        "Give review and recovery their own requirements"
+      ],
+      "review": "Existing artifact-led narrative retained; role-scoped design discussion and proposed evaluation distinguished from production/backend/outcome verification."
+    },
+    {
+      "project": "orkest",
+      "expectedUniqueFrames": 8,
+      "verifiedUniqueFrames": 8,
+      "sourceIds": [
+        "orkest-module-directory",
+        "orkest-lead-list",
+        "orkest-lead-filters",
+        "orkest-lead-filter-error",
+        "orkest-lead-filter-confirmation",
+        "orkest-lead-capture",
+        "orkest-edit-lead",
+        "orkest-conversion-readiness"
+      ],
+      "role": "UX architecture and product design",
+      "deliveryBoundary": "The useful handoff unit is a record workflow: entry conditions, data requirements, state changes and recovery, supported by reusable interface patterns. The reviewed exports show the visible design; they do not verify server validation, access control or synchronization between modules.",
+      "outcomeBoundary": "Ownership views, qualification and conversion are the central CRM decisions in this case. The current screens make those relationships inspectable. A useful task review would follow an unassigned lead through capture and conversion, including a failed save; no task-time or adoption measurement is available.",
+      "decisionHeadings": [
+        "Separate ownership from record qualification",
+        "Make dependencies visible before saving",
+        "Reuse grammar where the operational job repeats"
+      ],
+      "review": "Existing artifact-led narrative retained; role-scoped design discussion and proposed evaluation distinguished from production/backend/outcome verification."
+    }
+  ]
+}
