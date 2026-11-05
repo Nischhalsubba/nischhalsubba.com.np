@@ -1,0 +1,9 @@
+This review checkpoint fixes the reproduced About location mismatch, repairs SEO attribute parsing for apostrophes, restores the documentation gate, and runs the SEO contract against the final generated pages. The UX-audit offer now explains how findings become a prioritized fix plan. The approved shell, motion and existing genuine assets are preserved.
+
+Validation: full `npm --prefix site run validate` exited 0; 108 local route/viewport checks had no page errors or overflow; 42 sampled axe/width checks and four final changed-page checks passed. Three Lighthouse samples per device measured local median LCP 2.91 s mobile / 0.87 s desktop, not field CWV or an improvement claim.
+
+This does **not** complete the 107-ticket program. `reports/portfolio-v6/progress.csv` retains every original ticket, acceptance criterion, evidence and blocker; `reports/portfolio-v6/README.md` provides reproduction and rollback. Twelve requirements are verified locally/in source; five have partial code awaiting CI/remaining acceptance; the remaining requirements are blocked or Google-pending.
+
+Exact blockers: production/source HTTPS tunnel denied; GitHub PR API Forbidden; no Figma/GSC/analytics connector; 60 referenced originals absent; chronology confirmation pending; manual AT/full interaction and rights/relevance review incomplete. Existing media derivative hashes pass, but no new source capture was accepted. Required network additions are saved in the environment draft and still need application. No merge, deploy, profile edit, indexing request or third-party message was performed.
+
+Screenshots, native Lighthouse/axe results, 54-route crawl reconciliation and failed acquisition manifests are under `reports/portfolio-v6/`. Screenshots are local QA evidence, never substitutes for authentic historical product UI. Revert this commit to roll back; no production state changed.
