@@ -16,9 +16,9 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-repo-inventory;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified. Owner authorized merge; main fast-forwarded to 8ac11e4. Public Cloudflare production-verification run 42022566819 completed Success for that commit; direct dashboard/API access remains denied.",
+      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; cloudflare-verification.json; merge-authorization.md",
+      "blocker": "Remaining ticket requirements are open: exact direct-live/source/account acceptance and complete program/media coverage. Merge itself is authorized and completed.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1096,9 +1096,9 @@
       "status": "BLOCKED_PERMISSION",
       "skills_to_load": "nrs-repo-inventory;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified. Owner authorized merge; main fast-forwarded to 8ac11e4. Public Cloudflare production-verification run 42022566819 completed Success for that commit; direct dashboard/API access remains denied.",
+      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; cloudflare-verification.json; merge-authorization.md",
+      "blocker": "Remaining ticket requirements are open: exact direct-live/source/account acceptance and complete program/media coverage. Merge itself is authorized and completed.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1256,8 +1256,8 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete. Discovered owner-published Grid-Labs-Hosting at 4b056e7; unmodified local screenshots retained but rejected for publication because source font/icon dependencies are blocked.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
       "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1396,8 +1396,8 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-performance-release;nrs-real-image-qa;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete. Follow-up: 973 DOM/CSS/pseudo-background/srcset/social/icon placements and 231 unique assets audited locally; no HTTP/MIME/decode failures after correcting two checker artifacts. This does not establish authenticity or rights.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
       "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1416,8 +1416,8 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete. Discovered owner-published Grid-Labs-Hosting at 4b056e7; unmodified local screenshots retained but rejected for publication because source font/icon dependencies are blocked.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
       "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1476,8 +1476,8 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete. Follow-up: 973 DOM/CSS/pseudo-background/srcset/social/icon placements and 231 unique assets audited locally; no HTTP/MIME/decode failures after correcting two checker artifacts. This does not establish authenticity or rights.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
       "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1496,8 +1496,8 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete. Discovered owner-published Grid-Labs-Hosting at 4b056e7; unmodified local screenshots retained but rejected for publication because source font/icon dependencies are blocked.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
       "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1516,8 +1516,8 @@
       "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete. Discovered owner-published Grid-Labs-Hosting at 4b056e7; unmodified local screenshots retained but rejected for publication because source font/icon dependencies are blocked.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
       "blocker": "Review-branch CI and remaining live/source/manual acceptance checks are pending; see blocked-access.md.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1596,8 +1596,8 @@
       "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete. Discovered owner-published Grid-Labs-Hosting at 4b056e7; unmodified local screenshots retained but rejected for publication because source font/icon dependencies are blocked.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
       "blocker": "Review-branch CI and remaining live/source/manual acceptance checks are pending; see blocked-access.md.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1616,8 +1616,8 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete. Follow-up: 973 DOM/CSS/pseudo-background/srcset/social/icon placements and 231 unique assets audited locally; no HTTP/MIME/decode failures after correcting two checker artifacts. This does not establish authenticity or rights.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
       "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1656,8 +1656,8 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete. Follow-up: 973 DOM/CSS/pseudo-background/srcset/social/icon placements and 231 unique assets audited locally; no HTTP/MIME/decode failures after correcting two checker artifacts. This does not establish authenticity or rights.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
       "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1696,9 +1696,9 @@
       "status": "BLOCKED_PERMISSION",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-performance-release;nrs-seo-page-audit",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified. Owner authorized merge; main fast-forwarded to 8ac11e4. Public Cloudflare production-verification run 42022566819 completed Success for that commit; direct dashboard/API access remains denied.",
+      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; cloudflare-verification.json; merge-authorization.md",
+      "blocker": "Remaining ticket requirements are open: exact direct-live/source/account acceptance and complete program/media coverage. Merge itself is authorized and completed.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {

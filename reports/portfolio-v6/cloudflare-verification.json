@@ -1,0 +1,7 @@
+{
+  "url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42022566819",
+  "status": "Success",
+  "evidence": "Triggered via workflow run November 5, 2026 11:53 Nischhalsubba completed \u2060 8ac11e4 Status Success Total duration 13s Artifacts 1 deploy-cloudflare.yml on: workflow_run verify 10s verify Oh hello! Nice to see you. Made with \u2764\ufe0f by humans.txt Fit to window Zoom out Zoom in Annotations 1 notice verify \"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748 \" Show more Show less Artifacts Produced during runtime Name Size Digest cloudflare-production-log 423 Bytes sha256:cd65685bb34ea1ff1860dde794a746dad76f8ad4c1a1411d47497afef7703e19 html { scroll-behavior: smooth } You can\u2019t perform that acti",
+  "observedAt": "2026-11-05T11:54:04.434071+00:00",
+  "scope": "Public GitHub Cloudflare production-verification workflow. This is independent CI verification; direct Cloudflare API/dashboard remains inaccessible."
+}

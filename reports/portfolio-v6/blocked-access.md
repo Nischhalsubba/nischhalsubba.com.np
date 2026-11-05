@@ -8,4 +8,6 @@
 - No Search Console, GA4, CrUX/RUM or SERP connector is available. Current rankings, query volumes, country metrics, actual leads and field p75 CWV are unverified; historical figures are not current measurements.
 - Production contact delivery needs a consented test, Turnstile and Cloudflare email bindings. Mocked acceptance tests pass but do not prove real delivery. No third-party message was sent.
 - Owner confirmed 7+ years on November 5; résumé chronology is cross-checked in tenure-proof.md. External employer/profile verification remains unavailable.
-- Merge, deploy, DNS/profile edits, indexing requests and third-party outreach remain outside this run's authorized actions.
+- The latest owner instruction authorizes merging this validated work into main and checking Cloudflare. DNS/profile edits, indexing requests and third-party outreach remain outside the authorized scope. See merge-authorization.md.
+
+Release follow-up: Cloudflare production verification and Production QA have passed on GitHub for main commit 8ac11e4. This removes the release-result uncertainty through an accessible CI route, while direct API access remains denied. The optional Cloudflare credential draft requirement is not needed to establish that CI result. Fonts/API hosts for the unmodified Grid Labs source are also in the draft; its captures remain rejected pending a complete render.
