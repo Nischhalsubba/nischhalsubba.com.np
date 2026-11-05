@@ -1,3 +1,5 @@
+> Historical authorization below is superseded by the latest owner instruction: create reviewable PRs; do not automatically merge or deploy. No new merge or deployment is authorized by this document.
+
 # Merge authorization and release checks — November 5, 2026
 
 The owner explicitly authorized merging the validated work into main and asked for Cloudflare build verification. This supersedes the earlier no-merge/no-deploy instruction for this work. It does not authorize unrelated account edits, outreach or fabricated evidence.

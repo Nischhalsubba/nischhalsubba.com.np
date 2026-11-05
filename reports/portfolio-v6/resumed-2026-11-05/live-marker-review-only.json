@@ -1,0 +1,9 @@
+{
+  "observedAt": "2026-11-05T17:10:09.608510+00:00",
+  "status": 200,
+  "marker": {
+    "commit": "8ac11e4f5b26aab642fbd81f2630ab2e840a92e1",
+    "branch": "main",
+    "provider": "cloudflare-workers"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "grid-labs-public-20261105": {
+    "status": "REJECTED_FOR_HERO",
+    "reason": "Smooth scroll left the viewport mid-page; original frames retained unchanged, none selected as hero."
+  },
+  "grid-labs-public-top-20261105": {
+    "status": "APPROVED_FOR_REVIEW_BRANCH",
+    "reason": "Independent real top viewport exposes project identity, hosting context and domain form; original UI preserved. Desktop/mobile visually reviewed."
+  },
+  "grid-labs-public-full-top-20261105": {
+    "status": "ORIGINAL_REFERENCE",
+    "reason": "Complete page original retained and linked; legacy placeholders and minor source imperfections remain unchanged, not outcome evidence."
+  }
+}

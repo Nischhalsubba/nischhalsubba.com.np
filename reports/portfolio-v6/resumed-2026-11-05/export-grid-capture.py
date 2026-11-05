@@ -1,0 +1,13 @@
+"""Export unchanged Grid Labs capture pixels; retain full source and provenance."""
+from pathlib import Path
+from PIL import Image
+import hashlib,json,shutil
+root=Path(__file__).resolve().parents[3];captures=root/'reports/portfolio-v6/acquisition';out=root/'site/assets/images/site-captures'
+source=captures/'grid-labs-public-top-20261105/1440.png';full=captures/'grid-labs-public-full-top-20261105/1440.png'
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+prefix='grid-labs-public-'+sha(source)[:12];im=Image.open(source).convert('RGB');variants=[]
+for width in [640,960,1440]:
+ height=round(im.height*width/im.width);p=out/f'{prefix}-{width}.webp';im.resize((width,height),Image.Resampling.LANCZOS).save(p,'WEBP',quality=88,method=6);variants.append({'src':'/assets/images/site-captures/'+p.name,'width':width,'height':height,'sha256':sha(p),'bytes':p.stat().st_size})
+png=out/f'{prefix}-1440.png';shutil.copyfile(source,png);original=out/f'grid-labs-public-full-{sha(full)[:12]}.png';shutil.copyfile(full,original)
+record={'id':'grid-labs-public','route':'/project-grid-labs','sourceUrl':'https://nischhalsubba.github.io/Grid-Labs-Hosting/','capturedAt':json.loads((source.parent/'manifest.json').read_text())[0]['capturedAt'],'sourceViewport':{'width':1440,'height':900},'sourceSha256':sha(source),'fullOriginalSha256':sha(full),'permission':'OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE','roleBoundary':'Public implementation from the owner-controlled Grid-Labs-Hosting repository, commit 4b056e7a4a4ab56fd53abd6c26feb98bd2e4b668. Placeholder copy, example customers, prices and performance claims belong to the legacy demo; none is a verified business outcome or functioning hosting service.','alt':'Public Grid Labs implementation showing navigation, hosting headline and the domain-search form in its original white and purple interface.','caption':'Grid Labs public implementation, independently captured on 5 November 2026. The legacy demo retains its placeholder copy and sample claims; these are not measured outcomes. Earlier portfolio artwork is shown separately.','variants':variants,'socialSrc':'/assets/images/site-captures/'+png.name,'fullOriginal':'/assets/images/site-captures/'+original.name,'processing':'Complete viewport resized and encoded as WebP; no cropping, drawing, redaction or product UI changes. Original viewport and full-page PNG retained.'}
+p=root/'site/src/content/public-site-captures.json';records=json.loads(p.read_text());found=any(r['id']==record['id'] for r in records);records=[record if r['id']==record['id'] else r for r in records];records=records if found else records+[record];p.write_text(json.dumps(records,indent=2)+'\n');print([(v['width'],v['bytes'])for v in variants])
