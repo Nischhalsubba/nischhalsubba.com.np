@@ -38,7 +38,7 @@ const coreMeta = {
   },
   '/about': {
     title: 'About Nischhal Raj Subba | Product Designer',
-    description: 'I am a product designer based in Kathmandu with 6+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.',
+    description: 'I am a product designer based in Kathmandu with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.',
   },
   '/contact': {
     title: 'Contact Nischhal Raj Subba',

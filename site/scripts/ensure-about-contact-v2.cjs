@@ -113,7 +113,7 @@ ${nav('about')}
           <h2>There is a product idea, but the flow is still foggy.</h2>
           <p>I help teams define hierarchy, states, content, components and responsive behavior before the work reaches engineering.</p>
           <dl>
-            <div><dt>Experience</dt><dd>6+ years</dd></div>
+            <div><dt>Experience</dt><dd>7+ years</dd></div>
             <div><dt>Focus</dt><dd>UX/UI, systems, handoff</dd></div>
             <div><dt>Based in</dt><dd>Nepal, remote-friendly</dd></div>
           </dl>

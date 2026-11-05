@@ -32,7 +32,7 @@ const oldStory = `<span class="nrs-node nrs-node-a" aria-hidden="true"></span>
       <div class="nrs-meaning nrs-meaning-structure"><span>02</span><strong>Structure</strong><small>Turn logic into states and flows.</small></div>
       <div class="nrs-meaning nrs-meaning-handoff"><span>03</span><strong>Build-ready</strong><small>Make implementation intent explicit.</small></div>
       <p class="nrs-uploaded-thesis">My job is usually the same: find the product logic, expose the important state and make the next decision easier.</p>
-      <div class="nrs-uploaded-meta" aria-hidden="true"><span>6+ years</span><span>SaaS · Web3 · Fintech</span><span>Design · Implementation</span></div>`;
+      <div class="nrs-uploaded-meta" aria-hidden="true"><span>7+ years</span><span>SaaS · Web3 · Fintech</span><span>Design · Implementation</span></div>`;
 
 const story = `<svg class="nrs-story-thread" viewBox="0 0 100 100" aria-hidden="true">
         <path class="nrs-story-thread-base" pathLength="100" d="M18 61 C25 48 37 31 52 25 C68 19 83 29 84 45 C85 60 74 72 61 77 C45 84 27 76 18 61" />

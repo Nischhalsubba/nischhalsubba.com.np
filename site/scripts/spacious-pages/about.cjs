@@ -25,7 +25,7 @@ const markup = `<main id="main-content" class="container nrs-spacious-page nrs-a
     <aside class="nrs-page-hero__aside" aria-label="Professional summary">
       <p class="nrs-aside-intro">My work connects product thinking, visual craft and implementation detail so teams can make decisions earlier and build with fewer assumptions.</p>
       <dl class="nrs-facts">
-        <div><dt>Experience</dt><dd>6+ years</dd></div>
+        <div><dt>Experience</dt><dd>7+ years</dd></div>
         <div><dt>Based in</dt><dd>Nepal, working remotely</dd></div>
         <div><dt>Focus</dt><dd>Complex SaaS, fintech and design systems</dd></div>
       </dl>

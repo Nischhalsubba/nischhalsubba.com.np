@@ -42,6 +42,9 @@ for (const route of inventory) {
 }
 const about = fs.readFileSync(path.join(dist, 'about.html'), 'utf8');
 assert.match(about, /I’m a Nepal-based product designer working remotely\./, 'Current About biography must use the approved Nepal-based remote wording');
+assert.match(about, /The résumé behind 7\+ years/);
+assert.match(about, /Aug 2018/);
+assert.doesNotMatch(about, /6\+ years/);
 const contact = fs.readFileSync(path.join(dist, 'contact.html'), 'utf8');
 assert.match(contact, /action="\/api\/contact"/);
 assert.match(contact, /id="contact-form"/);

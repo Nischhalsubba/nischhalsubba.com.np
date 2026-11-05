@@ -7,5 +7,5 @@
 - No Figma connector is available. Sixty source originals are absent from the checkout; node IDs and source hashes exist, and public derivative hash checks pass. Re-export needs authorized Figma access or restored originals. Do not invent a token or publish unknown private frames.
 - No Search Console, GA4, CrUX/RUM or SERP connector is available. Current rankings, query volumes, country metrics, actual leads and field p75 CWV are unverified; historical figures are not current measurements.
 - Production contact delivery needs a consented test, Turnstile and Cloudflare email bindings. Mocked acceptance tests pass but do not prove real delivery. No third-party message was sent.
-- Owner chronology confirmation remains pending. Existing 7+ years / Nepal-based remote copy is preserved, not newly certified.
+- Owner confirmed 7+ years on November 5; résumé chronology is cross-checked in tenure-proof.md. External employer/profile verification remains unavailable.
 - Merge, deploy, DNS/profile edits, indexing requests and third-party outreach remain outside this run's authorized actions.

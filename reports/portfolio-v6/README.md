@@ -32,9 +32,13 @@ Rollback: revert this review commit on its branch. No production migration or ex
 
 ## Ticket states
 
-- BLOCKED_OWNER_FACT: 3
+- BLOCKED_OWNER_FACT: 0
 - BLOCKED_PERMISSION: 8
-- BLOCKED_SOURCE: 76
+- BLOCKED_SOURCE: 79
 - CODE_DONE_NEEDS_CI: 5
 - DONE_VERIFIED: 12
 - GOOGLE_PENDING: 3
+
+## Owner-confirmed tenure follow-up
+
+The owner confirmed 7+ years. See tenure-proof.md for eight résumé roles, dates, overlap handling and source SHA256. Current source/generators are aligned, and About includes the date trail. Archived PDFs/audit evidence retain their original bytes. validation-tenure.log and verify-tenure.cjs cover this follow-up; external profile edits remain blocked.

@@ -1,0 +1,61 @@
+{
+  "claim": "7+ years",
+  "ownerConfirmedOn": "2026-11-05",
+  "resume": {
+    "path": "src/workspace-home/assets/resume.pdf",
+    "sha256": "23d87bf86835aacc0540634f0ad7b0785aef659ffde0db20f94e50cc870bbfb4"
+  },
+  "earliestRecordedRole": "August 2018",
+  "asOf": "2026-11-05",
+  "method": "Résumé month-level chronology, including internship and part-time work. Overlapping months count once; not a full-time-equivalent or day-precise employment calculation. Elapsed time since August 2018 is not asserted as continuous employment.",
+  "experience": [
+    {
+      "company": "Idealaya",
+      "role": "Product Designer",
+      "dates": "Aug 2025 – Dec 2025",
+      "summary": "Enterprise web software, high-fidelity product design and design-system work focused on clearer implementation."
+    },
+    {
+      "company": "Mokshya Protocol",
+      "role": "Product Designer",
+      "dates": "Mar 2024 – Jul 2025",
+      "summary": "Web3 product and website design, including wallet-native interactions, prototypes and technical product storytelling."
+    },
+    {
+      "company": "Tegzy",
+      "role": "Lead User Experience Designer",
+      "dates": "Feb 2023 – Nov 2023",
+      "summary": "Design-system consistency, reusable product patterns and stronger design-to-development handoff."
+    },
+    {
+      "company": "ESR Tech",
+      "role": "Senior UI/UX Designer",
+      "dates": "Oct 2021 – Feb 2023",
+      "summary": "Dashboard and internal-tool UX alongside broader product and website work."
+    },
+    {
+      "company": "ThemeGrill",
+      "role": "Senior UI/UX Designer",
+      "dates": "Apr 2021 – Sep 2021",
+      "summary": "Reusable UI components and prototypes inside a WordPress product environment."
+    },
+    {
+      "company": "Gurzu",
+      "role": "UI/UX Designer",
+      "dates": "Jul 2019 – Jan 2021",
+      "summary": "Client-facing product design, prototyping and interface improvement across early-stage and existing products."
+    },
+    {
+      "company": "Diagonal Softwares",
+      "role": "User Experience Designer",
+      "dates": "Apr 2019 – Sep 2020",
+      "summary": "Part-time interface and experience design aligned with client brand and product needs."
+    },
+    {
+      "company": "Hamro Idea Pvt. Ltd.",
+      "role": "Web Designer & Developer Intern",
+      "dates": "Aug 2018 – Mar 2019",
+      "summary": "Web design and development internship covering responsive interfaces and information-system documentation."
+    }
+  ]
+}

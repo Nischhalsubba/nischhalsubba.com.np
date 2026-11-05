@@ -6,7 +6,7 @@
   "remote": true,
   "email": "hinischalsubba@gmail.com",
   "website": "https://nischhalsubba.com.np/",
-  "summary": "Senior product designer with 6+ years across SaaS, fintech, Web3, enterprise software, learning products, design systems and implementation-aware product work. I turn complex workflows into clear, trustworthy products that teams can actually ship.",
+  "summary": "Senior product designer with 7+ years across SaaS, fintech, Web3, enterprise software, learning products, design systems and implementation-aware product work. I turn complex workflows into clear, trustworthy products that teams can actually ship.",
   "specialties": [
     "Complex SaaS and multi-role workflows",
     "Fintech trust, verification and transaction UX",
@@ -24,21 +24,80 @@
     "Prototyping, developer handoff and UI QA"
   ],
   "experience": [
-    {"company":"Idealaya","role":"Product Designer","dates":"Aug 2025 – Dec 2025","summary":"Enterprise web software, high-fidelity product design and design-system work focused on clearer implementation."},
-    {"company":"Mokshya Protocol","role":"Product Designer","dates":"Mar 2024 – Jul 2025","summary":"Web3 product and website design, including wallet-native interactions, prototypes and technical product storytelling."},
-    {"company":"Tegzy","role":"Lead User Experience Designer","dates":"Feb 2023 – Nov 2023","summary":"Design-system consistency, reusable product patterns and stronger design-to-development handoff."},
-    {"company":"ESR Tech","role":"Senior UI/UX Designer","dates":"Oct 2021 – Feb 2023","summary":"Dashboard and internal-tool UX alongside broader product and website work."},
-    {"company":"ThemeGrill","role":"Senior UI/UX Designer","dates":"Apr 2021 – Sep 2021","summary":"Reusable UI components and prototypes inside a WordPress product environment."},
-    {"company":"Gurzu","role":"UI/UX Designer","dates":"Jul 2019 – Jan 2021","summary":"Client-facing product design, prototyping and interface improvement across early-stage and existing products."},
-    {"company":"Diagonal Softwares","role":"User Experience Designer","dates":"Apr 2019 – Sep 2020","summary":"Part-time interface and experience design aligned with client brand and product needs."}
+    {
+      "company": "Idealaya",
+      "role": "Product Designer",
+      "dates": "Aug 2025 – Dec 2025",
+      "summary": "Enterprise web software, high-fidelity product design and design-system work focused on clearer implementation."
+    },
+    {
+      "company": "Mokshya Protocol",
+      "role": "Product Designer",
+      "dates": "Mar 2024 – Jul 2025",
+      "summary": "Web3 product and website design, including wallet-native interactions, prototypes and technical product storytelling."
+    },
+    {
+      "company": "Tegzy",
+      "role": "Lead User Experience Designer",
+      "dates": "Feb 2023 – Nov 2023",
+      "summary": "Design-system consistency, reusable product patterns and stronger design-to-development handoff."
+    },
+    {
+      "company": "ESR Tech",
+      "role": "Senior UI/UX Designer",
+      "dates": "Oct 2021 – Feb 2023",
+      "summary": "Dashboard and internal-tool UX alongside broader product and website work."
+    },
+    {
+      "company": "ThemeGrill",
+      "role": "Senior UI/UX Designer",
+      "dates": "Apr 2021 – Sep 2021",
+      "summary": "Reusable UI components and prototypes inside a WordPress product environment."
+    },
+    {
+      "company": "Gurzu",
+      "role": "UI/UX Designer",
+      "dates": "Jul 2019 – Jan 2021",
+      "summary": "Client-facing product design, prototyping and interface improvement across early-stage and existing products."
+    },
+    {
+      "company": "Diagonal Softwares",
+      "role": "User Experience Designer",
+      "dates": "Apr 2019 – Sep 2020",
+      "summary": "Part-time interface and experience design aligned with client brand and product needs."
+    },
+    {
+      "company": "Hamro Idea Pvt. Ltd.",
+      "role": "Web Designer & Developer Intern",
+      "dates": "Aug 2018 – Mar 2019",
+      "summary": "Web design and development internship covering responsive interfaces and information-system documentation."
+    }
   ],
   "projects": [
-    {"name":"Yarsha","summary":"Web3 messaging and wallet interaction design covering transaction context, review, signing handoff, pending states and recovery."},
-    {"name":"piHub","summary":"Fintech product workflows across applications, credit, verification, status architecture and role-specific next actions."},
-    {"name":"Orkest HQ","summary":"UX architecture for a modular SaaS platform spanning CRM, Sales, Inventory, Finance and shared workspace patterns."},
-    {"name":"Masteriyo","summary":"Product-design contribution within an established WordPress LMS covering course authoring, quizzes, learner states and reusable patterns."},
-    {"name":"Mokshya.io","summary":"Web3 protocol website structured for first-time comprehension, technical depth and responsive product storytelling."},
-    {"name":"Zapp Today","summary":"Multi-role logistics product UX across customer, driver and operational delivery states."}
+    {
+      "name": "Yarsha",
+      "summary": "Web3 messaging and wallet interaction design covering transaction context, review, signing handoff, pending states and recovery."
+    },
+    {
+      "name": "piHub",
+      "summary": "Fintech product workflows across applications, credit, verification, status architecture and role-specific next actions."
+    },
+    {
+      "name": "Orkest HQ",
+      "summary": "UX architecture for a modular SaaS platform spanning CRM, Sales, Inventory, Finance and shared workspace patterns."
+    },
+    {
+      "name": "Masteriyo",
+      "summary": "Product-design contribution within an established WordPress LMS covering course authoring, quizzes, learner states and reusable patterns."
+    },
+    {
+      "name": "Mokshya.io",
+      "summary": "Web3 protocol website structured for first-time comprehension, technical depth and responsive product storytelling."
+    },
+    {
+      "name": "Zapp Today",
+      "summary": "Multi-role logistics product UX across customer, driver and operational delivery states."
+    }
   ],
   "proof": [
     {

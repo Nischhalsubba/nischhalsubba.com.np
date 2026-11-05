@@ -28,7 +28,7 @@ This document records the repository's production-safety rules for manual change
 - Desktop layout follows the approved two-column `1320px` composition with the established `390 / 590` visual proportion.
 - Dark background: `#0b0c0a`.
 - Light background: `#f4f0e8`.
-- Preserve the seamless portrait fade, subtle ghost portrait, technical grid, orange orbit geometry and particles, product-logic thesis, and compact `6+ years / SaaS · Web3 · Fintech / Design · Implementation` footer.
+- Preserve the seamless portrait fade, subtle ghost portrait, technical grid, orange orbit geometry and particles, product-logic thesis, and compact `7+ years / SaaS · Web3 · Fintech / Design · Implementation` footer.
 - The older Signal/Intent/Logic/State/Decision interactive node system is not a required homepage invariant. If historical stages generate it, the final approved hero stage must replace it.
 - The global site theme control owns the hero theme. Do not introduce a second hero-only theme switch.
 
