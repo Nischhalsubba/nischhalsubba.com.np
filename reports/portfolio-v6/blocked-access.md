@@ -1,3 +1,5 @@
+> Historical record superseded by resumed-2026-11-05/README.md and the updated progress ledger. Production/GitHub/public-source networking now works. Hamro is captured and verified; Grid Labs local/public exact source is verified. Current blockers are scoped Cloudflare access, production Turnstile configuration, www DNS, secure original-frame Figma access, authorized GSC/analytics, Google query challenge and remaining unfinished per-ticket work. Do not use the older blanket network statements below as current status.
+
 # Access blockers
 
 - Production HTTPS CONNECT returned 403 through the configured proxy. Served SHA, deployment time, apex/www behavior, redirects, current sitemap, favicons and PDFs cannot be asserted from the local build.

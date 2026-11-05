@@ -1,0 +1,9 @@
+{
+  "requested": "https://www.google.com/search?q=Nischhal+Raj+Subba&hl=en&gl=np",
+  "url": "https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DNischhal%2BRaj%2BSubba%26hl%3Den%26gl%3Dnp%26sei%3D4HjsasyUAZO7qtsPyqDa4Q4&hl=en&q=EgRaYLyaGOHxsdcGIjCRPQhGCYJWslnyaWDdll3AKXdUVka7NJ71ystx8slx9jVW-AiTTgk-jePqrjqaz7YyAVJaAUNgj6T826S6kuB0",
+  "status": 200,
+  "observedAt": "2026-11-05T12:39:00.420Z",
+  "text": "\n\nAbout this page\n\nOur systems have detected unusual traffic from your computer network. This page checks to see if it's really you sending the requests, and not a robot. Why did this happen?\n\n\n\nIP address: 90.96.188.152\nTime: 2026-11-05T12:38:58Z\nURL: https://www.google.com/search?q=Nischhal+Raj+Subba&hl=en&gl=np&sei=4HjsasyUAZO7qtsPyqDa4Q4\n",
+  "scope": "One unsigned public branded search, Nepal country parameter; not a ranking distribution or AI visibility guarantee.",
+  "blocked": true
+}

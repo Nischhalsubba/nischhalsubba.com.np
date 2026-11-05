@@ -1,0 +1,26 @@
+{
+  "observedAt": "2026-11-05T13:25:21.080588+00:00",
+  "scope": "Empty invalid payload; no message delivered.",
+  "checks": [
+    {
+      "path": "/api/contact/config",
+      "status": 403,
+      "mime": "text/plain; charset=UTF-8",
+      "response": {
+        "nonJson": true,
+        "prefix": "error code: 1010\n"
+      },
+      "method": "GET"
+    },
+    {
+      "path": "/api/contact",
+      "status": 403,
+      "mime": "text/plain; charset=UTF-8",
+      "response": {
+        "nonJson": true,
+        "prefix": "error code: 1010\n"
+      },
+      "method": "POST"
+    }
+  ]
+}

@@ -42,6 +42,7 @@ for (const route of inventory) {
 }
 const about = fs.readFileSync(path.join(dist, 'about.html'), 'utf8');
 assert.match(about, /I’m a Nepal-based product designer working remotely\./, 'Current About biography must use the approved Nepal-based remote wording');
+assert.doesNotMatch(about, /based in Kathmandu|Kathmandu-based/, 'Current biography and metadata use Nepal; historical job locations are separate');
 assert.match(about, /The résumé behind 7\+ years/);
 assert.match(about, /Aug 2018/);
 assert.doesNotMatch(about, /6\+ years/);

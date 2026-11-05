@@ -1,0 +1,27 @@
+{
+  "source": "https://dns.google/resolve?name=www.nischhalsubba.com.np&type=A",
+  "observedAt": "2026-11-05T13:06:24.298027+00:00",
+  "result": {
+    "Status": 0,
+    "TC": false,
+    "RD": true,
+    "RA": true,
+    "AD": false,
+    "CD": false,
+    "Question": [
+      {
+        "name": "www.nischhalsubba.com.np.",
+        "type": 1
+      }
+    ],
+    "Authority": [
+      {
+        "name": "nischhalsubba.com.np.",
+        "type": 6,
+        "TTL": 1800,
+        "data": "alaric.ns.cloudflare.com. dns.cloudflare.com. 2417898607 10000 2400 604800 1800"
+      }
+    ],
+    "Comment": "Response from 162.159.38.135."
+  }
+}

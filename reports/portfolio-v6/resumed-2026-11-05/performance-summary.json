@@ -1,0 +1,72 @@
+{
+  "mobile": {
+    "samples": [
+      {
+        "file": "mobile-1.json",
+        "fetchTime": "2026-11-05T13:47:25.300Z",
+        "score": 0.9,
+        "LCP_ms": 2820.5085,
+        "TBT_ms": 201.10170000000016,
+        "CLS": 1.64937914971467e-05,
+        "warnings": [],
+        "runtimeError": null
+      },
+      {
+        "file": "mobile-2.json",
+        "fetchTime": "2026-11-05T13:47:38.327Z",
+        "score": 0.92,
+        "LCP_ms": 2909.547600000001,
+        "TBT_ms": 131.46560000000045,
+        "CLS": 0,
+        "warnings": [],
+        "runtimeError": null
+      },
+      {
+        "file": "mobile-3.json",
+        "fetchTime": "2026-11-05T13:47:51.044Z",
+        "score": 0.93,
+        "LCP_ms": 2948.0030000000006,
+        "TBT_ms": 61.399700000000166,
+        "CLS": 1.64937914971467e-05,
+        "warnings": [],
+        "runtimeError": null
+      }
+    ],
+    "medianLCP_ms": 2909.547600000001
+  },
+  "desktop": {
+    "samples": [
+      {
+        "file": "desktop-1.json",
+        "fetchTime": "2026-11-05T13:48:03.912Z",
+        "score": 0.99,
+        "LCP_ms": 816.7065,
+        "TBT_ms": 0,
+        "CLS": 0.015015485423340889,
+        "warnings": [],
+        "runtimeError": null
+      },
+      {
+        "file": "desktop-2.json",
+        "fetchTime": "2026-11-05T13:48:17.284Z",
+        "score": 0.98,
+        "LCP_ms": 847.95975,
+        "TBT_ms": 0,
+        "CLS": 0.016725090495178927,
+        "warnings": [],
+        "runtimeError": null
+      },
+      {
+        "file": "desktop-3.json",
+        "fetchTime": "2026-11-05T13:48:31.654Z",
+        "score": 0.98,
+        "LCP_ms": 828.3490000000002,
+        "TBT_ms": 0.4819999999999709,
+        "CLS": 0.01633902412460439,
+        "warnings": [],
+        "runtimeError": null
+      }
+    ],
+    "medianLCP_ms": 828.3490000000002
+  }
+}

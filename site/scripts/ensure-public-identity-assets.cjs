@@ -44,8 +44,8 @@ const manifest = {
 
 const humans = `/* TEAM */
 Owner: Nischhal Raj Subba
-Role: Product Designer
-Location: Kathmandu, Nepal
+Role: Senior Product Designer
+Location: Nepal
 Contact: ${email}
 Website: ${SITE}/
 About: ${SITE}/about

@@ -22,7 +22,7 @@ const site = 'https://nischhalsubba.com.np';
 const meta = {
   '/': {
     title: 'Nischhal Raj Subba | Senior Product Designer',
-    description: 'Senior product designer based in Kathmandu, working across SaaS, Web3, fintech and complex software. I design workflows, interfaces, design systems and implementation-ready product experiences.',
+    description: 'Senior product designer based in Nepal, working across SaaS, Web3, fintech and complex software. I design workflows, interfaces, design systems and implementation-ready product experiences.',
   },
   '/projects': {
     title: 'Product Design Case Studies | Nischhal Raj Subba',
@@ -34,7 +34,7 @@ const meta = {
   },
   '/about': {
     title: 'About Nischhal Raj Subba | Senior Product Designer',
-    description: 'I’m a product designer based in Kathmandu with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.',
+    description: 'I’m a product designer based in Nepal with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.',
   },
   '/contact': {
     title: 'Contact Nischhal Raj Subba | Product Design',
@@ -50,7 +50,7 @@ const meta = {
   },
   '/product-design-nepal': {
     title: 'Product Designer in Nepal for Software Teams | Nischhal Raj Subba',
-    description: 'Product design support from Kathmandu for software teams in Nepal and remote teams that need clearer workflows, stronger interfaces, practical systems and build-ready handoff.',
+    description: 'Product design support from Nepal for software teams in Nepal and remote teams that need clearer workflows, stronger interfaces, practical systems and build-ready handoff.',
   },
   '/web3-ux-designer': {
     title: 'Web3 Product Design for Wallets & Transactions | Nischhal Raj Subba',
@@ -170,7 +170,7 @@ function patchStructuredData(html, route, pageMeta) {
         if (type === 'Person') {
           node.name = 'Nischhal Raj Subba';
           node.jobTitle = 'Senior Product Designer';
-          node.description = 'Senior product designer based in Kathmandu, Nepal, working across SaaS, Web3, fintech and complex software products.';
+          node.description = 'Senior product designer based in Nepal, working across SaaS, Web3, fintech and complex software products.';
           node.url = `${site}/`;
           node.image = `${site}/assets/images/portrait.png`;
         }

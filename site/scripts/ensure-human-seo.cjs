@@ -26,7 +26,7 @@ const websiteId = `${site}/#website`;
 const coreMeta = {
   '/': {
     title: 'Nischhal Raj Subba | Senior Product Designer',
-    description: 'Product designer based in Kathmandu. I work on complex SaaS, Web3, fintech and software products, from product structure and interface design to design systems and handoff.',
+    description: 'Product designer based in Nepal. I work on complex SaaS, Web3, fintech and software products, from product structure and interface design to design systems and handoff.',
   },
   '/projects': {
     title: 'Product Design Case Studies | Nischhal Raj Subba',
@@ -38,7 +38,7 @@ const coreMeta = {
   },
   '/about': {
     title: 'About Nischhal Raj Subba | Product Designer',
-    description: 'I am a product designer based in Kathmandu with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.',
+    description: 'I am a product designer based in Nepal with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.',
   },
   '/contact': {
     title: 'Contact Nischhal Raj Subba',

@@ -1,0 +1,34 @@
+[
+  {
+    "source": "https://hamro-idea-website.vercel.app/",
+    "finalUrl": "https://hamro-idea-website.vercel.app/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T12:21:18.291Z",
+    "filename": "1440.png",
+    "sha256": "58a5c98101d69bc22fd51631f88984815de8df31320d86cf3c7313a8b5848472",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  },
+  {
+    "source": "https://hamro-idea-website.vercel.app/",
+    "finalUrl": "https://hamro-idea-website.vercel.app/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T12:21:28.102Z",
+    "filename": "390.png",
+    "sha256": "350281ca6779edd6d81197f374ed726b64de618337e89d2b043f5faba9884574",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  }
+]

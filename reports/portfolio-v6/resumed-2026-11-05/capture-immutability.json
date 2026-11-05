@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "exitCode": 1,
+  "manifestSha256BeforeAndAfter": "50936577bec3ce336d0c431fd6e104b41e6415fa8f946f9ef98e4bbcb9be1614",
+  "error": "Capture run already exists; choose a new ID to preserve immutable originals and provenance"
+}

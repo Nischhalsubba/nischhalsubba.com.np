@@ -1,0 +1,60 @@
+[
+  {
+    "source": "https://zakrademos.com/furniture/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "status": "BLOCKED_SOURCE",
+    "error": "TimeoutError: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://zakrademos.com/furniture/\", waiting until \"networkidle\"\u001b[22m\n",
+    "observedAt": "2026-11-05T13:04:26.195Z"
+  },
+  {
+    "source": "https://zakrademos.com/furniture/",
+    "finalUrl": "https://zakrademos.com/furniture/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "captureMode": "full-page",
+    "capturedAt": "2026-11-05T13:04:36.423Z",
+    "filename": "390.png",
+    "sha256": "c94d25b5182ea5421624fa6b9c06ba4a15857714b6aa2a158c46fde8573eff9f",
+    "status": "REJECTED_RENDER_ERRORS",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [
+      "Cannot read properties of null (reading 'classList')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')",
+      "Cannot read properties of null (reading 'style')"
+    ],
+    "failedResources": []
+  }
+]

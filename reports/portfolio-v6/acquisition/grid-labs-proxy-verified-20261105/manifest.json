@@ -1,0 +1,36 @@
+[
+  {
+    "source": "http://127.0.0.1:8008/",
+    "finalUrl": "http://127.0.0.1:8008/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T13:33:54.168Z",
+    "filename": "1440.png",
+    "sha256": "19be4a959821071c3f55523073b78737d5488988d94befd6bff405742cc55b21",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  },
+  {
+    "source": "http://127.0.0.1:8008/",
+    "finalUrl": "http://127.0.0.1:8008/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T13:33:59.755Z",
+    "filename": "390.png",
+    "sha256": "8d3bfcada03833fb67e19376cfa0ddac51ee473abfbf83830c21ac6e20f6e034",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  }
+]
