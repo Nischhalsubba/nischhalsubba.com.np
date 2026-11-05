@@ -1,0 +1,455 @@
+{
+  "checkedAt": "2026-11-05T19:04:45.367Z",
+  "source": "https://nischhalsubba.com.np/",
+  "conditions": "Headless Chromium on this cloud host, default motion, fresh browser context per run, no CPU/network throttle, proxy network, 10 seconds after DOMContentLoaded. Synthetic lab observations, not field CWV/p75, mobile hardware or causal before/after evidence.",
+  "rows": [
+    {
+      "width": 390,
+      "run": 1,
+      "status": 200,
+      "errors": [],
+      "lcp": [
+        {
+          "startTime": 1180,
+          "size": 19642,
+          "url": "",
+          "element": {
+            "tag": "P",
+            "id": "",
+            "className": "hb-p"
+          }
+        }
+      ],
+      "longTasks": [
+        {
+          "startTime": 1347.5,
+          "duration": 109
+        },
+        {
+          "startTime": 1483,
+          "duration": 83
+        }
+      ],
+      "shifts": [
+        {
+          "startTime": 1473.5999999977648,
+          "value": 0.000016567916091455545
+        }
+      ],
+      "navigation": [
+        {
+          "domContentLoaded": 1181.5,
+          "load": 1810.3999999985099,
+          "transferSize": 69667
+        }
+      ],
+      "resources": 25,
+      "buildMarker": null
+    },
+    {
+      "width": 390,
+      "run": 2,
+      "status": 200,
+      "errors": [],
+      "lcp": [
+        {
+          "startTime": 404,
+          "size": 19581,
+          "url": "",
+          "element": {
+            "tag": "P",
+            "id": "",
+            "className": "hb-p"
+          }
+        }
+      ],
+      "longTasks": [
+        {
+          "startTime": 706.5,
+          "duration": 80
+        },
+        {
+          "startTime": 834.9000000022352,
+          "duration": 67
+        }
+      ],
+      "shifts": [
+        {
+          "startTime": 462.30000000074506,
+          "value": 0.000016567916091455545
+        }
+      ],
+      "navigation": [
+        {
+          "domContentLoaded": 650.6000000014901,
+          "load": 669.3000000007451,
+          "transferSize": 69855
+        }
+      ],
+      "resources": 25,
+      "buildMarker": null
+    },
+    {
+      "width": 390,
+      "run": 3,
+      "status": 200,
+      "errors": [],
+      "lcp": [
+        {
+          "startTime": 444,
+          "size": 19581,
+          "url": "",
+          "element": {
+            "tag": "P",
+            "id": "",
+            "className": "hb-p"
+          }
+        }
+      ],
+      "longTasks": [
+        {
+          "startTime": 206.10000000149012,
+          "duration": 125
+        },
+        {
+          "startTime": 567.3000000007451,
+          "duration": 68
+        }
+      ],
+      "shifts": [
+        {
+          "startTime": 451,
+          "value": 0.000016567916091455545
+        }
+      ],
+      "navigation": [
+        {
+          "domContentLoaded": 559.2000000029802,
+          "load": 881.9000000022352,
+          "transferSize": 69514
+        }
+      ],
+      "resources": 25,
+      "buildMarker": null
+    },
+    {
+      "width": 1440,
+      "run": 1,
+      "status": 200,
+      "errors": [],
+      "lcp": [
+        {
+          "startTime": 440,
+          "size": 17784,
+          "url": "",
+          "element": {
+            "tag": "P",
+            "id": "",
+            "className": "hb-p"
+          }
+        },
+        {
+          "startTime": 2036,
+          "size": 106560,
+          "url": "",
+          "element": {
+            "tag": "B",
+            "id": "fgW",
+            "className": "fl"
+          }
+        }
+      ],
+      "longTasks": [
+        {
+          "startTime": 504,
+          "duration": 75
+        },
+        {
+          "startTime": 778.8000000007451,
+          "duration": 75
+        },
+        {
+          "startTime": 863.3000000007451,
+          "duration": 53
+        }
+      ],
+      "shifts": [
+        {
+          "startTime": 598.8000000007451,
+          "value": 0.0000024663226594650204
+        },
+        {
+          "startTime": 2255.800000000745,
+          "value": 0.00014460841049382717
+        },
+        {
+          "startTime": 2332.300000000745,
+          "value": 0.0007548010973936899
+        },
+        {
+          "startTime": 2420.5,
+          "value": 0.0021779036994170097
+        },
+        {
+          "startTime": 2500.10000000149,
+          "value": 0.004012076042418781
+        },
+        {
+          "startTime": 2575.10000000149,
+          "value": 0.0028180041152263374
+        },
+        {
+          "startTime": 2648.60000000149,
+          "value": 0.0020718192729766802
+        },
+        {
+          "startTime": 2721.400000002235,
+          "value": 0.0008157750342935528
+        },
+        {
+          "startTime": 2800.60000000149,
+          "value": 0.0005165337791495199
+        },
+        {
+          "startTime": 2872.5,
+          "value": 0.0001540471750685871
+        },
+        {
+          "startTime": 7818.199999999255,
+          "value": 0.000006143904320987654
+        },
+        {
+          "startTime": 10240.800000000745,
+          "value": 0.000011956678267532578
+        }
+      ],
+      "navigation": [
+        {
+          "domContentLoaded": 484.19999999925494,
+          "load": 860.9000000022352,
+          "transferSize": 69631
+        }
+      ],
+      "resources": 25,
+      "buildMarker": null
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "status": 200,
+      "errors": [],
+      "lcp": [
+        {
+          "startTime": 488,
+          "size": 17784,
+          "url": "",
+          "element": {
+            "tag": "P",
+            "id": "",
+            "className": "hb-p"
+          }
+        },
+        {
+          "startTime": 2464,
+          "size": 106560,
+          "url": "",
+          "element": {
+            "tag": "B",
+            "id": "fgW",
+            "className": "fl"
+          }
+        }
+      ],
+      "longTasks": [
+        {
+          "startTime": 199,
+          "duration": 152
+        },
+        {
+          "startTime": 401.9000000022352,
+          "duration": 54
+        },
+        {
+          "startTime": 551.6000000014901,
+          "duration": 91
+        },
+        {
+          "startTime": 677.9000000022352,
+          "duration": 65
+        },
+        {
+          "startTime": 1022.8000000007451,
+          "duration": 61
+        },
+        {
+          "startTime": 1258.300000000745,
+          "duration": 62
+        },
+        {
+          "startTime": 1657.1000000014901,
+          "duration": 70
+        }
+      ],
+      "shifts": [
+        {
+          "startTime": 527.5,
+          "value": 0.0000024663226594650204
+        },
+        {
+          "startTime": 2542,
+          "value": 0.000016319444444444444
+        },
+        {
+          "startTime": 2644.699999999255,
+          "value": 0.0002811042524005487
+        },
+        {
+          "startTime": 2721.400000002235,
+          "value": 0.0006227109053497942
+        },
+        {
+          "startTime": 2794.60000000149,
+          "value": 0.0021779036994170097
+        },
+        {
+          "startTime": 2895.699999999255,
+          "value": 0.0051244528294386365
+        },
+        {
+          "startTime": 3012.699999999255,
+          "value": 0.004076649305555556
+        },
+        {
+          "startTime": 3104.10000000149,
+          "value": 0.0009512034893689986
+        },
+        {
+          "startTime": 3187.300000000745,
+          "value": 0.0007065747170781893
+        },
+        {
+          "startTime": 3258.199999999255,
+          "value": 0.0001540471750685871
+        },
+        {
+          "startTime": 7950,
+          "value": 0.000006143904320987654
+        },
+        {
+          "startTime": 10305.199999999255,
+          "value": 0.000011956678267532578
+        }
+      ],
+      "navigation": [
+        {
+          "domContentLoaded": 465.69999999925494,
+          "load": 658.1000000014901,
+          "transferSize": 69629
+        }
+      ],
+      "resources": 25,
+      "buildMarker": null
+    },
+    {
+      "width": 1440,
+      "run": 3,
+      "status": 200,
+      "errors": [],
+      "lcp": [
+        {
+          "startTime": 568,
+          "size": 17784,
+          "url": "",
+          "element": {
+            "tag": "P",
+            "id": "",
+            "className": "hb-p"
+          }
+        },
+        {
+          "startTime": 2456,
+          "size": 106560,
+          "url": "",
+          "element": {
+            "tag": "B",
+            "id": "fgW",
+            "className": "fl"
+          }
+        }
+      ],
+      "longTasks": [
+        {
+          "startTime": 603.1000000014901,
+          "duration": 110
+        },
+        {
+          "startTime": 769,
+          "duration": 52
+        }
+      ],
+      "shifts": [
+        {
+          "startTime": 745,
+          "value": 0.0000024663226594650204
+        },
+        {
+          "startTime": 2458.10000000149,
+          "value": 0.000038078703703703704
+        },
+        {
+          "startTime": 2542.400000002235,
+          "value": 0.0003351916152263374
+        },
+        {
+          "startTime": 2626.300000000745,
+          "value": 0.0011971707818930041
+        },
+        {
+          "startTime": 2703.800000000745,
+          "value": 0.002159664351851852
+        },
+        {
+          "startTime": 2780.60000000149,
+          "value": 0.004230652542009603
+        },
+        {
+          "startTime": 2856.10000000149,
+          "value": 0.0030700692301097398
+        },
+        {
+          "startTime": 2942.2000000029802,
+          "value": 0.001540801826131687
+        },
+        {
+          "startTime": 3019.400000002235,
+          "value": 0.0006032498499657065
+        },
+        {
+          "startTime": 3090.800000000745,
+          "value": 0.0003455729166666666
+        },
+        {
+          "startTime": 3164.2000000029802,
+          "value": 0.00005908243312757202
+        },
+        {
+          "startTime": 7980.70000000298,
+          "value": 0.000006143904320987654
+        },
+        {
+          "startTime": 10433.400000002235,
+          "value": 0.000011956678267532578
+        }
+      ],
+      "navigation": [
+        {
+          "domContentLoaded": 600.2000000029802,
+          "load": 720.5,
+          "transferSize": 69582
+        }
+      ],
+      "resources": 25,
+      "buildMarker": null
+    }
+  ]
+}

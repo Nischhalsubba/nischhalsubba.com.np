@@ -173,11 +173,11 @@
       "depends_on": "T06",
       "acceptance_criteria": "Name, role, niche, cases and CTA legible at 390/1440 and reduced motion",
       "evidence_status": "verified source; browser pending",
-      "status": "NOT_STARTED",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-ux-a11y;nrs-content-and-cases",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
+      "observation": "Preserved approved hero composition. Existing scroll cue is now a native View case studies link; role copy explicitly names SaaS/fintech/Web3. At 390x844 and1440x900 in normal/reduced motion, role and CTA fit first viewport, CTA is unobscured/focusable and Enter navigates to /projects. Native screenshots inspected.",
+      "evidence": "resumed-2026-11-05/home-entry-qa.json; resumed-2026-11-05/home-entry-390-reduce.png; site/src/workspace-home/index.html",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -433,12 +433,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "p75 mobile/desktop CWV by URL/element where sample available",
       "evidence_status": "official Cloudflare docs",
-      "status": "NOT_STARTED",
+      "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-performance-release;nrs-ux-a11y",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "",
+      "observation": "Public PageSpeed API quota response was recorded earlier; no valid URL-level mobile/desktop field p75 dataset or authorized GSC/RUM export is available. Synthetic Lighthouse/startup samples are kept separate and are not substituted for field CWV.",
+      "evidence": "resumed-2026-11-05/pagespeed-public-api.json; resumed-2026-11-05/performance.md; resumed-2026-11-05/production-home-startup.json",
+      "blocker": "Valid CrUX/field sample or authorized Search Console/RUM dataset with collection dates and sufficient sample coverage.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -453,11 +453,11 @@
       "depends_on": "T22",
       "acceptance_criteria": "3-run reproducible tests; LCP element/long tasks identified; no navigation regressions",
       "evidence_status": "repo verified CI lab",
-      "status": "NOT_STARTED",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-performance-release;nrs-ux-a11y",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
+      "observation": "Reused existing three-run local throttled Lighthouse evidence and added three fresh-context production startup profiles per mobile/desktop viewport. LCP elements and individual long-task timings/durations are recorded. Unthrottled cloud observations are not field p75/mobile hardware or proof of a causal improvement. Homepage native CTA navigation passes.",
+      "evidence": "resumed-2026-11-05/performance.md; resumed-2026-11-05/performance-summary.json; resumed-2026-11-05/production-home-startup.json; resumed-2026-11-05/profile-home-startup.cjs; resumed-2026-11-05/home-entry-qa.json",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -473,12 +473,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "Keyboard/reduced motion/zoom/NVDA-VoiceOver/contrast checklist signed",
       "evidence_status": "historical audit",
-      "status": "NOT_STARTED",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "",
+      "observation": "Existing full native case QA and production desktop/mobile inventory are retained; changed-page four-width decode/axe/overflow and normal/reduced-motion homepage keyboard checks pass. This is not full manual AA conformance.",
+      "evidence": "resumed-2026-11-05/production-browser/browser-inventory.json; resumed-2026-11-05/case-evidence-batch-qa.json; resumed-2026-11-05/media-batch-qa.json; resumed-2026-11-05/home-entry-qa.json",
+      "blocker": "Complete actual browser zoom 200/400% and manual assistive-technology review; NVDA/VoiceOver testing not performed in this Linux environment. Remaining all-detail-page motion and keyboard coverage must be reconciled explicitly.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1033,12 +1033,12 @@
       "depends_on": "T44,T45",
       "acceptance_criteria": "Desktop/mobile captures, axe/keyboard/motion, no-asset failures, 400% zoom spot checks",
       "evidence_status": "CI history partial",
-      "status": "NOT_STARTED",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "",
+      "observation": "Existing full native case QA and production desktop/mobile inventory are retained; changed-page four-width decode/axe/overflow and normal/reduced-motion homepage keyboard checks pass. This is not full manual AA conformance.",
+      "evidence": "resumed-2026-11-05/production-browser/browser-inventory.json; resumed-2026-11-05/case-evidence-batch-qa.json; resumed-2026-11-05/media-batch-qa.json; resumed-2026-11-05/home-entry-qa.json",
+      "blocker": "Complete actual browser zoom 200/400% and manual assistive-technology review; NVDA/VoiceOver testing not performed in this Linux environment. Remaining all-detail-page motion and keyboard coverage must be reconciled explicitly.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -2142,6 +2142,6 @@
       "confidence": "CONFIRMED_SOURCE"
     }
   ],
-  "updated_at": "2026-11-05T19:02:23.541229+00:00",
+  "updated_at": "2026-11-05T19:06:07.724793+00:00",
   "scope_note": "All 107 tickets tracked. Reopened stale network blockers; not-started and in-progress do not imply blocked or complete. DONE_VERIFIED applies only to stated ticket acceptance. New source changes await release verification; full-program signoff is not claimed. Latest owner instruction: no automatic merge or deploy."
 }
