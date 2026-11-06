@@ -1,0 +1,11 @@
+{
+  "decision": "STATIC_PUBLIC_WEBSITE_REFERENCE_DESKTOP_ONLY",
+  "source": "https://zapp.today/",
+  "selectedViewportRun": "../acquisition/zapp-desktop-reference-20261105/manifest.json",
+  "fullOriginalRun": "../acquisition/zapp-live-20261105/manifest.json",
+  "review": "Independent source QA confirms fully rendered desktop marketing content, no page exceptions, no broken decoded images or obscuring overlays. The only failed script is optional Facebook customer chat blocked by browser ORB. Its failure remains in the immutable source manifest and is not removed or treated as working functionality.",
+  "mobile": "Not approved: original full mobile PNG is 436px wide for a recorded 390px viewport, with footer/CTA overlap. Do not claim source-site mobile functionality.",
+  "publicationScope": "Attributed desktop reference in the case body, separate from historical app design. Keep authored Figma previews as primary cards. Website marketing claims are source copy, not portfolio outcomes.",
+  "rightsBasis": "Owner explicitly requested attributed screenshot reference from this named public project website. Copyright remains ZAPP Services; no exclusive rights, endorsement or historical website authorship claimed.",
+  "originalRejectionPreserved": true
+}

@@ -1,0 +1,60 @@
+[
+  {
+    "source": "https://anza-xyz.github.io/wallet-adapter/example/",
+    "capturedAt": "2026-11-05T18:02:04.092Z",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 2,
+    "sourceScope": "Native React UI wallet chooser only; no wallet selected, account connected, message signed, airdrop requested or transaction sent.",
+    "interaction": "Open React UI Select Wallet in the Dialog/Modal Button row",
+    "boundsCss": {
+      "x": 520,
+      "y": 328,
+      "width": 400,
+      "height": 244
+    },
+    "imageDimensions": {
+      "width": 800,
+      "height": 488
+    },
+    "filename": "1440-chooser.png",
+    "sha256": "d06ea3ac0018e08deefb6d62a9577f02afe155155c86f15c164984eac86e3611",
+    "fullOriginal": "1440-full.png",
+    "fullOriginalSha256": "d29fd73f95c07020fcd6cacad59be9b0df3442b83ea016324f02ba7907ef4d14",
+    "layoutOverflow": 0,
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "errors": [],
+    "failedResources": []
+  },
+  {
+    "source": "https://anza-xyz.github.io/wallet-adapter/example/",
+    "capturedAt": "2026-11-05T18:02:11.090Z",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "deviceScaleFactor": 2,
+    "sourceScope": "Native React UI wallet chooser only; no wallet selected, account connected, message signed, airdrop requested or transaction sent.",
+    "interaction": "Open React UI Select Wallet in the Dialog/Modal Button row",
+    "boundsCss": {
+      "x": 16,
+      "y": 300,
+      "width": 358,
+      "height": 244
+    },
+    "imageDimensions": {
+      "width": 716,
+      "height": 488
+    },
+    "filename": "390-chooser.png",
+    "sha256": "2dbaa082fcf6400f998e5b5cb6ada55064923e082b0552eabb4df699b27e24c6",
+    "fullOriginal": "390-full.png",
+    "fullOriginalSha256": "69ab128151c7aec69a86c818ca1d7cfbb21eb32acc952075a2eedca63d61f5b6",
+    "layoutOverflow": 57,
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "errors": [],
+    "failedResources": []
+  }
+]

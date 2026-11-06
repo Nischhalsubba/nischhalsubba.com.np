@@ -1,0 +1,36 @@
+[
+  {
+    "source": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+    "finalUrl": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T17:36:06.791Z",
+    "filename": "1440.png",
+    "sha256": "31461cb2d44619800707c94138222f5999b3ef186c3c8778cbf89a611a0f13c0",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  },
+  {
+    "source": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+    "finalUrl": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T17:36:09.109Z",
+    "filename": "390.png",
+    "sha256": "77e9d625e95cd0ea3d92aeb8fe2d411277c6a3ef689c428a628ad559282c288f",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  }
+]

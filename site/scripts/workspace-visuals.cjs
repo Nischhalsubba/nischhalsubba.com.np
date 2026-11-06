@@ -20,11 +20,22 @@ const articles = fs.readdirSync(content).filter(n=>/^articles-editorial(?:-[a-z]
  * Purpose: Encode visible labels. Inputs: text. Side effects: none. Returns: safe HTML text.
  */
 function esc(text){return String(text).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');}
+/** Function contract: captureForDestination
+ * Purpose: Resolve the same reviewed public reference used in an article or case body.
+ * Inputs: destination URL. Side effects: none. Returns: preview-approved capture or undefined.
+ */
+function captureForDestination(href){
+ const direct=publicCaptures.forPreview(href);if(direct)return direct;
+ const slug=new URL(href,'https://portfolio.invalid').pathname.replace(/\.html$/,'').split('/').pop();
+ const article=articles.find(/** Callback contract: Match canonical editorial destination. Inputs: record. Side effects: none. Returns: slug match. */ record=>record.slug===slug);
+ const id=article?.sections.find(/** Callback contract: Find the first explicit public source selection. Inputs: section. Side effects: none. Returns: source ID presence. */ section=>section.publicCapture)?.publicCapture;
+ const capture=id?publicCaptures.byId(id):undefined;return capture?.useAsPreview===false?undefined:capture;
+}
 /** Function contract: preview
  * Purpose: Find a committed preview for a destination. Inputs: route. Side effects: reads generated image manifest. Returns: image URL.
  */
 function preview(href){
- const capture=publicCaptures.forRoute(href);
+ const capture=captureForDestination(href);
  if(capture)return capture.variants.at(-1).src;
  const slug=href.replace(/\.html$/,'').split('/').pop();
  if(slug==='project-grid-labs')return '/assets/images/owner/grid-labs-cover.webp';
@@ -49,7 +60,7 @@ function retainedEvidence(href){
  * Inputs: route. Side effects: none. Returns: decorative preview markup, or empty text when source evidence is unavailable.
  */
 function cardMedia(href){
- const capture=publicCaptures.forRoute(href);if(capture)return publicCaptures.picture(capture,true);
+ const capture=captureForDestination(href);if(capture)return publicCaptures.picture(capture,true);
  const image=retainedEvidence(href);if(!image)return '';
  return retainedFigure(image.id).match(/<img\b[^>]+>/)[0].replace(/alt="[^"]*"/,'alt=""').replace('<img ',`<img data-retained-evidence-preview="${esc(image.id)}" `);
 }
@@ -67,7 +78,7 @@ function card(href,label,context='Explore'){return `<a class="workspace-story-ca
 function present(main,relative){
  main=main.replace(/(<a\b[^>]*href="([^"]+)"[^>]*>)([\s\S]*?)(<\/a>)/g,/** Callback contract: Replace only archive-card preview images with approved source media. Inputs: full anchor, opening tag, route, body, closing tag. Side effects: none. Returns: unchanged or equivalent source-led card. */ (tag,opening,href,body,closing)=>{if(!/\bnrs-work-card\b/.test(opening))return tag;const media=cardMedia(href);return media?opening+body.replace(/<img\b[^>]+>/,media)+closing:tag;});
 
- for(const capture of publicCaptures.captures){const slug=capture.route.replace('/project-','');main=main.replaceAll('/workspace-home/assets/projects/'+slug+'.svg',capture.variants.at(-1).src);}
+ for(const capture of publicCaptures.captures){if(capture.useAsPreview===false||!capture.route.startsWith('/project-'))continue;const slug=capture.route.replace('/project-','');main=main.replaceAll('/workspace-home/assets/projects/'+slug+'.svg',capture.variants.at(-1).src);}
  main=main.replaceAll('/workspace-home/assets/projects/grid-labs.svg','/assets/images/owner/grid-labs-cover.webp');
  if(!publicCaptures.forRoute('/project-grid-labs'))main=main.replace(/(<a[^>]*href="\/project-grid-labs"[^>]*>[\s\S]*?<img[^>]*src=")[^"]+("[^>]*>)/g,'$1/assets/images/owner/grid-labs-cover.webp$2');
  main=main.replace(/<nav\b[^>]*class="[^"]*(?:nrs-case-breadcrumb|nrs-breadcrumbs|nrs-detail-breadcrumb)[^"]*"[^>]*>[\s\S]*?<\/nav>/g,'');
