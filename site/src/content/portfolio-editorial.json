@@ -635,12 +635,12 @@
     {
       "slug": "mokshya",
       "title": "Mokshya.io",
-      "category": "Web3 protocol · Website communication",
+      "category": "AI/Web3 R&D lab · Website communication",
       "role": "Website UX and product communication contribution",
-      "summary": "A technical product story with an accessible first explanation and a deeper path for people evaluating the mechanism.",
+      "summary": "A retained website design that introduces an AI/Web3 R&D lab, then separates exploration from a project enquiry.",
       "context": [
-        "Mokshya's website needs to serve visitors with different levels of technical knowledge. Someone encountering the product for the first time needs a useful mental model. A developer or evaluator needs enough specificity to investigate further. My contribution centered on information architecture, section sequence and responsive composition.",
-        "This case is about protocol-product communication on the website. It should not be read as proof that I designed a complete wallet, implemented the protocol or verified financial outcomes. The existing website preview provides visual context for this contribution."
+        "The retained Mokshya website preview identifies the business as an AI-Native Web3 R&D Lab. Its opening pairs the headline ‘Empowering Web3 with AI-Native Innovation’ with a sentence about AI agents, applications and Web3 infrastructure. My portfolio contribution is website UX and product communication: the hierarchy of that explanation and the routes a visitor can inspect next.",
+        "This account is grounded in the retained website image, whose original capture date is unknown. A fresh working source view was not verified in this review. The screenshot does not establish the operation of an AI agent, a protocol, a wallet or a production deployment; the claims visible inside it remain website copy rather than independently verified capabilities."
       ],
       "constraints": [
         "The first explanation must be readable without removing the technical distinctions that matter.",
@@ -649,35 +649,35 @@
       ],
       "decisions": [
         {
-          "heading": "Let the outcome establish relevance",
+          "heading": "Give the broad positioning a concrete next sentence",
           "body": [
-            "I structure the opening around what the product makes possible before asking the visitor to learn its terminology. That gives technical detail a purpose: it answers a question the page has already helped the visitor form.",
-            "The trade-off is precision. A short statement should narrow the claim rather than replace an explanation with a sweeping Web3 promise. Where the mechanism matters, the next section must supply it."
+            "The small ‘AI-Native Web3 R&D Lab’ label establishes the category before the large positioning headline. The supporting sentence then names three kinds of work: AI agents, applications and Web3 infrastructure. That is the observable hierarchy in the retained preview; it gives a visitor more to assess than the headline alone.",
+            "The phrase ‘production-grade’ appears in the website copy, but the image cannot substantiate it. In a review, I would ask which public artifact demonstrates each capability and whether it deserves a nearby link. I would not treat the headline or the technology logos as delivery evidence."
           ],
-          "leadIn": "Start with the reason a visitor should care.",
-          "tradeoff": "Plain language lowers the entry barrier; narrowing the claim preserves technical precision."
+          "leadIn": "Begin with the actual words and hierarchy visible in the retained design.",
+          "tradeoff": "A broad headline gives the lab room to explain its work; concrete examples and inspectable proof must carry the technical claim."
         },
         {
-          "heading": "Connect the summary to deeper evaluation",
+          "heading": "Separate exploration from a project enquiry",
           "body": [
-            "An introductory path and a developer path can share one coherent story without requiring the same reading depth. The summary explains the proposition; deeper material exposes the mechanism and the evidence available to inspect.",
-            "This is a content-hierarchy decision rather than a measured finding about visitor behavior. I would test whether a newcomer can explain the offer and whether a technical evaluator can find the detail they need without reading the entire page."
+            "The hero presents ‘Explore’ and ‘Start a project’ as different actions. The header also exposes ‘Experiments’ and repeats ‘Start a project’. Those labels suggest two visitor intentions: inspect the work or begin a conversation. I can discuss their visibility and relative emphasis from the image without claiming to have tested where they lead.",
+            "The bright Explore treatment draws attention toward investigation while the outlined project action remains available. Whether that emphasis serves the lab depends on the visitor’s task and the destination content. A useful review would follow each route and check that its next page answers the expectation created by the label; that navigation was not verified here."
           ],
-          "leadIn": "Relevance creates the next question: how does this actually work?",
-          "tradeoff": "Progressive depth accommodates different readers without forcing everyone through the longest explanation."
+          "leadIn": "Once the proposition is visible, the visitor needs a next step that matches their intent.",
+          "tradeoff": "Two visible routes accommodate different readiness levels; each destination must justify the extra choice."
         },
         {
-          "heading": "Preserve explanation and proof as a pair",
+          "heading": "Keep visual credibility separate from verified capability",
           "body": [
-            "A supporting artifact is most useful near the statement it helps assess. On mobile, I keep that relationship in the reading order instead of letting a desktop column arrangement separate the explanation from its supporting visual.",
-            "That requires reviewing actual headings, paragraph lengths and image behavior at narrow widths. A responsive page can fit the viewport while still telling its story in an unhelpful order."
+            "The dark opening, colored glow and compact navigation give the technical message a recognizable presentation. A ‘We Work With’ logo row appears below the hero. The screenshot establishes that the row is present; it does not prove a partnership, endorsement or a particular technical integration.",
+            "For a responsive review, I would keep the category label, headline, supporting sentence and both actions in a coherent reading order, then inspect the actual narrow layout. The retained desktop image alone cannot certify that behavior. This distinction keeps an account of website composition from becoming a claim about unobserved product functionality."
           ],
-          "leadIn": "The explanation only holds together when its supporting material remains nearby.",
-          "tradeoff": "A responsive rearrangement must preserve meaning as well as fit the viewport."
+          "leadIn": "The presentation can invite confidence without becoming the evidence for a technical claim.",
+          "tradeoff": "Visual association is quick to read; specific artifacts and accurate relationship labels make it assessable."
         }
       ],
-      "delivery": "The portfolio scope is the website's narrative structure, responsive hierarchy and interface composition. The retained website preview provides context; the contribution described here is the narrative structure and interface composition.",
-      "outcome": "The website account focuses on the order of explanation: establish relevance, then expose the technical mechanism. A first-impression task and a developer-information retrieval task would test those two reading paths. The available material does not include a measured comprehension result.",
+      "delivery": "The retained image supports discussion of the website opening, navigation labels and visual hierarchy. My stated scope remains website UX and product communication. Original capture date, current destinations, narrow-screen behavior and technical capability claims remain unverified.",
+      "outcome": "This account identifies the visible decisions in the retained website presentation and the questions that remain. It reports no comprehension, conversion, performance or technical-delivery result.",
       "related": [
         [
           "/website-ux-design",
@@ -692,20 +692,20 @@
           "Related content architecture work"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
-        "question": "How can a protocol website explain enough for a newcomer without frustrating a technical evaluator?",
-        "opening": "The website has to introduce an idea before it can ask someone to evaluate a mechanism. My approach connects the opening proposition to deeper technical reading, then keeps explanation and proof together as the layout changes. This case follows that reading path within my website design contribution.",
+        "question": "How can an AI/Web3 lab introduce its work and offer a useful next step without asking visitors to trust an unsupported claim?",
+        "opening": "The retained website opening combines a category label, a broad headline, a more concrete explanation and two visible actions. This case examines that sequence within my website communication contribution. It also separates what the image shows from capabilities, destinations and responsive behavior that still require verification.",
         "steps": [
-          "Establish relevance",
-          "Expose the mechanism",
-          "Keep proof beside the claim"
+          "Explain the positioning",
+          "Separate the visitor intentions",
+          "Distinguish presentation from proof"
         ],
-        "reflection": "Each layer should answer the question raised by the previous one. A newcomer and a developer can share the opening without needing the same depth. The strongest editorial structure makes the next useful question easy to pursue."
+        "reflection": "The most useful improvement is a tighter link between each visible claim and something a visitor can inspect. The website can make the next question clear; it should not ask the visual identity to prove the answer."
       },
       "evaluation": [
-        "Ask a newcomer to explain the protocol’s purpose after the opening, then find the route to deeper technical information.",
-        "Ask a technical evaluator to locate the evidence behind a capability claim without repeatedly returning to the top-level introduction."
+        "Ask a first-time visitor to explain the lab’s offer from the category label, headline and supporting sentence, then identify the next route they would choose.",
+        "Inspect the actual Explore, Experiments and Start a project destinations when a working source is available; check the evidence behind each capability and relationship claim."
       ]
     },
     {
