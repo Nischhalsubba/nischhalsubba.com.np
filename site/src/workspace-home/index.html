@@ -1712,12 +1712,15 @@ html.pr-dragging,html.pr-dragging *{cursor:grabbing!important;user-select:none!i
 .testi .tv{height:auto;min-height:100svh;justify-content:center;gap:36px;padding-block:96px 64px}
 .testi .tv-head{margin:0}.testi .tv .tq{margin-block:0}
 .tq-al{margin:0 0 8px;color:var(--muted);font-size:11px;letter-spacing:.06em}
-.tq-c{opacity:1;transform:none;transition:box-shadow .3s;flex-basis:calc(360px * var(--zk));min-height:340px;gap:20px;background:linear-gradient(145deg,#10131c,#090b12);padding:28px;justify-content:flex-start}
-.tq-c::before{display:none}.tq-summary{font-family:var(--sans,inherit);font-size:15px;line-height:1.65;color:#b9b9c0;margin:0}
-.tq-who{margin-top:0;padding:0;border:0}.tq-who b{font-size:18px;line-height:1.35}.tq-who span span{display:block;margin-top:8px;color:#a7a7b0}
-.tq-badge{display:block;align-self:flex-start}.tq-badge img{display:block;width:144px;height:144px;object-fit:contain}
+.tq-c{opacity:1;transform:none;transition:box-shadow .3s;flex-basis:clamp(420px,32vw,560px);min-height:420px;gap:24px;background:linear-gradient(145deg,#10131c,#090b12);padding:28px;justify-content:flex-start}
+.tq-c::before{display:none}.tq-summary{font-family:var(--sans,inherit);font-size:17px;line-height:1.65;color:#b9b9c0;margin:0}
+.tq-who{margin-top:0;padding:0;border:0}.tq-who b{font-size:21px;line-height:1.35}.tq-who span span{display:block;margin-top:8px;color:#a7a7b0}
+.tq-badge{display:block;align-self:flex-start}.tq-badge img{display:block;width:192px;height:192px;object-fit:contain}
 .tq-proof-label{display:block;color:#7cc6ff;font-size:11px;letter-spacing:.06em;padding-bottom:12px;border-bottom:1px solid #23334c}
 .tq-c:not(.tq-award){justify-content:center}.tq-c a:focus-visible{outline:2px solid #7cc6ff;outline-offset:5px}
+.testi.credential-scroll .tq-trk{scroll-snap-type:none;scroll-behavior:auto}
+.testi .hold-sp{height:0}
+@media(max-height:760px) and (min-width:768px){.testi .tv{gap:24px;padding-block:80px 32px}.tq-c{min-height:360px;gap:16px;padding:24px}.tq-badge img{width:160px;height:160px}}
 @media(max-width:640px){.testi .tv{gap:28px;padding-block:84px 48px}.tq-c{flex-basis:min(84vw,360px);min-height:360px}.tq-badge img{width:128px;height:128px}.tq-summary{font-size:14px}}
 </style>
 <style data-work-preview-contrast>
@@ -3668,6 +3671,10 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize scenes in ordered gro
     addEventListener('pointerup', () => { if (!dragging) return; dragging = false; if (moved) { const x = trk.scrollLeft; trk.classList.remove('drag'); trk.scrollLeft = x; } });
     trk.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
     trk.addEventListener('dragstart', e => e.preventDefault());
+    import('/workspace-home/credentials-scroll.js').then(({ initCredentialScroll }) => {
+      const section = tq.closest('section');
+      initCredentialScroll(section, section.querySelector('.tv'), trk, section.querySelector('.hold-sp'));
+    }).catch(() => { /* Native swipe, keyboard and arrow controls remain available. */ });
   })();
 
   /* ---------- copy email (used by the contact palette) ---------- */
