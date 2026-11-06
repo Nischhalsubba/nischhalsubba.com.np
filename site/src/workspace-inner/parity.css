@@ -100,3 +100,5 @@ body[data-portfolio-design="workspace-inner-v1"]{isolation:isolate}.workspace-fi
 .agent-main :is(.workspace-story-image,.nrs-work-card-media)>picture img{width:100%;height:100%!important}
 
 .thumbnail-source-pending{position:absolute;inset:8%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#20273a}.thumbnail-source-pending span{font:10px var(--mono);letter-spacing:.08em}.thumbnail-source-pending strong{font:600 clamp(24px,3vw,42px) var(--sans);margin:12px 0}.thumbnail-source-pending p{font:12px var(--sans);margin:0}
+
+.thumbnail-evidence-pending>div{padding:clamp(24px,5vw,64px);background:linear-gradient(145deg,#d9cbed,#f4ebf8);color:#242438}.agent-main .thumbnail-evidence-pending h2{color:#242438}.thumbnail-evidence-pending .agent-kicker{color:#484058}
