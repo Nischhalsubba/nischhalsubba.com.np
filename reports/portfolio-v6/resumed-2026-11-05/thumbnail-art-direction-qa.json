@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-11-06T06:40:19.891Z",
+  "scope": "CSS presentation of unchanged source UI; text-only Designerex fallback; no image generation, cropping or claimed tested transitions.",
+  "rows": [
+    {
+      "width": 390,
+      "reducedMotion": "reduce",
+      "frames": 14,
+      "authenticImages": 15,
+      "pendingTextFallback": "designerex",
+      "dialogCompositions": 14,
+      "pairedProjects": [
+        "yarsha",
+        "zapp"
+      ],
+      "overlaps": 0,
+      "fullImagesUncropped": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "reducedMotion": "no-preference",
+      "frames": 14,
+      "authenticImages": 15,
+      "pendingTextFallback": "designerex",
+      "dialogCompositions": 14,
+      "pairedProjects": [
+        "yarsha",
+        "zapp"
+      ],
+      "overlaps": 0,
+      "fullImagesUncropped": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "reducedMotion": "reduce",
+      "frames": 14,
+      "authenticImages": 15,
+      "pendingTextFallback": "designerex",
+      "dialogCompositions": 14,
+      "pairedProjects": [
+        "yarsha",
+        "zapp"
+      ],
+      "overlaps": 0,
+      "fullImagesUncropped": true,
+      "errors": [
+        "Cannot set properties of null (setting 'textContent')",
+        "Cannot set properties of null (setting 'textContent')",
+        "Cannot read properties of null (reading 'style')",
+        "Cannot set properties of null (setting 'textContent')",
+        "Cannot read properties of null (reading 'offsetWidth')",
+        "Failed to execute 'getImageData' on 'CanvasRenderingContext2D': The source width is 0."
+      ]
+    },
+    {
+      "width": 1440,
+      "reducedMotion": "no-preference",
+      "frames": 14,
+      "authenticImages": 15,
+      "pendingTextFallback": "designerex",
+      "dialogCompositions": 14,
+      "pairedProjects": [
+        "yarsha",
+        "zapp"
+      ],
+      "overlaps": 0,
+      "fullImagesUncropped": true,
+      "errors": []
+    }
+  ]
+}

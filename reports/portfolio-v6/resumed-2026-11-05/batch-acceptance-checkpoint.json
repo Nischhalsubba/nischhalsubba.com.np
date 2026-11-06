@@ -1,0 +1,38 @@
+{
+  "releasedCommit": "dbf14e8124ef2f4485009be4bca2a37cdb1acfee",
+  "mergedPRs": [
+    119,
+    120
+  ],
+  "cloudflareMainBuild": "SUCCESS",
+  "cloudflareBuildUrl": "https://dash.cloudflare.com/563d5e48a50eb3cc9bfa484fd4e5a9a2/workers/services/view/portfolio-website-2026/production/builds/3ce6362e-29c9-4f6c-86e5-af7fdbdc2e4f",
+  "liveVerification": {
+    "canonicalRoutes": 54,
+    "sourceAndIconAssets": 23,
+    "errors": 0,
+    "homepageCards": 14,
+    "distinctArticleSources": 27,
+    "projectIntroductions": 14,
+    "widths": [
+      390,
+      1440
+    ]
+  },
+  "counts": {
+    "BLOCKED_PERMISSION": 8,
+    "BLOCKED_SOURCE": 7,
+    "CODE_DONE_NEEDS_CI": 1,
+    "DONE_VERIFIED": 53,
+    "GOOGLE_PENDING": 4,
+    "IN_PROGRESS": 34
+  },
+  "closures": {
+    "T40": "Exact acceptance review complete: full unaltered Zapp desktop capture and original Figma app thumbnails have provenance, capture/date scope and correct semantics. The optional Facebook widget failure and rejected mobile screenshot remain explicit. This does not close version-date or independent-reacquisition tasks.",
+    "T62": "Reusable curated/public figure components supply contain rendering, intrinsic dimensions, responsive sources, original/source links and safe fallbacks. Fixed homepage/archive frames are verified at390/1440, normal/reduced motion; no automatic stock fallback is used for utility cards. All-placement manual inspection remains separate.",
+    "T68": "Released in main dbf14e8 through PR120. All27 distinct authentic lead sources match archive/related/social previews. Cards have complete-image containment in16:10frames, readable titles, one native CTA and visible focus at390/1440. Local source hashes, browser checks, final CI and live feature checks passed.",
+    "T83": "Exact acceptance review complete: responsive source components, dimensions, alt/captions/fallbacks,54canonical routes,1200x630immutable OGcards and sitemap entries passed. Distinct article leads drive social previews. Performance evidence is labeled laboratory rather than field CWV. Broader authenticity/manual-placement reviews remain separate.",
+    "T93": "Exact acceptance review complete: owner-approved7+ is supported by84overlap-aware calendar months including internship/part-time work.2024annual categories,3Nov2026Pro-member weekly snapshot and2023Top10 are separately dated/scoped. No unsupported exact2023rank is displayed."
+  },
+  "newRegression": "site/scripts/seo/media-evidence.cjs: all41detail+2listing routes at390/1440; HTTP200/canonical identity, decode/nonzero dimensions/alt and one image per card assertions. Integrated into the SEO evidence job with CI Chromium fallback; CI acceptance pending.",
+  "remaining": "Not full107-ticket completion:34implementation/audit tasks,1code-completeCIpending task,15source/access blockers and4Google observations remain. T55/T85no longer imply new merge permission is needed."
+}
