@@ -36,8 +36,8 @@
       "status": "GOOGLE_PENDING",
       "skills_to_load": "nrs-repo-inventory;nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Authorized Search Console access is now available. Fresh API read on 2026-11-06 still reports its last sitemap download as 2026-11-04T15:54:40.231Z: 53 submitted web URLs, zero errors/warnings. Existing live XML has 54 canonical URLs. The historical indexed:0 counter is not a site deindexing verdict.",
-      "evidence": "resumed-2026-11-05/production-http.json; resumed-2026-11-06/search-and-ci-checkpoint.json",
+      "observation": "Fresh post-PR124 sitemap read still reports 53 web URLs, zero errors/warnings, last downloaded 2026-11-04T15:54:40.231Z. Source/build retain 54 routes. No new Google processing or sitemap submission claimed.",
+      "evidence": "continuation-2026-11-06/post-release-indexing.json",
       "blocker": "Await a newer Google sitemap download; resubmission was not performed through the read-only connector.",
       "confidence": "CONFIRMED_CURRENT"
     },
@@ -518,7 +518,7 @@
       "batch": "F_AUTHORITY_SOCIAL",
       "observation": "Public analytics now allowlists canonical paths, event/context/metric values and removes query/fragment visitor strings. Public forged contact_success rejected. Server event emitted only after CONTACT_EMAIL provider acceptance; honeypot does not count. Optional configured browser providers receive no form fields. Contact/routing regressions pass. End-to-end production provider/storage/consent verification remains open.",
       "evidence": "site/src/worker.js; site/functions/api/contact.js; site/scripts/test-contact-handler.mjs",
-      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
+      "blocker": "Repository privacy/acceptance safeguards are implemented. Production analytics sink/consent behavior and authoritative event delivery/storage still need accessible provider evidence; no further merge permission is needed.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -538,7 +538,7 @@
       "batch": "F_AUTHORITY_SOCIAL",
       "observation": "Country/page and branded/nonbranded query dashboard with overlapping 30/60/90-day pre-release baselines prepared. Qualified conversion dataset unavailable; no causal release improvement claimed.",
       "evidence": "final-52/country-intent-dashboard.csv; final-52/search-dashboard.md",
-      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
+      "blocker": "Country/intent dashboard is implemented; verified qualified-contact conversion data is unavailable. Production contact/measurement activation and observed accepted inquiries are needed, not a guessed conversion count.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -693,12 +693,12 @@
       "depends_on": "T27,T33",
       "acceptance_criteria": "Report actual impressions/clicks/leads and CI regressions, no causal overclaims",
       "evidence_status": "recommendation",
-      "status": "BLOCKED_PERMISSION",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-performance-release",
       "batch": "G_RELEASE_REPORT",
       "observation": "Review artifacts and all 107 original ticket rows retained; no merge/deploy or external publication.",
       "evidence": "spec/; performance.md; blocked-access.md",
-      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
+      "blocker": "Actual 30/60/90-day post-release observation windows have not elapsed. Baselines are historical overlapping windows, not future reviews. Daily Notion synchronization is active; no milestone result is invented.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -978,7 +978,7 @@
       "batch": "D_EDITORIAL_CASES",
       "observation": "Unpublished original Zapp companion draft prepared with authentic retained customer frame, scoped role/version discussion, current-site limitations and source links.",
       "evidence": "editorial-drafts/zapp-shared-delivery-state.md",
-      "blocker": "Exact project year not verified; no invented year or publication. Independent original reacquisition remains T77.",
+      "blocker": "Draft and source/caption are prepared; exact historical project year remains unverified and is not inferred from the current Figma version. Independent selected-frame reacquisition has been completed separately.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1256,9 +1256,9 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
-      "blocker": "",
+      "observation": "279 distinct assets across 1559 placements/runtime candidates now have a per-asset classification and provenance record. Issuer badge permissions corroborated; generated icons/social previews and decorative assets distinguished from screenshots. Eight assets retain explicit historical creator/date/origin review gaps. No browser pass or original-rights certainty inferred.",
+      "evidence": "continuation-2026-11-06/asset-provenance.json; final-52/visual-media-inventory.csv",
+      "blocker": "Eight origin/date review assets: retained credential artwork, portrait, two Grid Labs historical assets, and four Mokshya/Splashnode wrapper paths (two underlying screenshots). Historical creator/capture dates cannot be reconstructed from current bytes alone. Remaining browser verification is owner-waived, not passed.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1456,9 +1456,9 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-real-image-qa;nrs-editorial-voice;nrs-performance-release;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "",
+      "observation": "279 distinct assets across 1559 placements/runtime candidates now have a per-asset classification and provenance record. Issuer badge permissions corroborated; generated icons/social previews and decorative assets distinguished from screenshots. Eight assets retain explicit historical creator/date/origin review gaps. No browser pass or original-rights certainty inferred.",
+      "evidence": "continuation-2026-11-06/asset-provenance.json; final-52/visual-media-inventory.csv",
+      "blocker": "Eight origin/date review assets: retained credential artwork, portrait, two Grid Labs historical assets, and four Mokshya/Splashnode wrapper paths (two underlying screenshots). Historical creator/capture dates cannot be reconstructed from current bytes alone. Remaining browser verification is owner-waived, not passed.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1496,9 +1496,9 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Independently captured public Grid Labs implementation and preserved older artwork separately. Clean original viewport/full-page runs, source-commit/HTML parity, truthful legacy-placeholder scope and unchanged responsive exports recorded; this does not close all-project/article media coverage.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json; resumed-2026-11-05/grid-labs-source-verification.json; resumed-2026-11-05/grid-batch-qa.json",
-      "blocker": "",
+      "observation": "279 distinct assets across 1559 placements/runtime candidates now have a per-asset classification and provenance record. Issuer badge permissions corroborated; generated icons/social previews and decorative assets distinguished from screenshots. Eight assets retain explicit historical creator/date/origin review gaps. No browser pass or original-rights certainty inferred.",
+      "evidence": "continuation-2026-11-06/asset-provenance.json; final-52/visual-media-inventory.csv",
+      "blocker": "Eight origin/date review assets: retained credential artwork, portrait, two Grid Labs historical assets, and four Mokshya/Splashnode wrapper paths (two underlying screenshots). Historical creator/capture dates cannot be reconstructed from current bytes alone. Remaining browser verification is owner-waived, not passed.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1538,7 +1538,7 @@
       "batch": "C_MEDIA_ACQUISITION",
       "observation": "60 selected native Figma frame PNGs reacquired and dimension/hash verified. Private ZIP saved; nine byte-match historical hashes and 51 are fresh different renders. The broader 3889-file archive is not independently reacquired.",
       "evidence": "final-52/figma-reacquisition-summary.json; final-52/figma-reacquisition.json",
-      "blocker": "Secure Figma file_content:read access needed for independently reacquiring exact original historical frames.",
+      "blocker": "Figma access is restored and 60 selected native frames were reacquired. Exact historical-byte equivalence remains unproven for 51 fresh renders; broader archive reacquisition was not required or performed. Need original historical exports/versions to certify those exact bytes, not another access request.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1636,9 +1636,9 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Independently captured public Grid Labs implementation and preserved older artwork separately. Clean original viewport/full-page runs, source-commit/HTML parity, truthful legacy-placeholder scope and unchanged responsive exports recorded; this does not close all-project/article media coverage.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/grid-labs-source-verification.json; resumed-2026-11-05/grid-batch-qa.json",
-      "blocker": "",
+      "observation": "279 distinct assets across 1559 placements/runtime candidates now have a per-asset classification and provenance record. Issuer badge permissions corroborated; generated icons/social previews and decorative assets distinguished from screenshots. Eight assets retain explicit historical creator/date/origin review gaps. No browser pass or original-rights certainty inferred.",
+      "evidence": "continuation-2026-11-06/asset-provenance.json; final-52/visual-media-inventory.csv",
+      "blocker": "Eight origin/date review assets: retained credential artwork, portrait, two Grid Labs historical assets, and four Mokshya/Splashnode wrapper paths (two underlying screenshots). Historical creator/capture dates cannot be reconstructed from current bytes alone. Remaining browser verification is owner-waived, not passed.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1673,13 +1673,13 @@
       "depends_on": "T81;T82",
       "acceptance_criteria": "Visual review board and signed/provenance statuses; source pending counted separately",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Reference-inspired homepage prototype:14fixed16:10frames with project-specific mattes/shadows,15unaltered UI images across13project previews,paired mobile screens forYarsha/Zapp,and an explicit text-only Designerex source-pending fallback. Stronger approved Orkest/piHub screen selections. Four viewport/motion checks passed; new design remains inPR121pendingCI.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/thumbnail-art-direction-qa.json; resumed-2026-11-05/thumbnail-art-direction-contact-sheet.png",
+      "observation": "Completed prior/current comparison board for all 41 primary selections, with 81 decoded source previews and source hashes, role/provenance limits and dated Codex reviewer decisions. Zero current primary selections lack source pixels. This is artifact review, not independent human or final-page browser acceptance; owner-waived browser checks remain separate.",
+      "evidence": "continuation-2026-11-06/media-review-board.html; continuation-2026-11-06/media-review-decisions.json; continuation-2026-11-06/source-comparison.webp",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_ARTIFACT"
     },
     {
       "id": "T85",
@@ -1936,8 +1936,8 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-search-appearance;nrs-search-intelligence;nrs-performance-release",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Authorized read-only URL Inspection works. Homepage: Submitted and indexed; last mobile crawl 2026-11-06T06:52:13Z. About: Submitted and indexed; last mobile crawl 2026-10-26T17:45:58Z. Both canonical identities match. These crawl dates precede PR121 release and do not certify new snippets/favicon. No indexing request submitted.",
-      "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json; resumed-2026-11-06/search-and-ci-checkpoint.json",
+      "observation": "Fresh post-PR124 inspection: Home and About remain Submitted and indexed, matching canonicals. Last crawls are still 2026-11-06T06:52:13Z and 2026-10-26T17:45:58Z, preceding the latest release. No indexing request can be sent through the read-only connector; no new snippets/favicon or recrawl claim.",
+      "evidence": "continuation-2026-11-06/post-release-indexing.json",
       "blocker": "Connector is read-only; post-release Google recrawl and displayed search appearance remain unverified.",
       "confidence": "CONFIRMED_CURRENT"
     },
@@ -2036,8 +2036,8 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-social-identity;nrs-media-evidence;nrs-content-and-cases",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Five professional certificates individually verified with holder, issuer URL and date; 39 public course entries catalogued. No claim that every course detail, assessment or skill score is independently verified.",
-      "evidence": "resumed-2026-11-05/professional-credential-verification.json; resumed-2026-11-05/uxcel-public-credentials.json",
+      "observation": "Five previously verified professional certificates retained. Fresh issuer-correspondence review confirms both 2024 annual #1 categories and website badge permission; no private email published. Four individual course pages remain inaccessible; no new skill score/course claim.",
+      "evidence": "continuation-2026-11-06/uxcel-2024-issuer-verification.json; final-52/uxcel-course-audit.json",
       "blocker": "Remaining individual course/assessment/score verification is open; public research can continue.",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
@@ -2093,13 +2093,13 @@
       "depends_on": "T92;T93;T100",
       "acceptance_criteria": "Consistency discrepancy register distinguishes site edits from external owner-edit-only requests",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-social-identity;nrs-editorial-voice;nrs-search-intelligence",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Dated platform discrepancy register now includes GitHub Kathmandu wording and Uxcel historic role/experience. Inaccessible LinkedIn/Behance content is explicitly unverified; no external account edited.",
-      "evidence": "final-52/biography-discrepancy-register.json",
-      "blocker": "Complete per-platform biography review for other owner-linked accounts where public content is inaccessible or not yet verified; no external profile was edited.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Completed cross-platform discrepancy register covering Portfolio, GitHub, Uxcel, LinkedIn, Behance, Dribbble, Linktree and optional/private exclusions. Added primary Dribbble Kathmandu discrepancy with explicit cached-source age. Inaccessible biographies remain recorded as unknown. This closes the audit register only; actual external alignment (T06) and authenticated control (T100) remain open. No account edited.",
+      "evidence": "continuation-2026-11-06/biography-discrepancy-register.json",
+      "blocker": "",
+      "confidence": "VERIFIED_DATED_AUDIT_WITH_EXCEPTIONS"
     },
     {
       "id": "T106",
@@ -2142,6 +2142,6 @@
       "confidence": "CONFIRMED_SOURCE"
     }
   ],
-  "updated_at": "2026-11-06T09:57:09.801110+00:00",
-  "scope_note": "All 107 tickets tracked. Prior 55 verified completions preserved. This batch closes 16 source/build tasks and records four owner-waived manual/browser tasks separately. Deployment verified separately after merge; inaccessible provider/Google/account outcomes remain open."
+  "updated_at": "2026-11-06T10:27:50.676976+00:00",
+  "scope_note": "All 107 tasks preserved. 73 DONE_VERIFIED, four WAIVED_OWNER, 30 open. T84 source comparison artifact and T105 discrepancy audit completed; actual external account alignment/control and historical-source gaps remain open. Notion contains all tasks and PR history with daily synchronization. No new manual/browser, Google appearance, field CWV or production-email success inferred."
 }

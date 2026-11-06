@@ -53,6 +53,11 @@ assert.equal(recognition.ranking.kind, 'DATED_WEEKLY_SNAPSHOT');
 assert.ok(config.testimonials.some(item => item.url === recognition.ranking.source && item.q.includes('90/100') && item.q.includes('3 November 2026') && item.q.includes('Pro-member')));
 assert.ok(config.testimonials.some(item => item.url === recognition.historical.find(record => record.year === 2023).source && item.q.includes('2023') && item.q.includes('Product Designer')));
 assert.doesNotMatch(html, /Uxcel Global Rankings 2024 · Ranked #1 Designer/, 'Do not conflate an unverified legacy annual claim with a verified current snapshot.');
+for (const record of recognition.historical.filter(item => item.year === 2024)) {
+  assert.equal(record.verificationEvidence?.kind, 'ISSUER_CORRESPONDENCE', 'Annual positions require dated issuer evidence, not a weekly ranking.');
+  assert.equal(record.verificationEvidence.issuedOn, '2025-01-10');
+  assert.ok(fs.existsSync(path.resolve(__dirname, '../..', record.verificationEvidence.publicSummary)), 'Keep the sanitized issuer-verification record.');
+}
 assert.equal(config.work.length, 14);
 assert.equal(config.testimonials.filter(item => item.badge && recognition.assets.some(asset => asset.src === item.img)).length, 3, 'Use the three original issuer badges');
 assert.doesNotMatch(html, /gap 24 · scroll snap/, 'Remove internal layout annotations from credentials');

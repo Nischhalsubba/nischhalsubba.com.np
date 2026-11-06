@@ -1,0 +1,134 @@
+{
+  "checkedAt": "2026-11-06T10:23:08.288242+00:00",
+  "rows": [
+    {
+      "platform": "Portfolio",
+      "url": "https://nischhalsubba.com.np/",
+      "observation": "Owner-approved Senior Product Designer, 7+ years, Nepal-based remote.",
+      "status": "OWNED_SOURCE_ALIGNED"
+    },
+    {
+      "platform": "GitHub README",
+      "url": "https://github.com/Nischhalsubba/Nischhalsubba",
+      "observation": "Fresh authenticated file read still says based in Kathmandu. Senior role matches; geography conflicts with approved portfolio wording.",
+      "status": "EXTERNAL_OWNER_EDIT_REQUIRED"
+    },
+    {
+      "platform": "Uxcel",
+      "url": "https://app.uxcel.com/ux/nischhal",
+      "observation": "Dated 5 November public evidence says over five years, Biratnagar/Nepal and Lead/Product Designer at Idealaya. Historical issuer credentials remain distinct from current biography.",
+      "status": "DATED_SOURCE_EXTERNAL_OWNER_EDIT_REQUIRED"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/nischhal/",
+      "observation": "HTTP 999 in fresh check; no readable current biography is certified.",
+      "status": "ACCESS_BLOCKED"
+    },
+    {
+      "platform": "Behance",
+      "url": "https://www.behance.net/nischhal",
+      "observation": "HTTP 400 in fresh check; no readable current biography is certified.",
+      "status": "ACCESS_BLOCKED"
+    },
+    {
+      "platform": "FACEBOOK",
+      "url": "https://www.facebook.com/officialnischhalsubba",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not add to professional schema automatically",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "public_social_optional"
+    },
+    {
+      "platform": "INSTAGRAM",
+      "url": "https://instagram.com/nischhalsubba",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not add to professional schema automatically",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "public_social_optional"
+    },
+    {
+      "platform": "TIKTOK",
+      "url": "https://tiktok.com/@nischhalsubba",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not add to professional schema automatically",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "public_social_optional"
+    },
+    {
+      "platform": "YOUTUBE",
+      "url": "https://www.youtube.com/@Nischhal",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not add to professional schema automatically",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "public_social_optional"
+    },
+    {
+      "platform": "WHATSAPP",
+      "url": "WITHHELD_PERSONAL_DESTINATION",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not publish messaging/personal destinations",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "personal_or_messaging"
+    },
+    {
+      "platform": "TWITCH",
+      "url": "https://www.twitch.tv/mrsubba",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not add to professional schema automatically",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "public_social_optional"
+    },
+    {
+      "platform": "EMAIL_ADDRESS",
+      "url": "WITHHELD_PERSONAL_DESTINATION",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not publish messaging/personal destinations",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "personal_or_messaging"
+    },
+    {
+      "platform": "SNAPCHAT",
+      "url": "WITHHELD_PERSONAL_DESTINATION",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not publish messaging/personal destinations",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "personal_or_messaging"
+    },
+    {
+      "platform": "TELEGRAM",
+      "url": "WITHHELD_PERSONAL_DESTINATION",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not publish messaging/personal destinations",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "personal_or_messaging"
+    },
+    {
+      "platform": "THREADS",
+      "url": "https://www.threads.com/@nischhalsubba",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not add to professional schema automatically",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "public_social_optional"
+    },
+    {
+      "platform": "X",
+      "url": "https://x.com/Nischhalsubba",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not add to professional schema automatically",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "public_social_optional"
+    },
+    {
+      "platform": "BLUESKY",
+      "url": "https://bsky.app/profile/nischhal.bsky.social",
+      "observation": "Owner-linked account; independent external control not authenticated; Do not add to professional schema automatically",
+      "status": "OPTIONAL_OR_PERSONAL_EXCLUDED_FROM_PROFESSIONAL_BIO_SCOPE",
+      "classification": "public_social_optional"
+    },
+    {
+      "platform": "Dribbble",
+      "url": "https://dribbble.com/Nischhal",
+      "observation": "Primary public profile retrieval displays Kathmandu, Nepal and design specialties. Retrieval has a three-week cache age; exact current account state is not certified. About subpage inaccessible. Name matches, but authenticated owner control and permission for new schema publication are not established.",
+      "status": "PUBLIC_PROFILE_DISCREPANCY_EXTERNAL_OWNER_EDIT_REQUIRED",
+      "source": "https://dribbble.com/Nischhal",
+      "sourceFreshness": "Cached primary-source retrieval, three weeks old as reported by retrieval tool."
+    },
+    {
+      "platform": "Linktree",
+      "url": "https://linktr.ee/nischhalsubba",
+      "observation": "Previous native-click/biography evidence retained. Fresh text retrieval inaccessible. No new profile wording or control claim; optional personal destinations remain withheld.",
+      "status": "DATED_SOURCE_FRESH_ACCESS_BLOCKED"
+    }
+  ],
+  "scope": "Audit register covers owned biography and all targeted professional/directory sources, with explicit inaccessible or cached states. T06 actual cross-account alignment and T100 control remain separate incomplete tasks. No external profile edited."
+}

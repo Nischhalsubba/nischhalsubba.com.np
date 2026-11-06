@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-06T10:23:08.288242+00:00",
+  "sourceType": "AUTHORIZED_PRIVATE_ISSUER_CORRESPONDENCE",
+  "issuer": "Uxcel",
+  "issuedOn": "2025-01-10",
+  "awardYear": 2024,
+  "holder": "Nischhal Raj Subba",
+  "authentication": "Mailbox Authentication-Results records DKIM, SPF and DMARC pass for issuer correspondence. This is a checked mailbox record, not an independent revalidation of archived cryptographic signatures.",
+  "confirmedClaims": [
+    {
+      "category": "Product Designer",
+      "position": 1,
+      "period": "2024 annual rankings"
+    },
+    {
+      "category": "All Designers",
+      "position": 1,
+      "period": "2024 annual rankings"
+    }
+  ],
+  "permission": "Issuer explicitly permits the supplied badge on the personal website/resume with a link to the holder Uxcel profile.",
+  "requiredBacklink": "https://app.uxcel.com/ux/nischhal",
+  "publicationBoundary": "No raw message, message IDs, email headers, recipient details, tracking URLs or private asset-folder link published. No present-day rank, permanent standing, course completion or skill score inferred."
+}

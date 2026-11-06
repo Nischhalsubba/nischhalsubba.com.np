@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-11-06T10:24:00.915Z",
+  "release": "5f7f018753786e1d6fac2140728e05ba15d968f7",
+  "property": "sc-domain:nischhalsubba.com.np",
+  "home": {
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-06T06:52:13Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://nischhalsubba.com.np/",
+    "userCanonical": "https://nischhalsubba.com.np/",
+    "referringUrls": [
+      "https://nischhalsubba.com.np/figma-design-systems",
+      "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-product-clarity",
+      "http://nischhalsubba.com.np/",
+      "https://github.com/Nischhalsubba"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  "about": {
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-10-26T17:45:58Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://nischhalsubba.com.np/about",
+    "userCanonical": "https://nischhalsubba.com.np/about",
+    "referringUrls": [
+      "https://nischhalsubba.com.np/about.html"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  "sitemaps": [
+    {
+      "path": "https://nischhalsubba.com.np/sitemap.xml",
+      "lastSubmitted": "2026-11-04T15:54:34.695Z",
+      "isPending": false,
+      "isSitemapsIndex": false,
+      "type": "sitemap",
+      "lastDownloaded": "2026-11-04T15:54:40.231Z",
+      "warnings": "0",
+      "errors": "0",
+      "contents": [
+        {
+          "type": "web",
+          "submitted": "53",
+          "indexed": "0"
+        },
+        {
+          "type": "image",
+          "submitted": "132",
+          "indexed": "0"
+        }
+      ]
+    }
+  ],
+  "interpretation": "Both pages remain indexed with matching canonicals. Crawl timestamps precede the latest release; no updated snippets/favicon or post-release recrawl is certified. Sitemap download is still the older 53-URL record. Connector is read-only; no indexing or sitemap submission was performed."
+}
