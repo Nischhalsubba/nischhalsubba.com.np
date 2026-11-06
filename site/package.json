@@ -46,7 +46,7 @@
     "test:smoke": "node scripts/smoke-test-dist.mjs",
     "test:routes:live": "node scripts/verify-live-routes.mjs",
     "test:button-motion:browser": "node scripts/browser-button-motion-audit.mjs",
-    "validate": "npm run test:canonical-routing && npm run validate:legacy && node scripts/install-workspace-home.cjs && node scripts/install-workspace-inner.cjs && node scripts/finalize-workspace-seo.cjs && node scripts/write-build-metadata.cjs && npm run audit:workspace-home && npm run audit:workspace-inner && npm run audit:workspace-seo && npm run audit:portfolio-evidence && npm run audit:editorial && npm run test:smoke && npm run test:build-determinism",
+    "validate": "npm run test:canonical-routing && npm run validate:legacy && node scripts/install-workspace-home.cjs && node scripts/install-workspace-inner.cjs && node scripts/finalize-workspace-seo.cjs && node scripts/write-build-metadata.cjs && npm run audit:workspace-home && npm run audit:workspace-inner && npm run audit:workspace-seo && npm run audit:portfolio-evidence && npm run audit:public-captures && npm run audit:editorial && npm run test:smoke && npm run test:build-determinism && npm run audit:seo-contract",
     "audit:code-docs": "node scripts/repository/audit-code-documentation.cjs",
     "build:legacy": "node scripts/build-dist.cjs && node scripts/normalize-html-runtime.cjs --dist && node scripts/finalize-refined-button-motion.cjs --dist && node scripts/generate-social-previews.cjs && node scripts/finalize-seo-entity-schema-v30.cjs --dist && node scripts/finalize-search-discovery-v31.cjs --dist && node scripts/ensure-blog-lightweight-covers.cjs --dist && node scripts/write-build-metadata.cjs",
     "prebuild:legacy": "npm run prepare:sources && node scripts/preflight-build-scripts.cjs && node scripts/generate-seo-discovery.cjs && npm run prepare:sources",
@@ -56,7 +56,8 @@
     "audit:workspace-seo": "node scripts/audit-workspace-seo.cjs",
     "test:canonical-routing": "node scripts/test-canonical-routing.mjs",
     "audit:portfolio-evidence": "node scripts/figma/audit-evidence.cjs",
-    "audit:editorial": "node scripts/editorial/audit.cjs"
+    "audit:editorial": "node scripts/editorial/audit.cjs",
+    "audit:public-captures": "node scripts/audit-public-site-captures.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

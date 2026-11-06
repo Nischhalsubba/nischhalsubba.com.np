@@ -1,0 +1,22 @@
+{
+  "source": "https://nischhalsubba.com.np/contact",
+  "observedAt": "2026-11-05T13:33:52.612Z",
+  "scope": "Real browser, empty invalid POST; no email sent and no challenge token captured.",
+  "checks": [
+    {
+      "url": "/api/contact/config",
+      "status": 200,
+      "body": {
+        "siteKeyPresent": false
+      }
+    },
+    {
+      "url": "/api/contact",
+      "status": 503,
+      "body": {
+        "ok": false,
+        "message": "The anti-spam service is not configured."
+      }
+    }
+  ]
+}

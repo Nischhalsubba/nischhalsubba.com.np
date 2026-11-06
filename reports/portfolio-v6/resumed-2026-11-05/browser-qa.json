@@ -1,0 +1,2022 @@
+[
+  {
+    "route": "/about",
+    "width": 320,
+    "status": 200,
+    "errors": [],
+    "title": "About Nischhal Raj Subba | Senior Product Designer",
+    "description": "I’m a product designer based in Nepal with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "https://idealaya.com/",
+        "text": "Idealaya↗"
+      },
+      {
+        "href": "https://mokshya.io/",
+        "text": "Mokshya Protocol↗"
+      },
+      {
+        "href": "https://www.tegzy.com.au/",
+        "text": "Tegzy↗"
+      },
+      {
+        "href": "https://esrtech.io/",
+        "text": "ESR Tech↗"
+      },
+      {
+        "href": "https://themegrill.com/",
+        "text": "ThemeGrill↗"
+      },
+      {
+        "href": "https://gurzu.com/",
+        "text": "Gurzu↗"
+      },
+      {
+        "href": "/assets/resume.pdf",
+        "text": "VIEW FULL RESUME"
+      },
+      {
+        "href": "/projects",
+        "text": "VIEW CASE STUDIES"
+      },
+      {
+        "href": "/contact",
+        "text": "CONTACT ME"
+      },
+      {
+        "href": "/workspace-home/assets/resume.pdf",
+        "text": "Read the full résumé"
+      },
+      {
+        "href": "/product-design-nepal",
+        "text": "Working with a product designer in Nepal"
+      },
+      {
+        "href": "/blog/hire-product-designer-nepal-saas-web3",
+        "text": "Hiring for SaaS and Web3 work"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/projects",
+    "width": 320,
+    "status": 200,
+    "errors": [],
+    "title": "Product Design Case Studies | Nischhal Raj Subba",
+    "description": "Case studies from SaaS, Web3, fintech, LMS and software products, showing the product problem, my role, key design decisions, interface evidence and what shipped.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "/project-orkest",
+        "text": "READ ORKEST CASE STUDY"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "READ PIHUB CASE STUDY"
+      },
+      {
+        "href": "https://github.com/Nischhalsubba/design-ops-orchestrator",
+        "text": "INSPECT PUBLIC REPOSITORY"
+      },
+      {
+        "href": "/project-yarsha",
+        "text": "WEB3 MESSAGING + WALLET UX\nYarsha\n\nA mobile chat product where wallet actions, Solana blinks and transaction states had to feel connected to conversation without making approval feel casual.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "FINTECH PRODUCT WORKFLOWS\npiHub\n\nInvestment, credit, application and verification experiences organized around the information financial users need most: current status, missing requirements and the next useful action.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-orkest",
+        "text": "MODULAR SAAS PLATFORM\nOrkest HQ\n\nA shared product grammar for CRM, Sales, Inventory and Finance, designed so the modules feel related without pretending their operational jobs are identical.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-masteriyo",
+        "text": "WORDPRESS LMS PRODUCT DESIGN\nMasteriyo\n\nProduct-design work inside an established LMS, covering course authoring, quizzes, learner states and reusable patterns that had to fit an existing system and a larger design team.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-mokshya",
+        "text": "WEB3 PROTOCOL WEBSITE\nMokshya.io\n\nA technical protocol website structured so first-time visitors can understand the product while developers can reach mechanism, evidence and deeper context without wading through marketing filler.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-neverwinter-parser",
+        "text": "REAL-TIME GAME DATA TOOL\nNeverwinter Live Parser\n\nA live parser that turns noisy combat events into readable performance information while keeping uncertainty and incomplete data visible instead of pretending every number is equally trustworthy.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-zapp",
+        "text": ""
+      },
+      {
+        "href": "/project-designerex",
+        "text": ""
+      },
+      {
+        "href": "/project-hamro-idea",
+        "text": ""
+      },
+      {
+        "href": "/project-morajaa",
+        "text": ""
+      },
+      {
+        "href": "/project-splashnode",
+        "text": ""
+      },
+      {
+        "href": "/project-grid-labs",
+        "text": ""
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "text": ""
+      },
+      {
+        "href": "/project-sassboilerplate",
+        "text": ""
+      },
+      {
+        "href": "/contact",
+        "text": "DISCUSS A ROLE OR PRODUCT"
+      }
+    ],
+    "captures": [],
+    "archiveCards": [
+      {
+        "href": "/project-yarsha",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-pihub",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/pihub-corporate-information-480-5b88600d5ffc.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-orkest",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/orkest-module-directory-480-1c2e9e3a5eb7.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-masteriyo",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/masteriyo-course-details-480-14d4f73f5ee5.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-mokshya",
+        "src": "http://127.0.0.1:4173/assets/project-mokshya-cover-DW79CUKC-DW79CUKC.svg",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-neverwinter-parser",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPk5ldmVyd2ludGVyIExpdmUgUGFyc2VyIHRodW1ibmFpbDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlJlYWxpc3RpYyBkZXNrdG9wIGFwcCBtb2NrdXAgc2hvd2luZyBjb21iYXQgbG9nIHBhcnNlciBkYXNoYm9hcmQsIHBsYXllciBwZXJmb3JtYW5jZSBjaGFydCwgZW5jb3VudGVyIHRhYmxlLCBhbmQgbGl2ZSB0cmFja2luZyBwYW5lbC48L2Rlc2M+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAiIHgyPSIxIiB5MT0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzA1MDgxNiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzNiMDc2NCIvPjwvbGluZWFyR3JhZGllbnQ+PGZpbHRlciBpZD0icyI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjI0IiBzdGREZXZpYXRpb249IjI0IiBmbG9vZC1vcGFjaXR5PSIuMzQiLz48L2ZpbHRlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHRleHQgeD0iNzIiIHk9IjEwNSIgZm9udC1mYW1pbHk9IkludGVyLEFyaWFsIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmIj5OZXZlcndpbnRlciBMaXZlIFBhcnNlcjwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNkZGQ2ZmUiPkRlc2t0b3AgY29tYmF0IGxvZyBhbmFseXNpcyDCtyBsaXZlIHRyYWNraW5nPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMTYwIiB5PSIxOTAiIHdpZHRoPSI4ODAiIGhlaWdodD0iMzgwIiByeD0iMjgiIGZpbGw9IiMwZjE3MmEiLz48cmVjdCB4PSIxNjAiIHk9IjE5MCIgd2lkdGg9Ijg4MCIgaGVpZ2h0PSI1NCIgcng9IjI4IiBmaWxsPSIjMTExODI3Ii8+PHJlY3QgeD0iMjEwIiB5PSIyOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMjIwIiByeD0iMjIiIGZpbGw9IiMxZTI5M2IiLz48cmVjdCB4PSI1MTAiIHk9IjI5MCIgd2lkdGg9IjIxMCIgaGVpZ2h0PSIyMjAiIHJ4PSIyMiIgZmlsbD0iIzFlMjkzYiIvPjxyZWN0IHg9Ijc2MCIgeT0iMjkwIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjIyMCIgcng9IjIyIiBmaWxsPSIjMWUyOTNiIi8+PHBhdGggZD0iTTIzNSA0NTAgTDI4NSAzOTAgTDMzNSA0MjQgTDM4NSAzNDAgTDQ0MCAzNzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2E4NTVmNyIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHJlY3QgeD0iNTM1IiB5PSIzMzAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjYTg1NWY3Ii8+PHJlY3QgeD0iNTM1IiB5PSIzNzAiIHdpZHRoPSIxMTgiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjNmQyOGQ5Ii8+PHJlY3QgeD0iNTM1IiB5PSI0MTAiIHdpZHRoPSIxNzAiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjOGI1Y2Y2Ii8+PHRleHQgeD0iNzkyIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2U1ZTdlYiI+TGl2ZSBFbmNvdW50ZXI8L3RleHQ+PGNpcmNsZSBjeD0iNzk1IiBjeT0iNDIwIiByPSI0MiIgZmlsbD0iI2E4NTVmNyIgb3BhY2l0eT0iLjI4Ii8+PGNpcmNsZSBjeD0iNzk1IiBjeT0iNDIwIiByPSIxOCIgZmlsbD0iI2E4NTVmNyIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-zapp",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-designerex",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkRlc2lnbmVyZXggbWFya2V0cGxhY2UgZGVzaWduIGNvbnRyaWJ1dGlvbiB0aHVtYm5haWw8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SZWFsaXN0aWMgbHV4dXJ5IGZhc2hpb24gbWFya2V0cGxhY2UgbW9ja3VwIHNob3dpbmcgcHJvZHVjdCBsaXN0aW5nIGNhcmRzLCB2ZXJpZmljYXRpb24gY3VlLCBhbmQgcHJlbWl1bSByZW50YWwgaW50ZXJmYWNlLjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTExODI3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZGIyNzc3Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjY3NSIgcng9IjM2IiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjcyIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZiI+RGVzaWduZXJleDwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNmY2U3ZjMiPk1hcmtldHBsYWNlIGRlc2lnbiBjb250cmlidXRpb248L3RleHQ+PGcgZmlsdGVyPSJ1cmwoI3MpIj48cmVjdCB4PSIyMTAiIHk9IjE2NSIgd2lkdGg9Ijc4MCIgaGVpZ2h0PSI0MzAiIHJ4PSIzMCIgZmlsbD0iI2ZmZiIvPjxyZWN0IHg9IjI3MCIgeT0iMjMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI3MCIgcng9IjI2IiBmaWxsPSIjZmRmMmY4Ii8+PHJlY3QgeD0iNTIwIiB5PSIyMzAiIHdpZHRoPSIyMTAiIGhlaWdodD0iMjcwIiByeD0iMjYiIGZpbGw9IiNmOGZhZmMiLz48cmVjdCB4PSI3NzAiIHk9IjIzMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyNzAiIHJ4PSIyNiIgZmlsbD0iI2ZkZjJmOCIvPjxjaXJjbGUgY3g9IjM3NSIgY3k9IjMzNSIgcj0iNTUiIGZpbGw9IiNmOWE4ZDQiIG9wYWNpdHk9Ii42NSIvPjxjaXJjbGUgY3g9IjYyNSIgY3k9IjMzNSIgcj0iNTUiIGZpbGw9IiNmYmNmZTgiIG9wYWNpdHk9Ii42NSIvPjxyZWN0IHg9IjMwMCIgeT0iNDMwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI2RiMjc3NyIvPjxyZWN0IHg9IjU1MCIgeT0iNDMwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI2RiMjc3NyIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-hamro-idea",
+        "src": "http://127.0.0.1:4173/assets/images/site-captures/hamro-current-demo-69eb816ea462-640.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-morajaa",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/morajaa-home-480-afc376a005c8.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-splashnode",
+        "src": "http://127.0.0.1:4173/assets/project-splashnode-cover-q2IRfgbl-q2IRfgbl.svg",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-grid-labs",
+        "src": "http://127.0.0.1:4173/assets/images/owner/grid-labs-cover.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlpha3JhIEZ1cm5pdHVyZSBXb3JkUHJlc3Mgc3RhcnRlciB0aHVtYm5haWw8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SZWFsaXN0aWMgZnVybml0dXJlIHdlYnNpdGUgbW9ja3VwIHNob3dpbmcgcHJvZHVjdCBjYXJkcywgaG9tZXBhZ2Ugc2VjdGlvbnMsIGFuZCBFbGVtZW50b3IgV29yZFByZXNzIHN0YXJ0ZXIgbGF5b3V0LjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMjkyNTI0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYTE2MjA3Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjY3NSIgcng9IjM2IiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjcyIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZiI+WmFrcmEgRnVybml0dXJlPC90ZXh0Pjx0ZXh0IHg9IjcyIiB5PSIxNDgiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZlZjNjNyI+V29yZFByZXNzIHN0YXJ0ZXIgwrcgRWxlbWVudG9yIGJ1aWxkPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMjMwIiB5PSIxNjUiIHdpZHRoPSI3NDAiIGhlaWdodD0iNDMwIiByeD0iMzAiIGZpbGw9IiNmZmZhZjAiLz48cmVjdCB4PSIyODAiIHk9IjIyNSIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjMjkyNTI0Ii8+PHJlY3QgeD0iMjgwIiB5PSIzMDAiIHdpZHRoPSIxOTAiIGhlaWdodD0iMTUwIiByeD0iMjQiIGZpbGw9IiNmZGU2OGEiLz48cmVjdCB4PSI1MTAiIHk9IjMwMCIgd2lkdGg9IjE5MCIgaGVpZ2h0PSIxNTAiIHJ4PSIyNCIgZmlsbD0iI2ZmZmJlYiIvPjxyZWN0IHg9Ijc0MCIgeT0iMzAwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE1MCIgcng9IjI0IiBmaWxsPSIjZmRlNjhhIi8+PHBhdGggZD0iTTMyMCA0MDVoMTEwTTU1MCA0MDVoMTEwTTc4MCA0MDVoMTAwIiBzdHJva2U9IiNhMTYyMDciIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-sassboilerplate",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPnNhc3NCb2lsZXJwbGF0ZSBmcm9udC1lbmQgd29ya2Zsb3cgdGh1bWJuYWlsPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UmVhbGlzdGljIGRldmVsb3BlciB3b3JrZmxvdyBtb2NrdXAgc2hvd2luZyBmaWxlIHRyZWUsIGJ1aWxkIHN0ZXBzLCBTQ1NTIG1vZHVsZXMsIGFuZCBzdGF0aWMgd2Vic2l0ZSB0b29saW5nLjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDIwNjE3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNDc1NTY5Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zNSIvPjwvZmlsdGVyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2NzUiIHJ4PSIzNiIgZmlsbD0idXJsKCNiZykiLz48dGV4dCB4PSI3MiIgeT0iMTA1IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNmZmYiPnNhc3NCb2lsZXJwbGF0ZTwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNlMmU4ZjAiPkZyb250LWVuZCB3b3JrZmxvdyBzdGFydGVyPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMjEwIiB5PSIxNjUiIHdpZHRoPSI3ODAiIGhlaWdodD0iNDMwIiByeD0iMzAiIGZpbGw9IiMwZjE3MmEiLz48cmVjdCB4PSIyMTAiIHk9IjE2NSIgd2lkdGg9IjIzMCIgaGVpZ2h0PSI0MzAiIHJ4PSIzMCIgZmlsbD0iIzExMTgyNyIvPjxyZWN0IHg9IjI1MCIgeT0iMjMwIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjI1MCIgeT0iMjc1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzY0NzQ4YiIvPjxyZWN0IHg9IjI1MCIgeT0iMzIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzY0NzQ4YiIvPjxyZWN0IHg9IjQ5MCIgeT0iMjMwIiB3aWR0aD0iNDMwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzM4YmRmOCIvPjxyZWN0IHg9IjQ5MCIgeT0iMjgwIiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjQ5MCIgeT0iMzMwIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjQ5MCIgeT0iNDIwIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjU0IiByeD0iMTgiIGZpbGw9IiMzOGJkZjgiLz48L2c+PC9zdmc+",
+        "fit": "contain"
+      }
+    ]
+  },
+  {
+    "route": "/project-hamro-idea",
+    "width": 320,
+    "status": 200,
+    "errors": [],
+    "title": "Hamro Idea: Software Studio Website | Nischhal Raj Subba",
+    "description": "Connecting a Nepal-based studio's positioning, services, project proof and contact path in one maintainable website.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Choose a relevant service"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Inspect the work and studio"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Explore the studio’s thinking"
+      },
+      {
+        "href": "#chapter-4",
+        "text": "Start a relevant conversation"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=2-261",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1671",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2022",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2342",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-526",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-953",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1238",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1490",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "/assets/images/site-captures/hamro-current-demo-full-58a5c98101d6.png",
+        "text": "Open the complete original page capture"
+      },
+      {
+        "href": "https://hamro-idea-website.vercel.app/",
+        "text": "Visit the public demo"
+      },
+      {
+        "href": "https://hamro-idea-website.vercel.app/",
+        "text": "Explore the current Hamro Idea demo"
+      },
+      {
+        "href": "/website-ux-design",
+        "text": "↗\nRELATED EXPLORATION\nWebsite design and frontend thinking"
+      },
+      {
+        "href": "/product-design-nepal",
+        "text": "↗\nRELATED EXPLORATION\nWorking with a designer in Nepal"
+      },
+      {
+        "href": "/blog/blog-service-websites",
+        "text": "↗\nRELATED EXPLORATION\nClearer service websites"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-designerex",
+        "text": "↗\nCONTINUE THE JOURNEY\nDesignerex"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-morajaa",
+        "text": "↗\nCONTINUE THE JOURNEY\nMorajaa"
+      }
+    ],
+    "captures": [
+      {
+        "src": "",
+        "alt": "Current Hamro Idea public demo showing its navigation, blue gradient hero, service positioning and project-call actions.",
+        "width": 278,
+        "height": 174
+      }
+    ],
+    "captureGeometry": {
+      "width": 278,
+      "height": 173.75,
+      "src": "http://127.0.0.1:4173/assets/images/site-captures/hamro-current-demo-69eb816ea462-640.webp",
+      "naturalWidth": 320,
+      "naturalHeight": 200,
+      "objectFit": "contain"
+    }
+  },
+  {
+    "route": "/project-zapp",
+    "width": 320,
+    "status": 200,
+    "errors": [],
+    "title": "Zapp Today: Logistics Product Design | Nischhal Raj Subba",
+    "description": "Different interfaces for people booking a delivery, carrying it out and resolving exceptions around it.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Enter as a customer"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Describe the parcel"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Act on the next stop"
+      },
+      {
+        "href": "#chapter-4",
+        "text": "Close the handoff"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-30",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-49",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-117",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-2",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-153",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=115-75",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=19-149",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=20-26",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/Zapp?node-id=4-5",
+        "text": "Primary Zapp design source"
+      },
+      {
+        "href": "https://www.figma.com/design/UVuc0LuF7Ykb0yxfPmzOHX/Design-Case-Study?node-id=0-1",
+        "text": "Legacy design case study"
+      },
+      {
+        "href": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=3-8&page-id=0%3A1",
+        "text": "Legacy customer prototype"
+      },
+      {
+        "href": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=82-0&page-id=2%3A3",
+        "text": "Legacy driver prototype"
+      },
+      {
+        "href": "https://zapp.today/",
+        "text": "Visit Zapp’s current official website"
+      },
+      {
+        "href": "/services",
+        "text": "↗\nRELATED EXPLORATION\nMobile product design services"
+      },
+      {
+        "href": "/blog/ux-audit-checklist-before-redesign",
+        "text": "↗\nRELATED EXPLORATION\nReview the full journey before redesigning"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "↗\nRELATED EXPLORATION\nAnother multi-role product"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-masteriyo",
+        "text": "↗\nCONTINUE THE JOURNEY\nMasteriyo"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-designerex",
+        "text": "↗\nCONTINUE THE JOURNEY\nDesignerex"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/project-designerex",
+    "width": 320,
+    "status": 200,
+    "errors": [],
+    "title": "Designerex: Fashion Marketplace UX | Nischhal Raj Subba",
+    "description": "Balancing image-led fashion discovery with the stable rental information needed to compare listings.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Notice the garment"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Compare practical details"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Continue without losing context"
+      },
+      {
+        "href": "https://designerex.com.au/",
+        "text": "Visit the current Designerex marketplace"
+      },
+      {
+        "href": "/website-ux-design",
+        "text": "↗\nRELATED EXPLORATION\nWebsite and marketplace UX"
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "text": "↗\nRELATED EXPLORATION\nContent variation in a catalogue"
+      },
+      {
+        "href": "/blog/beautiful-interface-poor-ux",
+        "text": "↗\nRELATED EXPLORATION\nWhen polish hides a decision problem"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-zapp",
+        "text": "↗\nCONTINUE THE JOURNEY\nZapp Today"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-hamro-idea",
+        "text": "↗\nCONTINUE THE JOURNEY\nHamro Idea"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/about",
+    "width": 390,
+    "status": 200,
+    "errors": [],
+    "title": "About Nischhal Raj Subba | Senior Product Designer",
+    "description": "I’m a product designer based in Nepal with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "https://idealaya.com/",
+        "text": "Idealaya↗"
+      },
+      {
+        "href": "https://mokshya.io/",
+        "text": "Mokshya Protocol↗"
+      },
+      {
+        "href": "https://www.tegzy.com.au/",
+        "text": "Tegzy↗"
+      },
+      {
+        "href": "https://esrtech.io/",
+        "text": "ESR Tech↗"
+      },
+      {
+        "href": "https://themegrill.com/",
+        "text": "ThemeGrill↗"
+      },
+      {
+        "href": "https://gurzu.com/",
+        "text": "Gurzu↗"
+      },
+      {
+        "href": "/assets/resume.pdf",
+        "text": "VIEW FULL RESUME"
+      },
+      {
+        "href": "/projects",
+        "text": "VIEW CASE STUDIES"
+      },
+      {
+        "href": "/contact",
+        "text": "CONTACT ME"
+      },
+      {
+        "href": "/workspace-home/assets/resume.pdf",
+        "text": "Read the full résumé"
+      },
+      {
+        "href": "/product-design-nepal",
+        "text": "Working with a product designer in Nepal"
+      },
+      {
+        "href": "/blog/hire-product-designer-nepal-saas-web3",
+        "text": "Hiring for SaaS and Web3 work"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/projects",
+    "width": 390,
+    "status": 200,
+    "errors": [],
+    "title": "Product Design Case Studies | Nischhal Raj Subba",
+    "description": "Case studies from SaaS, Web3, fintech, LMS and software products, showing the product problem, my role, key design decisions, interface evidence and what shipped.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "/project-orkest",
+        "text": "READ ORKEST CASE STUDY"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "READ PIHUB CASE STUDY"
+      },
+      {
+        "href": "https://github.com/Nischhalsubba/design-ops-orchestrator",
+        "text": "INSPECT PUBLIC REPOSITORY"
+      },
+      {
+        "href": "/project-yarsha",
+        "text": "WEB3 MESSAGING + WALLET UX\nYarsha\n\nA mobile chat product where wallet actions, Solana blinks and transaction states had to feel connected to conversation without making approval feel casual.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "FINTECH PRODUCT WORKFLOWS\npiHub\n\nInvestment, credit, application and verification experiences organized around the information financial users need most: current status, missing requirements and the next useful action.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-orkest",
+        "text": "MODULAR SAAS PLATFORM\nOrkest HQ\n\nA shared product grammar for CRM, Sales, Inventory and Finance, designed so the modules feel related without pretending their operational jobs are identical.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-masteriyo",
+        "text": "WORDPRESS LMS PRODUCT DESIGN\nMasteriyo\n\nProduct-design work inside an established LMS, covering course authoring, quizzes, learner states and reusable patterns that had to fit an existing system and a larger design team.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-mokshya",
+        "text": "WEB3 PROTOCOL WEBSITE\nMokshya.io\n\nA technical protocol website structured so first-time visitors can understand the product while developers can reach mechanism, evidence and deeper context without wading through marketing filler.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-neverwinter-parser",
+        "text": "REAL-TIME GAME DATA TOOL\nNeverwinter Live Parser\n\nA live parser that turns noisy combat events into readable performance information while keeping uncertainty and incomplete data visible instead of pretending every number is equally trustworthy.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-zapp",
+        "text": ""
+      },
+      {
+        "href": "/project-designerex",
+        "text": ""
+      },
+      {
+        "href": "/project-hamro-idea",
+        "text": ""
+      },
+      {
+        "href": "/project-morajaa",
+        "text": ""
+      },
+      {
+        "href": "/project-splashnode",
+        "text": ""
+      },
+      {
+        "href": "/project-grid-labs",
+        "text": ""
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "text": ""
+      },
+      {
+        "href": "/project-sassboilerplate",
+        "text": ""
+      },
+      {
+        "href": "/contact",
+        "text": "DISCUSS A ROLE OR PRODUCT"
+      }
+    ],
+    "captures": [],
+    "archiveCards": [
+      {
+        "href": "/project-yarsha",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-pihub",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/pihub-corporate-information-480-5b88600d5ffc.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-orkest",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/orkest-module-directory-480-1c2e9e3a5eb7.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-masteriyo",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/masteriyo-course-details-480-14d4f73f5ee5.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-mokshya",
+        "src": "http://127.0.0.1:4173/assets/project-mokshya-cover-DW79CUKC-DW79CUKC.svg",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-neverwinter-parser",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPk5ldmVyd2ludGVyIExpdmUgUGFyc2VyIHRodW1ibmFpbDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlJlYWxpc3RpYyBkZXNrdG9wIGFwcCBtb2NrdXAgc2hvd2luZyBjb21iYXQgbG9nIHBhcnNlciBkYXNoYm9hcmQsIHBsYXllciBwZXJmb3JtYW5jZSBjaGFydCwgZW5jb3VudGVyIHRhYmxlLCBhbmQgbGl2ZSB0cmFja2luZyBwYW5lbC48L2Rlc2M+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAiIHgyPSIxIiB5MT0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzA1MDgxNiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzNiMDc2NCIvPjwvbGluZWFyR3JhZGllbnQ+PGZpbHRlciBpZD0icyI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjI0IiBzdGREZXZpYXRpb249IjI0IiBmbG9vZC1vcGFjaXR5PSIuMzQiLz48L2ZpbHRlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHRleHQgeD0iNzIiIHk9IjEwNSIgZm9udC1mYW1pbHk9IkludGVyLEFyaWFsIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmIj5OZXZlcndpbnRlciBMaXZlIFBhcnNlcjwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNkZGQ2ZmUiPkRlc2t0b3AgY29tYmF0IGxvZyBhbmFseXNpcyDCtyBsaXZlIHRyYWNraW5nPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMTYwIiB5PSIxOTAiIHdpZHRoPSI4ODAiIGhlaWdodD0iMzgwIiByeD0iMjgiIGZpbGw9IiMwZjE3MmEiLz48cmVjdCB4PSIxNjAiIHk9IjE5MCIgd2lkdGg9Ijg4MCIgaGVpZ2h0PSI1NCIgcng9IjI4IiBmaWxsPSIjMTExODI3Ii8+PHJlY3QgeD0iMjEwIiB5PSIyOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMjIwIiByeD0iMjIiIGZpbGw9IiMxZTI5M2IiLz48cmVjdCB4PSI1MTAiIHk9IjI5MCIgd2lkdGg9IjIxMCIgaGVpZ2h0PSIyMjAiIHJ4PSIyMiIgZmlsbD0iIzFlMjkzYiIvPjxyZWN0IHg9Ijc2MCIgeT0iMjkwIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjIyMCIgcng9IjIyIiBmaWxsPSIjMWUyOTNiIi8+PHBhdGggZD0iTTIzNSA0NTAgTDI4NSAzOTAgTDMzNSA0MjQgTDM4NSAzNDAgTDQ0MCAzNzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2E4NTVmNyIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHJlY3QgeD0iNTM1IiB5PSIzMzAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjYTg1NWY3Ii8+PHJlY3QgeD0iNTM1IiB5PSIzNzAiIHdpZHRoPSIxMTgiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjNmQyOGQ5Ii8+PHJlY3QgeD0iNTM1IiB5PSI0MTAiIHdpZHRoPSIxNzAiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjOGI1Y2Y2Ii8+PHRleHQgeD0iNzkyIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2U1ZTdlYiI+TGl2ZSBFbmNvdW50ZXI8L3RleHQ+PGNpcmNsZSBjeD0iNzk1IiBjeT0iNDIwIiByPSI0MiIgZmlsbD0iI2E4NTVmNyIgb3BhY2l0eT0iLjI4Ii8+PGNpcmNsZSBjeD0iNzk1IiBjeT0iNDIwIiByPSIxOCIgZmlsbD0iI2E4NTVmNyIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-zapp",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-designerex",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkRlc2lnbmVyZXggbWFya2V0cGxhY2UgZGVzaWduIGNvbnRyaWJ1dGlvbiB0aHVtYm5haWw8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SZWFsaXN0aWMgbHV4dXJ5IGZhc2hpb24gbWFya2V0cGxhY2UgbW9ja3VwIHNob3dpbmcgcHJvZHVjdCBsaXN0aW5nIGNhcmRzLCB2ZXJpZmljYXRpb24gY3VlLCBhbmQgcHJlbWl1bSByZW50YWwgaW50ZXJmYWNlLjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTExODI3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZGIyNzc3Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjY3NSIgcng9IjM2IiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjcyIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZiI+RGVzaWduZXJleDwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNmY2U3ZjMiPk1hcmtldHBsYWNlIGRlc2lnbiBjb250cmlidXRpb248L3RleHQ+PGcgZmlsdGVyPSJ1cmwoI3MpIj48cmVjdCB4PSIyMTAiIHk9IjE2NSIgd2lkdGg9Ijc4MCIgaGVpZ2h0PSI0MzAiIHJ4PSIzMCIgZmlsbD0iI2ZmZiIvPjxyZWN0IHg9IjI3MCIgeT0iMjMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI3MCIgcng9IjI2IiBmaWxsPSIjZmRmMmY4Ii8+PHJlY3QgeD0iNTIwIiB5PSIyMzAiIHdpZHRoPSIyMTAiIGhlaWdodD0iMjcwIiByeD0iMjYiIGZpbGw9IiNmOGZhZmMiLz48cmVjdCB4PSI3NzAiIHk9IjIzMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyNzAiIHJ4PSIyNiIgZmlsbD0iI2ZkZjJmOCIvPjxjaXJjbGUgY3g9IjM3NSIgY3k9IjMzNSIgcj0iNTUiIGZpbGw9IiNmOWE4ZDQiIG9wYWNpdHk9Ii42NSIvPjxjaXJjbGUgY3g9IjYyNSIgY3k9IjMzNSIgcj0iNTUiIGZpbGw9IiNmYmNmZTgiIG9wYWNpdHk9Ii42NSIvPjxyZWN0IHg9IjMwMCIgeT0iNDMwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI2RiMjc3NyIvPjxyZWN0IHg9IjU1MCIgeT0iNDMwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI2RiMjc3NyIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-hamro-idea",
+        "src": "http://127.0.0.1:4173/assets/images/site-captures/hamro-current-demo-69eb816ea462-640.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-morajaa",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/morajaa-home-480-afc376a005c8.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-splashnode",
+        "src": "http://127.0.0.1:4173/assets/project-splashnode-cover-q2IRfgbl-q2IRfgbl.svg",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-grid-labs",
+        "src": "http://127.0.0.1:4173/assets/images/owner/grid-labs-cover.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlpha3JhIEZ1cm5pdHVyZSBXb3JkUHJlc3Mgc3RhcnRlciB0aHVtYm5haWw8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SZWFsaXN0aWMgZnVybml0dXJlIHdlYnNpdGUgbW9ja3VwIHNob3dpbmcgcHJvZHVjdCBjYXJkcywgaG9tZXBhZ2Ugc2VjdGlvbnMsIGFuZCBFbGVtZW50b3IgV29yZFByZXNzIHN0YXJ0ZXIgbGF5b3V0LjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMjkyNTI0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYTE2MjA3Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjY3NSIgcng9IjM2IiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjcyIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZiI+WmFrcmEgRnVybml0dXJlPC90ZXh0Pjx0ZXh0IHg9IjcyIiB5PSIxNDgiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZlZjNjNyI+V29yZFByZXNzIHN0YXJ0ZXIgwrcgRWxlbWVudG9yIGJ1aWxkPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMjMwIiB5PSIxNjUiIHdpZHRoPSI3NDAiIGhlaWdodD0iNDMwIiByeD0iMzAiIGZpbGw9IiNmZmZhZjAiLz48cmVjdCB4PSIyODAiIHk9IjIyNSIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjMjkyNTI0Ii8+PHJlY3QgeD0iMjgwIiB5PSIzMDAiIHdpZHRoPSIxOTAiIGhlaWdodD0iMTUwIiByeD0iMjQiIGZpbGw9IiNmZGU2OGEiLz48cmVjdCB4PSI1MTAiIHk9IjMwMCIgd2lkdGg9IjE5MCIgaGVpZ2h0PSIxNTAiIHJ4PSIyNCIgZmlsbD0iI2ZmZmJlYiIvPjxyZWN0IHg9Ijc0MCIgeT0iMzAwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE1MCIgcng9IjI0IiBmaWxsPSIjZmRlNjhhIi8+PHBhdGggZD0iTTMyMCA0MDVoMTEwTTU1MCA0MDVoMTEwTTc4MCA0MDVoMTAwIiBzdHJva2U9IiNhMTYyMDciIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-sassboilerplate",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPnNhc3NCb2lsZXJwbGF0ZSBmcm9udC1lbmQgd29ya2Zsb3cgdGh1bWJuYWlsPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UmVhbGlzdGljIGRldmVsb3BlciB3b3JrZmxvdyBtb2NrdXAgc2hvd2luZyBmaWxlIHRyZWUsIGJ1aWxkIHN0ZXBzLCBTQ1NTIG1vZHVsZXMsIGFuZCBzdGF0aWMgd2Vic2l0ZSB0b29saW5nLjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDIwNjE3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNDc1NTY5Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zNSIvPjwvZmlsdGVyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2NzUiIHJ4PSIzNiIgZmlsbD0idXJsKCNiZykiLz48dGV4dCB4PSI3MiIgeT0iMTA1IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNmZmYiPnNhc3NCb2lsZXJwbGF0ZTwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNlMmU4ZjAiPkZyb250LWVuZCB3b3JrZmxvdyBzdGFydGVyPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMjEwIiB5PSIxNjUiIHdpZHRoPSI3ODAiIGhlaWdodD0iNDMwIiByeD0iMzAiIGZpbGw9IiMwZjE3MmEiLz48cmVjdCB4PSIyMTAiIHk9IjE2NSIgd2lkdGg9IjIzMCIgaGVpZ2h0PSI0MzAiIHJ4PSIzMCIgZmlsbD0iIzExMTgyNyIvPjxyZWN0IHg9IjI1MCIgeT0iMjMwIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjI1MCIgeT0iMjc1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzY0NzQ4YiIvPjxyZWN0IHg9IjI1MCIgeT0iMzIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzY0NzQ4YiIvPjxyZWN0IHg9IjQ5MCIgeT0iMjMwIiB3aWR0aD0iNDMwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzM4YmRmOCIvPjxyZWN0IHg9IjQ5MCIgeT0iMjgwIiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjQ5MCIgeT0iMzMwIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjQ5MCIgeT0iNDIwIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjU0IiByeD0iMTgiIGZpbGw9IiMzOGJkZjgiLz48L2c+PC9zdmc+",
+        "fit": "contain"
+      }
+    ]
+  },
+  {
+    "route": "/project-hamro-idea",
+    "width": 390,
+    "status": 200,
+    "errors": [],
+    "title": "Hamro Idea: Software Studio Website | Nischhal Raj Subba",
+    "description": "Connecting a Nepal-based studio's positioning, services, project proof and contact path in one maintainable website.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Choose a relevant service"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Inspect the work and studio"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Explore the studio’s thinking"
+      },
+      {
+        "href": "#chapter-4",
+        "text": "Start a relevant conversation"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=2-261",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1671",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2022",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2342",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-526",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-953",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1238",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1490",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "/assets/images/site-captures/hamro-current-demo-full-58a5c98101d6.png",
+        "text": "Open the complete original page capture"
+      },
+      {
+        "href": "https://hamro-idea-website.vercel.app/",
+        "text": "Visit the public demo"
+      },
+      {
+        "href": "https://hamro-idea-website.vercel.app/",
+        "text": "Explore the current Hamro Idea demo"
+      },
+      {
+        "href": "/website-ux-design",
+        "text": "↗\nRELATED EXPLORATION\nWebsite design and frontend thinking"
+      },
+      {
+        "href": "/product-design-nepal",
+        "text": "↗\nRELATED EXPLORATION\nWorking with a designer in Nepal"
+      },
+      {
+        "href": "/blog/blog-service-websites",
+        "text": "↗\nRELATED EXPLORATION\nClearer service websites"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-designerex",
+        "text": "↗\nCONTINUE THE JOURNEY\nDesignerex"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-morajaa",
+        "text": "↗\nCONTINUE THE JOURNEY\nMorajaa"
+      }
+    ],
+    "captures": [
+      {
+        "src": "",
+        "alt": "Current Hamro Idea public demo showing its navigation, blue gradient hero, service positioning and project-call actions.",
+        "width": 348,
+        "height": 218
+      }
+    ],
+    "captureGeometry": {
+      "width": 348,
+      "height": 217.5,
+      "src": "http://127.0.0.1:4173/assets/images/site-captures/hamro-current-demo-69eb816ea462-640.webp",
+      "naturalWidth": 390,
+      "naturalHeight": 243,
+      "objectFit": "contain"
+    }
+  },
+  {
+    "route": "/project-zapp",
+    "width": 390,
+    "status": 200,
+    "errors": [],
+    "title": "Zapp Today: Logistics Product Design | Nischhal Raj Subba",
+    "description": "Different interfaces for people booking a delivery, carrying it out and resolving exceptions around it.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Enter as a customer"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Describe the parcel"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Act on the next stop"
+      },
+      {
+        "href": "#chapter-4",
+        "text": "Close the handoff"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-30",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-49",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-117",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-2",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-153",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=115-75",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=19-149",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=20-26",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/Zapp?node-id=4-5",
+        "text": "Primary Zapp design source"
+      },
+      {
+        "href": "https://www.figma.com/design/UVuc0LuF7Ykb0yxfPmzOHX/Design-Case-Study?node-id=0-1",
+        "text": "Legacy design case study"
+      },
+      {
+        "href": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=3-8&page-id=0%3A1",
+        "text": "Legacy customer prototype"
+      },
+      {
+        "href": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=82-0&page-id=2%3A3",
+        "text": "Legacy driver prototype"
+      },
+      {
+        "href": "https://zapp.today/",
+        "text": "Visit Zapp’s current official website"
+      },
+      {
+        "href": "/services",
+        "text": "↗\nRELATED EXPLORATION\nMobile product design services"
+      },
+      {
+        "href": "/blog/ux-audit-checklist-before-redesign",
+        "text": "↗\nRELATED EXPLORATION\nReview the full journey before redesigning"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "↗\nRELATED EXPLORATION\nAnother multi-role product"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-masteriyo",
+        "text": "↗\nCONTINUE THE JOURNEY\nMasteriyo"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-designerex",
+        "text": "↗\nCONTINUE THE JOURNEY\nDesignerex"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/project-designerex",
+    "width": 390,
+    "status": 200,
+    "errors": [],
+    "title": "Designerex: Fashion Marketplace UX | Nischhal Raj Subba",
+    "description": "Balancing image-led fashion discovery with the stable rental information needed to compare listings.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Notice the garment"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Compare practical details"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Continue without losing context"
+      },
+      {
+        "href": "https://designerex.com.au/",
+        "text": "Visit the current Designerex marketplace"
+      },
+      {
+        "href": "/website-ux-design",
+        "text": "↗\nRELATED EXPLORATION\nWebsite and marketplace UX"
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "text": "↗\nRELATED EXPLORATION\nContent variation in a catalogue"
+      },
+      {
+        "href": "/blog/beautiful-interface-poor-ux",
+        "text": "↗\nRELATED EXPLORATION\nWhen polish hides a decision problem"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-zapp",
+        "text": "↗\nCONTINUE THE JOURNEY\nZapp Today"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-hamro-idea",
+        "text": "↗\nCONTINUE THE JOURNEY\nHamro Idea"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/about",
+    "width": 768,
+    "status": 200,
+    "errors": [],
+    "title": "About Nischhal Raj Subba | Senior Product Designer",
+    "description": "I’m a product designer based in Nepal with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "https://idealaya.com/",
+        "text": "Idealaya↗"
+      },
+      {
+        "href": "https://mokshya.io/",
+        "text": "Mokshya Protocol↗"
+      },
+      {
+        "href": "https://www.tegzy.com.au/",
+        "text": "Tegzy↗"
+      },
+      {
+        "href": "https://esrtech.io/",
+        "text": "ESR Tech↗"
+      },
+      {
+        "href": "https://themegrill.com/",
+        "text": "ThemeGrill↗"
+      },
+      {
+        "href": "https://gurzu.com/",
+        "text": "Gurzu↗"
+      },
+      {
+        "href": "/assets/resume.pdf",
+        "text": "VIEW FULL RESUME"
+      },
+      {
+        "href": "/projects",
+        "text": "VIEW CASE STUDIES"
+      },
+      {
+        "href": "/contact",
+        "text": "CONTACT ME"
+      },
+      {
+        "href": "/workspace-home/assets/resume.pdf",
+        "text": "Read the full résumé"
+      },
+      {
+        "href": "/product-design-nepal",
+        "text": "Working with a product designer in Nepal"
+      },
+      {
+        "href": "/blog/hire-product-designer-nepal-saas-web3",
+        "text": "Hiring for SaaS and Web3 work"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/projects",
+    "width": 768,
+    "status": 200,
+    "errors": [],
+    "title": "Product Design Case Studies | Nischhal Raj Subba",
+    "description": "Case studies from SaaS, Web3, fintech, LMS and software products, showing the product problem, my role, key design decisions, interface evidence and what shipped.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "/project-orkest",
+        "text": "READ ORKEST CASE STUDY"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "READ PIHUB CASE STUDY"
+      },
+      {
+        "href": "https://github.com/Nischhalsubba/design-ops-orchestrator",
+        "text": "INSPECT PUBLIC REPOSITORY"
+      },
+      {
+        "href": "/project-yarsha",
+        "text": "WEB3 MESSAGING + WALLET UX\nYarsha\n\nA mobile chat product where wallet actions, Solana blinks and transaction states had to feel connected to conversation without making approval feel casual.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "FINTECH PRODUCT WORKFLOWS\npiHub\n\nInvestment, credit, application and verification experiences organized around the information financial users need most: current status, missing requirements and the next useful action.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-orkest",
+        "text": "MODULAR SAAS PLATFORM\nOrkest HQ\n\nA shared product grammar for CRM, Sales, Inventory and Finance, designed so the modules feel related without pretending their operational jobs are identical.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-masteriyo",
+        "text": "WORDPRESS LMS PRODUCT DESIGN\nMasteriyo\n\nProduct-design work inside an established LMS, covering course authoring, quizzes, learner states and reusable patterns that had to fit an existing system and a larger design team.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-mokshya",
+        "text": "WEB3 PROTOCOL WEBSITE\nMokshya.io\n\nA technical protocol website structured so first-time visitors can understand the product while developers can reach mechanism, evidence and deeper context without wading through marketing filler.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-neverwinter-parser",
+        "text": "REAL-TIME GAME DATA TOOL\nNeverwinter Live Parser\n\nA live parser that turns noisy combat events into readable performance information while keeping uncertainty and incomplete data visible instead of pretending every number is equally trustworthy.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-zapp",
+        "text": ""
+      },
+      {
+        "href": "/project-designerex",
+        "text": ""
+      },
+      {
+        "href": "/project-hamro-idea",
+        "text": ""
+      },
+      {
+        "href": "/project-morajaa",
+        "text": ""
+      },
+      {
+        "href": "/project-splashnode",
+        "text": ""
+      },
+      {
+        "href": "/project-grid-labs",
+        "text": ""
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "text": ""
+      },
+      {
+        "href": "/project-sassboilerplate",
+        "text": ""
+      },
+      {
+        "href": "/contact",
+        "text": "DISCUSS A ROLE OR PRODUCT"
+      }
+    ],
+    "captures": [],
+    "archiveCards": [
+      {
+        "href": "/project-yarsha",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-pihub",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/pihub-corporate-information-800-770cc4ceccfe.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-orkest",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/orkest-module-directory-800-a225bfe79f67.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-masteriyo",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/masteriyo-course-details-800-ef9db0c4f691.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-mokshya",
+        "src": "http://127.0.0.1:4173/assets/project-mokshya-cover-DW79CUKC-DW79CUKC.svg",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-neverwinter-parser",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPk5ldmVyd2ludGVyIExpdmUgUGFyc2VyIHRodW1ibmFpbDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlJlYWxpc3RpYyBkZXNrdG9wIGFwcCBtb2NrdXAgc2hvd2luZyBjb21iYXQgbG9nIHBhcnNlciBkYXNoYm9hcmQsIHBsYXllciBwZXJmb3JtYW5jZSBjaGFydCwgZW5jb3VudGVyIHRhYmxlLCBhbmQgbGl2ZSB0cmFja2luZyBwYW5lbC48L2Rlc2M+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAiIHgyPSIxIiB5MT0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzA1MDgxNiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzNiMDc2NCIvPjwvbGluZWFyR3JhZGllbnQ+PGZpbHRlciBpZD0icyI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjI0IiBzdGREZXZpYXRpb249IjI0IiBmbG9vZC1vcGFjaXR5PSIuMzQiLz48L2ZpbHRlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHRleHQgeD0iNzIiIHk9IjEwNSIgZm9udC1mYW1pbHk9IkludGVyLEFyaWFsIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmIj5OZXZlcndpbnRlciBMaXZlIFBhcnNlcjwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNkZGQ2ZmUiPkRlc2t0b3AgY29tYmF0IGxvZyBhbmFseXNpcyDCtyBsaXZlIHRyYWNraW5nPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMTYwIiB5PSIxOTAiIHdpZHRoPSI4ODAiIGhlaWdodD0iMzgwIiByeD0iMjgiIGZpbGw9IiMwZjE3MmEiLz48cmVjdCB4PSIxNjAiIHk9IjE5MCIgd2lkdGg9Ijg4MCIgaGVpZ2h0PSI1NCIgcng9IjI4IiBmaWxsPSIjMTExODI3Ii8+PHJlY3QgeD0iMjEwIiB5PSIyOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMjIwIiByeD0iMjIiIGZpbGw9IiMxZTI5M2IiLz48cmVjdCB4PSI1MTAiIHk9IjI5MCIgd2lkdGg9IjIxMCIgaGVpZ2h0PSIyMjAiIHJ4PSIyMiIgZmlsbD0iIzFlMjkzYiIvPjxyZWN0IHg9Ijc2MCIgeT0iMjkwIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjIyMCIgcng9IjIyIiBmaWxsPSIjMWUyOTNiIi8+PHBhdGggZD0iTTIzNSA0NTAgTDI4NSAzOTAgTDMzNSA0MjQgTDM4NSAzNDAgTDQ0MCAzNzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2E4NTVmNyIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHJlY3QgeD0iNTM1IiB5PSIzMzAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjYTg1NWY3Ii8+PHJlY3QgeD0iNTM1IiB5PSIzNzAiIHdpZHRoPSIxMTgiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjNmQyOGQ5Ii8+PHJlY3QgeD0iNTM1IiB5PSI0MTAiIHdpZHRoPSIxNzAiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjOGI1Y2Y2Ii8+PHRleHQgeD0iNzkyIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2U1ZTdlYiI+TGl2ZSBFbmNvdW50ZXI8L3RleHQ+PGNpcmNsZSBjeD0iNzk1IiBjeT0iNDIwIiByPSI0MiIgZmlsbD0iI2E4NTVmNyIgb3BhY2l0eT0iLjI4Ii8+PGNpcmNsZSBjeD0iNzk1IiBjeT0iNDIwIiByPSIxOCIgZmlsbD0iI2E4NTVmNyIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-zapp",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-designerex",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkRlc2lnbmVyZXggbWFya2V0cGxhY2UgZGVzaWduIGNvbnRyaWJ1dGlvbiB0aHVtYm5haWw8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SZWFsaXN0aWMgbHV4dXJ5IGZhc2hpb24gbWFya2V0cGxhY2UgbW9ja3VwIHNob3dpbmcgcHJvZHVjdCBsaXN0aW5nIGNhcmRzLCB2ZXJpZmljYXRpb24gY3VlLCBhbmQgcHJlbWl1bSByZW50YWwgaW50ZXJmYWNlLjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTExODI3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZGIyNzc3Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjY3NSIgcng9IjM2IiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjcyIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZiI+RGVzaWduZXJleDwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNmY2U3ZjMiPk1hcmtldHBsYWNlIGRlc2lnbiBjb250cmlidXRpb248L3RleHQ+PGcgZmlsdGVyPSJ1cmwoI3MpIj48cmVjdCB4PSIyMTAiIHk9IjE2NSIgd2lkdGg9Ijc4MCIgaGVpZ2h0PSI0MzAiIHJ4PSIzMCIgZmlsbD0iI2ZmZiIvPjxyZWN0IHg9IjI3MCIgeT0iMjMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI3MCIgcng9IjI2IiBmaWxsPSIjZmRmMmY4Ii8+PHJlY3QgeD0iNTIwIiB5PSIyMzAiIHdpZHRoPSIyMTAiIGhlaWdodD0iMjcwIiByeD0iMjYiIGZpbGw9IiNmOGZhZmMiLz48cmVjdCB4PSI3NzAiIHk9IjIzMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyNzAiIHJ4PSIyNiIgZmlsbD0iI2ZkZjJmOCIvPjxjaXJjbGUgY3g9IjM3NSIgY3k9IjMzNSIgcj0iNTUiIGZpbGw9IiNmOWE4ZDQiIG9wYWNpdHk9Ii42NSIvPjxjaXJjbGUgY3g9IjYyNSIgY3k9IjMzNSIgcj0iNTUiIGZpbGw9IiNmYmNmZTgiIG9wYWNpdHk9Ii42NSIvPjxyZWN0IHg9IjMwMCIgeT0iNDMwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI2RiMjc3NyIvPjxyZWN0IHg9IjU1MCIgeT0iNDMwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI2RiMjc3NyIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-hamro-idea",
+        "src": "http://127.0.0.1:4173/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-morajaa",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/morajaa-home-800-ba35c114fa8e.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-splashnode",
+        "src": "http://127.0.0.1:4173/assets/project-splashnode-cover-q2IRfgbl-q2IRfgbl.svg",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-grid-labs",
+        "src": "http://127.0.0.1:4173/assets/images/owner/grid-labs-cover.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlpha3JhIEZ1cm5pdHVyZSBXb3JkUHJlc3Mgc3RhcnRlciB0aHVtYm5haWw8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SZWFsaXN0aWMgZnVybml0dXJlIHdlYnNpdGUgbW9ja3VwIHNob3dpbmcgcHJvZHVjdCBjYXJkcywgaG9tZXBhZ2Ugc2VjdGlvbnMsIGFuZCBFbGVtZW50b3IgV29yZFByZXNzIHN0YXJ0ZXIgbGF5b3V0LjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMjkyNTI0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYTE2MjA3Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjY3NSIgcng9IjM2IiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjcyIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZiI+WmFrcmEgRnVybml0dXJlPC90ZXh0Pjx0ZXh0IHg9IjcyIiB5PSIxNDgiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZlZjNjNyI+V29yZFByZXNzIHN0YXJ0ZXIgwrcgRWxlbWVudG9yIGJ1aWxkPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMjMwIiB5PSIxNjUiIHdpZHRoPSI3NDAiIGhlaWdodD0iNDMwIiByeD0iMzAiIGZpbGw9IiNmZmZhZjAiLz48cmVjdCB4PSIyODAiIHk9IjIyNSIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjMjkyNTI0Ii8+PHJlY3QgeD0iMjgwIiB5PSIzMDAiIHdpZHRoPSIxOTAiIGhlaWdodD0iMTUwIiByeD0iMjQiIGZpbGw9IiNmZGU2OGEiLz48cmVjdCB4PSI1MTAiIHk9IjMwMCIgd2lkdGg9IjE5MCIgaGVpZ2h0PSIxNTAiIHJ4PSIyNCIgZmlsbD0iI2ZmZmJlYiIvPjxyZWN0IHg9Ijc0MCIgeT0iMzAwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE1MCIgcng9IjI0IiBmaWxsPSIjZmRlNjhhIi8+PHBhdGggZD0iTTMyMCA0MDVoMTEwTTU1MCA0MDVoMTEwTTc4MCA0MDVoMTAwIiBzdHJva2U9IiNhMTYyMDciIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-sassboilerplate",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPnNhc3NCb2lsZXJwbGF0ZSBmcm9udC1lbmQgd29ya2Zsb3cgdGh1bWJuYWlsPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UmVhbGlzdGljIGRldmVsb3BlciB3b3JrZmxvdyBtb2NrdXAgc2hvd2luZyBmaWxlIHRyZWUsIGJ1aWxkIHN0ZXBzLCBTQ1NTIG1vZHVsZXMsIGFuZCBzdGF0aWMgd2Vic2l0ZSB0b29saW5nLjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDIwNjE3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNDc1NTY5Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zNSIvPjwvZmlsdGVyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2NzUiIHJ4PSIzNiIgZmlsbD0idXJsKCNiZykiLz48dGV4dCB4PSI3MiIgeT0iMTA1IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNmZmYiPnNhc3NCb2lsZXJwbGF0ZTwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNlMmU4ZjAiPkZyb250LWVuZCB3b3JrZmxvdyBzdGFydGVyPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMjEwIiB5PSIxNjUiIHdpZHRoPSI3ODAiIGhlaWdodD0iNDMwIiByeD0iMzAiIGZpbGw9IiMwZjE3MmEiLz48cmVjdCB4PSIyMTAiIHk9IjE2NSIgd2lkdGg9IjIzMCIgaGVpZ2h0PSI0MzAiIHJ4PSIzMCIgZmlsbD0iIzExMTgyNyIvPjxyZWN0IHg9IjI1MCIgeT0iMjMwIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjI1MCIgeT0iMjc1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzY0NzQ4YiIvPjxyZWN0IHg9IjI1MCIgeT0iMzIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzY0NzQ4YiIvPjxyZWN0IHg9IjQ5MCIgeT0iMjMwIiB3aWR0aD0iNDMwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzM4YmRmOCIvPjxyZWN0IHg9IjQ5MCIgeT0iMjgwIiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjQ5MCIgeT0iMzMwIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjQ5MCIgeT0iNDIwIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjU0IiByeD0iMTgiIGZpbGw9IiMzOGJkZjgiLz48L2c+PC9zdmc+",
+        "fit": "contain"
+      }
+    ]
+  },
+  {
+    "route": "/project-hamro-idea",
+    "width": 768,
+    "status": 200,
+    "errors": [],
+    "title": "Hamro Idea: Software Studio Website | Nischhal Raj Subba",
+    "description": "Connecting a Nepal-based studio's positioning, services, project proof and contact path in one maintainable website.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Choose a relevant service"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Inspect the work and studio"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Explore the studio’s thinking"
+      },
+      {
+        "href": "#chapter-4",
+        "text": "Start a relevant conversation"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=2-261",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1671",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2022",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2342",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-526",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-953",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1238",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1490",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "/assets/images/site-captures/hamro-current-demo-full-58a5c98101d6.png",
+        "text": "Open the complete original page capture"
+      },
+      {
+        "href": "https://hamro-idea-website.vercel.app/",
+        "text": "Visit the public demo"
+      },
+      {
+        "href": "https://hamro-idea-website.vercel.app/",
+        "text": "Explore the current Hamro Idea demo"
+      },
+      {
+        "href": "/website-ux-design",
+        "text": "↗\nRELATED EXPLORATION\nWebsite design and frontend thinking"
+      },
+      {
+        "href": "/product-design-nepal",
+        "text": "↗\nRELATED EXPLORATION\nWorking with a designer in Nepal"
+      },
+      {
+        "href": "/blog/blog-service-websites",
+        "text": "↗\nRELATED EXPLORATION\nClearer service websites"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-designerex",
+        "text": "↗\nCONTINUE THE JOURNEY\nDesignerex"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-morajaa",
+        "text": "↗\nCONTINUE THE JOURNEY\nMorajaa"
+      }
+    ],
+    "captures": [
+      {
+        "src": "",
+        "alt": "Current Hamro Idea public demo showing its navigation, blue gradient hero, service positioning and project-call actions.",
+        "width": 689,
+        "height": 431
+      }
+    ],
+    "captureGeometry": {
+      "width": 689.21875,
+      "height": 430.75,
+      "src": "http://127.0.0.1:4173/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.webp",
+      "naturalWidth": 999,
+      "naturalHeight": 625,
+      "objectFit": "contain"
+    }
+  },
+  {
+    "route": "/project-zapp",
+    "width": 768,
+    "status": 200,
+    "errors": [],
+    "title": "Zapp Today: Logistics Product Design | Nischhal Raj Subba",
+    "description": "Different interfaces for people booking a delivery, carrying it out and resolving exceptions around it.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Enter as a customer"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Describe the parcel"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Act on the next stop"
+      },
+      {
+        "href": "#chapter-4",
+        "text": "Close the handoff"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-30",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-49",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-117",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-2",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-153",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=115-75",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=19-149",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=20-26",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/Zapp?node-id=4-5",
+        "text": "Primary Zapp design source"
+      },
+      {
+        "href": "https://www.figma.com/design/UVuc0LuF7Ykb0yxfPmzOHX/Design-Case-Study?node-id=0-1",
+        "text": "Legacy design case study"
+      },
+      {
+        "href": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=3-8&page-id=0%3A1",
+        "text": "Legacy customer prototype"
+      },
+      {
+        "href": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=82-0&page-id=2%3A3",
+        "text": "Legacy driver prototype"
+      },
+      {
+        "href": "https://zapp.today/",
+        "text": "Visit Zapp’s current official website"
+      },
+      {
+        "href": "/services",
+        "text": "↗\nRELATED EXPLORATION\nMobile product design services"
+      },
+      {
+        "href": "/blog/ux-audit-checklist-before-redesign",
+        "text": "↗\nRELATED EXPLORATION\nReview the full journey before redesigning"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "↗\nRELATED EXPLORATION\nAnother multi-role product"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-masteriyo",
+        "text": "↗\nCONTINUE THE JOURNEY\nMasteriyo"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-designerex",
+        "text": "↗\nCONTINUE THE JOURNEY\nDesignerex"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/project-designerex",
+    "width": 768,
+    "status": 200,
+    "errors": [],
+    "title": "Designerex: Fashion Marketplace UX | Nischhal Raj Subba",
+    "description": "Balancing image-led fashion discovery with the stable rental information needed to compare listings.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Notice the garment"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Compare practical details"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Continue without losing context"
+      },
+      {
+        "href": "https://designerex.com.au/",
+        "text": "Visit the current Designerex marketplace"
+      },
+      {
+        "href": "/website-ux-design",
+        "text": "↗\nRELATED EXPLORATION\nWebsite and marketplace UX"
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "text": "↗\nRELATED EXPLORATION\nContent variation in a catalogue"
+      },
+      {
+        "href": "/blog/beautiful-interface-poor-ux",
+        "text": "↗\nRELATED EXPLORATION\nWhen polish hides a decision problem"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-zapp",
+        "text": "↗\nCONTINUE THE JOURNEY\nZapp Today"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-hamro-idea",
+        "text": "↗\nCONTINUE THE JOURNEY\nHamro Idea"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/about",
+    "width": 1440,
+    "status": 200,
+    "errors": [],
+    "title": "About Nischhal Raj Subba | Senior Product Designer",
+    "description": "I’m a product designer based in Nepal with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "https://idealaya.com/",
+        "text": "Idealaya↗"
+      },
+      {
+        "href": "https://mokshya.io/",
+        "text": "Mokshya Protocol↗"
+      },
+      {
+        "href": "https://www.tegzy.com.au/",
+        "text": "Tegzy↗"
+      },
+      {
+        "href": "https://esrtech.io/",
+        "text": "ESR Tech↗"
+      },
+      {
+        "href": "https://themegrill.com/",
+        "text": "ThemeGrill↗"
+      },
+      {
+        "href": "https://gurzu.com/",
+        "text": "Gurzu↗"
+      },
+      {
+        "href": "/assets/resume.pdf",
+        "text": "VIEW FULL RESUME"
+      },
+      {
+        "href": "/projects",
+        "text": "VIEW CASE STUDIES"
+      },
+      {
+        "href": "/contact",
+        "text": "CONTACT ME"
+      },
+      {
+        "href": "/workspace-home/assets/resume.pdf",
+        "text": "Read the full résumé"
+      },
+      {
+        "href": "/product-design-nepal",
+        "text": "Working with a product designer in Nepal"
+      },
+      {
+        "href": "/blog/hire-product-designer-nepal-saas-web3",
+        "text": "Hiring for SaaS and Web3 work"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/projects",
+    "width": 1440,
+    "status": 200,
+    "errors": [],
+    "title": "Product Design Case Studies | Nischhal Raj Subba",
+    "description": "Case studies from SaaS, Web3, fintech, LMS and software products, showing the product problem, my role, key design decisions, interface evidence and what shipped.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "/project-orkest",
+        "text": "READ ORKEST CASE STUDY"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "READ PIHUB CASE STUDY"
+      },
+      {
+        "href": "https://github.com/Nischhalsubba/design-ops-orchestrator",
+        "text": "INSPECT PUBLIC REPOSITORY"
+      },
+      {
+        "href": "/project-yarsha",
+        "text": "WEB3 MESSAGING + WALLET UX\nYarsha\n\nA mobile chat product where wallet actions, Solana blinks and transaction states had to feel connected to conversation without making approval feel casual.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "FINTECH PRODUCT WORKFLOWS\npiHub\n\nInvestment, credit, application and verification experiences organized around the information financial users need most: current status, missing requirements and the next useful action.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-orkest",
+        "text": "MODULAR SAAS PLATFORM\nOrkest HQ\n\nA shared product grammar for CRM, Sales, Inventory and Finance, designed so the modules feel related without pretending their operational jobs are identical.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-masteriyo",
+        "text": "WORDPRESS LMS PRODUCT DESIGN\nMasteriyo\n\nProduct-design work inside an established LMS, covering course authoring, quizzes, learner states and reusable patterns that had to fit an existing system and a larger design team.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-mokshya",
+        "text": "WEB3 PROTOCOL WEBSITE\nMokshya.io\n\nA technical protocol website structured so first-time visitors can understand the product while developers can reach mechanism, evidence and deeper context without wading through marketing filler.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-neverwinter-parser",
+        "text": "REAL-TIME GAME DATA TOOL\nNeverwinter Live Parser\n\nA live parser that turns noisy combat events into readable performance information while keeping uncertainty and incomplete data visible instead of pretending every number is equally trustworthy.\n\nREAD CASE STUDY\n↗"
+      },
+      {
+        "href": "/project-zapp",
+        "text": ""
+      },
+      {
+        "href": "/project-designerex",
+        "text": ""
+      },
+      {
+        "href": "/project-hamro-idea",
+        "text": ""
+      },
+      {
+        "href": "/project-morajaa",
+        "text": ""
+      },
+      {
+        "href": "/project-splashnode",
+        "text": ""
+      },
+      {
+        "href": "/project-grid-labs",
+        "text": ""
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "text": ""
+      },
+      {
+        "href": "/project-sassboilerplate",
+        "text": ""
+      },
+      {
+        "href": "/contact",
+        "text": "DISCUSS A ROLE OR PRODUCT"
+      }
+    ],
+    "captures": [],
+    "archiveCards": [
+      {
+        "href": "/project-yarsha",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-pihub",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/pihub-corporate-information-1240-1002deb169ce.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-orkest",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/orkest-module-directory-1240-0d3ebfcef26d.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-masteriyo",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-mokshya",
+        "src": "http://127.0.0.1:4173/assets/project-mokshya-cover-DW79CUKC-DW79CUKC.svg",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-neverwinter-parser",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPk5ldmVyd2ludGVyIExpdmUgUGFyc2VyIHRodW1ibmFpbDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlJlYWxpc3RpYyBkZXNrdG9wIGFwcCBtb2NrdXAgc2hvd2luZyBjb21iYXQgbG9nIHBhcnNlciBkYXNoYm9hcmQsIHBsYXllciBwZXJmb3JtYW5jZSBjaGFydCwgZW5jb3VudGVyIHRhYmxlLCBhbmQgbGl2ZSB0cmFja2luZyBwYW5lbC48L2Rlc2M+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAiIHgyPSIxIiB5MT0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzA1MDgxNiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzNiMDc2NCIvPjwvbGluZWFyR3JhZGllbnQ+PGZpbHRlciBpZD0icyI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjI0IiBzdGREZXZpYXRpb249IjI0IiBmbG9vZC1vcGFjaXR5PSIuMzQiLz48L2ZpbHRlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHRleHQgeD0iNzIiIHk9IjEwNSIgZm9udC1mYW1pbHk9IkludGVyLEFyaWFsIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmIj5OZXZlcndpbnRlciBMaXZlIFBhcnNlcjwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNkZGQ2ZmUiPkRlc2t0b3AgY29tYmF0IGxvZyBhbmFseXNpcyDCtyBsaXZlIHRyYWNraW5nPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMTYwIiB5PSIxOTAiIHdpZHRoPSI4ODAiIGhlaWdodD0iMzgwIiByeD0iMjgiIGZpbGw9IiMwZjE3MmEiLz48cmVjdCB4PSIxNjAiIHk9IjE5MCIgd2lkdGg9Ijg4MCIgaGVpZ2h0PSI1NCIgcng9IjI4IiBmaWxsPSIjMTExODI3Ii8+PHJlY3QgeD0iMjEwIiB5PSIyOTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMjIwIiByeD0iMjIiIGZpbGw9IiMxZTI5M2IiLz48cmVjdCB4PSI1MTAiIHk9IjI5MCIgd2lkdGg9IjIxMCIgaGVpZ2h0PSIyMjAiIHJ4PSIyMiIgZmlsbD0iIzFlMjkzYiIvPjxyZWN0IHg9Ijc2MCIgeT0iMjkwIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjIyMCIgcng9IjIyIiBmaWxsPSIjMWUyOTNiIi8+PHBhdGggZD0iTTIzNSA0NTAgTDI4NSAzOTAgTDMzNSA0MjQgTDM4NSAzNDAgTDQ0MCAzNzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2E4NTVmNyIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHJlY3QgeD0iNTM1IiB5PSIzMzAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjYTg1NWY3Ii8+PHJlY3QgeD0iNTM1IiB5PSIzNzAiIHdpZHRoPSIxMTgiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjNmQyOGQ5Ii8+PHJlY3QgeD0iNTM1IiB5PSI0MTAiIHdpZHRoPSIxNzAiIGhlaWdodD0iMTgiIHJ4PSI5IiBmaWxsPSIjOGI1Y2Y2Ii8+PHRleHQgeD0iNzkyIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2U1ZTdlYiI+TGl2ZSBFbmNvdW50ZXI8L3RleHQ+PGNpcmNsZSBjeD0iNzk1IiBjeT0iNDIwIiByPSI0MiIgZmlsbD0iI2E4NTVmNyIgb3BhY2l0eT0iLjI4Ii8+PGNpcmNsZSBjeD0iNzk1IiBjeT0iNDIwIiByPSIxOCIgZmlsbD0iI2E4NTVmNyIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-zapp",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-designerex",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkRlc2lnbmVyZXggbWFya2V0cGxhY2UgZGVzaWduIGNvbnRyaWJ1dGlvbiB0aHVtYm5haWw8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SZWFsaXN0aWMgbHV4dXJ5IGZhc2hpb24gbWFya2V0cGxhY2UgbW9ja3VwIHNob3dpbmcgcHJvZHVjdCBsaXN0aW5nIGNhcmRzLCB2ZXJpZmljYXRpb24gY3VlLCBhbmQgcHJlbWl1bSByZW50YWwgaW50ZXJmYWNlLjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTExODI3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZGIyNzc3Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjY3NSIgcng9IjM2IiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjcyIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZiI+RGVzaWduZXJleDwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNmY2U3ZjMiPk1hcmtldHBsYWNlIGRlc2lnbiBjb250cmlidXRpb248L3RleHQ+PGcgZmlsdGVyPSJ1cmwoI3MpIj48cmVjdCB4PSIyMTAiIHk9IjE2NSIgd2lkdGg9Ijc4MCIgaGVpZ2h0PSI0MzAiIHJ4PSIzMCIgZmlsbD0iI2ZmZiIvPjxyZWN0IHg9IjI3MCIgeT0iMjMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI3MCIgcng9IjI2IiBmaWxsPSIjZmRmMmY4Ii8+PHJlY3QgeD0iNTIwIiB5PSIyMzAiIHdpZHRoPSIyMTAiIGhlaWdodD0iMjcwIiByeD0iMjYiIGZpbGw9IiNmOGZhZmMiLz48cmVjdCB4PSI3NzAiIHk9IjIzMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyNzAiIHJ4PSIyNiIgZmlsbD0iI2ZkZjJmOCIvPjxjaXJjbGUgY3g9IjM3NSIgY3k9IjMzNSIgcj0iNTUiIGZpbGw9IiNmOWE4ZDQiIG9wYWNpdHk9Ii42NSIvPjxjaXJjbGUgY3g9IjYyNSIgY3k9IjMzNSIgcj0iNTUiIGZpbGw9IiNmYmNmZTgiIG9wYWNpdHk9Ii42NSIvPjxyZWN0IHg9IjMwMCIgeT0iNDMwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI2RiMjc3NyIvPjxyZWN0IHg9IjU1MCIgeT0iNDMwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI2RiMjc3NyIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-hamro-idea",
+        "src": "http://127.0.0.1:4173/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-morajaa",
+        "src": "http://127.0.0.1:4173/assets/images/evidence/morajaa-home-1240-880b7071e88c.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-splashnode",
+        "src": "http://127.0.0.1:4173/assets/project-splashnode-cover-q2IRfgbl-q2IRfgbl.svg",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-grid-labs",
+        "src": "http://127.0.0.1:4173/assets/images/owner/grid-labs-cover.webp",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlpha3JhIEZ1cm5pdHVyZSBXb3JkUHJlc3Mgc3RhcnRlciB0aHVtYm5haWw8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SZWFsaXN0aWMgZnVybml0dXJlIHdlYnNpdGUgbW9ja3VwIHNob3dpbmcgcHJvZHVjdCBjYXJkcywgaG9tZXBhZ2Ugc2VjdGlvbnMsIGFuZCBFbGVtZW50b3IgV29yZFByZXNzIHN0YXJ0ZXIgbGF5b3V0LjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMjkyNTI0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYTE2MjA3Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjY3NSIgcng9IjM2IiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjcyIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZiI+WmFrcmEgRnVybml0dXJlPC90ZXh0Pjx0ZXh0IHg9IjcyIiB5PSIxNDgiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZlZjNjNyI+V29yZFByZXNzIHN0YXJ0ZXIgwrcgRWxlbWVudG9yIGJ1aWxkPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMjMwIiB5PSIxNjUiIHdpZHRoPSI3NDAiIGhlaWdodD0iNDMwIiByeD0iMzAiIGZpbGw9IiNmZmZhZjAiLz48cmVjdCB4PSIyODAiIHk9IjIyNSIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjMjkyNTI0Ii8+PHJlY3QgeD0iMjgwIiB5PSIzMDAiIHdpZHRoPSIxOTAiIGhlaWdodD0iMTUwIiByeD0iMjQiIGZpbGw9IiNmZGU2OGEiLz48cmVjdCB4PSI1MTAiIHk9IjMwMCIgd2lkdGg9IjE5MCIgaGVpZ2h0PSIxNTAiIHJ4PSIyNCIgZmlsbD0iI2ZmZmJlYiIvPjxyZWN0IHg9Ijc0MCIgeT0iMzAwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE1MCIgcng9IjI0IiBmaWxsPSIjZmRlNjhhIi8+PHBhdGggZD0iTTMyMCA0MDVoMTEwTTU1MCA0MDVoMTEwTTc4MCA0MDVoMTAwIiBzdHJva2U9IiNhMTYyMDciIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4=",
+        "fit": "contain"
+      },
+      {
+        "href": "/project-sassboilerplate",
+        "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPnNhc3NCb2lsZXJwbGF0ZSBmcm9udC1lbmQgd29ya2Zsb3cgdGh1bWJuYWlsPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UmVhbGlzdGljIGRldmVsb3BlciB3b3JrZmxvdyBtb2NrdXAgc2hvd2luZyBmaWxlIHRyZWUsIGJ1aWxkIHN0ZXBzLCBTQ1NTIG1vZHVsZXMsIGFuZCBzdGF0aWMgd2Vic2l0ZSB0b29saW5nLjwvZGVzYz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDIwNjE3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNDc1NTY5Ii8+PC9saW5lYXJHcmFkaWVudD48ZmlsdGVyIGlkPSJzIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMjQiIHN0ZERldmlhdGlvbj0iMjQiIGZsb29kLW9wYWNpdHk9Ii4zNSIvPjwvZmlsdGVyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2NzUiIHJ4PSIzNiIgZmlsbD0idXJsKCNiZykiLz48dGV4dCB4PSI3MiIgeT0iMTA1IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNmZmYiPnNhc3NCb2lsZXJwbGF0ZTwvdGV4dD48dGV4dCB4PSI3MiIgeT0iMTQ4IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNlMmU4ZjAiPkZyb250LWVuZCB3b3JrZmxvdyBzdGFydGVyPC90ZXh0PjxnIGZpbHRlcj0idXJsKCNzKSI+PHJlY3QgeD0iMjEwIiB5PSIxNjUiIHdpZHRoPSI3ODAiIGhlaWdodD0iNDMwIiByeD0iMzAiIGZpbGw9IiMwZjE3MmEiLz48cmVjdCB4PSIyMTAiIHk9IjE2NSIgd2lkdGg9IjIzMCIgaGVpZ2h0PSI0MzAiIHJ4PSIzMCIgZmlsbD0iIzExMTgyNyIvPjxyZWN0IHg9IjI1MCIgeT0iMjMwIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjI1MCIgeT0iMjc1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzY0NzQ4YiIvPjxyZWN0IHg9IjI1MCIgeT0iMzIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjE0IiByeD0iNyIgZmlsbD0iIzY0NzQ4YiIvPjxyZWN0IHg9IjQ5MCIgeT0iMjMwIiB3aWR0aD0iNDMwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzM4YmRmOCIvPjxyZWN0IHg9IjQ5MCIgeT0iMjgwIiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjQ5MCIgeT0iMzMwIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iIzk0YTNiOCIvPjxyZWN0IHg9IjQ5MCIgeT0iNDIwIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjU0IiByeD0iMTgiIGZpbGw9IiMzOGJkZjgiLz48L2c+PC9zdmc+",
+        "fit": "contain"
+      }
+    ]
+  },
+  {
+    "route": "/project-hamro-idea",
+    "width": 1440,
+    "status": 200,
+    "errors": [],
+    "title": "Hamro Idea: Software Studio Website | Nischhal Raj Subba",
+    "description": "Connecting a Nepal-based studio's positioning, services, project proof and contact path in one maintainable website.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Choose a relevant service"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Inspect the work and studio"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Explore the studio’s thinking"
+      },
+      {
+        "href": "#chapter-4",
+        "text": "Start a relevant conversation"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=2-261",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1671",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2022",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2342",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-526",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-953",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1238",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1490",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "/assets/images/site-captures/hamro-current-demo-full-58a5c98101d6.png",
+        "text": "Open the complete original page capture"
+      },
+      {
+        "href": "https://hamro-idea-website.vercel.app/",
+        "text": "Visit the public demo"
+      },
+      {
+        "href": "https://hamro-idea-website.vercel.app/",
+        "text": "Explore the current Hamro Idea demo"
+      },
+      {
+        "href": "/website-ux-design",
+        "text": "↗\nRELATED EXPLORATION\nWebsite design and frontend thinking"
+      },
+      {
+        "href": "/product-design-nepal",
+        "text": "↗\nRELATED EXPLORATION\nWorking with a designer in Nepal"
+      },
+      {
+        "href": "/blog/blog-service-websites",
+        "text": "↗\nRELATED EXPLORATION\nClearer service websites"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-designerex",
+        "text": "↗\nCONTINUE THE JOURNEY\nDesignerex"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-morajaa",
+        "text": "↗\nCONTINUE THE JOURNEY\nMorajaa"
+      }
+    ],
+    "captures": [
+      {
+        "src": "",
+        "alt": "Current Hamro Idea public demo showing its navigation, blue gradient hero, service positioning and project-call actions.",
+        "width": 1094,
+        "height": 684
+      }
+    ],
+    "captureGeometry": {
+      "width": 1094,
+      "height": 683.75,
+      "src": "http://127.0.0.1:4173/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.webp",
+      "naturalWidth": 999,
+      "naturalHeight": 625,
+      "objectFit": "contain"
+    }
+  },
+  {
+    "route": "/project-zapp",
+    "width": 1440,
+    "status": 200,
+    "errors": [],
+    "title": "Zapp Today: Logistics Product Design | Nischhal Raj Subba",
+    "description": "Different interfaces for people booking a delivery, carrying it out and resolving exceptions around it.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Enter as a customer"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Describe the parcel"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Act on the next stop"
+      },
+      {
+        "href": "#chapter-4",
+        "text": "Close the handoff"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-30",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-49",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-117",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-2",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-153",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=115-75",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=19-149",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=20-26",
+        "text": "Inspect the original Figma frame (access may be required)"
+      },
+      {
+        "href": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/Zapp?node-id=4-5",
+        "text": "Primary Zapp design source"
+      },
+      {
+        "href": "https://www.figma.com/design/UVuc0LuF7Ykb0yxfPmzOHX/Design-Case-Study?node-id=0-1",
+        "text": "Legacy design case study"
+      },
+      {
+        "href": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=3-8&page-id=0%3A1",
+        "text": "Legacy customer prototype"
+      },
+      {
+        "href": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=82-0&page-id=2%3A3",
+        "text": "Legacy driver prototype"
+      },
+      {
+        "href": "https://zapp.today/",
+        "text": "Visit Zapp’s current official website"
+      },
+      {
+        "href": "/services",
+        "text": "↗\nRELATED EXPLORATION\nMobile product design services"
+      },
+      {
+        "href": "/blog/ux-audit-checklist-before-redesign",
+        "text": "↗\nRELATED EXPLORATION\nReview the full journey before redesigning"
+      },
+      {
+        "href": "/project-pihub",
+        "text": "↗\nRELATED EXPLORATION\nAnother multi-role product"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-masteriyo",
+        "text": "↗\nCONTINUE THE JOURNEY\nMasteriyo"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-designerex",
+        "text": "↗\nCONTINUE THE JOURNEY\nDesignerex"
+      }
+    ],
+    "captures": []
+  },
+  {
+    "route": "/project-designerex",
+    "width": 1440,
+    "status": 200,
+    "errors": [],
+    "title": "Designerex: Fashion Marketplace UX | Nischhal Raj Subba",
+    "description": "Balancing image-led fashion discovery with the stable rental information needed to compare listings.",
+    "h1": 1,
+    "overflow": false,
+    "violations": [],
+    "links": [
+      {
+        "href": "#chapter-1",
+        "text": "Notice the garment"
+      },
+      {
+        "href": "#chapter-2",
+        "text": "Compare practical details"
+      },
+      {
+        "href": "#chapter-3",
+        "text": "Continue without losing context"
+      },
+      {
+        "href": "https://designerex.com.au/",
+        "text": "Visit the current Designerex marketplace"
+      },
+      {
+        "href": "/website-ux-design",
+        "text": "↗\nRELATED EXPLORATION\nWebsite and marketplace UX"
+      },
+      {
+        "href": "/project-zakra-furniture",
+        "text": "↗\nRELATED EXPLORATION\nContent variation in a catalogue"
+      },
+      {
+        "href": "/blog/beautiful-interface-poor-ux",
+        "text": "↗\nRELATED EXPLORATION\nWhen polish hides a decision problem"
+      },
+      {
+        "href": "/projects",
+        "text": "Explore all project case studies"
+      },
+      {
+        "href": "/project-zapp",
+        "text": "↗\nCONTINUE THE JOURNEY\nZapp Today"
+      },
+      {
+        "href": "/projects",
+        "text": "↗\nCONTINUE THE JOURNEY\nAll work"
+      },
+      {
+        "href": "/project-hamro-idea",
+        "text": "↗\nCONTINUE THE JOURNEY\nHamro Idea"
+      }
+    ],
+    "captures": []
+  }
+]

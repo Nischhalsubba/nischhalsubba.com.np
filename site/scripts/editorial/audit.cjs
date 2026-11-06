@@ -10,11 +10,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const { projects, articles } = require('./render.cjs');
+const publicCaptures = require('../public-site-captures.cjs');
 const root = path.resolve(__dirname, '../..');
 const images = JSON.parse(fs.readFileSync(path.join(root, 'src/content/portfolio-evidence-images.json'), 'utf8'));
 const inventory = JSON.parse(fs.readFileSync(path.join(root, 'dist/workspace-inner/seo-inventory.json'), 'utf8'));
 assert.equal(projects.length, 14);
-assert.equal(articles.length, 26);
+assert.equal(articles.length, 27);
 assert.equal(new Set(articles.map(article => article.intent)).size, articles.length, 'Retained articles need distinct declared intents');
 assert.equal(new Set(articles.map(article => article.slug)).size, articles.length);
 const used = new Set();
@@ -31,6 +32,8 @@ for (const data of [...projects, ...articles]) {
   assert.doesNotMatch(html, /[\x00-\x08\x0b\x0c\x0e-\x1f]/);
   const sections = isProject ? data.decisions : data.sections;
   if (isProject) {
+    assert.equal(data.evaluation?.length, 2, 'Each case needs two specific proposed evaluation tasks');
+    assert.doesNotMatch(html, /<h2[^>]*data-workspace-decode/, 'Body headings must be immediately readable');
     assert.ok(data.journey?.question && data.journey?.opening && data.journey?.reflection, 'A case needs a product question, connected account and reflection');
     assert.equal(data.journey.steps.length, sections.length, 'Each journey step must resolve to a chapter');
     assert.match(html, /aria-label="Case study chapters"/);
@@ -40,12 +43,18 @@ for (const data of [...projects, ...articles]) {
     }
   }
   for (const section of sections) {
+    if (section.publicCapture) {
+      const capture = publicCaptures.byId(section.publicCapture);
+      assert.ok(html.includes(`data-site-capture="${capture.id}"`), 'Selected public reference must appear in its article body');
+      assert.ok(html.includes(capture.socialSrc) && html.includes(capture.fullOriginal) && html.includes(capture.sourceUrl), 'Public reference must preserve image, original and source');
+    }
     assert.ok(html.includes(section.heading.replace(/&/g, '&amp;')));
-    if (!section.image) continue;
-    const image = images.find(item => item.id === section.image);
-    assert.ok(image, 'Known original for illustration: ' + section.image);
+    for (const identity of section.images || (section.image ? [section.image] : [])) {
+    const image = images.find(item => item.id === identity);
+    assert.ok(image, 'Known original for illustration: ' + identity);
     if (isProject) assert.equal(image.project, data.title, 'A case must use its own project screenshot');
     used.add(image.id);
+    }
   }
   if (!isProject) {
     assert.match(html, /rel="author">Nischhal Raj Subba/);
@@ -64,4 +73,4 @@ for (const data of [...projects, ...articles]) {
   }
 }
 assert.deepEqual([...used].sort(), images.map(image => image.id).sort(), 'No orphan curated assets');
-console.log(`[editorial] 14 project bodies, 26 distinct article intents, source-matched images, author/date/schema and semantic tables passed.`);
+console.log(`[editorial] 14 project bodies, 27 distinct article intents, source-matched images, author/date/schema and semantic tables passed.`);

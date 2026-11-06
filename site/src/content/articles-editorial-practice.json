@@ -263,13 +263,15 @@
           "heading": "Keep the visual identity, reduce the evaluation cost",
           "paragraphs": [
             "This site uses an editor-inspired workspace with expressive type and motion. I want that personality to remain, while the project and article pages use the same navigation, fonts and interaction language. A strong homepage followed by unrelated inner-page styling makes the experience harder to trust and maintain.",
-            "Shared presentation does not mean shared prose. A logistics journey, a consulting website and a Sass utility need different explanations and different kinds of proof."
-          ]
+            "Shared presentation does not mean shared prose. A logistics journey, a consulting website and a Sass utility need different explanations and different kinds of proof.",
+            "The dated homepage reference below shows the visual identity I am preserving: the dark canvas, portrait, personal introduction and blue accents. It is a concrete starting point for evaluating how quickly a visitor can understand the role and find supporting work. A polished first screen alone does not establish whether the underlying cases are persuasive; those artifacts and their contribution boundaries still need inspection."
+          ],
+          "publicCapture": "portfolio-published-baseline"
         },
         {
           "heading": "Make the evidence boundary visible",
           "paragraphs": [
-            "In the current editorial revision, Figma exports are separated from public derivatives. Screens are selected for the decision they help explain, identifying values are redacted where necessary and the source is recorded. Drafts and legacy prototypes are not silently presented as current releases.",
+            "In the current editorial revision, Figma exports are separated from public derivatives. Screens are selected for the decision they help explain, complete source frames are retained with their dummy content and the source is recorded. Drafts and legacy prototypes are not silently presented as current releases.",
             "Where a matching file is missing, the case keeps the gap visible. Code or an existing website artifact may be better evidence than a design screenshot. No visual placeholder can establish a result that was never measured."
           ]
         },
@@ -301,7 +303,8 @@
           "/contact",
           "Discuss a product"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "blog-gaming-interface-clarity",
@@ -319,8 +322,10 @@
           "heading": "Make state legible without remembering every detail",
           "paragraphs": [
             "A useful interface keeps the context that changes meaning close to the value. In a combat-data tool, encounter, actor, time range and filters affect interpretation. In a business dashboard, workspace, role and record state do similar work.",
-            "My Neverwinter Live Parser case is about that information-design problem. It is not a claim that the tool makes someone perform better in the game or that every calculation has been independently validated."
-          ]
+            "My Neverwinter Live Parser case is about that information-design problem. It is not a claim that the tool makes someone perform better in the game or that every calculation has been independently validated.",
+            "The public Neverwinter Live Parser browser view makes the dependency visible before any analysis: the status is idle, no combat log is linked, and the setup panel explains the next action. The browser-mode notice also separates recorded-log analysis from live monitoring in the desktop app. This screenshot supports an analysis of visible setup and state communication; it does not show a completed combat session or verified live telemetry."
+          ],
+          "publicCapture": "neverwinter-public-setup"
         },
         {
           "heading": "Use progressive detail to answer a question",
@@ -359,7 +364,8 @@
           "/projects",
           "Other information-design work"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "hire-product-designer-nepal-saas-web3",
@@ -377,8 +383,10 @@
           "heading": "Inspect contribution, artifact and boundary together",
           "paragraphs": [
             "A strong case should explain what the designer did and provide a relevant artifact. It should also say what the artifact cannot establish. A Figma prototype can show an interaction model; it does not prove revenue, research quality or production adoption.",
-            "In my portfolio, Orkest supplies CRM hierarchy and shared-system discussion, piHub supplies multi-role financial workflow context, and Yarsha supplies a messaging-and-wallet design context. Those are distinct examples to inspect, not interchangeable labels on the same template."
-          ]
+            "In my portfolio, Orkest supplies CRM hierarchy and shared-system discussion, piHub supplies multi-role financial workflow context, and Yarsha supplies a messaging-and-wallet design context. Those are distinct examples to inspect, not interchangeable labels on the same template.",
+            "The dated portfolio homepage below is a first-party introduction, not independent validation of every claim. Use it to find the case studies, then inspect the actual artifact, contribution and outcome limits together. For experience duration, check the role chronology and overlapping dates in the résumé rather than adding simultaneous jobs as separate years."
+          ],
+          "publicCapture": "portfolio-published-baseline"
         },
         {
           "heading": "Use a focused conversation",
@@ -443,7 +451,8 @@
           "/contact",
           "Discuss the role or project"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "blog-web3-products",
@@ -454,16 +463,17 @@
           "heading": "Separate the product task from the mechanism",
           "paragraphs": [
             "A person may want to join, send, collect or review. A wallet request is a mechanism within that task. Explain why it is needed and what it enables before asking the person to follow it.",
-            "This does not mean hiding technical detail. It means placing that detail where it helps a decision. Someone evaluating an address, network or transaction needs access to the relevant specifics; someone establishing basic product fit should not have to decode them first."
-          ]
+            "This does not mean hiding technical detail. It means placing that detail where it helps a decision. Someone evaluating an address, network or transaction needs access to the relevant specifics; someone establishing basic product fit should not have to decode them first.",
+            "The public Wallet Adapter example makes one boundary inspectable: wallet selection is available while transaction actions remain disabled in the unconnected state. This is an external component-gallery reference, not a product I designed or proof of the complete authorization flow."
+          ],
+          "publicCapture": "wallet-adapter-gallery"
         },
         {
           "heading": "Keep familiar context around the unfamiliar step",
           "paragraphs": [
             "Yarsha puts wallet-related activity inside a messaging context. The reviewed token-selection frame identifies assets using names and symbols and offers a search. It gives a concrete discussion point: establish what the person is acting on before any later authorization step.",
-            "The public image redacts balance-like values. It demonstrates interface structure, not holdings, financial returns or a complete transaction flow."
-          ],
-          "image": "yarsha-token-selection"
+            "The complete source frame is included in the Yarsha case. Its balance-like values are dummy content; the useful design question is how a person distinguishes assets before a consequential action."
+          ]
         },
         {
           "heading": "Avoid three kinds of false reassurance",
@@ -501,7 +511,8 @@
           "/web3-ux-designer",
           "Web3 UX design"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-05"
     },
     {
       "slug": "web3-wallet-connection-ux",
@@ -512,8 +523,10 @@
           "heading": "Explain the purpose before opening the wallet",
           "paragraphs": [
             "Connect wallet is an action label, not a complete explanation. State what connecting enables in this product and whether useful exploration remains possible without it. Ask at the point the task needs the connection rather than using it as an unexplained gate.",
-            "Keep the explanation proportional. A short purpose statement can be enough for a familiar task, while a new or consequential permission needs more context. The exact request should match what the integration actually asks for."
-          ]
+            "Keep the explanation proportional. A short purpose statement can be enough for a familiar task, while a new or consequential permission needs more context. The exact request should match what the integration actually asks for.",
+            "The public Wallet Adapter development example offers a concrete connection boundary: its chooser names the available option before any wallet is selected. The captured anonymous session shows the Burner Wallet development option. It does not demonstrate a real-account connection, production security or a completed transaction."
+          ],
+          "publicCapture": "wallet-adapter-chooser"
         },
         {
           "heading": "Distinguish connection from the next authorization",
@@ -591,7 +604,8 @@
           "/web3-ux-designer",
           "Wallet-related product UX"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-05"
     },
     {
       "slug": "transaction-review-ux-crypto-apps",
@@ -610,8 +624,7 @@
           "paragraphs": [
             "The reviewed Yarsha token-selection screen identifies the asset before any later transaction review. It is useful evidence of that earlier step. It is not itself a transaction confirmation screen, and I do not relabel it as one.",
             "A source-backed case should keep those stages distinct. Selecting an asset, reviewing an operation, approving a wallet request and observing a result are different events even when the product makes them feel connected."
-          ],
-          "image": "yarsha-token-selection"
+          ]
         },
         {
           "heading": "Keep the result model more precise than a spinner",
@@ -671,7 +684,7 @@
         {
           "heading": "Inspect a result panel without calling it authorization",
           "paragraphs": [
-            "The Yarsha detail panel separates spent and received assets from destination and fee. Values and the address are redacted below. It is a result-detail design, not the screen where a person approves a wallet request.",
+            "The Yarsha detail panel separates spent and received assets from destination and fee. The complete frame in the Yarsha case retains the original dummy values and address. It is a result-detail design, not the screen where a person approves a wallet request.",
             "The source explorer wording also needs chain-specific review. Check the supported network, link destination and result evidence before using that action to reassure someone that an operation is confirmed."
           ],
           "image": "yarsha-transaction-detail"
@@ -691,7 +704,7 @@
           "Web3 product design"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-05"
     },
     {
       "slug": "web3-wallet-ux-checklist",
@@ -742,7 +755,11 @@
                 "Is the established result recorded where the task began?"
               ]
             ]
-          }
+          },
+          "image": "yarsha-recipient-selection",
+          "paragraphs": [
+            "The Yarsha recipient-selection design makes identity a separate decision before asset selection. Use the frame to review what should persist into the next step; it does not establish a working wallet connection or authorization flow."
+          ]
         },
         {
           "heading": "Add the interruptions",
@@ -792,7 +809,7 @@
           "Yarsha design evidence"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-05"
     }
   ]
 }

@@ -1,0 +1,22 @@
+[
+  {
+    "source": "https://hamro-idea-website.vercel.app/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "status": "BLOCKED_SOURCE",
+    "error": "Error: page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://hamro-idea-website.vercel.app/\nCall log:\n\u001b[2m  - navigating to \"https://hamro-idea-website.vercel.app/\", waiting until \"networkidle\"\u001b[22m\n",
+    "observedAt": "2026-11-05T11:17:09.089Z"
+  },
+  {
+    "source": "https://hamro-idea-website.vercel.app/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "status": "BLOCKED_SOURCE",
+    "error": "Error: page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://hamro-idea-website.vercel.app/\nCall log:\n\u001b[2m  - navigating to \"https://hamro-idea-website.vercel.app/\", waiting until \"networkidle\"\u001b[22m\n",
+    "observedAt": "2026-11-05T11:17:09.261Z"
+  }
+]

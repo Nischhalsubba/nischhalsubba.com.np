@@ -12,8 +12,8 @@ const crypto = require('node:crypto');
 const dist = path.resolve(__dirname, '../dist');
 const records = JSON.parse(fs.readFileSync(path.join(dist, 'workspace-inner/seo-inventory.json'), 'utf8'));
 const site = 'https://nischhalsubba.com.np'; const sitemap = fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8');
-assert.equal(records.length, 53); assert.equal(new Set(records.map(record => record.url)).size, 53);
-assert.equal(new Set(records.map(record => record.image)).size, 53);
+assert.equal(records.length, 54); assert.equal(new Set(records.map(record => record.url)).size, 54);
+assert.equal(new Set(records.map(record => record.image)).size, 54);
 assert.match(sitemap, /<urlset\b[^>]*\sxmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9"/, 'The root element must declare the exact sitemap namespace');
 for (const record of records) {
   const html = fs.readFileSync(path.join(dist, record.file), 'utf8');
@@ -42,4 +42,4 @@ assert.match(fs.readFileSync(path.join(dist, 'llms.txt'), 'utf8'), /Nischhal Raj
 const primitives = fs.readFileSync(path.join(dist, 'workspace-inner/homepage-primitives.js'), 'utf8');
 const original = fs.readFileSync(path.join(dist, 'workspace-home/index.html'), 'utf8');
 assert.ok(original.includes(primitives.match(/class Decoder [\s\S]*?(?=\nfunction chSize)/)[0].trim()), 'Decoder must come directly from homepage');
-console.log('[workspace-seo] All 53 canonicals, 1200x630 PNG cards, entity graphs, sitemap entries and article discovery links passed.');
+console.log('[workspace-seo] All 54 canonicals, 1200x630 PNG cards, entity graphs, sitemap entries and article discovery links passed.');

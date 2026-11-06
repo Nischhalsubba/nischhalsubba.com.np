@@ -1,0 +1,62 @@
+{
+  "observedAt": "2026-11-05T12:36:05.005Z",
+  "method": "Observed native icon-click window.open destinations without loading external profiles or contacting anyone. Messaging/email controls were not activated.",
+  "results": [
+    {
+      "label": "Facebook",
+      "targets": [
+        "https://www.facebook.com/officialnischhalsubba"
+      ],
+      "status": "TARGET_OBSERVED"
+    },
+    {
+      "label": "Threads",
+      "targets": [
+        "https://www.threads.com/@nischhalsubba"
+      ],
+      "status": "TARGET_OBSERVED"
+    },
+    {
+      "label": "Instagram",
+      "targets": [
+        "https://instagram.com/nischhalsubba"
+      ],
+      "status": "TARGET_OBSERVED"
+    },
+    {
+      "label": "YouTube",
+      "targets": [
+        "https://www.youtube.com/@Nischhal"
+      ],
+      "status": "TARGET_OBSERVED"
+    },
+    {
+      "label": "TikTok",
+      "targets": [
+        "https://tiktok.com/@nischhalsubba"
+      ],
+      "status": "TARGET_OBSERVED"
+    },
+    {
+      "label": "X",
+      "targets": [
+        "https://x.com/Nischhalsubba"
+      ],
+      "status": "TARGET_OBSERVED"
+    },
+    {
+      "label": "Bluesky",
+      "targets": [
+        "https://bsky.app/profile/nischhal.bsky.social"
+      ],
+      "status": "TARGET_OBSERVED"
+    },
+    {
+      "label": "Twitch",
+      "targets": [
+        "https://www.twitch.tv/mrsubba"
+      ],
+      "status": "TARGET_OBSERVED"
+    }
+  ]
+}

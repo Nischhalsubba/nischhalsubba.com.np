@@ -51,7 +51,7 @@ const hero = `<section class="nrs-uploaded-hero-v19" aria-labelledby="nrs-upload
       <div class="nrs-uploaded-kicker">Senior product designer · Kathmandu, Nepal · Remote</div>
       <h1 id="nrs-uploaded-hero-title">I turn complicated product logic into interfaces people can act on.</h1>
       <div class="nrs-uploaded-hero-support">
-        <p class="nrs-uploaded-lead">I’m Nischhal Raj Subba. For 6+ years I’ve worked across SaaS, Web3, fintech, enterprise software and product websites, from early product structure through interface systems and implementation handoff.</p>
+        <p class="nrs-uploaded-lead">I’m Nischhal Raj Subba. For 7+ years I’ve worked across SaaS, Web3, fintech, enterprise software and product websites, from early product structure through interface systems and implementation handoff.</p>
         <div class="nrs-uploaded-actions">
           <a href="#selected-work" class="nrs-uploaded-btn nrs-uploaded-btn-primary">View selected work <span aria-hidden="true">↗</span></a>
           <a href="/about" class="nrs-uploaded-btn">Experience and approach <span aria-hidden="true">↗</span></a>
@@ -73,7 +73,7 @@ const hero = `<section class="nrs-uploaded-hero-v19" aria-labelledby="nrs-upload
       <div class="nrs-meaning nrs-meaning-structure"><span>02</span><strong>Structure</strong><small>Turn logic into states and flows.</small></div>
       <div class="nrs-meaning nrs-meaning-handoff"><span>03</span><strong>Build-ready</strong><small>Make implementation intent explicit.</small></div>
       <p class="nrs-uploaded-thesis">My job is usually the same: find the product logic, expose the important state and make the next decision easier.</p>
-      <div class="nrs-uploaded-meta" aria-hidden="true"><span>6+ years</span><span>SaaS · Web3 · Fintech</span><span>Design · Implementation</span></div>
+      <div class="nrs-uploaded-meta" aria-hidden="true"><span>7+ years</span><span>SaaS · Web3 · Fintech</span><span>Design · Implementation</span></div>
     </div>
   </div>
 </section>`;

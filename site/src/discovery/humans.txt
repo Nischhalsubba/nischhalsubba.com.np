@@ -1,7 +1,7 @@
 /* TEAM */
 Owner: Nischhal Raj Subba
-Role: Product Designer
-Location: Kathmandu, Nepal
+Role: Senior Product Designer
+Location: Nepal
 Contact: hinischalsubba@gmail.com
 Website: https://nischhalsubba.com.np/
 About: https://nischhalsubba.com.np/about

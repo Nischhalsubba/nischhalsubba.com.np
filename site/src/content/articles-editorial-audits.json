@@ -232,7 +232,11 @@
                 "Treat as a design choice unless a consequence is established"
               ]
             ]
-          }
+          },
+          "image": "orkest-lead-filter-error",
+          "paragraphs": [
+            "The Orkest filter-error frame is a designed scenario, not a reproduced production incident. It gives a reviewer concrete feedback and retained context to inspect. Severity still depends on the affected task, available recovery and corroborating evidence."
+          ]
         },
         {
           "heading": "Use an order the team can defend",
@@ -281,7 +285,8 @@
           "/blog/when-startup-needs-ux-audit-before-redesign",
           "Decide whether an audit is the next step"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-05"
     },
     {
       "slug": "when-startup-needs-ux-audit-before-redesign",
@@ -514,9 +519,8 @@
           "heading": "Compare the object as well as the layout",
           "paragraphs": [
             "The piHub investor list places products, service categories and approval state in one table. A creditor application and an investor product may share table styling, but they are different records with different actions.",
-            "Review the heading, columns and status together before declaring the pattern reusable. Financial values are redacted here because they are unnecessary to that comparison."
-          ],
-          "image": "pihub-investor-products"
+            "Review the heading, columns and status together before declaring the pattern reusable. Financial values are excluded from the public illustration because they are unnecessary to that comparison."
+          ]
         }
       ],
       "related": [
@@ -544,8 +548,10 @@
           "heading": "Test the opening explanation",
           "paragraphs": [
             "After a short scan, can a visitor explain who the product is for and what it helps them do? A category label may be necessary, but it should not carry the entire explanation. Replace a broad claim with a concrete task or outcome the product can actually support.",
-            "For a technical product, keep a route to deeper detail. The first explanation and the implementation explanation have different jobs. A newcomer should not need to read documentation to establish relevance, and an evaluator should not be trapped in marketing summaries."
-          ]
+            "For a technical product, keep a route to deeper detail. The first explanation and the implementation explanation have different jobs. A newcomer should not need to read documentation to establish relevance, and an evaluator should not be trapped in marketing summaries.",
+            "The current public Hamro Idea demo provides a concrete software-studio reference: a service-oriented opening and routes toward a project conversation and supporting work. Review whether a visitor can connect that promise to a named service and relevant evidence. The screenshot does not establish conversion improvement or authorship of every current feature."
+          ],
+          "publicCapture": "hamro-current-demo"
         },
         {
           "heading": "Review the evaluation path",
@@ -623,7 +629,8 @@
           "/blog/blog-service-websites",
           "Service-page content structure"
         ]
-      ]
+      ],
+      "updatedAt": "2026-11-05"
     }
   ]
 }

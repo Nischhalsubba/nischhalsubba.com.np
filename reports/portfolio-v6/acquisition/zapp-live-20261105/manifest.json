@@ -1,0 +1,46 @@
+[
+  {
+    "source": "https://zapp.today/",
+    "finalUrl": "https://zapp.today/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T12:21:20.079Z",
+    "filename": "1440.png",
+    "sha256": "9a7f47a3b548c57a4b4226fbabfe26d92c6251c56fc4fb5a1f14f881db0e4b45",
+    "status": "REJECTED_RENDER_ERRORS",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": [
+      {
+        "url": "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js",
+        "type": "script",
+        "error": "net::ERR_BLOCKED_BY_ORB"
+      }
+    ]
+  },
+  {
+    "source": "https://zapp.today/",
+    "finalUrl": "https://zapp.today/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T12:21:30.730Z",
+    "filename": "390.png",
+    "sha256": "6c7436f76d0caa596f29249b11f123057a75012c436ffa51abae0c2c691371ad",
+    "status": "REJECTED_RENDER_ERRORS",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": [
+      {
+        "url": "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js",
+        "type": "script",
+        "error": "net::ERR_BLOCKED_BY_ORB"
+      }
+    ]
+  }
+]

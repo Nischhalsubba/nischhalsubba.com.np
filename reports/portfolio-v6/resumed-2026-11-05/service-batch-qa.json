@@ -1,0 +1,69 @@
+{
+  "checkedAt": "2026-11-05T16:55:29.028Z",
+  "results": [
+    {
+      "route": "figma-design-systems",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "web3-ux-designer",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "figma-design-systems",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "web3-ux-designer",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "figma-design-systems",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "web3-ux-designer",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "figma-design-systems",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "web3-ux-designer",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    }
+  ]
+}

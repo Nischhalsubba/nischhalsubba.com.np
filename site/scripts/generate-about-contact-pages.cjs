@@ -122,7 +122,7 @@ page('about.html', `${head({
         <div class="snapshot-grid" aria-label="Professional snapshot">
           <div><h5>Role</h5><p>Product Designer</p></div>
           <div><h5>Location</h5><p>Nepal / Remote</p></div>
-          <div><h5>Experience</h5><p>6+ years</p></div>
+          <div><h5>Experience</h5><p>7+ years</p></div>
           <div><h5>Focus</h5><p>UX/UI, systems, handoff</p></div>
           <div><h5>Proof</h5><p>Projects, resume, public profiles</p></div>
           <div><h5>Contact</h5><p>${email}</p></div>
@@ -138,7 +138,7 @@ page('about.html', `${head({
         <div class="nrs-proof-grid">
           <a class="nrs-proof-card" href="https://app.uxcel.com/ux/nischhal" target="_blank" rel="noopener"><span class="eyebrow">Uxcel</span><h3>Completed multiple Uxcel learning tracks</h3><p>Public profile proof for UX/UI learning progress and design-skill development.</p></a>
           <a class="nrs-proof-card" href="/projects.html"><span class="eyebrow">Portfolio</span><h3>Real project archive</h3><p>Selected work across Web3 UX, SaaS dashboards, fintech workflows, logistics apps, service websites, WordPress LMS, and front-end tools.</p></a>
-          <a class="nrs-proof-card" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download><span class="eyebrow">Resume</span><h3>6+ years of product and interface work</h3><p>Experience path across agencies, product teams, reusable UI, dashboards, websites, and front-end-aware handoff.</p></a>
+          <a class="nrs-proof-card" href="/assets/resume.pdf" download="Nischhal-Raj-Subba-Resume.pdf" data-resume-download><span class="eyebrow">Resume</span><h3>7+ years of product and interface work</h3><p>Experience path across agencies, product teams, reusable UI, dashboards, websites, and front-end-aware handoff.</p></a>
         </div>
       </section>
 

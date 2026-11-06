@@ -1,0 +1,22 @@
+[
+  {
+    "source": "https://designerex.com.au/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "status": "BLOCKED_SOURCE",
+    "error": "Error: page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://designerex.com.au/\nCall log:\n\u001b[2m  - navigating to \"https://designerex.com.au/\", waiting until \"networkidle\"\u001b[22m\n",
+    "observedAt": "2026-11-05T11:17:08.153Z"
+  },
+  {
+    "source": "https://designerex.com.au/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "status": "BLOCKED_SOURCE",
+    "error": "Error: page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://designerex.com.au/\nCall log:\n\u001b[2m  - navigating to \"https://designerex.com.au/\", waiting until \"networkidle\"\u001b[22m\n",
+    "observedAt": "2026-11-05T11:17:08.314Z"
+  }
+]

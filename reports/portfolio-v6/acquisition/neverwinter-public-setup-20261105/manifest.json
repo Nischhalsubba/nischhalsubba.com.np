@@ -1,0 +1,20 @@
+[
+  {
+    "source": "https://neverwinter-live-parser.vercel.app/",
+    "finalUrl": "https://neverwinter-live-parser.vercel.app/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T18:28:01.601Z",
+    "filename": "1440.png",
+    "sha256": "c017c10b437b6b06ff4f9bbceba4e85d5deb6ba738460ee0564f859834dcb40c",
+    "layoutOverflow": 0,
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  }
+]

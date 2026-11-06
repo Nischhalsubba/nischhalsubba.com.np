@@ -1,0 +1,72 @@
+{
+  "route": "/about",
+  "width": 390,
+  "violations": [
+    {
+      "id": "link-in-text-block",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2a",
+        "wcag141",
+        "TTv5",
+        "TT13.a",
+        "EN-301-549",
+        "EN-9.1.4.1",
+        "RGAAv4",
+        "RGAA-10.6.1"
+      ],
+      "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+      "help": "Links must be distinguishable without relying on color",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/link-in-text-block?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "link-in-text-block",
+              "data": {
+                "messageKey": "fgContrast",
+                "contrastRatio": 1.05,
+                "requiredContrastRatio": 3,
+                "nodeColor": "#7cc6ff",
+                "parentColor": "#b9b9c0"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<p><a href=\"/workspace-home/assets/resume.pdf\">Read the full résumé</a> for the role descriptions and project dates.</p>",
+                  "target": [
+                    "p:nth-child(5)"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "The link has insufficient color contrast of 1.05:1 with the surrounding text. (Minimum contrast is 3:1, link text: #7cc6ff, surrounding text: #b9b9c0)"
+            },
+            {
+              "id": "link-in-text-block-style",
+              "data": null,
+              "relatedNodes": [
+                {
+                  "html": "<p><a href=\"/workspace-home/assets/resume.pdf\">Read the full résumé</a> for the role descriptions and project dates.</p>",
+                  "target": [
+                    "p:nth-child(5)"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"/workspace-home/assets/resume.pdf\">Read the full résumé</a>",
+          "target": [
+            "p:nth-child(5) > a"
+          ],
+          "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.05:1 with the surrounding text. (Minimum contrast is 3:1, link text: #7cc6ff, surrounding text: #b9b9c0)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+        }
+      ]
+    }
+  ]
+}

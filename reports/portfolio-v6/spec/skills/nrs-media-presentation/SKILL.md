@@ -1,0 +1,6 @@
+---
+name: nrs-media-presentation
+description: Select, compose and optimize truthful derivatives of independently captured real product/site/Figma screenshots for all portfolio placements.
+---
+# Evidence-first presentation
+Read v5 capture/provenance manifest. For every thumbnail/hero/inline/article/related/OG/social image select real screen evidence matching search intent and owner contribution. Present elegantly with neutral/browser/device frames, light shadow, simple background or multi-screen composition as needed; preserve source pixels and original meaning. Don't fabricate UX screens, metrics, copy, product branding, or imply an unrelated demo is the owner's work. Keep full uncropped source available and enlargeable; contain screenshots when crop would obscure UI; for extremely tall web pages use a labeled preview derivative + full captured original. Generate responsive AVIF/WebP/JPEG variants, explicit width/height, meaningful alt/captions, hashed names where possible, careful lazy/preload policy, source-to-derivative metadata. Inspect on mobile/desktop after build. Reject duplicate generic flowchart cards or unnatural compression blur. Do not deploy unless existing release rules authorize.

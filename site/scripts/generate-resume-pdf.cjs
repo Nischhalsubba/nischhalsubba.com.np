@@ -24,7 +24,7 @@ const pages = [
     'https://nischhalsubba.com.np',
     '',
     'SUMMARY',
-    'Senior UI/Product Designer with 6+ years of experience designing consumer mobile apps, product-led experiences, and scalable design systems. Strong in original visual direction, high-fidelity mobile UI, component systems, interactive prototypes, and developer-ready handoffs. Comfortable working directly with founders and product teams to turn early-stage ideas into polished, usable, and emotionally clear digital products.',
+    'Senior UI/Product Designer with 7+ years of experience designing consumer mobile apps, product-led experiences, and scalable design systems. Strong in original visual direction, high-fidelity mobile UI, component systems, interactive prototypes, and developer-ready handoffs. Comfortable working directly with founders and product teams to turn early-stage ideas into polished, usable, and emotionally clear digital products.',
     '',
     'PROFILES',
     'Twitter: imnischhal | Instagram: nischhalsubba | Uxcel: Uxcel | Github: Nischhal | Dribbble: Nischhal | Behance: Nischhal',

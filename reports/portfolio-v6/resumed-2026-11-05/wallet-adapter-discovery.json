@@ -1,0 +1,75 @@
+{
+  "source": "https://anza-xyz.github.io/wallet-adapter/example/",
+  "observedAt": "2026-11-05T17:45:37.486Z",
+  "status": 200,
+  "errors": [],
+  "title": "Wallet Adapter Example",
+  "text": "Component\tMaterial UI\tReact UI\t\nConnect Button\tConnect Wallet\t\nConnect Wallet\n\t\nDisconnect Button\tDisconnect Wallet\t\nDisconnect Wallet\n\t\nDialog/Modal Button\tSelect Wallet\n\t\nSelect Wallet\n\t\nMulti Button\tSelect Wallet\n\t\nSelect Wallet\n\t\nExample v0.18.38\t\nAutoConnect\n\tRequest Airdrop\t\nSign Message\tSign In\tSign Transaction\t\nSend Transaction (devnet)\tSend Legacy Transaction (devnet)\tSend V0 Transaction using Address Lookup Table (devnet)\t",
+  "buttons": [
+    {
+      "name": "Connect Wallet",
+      "disabled": true
+    },
+    {
+      "name": "Connect Wallet",
+      "disabled": true
+    },
+    {
+      "name": "Disconnect Wallet",
+      "disabled": true
+    },
+    {
+      "name": "Disconnect Wallet",
+      "disabled": true
+    },
+    {
+      "name": "Select Wallet",
+      "disabled": false
+    },
+    {
+      "name": "Select Wallet",
+      "disabled": false
+    },
+    {
+      "name": "Select Wallet",
+      "disabled": false
+    },
+    {
+      "name": "Select Wallet",
+      "disabled": false
+    },
+    {
+      "name": "Request Airdrop",
+      "disabled": true
+    },
+    {
+      "name": "Sign Message",
+      "disabled": true
+    },
+    {
+      "name": "Sign In",
+      "disabled": true
+    },
+    {
+      "name": "Sign Transaction",
+      "disabled": true
+    },
+    {
+      "name": "Send Transaction (devnet)",
+      "disabled": true
+    },
+    {
+      "name": "Send Legacy Transaction (devnet)",
+      "disabled": true
+    },
+    {
+      "name": "Send V0 Transaction using Address Lookup Table (devnet)",
+      "disabled": true
+    },
+    {
+      "name": "",
+      "disabled": false
+    }
+  ],
+  "links": []
+}

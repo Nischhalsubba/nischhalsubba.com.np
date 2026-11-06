@@ -20,12 +20,14 @@ const caseStudies = process.argv.includes('--case-studies');
 const routes = caseStudies ? JSON.parse(fs.readFileSync(new URL('../../src/content/portfolio-editorial.json', import.meta.url), 'utf8')).projects.map(/** Callback contract: Select each retained case route. Inputs: project metadata. Side effects: none. Returns: canonical path. */ project => '/project-' + project.slug) : process.argv.includes('--home-only') ? ['/'] : ['/', '/projects', '/project-orkest', '/services', '/blog/', '/blog/figma-handoff-notes-for-developers'];
 const failures = []; const accessibility = []; const performance = [];
 if (!process.argv.includes('--performance-only')) {
-const browser = await chromium.launch({headless:true});
+// CHROME_PATH permits system Chromium in managed environments; CI retains the pinned Playwright browser.
+const browser = await chromium.launch({headless:true,...(process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : {})});
 try {
   for (const width of [320,375,390,768,1024,1440,1920]) {
     const context = await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
     const page = await context.newPage();
     for (const route of routes) {
+      console.log('[route-audit]', width, route);
       const response = await page.goto(base+route,{waitUntil:'networkidle'});
       assert.ok(response.ok(), `${route}: HTTP ${response.status()}`);
       await page.evaluate(/** Callback contract: Wait for loaded fonts before measuring settled layout. Inputs: none. Side effects: none. Returns: font readiness. */ () => document.fonts.ready);
@@ -34,6 +36,7 @@ try {
       if (caseStudies && width === 390) {
         const chapter = page.locator('.editorial-journey a').first();
         await chapter.focus(); await page.keyboard.press('Enter');
+        await page.waitForURL(/** Callback contract: Wait for native fragment navigation before checking URL and focus. Inputs: URL. Side effects: none. Returns: expected fragment match. */ url => url.hash === '#chapter-1');
         assert.equal(new URL(page.url()).hash, '#chapter-1', 'Chapter index must activate from the keyboard');
         assert.equal(await page.locator('#chapter-1').evaluate(/** Callback contract: Check fragment focus on the chapter target. Inputs: section. Side effects: none. Returns: focus equality. */ section => section === document.activeElement), true);
       }
@@ -42,6 +45,14 @@ try {
         if(result.violations.length) console.error(JSON.stringify({accessibilityFailure:{route,width,violations:result.violations}}));
         accessibility.push({route,width,violations:result.violations,incomplete:result.incomplete,passes:result.passes.length});
         for (const violation of result.violations) failures.push(`${width}px ${route}: ${violation.id}: ${violation.nodes.map(node=>node.target.join(' ')).join('; ')}`);
+      }
+      if (caseStudies && width === 1440) {
+        for (const figure of await page.locator('.workspace-evidence-figure').all()) {
+          await figure.scrollIntoViewIfNeeded();
+          await figure.locator('img').evaluate(/** Callback contract: Decode each complete source-derived screen before capture. Inputs: image. Side effects: image decoding only. Returns: decode promise. */ image => image.decode());
+          const identity = await figure.getAttribute('data-evidence-image');
+          await figure.screenshot({path:path.join(output,`screen-${identity}.png`)});
+        }
       }
       if ((caseStudies || route.includes('project-orkest')) && width===390 && await page.locator('.workspace-evidence-figure').count()) {
         const figure = page.locator('.workspace-evidence-figure').first(); await figure.scrollIntoViewIfNeeded();
@@ -101,6 +112,11 @@ try {
   await motionPage.evaluate(/** Callback contract: Exercise native navigation into the work scene. Inputs: none. Side effects: scrolls the test page. Returns: void. */ () => document.getElementById('work').scrollIntoView({block:'start',behavior:'instant'}));
   await motionPage.waitForFunction(/** Callback contract: Wait for a usable project and completed navigation frame. Inputs: none. Side effects: none. Returns: readiness. */ () => document.querySelector('#wkWorld .wf.on .whit')?.tabIndex === 0 && document.querySelector('.tb-t.act')?.dataset.sec === 'work');
   assert.equal(await motionPage.locator('.tb-t.act').getAttribute('data-sec'),'work');
+  await motionPage.locator('#wkWorld .wf.on .whit').hover();
+  await motionPage.locator('#wkWorld .wf.on.is-hover').waitFor({state:'visible'});
+  assert.equal(await motionPage.locator('#wkWorld .wf.on .wveil').evaluate(/** Callback contract: Check that hovering preserves the preview contrast. Inputs: veil. Side effects: none. Returns: computed opacity. */ veil => Number(getComputedStyle(veil).opacity)),0,'Selected Work hover must not dim the design image');
+  await motionPage.screenshot({path:path.join(output,'selected-work-hover.png')});
+
   assert.equal(await motionPage.evaluate(/** Callback contract: Verify deferred pixel buffers paint before visible use. Inputs: none. Side effects: reads canvas pixels. Returns: painted flag. */ () => {
     const canvas=document.querySelector('#wkPx canvas.dio');
     const pixels=canvas.getContext('2d').getImageData(0,0,20,20).data;

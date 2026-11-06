@@ -1,0 +1,36 @@
+[
+  {
+    "source": "https://hamro-idea-website.vercel.app/",
+    "finalUrl": "https://hamro-idea-website.vercel.app/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T12:32:01.083Z",
+    "filename": "1440.png",
+    "sha256": "1e97d734d610f792341a895063b5e57de8f6f60e56c6feb7d50dea7f3f84b8da",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  },
+  {
+    "source": "https://hamro-idea-website.vercel.app/",
+    "finalUrl": "https://hamro-idea-website.vercel.app/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T12:32:09.391Z",
+    "filename": "390.png",
+    "sha256": "cfe3625f85c258ecb289be29aed263d2371768e6fa4b39f72e4d63452f060522",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  }
+]

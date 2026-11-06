@@ -1,0 +1,476 @@
+[
+  {
+    "id": "hamro-current-demo",
+    "route": "/project-hamro-idea",
+    "sourceUrl": "https://hamro-idea-website.vercel.app/",
+    "capturedAt": "2026-11-05T12:27:12.164Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceSha256": "69eb816ea462f083917173ad6ceb2f14adaca91466f37432b52d6fadfe2a2cf6",
+    "fullOriginalSha256": "58a5c98101d69bc22fd51631f88984815de8df31320d86cf3c7313a8b5848472",
+    "permission": "OWNER_REQUESTED_PUBLIC_DEMO_CAPTURE",
+    "roleBoundary": "Current public demo; separate from earlier studio contribution. This capture does not establish historical authorship.",
+    "alt": "Current Hamro Idea public demo showing its navigation, blue gradient hero, service positioning and project-call actions.",
+    "caption": "Current public Hamro Idea demo, independently captured on 5 November 2026. Earlier studio work is described separately in this case.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/hamro-current-demo-69eb816ea462-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "514916a06a28b646a0895d1654ef14b13c00592f7aeda50feca6eda4ae20899b",
+        "bytes": 19170
+      },
+      {
+        "src": "/assets/images/site-captures/hamro-current-demo-69eb816ea462-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "abb4b656da09b386312e554ce11dbcc83d10d5ce3b48e62dac3d9c0e6903c421",
+        "bytes": 33312
+      },
+      {
+        "src": "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "5392c373d90e323baa29d5aa5a2bb29201fa13a63730d710d85f42f9e35a16b6",
+        "bytes": 56488
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png",
+    "fullOriginal": "/assets/images/site-captures/hamro-current-demo-full-58a5c98101d6.png",
+    "processing": "Whole viewport resized and encoded as WebP; no cropping, drawing, redaction or UI content changes. Original viewport PNG and full-page PNG retained."
+  },
+  {
+    "id": "grid-labs-public",
+    "route": "/project-grid-labs",
+    "sourceUrl": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+    "capturedAt": "2026-11-05T16:53:22.993Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceSha256": "923727148cf995ca59472384a291391ada7aa153c3f260b41cd3ec918b6b3267",
+    "fullOriginalSha256": "3cd4c2da535c95bdb2345591281285985b2316c3114abd45f3c8a10a3dab3ef6",
+    "permission": "OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE",
+    "roleBoundary": "Public implementation from the owner-controlled Grid-Labs-Hosting repository, commit 4b056e7a4a4ab56fd53abd6c26feb98bd2e4b668. Placeholder copy, example customers, prices and performance claims belong to the legacy demo; none is a verified business outcome or functioning hosting service.",
+    "alt": "Public Grid Labs implementation showing navigation, hosting headline and the domain-search form in its original white and purple interface.",
+    "caption": "Grid Labs public implementation, independently captured on 5 November 2026. The legacy demo retains its placeholder copy and sample claims; these are not measured outcomes. Earlier portfolio artwork is shown separately.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/grid-labs-public-923727148cf9-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "69622853f37b0cec51601572a60ecccef46836943bc804ce802a5c982707b38c",
+        "bytes": 10146
+      },
+      {
+        "src": "/assets/images/site-captures/grid-labs-public-923727148cf9-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "61bddbba140e3d2201dcef7f1d8ac0ce7f4a87c78542d653f1264f36d2a748dd",
+        "bytes": 17352
+      },
+      {
+        "src": "/assets/images/site-captures/grid-labs-public-923727148cf9-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "40d9b21ce909dbdb218b82502e09108b4750a94cf1fa2491827798339891828f",
+        "bytes": 29276
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/grid-labs-public-923727148cf9-1440.png",
+    "fullOriginal": "/assets/images/site-captures/grid-labs-public-full-3cd4c2da535c.png",
+    "processing": "Complete viewport resized and encoded as WebP; no cropping, drawing, redaction or product UI changes. Original viewport and full-page PNG retained."
+  },
+  {
+    "id": "zakra-official-catalog",
+    "kind": "OFFICIAL_SOURCE_SCREENSHOT",
+    "route": "/project-zakra-furniture",
+    "sourceUrl": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+    "referenceUrl": "https://zakratheme.com/starter-sites/",
+    "referenceLabel": "View the official Zakra catalog",
+    "sourceLinkLabel": "Inspect ThemeGrill\u2019s source screenshot",
+    "originalLinkLabel": "Open the complete original JPEG",
+    "previewHeading": "Official desktop catalog reference",
+    "evidenceLabel": "Official desktop catalog screenshot \u00b7 credited source",
+    "capturedAt": "2026-11-05T17:36:06.791Z",
+    "browserVerificationViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceImageDimensions": {
+      "width": 1200,
+      "height": 900
+    },
+    "sourceOriginalSha256": "b2b8578b0f8d285b192c45c902f0261e6f06607950aa5947b368c9182f190ed4",
+    "sourceSha256": "2001c1832d677ae12e69234fc21ff208dddd15995407f9fa380c1e45636c8725",
+    "fullOriginalSha256": "b2b8578b0f8d285b192c45c902f0261e6f06607950aa5947b368c9182f190ed4",
+    "permission": "GPL_3_0_OFFICIAL_REFERENCE",
+    "license": "GPL-3.0",
+    "licenseUrl": "/assets/images/site-captures/themegrill-demo-pack-GPL-3.0.txt",
+    "licenseSha256": "cc44091294288838b66629856fe577c622af984a9b1724d84aeae74d1c0009ad",
+    "noticeUrl": "/assets/images/site-captures/zakra-official-source-NOTICE.txt",
+    "sourceCreator": "ThemeGrill / Zakra",
+    "roleBoundary": "Official published desktop catalog screenshot; not a claim that the live demo or mobile storefront works. Sample company/number-one copy belongs to the template. No historical authorship or measured commerce outcome inferred.",
+    "alt": "Official Zakra Furniture desktop catalog screenshot with Home and Shop navigation, a product call to action and a furniture photograph.",
+    "caption": "Official Zakra Furniture catalog screenshot, ThemeGrill / Zakra, GPL-3.0. Independently sourced and browser-verified on 5 November 2026. Desktop reference only; template copy is not a measured business outcome.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-480.webp",
+        "width": 480,
+        "height": 360,
+        "sha256": "ae92449ca168aaeb261c95816ad9d6f97c77b69ed4666d3294ab3290e7f11557",
+        "bytes": 11386
+      },
+      {
+        "src": "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-800.webp",
+        "width": 800,
+        "height": 600,
+        "sha256": "c4e986f93b190a984d03c1d0282ea787fa42a6385028071b2a8791b30f14db99",
+        "bytes": 23224
+      },
+      {
+        "src": "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-1200.webp",
+        "width": 1200,
+        "height": 900,
+        "sha256": "23bd37f8783ecfccf73de931192d16c7490199e79e462cd8094887c3970b8189",
+        "bytes": 41422
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-1200.png",
+    "fullOriginal": "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-original.jpg",
+    "processing": "Original JPEG bytes preserved. PNG has identical decoded pixels; WebP variants resize and encode the entire official image. No cropping, drawing or product UI changes."
+  },
+  {
+    "id": "zapp-desktop-reference",
+    "kind": "STATIC_PUBLIC_WEBSITE_REFERENCE",
+    "route": "/project-zapp",
+    "sourceUrl": "https://zapp.today/",
+    "sourceLinkLabel": "Visit the current official Zapp website",
+    "previewHeading": "Current public website reference",
+    "evidenceLabel": "Historical app design + current desktop website reference",
+    "useAsPreview": false,
+    "capturedAt": "2026-11-05T17:44:56.918Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceSha256": "1523dc2001c016411caa2fbf7c47d0e4c26c00c81e4bf7ec071ab67b1950575c",
+    "fullOriginalSha256": "9a7f47a3b548c57a4b4226fbabfe26d92c6251c56fc4fb5a1f14f881db0e4b45",
+    "permission": "OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE",
+    "sourceCreator": "ZAPP Services",
+    "sourceDiagnostics": {
+      "pageErrors": [],
+      "failedResources": [
+        {
+          "url": "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js",
+          "type": "script",
+          "error": "net::ERR_BLOCKED_BY_ORB"
+        }
+      ],
+      "desktopOverflow": 0,
+      "mobile": "Rejected: 436px image for 390px viewport and footer/CTA overlap; not certified as clean source mobile UI."
+    },
+    "roleBoundary": "Desktop visual reference only, not proof of chat, delivery operation or historical website authorship. Original optional Facebook chat ORB failure remains recorded. Portfolio owner requested attributed reference; copyright remains ZAPP Services. Authored historical app frames remain primary previews.",
+    "alt": "Current public Zapp desktop website with yellow delivery branding, a courier vehicle, navigation and an app-download action.",
+    "caption": "Current public Zapp desktop website, captured on 5 November 2026. This reference is separate from the historical customer and driver designs. Company marketing copy is not a measured outcome of my contribution.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/zapp-desktop-reference-1523dc2001c0-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "14fb85ad84631eb6b8258ea203adeed2dccb420ee083252b11ddcd525624004a",
+        "bytes": 20588
+      },
+      {
+        "src": "/assets/images/site-captures/zapp-desktop-reference-1523dc2001c0-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "1e0be13849ec2307e200d71bfdd230c7d5c8f021ff20886503da6814c5fca8ab",
+        "bytes": 35910
+      },
+      {
+        "src": "/assets/images/site-captures/zapp-desktop-reference-1523dc2001c0-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "a45d70cb1324775ea98060f510f461c17a6d66659d0671b0b1a22e9f18706e06",
+        "bytes": 57824
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/zapp-desktop-reference-1523dc2001c0-1440.png",
+    "fullOriginal": "/assets/images/site-captures/zapp-desktop-full-9a7f47a3b548.png",
+    "processing": "Complete desktop viewport resized and encoded as WebP. Original viewport and full-page PNG preserved. No cropping, redrawing, error suppression or product UI changes."
+  },
+  {
+    "id": "wallet-adapter-chooser",
+    "kind": "INDEPENDENT_COMPONENT_CAPTURE",
+    "route": "/blog/web3-wallet-connection-ux",
+    "sourceUrl": "https://anza-xyz.github.io/wallet-adapter/example/",
+    "sourceLinkLabel": "Open the public Wallet Adapter example",
+    "originalLinkLabel": "Open the complete original demo view",
+    "capturedAt": "2026-11-05T18:02:04.092Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 2
+    },
+    "sourceImageDimensions": {
+      "width": 800,
+      "height": 488
+    },
+    "sourceElementBounds": {
+      "x": 520,
+      "y": 328,
+      "width": 400,
+      "height": 244
+    },
+    "sourceSha256": "d06ea3ac0018e08deefb6d62a9577f02afe155155c86f15c164984eac86e3611",
+    "fullOriginalSha256": "d29fd73f95c07020fcd6cacad59be9b0df3442b83ea016324f02ba7907ef4d14",
+    "permission": "APACHE_2_0_PUBLIC_COMPONENT_REFERENCE",
+    "license": "Apache-2.0",
+    "licenseUrl": "/assets/images/site-captures/wallet-adapter-Apache-2.0.txt",
+    "licenseSha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "noticeUrl": "/assets/images/site-captures/wallet-adapter-source-NOTICE.txt",
+    "sourceCreator": "Anza Wallet Adapter public React UI example",
+    "displayMaxWidth": 400,
+    "sourceDiagnostics": {
+      "errors": [],
+      "failedResources": [],
+      "mobile": "Chooser component fits the 390px viewport; underlying side-by-side demo table overflows 57px. No whole-source-page mobile conformance claim."
+    },
+    "roleBoundary": "Independent capture of the public development-example chooser, not Nischhal\u2019s design. No wallet selected, account connected, signing performed or transaction sent. Burner Wallet is the shown development option, not a recommendation or security result.",
+    "alt": "Wallet Adapter development-example chooser says Connect a wallet on Solana to continue and offers its Burner Wallet demo option.",
+    "caption": "Public Wallet Adapter React UI development example, independently captured on 5 November 2026; Apache-2.0. This unconnected chooser is an external reference, not my design. No wallet was selected or transaction sent.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/wallet-adapter-chooser-d06ea3ac0018-400.webp",
+        "width": 400,
+        "height": 244,
+        "sha256": "91871ae7ac346c4c588c15ece0603eb06b697d22333fafbf7ae06181121a0491",
+        "bytes": 6106
+      },
+      {
+        "src": "/assets/images/site-captures/wallet-adapter-chooser-d06ea3ac0018-640.webp",
+        "width": 640,
+        "height": 390,
+        "sha256": "d0ead41c77608a41cce2ba815a63336c06e293aecc4e6fab2bff1394ead85144",
+        "bytes": 10446
+      },
+      {
+        "src": "/assets/images/site-captures/wallet-adapter-chooser-d06ea3ac0018-800.webp",
+        "width": 800,
+        "height": 488,
+        "sha256": "1cedd2c679449f2cdf6da59d5d105a58db40c15dca94705bd107ccce09a53f04",
+        "bytes": 12220
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/wallet-adapter-chooser-d06ea3ac0018-original.png",
+    "fullOriginal": "/assets/images/site-captures/wallet-adapter-full-d29fd73f95c0.png",
+    "processing": "Original native component PNG and complete source-view PNG preserved. WebP variants resize/encode the whole component; no UI changes, synthetic content or redrawing."
+  },
+  {
+    "id": "wallet-adapter-gallery",
+    "kind": "PUBLIC_COMPONENT_GALLERY_CAPTURE",
+    "route": "/blog/blog-web3-products",
+    "sourceUrl": "https://anza-xyz.github.io/wallet-adapter/example/",
+    "sourceLinkLabel": "Open the public Wallet Adapter example",
+    "originalLinkLabel": "Open the complete original demo viewport",
+    "capturedAt": "2026-11-05T18:08:18.295Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceSha256": "b8bb01de33c10e9895abff80f88bf8d2e1e984d15712e9e43af89ff93347bc22",
+    "fullOriginalSha256": "b8bb01de33c10e9895abff80f88bf8d2e1e984d15712e9e43af89ff93347bc22",
+    "permission": "APACHE_2_0_PUBLIC_COMPONENT_REFERENCE",
+    "license": "Apache-2.0",
+    "licenseUrl": "/assets/images/site-captures/wallet-adapter-Apache-2.0.txt",
+    "licenseSha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "noticeUrl": "/assets/images/site-captures/wallet-adapter-source-NOTICE.txt",
+    "sourceCreator": "Anza Wallet Adapter public React UI example",
+    "roleBoundary": "Public unconnected development-example component gallery, not a product designed by Nischhal. Disabled transaction controls are the observed starting state; no wallet selected, real account connected or action sent.",
+    "alt": "Public Wallet Adapter example compares Material UI and React UI controls, with wallet selection available and transaction actions disabled before a wallet is selected.",
+    "caption": "Wallet Adapter public development example, captured on 5 November 2026; Apache-2.0. The unconnected component gallery is an external reference, not my design or a verified transaction flow.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/wallet-adapter-gallery-b8bb01de33c1-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "4d221dfed4dbbbf0856cd9509f11452ac2edf9089c44a5111f524cb6f2a1b740",
+        "bytes": 6564
+      },
+      {
+        "src": "/assets/images/site-captures/wallet-adapter-gallery-b8bb01de33c1-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "530bfd44487e655f0d710a1a82608a1c3a84584cbb3094cafa069a67bac76143",
+        "bytes": 11968
+      },
+      {
+        "src": "/assets/images/site-captures/wallet-adapter-gallery-b8bb01de33c1-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "aceddfac9859327f0ae63d6cb028e73d28fcb31ec44a3a3a90a28fc3bb7073e0",
+        "bytes": 20058
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/wallet-adapter-gallery-b8bb01de33c1-original.png",
+    "fullOriginal": "/assets/images/site-captures/wallet-adapter-gallery-b8bb01de33c1-original.png",
+    "processing": "Original complete desktop viewport retained. WebP derivatives only resize and encode the whole image; no invented UI or content changes."
+  },
+  {
+    "id": "neverwinter-public-setup",
+    "kind": "OWNER_PUBLIC_SOURCE_CAPTURE",
+    "route": "/project-neverwinter-parser",
+    "sourceUrl": "https://neverwinter-live-parser.vercel.app/",
+    "capturedAt": "2026-11-05T18:28:01.601Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "previewHeading": "Public browser setup state",
+    "evidenceLabel": "Public browser setup state",
+    "sourceLinkLabel": "Open the actual public source",
+    "originalLinkLabel": "Open the complete original viewport",
+    "permission": "OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE",
+    "roleBoundary": "This independently captured public browser view is idle, with no player or combat log connected. Recorded-log analysis is offered; live folder monitoring and auto-detect require the Electron desktop app. No gameplay, Windows integration or performance outcome was verified.",
+    "sourceDiagnostics": {
+      "errors": [],
+      "failedResources": [],
+      "layoutOverflow": 0
+    },
+    "alt": "Neverwinter Live Parser public browser setup screen shows idle status, no connected combat log and a browser-mode notice that live monitoring requires Electron.",
+    "caption": "Public browser setup state, independently captured on 6 November 2026. This independently captured public browser view is idle, with no player or combat log connected. Recorded-log analysis is offered; live folder monitoring and auto-detect require the Electron desktop app. No gameplay, Windows integration or performance outcome was verified.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "8dc9361ca22ae7c99bfa25c9a20fefe278da5ed82f4bb43daa75d6c059d312c9",
+        "bytes": 31548
+      },
+      {
+        "src": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "c02017bf3f88e8d4d80769b8a4bc74ad081855cd92b59e30d0cb5502f4ddfbf9",
+        "bytes": 57018
+      },
+      {
+        "src": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "1ea3c6b4d4c566917c2b2af5fb4ac6e0b9e4d6b2720b8f959148c91f58e09960",
+        "bytes": 94154
+      }
+    ],
+    "sourceSha256": "c017c10b437b6b06ff4f9bbceba4e85d5deb6ba738460ee0564f859834dcb40c",
+    "fullOriginalSha256": "c017c10b437b6b06ff4f9bbceba4e85d5deb6ba738460ee0564f859834dcb40c",
+    "socialSrc": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png",
+    "fullOriginal": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png",
+    "processing": "Reused unchanged full-viewport PNG; WebP variants resize and encode its complete composition. No UI or image content altered."
+  },
+  {
+    "id": "sass-public-code",
+    "kind": "OWNER_PUBLIC_SOURCE_CAPTURE",
+    "route": "/project-sassboilerplate",
+    "sourceUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
+    "capturedAt": "2026-11-05T18:29:06.811Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "previewHeading": "Public source artifact",
+    "evidenceLabel": "Public source artifact",
+    "sourceLinkLabel": "Open the actual public source",
+    "originalLinkLabel": "Open the complete original viewport",
+    "permission": "OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE",
+    "roleBoundary": "This is the actual public source-code viewer for the archived Sass entry point, not a running application or evidence that the current starter builds. GitHub interface styling is not my product design.",
+    "sourceDiagnostics": {
+      "errors": [],
+      "failedResources": [],
+      "layoutOverflow": 0
+    },
+    "alt": "Owner SassBoilerplate repository shows the archived app.sass entry point and its shared includes import in the actual GitHub source viewer.",
+    "caption": "Public source artifact, independently captured on 6 November 2026. This is the actual public source-code viewer for the archived Sass entry point, not a running application or evidence that the current starter builds. GitHub interface styling is not my product design.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/sass-public-code-a085d48fad9b-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "77dde20365445a58bfa3f9168602d4172adc026e98b12029556362a921790055",
+        "bytes": 12518
+      },
+      {
+        "src": "/assets/images/site-captures/sass-public-code-a085d48fad9b-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "0d66e00c963c364df69616ceb056b6bf9ba2c833c9058582cc3925d7b5db051c",
+        "bytes": 22222
+      },
+      {
+        "src": "/assets/images/site-captures/sass-public-code-a085d48fad9b-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "72f67d30e41e7172037b0df07ee99ae93f61764f46ea46635a8924935c79a585",
+        "bytes": 37832
+      }
+    ],
+    "sourceSha256": "a085d48fad9b68d8b8305c9a5858fc625a64dcdbcc1ef382c636997abb00cb83",
+    "fullOriginalSha256": "a085d48fad9b68d8b8305c9a5858fc625a64dcdbcc1ef382c636997abb00cb83",
+    "socialSrc": "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png",
+    "fullOriginal": "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png",
+    "processing": "Reused unchanged full-viewport PNG; WebP variants resize and encode its complete composition. No UI or image content altered."
+  },
+  {
+    "id": "portfolio-published-baseline",
+    "kind": "REUSED_VERIFIED_OWNER_CAPTURE",
+    "route": "/blog/blog-portfolio-product",
+    "sourceUrl": "https://nischhalsubba.com.np/",
+    "capturedAt": "2026-11-05T12:54:58.015Z",
+    "captureTimestampPrecision": "Timestamp of the completed production-browser batch manifest, not an exact shutter timestamp.",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "permission": "OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE",
+    "sourceLinkLabel": "Open the current portfolio (may differ from this dated view)",
+    "originalLinkLabel": "Open the complete original published-site viewport",
+    "roleBoundary": "Dated first-party portfolio homepage reference from the verified published baseline. It is not independent proof of historical product authorship, r\u00e9sum\u00e9 duration or a newly deployed review branch.",
+    "alt": "Published Nischhal portfolio homepage showing the approved dark visual identity, portrait, name, product designer role and opening portfolio introduction.",
+    "caption": "My published portfolio homepage, captured in the 5 November 2026 production-browser batch. This dated first-party reference shows the approved presentation before the current review changes; it is not independent proof of experience or historical project authorship.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "ddab8f69ba9cc5afde63ae2fb450b92cc70584b4d07c843392d1600ee0d94ef0",
+        "bytes": 31192
+      },
+      {
+        "src": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "ac4e7ac94789e2c231eddd4140ed3140c792c8ce101a202479c47428f84facce",
+        "bytes": 57320
+      },
+      {
+        "src": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "60cfa94dcf2979dcac089ba63113aef6410c3796da23ea4aee419e1281d6dc18",
+        "bytes": 99838
+      }
+    ],
+    "sourceSha256": "d80cfa9926281673059723fd1ce4d20918bfada5c0ebadd6d913062526a97a6e",
+    "fullOriginalSha256": "d80cfa9926281673059723fd1ce4d20918bfada5c0ebadd6d913062526a97a6e",
+    "socialSrc": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-original.png",
+    "fullOriginal": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-original.png",
+    "processing": "Reused unchanged full-viewport PNG; WebP variants resize and encode its complete composition. No UI or image content altered."
+  }
+]

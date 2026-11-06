@@ -1,0 +1,32 @@
+[
+  {
+    "route": "/project-orkest",
+    "imageId": "orkest-module-directory",
+    "source": "Retained published provenance record; no new original export claimed"
+  },
+  {
+    "route": "/project-pihub",
+    "imageId": "pihub-corporate-information",
+    "source": "Retained published provenance record; no new original export claimed"
+  },
+  {
+    "route": "/project-yarsha",
+    "imageId": "yarsha-contacts",
+    "source": "Retained published provenance record; no new original export claimed"
+  },
+  {
+    "route": "/project-zapp",
+    "imageId": "zapp-account-entry",
+    "source": "Retained published provenance record; no new original export claimed"
+  },
+  {
+    "route": "/project-morajaa",
+    "imageId": "morajaa-home",
+    "source": "Retained published provenance record; no new original export claimed"
+  },
+  {
+    "route": "/project-masteriyo",
+    "imageId": "masteriyo-course-details",
+    "source": "Retained published provenance record; no new original export claimed"
+  }
+]

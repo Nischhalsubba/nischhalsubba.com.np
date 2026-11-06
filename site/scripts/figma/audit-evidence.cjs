@@ -15,13 +15,19 @@ assert.deepEqual(records.map(record=>record.file).sort(),[...manifest.html].sort
 assert.ok(!fs.existsSync(path.join(dist,'artifacts')),'Private originals must never be deployed');
 const routes = new Map(records.map(record=>[new URL(record.url).pathname,record]));
 let references=0;
+const recipes = JSON.parse(fs.readFileSync(path.join(root,'src/content/public-image-recipes.json')));
+for (const recipe of recipes) { assert.equal((recipe.redactions || []).length, 0, 'Do not mask owner-confirmed dummy data: ' + recipe.id); assert.equal(recipe.crop, null, 'Publish the complete original frame: ' + recipe.id); }
+const approvedFiles = new Set(images.flatMap(image => [...image.variants.map(v => path.basename(v.src)), path.basename(image.socialSrc)]));
+for (const file of fs.readdirSync(path.join(root,'assets/images/evidence'))) assert.ok(approvedFiles.has(file), 'Retired image bytes must not remain public: ' + file);
 for(const image of images) {
   assert.equal(image.permission,'OWNER_AUTHORIZED_REVIEW_BRANCH'); assert.match(image.source_sha256,/^[a-f0-9]{64}$/); assert.ok(image.alt.length>30);
   for(const variant of image.variants) {
     const bytes=fs.readFileSync(path.join(dist,variant.src));
     assert.equal(bytes.subarray(0,4).toString(),'RIFF'); assert.equal(bytes.subarray(8,12).toString(),'WEBP');
     assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),variant.sha256);
-    assert.ok(variant.width>0 && variant.height>0); assert.ok(bytes.length<100000,'Screenshot variants must remain bounded');
+    assert.ok(variant.width>0 && variant.height>0 && variant.width<=1240);
+    const byteBudget = image.variants.at(-1).height > 2000 ? Math.min(650000, 100000 + variant.width * variant.height * 0.08) : 100000;
+    assert.ok(bytes.length<byteBudget, 'Bound complete long-page renders by pixel area; keep app screens below 100KB: ' + image.id);
   }
   assert.ok(fs.existsSync(path.join(dist,image.socialSrc)));
 }
@@ -49,6 +55,6 @@ for(const record of records) {
   }
 }
 const editorial = require('../editorial/render.cjs');
-const authoredFigures = editorial.projects.flatMap(project => project.decisions.filter(decision => decision.image)).length + editorial.articles.flatMap(article => article.sections.filter(section => section.image)).length;
+const authoredFigures = editorial.projects.flatMap(project => project.decisions.flatMap(decision => decision.images || (decision.image ? [decision.image] : []))).length + editorial.articles.flatMap(article => article.sections.filter(section => section.image)).length;
 assert.equal(new Set(images.map(image => image.id)).size, images.length, 'Each curated image needs a unique identity');assert.equal(references,authoredFigures);
 console.log(`[evidence] ${images.length} curated originals, ${references} figure placements, local responsive variants and 53 canonical source/output pairs passed.`);

@@ -77,6 +77,7 @@ for (const file of routes) {
   let nav = originalNav.replace(/class="tb-t on"/g, 'class="tb-t"').replace(/href="#([^"]+)"/g, (match, id) => `href="${destinations[id] || '/#' + id}"`)
     .replace(/Process/g, 'Writing').replace(/aria-label="Nischhal, back to top"/, 'aria-label="Nischhal, homepage"')
     .replace(new RegExp(`data-sec="${section}"`, 'g'), `data-sec="${section}" aria-current="page"`);
+  if (isBlog) nav = nav.replace(/data-sec="process" aria-current="page"/g, 'data-sec="process"').replace('class="tb-t tb-blog"', 'class="tb-t tb-blog" aria-current="page"');
   let head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)[1]
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '')
     .replace(/<link\b[^>]*>/gi, tag => /stylesheet|preconnect|preload.*font/.test(tag) ? '' : tag)
@@ -90,7 +91,7 @@ for (const file of routes) {
   const [sectionNumber, sectionLabel] = sectionNames[section] || ['01','Home'];
   nav = nav.replace('<span class="tb-now" id="islNow" aria-live="polite"></span>', `<span class="tb-now" id="islNow" aria-live="polite"><span><em>${sectionNumber}</em>${sectionLabel}</span></span>`);
   const label = title.length > 60 ? title.slice(0, 57) + '…' : title;
-  const bar = `<div class="workspace-filebar mono"><a href="/" aria-label="Homepage">NISCHHAL</a><span>/</span><span>${group}</span><span class="workspace-file-name">/ ${label}</span><span class="workspace-live"><i></i> DESIGN FILE</span></div>`;
+  const bar = require('./workspace-visuals.cjs').breadcrumb(title, isBlog, isProject, relative);
   const connect = relative === 'contact.html' ? '' : `<section class="workspace-connect"><span class="mono">NEXT FILE / YOUR PRODUCT</span><h2>Got a product <span>in mind?</span></h2><a class="workspace-button" href="/contact">Let’s talk <span aria-hidden="true">↗</span></a></section>`;
   // Historical HTML passes escaped query separators repeatedly; normalize only known Figma links.
   main = main.replace(/(<a\b[^>]*href=")([^"]*figma\.com\/[^\"]*)(")/g, /** Callback contract: Normalize one known Figma navigation URL after historical escaping passes. Inputs: tag, opening attributes, encoded href and closing quote. Side effects: none. Returns: one correctly escaped anchor prefix. */ (tag, before, href, after) => {
@@ -102,7 +103,8 @@ for (const file of routes) {
   });
   main = require('./editorial/render.cjs').applyEditorial(main, relative, head);
   main = require('./figma/curated-evidence.cjs').applyEvidence(main, relative);
-  main = main.replace(/<h([12])([^>]*)>([\s\S]*?)<\/h\1>/g, (tag, level, attrs, text) => `<h${level}${attrs} data-workspace-decode>${text}</h${level}>`);
+  main = require('./workspace-visuals.cjs').present(main, relative);
+  main = main.replace(/<h([1])([^>]*)>([\s\S]*?)<\/h\1>/g, (tag, level, attrs, text) => `<h${level}${attrs} data-workspace-decode>${text}</h${level}>`);
   const output = `<!doctype html>\n<html lang="en" data-theme="dark"><head>${head}\n<meta name="theme-color" content="#07070A"><link rel="preload" as="font" type="font/woff2" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/latin-ab38da6f5df1b377-7848674fdec7.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/latin-c2bef016fb9b4bcd-a439b7da5662.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="/workspace-home/vendor/fonts.gstatic.com/latin-541119bccb21575e-7e4e1900aad3.woff2"><link rel="stylesheet" href="/workspace-home/vendor/fonts.googleapis.com/ceaca49b99bd7ce7.css"><link rel="stylesheet" href="/workspace-inner/home-system.css"><link rel="stylesheet" href="/workspace-home/personal.css"><link rel="stylesheet" href="/workspace-inner/inner.css"><link rel="stylesheet" href="/workspace-inner/parity.css"></head><body id="top" data-portfolio-design="workspace-inner-v1"><a class="skip-link" href="#main-content">Skip to main content</a><div class="workspace-progress" aria-hidden="true"></div>${gradient}<div class="atmo" aria-hidden="true"><div class="dots"></div></div><div class="grain" aria-hidden="true"></div><div class="workspace-grid" aria-hidden="true"></div>${bar}${main}${connect}${footer}${nav}<dialog id="mediaPreview" aria-label="Project image preview"><button type="button" id="closeMedia" aria-label="Close image preview">Close ×</button><img alt=""></dialog><script src="/workspace-home/vendor/unpkg.com/fc91f338f7a5e7ee.js"></script><script type="module" src="/workspace-inner/inner.js"></script></body></html>`;
   const stableOutput = renderButtons(output);
   fs.writeFileSync(file, stableOutput);

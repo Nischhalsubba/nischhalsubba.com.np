@@ -1,0 +1,5 @@
+Wallet Adapter public React UI example
+Source: https://anza-xyz.github.io/wallet-adapter/example/
+Repository and license: https://github.com/anza-xyz/wallet-adapter (Apache-2.0).
+Native component and complete source-view captures retained. No wallet selected, account connected or transaction/signing action invoked. Burner Wallet is a development-example option, not a portfolio recommendation. No personal authorship, production security or mobile-page conformance claimed.
+WebP derivatives resize/encode the complete native component; no UI was redrawn.

@@ -255,7 +255,7 @@ function addHomepageSections() {
     const hero = document.querySelector('.nrs-home-hero');
     hero?.insertAdjacentHTML('beforeend', `
       <div class="nrs-proof-strip reveal-on-scroll" aria-label="Portfolio proof points">
-        <span class="nrs-proof-pill">6+ years in UI/Product Design</span>
+        <span class="nrs-proof-pill">7+ years in UI/Product Design</span>
         <span class="nrs-proof-pill">Mobile apps, SaaS, Web3 and enterprise UX</span>
         <span class="nrs-proof-pill">Design systems, prototypes and handoff</span>
         <span class="nrs-proof-pill">Available for remote product design work</span>

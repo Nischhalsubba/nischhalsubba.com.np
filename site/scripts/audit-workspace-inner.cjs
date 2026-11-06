@@ -14,12 +14,15 @@ const dist = path.resolve(__dirname, '../dist');
 const inventory = JSON.parse(fs.readFileSync(path.join(dist, 'workspace-inner/routes.json'), 'utf8'));
 assert.equal(inventory.filter(route => route.kind === 'project').length, 14);
 assert.equal(inventory.filter(route => route.kind === 'blog-index').length, 1);
-assert.equal(inventory.filter(route => route.kind === 'article').length, 26);
+assert.equal(inventory.filter(route => route.kind === 'article').length, 27);
 let links = 0;
 for (const route of inventory) {
   const html = fs.readFileSync(path.join(dist, route.file), 'utf8');
   assert.match(html, /data-portfolio-design="workspace-inner-v1"/);
   assert.equal((html.match(/<main\b/g) || []).length, 1, route.file + ': one main');
+  assert.equal((html.match(/aria-label="Breadcrumb"/g) || []).length, 1, route.file + ': one location trail');
+  assert.ok(html.includes('class="tb-t tb-blog"'), route.file + ': visible Blog destination');
+  if (route.kind === 'blog-index') assert.equal((html.match(/class="workspace-story-card"/g) || []).length, 27, 'Every article has a visual discovery card');
   assert.equal((html.match(/<h1\b/g) || []).length, 1, route.file + ': one h1');
   assert.match(html, /class="skip-link"/);
   assert.match(html, /id="pill"/);
@@ -37,8 +40,14 @@ for (const route of inventory) {
     assert.ok(exists, `${route.file}: missing ${ref}`); links++;
   }
 }
+const about = fs.readFileSync(path.join(dist, 'about.html'), 'utf8');
+assert.match(about, /I’m a Nepal-based product designer working remotely\./, 'Current About biography must use the approved Nepal-based remote wording');
+assert.doesNotMatch(about, /based in Kathmandu|Kathmandu-based/, 'Current biography and metadata use Nepal; historical job locations are separate');
+assert.match(about, /The résumé behind 7\+ years/);
+assert.match(about, /Aug 2018/);
+assert.doesNotMatch(about, /6\+ years/);
 const contact = fs.readFileSync(path.join(dist, 'contact.html'), 'utf8');
 assert.match(contact, /action="\/api\/contact"/);
 assert.match(contact, /id="contact-form"/);
 assert.ok(fs.existsSync(path.join(dist, 'src/scripts/features/forms/contact-form.js')));
-console.log(`[workspace-inner] ${inventory.length} routes, 14 projects, 26 articles, content hashes and ${links} local links passed.`);
+console.log(`[workspace-inner] ${inventory.length} routes, 14 projects, 27 articles, content hashes and ${links} local links passed.`);

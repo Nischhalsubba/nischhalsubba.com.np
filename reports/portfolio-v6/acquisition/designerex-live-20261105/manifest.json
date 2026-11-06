@@ -1,0 +1,42 @@
+[
+  {
+    "source": "https://designerex.com.au/",
+    "finalUrl": "https://designerex.com.au/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T12:21:40.191Z",
+    "filename": "1440.png",
+    "sha256": "d0e5eff3dcf7fc7c96e49123776610cc992563818e3c02eb4e4b026a373732b2",
+    "status": "REJECTED_RENDER_ERRORS",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [
+      "Cannot read properties of null (reading 'defaultView')",
+      "Stripe.setPublishableKey is not a function",
+      "reCAPTCHA Timeout",
+      "reCAPTCHA Timeout"
+    ],
+    "failedResources": []
+  },
+  {
+    "source": "https://designerex.com.au/",
+    "finalUrl": "https://designerex.com.au/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T12:22:13.688Z",
+    "filename": "390.png",
+    "sha256": "29cfa52cd4e29e7566170de0ad4ecbc9374a1f006a76df971423622e0fefed50",
+    "status": "REJECTED_RENDER_ERRORS",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [
+      "Cannot read properties of null (reading 'defaultView')",
+      "Stripe is not defined"
+    ],
+    "failedResources": []
+  }
+]

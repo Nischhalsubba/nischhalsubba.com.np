@@ -1,0 +1,26 @@
+[
+  {
+    "source": "https://zapp.today/",
+    "finalUrl": "https://zapp.today/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T17:44:56.918Z",
+    "filename": "1440.png",
+    "sha256": "1523dc2001c016411caa2fbf7c47d0e4c26c00c81e4bf7ec071ab67b1950575c",
+    "layoutOverflow": 0,
+    "status": "REJECTED_RENDER_ERRORS",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": [
+      {
+        "url": "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js",
+        "type": "script",
+        "error": "net::ERR_BLOCKED_BY_ORB"
+      }
+    ]
+  }
+]
