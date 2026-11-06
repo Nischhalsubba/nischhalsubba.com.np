@@ -136,9 +136,9 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Real same-origin Chromium request: config has no site key, invalid contact POST returns 503 anti-spam service not configured. No test email sent and no delivery claim.",
-      "evidence": "resumed-2026-11-05/contact-browser-endpoints.json; resumed-2026-11-05/contact-configuration-plan.md",
-      "blocker": "Matching production Turnstile site key/secret, scoped Worker access and real consented delivery verification.",
+      "observation": "Shared homepage/contact delivery routing now falls back only on explicit 503 unavailability, prevents uncertain duplicate sends, strips challenge tokens from external fallback and rejects provider false-success responses. Isolated contact tests pass. Fresh config still has no site key. Historical inbox messages show earlier fallback use, not current delivery. Automatic approval review blocked the live send; no delivery confirmation claimed.",
+      "evidence": "contact-recovery-2026-11-06.md; site/scripts/test-contact-delivery.mjs",
+      "blocker": "Cloudflare Turnstile configuration and explicit approval for one concrete external test send, followed by inbox confirmation.",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -516,7 +516,7 @@
       "status": "BLOCKED_PERMISSION",
       "skills_to_load": "nrs-search-intelligence;nrs-performance-release",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Public analytics now allowlists canonical paths, event/context/metric values and removes query/fragment visitor strings. Public forged contact_success rejected. Server event emitted only after CONTACT_EMAIL provider acceptance; honeypot does not count. Optional configured browser providers receive no form fields. Contact/routing regressions pass. End-to-end production provider/storage/consent verification remains open.",
+      "observation": "Public analytics now allowlists canonical paths, event/context/metric values and removes query/fragment visitor strings. Public forged contact_success rejected. Server event emitted only after CONTACT_EMAIL provider acceptance; honeypot does not count. Optional configured browser providers receive no form fields. Contact/routing regressions pass. End-to-end production provider/storage/consent verification remains open. Homepage now records acceptance-only events using the actual shared transport; honeypot sends are discarded without a conversion. Runtime provider delivery remains unverified.",
       "evidence": "site/src/worker.js; site/functions/api/contact.js; site/scripts/test-contact-handler.mjs",
       "blocker": "Repository privacy/acceptance safeguards are implemented. Production analytics sink/consent behavior and authoritative event delivery/storage still need accessible provider evidence; no further merge permission is needed.",
       "confidence": "CONFIRMED_SOURCE"
@@ -1706,7 +1706,7 @@
       "priority": "P0",
       "workstream": "Audit recovery",
       "task": "Identify and recover underlying reports for two tiny supplied screenshot exports",
-      "why_now": "49×1320 and 34×1320 cannot supply reliable issue-level readings",
+      "why_now": "49\u00d71320 and 34\u00d71320 cannot supply reliable issue-level readings",
       "targets": "Historical screenshot sources, native report URLs and tool environment",
       "owner": "SEO+QA",
       "effort": "M",
@@ -2142,6 +2142,6 @@
       "confidence": "CONFIRMED_SOURCE"
     }
   ],
-  "updated_at": "2026-11-06T13:12:54.652883+00:00",
+  "updated_at": "2026-11-06T14:17:53.615242+00:00",
   "scope_note": "All 107 tasks preserved. 73 DONE_VERIFIED, four WAIVED_OWNER, 30 open. T84 source comparison artifact and T105 discrepancy audit completed; actual external account alignment/control and historical-source gaps remain open. Notion contains all tasks and PR history with daily synchronization. No new manual/browser, Google appearance, field CWV or production-email success inferred."
 }

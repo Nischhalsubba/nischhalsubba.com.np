@@ -216,7 +216,9 @@ function applyServerErrors(form, errors = {}) {
  * Returns: Computed result consumed by the caller; explicit early-return branches define fallback behavior.
  */
 function buildPayload(form) {
-  const payload = form instanceof FormData ? form : new FormData(form);
+  const source = form instanceof FormData ? form : new FormData(form);
+  const payload = new FormData();
+  for (const [name, value] of source.entries()) payload.append(name, value);
   const visitorEmail = payload.get('email');
 
   payload.set('_subject', 'Portfolio inquiry from nischhalsubba.com.np');
@@ -309,9 +311,11 @@ export async function initializeTurnstile(form) {
  * Returns: Promise resolving to the computed function result.
  */
 export async function sendPayload(endpoint, form, signal) {
+  const payload = buildPayload(form);
+  if (endpoint === FALLBACK_ENDPOINT) payload.delete('cf-turnstile-response');
   const response = await fetch(endpoint, {
     method: 'POST',
-    body: buildPayload(form),
+    body: payload,
     headers: { Accept: 'application/json' },
     signal,
   });
@@ -324,6 +328,25 @@ export async function sendPayload(endpoint, form, signal) {
 }
 
 
+
+/**
+ * Function contract: sendContact
+ * Purpose: Share delivery behavior across the homepage and contact page without duplicate uncertain sends.
+ * Inputs: `form` - form or FormData; `firstParty` - verified challenge is available; `signal` - request lifetime.
+ * Side effects: Sends through the existing routes; retries only an explicit unavailable-service response.
+ * Returns: Response, parsed result and actual transport; a honeypot response never represents delivery.
+ */
+export async function sendContact(form, { firstParty = false, signal } = {}) {
+  const values = form instanceof FormData ? form : new FormData(form);
+  if (String(values.get('_honey') || '').trim()) {
+    return { response: Response.json({ ok: true }), result: { ok: true }, transport: 'discarded' };
+  }
+  const initial = await sendPayload(firstParty ? FIRST_PARTY_ENDPOINT : FALLBACK_ENDPOINT, values, signal);
+  if (firstParty && initial.response.status === 503) {
+    return { ...await sendPayload(FALLBACK_ENDPOINT, values, signal), transport: 'fallback' };
+  }
+  return { ...initial, transport: firstParty ? 'first_party' : 'fallback' };
+}
 
 /**
  * Function contract: recordContactSuccess
@@ -412,17 +435,10 @@ export function initContactForm() {
     const timeout = window.setTimeout(   /** Callback contract: Perform the local callback step required by the immediately enclosing contact form browser feature operation. Inputs: None; derives required state from its enclosing module/runtime context. Side effects: No direct external side effect beyond invoked dependencies. Returns: Computed expression result consumed by the enclosing operation. */ () => controller.abort(), REQUEST_TIMEOUT_MS);
 
     try {
-      let { response, result } = await sendPayload(
-        useFirstParty ? FIRST_PARTY_ENDPOINT : FALLBACK_ENDPOINT,
-        form,
-        controller.signal,
-      );
-
-      if (useFirstParty && response.status >= 500) {
-        console.warn('[portfolio] protected contact endpoint unavailable; retrying through fallback delivery');
-        useFirstParty = false;
-        ({ response, result } = await sendPayload(FALLBACK_ENDPOINT, form, controller.signal));
-      }
+      const { response, result, transport } = await sendContact(form, {
+        firstParty: useFirstParty,
+        signal: controller.signal,
+      });
 
       if (!response.ok) {
         if (result.errors) applyServerErrors(form, result.errors);
@@ -433,8 +449,8 @@ export function initContactForm() {
       form.querySelectorAll('[aria-invalid="true"]').forEach(clearFieldError);
       if (window.turnstile && turnstile.widgetId !== null) window.turnstile.reset(turnstile.widgetId);
       setStatus(result.message || 'Thanks. Your message is on its way. I’ll reply as soon as I can.', 'success');
-      if (result.accepted === true || (!useFirstParty && (result.success === true || result.success === 'true'))) {
-        recordContactSuccess(useFirstParty ? 'first_party' : 'fallback');
+      if (result.accepted === true || (transport === 'fallback' && (result.success === true || result.success === 'true'))) {
+        recordContactSuccess(transport);
       }
     } catch (error) {
       console.error('[portfolio] contact form submission failed', error);
