@@ -1,0 +1,123 @@
+{
+  "checkedAt": "2026-11-06T05:41:07.547Z",
+  "distinctSources": 27,
+  "archiveWidths": [
+    390,
+    1440
+  ],
+  "sourceHashesVerified": 27,
+  "results": [
+    {
+      "width": 390,
+      "route": "/blog/blog-good-handoff",
+      "sourceId": "orkest-edit-lead",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "sourceId": "masteriyo-quiz-setup",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/blog/designing-handoffs-between-people",
+      "sourceId": "pihub-product-application",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "sourceId": "owner-portrait",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "sourceId": "pihub-investor-products",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "sourceId": "masteriyo-first-content",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "sourceId": "masteriyo-course-outline",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/blog/saas-dashboard-filter-ux",
+      "sourceId": "orkest-lead-filters",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/blog/blog-good-handoff",
+      "sourceId": "orkest-edit-lead",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "sourceId": "masteriyo-quiz-setup",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/blog/designing-handoffs-between-people",
+      "sourceId": "pihub-product-application",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "sourceId": "owner-portrait",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "sourceId": "pihub-investor-products",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "sourceId": "masteriyo-first-content",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "sourceId": "masteriyo-course-outline",
+      "bodyPlacement": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/blog/saas-dashboard-filter-ux",
+      "sourceId": "orkest-lead-filters",
+      "bodyPlacement": true,
+      "overflow": false
+    }
+  ]
+}

@@ -28,13 +28,15 @@ function captureForDestination(href){
  const direct=publicCaptures.forPreview(href);if(direct)return direct;
  const slug=new URL(href,'https://portfolio.invalid').pathname.replace(/\.html$/,'').split('/').pop();
  const article=articles.find(/** Callback contract: Match canonical editorial destination. Inputs: record. Side effects: none. Returns: slug match. */ record=>record.slug===slug);
- const id=article?.sections.find(/** Callback contract: Find the first explicit public source selection. Inputs: section. Side effects: none. Returns: source ID presence. */ section=>section.publicCapture)?.publicCapture;
- const capture=id?publicCaptures.byId(id):undefined;return capture?.useAsPreview===false?undefined:capture;
+ const id=article?.leadEvidence || article?.sections.find(/** Callback contract: Find the first explicit public source selection. Inputs: section. Side effects: none. Returns: source ID presence. */ section=>section.publicCapture)?.publicCapture;
+ const capture=id?publicCaptures.captures.find(record=>record.id===id):undefined;return capture?.useAsPreview===false?undefined:capture;
 }
 /** Function contract: preview
  * Purpose: Find a committed preview for a destination. Inputs: route. Side effects: reads generated image manifest. Returns: image URL.
  */
 function preview(href){
+ const slugForLead=new URL(href,'https://portfolio.invalid').pathname.split('/').pop();
+ if(articles.some(a=>a.slug===slugForLead&&a.leadEvidence==='owner-portrait'))return '/workspace-home/assets/portrait.webp';
  const capture=captureForDestination(href);
  if(capture)return capture.variants.at(-1).src;
  const slug=href.replace(/\.html$/,'').split('/').pop();
@@ -42,7 +44,7 @@ function preview(href){
  const image=retainedEvidence(href);
  if(image)return image.variants.at(-1).src;
  const tile=work.find(p=>p.url.endsWith('/'+slug));
- return tile ? tile.img : '/assets/images/owner/field-notes.svg';
+ return tile ? tile.img : null;
 }
 /** Function contract: retainedEvidence
  * Purpose: Reuse a published approved frame for a route, including multi-screen decision sequences.
@@ -52,7 +54,7 @@ function retainedEvidence(href){
  const slug=new URL(href,'https://portfolio.invalid').pathname.replace(/\.html$/,'').split('/').pop();
  const project=projects.find(p=>'project-'+p.slug===slug);const article=articles.find(p=>p.slug===slug);
  const decision=project?.decisions.find(d=>d.image||d.images?.length);
- const id=decision?.image||decision?.images?.[0]||article?.sections.find(section=>section.image)?.image;
+ const id=decision?.image||decision?.images?.[0]||article?.leadEvidence||article?.sections.find(section=>section.image)?.image;
  return retainedImages.find(image=>image.id===id&&image.permission==='OWNER_AUTHORIZED_REVIEW_BRANCH');
 }
 /** Function contract: cardMedia
@@ -60,6 +62,8 @@ function retainedEvidence(href){
  * Inputs: route. Side effects: none. Returns: decorative preview markup, or empty text when source evidence is unavailable.
  */
 function cardMedia(href){
+ const slug=new URL(href,'https://portfolio.invalid').pathname.split('/').pop();
+ if(articles.some(a=>a.slug===slug&&a.leadEvidence==='owner-portrait'))return '<img src="/workspace-home/assets/portrait.webp" width="540" height="720" alt="" loading="lazy" decoding="async" data-owner-portrait-preview>';
  const capture=captureForDestination(href);if(capture)return publicCaptures.picture(capture,true);
  const image=retainedEvidence(href);if(!image)return '';
  return retainedFigure(image.id).match(/<img\b[^>]+>/)[0].replace(/alt="[^"]*"/,'alt=""').replace('<img ',`<img data-retained-evidence-preview="${esc(image.id)}" `);
@@ -71,7 +75,7 @@ function breadcrumb(title,isBlog,isProject,relative){const parent=isBlog?['/blog
 /** Function contract: card
  * Purpose: Create a screenshot-led destination link. Inputs: URL, label and context. Side effects: none. Returns: anchor markup.
  */
-function card(href,label,context='Explore'){return `<a class="workspace-story-card" href="${esc(href.replace(/\.html$/,''))}"><div class="workspace-story-image">${cardMedia(href) || `<img src="${preview(href)}" alt="" loading="lazy" decoding="async" width="640" height="400">`}<span aria-hidden="true">↗</span></div><div class="workspace-story-copy"><span class="mono">${esc(context)}</span><h3>${esc(label)}</h3></div></a>`;}
+function card(href,label,context='Explore'){const source=preview(href);const media=cardMedia(href)||(source?`<img src="${source}" alt="" loading="lazy" decoding="async" width="640" height="400">`:'');return `<a class="workspace-story-card" href="${esc(href.replace(/\.html$/,''))}"><div class="workspace-story-image">${media}<span aria-hidden="true">↗</span></div><div class="workspace-story-copy"><span class="mono">${esc(context)}</span><h3>${esc(label)}</h3></div></a>`;}
 /** Function contract: present
  * Purpose: Normalize legacy blog cards and duplicate trails; enhance related destinations. Inputs: main HTML and filename. Side effects: none. Returns: presentation markup.
  */

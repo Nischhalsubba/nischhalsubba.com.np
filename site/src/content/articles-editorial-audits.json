@@ -98,7 +98,8 @@
           "A workflow with review dependencies"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "leadEvidence": "zapp-delivery-complete"
     },
     {
       "slug": "ux-audit-checklist-before-redesign",
@@ -189,7 +190,8 @@
           "/blog/ux-audit-evidence-before-redesign",
           "Build the evidence pack"
         ]
-      ]
+      ],
+      "leadEvidence": "zapp-parcel-details"
     },
     {
       "slug": "prioritize-ux-audit-findings-before-redesign",
@@ -286,7 +288,8 @@
           "Decide whether an audit is the next step"
         ]
       ],
-      "updatedAt": "2026-11-05"
+      "updatedAt": "2026-11-05",
+      "leadEvidence": "orkest-lead-filter-error"
     },
     {
       "slug": "when-startup-needs-ux-audit-before-redesign",
@@ -375,7 +378,8 @@
           "Choose a repair order"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "leadEvidence": "zapp-driver-next-stop"
     },
     {
       "slug": "beautiful-interface-poor-ux",
@@ -434,7 +438,8 @@
           "/blog/saas-dashboard-empty-state-ux-guide",
           "Write a useful zero-result explanation"
         ]
-      ]
+      ],
+      "leadEvidence": "yarsha-contact-empty"
     },
     {
       "slug": "saas-dashboard-ux-checklist",
@@ -537,7 +542,8 @@
           "SaaS dashboard design"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "leadEvidence": "pihub-application-status"
     },
     {
       "slug": "website-ux-checklist-software-companies",
@@ -630,7 +636,8 @@
           "Service-page content structure"
         ]
       ],
-      "updatedAt": "2026-11-05"
+      "updatedAt": "2026-11-05",
+      "leadEvidence": "hamro-current-demo"
     }
   ]
 }

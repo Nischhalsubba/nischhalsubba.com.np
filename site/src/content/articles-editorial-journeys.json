@@ -2,10 +2,18 @@
   "articles": [
     {
       "slug": "designing-handoffs-between-people",
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "intent": "Explain cross-role handoffs with original product screens",
       "dek": "A workflow is only as clear as the moment responsibility changes hands. Three interface examples show how I reason about ownership, waiting and recovery.",
       "sections": [
+        {
+          "heading": "Separate acknowledgement from approval",
+          "paragraphs": [
+            "The piHub product-application design says “Thank you for applying” and shows APPLIED. It is an acknowledgement, not an application form or proof of approval.",
+            "That distinction matters at a handoff: recording an action and completing a decision are different events. A review should ask whether the person knows what was acknowledged and who acts next. The frame alone cannot establish processing, notification or approval behavior."
+          ],
+          "image": "pihub-product-application"
+        },
         {
           "heading": "The difficult moment is often between screens",
           "paragraphs": [
@@ -64,7 +72,8 @@
           "/project-zapp",
           "Zapp: customer and driver journeys"
         ]
-      ]
+      ],
+      "leadEvidence": "pihub-product-application"
     }
   ]
 }
