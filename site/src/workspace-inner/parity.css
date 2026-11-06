@@ -110,3 +110,6 @@ body[data-portfolio-design="workspace-inner-v1"]{isolation:isolate}.workspace-fi
 .workspace-story-image>.thumbnail-reference-label,.nrs-work-card-media>.thumbnail-reference-label{position:absolute;left:10px;right:10px;bottom:6px;display:block;width:auto;height:auto;padding:0;border:0;background:transparent;text-align:center;font:10px/1.4 var(--mono);color:#243044}
 
 .workspace-story-card[data-thumbnail="designerex"] .workspace-story-image>picture,.nrs-work-card[data-thumbnail="designerex"] .nrs-work-card-media>picture{inset:8% 8% 30px;height:auto!important}
+
+/* Editorial stories retain complete source screens and keep context notes separate. */
+.editorial-lead-screen{margin:32px 0 56px}.editorial-lead-screen>figure{max-width:1100px;margin-inline:auto}.editorial-scope-note{max-width:850px;margin:48px auto;padding:24px;border:1px solid var(--line,#d6d9df);border-radius:16px}.editorial-scope-note h2{font-size:18px}.editorial-scope-note p{font-size:14px;line-height:1.65}.editorial-screen-sequence .editorial-screen-step{min-width:0}

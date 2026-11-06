@@ -1,0 +1,341 @@
+{
+  "checkedAt": "2026-11-06T13:12:54.650578+00:00",
+  "scope": "14 case stories rewritten; 27 article introductions and selected explanatory sections edited; existing useful guidance/tables retained. Screens explain individual decisions. No client metrics, research, dates or approvals invented.",
+  "curatedImages": 67,
+  "curatedFigurePlacements": 131,
+  "previousCuratedImages": 60,
+  "previousCuratedFigurePlacements": 93,
+  "newNativeScreensApproved": 7,
+  "newNativeScreensWithheld": 3,
+  "privateOriginalArchiveSha256": "cf86aa19a3f7aca200640a2259c98e0c455b56c08fbdd44025adc624886d4a87",
+  "rows": [
+    {
+      "route": "/project-orkest",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 8,
+      "hero": "orkest-lead-list",
+      "scopeNote": true
+    },
+    {
+      "route": "/project-pihub",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 11,
+      "hero": "pihub-application-status",
+      "scopeNote": true
+    },
+    {
+      "route": "/project-yarsha",
+      "kind": "project",
+      "chapters": 5,
+      "curatedScreenPlacements": 14,
+      "hero": "yarsha-conversation",
+      "scopeNote": true
+    },
+    {
+      "route": "/project-zapp",
+      "kind": "project",
+      "chapters": 4,
+      "curatedScreenPlacements": 10,
+      "hero": "zapp-home",
+      "scopeNote": true
+    },
+    {
+      "route": "/project-morajaa",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 8,
+      "hero": "morajaa-home",
+      "scopeNote": true
+    },
+    {
+      "route": "/project-masteriyo",
+      "kind": "project",
+      "chapters": 4,
+      "curatedScreenPlacements": 8,
+      "hero": "masteriyo-course-details",
+      "scopeNote": true
+    },
+    {
+      "route": "/project-mokshya",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 0,
+      "hero": null,
+      "scopeNote": true
+    },
+    {
+      "route": "/project-designerex",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 0,
+      "hero": null,
+      "scopeNote": true
+    },
+    {
+      "route": "/project-splashnode",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 0,
+      "hero": null,
+      "scopeNote": true
+    },
+    {
+      "route": "/project-grid-labs",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 0,
+      "hero": null,
+      "scopeNote": true
+    },
+    {
+      "route": "/project-hamro-idea",
+      "kind": "project",
+      "chapters": 4,
+      "curatedScreenPlacements": 8,
+      "hero": "hamro-idea-home",
+      "scopeNote": true
+    },
+    {
+      "route": "/project-zakra-furniture",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 0,
+      "hero": null,
+      "scopeNote": true
+    },
+    {
+      "route": "/project-neverwinter-parser",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 0,
+      "hero": null,
+      "scopeNote": true
+    },
+    {
+      "route": "/project-sassboilerplate",
+      "kind": "project",
+      "chapters": 3,
+      "curatedScreenPlacements": 0,
+      "hero": null,
+      "scopeNote": true
+    },
+    {
+      "route": "/blog/designing-handoffs-between-people",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 5,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/blog-design-systems-front-end",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 3,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/design-systems-small-product-teams",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/blog-service-websites",
+      "kind": "article",
+      "chapters": 5,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/blog-portfolio-product",
+      "kind": "article",
+      "chapters": 5,
+      "curatedScreenPlacements": 1,
+      "publicReferences": 1,
+      "portrait": false
+    },
+    {
+      "route": "/blog/blog-gaming-interface-clarity",
+      "kind": "article",
+      "chapters": 5,
+      "curatedScreenPlacements": 1,
+      "publicReferences": 1,
+      "portrait": false
+    },
+    {
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 1,
+      "publicReferences": 1,
+      "portrait": true
+    },
+    {
+      "route": "/blog/blog-web3-products",
+      "kind": "article",
+      "chapters": 5,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 1,
+      "portrait": false
+    },
+    {
+      "route": "/blog/web3-wallet-connection-ux",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 1,
+      "publicReferences": 1,
+      "portrait": false
+    },
+    {
+      "route": "/blog/transaction-review-ux-crypto-apps",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 3,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/web3-wallet-ux-checklist",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 3,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/figma-handoff-notes-for-developers",
+      "kind": "article",
+      "chapters": 5,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/blog-good-handoff",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 3,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "kind": "article",
+      "chapters": 7,
+      "curatedScreenPlacements": 3,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/responsive-saas-dashboard-handoff-notes",
+      "kind": "article",
+      "chapters": 5,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/saas-dashboard-filter-ux",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 4,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "kind": "article",
+      "chapters": 8,
+      "curatedScreenPlacements": 4,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 3,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-product-clarity",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 3,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "kind": "article",
+      "chapters": 7,
+      "curatedScreenPlacements": 3,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/ux-audit-evidence-before-redesign",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/ux-audit-checklist-before-redesign",
+      "kind": "article",
+      "chapters": 5,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/prioritize-ux-audit-findings-before-redesign",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/when-startup-needs-ux-audit-before-redesign",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/beautiful-interface-poor-ux",
+      "kind": "article",
+      "chapters": 5,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/saas-dashboard-ux-checklist",
+      "kind": "article",
+      "chapters": 7,
+      "curatedScreenPlacements": 2,
+      "publicReferences": 0,
+      "portrait": false
+    },
+    {
+      "route": "/blog/website-ux-checklist-software-companies",
+      "kind": "article",
+      "chapters": 6,
+      "curatedScreenPlacements": 1,
+      "publicReferences": 1,
+      "portrait": false
+    }
+  ]
+}

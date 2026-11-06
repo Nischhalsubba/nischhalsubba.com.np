@@ -1459,7 +1459,7 @@
     "source": "artifacts/figma-exports/pihub/HILxD1DKnfALKo4Q5L1IfE/0-1/2-9046.png",
     "source_sha256": "39b50f022f8ef86667ea958e25ce021c8b54a8d2de42e9075ef6de524eec84d5",
     "alt": "PiHub creditor product details show an application acknowledgement, an APPLIED control, terms and attachments.",
-    "caption": "PiHub product-application acknowledgement design with the message \u201cThank you for applying\u201d and an APPLIED control. Complete original Figma frame with sample content; processing and approval are not verified.",
+    "caption": "PiHub product-application acknowledgement design with the message “Thank you for applying” and an APPLIED control. Complete original Figma frame with sample content; processing and approval are not verified.",
     "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
     "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
     "presentation": "Complete original screen",
@@ -1931,5 +1931,215 @@
       }
     ],
     "socialSrc": "/assets/images/evidence/orkest-edit-lead-social-c9ac7b5badfa.png"
+  },
+  {
+    "id": "yarsha-edit-group",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:255560",
+    "source": "artifacts/story-originals-2026-11-06/yarsha-edit-group.png",
+    "source_sha256": "a0717ae318100957102678a820a55994c7e4af3fbe3d0c8333cded8ada9fca8a",
+    "capturedAt": "2026-11-06T10:49:47.945077+00:00",
+    "alt": "Yarsha group editor with name, description, administrator and member settings.",
+    "caption": "Group details and membership settings stay together in the edit screen. Complete original Figma frame; sample design data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen; proportional resize; no crop or redaction",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-edit-group-375-af5b8a9b9574.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 13794,
+        "sha256": "af5b8a9b95747ab3c495f251bbc78e82d7217a0e3248bec35e4c19f67f7509dd"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-edit-group-social-5aaf6384c7b1.png"
+  },
+  {
+    "id": "yarsha-group-administrators",
+    "project": "Yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:255618",
+    "source": "artifacts/story-originals-2026-11-06/yarsha-group-administrators.png",
+    "source_sha256": "e2bdb71e350318421af08c668beb6a48c80205cb1548abecda0aa71d3ff294ad",
+    "capturedAt": "2026-11-06T10:49:48.071221+00:00",
+    "alt": "Yarsha administrators screen showing the group owner and an Add admin action.",
+    "caption": "The administrator list separates group ownership from adding another administrator. Complete original Figma frame; sample design data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen; proportional resize; no crop or redaction",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/yarsha-group-administrators-375-f4d2802f0b52.webp",
+        "width": 375,
+        "height": 812,
+        "bytes": 8344,
+        "sha256": "f4d2802f0b520c291f1998cdc5a7af87f8705fa86be5f2fee6d7aa89ec08e844"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/yarsha-group-administrators-social-e89f223fa38a.png"
+  },
+  {
+    "id": "zapp-pickup-address",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "113:72",
+    "source": "artifacts/story-originals-2026-11-06/zapp-pickup-address.png",
+    "source_sha256": "60dca6e4c7115a968ba773ff58bc8f413ed32765b43888c701682565d8bf9089",
+    "capturedAt": "2026-11-06T10:49:48.138546+00:00",
+    "alt": "Zapp pickup-location design with address search, landmark search and current-location choices.",
+    "caption": "Pickup entry offers several ways to describe a collection point. Map content is illustrative; real lookup requires integration. Complete original Figma frame; sample design data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen; proportional resize; no crop or redaction",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-pickup-address-402-166afee7b839.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 22792,
+        "sha256": "166afee7b839c617f243fab35bc154f524de8212c0da83e3c38ab4db664799f8"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-pickup-address-social-1f29def8b48b.png"
+  },
+  {
+    "id": "zapp-quote-review",
+    "project": "Zapp Today",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "113:193",
+    "source": "artifacts/story-originals-2026-11-06/zapp-quote-review.png",
+    "source_sha256": "a9d75110365c6ecf98b6ec7413abcda0283498e311a24c3c1e0bd2d594291359",
+    "capturedAt": "2026-11-06T10:49:48.120259+00:00",
+    "alt": "Zapp delivery-review design showing sample pickup, recipient, parcel, vehicle and estimated price.",
+    "caption": "A delivery review brings the request together before payment. Prices are sample estimates; dispatch and payment are not verified. Complete original Figma frame; sample design data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen; proportional resize; no crop or redaction",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/zapp-quote-review-402-a61b954f0ce7.webp",
+        "width": 402,
+        "height": 874,
+        "bytes": 23774,
+        "sha256": "a61b954f0ce7cefcfadaf4d680194f6a8673ce5589592c46c79a67427ff93ea7"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/zapp-quote-review-social-4aa1fb13eced.png"
+  },
+  {
+    "id": "pihub-admin-account-requests",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:6623",
+    "source": "artifacts/story-originals-2026-11-06/pihub-admin-account-requests.png",
+    "source_sha256": "896a55ba9036e41392954ed9633f9199a458bae168e970e05cda00a9e1601aa0",
+    "capturedAt": "2026-11-06T10:49:55.295405+00:00",
+    "alt": "piHub administrator account-request list with applicants, contact information and written request status.",
+    "caption": "The administrator list makes requests available for review. Contact information is owner-confirmed sample data. Complete original Figma frame; sample design data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen; proportional resize; no crop or redaction",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-admin-account-requests-480-7e3a6218bb19.webp",
+        "width": 480,
+        "height": 317,
+        "bytes": 10646,
+        "sha256": "7e3a6218bb196ab252fe5568277e260dc1550fce338fd84e1b736652fa8fde16"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-admin-account-requests-800-f7fab14de9c9.webp",
+        "width": 800,
+        "height": 529,
+        "bytes": 22912,
+        "sha256": "f7fab14de9c976de815cf66553eda51370093939dc989addf3fac04bea38697e"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-admin-account-requests-1240-60e225dd218b.webp",
+        "width": 1240,
+        "height": 820,
+        "bytes": 43376,
+        "sha256": "60e225dd218b88fd46103bc97a77c305a58b44539f579ce0fa608ac6dc257fc2"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-admin-account-requests-social-1181013bdbab.png"
+  },
+  {
+    "id": "pihub-admin-account-review",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:4146",
+    "source": "artifacts/story-originals-2026-11-06/pihub-admin-account-review.png",
+    "source_sha256": "19750fb663bc54b7664afe2ae1f83e18070723886b05c2acdddc1000d047c858",
+    "capturedAt": "2026-11-06T10:49:55.262806+00:00",
+    "alt": "piHub administrator account-review design with company details and approve or disapprove actions.",
+    "caption": "Account details give the administrator context before an approval decision. These are designed actions, not proof of server authorization. Complete original Figma frame; sample design data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen; proportional resize; no crop or redaction",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-admin-account-review-480-f825dc9f897d.webp",
+        "width": 480,
+        "height": 246,
+        "bytes": 4966,
+        "sha256": "f825dc9f897dafea59b99d16ca73c9b09f36e76022790f941b0bc84528815a98"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-admin-account-review-800-1eb4a5706969.webp",
+        "width": 800,
+        "height": 410,
+        "bytes": 10374,
+        "sha256": "1eb4a5706969462806f4c9d166a1379dea00065c8a84270eb4ad148c31e9189f"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-admin-account-review-1240-f8212d10f577.webp",
+        "width": 1240,
+        "height": 635,
+        "bytes": 19788,
+        "sha256": "f8212d10f577eba3fdbbbf28184d9267e53d6905c6422c34a62a7adef2e591a9"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-admin-account-review-social-0be0042d0cf7.png"
+  },
+  {
+    "id": "pihub-admin-credit-review",
+    "project": "piHub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:3411",
+    "source": "artifacts/story-originals-2026-11-06/pihub-admin-credit-review.png",
+    "source_sha256": "f06577ce2709b79e4c07c0ea8056e831122446e21d92f3ae1332c70ece8e37aa",
+    "capturedAt": "2026-11-06T10:49:55.275183+00:00",
+    "alt": "piHub administrator credit-request detail with financial fields, attachments and review actions.",
+    "caption": "The review page collects request details, attachments and decision actions. All financial content is sample data. Complete original Figma frame; sample design data.",
+    "permission": "OWNER_AUTHORIZED_REVIEW_BRANCH",
+    "privacy_review": "OWNER_CONFIRMED_DUMMY_DATA_NO_NDA_2026_11_04",
+    "presentation": "Complete original screen; proportional resize; no crop or redaction",
+    "variants": [
+      {
+        "src": "/assets/images/evidence/pihub-admin-credit-review-480-d0505c16b795.webp",
+        "width": 480,
+        "height": 401,
+        "bytes": 11306,
+        "sha256": "d0505c16b795367dcc8e91abae92d0c339829d8a4be09c6d9c0f2750f8dad708"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-admin-credit-review-800-c9289c40f065.webp",
+        "width": 800,
+        "height": 668,
+        "bytes": 24934,
+        "sha256": "c9289c40f0655f2e2fcfe3cf8789da43db3439c2ca261b2d9f496ef8eb46324e"
+      },
+      {
+        "src": "/assets/images/evidence/pihub-admin-credit-review-1240-34d5a0f187bf.webp",
+        "width": 1240,
+        "height": 1035,
+        "bytes": 49888,
+        "sha256": "34d5a0f187bf59e4e2f13cb51fa546db3c9c95108bbf48c286bf0ba8d17bdf2d"
+      }
+    ],
+    "socialSrc": "/assets/images/evidence/pihub-admin-credit-review-social-1f1f32c606c0.png"
   }
 ]

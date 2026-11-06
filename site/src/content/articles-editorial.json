@@ -4,13 +4,13 @@
     {
       "slug": "figma-handoff-notes-for-developers",
       "intent": "Write a behavior contract beside a specific Figma screen",
-      "dek": "A useful handoff note answers the questions the image cannot: what changes, what persists and what happens when the action does not work.",
+      "dek": "A developer should be able to read the note beside a screen and understand what to build, what to keep and what happens if the action fails.",
       "sections": [
         {
           "heading": "Start with the decision, not the measurements",
           "paragraphs": [
-            "A developer can inspect a frame and still not know what the screen is responsible for. Start the note with the user, the task and the expected result. For example: a CRM operator is creating a lead; a successful save creates a record and returns a stable identifier. That purpose helps resolve implementation choices that a pixel measurement cannot.",
-            "Keep the note close to the frame and identify the version it describes. If a newer frame changes the action, update the contract rather than leaving two contradictory explanations on the canvas."
+            "A frame shows where the fields go. It often leaves the harder question unanswered: what should happen when someone uses them? I start a handoff note with the person, their task and the result they are trying to reach.",
+            "For an Orkest lead form, that means explaining what a successful save creates and which information the next screen needs. Measurements still matter, but the purpose helps an engineer make decisions the frame cannot settle."
           ]
         },
         {
@@ -72,10 +72,13 @@
           ]
         },
         {
-          "heading": "Finish with an owner for every open question",
+          "heading": "Keep the question beside the record",
           "paragraphs": [
-            "Do not convert an unresolved business rule into a confident annotation. Mark the question, name the decision owner and identify the screen or component it affects. A short list of explicit unknowns is more useful than a complete-looking specification that invents behavior.",
-            "Before closing handoff, ask an engineer and reviewer to walk through one success, one invalid input and one interruption using the note. If they need to reconstruct the intended behavior from a meeting, the contract still needs work."
+            "The create and edit screens need to agree about the same lead. The edit view below keeps the record fields and save guidance together. I would use it to resolve required fields, duplicate checks and what survives a failed save.",
+            "Give each unanswered rule an owner and keep the note attached to the version it describes. Then walk through a successful save and an interruption together."
+          ],
+          "images": [
+            "orkest-edit-lead"
           ]
         }
       ],
@@ -93,18 +96,19 @@
           "Coordinate a startup handoff"
         ]
       ],
-      "leadEvidence": "orkest-lead-capture"
+      "leadEvidence": "orkest-lead-capture",
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "blog-good-handoff",
       "intent": "Coordinate responsibility and resolve ambiguity between design and engineering",
-      "dek": "Handoff is a shared understanding of the product decision. Exporting a polished screen is one part of it, not the point at which responsibility disappears.",
+      "dek": "Handoff works when another person can continue without guessing. The screen, the reason for a decision and the open questions need to travel together.",
       "sections": [
         {
           "heading": "A concrete handoff: editing a lead",
           "paragraphs": [
-            "The Orkest edit-lead design places record fields, save behavior and duplicate-check guidance in one form. A useful handoff explains which fields belong to the record, when guidance appears and what a successful save should preserve.",
-            "The complete frame is a design artifact with sample data. It makes the intended interface inspectable; it does not establish that saving or duplicate detection was implemented or tested."
+            "The Orkest edit-lead form is a useful place to begin a handoff conversation. The fields describe a record, while the save and duplicate-check guidance hint at behavior that still needs a clear rule.",
+            "I would work through the form with the engineer: which values can change, what should remain after a failed save and where the person goes next. That discussion connects the design to the behavior someone has to build."
           ],
           "image": "orkest-edit-lead"
         },
@@ -162,10 +166,13 @@
           ]
         },
         {
-          "heading": "Close the loop in the built product",
+          "heading": "Check the next step in the actual product",
           "paragraphs": [
-            "Review the implementation with realistic content, a keyboard and at least one interrupted task. Compare the behavior with the agreed contract, not only the screenshot. Distinguish a visual difference that preserves intent from a behavioral difference that changes the task.",
-            "A handoff is useful when it reduces uncertainty and supports continuation. I would evaluate it by the quality of the questions resolved and the decisions retained through implementation, rather than the number of exported screens or pages of annotations."
+            "The conversion panel gives the same record a later purpose: create a contact and an opportunity while preserving its history. That promise is specific enough to check in the implementation.",
+            "Review the path with a keyboard and an interrupted request. Record any difference that changes the task, then update the shared source so the next person does not inherit an old decision."
+          ],
+          "images": [
+            "orkest-conversion-readiness"
           ]
         }
       ],
@@ -189,21 +196,24 @@
     {
       "slug": "design-handoff-checklist-startup-product-teams",
       "intent": "Prepare a bounded design slice for a startup release",
-      "dek": "A small team needs enough agreement to build safely, without turning every change into a specification project. Use this checklist for a release slice, not the entire product at once.",
+      "dek": "A small team needs a clear slice of work, a few agreed rules and a way to check the result. This checklist keeps the review close to one task.",
       "sections": [
         {
           "heading": "Keep the review slice small enough to inspect",
           "paragraphs": [
-            "The Masteriyo Add New Quiz design names three stages: Info, Questions and Settings. Next and Cancel are visible at the information step. That gives a handoff review a bounded starting point: the fields on this step, the meaning of continuing and the consequence of leaving.",
-            "This frame shows the designed slice. It does not demonstrate validation, persistence or movement between stages; those need separate acceptance checks."
+            "Masteriyo’s quiz setup gives the review a manageable starting point. The first step asks for information before the author moves into questions and settings. Next and Cancel are visible, so the team can discuss exactly what each should do.",
+            "I would agree what counts as a valid first step, what gets saved and what leaving the flow discards. Those answers make the slice ready to build."
           ],
           "image": "masteriyo-quiz-setup"
         },
         {
-          "heading": "Define the slice and its boundary",
+          "heading": "Choose a slice the team can finish",
           "paragraphs": [
-            "Name the user, starting point, task and endpoint. Creating a lead is a manageable slice; redesigning CRM is not. List what is deliberately outside the release so an attractive prototype does not quietly become a promise of unsupported behavior.",
-            "Attach one primary frame or flow as the current source. Keep older alternatives available if they explain a decision, but label them so engineering does not have to infer which version is approved."
+            "A quiz information form is a useful slice. The whole LMS is too broad for one handoff conversation. Keep a current frame or short sequence attached to the task and label older alternatives.",
+            "The question editor below shows the next layer of work. It is useful context, but it should not quietly expand a small setup task into every quiz behavior at once."
+          ],
+          "images": [
+            "masteriyo-multiple-choice"
           ]
         },
         {
@@ -292,13 +302,13 @@
     {
       "slug": "responsive-saas-dashboard-handoff-notes",
       "intent": "Specify responsive behavior for dense operational interfaces",
-      "dek": "A responsive dashboard needs rules for priority, overflow and continuation. A desktop frame and a mobile frame leave the hardest decisions between them.",
+      "dek": "A dashboard can fit a phone and still make the job harder. Write down which information must stay visible and how someone reaches the rest.",
       "sections": [
         {
           "heading": "Write the task that must survive",
           "paragraphs": [
-            "Start with a concrete task such as locating an unassigned lead and inspecting its status. That gives the responsive design a priority. A small screen may not need every desktop column, but it still needs record identity, current state and a usable route to the next action.",
-            "Do not describe responsive behavior as simply hiding secondary information. Name what is secondary for this task, where it remains available and what the person can no longer do in the condensed view."
+            "I start with a task: find an unassigned lead and check its status. That tells me which relationships a smaller layout has to protect. Record identity, ownership and the next action matter more than preserving every desktop column.",
+            "If a detail moves out of the list, explain where it goes. The handoff needs to describe how the person continues, not simply which elements disappear."
           ]
         },
         {
@@ -339,12 +349,15 @@
           }
         },
         {
-          "heading": "Use the desktop evidence honestly",
+          "heading": "Use the desktop screen to name the priorities",
           "paragraphs": [
-            "The Orkest leads screen gives a concrete desktop hierarchy: ownership views, search, Filters and qualification states. It is useful for deciding which relationships to protect. It does not show a reviewed mobile filter panel or prove that all responsive states are implemented.",
-            "When mobile evidence is incomplete, write the proposed behavior as a requirement and test it in the build. Do not place an unrelated phone screenshot next to the article and call it responsive proof."
+            "The Orkest list keeps ownership views, search and filters near the records. The filter design below adds another part of that task: choosing which records to see.",
+            "These are desktop examples. A mobile specification still needs to say how the filter panel opens, how the current criteria remain visible and where focus returns when it closes."
           ],
-          "image": "orkest-lead-list"
+          "images": [
+            "orkest-lead-list",
+            "orkest-lead-filters"
+          ]
         },
         {
           "heading": "Document overflow and interruption",
@@ -375,18 +388,19 @@
           "SaaS product design"
         ]
       ],
-      "leadEvidence": "orkest-lead-list"
+      "leadEvidence": "orkest-lead-list",
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "saas-dashboard-filter-ux",
       "intent": "Design inspectable filter state for operational record lists",
-      "dek": "A filter changes the answer a table gives. People need to see the question currently being asked, understand why a record is absent and change that question without losing context.",
+      "dek": "Useful filters help someone answer a work question and understand the result. Scope, active criteria and a way back all belong in that explanation.",
       "sections": [
         {
           "heading": "Give criteria and scope distinct jobs",
           "paragraphs": [
-            "The Orkest lead-filter form separates the conditions being chosen from their scope and the action that applies them. That makes the intended query easier to inspect before committing it.",
-            "The frame documents the design, with sample data. It does not show whether a filter is saved, survives navigation or changes a live result set. Those persistence rules still need a written contract and implementation checks."
+            "In Orkest, All leads, My leads and Unassigned describe ownership. Filters narrow the records further. Keeping those jobs separate helps a person understand why a lead is or is not in the list.",
+            "The controls should also explain their effect. After a filter changes, the person needs to see the active criteria and make sense of the resulting records."
           ],
           "image": "orkest-lead-filters"
         },
@@ -437,16 +451,20 @@
           }
         },
         {
-          "heading": "Make zero results recoverable",
+          "heading": "Help someone recover from a filter problem",
           "paragraphs": [
-            "An empty filtered table should retain the conditions that explain it. Use language such as No leads match these filters when that is the known cause, then offer a relevant change. Do not replace the query with a blank onboarding state that suggests no data exists.",
-            "Keep a useful result count and check how its update is communicated. For implementations that update without moving focus, W3C's status-message guidance helps distinguish a result announcement from an unnecessary focus change."
+            "The additional Orkest states show the filter with a problem and the later confirmation. They give a review something concrete to follow instead of treating the panel as finished after the default state.",
+            "If the query returns no records, preserve the criteria and offer a clear way to change or reset them. An empty result should not make someone wonder whether the whole system has no data."
           ],
           "links": [
             [
               "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
               "W3C guidance on status messages"
             ]
+          ],
+          "images": [
+            "orkest-lead-filter-error",
+            "orkest-lead-filter-confirmation"
           ]
         },
         {
@@ -477,13 +495,13 @@
     {
       "slug": "role-based-saas-dashboard-ux",
       "intent": "Separate role tasks, ownership views and authorization",
-      "dek": "Role-based UX is not a reason to duplicate every screen. Share the meaning of a record and its states, then change the information and actions according to the job.",
+      "dek": "Two people can work with the same application and need different screens. Start with what each person can decide, then decide what the interface should share.",
       "sections": [
         {
           "heading": "Inspect the investor’s information priorities",
           "paragraphs": [
-            "The piHub investor product directory brings services, industries, credit amounts and status into a comparison view. It is a useful example of prioritizing the information a particular role needs before choosing an action.",
-            "The design uses sample content. It does not verify live permissions, account-specific data or an approval process; those responsibilities need checks beyond a role-specific layout."
+            "An investor in piHub needs to define and compare products, then inspect credit requests. A creditor is trying to submit and follow an application. Giving both roles the same overview would hide that difference.",
+            "I use the product screens to ask what each role needs to know now and which action it is responsible for. Shared status language helps connect the views."
           ],
           "image": "pihub-investor-products"
         },
@@ -527,10 +545,13 @@
           }
         },
         {
-          "heading": "Share the language, vary the priority",
+          "heading": "Share the meaning, change the priority",
           "paragraphs": [
-            "piHub's creditor, investor and administrator journeys provide another useful design context. Different people inspect the same broader process for different reasons. A creditor may need outstanding requirements, while an administrator needs review context. Reusing the state vocabulary can help the product remain coherent without making both screens identical.",
-            "Those prototypes are separate design artifacts. They do not establish synchronized updates or real permission enforcement. A source-linked case study should keep that distinction visible rather than presenting visual role coverage as security verification."
+            "The administrator’s account-review view puts company details beside Approve and Disapprove. That is a different responsibility from browsing an investor’s products, so the hierarchy changes with it.",
+            "The roles can still agree on what Submitted or Awaiting Approval means. Permission enforcement needs server checks; these screens show how the intended responsibilities are presented."
+          ],
+          "images": [
+            "pihub-admin-account-review"
           ]
         },
         {
@@ -585,13 +606,13 @@
     {
       "slug": "saas-dashboard-empty-state-ux-guide",
       "intent": "Write concise explanation and recovery copy for one zero-result state",
-      "dek": "Before writing an empty-state headline, identify what the interface actually knows. The next action should follow the cause, not a reusable illustration.",
+      "dek": "An empty screen should help someone understand why there is nothing to see and what they can do next. The right message depends on the cause.",
       "sections": [
         {
           "heading": "Distinguish first use from zero search results",
           "paragraphs": [
-            "The empty Masteriyo course builder offers Add Section, Add Assignment and Add Quiz, alongside a documentation link. This is a first-content decision: the person needs a place to begin.",
-            "Compare that with the Yarsha zero-result design below, where an entered query and keyboard are retained. The causes differ, so the recovery action should differ. These are separate designed states, not observations from a tested session."
+            "A first course and a search with no matches are different situations. Masteriyo’s empty builder offers ways to add the first content because the author has not created any yet.",
+            "The message can be short when the action is clear. It becomes confusing when the same generic Nothing here treatment is used for a new account, a failed search and a permission problem."
           ],
           "image": "masteriyo-first-content"
         },
@@ -640,12 +661,15 @@
           }
         },
         {
-          "heading": "Inspect a real zero-result frame",
+          "heading": "Keep the search in view when nothing matches",
           "paragraphs": [
-            "The Yarsha contact-search design reports No contact found while retaining the search context and keyboard. It is a mobile example of the same writing problem, not a SaaS dashboard screenshot. Contacts and Invite are visible, but the frame does not explain whether invitation is the right recovery for this query.",
-            "A useful revision discussion would ask whether the person can broaden the search, clear it or understand the Invite route. The image supports those questions; it does not establish that they have already been answered."
+            "Yarsha’s contact search keeps the query and keyboard visible when it finds no contact. The populated contacts view gives the comparison: the person is still working with the same directory.",
+            "The next action should fit that situation. They may need to change a query, add a person or send an invitation. Clearing the query for them would remove useful context."
           ],
-          "image": "yarsha-contact-empty"
+          "images": [
+            "yarsha-contact-empty",
+            "yarsha-contacts"
+          ]
         },
         {
           "heading": "Keep the message proportionate",
@@ -682,13 +706,13 @@
     {
       "slug": "saas-dashboard-empty-states-product-clarity",
       "intent": "Classify empty-state causes across a product",
-      "dek": "A product needs an empty-state model before it needs an empty-state component. Visually similar panels can represent different responsibilities and different risks.",
+      "dek": "Before writing an empty-state message, decide what caused it and who can change the situation. That small distinction keeps a component system from saying the wrong thing.",
       "sections": [
         {
           "heading": "Use two axes: cause and agency",
           "paragraphs": [
-            "First identify why the surface is empty. Then identify who can change that situation: the current user, another person, a background process or nobody within the product. The combination gives the design a more useful starting point than a generic list of empty-screen layouts.",
-            "A first-use state with an enabled creation action is different from the same first-use state shown to a read-only role. The visible absence may be identical, but the available continuation is not."
+            "I use two questions: why is the content absent, and can this person do anything about it? A new course lets its author create content. A person waiting for approval may need someone else to act.",
+            "Those causes deserve different words and actions, even when both layouts have space for an illustration and a button."
           ]
         },
         {
@@ -741,10 +765,14 @@
           ]
         },
         {
-          "heading": "Review adjacent states together",
+          "heading": "Compare different causes side by side",
           "paragraphs": [
-            "Place loading, loaded, empty, stale and failed states beside each other during design review. Ask whether they can be distinguished without relying on color. A delayed synchronization should not briefly look like an authoritative statement that no data exists.",
-            "Also review how the state changes after a successful action. If a new record arrives, the empty message should give way to the relevant content. If another person must act first, the interface should preserve the explanation rather than offering a misleading retry loop."
+            "Masteriyo’s first-content view asks the author to begin. Yarsha’s no-contact result asks the searcher to recover. Both are empty, but they belong to different points in a task.",
+            "Keep those distinctions in the component’s inputs and in the examples people use to design new screens. The piHub access-denied example later in this article is a third cause, not another name for zero results."
+          ],
+          "images": [
+            "masteriyo-first-content",
+            "yarsha-contact-empty"
           ]
         },
         {
@@ -777,27 +805,30 @@
           "Reusable component systems"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "pihub-access-denied"
     },
     {
       "slug": "saas-dashboard-empty-states-that-help-users-recover",
       "intent": "Acceptance-test empty-state recovery and retained context",
-      "dek": "An empty state is useful when someone can continue from it. Test the transition, retained input and result of the recovery action, not only the appearance of the panel.",
+      "dek": "A recovery action is useful when it keeps someone’s work intact and helps them continue. Start by deciding what they should not have to enter again.",
       "sections": [
         {
           "heading": "Keep the content structure visible during recovery",
           "paragraphs": [
-            "The Masteriyo course outline groups lessons inside an Introduction section and exposes reorder, edit, duplicate and delete controls. Its useful reference is the structure that a recovery path may need to preserve.",
-            "Read it alongside the article’s empty-state examples as separate design artifacts. They do not demonstrate a tested transition. A recovery review should explicitly check which section, item order and active control remain after an error or retry."
+            "Masteriyo’s course outline keeps the larger course visible while someone edits its content. That structure is useful when considering recovery: a failed edit should not require the author to rebuild the whole course.",
+            "For each interruption, I would name the work to preserve, the action that can be retried and where the author should return."
           ],
           "image": "masteriyo-course-outline"
         },
         {
-          "heading": "Name what must remain intact",
+          "heading": "Keep the work that is already valid",
           "paragraphs": [
-            "Before designing a recovery action, list the context the person may still need: search terms, active filters, selected workspace, sort order, page position and unsaved input. A recovery that silently resets all of it can create more work than the original empty result.",
-            "Separate recoverable context from stale or unsafe context. A selection from a previous permission scope may need to be cleared. The important point is to decide and explain the rule rather than letting it emerge accidentally from a rerender."
+            "The section editor below is one smaller task inside the course. If saving it fails, preserving the entered section information is a different concern from deciding whether the rest of the course is available.",
+            "Write down that boundary before adding a Retry button. The person should know what they are retrying and what is already safe."
+          ],
+          "images": [
+            "masteriyo-section-editor"
           ]
         },
         {

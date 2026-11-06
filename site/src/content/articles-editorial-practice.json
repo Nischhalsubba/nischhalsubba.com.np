@@ -4,13 +4,13 @@
     {
       "slug": "blog-design-systems-front-end",
       "intent": "Connect design-system decisions to frontend responsibilities",
-      "dek": "A design system becomes useful when its concepts survive implementation. I look for clear responsibilities between tokens, components, content and product behavior.",
+      "dek": "A component is easier to build when design and engineering agree what it means, which content it owns and how it behaves outside the default state.",
       "sections": [
         {
           "heading": "Share meaning before sharing names",
           "paragraphs": [
-            "A color named blue-500 is a value. A token named action-primary describes a responsibility. Both can be useful, but they solve different problems. A frontend-aware system needs an explicit relationship between visual values and the roles they serve.",
-            "The same principle applies to spacing and typography. A token list is not automatically a component contract. The team still needs to decide which values may change together and where a product-specific exception belongs."
+            "A shared name helps, but a component also needs a shared responsibility. For a field, that includes its label, value, help, validation and what happens when the available space changes.",
+            "I try to keep those decisions beside the component example. The engineer should not have to reconstruct the intended behavior from several unrelated frames."
           ]
         },
         {
@@ -46,12 +46,15 @@
           ]
         },
         {
-          "heading": "Follow the content model through an authoring journey",
+          "heading": "Follow the same pattern into a different question type",
           "paragraphs": [
-            "Masteriyo’s course outline and quiz setup illustrate why a component library needs a shared content model. A section contains lesson rows; a quiz introduces its own Info, Questions and Settings. These are different levels of work, even when buttons, fields and menus share a visual language.",
-            "In a team handoff, define the owner and meaning of each action before mapping it to a reusable component. For the question editor, that includes which question is active, what an answer selection means, what Save persists, and how a keyboard user moves a row. These are proposed implementation checks; the team design screenshot establishes visible hierarchy, rather than tested scoring or persistence."
+            "Masteriyo’s question editor keeps the question identity and points separate from the answer rows. The multiple-choice view below changes the answer configuration while retaining that broader structure.",
+            "This gives a component discussion a real boundary: which parts stay shared, and which inputs belong to the question type? The source screens show the pattern; save and scoring behavior need implementation checks."
           ],
-          "image": "masteriyo-question-editor"
+          "images": [
+            "masteriyo-question-editor",
+            "masteriyo-multiple-choice"
+          ]
         }
       ],
       "related": [
@@ -72,19 +75,19 @@
           "Follow the Masteriyo authoring design journey"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "masteriyo-question-editor"
     },
     {
       "slug": "design-systems-small-product-teams",
       "intent": "Build a proportional design system for a small team",
-      "dek": "A small team needs a reliable way to repeat and change decisions. It does not need to reproduce the operating model of a much larger organization.",
+      "dek": "Start with the patterns the team already repeats. A small, useful system should help the next person continue the work without adding more rules than they need.",
       "sections": [
         {
           "heading": "Start where repetition already costs something",
           "paragraphs": [
-            "Audit a few current screens and identify repeated decisions: field labels, validation, spacing, action hierarchy or table states. Choose a pattern that is used often enough to justify a shared contract. A hypothetical future component is a weaker starting point than a repeated inconsistency the team already maintains.",
-            "Keep the first scope small. A handful of semantic tokens and a well-specified form pattern can be more useful than a library with hundreds of incomplete variants."
+            "I look for the repetition that is already causing work: similar forms with different error rules, inconsistent record actions or the same decision being discussed again.",
+            "A shared pattern is useful when it resolves that problem. A large library is less helpful if nobody knows when to use its parts or how to make an exception."
           ]
         },
         {
@@ -119,10 +122,13 @@
           }
         },
         {
-          "heading": "Use real examples to limit variants",
+          "heading": "Use an actual product form to set the boundary",
           "paragraphs": [
-            "Before adding another variant, find the use case that requires it. If the difference is only temporary content, it may not need a new component shape. If it changes behavior or information priority, it deserves a more explicit review.",
-            "Keep product decisions outside the shared component when they are not genuinely reusable. A primary button should not know whether a specific financial application is eligible for approval. The product owns that rule."
+            "The Orkest edit-lead form is a useful example because the record fields and save guidance have a clear job. It gives the team something concrete to compare with the create-lead and conversion views.",
+            "Build the shared rule from those responsibilities, then document the differences that need to remain. The aim is to make another form easier to design and build."
+          ],
+          "images": [
+            "orkest-edit-lead"
           ]
         },
         {
@@ -162,27 +168,31 @@
           "Contribution inside an established product"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "orkest-conversion-readiness"
     },
     {
       "slug": "blog-service-websites",
       "intent": "Write a service website around client evaluation",
-      "dek": "A service page needs to help someone recognize their situation, understand the scope and decide whether a conversation is worthwhile. A list of capabilities is only the starting material.",
+      "dek": "People often arrive with a problem in their own words. A service website should help them recognize the right offer and understand what the work includes.",
       "sections": [
         {
           "heading": "Begin with the client's question",
           "paragraphs": [
-            "A client may arrive with a problem rather than the name of a discipline. Organize the opening around that recognizable situation, then explain what the service includes. Avoid making the visitor translate internal terminology before they can establish fit.",
-            "A useful opening also has boundaries. Say what kind of work the service covers and what it does not. Broad claims about solving every business problem make evaluation harder, even when they sound confident."
+            "A prospective client may know they need help entering a market without knowing the consultancy’s service categories. I start the page with that familiar situation, then explain the relevant work.",
+            "The service name can organize the website, but the introduction needs to help someone decide whether they are in the right place."
           ]
         },
         {
-          "heading": "Use scope and sequence as evidence",
+          "heading": "Show the shape of the engagement",
           "paragraphs": [
-            "The Morajaa market-entry design includes a named process after its service explanation. The reviewed crop shows how stage titles create a scan while supporting text supplies depth. It is evidence of content hierarchy; it does not independently verify the consultancy's regulatory statements or delivery results."
+            "Morajaa’s service pages use named stages to explain the work after the introduction. The joint-ventures example below shows another service using the same reading approach.",
+            "The structure can be reused while the actual scope stays specific. These historical designs contain business copy to evaluate as page content, not independent legal or client-result evidence."
           ],
-          "image": "morajaa-service-process"
+          "images": [
+            "morajaa-service-process",
+            "morajaa-joint-ventures"
+          ]
         },
         {
           "heading": "Give the page a useful sequence",
@@ -248,18 +258,19 @@
           "Website UX design"
         ]
       ],
-      "leadEvidence": "morajaa-service-process"
+      "leadEvidence": "morajaa-service-process",
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "blog-portfolio-product",
       "intent": "Explain portfolio editorial and interaction decisions using the current site",
-      "dek": "I want a portfolio to help someone evaluate my judgment, not only recognize a visual style. That means treating evidence, navigation and performance as part of the same product.",
+      "dek": "A portfolio should help someone understand the designer’s contribution. Give the work a clear story and enough of the actual interface to judge the decisions.",
       "sections": [
         {
           "heading": "Give the visitor a question to answer",
           "paragraphs": [
-            "A recruiter may be asking whether I can handle a particular kind of complexity. A potential client may be checking whether my contribution matches their problem. Those are evaluation tasks. The portfolio should help people find relevant work and understand what it actually demonstrates.",
-            "That is why a case study needs a precise scope and an inspectable artifact. A broad statement about strategy is weaker than a concrete decision connected to a form, a record model or a responsive content problem."
+            "I think about the question a hiring manager or prospective client brings to the page: can this person help with the kind of work we need?",
+            "A project name and an attractive cover rarely answer that on their own. The detail page needs to explain the situation, the designer’s part and a few concrete decisions, with the screen close enough to inspect."
           ]
         },
         {
@@ -272,10 +283,13 @@
           "publicCapture": "portfolio-published-baseline"
         },
         {
-          "heading": "Make the evidence boundary visible",
+          "heading": "Let the project screen carry part of the explanation",
           "paragraphs": [
-            "In the current editorial revision, Figma exports are separated from public derivatives. Screens are selected for the decision they help explain, complete source frames are retained with their dummy content and the source is recorded. Drafts and legacy prototypes are not silently presented as current releases.",
-            "Where a matching file is missing, the case keeps the gap visible. Code or an existing website artifact may be better evidence than a design screenshot. No visual placeholder can establish a result that was never measured."
+            "The Orkest module directory below gives context for a CRM case: this record workflow sits inside a larger workspace. The detail page can then explain why ownership views and filters have their own place.",
+            "Keep the contribution and outcome limits clear, but do not make every paragraph sound like a disclaimer. Put the useful screen beside the decision it helps the reader understand."
+          ],
+          "images": [
+            "orkest-module-directory"
           ]
         },
         {
@@ -313,13 +327,13 @@
     {
       "slug": "blog-gaming-interface-clarity",
       "intent": "Apply gaming-interface observations to data-product design without invented research",
-      "dek": "Playing complex games and working on a combat-data tool keeps bringing me back to the same interface question: can I tell what matters now, and can I inspect why?",
+      "dek": "Game interfaces can teach useful lessons about attention and context. Apply the lesson to the actual task instead of borrowing the decoration.",
       "sections": [
         {
           "heading": "Separate immediate action from later analysis",
           "paragraphs": [
-            "An active encounter and an after-action review have different information needs. During action, a person needs a small number of timely cues. Afterward, they may want a dense view of events, comparisons and explanations. Trying to give both moments identical density can make each less useful.",
-            "I use that distinction as a design lens rather than a universal rule about players. It also applies to operational software: the person resolving an urgent task may need a focused action view while the analyst needs a broader comparison."
+            "A player may need an immediate action during an encounter and a deeper explanation afterward. Those are different moments, even when they use the same underlying events.",
+            "That distinction is useful outside games too. The interface needs to make the next decision clear without requiring every detail to compete at once."
           ]
         },
         {
@@ -348,10 +362,13 @@
           ]
         },
         {
-          "heading": "Carry the lesson without copying the game UI",
+          "heading": "Apply the idea to a real work task",
           "paragraphs": [
-            "The useful transfer is about priority, context and feedback, not adding game-like decoration to business software. An enterprise approval flow does not need a combat overlay. It may benefit from the same discipline of distinguishing urgent action from secondary detail.",
-            "I would validate the analogy through the actual product task. If it does not help the person understand or act, the connection is only an aesthetic reference. A good design rationale should survive without the gaming metaphor."
+            "The piHub administrator review is a different kind of interface, but it has the same need to separate supporting information from a consequential action. The request stays visible while the reviewer considers the available decision.",
+            "The transfer is about attention and context. An enterprise workflow does not need game-like decoration to benefit from it. The Neverwinter setup reference earlier remains an idle browser view, not live encounter telemetry."
+          ],
+          "images": [
+            "pihub-admin-credit-review"
           ]
         }
       ],
@@ -375,12 +392,13 @@
     {
       "slug": "hire-product-designer-nepal-saas-web3",
       "intent": "Help a hiring team evaluate a Nepal-based product designer for complex software",
-      "dek": "Evaluate the work against your product's decisions, collaboration needs and evidence gaps. Location is one practical consideration; it should not substitute for examining the contribution.",
+      "dek": "Choose a designer by the work your product needs. Look at their contribution, the decisions they can explain and how they collaborate with the people who build it.",
       "sections": [
         {
           "heading": "Meet the person behind the work",
           "paragraphs": [
-            "I am Nischhal Raj Subba, a Senior Product Designer based in Nepal and available for remote work. The portrait identifies the author; the case studies and contribution records are the evidence to evaluate for a particular role."
+            "I am Nischhal Raj Subba, a Senior Product Designer based in Nepal and available for remote work. My cases cover different kinds of complexity, including CRM, multi-role financial workflows and mobile messaging with wallet actions.",
+            "The useful question is which part of that work matches your product. The portrait introduces me; the project stories give you something more specific to evaluate."
           ],
           "ownerPortrait": true
         },
@@ -432,10 +450,13 @@
           }
         },
         {
-          "heading": "Check collaboration with a real problem",
+          "heading": "Discuss one real product problem",
           "paragraphs": [
-            "Bring a bounded example from your product and discuss the information needed to make a decision. This is a conversation about approach, not a request for unpaid production work. Notice whether the designer distinguishes facts from assumptions and asks about the current implementation before proposing a new screen.",
-            "For system work, ask how another designer or engineer would continue the pattern. For regulated or financial products, ask how design collaborates with the relevant domain and engineering owners rather than claiming authority over rules outside design."
+            "Bring a small example from your product and talk through the information needed to make a design decision. For a multi-role workflow, the piHub review screen below is the kind of responsibility boundary I would want to understand.",
+            "The conversation should establish how the designer works with product and engineering. It does not need to become unpaid production work, and it should not require design to invent business rules."
+          ],
+          "images": [
+            "pihub-admin-account-review"
           ]
         },
         {
@@ -470,22 +491,25 @@
     {
       "slug": "blog-web3-products",
       "intent": "Translate Web3 mechanisms into understandable product decisions",
-      "dek": "Start with what the person is trying to do. Explain the wallet or network when it changes the decision, instead of making protocol vocabulary the entrance requirement.",
+      "dek": "Explain what the person is trying to do before introducing the wallet or network details. Bring those details in when they help someone make the next decision.",
       "sections": [
         {
           "heading": "Separate the product task from the mechanism",
           "paragraphs": [
-            "A person may want to join, send, collect or review. A wallet request is a mechanism within that task. Explain why it is needed and what it enables before asking the person to follow it.",
-            "This does not mean hiding technical detail. It means placing that detail where it helps a decision. Someone evaluating an address, network or transaction needs access to the relevant specifics; someone establishing basic product fit should not have to decode them first.",
-            "The public Wallet Adapter example makes one boundary inspectable: wallet selection is available while transaction actions remain disabled in the unconnected state. This is an external component-gallery reference, not a product I designed or proof of the complete authorization flow."
+            "A person may want to join, send an asset or inspect an earlier action. A wallet request is one part of that task, so its explanation should connect to the reason it appears.",
+            "The public Wallet Adapter gallery gives a small external example of the connection boundary. It is a reference component, not a product I designed or a completed transaction flow."
           ],
           "publicCapture": "wallet-adapter-gallery"
         },
         {
-          "heading": "Keep familiar context around the unfamiliar step",
+          "heading": "Keep the person’s task around the technical step",
           "paragraphs": [
-            "Yarsha puts wallet-related activity inside a messaging context. The reviewed token-selection frame identifies assets using names and symbols and offers a search. It gives a concrete discussion point: establish what the person is acting on before any later authorization step.",
-            "The complete source frame is included in the Yarsha case. Its balance-like values are dummy content; the useful design question is how a person distinguishes assets before a consequential action."
+            "Yarsha’s token and NFT designs show two ways to identify the asset before a later authorization. Tokens use names and symbols, while NFT collections use artwork and collection names.",
+            "The frames use sample values. They help explain the selection decision; the wallet and network still need to establish what can actually be authorized and what happens next."
+          ],
+          "images": [
+            "yarsha-token-selection",
+            "yarsha-nft-selection"
           ]
         },
         {
@@ -525,20 +549,19 @@
           "Web3 UX design"
         ]
       ],
-      "updatedAt": "2026-11-05",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "wallet-adapter-gallery"
     },
     {
       "slug": "web3-wallet-connection-ux",
       "intent": "Design wallet connection as a bounded permission and recovery step",
-      "dek": "Wallet connection should answer why the wallet is needed, what is being requested and how to continue if the person declines or cannot connect.",
+      "dek": "Connecting a wallet should explain why it is needed and how to continue when someone declines or cannot connect. Keep the original task available throughout.",
       "sections": [
         {
           "heading": "Explain the purpose before opening the wallet",
           "paragraphs": [
-            "Connect wallet is an action label, not a complete explanation. State what connecting enables in this product and whether useful exploration remains possible without it. Ask at the point the task needs the connection rather than using it as an unexplained gate.",
-            "Keep the explanation proportional. A short purpose statement can be enough for a familiar task, while a new or consequential permission needs more context. The exact request should match what the integration actually asks for.",
-            "The public Wallet Adapter development example offers a concrete connection boundary: its chooser names the available option before any wallet is selected. The captured anonymous session shows the Burner Wallet development option. It does not demonstrate a real-account connection, production security or a completed transaction."
+            "Connect wallet tells someone which button to press, but it does not always explain why. A short purpose statement should say what connecting enables in the current task.",
+            "The public Wallet Adapter chooser names the available option before selection. The captured Burner Wallet option is a development reference, so it should not be presented as a verified production-account connection."
           ],
           "publicCapture": "wallet-adapter-chooser"
         },
@@ -581,10 +604,13 @@
           }
         },
         {
-          "heading": "Preserve the task across the external handoff",
+          "heading": "Keep the reason for connecting in view",
           "paragraphs": [
-            "Returning from a wallet should not leave the person unsure why they connected. Keep the originating item, conversation or operation available. If the next action is still required, show it explicitly instead of treating connection as task completion.",
-            "Review the mobile path as well as the desktop extension path. A change of app, a closed window and a delayed return can produce different implementation conditions. A prototype alone cannot verify them."
+            "Yarsha’s recipient selection is an example of the task context that may need to survive a wallet handoff. It identifies who the action concerns before the next asset choice.",
+            "This is a recipient screen, not a wallet-connection dialog. Use the example to specify what needs to remain available after returning from the external step."
+          ],
+          "images": [
+            "yarsha-recipient-selection"
           ]
         },
         {
@@ -619,26 +645,30 @@
           "Wallet-related product UX"
         ]
       ],
-      "updatedAt": "2026-11-05",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "wallet-adapter-chooser"
     },
     {
       "slug": "transaction-review-ux-crypto-apps",
       "intent": "Define the information and uncertainty boundary of transaction review",
-      "dek": "A transaction review should help someone understand the change they are about to authorize. It should also be honest about what the product can and cannot establish before submission.",
+      "dek": "Before someone authorizes a transaction, help them understand what will change. Afterward, describe the result the system can actually establish.",
       "sections": [
         {
           "heading": "Lead with the proposed change",
           "paragraphs": [
-            "Explain the action in product language, then provide the details needed to inspect it: destination, asset, amount and relevant cost or consequence when the integration can establish them. Keep uncertainty visible instead of presenting an estimate as a guarantee.",
-            "The review is a decision point. It should be possible to return and correct the intent before authorization. A primary button that says only Continue can be weaker than a label that explains the actual next boundary."
+            "A useful review puts the proposed action into plain language and keeps its destination, asset, amount and relevant cost available to inspect. If a value is an estimate, say so.",
+            "Give someone a way to go back and correct the intent before authorization. The label on the next action should also explain which boundary they are about to cross."
           ]
         },
         {
-          "heading": "Distinguish selection from signing",
+          "heading": "Keep selection and authorization distinct",
           "paragraphs": [
-            "The reviewed Yarsha token-selection screen identifies the asset before any later transaction review. It is useful evidence of that earlier step. It is not itself a transaction confirmation screen, and I do not relabel it as one.",
-            "A source-backed case should keep those stages distinct. Selecting an asset, reviewing an operation, approving a wallet request and observing a result are different events even when the product makes them feel connected."
+            "Yarsha’s token and NFT screens help someone choose the object. The result-detail example later in this article answers a different question about an operation after the fact.",
+            "Neither should be relabeled as the wallet-authorization screen. Keeping the stages distinct helps the team decide what information must carry into the actual review."
+          ],
+          "images": [
+            "yarsha-token-selection",
+            "yarsha-nft-selection"
           ]
         },
         {
@@ -719,23 +749,23 @@
           "Web3 product design"
         ]
       ],
-      "updatedAt": "2026-11-05",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "yarsha-transaction-detail"
     },
     {
       "slug": "web3-wallet-ux-checklist",
       "intent": "Acceptance-review a complete wallet-enabled product journey",
-      "dek": "Review the whole journey: explanation, connection, intent, authorization, waiting, recovery and the result. A successful connection is only one checkpoint.",
+      "dek": "Review connection, intent, authorization, waiting and recovery as one journey. A successful connection is a useful checkpoint, but it does not finish the person’s task.",
       "sections": [
         {
           "heading": "Set the integration boundary first",
           "paragraphs": [
-            "Record the supported environment, wallet routes, network and test conditions. Identify which behavior belongs to the product and which belongs to an external wallet or service. Use an appropriate test environment and do not involve real funds merely to inspect interface behavior.",
-            "If the review uses only a prototype, mark signing, persistence and network outcomes unverified. Visual coverage is useful, but it cannot establish the complete integration."
+            "First record which wallet routes, network and environment the product actually supports. That gives the review a clear boundary and keeps a prototype demonstration separate from a real integration test.",
+            "Use an appropriate test environment. You do not need real funds simply to review interface behavior, and a static screen cannot establish signing or network outcomes."
           ]
         },
         {
-          "heading": "Walk the journey in order",
+          "heading": "Walk through the choices in order",
           "table": {
             "columns": [
               "Checkpoint",
@@ -772,9 +802,13 @@
               ]
             ]
           },
-          "image": "yarsha-recipient-selection",
           "paragraphs": [
-            "The Yarsha recipient-selection design makes identity a separate decision before asset selection. Use the frame to review what should persist into the next step; it does not establish a working wallet connection or authorization flow."
+            "Yarsha separates choosing a recipient from choosing a token. The two screens below give a concrete sequence to review: does the person know who receives the asset, and does that choice remain available at the next step?",
+            "The checklist then needs to continue into the real authorization and result states. Those parts require integration evidence beyond the design frames."
+          ],
+          "images": [
+            "yarsha-recipient-selection",
+            "yarsha-token-selection"
           ]
         },
         {
@@ -825,7 +859,7 @@
           "Yarsha design evidence"
         ]
       ],
-      "updatedAt": "2026-11-05",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "yarsha-recipient-selection"
     }
   ]

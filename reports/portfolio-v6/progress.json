@@ -1296,8 +1296,8 @@
       "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-editorial-voice;nrs-content-and-cases",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "All 14 case bodies retain context, scoped role, constraints, decisions, honest outcomes and inspectable UI/reference media; Designerex no longer lacks a real public reference. No invented research or business metrics. Editorial source audit passes.",
-      "evidence": "final-52/source-to-page-plan.json",
+      "observation": "All 14 project stories rewritten in plain first-person language around the person, problem, design choices and honest outcomes. Seven new original app screens published across Yarsha, Zapp and piHub; seven cases now open with an existing complete screen. Research, chronology, ownership and impact are not invented. Seven of ten new captured candidates passed source/editorial review; QA, placeholder and duplicate candidates withheld.",
+      "evidence": "human-stories-2026-11-06/story-coverage.json; human-stories-2026-11-06/new-screen-review.json; site/src/content/portfolio-editorial.json",
       "blocker": "",
       "confidence": "VERIFIED_SOURCE_BUILD"
     },
@@ -1316,8 +1316,8 @@
       "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-editorial-voice;nrs-seo-page-audit;nrs-content-and-cases",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "All 27 distinct article intents and source/caption associations reconciled. Nine stale planning associations corrected in the current plan; approved article prose preserved where already substantive. Editorial audit passes.",
-      "evidence": "final-52/article-citation-reconciliation.json",
+      "observation": "All 27 article openings and selected screen explanations edited for plain, human reading. Existing useful how-to guidance, tables, technical citations and distinct search intents retained. More relevant app examples placed beside the decisions they explain; individual public-reference/historical boundaries preserved. This is an editorial pass, not a claim that every paragraph was newly authored.",
+      "evidence": "human-stories-2026-11-06/story-coverage.json; site/src/content/articles-editorial*.json",
       "blocker": "",
       "confidence": "VERIFIED_SOURCE_BUILD"
     },
@@ -1576,8 +1576,8 @@
       "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Faithful proportional screenshot derivatives and unchanged complete originals remain accessible. Added Designerex JPEG-to-PNG pixel identity and responsive variants; source/variant hashes and dimensions pass. Browser breakpoint inspection is owner-waived separately.",
-      "evidence": "final-52/designerex-current-capture.json",
+      "observation": "Added seven source-matched full-frame app-image derivatives with proportional resize, original source SHA-256, local bounded WebP variants and social PNGs. Private native originals and three rejected candidate exports saved together with publication-review decisions. No screenshot pixels cropped, redrawn or redacted.",
+      "evidence": "human-stories-2026-11-06/new-screen-review.json; site/src/content/portfolio-evidence-images.json",
       "blocker": "",
       "confidence": "VERIFIED_SOURCE_BUILD"
     },
@@ -2142,6 +2142,6 @@
       "confidence": "CONFIRMED_SOURCE"
     }
   ],
-  "updated_at": "2026-11-06T10:27:50.676976+00:00",
+  "updated_at": "2026-11-06T13:12:54.652883+00:00",
   "scope_note": "All 107 tasks preserved. 73 DONE_VERIFIED, four WAIVED_OWNER, 30 open. T84 source comparison artifact and T105 discrepancy audit completed; actual external account alignment/control and historical-source gaps remain open. Notion contains all tasks and PR history with daily synchronization. No new manual/browser, Google appearance, field CWV or production-email success inferred."
 }
