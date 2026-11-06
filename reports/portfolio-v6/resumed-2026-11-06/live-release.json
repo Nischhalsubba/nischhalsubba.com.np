@@ -1,0 +1,393 @@
+{
+  "checkedAt": "2026-11-06T07:28:45.681450+00:00",
+  "expectedCommit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+  "buildInfo": {
+    "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+    "branch": "main",
+    "provider": "cloudflare-workers"
+  },
+  "rows": [
+    {
+      "route": "/",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/projects",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/projects",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/services",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/services",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/about",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/about",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/contact",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/contact",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/privacy",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/privacy",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/product-design-nepal",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/product-design-nepal",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/web3-ux-designer",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/web3-ux-designer",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/saas-ux-designer",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/saas-ux-designer",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/website-ux-design",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/website-ux-design",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/figma-design-systems",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/figma-design-systems",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/ux-audit",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/ux-audit",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-yarsha",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-yarsha",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-mokshya",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-mokshya",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-hamro-idea",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-hamro-idea",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-morajaa",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-morajaa",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-pihub",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-pihub",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-masteriyo",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-masteriyo",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-zapp",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-zapp",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-neverwinter-parser",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-neverwinter-parser",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-orkest",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-orkest",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-splashnode",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-splashnode",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-grid-labs",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-grid-labs",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-zakra-furniture",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-zakra-furniture",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-designerex",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-designerex",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/project-sassboilerplate",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/project-sassboilerplate",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/responsive-saas-dashboard-handoff-notes",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/responsive-saas-dashboard-handoff-notes",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/saas-dashboard-filter-ux",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/design-systems-small-product-teams",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/design-systems-small-product-teams",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/design-handoff-checklist-startup-product-teams",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/prioritize-ux-audit-findings-before-redesign",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/prioritize-ux-audit-findings-before-redesign",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/when-startup-needs-ux-audit-before-redesign",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/when-startup-needs-ux-audit-before-redesign",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/hire-product-designer-nepal-saas-web3",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/beautiful-interface-poor-ux",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/beautiful-interface-poor-ux",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/ux-audit-evidence-before-redesign",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/ux-audit-evidence-before-redesign",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/saas-dashboard-ux-checklist",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/web3-wallet-ux-checklist",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/figma-handoff-notes-for-developers",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/figma-handoff-notes-for-developers",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/ux-audit-checklist-before-redesign",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/website-ux-checklist-software-companies",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/website-ux-checklist-software-companies",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/blog-design-systems-front-end",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-design-systems-front-end",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/blog-gaming-interface-clarity",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-gaming-interface-clarity",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/blog-good-handoff",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-good-handoff",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/blog-portfolio-product",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-portfolio-product",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/blog-service-websites",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-service-websites",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/blog-web3-products",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-web3-products",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-state-ux-guide",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-product-clarity",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-product-clarity",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/transaction-review-ux-crypto-apps",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/web3-wallet-connection-ux",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/web3-wallet-connection-ux",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    },
+    {
+      "route": "/blog/designing-handoffs-between-people",
+      "curlExit": 0,
+      "canonical": "https://nischhalsubba.com.np/blog/designing-handoffs-between-people",
+      "commit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+      "error": ""
+    }
+  ],
+  "sitemapCount": 54,
+  "sitemapMissing": [],
+  "sitemapExtra": [],
+  "errors": []
+}

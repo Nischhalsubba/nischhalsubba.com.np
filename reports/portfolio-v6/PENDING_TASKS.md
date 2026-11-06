@@ -1,18 +1,11 @@
 # Pending portfolio program tasks
 
-Current ledger: **53 verified, 54 pending**. Two stale report tickets (T55/T85) are now classified as unfinished work; the user has already authorized merges. The reference-inspired thumbnail prototype is in PR #121 and is not yet published.
+Current ledger: 55 verified, 52 pending. PR #121 is merged; live build marker confirms cb93446f98992771959d0dcffd364edda3c7cf56. Prior verified work is preserved.
 
-## Code complete, awaiting CI (1)
-
-| Ticket | Task | Remaining acceptance / blocker |
-|---|---|---|
-| T70 | Add automated media-actuality and load/decode regression checks | New regression runner and checkpoint require PR review/CI; the script does not certify unverified source rights or manual image selection. |
-
-## Implementation and audit work (34)
+## IN_PROGRESS (34)
 
 | Ticket | Task | Remaining acceptance / blocker |
 |---|---|---|
-| T03 | Inspect newest handoff article | Search Console indexing observation still needs authorized property access; no indexing guarantee. |
 | T06 | Reconcile role seniority / years / location | External profile edits require authorized account session and specific edit approval. |
 | T24 | Manual AA review and accessible motion | Full manual AA/assistive-technology review remains unperformed; NVDA/VoiceOver are unavailable in this Linux environment. Complete all-detail-page keyboard/motion coverage and manual contrast/focus review. Native 200/400% zoom spot checks are complete, not a full accessibility certification. |
 | T41 | Capture Designerex current website | Responsive screenshot with dated caption; copyright review; distinguish historical/current |
@@ -42,24 +35,24 @@ Current ledger: **53 verified, 54 pending**. Two stale report tickets (T55/T85) 
 | T85 | Report 89 tickets and complete autonomous acquisition coverage before PR signoff | Whole-program acceptance, source-to-page inventory and final audit reconciliation remain incomplete. Merge authorization is already granted; no new merge permission is needed. |
 | T88 | Reproduce and fix confirmed issues from recovered reports | Each genuine issue has source/DOM proof, precise fix and evidence; suspected false positives labeled |
 | T89 | Complete before/after audit screenshot reconciliation and report unverified findings | Original native reports plus finding-by-finding remediation/false-positive/blocked reconciliation remain incomplete. |
+| T97 | After approved deployment re-inspect homepage/About and request indexing if authorized | Connector is read-only; post-release Google recrawl and displayed search appearance remain unverified. |
 | T100 | Verify accounts are genuinely owner-controlled and classify public/professional/private | Unverified external control/visibility stays explicit; do not automatically add optional or private profiles to professional schema. |
 | T102 | Individually verify owner's public skill scores, courses, assessments and certificates | Remaining individual course/assessment/score verification is open; public research can continue. |
 | T105 | Audit biographies, current location, years and role across owner social/professional pages | Complete per-platform biography review for other owner-linked accounts where public content is inaccessible or not yet verified; no external profile was edited. |
 | T107 | Run link crawl, verified profile tests, schema check and mobile/keyboard QA | Reconcile every external destination and remaining manual accessibility/Search Console context; no fabricated all-links/all-profiles success. |
 
-## Missing source evidence (7)
+## BLOCKED_SOURCE (6)
 
 | Ticket | Task | Remaining acceptance / blocker |
 |---|---|---|
 | T01 | Verify public deployed SHA | Correctly scoped Cloudflare account access for exact deployment record. |
-| T02 | Reconcile sitemap 53 vs manifest 54 | Next Search Console sitemap download needs authorized property access. |
 | T07 | Verify contact and email delivery | Matching production Turnstile site key/secret, scoped Worker access and real consented delivery verification. |
 | T22 | Collect current production CWV | Valid CrUX/field sample or authorized Search Console/RUM dataset with collection dates and sufficient sample coverage. |
 | T28 | Archive controlled Nepal/US SERP comparisons | Dated ordinary-access Nepal/US SERP observations or owner-provided exports are needed; challenge is not a ranking result. |
 | T29 | Validate keyword volume and difficulty | Dated authoritative provider export/API data for the requested country/query pairs; public SERP position is not keyword volume or difficulty. |
 | T77 | Independently export original historical project frames with source-node verification | Secure Figma file_content:read access needed for independently reacquiring exact original historical frames. |
 
-## Account access or specific external-action approval (8)
+## BLOCKED_PERMISSION (7)
 
 | Ticket | Task | Remaining acceptance / blocker |
 |---|---|---|
@@ -70,15 +63,13 @@ Current ledger: **53 verified, 54 pending**. Two stale report tickets (T55/T85) 
 | T33 | Monitor Google generative AI report | Authorized report export or read access with collection dates; no invented per-feature trend. |
 | T34 | Verify ChatGPT Search crawler access | Correctly scoped account/log access to verify actual OAI-SearchBot delivery and WAF behavior; no configuration changed. |
 | T35 | 30/60/90-day evidence-led review | Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized. |
-| T97 | After approved deployment re-inspect homepage/About and request indexing if authorized | Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized. |
 
-## Google-dependent observation (4)
+## GOOGLE_PENDING (5)
 
 | Ticket | Task | Remaining acceptance / blocker |
 |---|---|---|
+| T02 | Reconcile sitemap 53 vs manifest 54 | Await a newer Google sitemap download; resubmission was not performed through the read-only connector. |
 | T90 | Capture and diagnose branded Google Search results | Normal accessible Google results and authorized Search Console crawl records. |
 | T91 | Verify generated ICO/PNG favicon served on live Cloudflare and crawlable | Google-visible favicon/recrawl observation or authorized Search Console inspection. |
 | T95 | Audit Google AI Overview and its source citations for profile mismatch | Accessible Google result with citations; generated text is Google controlled. |
 | T98 | Compare SERP before/after and report remaining Google-owned limitations | Accessible new SERP observation and GSC evidence after release. |
-
-Historical ticket labels mentioning 85 or 89 items are retained from earlier package revisions; this checklist and the active ledger track all 107 tickets.

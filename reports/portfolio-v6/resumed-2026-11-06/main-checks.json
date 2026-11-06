@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Workers Builds: portfolio-website-2026",
+    "status": "completed",
+    "conclusion": "success",
+    "details_url": "https://dash.cloudflare.com/563d5e48a50eb3cc9bfa484fd4e5a9a2/workers/services/view/portfolio-website-2026/production/builds/cc1a2f1e-a6c1-4110-936e-8ef5a9874095",
+    "completed_at": "2026-11-06T07:26:00Z"
+  },
+  {
+    "name": "deploy",
+    "status": "completed",
+    "conclusion": "success",
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698342/job/127769571868",
+    "completed_at": "2026-11-06T07:25:40Z"
+  },
+  {
+    "name": "report-build-status",
+    "status": "completed",
+    "conclusion": "success",
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698342/job/127769571859",
+    "completed_at": "2026-11-06T07:25:25Z"
+  },
+  {
+    "name": "build",
+    "status": "completed",
+    "conclusion": "success",
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698342/job/127769371111",
+    "completed_at": "2026-11-06T07:25:19Z"
+  },
+  {
+    "name": "dependency-audit",
+    "status": "completed",
+    "conclusion": "success",
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698778/job/127769368006",
+    "completed_at": "2026-11-06T07:25:03Z"
+  },
+  {
+    "name": "CodeQL",
+    "status": "completed",
+    "conclusion": "success",
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698778/job/127769367810",
+    "completed_at": "2026-11-06T07:26:35Z"
+  },
+  {
+    "name": "validate",
+    "status": "completed",
+    "conclusion": "success",
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698598/job/127769367647",
+    "completed_at": "2026-11-06T07:26:14Z"
+  },
+  {
+    "name": "audit",
+    "status": "in_progress",
+    "conclusion": null,
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698544/job/127769367134",
+    "completed_at": null
+  },
+  {
+    "name": "hero-ux",
+    "status": "in_progress",
+    "conclusion": null,
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698528/job/127769367131",
+    "completed_at": null
+  },
+  {
+    "name": "polish",
+    "status": "in_progress",
+    "conclusion": null,
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698572/job/127769367117",
+    "completed_at": null
+  },
+  {
+    "name": "audit",
+    "status": "in_progress",
+    "conclusion": null,
+    "details_url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/actions/runs/42180698523/job/127769366836",
+    "completed_at": null
+  }
+]

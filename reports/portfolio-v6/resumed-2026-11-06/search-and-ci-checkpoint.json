@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-11-06T07:27:32.560Z",
+  "sitemap": {
+    "sitemaps": [
+      {
+        "path": "https://nischhalsubba.com.np/sitemap.xml",
+        "lastSubmitted": "2026-11-04T15:54:34.695Z",
+        "isPending": false,
+        "isSitemapsIndex": false,
+        "type": "sitemap",
+        "lastDownloaded": "2026-11-04T15:54:40.231Z",
+        "warnings": "0",
+        "errors": "0",
+        "contents": [
+          {
+            "type": "web",
+            "submitted": "53",
+            "indexed": "0"
+          },
+          {
+            "type": "image",
+            "submitted": "132",
+            "indexed": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "handoff": {
+    "inspection_result": {
+      "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:nischhalsubba.com.np&id=-fdWg_tWSgHGWaye0d98GQ&utm_medium=link&utm_source=api",
+      "indexStatusResult": {
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-11-05T07:21:56Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/blog/designing-handoffs-between-people",
+        "userCanonical": "https://nischhalsubba.com.np/blog/designing-handoffs-between-people",
+        "referringUrls": [
+          "https://nischhalsubba.com.np/blog/"
+        ],
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      },
+      "richResultsResult": {
+        "verdict": "PASS",
+        "detectedItems": [
+          {
+            "richResultType": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "pr121": {
+    "head": "4f53fdf9d6f6d44566c00689a48abbd332bbb91e",
+    "mergedCommit": "cb93446f98992771959d0dcffd364edda3c7cf56",
+    "workflowRunIds": [
+      42176383708,
+      42176383670,
+      42176383691,
+      42176383732,
+      42176383726,
+      42176383664
+    ],
+    "allConclusions": "success"
+  }
+}
