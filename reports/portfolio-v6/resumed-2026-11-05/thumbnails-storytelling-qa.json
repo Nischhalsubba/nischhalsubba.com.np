@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-11-06T05:35:10.070Z",
+  "rows": [
+    {
+      "width": 390,
+      "reducedMotion": "reduce",
+      "frames": 14,
+      "aspect": 1.6,
+      "overlaps": 0,
+      "lateLoadStable": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "reducedMotion": "no-preference",
+      "frames": 14,
+      "aspect": 1.6,
+      "overlaps": 0,
+      "lateLoadStable": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "reducedMotion": "reduce",
+      "frames": 14,
+      "aspect": 1.6,
+      "overlaps": 0,
+      "lateLoadStable": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "reducedMotion": "no-preference",
+      "frames": 14,
+      "aspect": 1.6,
+      "overlaps": 0,
+      "lateLoadStable": true,
+      "errors": []
+    }
+  ],
+  "caseStudies": 14
+}

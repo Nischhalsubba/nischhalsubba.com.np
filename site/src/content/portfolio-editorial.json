@@ -7,7 +7,7 @@
       "title": "Orkest HQ",
       "category": "Enterprise SaaS · CRM and shared workspace patterns",
       "role": "UX architecture and product design",
-      "summary": "A shared interface language for business software, with CRM screens that make ownership, qualification and the next action easier to inspect.",
+      "summary": "I designed workspace and CRM patterns that connect finding a lead, capturing its details and carrying its history into conversion.",
       "context": [
         "Orkest brings CRM, sales, inventory and finance into a modular workspace. My challenge was to give that breadth a coherent structure without making every module behave like the same administrative table. A lead, an invoice and a stock movement can share navigation conventions while asking very different questions of the person using them.",
         "My contribution covered the workspace architecture, navigation levels, record and table patterns, action hierarchy and information density. This case uses the current-labeled CRM frames in the supplied primary design file as its visual evidence. Other modules and draft states are part of the broader design context; they are not presented here as completed production features."
@@ -80,7 +80,7 @@
           "Operational filter UX"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can one workspace support different business jobs without making people relearn the interface at every module?",
         "opening": "The CRM story starts before a form is opened: someone needs to recognize which leads require their attention. From there, capture should establish a usable record, and conversion should carry its history forward. I used that path to connect navigation, table hierarchy and action design instead of treating them as separate screens.",
@@ -101,7 +101,7 @@
       "title": "piHub",
       "category": "Fintech · Creditor, investor and administrator journeys",
       "role": "Product design contribution",
-      "summary": "Financial workflows organized around what has been submitted, who needs to act and what remains unresolved.",
+      "summary": "I worked on financial forms and role-based workflows so people can understand what they have submitted, who acts next and why they may need to wait.",
       "context": [
         "piHub spans creditor, investor and administrative experiences. The recurring interaction problem is uncertainty: a person may have supplied information but still be waiting on verification, review or another party. A short status label is useful only when its meaning and the next available action are clear.",
         "My existing portfolio scope covers applications, credit requests, verification, account management and dashboards. I worked on information hierarchy, forms, state language and the relationship between a process state and the action available to each role. The role prototypes are separate artifacts; they do not constitute a synchronized financial application."
@@ -171,7 +171,7 @@
           "Related enterprise workflow work"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How does a financial workflow remain understandable when the next step belongs to another person?",
         "opening": "For piHub, the journey is not a straight line from application to approval. It crosses creditor, investor and administrator roles, and includes legitimate waiting. I organized the case around that handover: make the current state visible, keep each role’s job distinct, and explain what happens when a person cannot continue.",
@@ -192,7 +192,7 @@
       "title": "Yarsha",
       "category": "Mobile · Web3 messaging and wallet context",
       "role": "Product design contribution",
-      "summary": "Keeping contact, asset selection and consequential actions understandable inside a conversational product.",
+      "summary": "I connected contacts, conversations and wallet-related actions in a mobile experience, keeping identity and transaction context visible as the task changes.",
       "context": [
         "Yarsha brings a contact directory, conversation, shared groups and wallet-related actions into one mobile product. Those activities can begin with the same person but require different levels of attention. Finding a friend is lightweight; choosing an asset or inspecting a transaction needs a more deliberate check.",
         "My product-design contribution focused on how those surfaces connect: identity before conversation, context before action, and a clear place to return. The following walkthrough uses complete frames from the supplied Final Mobile Design page. It follows the designed experience rather than claiming that these frames document a research timeline or a shipped financial service."
@@ -292,7 +292,7 @@
           "Transaction review decisions"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can a familiar conversation become the starting point for Web3 actions without making every action feel equally casual?",
         "opening": "The journey begins with a person, not a wallet balance. A contact becomes a conversation; that conversation can lead to shared content, a group or an asset-related action. I organized the case around the moments when the interface needs to preserve familiarity and the moments when it needs to ask for more attention.",
@@ -315,7 +315,7 @@
       "title": "Zapp Today",
       "category": "Mobile logistics · Customer, driver and operations",
       "role": "Mobile product design contribution",
-      "summary": "Different interfaces for people booking a delivery, carrying it out and resolving exceptions around it.",
+      "summary": "I worked on delivery journeys for customers and drivers, with distinct interfaces for describing a parcel, acting on a stop and closing a handoff.",
       "context": [
         "A delivery creates shared state but different priorities. A customer needs to prepare a request and understand what happens next. A driver needs a clear operational task. An operations team needs the context required to investigate an exception. My existing project scope covers these related journeys, rather than one app screen in isolation.",
         "This case uses the supplied Zapp 2.0 customer iOS file as its primary visual source. Historical customer and driver prototypes remain separately labeled. I have not combined those older screens with the newer design and presented the result as one approved release."
@@ -401,7 +401,7 @@
           "Another multi-role product"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can the same delivery feel clear to the person booking it and the person carrying it out?",
         "opening": "I treated the delivery as a shared lifecycle with different viewpoints. A customer first establishes an account and describes the parcel. A driver later needs the current stop and a clear completion boundary. Reading those moments together reveals the handovers that isolated mobile mockups tend to hide.",
@@ -428,7 +428,7 @@
       "title": "Morajaa",
       "category": "B2B consulting · Service and sector website",
       "role": "UX, content structure and website design contribution",
-      "summary": "Helping a prospective client move from a recognizable business problem to a specific consulting service and a useful conversation.",
+      "summary": "I structured a consulting website around the questions a prospective client needs to answer: is this service relevant, what does it involve and what comes next?",
       "context": [
         "Morajaa presents consulting services and sectors to visitors who may know their business problem before they know the consultancy's terminology. My contribution covered information architecture, service and sector page structure, responsive composition and inquiry paths.",
         "The source for this case is the supplied Final Design v2 page. The reviewed example comes from the Market Entry in Saudi Arabia service design. It is a design artifact, not independent verification of the consultancy's legal claims, service performance or client results."
@@ -501,7 +501,7 @@
           "Review website decision paths"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can a visitor evaluate a complex consulting engagement before speaking to sales?",
         "opening": "The useful journey begins with a business situation, not with the consultancy’s service taxonomy. I connected the page sequence around three questions: is this relevant to me, what does the engagement involve, and where can I go next? The complete homepage, service and sector pages show that progression at three levels of detail.",
@@ -522,7 +522,7 @@
       "title": "Masteriyo",
       "category": "WordPress LMS · Collaborative product design",
       "role": "Product UI and UX contribution within a team",
-      "summary": "Designing authoring and learning interactions inside an established LMS, while keeping the contribution boundary clear.",
+      "summary": "I contributed product UI and UX to an established WordPress LMS, focusing on the steps that connect course structure, lesson content and assessments.",
       "context": [
         "Masteriyo brings course creation and learning into an established WordPress LMS. A creator organizes sections, lessons and assessments; a learner encounters the resulting sequence. My product UI and UX contribution was part of the wider team’s work, including course and quiz flows and reusable interaction patterns.",
         "This case follows the authoring side through four screens from the supplied primary file. They are team design artifacts that I have permission to present with attribution. They do not establish sole authorship of the product, or measured changes in learner completion."
@@ -605,7 +605,7 @@
           "Handoff as shared understanding"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How do you help a course author build something complex without making every configuration decision compete at once?",
         "opening": "The authoring journey starts with a blank course, grows into an outline, then narrows into a quiz and its questions. My contribution sits within Masteriyo’s wider product team. The screens below let the case follow that growing complexity while showing how repeated patterns maintain orientation.",
@@ -637,7 +637,7 @@
       "title": "Mokshya.io",
       "category": "AI/Web3 R&D lab · Website communication",
       "role": "Website UX and product communication contribution",
-      "summary": "A retained website design that introduces an AI/Web3 R&D lab, then separates exploration from a project enquiry.",
+      "summary": "I designed a website introduction for an AI/Web3 R&D lab, separating the path to explore its work from the path to start a project enquiry.",
       "context": [
         "The retained Mokshya website preview identifies the business as an AI-Native Web3 R&D Lab. Its opening pairs the headline ‘Empowering Web3 with AI-Native Innovation’ with a sentence about AI agents, applications and Web3 infrastructure. My portfolio contribution is website UX and product communication: the hierarchy of that explanation and the routes a visitor can inspect next.",
         "This account is grounded in the retained website image, whose original capture date is unknown. A fresh working source view was not verified in this review. The screenshot does not establish the operation of an AI agent, a protocol, a wallet or a production deployment; the claims visible inside it remain website copy rather than independently verified capabilities."
@@ -713,7 +713,7 @@
       "title": "Designerex",
       "category": "Luxury fashion rental marketplace",
       "role": "Design contribution within a broader marketplace",
-      "summary": "Balancing image-led fashion discovery with the stable rental information needed to compare listings.",
+      "summary": "I worked on a fashion-rental marketplace where image-led discovery needs clear listing information before someone can compare their options.",
       "context": [
         "Designerex is presented in my existing portfolio as a luxury fashion rental marketplace. The interface has to support interest in a garment and practical evaluation of a rental. Photography can establish desire, but it cannot answer questions about size, availability or terms on its own.",
         "My contribution is limited to browsing and listing patterns, visual hierarchy and the relationship between images and decision details. This case does not claim end-to-end ownership of the marketplace or a measured change in bookings. The account is limited to my part of the browsing and listing experience."
@@ -768,7 +768,7 @@
           "When polish hides a decision problem"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can fashion discovery stay expressive while making rental decisions dependable?",
         "opening": "A rental browse journey moves from attraction to comparison. My contribution focuses on that shift: let photography introduce the garment, give recurring details a stable place, and preserve the browsing context as a person explores. The case stays within that contribution to the wider marketplace.",
@@ -794,7 +794,7 @@
       "title": "Splashnode",
       "category": "Technical platform · Website design and frontend",
       "role": "Website designer and frontend contributor",
-      "summary": "Explaining content, device and data-management capabilities through a website whose design and implementation can inform each other.",
+      "summary": "I connected website design and implementation to explain a digital-signage platform’s content, device and data-management capabilities.",
       "context": [
         "The existing project material describes Splashnode as a technical platform with content, device and data-management capabilities. The website's job is to help a prospective buyer understand where that platform fits before asking them to compare a long list of features.",
         "My contribution spans website composition, capability explanation, responsive behavior and frontend implementation. This case concerns that website experience. It does not establish ownership of the underlying platform software or provide a verified commercial result."
@@ -849,7 +849,7 @@
           "Another design-to-code website"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can a technical platform website help a buyer connect capabilities to a real use case?",
         "opening": "The design path moves from recognizing a task to understanding a capability and choosing a way to evaluate it. Because my contribution includes frontend work, that path also has to survive real text and browser behavior. The website is the scope of this case, separate from the underlying platform.",
@@ -870,7 +870,7 @@
       "title": "Grid Labs",
       "category": "Hosting and infrastructure · Static website",
       "role": "Website and frontend design contribution",
-      "summary": "A hosting offer organized around service fit, plan comparison and a clear route to the next commercial step.",
+      "summary": "I organized a hosting website around service fit, plan comparison and the next commercial step.",
       "context": [
         "Grid Labs is a hosting and infrastructure website in the existing portfolio. A prospective buyer needs to understand which service fits, how plans differ and what information is still required before choosing. Specifications matter, but a specification wall does not provide that sequence by itself.",
         "My contribution covers commercial hierarchy, plan presentation, domain-search affordance, responsive layout and static frontend structure. The case is deliberately scoped to the website. A visible search field does not establish a functioning domain lookup, and a plan card does not prove provisioning or billing capability."
@@ -925,7 +925,7 @@
           "Technical product storytelling"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can a hosting buyer compare plans without carrying every specification in memory?",
         "opening": "The journey is a comparison problem before it is a purchase problem. My website contribution organizes the plan differences, considers what happens when cards stack on mobile, and makes the static frontend’s commercial boundary explicit.",
@@ -956,7 +956,7 @@
       "title": "Hamro Idea",
       "category": "Software studio · Brand, website and frontend",
       "role": "Design and development contribution",
-      "summary": "Connecting a Nepal-based studio's positioning, services, project proof and contact path in one maintainable website.",
+      "summary": "I brought a Nepal-based studio’s positioning, services, project proof and contact path into one maintainable website.",
       "context": [
         "Hamro Idea needed a website that could explain a software studio's offer to a prospective client. The first design question was what a visitor should understand before making contact, not which visual treatment would make the homepage more dramatic.",
         "My existing scope spans positioning, information architecture, responsive UI, reusable sections, semantic markup and frontend implementation. Working across design and code let me inspect the page with real content and adjust its composition before treating the layout as finished."
@@ -1038,7 +1038,7 @@
           "Clearer service websites"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can a software studio make its offer understandable and give a prospect a reason to believe it?",
         "opening": "The website needs to connect three things that often drift apart: what the studio offers, which work supports that offer, and how a prospect starts a relevant conversation. My design and development contribution brings them into one reading path and a reusable frontend structure.",
@@ -1065,7 +1065,7 @@
       "title": "Zakra Furniture",
       "category": "WordPress and Elementor · Furniture starter site",
       "role": "Storefront UI and template design contribution",
-      "summary": "An image-led catalogue designed to remain coherent when real content replaces the demo.",
+      "summary": "I worked on an image-led furniture catalogue, with a page structure intended to stay coherent when real content replaces the demo.",
       "context": [
         "A furniture starter site has two users: the shopper browsing products and the site owner changing the catalogue. The initial composition needs to support both. An attractive demo that depends on identical image crops and short product names is a fragile template.",
         "My existing contribution covers catalogue hierarchy, reusable storefront sections, product-card structure, typography, spacing and CMS-aware choices for WordPress and Elementor. This case does not establish ownership of the whole Zakra platform, a working inventory service or a completed ecommerce backend."
@@ -1120,7 +1120,7 @@
           "Content contracts for reusable UI"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can a furniture starter site remain coherent after a site owner replaces the demo content?",
         "opening": "The polished demo is only the starting condition. My template design contribution considers what happens next: mixed photography enters the catalogue, product names wrap, and the site owner changes sections. This case follows those pressures from image treatment to the editing system.",
@@ -1147,7 +1147,7 @@
       "title": "Neverwinter Live Parser",
       "category": "Personal tooling · Combat-log information design",
       "role": "Product design and frontend tooling",
-      "summary": "Turning an event stream into an inspectable summary without making clean numbers look more certain than the underlying data.",
+      "summary": "I worked on an event-stream parser that makes activity inspectable while keeping the limits of its underlying data visible.",
       "context": [
         "A combat parser sits between raw events and a player's explanation of an encounter. The interface needs to group and summarize information while retaining enough context to judge what a number represents. A polished total is not useful if the player cannot tell which encounter, actor, filter or time range produced it.",
         "The public implementation is a Windows-oriented Electron application with a React renderer. Its repository separates parsing, encounter aggregation and renderer view-model tests. My portfolio scope concerns the information model, summary hierarchy and implementation-aware tooling; this is a personal project, separate from ownership of Neverwinter or its game data."
@@ -1207,7 +1207,7 @@
           "Related developer tooling"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "How can a combat summary make complex events readable without hiding the assumptions behind its numbers?",
         "opening": "The useful journey is from an encounter overview to the events behind a question. My information-design and frontend work focuses on keeping that connection inspectable, then making incomplete input distinguishable from a real zero. Code and calculation fixtures are the relevant artifacts for this personal tool.",
@@ -1246,7 +1246,7 @@
       "title": "SassBoilerplate",
       "category": "Archived frontend learning · Sass and build workflow",
       "role": "Frontend learning and starter-workflow adaptation",
-      "summary": "A learning archive that traces a small Sass structure through an existing Gulp-based build, with its upstream origin kept explicit.",
+      "summary": "I adapted a small Sass and Gulp starter as a learning project, keeping the original kit’s provenance explicit.",
       "context": [
         "SassBoilerplate is an earlier frontend learning archive, not an independently authored framework. The archived README identifies it as a historical copy of JR Cologne’s Gulp Starter Kit, with Sass, Pug, Babel, BrowserSync and image-processing tasks. That provenance is part of the project, not a detail to omit from the portfolio.",
         "The useful story is what the files make inspectable: an entry point, a small shared import layer and build tasks that turn authored assets into output. My contribution is presented as learning and adaptation around that workflow, rather than ownership of the upstream kit or a maintained npm package."
@@ -1306,7 +1306,7 @@
           "Related personal tooling"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "journey": {
         "question": "What did a small starter workflow teach me about making frontend structure understandable?",
         "opening": "This case is a deliberately modest learning story. Start at the Sass entry, follow the shared import into base rules, then look at how the build transforms the files. The archive makes that path inspectable without turning a borrowed starter into a claim of original framework authorship.",

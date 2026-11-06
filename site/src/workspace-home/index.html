@@ -1056,8 +1056,8 @@ canvas.dio{position:absolute;inset:0;width:100%;height:100%;display:block;pointe
 .wk-world .flow .wdot,.wk-world .flow .warr{fill:#0D99FF}
 .wk-world .flow g{transition:opacity .4s}
 .wf{position:absolute;border-radius:6px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.wf .wsh{position:absolute;inset:0;border-radius:6px;overflow:hidden;background:#111;box-shadow:0 0 0 2px rgba(255,255,255,.1);transition:box-shadow .3s,filter .5s}
-.wf .wsh img,.wf .wsh video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.wf .wsh{position:absolute;inset:0;border-radius:6px;overflow:hidden;background:radial-gradient(ellipse at 20% 15%,#192638,transparent 70%),linear-gradient(135deg,#101820,#181424);box-shadow:0 0 0 2px rgba(255,255,255,.1);transition:box-shadow .3s,filter .5s}
+.wf .wsh img,.wf .wsh video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;box-sizing:border-box;padding:48px;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .wf .wsh video{opacity:0;transition:opacity .5s}
 .wf.on.is-hover.vid-on .wsh video,.wf.on.va.vid-on .wsh video{opacity:1}   /* a project video shows while the selected card is hovered; a video-only project shows it on its own */
 .wf:not(.on) .wsh{filter:brightness(.3) saturate(.65)}
@@ -2844,7 +2844,7 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize scenes in ordered gro
     const esc = s => String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const metaLine = w => [w.k, w.pl, w.y].filter(Boolean).join(' · ');
     const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
-    const FW = 1200, ar = W.map(() => 1.6);
+    const FW = 1200, FRAME_ASPECT = 1.6;
     const G = W.map((_, i) => { const row = Math.floor(i / 2), col = i % 2; return [col * 1.42 + (row % 2) * .1, row * 1.3 + col * .18]; });
     const ICON = '<svg class="wci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l4 4-4 4-4-4zM5.5 8l4 4-4 4-4-4zM18.5 8l4 4-4 4-4-4zM12 14.5l4 4-4 4-4-4z" fill="currentColor"/></svg>';
     world.innerHTML = W.map((w, i) => `<div class="wf${w.va && w.vid ? ' va' : ''}" data-i="${i}"><span class="wlbl">${ICON}<span>${esc(w.n)}</span></span><div class="wsh"><img src="${esc(w.img)}" alt="${esc(w.n)}" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async">` +
@@ -2853,7 +2853,7 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize scenes in ordered gro
       `<a class="whit" href="${esc(w.url || '#contact')}"${w.url ? ' target="_blank" rel="noopener"' : ''} data-wk="${esc(w.n)}" aria-label="${esc(ctaFor(w.url, w.cta))}: ${esc(w.n)}${w.url ? ', opens ' + esc(hostOf(w.url)) : ''}" tabindex="-1"></a></div>`).join('');
     const frames = $$('.wf', world), vids = frames.map(f => f.querySelector('video'));
     const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'flow'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('width', 1); svg.setAttribute('height', 1); world.prepend(svg);
-    const box = i => { const [gx, gy] = G[i]; return { x: gx * FW, y: gy * FW / 1.45, w: FW, h: FW / ar[i] }; };
+    const box = i => { const [gx, gy] = G[i]; return { x: gx * FW, y: gy * FW / 1.45, w: FW, h: FW / FRAME_ASPECT }; };
     const view = i => { const r = box(i); return { x: r.x - 20, y: r.y - 60, w: r.w + 40, h: r.h + 120 }; };
     let flows = [];
     const build = () => {
@@ -2874,7 +2874,6 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize scenes in ordered gro
       workNearby = entries.some(e => e.isIntersecting);
       if (workNearby && !workReady) { build(); workReady = true; }
     }, { rootMargin: '600px' }).observe(wrap);
-    frames.forEach((f, i) => { const im = f.querySelector('img'); const got = () => { if (im.naturalWidth) { ar[i] = im.naturalWidth / im.naturalHeight; if (workReady) build(); } }; im.complete ? got() : im.addEventListener('load', got); });
     wrap.style.height = (W.length * 140 + 60) + 'vh';
     $('#wkNt').textContent = '/ ' + String(W.length).padStart(2, '0');
     const canHover = matchMedia('(hover:hover) and (pointer:fine)').matches;
