@@ -16,6 +16,7 @@ const inventory = JSON.parse(fs.readFileSync(path.join(dist, 'workspace-inner/ro
 const files = ['index.html', ...inventory.map(route => route.file)];
 const evidenceImages = JSON.parse(fs.readFileSync(path.join(root, 'src/content/portfolio-evidence-images.json'), 'utf8'));
 const publicCaptures = require('./public-site-captures.cjs');
+const { articles: editorialArticles } = require('./editorial/render.cjs');
 const searchMetadata = JSON.parse(fs.readFileSync(path.join(root, 'src/content/search-metadata.json'), 'utf8'));
 const fontDirectory = path.join(root, 'src/workspace-home/vendor/fonts.gstatic.com');
 const fontFiles = fs.readdirSync(fontDirectory).filter(file => file.endsWith('.ttf')).map(file => path.join(fontDirectory, file));
@@ -100,7 +101,10 @@ for (const file of files) {
   }
   const editorialRevision = html.match(/data-editorial-revision="(\d{4}-\d{2}-\d{2})"/)?.[1];
   if (isArticle && editorialRevision) html = setMeta(html, 'property', 'article:modified_time', editorialRevision);
-  const coverSrc = contentImages.find(/** Callback contract: Keep context-only issuer references out of primary social covers. Inputs: image record. Side effects: none. Returns: preview eligibility. */ image => image.useAsPreview !== false)?.socialSrc || (isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null);
+  const leadId = isArticle ? editorialArticles.find(article => file === 'blog/' + article.slug + '.html')?.leadEvidence : null;
+  const lead = leadId ? [...evidenceImages, ...publicCaptures.captures].find(image => image.id === leadId) : null;
+  const leadSrc = leadId === 'owner-portrait' ? '/workspace-home/assets/portrait-source.png' : lead?.socialSrc;
+  const coverSrc = leadSrc || contentImages.find(/** Callback contract: Keep context-only issuer references out of primary social covers. Inputs: image record. Side effects: none. Returns: preview eligibility. */ image => image.useAsPreview !== false)?.socialSrc || (isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null);
   const cardBytes = card(file === 'index.html' ? 'Nischhal Raj Subba' : heading, description, category, coverSrc ? path.join(dist, coverSrc) : null);
   const cardName = `${slug}-${crypto.createHash('sha256').update(cardBytes).digest('hex').slice(0,12)}.png`;
   const imageUrl = `${site}/assets/workspace-social/${cardName}`;

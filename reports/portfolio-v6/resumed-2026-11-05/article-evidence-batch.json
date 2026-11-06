@@ -1,0 +1,17 @@
+{
+  "scope": "27 distinct article leads; T68 code complete, CI pending; T56/T58/T66 still open for full acceptance",
+  "validation": [
+    "full npm validate passed before final fixed-frame CSS refinement",
+    "final lint, CSS architecture, workspace-inner, editorial and smoke checks passed",
+    "27 selected source hashes verified; all27 cards contain original images in16:10frames with visible focus at390/1440;8new contextual sections pass placement/nooverflow checks"
+  ],
+  "review": "read-only review found no material source/ownership issues; portrait format conversion pixel-identical",
+  "testContextNote": "Standalone legacy design-system audit was mistakenly run after the final workspace installer and reported expected legacy-runtime mismatches. The supported full validate sequence had passed that audit at its intended legacy stage. Final workspace audits passed; no source change made to silence it.",
+  "portrait": {
+    "original": "site/src/workspace-home/assets/portrait.webp",
+    "png": "site/src/workspace-home/assets/portrait-source.png",
+    "purpose": "Lossless format conversion for source-led social preview; no retouch or pixel editing",
+    "sourceSha256": "6de71f96f93cd310bce284222856df254aa17c89a09b0b3dbcfedb96d6da3c34",
+    "pngSha256": "2047b6e69980f83e53345a7c7ea0ec1b96134e3c2417b6ed89e9bf01de44a6a4"
+  }
+}

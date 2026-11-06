@@ -72,7 +72,8 @@
           "Follow the Masteriyo authoring design journey"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "leadEvidence": "masteriyo-question-editor"
     },
     {
       "slug": "design-systems-small-product-teams",
@@ -161,7 +162,8 @@
           "Contribution inside an established product"
         ]
       ],
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-04",
+      "leadEvidence": "orkest-conversion-readiness"
     },
     {
       "slug": "blog-service-websites",
@@ -245,7 +247,8 @@
           "/website-ux-design",
           "Website UX design"
         ]
-      ]
+      ],
+      "leadEvidence": "morajaa-service-process"
     },
     {
       "slug": "blog-portfolio-product",
@@ -304,7 +307,8 @@
           "Discuss a product"
         ]
       ],
-      "updatedAt": "2026-11-06"
+      "updatedAt": "2026-11-06",
+      "leadEvidence": "portfolio-published-baseline"
     },
     {
       "slug": "blog-gaming-interface-clarity",
@@ -365,13 +369,21 @@
           "Other information-design work"
         ]
       ],
-      "updatedAt": "2026-11-06"
+      "updatedAt": "2026-11-06",
+      "leadEvidence": "neverwinter-public-setup"
     },
     {
       "slug": "hire-product-designer-nepal-saas-web3",
       "intent": "Help a hiring team evaluate a Nepal-based product designer for complex software",
       "dek": "Evaluate the work against your product's decisions, collaboration needs and evidence gaps. Location is one practical consideration; it should not substitute for examining the contribution.",
       "sections": [
+        {
+          "heading": "Meet the person behind the work",
+          "paragraphs": [
+            "I am Nischhal Raj Subba, a Senior Product Designer based in Nepal and available for remote work. The portrait identifies the author; the case studies and contribution records are the evidence to evaluate for a particular role."
+          ],
+          "ownerPortrait": true
+        },
         {
           "heading": "Start with the kind of complexity you need help with",
           "paragraphs": [
@@ -452,7 +464,8 @@
           "Discuss the role or project"
         ]
       ],
-      "updatedAt": "2026-11-06"
+      "updatedAt": "2026-11-06",
+      "leadEvidence": "owner-portrait"
     },
     {
       "slug": "blog-web3-products",
@@ -512,7 +525,8 @@
           "Web3 UX design"
         ]
       ],
-      "updatedAt": "2026-11-05"
+      "updatedAt": "2026-11-05",
+      "leadEvidence": "wallet-adapter-gallery"
     },
     {
       "slug": "web3-wallet-connection-ux",
@@ -605,7 +619,8 @@
           "Wallet-related product UX"
         ]
       ],
-      "updatedAt": "2026-11-05"
+      "updatedAt": "2026-11-05",
+      "leadEvidence": "wallet-adapter-chooser"
     },
     {
       "slug": "transaction-review-ux-crypto-apps",
@@ -704,7 +719,8 @@
           "Web3 product design"
         ]
       ],
-      "updatedAt": "2026-11-05"
+      "updatedAt": "2026-11-05",
+      "leadEvidence": "yarsha-transaction-detail"
     },
     {
       "slug": "web3-wallet-ux-checklist",
@@ -809,7 +825,8 @@
           "Yarsha design evidence"
         ]
       ],
-      "updatedAt": "2026-11-05"
+      "updatedAt": "2026-11-05",
+      "leadEvidence": "yarsha-recipient-selection"
     }
   ]
 }

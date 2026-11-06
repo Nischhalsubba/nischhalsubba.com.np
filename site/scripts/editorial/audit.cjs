@@ -18,6 +18,7 @@ assert.equal(projects.length, 14);
 assert.equal(articles.length, 27);
 assert.equal(new Set(articles.map(article => article.intent)).size, articles.length, 'Retained articles need distinct declared intents');
 assert.equal(new Set(articles.map(article => article.slug)).size, articles.length);
+assert.equal(new Set(articles.map(article => article.leadEvidence)).size, 27, 'Each article needs a distinct authentic lead source');
 const used = new Set();
 for (const data of [...projects, ...articles]) {
   const isProject = Boolean(data.decisions);
@@ -57,6 +58,12 @@ for (const data of [...projects, ...articles]) {
     }
   }
   if (!isProject) {
+    const lead = images.find(image => image.id === data.leadEvidence) || publicCaptures.captures.find(image => image.id === data.leadEvidence);
+    assert.ok(lead || data.leadEvidence === 'owner-portrait', 'Known article lead evidence: ' + data.slug);
+    if (lead) {
+      assert.notEqual(lead.useAsPreview, false, 'Context-only evidence cannot become a lead');
+      assert.ok(html.includes(`data-evidence-image="${lead.id}"`) || html.includes(`data-site-capture="${lead.id}"`), 'Lead source must appear with article context');
+    } else assert.match(html, /Owner-approved portrait identifying the author/);
     assert.match(html, /rel="author">Nischhal Raj Subba/);
     assert.ok(html.includes(`<time datetime="${updated}">`));
     assert.ok(html.includes(`property="article:modified_time" content="${updated}"`));
