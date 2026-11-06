@@ -1,0 +1,69 @@
+{
+  "checkedAt": "2026-11-05T17:06:07.867Z",
+  "results": [
+    {
+      "route": "project-grid-labs",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "projects",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-grid-labs",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "projects",
+      "width": 390,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-grid-labs",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "projects",
+      "width": 768,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "project-grid-labs",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    },
+    {
+      "route": "projects",
+      "width": 1440,
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "axeViolations": 0
+    }
+  ]
+}

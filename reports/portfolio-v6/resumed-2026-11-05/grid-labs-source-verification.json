@@ -1,0 +1,19 @@
+{
+  "checkedLocalEvidenceAt": "2026-11-05T16:58:35.542616+00:00",
+  "publicSource": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+  "sourceRepository": "https://github.com/Nischhalsubba/Grid-Labs-Hosting",
+  "sourceCommit": "4b056e7a4a4ab56fd53abd6c26feb98bd2e4b668",
+  "publicAndLocalHtmlIdentical": true,
+  "htmlSha256": "9178d57b8c2b672ed8b645ffb1f95b705cb518899c838f2248622f807f081433",
+  "viewportRun": "../acquisition/grid-labs-public-top-20261105/manifest.json",
+  "fullPageRun": "../acquisition/grid-labs-public-full-top-20261105/manifest.json",
+  "visualReview": "Desktop/mobile top viewports and desktop full-page visually inspected; legacy placeholders and minor source imperfections remain unchanged. Reviewer confirms one public capture and both earlier source images retained separately. Eight final-build route/viewport checks pass.",
+  "publicationStatus": "INTEGRATED_ON_REVIEW_BRANCH_NOT_MERGED",
+  "publicRepository": {
+    "default_branch": "main",
+    "full_name": "Nischhalsubba/Grid-Labs-Hosting",
+    "html_url": "https://github.com/Nischhalsubba/Grid-Labs-Hosting",
+    "owner": "Nischhalsubba",
+    "visibility": "public"
+  }
+}

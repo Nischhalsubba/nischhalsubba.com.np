@@ -1,0 +1,36 @@
+[
+  {
+    "source": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+    "finalUrl": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T16:53:22.993Z",
+    "filename": "1440.png",
+    "sha256": "923727148cf995ca59472384a291391ada7aa153c3f260b41cd3ec918b6b3267",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  },
+  {
+    "source": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+    "finalUrl": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-05T16:53:30.831Z",
+    "filename": "390.png",
+    "sha256": "9d8b837f2b28f1983cec8097459e9b0d0a937693be38b35956bb92f30262cf79",
+    "status": "CAPTURED_NEEDS_VISUAL_AND_RIGHTS_REVIEW",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [],
+    "failedResources": []
+  }
+]

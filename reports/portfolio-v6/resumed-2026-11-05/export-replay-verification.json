@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "scripts": [
+    "export-hamro-capture.py",
+    "export-grid-capture.py"
+  ],
+  "registrySha256Unchanged": "b67550c090c27ae6d22a9a0108f39cf15cb2e08b68425d7bbb6fdc7fc087dee7",
+  "assetCount": 10,
+  "assetBytesUnchanged": true
+}
