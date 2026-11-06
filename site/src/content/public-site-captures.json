@@ -322,5 +322,155 @@
     "socialSrc": "/assets/images/site-captures/wallet-adapter-gallery-b8bb01de33c1-original.png",
     "fullOriginal": "/assets/images/site-captures/wallet-adapter-gallery-b8bb01de33c1-original.png",
     "processing": "Original complete desktop viewport retained. WebP derivatives only resize and encode the whole image; no invented UI or content changes."
+  },
+  {
+    "id": "neverwinter-public-setup",
+    "kind": "OWNER_PUBLIC_SOURCE_CAPTURE",
+    "route": "/project-neverwinter-parser",
+    "sourceUrl": "https://neverwinter-live-parser.vercel.app/",
+    "capturedAt": "2026-11-05T18:28:01.601Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "previewHeading": "Public browser setup state",
+    "evidenceLabel": "Public browser setup state",
+    "sourceLinkLabel": "Open the actual public source",
+    "originalLinkLabel": "Open the complete original viewport",
+    "permission": "OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE",
+    "roleBoundary": "This independently captured public browser view is idle, with no player or combat log connected. Recorded-log analysis is offered; live folder monitoring and auto-detect require the Electron desktop app. No gameplay, Windows integration or performance outcome was verified.",
+    "sourceDiagnostics": {
+      "errors": [],
+      "failedResources": [],
+      "layoutOverflow": 0
+    },
+    "alt": "Neverwinter Live Parser public browser setup screen shows idle status, no connected combat log and a browser-mode notice that live monitoring requires Electron.",
+    "caption": "Public browser setup state, independently captured on 6 November 2026. This independently captured public browser view is idle, with no player or combat log connected. Recorded-log analysis is offered; live folder monitoring and auto-detect require the Electron desktop app. No gameplay, Windows integration or performance outcome was verified.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "8dc9361ca22ae7c99bfa25c9a20fefe278da5ed82f4bb43daa75d6c059d312c9",
+        "bytes": 31548
+      },
+      {
+        "src": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "c02017bf3f88e8d4d80769b8a4bc74ad081855cd92b59e30d0cb5502f4ddfbf9",
+        "bytes": 57018
+      },
+      {
+        "src": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "1ea3c6b4d4c566917c2b2af5fb4ac6e0b9e4d6b2720b8f959148c91f58e09960",
+        "bytes": 94154
+      }
+    ],
+    "sourceSha256": "c017c10b437b6b06ff4f9bbceba4e85d5deb6ba738460ee0564f859834dcb40c",
+    "fullOriginalSha256": "c017c10b437b6b06ff4f9bbceba4e85d5deb6ba738460ee0564f859834dcb40c",
+    "socialSrc": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png",
+    "fullOriginal": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png",
+    "processing": "Reused unchanged full-viewport PNG; WebP variants resize and encode its complete composition. No UI or image content altered."
+  },
+  {
+    "id": "sass-public-code",
+    "kind": "OWNER_PUBLIC_SOURCE_CAPTURE",
+    "route": "/project-sassboilerplate",
+    "sourceUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
+    "capturedAt": "2026-11-05T18:29:06.811Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "previewHeading": "Public source artifact",
+    "evidenceLabel": "Public source artifact",
+    "sourceLinkLabel": "Open the actual public source",
+    "originalLinkLabel": "Open the complete original viewport",
+    "permission": "OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE",
+    "roleBoundary": "This is the actual public source-code viewer for the archived Sass entry point, not a running application or evidence that the current starter builds. GitHub interface styling is not my product design.",
+    "sourceDiagnostics": {
+      "errors": [],
+      "failedResources": [],
+      "layoutOverflow": 0
+    },
+    "alt": "Owner SassBoilerplate repository shows the archived app.sass entry point and its shared includes import in the actual GitHub source viewer.",
+    "caption": "Public source artifact, independently captured on 6 November 2026. This is the actual public source-code viewer for the archived Sass entry point, not a running application or evidence that the current starter builds. GitHub interface styling is not my product design.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/sass-public-code-a085d48fad9b-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "77dde20365445a58bfa3f9168602d4172adc026e98b12029556362a921790055",
+        "bytes": 12518
+      },
+      {
+        "src": "/assets/images/site-captures/sass-public-code-a085d48fad9b-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "0d66e00c963c364df69616ceb056b6bf9ba2c833c9058582cc3925d7b5db051c",
+        "bytes": 22222
+      },
+      {
+        "src": "/assets/images/site-captures/sass-public-code-a085d48fad9b-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "72f67d30e41e7172037b0df07ee99ae93f61764f46ea46635a8924935c79a585",
+        "bytes": 37832
+      }
+    ],
+    "sourceSha256": "a085d48fad9b68d8b8305c9a5858fc625a64dcdbcc1ef382c636997abb00cb83",
+    "fullOriginalSha256": "a085d48fad9b68d8b8305c9a5858fc625a64dcdbcc1ef382c636997abb00cb83",
+    "socialSrc": "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png",
+    "fullOriginal": "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png",
+    "processing": "Reused unchanged full-viewport PNG; WebP variants resize and encode its complete composition. No UI or image content altered."
+  },
+  {
+    "id": "portfolio-published-baseline",
+    "kind": "REUSED_VERIFIED_OWNER_CAPTURE",
+    "route": "/blog/blog-portfolio-product",
+    "sourceUrl": "https://nischhalsubba.com.np/",
+    "capturedAt": "2026-11-05T12:54:58.015Z",
+    "captureTimestampPrecision": "Timestamp of the completed production-browser batch manifest, not an exact shutter timestamp.",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "permission": "OWNER_REQUESTED_PUBLIC_PROJECT_CAPTURE",
+    "sourceLinkLabel": "Open the current portfolio (may differ from this dated view)",
+    "originalLinkLabel": "Open the complete original published-site viewport",
+    "roleBoundary": "Dated first-party portfolio homepage reference from the verified published baseline. It is not independent proof of historical product authorship, r\u00e9sum\u00e9 duration or a newly deployed review branch.",
+    "alt": "Published Nischhal portfolio homepage showing the approved dark visual identity, portrait, name, product designer role and opening portfolio introduction.",
+    "caption": "My published portfolio homepage, captured in the 5 November 2026 production-browser batch. This dated first-party reference shows the approved presentation before the current review changes; it is not independent proof of experience or historical project authorship.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "ddab8f69ba9cc5afde63ae2fb450b92cc70584b4d07c843392d1600ee0d94ef0",
+        "bytes": 31192
+      },
+      {
+        "src": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "ac4e7ac94789e2c231eddd4140ed3140c792c8ce101a202479c47428f84facce",
+        "bytes": 57320
+      },
+      {
+        "src": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "60cfa94dcf2979dcac089ba63113aef6410c3796da23ea4aee419e1281d6dc18",
+        "bytes": 99838
+      }
+    ],
+    "sourceSha256": "d80cfa9926281673059723fd1ce4d20918bfada5c0ebadd6d913062526a97a6e",
+    "fullOriginalSha256": "d80cfa9926281673059723fd1ce4d20918bfada5c0ebadd6d913062526a97a6e",
+    "socialSrc": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-original.png",
+    "fullOriginal": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-original.png",
+    "processing": "Reused unchanged full-viewport PNG; WebP variants resize and encode its complete composition. No UI or image content altered."
   }
 ]

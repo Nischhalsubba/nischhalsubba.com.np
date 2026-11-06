@@ -1116,8 +1116,8 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-real-image-qa;nrs-media-evidence;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Independently captured public Grid Labs implementation and preserved older artwork separately. Clean original viewport/full-page runs, source-commit/HTML parity, truthful legacy-placeholder scope and unchanged responsive exports recorded; this does not close all-project/article media coverage.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/grid-labs-source-verification.json; resumed-2026-11-05/grid-batch-qa.json",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Independently captured public Grid Labs implementation and preserved older artwork separately. Clean original viewport/full-page runs, source-commit/HTML parity, truthful legacy-placeholder scope and unchanged responsive exports recorded; this does not close all-project/article media coverage. Explicit 41-page selection plan records source/rights/hash/alt and reuse counts; all 27 articles now have relevant actual image references. Reused sources are flagged rather than claimed distinct; remaining source-pending cases stay open.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/grid-labs-source-verification.json; resumed-2026-11-05/grid-batch-qa.json; resumed-2026-11-05/media-selection-plan.json",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1133,11 +1133,11 @@
       "depends_on": "T56",
       "acceptance_criteria": "Codex-captured original with verified URL/Figma source, UTC, hash and responsive derivatives; uploaded historical screenshot NOT mandatory final; blocked if inaccessible",
       "evidence_status": "Owner screenshot reference only; no independent live/source screenshot verified",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-media-evidence;nrs-real-image-qa;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Recovered exact official ThemeGrill Zakra Furniture original through the official catalog/helper source. Verified repository blob SHA against original bytes, GPL-3.0 license, original image dimensions and native browser image resource. Credited desktop catalog reference and uncropped responsive exports pass full validation and 32 media viewport checks. No current live-template/mobile functionality or individual historical authorship claim.",
+      "evidence": "acquisition/zakra-official-original-20261105/source-verification.json; acquisition/zakra-official-image-native-20261105/manifest.json; resumed-2026-11-05/media-batch-qa.json; resumed-2026-11-05/media-batch-validation.log",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1176,8 +1176,8 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-real-image-qa;nrs-content-and-cases;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Explicit 41-page selection plan records source/rights/hash/alt and reuse counts; all 27 articles now have relevant actual image references. Reused sources are flagged rather than claimed distinct; remaining source-pending cases stay open.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/media-selection-plan.json",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1196,8 +1196,8 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-real-image-qa;nrs-media-evidence;nrs-content-and-cases;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Independently captured public Grid Labs implementation and preserved older artwork separately. Clean original viewport/full-page runs, source-commit/HTML parity, truthful legacy-placeholder scope and unchanged responsive exports recorded; this does not close all-project/article media coverage.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/grid-labs-source-verification.json; resumed-2026-11-05/grid-batch-qa.json",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Independently captured public Grid Labs implementation and preserved older artwork separately. Clean original viewport/full-page runs, source-commit/HTML parity, truthful legacy-placeholder scope and unchanged responsive exports recorded; this does not close all-project/article media coverage. Explicit 41-page selection plan records source/rights/hash/alt and reuse counts; all 27 articles now have relevant actual image references. Reused sources are flagged rather than claimed distinct; remaining source-pending cases stay open.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/grid-labs-source-verification.json; resumed-2026-11-05/grid-batch-qa.json; resumed-2026-11-05/media-selection-plan.json",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1556,8 +1556,8 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Explicit 41-page selection plan records source/rights/hash/alt and reuse counts; all 27 articles now have relevant actual image references. Reused sources are flagged rather than claimed distinct; remaining source-pending cases stay open.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/media-selection-plan.json",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1873,11 +1873,11 @@
       "depends_on": "T90",
       "acceptance_criteria": "Owner-approved portrait has crawlable local image URL/alt/metadata; third-party images scoped as uncontrolled",
       "evidence_status": "SITE_SOURCE_AND_USER_SCREENSHOT_OBSERVED",
-      "status": "NOT_STARTED",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-search-appearance;nrs-real-image-qa;nrs-media-evidence",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Normal browser request confirms public owner portrait HTTP 200 and identical local/published SHA256 at 540x720. Existing descriptive alt and Person.image point to the crawlable first-party URL. No replacement, invented photographer/date or Google image selection claim.",
+      "evidence": "resumed-2026-11-05/portrait-source-verification.json; site/scripts/finalize-workspace-seo.cjs; site/src/workspace-home/index.html",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -2142,6 +2142,6 @@
       "confidence": "CONFIRMED_SOURCE"
     }
   ],
-  "updated_at": "2026-11-05T18:49:59.793341+00:00",
+  "updated_at": "2026-11-05T18:56:45.040584+00:00",
   "scope_note": "All 107 tickets tracked. Reopened stale network blockers; not-started and in-progress do not imply blocked or complete. DONE_VERIFIED applies only to stated ticket acceptance. New source changes await release verification; full-program signoff is not claimed. Latest owner instruction: no automatic merge or deploy."
 }
