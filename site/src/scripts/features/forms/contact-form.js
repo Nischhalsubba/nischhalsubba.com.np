@@ -326,6 +326,23 @@ export async function sendPayload(endpoint, form, signal) {
 
 
 /**
+ * Function contract: recordContactSuccess
+ * Purpose: Count a backend-accepted inquiry without exposing submitted fields.
+ * Inputs: `transport` - first_party or fallback; no form or visitor data.
+ * Side effects: Dispatches a browser event and calls only already-configured analytics providers.
+ * Returns: Nothing; measurement errors never change successful delivery into failure.
+ */
+export function recordContactSuccess(transport) {
+  const detail = { page_path: '/contact', transport: transport === 'first_party' ? 'first_party' : 'fallback' };
+  try {
+    window.dispatchEvent(new CustomEvent('nrs:analytics', { detail: { name: 'contact_success', ...detail } }));
+    if (typeof window.gtag === 'function') window.gtag('event', 'contact_success', detail);
+    else if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: 'contact_success', ...detail });
+    if (typeof window.plausible === 'function') window.plausible('contact_success', { props: detail });
+  } catch { /* Measurement is optional after confirmed backend acceptance. */ }
+}
+
+/**
  * Function contract: initContactForm
  * Purpose: Initialize contact form for the contact form browser feature, including the listeners/state needed for safe runtime use.
  * Inputs: None; derives required state from its enclosing module/runtime context.
@@ -416,6 +433,9 @@ export function initContactForm() {
       form.querySelectorAll('[aria-invalid="true"]').forEach(clearFieldError);
       if (window.turnstile && turnstile.widgetId !== null) window.turnstile.reset(turnstile.widgetId);
       setStatus(result.message || 'Thanks. Your message is on its way. I’ll reply as soon as I can.', 'success');
+      if (result.accepted === true || (!useFirstParty && (result.success === true || result.success === 'true'))) {
+        recordContactSuccess(useFirstParty ? 'first_party' : 'fallback');
+      }
     } catch (error) {
       console.error('[portfolio] contact form submission failed', error);
       const message = error?.name === 'AbortError'

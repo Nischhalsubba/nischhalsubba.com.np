@@ -12,6 +12,9 @@ const source = (await readFile(new URL('../functions/api/contact.js', import.met
  .replace("import { EmailMessage } from 'cloudflare:email';", 'class EmailMessage { constructor(from, to, raw) { Object.assign(this, {from,to,raw}); } }');
 const { onRequestPost } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
 const originalFetch = globalThis.fetch;
+const originalLog = console.log;
+const events = [];
+console.log = events.push.bind(events);
 let sent = [];
 const env = {TURNSTILE_SECRET_KEY:'test-secret', CONTACT_EMAIL:{
  /** Function contract: send
@@ -34,11 +37,18 @@ try {
  const brief = await onRequestPost({request:request(payload),env});
  assert.equal(brief.status,200); assert.equal(sent[0].to,'hinischalsubba@gmail.com');
  assert.match(sent[0].raw,/Reply-To: visitor@example.com/);
+ assert.equal((await brief.json()).accepted, true);
+ assert.deepEqual(JSON.parse(events.pop()), {type:'portfolio_event', event:'contact_success', path:'/contact', context:'first_party', metric:'', value:1});
+ const sentBeforeHoney = sent.length;
+ const honey = await onRequestPost({request:request({...payload, _honey:'bot'}),env});
+ assert.deepEqual(await honey.json(), {ok:true});
+ assert.equal(sent.length, sentBeforeHoney);
+ assert.equal(events.length, 0);
  assert.equal((await onRequestPost({request:request(payload,'https://attacker.example'),env})).status,403);
  const before=sent.length;
  globalThis.fetch = async()=>Response.json({success:true,hostname:'attacker.example'});
  assert.equal((await onRequestPost({request:request(payload),env})).status,403);
  assert.equal(sent.length,before);
  assert.equal((await onRequestPost({request:request(payload),env:{}})).status,503);
-} finally {globalThis.fetch=originalFetch;}
+} finally {globalThis.fetch=originalFetch; console.log=originalLog;}
 console.log('Contact handler: brief delivery, fixed recipient, reply-to, origin and challenge verification passed.');

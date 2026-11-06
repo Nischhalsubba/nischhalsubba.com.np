@@ -21,10 +21,13 @@ const ANALYTICS_EVENTS = new Set([
   'resume_download',
   'contact_start',
   'contact_submit',
-  'contact_success',
   'external_profile_click',
   'performance_metric',
 ]);
+
+const ANALYTICS_PATHS = new Set(LEGACY_REDIRECTS.values());
+const ANALYTICS_CONTEXTS = new Set(['homepage', 'case_study', 'article', 'contact', 'first_party', 'fallback', 'navigation', 'proof', 'resume', 'service']);
+const ANALYTICS_METRICS = new Set(['LCP', 'INP', 'CLS', 'FCP', 'TTFB', 'TBT']);
 
 const MOTION_RUNTIME_ASSETS = new Map([
   ['/runtime/gsap/gsap-3.15.0.min.js', 'https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js'],
@@ -135,11 +138,15 @@ async function recordAnalytics(request) {
   const event = String(payload?.event || '');
   if (!ANALYTICS_EVENTS.has(event)) return analyticsResponse(400);
 
-  const pathName = String(payload?.path || '/').slice(0, 160);
-  const context = String(payload?.context || '').slice(0, 80);
-  const metric = String(payload?.metric || '').slice(0, 40);
+  let pathName = '/';
+  try {
+    const candidate = new URL(String(payload?.path || '/'), 'https://portfolio.invalid').pathname;
+    if (ANALYTICS_PATHS.has(candidate)) pathName = candidate;
+  } catch { /* Unknown paths are aggregated at the root, never logged verbatim. */ }
+  const context = ANALYTICS_CONTEXTS.has(payload?.context) ? payload.context : 'unknown';
+  const metric = event === 'performance_metric' && ANALYTICS_METRICS.has(payload?.metric) ? payload.metric : '';
   const numericValue = Number(payload?.value);
-  const value = Number.isFinite(numericValue) ? numericValue : 1;
+  const value = metric && Number.isFinite(numericValue) ? Math.max(0, Math.min(numericValue, 600000)) : 1;
 
   console.log(JSON.stringify({
     type: 'portfolio_event',

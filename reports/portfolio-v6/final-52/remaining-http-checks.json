@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-06T08:07:44.042750+00:00",
+  "rows": [
+    {
+      "url": "https://www.nischhalsubba.com.np/",
+      "curlExit": 0,
+      "error": "",
+      "observedHttpStatuses": [
+        "200",
+        "503"
+      ],
+      "locations": [],
+      "bodyObservation": "503 observed through configured network proxy; origin cause requires scoped provider/DNS access."
+    },
+    {
+      "url": "http://www.nischhalsubba.com.np/",
+      "curlExit": 0,
+      "error": "",
+      "observedHttpStatuses": [
+        "503"
+      ],
+      "locations": [],
+      "bodyObservation": "503 observed through configured network proxy; origin cause requires scoped provider/DNS access."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/api/contact/config",
+      "curlExit": 0,
+      "error": "",
+      "observedHttpStatuses": [
+        "200",
+        "200"
+      ],
+      "locations": [],
+      "publicTurnstileConfigured": false,
+      "bodyObservation": "Public config returned an empty siteKey."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/robots.txt",
+      "curlExit": 0,
+      "error": "",
+      "observedHttpStatuses": [
+        "200",
+        "200"
+      ],
+      "locations": [],
+      "body": "Sitemap: https://nischhalsubba.com.np/sitemap.xml\n"
+    }
+  ]
+}

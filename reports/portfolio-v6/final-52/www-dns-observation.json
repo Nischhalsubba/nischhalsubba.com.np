@@ -1,0 +1,53 @@
+[
+  {
+    "source": "https://cloudflare-dns.com/dns-query?name=www.nischhalsubba.com.np&type=A",
+    "result": {
+      "Status": 0,
+      "TC": false,
+      "RD": true,
+      "RA": true,
+      "AD": false,
+      "CD": false,
+      "Question": [
+        {
+          "name": "www.nischhalsubba.com.np",
+          "type": 1
+        }
+      ],
+      "Authority": [
+        {
+          "name": "nischhalsubba.com.np",
+          "type": 6,
+          "TTL": 1800,
+          "data": "alaric.ns.cloudflare.com. dns.cloudflare.com. 2417898607 10000 2400 604800 1800"
+        }
+      ]
+    }
+  },
+  {
+    "source": "https://dns.google/resolve?name=www.nischhalsubba.com.np&type=CNAME",
+    "result": {
+      "Status": 0,
+      "TC": false,
+      "RD": true,
+      "RA": true,
+      "AD": false,
+      "CD": false,
+      "Question": [
+        {
+          "name": "www.nischhalsubba.com.np.",
+          "type": 5
+        }
+      ],
+      "Authority": [
+        {
+          "name": "nischhalsubba.com.np.",
+          "type": 6,
+          "TTL": 1800,
+          "data": "alaric.ns.cloudflare.com. dns.cloudflare.com. 2417898607 10000 2400 604800 1800"
+        }
+      ],
+      "Comment": "Response from 108.162.194.135."
+    }
+  }
+]

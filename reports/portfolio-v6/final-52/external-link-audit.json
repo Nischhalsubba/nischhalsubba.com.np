@@ -1,0 +1,1240 @@
+{
+  "checkedAt": "2026-11-06T08:18:41.481640+00:00",
+  "count": 114,
+  "rows": [
+    {
+      "url": "https://anza-xyz.github.io/wallet-adapter/example/",
+      "placements": [
+        "/blog/blog-web3-products",
+        "/blog/web3-wallet-connection-ux"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://anza-xyz.github.io/wallet-adapter/example/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/DKNOJSV20WQ7",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://app.uxcel.com/certificates/DKNOJSV20WQ7",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/I4YTY0556KCY",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://app.uxcel.com/certificates/I4YTY0556KCY",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/LSF8UPX6EGN5",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://app.uxcel.com/certificates/LSF8UPX6EGN5",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/S9YU2TUDMMT1",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://app.uxcel.com/certificates/S9YU2TUDMMT1",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/XSXW99G6EE2R",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://app.uxcel.com/certificates/XSXW99G6EE2R",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://app.uxcel.com/ux/nischhal",
+      "placements": [
+        "/",
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://app.uxcel.com/ux/nischhal",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://designerex.com.au/",
+      "placements": [
+        "/project-designerex"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://designerex.com.au/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://embed.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-2821&p=f&viewport=25%2C237%2C0.12&scaling=min-zoom&content-scaling=fixed&page-id=1%3A3&embed-host=share",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://embed.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-36&viewport=227%2C-238%2C0.53&scaling=min-zoom&content-scaling=fixed&page-id=1%3A2&embed-host=share",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://embed.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-8777&p=f&viewport=396%2C301%2C0.12&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&embed-host=share",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://esrtech.io/",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "503",
+      "effectiveUrl": "https://esrtech.io/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba",
+      "placements": [
+        "/",
+        "/about",
+        "/blog/beautiful-interface-poor-ux",
+        "/blog/blog-design-systems-front-end",
+        "/blog/blog-gaming-interface-clarity",
+        "/blog/blog-good-handoff",
+        "/blog/blog-portfolio-product",
+        "/blog/blog-service-websites",
+        "/blog/blog-web3-products",
+        "/blog/design-handoff-checklist-startup-product-teams",
+        "/blog/design-systems-small-product-teams",
+        "/blog/designing-handoffs-between-people",
+        "/blog/figma-handoff-notes-for-developers",
+        "/blog/hire-product-designer-nepal-saas-web3",
+        "/blog/index",
+        "/blog/prioritize-ux-audit-findings-before-redesign",
+        "/blog/responsive-saas-dashboard-handoff-notes",
+        "/blog/role-based-saas-dashboard-ux",
+        "/blog/saas-dashboard-empty-state-ux-guide",
+        "/blog/saas-dashboard-empty-states-product-clarity",
+        "/blog/saas-dashboard-empty-states-that-help-users-recover",
+        "/blog/saas-dashboard-filter-ux",
+        "/blog/saas-dashboard-ux-checklist",
+        "/blog/transaction-review-ux-crypto-apps",
+        "/blog/ux-audit-checklist-before-redesign",
+        "/blog/ux-audit-evidence-before-redesign",
+        "/blog/web3-wallet-connection-ux",
+        "/blog/web3-wallet-ux-checklist",
+        "/blog/website-ux-checklist-software-companies",
+        "/blog/when-startup-needs-ux-audit-before-redesign",
+        "/contact",
+        "/figma-design-systems",
+        "/privacy",
+        "/product-design-nepal",
+        "/project-designerex",
+        "/project-grid-labs",
+        "/project-hamro-idea",
+        "/project-masteriyo",
+        "/project-mokshya",
+        "/project-morajaa",
+        "/project-neverwinter-parser",
+        "/project-orkest",
+        "/project-pihub",
+        "/project-sassboilerplate",
+        "/project-splashnode",
+        "/project-yarsha",
+        "/project-zakra-furniture",
+        "/project-zapp",
+        "/projects",
+        "/saas-ux-designer",
+        "/services",
+        "/ux-audit",
+        "/web3-ux-designer",
+        "/website-ux-design"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/Grid-Labs-Hosting",
+      "placements": [
+        "/project-grid-labs"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/Grid-Labs-Hosting",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/design-ops-orchestrator",
+      "placements": [
+        "/project-orkest",
+        "/projects"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/design-ops-orchestrator",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/package.json",
+      "placements": [
+        "/project-neverwinter-parser"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/package.json",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/aggregation/encounterAggregator.test.ts",
+      "placements": [
+        "/project-neverwinter-parser"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/aggregation/encounterAggregator.test.ts",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/parser/parseLine.test.ts",
+      "placements": [
+        "/project-neverwinter-parser"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/parser/parseLine.test.ts",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/renderer/analysisViewModel.test.ts",
+      "placements": [
+        "/project-neverwinter-parser"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/renderer/analysisViewModel.test.ts",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/README.md",
+      "placements": [
+        "/project-sassboilerplate"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/README.md",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/gulpfile.js",
+      "placements": [
+        "/project-sassboilerplate"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/gulpfile.js",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/_includes.sass",
+      "placements": [
+        "/project-sassboilerplate"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/_includes.sass",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
+      "placements": [
+        "/project-sassboilerplate"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://gurzu.com/",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://gurzu.com/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://hamro-idea-website.vercel.app/",
+      "placements": [
+        "/blog/website-ux-checklist-software-companies",
+        "/project-hamro-idea"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://hamro-idea-website.vercel.app/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://idealaya.com/",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://idealaya.com/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://masdatahub.com/",
+      "placements": [
+        "/"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://highstep.com/products/mas-data-hub/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://masteriyo.com/",
+      "placements": [
+        "/project-masteriyo"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://masteriyo.com/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://mokshya.io/",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "523",
+      "effectiveUrl": "https://mokshya.io/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://neverwinter-live-parser.vercel.app/",
+      "placements": [
+        "/blog/blog-gaming-interface-clarity",
+        "/project-neverwinter-parser"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://neverwinter-live-parser.vercel.app/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+      "placements": [
+        "/project-grid-labs"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+      "placements": [
+        "/project-zakra-furniture"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://solana.com/docs/core/transactions",
+      "placements": [
+        "/blog/transaction-review-ux-crypto-apps"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://solana.com/docs/core/transactions",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://themegrill.com/",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://themegrill.com/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://uxcel.com/designer-rankings/past-winners",
+      "placements": [
+        "/",
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://uxcel.com/designer-rankings/past-winners",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://uxcel.com/uxcel-rankings",
+      "placements": [
+        "/"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://uxcel.com/uxcel-rankings",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://www.behance.net/nischhal",
+      "placements": [
+        "/",
+        "/about",
+        "/blog/beautiful-interface-poor-ux",
+        "/blog/blog-design-systems-front-end",
+        "/blog/blog-gaming-interface-clarity",
+        "/blog/blog-good-handoff",
+        "/blog/blog-portfolio-product",
+        "/blog/blog-service-websites",
+        "/blog/blog-web3-products",
+        "/blog/design-handoff-checklist-startup-product-teams",
+        "/blog/design-systems-small-product-teams",
+        "/blog/designing-handoffs-between-people",
+        "/blog/figma-handoff-notes-for-developers",
+        "/blog/hire-product-designer-nepal-saas-web3",
+        "/blog/index",
+        "/blog/prioritize-ux-audit-findings-before-redesign",
+        "/blog/responsive-saas-dashboard-handoff-notes",
+        "/blog/role-based-saas-dashboard-ux",
+        "/blog/saas-dashboard-empty-state-ux-guide",
+        "/blog/saas-dashboard-empty-states-product-clarity",
+        "/blog/saas-dashboard-empty-states-that-help-users-recover",
+        "/blog/saas-dashboard-filter-ux",
+        "/blog/saas-dashboard-ux-checklist",
+        "/blog/transaction-review-ux-crypto-apps",
+        "/blog/ux-audit-checklist-before-redesign",
+        "/blog/ux-audit-evidence-before-redesign",
+        "/blog/web3-wallet-connection-ux",
+        "/blog/web3-wallet-ux-checklist",
+        "/blog/website-ux-checklist-software-companies",
+        "/blog/when-startup-needs-ux-audit-before-redesign",
+        "/contact",
+        "/figma-design-systems",
+        "/privacy",
+        "/product-design-nepal",
+        "/project-designerex",
+        "/project-grid-labs",
+        "/project-hamro-idea",
+        "/project-masteriyo",
+        "/project-mokshya",
+        "/project-morajaa",
+        "/project-neverwinter-parser",
+        "/project-orkest",
+        "/project-pihub",
+        "/project-sassboilerplate",
+        "/project-splashnode",
+        "/project-yarsha",
+        "/project-zakra-furniture",
+        "/project-zapp",
+        "/projects",
+        "/saas-ux-designer",
+        "/services",
+        "/ux-audit",
+        "/web3-ux-designer",
+        "/website-ux-design"
+      ],
+      "curlExit": 0,
+      "http": "400",
+      "effectiveUrl": "https://www.behance.net/nischhal",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=2-261",
+      "placements": [
+        "/project-hamro-idea"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1238",
+      "placements": [
+        "/project-hamro-idea"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1490",
+      "placements": [
+        "/project-hamro-idea"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1671",
+      "placements": [
+        "/project-hamro-idea"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2022",
+      "placements": [
+        "/project-hamro-idea"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2342",
+      "placements": [
+        "/project-hamro-idea"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-526",
+      "placements": [
+        "/project-hamro-idea"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-953",
+      "placements": [
+        "/project-hamro-idea"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=452-6770",
+      "placements": [
+        "/project-morajaa"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-5857",
+      "placements": [
+        "/project-morajaa"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-6628",
+      "placements": [
+        "/project-morajaa"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-831",
+      "placements": [
+        "/blog/blog-service-websites",
+        "/project-morajaa"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-8668",
+      "placements": [
+        "/project-morajaa"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=487-12635",
+      "placements": [
+        "/project-morajaa"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=487-14801",
+      "placements": [
+        "/project-morajaa"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=491-16282",
+      "placements": [
+        "/project-morajaa"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-1094",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-1272",
+      "placements": [
+        "/blog/role-based-saas-dashboard-ux",
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-252",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-8777",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-9046",
+      "placements": [
+        "/blog/designing-handoffs-between-people",
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-9102",
+      "placements": [
+        "/blog/designing-handoffs-between-people",
+        "/blog/saas-dashboard-ux-checklist",
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-9611",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2228-545",
+      "placements": [
+        "/blog/role-based-saas-dashboard-ux",
+        "/blog/saas-dashboard-empty-states-product-clarity",
+        "/blog/saas-dashboard-empty-states-that-help-users-recover",
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/UVuc0LuF7Ykb0yxfPmzOHX/Design-Case-Study?node-id=0-1",
+      "placements": [
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-153",
+      "placements": [
+        "/blog/ux-audit-checklist-before-redesign",
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-2",
+      "placements": [
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-117",
+      "placements": [
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-30",
+      "placements": [
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-49",
+      "placements": [
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=115-75",
+      "placements": [
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=19-149",
+      "placements": [
+        "/blog/designing-handoffs-between-people",
+        "/blog/when-startup-needs-ux-audit-before-redesign",
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=20-26",
+      "placements": [
+        "/blog/ux-audit-evidence-before-redesign",
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/Zapp?node-id=4-5",
+      "placements": [
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1232",
+      "placements": [
+        "/project-masteriyo"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1275",
+      "placements": [
+        "/blog/saas-dashboard-empty-state-ux-guide",
+        "/project-masteriyo"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1310",
+      "placements": [
+        "/blog/saas-dashboard-empty-states-that-help-users-recover",
+        "/project-masteriyo"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1401",
+      "placements": [
+        "/project-masteriyo"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1508",
+      "placements": [
+        "/project-masteriyo"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1579",
+      "placements": [
+        "/blog/design-handoff-checklist-startup-product-teams",
+        "/project-masteriyo"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-3142",
+      "placements": [
+        "/blog/blog-design-systems-front-end",
+        "/project-masteriyo"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=289-2042",
+      "placements": [
+        "/project-masteriyo"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/Masteriyo",
+      "placements": [
+        "/project-masteriyo"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=160-380",
+      "placements": [
+        "/blog/designing-handoffs-between-people",
+        "/blog/responsive-saas-dashboard-handoff-notes",
+        "/blog/role-based-saas-dashboard-ux",
+        "/blog/saas-dashboard-filter-ux",
+        "/project-orkest"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=160-386",
+      "placements": [
+        "/blog/blog-design-systems-front-end",
+        "/blog/blog-good-handoff",
+        "/blog/figma-handoff-notes-for-developers",
+        "/project-orkest"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=160-387",
+      "placements": [
+        "/blog/design-handoff-checklist-startup-product-teams",
+        "/blog/design-systems-small-product-teams",
+        "/project-orkest"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=246-14560",
+      "placements": [
+        "/blog/saas-dashboard-filter-ux",
+        "/project-orkest"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=246-15008",
+      "placements": [
+        "/blog/prioritize-ux-audit-findings-before-redesign",
+        "/project-orkest"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=246-15456",
+      "placements": [
+        "/project-orkest"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=247-19849",
+      "placements": [
+        "/blog/blog-good-handoff",
+        "/project-orkest"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=404-33597",
+      "placements": [
+        "/project-orkest"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253000",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253254",
+      "placements": [
+        "/blog/beautiful-interface-poor-ux",
+        "/blog/saas-dashboard-empty-state-ux-guide",
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253307",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253312",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253681",
+      "placements": [
+        "/blog/web3-wallet-ux-checklist",
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253788",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-254051",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255588",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255626",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-256260",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-256565",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-262038",
+      "placements": [
+        "/blog/transaction-review-ux-crypto-apps",
+        "/blog/web3-wallet-ux-checklist",
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/Yarsha?node-id=0-1",
+      "placements": [
+        "/project-yarsha"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/proto/E9BBrx6PdFTqoG3YLvqRX6/morajaa?node-id=680-15253&page-id=452%3A6769",
+      "placements": [
+        "/project-morajaa"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-2821&page-id=1%3A3",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-36&page-id=1%3A2",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-8777&page-id=0%3A1",
+      "placements": [
+        "/project-pihub"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=3-8&page-id=0%3A1",
+      "placements": [
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=82-0&page-id=2%3A3",
+      "placements": [
+        "/project-zapp"
+      ],
+      "status": "FIGMA_REFERENCE_PUBLIC_HTTP_NOT_CHECKED",
+      "scope": "60 selected native node exports are recorded separately. Access to this exact browser URL and anonymous visibility are not inferred."
+    },
+    {
+      "url": "https://www.linkedin.com/in/nischhal/",
+      "placements": [
+        "/",
+        "/about",
+        "/blog/beautiful-interface-poor-ux",
+        "/blog/blog-design-systems-front-end",
+        "/blog/blog-gaming-interface-clarity",
+        "/blog/blog-good-handoff",
+        "/blog/blog-portfolio-product",
+        "/blog/blog-service-websites",
+        "/blog/blog-web3-products",
+        "/blog/design-handoff-checklist-startup-product-teams",
+        "/blog/design-systems-small-product-teams",
+        "/blog/designing-handoffs-between-people",
+        "/blog/figma-handoff-notes-for-developers",
+        "/blog/hire-product-designer-nepal-saas-web3",
+        "/blog/index",
+        "/blog/prioritize-ux-audit-findings-before-redesign",
+        "/blog/responsive-saas-dashboard-handoff-notes",
+        "/blog/role-based-saas-dashboard-ux",
+        "/blog/saas-dashboard-empty-state-ux-guide",
+        "/blog/saas-dashboard-empty-states-product-clarity",
+        "/blog/saas-dashboard-empty-states-that-help-users-recover",
+        "/blog/saas-dashboard-filter-ux",
+        "/blog/saas-dashboard-ux-checklist",
+        "/blog/transaction-review-ux-crypto-apps",
+        "/blog/ux-audit-checklist-before-redesign",
+        "/blog/ux-audit-evidence-before-redesign",
+        "/blog/web3-wallet-connection-ux",
+        "/blog/web3-wallet-ux-checklist",
+        "/blog/website-ux-checklist-software-companies",
+        "/blog/when-startup-needs-ux-audit-before-redesign",
+        "/contact",
+        "/figma-design-systems",
+        "/privacy",
+        "/product-design-nepal",
+        "/project-designerex",
+        "/project-grid-labs",
+        "/project-hamro-idea",
+        "/project-masteriyo",
+        "/project-mokshya",
+        "/project-morajaa",
+        "/project-neverwinter-parser",
+        "/project-orkest",
+        "/project-pihub",
+        "/project-sassboilerplate",
+        "/project-splashnode",
+        "/project-yarsha",
+        "/project-zakra-furniture",
+        "/project-zapp",
+        "/projects",
+        "/saas-ux-designer",
+        "/services",
+        "/ux-audit",
+        "/web3-ux-designer",
+        "/website-ux-design"
+      ],
+      "curlExit": 0,
+      "http": "999",
+      "effectiveUrl": "https://www.linkedin.com/in/nischhal/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://www.tegzy.com.au/",
+      "placements": [
+        "/about"
+      ],
+      "curlExit": 0,
+      "http": "503",
+      "effectiveUrl": "https://www.tegzy.com.au/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+      "placements": [
+        "/blog/figma-handoff-notes-for-developers"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+      "placements": [
+        "/blog/saas-dashboard-empty-states-that-help-users-recover",
+        "/blog/saas-dashboard-filter-ux"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://zakratheme.com/starter-sites/",
+      "placements": [
+        "/project-zakra-furniture"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://zakratheme.com/starter-sites/",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://zakratheme.com/starter-sites/#/preview/zakra-furniture",
+      "placements": [
+        "/project-zakra-furniture"
+      ],
+      "curlExit": 0,
+      "http": "200",
+      "effectiveUrl": "https://zakratheme.com/starter-sites/#/preview/zakra-furniture",
+      "status": "HTTP_REACHABLE",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    },
+    {
+      "url": "https://zapp.today/",
+      "placements": [
+        "/project-zapp"
+      ],
+      "curlExit": 0,
+      "http": "503",
+      "effectiveUrl": "https://zapp.today/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED",
+      "scope": "HTTP only; not ownership, rendered function or transaction proof."
+    }
+  ]
+}

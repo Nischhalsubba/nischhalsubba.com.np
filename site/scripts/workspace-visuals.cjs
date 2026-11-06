@@ -62,10 +62,10 @@ function retainedEvidence(href){
  * Inputs: route. Side effects: none. Returns: decorative preview markup, or empty text when source evidence is unavailable.
  */
 function cardMedia(href){
- if(new URL(href,'https://portfolio.invalid').pathname.replace(/\.html$/,'')==='/project-designerex')return '<div class="thumbnail-source-pending" data-source-pending="designerex"><span>FASHION RENTAL MARKETPLACE</span><strong>Designerex</strong><p>Screen evidence pending</p></div>';
+ if(new URL(href,'https://portfolio.invalid').pathname.replace(/\.html$/,'')==='/project-designerex'&&!publicCaptures.forPreview(href))return '<div class="thumbnail-source-pending" data-source-pending="designerex"><span>FASHION RENTAL MARKETPLACE</span><strong>Designerex</strong><p>Screen evidence pending</p></div>';
  const slug=new URL(href,'https://portfolio.invalid').pathname.split('/').pop();
  if(articles.some(a=>a.slug===slug&&a.leadEvidence==='owner-portrait'))return '<img src="/workspace-home/assets/portrait.webp" width="540" height="720" alt="" loading="lazy" decoding="async" data-owner-portrait-preview>';
- const capture=captureForDestination(href);if(capture)return publicCaptures.picture(capture,true);
+ const capture=captureForDestination(href);if(capture)return publicCaptures.picture(capture,true)+(capture.referenceOnlyPreview?'<span class="thumbnail-reference-label">Current public-site reference</span>':'');
  const image=retainedEvidence(href);if(!image)return '';
  return retainedFigure(image.id).match(/<img\b[^>]+>/)[0].replace(/alt="[^"]*"/,'alt=""').replace('<img ',`<img data-retained-evidence-preview="${esc(image.id)}" `);
 }
@@ -91,7 +91,8 @@ function card(href,label,context='Explore'){const source=preview(href);const med
  * Purpose: Normalize legacy blog cards and duplicate trails; enhance related destinations. Inputs: main HTML and filename. Side effects: none. Returns: presentation markup.
  */
 function present(main,relative){
- if(relative==='project-designerex.html')main=main.replace(/<figure\b[^>]*class="[^"]*agent-case-cover[^"]*"[^>]*>[\s\S]*?<\/figure>/,'<figure class="agent-case-cover thumbnail-evidence-pending"><div><p class="agent-kicker">DESIGNEREX / HISTORICAL CONTRIBUTION</p><h2>Browsing and listing design</h2><p>Authentic screen evidence is still being verified.</p></div><figcaption>Historical design contribution. A verified original screen is not available for publication; no current marketplace interface or checkout outcome is shown.</figcaption></figure>');
+ if(relative==='project-designerex.html'&&!main.includes('data-site-capture="designerex-current-home-20261106"')){ const listing=publicCaptures.figure(publicCaptures.byId('designerex-current-listing-20261106')); main=main.replace(listing,listing+'<h3>Current public homepage reference</h3>'+publicCaptures.figure(publicCaptures.byId('designerex-current-home-20261106'))); }
+ if(relative==='project-designerex.html'&&!publicCaptures.forRoute('/project-designerex'))main=main.replace(/<figure\b[^>]*class="[^"]*agent-case-cover[^"]*"[^>]*>[\s\S]*?<\/figure>/,'<figure class="agent-case-cover thumbnail-evidence-pending"><div><p class="agent-kicker">DESIGNEREX / HISTORICAL CONTRIBUTION</p><h2>Browsing and listing design</h2><p>Authentic screen evidence is still being verified.</p></div><figcaption>Historical design contribution. A verified original screen is not available for publication; no current marketplace interface or checkout outcome is shown.</figcaption></figure>');
  main=main.replace(/(<a\b[^>]*href="([^"]+)"[^>]*>)([\s\S]*?)(<\/a>)/g,/** Callback contract: Replace only archive-card preview images with approved source media. Inputs: full anchor, opening tag, route, body, closing tag. Side effects: none. Returns: unchanged or equivalent source-led card. */ (tag,opening,href,body,closing)=>{if(!/\bnrs-work-card\b/.test(opening))return tag;const media=cardMedia(href);return opening.replace('class=','data-thumbnail="'+esc(thumbnailProject(href))+'" class=')+(media?body.replace(/<img\b[^>]+>/,media):body)+closing;});
 
  for(const capture of publicCaptures.captures){if(capture.useAsPreview===false||!capture.route.startsWith('/project-'))continue;const slug=capture.route.replace('/project-','');main=main.replaceAll('/workspace-home/assets/projects/'+slug+'.svg',capture.variants.at(-1).src);}

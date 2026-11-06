@@ -1,0 +1,139 @@
+{
+  "source": "Owner-provided Linktree; generic footer/theme links excluded from owner-profile candidates.",
+  "records": [
+    {
+      "platform": "FACEBOOK",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "https://www.facebook.com/officialnischhalsubba",
+      "destinationEvidence": "Native click target and public account configuration agree",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not add to professional schema automatically",
+      "classification": "public_social_optional",
+      "observedAt": "2026-11-05T12:46:01.004129+00:00"
+    },
+    {
+      "platform": "INSTAGRAM",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "https://instagram.com/nischhalsubba",
+      "destinationEvidence": "Native click target and public account configuration agree",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not add to professional schema automatically",
+      "classification": "public_social_optional",
+      "observedAt": "2026-11-05T12:46:01.004139+00:00"
+    },
+    {
+      "platform": "TIKTOK",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "https://tiktok.com/@nischhalsubba",
+      "destinationEvidence": "Native click target and public account configuration agree",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not add to professional schema automatically",
+      "classification": "public_social_optional",
+      "observedAt": "2026-11-05T12:46:01.004143+00:00"
+    },
+    {
+      "platform": "YOUTUBE",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "https://www.youtube.com/@Nischhal",
+      "destinationEvidence": "Native click target and public account configuration agree",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not add to professional schema automatically",
+      "classification": "public_social_optional",
+      "observedAt": "2026-11-05T12:46:01.004145+00:00"
+    },
+    {
+      "platform": "WHATSAPP",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "WITHHELD_PERSONAL_DESTINATION",
+      "destinationEvidence": "Exact destination present in rendered page account configuration; contact controls intentionally not activated",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not publish messaging/personal destinations",
+      "classification": "personal_or_messaging",
+      "observedAt": "2026-11-05T12:46:01.004148+00:00"
+    },
+    {
+      "platform": "TWITCH",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "https://www.twitch.tv/mrsubba",
+      "destinationEvidence": "Native click target and public account configuration agree",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not add to professional schema automatically",
+      "classification": "public_social_optional",
+      "observedAt": "2026-11-05T12:46:01.004150+00:00"
+    },
+    {
+      "platform": "EMAIL_ADDRESS",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "WITHHELD_PERSONAL_DESTINATION",
+      "destinationEvidence": "Exact destination present in rendered page account configuration; contact controls intentionally not activated",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not publish messaging/personal destinations",
+      "classification": "personal_or_messaging",
+      "observedAt": "2026-11-05T12:46:01.004152+00:00"
+    },
+    {
+      "platform": "SNAPCHAT",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "WITHHELD_PERSONAL_DESTINATION",
+      "destinationEvidence": "Exact destination present in rendered page account configuration; contact controls intentionally not activated",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not publish messaging/personal destinations",
+      "classification": "personal_or_messaging",
+      "observedAt": "2026-11-05T12:46:01.004154+00:00"
+    },
+    {
+      "platform": "TELEGRAM",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "WITHHELD_PERSONAL_DESTINATION",
+      "destinationEvidence": "Exact destination present in rendered page account configuration; contact controls intentionally not activated",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not publish messaging/personal destinations",
+      "classification": "personal_or_messaging",
+      "observedAt": "2026-11-05T12:46:01.004156+00:00"
+    },
+    {
+      "platform": "THREADS",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "https://www.threads.com/@nischhalsubba",
+      "destinationEvidence": "Native click target and public account configuration agree",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not add to professional schema automatically",
+      "classification": "public_social_optional",
+      "observedAt": "2026-11-05T12:46:01.004158+00:00"
+    },
+    {
+      "platform": "X",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "https://x.com/Nischhalsubba",
+      "destinationEvidence": "Native click target and public account configuration agree",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not add to professional schema automatically",
+      "classification": "public_social_optional",
+      "observedAt": "2026-11-05T12:46:01.004160+00:00"
+    },
+    {
+      "platform": "BLUESKY",
+      "source": "https://linktr.ee/nischhalsubba",
+      "exactDestination": "https://bsky.app/profile/nischhal.bsky.social",
+      "destinationEvidence": "Native click target and public account configuration agree",
+      "ownerRelationship": "Owner-linked account; independent external control not authenticated",
+      "publicationDecision": "Do not add to professional schema automatically",
+      "classification": "public_social_optional",
+      "observedAt": "2026-11-05T12:46:01.004165+00:00"
+    }
+  ],
+  "professionalReferences": [
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/nischhal/",
+      "evidence": "Owner Linktree anchor and r\u00e9sum\u00e9 agree",
+      "publicationDecision": "Retain existing professional link; no account edit"
+    },
+    {
+      "platform": "Uxcel",
+      "url": "https://uxcel.com/uxcel-rankings",
+      "evidence": "Linktree rankings citation",
+      "publicationDecision": "Citation only; generic rankings URL is not an owner sameAs profile"
+    }
+  ]
+}
