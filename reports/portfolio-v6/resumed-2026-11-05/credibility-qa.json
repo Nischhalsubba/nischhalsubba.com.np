@@ -1,0 +1,313 @@
+{
+  "checkedAt": "2026-11-06T01:35:26.816Z",
+  "rows": [
+    {
+      "width": 320,
+      "figures": 6,
+      "geometry": [
+        {
+          "id": "uxcel-2023-hall-reference",
+          "width": 278,
+          "height": 19.046875,
+          "naturalWidth": 320,
+          "naturalHeight": 21,
+          "sourceWidth": 992,
+          "sourceHeight": 68,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-i4yty0556kcy",
+          "width": 278,
+          "height": 97.296875,
+          "naturalWidth": 320,
+          "naturalHeight": 112,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-s9yu2tudmmt1",
+          "width": 278,
+          "height": 97.296875,
+          "naturalWidth": 320,
+          "naturalHeight": 112,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-dknojsv20wq7",
+          "width": 278,
+          "height": 97.296875,
+          "naturalWidth": 320,
+          "naturalHeight": 112,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-lsf8upx6egn5",
+          "width": 278,
+          "height": 97.296875,
+          "naturalWidth": 320,
+          "naturalHeight": 112,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-xsxw99g6ee2r",
+          "width": 278,
+          "height": 97.296875,
+          "naturalWidth": 320,
+          "naturalHeight": 112,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        }
+      ],
+      "overflow": 0,
+      "pageErrors": [],
+      "axeViolations": 0,
+      "nativeKeyboardDialogs": 6,
+      "ogImage": "https://nischhalsubba.com.np/assets/workspace-social/about-8bf94095b408.png"
+    },
+    {
+      "width": 390,
+      "figures": 6,
+      "geometry": [
+        {
+          "id": "uxcel-2023-hall-reference",
+          "width": 348,
+          "height": 23.84375,
+          "naturalWidth": 389,
+          "naturalHeight": 26,
+          "sourceWidth": 992,
+          "sourceHeight": 68,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-i4yty0556kcy",
+          "width": 348,
+          "height": 121.796875,
+          "naturalWidth": 390,
+          "naturalHeight": 136,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-s9yu2tudmmt1",
+          "width": 348,
+          "height": 121.796875,
+          "naturalWidth": 390,
+          "naturalHeight": 136,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-dknojsv20wq7",
+          "width": 348,
+          "height": 121.796875,
+          "naturalWidth": 390,
+          "naturalHeight": 136,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-lsf8upx6egn5",
+          "width": 348,
+          "height": 121.796875,
+          "naturalWidth": 390,
+          "naturalHeight": 136,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-xsxw99g6ee2r",
+          "width": 348,
+          "height": 121.796875,
+          "naturalWidth": 390,
+          "naturalHeight": 136,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        }
+      ],
+      "overflow": 0,
+      "pageErrors": [],
+      "axeViolations": 0,
+      "nativeKeyboardDialogs": 6,
+      "ogImage": "https://nischhalsubba.com.np/assets/workspace-social/about-8bf94095b408.png"
+    },
+    {
+      "width": 768,
+      "figures": 6,
+      "geometry": [
+        {
+          "id": "uxcel-2023-hall-reference",
+          "width": 689.21875,
+          "height": 47.234375,
+          "naturalWidth": 1000,
+          "naturalHeight": 68,
+          "sourceWidth": 992,
+          "sourceHeight": 68,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-i4yty0556kcy",
+          "width": 329.609375,
+          "height": 115.359375,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-s9yu2tudmmt1",
+          "width": 329.609375,
+          "height": 115.359375,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-dknojsv20wq7",
+          "width": 329.609375,
+          "height": 115.359375,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-lsf8upx6egn5",
+          "width": 329.609375,
+          "height": 115.359375,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-xsxw99g6ee2r",
+          "width": 329.609375,
+          "height": 115.359375,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        }
+      ],
+      "overflow": 0,
+      "pageErrors": [],
+      "axeViolations": 0,
+      "nativeKeyboardDialogs": 6,
+      "ogImage": "https://nischhalsubba.com.np/assets/workspace-social/about-8bf94095b408.png"
+    },
+    {
+      "width": 1440,
+      "figures": 6,
+      "geometry": [
+        {
+          "id": "uxcel-2023-hall-reference",
+          "width": 1294,
+          "height": 88.6875,
+          "naturalWidth": 1000,
+          "naturalHeight": 68,
+          "sourceWidth": 992,
+          "sourceHeight": 68,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-i4yty0556kcy",
+          "width": 411.328125,
+          "height": 143.953125,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-s9yu2tudmmt1",
+          "width": 411.328125,
+          "height": 143.953125,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-dknojsv20wq7",
+          "width": 411.34375,
+          "height": 143.96875,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-lsf8upx6egn5",
+          "width": 411.328125,
+          "height": 143.953125,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        },
+        {
+          "id": "uxcel-credential-xsxw99g6ee2r",
+          "width": 411.328125,
+          "height": 143.953125,
+          "naturalWidth": 999,
+          "naturalHeight": 350,
+          "sourceWidth": 720,
+          "sourceHeight": 252,
+          "objectFit": "contain",
+          "captionControlOverlap": false
+        }
+      ],
+      "overflow": 0,
+      "pageErrors": [],
+      "axeViolations": 0,
+      "nativeKeyboardDialogs": 6,
+      "ogImage": "https://nischhalsubba.com.np/assets/workspace-social/about-8bf94095b408.png"
+    }
+  ]
+}

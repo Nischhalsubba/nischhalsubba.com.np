@@ -115,7 +115,7 @@
         {
           "heading": "Keep application state in the comparison view",
           "body": [
-            "The creditor journey starts with company information, moves into a product application and returns to a list of submitted work. Each screen answers a different question: who is applying, what is being requested and what happens next.",
+            "The retained creditor screens show company information, a product-application acknowledgement and a list of submitted work. They separate who is applying, what was requested and who must act next. These designed states do not establish a working submission or approval transition.",
             "Keeping written status alongside service, industry, dates and amounts lets someone compare applications without opening every record. The complete screens retain their original dummy values so the hierarchy can be judged in context."
           ],
           "leadIn": "The creditor’s first need is an overview of what has already been submitted.",

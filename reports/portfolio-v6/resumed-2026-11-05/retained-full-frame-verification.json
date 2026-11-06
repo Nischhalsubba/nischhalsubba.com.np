@@ -1,0 +1,1370 @@
+{
+  "checkedAt": "2026-11-06T00:48:50.978010+00:00",
+  "scope": "Acceptance for preserving the60 retained owner-approved complete Figma-derived frames. Original PNG hashes and file/node IDs remain available, but absent private PNGs are not independently re-exported or recertified by this check; T77 remains open.",
+  "renderPolicy": "Body images use width100%/height:auto; image inspector and related-card UI use object-fit:contain. Existing native case viewport/lightbox evidence is reused.",
+  "count": 60,
+  "records": [
+    {
+      "id": "orkest-lead-capture",
+      "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+      "nodeId": "160:386",
+      "retainedOriginalSourceSha256": "2ffae670af1de943df404a1047fa5fb37b06ccd80bb48efad742fd6b35f56aac",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          350
+        ],
+        [
+          800,
+          583
+        ],
+        [
+          1240,
+          904
+        ]
+      ],
+      "bodyRoutes": [
+        "project-orkest.html",
+        "blog/figma-handoff-notes-for-developers.html",
+        "blog/blog-design-systems-front-end.html",
+        "blog/blog-good-handoff.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "zapp-account-entry",
+      "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+      "nodeId": "114:30",
+      "retainedOriginalSourceSha256": "687068a4c358ea78c5df15c544278ddf8bd540ab0bb5d731be692ba10a270694",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          402,
+          874
+        ]
+      ],
+      "bodyRoutes": [
+        "project-zapp.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "morajaa-service-process",
+      "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+      "nodeId": "465:831",
+      "retainedOriginalSourceSha256": "6d7b931aca038922b7fc914233bd328baaa4582266a638d22a4be69ed61be16e",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          2092
+        ],
+        [
+          800,
+          3487
+        ],
+        [
+          1240,
+          5404
+        ]
+      ],
+      "bodyRoutes": [
+        "project-morajaa.html",
+        "blog/blog-service-websites.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "zapp-parcel-details",
+      "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+      "nodeId": "113:153",
+      "retainedOriginalSourceSha256": "84ac196696bd8b6d30d6a538d066e98d70cc6a1bf2143e9ded2b10f0567072d3",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          402,
+          874
+        ]
+      ],
+      "bodyRoutes": [
+        "project-zapp.html",
+        "blog/ux-audit-checklist-before-redesign.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "orkest-conversion-readiness",
+      "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+      "nodeId": "160:387",
+      "retainedOriginalSourceSha256": "cabfdf00f4b319d966da9f6a45015bc9793dd5c4d3242dc22dee864df5b5a6d9",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          350
+        ],
+        [
+          800,
+          583
+        ],
+        [
+          1240,
+          904
+        ]
+      ],
+      "bodyRoutes": [
+        "project-orkest.html",
+        "blog/design-systems-small-product-teams.html",
+        "blog/design-handoff-checklist-startup-product-teams.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "pihub-access-denied",
+      "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+      "nodeId": "2228:545",
+      "retainedOriginalSourceSha256": "69df55450d41d32b7d11813e41b74b3ec3fdadd0fc56c651a8fa2d2835cc7c36",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          257
+        ],
+        [
+          800,
+          428
+        ],
+        [
+          1240,
+          664
+        ]
+      ],
+      "bodyRoutes": [
+        "project-pihub.html",
+        "blog/role-based-saas-dashboard-ux.html",
+        "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+        "blog/saas-dashboard-empty-states-product-clarity.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "zapp-driver-next-stop",
+      "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+      "nodeId": "19:149",
+      "retainedOriginalSourceSha256": "489a4e4ddf5c3376078b8e74e5599d1e99fa6e66594195eae0bba8d2ef8a370d",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          402,
+          874
+        ]
+      ],
+      "bodyRoutes": [
+        "project-zapp.html",
+        "blog/when-startup-needs-ux-audit-before-redesign.html",
+        "blog/designing-handoffs-between-people.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "masteriyo-first-content",
+      "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+      "nodeId": "277:1275",
+      "retainedOriginalSourceSha256": "2e1169e5d39b666dac24f19c590e5d35e570ceab4fc5168e9e44cc4b4075952d",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          255
+        ],
+        [
+          800,
+          425
+        ],
+        [
+          1240,
+          658
+        ]
+      ],
+      "bodyRoutes": [
+        "project-masteriyo.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "masteriyo-course-outline",
+      "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+      "nodeId": "277:1310",
+      "retainedOriginalSourceSha256": "86872f4c815d46ab829165e402a6c52027e8e4180c34b1949964e204fef41d9d",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          252
+        ],
+        [
+          800,
+          420
+        ],
+        [
+          1240,
+          652
+        ]
+      ],
+      "bodyRoutes": [
+        "project-masteriyo.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "masteriyo-quiz-setup",
+      "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+      "nodeId": "277:1579",
+      "retainedOriginalSourceSha256": "ecc0a469cfbb68119df4e330b50f62ba4ab876c682750d03a899b2861ee9415e",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          306
+        ],
+        [
+          800,
+          510
+        ],
+        [
+          1240,
+          791
+        ]
+      ],
+      "bodyRoutes": [
+        "project-masteriyo.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "masteriyo-question-editor",
+      "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+      "nodeId": "277:3142",
+      "retainedOriginalSourceSha256": "8b1e5da42da23d15cf2273cae3cb43f0ceaed7bcd3419276134202599b9d2f49",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          589
+        ],
+        [
+          800,
+          981
+        ],
+        [
+          1240,
+          1521
+        ]
+      ],
+      "bodyRoutes": [
+        "project-masteriyo.html",
+        "blog/blog-design-systems-front-end.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "hamro-idea-contact-form",
+      "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+      "nodeId": "31:1490",
+      "retainedOriginalSourceSha256": "6d188f6598eb7db0262675b18f050444f2031bbbd4c6049080c2fe973608b278",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          958
+        ],
+        [
+          800,
+          1596
+        ],
+        [
+          1240,
+          2474
+        ]
+      ],
+      "bodyRoutes": [
+        "project-hamro-idea.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "zapp-delivery-complete",
+      "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+      "nodeId": "20:26",
+      "retainedOriginalSourceSha256": "11fb4db28ef295cdfaf336e0e41bb3bc6447eee192e15dcfff48a5af1caf148f",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          402,
+          874
+        ]
+      ],
+      "bodyRoutes": [
+        "project-zapp.html",
+        "blog/ux-audit-evidence-before-redesign.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "orkest-lead-list",
+      "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+      "nodeId": "160:380",
+      "retainedOriginalSourceSha256": "81a06b117f8d3a2d7d5c7026317b6c3290e4c84f50c3f5d35e49af8410345989",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          350
+        ],
+        [
+          800,
+          583
+        ],
+        [
+          1240,
+          904
+        ]
+      ],
+      "bodyRoutes": [
+        "project-orkest.html",
+        "blog/responsive-saas-dashboard-handoff-notes.html",
+        "blog/saas-dashboard-filter-ux.html",
+        "blog/role-based-saas-dashboard-ux.html",
+        "blog/designing-handoffs-between-people.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "pihub-application-status",
+      "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+      "nodeId": "2:9102",
+      "retainedOriginalSourceSha256": "69e634a39897a7a40fccf89d0c7eba3604ae23864e35a791d958fb4d3391ceda",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          317
+        ],
+        [
+          800,
+          529
+        ],
+        [
+          1240,
+          820
+        ]
+      ],
+      "bodyRoutes": [
+        "project-pihub.html",
+        "blog/saas-dashboard-ux-checklist.html",
+        "blog/designing-handoffs-between-people.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-contact-empty",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:253254",
+      "retainedOriginalSourceSha256": "8e10ae34d8f12ca9656fa1e604581164e5e21ae2b6cf939da4230a7d28cc5aa7",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html",
+        "blog/beautiful-interface-poor-ux.html",
+        "blog/saas-dashboard-empty-state-ux-guide.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-contacts",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:253000",
+      "retainedOriginalSourceSha256": "aedad8dd29d87c729fe2e0555a622b90eec90868ba0aaf2452fbc2fcd3311a73",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-conversation",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:253307",
+      "retainedOriginalSourceSha256": "e92a7265788418913332d45e02e80134447fda87ece927efb87533b0bcad4301",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-profile",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:253312",
+      "retainedOriginalSourceSha256": "1a8274d20c0c978e93b12691cdfd76901298021b145bad11f6d134f3cc5ee7fb",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-recipient-selection",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:253681",
+      "retainedOriginalSourceSha256": "e8aea4a446dabc2789eaa4e7fd40804dc16d8756b0fb59b21deda69a139273ce",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html",
+        "blog/web3-wallet-ux-checklist.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-token-selection",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:253788",
+      "retainedOriginalSourceSha256": "923cfe61006fb6b39fb2f2b670993674280a800849c32118613ae25171e0db87",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-nft-selection",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:254051",
+      "retainedOriginalSourceSha256": "121aacb4608bce79185f37e316b36aa4d41d0c77fa9f654d82860a16ff3803d2",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-new-group",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:256565",
+      "retainedOriginalSourceSha256": "bd18df388b4146e103dc0498be366e0aa17eb699baf63c08888a0c2b250e7445",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-group-detail",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:255588",
+      "retainedOriginalSourceSha256": "16a10ea26901a686369a7b168bee77b5331eca9cf3bffb19b30dbeada8a98318",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-group-invite",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:255626",
+      "retainedOriginalSourceSha256": "6dcb5ec818bd933aef5dac246579c4ff0c0ad272eec7ce244338190fbf99b30d",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-chat-search",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:256260",
+      "retainedOriginalSourceSha256": "5358d7abaa7067a32013d6bfca91b674ae758d5bf083797e686daa629d15fbd0",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "yarsha-transaction-detail",
+      "fileKey": "pYismUGSJo9vLjViMjZENz",
+      "nodeId": "6092:262038",
+      "retainedOriginalSourceSha256": "a4c50043c42fb4320ef1c41ab31043114513d1c4275bb9b1574bd75a42ec0bdc",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          375,
+          812
+        ]
+      ],
+      "bodyRoutes": [
+        "project-yarsha.html",
+        "blog/web3-wallet-ux-checklist.html",
+        "blog/transaction-review-ux-crypto-apps.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "orkest-lead-filters",
+      "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+      "nodeId": "246:14560",
+      "retainedOriginalSourceSha256": "a9dca854baaf817eabc4729afa400013d93fabc15ed4dd2da56999a9783c8338",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          350
+        ],
+        [
+          800,
+          583
+        ],
+        [
+          1240,
+          904
+        ]
+      ],
+      "bodyRoutes": [
+        "project-orkest.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "orkest-lead-filter-error",
+      "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+      "nodeId": "246:15008",
+      "retainedOriginalSourceSha256": "158f15375d1e9b6e3ddebc60aa28f14237fbc941aa7aeca100a877522e53897c",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          350
+        ],
+        [
+          800,
+          583
+        ],
+        [
+          1240,
+          904
+        ]
+      ],
+      "bodyRoutes": [
+        "project-orkest.html",
+        "blog/prioritize-ux-audit-findings-before-redesign.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "orkest-lead-filter-confirmation",
+      "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+      "nodeId": "246:15456",
+      "retainedOriginalSourceSha256": "2fc775ba6429c99051db49076fd787e49b5da34fadfff8f82c85fd453e0fca1b",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          350
+        ],
+        [
+          800,
+          583
+        ],
+        [
+          1240,
+          904
+        ]
+      ],
+      "bodyRoutes": [
+        "project-orkest.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "pihub-investor-products",
+      "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+      "nodeId": "2:1272",
+      "retainedOriginalSourceSha256": "b89f8ba1fd7bb075e603dd9949214a34c3308bfd77db62a23694fbf42d72ebbb",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          374
+        ],
+        [
+          800,
+          623
+        ],
+        [
+          1240,
+          966
+        ]
+      ],
+      "bodyRoutes": [
+        "project-pihub.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "pihub-create-product",
+      "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+      "nodeId": "2:252",
+      "retainedOriginalSourceSha256": "9ec7ea132da0f0564f8c7159c15329a3de54443560957df397c7a41a9fa9408e",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          476
+        ],
+        [
+          800,
+          793
+        ],
+        [
+          1240,
+          1229
+        ]
+      ],
+      "bodyRoutes": [
+        "project-pihub.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "pihub-credit-requests",
+      "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+      "nodeId": "2:1094",
+      "retainedOriginalSourceSha256": "74c3e0a0db312c8d5f7206db915ce99a123692d39b42e2016442e88a62d61f11",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          370
+        ],
+        [
+          800,
+          617
+        ],
+        [
+          1240,
+          957
+        ]
+      ],
+      "bodyRoutes": [
+        "project-pihub.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "zapp-home",
+      "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+      "nodeId": "113:2",
+      "retainedOriginalSourceSha256": "a87f0e1903ca66ab1e9eb04f29bc684c899e7d5b03cdd8d917c6566d64cc3b06",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          402,
+          874
+        ]
+      ],
+      "bodyRoutes": [
+        "project-zapp.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "zapp-signup",
+      "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+      "nodeId": "114:49",
+      "retainedOriginalSourceSha256": "b097bac5dfc9bf3a91fbdc7cc14a2ea4b25b21219d013dfb5ae13aa905f0d3de",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          402,
+          874
+        ]
+      ],
+      "bodyRoutes": [
+        "project-zapp.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "zapp-verification",
+      "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+      "nodeId": "114:117",
+      "retainedOriginalSourceSha256": "03c6e37928f9aa918c687b4efd3875559f7884fa82dcd6479d25d40aaa98cc55",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          402,
+          874
+        ]
+      ],
+      "bodyRoutes": [
+        "project-zapp.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "zapp-service-selection",
+      "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+      "nodeId": "115:75",
+      "retainedOriginalSourceSha256": "031cdb749fc0e235fc9a15bc76e127a8055ac0ee06a68c2067ff1a6eac584d4d",
+      "presentation": "Complete mobile screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          402,
+          874
+        ]
+      ],
+      "bodyRoutes": [
+        "project-zapp.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "morajaa-home",
+      "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+      "nodeId": "452:6770",
+      "retainedOriginalSourceSha256": "07c32f54dade6193acc637bef53e89ea36c68ee500ce691cb0f3b61acf004c44",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          2318
+        ],
+        [
+          800,
+          3863
+        ],
+        [
+          1240,
+          5988
+        ]
+      ],
+      "bodyRoutes": [
+        "project-morajaa.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "morajaa-sector",
+      "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+      "nodeId": "465:6628",
+      "retainedOriginalSourceSha256": "1ac3c64db8075b0cc304cf3b4a3ca92a3a615d7429401e01b67e38ce1b0d025d",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          1926
+        ],
+        [
+          800,
+          3209
+        ],
+        [
+          1240,
+          4975
+        ]
+      ],
+      "bodyRoutes": [
+        "project-morajaa.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "masteriyo-course-details",
+      "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+      "nodeId": "277:1232",
+      "retainedOriginalSourceSha256": "f46a6a3d44ffabbe4ada41379ea503dd6271d0c7ffc1c5968ef66422700817e5",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          255
+        ],
+        [
+          800,
+          425
+        ],
+        [
+          1240,
+          658
+        ]
+      ],
+      "bodyRoutes": [
+        "project-masteriyo.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "masteriyo-section-editor",
+      "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+      "nodeId": "277:1401",
+      "retainedOriginalSourceSha256": "711a4f570ad3c591b6e4faa0e15feae866477f4c416af69765aaacb06865092c",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          483
+        ],
+        [
+          800,
+          804
+        ],
+        [
+          1240,
+          1247
+        ]
+      ],
+      "bodyRoutes": [
+        "project-masteriyo.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "masteriyo-lesson-editor",
+      "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+      "nodeId": "277:1508",
+      "retainedOriginalSourceSha256": "528be3ce9c32a26c7eb7a4cd90443d311ee169b1c8550aa3d2e34e23a47e88b8",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          580
+        ],
+        [
+          800,
+          966
+        ],
+        [
+          1240,
+          1498
+        ]
+      ],
+      "bodyRoutes": [
+        "project-masteriyo.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "masteriyo-multiple-choice",
+      "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+      "nodeId": "289:2042",
+      "retainedOriginalSourceSha256": "abc5315b0f9f958ae4ceada5f7e3d7a78f082550a5cf31c477ac261ef07bea2b",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          624
+        ],
+        [
+          800,
+          1040
+        ],
+        [
+          1240,
+          1612
+        ]
+      ],
+      "bodyRoutes": [
+        "project-masteriyo.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "hamro-idea-home",
+      "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+      "nodeId": "2:261",
+      "retainedOriginalSourceSha256": "3797361b33bbcb8c937cdaf60ee72d926355fe58de348ea69503256c96cd9f64",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          2464
+        ],
+        [
+          798,
+          4096
+        ]
+      ],
+      "bodyRoutes": [
+        "project-hamro-idea.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "hamro-idea-about",
+      "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+      "nodeId": "31:526",
+      "retainedOriginalSourceSha256": "c61fd2fe1e097c42939a56569ebd0192e3b7737a45bdcd19953423c086cf0a3c",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          2234
+        ],
+        [
+          800,
+          3724
+        ],
+        [
+          880,
+          4096
+        ]
+      ],
+      "bodyRoutes": [
+        "project-hamro-idea.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "hamro-idea-services",
+      "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+      "nodeId": "31:1671",
+      "retainedOriginalSourceSha256": "963359373b1cf62bcc8c3cf1189a5f4900172b735836364dd3632ae4ac67a9ef",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          1964
+        ],
+        [
+          800,
+          3274
+        ],
+        [
+          1001,
+          4096
+        ]
+      ],
+      "bodyRoutes": [
+        "project-hamro-idea.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "pihub-corporate-information",
+      "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+      "nodeId": "2:8777",
+      "retainedOriginalSourceSha256": "ad6863c6416c3ab539fef23d5416eaf7222e58c394b6dc66cc4725f2f65774a2",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          654
+        ],
+        [
+          800,
+          1090
+        ],
+        [
+          1240,
+          1689
+        ]
+      ],
+      "bodyRoutes": [
+        "project-pihub.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "pihub-product-application",
+      "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+      "nodeId": "2:9046",
+      "retainedOriginalSourceSha256": "39b50f022f8ef86667ea958e25ce021c8b54a8d2de42e9075ef6de524eec84d5",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          385
+        ],
+        [
+          800,
+          642
+        ],
+        [
+          1240,
+          996
+        ]
+      ],
+      "bodyRoutes": [
+        "project-pihub.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "pihub-signup",
+      "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+      "nodeId": "2:9611",
+      "retainedOriginalSourceSha256": "c27f9000af8d986826600c8cc5ae8f0e901f95831e7b46a6dfd9be502ea41c5d",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          334
+        ],
+        [
+          800,
+          556
+        ],
+        [
+          1240,
+          862
+        ]
+      ],
+      "bodyRoutes": [
+        "project-pihub.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "morajaa-healthcare",
+      "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+      "nodeId": "491:16282",
+      "retainedOriginalSourceSha256": "f9b9549128f8dfe0f0efc4c69482b6d1235ed4d9abf1d8fce8d10a8806dae82b",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          2108
+        ],
+        [
+          800,
+          3514
+        ],
+        [
+          1240,
+          5447
+        ]
+      ],
+      "bodyRoutes": [
+        "project-morajaa.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "morajaa-technology",
+      "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+      "nodeId": "465:8668",
+      "retainedOriginalSourceSha256": "b3bcc6e3fe19f879a6fe7949846acc1b6209337b7ddae0ac9c2b71dbc09bf24f",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          1963
+        ],
+        [
+          800,
+          3272
+        ],
+        [
+          1240,
+          5072
+        ]
+      ],
+      "bodyRoutes": [
+        "project-morajaa.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "morajaa-joint-ventures",
+      "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+      "nodeId": "465:5857",
+      "retainedOriginalSourceSha256": "434ed25033aec05ee968a0481cc18da7f668e8a902c2d4129e6fae7364fa6fb7",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          1924
+        ],
+        [
+          800,
+          3207
+        ],
+        [
+          1240,
+          4970
+        ]
+      ],
+      "bodyRoutes": [
+        "project-morajaa.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "morajaa-tender-management",
+      "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+      "nodeId": "487:12635",
+      "retainedOriginalSourceSha256": "7dfa7bb25b58e0a074940bbcda55e8a4f6823c44f86c5cc629e96ad4aa747b63",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          1822
+        ],
+        [
+          800,
+          3037
+        ],
+        [
+          1240,
+          4708
+        ]
+      ],
+      "bodyRoutes": [
+        "project-morajaa.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "morajaa-hr-outsourcing",
+      "fileKey": "E9BBrx6PdFTqoG3YLvqRX6",
+      "nodeId": "487:14801",
+      "retainedOriginalSourceSha256": "c330405607d1cc57460ae5a130262afd7f9d76e6757e957fa7f62b08fdd64051",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          1760
+        ],
+        [
+          800,
+          2934
+        ],
+        [
+          1240,
+          4548
+        ]
+      ],
+      "bodyRoutes": [
+        "project-morajaa.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "hamro-idea-blog",
+      "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+      "nodeId": "31:953",
+      "retainedOriginalSourceSha256": "64f2a2813730065a06badb96d411d2bd74adbc6bf91661b35ff1d810820fadb0",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          1696
+        ],
+        [
+          800,
+          2827
+        ],
+        [
+          1159,
+          4096
+        ]
+      ],
+      "bodyRoutes": [
+        "project-hamro-idea.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "hamro-idea-blog-detail",
+      "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+      "nodeId": "31:1238",
+      "retainedOriginalSourceSha256": "9d132be415fc020ce90df88efcb42547ab968a35e60f6353b03ce035fba727eb",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          1984
+        ],
+        [
+          800,
+          3307
+        ],
+        [
+          991,
+          4096
+        ]
+      ],
+      "bodyRoutes": [
+        "project-hamro-idea.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "hamro-idea-project-list",
+      "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+      "nodeId": "31:2022",
+      "retainedOriginalSourceSha256": "dd8dbba144bad6e1cee9fb3d0e7fa14f67384bd87d4d6998f8e02e0210f49936",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          1614
+        ],
+        [
+          800,
+          2690
+        ],
+        [
+          1218,
+          4096
+        ]
+      ],
+      "bodyRoutes": [
+        "project-hamro-idea.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "hamro-idea-project-detail",
+      "fileKey": "6SRJo2F3Dhu1js0c7CHwrb",
+      "nodeId": "31:2342",
+      "retainedOriginalSourceSha256": "85ff96501e0a59faab249967b1a1656d87fd13ffda9f9f66a6d7f83c0844f732",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          2070
+        ],
+        [
+          800,
+          3449
+        ],
+        [
+          950,
+          4096
+        ]
+      ],
+      "bodyRoutes": [
+        "project-hamro-idea.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "orkest-module-directory",
+      "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+      "nodeId": "404:33597",
+      "retainedOriginalSourceSha256": "dc7921f0b3b8b68855fccefb1cad521570de70a52dd671b0ec0ea0f2d0ea96c4",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          350
+        ],
+        [
+          800,
+          583
+        ],
+        [
+          1240,
+          904
+        ]
+      ],
+      "bodyRoutes": [
+        "project-orkest.html"
+      ],
+      "completeOriginalPngPresent": false
+    },
+    {
+      "id": "orkest-edit-lead",
+      "fileKey": "k2qY1tdrTDdm1iFry9Qq4F",
+      "nodeId": "247:19849",
+      "retainedOriginalSourceSha256": "b4aba863d13c9dc15cbb1b2175c9518a60e6424fea535d85f84c1a98f29571ae",
+      "presentation": "Complete original screen",
+      "verifiedPublicVariantDimensions": [
+        [
+          480,
+          350
+        ],
+        [
+          800,
+          583
+        ],
+        [
+          1240,
+          904
+        ]
+      ],
+      "bodyRoutes": [
+        "project-orkest.html"
+      ],
+      "completeOriginalPngPresent": false
+    }
+  ]
+}

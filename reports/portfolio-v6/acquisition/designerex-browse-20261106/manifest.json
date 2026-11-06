@@ -1,0 +1,44 @@
+[
+  {
+    "source": "https://designerex.com.au/search",
+    "finalUrl": "https://designerex.com.au/search",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-06T01:18:34.346Z",
+    "filename": "1440.png",
+    "sha256": "fbcbaeef892f2147dfed61536d6dbed713a9aafe3b0241cbda2ce69240c01387",
+    "layoutOverflow": 0,
+    "status": "REJECTED_RENDER_ERRORS",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [
+      "Cannot read properties of null (reading 'defaultView')",
+      "Stripe is not defined"
+    ],
+    "failedResources": []
+  },
+  {
+    "source": "https://designerex.com.au/search",
+    "finalUrl": "https://designerex.com.au/search",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "captureMode": "viewport",
+    "capturedAt": "2026-11-06T01:18:53.576Z",
+    "filename": "390.png",
+    "sha256": "f3dda642a8859d50e8856ef216e3475f836c579f6cafc0b774763447656b17a4",
+    "layoutOverflow": 0,
+    "status": "REJECTED_RENDER_ERRORS",
+    "permission": "UNVERIFIED_DO_NOT_PUBLISH",
+    "role": "CURRENT_PUBLIC_SITE_NOT_PROOF_OF_HISTORICAL_AUTHORSHIP",
+    "errors": [
+      "Cannot read properties of null (reading 'defaultView')",
+      "Stripe is not defined"
+    ],
+    "failedResources": []
+  }
+]

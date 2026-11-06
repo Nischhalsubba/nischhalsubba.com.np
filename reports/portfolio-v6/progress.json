@@ -733,12 +733,12 @@
       "depends_on": "T36",
       "acceptance_criteria": "https://zapp.today/ visibly labeled; live status checked; safe external attributes",
       "evidence_status": "source audited",
-      "status": "CODE_DONE_NEEDS_CI",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Verified current official site and added visible safe link with accurate contribution boundary. Current-site capture rejected for third-party resource errors.",
-      "evidence": "resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
-      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
+      "observation": "Verified current official site and added visible safe link with accurate contribution boundary. Current-site capture rejected for third-party resource errors. Live main verification now passes:54 exact canonical/build identities,17 delivered source/icon assets, safe official source links and current biography/humans. Same-tab external links are safe without new-tab isolation attributes.",
+      "evidence": "resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json; resumed-2026-11-05/live-main-snapshot-20261106.json",
+      "blocker": "",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -753,12 +753,12 @@
       "depends_on": "T36",
       "acceptance_criteria": "https://designerex.com.au/ verified and linked; present contribution boundary",
       "evidence_status": "source audited",
-      "status": "CODE_DONE_NEEDS_CI",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Verified and linked current official Designerex marketplace, with scoped team contribution; current source runtime errors prevent approving its capture.",
-      "evidence": "resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
-      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
+      "observation": "Verified and linked current official Designerex marketplace, with scoped team contribution; current source runtime errors prevent approving its capture. Live main verification now passes:54 exact canonical/build identities,17 delivered source/icon assets, safe official source links and current biography/humans. Same-tab external links are safe without new-tab isolation attributes.",
+      "evidence": "resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json; resumed-2026-11-05/live-main-snapshot-20261106.json",
+      "blocker": "",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -773,12 +773,12 @@
       "depends_on": "T36",
       "acceptance_criteria": "Vercel READY not enough; actual page visually verified then link",
       "evidence_status": "source+Vercel deployment",
-      "status": "CODE_DONE_NEEDS_CI",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Public Hamro demo independently opened, captured, inspected and linked; distinguishes current demo from earlier studio work.",
-      "evidence": "resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
-      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
+      "observation": "Public Hamro demo independently opened, captured, inspected and linked; distinguishes current demo from earlier studio work. Live main verification now passes:54 exact canonical/build identities,17 delivered source/icon assets, safe official source links and current biography/humans. Same-tab external links are safe without new-tab isolation attributes.",
+      "evidence": "resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json; resumed-2026-11-05/live-main-snapshot-20261106.json",
+      "blocker": "",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -816,8 +816,8 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-media-evidence;nrs-ux-a11y;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Homepage and discovered /search route return200 but record defaultView/Stripe exceptions in this browser environment. New desktop/mobile captures remain rejected; no working booking/checkout or current-UI authorship claim.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/designerex-browse-20261106/manifest.json; resumed-2026-11-05/designerex-listing-discovery.json",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -833,12 +833,12 @@
       "depends_on": "T39",
       "acceptance_criteria": "Screenshot captured from actual verified accessible URL; if failing log and use approved local preview",
       "evidence_status": "Vercel deployment verified; render pending",
-      "status": "CODE_DONE_NEEDS_CI",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-media-evidence;nrs-ux-a11y;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Immutable public Hamro full-page and viewport originals retained with SHA, source URL and UTC. Uncropped WebP derivatives and full-original link verified at four widths.",
-      "evidence": "resumed-2026-11-05/verify-captures.cjs; resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
-      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
+      "observation": "Immutable public Hamro full-page and viewport originals retained with SHA, source URL and UTC. Uncropped WebP derivatives and full-original link verified at four widths. Live main verification now passes:54 exact canonical/build identities,17 delivered source/icon assets, safe official source links and current biography/humans. Same-tab external links are safe without new-tab isolation attributes.",
+      "evidence": "resumed-2026-11-05/verify-captures.cjs; resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json; resumed-2026-11-05/live-main-snapshot-20261106.json",
+      "blocker": "",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -853,11 +853,11 @@
       "depends_on": "T36",
       "acceptance_criteria": "Images preserve complete frame; contain not cover; source frame ID + hash + captions",
       "evidence_status": "GitHub historical evidence",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-media-evidence;nrs-ux-a11y;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "Verified all60 approved retained complete-frame records: public variant hashes/dimensions/aspect, file/node IDs, source hashes, body usage and contain/height-auto rendering. Independent original PNG reacquisition remains separately blocked under T77.",
+      "evidence": "resumed-2026-11-05/retained-full-frame-verification.json; resumed-2026-11-05/case-evidence-batch-qa.json",
       "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1833,12 +1833,12 @@
       "depends_on": "T90",
       "acceptance_criteria": "Owner-approved present location across current bio; separate historical employment location; no stale validation assertions",
       "evidence_status": "SITE_SOURCE_AND_USER_SCREENSHOT_OBSERVED",
-      "status": "CODE_DONE_NEEDS_CI",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-search-appearance;nrs-content-and-cases;nrs-seo-page-audit",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Current owned biography, metadata, humans.txt and profile labels now consistently use Nepal and owner-approved 7+. Historical role cities remain intact. New assertions reject stale present-city wording.",
-      "evidence": "resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json",
-      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
+      "observation": "Current owned biography, metadata, humans.txt and profile labels now consistently use Nepal and owner-approved 7+. Historical role cities remain intact. New assertions reject stale present-city wording. Live main verification now passes:54 exact canonical/build identities,17 delivered source/icon assets, safe official source links and current biography/humans. Same-tab external links are safe without new-tab isolation attributes.",
+      "evidence": "resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pr111-latest-checks.json; resumed-2026-11-05/live-main-snapshot-20261106.json",
+      "blocker": "",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -2016,9 +2016,9 @@
       "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-social-identity;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Official Uxcel 2023 row names owner, Product Designer category and TOP 10 badge. Removed unsupported third-place claims from visible copy/CMS and schema; no exact numeric rank inferred.",
-      "evidence": "resumed-2026-11-05/uxcel-visible-row.json; resumed-2026-11-05/uxcel-2023-owner.png; resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/pr111-latest-checks.json",
-      "blocker": "CI and Cloudflare Workers build pass. Live verification remains pending because the current instruction forbids automatic merge/deployment.",
+      "observation": "About now has a visible verified2023 Top10 issuer citation, five individually verified credential-summary references and four approved professional links. Faithful component crops retain unchanged full originals; older issuer profile labels stay separate from current biography. Four-width/24 native-dialog checks, full validation and independent review pass; About social cover is unchanged.",
+      "evidence": "resumed-2026-11-05/credibility-qa.json; resumed-2026-11-05/credibility-validation.log; resumed-2026-11-05/professional-link-placement.json; site/src/content/public-site-captures.json",
+      "blocker": "Follow-up PR CI and public release verification. Other dated/weekly ranking claims remain separately tracked under T93/T102.",
       "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
@@ -2053,12 +2053,12 @@
       "depends_on": "T100;T102",
       "acceptance_criteria": "Verified professional destinations, accessible labels, no duplicate generic icons, responsive tested",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "IN_PROGRESS",
+      "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-social-identity;nrs-ux-a11y;nrs-performance-release",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing professional links and credibility visuals are preserved; changed About/profile/contact source and responsive browser evidence are retained. No private/social destination was added automatically.",
-      "evidence": "resumed-2026-11-05/social-profile-classification.json; resumed-2026-11-05/browser-qa.json",
-      "blocker": "Complete all-placement label/icon/visibility reconciliation across homepage, About, footer, contact and mobile navigation.",
+      "observation": "About now has a visible verified2023 Top10 issuer citation, five individually verified credential-summary references and four approved professional links. Faithful component crops retain unchanged full originals; older issuer profile labels stay separate from current biography. Four-width/24 native-dialog checks, full validation and independent review pass; About social cover is unchanged.",
+      "evidence": "resumed-2026-11-05/credibility-qa.json; resumed-2026-11-05/credibility-validation.log; resumed-2026-11-05/professional-link-placement.json; site/src/content/public-site-captures.json",
+      "blocker": "Follow-up PR CI and public release verification. Other dated/weekly ranking claims remain separately tracked under T93/T102.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -2113,12 +2113,12 @@
       "depends_on": "T101;T102;T103",
       "acceptance_criteria": "Accurate year/role, permitted issuer visuals, clear alt/caption and source URL; no invented badge",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "IN_PROGRESS",
+      "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-social-identity;nrs-media-evidence;nrs-media-presentation;nrs-real-image-qa",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "2023 issuer Hall-of-Fame row and five professional credential-holder pages were independently verified. Retained 2024 badge assets and prior hashes are preserved as dated owner-supplied evidence, not fabricated new recognition.",
-      "evidence": "resumed-2026-11-05/uxcel-issuer-row.json; resumed-2026-11-05/uxcel-public-credentials.json; site/src/content/uxcel-recognition.json",
-      "blocker": "Finish per-asset publication/attribution and dated 2024/weekly claim reconciliation before calling all credibility visuals verified.",
+      "observation": "About now has a visible verified2023 Top10 issuer citation, five individually verified credential-summary references and four approved professional links. Faithful component crops retain unchanged full originals; older issuer profile labels stay separate from current biography. Four-width/24 native-dialog checks, full validation and independent review pass; About social cover is unchanged.",
+      "evidence": "resumed-2026-11-05/credibility-qa.json; resumed-2026-11-05/credibility-validation.log; resumed-2026-11-05/professional-link-placement.json; site/src/content/public-site-captures.json",
+      "blocker": "Follow-up PR CI and public release verification. Other dated/weekly ranking claims remain separately tracked under T93/T102.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -2142,6 +2142,6 @@
       "confidence": "CONFIRMED_SOURCE"
     }
   ],
-  "updated_at": "2026-11-06T00:31:08.336293+00:00",
+  "updated_at": "2026-11-06T01:55:50.088473+00:00",
   "scope_note": "All 107 tickets tracked. Reopened stale network blockers; not-started and in-progress do not imply blocked or complete. DONE_VERIFIED applies only to stated ticket acceptance. New source changes await release verification; full-program signoff is not claimed. Latest owner instruction: no automatic merge or deploy."
 }
