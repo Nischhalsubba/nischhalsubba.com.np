@@ -3764,10 +3764,10 @@ workspaceAfterFirstPaint(/** Callback contract: Initialize scenes in ordered gro
         payload.set('_honey', $('#shHp').value);
         if (token) payload.set('cf-turnstile-response', token);
         const mod = await deliveryModule;
-        const endpoint = state.ready && token ? '/api/contact' : 'https://formsubmit.co/ajax/hinischalsubba@gmail.com';
-        const { response, result } = await mod.sendPayload(endpoint, payload, AbortSignal.timeout(20000));
+        const { response, result, transport } = await mod.sendContact(payload, { firstParty: Boolean(state.ready && token), signal: AbortSignal.timeout(20000) });
         if (!response.ok) throw new Error(result.message || 'Your message could not be sent. Please try again.');
         hr.classList.add('sent'); st.textContent = 'Message sent'; say('Sent! I’ll reply within 1–2 working days');
+        if (result.accepted === true || (transport === 'fallback' && (result.success === true || result.success === 'true'))) mod.recordContactSuccess(transport);
         msg.value = ''; cnt.textContent = '0 / 600';
         if (state.widgetId !== null && window.turnstile) window.turnstile.reset(state.widgetId);
       } catch (error) {

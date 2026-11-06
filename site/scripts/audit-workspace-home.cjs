@@ -33,7 +33,7 @@ for (const font of fontSubsets) {
 assert.match(html, /Nischhal Raj Subba/);
 assert.match(html, /rel="canonical" href="https:\/\/nischhalsubba.com.np\/"/);
 assert.doesNotMatch(authoredCode, /hridoy|nischhal-design-portfolio\.grittytide4|track\.php|fetch\('contact\.php'/i);
-assert.match(authoredCode, /mod\.sendPayload\(endpoint, payload/);
+assert.match(authoredCode, /mod\.sendContact\(payload/);
 assert.doesNotMatch(authoredCode, /location\.href = `mailto:/);
 let inline = 0;
 for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
