@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-11-06T07:50:50.003975+00:00",
+  "routes": 54,
+  "placementsAndCandidates": 1558,
+  "distinctAssets": 272,
+  "missingLocalAssets": [],
+  "sourceReviewAssets": [
+    "/assets/project-mokshya-cover-DW79CUKC-DW79CUKC.svg",
+    "/assets/project-splashnode-cover-q2IRfgbl-q2IRfgbl.svg",
+    "/workspace-home/assets/projects/designerex.svg",
+    "/workspace-home/assets/projects/mokshya.svg",
+    "/workspace-home/assets/projects/splashnode.svg"
+  ],
+  "scope": "Final built HTML, srcsets, social metadata, icon references, inline/linked CSS and homepage runtime source candidates. No browser execution, decoded-image or visual acceptance is claimed. Runtime candidates are distinguished from actual HTML placements. Capture dates are not invented for retained historical files."
+}

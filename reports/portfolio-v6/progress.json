@@ -1476,9 +1476,9 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
-      "blocker": "",
+      "observation": "2026-11-06: Final-build inventory covers all 54 canonical routes: 1558 media placements/candidates and 272 distinct asset references, with zero missing local assets. Includes img/srcset, OG/Twitter, icons, inline/linked CSS and separately labeled runtime source candidates. Every reference is registered and classified; provenance questions are explicit. Browser execution/visual verification is waived by the owner; runtime candidates are not claimed visible. Rights and screenshot-source gaps remain under T63/T73/T75/T82.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs; resumed-2026-11-06/visual-media-inventory.csv; resumed-2026-11-06/visual-media-summary.json",
+      "blocker": "Browser state verification waived; source/rights acceptance remains separate. Inventory is complete at the final-build layer.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
