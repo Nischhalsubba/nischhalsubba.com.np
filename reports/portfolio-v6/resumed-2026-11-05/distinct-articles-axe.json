@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-11-06T05:48:10.107Z",
+  "scope": "Automated WCAG rules only; not full manual or assistive-technology certification",
+  "rows": [
+    {
+      "route": "/blog/blog-good-handoff",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/blog/designing-handoffs-between-people",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/blog/saas-dashboard-filter-ux",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/blog/blog-good-handoff",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/blog/designing-handoffs-between-people",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/blog/saas-dashboard-filter-ux",
+      "width": 1440,
+      "violations": []
+    }
+  ]
+}

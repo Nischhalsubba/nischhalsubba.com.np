@@ -36,6 +36,7 @@ jobs:
             if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then break; fi
             sleep 1
           done
+          AUDIT_OUTPUT=tests/seo-evidence/media node scripts/seo/media-evidence.cjs
           node scripts/seo/browser-evidence.mjs --axe-only
           AUDIT_OUTPUT=tests/seo-evidence/case-studies node scripts/seo/browser-evidence.mjs --axe-only --case-studies
       - name: Measure the unchanged base commit
@@ -65,6 +66,7 @@ jobs:
           name: seo-accessibility-performance-evidence
           path: |
             site/tests/seo-evidence/results
+            site/tests/seo-evidence/media
             site/tests/seo-evidence/baseline
             site/tests/seo-evidence/production
             site/tests/seo-evidence/case-studies

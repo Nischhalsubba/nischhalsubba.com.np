@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-11-06T06:02:57.575Z",
+  "expectedCommit": "dbf14e8124ef2f4485009be4bca2a37cdb1acfee",
+  "rows": [
+    {
+      "width": 390,
+      "commit": "dbf14e8124ef2f4485009be4bca2a37cdb1acfee",
+      "homepageCards": 14,
+      "homepageOverlap": 0,
+      "articleSources": 27,
+      "completeImageContainment": true,
+      "archiveFixedAspect": 1.6
+    },
+    {
+      "width": 1440,
+      "commit": "dbf14e8124ef2f4485009be4bca2a37cdb1acfee",
+      "homepageCards": 14,
+      "homepageOverlap": 0,
+      "articleSources": 27,
+      "completeImageContainment": true,
+      "archiveFixedAspect": 1.6
+    }
+  ],
+  "caseStudiesVerified": 14,
+  "errors": []
+}
