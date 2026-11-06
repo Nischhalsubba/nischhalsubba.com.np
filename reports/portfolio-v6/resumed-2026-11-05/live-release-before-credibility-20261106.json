@@ -1,0 +1,1479 @@
+{
+  "checkedAt": "2026-11-06T00:51:37.710Z",
+  "startMarker": {
+    "commit": "00e9747aefeb664d7d3675ee8e401986a367210b",
+    "branch": "main",
+    "provider": "cloudflare-workers"
+  },
+  "endMarker": {
+    "commit": "00e9747aefeb664d7d3675ee8e401986a367210b",
+    "branch": "main",
+    "provider": "cloudflare-workers"
+  },
+  "rows": [
+    {
+      "route": "/",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Senior Product Designer with 7+ years across enterprise SaaS, mobile apps, fintech and Web3. Complex workflows, design systems and implementation-ready UX.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": true,
+      "errors": []
+    },
+    {
+      "route": "/projects",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/projects",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Case studies from SaaS, Web3, fintech, LMS and software products, showing the product problem, my role, key design decisions, interface evidence and what shipped.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/services",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/services",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Product design support for SaaS, Web3, fintech and software teams: workflow design, interface systems, UX audits, design systems, prototyping and developer-ready handoff.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/about",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "I’m a product designer based in Nepal with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": "About Nischhal Raj SubbaI design by staying close to the product and close to the build.I’m a Nepal-based product designer working remotely. My work spans UX architecture, interface design, design systems, technical websites and implementation handoff.I started in agency and client work, which taught me to move between industries and explain design decisions to people with very different priorities. Product roles pushed the work deeper: more states, longer-lived systems, permissions, data, engineering constraints and the consequences of decisions that cannot be solved by a nicer component.That is the part of design I enjoy most. I like products where the brief is incomplete and the interface has to make a complicated system easier to reason about. I care about hierarchy, state language, recovery, responsive behavior and the quiet rules that make a product feel predictable.I also stay close to implementation. I do not need to own the front end on every project, but understanding browser behavior, component constraints and UI QA makes my design work more practical and my handoff less theatrical.Quick context7+Years in product and UX/UI designProduct ↔ codeDesign systems, handoff and implementation-aware workNPNepal · remote-friendlyExperienceA career that moved from broad client work into deeper product systems.The short version for hiring teams. The resume carries the full chronology.2025Idealaya↗Product DesignerEnterprise web software, high-fidelity product design and design-system work aimed at clearer implementation.2024–25Mokshya Protocol↗Product DesignerWeb3 product and website design, including wallet-native behavior, prototypes and technical product storytelling.2023Tegzy↗Lead User Experience DesignerDesign-system consistency, reusable product patterns and stronger design-to-development handoff.2021–23ESR Tech↗Senior UI/UX DesignerDashboard and internal-tool UX alongside broader product and website work.2021ThemeGrill↗Senior UI/UX DesignerReusable UI components and prototypes inside a WordPress product environment.2019–21Gurzu↗UI/UX DesignerClient-facing product design, prototyping and interface improvement across early-stage and existing products.View full resumeHow I workThree habits I bring into almost every product.01 · DecisionStart with what the user needs to decide.It keeps flows, content and visual hierarchy tied to a job instead of a collection of screens.02 · StateDesign what happens when the happy path stops.Waiting, errors, permissions, empty states and recovery are product behavior, not cleanup copy.03 · BuildMake the handoff explicit.Responsive rules, component behavior and QA should survive without a designer narrating every frame.Want the work history, the product thinking, or both?View case studiesContact meThe résumé behind 7+ yearsMy recorded experience starts with a web design and development internship in August 2018. These are the role dates in my résumé:Hamro Idea Pvt. Ltd. — Web Designer & Developer Intern · Aug 2018 – Mar 2019Diagonal Softwares — User Experience Designer · Apr 2019 – Sep 2020Gurzu — UI/UX Designer · Jul 2019 – Jan 2021ThemeGrill — Senior UI/UX Designer · Apr 2021 – Sep 2021ESR Tech — Senior UI/UX Designer · Oct 2021 – Feb 2023Tegzy — Lead User Experience Designer · Feb 2023 – Nov 2023Mokshya Protocol — Product Designer · Mar 2024 – Jul 2025Idealaya — Product Designer · Aug 2025 – Dec 2025This chronology includes internship and part-time experience. Overlapping roles are counted once, rather than added together as extra years.Read the full résumé for the role descriptions and project dates.Related reading and servicesWorking with a product designer in NepalHiring for SaaS and Web3 work",
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/contact",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Contact me about senior product design roles or focused product work. Share the product context, current friction, timeline and any useful links.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": "ContactSend the complicated version.For product design roles or focused design work, tell me what you are building, where the friction is, who needs to use it and when the decision matters.Direct contactEmail works just as well: hinischalsubba@gmail.comGood contextProduct or role · current friction · useful links · rough timelineTypical replyWithin 1–2 working daysBased inNepal · remote-friendly Name Email What do you need? Choose the closest fit Product design role Freelance UX/UI project UX audit or product review Design system Website or product marketing UX SaaS dashboard Web3 UX Other When does it matter? Choose a rough timeline Now / next 2 weeks This month 1–3 months Flexible Product context and current problem Your name, email and project context are sent securely through this website to the portfolio inbox. Cloudflare Turnstile may check submissions for abuse. Inquiry data is not sold or used for marketing. Avoid passwords, payment details or confidential credentials. Read the privacy notice. Send the contextEmail me instead A useful first message answers three thingsWhat are you trying to ship or improve?Enough product context to understand the job.Where is the uncertainty?User friction, business risk, design debt or a decision the team cannot resolve.What changes if we get it right?The user, team or product outcome that makes the work worth doing.",
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/privacy",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Plain-language privacy information for this portfolio, including contact-form data, limited site measurement, external links and deletion requests.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Practical notes from product design work on SaaS dashboards, Web3 UX, design systems, UX audits, responsive behavior, interface states and developer handoff.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/product-design-nepal",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/product-design-nepal",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Product design support from Nepal for software teams in Nepal and remote teams that need clearer workflows, stronger interfaces, practical systems and build-ready handoff.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/web3-ux-designer",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/web3-ux-designer",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Web3 product design for wallet actions, signing, transaction review, pending and failure states, and technical concepts that need to feel understandable and trustworthy.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/saas-ux-designer",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/saas-ux-designer",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Product design for SaaS teams working through dashboards, role-based workflows, tables, filters, permissions, operational states and reusable interface systems.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/website-ux-design",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/website-ux-design",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Website UX and interface design for software and service teams that need clearer positioning, information architecture, proof, responsive behavior and conversion paths.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/figma-design-systems",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/figma-design-systems",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Practical Figma design systems for product teams: reusable components, states, tokens, responsive rules and documentation that stays useful during implementation.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/ux-audit",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/ux-audit",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Evidence-led UX audits for software products, focused on task friction, missing states, accessibility, responsive behavior and changes worth prioritizing before redesign.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-yarsha",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-yarsha",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Keeping contact, asset selection and consequential actions understandable inside a conversational product.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-mokshya",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-mokshya",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A technical product story with an accessible first explanation and a deeper path for people evaluating the mechanism.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-hamro-idea",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-hamro-idea",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Connecting a Nepal-based studio's positioning, services, project proof and contact path in one maintainable website.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [
+        {
+          "href": "https://hamro-idea-website.vercel.app/",
+          "text": "Visit the public demo",
+          "target": "_blank",
+          "rel": "noopener noreferrer"
+        },
+        {
+          "href": "https://hamro-idea-website.vercel.app/",
+          "text": "Explore the current Hamro Idea demo",
+          "target": "",
+          "rel": ""
+        }
+      ],
+      "acceptanceText": "Software studio · Brand, website and frontendHamro IdeaConnecting a Nepal-based studio's positioning, services, project proof and contact path in one maintainable website.ContributionDesign and development contributionEvidenceIndependently captured current public demoTHE PRODUCT QUESTIONHow can a software studio make its offer understandable and give a prospect a reason to believe it?The website needs to connect three things that often drift apart: what the studio offers, which work supports that offer, and how a prospect starts a relevant conversation. My design and development contribution brings them into one reading path and a reusable frontend structure.FOLLOW THE DESIGN PATHChoose a relevant serviceInspect the work and studioExplore the studio’s thinkingStart a relevant conversationContext and my contributionHamro Idea needed a website that could explain a software studio's offer to a prospective client. The first design question was what a visitor should understand before making contact, not which visual treatment would make the homepage more dramatic.My existing scope spans positioning, information architecture, responsive UI, reusable sections, semantic markup and frontend implementation. Working across design and code let me inspect the page with real content and adjust its composition before treating the layout as finished.Constraints that shaped the workInternal service names may not match the language a prospective client uses.A multi-page site needs repeated patterns without making every service sound identical.The design must tolerate real copy, image proportions and future content changes.01 / Choose a relevant serviceThe prospect first needs to recognize a service that fits the problem.Organize the offer around client questionsI structure a service page around fit: what problem the service addresses, what work it includes and what proof helps someone evaluate it. That makes the service architecture more useful than a list of internal disciplines.The practical editorial test is whether a prospect can select a relevant service and explain why it fits. That is a proposed test, not a claim about measured lead quality.The complete homepage and services page reveal how the offer is introduced and then expanded. These are historical design artifacts with placeholder imagery and copy; their value here is the information sequence, not the sample business claims.Hamro Idea historical homepage connects positioning, services, selected-work examples, process and contact. Full original Figma frame; design content is sample data.Inspect the original Figma frame (access may be required)Hamro Idea historical services page organizes the studio offer into design and development disciplines. Full original Figma frame; design content is sample data.Inspect the original Figma frame (access may be required)Trade-off Client-facing language improves recognition, while precise scope prevents the service promise becoming too broad.02 / Inspect the work and studioA relevant service creates a reasonable demand for evidence.Keep project proof near the service explanationThe project index offers a first scan of work, and the project-detail layout gives one example room for explanation. The About page answers a related trust question about the studio behind that work. These are different kinds of proof and should not compete as an undifferentiated gallery.The About page gives a prospective client another way to evaluate the studio after reading the service offer. Positioning, team presentation and working principles should support the promise made by the earlier pages rather than introduce a disconnected brand story.I treat that transition as a trust question: what does the visitor still need to understand before starting a conversation? The source contains demonstration imagery and sample claims, so the case discusses their placement and role without presenting them as verified company achievements.Hamro Idea historical project index introduces work through a repeatable project-card structure. Complete original Figma frame; design content is sample data.Inspect the original Figma frame (access may be required)Hamro Idea historical project-detail layout presents a sample software project in greater depth. Complete original Figma frame; design content is sample data.Inspect the original Figma frame (access may be required)Hamro Idea historical About page presents studio positioning, team imagery and working principles. Full original Figma frame; design content is sample data.Inspect the original Figma frame (access may be required)Trade-off Nearby project proof answers a specific doubt; a large detached gallery makes the visitor connect the dots.03 / Explore the studio’s thinkingA visitor may want to understand the studio’s thinking before starting a project conversation.Give a curious visitor another way to go deeperThe article index and long-form article layout create that optional route. A short preview helps someone decide what is worth opening; the article page then needs a clear reading hierarchy and a useful route back to related material.I treat editorial content as part of evaluation, not filler between services and contact. In these historical designs the article text and project claims are sample content; the inspectable decision is how the index, detail and next step connect.Hamro Idea historical blog index presents article previews and a route into longer design content. Complete original Figma frame; design content is sample data.Inspect the original Figma frame (access may be required)Hamro Idea historical article layout connects a long-form design explanation with related reading. Complete original Figma frame; design content is sample data.Inspect the original Figma frame (access may be required)Trade-off Long-form content can build understanding, but it needs clear entry points and a route back into the service or contact journey.04 / Start a relevant conversationAfter understanding the offer and inspecting relevant work, the prospect needs a clear route to a conversation.Make the next conversation easy to startThe full contact page brings that evaluation path into a direct request. Name, email and message keep the initial commitment small, while the broader page retains the studio identity and surrounding navigation. The original placeholder content remains visible as part of the historical design.The artifact also exposes work still needed: prompts must become persistent programmatic labels, the email field needs appropriate input semantics, and validation, submission progress and success feedback need explicit states. Preserving the simple composition requires making those behaviors part of the implementation contract.Hamro Idea full contact page combines the contact introduction, message form, newsletter and footer. Full original Figma frame; design content is sample data.Inspect the original Figma frame (access may be required)Trade-off A short form reduces the information requested upfront, while qualification and useful feedback still need a deliberate interaction design.Current public demoCurrent public Hamro Idea demo, independently captured on 5 November 2026. Earlier studio work is described separately in this case.Open the complete original page captureVisit the public demoArtifacts and delivery boundaryThe work joins service information architecture with a static multi-page frontend. The useful handoff is not only a visual style: it includes section responsibilities, responsive rules and a content structure the site can keep using.Public material for this case is limited. This account stays focused on my contribution, its design decisions and the questions that deserve further validation.Explore the current Hamro Idea demoPublic demo, checked 5 November 2026. This current implementation is a separate reference from earlier studio work.Where the work landedThe contribution joins service structure, project proof and a maintainable frontend. I would evaluate it by asking a visitor to choose a service, locate supporting work and reach contact with the right context. Search rankings and inquiry growth are not measured outcomes of this case.How I would evaluate the designThese are proposed review tasks, not reported research findings.Ask a prospect to choose a relevant service, locate supporting work and reach contact with enough context to describe their need.Review the form using keyboard input, invalid email, submission failure and success; check persistent labels and meaningful feedback.Looking backService architecture and implementation meet in the content contract. A new service or longer project description should fit the structure without weakening the story. The case demonstrates the intended relationship between offer, proof and contact; lead quality and search growth need separate measurement.Related work and reading↗RELATED EXPLORATIONWebsite design and frontend thinking↗RELATED EXPLORATIONWorking with a designer in Nepal↗RELATED EXPLORATIONClearer service websitesExplore all project case studies↗CONTINUE THE JOURNEYDesignerex↗CONTINUE THE JOURNEYAll work↗CONTINUE THE JOURNEYMorajaa",
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-morajaa",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-morajaa",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Helping a prospective client move from a recognizable business problem to a specific consulting service and a useful conversation.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-pihub",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-pihub",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Financial workflows organized around what has been submitted, who needs to act and what remains unresolved.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-masteriyo",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-masteriyo",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Designing authoring and learning interactions inside an established LMS, while keeping the contribution boundary clear.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-zapp",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-zapp",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Different interfaces for people booking a delivery, carrying it out and resolving exceptions around it.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [
+        {
+          "href": "https://zapp.today/",
+          "text": "Visit the current official Zapp website",
+          "target": "_blank",
+          "rel": "noopener noreferrer"
+        },
+        {
+          "href": "https://zapp.today/",
+          "text": "Visit Zapp’s current official website",
+          "target": "",
+          "rel": ""
+        }
+      ],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-neverwinter-parser",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-neverwinter-parser",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Turning an event stream into an inspectable summary without making clean numbers look more certain than the underlying data.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-orkest",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-orkest",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A shared interface language for business software, with CRM screens that make ownership, qualification and the next action easier to inspect.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-splashnode",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-splashnode",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Explaining content, device and data-management capabilities through a website whose design and implementation can inform each other.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-grid-labs",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-grid-labs",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A hosting offer organized around service fit, plan comparison and a clear route to the next commercial step.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-zakra-furniture",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-zakra-furniture",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "An image-led catalogue designed to remain coherent when real content replaces the demo.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-designerex",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-designerex",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Balancing image-led fashion discovery with the stable rental information needed to compare listings.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [
+        {
+          "href": "https://designerex.com.au/",
+          "text": "Visit the current Designerex marketplace",
+          "target": "",
+          "rel": ""
+        }
+      ],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/project-sassboilerplate",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/project-sassboilerplate",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A frontend learning archive of Sass imports and a Gulp build workflow, with attribution to JR Cologne’s original starter kit.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/responsive-saas-dashboard-handoff-notes",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/responsive-saas-dashboard-handoff-notes",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A responsive dashboard needs rules for priority, overflow and continuation. A desktop frame and a mobile frame leave the hardest decisions between them.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/saas-dashboard-filter-ux",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A filter changes the answer a table gives. People need to see the question currently being asked, understand why a record is absent and change that question without losing context.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Role-based UX is not a reason to duplicate every screen. Share the meaning of a record and its states, then change the information and actions according to the job.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "An empty state is useful when someone can continue from it. Test the transition, retained input and result of the recovery action, not only the appearance of the panel.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/design-systems-small-product-teams",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/design-systems-small-product-teams",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A small team needs a reliable way to repeat and change decisions. It does not need to reproduce the operating model of a much larger organization.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/design-handoff-checklist-startup-product-teams",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A small team needs enough agreement to build safely, without turning every change into a specification project. Use this checklist for a release slice, not the entire product at once.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/prioritize-ux-audit-findings-before-redesign",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/prioritize-ux-audit-findings-before-redesign",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A long issue list becomes useful when the team can explain why one problem deserves attention before another. Separate user consequence, evidence confidence and delivery effort.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/when-startup-needs-ux-audit-before-redesign",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/when-startup-needs-ux-audit-before-redesign",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A redesign is a commitment to change. An audit is useful when the team first needs to understand which change is warranted and which existing behavior should be preserved.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/hire-product-designer-nepal-saas-web3",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Evaluate the work against your product's decisions, collaboration needs and evidence gaps. Location is one practical consideration; it should not substitute for examining the contribution.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/beautiful-interface-poor-ux",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/beautiful-interface-poor-ux",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A polished screen can still leave the person unsure what to do, what changed or whether their work is safe. Review the decision the interface supports before judging the composition.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/ux-audit-evidence-before-redesign",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/ux-audit-evidence-before-redesign",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A useful audit connects an observed problem to a task and a decision. Screenshots, analytics and opinions contribute different kinds of evidence; they should not be treated as interchangeable.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/saas-dashboard-ux-checklist",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A dashboard should help someone notice what matters and act on it. Use this checklist to review one role's work, not to collect every chart and table pattern in one screen.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/web3-wallet-ux-checklist",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Review the whole journey: explanation, connection, intent, authorization, waiting, recovery and the result. A successful connection is only one checkpoint.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/figma-handoff-notes-for-developers",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/figma-handoff-notes-for-developers",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A useful handoff note answers the questions the image cannot: what changes, what persists and what happens when the action does not work.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/ux-audit-checklist-before-redesign",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Use this checklist to inspect one important journey from entry to recovery. A page-by-page visual review can miss the behavior that makes the task succeed or fail.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/website-ux-checklist-software-companies",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/website-ux-checklist-software-companies",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A software website should help a serious visitor understand the offer, inspect relevant proof and choose a sensible next step. Review that journey before adding another visual effect.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [
+        {
+          "href": "https://hamro-idea-website.vercel.app/",
+          "text": "Visit the public demo",
+          "target": "_blank",
+          "rel": "noopener noreferrer"
+        }
+      ],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/blog-design-systems-front-end",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-design-systems-front-end",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A design system becomes useful when its concepts survive implementation. I look for clear responsibilities between tokens, components, content and product behavior.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/blog-gaming-interface-clarity",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-gaming-interface-clarity",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Playing complex games and working on a combat-data tool keeps bringing me back to the same interface question: can I tell what matters now, and can I inspect why?",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/blog-good-handoff",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-good-handoff",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Handoff is a shared understanding of the product decision. Exporting a polished screen is one part of it, not the point at which responsibility disappears.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/blog-portfolio-product",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-portfolio-product",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "I want a portfolio to help someone evaluate my judgment, not only recognize a visual style. That means treating evidence, navigation and performance as part of the same product.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/blog-service-websites",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-service-websites",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A service page needs to help someone recognize their situation, understand the scope and decide whether a conversation is worthwhile. A list of capabilities is only the starting material.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/blog-web3-products",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/blog-web3-products",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Start with what the person is trying to do. Explain the wallet or network when it changes the decision, instead of making protocol vocabulary the entrance requirement.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-state-ux-guide",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Before writing an empty-state headline, identify what the interface actually knows. The next action should follow the cause, not a reusable illustration.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-product-clarity",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-product-clarity",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A product needs an empty-state model before it needs an empty-state component. Visually similar panels can represent different responsibilities and different risks.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/transaction-review-ux-crypto-apps",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "A transaction review should help someone understand the change they are about to authorize. It should also be honest about what the product can and cannot establish before submission.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/web3-wallet-connection-ux",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/web3-wallet-connection-ux",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Wallet connection should answer why the wallet is needed, what is being requested and how to continue if the person declines or cannot connect.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    },
+    {
+      "route": "/blog/designing-handoffs-between-people",
+      "status": 200,
+      "canonical": "https://nischhalsubba.com.np/blog/designing-handoffs-between-people",
+      "marker": "00e9747aefeb664d7d3675ee8e401986a367210b",
+      "description": "Designing ownership, waiting and recovery across roles with original Orkest, piHub and Zapp screens.",
+      "sameAs": [
+        "https://app.uxcel.com/ux/nischhal",
+        "https://github.com/Nischhalsubba",
+        "https://www.behance.net/nischhal",
+        "https://www.linkedin.com/in/nischhal/"
+      ],
+      "icons": [
+        "/favicon.ico",
+        "/favicon-48.png",
+        "/favicon.svg",
+        "/favicon-180.png"
+      ],
+      "external": [],
+      "acceptanceText": null,
+      "uxcel2023": false,
+      "errors": []
+    }
+  ],
+  "assets": [
+    {
+      "id": "hamro-current-demo",
+      "path": "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png",
+      "status": 200,
+      "sha256": "69eb816ea462f083917173ad6ceb2f14adaca91466f37432b52d6fadfe2a2cf6",
+      "expectedSha256": "69eb816ea462f083917173ad6ceb2f14adaca91466f37432b52d6fadfe2a2cf6",
+      "bytes": 1556373,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "grid-labs-public",
+      "path": "/assets/images/site-captures/grid-labs-public-923727148cf9-1440.png",
+      "status": 200,
+      "sha256": "923727148cf995ca59472384a291391ada7aa153c3f260b41cd3ec918b6b3267",
+      "expectedSha256": "923727148cf995ca59472384a291391ada7aa153c3f260b41cd3ec918b6b3267",
+      "bytes": 73895,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "zakra-official-catalog",
+      "path": "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-1200.png",
+      "status": 200,
+      "sha256": "2001c1832d677ae12e69234fc21ff208dddd15995407f9fa380c1e45636c8725",
+      "expectedSha256": "2001c1832d677ae12e69234fc21ff208dddd15995407f9fa380c1e45636c8725",
+      "bytes": 293785,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "zapp-desktop-reference",
+      "path": "/assets/images/site-captures/zapp-desktop-reference-1523dc2001c0-1440.png",
+      "status": 200,
+      "sha256": "1523dc2001c016411caa2fbf7c47d0e4c26c00c81e4bf7ec071ab67b1950575c",
+      "expectedSha256": "1523dc2001c016411caa2fbf7c47d0e4c26c00c81e4bf7ec071ab67b1950575c",
+      "bytes": 184517,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "wallet-adapter-chooser",
+      "path": "/assets/images/site-captures/wallet-adapter-chooser-d06ea3ac0018-original.png",
+      "status": 200,
+      "sha256": "d06ea3ac0018e08deefb6d62a9577f02afe155155c86f15c164984eac86e3611",
+      "expectedSha256": "d06ea3ac0018e08deefb6d62a9577f02afe155155c86f15c164984eac86e3611",
+      "bytes": 27062,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "wallet-adapter-gallery",
+      "path": "/assets/images/site-captures/wallet-adapter-gallery-b8bb01de33c1-original.png",
+      "status": 200,
+      "sha256": "b8bb01de33c10e9895abff80f88bf8d2e1e984d15712e9e43af89ff93347bc22",
+      "expectedSha256": "b8bb01de33c10e9895abff80f88bf8d2e1e984d15712e9e43af89ff93347bc22",
+      "bytes": 47594,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "neverwinter-public-setup",
+      "path": "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png",
+      "status": 200,
+      "sha256": "c017c10b437b6b06ff4f9bbceba4e85d5deb6ba738460ee0564f859834dcb40c",
+      "expectedSha256": "c017c10b437b6b06ff4f9bbceba4e85d5deb6ba738460ee0564f859834dcb40c",
+      "bytes": 212112,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "sass-public-code",
+      "path": "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png",
+      "status": 200,
+      "sha256": "a085d48fad9b68d8b8305c9a5858fc625a64dcdbcc1ef382c636997abb00cb83",
+      "expectedSha256": "a085d48fad9b68d8b8305c9a5858fc625a64dcdbcc1ef382c636997abb00cb83",
+      "bytes": 76551,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "portfolio-published-baseline",
+      "path": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-original.png",
+      "status": 200,
+      "sha256": "d80cfa9926281673059723fd1ce4d20918bfada5c0ebadd6d913062526a97a6e",
+      "expectedSha256": "d80cfa9926281673059723fd1ce4d20918bfada5c0ebadd6d913062526a97a6e",
+      "bytes": 731194,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "favicon.ico",
+      "path": "/favicon.ico",
+      "status": 200,
+      "sha256": "a4f65e808a6907eb1f3f9408723c315e0e149665eed314cee52584b0e13b6829",
+      "expectedSha256": "a4f65e808a6907eb1f3f9408723c315e0e149665eed314cee52584b0e13b6829",
+      "bytes": 3111,
+      "sameBytes": true,
+      "contentType": "image/vnd.microsoft.icon"
+    },
+    {
+      "id": "favicon.svg",
+      "path": "/favicon.svg",
+      "status": 200,
+      "sha256": "aec7394820bcf1eccf485fc666704bc818ed5b914e6e9d66ae556f50ce64650b",
+      "expectedSha256": "aec7394820bcf1eccf485fc666704bc818ed5b914e6e9d66ae556f50ce64650b",
+      "bytes": 237,
+      "sameBytes": true,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "id": "favicon-16.png",
+      "path": "/favicon-16.png",
+      "status": 200,
+      "sha256": "d1a1b76e900d11d66371a096397c07f7f18468ca14c56232a25b46f393e43537",
+      "expectedSha256": "d1a1b76e900d11d66371a096397c07f7f18468ca14c56232a25b46f393e43537",
+      "bytes": 356,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "favicon-32.png",
+      "path": "/favicon-32.png",
+      "status": 200,
+      "sha256": "4748314a50dc105ed417b484071361b46848e4f886f4000cc8461c20e26db078",
+      "expectedSha256": "4748314a50dc105ed417b484071361b46848e4f886f4000cc8461c20e26db078",
+      "bytes": 419,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "favicon-48.png",
+      "path": "/favicon-48.png",
+      "status": 200,
+      "sha256": "f53dc080e3a6b5bff52feff2382b99c3728c5f3a43d87d2fbdf14dfac2053681",
+      "expectedSha256": "f53dc080e3a6b5bff52feff2382b99c3728c5f3a43d87d2fbdf14dfac2053681",
+      "bytes": 528,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "favicon-180.png",
+      "path": "/favicon-180.png",
+      "status": 200,
+      "sha256": "59915ffebb1ad15732bc2262e4614e10365eeba97d1376cfeddd371a701c8923",
+      "expectedSha256": "59915ffebb1ad15732bc2262e4614e10365eeba97d1376cfeddd371a701c8923",
+      "bytes": 1552,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "favicon-192.png",
+      "path": "/favicon-192.png",
+      "status": 200,
+      "sha256": "e4024b6e5575fb6cb163e64c77b8988e7ca67d451eaf22b88fb8ad9a5b55bcd3",
+      "expectedSha256": "e4024b6e5575fb6cb163e64c77b8988e7ca67d451eaf22b88fb8ad9a5b55bcd3",
+      "bytes": 1749,
+      "sameBytes": true,
+      "contentType": "image/png"
+    },
+    {
+      "id": "favicon-512.png",
+      "path": "/favicon-512.png",
+      "status": 200,
+      "sha256": "ef0eecfdf8a71101fa0968774e4bc7a24efde742b120c031b947dfe143a89be4",
+      "expectedSha256": "ef0eecfdf8a71101fa0968774e4bc7a24efde742b120c031b947dfe143a89be4",
+      "bytes": 5696,
+      "sameBytes": true,
+      "contentType": "image/png"
+    }
+  ],
+  "humans": {
+    "status": 200,
+    "nepal": true,
+    "seniorRole": true
+  },
+  "scope": "Read-only public HTML/canonical/schema/source-byte verification. No external website functionality, form delivery, field performance or Google indexing/rank/display outcome is inferred.",
+  "errors": [
+    "Missing safe source link /project-designerex",
+    "2023 Top10 missing"
+  ]
+}

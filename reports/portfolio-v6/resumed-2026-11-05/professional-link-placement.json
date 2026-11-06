@@ -1,0 +1,331 @@
+{
+  "checkedAt": "2026-11-06T01:49:30.183914+00:00",
+  "approvedRegistry": "site/config/professional-profile.json",
+  "scope": "All54 built footers retain exact approved professional destinations, visible platform names and isolated new tabs. About adds four explicit professional profile links and verified issuer evidence; mobile navigation stays focused on portfolio pages. Existing native navigation tests and new four-width About/24-dialog checks are reused. This does not authenticate external editing sessions or certify optional personal profiles.",
+  "rows": [
+    {
+      "file": "index.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "projects.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "services.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "about.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "contact.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "privacy.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/index.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "product-design-nepal.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "web3-ux-designer.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "saas-ux-designer.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "website-ux-design.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "figma-design-systems.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "ux-audit.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-yarsha.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-mokshya.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-hamro-idea.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-morajaa.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-pihub.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-masteriyo.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-zapp.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-neverwinter-parser.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-orkest.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-splashnode.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-grid-labs.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-zakra-furniture.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-designerex.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "project-sassboilerplate.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/responsive-saas-dashboard-handoff-notes.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/saas-dashboard-filter-ux.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/role-based-saas-dashboard-ux.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/design-systems-small-product-teams.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/design-handoff-checklist-startup-product-teams.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/prioritize-ux-audit-findings-before-redesign.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/when-startup-needs-ux-audit-before-redesign.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/hire-product-designer-nepal-saas-web3.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/beautiful-interface-poor-ux.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/ux-audit-evidence-before-redesign.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/saas-dashboard-ux-checklist.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/web3-wallet-ux-checklist.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/figma-handoff-notes-for-developers.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/ux-audit-checklist-before-redesign.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/website-ux-checklist-software-companies.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/blog-design-systems-front-end.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/blog-gaming-interface-clarity.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/blog-good-handoff.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/blog-portfolio-product.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/blog-service-websites.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/blog-web3-products.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/saas-dashboard-empty-state-ux-guide.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/saas-dashboard-empty-states-product-clarity.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/transaction-review-ux-crypto-apps.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/web3-wallet-connection-ux.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    },
+    {
+      "file": "blog/designing-handoffs-between-people.html",
+      "footerProfessionalDestinations": 3,
+      "platformLabelsVisible": true,
+      "newTabIsolation": true
+    }
+  ]
+}

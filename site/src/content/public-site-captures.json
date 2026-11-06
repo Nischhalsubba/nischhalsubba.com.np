@@ -472,5 +472,443 @@
     "socialSrc": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-original.png",
     "fullOriginal": "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-original.png",
     "processing": "Reused unchanged full-viewport PNG; WebP variants resize and encode its complete composition. No UI or image content altered."
+  },
+  {
+    "id": "uxcel-2023-hall-reference",
+    "kind": "STATIC_PUBLIC_WEBSITE_REFERENCE",
+    "route": "/about",
+    "useAsPreview": false,
+    "sourceUrl": "https://uxcel.com/designer-rankings/past-winners",
+    "sourceCreator": "Uxcel",
+    "capturedAt": "2026-11-05",
+    "captureTimestampPrecision": "UTC calendar date of the retained source batch. Exact screenshot shutter time was not retained; no fabricated second-level timestamp.",
+    "sourceVerificationAt": null,
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceImageDimensions": {
+      "width": 992,
+      "height": 68
+    },
+    "sourceOriginalSha256": "61b8f459db79a736f5d2133d84a927ae38657cf8ff0edb8a4527919b92f0d665",
+    "derivation": {
+      "originalDimensions": [
+        1440,
+        900
+      ],
+      "cropBoxPixels": [
+        344,
+        416,
+        1336,
+        484
+      ],
+      "pixelEqualityVerified": true
+    },
+    "sourceSha256": "aca18cb9377bcd0cdbf5f81064ee70973e593d525606f95b0b8e9879ead0b7a8",
+    "fullOriginalSha256": "61b8f459db79a736f5d2133d84a927ae38657cf8ff0edb8a4527919b92f0d665",
+    "permission": "OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE",
+    "permissionBasis": "Owner requested authentic visual evidence of their publicly issued credentials; issuer credited and linked. No general redistribution license or issuer-UI authorship is claimed.",
+    "sourceDiagnostics": {
+      "observedHttpStatus": 200,
+      "consoleStatus": "Console diagnostics were not retained in the original verification batch; no functional-clean-run claim.",
+      "visualScope": "Static native issuer record reference, with complete original composition retained."
+    },
+    "roleBoundary": "Issuer historical 2023 Product Designer / UX Top 10 listing. The observed row does not establish an exact numeric place. Screenshot shows the issuer UI and other public winners; it is a reference to recognition, not my product design.",
+    "alt": "Detail of Nischhal Raj Subba\u2019s row in Uxcel\u2019s historical winner list, showing the UX category and Top 10 label.",
+    "caption": "Uxcel\u2019s 2023 Product Designer Hall of Fame, independently captured on 5 November 2026. Nischhal Raj Subba\u2019s row is labelled Top 10. Complete row detail shown.",
+    "originalLinkLabel": "Open the complete original issuer-page capture",
+    "sourceLinkLabel": "Verify the official issuer record",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/uxcel-2023-hall-reference-61b8f459db79-496.webp",
+        "width": 496,
+        "height": 34,
+        "sha256": "fdc95fac26f2240cd922b5b348799e46c5e6b5909dd83c8aaef1632242d63d0f",
+        "bytes": 982
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-2023-hall-reference-61b8f459db79-744.webp",
+        "width": 744,
+        "height": 51,
+        "sha256": "bbe5b2c5cf0c00380f77ba6896fd9635b96f42ef8166c98ec08336515bc69be7",
+        "bytes": 1630
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-2023-hall-reference-61b8f459db79-992.webp",
+        "width": 992,
+        "height": 68,
+        "sha256": "2bb20fe9cadeed72d41f91133d5afa97a1314c7438237bf46d3571be530a413d",
+        "bytes": 1994
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/uxcel-2023-hall-reference-61b8f459db79-detail.png",
+    "fullOriginal": "/assets/images/site-captures/uxcel-2023-hall-reference-61b8f459db79-original.png",
+    "processing": "Detail crop of the complete owner row or credential-summary component from the retained native viewport. Full original 1440x900 PNG remains unchanged and accessible. Derivatives only crop/resize/encode source pixels; no UI redrawing, retouching or altered credential details."
+  },
+  {
+    "id": "uxcel-credential-s9yu2tudmmt1",
+    "kind": "STATIC_PUBLIC_WEBSITE_REFERENCE",
+    "route": "/about",
+    "useAsPreview": false,
+    "sourceUrl": "https://app.uxcel.com/certificates/S9YU2TUDMMT1",
+    "sourceCreator": "Uxcel",
+    "capturedAt": "2026-11-05",
+    "captureTimestampPrecision": "UTC calendar date of the retained source batch. Exact screenshot shutter time was not retained; no fabricated second-level timestamp.",
+    "sourceVerificationAt": "2026-11-05T13:07:49.120Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceImageDimensions": {
+      "width": 720,
+      "height": 252
+    },
+    "sourceOriginalSha256": "a3ebcb0fd32bf5fa3b4ee8956ff06d6738c02c07ad1f01f64861484cf445f804",
+    "derivation": {
+      "originalDimensions": [
+        1440,
+        900
+      ],
+      "cropBoxPixels": [
+        160,
+        104,
+        880,
+        356
+      ],
+      "pixelEqualityVerified": true
+    },
+    "sourceSha256": "72cf8aea83727b9527b427a6feb916c0da192a7eb3112a0241eb7ee93cdde621",
+    "fullOriginalSha256": "a3ebcb0fd32bf5fa3b4ee8956ff06d6738c02c07ad1f01f64861484cf445f804",
+    "permission": "OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE",
+    "permissionBasis": "Owner requested authentic visual evidence of their publicly issued credentials; issuer credited and linked. No general redistribution license or issuer-UI authorship is claimed.",
+    "sourceDiagnostics": {
+      "observedHttpStatus": 200,
+      "consoleStatus": "Console diagnostics were not retained in the original verification batch; no functional-clean-run claim.",
+      "visualScope": "Static native issuer record reference, with complete original composition retained."
+    },
+    "roleBoundary": "Owner-requested reference to their public issuer credential record. Uxcel owns the issuer UI; its recorded profile/employer labels are not a statement of current employment on this portfolio.",
+    "alt": "Uxcel public UX Writer credential record issued to Nischhal on Jan 21, 2025.",
+    "caption": "Uxcel UX Writer certification, issued to Nischhal on Jan 21, 2025. Issuer page independently captured on 5 November 2026. Credential summary detail shown.",
+    "originalLinkLabel": "Open the complete original issuer-page capture",
+    "sourceLinkLabel": "Verify the official issuer record",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-s9yu2tudmmt1-a3ebcb0fd32b-360.webp",
+        "width": 360,
+        "height": 126,
+        "sha256": "06b0322d385c1d3dc4f982cf0fc3b8006e838570f9fed27b6bfc4c3cf3661875",
+        "bytes": 5686
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-s9yu2tudmmt1-a3ebcb0fd32b-540.webp",
+        "width": 540,
+        "height": 189,
+        "sha256": "f66b66c3ad98cadf6186f0ff3fd008a7701b36942636b849df65d6177338c901",
+        "bytes": 9422
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-s9yu2tudmmt1-a3ebcb0fd32b-720.webp",
+        "width": 720,
+        "height": 252,
+        "sha256": "81a439915ddb21633c525ebc27ff01ae012064fbccbe9628cf82f4b13172dfa2",
+        "bytes": 14826
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/uxcel-credential-s9yu2tudmmt1-a3ebcb0fd32b-detail.png",
+    "fullOriginal": "/assets/images/site-captures/uxcel-credential-s9yu2tudmmt1-a3ebcb0fd32b-original.png",
+    "processing": "Detail crop of the complete owner row or credential-summary component from the retained native viewport. Full original 1440x900 PNG remains unchanged and accessible. Derivatives only crop/resize/encode source pixels; no UI redrawing, retouching or altered credential details."
+  },
+  {
+    "id": "uxcel-credential-i4yty0556kcy",
+    "kind": "STATIC_PUBLIC_WEBSITE_REFERENCE",
+    "route": "/about",
+    "useAsPreview": false,
+    "sourceUrl": "https://app.uxcel.com/certificates/I4YTY0556KCY",
+    "sourceCreator": "Uxcel",
+    "capturedAt": "2026-11-05",
+    "captureTimestampPrecision": "UTC calendar date of the retained source batch. Exact screenshot shutter time was not retained; no fabricated second-level timestamp.",
+    "sourceVerificationAt": "2026-11-05T13:07:49.013Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceImageDimensions": {
+      "width": 720,
+      "height": 252
+    },
+    "sourceOriginalSha256": "5fdc83209d16616a1ce7a6c128b0c7987649277b5d2ac11982a22365addd3c96",
+    "derivation": {
+      "originalDimensions": [
+        1440,
+        900
+      ],
+      "cropBoxPixels": [
+        160,
+        104,
+        880,
+        356
+      ],
+      "pixelEqualityVerified": true
+    },
+    "sourceSha256": "1a0d0e27b6afd6d1fb2bf404d15c331e24d319d481d18e203dc3ad765aec2122",
+    "fullOriginalSha256": "5fdc83209d16616a1ce7a6c128b0c7987649277b5d2ac11982a22365addd3c96",
+    "permission": "OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE",
+    "permissionBasis": "Owner requested authentic visual evidence of their publicly issued credentials; issuer credited and linked. No general redistribution license or issuer-UI authorship is claimed.",
+    "sourceDiagnostics": {
+      "observedHttpStatus": 200,
+      "consoleStatus": "Console diagnostics were not retained in the original verification batch; no functional-clean-run claim.",
+      "visualScope": "Static native issuer record reference, with complete original composition retained."
+    },
+    "roleBoundary": "Owner-requested reference to their public issuer credential record. Uxcel owns the issuer UI; its recorded profile/employer labels are not a statement of current employment on this portfolio.",
+    "alt": "Uxcel public UI Designer credential record issued to Nischhal on Jan 23, 2025.",
+    "caption": "Uxcel UI Designer certification, issued to Nischhal on Jan 23, 2025. Issuer page independently captured on 5 November 2026. Credential summary detail shown.",
+    "originalLinkLabel": "Open the complete original issuer-page capture",
+    "sourceLinkLabel": "Verify the official issuer record",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-i4yty0556kcy-5fdc83209d16-360.webp",
+        "width": 360,
+        "height": 126,
+        "sha256": "ee8e9524b617ba41b266f136c9f2f0ebf52a4379bfcd6b19863e38b75f82d6a2",
+        "bytes": 5790
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-i4yty0556kcy-5fdc83209d16-540.webp",
+        "width": 540,
+        "height": 189,
+        "sha256": "e74361799cbc031e5cdf477ad98e31c797fea8d080ba1a7e11d69b47b3443e88",
+        "bytes": 9652
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-i4yty0556kcy-5fdc83209d16-720.webp",
+        "width": 720,
+        "height": 252,
+        "sha256": "1902bf62887b289dac008950c491e0b0413c75efd8ad3c9bb0e96afa17b3e342",
+        "bytes": 15058
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/uxcel-credential-i4yty0556kcy-5fdc83209d16-detail.png",
+    "fullOriginal": "/assets/images/site-captures/uxcel-credential-i4yty0556kcy-5fdc83209d16-original.png",
+    "processing": "Detail crop of the complete owner row or credential-summary component from the retained native viewport. Full original 1440x900 PNG remains unchanged and accessible. Derivatives only crop/resize/encode source pixels; no UI redrawing, retouching or altered credential details."
+  },
+  {
+    "id": "uxcel-credential-dknojsv20wq7",
+    "kind": "STATIC_PUBLIC_WEBSITE_REFERENCE",
+    "route": "/about",
+    "useAsPreview": false,
+    "sourceUrl": "https://app.uxcel.com/certificates/DKNOJSV20WQ7",
+    "sourceCreator": "Uxcel",
+    "capturedAt": "2026-11-05",
+    "captureTimestampPrecision": "UTC calendar date of the retained source batch. Exact screenshot shutter time was not retained; no fabricated second-level timestamp.",
+    "sourceVerificationAt": "2026-11-05T13:07:51.154Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceImageDimensions": {
+      "width": 720,
+      "height": 252
+    },
+    "sourceOriginalSha256": "f2a51d61fb088bd4f86649a1a50348da52cb5b7cb7b07c2ff58003459c298252",
+    "derivation": {
+      "originalDimensions": [
+        1440,
+        900
+      ],
+      "cropBoxPixels": [
+        160,
+        104,
+        880,
+        356
+      ],
+      "pixelEqualityVerified": true
+    },
+    "sourceSha256": "b6a31261997c40e68342463daab63fdcfa4263d35505582f55de9ca3d48e12c4",
+    "fullOriginalSha256": "f2a51d61fb088bd4f86649a1a50348da52cb5b7cb7b07c2ff58003459c298252",
+    "permission": "OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE",
+    "permissionBasis": "Owner requested authentic visual evidence of their publicly issued credentials; issuer credited and linked. No general redistribution license or issuer-UI authorship is claimed.",
+    "sourceDiagnostics": {
+      "observedHttpStatus": 200,
+      "consoleStatus": "Console diagnostics were not retained in the original verification batch; no functional-clean-run claim.",
+      "visualScope": "Static native issuer record reference, with complete original composition retained."
+    },
+    "roleBoundary": "Owner-requested reference to their public issuer credential record. Uxcel owns the issuer UI; its recorded profile/employer labels are not a statement of current employment on this portfolio.",
+    "alt": "Uxcel public UX Designer credential record issued to Nischhal on Dec 2, 2024.",
+    "caption": "Uxcel UX Designer certification, issued to Nischhal on Dec 2, 2024. Issuer page independently captured on 5 November 2026. Credential summary detail shown.",
+    "originalLinkLabel": "Open the complete original issuer-page capture",
+    "sourceLinkLabel": "Verify the official issuer record",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-dknojsv20wq7-f2a51d61fb08-360.webp",
+        "width": 360,
+        "height": 126,
+        "sha256": "d42ff9eeffa663f2896268b13b58e13f81274348ce63250956ab11b3dd55a30d",
+        "bytes": 5902
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-dknojsv20wq7-f2a51d61fb08-540.webp",
+        "width": 540,
+        "height": 189,
+        "sha256": "daf7b513e2d5729e6190abdedc84cb33a95d4550d2b5a1da7e9ad8441ed8e8fc",
+        "bytes": 10084
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-dknojsv20wq7-f2a51d61fb08-720.webp",
+        "width": 720,
+        "height": 252,
+        "sha256": "3df0d089e6c20abd57a4ac5374927649a399af30f20a8db76dafaaa26856af7d",
+        "bytes": 15460
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/uxcel-credential-dknojsv20wq7-f2a51d61fb08-detail.png",
+    "fullOriginal": "/assets/images/site-captures/uxcel-credential-dknojsv20wq7-f2a51d61fb08-original.png",
+    "processing": "Detail crop of the complete owner row or credential-summary component from the retained native viewport. Full original 1440x900 PNG remains unchanged and accessible. Derivatives only crop/resize/encode source pixels; no UI redrawing, retouching or altered credential details."
+  },
+  {
+    "id": "uxcel-credential-lsf8upx6egn5",
+    "kind": "STATIC_PUBLIC_WEBSITE_REFERENCE",
+    "route": "/about",
+    "useAsPreview": false,
+    "sourceUrl": "https://app.uxcel.com/certificates/LSF8UPX6EGN5",
+    "sourceCreator": "Uxcel",
+    "capturedAt": "2026-11-05",
+    "captureTimestampPrecision": "UTC calendar date of the retained source batch. Exact screenshot shutter time was not retained; no fabricated second-level timestamp.",
+    "sourceVerificationAt": "2026-11-05T13:07:51.108Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceImageDimensions": {
+      "width": 720,
+      "height": 252
+    },
+    "sourceOriginalSha256": "9f79803730d89138c247577ab97942d16e5d1b56e3704534dcf795012cc24e13",
+    "derivation": {
+      "originalDimensions": [
+        1440,
+        900
+      ],
+      "cropBoxPixels": [
+        160,
+        104,
+        880,
+        356
+      ],
+      "pixelEqualityVerified": true
+    },
+    "sourceSha256": "ccae3945e1ae929995c7167d14c2db5a4b19edf7203d46bffff1fe1504f71ce0",
+    "fullOriginalSha256": "9f79803730d89138c247577ab97942d16e5d1b56e3704534dcf795012cc24e13",
+    "permission": "OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE",
+    "permissionBasis": "Owner requested authentic visual evidence of their publicly issued credentials; issuer credited and linked. No general redistribution license or issuer-UI authorship is claimed.",
+    "sourceDiagnostics": {
+      "observedHttpStatus": 200,
+      "consoleStatus": "Console diagnostics were not retained in the original verification batch; no functional-clean-run claim.",
+      "visualScope": "Static native issuer record reference, with complete original composition retained."
+    },
+    "roleBoundary": "Owner-requested reference to their public issuer credential record. Uxcel owns the issuer UI; its recorded profile/employer labels are not a statement of current employment on this portfolio.",
+    "alt": "Uxcel public UX Researcher credential record issued to Nischhal on Dec 10, 2024.",
+    "caption": "Uxcel UX Researcher certification, issued to Nischhal on Dec 10, 2024. Issuer page independently captured on 5 November 2026. Credential summary detail shown.",
+    "originalLinkLabel": "Open the complete original issuer-page capture",
+    "sourceLinkLabel": "Verify the official issuer record",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-lsf8upx6egn5-9f79803730d8-360.webp",
+        "width": 360,
+        "height": 126,
+        "sha256": "05bc5fe514bfc00ebe3ce2685e1be20b9085d02873bb4326dd1cd590f89da680",
+        "bytes": 6424
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-lsf8upx6egn5-9f79803730d8-540.webp",
+        "width": 540,
+        "height": 189,
+        "sha256": "7c0875b29b12a58d0dee9c1d326ae7004057c8ae56aca4d12a9c2712345bb537",
+        "bytes": 10860
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-lsf8upx6egn5-9f79803730d8-720.webp",
+        "width": 720,
+        "height": 252,
+        "sha256": "46a19396505cae317a6ec3de372812d7a79ea635a340d6bd87c759482e2e13dc",
+        "bytes": 16832
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/uxcel-credential-lsf8upx6egn5-9f79803730d8-detail.png",
+    "fullOriginal": "/assets/images/site-captures/uxcel-credential-lsf8upx6egn5-9f79803730d8-original.png",
+    "processing": "Detail crop of the complete owner row or credential-summary component from the retained native viewport. Full original 1440x900 PNG remains unchanged and accessible. Derivatives only crop/resize/encode source pixels; no UI redrawing, retouching or altered credential details."
+  },
+  {
+    "id": "uxcel-credential-xsxw99g6ee2r",
+    "kind": "STATIC_PUBLIC_WEBSITE_REFERENCE",
+    "route": "/about",
+    "useAsPreview": false,
+    "sourceUrl": "https://app.uxcel.com/certificates/XSXW99G6EE2R",
+    "sourceCreator": "Uxcel",
+    "capturedAt": "2026-11-05",
+    "captureTimestampPrecision": "UTC calendar date of the retained source batch. Exact screenshot shutter time was not retained; no fabricated second-level timestamp.",
+    "sourceVerificationAt": "2026-11-05T13:07:54.006Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceImageDimensions": {
+      "width": 720,
+      "height": 252
+    },
+    "sourceOriginalSha256": "c2208ef7b1541b5112d9675b5f8d2e20885c4508cedfd7d32c46102b402264cd",
+    "derivation": {
+      "originalDimensions": [
+        1440,
+        900
+      ],
+      "cropBoxPixels": [
+        160,
+        104,
+        880,
+        356
+      ],
+      "pixelEqualityVerified": true
+    },
+    "sourceSha256": "e2664f0ba2ddfcad9a89dd52c63007d7f845c4e05cbdcbbf694912b1dc2c9952",
+    "fullOriginalSha256": "c2208ef7b1541b5112d9675b5f8d2e20885c4508cedfd7d32c46102b402264cd",
+    "permission": "OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE",
+    "permissionBasis": "Owner requested authentic visual evidence of their publicly issued credentials; issuer credited and linked. No general redistribution license or issuer-UI authorship is claimed.",
+    "sourceDiagnostics": {
+      "observedHttpStatus": 200,
+      "consoleStatus": "Console diagnostics were not retained in the original verification batch; no functional-clean-run claim.",
+      "visualScope": "Static native issuer record reference, with complete original composition retained."
+    },
+    "roleBoundary": "Owner-requested reference to their public issuer credential record. Uxcel owns the issuer UI; its recorded profile/employer labels are not a statement of current employment on this portfolio.",
+    "alt": "Uxcel public Product Designer credential record issued to Nischhal on Dec 1, 2024.",
+    "caption": "Uxcel Product Designer certification, issued to Nischhal on Dec 1, 2024. Issuer page independently captured on 5 November 2026. Credential summary detail shown.",
+    "originalLinkLabel": "Open the complete original issuer-page capture",
+    "sourceLinkLabel": "Verify the official issuer record",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-xsxw99g6ee2r-c2208ef7b154-360.webp",
+        "width": 360,
+        "height": 126,
+        "sha256": "ec10e1d44c6479244a109e82570a4503bbe2ffc6e89ce8d9c88b9ce6333c7d5b",
+        "bytes": 6662
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-xsxw99g6ee2r-c2208ef7b154-540.webp",
+        "width": 540,
+        "height": 189,
+        "sha256": "2e653207d972a03d7a238c6736fcb9d80e906bb1b3a97cba119de894544836a3",
+        "bytes": 11148
+      },
+      {
+        "src": "/assets/images/site-captures/uxcel-credential-xsxw99g6ee2r-c2208ef7b154-720.webp",
+        "width": 720,
+        "height": 252,
+        "sha256": "7d1982f9c5b15ac532e4a7912ca0e67874991b84100167346a57ea51b910cac3",
+        "bytes": 17142
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/uxcel-credential-xsxw99g6ee2r-c2208ef7b154-detail.png",
+    "fullOriginal": "/assets/images/site-captures/uxcel-credential-xsxw99g6ee2r-c2208ef7b154-original.png",
+    "processing": "Detail crop of the complete owner row or credential-summary component from the retained native viewport. Full original 1440x900 PNG remains unchanged and accessible. Derivatives only crop/resize/encode source pixels; no UI redrawing, retouching or altered credential details."
   }
 ]

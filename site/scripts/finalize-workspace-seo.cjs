@@ -100,7 +100,7 @@ for (const file of files) {
   }
   const editorialRevision = html.match(/data-editorial-revision="(\d{4}-\d{2}-\d{2})"/)?.[1];
   if (isArticle && editorialRevision) html = setMeta(html, 'property', 'article:modified_time', editorialRevision);
-  const coverSrc = contentImages[0]?.socialSrc || (isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null);
+  const coverSrc = contentImages.find(/** Callback contract: Keep context-only issuer references out of primary social covers. Inputs: image record. Side effects: none. Returns: preview eligibility. */ image => image.useAsPreview !== false)?.socialSrc || (isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null);
   const cardBytes = card(file === 'index.html' ? 'Nischhal Raj Subba' : heading, description, category, coverSrc ? path.join(dist, coverSrc) : null);
   const cardName = `${slug}-${crypto.createHash('sha256').update(cardBytes).digest('hex').slice(0,12)}.png`;
   const imageUrl = `${site}/assets/workspace-social/${cardName}`;

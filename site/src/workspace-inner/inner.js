@@ -163,7 +163,7 @@ addEventListener('keydown', /** Callback contract: Route homepage keyboard tools
 const preview = document.querySelector('#mediaPreview');
 document.querySelectorAll('.agent-case-cover,.nrs-case-v4-gallery figure,.workspace-evidence-figure').forEach(/** Callback contract: Add an accessible full-size project preview. Inputs: figure. Side effects: button and dialog wiring. Returns: void. */ figure => {
   const image = figure.querySelector('img'); if (!image) return;
-  figure.dataset.frameLabel = '❖ ' + (document.querySelector('h1 .workspace-heading-source')?.textContent || 'Project preview');
+  figure.dataset.frameLabel = '❖ ' + (document.querySelector('h1 .workspace-heading-source')?.textContent || 'Source image');
   const button = document.createElement('button'); button.type = 'button'; button.className = 'workspace-zoom'; button.textContent = 'Open image ↗'; button.setAttribute('aria-label', 'Open preview: ' + image.alt);
   button.addEventListener('click', /** Callback contract: Open the largest approved public derivative rather than a mobile srcset thumbnail. Inputs: none. Side effects: dialog image and open state. Returns: void. */ () => { const target = preview.querySelector('img'); target.src = image.src; target.alt = image.alt; preview.showModal(); });
   figure.appendChild(button);

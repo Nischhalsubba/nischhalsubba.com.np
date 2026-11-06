@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-06T01:10:56.016582+00:00",
+  "authorization": "Owner explicitly authorized merging all PRs into main.",
+  "results": [
+    {
+      "number": 117,
+      "head": "38046104363ce713e0d401e35ce1d98572840d07",
+      "mergeCommit": {
+        "oid": "001a2e1af18c117627aafab079f17ee75a97cdaf"
+      },
+      "mergedAt": "2026-11-06T01:10:10Z",
+      "url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/pull/117"
+    },
+    {
+      "number": 104,
+      "head": "94e685cb51da50ccbdd2e20a1d83414f04f52e21",
+      "mergeCommit": {
+        "oid": "889cdbd325d8bbcb0e49463ba0cf9cb3a75c6001"
+      },
+      "mergedAt": "2026-11-06T01:10:52Z",
+      "url": "https://github.com/Nischhalsubba/nischhalsubba.com.np/pull/104"
+    }
+  ]
+}
