@@ -1,0 +1,95 @@
+{
+  "checkedAt": "2026-11-06T14:40:16.139Z",
+  "sourceRelease": "ab519219a98629dd1a2b824e8438a2e99a9e3919",
+  "liveBuildInfo": {
+    "commit": "ab519219a98629dd1a2b824e8438a2e99a9e3919",
+    "branch": "main",
+    "provider": "cloudflare-workers"
+  },
+  "keywordMetrics": {
+    "error": "McpServerError: { \"error\": \"Insufficient plan\" }",
+    "error_code": "UNAVAILABLE",
+    "error_data": {
+      "type": "json_rpc_error",
+      "code": -32001,
+      "message": "{ \"error\": \"Insufficient plan\" }",
+      "data": {
+        "x-request-id": "2fe069fdcf886869d72f3afa09c86dc3"
+      }
+    }
+  },
+  "sitemaps": {
+    "sitemaps": [
+      {
+        "path": "https://nischhalsubba.com.np/sitemap.xml",
+        "lastSubmitted": "2026-11-04T15:54:34.695Z",
+        "isPending": false,
+        "isSitemapsIndex": false,
+        "type": "sitemap",
+        "lastDownloaded": "2026-11-04T15:54:40.231Z",
+        "warnings": "0",
+        "errors": "0",
+        "contents": [
+          {
+            "type": "web",
+            "submitted": "53",
+            "indexed": "0"
+          },
+          {
+            "type": "image",
+            "submitted": "132",
+            "indexed": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "homepage": {
+    "inspection_result": {
+      "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:nischhalsubba.com.np&id=wAAo8RBlRVbJB6ZKUlbmnQ&utm_medium=link&utm_source=api",
+      "indexStatusResult": {
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "robotsTxtState": "ALLOWED",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-11-06T06:52:13Z",
+        "pageFetchState": "SUCCESSFUL",
+        "googleCanonical": "https://nischhalsubba.com.np/",
+        "userCanonical": "https://nischhalsubba.com.np/",
+        "referringUrls": [
+          "https://nischhalsubba.com.np/figma-design-systems",
+          "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-product-clarity",
+          "http://nischhalsubba.com.np/",
+          "https://github.com/Nischhalsubba"
+        ],
+        "crawledAs": "MOBILE"
+      },
+      "mobileUsabilityResult": {
+        "verdict": "VERDICT_UNSPECIFIED"
+      },
+      "richResultsResult": {
+        "verdict": "PASS",
+        "detectedItems": [
+          {
+            "richResultType": "",
+            "items": [
+              {
+                "name": "Nischhal Raj Subba"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "contactTest": "Concrete POST rejected by automatic approval review; no retry or delivery confirmation.",
+  "about": {
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "lastCrawlTime": "2026-10-26T17:45:58Z",
+    "googleCanonical": "https://nischhalsubba.com.np/about",
+    "pageFetchState": "SUCCESSFUL",
+    "crawledAs": "MOBILE",
+    "note": "Current inspection result; last crawl predates recent releases."
+  }
+}

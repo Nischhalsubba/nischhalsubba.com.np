@@ -1,0 +1,1465 @@
+{
+  "checkedAt": "2026-11-06T14:41:10.971555+00:00",
+  "scope": "All external HTTPS anchor destinations in current 54-route built output. Public unauthenticated HTTP GET only; no login, transactions, page identity or rendered-function certification. Timeout/challenge is not a dead-link verdict.",
+  "sourceRelease": "ab519219a98629dd1a2b824e8438a2e99a9e3919",
+  "count": 122,
+  "rows": [
+    {
+      "url": "https://anza-xyz.github.io/wallet-adapter/example/",
+      "placements": [
+        "blog/blog-web3-products.html",
+        "blog/web3-wallet-connection-ux.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://anza-xyz.github.io/wallet-adapter/example/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/DKNOJSV20WQ7",
+      "placements": [
+        "about.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://app.uxcel.com/certificates/DKNOJSV20WQ7",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/I4YTY0556KCY",
+      "placements": [
+        "about.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://app.uxcel.com/certificates/I4YTY0556KCY",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/LSF8UPX6EGN5",
+      "placements": [
+        "about.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://app.uxcel.com/certificates/LSF8UPX6EGN5",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/S9YU2TUDMMT1",
+      "placements": [
+        "about.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://app.uxcel.com/certificates/S9YU2TUDMMT1",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://app.uxcel.com/certificates/XSXW99G6EE2R",
+      "placements": [
+        "about.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://app.uxcel.com/certificates/XSXW99G6EE2R",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://app.uxcel.com/ux/nischhal",
+      "placements": [
+        "about.html",
+        "index.html",
+        "workspace-home/index.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://app.uxcel.com/ux/nischhal",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://designerex.com.au/",
+      "placements": [
+        "project-designerex.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://designerex.com.au/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://designerex.com.au/search",
+      "placements": [
+        "project-designerex.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://designerex.com.au/search",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://embed.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-2821&p=f&viewport=25%2C237%2C0.12&scaling=min-zoom&content-scaling=fixed&page-id=1%3A3&embed-host=share",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/embed/interstitial?embed_host=share&embed_path=%2Fproto%2FHILxD1DKnfALKo4Q5L1IfE%2FPihub%3Fcontent-scaling%3Dfixed%26embed-host%3Dshare%26kind%3Dproto%26node-id%3D2-2821%26page-id%3D1%253A3%26scaling%3Dmin-zoom%26theme%3Dlight%26version%3D2&theme=light&version=2",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://embed.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-36&viewport=227%2C-238%2C0.53&scaling=min-zoom&content-scaling=fixed&page-id=1%3A2&embed-host=share",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/embed/interstitial?embed_host=share&embed_path=%2Fproto%2FHILxD1DKnfALKo4Q5L1IfE%2FPihub%3Fcontent-scaling%3Dfixed%26embed-host%3Dshare%26kind%3Dproto%26node-id%3D2-36%26page-id%3D1%253A2%26scaling%3Dmin-zoom%26theme%3Dlight%26version%3D2&theme=light&version=2",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://embed.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-8777&p=f&viewport=396%2C301%2C0.12&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&embed-host=share",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/embed/interstitial?embed_host=share&embed_path=%2Fproto%2FHILxD1DKnfALKo4Q5L1IfE%2FPihub%3Fcontent-scaling%3Dfixed%26embed-host%3Dshare%26kind%3Dproto%26node-id%3D2-8777%26page-id%3D0%253A1%26scaling%3Dmin-zoom%26theme%3Dlight%26version%3D2&theme=light&version=2",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://esrtech.io/",
+      "placements": [
+        "about.html"
+      ],
+      "http": "503",
+      "curlExit": 0,
+      "effectiveUrl": "https://esrtech.io/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba",
+      "placements": [
+        "about.html",
+        "blog/beautiful-interface-poor-ux.html",
+        "blog/blog-design-systems-front-end.html",
+        "blog/blog-gaming-interface-clarity.html",
+        "blog/blog-good-handoff.html",
+        "blog/blog-portfolio-product.html",
+        "blog/blog-service-websites.html",
+        "blog/blog-web3-products.html",
+        "blog/design-handoff-checklist-startup-product-teams.html",
+        "blog/design-systems-small-product-teams.html",
+        "blog/designing-handoffs-between-people.html",
+        "blog/figma-handoff-notes-for-developers.html",
+        "blog/hire-product-designer-nepal-saas-web3.html",
+        "blog/index.html",
+        "blog/prioritize-ux-audit-findings-before-redesign.html",
+        "blog/responsive-saas-dashboard-handoff-notes.html",
+        "blog/role-based-saas-dashboard-ux.html",
+        "blog/saas-dashboard-empty-state-ux-guide.html",
+        "blog/saas-dashboard-empty-states-product-clarity.html",
+        "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+        "blog/saas-dashboard-filter-ux.html",
+        "blog/saas-dashboard-ux-checklist.html",
+        "blog/transaction-review-ux-crypto-apps.html",
+        "blog/ux-audit-checklist-before-redesign.html",
+        "blog/ux-audit-evidence-before-redesign.html",
+        "blog/web3-wallet-connection-ux.html",
+        "blog/web3-wallet-ux-checklist.html",
+        "blog/website-ux-checklist-software-companies.html",
+        "blog/when-startup-needs-ux-audit-before-redesign.html",
+        "contact.html",
+        "figma-design-systems.html",
+        "index.html",
+        "privacy.html",
+        "product-design-nepal.html",
+        "project-designerex.html",
+        "project-grid-labs.html",
+        "project-hamro-idea.html",
+        "project-masteriyo.html",
+        "project-mokshya.html",
+        "project-morajaa.html",
+        "project-neverwinter-parser.html",
+        "project-orkest.html",
+        "project-pihub.html",
+        "project-sassboilerplate.html",
+        "project-splashnode.html",
+        "project-yarsha.html",
+        "project-zakra-furniture.html",
+        "project-zapp.html",
+        "projects.html",
+        "saas-ux-designer.html",
+        "services.html",
+        "ux-audit.html",
+        "web3-ux-designer.html",
+        "website-ux-design.html",
+        "workspace-home/index.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/Grid-Labs-Hosting",
+      "placements": [
+        "project-grid-labs.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/Grid-Labs-Hosting",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/design-ops-orchestrator",
+      "placements": [
+        "project-orkest.html",
+        "projects.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/design-ops-orchestrator",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/package.json",
+      "placements": [
+        "project-neverwinter-parser.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/package.json",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/aggregation/encounterAggregator.test.ts",
+      "placements": [
+        "project-neverwinter-parser.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/aggregation/encounterAggregator.test.ts",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/parser/parseLine.test.ts",
+      "placements": [
+        "project-neverwinter-parser.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/core/parser/parseLine.test.ts",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/renderer/analysisViewModel.test.ts",
+      "placements": [
+        "project-neverwinter-parser.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/neverwinter-live-parser/blob/main/app/src/renderer/analysisViewModel.test.ts",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/README.md",
+      "placements": [
+        "project-sassboilerplate.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/README.md",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/gulpfile.js",
+      "placements": [
+        "project-sassboilerplate.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/gulpfile.js",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/_includes.sass",
+      "placements": [
+        "project-sassboilerplate.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/_includes.sass",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
+      "placements": [
+        "project-sassboilerplate.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://github.com/Nischhalsubba/sassBoilerplate/blob/master/archive/src/assets/sass/app.sass",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://gurzu.com/",
+      "placements": [
+        "about.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://gurzu.com/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://hamro-idea-website.vercel.app/",
+      "placements": [
+        "blog/website-ux-checklist-software-companies.html",
+        "project-hamro-idea.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://hamro-idea-website.vercel.app/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://idealaya.com/",
+      "placements": [
+        "about.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://idealaya.com/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://masdatahub.com/",
+      "placements": [
+        "index.html",
+        "workspace-home/index.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://highstep.com/products/mas-data-hub/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://masteriyo.com/",
+      "placements": [
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://masteriyo.com/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://mokshya.io/",
+      "placements": [
+        "about.html"
+      ],
+      "http": "523",
+      "curlExit": 0,
+      "effectiveUrl": "https://mokshya.io/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://neverwinter-live-parser.vercel.app/",
+      "placements": [
+        "blog/blog-gaming-interface-clarity.html",
+        "project-neverwinter-parser.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://neverwinter-live-parser.vercel.app/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+      "placements": [
+        "project-grid-labs.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://nischhalsubba.github.io/Grid-Labs-Hosting/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+      "placements": [
+        "project-zakra-furniture.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://raw.githubusercontent.com/themegrill/themegrill-demo-pack/master/resources/zakra/zakra-furniture/screenshot.jpg",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://solana.com/docs/core/transactions",
+      "placements": [
+        "blog/transaction-review-ux-crypto-apps.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://solana.com/docs/core/transactions",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://themegrill.com/",
+      "placements": [
+        "about.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://themegrill.com/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://uxcel.com/designer-rankings/past-winners",
+      "placements": [
+        "about.html",
+        "index.html",
+        "workspace-home/index.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://uxcel.com/designer-rankings/past-winners",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://uxcel.com/uxcel-rankings",
+      "placements": [
+        "index.html",
+        "workspace-home/index.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://uxcel.com/uxcel-rankings",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.behance.net/nischhal",
+      "placements": [
+        "about.html",
+        "blog/beautiful-interface-poor-ux.html",
+        "blog/blog-design-systems-front-end.html",
+        "blog/blog-gaming-interface-clarity.html",
+        "blog/blog-good-handoff.html",
+        "blog/blog-portfolio-product.html",
+        "blog/blog-service-websites.html",
+        "blog/blog-web3-products.html",
+        "blog/design-handoff-checklist-startup-product-teams.html",
+        "blog/design-systems-small-product-teams.html",
+        "blog/designing-handoffs-between-people.html",
+        "blog/figma-handoff-notes-for-developers.html",
+        "blog/hire-product-designer-nepal-saas-web3.html",
+        "blog/index.html",
+        "blog/prioritize-ux-audit-findings-before-redesign.html",
+        "blog/responsive-saas-dashboard-handoff-notes.html",
+        "blog/role-based-saas-dashboard-ux.html",
+        "blog/saas-dashboard-empty-state-ux-guide.html",
+        "blog/saas-dashboard-empty-states-product-clarity.html",
+        "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+        "blog/saas-dashboard-filter-ux.html",
+        "blog/saas-dashboard-ux-checklist.html",
+        "blog/transaction-review-ux-crypto-apps.html",
+        "blog/ux-audit-checklist-before-redesign.html",
+        "blog/ux-audit-evidence-before-redesign.html",
+        "blog/web3-wallet-connection-ux.html",
+        "blog/web3-wallet-ux-checklist.html",
+        "blog/website-ux-checklist-software-companies.html",
+        "blog/when-startup-needs-ux-audit-before-redesign.html",
+        "contact.html",
+        "figma-design-systems.html",
+        "index.html",
+        "privacy.html",
+        "product-design-nepal.html",
+        "project-designerex.html",
+        "project-grid-labs.html",
+        "project-hamro-idea.html",
+        "project-masteriyo.html",
+        "project-mokshya.html",
+        "project-morajaa.html",
+        "project-neverwinter-parser.html",
+        "project-orkest.html",
+        "project-pihub.html",
+        "project-sassboilerplate.html",
+        "project-splashnode.html",
+        "project-yarsha.html",
+        "project-zakra-furniture.html",
+        "project-zapp.html",
+        "projects.html",
+        "saas-ux-designer.html",
+        "services.html",
+        "ux-audit.html",
+        "web3-ux-designer.html",
+        "website-ux-design.html",
+        "workspace-home/index.html"
+      ],
+      "http": "400",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.behance.net/nischhal",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=2-261",
+      "placements": [
+        "project-hamro-idea.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=2-261",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1238",
+      "placements": [
+        "project-hamro-idea.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1238",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1490",
+      "placements": [
+        "blog/website-ux-checklist-software-companies.html",
+        "project-hamro-idea.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1490",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1671",
+      "placements": [
+        "project-hamro-idea.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-1671",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2022",
+      "placements": [
+        "project-hamro-idea.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2022",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2342",
+      "placements": [
+        "project-hamro-idea.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-2342",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-526",
+      "placements": [
+        "project-hamro-idea.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-526",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-953",
+      "placements": [
+        "project-hamro-idea.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/6SRJo2F3Dhu1js0c7CHwrb/?node-id=31-953",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=452-6770",
+      "placements": [
+        "project-morajaa.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=452-6770",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-5857",
+      "placements": [
+        "blog/blog-service-websites.html",
+        "project-morajaa.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-5857",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-6628",
+      "placements": [
+        "project-morajaa.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-6628",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-831",
+      "placements": [
+        "blog/blog-service-websites.html",
+        "project-morajaa.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-831",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-8668",
+      "placements": [
+        "project-morajaa.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=465-8668",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=487-12635",
+      "placements": [
+        "project-morajaa.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=487-12635",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=487-14801",
+      "placements": [
+        "project-morajaa.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=487-14801",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=491-16282",
+      "placements": [
+        "project-morajaa.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6/?node-id=491-16282",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-1094",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-1094",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-1272",
+      "placements": [
+        "blog/role-based-saas-dashboard-ux.html",
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-1272",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-252",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-252",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-3411",
+      "placements": [
+        "blog/blog-gaming-interface-clarity.html",
+        "blog/saas-dashboard-ux-checklist.html",
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-3411",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-4146",
+      "placements": [
+        "blog/hire-product-designer-nepal-saas-web3.html",
+        "blog/role-based-saas-dashboard-ux.html",
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-4146",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-6623",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-6623",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-8777",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-8777",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-9046",
+      "placements": [
+        "blog/designing-handoffs-between-people.html",
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-9046",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-9102",
+      "placements": [
+        "blog/designing-handoffs-between-people.html",
+        "blog/saas-dashboard-ux-checklist.html",
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-9102",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-9611",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2-9611",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2228-545",
+      "placements": [
+        "blog/role-based-saas-dashboard-ux.html",
+        "blog/saas-dashboard-empty-states-product-clarity.html",
+        "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE/?node-id=2228-545",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/UVuc0LuF7Ykb0yxfPmzOHX/Design-Case-Study?node-id=0-1",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/UVuc0LuF7Ykb0yxfPmzOHX/Design-Case-Study?node-id=0-1",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-153",
+      "placements": [
+        "blog/ux-audit-checklist-before-redesign.html",
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-153",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-193",
+      "placements": [
+        "blog/ux-audit-checklist-before-redesign.html",
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-193",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-2",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-2",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-72",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=113-72",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-117",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-117",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-30",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-30",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-49",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=114-49",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=115-75",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=115-75",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=19-149",
+      "placements": [
+        "blog/designing-handoffs-between-people.html",
+        "blog/ux-audit-evidence-before-redesign.html",
+        "blog/when-startup-needs-ux-audit-before-redesign.html",
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=19-149",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=20-26",
+      "placements": [
+        "blog/designing-handoffs-between-people.html",
+        "blog/ux-audit-evidence-before-redesign.html",
+        "blog/when-startup-needs-ux-audit-before-redesign.html",
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/?node-id=20-26",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/Zapp?node-id=4-5",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL/Zapp?node-id=4-5",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1232",
+      "placements": [
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1232",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1275",
+      "placements": [
+        "blog/saas-dashboard-empty-state-ux-guide.html",
+        "blog/saas-dashboard-empty-states-product-clarity.html",
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1275",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1310",
+      "placements": [
+        "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1310",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1401",
+      "placements": [
+        "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1401",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1508",
+      "placements": [
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1508",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1579",
+      "placements": [
+        "blog/design-handoff-checklist-startup-product-teams.html",
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-1579",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-3142",
+      "placements": [
+        "blog/blog-design-systems-front-end.html",
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=277-3142",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=289-2042",
+      "placements": [
+        "blog/blog-design-systems-front-end.html",
+        "blog/design-handoff-checklist-startup-product-teams.html",
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/?node-id=289-2042",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/Masteriyo",
+      "placements": [
+        "project-masteriyo.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh/Masteriyo",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=160-380",
+      "placements": [
+        "blog/designing-handoffs-between-people.html",
+        "blog/responsive-saas-dashboard-handoff-notes.html",
+        "blog/role-based-saas-dashboard-ux.html",
+        "blog/saas-dashboard-filter-ux.html",
+        "project-orkest.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=160-380",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=160-386",
+      "placements": [
+        "blog/blog-design-systems-front-end.html",
+        "blog/blog-good-handoff.html",
+        "blog/figma-handoff-notes-for-developers.html",
+        "project-orkest.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=160-386",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=160-387",
+      "placements": [
+        "blog/blog-good-handoff.html",
+        "blog/design-handoff-checklist-startup-product-teams.html",
+        "blog/design-systems-small-product-teams.html",
+        "project-orkest.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=160-387",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=246-14560",
+      "placements": [
+        "blog/prioritize-ux-audit-findings-before-redesign.html",
+        "blog/responsive-saas-dashboard-handoff-notes.html",
+        "blog/saas-dashboard-filter-ux.html",
+        "project-orkest.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=246-14560",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=246-15008",
+      "placements": [
+        "blog/prioritize-ux-audit-findings-before-redesign.html",
+        "blog/saas-dashboard-filter-ux.html",
+        "project-orkest.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=246-15008",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=246-15456",
+      "placements": [
+        "blog/saas-dashboard-filter-ux.html",
+        "project-orkest.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=246-15456",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=247-19849",
+      "placements": [
+        "blog/blog-good-handoff.html",
+        "blog/design-systems-small-product-teams.html",
+        "blog/figma-handoff-notes-for-developers.html",
+        "project-orkest.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=247-19849",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=404-33597",
+      "placements": [
+        "blog/blog-portfolio-product.html",
+        "project-orkest.html"
+      ],
+      "http": "000",
+      "curlExit": 28,
+      "effectiveUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F/?node-id=404-33597",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253000",
+      "placements": [
+        "blog/beautiful-interface-poor-ux.html",
+        "blog/saas-dashboard-empty-state-ux-guide.html",
+        "project-yarsha.html"
+      ],
+      "http": "000",
+      "curlExit": 28,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253000",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253254",
+      "placements": [
+        "blog/beautiful-interface-poor-ux.html",
+        "blog/saas-dashboard-empty-state-ux-guide.html",
+        "blog/saas-dashboard-empty-states-product-clarity.html",
+        "project-yarsha.html"
+      ],
+      "http": "000",
+      "curlExit": 28,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253254",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253307",
+      "placements": [
+        "project-yarsha.html"
+      ],
+      "http": "000",
+      "curlExit": 28,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253307",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253312",
+      "placements": [
+        "project-yarsha.html"
+      ],
+      "http": "000",
+      "curlExit": 28,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253312",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253681",
+      "placements": [
+        "blog/web3-wallet-connection-ux.html",
+        "blog/web3-wallet-ux-checklist.html",
+        "project-yarsha.html"
+      ],
+      "http": "000",
+      "curlExit": 28,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253681",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253788",
+      "placements": [
+        "blog/blog-web3-products.html",
+        "blog/transaction-review-ux-crypto-apps.html",
+        "blog/web3-wallet-ux-checklist.html",
+        "project-yarsha.html"
+      ],
+      "http": "000",
+      "curlExit": 28,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-253788",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-254051",
+      "placements": [
+        "blog/blog-web3-products.html",
+        "blog/transaction-review-ux-crypto-apps.html",
+        "project-yarsha.html"
+      ],
+      "http": "000",
+      "curlExit": 28,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-254051",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255560",
+      "placements": [
+        "project-yarsha.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255560",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255588",
+      "placements": [
+        "project-yarsha.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255588",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255618",
+      "placements": [
+        "project-yarsha.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255618",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255626",
+      "placements": [
+        "project-yarsha.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-255626",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-256260",
+      "placements": [
+        "project-yarsha.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-256260",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-256565",
+      "placements": [
+        "project-yarsha.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-256565",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-262038",
+      "placements": [
+        "blog/transaction-review-ux-crypto-apps.html",
+        "blog/web3-wallet-ux-checklist.html",
+        "project-yarsha.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/?node-id=6092-262038",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/Yarsha?node-id=0-1",
+      "placements": [
+        "project-yarsha.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz/Yarsha?node-id=0-1",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/proto/E9BBrx6PdFTqoG3YLvqRX6/morajaa?node-id=680-15253&page-id=452%3A6769",
+      "placements": [
+        "project-morajaa.html"
+      ],
+      "http": "403",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/proto/E9BBrx6PdFTqoG3YLvqRX6/morajaa?node-id=680-15253&page-id=452%3A6769",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-2821&page-id=1%3A3",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-2821&page-id=1%3A3",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-36&page-id=1%3A2",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-36&page-id=1%3A2",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-8777&page-id=0%3A1",
+      "placements": [
+        "project-pihub.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/proto/HILxD1DKnfALKo4Q5L1IfE/Pihub?node-id=2-8777&page-id=0%3A1",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=3-8&page-id=0%3A1",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=3-8&page-id=0%3A1",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=82-0&page-id=2%3A3",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.figma.com/proto/j0HdOWReS3ZxCJf0SgYPci/Project-Iron?node-id=82-0&page-id=2%3A3",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.linkedin.com/in/nischhal/",
+      "placements": [
+        "about.html",
+        "blog/beautiful-interface-poor-ux.html",
+        "blog/blog-design-systems-front-end.html",
+        "blog/blog-gaming-interface-clarity.html",
+        "blog/blog-good-handoff.html",
+        "blog/blog-portfolio-product.html",
+        "blog/blog-service-websites.html",
+        "blog/blog-web3-products.html",
+        "blog/design-handoff-checklist-startup-product-teams.html",
+        "blog/design-systems-small-product-teams.html",
+        "blog/designing-handoffs-between-people.html",
+        "blog/figma-handoff-notes-for-developers.html",
+        "blog/hire-product-designer-nepal-saas-web3.html",
+        "blog/index.html",
+        "blog/prioritize-ux-audit-findings-before-redesign.html",
+        "blog/responsive-saas-dashboard-handoff-notes.html",
+        "blog/role-based-saas-dashboard-ux.html",
+        "blog/saas-dashboard-empty-state-ux-guide.html",
+        "blog/saas-dashboard-empty-states-product-clarity.html",
+        "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+        "blog/saas-dashboard-filter-ux.html",
+        "blog/saas-dashboard-ux-checklist.html",
+        "blog/transaction-review-ux-crypto-apps.html",
+        "blog/ux-audit-checklist-before-redesign.html",
+        "blog/ux-audit-evidence-before-redesign.html",
+        "blog/web3-wallet-connection-ux.html",
+        "blog/web3-wallet-ux-checklist.html",
+        "blog/website-ux-checklist-software-companies.html",
+        "blog/when-startup-needs-ux-audit-before-redesign.html",
+        "contact.html",
+        "figma-design-systems.html",
+        "index.html",
+        "privacy.html",
+        "product-design-nepal.html",
+        "project-designerex.html",
+        "project-grid-labs.html",
+        "project-hamro-idea.html",
+        "project-masteriyo.html",
+        "project-mokshya.html",
+        "project-morajaa.html",
+        "project-neverwinter-parser.html",
+        "project-orkest.html",
+        "project-pihub.html",
+        "project-sassboilerplate.html",
+        "project-splashnode.html",
+        "project-yarsha.html",
+        "project-zakra-furniture.html",
+        "project-zapp.html",
+        "projects.html",
+        "saas-ux-designer.html",
+        "services.html",
+        "ux-audit.html",
+        "web3-ux-designer.html",
+        "website-ux-design.html",
+        "workspace-home/index.html"
+      ],
+      "http": "999",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.linkedin.com/in/nischhal/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.tegzy.com.au/",
+      "placements": [
+        "about.html"
+      ],
+      "http": "503",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.tegzy.com.au/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+      "placements": [
+        "blog/figma-handoff-notes-for-developers.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+      "placements": [
+        "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+        "blog/saas-dashboard-filter-ux.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://zakratheme.com/starter-sites/",
+      "placements": [
+        "project-zakra-furniture.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://zakratheme.com/starter-sites/",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://zakratheme.com/starter-sites/#/preview/zakra-furniture",
+      "placements": [
+        "project-zakra-furniture.html"
+      ],
+      "http": "200",
+      "curlExit": 0,
+      "effectiveUrl": "https://zakratheme.com/starter-sites/#/preview/zakra-furniture",
+      "status": "HTTP_REACHABLE_NOT_CONTENT_OR_OWNERSHIP_PROOF"
+    },
+    {
+      "url": "https://zapp.today/",
+      "placements": [
+        "project-zapp.html"
+      ],
+      "http": "503",
+      "curlExit": 0,
+      "effectiveUrl": "https://zapp.today/",
+      "status": "ACCESS_OR_NETWORK_UNVERIFIED"
+    }
+  ]
+}
