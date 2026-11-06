@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-11-06T00:23:10.991723+00:00",
+  "sources": [
+    {
+      "originalArchiveMember": "references/audit-capture-01-low-resolution.png",
+      "sha256": "ff317a4ff3a70e16925cde59d02aed447b74bb3a44a271c29c69b568ae79a9f4",
+      "dimensions": [
+        49,
+        1320
+      ],
+      "report_provider": "TOOL_NOT_IDENTIFIED",
+      "source_url": null,
+      "report_capture_date": null,
+      "observed_value": null,
+      "confidence": "SOURCE_IMAGE_BYTES_VERIFIED_NATIVE_REPORT_UNKNOWN",
+      "status": "TOOL_NOT_IDENTIFIED",
+      "remaining": "Original native report URL/export needed. Do not infer scores or an exhaustive issue list from this strip."
+    },
+    {
+      "originalArchiveMember": "references/audit-capture-02-low-resolution.png",
+      "sha256": "6df6e93768a8cd305e8afe83b4ef0deef9165395ec88f88e6e37d05d8f8bc945",
+      "dimensions": [
+        34,
+        1320
+      ],
+      "report_provider": "TOOL_NOT_IDENTIFIED",
+      "source_url": null,
+      "report_capture_date": null,
+      "observed_value": null,
+      "confidence": "SOURCE_IMAGE_BYTES_VERIFIED_NATIVE_REPORT_UNKNOWN",
+      "status": "TOOL_NOT_IDENTIFIED",
+      "remaining": "Original native report URL/export needed. Do not infer scores or an exhaustive issue list from this strip."
+    }
+  ],
+  "freshSubstitutes": "Existing Lighthouse native reports/performance-summary.json, Screaming Frog export reconciliation and dated current production HTTP/browser audits are separate fresh evidence. They do not identify the historical screenshot tool or reconstruct its scores.",
+  "completionScope": "T86 accepts explicit TOOL_NOT_IDENTIFIED classification. T89/all-screenshot-finding reconciliation remains incomplete."
+}

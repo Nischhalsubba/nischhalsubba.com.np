@@ -1,0 +1,290 @@
+{
+  "checkedAt": "2026-11-06T00:23:11.013631+00:00",
+  "approvedSource": "Existing owner-provided professional-profile.json; public profile relationship evidence retained in external-profile-update.md and uxcel-profile-readiness.json. This check does not authenticate external editing sessions.",
+  "approvedSameAs": [
+    "https://app.uxcel.com/ux/nischhal",
+    "https://github.com/Nischhalsubba",
+    "https://www.behance.net/nischhal",
+    "https://www.linkedin.com/in/nischhal/"
+  ],
+  "excluded": "Hall-of-Fame reference is an issuer source, not the owner identity; optional public social and private/messaging links are not added automatically.",
+  "routes": [
+    {
+      "file": "index.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "projects.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "services.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "about.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "contact.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "privacy.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/index.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "product-design-nepal.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "web3-ux-designer.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "saas-ux-designer.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "website-ux-design.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "figma-design-systems.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "ux-audit.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-yarsha.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-mokshya.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-hamro-idea.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-morajaa.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-pihub.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-masteriyo.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-zapp.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-neverwinter-parser.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-orkest.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-splashnode.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-grid-labs.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-zakra-furniture.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-designerex.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "project-sassboilerplate.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/responsive-saas-dashboard-handoff-notes.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/saas-dashboard-filter-ux.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/role-based-saas-dashboard-ux.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/saas-dashboard-empty-states-that-help-users-recover.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/design-systems-small-product-teams.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/design-handoff-checklist-startup-product-teams.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/prioritize-ux-audit-findings-before-redesign.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/when-startup-needs-ux-audit-before-redesign.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/hire-product-designer-nepal-saas-web3.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/beautiful-interface-poor-ux.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/ux-audit-evidence-before-redesign.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/saas-dashboard-ux-checklist.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/web3-wallet-ux-checklist.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/figma-handoff-notes-for-developers.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/ux-audit-checklist-before-redesign.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/website-ux-checklist-software-companies.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/blog-design-systems-front-end.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/blog-gaming-interface-clarity.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/blog-good-handoff.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/blog-portfolio-product.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/blog-service-websites.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/blog-web3-products.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/saas-dashboard-empty-state-ux-guide.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/saas-dashboard-empty-states-product-clarity.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/transaction-review-ux-crypto-apps.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/web3-wallet-connection-ux.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    },
+    {
+      "file": "blog/designing-handoffs-between-people.html",
+      "personNodes": 1,
+      "approvedSameAsCount": 4
+    }
+  ],
+  "profilePage": {
+    "route": "/",
+    "mainEntity": {
+      "@id": "https://nischhalsubba.com.np/#nischhal-raj-subba"
+    },
+    "samePersonId": true
+  }
+}

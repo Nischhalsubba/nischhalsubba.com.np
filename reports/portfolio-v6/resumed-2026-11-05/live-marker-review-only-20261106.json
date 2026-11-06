@@ -1,0 +1,10 @@
+{
+  "observedAt": "2026-11-06T00:33:19.815Z",
+  "url": "https://nischhalsubba.com.np/build-info.json",
+  "status": 200,
+  "marker": {
+    "commit": "8ac11e4f5b26aab642fbd81f2630ab2e840a92e1",
+    "branch": "main",
+    "provider": "cloudflare-workers"
+  }
+}

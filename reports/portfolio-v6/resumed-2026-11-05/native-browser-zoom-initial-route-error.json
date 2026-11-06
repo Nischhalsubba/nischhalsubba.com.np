@@ -1,0 +1,241 @@
+{
+  "checkedAt": "2026-11-06T00:30:03.132Z",
+  "browser": "153.0.8010.12",
+  "method": "Chrome extension chrome.tabs.setZoom/getZoom, fresh persistent test profile, local portfolio only, reduced motion. Native outer viewport1280x1024; 200%=>640px CSS,400%=>320px CSS with corresponding DPR. Read-only navigation; no form submitted.",
+  "scope": "14 route/zoom reflow spot checks with viewport-visible image decoding at top/middle/bottom. Offscreen lazy images are not certified by this test. Internal independently scrollable data tables may remain. This is not a full manual WCAG/assistive-technology assessment.",
+  "results": [
+    {
+      "route": "/",
+      "requestedZoom": 2,
+      "reportedNativeTabZoom": 2,
+      "status": 200,
+      "innerWidth": 640,
+      "innerHeight": 512,
+      "devicePixelRatio": 2,
+      "scrollWidth": 640,
+      "overflow": 0,
+      "visibleImages": 21,
+      "localHorizontalScrollContainers": [
+        {
+          "tag": "DIV",
+          "className": "tq-trk",
+          "clientWidth": 640,
+          "scrollWidth": 3856
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "route": "/about",
+      "requestedZoom": 2,
+      "reportedNativeTabZoom": 2,
+      "status": 200,
+      "innerWidth": 640,
+      "innerHeight": 512,
+      "devicePixelRatio": 2,
+      "scrollWidth": 640,
+      "overflow": 0,
+      "visibleImages": 0,
+      "localHorizontalScrollContainers": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/projects",
+      "requestedZoom": 2,
+      "reportedNativeTabZoom": 2,
+      "status": 200,
+      "innerWidth": 640,
+      "innerHeight": 512,
+      "devicePixelRatio": 2,
+      "scrollWidth": 640,
+      "overflow": 0,
+      "visibleImages": 6,
+      "localHorizontalScrollContainers": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/project-yarsha",
+      "requestedZoom": 2,
+      "reportedNativeTabZoom": 2,
+      "status": 200,
+      "innerWidth": 640,
+      "innerHeight": 512,
+      "devicePixelRatio": 2,
+      "scrollWidth": 640,
+      "overflow": 0,
+      "visibleImages": 18,
+      "localHorizontalScrollContainers": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/blog/web3-wallet-connection-ux",
+      "requestedZoom": 2,
+      "reportedNativeTabZoom": 2,
+      "status": 200,
+      "innerWidth": 640,
+      "innerHeight": 512,
+      "devicePixelRatio": 2,
+      "scrollWidth": 640,
+      "overflow": 0,
+      "visibleImages": 4,
+      "localHorizontalScrollContainers": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/web3-ux-design",
+      "requestedZoom": 2,
+      "reportedNativeTabZoom": 2,
+      "status": 200,
+      "innerWidth": 640,
+      "innerHeight": 512,
+      "devicePixelRatio": 2,
+      "scrollWidth": 640,
+      "overflow": 0,
+      "visibleImages": 21,
+      "localHorizontalScrollContainers": [
+        {
+          "tag": "DIV",
+          "className": "tq-trk",
+          "clientWidth": 640,
+          "scrollWidth": 3856
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "route": "/contact",
+      "requestedZoom": 2,
+      "reportedNativeTabZoom": 2,
+      "status": 200,
+      "innerWidth": 640,
+      "innerHeight": 512,
+      "devicePixelRatio": 2,
+      "scrollWidth": 640,
+      "overflow": 0,
+      "visibleImages": 0,
+      "localHorizontalScrollContainers": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/",
+      "requestedZoom": 4,
+      "reportedNativeTabZoom": 3.9999999999999996,
+      "status": 200,
+      "innerWidth": 320,
+      "innerHeight": 256,
+      "devicePixelRatio": 4,
+      "scrollWidth": 320,
+      "overflow": 0,
+      "visibleImages": 21,
+      "localHorizontalScrollContainers": [
+        {
+          "tag": "DIV",
+          "className": "tq-trk",
+          "clientWidth": 320,
+          "scrollWidth": 2944
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "route": "/about",
+      "requestedZoom": 4,
+      "reportedNativeTabZoom": 3.9999999999999996,
+      "status": 200,
+      "innerWidth": 320,
+      "innerHeight": 256,
+      "devicePixelRatio": 4,
+      "scrollWidth": 320,
+      "overflow": 0,
+      "visibleImages": 0,
+      "localHorizontalScrollContainers": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/projects",
+      "requestedZoom": 4,
+      "reportedNativeTabZoom": 3.9999999999999996,
+      "status": 200,
+      "innerWidth": 320,
+      "innerHeight": 256,
+      "devicePixelRatio": 4,
+      "scrollWidth": 320,
+      "overflow": 0,
+      "visibleImages": 6,
+      "localHorizontalScrollContainers": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/project-yarsha",
+      "requestedZoom": 4,
+      "reportedNativeTabZoom": 3.9999999999999996,
+      "status": 200,
+      "innerWidth": 320,
+      "innerHeight": 256,
+      "devicePixelRatio": 4,
+      "scrollWidth": 320,
+      "overflow": 0,
+      "visibleImages": 18,
+      "localHorizontalScrollContainers": [],
+      "pageErrors": []
+    },
+    {
+      "route": "/blog/web3-wallet-connection-ux",
+      "requestedZoom": 4,
+      "reportedNativeTabZoom": 3.9999999999999996,
+      "status": 200,
+      "innerWidth": 320,
+      "innerHeight": 256,
+      "devicePixelRatio": 4,
+      "scrollWidth": 320,
+      "overflow": 0,
+      "visibleImages": 4,
+      "localHorizontalScrollContainers": [
+        {
+          "tag": "DIV",
+          "className": "editorial-table-scroll",
+          "clientWidth": 280,
+          "scrollWidth": 580
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "route": "/web3-ux-design",
+      "requestedZoom": 4,
+      "reportedNativeTabZoom": 3.9999999999999996,
+      "status": 200,
+      "innerWidth": 320,
+      "innerHeight": 256,
+      "devicePixelRatio": 4,
+      "scrollWidth": 320,
+      "overflow": 0,
+      "visibleImages": 21,
+      "localHorizontalScrollContainers": [
+        {
+          "tag": "DIV",
+          "className": "tq-trk",
+          "clientWidth": 320,
+          "scrollWidth": 2944
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "route": "/contact",
+      "requestedZoom": 4,
+      "reportedNativeTabZoom": 3.9999999999999996,
+      "status": 200,
+      "innerWidth": 320,
+      "innerHeight": 256,
+      "devicePixelRatio": 4,
+      "scrollWidth": 320,
+      "overflow": 0,
+      "visibleImages": 0,
+      "localHorizontalScrollContainers": [],
+      "pageErrors": []
+    }
+  ],
+  "status": "REJECTED_INITIAL_RUN_SERVICE_ROUTE_FALLBACK",
+  "reviewFinding": "The noncanonical /web3-ux-design route returned homepage fallback200; two service rows are invalid. Canonical service is /web3-ux-designer. Final evidence is rerun with exact canonical checks on all routes."
+}
