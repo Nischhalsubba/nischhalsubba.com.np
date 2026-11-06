@@ -91,7 +91,7 @@ for (const file of files) {
   const description = searchMetadata[file]?.description || metadata(html, 'description');
   if (searchMetadata[file]?.description) html = setMeta(html, 'name', 'description', description);
   const isArticle = file.startsWith('blog/') && file !== 'blog/index.html'; const isProject = file.startsWith('project-');
-  const category = isProject ? 'Case study' : isArticle ? 'Design writing' : file === 'index.html' ? 'Senior Product Designer' : 'Portfolio';
+  const category = file === 'project-designerex.html' ? 'Case study / current-site reference' : isProject ? 'Case study' : isArticle ? 'Design writing' : file === 'index.html' ? 'Senior Product Designer' : 'Portfolio';
   const slug = file.replace(/\.html$/, '').replaceAll('/', '--');
 
   const contentImages = [...html.matchAll(/data-evidence-image="([^"]+)"/g)].map(match => evidenceImages.find(image => image.id === match[1])).filter(Boolean);

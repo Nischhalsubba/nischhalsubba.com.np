@@ -9,7 +9,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 // Import the browser module without running its DOM initializer; network is the only substituted boundary.
-const { sendPayload } = await import('../src/scripts/features/forms/contact-form.js');
+const { sendPayload, recordContactSuccess } = await import('../src/scripts/features/forms/contact-form.js');
 globalThis.window = {location: {href: 'https://nischhalsubba.com.np/contact'}};
 const form = new FormData(); form.set('email', 'visitor@example.com');
 const originalFetch = globalThis.fetch;
@@ -25,3 +25,14 @@ try {
  }
 } finally { globalThis.fetch = originalFetch; }
 console.log('Contact delivery acceptance tests passed.');
+
+// Accepted-contact measurement contains only an allowlisted route and transport, never submitted PII.
+const emitted = [];
+globalThis.window = { dispatchEvent: emitted.push.bind(emitted), dataLayer: [] };
+recordContactSuccess('first_party');
+assert.deepEqual(window.dataLayer[0], { event: 'contact_success', page_path: '/contact', transport: 'first_party' });
+assert.equal(emitted[0].detail.name, 'contact_success');
+assert.equal(JSON.stringify(emitted).includes('visitor@example.com'), false);
+window.gtag = JSON.parse; // Rejects the event name; a provider failure must remain nonfatal.
+assert.doesNotThrow(() => recordContactSuccess('fallback'));
+console.log('PII-free confirmed-contact measurement tests passed.');

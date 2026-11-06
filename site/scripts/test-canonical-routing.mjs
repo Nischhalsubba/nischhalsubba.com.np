@@ -41,3 +41,17 @@ for (const file of manifest.html) {
 assert.equal((await worker.fetch(new Request('https://nischhalsubba.com.np/unknown-do-not-redirect'), env)).status, 200);
 assert.equal((await worker.fetch(new Request('https://nischhalsubba.com.np/project-yarsha.html', {method:'POST'}), env)).status, 200);
 console.log(`[canonical-routing] ${checked} legacy GET/HEAD cases and ${manifest.html.length} combined host/path migrations passed; query strings and POST behavior preserved.`);
+
+// Analytics must strip arbitrary visitor strings and reject forged successful leads.
+const analyticsEntries = [];
+const savedConsoleLog = console.log;
+console.log = analyticsEntries.push.bind(analyticsEntries);
+try {
+  const response = await worker.fetch(new Request('https://nischhalsubba.com.np/api/analytics', { method: 'POST', body: JSON.stringify({ event: 'project_view', path: '/contact?email=visitor@example.com', context: 'visitor@example.com', metric: 'visitor@example.com', value: 99 }) }), env);
+  assert.equal(response.status, 204);
+  assert.deepEqual(JSON.parse(analyticsEntries.pop()), { type: 'portfolio_event', event: 'project_view', path: '/contact', context: 'unknown', metric: '', value: 1 });
+  const forged = await worker.fetch(new Request('https://nischhalsubba.com.np/api/analytics', { method: 'POST', body: JSON.stringify({ event: 'contact_success', path: '/contact' }) }), env);
+  assert.equal(forged.status, 400);
+  assert.equal(analyticsEntries.length, 0);
+} finally { console.log = savedConsoleLog; }
+console.log('Analytics PII redaction and forged-contact-success rejection passed.');

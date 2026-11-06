@@ -233,7 +233,10 @@ export async function onRequestPost({ request, env }) {
 
     const raw = buildRawEmail(fields, clean(data.get('source_page'), 500));
     await env.CONTACT_EMAIL.send(new EmailMessage(SENDER_EMAIL, DESTINATION_EMAIL, raw));
-    return json({ ok: true, message: 'Thanks. Your message was sent successfully.' });
+    try {
+      console.log(JSON.stringify({ type: 'portfolio_event', event: 'contact_success', path: '/contact', context: 'first_party', metric: '', value: 1 }));
+    } catch { /* Optional measurement must not change accepted delivery. */ }
+    return json({ ok: true, accepted: true, message: 'Thanks. Your message was sent successfully.' });
   } catch (error) {
     console.error('[portfolio] contact submission failed', error);
     return json({

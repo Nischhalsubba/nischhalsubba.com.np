@@ -473,13 +473,13 @@
       "depends_on": "T01",
       "acceptance_criteria": "Keyboard/reduced motion/zoom/NVDA-VoiceOver/contrast checklist signed",
       "evidence_status": "historical audit",
-      "status": "IN_PROGRESS",
+      "status": "WAIVED_OWNER",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "Existing full native case QA and production desktop/mobile inventory are retained; changed-page four-width decode/axe/overflow and normal/reduced-motion homepage keyboard checks pass. This is not full manual AA conformance. Native Chrome 200%/400% tab zoom now passes 14 route/zoom spot checks (640 px/320 px effective CSS widths), with top/middle/bottom viewport-visible image decode and zero document overflow/page errors.",
+      "observation": "Owner explicitly authorized skipping remaining browser/manual verification. This is a waiver, not a passed manual/accessibility/visual test.",
       "evidence": "resumed-2026-11-05/production-browser/browser-inventory.json; resumed-2026-11-05/case-evidence-batch-qa.json; resumed-2026-11-05/media-batch-qa.json; resumed-2026-11-05/home-entry-qa.json; resumed-2026-11-05/native-browser-zoom-qa.json",
-      "blocker": "Full manual AA/assistive-technology review remains unperformed; NVDA/VoiceOver are unavailable in this Linux environment. Complete all-detail-page keyboard/motion coverage and manual contrast/focus review. Native 200/400% zoom spot checks are complete, not a full accessibility certification.",
-      "confidence": "CONFIRMED_SOURCE"
+      "blocker": "",
+      "confidence": "OWNER_WAIVED"
     },
     {
       "id": "T25",
@@ -516,8 +516,8 @@
       "status": "BLOCKED_PERMISSION",
       "skills_to_load": "nrs-search-intelligence;nrs-performance-release",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
-      "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
+      "observation": "Public analytics now allowlists canonical paths, event/context/metric values and removes query/fragment visitor strings. Public forged contact_success rejected. Server event emitted only after CONTACT_EMAIL provider acceptance; honeypot does not count. Optional configured browser providers receive no form fields. Contact/routing regressions pass. End-to-end production provider/storage/consent verification remains open.",
+      "evidence": "site/src/worker.js; site/functions/api/contact.js; site/scripts/test-contact-handler.mjs",
       "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -536,8 +536,8 @@
       "status": "BLOCKED_PERMISSION",
       "skills_to_load": "nrs-search-intelligence",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
-      "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
+      "observation": "Country/page and branded/nonbranded query dashboard with overlapping 30/60/90-day pre-release baselines prepared. Qualified conversion dataset unavailable; no causal release improvement claimed.",
+      "evidence": "final-52/country-intent-dashboard.csv; final-52/search-dashboard.md",
       "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -813,13 +813,13 @@
       "depends_on": "T38",
       "acceptance_criteria": "Responsive screenshot with dated caption; copyright review; distinguish historical/current",
       "evidence_status": "third-party source checked",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-media-evidence;nrs-ux-a11y;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Homepage and discovered /search route return200 but record defaultView/Stripe exceptions in this browser environment. New desktop/mobile captures remain rejected; no working booking/checkout or current-UI authorship claim.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/designerex-browse-20261106/manifest.json; resumed-2026-11-05/designerex-listing-discovery.json",
+      "observation": "Dated current Designerex homepage and browsing captures, full unchanged JPEGs and proportional responsive WebP derivatives. Current references are explicitly separate from historical contribution. Mobile/product functionality is not certified.",
+      "evidence": "final-52/designerex-current-capture.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T42",
@@ -993,13 +993,13 @@
       "depends_on": "T41",
       "acceptance_criteria": "No implied employment ownership of entire platform, finance claims or metrics; live refs dated",
       "evidence_status": "proposal",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-content-and-cases;nrs-media-evidence;nrs-search-intelligence",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Unpublished original Designerex companion draft prepared with scoped marketplace contribution, dated official reference and explicit limits on ownership, booking and financial claims.",
-      "evidence": "editorial-drafts/designerex-rental-decision.md",
-      "blocker": "Clean permitted historical frame or current listing capture still needed for illustrated publication; rejected source runtime errors are retained.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Completed unpublished Designerex companion draft with current-public-reference illustration, source attribution, role boundary and no performance or payment claims.",
+      "evidence": "final-52/../editorial-drafts/designerex-rental-decision.md",
+      "blocker": "",
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T51",
@@ -1033,13 +1033,13 @@
       "depends_on": "T44,T45",
       "acceptance_criteria": "Desktop/mobile captures, axe/keyboard/motion, no-asset failures, 400% zoom spot checks",
       "evidence_status": "CI history partial",
-      "status": "IN_PROGRESS",
+      "status": "WAIVED_OWNER",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "Existing full native case QA and production desktop/mobile inventory are retained; changed-page four-width decode/axe/overflow and normal/reduced-motion homepage keyboard checks pass. This is not full manual AA conformance. Native Chrome 200%/400% tab zoom now passes 14 route/zoom spot checks (640 px/320 px effective CSS widths), with top/middle/bottom viewport-visible image decode and zero document overflow/page errors.",
+      "observation": "Owner explicitly authorized skipping remaining browser/manual verification. This is a waiver, not a passed manual/accessibility/visual test.",
       "evidence": "resumed-2026-11-05/production-browser/browser-inventory.json; resumed-2026-11-05/case-evidence-batch-qa.json; resumed-2026-11-05/media-batch-qa.json; resumed-2026-11-05/home-entry-qa.json; resumed-2026-11-05/native-browser-zoom-qa.json",
-      "blocker": "Full manual AA/assistive-technology review remains unperformed; NVDA/VoiceOver are unavailable in this Linux environment. Complete all-detail-page keyboard/motion coverage and manual contrast/focus review. Native 200/400% zoom spot checks are complete, not a full accessibility certification.",
-      "confidence": "CONFIRMED_SOURCE"
+      "blocker": "",
+      "confidence": "OWNER_WAIVED"
     },
     {
       "id": "T53",
@@ -1053,13 +1053,13 @@
       "depends_on": "T40,T41,T42",
       "acceptance_criteria": "Unique 1200x630 previews and alt/caption/sitemap; images decode; credits recorded",
       "evidence_status": "build SEO generator exists",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-media-evidence;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "G_RELEASE_REPORT",
-      "observation": "The 54-route final SEO contract verifies real 1200 x 630 PNG previews, dimensions, structured image metadata and image sitemap. Authentic source coverage and distinct selection remain separate acceptance checks.",
-      "evidence": "resumed-2026-11-05/media-batch-validation.log; resumed-2026-11-05/media-selection-plan.json",
-      "blocker": "Designerex clean source and remaining distinct/reused image selections must be resolved before all project OG content can be certified.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "All 14 project social images encode as unique 1200x630 PNGs; final-build metadata, image sitemap and source audit pass. Designerex card explicitly identifies the current-site reference.",
+      "evidence": "final-52/project-social-preview-audit.json",
+      "blocker": "",
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T54",
@@ -1093,13 +1093,13 @@
       "depends_on": "T01,T44,T45,T52",
       "acceptance_criteria": "PR with all 85 ticket statuses, 54-route review, media capture+provenance ledger, browser/CI logs, no auto merge/deploy",
       "evidence_status": "recommendation",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified. Owner authorized merge; main fast-forwarded to 8 ac 11 e 4. Public Cloudflare production-verification run 42022566819 completed Success for that commit; direct dashboard/API access remains denied. Latest user merge authorization supersedes the earlier no-auto-merge condition; original acceptance text is retained as history, not a new permission requirement.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; cloudflare-verification.json; merge-authorization.md",
-      "blocker": "Whole-program acceptance, source-to-page inventory and final audit reconciliation remain incomplete. Merge authorization is already granted; no new merge permission is needed.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "All 107 tickets reconciled in progress.json and final-52/task-status.csv. Source, build, deployed and externally blocked outcomes remain distinct.",
+      "evidence": "final-52/release-summary.md",
+      "blocker": "",
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T56",
@@ -1113,13 +1113,13 @@
       "depends_on": "T01;T36",
       "acceptance_criteria": "41/41 have unique relevant real-image source or source-pending issue with ownership evidence",
       "evidence_status": "Owner reference image + source inventory",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-real-image-qa;nrs-media-evidence;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Independently captured public Grid Labs implementation and preserved older artwork separately. Clean original viewport/full-page runs, source-commit/HTML parity, truthful legacy-placeholder scope and unchanged responsive exports recorded; this does not close all-project/article media coverage. Explicit 41-page selection plan records source/rights/hash/alt and reuse counts; all 27 articles now have relevant actual image references. Reused sources are flagged rather than claimed distinct; remaining source-pending cases stay open. 2026-11-06: User follow-up batch fixes the homepage canvas at 16:10 with padded contain rendering and stable image-load geometry; all 14 case introductions now state individual contribution directly, context precedes the challenge, and delivery/outcomes/next-validation/learning headings are clearer. Reference structure reviewed at kseniiamankovska.com/chromia; no borrowed results or prose. Full all-placement media and editorial acceptance remains open. 2026-11-06: All 27 articles now declare distinct authentic lead sources shared by archive/related/social previews. Seven new designed-state examples and an identity-only portrait section supply missing context. Discovery frames use fixed 16:10 geometry with complete contain-rendered images; generic field-notes utility-card fallback removed. Source hashes and both-width browser checks passed; review/CI pending. Reference-inspired homepage prototype:14fixed16:10frames with project-specific mattes/shadows,15unaltered UI images across13project previews,paired mobile screens forYarsha/Zapp,and an explicit text-only Designerex source-pending fallback. Stronger approved Orkest/piHub screen selections. Four viewport/motion checks passed; new design remains inPR121pendingCI.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/grid-labs-source-verification.json; resumed-2026-11-05/grid-batch-qa.json; resumed-2026-11-05/media-selection-plan.json; resumed-2026-11-05/thumbnails-storytelling-qa.json; ../../docs/plans/2026-11-06-thumbnails-and-case-writing.md; resumed-2026-11-05/distinct-article-image-plan.json; resumed-2026-11-05/distinct-articles-qa.json; resumed-2026-11-05/thumbnail-art-direction-qa.json; resumed-2026-11-05/thumbnail-art-direction-contact-sheet.png",
+      "observation": "All 41 primary project/article selections have authentic reviewed sources or explicitly recorded retained-origin limitations. Generic diagram thumbnails removed. Designerex now uses an attributed public reference.",
+      "evidence": "final-52/source-to-page-plan.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T57",
@@ -1153,13 +1153,13 @@
       "depends_on": "T56",
       "acceptance_criteria": "No generic diagrams used as images on related cards; each meaningful real unique preview, tested CSS",
       "evidence_status": "Owner negative screenshot",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-real-image-qa;nrs-ux-a11y;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. 2026-11-06: All 27 articles now declare distinct authentic lead sources shared by archive/related/social previews. Seven new designed-state examples and an identity-only portrait section supply missing context. Discovery frames use fixed 16:10 geometry with complete contain-rendered images; generic field-notes utility-card fallback removed. Source hashes and both-width browser checks passed; review/CI pending.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/distinct-article-image-plan.json; resumed-2026-11-05/distinct-articles-qa.json",
+      "observation": "Related cards use reviewed real evidence; existing project-colored composition/contain rules retained. Final-source discovery-card audit has zero errors. Browser regression remains owner-waived separately.",
+      "evidence": "final-52/card-source-audit.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T59",
@@ -1193,13 +1193,13 @@
       "depends_on": "T56",
       "acceptance_criteria": "14 cards and 14 hero images linked to genuine project source; role/period/disclaimer accurate",
       "evidence_status": "Seven case source sets exist; five deferred",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-real-image-qa;nrs-media-evidence;nrs-content-and-cases;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Independently captured public Grid Labs implementation and preserved older artwork separately. Clean original viewport/full-page runs, source-commit/HTML parity, truthful legacy-placeholder scope and unchanged responsive exports recorded; this does not close all-project/article media coverage. Explicit 41-page selection plan records source/rights/hash/alt and reuse counts; all 27 articles now have relevant actual image references. Reused sources are flagged rather than claimed distinct; remaining source-pending cases stay open.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/grid-labs-source-verification.json; resumed-2026-11-05/grid-batch-qa.json; resumed-2026-11-05/media-selection-plan.json",
+      "observation": "All 14 case primary selections are mapped to genuine sources. Designerex current-public reference has a visible historical/current boundary; retained historical capture dates remain unknown.",
+      "evidence": "final-52/source-to-page-plan.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T61",
@@ -1213,13 +1213,13 @@
       "depends_on": "T57;T59;T60",
       "acceptance_criteria": "Browser screenshots at mobile+desktop show full UI, no text clipped; image decode and lightbox pass",
       "evidence_status": "Browser not executed in this research",
-      "status": "IN_PROGRESS",
+      "status": "WAIVED_OWNER",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release;nrs-real-image-qa;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
+      "observation": "Owner explicitly authorized skipping remaining browser/manual verification. This is a waiver, not a passed manual/accessibility/visual test.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "OWNER_WAIVED"
     },
     {
       "id": "T62",
@@ -1293,13 +1293,13 @@
       "depends_on": "T01",
       "acceptance_criteria": "All 14 show context, ownership, constraints, alternatives, decisions, actual screenshots, outcome with verified limits",
       "evidence_status": "Niraj case samples reviewed publicly",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-editorial-voice;nrs-content-and-cases",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "All 14 case narratives already contain structured contribution, context, constraints, decisions and outcome limits. Yarsha/PiHub/Orkest frames and Mokshya evidence-specific prose are verified without duplicate rewriting. 2026-11-06: User follow-up batch fixes the homepage canvas at 16:10 with padded contain rendering and stable image-load geometry; all 14 case introductions now state individual contribution directly, context precedes the challenge, and delivery/outcomes/next-validation/learning headings are clearer. Reference structure reviewed at kseniiamankovska.com/chromia; no borrowed results or prose. Full all-placement media and editorial acceptance remains open.",
-      "evidence": "editorial-review.md; resumed-2026-11-05/core-case-acceptance.json; resumed-2026-11-05/case-evidence-batch-qa.json; resumed-2026-11-05/thumbnails-storytelling-qa.json; ../../docs/plans/2026-11-06-thumbnails-and-case-writing.md",
-      "blocker": "Designerex authentic source and retained-image origin gaps prevent certification of every case screenshot requirement.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "All 14 case bodies retain context, scoped role, constraints, decisions, honest outcomes and inspectable UI/reference media; Designerex no longer lacks a real public reference. No invented research or business metrics. Editorial source audit passes.",
+      "evidence": "final-52/source-to-page-plan.json",
+      "blocker": "",
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T66",
@@ -1313,13 +1313,13 @@
       "depends_on": "T64",
       "acceptance_criteria": "Each article answers distinct intent with real examples; no minimum word quota, unsupported result, citation/image/source issue",
       "evidence_status": "Raw source sampled; final output audit mandatory",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-editorial-voice;nrs-seo-page-audit;nrs-content-and-cases",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 27 distinct article intents and substantive source records are preserved. All 27 now contain actual source-image references; changed pages pass responsive audits. No word quota or unsupported metric was introduced. 2026-11-06: All 27 articles now declare distinct authentic lead sources shared by archive/related/social previews. Seven new designed-state examples and an identity-only portrait section supply missing context. Discovery frames use fixed 16:10 geometry with complete contain-rendered images; generic field-notes utility-card fallback removed. Source hashes and both-width browser checks passed; review/CI pending.",
-      "evidence": "editorial-intents.json; editorial-review.md; resumed-2026-11-05/media-selection-plan.json; resumed-2026-11-05/owner-media-batch-qa.json; resumed-2026-11-05/distinct-article-image-plan.json; resumed-2026-11-05/distinct-articles-qa.json",
-      "blocker": "Complete final per-article editorial/citation reconciliation and distinguish reused hero selections; structural audit alone is not a full editorial sign-off.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "All 27 distinct article intents and source/caption associations reconciled. Nine stale planning associations corrected in the current plan; approved article prose preserved where already substantive. Editorial audit passes.",
+      "evidence": "final-52/article-citation-reconciliation.json",
+      "blocker": "",
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T67",
@@ -1373,13 +1373,13 @@
       "depends_on": "T57;T59;T60",
       "acceptance_criteria": "OG/Twitter images encode successfully at 1200x630, feature visible authentic UI, no misleading attribution",
       "evidence_status": "Build currently generates OG artwork",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-seo-page-audit;nrs-real-image-qa;nrs-performance-release;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
+      "observation": "All 54 canonical social previews encode at 1200x630 and pass final-build schema/image tests. Designerex contains authentic current UI with reference disclosure; attribution is not implied historical authorship.",
+      "evidence": "final-52/project-social-preview-audit.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T70",
@@ -1413,13 +1413,13 @@
       "depends_on": "T01;T63",
       "acceptance_criteria": "Timestamped captures and permission/owner ledger; no current feature attribution or copying entire sites",
       "evidence_status": "Zapp/Designerex web checked; Hamro Vercel record but page not verified",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
+      "observation": "Reviewed static Masteriyo, Zapp and Designerex public references and official Zakra screenshot recorded. No current feature ownership, checkout or live-demo success inferred. All 17 public-capture source/variant hash checks pass.",
+      "evidence": "final-52/designerex-current-capture.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T72",
@@ -1433,13 +1433,13 @@
       "depends_on": "T69;T70",
       "acceptance_criteria": "Image source URLs crawlable; img src and srcset; descriptive accurate alt/caption; source image provenance",
       "evidence_status": "Official Google image SEO docs",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-seo-page-audit;nrs-real-image-qa;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
+      "observation": "Final-build evidence and public-capture audits verify local src/srcset, dimensions, hashes, source links and captions; SEO audit confirms image discovery for 54 canonical pages.",
+      "evidence": "final-52/visual-media-summary.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T73",
@@ -1473,13 +1473,13 @@
       "depends_on": "T01;T36",
       "acceptance_criteria": "Sitewide visual-media-inventory.csv, every placement classified, no hidden/unregistered content image",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "2026-11-06: Final-build inventory covers all 54 canonical routes: 1558 media placements/candidates and 272 distinct asset references, with zero missing local assets. Includes img/srcset, OG/Twitter, icons, inline/linked CSS and separately labeled runtime source candidates. Every reference is registered and classified; provenance questions are explicit. Browser execution/visual verification is waived by the owner; runtime candidates are not claimed visible. Rights and screenshot-source gaps remain under T63/T73/T75/T82.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs; resumed-2026-11-06/visual-media-inventory.csv; resumed-2026-11-06/visual-media-summary.json",
-      "blocker": "Browser state verification waived; source/rights acceptance remains separate. Inventory is complete at the final-build layer.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Sitewide inventory records 54 routes, 1559 placements/runtime candidates, 279 distinct assets and zero missing local assets. Runtime candidates are explicitly separate from rendered DOM.",
+      "evidence": "final-52/visual-media-inventory.csv",
+      "blocker": "",
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T75",
@@ -1536,8 +1536,8 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
+      "observation": "60 selected native Figma frame PNGs reacquired and dimension/hash verified. Private ZIP saved; nine byte-match historical hashes and 51 are fresh different renders. The broader 3889-file archive is not independently reacquired.",
+      "evidence": "final-52/figma-reacquisition-summary.json; final-52/figma-reacquisition.json",
       "blocker": "Secure Figma file_content:read access needed for independently reacquiring exact original historical frames.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -1553,13 +1553,13 @@
       "depends_on": "T76;T77",
       "acceptance_criteria": "Selection explanation per page; original screenshot subject matches article/case intent",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Explicit 41-page selection plan records source/rights/hash/alt and reuse counts; all 27 articles now have relevant actual image references. Reused sources are flagged rather than claimed distinct; remaining source-pending cases stay open.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/media-selection-plan.json",
+      "observation": "41 page-level selections have intent, source, selection rationale and reuse limits; 27 article lead source IDs are distinct. Current-site references and retained-origin gaps remain labeled.",
+      "evidence": "final-52/source-to-page-plan.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T79",
@@ -1573,13 +1573,13 @@
       "depends_on": "T78",
       "acceptance_criteria": "Original-to-derivative linkage, faithful pixels, responsive crop/contain, full original accessible",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker. Independently captured public Grid Labs implementation and preserved older artwork separately. Clean original viewport/full-page runs, source-commit/HTML parity, truthful legacy-placeholder scope and unchanged responsive exports recorded; this does not close all-project/article media coverage. Reference-inspired homepage prototype:14fixed16:10frames with project-specific mattes/shadows,15unaltered UI images across13project previews,paired mobile screens forYarsha/Zapp,and an explicit text-only Designerex source-pending fallback. Stronger approved Orkest/piHub screen selections. Four viewport/motion checks passed; new design remains inPR121pendingCI.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; resumed-2026-11-05/grid-labs-source-verification.json; resumed-2026-11-05/grid-batch-qa.json; resumed-2026-11-05/thumbnail-art-direction-qa.json; resumed-2026-11-05/thumbnail-art-direction-contact-sheet.png",
+      "observation": "Faithful proportional screenshot derivatives and unchanged complete originals remain accessible. Added Designerex JPEG-to-PNG pixel identity and responsive variants; source/variant hashes and dimensions pass. Browser breakpoint inspection is owner-waived separately.",
+      "evidence": "final-52/designerex-current-capture.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T80",
@@ -1613,13 +1613,13 @@
       "depends_on": "T79;T80",
       "acceptance_criteria": "Browser evidence at 320/390/768/1440; no broken/image mismatch/crop or omitted meaningful placements",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "IN_PROGRESS",
+      "status": "WAIVED_OWNER",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
+      "observation": "Owner explicitly authorized skipping remaining browser/manual verification. This is a waiver, not a passed manual/accessibility/visual test.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "OWNER_WAIVED"
     },
     {
       "id": "T82",
@@ -1706,7 +1706,7 @@
       "priority": "P0",
       "workstream": "Audit recovery",
       "task": "Identify and recover underlying reports for two tiny supplied screenshot exports",
-      "why_now": "49\u00d71320 and 34\u00d71320 cannot supply reliable issue-level readings",
+      "why_now": "49×1320 and 34×1320 cannot supply reliable issue-level readings",
       "targets": "Historical screenshot sources, native report URLs and tool environment",
       "owner": "SEO+QA",
       "effort": "M",
@@ -1753,13 +1753,13 @@
       "depends_on": "T87",
       "acceptance_criteria": "Each genuine issue has source/DOM proof, precise fix and evidence; suspected false positives labeled",
       "evidence_status": "NOT_EXECUTED",
-      "status": "IN_PROGRESS",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-audit-recovery;nrs-seo-page-audit;nrs-ux-a11y;nrs-performance-release",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "PR CI exposed a missing Process link in the mobile menu. Desktop section/link existed; restored mobile entry with existing icon/style and sequential numbering. Targeted existing navigation audit pending. Unchanged full navigation/browser audit now passes through every forward/reverse chapter; build/home/doc checks pass. Fresh PR CI pending.",
-      "evidence": "PR #111 evidence job 127285623527; site/src/workspace-home/index.html; resumed-2026-11-05/mobile-navigation-audit.log",
+      "observation": "Recovered 54-route crawler findings reconciled with current final-build metadata and existing verified fixes. Suggestions and unverified native reports distinguished from confirmed defects; no new score improvement claimed.",
+      "evidence": "final-52/native-audit-reconciliation.json",
       "blocker": "",
-      "confidence": "CONFIRMED_SOURCE"
+      "confidence": "VERIFIED_SOURCE_BUILD"
     },
     {
       "id": "T89",
@@ -2096,8 +2096,8 @@
       "status": "IN_PROGRESS",
       "skills_to_load": "nrs-social-identity;nrs-editorial-voice;nrs-search-intelligence",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Owned current biography is reconciled and external Uxcel over-five-years/Biratnagar/Idealaya discrepancies are documented with an unpublished correction. Historical employment locations remain dated source facts.",
-      "evidence": "resumed-2026-11-05/external-profile-update.md; resumed-2026-11-05/uxcel-profile-readiness.json; site/config/experience-evidence.json",
+      "observation": "Dated platform discrepancy register now includes GitHub Kathmandu wording and Uxcel historic role/experience. Inaccessible LinkedIn/Behance content is explicitly unverified; no external account edited.",
+      "evidence": "final-52/biography-discrepancy-register.json",
       "blocker": "Complete per-platform biography review for other owner-linked accounts where public content is inaccessible or not yet verified; no external profile was edited.",
       "confidence": "CONFIRMED_SOURCE"
     },
@@ -2142,6 +2142,6 @@
       "confidence": "CONFIRMED_SOURCE"
     }
   ],
-  "updated_at": "2026-11-06T07:28:24.640797+00:00",
-  "scope_note": "All 107 tickets tracked. Explicit owner handover authorizes merging tested PRs and checking Cloudflare afterward. PR121 merged; 53 prior verified tickets preserved. Source, CI, live delivery and Google observations remain distinct; whole-program completion is not claimed."
+  "updated_at": "2026-11-06T09:57:09.801110+00:00",
+  "scope_note": "All 107 tickets tracked. Prior 55 verified completions preserved. This batch closes 16 source/build tasks and records four owner-waived manual/browser tasks separately. Deployment verified separately after merge; inaccessible provider/Google/account outcomes remain open."
 }

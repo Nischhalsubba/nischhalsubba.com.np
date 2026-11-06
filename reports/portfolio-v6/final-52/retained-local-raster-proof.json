@@ -1,0 +1,70 @@
+[
+  {
+    "project": "mokshya",
+    "sourceFile": "site/src/workspace-home/assets/projects/mokshya.svg",
+    "svgSha256": "26290489cd78d26de669d7e709c7cd03a06b1ec3418947fe466305c920878696",
+    "embeddedPngSha256": "7819d4ac73f768fd2d7e44ef75a2dae8748df3842220d4c85b73e387c31baf9a",
+    "embeddedDimensions": [
+      960,
+      540
+    ],
+    "imageElementDimensions": [
+      960.0,
+      540.0
+    ],
+    "fullEmbeddedImageAspectPreserved": true,
+    "sourceCaptureDate": "UNKNOWN_NOT_INVENTED",
+    "sourceScope": "Genuine raster embedded in owner-retained portfolio asset. This verifies local source bytes, not historical capture date or current live-site state."
+  },
+  {
+    "project": "mokshya",
+    "sourceFile": "site/assets/images/project-mokshya-cover.svg",
+    "svgSha256": "26290489cd78d26de669d7e709c7cd03a06b1ec3418947fe466305c920878696",
+    "embeddedPngSha256": "7819d4ac73f768fd2d7e44ef75a2dae8748df3842220d4c85b73e387c31baf9a",
+    "embeddedDimensions": [
+      960,
+      540
+    ],
+    "imageElementDimensions": [
+      960.0,
+      540.0
+    ],
+    "fullEmbeddedImageAspectPreserved": true,
+    "sourceCaptureDate": "UNKNOWN_NOT_INVENTED",
+    "sourceScope": "Genuine raster embedded in owner-retained portfolio asset. This verifies local source bytes, not historical capture date or current live-site state."
+  },
+  {
+    "project": "splashnode",
+    "sourceFile": "site/src/workspace-home/assets/projects/splashnode.svg",
+    "svgSha256": "6dafe8c006a6db4cffc4a3ee34744256b5f78ea716ec7839803d1467348c2b58",
+    "embeddedPngSha256": "54ffe0cd1c2ba2171c990248f351e530d52029fc79b587ed9f10ea90fa6c0222",
+    "embeddedDimensions": [
+      960,
+      540
+    ],
+    "imageElementDimensions": [
+      960.0,
+      540.0
+    ],
+    "fullEmbeddedImageAspectPreserved": true,
+    "sourceCaptureDate": "UNKNOWN_NOT_INVENTED",
+    "sourceScope": "Genuine raster embedded in owner-retained portfolio asset. This verifies local source bytes, not historical capture date or current live-site state."
+  },
+  {
+    "project": "splashnode",
+    "sourceFile": "site/assets/images/project-splashnode-cover.svg",
+    "svgSha256": "6dafe8c006a6db4cffc4a3ee34744256b5f78ea716ec7839803d1467348c2b58",
+    "embeddedPngSha256": "54ffe0cd1c2ba2171c990248f351e530d52029fc79b587ed9f10ea90fa6c0222",
+    "embeddedDimensions": [
+      960,
+      540
+    ],
+    "imageElementDimensions": [
+      960.0,
+      540.0
+    ],
+    "fullEmbeddedImageAspectPreserved": true,
+    "sourceCaptureDate": "UNKNOWN_NOT_INVENTED",
+    "sourceScope": "Genuine raster embedded in owner-retained portfolio asset. This verifies local source bytes, not historical capture date or current live-site state."
+  }
+]

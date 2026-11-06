@@ -1,0 +1,245 @@
+[
+  {
+    "slug": "ux-audit-evidence-before-redesign",
+    "intent": "Build an evidence pack before deciding what to redesign",
+    "leadSourceId": "zapp-delivery-complete",
+    "sourceUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL?node-id=20-26",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "zapp-delivery-complete",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "ux-audit-checklist-before-redesign",
+    "intent": "Run a reproducible task-based interface audit",
+    "leadSourceId": "zapp-parcel-details",
+    "sourceUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL?node-id=113-153",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "zapp-parcel-details",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "prioritize-ux-audit-findings-before-redesign",
+    "intent": "Choose a defensible repair order without false numerical precision",
+    "leadSourceId": "orkest-lead-filter-error",
+    "sourceUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F?node-id=246-15008",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-lead-filter-error",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "when-startup-needs-ux-audit-before-redesign",
+    "intent": "Decide whether to audit, repair or redesign a startup product",
+    "leadSourceId": "zapp-driver-next-stop",
+    "sourceUrl": "https://www.figma.com/design/dRPI1NQ1uEFJTgdGKSwoaL?node-id=19-149",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "zapp-driver-next-stop",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "beautiful-interface-poor-ux",
+    "intent": "Diagnose task problems concealed by visual polish",
+    "leadSourceId": "yarsha-contact-empty",
+    "sourceUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz?node-id=6092-253254",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "yarsha-contact-empty",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "saas-dashboard-ux-checklist",
+    "intent": "Review the core task hierarchy of an operational dashboard",
+    "leadSourceId": "pihub-application-status",
+    "sourceUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE?node-id=2-9102",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "pihub-application-status",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "website-ux-checklist-software-companies",
+    "intent": "Review a software website as an evaluation journey",
+    "leadSourceId": "hamro-current-demo",
+    "sourceUrl": "https://hamro-idea-website.vercel.app/",
+    "status": "REVIEWED_SOURCE_SELECTED",
+    "previousPlanSourceId": "hamro-current-demo",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "designing-handoffs-between-people",
+    "intent": "Explain cross-role handoffs with original product screens",
+    "leadSourceId": "pihub-product-application",
+    "sourceUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE?node-id=2-9046",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-lead-list",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "blog-design-systems-front-end",
+    "intent": "Connect design-system decisions to frontend responsibilities",
+    "leadSourceId": "masteriyo-question-editor",
+    "sourceUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh?node-id=277-3142",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-lead-capture",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "design-systems-small-product-teams",
+    "intent": "Build a proportional design system for a small team",
+    "leadSourceId": "orkest-conversion-readiness",
+    "sourceUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F?node-id=160-387",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-conversion-readiness",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "blog-service-websites",
+    "intent": "Write a service website around client evaluation",
+    "leadSourceId": "morajaa-service-process",
+    "sourceUrl": "https://www.figma.com/design/E9BBrx6PdFTqoG3YLvqRX6?node-id=465-831",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "morajaa-service-process",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "blog-portfolio-product",
+    "intent": "Explain portfolio editorial and interaction decisions using the current site",
+    "leadSourceId": "portfolio-published-baseline",
+    "sourceUrl": "https://nischhalsubba.com.np/",
+    "status": "REVIEWED_SOURCE_SELECTED",
+    "previousPlanSourceId": "portfolio-published-baseline",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "blog-gaming-interface-clarity",
+    "intent": "Apply gaming-interface observations to data-product design without invented research",
+    "leadSourceId": "neverwinter-public-setup",
+    "sourceUrl": "https://neverwinter-live-parser.vercel.app/",
+    "status": "REVIEWED_SOURCE_SELECTED",
+    "previousPlanSourceId": "neverwinter-public-setup",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "hire-product-designer-nepal-saas-web3",
+    "intent": "Help a hiring team evaluate a Nepal-based product designer for complex software",
+    "leadSourceId": "owner-portrait",
+    "sourceUrl": "https://nischhalsubba.com.np/about",
+    "status": "REVIEWED_SOURCE_SELECTED",
+    "previousPlanSourceId": "portfolio-published-baseline",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "blog-web3-products",
+    "intent": "Translate Web3 mechanisms into understandable product decisions",
+    "leadSourceId": "wallet-adapter-gallery",
+    "sourceUrl": "https://anza-xyz.github.io/wallet-adapter/example/",
+    "status": "REVIEWED_SOURCE_SELECTED",
+    "previousPlanSourceId": "wallet-adapter-gallery",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "web3-wallet-connection-ux",
+    "intent": "Design wallet connection as a bounded permission and recovery step",
+    "leadSourceId": "wallet-adapter-chooser",
+    "sourceUrl": "https://anza-xyz.github.io/wallet-adapter/example/",
+    "status": "REVIEWED_SOURCE_SELECTED",
+    "previousPlanSourceId": "wallet-adapter-chooser",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "transaction-review-ux-crypto-apps",
+    "intent": "Define the information and uncertainty boundary of transaction review",
+    "leadSourceId": "yarsha-transaction-detail",
+    "sourceUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz?node-id=6092-262038",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "yarsha-transaction-detail",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "web3-wallet-ux-checklist",
+    "intent": "Acceptance-review a complete wallet-enabled product journey",
+    "leadSourceId": "yarsha-recipient-selection",
+    "sourceUrl": "https://www.figma.com/design/pYismUGSJo9vLjViMjZENz?node-id=6092-253681",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "yarsha-recipient-selection",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "figma-handoff-notes-for-developers",
+    "intent": "Write a behavior contract beside a specific Figma screen",
+    "leadSourceId": "orkest-lead-capture",
+    "sourceUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F?node-id=160-386",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-lead-capture",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "blog-good-handoff",
+    "intent": "Coordinate responsibility and resolve ambiguity between design and engineering",
+    "leadSourceId": "orkest-edit-lead",
+    "sourceUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F?node-id=247-19849",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-lead-capture",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "design-handoff-checklist-startup-product-teams",
+    "intent": "Prepare a bounded design slice for a startup release",
+    "leadSourceId": "masteriyo-quiz-setup",
+    "sourceUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh?node-id=277-1579",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-conversion-readiness",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "responsive-saas-dashboard-handoff-notes",
+    "intent": "Specify responsive behavior for dense operational interfaces",
+    "leadSourceId": "orkest-lead-list",
+    "sourceUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F?node-id=160-380",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-lead-list",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "saas-dashboard-filter-ux",
+    "intent": "Design inspectable filter state for operational record lists",
+    "leadSourceId": "orkest-lead-filters",
+    "sourceUrl": "https://www.figma.com/design/k2qY1tdrTDdm1iFry9Qq4F?node-id=246-14560",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-lead-list",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "role-based-saas-dashboard-ux",
+    "intent": "Separate role tasks, ownership views and authorization",
+    "leadSourceId": "pihub-investor-products",
+    "sourceUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE?node-id=2-1272",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "orkest-lead-list",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "saas-dashboard-empty-state-ux-guide",
+    "intent": "Write concise explanation and recovery copy for one zero-result state",
+    "leadSourceId": "masteriyo-first-content",
+    "sourceUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh?node-id=277-1275",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "yarsha-contact-empty",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "saas-dashboard-empty-states-product-clarity",
+    "intent": "Classify empty-state causes across a product",
+    "leadSourceId": "pihub-access-denied",
+    "sourceUrl": "https://www.figma.com/design/HILxD1DKnfALKo4Q5L1IfE?node-id=2228-545",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "pihub-access-denied",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  },
+  {
+    "slug": "saas-dashboard-empty-states-that-help-users-recover",
+    "intent": "Acceptance-test empty-state recovery and retained context",
+    "leadSourceId": "masteriyo-course-outline",
+    "sourceUrl": "https://www.figma.com/design/hBVZ96hJzIPNvrFwvmY8Wh?node-id=277-1310",
+    "status": "APPROVED_RETAINED_SOURCE_SELECTED",
+    "previousPlanSourceId": "pihub-access-denied",
+    "review": "Previously authored prose/intent review retained. Current lead/caption/source association reconciled; no new research or impact claim."
+  }
+]

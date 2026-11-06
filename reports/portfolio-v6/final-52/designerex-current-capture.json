@@ -1,0 +1,120 @@
+[
+  {
+    "id": "designerex-current-listing-20261106",
+    "route": "/project-designerex",
+    "kind": "STATIC_PUBLIC_WEBSITE_REFERENCE",
+    "sourceUrl": "https://designerex.com.au/search",
+    "capturedAt": "2026-11-06T08:45:15.737779+00:00",
+    "sourceViewport": {
+      "width": 1348,
+      "height": 926
+    },
+    "sourceSha256": "694e52d15f0396b966613459152d863b82ec81a9afaab370dfdb6ff8e7236e51",
+    "fullOriginalSha256": "664489fc3161dde716be978b11093a046ff44fa7f4f9f5719435d80cd60f0e61",
+    "permission": "OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE",
+    "roleBoundary": "Current public-site context only. Nischhal\u2019s historical browsing/listing contribution does not establish authorship of this current interface or its product photography. No checkout, payment, inventory or delivery outcome was tested.",
+    "sourceCreator": "Designerex current public website; underlying imagery remains credited to its respective owners.",
+    "sourceDiagnostics": "Observed rendered public page and captured unaltered browser bytes. No transaction or responsive/mobile behavior is certified.",
+    "alt": "Current Designerex browsing reference with a filter sidebar and garment cards; historical contribution is discussed separately.",
+    "caption": "Current Designerex dress-browsing page, independently captured 6 November 2026. Reference only; historical contribution is described separately. Current UI and product imagery are not claimed as Nischhal\u2019s original work. Checkout and payments were not tested.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/designerex-current-listing-20261106-833ae4eb5324-640.webp",
+        "width": 640,
+        "height": 440,
+        "sha256": "9a612641c6376b1e287b4f361aca5cb4262accbb112a1703f86a92c54caa068b",
+        "bytes": 35430
+      },
+      {
+        "src": "/assets/images/site-captures/designerex-current-listing-20261106-833ae4eb5324-960.webp",
+        "width": 960,
+        "height": 659,
+        "sha256": "4a0da57ee82e60a40568ac135e3e5acbd1a13aace833b1661c259e3cf0479828",
+        "bytes": 63390
+      },
+      {
+        "src": "/assets/images/site-captures/designerex-current-listing-20261106-833ae4eb5324-1348.webp",
+        "width": 1348,
+        "height": 926,
+        "sha256": "d91a4ffbc46c613e811dc2bf5e371eb4c0ff837e33490dedda9fedf785b56342",
+        "bytes": 104014
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/designerex-current-listing-20261106-833ae4eb5324.png",
+    "fullOriginal": "/assets/images/site-captures/designerex-current-listing-20261106-full-664489fc3161.jpg",
+    "originalCapture": "/assets/images/site-captures/designerex-current-listing-20261106-native-833ae4eb5324.jpg",
+    "originalCaptureSha256": "833ae4eb53248fa96868a717cec086f10f4f226446b9e160ef34991c1bed69b7",
+    "originalLinkLabel": "Open the unchanged complete public-page capture",
+    "sourceLinkLabel": "Visit the current public Designerex reference",
+    "processing": "Native viewport/full-page JPEG screenshots retained unchanged. Viewport decoded to lossless PNG for the existing social renderer; complete-image WebP variants resize proportionally. No crop, redraw, redaction or screenshot content change.",
+    "useAsPreview": true,
+    "referenceOnlyPreview": true,
+    "replacesSourcePending": true,
+    "previewDisclosure": "Current public-site reference",
+    "previewHeading": "Current public browsing reference",
+    "evidenceLabel": "Current-site reference; historical contribution described separately",
+    "nativeViewportPixelSha256": "dd118d27fdcc988b84b3b3dd1f434fb7e81ce29d1aded09f0bc591dad989072d",
+    "normalization": "PNG pixels exactly equal decoded native JPEG pixels; native JPEG bytes preserved.",
+    "fullOriginalImageDimensions": [
+      1348,
+      4526
+    ]
+  },
+  {
+    "id": "designerex-current-home-20261106",
+    "route": "/project-designerex",
+    "kind": "STATIC_PUBLIC_WEBSITE_REFERENCE",
+    "sourceUrl": "https://designerex.com.au/",
+    "capturedAt": "2026-11-06T08:44:14.294271+00:00",
+    "sourceViewport": {
+      "width": 1348,
+      "height": 926
+    },
+    "sourceSha256": "d90824b24ebd2dc182218988ced5de31c45edc2aea9475a80b97d47a17ffa0ff",
+    "fullOriginalSha256": "4a3324c3f9b2a032afef8f48ea006dd8af051e13515111441479227a2edc18aa",
+    "permission": "OWNER_REQUESTED_STATIC_PUBLIC_REFERENCE",
+    "roleBoundary": "Current public-site context only. Nischhal\u2019s historical browsing/listing contribution does not establish authorship of this current interface or its product photography. No checkout, payment, inventory or delivery outcome was tested.",
+    "sourceCreator": "Designerex current public website; underlying imagery remains credited to its respective owners.",
+    "sourceDiagnostics": "Observed rendered public page and captured unaltered browser bytes. No transaction or responsive/mobile behavior is certified.",
+    "alt": "Current Designerex homepage reference with its dress-rental hero and featured listings; not proof of historical authorship.",
+    "caption": "Current Designerex public homepage, independently captured 6 November 2026. Reference only; historical contribution is described separately. Current UI and product imagery are not claimed as Nischhal\u2019s original work. Checkout and payments were not tested.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/designerex-current-home-20261106-c285686ee648-640.webp",
+        "width": 640,
+        "height": 440,
+        "sha256": "b641b4b2af288fd97d09173ac95af01a16eaa8994d7b37de47819cd708e48e48",
+        "bytes": 55004
+      },
+      {
+        "src": "/assets/images/site-captures/designerex-current-home-20261106-c285686ee648-960.webp",
+        "width": 960,
+        "height": 659,
+        "sha256": "a8aeabd67573fbe58df62cd7ca82dd84224898c869ade6d7ad444be9df8c2899",
+        "bytes": 100552
+      },
+      {
+        "src": "/assets/images/site-captures/designerex-current-home-20261106-c285686ee648-1348.webp",
+        "width": 1348,
+        "height": 926,
+        "sha256": "661eb7cd53a2c4067bfa6ec5565d0a4f82a67e18be1349f309936c96899f459e",
+        "bytes": 158494
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/designerex-current-home-20261106-c285686ee648.png",
+    "fullOriginal": "/assets/images/site-captures/designerex-current-home-20261106-full-4a3324c3f9b2.jpg",
+    "originalCapture": "/assets/images/site-captures/designerex-current-home-20261106-native-c285686ee648.jpg",
+    "originalCaptureSha256": "c285686ee648917fdd868ceb1067ce2bc469bbfb81f345f6f8e4f0388839e06f",
+    "originalLinkLabel": "Open the unchanged complete public-page capture",
+    "sourceLinkLabel": "Visit the current public Designerex reference",
+    "processing": "Native viewport/full-page JPEG screenshots retained unchanged. Viewport decoded to lossless PNG for the existing social renderer; complete-image WebP variants resize proportionally. No crop, redraw, redaction or screenshot content change.",
+    "useAsPreview": false,
+    "previewHeading": "Current public homepage reference",
+    "nativeViewportPixelSha256": "8eaed7887ee8c553359e9639f760d2c75b95d45ed8dbefb9874ca223197dc4bf",
+    "normalization": "PNG pixels exactly equal decoded native JPEG pixels; native JPEG bytes preserved.",
+    "fullOriginalImageDimensions": [
+      1348,
+      6045
+    ]
+  }
+]

@@ -1,0 +1,2204 @@
+{
+  "scope": "Final built discovery cards only; no browser execution or visual signoff. Genuine owner-supplied embedded Mokshya/Splashnode screenshots are retained, not misclassified as diagrams.",
+  "placements": 225,
+  "errors": [],
+  "rows": [
+    {
+      "route": "/projects",
+      "href": "/project-yarsha",
+      "images": [
+        "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-masteriyo",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-mokshya",
+      "images": [
+        "/assets/project-mokshya-cover-DW79CUKC-DW79CUKC.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "mokshya"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-neverwinter-parser",
+      "images": [
+        "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "neverwinter-parser"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-zapp",
+      "images": [
+        "/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-designerex",
+      "images": [
+        "/assets/images/site-captures/designerex-current-listing-20261106-833ae4eb5324.png"
+      ],
+      "pending": false,
+      "reference": true,
+      "palette": "designerex"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-hamro-idea",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-morajaa",
+      "images": [
+        "/assets/images/evidence/morajaa-home-1240-880b7071e88c.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-splashnode",
+      "images": [
+        "/assets/project-splashnode-cover-q2IRfgbl-q2IRfgbl.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "splashnode"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-grid-labs",
+      "images": [
+        "/assets/images/site-captures/grid-labs-public-923727148cf9-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "grid-labs"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-zakra-furniture",
+      "images": [
+        "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-1200.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zakra-furniture"
+    },
+    {
+      "route": "/projects",
+      "href": "/project-sassboilerplate",
+      "images": [
+        "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "sassboilerplate"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/designing-handoffs-between-people",
+      "images": [
+        "/assets/images/evidence/pihub-product-application-1240-df95434b5f67.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/ux-audit-evidence-before-redesign",
+      "images": [
+        "/assets/images/evidence/zapp-delivery-complete-402-ed4d663d85fc.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/ux-audit-checklist-before-redesign",
+      "images": [
+        "/assets/images/evidence/zapp-parcel-details-402-d9eccd9e41f7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/prioritize-ux-audit-findings-before-redesign",
+      "images": [
+        "/assets/images/evidence/orkest-lead-filter-error-1240-3348586a0934.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/when-startup-needs-ux-audit-before-redesign",
+      "images": [
+        "/assets/images/evidence/zapp-driver-next-stop-402-40c7ba3e9540.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/beautiful-interface-poor-ux",
+      "images": [
+        "/assets/images/evidence/yarsha-contact-empty-375-4a45626e359e.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/saas-dashboard-ux-checklist",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/website-ux-checklist-software-companies",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/blog-design-systems-front-end",
+      "images": [
+        "/assets/images/evidence/masteriyo-question-editor-1240-091fcee9523f.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/design-systems-small-product-teams",
+      "images": [
+        "/assets/images/evidence/orkest-conversion-readiness-1240-02f790e40a01.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/blog-service-websites",
+      "images": [
+        "/assets/images/evidence/morajaa-service-process-1240-f20ab3d0b75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/blog-portfolio-product",
+      "images": [
+        "/assets/images/site-captures/portfolio-published-baseline-d80cfa992628-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "/blog/blog-portfolio-product"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/blog-gaming-interface-clarity",
+      "images": [
+        "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "neverwinter-parser"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/hire-product-designer-nepal-saas-web3",
+      "images": [
+        "/workspace-home/assets/portrait.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "notes"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/blog-web3-products",
+      "images": [
+        "/assets/images/site-captures/wallet-adapter-gallery-b8bb01de33c1-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "/blog/blog-web3-products"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/web3-wallet-connection-ux",
+      "images": [
+        "/assets/images/site-captures/wallet-adapter-chooser-d06ea3ac0018-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "/blog/web3-wallet-connection-ux"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/transaction-review-ux-crypto-apps",
+      "images": [
+        "/assets/images/evidence/yarsha-transaction-detail-375-f191eb3d983e.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/web3-wallet-ux-checklist",
+      "images": [
+        "/assets/images/evidence/yarsha-recipient-selection-375-22133880749e.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/figma-handoff-notes-for-developers",
+      "images": [
+        "/assets/images/evidence/orkest-lead-capture-1240-c7e16c798757.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/blog-good-handoff",
+      "images": [
+        "/assets/images/evidence/orkest-edit-lead-1240-6597e7b7e0e3.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/design-handoff-checklist-startup-product-teams",
+      "images": [
+        "/assets/images/evidence/masteriyo-quiz-setup-1240-a429324e5499.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/responsive-saas-dashboard-handoff-notes",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/saas-dashboard-filter-ux",
+      "images": [
+        "/assets/images/evidence/orkest-lead-filters-1240-5bb33ef5f6c1.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/role-based-saas-dashboard-ux",
+      "images": [
+        "/assets/images/evidence/pihub-investor-products-1240-520e10fbcba4.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/saas-dashboard-empty-state-ux-guide",
+      "images": [
+        "/assets/images/evidence/masteriyo-first-content-1240-7890942ded3a.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/saas-dashboard-empty-states-product-clarity",
+      "images": [
+        "/assets/images/evidence/pihub-access-denied-1240-0a2848339d9a.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/index",
+      "href": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-outline-1240-fe6e2a5f042b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/product-design-nepal",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/product-design-nepal",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/product-design-nepal",
+      "href": "/project-masteriyo",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/web3-ux-designer",
+      "href": "/project-yarsha",
+      "images": [
+        "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/web3-ux-designer",
+      "href": "/project-mokshya",
+      "images": [
+        "/assets/project-mokshya-cover-DW79CUKC-DW79CUKC.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "mokshya"
+    },
+    {
+      "route": "/saas-ux-designer",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/saas-ux-designer",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/saas-ux-designer",
+      "href": "/project-masteriyo",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/website-ux-design",
+      "href": "/project-mokshya",
+      "images": [
+        "/assets/project-mokshya-cover-DW79CUKC-DW79CUKC.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "mokshya"
+    },
+    {
+      "route": "/website-ux-design",
+      "href": "/project-morajaa",
+      "images": [
+        "/assets/images/evidence/morajaa-home-1240-880b7071e88c.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/website-ux-design",
+      "href": "/project-splashnode",
+      "images": [
+        "/assets/project-splashnode-cover-q2IRfgbl-q2IRfgbl.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "splashnode"
+    },
+    {
+      "route": "/website-ux-design",
+      "href": "/project-hamro-idea",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/figma-design-systems",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/figma-design-systems",
+      "href": "/project-masteriyo",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/figma-design-systems",
+      "href": "/project-hamro-idea",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/ux-audit",
+      "href": "/project-neverwinter-parser",
+      "images": [
+        "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "neverwinter-parser"
+    },
+    {
+      "route": "/ux-audit",
+      "href": "/project-hamro-idea",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/project-yarsha",
+      "href": "/web3-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-yarsha",
+      "href": "/blog/web3-wallet-connection-ux",
+      "images": [
+        "/assets/images/site-captures/wallet-adapter-chooser-d06ea3ac0018-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "/blog/web3-wallet-connection-ux"
+    },
+    {
+      "route": "/project-yarsha",
+      "href": "/blog/transaction-review-ux-crypto-apps",
+      "images": [
+        "/assets/images/evidence/yarsha-transaction-detail-375-f191eb3d983e.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/project-yarsha",
+      "href": "/project-sassboilerplate",
+      "images": [
+        "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "sassboilerplate"
+    },
+    {
+      "route": "/project-yarsha",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-yarsha",
+      "href": "/project-mokshya",
+      "images": [
+        "/workspace-home/assets/projects/mokshya.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "mokshya"
+    },
+    {
+      "route": "/project-mokshya",
+      "href": "/website-ux-design",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-mokshya",
+      "href": "/blog/website-ux-checklist-software-companies",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/project-mokshya",
+      "href": "/project-morajaa",
+      "images": [
+        "/assets/images/evidence/morajaa-home-1240-880b7071e88c.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/project-mokshya",
+      "href": "/project-yarsha",
+      "images": [
+        "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/project-mokshya",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-mokshya",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/project-hamro-idea",
+      "href": "/website-ux-design",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-hamro-idea",
+      "href": "/product-design-nepal",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-hamro-idea",
+      "href": "/blog/blog-service-websites",
+      "images": [
+        "/assets/images/evidence/morajaa-service-process-1240-f20ab3d0b75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/project-hamro-idea",
+      "href": "/project-designerex",
+      "images": [
+        "/assets/images/site-captures/designerex-current-listing-20261106-833ae4eb5324.png"
+      ],
+      "pending": false,
+      "reference": true,
+      "palette": "designerex"
+    },
+    {
+      "route": "/project-hamro-idea",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-hamro-idea",
+      "href": "/project-morajaa",
+      "images": [
+        "/assets/images/evidence/morajaa-home-1240-880b7071e88c.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/project-morajaa",
+      "href": "/website-ux-design",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-morajaa",
+      "href": "/blog/blog-service-websites",
+      "images": [
+        "/assets/images/evidence/morajaa-service-process-1240-f20ab3d0b75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/project-morajaa",
+      "href": "/blog/website-ux-checklist-software-companies",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/project-morajaa",
+      "href": "/project-hamro-idea",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/project-morajaa",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-morajaa",
+      "href": "/project-splashnode",
+      "images": [
+        "/workspace-home/assets/projects/splashnode.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "splashnode"
+    },
+    {
+      "route": "/project-pihub",
+      "href": "/ux-audit",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-pihub",
+      "href": "/blog/role-based-saas-dashboard-ux",
+      "images": [
+        "/assets/images/evidence/pihub-investor-products-1240-520e10fbcba4.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/project-pihub",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/project-pihub",
+      "href": "/project-mokshya",
+      "images": [
+        "/workspace-home/assets/projects/mokshya.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "mokshya"
+    },
+    {
+      "route": "/project-pihub",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-pihub",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/project-masteriyo",
+      "href": "/figma-design-systems",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-masteriyo",
+      "href": "/blog/blog-design-systems-front-end",
+      "images": [
+        "/assets/images/evidence/masteriyo-question-editor-1240-091fcee9523f.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/project-masteriyo",
+      "href": "/blog/blog-good-handoff",
+      "images": [
+        "/assets/images/evidence/orkest-edit-lead-1240-6597e7b7e0e3.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/project-masteriyo",
+      "href": "/project-neverwinter-parser",
+      "images": [
+        "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "neverwinter-parser"
+    },
+    {
+      "route": "/project-masteriyo",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-masteriyo",
+      "href": "/project-zapp",
+      "images": [
+        "/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/project-zapp",
+      "href": "/services",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-zapp",
+      "href": "/blog/ux-audit-checklist-before-redesign",
+      "images": [
+        "/assets/images/evidence/zapp-parcel-details-402-d9eccd9e41f7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/project-zapp",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/project-zapp",
+      "href": "/project-masteriyo",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/project-zapp",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-zapp",
+      "href": "/project-designerex",
+      "images": [
+        "/assets/images/site-captures/designerex-current-listing-20261106-833ae4eb5324.png"
+      ],
+      "pending": false,
+      "reference": true,
+      "palette": "designerex"
+    },
+    {
+      "route": "/project-neverwinter-parser",
+      "href": "/blog/blog-gaming-interface-clarity",
+      "images": [
+        "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "neverwinter-parser"
+    },
+    {
+      "route": "/project-neverwinter-parser",
+      "href": "/blog/saas-dashboard-ux-checklist",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/project-neverwinter-parser",
+      "href": "/project-sassboilerplate",
+      "images": [
+        "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "sassboilerplate"
+    },
+    {
+      "route": "/project-neverwinter-parser",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/project-neverwinter-parser",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-neverwinter-parser",
+      "href": "/project-masteriyo",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/project-orkest",
+      "href": "/saas-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-orkest",
+      "href": "/blog/role-based-saas-dashboard-ux",
+      "images": [
+        "/assets/images/evidence/pihub-investor-products-1240-520e10fbcba4.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/project-orkest",
+      "href": "/blog/saas-dashboard-filter-ux",
+      "images": [
+        "/assets/images/evidence/orkest-lead-filters-1240-5bb33ef5f6c1.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/project-orkest",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/project-orkest",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-orkest",
+      "href": "/project-neverwinter-parser",
+      "images": [
+        "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "neverwinter-parser"
+    },
+    {
+      "route": "/project-splashnode",
+      "href": "/website-ux-design",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-splashnode",
+      "href": "/blog/blog-service-websites",
+      "images": [
+        "/assets/images/evidence/morajaa-service-process-1240-f20ab3d0b75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/project-splashnode",
+      "href": "/project-hamro-idea",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/project-splashnode",
+      "href": "/project-morajaa",
+      "images": [
+        "/assets/images/evidence/morajaa-home-1240-880b7071e88c.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/project-splashnode",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-splashnode",
+      "href": "/project-grid-labs",
+      "images": [
+        "/assets/images/site-captures/grid-labs-public-923727148cf9-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "grid-labs"
+    },
+    {
+      "route": "/project-grid-labs",
+      "href": "/website-ux-design",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-grid-labs",
+      "href": "/blog/website-ux-checklist-software-companies",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/project-grid-labs",
+      "href": "/project-splashnode",
+      "images": [
+        "/workspace-home/assets/projects/splashnode.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "splashnode"
+    },
+    {
+      "route": "/project-grid-labs",
+      "href": "/project-splashnode",
+      "images": [
+        "/workspace-home/assets/projects/splashnode.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "splashnode"
+    },
+    {
+      "route": "/project-grid-labs",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-grid-labs",
+      "href": "/project-zakra-furniture",
+      "images": [
+        "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-1200.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zakra-furniture"
+    },
+    {
+      "route": "/project-zakra-furniture",
+      "href": "/website-ux-design",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-zakra-furniture",
+      "href": "/project-designerex",
+      "images": [
+        "/assets/images/site-captures/designerex-current-listing-20261106-833ae4eb5324.png"
+      ],
+      "pending": false,
+      "reference": true,
+      "palette": "designerex"
+    },
+    {
+      "route": "/project-zakra-furniture",
+      "href": "/blog/blog-design-systems-front-end",
+      "images": [
+        "/assets/images/evidence/masteriyo-question-editor-1240-091fcee9523f.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/project-zakra-furniture",
+      "href": "/project-grid-labs",
+      "images": [
+        "/assets/images/site-captures/grid-labs-public-923727148cf9-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "grid-labs"
+    },
+    {
+      "route": "/project-zakra-furniture",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-zakra-furniture",
+      "href": "/project-sassboilerplate",
+      "images": [
+        "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "sassboilerplate"
+    },
+    {
+      "route": "/project-designerex",
+      "href": "/website-ux-design",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-designerex",
+      "href": "/project-zakra-furniture",
+      "images": [
+        "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-1200.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zakra-furniture"
+    },
+    {
+      "route": "/project-designerex",
+      "href": "/blog/beautiful-interface-poor-ux",
+      "images": [
+        "/assets/images/evidence/yarsha-contact-empty-375-4a45626e359e.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/project-designerex",
+      "href": "/project-zapp",
+      "images": [
+        "/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/project-designerex",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-designerex",
+      "href": "/project-hamro-idea",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/project-sassboilerplate",
+      "href": "/figma-design-systems",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-sassboilerplate",
+      "href": "/blog/blog-design-systems-front-end",
+      "images": [
+        "/assets/images/evidence/masteriyo-question-editor-1240-091fcee9523f.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/project-sassboilerplate",
+      "href": "/project-neverwinter-parser",
+      "images": [
+        "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "neverwinter-parser"
+    },
+    {
+      "route": "/project-sassboilerplate",
+      "href": "/project-zakra-furniture",
+      "images": [
+        "/assets/images/site-captures/zakra-official-source-b2b8578b0f8d-1200.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zakra-furniture"
+    },
+    {
+      "route": "/project-sassboilerplate",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/project-sassboilerplate",
+      "href": "/project-yarsha",
+      "images": [
+        "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/responsive-saas-dashboard-handoff-notes",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/responsive-saas-dashboard-handoff-notes",
+      "href": "/blog/saas-dashboard-filter-ux",
+      "images": [
+        "/assets/images/evidence/orkest-lead-filters-1240-5bb33ef5f6c1.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/responsive-saas-dashboard-handoff-notes",
+      "href": "/saas-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/saas-dashboard-filter-ux",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/saas-dashboard-filter-ux",
+      "href": "/blog/saas-dashboard-empty-state-ux-guide",
+      "images": [
+        "/assets/images/evidence/masteriyo-first-content-1240-7890942ded3a.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/saas-dashboard-filter-ux",
+      "href": "/saas-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/role-based-saas-dashboard-ux",
+      "href": "/saas-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "href": "/blog/saas-dashboard-empty-states-product-clarity",
+      "images": [
+        "/assets/images/evidence/pihub-access-denied-1240-0a2848339d9a.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "href": "/blog/saas-dashboard-empty-state-ux-guide",
+      "images": [
+        "/assets/images/evidence/masteriyo-first-content-1240-7890942ded3a.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "href": "/ux-audit",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/design-systems-small-product-teams",
+      "href": "/figma-design-systems",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/design-systems-small-product-teams",
+      "href": "/blog/blog-design-systems-front-end",
+      "images": [
+        "/assets/images/evidence/masteriyo-question-editor-1240-091fcee9523f.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/design-systems-small-product-teams",
+      "href": "/project-masteriyo",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "href": "/blog/figma-handoff-notes-for-developers",
+      "images": [
+        "/assets/images/evidence/orkest-lead-capture-1240-c7e16c798757.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "href": "/blog/blog-good-handoff",
+      "images": [
+        "/assets/images/evidence/orkest-edit-lead-1240-6597e7b7e0e3.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/design-handoff-checklist-startup-product-teams",
+      "href": "/services",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/prioritize-ux-audit-findings-before-redesign",
+      "href": "/ux-audit",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/prioritize-ux-audit-findings-before-redesign",
+      "href": "/blog/ux-audit-evidence-before-redesign",
+      "images": [
+        "/assets/images/evidence/zapp-delivery-complete-402-ed4d663d85fc.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/blog/prioritize-ux-audit-findings-before-redesign",
+      "href": "/blog/when-startup-needs-ux-audit-before-redesign",
+      "images": [
+        "/assets/images/evidence/zapp-driver-next-stop-402-40c7ba3e9540.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/blog/when-startup-needs-ux-audit-before-redesign",
+      "href": "/ux-audit",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/when-startup-needs-ux-audit-before-redesign",
+      "href": "/blog/ux-audit-checklist-before-redesign",
+      "images": [
+        "/assets/images/evidence/zapp-parcel-details-402-d9eccd9e41f7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/blog/when-startup-needs-ux-audit-before-redesign",
+      "href": "/blog/prioritize-ux-audit-findings-before-redesign",
+      "images": [
+        "/assets/images/evidence/orkest-lead-filter-error-1240-3348586a0934.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "href": "/product-design-nepal",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/hire-product-designer-nepal-saas-web3",
+      "href": "/contact",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/beautiful-interface-poor-ux",
+      "href": "/project-yarsha",
+      "images": [
+        "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/beautiful-interface-poor-ux",
+      "href": "/ux-audit",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/beautiful-interface-poor-ux",
+      "href": "/blog/saas-dashboard-empty-state-ux-guide",
+      "images": [
+        "/assets/images/evidence/masteriyo-first-content-1240-7890942ded3a.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/ux-audit-evidence-before-redesign",
+      "href": "/ux-audit",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/ux-audit-evidence-before-redesign",
+      "href": "/blog/prioritize-ux-audit-findings-before-redesign",
+      "images": [
+        "/assets/images/evidence/orkest-lead-filter-error-1240-3348586a0934.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/ux-audit-evidence-before-redesign",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/saas-dashboard-ux-checklist",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/saas-dashboard-ux-checklist",
+      "href": "/blog/saas-dashboard-filter-ux",
+      "images": [
+        "/assets/images/evidence/orkest-lead-filters-1240-5bb33ef5f6c1.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/saas-dashboard-ux-checklist",
+      "href": "/saas-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/web3-wallet-ux-checklist",
+      "href": "/blog/web3-wallet-connection-ux",
+      "images": [
+        "/assets/images/site-captures/wallet-adapter-chooser-d06ea3ac0018-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "/blog/web3-wallet-connection-ux"
+    },
+    {
+      "route": "/blog/web3-wallet-ux-checklist",
+      "href": "/blog/transaction-review-ux-crypto-apps",
+      "images": [
+        "/assets/images/evidence/yarsha-transaction-detail-375-f191eb3d983e.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/web3-wallet-ux-checklist",
+      "href": "/project-yarsha",
+      "images": [
+        "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/figma-handoff-notes-for-developers",
+      "href": "/figma-design-systems",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/figma-handoff-notes-for-developers",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/figma-handoff-notes-for-developers",
+      "href": "/blog/design-handoff-checklist-startup-product-teams",
+      "images": [
+        "/assets/images/evidence/masteriyo-quiz-setup-1240-a429324e5499.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/ux-audit-checklist-before-redesign",
+      "href": "/project-zapp",
+      "images": [
+        "/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/blog/ux-audit-checklist-before-redesign",
+      "href": "/ux-audit",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/ux-audit-checklist-before-redesign",
+      "href": "/blog/ux-audit-evidence-before-redesign",
+      "images": [
+        "/assets/images/evidence/zapp-delivery-complete-402-ed4d663d85fc.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    },
+    {
+      "route": "/blog/website-ux-checklist-software-companies",
+      "href": "/website-ux-design",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/website-ux-checklist-software-companies",
+      "href": "/project-mokshya",
+      "images": [
+        "/workspace-home/assets/projects/mokshya.svg"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "mokshya"
+    },
+    {
+      "route": "/blog/website-ux-checklist-software-companies",
+      "href": "/blog/blog-service-websites",
+      "images": [
+        "/assets/images/evidence/morajaa-service-process-1240-f20ab3d0b75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/blog/blog-design-systems-front-end",
+      "href": "/figma-design-systems",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/blog-design-systems-front-end",
+      "href": "/project-sassboilerplate",
+      "images": [
+        "/assets/images/site-captures/sass-public-code-a085d48fad9b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "sassboilerplate"
+    },
+    {
+      "route": "/blog/blog-design-systems-front-end",
+      "href": "/blog/design-systems-small-product-teams",
+      "images": [
+        "/assets/images/evidence/orkest-conversion-readiness-1240-02f790e40a01.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/blog-design-systems-front-end",
+      "href": "/project-masteriyo",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-details-1240-defb2d59fa74.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/blog-gaming-interface-clarity",
+      "href": "/project-neverwinter-parser",
+      "images": [
+        "/assets/images/site-captures/neverwinter-public-setup-c017c10b437b-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "neverwinter-parser"
+    },
+    {
+      "route": "/blog/blog-gaming-interface-clarity",
+      "href": "/blog/saas-dashboard-ux-checklist",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/blog-gaming-interface-clarity",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/blog-good-handoff",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/blog-good-handoff",
+      "href": "/blog/figma-handoff-notes-for-developers",
+      "images": [
+        "/assets/images/evidence/orkest-lead-capture-1240-c7e16c798757.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/blog-good-handoff",
+      "href": "/figma-design-systems",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/blog-portfolio-product",
+      "href": "/projects",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/blog-portfolio-product",
+      "href": "/about",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/blog-portfolio-product",
+      "href": "/contact",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/blog-service-websites",
+      "href": "/project-morajaa",
+      "images": [
+        "/assets/images/evidence/morajaa-home-1240-880b7071e88c.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "morajaa"
+    },
+    {
+      "route": "/blog/blog-service-websites",
+      "href": "/project-hamro-idea",
+      "images": [
+        "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "hamro-idea"
+    },
+    {
+      "route": "/blog/blog-service-websites",
+      "href": "/website-ux-design",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/blog-web3-products",
+      "href": "/project-yarsha",
+      "images": [
+        "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/blog-web3-products",
+      "href": "/blog/web3-wallet-connection-ux",
+      "images": [
+        "/assets/images/site-captures/wallet-adapter-chooser-d06ea3ac0018-original.png"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "/blog/web3-wallet-connection-ux"
+    },
+    {
+      "route": "/blog/blog-web3-products",
+      "href": "/web3-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "href": "/blog/saas-dashboard-empty-states-product-clarity",
+      "images": [
+        "/assets/images/evidence/pihub-access-denied-1240-0a2848339d9a.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "href": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-outline-1240-fe6e2a5f042b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-state-ux-guide",
+      "href": "/saas-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-product-clarity",
+      "href": "/blog/saas-dashboard-empty-state-ux-guide",
+      "images": [
+        "/assets/images/evidence/masteriyo-first-content-1240-7890942ded3a.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-product-clarity",
+      "href": "/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "images": [
+        "/assets/images/evidence/masteriyo-course-outline-1240-fe6e2a5f042b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "masteriyo"
+    },
+    {
+      "route": "/blog/saas-dashboard-empty-states-product-clarity",
+      "href": "/figma-design-systems",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/transaction-review-ux-crypto-apps",
+      "href": "/project-yarsha",
+      "images": [
+        "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/transaction-review-ux-crypto-apps",
+      "href": "/blog/web3-wallet-ux-checklist",
+      "images": [
+        "/assets/images/evidence/yarsha-recipient-selection-375-22133880749e.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/transaction-review-ux-crypto-apps",
+      "href": "/web3-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/web3-wallet-connection-ux",
+      "href": "/project-yarsha",
+      "images": [
+        "/assets/images/evidence/yarsha-contacts-375-5f5e83c6eea7.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/web3-wallet-connection-ux",
+      "href": "/blog/transaction-review-ux-crypto-apps",
+      "images": [
+        "/assets/images/evidence/yarsha-transaction-detail-375-f191eb3d983e.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "yarsha"
+    },
+    {
+      "route": "/blog/web3-wallet-connection-ux",
+      "href": "/web3-ux-designer",
+      "images": [],
+      "pending": false,
+      "reference": false,
+      "palette": "notes",
+      "classification": "INTENTIONAL_TEXT_UTILITY_CARD"
+    },
+    {
+      "route": "/blog/designing-handoffs-between-people",
+      "href": "/project-orkest",
+      "images": [
+        "/assets/images/evidence/orkest-lead-list-1240-e6745d9b7a86.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "orkest"
+    },
+    {
+      "route": "/blog/designing-handoffs-between-people",
+      "href": "/project-pihub",
+      "images": [
+        "/assets/images/evidence/pihub-application-status-1240-b23302d6bda9.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "pihub"
+    },
+    {
+      "route": "/blog/designing-handoffs-between-people",
+      "href": "/project-zapp",
+      "images": [
+        "/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp"
+      ],
+      "pending": false,
+      "reference": false,
+      "palette": "zapp"
+    }
+  ],
+  "sourceOrReferenceContentCards": 169,
+  "intentionalTextUtilityCards": 56,
+  "designerexDisclosure": "All Designerex discovery cards have one real source image and an explicit current-public-site-reference label."
+}

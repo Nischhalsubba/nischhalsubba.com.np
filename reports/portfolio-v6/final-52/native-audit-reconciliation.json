@@ -1,0 +1,282 @@
+{
+  "routes": [
+    {
+      "url": "https://nischhalsubba.com.np/",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/about",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/beautiful-interface-poor-ux",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/blog-design-systems-front-end",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/blog-gaming-interface-clarity",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/blog-good-handoff",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/blog-portfolio-product",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/blog-service-websites",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/blog-web3-products",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/design-handoff-checklist-startup-product-teams",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/design-systems-small-product-teams",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/designing-handoffs-between-people",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/figma-handoff-notes-for-developers",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/hire-product-designer-nepal-saas-web3",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/prioritize-ux-audit-findings-before-redesign",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/responsive-saas-dashboard-handoff-notes",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/role-based-saas-dashboard-ux",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-state-ux-guide",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-product-clarity",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/saas-dashboard-empty-states-that-help-users-recover",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/saas-dashboard-filter-ux",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/saas-dashboard-ux-checklist",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/transaction-review-ux-crypto-apps",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/ux-audit-checklist-before-redesign",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/ux-audit-evidence-before-redesign",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/web3-wallet-connection-ux",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/web3-wallet-ux-checklist",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/website-ux-checklist-software-companies",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/blog/when-startup-needs-ux-audit-before-redesign",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/contact",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/figma-design-systems",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/privacy",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/product-design-nepal",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-designerex",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-grid-labs",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-hamro-idea",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-masteriyo",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-mokshya",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-morajaa",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-neverwinter-parser",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-orkest",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-pihub",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-sassboilerplate",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-splashnode",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-yarsha",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-zakra-furniture",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/project-zapp",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/projects",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/saas-ux-designer",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/services",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/ux-audit",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/web3-ux-designer",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    },
+    {
+      "url": "https://nischhalsubba.com.np/website-ux-design",
+      "status": "CURRENT_BUILD_METADATA_CONFIRMED",
+      "scope": "Historical crawler HTTP status is retained as history; present check verifies built metadata, not a fresh browser visit. Description length alone is not a defect."
+    }
+  ],
+  "nativeScreenshotReports": "BLOCKED_SOURCE: original full-size reports/share URLs are unavailable; no scores inferred from tiny screenshots.",
+  "reviewSignals": [
+    "Long descriptions and wide titles are review suggestions, not automatic errors.",
+    "Six specialized service lengths do not by themselves establish thin content.",
+    "Distinct empty-state/article intents retain existing canonical routes.",
+    "Existing PDF-policy evidence is retained separately; this metadata review does not re-verify live PDF headers."
+  ],
+  "claim": "Existing verified fixes reused; no additional code defect or score improvement invented."
+}

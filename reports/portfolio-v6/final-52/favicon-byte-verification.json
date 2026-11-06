@@ -1,0 +1,26 @@
+{
+  "rows": [
+    {
+      "asset": "favicon-48.png",
+      "curlExit": 0,
+      "sha256": "f53dc080e3a6b5bff52feff2382b99c3728c5f3a43d87d2fbdf14dfac2053681",
+      "matchesBuilt": true,
+      "dimensions": [
+        48,
+        48
+      ]
+    },
+    {
+      "asset": "favicon.ico",
+      "curlExit": 0,
+      "sha256": "a4f65e808a6907eb1f3f9408723c315e0e149665eed314cee52584b0e13b6829",
+      "matchesBuilt": true,
+      "dimensions": [
+        48,
+        48
+      ]
+    }
+  ],
+  "googleDisplay": "NOT_OBSERVED: Google chooses its displayed icon independently; no updated Google-visible icon is claimed.",
+  "declarations": "Existing 54-route workspace SEO audit confirms consistent icon references."
+}

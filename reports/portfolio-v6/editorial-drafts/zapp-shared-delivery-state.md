@@ -8,7 +8,7 @@ The retained Zapp customer design begins with a simpler distinction: creating an
 
 ![Retained Zapp customer account-entry design](/assets/images/evidence/zapp-account-entry-402-008fb155a75b.webp)
 
-Caption: owner-approved retained Zapp 2.0 customer iOS design, complete frame. Sample design content is unchanged. Exact project year and independent original reacquisition remain pending; see the source file and node in the committed portfolio evidence registry.
+Caption: owner-approved retained Zapp 2.0 customer iOS design, complete frame. Sample design content is unchanged. Exact project year remains unverified; the selected source frame was reacquired 6 November 2026, without establishing its historical creation date; see the source file and node in the committed portfolio evidence registry.
 
 The more consequential handoff happens after entry. A parcel request, a driver stop and an exception investigation are related tasks, but each needs its own next action. A useful review would first name the state that must be shared, then ask which action each role can take. That avoids using a customer-facing label as a substitute for the driver's operational instruction.
 
@@ -20,4 +20,4 @@ I would evaluate the design with a parcel-entry task and an exception scenario, 
 
 Sources: [scoped portfolio case](/project-zapp), [current official site](https://zapp.today/), `site/src/content/portfolio-evidence-images.json` (zapp-account-entry), and `resumed-2026-11-05/zapp-static-reference-review.json`.
 
-Publication blockers: verified project year; independent Figma reacquisition if a new original export is required; final owner editorial review. Do not present current website functionality or delivery outcomes as verified.
+Publication note: the exact project year is intentionally omitted. Selected Figma originals were reacquired 6 November 2026. This companion draft is complete as an undated, unpublished editorial artifact. Do not present current website functionality or delivery outcomes as verified.
