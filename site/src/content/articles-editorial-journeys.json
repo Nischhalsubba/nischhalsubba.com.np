@@ -4,13 +4,13 @@
       "slug": "designing-handoffs-between-people",
       "updatedAt": "2026-11-06",
       "intent": "Explain cross-role handoffs with original product screens",
-      "dek": "A workflow is only as clear as the moment responsibility changes hands. Three interface examples show how I reason about ownership, waiting and recovery.",
+      "dek": "A workflow becomes harder to follow when responsibility changes hands. These examples show how I think about ownership, waiting and the point at which a task is actually finished.",
       "sections": [
         {
           "heading": "Separate acknowledgement from approval",
           "paragraphs": [
-            "The piHub product-application design says “Thank you for applying” and shows APPLIED. It is an acknowledgement, not an application form or proof of approval.",
-            "That distinction matters at a handoff: recording an action and completing a decision are different events. A review should ask whether the person knows what was acknowledged and who acts next. The frame alone cannot establish processing, notification or approval behavior."
+            "piHub’s application acknowledgement says Thank you for applying and shows APPLIED. That is a useful, specific message: the application has been received, while approval is still a later decision.",
+            "The person should be able to tell what was acknowledged and who acts next. The status needs that meaning in the working product as well as in the design."
           ],
           "image": "pihub-product-application"
         },
@@ -38,12 +38,15 @@
           "image": "pihub-application-status"
         },
         {
-          "heading": "Finally, separate progress from completion",
+          "heading": "Keep progress separate from completion",
           "paragraphs": [
-            "Zapp has a driver next-stop screen and a separate delivery-completion screen. That separation creates a useful boundary: arriving near an address and finishing a delivery are different events. The customer and driver need compatible accounts of what has happened, even though they see different interfaces.",
-            "I would document what counts as completion, what the driver can do when the recipient is unavailable, and what evidence is retained if the network fails. A completion animation cannot answer those questions. The next-stop design below is a starting point for specifying them."
+            "Zapp gives a driver a next-stop view and a separate delivery-completion view. Arriving near an address and finishing the handoff are different events, so the customer and driver need compatible accounts of what has happened.",
+            "The completion screen below also distinguishes the handoff from settlement records. I would agree what counts as completion, what happens when the recipient is unavailable and what the system retains after an interruption."
           ],
-          "image": "zapp-driver-next-stop"
+          "images": [
+            "zapp-driver-next-stop",
+            "zapp-delivery-complete"
+          ]
         },
         {
           "heading": "The handoff note I want beside the frame",

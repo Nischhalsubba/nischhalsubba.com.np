@@ -1,7 +1,7 @@
 /**
  * @fileoverview Editorial release contract for retained case studies and writing.
  * Purpose: Detect missing routes, misplaced project screenshots and inconsistent author/date metadata.
- * Responsibilities: Verify forty rewritten bodies, meaningful artifact provenance and accessible structured content.
+ * Responsibilities: Verify forty-one rewritten bodies, meaningful artifact provenance and accessible structured content.
  * Execution context: Node validation after the final workspace installers.
  * Connected files: render.cjs, portfolio-editorial.json, articles-editorial*.json, portfolio-evidence-images.json.
  * Maintenance: This is a content integrity check, not proof of client claims, editorial excellence or WCAG certification.
@@ -58,6 +58,10 @@ for (const data of [...projects, ...articles]) {
     }
   }
   if (!isProject) {
+    const articleBody = html.match(/<article>([\s\S]*?)<\/article>/)?.[1] || html;
+    const visualSources = new Set([...articleBody.matchAll(/<figure\b[^>]*data-(?:evidence-image|site-capture)="([^"]+)"/g)].map(match => match[1]));
+    if (articleBody.includes('class="workspace-owner-screen"')) visualSources.add('owner-portrait');
+    assert.ok(visualSources.size >= 2, 'Support each article with at least two distinct, contextual visual sources: ' + data.slug);
     const lead = images.find(image => image.id === data.leadEvidence) || publicCaptures.captures.find(image => image.id === data.leadEvidence);
     assert.ok(lead || data.leadEvidence === 'owner-portrait', 'Known article lead evidence: ' + data.slug);
     if (lead) {

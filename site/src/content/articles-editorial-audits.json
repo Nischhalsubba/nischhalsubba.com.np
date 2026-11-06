@@ -4,13 +4,13 @@
     {
       "slug": "ux-audit-evidence-before-redesign",
       "intent": "Build an evidence pack before deciding what to redesign",
-      "dek": "A useful audit connects an observed problem to a task and a decision. Screenshots, analytics and opinions contribute different kinds of evidence; they should not be treated as interchangeable.",
+      "dek": "A useful audit helps a team choose what to change. Collect enough evidence to explain the problem, reproduce it and separate a known defect from a question.",
       "sections": [
         {
           "heading": "Begin with a question the evidence can answer",
           "paragraphs": [
-            "Why is onboarding difficult is too broad to investigate in one pass. Can a new administrator identify the next required setup action is a more workable question. It names a role, task and point in the journey.",
-            "Record what you already know and what remains a hypothesis. A support complaint may identify a symptom. An event funnel may locate a drop. Neither automatically explains the cause. Use the initial question to decide which evidence to collect next."
+            "I begin with a decision the team needs to make. For example, is a delivery flow confusing because a state is missing, a label is unclear or the live service is failing?",
+            "Those explanations need different evidence. A screenshot can show wording and hierarchy; a recorded task or implementation check can show what happens after the action."
           ]
         },
         {
@@ -76,12 +76,15 @@
           ]
         },
         {
-          "heading": "Read the evidence boundary inside the artifact",
+          "heading": "Follow the same task across its states",
           "paragraphs": [
-            "The Zapp completion design explicitly labels its state as a demonstration and says settlement and earnings require server records. A screenshot of that frame establishes the proposed explanation and return action.",
-            "It cannot establish that a parcel was delivered or a payment settled. Preserve that distinction when the same artifact appears in an audit or portfolio account."
+            "The Zapp driver next-stop and completion designs describe different moments. Progress toward a stop is separate from a completed handoff, and payment records are a further responsibility.",
+            "The screens help define the questions for an audit. They do not tell us that a delivery occurred. Keep the observed result and the next test attached to the same finding."
           ],
-          "image": "zapp-delivery-complete"
+          "images": [
+            "zapp-delivery-complete",
+            "zapp-driver-next-stop"
+          ]
         }
       ],
       "related": [
@@ -98,19 +101,19 @@
           "A workflow with review dependencies"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "zapp-delivery-complete"
     },
     {
       "slug": "ux-audit-checklist-before-redesign",
       "intent": "Run a reproducible task-based interface audit",
-      "dek": "Use this checklist to inspect one important journey from entry to recovery. A page-by-page visual review can miss the behavior that makes the task succeed or fail.",
+      "dek": "Walk through a real task, include one interruption and record what stopped the person from continuing. Then choose a repair that fits the evidence.",
       "sections": [
         {
           "heading": "Set up a real starting condition",
           "paragraphs": [
-            "Choose a role, a task and a realistic account state. Note the environment, viewport and any unavailable integration. If the test uses seeded data or a prototype, say so. A successful prototype click does not prove that saving, permissions or synchronization work.",
-            "Start from a route a person could actually use, including a deep link where appropriate. A flow that works only after a guided tour from the homepage has an entry problem worth recording."
+            "A useful audit starts from a believable situation. Specify the person, their starting state, the task and the result they need. Otherwise, a neat checklist can drift into reviewing screens nobody uses in that order.",
+            "Use realistic content and record the environment. Keep the evidence close enough that someone else can repeat the same review."
           ]
         },
         {
@@ -163,11 +166,15 @@
           ]
         },
         {
-          "heading": "Use one concrete design example",
+          "heading": "Review the request and its final check together",
           "paragraphs": [
-            "The Zapp parcel-details frame asks for package type and contents before choosing a delivery service. It gives an audit a specific sequence to inspect: can the customer understand the options, revise an answer and continue after a validation problem? The image establishes the proposed layout; the task test must establish behavior."
+            "Zapp’s parcel screen collects what is being carried. The delivery-review design then brings pickup, recipient, parcel and a sample estimate together before payment.",
+            "I would use the pair to ask whether the customer can spot and correct a wrong detail. The static designs help define that task; the working flow needs its own check."
           ],
-          "image": "zapp-parcel-details"
+          "images": [
+            "zapp-parcel-details",
+            "zapp-quote-review"
+          ]
         },
         {
           "heading": "Turn the result into a bounded decision",
@@ -191,18 +198,19 @@
           "Build the evidence pack"
         ]
       ],
-      "leadEvidence": "zapp-parcel-details"
+      "leadEvidence": "zapp-parcel-details",
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "prioritize-ux-audit-findings-before-redesign",
       "intent": "Choose a defensible repair order without false numerical precision",
-      "dek": "A long issue list becomes useful when the team can explain why one problem deserves attention before another. Separate user consequence, evidence confidence and delivery effort.",
+      "dek": "Fix the problems that prevent or endanger the task first. Keep confidence visible so a strong opinion does not look like a confirmed defect.",
       "sections": [
         {
           "heading": "Start with consequence, not the screenshot",
           "paragraphs": [
-            "A visually obvious issue can be less consequential than a rare failure that loses work or prevents access. Describe what happens to the task: blocked, completed incorrectly, recoverable with extra work or merely less comfortable.",
-            "Keep severity separate from frequency. A single observed destructive failure may deserve immediate investigation even when its prevalence is unknown. Conversely, a frequently seen cosmetic difference does not automatically justify structural redesign."
+            "A dramatic screenshot is not automatically the highest-priority finding. I start with what the problem prevents someone from doing and what a wrong action could cost them.",
+            "Then I ask how certain we are. A reproduced failure, a user report and a design hypothesis can all deserve attention, but they should not carry the same confidence."
           ]
         },
         {
@@ -241,10 +249,13 @@
           ]
         },
         {
-          "heading": "Use an order the team can defend",
+          "heading": "Use a repair order the team can explain",
           "paragraphs": [
-            "My preferred starting order is access and data integrity, blocked core tasks, repeated recovery costs, confusing decisions and then polish. The exact order depends on the product, but naming the reason makes it possible to challenge the decision constructively.",
-            "Do not multiply guessed values into a precise-looking score. If occurrence is unknown, write unknown. If delivery effort has not been assessed by engineering, keep it provisional. The discussion should reveal uncertainty rather than hide it inside arithmetic."
+            "The Orkest filter states are a small example. A visible problem in the filter needs a specific explanation and a way forward; a spacing preference can wait if the task is blocked.",
+            "Compare the default panel with the error example, then state the repair and the check that will establish it worked. A precise next action is more useful than an impressive priority score."
+          ],
+          "images": [
+            "orkest-lead-filters"
           ]
         },
         {
@@ -288,19 +299,19 @@
           "Decide whether an audit is the next step"
         ]
       ],
-      "updatedAt": "2026-11-05",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "orkest-lead-filter-error"
     },
     {
       "slug": "when-startup-needs-ux-audit-before-redesign",
       "intent": "Decide whether to audit, repair or redesign a startup product",
-      "dek": "A redesign is a commitment to change. An audit is useful when the team first needs to understand which change is warranted and which existing behavior should be preserved.",
+      "dek": "An audit is useful when the team cannot yet explain why a task is failing. When the defect is already clear, start with the repair.",
       "sections": [
         {
           "heading": "Identify the decision you cannot yet make",
           "paragraphs": [
-            "The interface looks old is not enough to choose a redesign scope. The useful uncertainty might be why onboarding stalls, whether navigation matches user tasks or whether a feature is hidden behind an access problem. Name that uncertainty before commissioning a broad visual refresh.",
-            "An audit is a good next step when the team has symptoms but cannot connect them to a defensible repair. If the defect is already known and reproducible, fixing it may be more useful than paying for another report."
+            "Before proposing a redesign, name the decision the team cannot make. Are people missing a step, misunderstanding the product or running into a service problem?",
+            "If several explanations fit, a small task-based audit can help choose a direction. If a broken link or missing label is already confirmed, the team can fix it without waiting for a large study."
           ]
         },
         {
@@ -356,12 +367,15 @@
           ]
         },
         {
-          "heading": "Bound a review around one driver decision",
+          "heading": "Keep the first review small",
           "paragraphs": [
-            "The Zapp driver design has a confirmed pickup, a named next drop-off, progress, an arrival action and an intermediate-stop issue route. That is enough to define a focused review: can the driver identify the current stop and explain the two actions?",
-            "The prototype says navigation is inactive. An audit scope should therefore separate task comprehension from real routing, live location and dispatch integration."
+            "The Zapp driver sequence gives a useful boundary: identify the next stop, report an issue and reach completion. The completion design below gives the review an endpoint.",
+            "That is a manageable audit question. A complete delivery platform would also involve routing, dispatch and payment services, which need separate evidence."
           ],
-          "image": "zapp-driver-next-stop"
+          "images": [
+            "zapp-driver-next-stop",
+            "zapp-delivery-complete"
+          ]
         }
       ],
       "related": [
@@ -378,28 +392,31 @@
           "Choose a repair order"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "zapp-driver-next-stop"
     },
     {
       "slug": "beautiful-interface-poor-ux",
       "intent": "Diagnose task problems concealed by visual polish",
-      "dek": "A polished screen can still leave the person unsure what to do, what changed or whether their work is safe. Review the decision the interface supports before judging the composition.",
+      "dek": "A polished screen can still leave someone unsure what to do. Review the task and the states around it before deciding that the answer is more visual emphasis.",
       "sections": [
         {
           "heading": "Ask what the person can explain",
           "paragraphs": [
-            "A screenshot can look balanced while every action competes equally. Try a more specific review: what needs attention, what is the next action and what consequence will it have? If those answers are unclear, visual hierarchy is not yet supporting decision hierarchy.",
-            "This does not make visual craft unimportant. Typography, spacing and contrast are valuable because they help a person read relationships and priorities. The problem is treating their presence as evidence that the task works."
+            "I ask what the person can explain after looking at the screen. What is happening, which action makes sense and what do they expect next?",
+            "If the answer is unclear, stronger color or another animation may only make the same confusion more noticeable. The missing explanation could be in the state, the content or the way the task is divided."
           ]
         },
         {
-          "heading": "Look for the state the presentation omits",
+          "heading": "Look at the state the polished view leaves out",
           "paragraphs": [
-            "The default screen rarely shows what happens after a failed save, an unavailable permission or an empty result. Those states often carry the explanation a person most needs. Review them with the same care as the ideal composition.",
-            "The Yarsha contact-search frame is a useful example. It clearly reports No contact found, but the continuation still deserves inspection. Does the person know whether to change the query or use Invite? A clean layout can expose a good design question without proving it has been solved."
+            "Yarsha’s populated contacts and no-contact result show why the neighboring state matters. The normal list explains the objects; the empty search needs to explain how to continue.",
+            "Both views need to feel like part of the same task. A good-looking populated screen cannot answer what happens when the person’s search finds nobody."
           ],
-          "image": "yarsha-contact-empty"
+          "images": [
+            "yarsha-contact-empty",
+            "yarsha-contacts"
+          ]
         },
         {
           "heading": "Use four small diagnostic tasks",
@@ -439,18 +456,19 @@
           "Write a useful zero-result explanation"
         ]
       ],
-      "leadEvidence": "yarsha-contact-empty"
+      "leadEvidence": "yarsha-contact-empty",
+      "updatedAt": "2026-11-06"
     },
     {
       "slug": "saas-dashboard-ux-checklist",
       "intent": "Review the core task hierarchy of an operational dashboard",
-      "dek": "A dashboard should help someone notice what matters and act on it. Use this checklist to review one role's work, not to collect every chart and table pattern in one screen.",
+      "dek": "Start with the decision someone needs to make from the dashboard. Review the information, actions and exceptions against that job.",
       "sections": [
         {
           "heading": "Start with the decision the dashboard supports",
           "paragraphs": [
-            "Write a task such as identify leads that need assignment or inspect applications waiting for review. Then identify the information required to make that decision. This gives the layout a reason to emphasize one state, action or comparison before another.",
-            "A summary metric earns its place when it changes what the person should inspect or do. If it is only decorative reassurance, it may belong elsewhere or need a clearer relationship to the task."
+            "A dashboard is easier to evaluate when its job is specific. A creditor checking application progress needs different information from an administrator reviewing a request.",
+            "I begin with the person, the record they care about and the decision available to them. Those details make it easier to judge whether a metric, table or action belongs in the overview."
           ]
         },
         {
@@ -521,10 +539,13 @@
           ]
         },
         {
-          "heading": "Compare the object as well as the layout",
+          "heading": "Check what changes when responsibility changes",
           "paragraphs": [
-            "The piHub investor list places products, service categories and approval state in one table. A creditor application and an investor product may share table styling, but they are different records with different actions.",
-            "Review the heading, columns and status together before declaring the pattern reusable. Financial values are excluded from the public illustration because they are unnecessary to that comparison."
+            "The piHub application list shows progress from the creditor’s side. The administrator credit-review view below gathers the request detail and decision actions for a different role.",
+            "Use the pair to check which information each person needs and whether status language stays consistent. A shared visual style is useful, but it cannot replace a clear division of responsibility."
+          ],
+          "images": [
+            "pihub-admin-credit-review"
           ]
         }
       ],
@@ -542,20 +563,19 @@
           "SaaS dashboard design"
         ]
       ],
-      "updatedAt": "2026-11-04",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "pihub-application-status"
     },
     {
       "slug": "website-ux-checklist-software-companies",
       "intent": "Review a software website as an evaluation journey",
-      "dek": "A software website should help a serious visitor understand the offer, inspect relevant proof and choose a sensible next step. Review that journey before adding another visual effect.",
+      "dek": "A software website should help someone understand the offer, find relevant proof and decide whether to get in touch. Review that path before polishing isolated sections.",
       "sections": [
         {
           "heading": "Test the opening explanation",
           "paragraphs": [
-            "After a short scan, can a visitor explain who the product is for and what it helps them do? A category label may be necessary, but it should not carry the entire explanation. Replace a broad claim with a concrete task or outcome the product can actually support.",
-            "For a technical product, keep a route to deeper detail. The first explanation and the implementation explanation have different jobs. A newcomer should not need to read documentation to establish relevance, and an evaluator should not be trapped in marketing summaries.",
-            "The current public Hamro Idea demo provides a concrete software-studio reference: a service-oriented opening and routes toward a project conversation and supporting work. Review whether a visitor can connect that promise to a named service and relevant evidence. The screenshot does not establish conversion improvement or authorship of every current feature."
+            "Give a first-time visitor a moment to read the opening, then ask what the company does and who it helps. Their explanation will tell you more than asking whether they like the design.",
+            "The public Hamro Idea demo is a concrete website reference. I would review its introduction, service paths and route to contact together."
           ],
           "publicCapture": "hamro-current-demo"
         },
@@ -598,10 +618,13 @@
           ]
         },
         {
-          "heading": "Inspect navigation and contact in context",
+          "heading": "Review contact as the next step in the same journey",
           "paragraphs": [
-            "Use descriptive links and check whether the visitor can find a relevant capability from several reasonable entry points. A service page may be a better landing page than the homepage for a specific search or referral.",
-            "Review the contact step with the explanation that precedes it. Does the person know what the conversation is for and what information to provide? Avoid asking for sensitive or excessive details before they are needed."
+            "The historical Hamro Idea contact design keeps the first request small: name, email and message. Its surrounding navigation connects it to the service and project pages.",
+            "The layout is only part of the review. Persistent labels, useful errors and a genuine delivery result need checks in the working form. The screenshot is a historical design example with sample content."
+          ],
+          "images": [
+            "hamro-idea-contact-form"
           ]
         },
         {
@@ -636,7 +659,7 @@
           "Service-page content structure"
         ]
       ],
-      "updatedAt": "2026-11-05",
+      "updatedAt": "2026-11-06",
       "leadEvidence": "hamro-current-demo"
     }
   ]

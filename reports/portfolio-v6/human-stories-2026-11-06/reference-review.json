@@ -1,0 +1,36 @@
+{
+  "reviewedOn": "2026-11-06",
+  "sources": [
+    {
+      "url": "https://kseniiamankovska.com/trady-interface",
+      "access": "Direct ordinary HTTP retrieval succeeded; page text reviewed. Search-fetch failures were not treated as page content."
+    },
+    {
+      "url": "https://kseniiamankovska.com/chromia",
+      "access": "Direct ordinary HTTP retrieval succeeded; page text reviewed. Search-fetch failures were not treated as page content."
+    },
+    {
+      "url": "https://kseniiamankovska.com/chromia-staking",
+      "access": "Direct ordinary HTTP retrieval succeeded; page text reviewed. Search-fetch failures were not treated as page content."
+    },
+    {
+      "url": "https://kseniiamankovska.com/oneart",
+      "access": "Direct ordinary HTTP retrieval succeeded; page text reviewed. Search-fetch failures were not treated as page content."
+    },
+    {
+      "url": "https://kseniiamankovska.com/syaanh",
+      "access": "Direct ordinary HTTP retrieval succeeded; page text reviewed. Search-fetch failures were not treated as page content."
+    },
+    {
+      "url": "https://kseniiamankovska.com/stealthy-vpn",
+      "access": "Direct ordinary HTTP retrieval succeeded; page text reviewed. Search-fetch failures were not treated as page content."
+    }
+  ],
+  "adoptedPrinciples": [
+    "Explain the product and the designer\u2019s actual contribution before the detailed walkthrough.",
+    "Use everyday task language for section headings and describe why a specific decision helps.",
+    "Keep screenshots close to the decision they explain, with complete frames available.",
+    "Separate design delivery from measured product outcomes; preserve team credit and genuine uncertainties."
+  ],
+  "notCopied": "No reference prose, research, client facts, metrics, timelines, imagery, branding or claimed outcomes transplanted into this portfolio. The approved website shell is preserved."
+}

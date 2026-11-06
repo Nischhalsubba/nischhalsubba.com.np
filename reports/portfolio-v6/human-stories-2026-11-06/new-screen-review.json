@@ -1,0 +1,202 @@
+[
+  {
+    "project": "yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:255560",
+    "id": "yarsha-edit-group",
+    "width": 375,
+    "height": 812,
+    "format": "png",
+    "original_width": 375,
+    "original_height": 812,
+    "sha256": "a0717ae318100957102678a820a55994c7e4af3fbe3d0c8333cded8ada9fca8a",
+    "bytes": 31219,
+    "dimensions": [
+      375,
+      812
+    ],
+    "capturedAt": "2026-11-06T10:49:47.945077+00:00",
+    "decision": "APPROVED_SOURCE_REVIEW",
+    "reason": "Complete original, relevant additional task/state; owner-confirmed sample-data publication scope retained."
+  },
+  {
+    "project": "yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:255618",
+    "id": "yarsha-group-administrators",
+    "width": 375,
+    "height": 812,
+    "format": "png",
+    "original_width": 375,
+    "original_height": 812,
+    "sha256": "e2bdb71e350318421af08c668beb6a48c80205cb1548abecda0aa71d3ff294ad",
+    "bytes": 19358,
+    "dimensions": [
+      375,
+      812
+    ],
+    "capturedAt": "2026-11-06T10:49:48.071221+00:00",
+    "decision": "APPROVED_SOURCE_REVIEW",
+    "reason": "Complete original, relevant additional task/state; owner-confirmed sample-data publication scope retained."
+  },
+  {
+    "project": "yarsha",
+    "fileKey": "pYismUGSJo9vLjViMjZENz",
+    "nodeId": "6092:254126",
+    "id": "yarsha-nft-choice",
+    "width": 375,
+    "height": 812,
+    "format": "png",
+    "original_width": 375,
+    "original_height": 812,
+    "sha256": "02191849105e32635c77ff8bbfdcf76da663527617d05f36b31be2af4a95f7d1",
+    "bytes": 171231,
+    "dimensions": [
+      375,
+      812
+    ],
+    "capturedAt": "2026-11-06T10:49:48.073475+00:00",
+    "decision": "WITHHELD_FROM_PUBLICATION",
+    "reason": "Near-duplicate NFT selection view adds little to the existing sequence."
+  },
+  {
+    "project": "zapp",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "113:72",
+    "id": "zapp-pickup-address",
+    "width": 402,
+    "height": 874,
+    "format": "png",
+    "original_width": 402,
+    "original_height": 874,
+    "sha256": "60dca6e4c7115a968ba773ff58bc8f413ed32765b43888c701682565d8bf9089",
+    "bytes": 46174,
+    "dimensions": [
+      402,
+      874
+    ],
+    "capturedAt": "2026-11-06T10:49:48.138546+00:00",
+    "decision": "APPROVED_SOURCE_REVIEW",
+    "reason": "Complete original, relevant additional task/state; owner-confirmed sample-data publication scope retained."
+  },
+  {
+    "project": "zapp",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "113:193",
+    "id": "zapp-quote-review",
+    "width": 402,
+    "height": 874,
+    "format": "png",
+    "original_width": 402,
+    "original_height": 874,
+    "sha256": "a9d75110365c6ecf98b6ec7413abcda0283498e311a24c3c1e0bd2d594291359",
+    "bytes": 44097,
+    "dimensions": [
+      402,
+      874
+    ],
+    "capturedAt": "2026-11-06T10:49:48.120259+00:00",
+    "decision": "APPROVED_SOURCE_REVIEW",
+    "reason": "Complete original, relevant additional task/state; owner-confirmed sample-data publication scope retained."
+  },
+  {
+    "project": "zapp",
+    "fileKey": "dRPI1NQ1uEFJTgdGKSwoaL",
+    "nodeId": "113:283",
+    "id": "zapp-track-delivery",
+    "width": 402,
+    "height": 874,
+    "format": "png",
+    "original_width": 402,
+    "original_height": 874,
+    "sha256": "75cccd1908b1d7e5da736f7831317efb70efb1b96a327f3ce6657cf02ab91d85",
+    "bytes": 47988,
+    "dimensions": [
+      402,
+      874
+    ],
+    "capturedAt": "2026-11-06T10:49:55.288916+00:00",
+    "decision": "WITHHELD_FROM_PUBLICATION",
+    "reason": "QA preview controls appear in the captured interface."
+  },
+  {
+    "project": "pihub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:6623",
+    "id": "pihub-admin-account-requests",
+    "width": 1410,
+    "height": 932,
+    "format": "png",
+    "original_width": 1410,
+    "original_height": 932,
+    "sha256": "896a55ba9036e41392954ed9633f9199a458bae168e970e05cda00a9e1601aa0",
+    "bytes": 98967,
+    "dimensions": [
+      1410,
+      932
+    ],
+    "capturedAt": "2026-11-06T10:49:55.295405+00:00",
+    "decision": "APPROVED_SOURCE_REVIEW",
+    "reason": "Complete original, relevant additional task/state; owner-confirmed sample-data publication scope retained."
+  },
+  {
+    "project": "pihub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:4146",
+    "id": "pihub-admin-account-review",
+    "width": 1410,
+    "height": 722,
+    "format": "png",
+    "original_width": 1410,
+    "original_height": 722,
+    "sha256": "19750fb663bc54b7664afe2ae1f83e18070723886b05c2acdddc1000d047c858",
+    "bytes": 53191,
+    "dimensions": [
+      1410,
+      722
+    ],
+    "capturedAt": "2026-11-06T10:49:55.262806+00:00",
+    "decision": "APPROVED_SOURCE_REVIEW",
+    "reason": "Complete original, relevant additional task/state; owner-confirmed sample-data publication scope retained."
+  },
+  {
+    "project": "pihub",
+    "fileKey": "HILxD1DKnfALKo4Q5L1IfE",
+    "nodeId": "2:3411",
+    "id": "pihub-admin-credit-review",
+    "width": 1410,
+    "height": 1177,
+    "format": "png",
+    "original_width": 1410,
+    "original_height": 1177,
+    "sha256": "f06577ce2709b79e4c07c0ea8056e831122446e21d92f3ae1332c70ece8e37aa",
+    "bytes": 115024,
+    "dimensions": [
+      1410,
+      1177
+    ],
+    "capturedAt": "2026-11-06T10:49:55.275183+00:00",
+    "decision": "APPROVED_SOURCE_REVIEW",
+    "reason": "Complete original, relevant additional task/state; owner-confirmed sample-data publication scope retained."
+  },
+  {
+    "project": "masteriyo",
+    "fileKey": "hBVZ96hJzIPNvrFwvmY8Wh",
+    "nodeId": "6018:7271",
+    "id": "masteriyo-admin-overview",
+    "width": 1279,
+    "height": 1237,
+    "format": "png",
+    "original_width": 1279,
+    "original_height": 1237,
+    "sha256": "8ca9a45342fce5cad4ded30c0b413f0c388a6060f8adf23e5b754138ed1949ad",
+    "bytes": 48543,
+    "dimensions": [
+      1279,
+      1237
+    ],
+    "capturedAt": "2026-11-06T10:49:55.322851+00:00",
+    "decision": "WITHHELD_FROM_PUBLICATION",
+    "reason": "Placeholder chart content is unsuitable as a polished product-screen example."
+  }
+]

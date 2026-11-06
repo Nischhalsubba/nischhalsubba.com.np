@@ -55,6 +55,6 @@ for(const record of records) {
   }
 }
 const editorial = require('../editorial/render.cjs');
-const authoredFigures = editorial.projects.flatMap(project => project.decisions.flatMap(decision => decision.images || (decision.image ? [decision.image] : []))).length + editorial.articles.flatMap(article => article.sections.filter(section => section.image)).length;
+const authoredFigures = editorial.projects.flatMap(project => project.decisions.flatMap(decision => decision.images || (decision.image ? [decision.image] : []))).length + editorial.articles.flatMap(article => article.sections.flatMap(section => section.images || (section.image ? [section.image] : []))).length;
 assert.equal(new Set(images.map(image => image.id)).size, images.length, 'Each curated image needs a unique identity');assert.equal(references,authoredFigures);
 console.log(`[evidence] ${images.length} curated originals, ${references} figure placements, local responsive variants and 53 canonical source/output pairs passed.`);
