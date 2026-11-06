@@ -1,0 +1,89 @@
+{
+  "checkedAt": "2026-11-05T19:04:52.964Z",
+  "rows": [
+    {
+      "width": 390,
+      "height": 844,
+      "motion": "reduce",
+      "role": "SENIOR PRODUCT DESIGNER WITH 7+ YEARS. FOCUSED ON COMPLEX SAAS, FINTECH & WEB3.",
+      "actionBox": {
+        "x": 20,
+        "y": 794,
+        "width": 161.171875,
+        "height": 22
+      },
+      "roleBox": {
+        "x": 20,
+        "y": 734.25,
+        "width": 350,
+        "height": 43.75
+      },
+      "unobscured": true,
+      "keyboardDestination": "http://127.0.0.1:4173/projects",
+      "errors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "motion": "no-preference",
+      "role": "SENIOR PRODUCT DESIGNER WITH 7+ YEARS. FOCUSED ON COMPLEX SAAS, FINTECH & WEB3.",
+      "actionBox": {
+        "x": 20,
+        "y": 794,
+        "width": 161.171875,
+        "height": 22
+      },
+      "roleBox": {
+        "x": 20,
+        "y": 734.25,
+        "width": 350,
+        "height": 43.75
+      },
+      "unobscured": true,
+      "keyboardDestination": "http://127.0.0.1:4173/projects",
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "motion": "reduce",
+      "role": "SENIOR PRODUCT DESIGNER WITH 7+ YEARS. FOCUSED ON COMPLEX SAAS, FINTECH & WEB3.",
+      "actionBox": {
+        "x": 1218.828125,
+        "y": 850,
+        "width": 161.171875,
+        "height": 22
+      },
+      "roleBox": {
+        "x": 60,
+        "y": 828.25,
+        "width": 460,
+        "height": 43.75
+      },
+      "unobscured": true,
+      "keyboardDestination": "http://127.0.0.1:4173/projects",
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "motion": "no-preference",
+      "role": "SENIOR PRODUCT DESIGNER WITH 7+ YEARS. FOCUSED ON COMPLEX SAAS, FINTECH & WEB3.",
+      "actionBox": {
+        "x": 1218.828125,
+        "y": 850,
+        "width": 161.171875,
+        "height": 22
+      },
+      "roleBox": {
+        "x": 60,
+        "y": 828.25,
+        "width": 460,
+        "height": 43.75
+      },
+      "unobscured": true,
+      "keyboardDestination": "http://127.0.0.1:4173/projects",
+      "errors": []
+    }
+  ]
+}
