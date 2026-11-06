@@ -1,3 +1,9 @@
+# Current merge authorization — 6 November 2026
+
+Latest owner instruction: “You are free to merge all the PR to main branch”. This supersedes the earlier review-only restriction for repository PR integration. Merge only tested results; report actual Cloudflare build/deployment outcomes and preserve remaining program blockers. No separate approval question is needed for the authorized merges. Account secrets and DNS/contact configuration remain constrained by available access and their own evidence.
+
+The material below is retained as historical instruction context.
+
 > Historical authorization below is superseded by the latest owner instruction: create reviewable PRs; do not automatically merge or deploy. No new merge or deployment is authorized by this document.
 
 # Merge authorization and release checks — November 5, 2026
