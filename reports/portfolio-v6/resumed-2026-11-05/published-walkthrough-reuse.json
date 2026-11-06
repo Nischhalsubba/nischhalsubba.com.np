@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-06T00:24:34.035456+00:00",
+  "mainCommit": "8ac11e4f5b26aab642fbd81f2630ab2e840a92e1",
+  "liveEvidence": "production-http.json; live-marker-review-only.json; production-browser/browser-inventory.json from 5 November 2026",
+  "rows": [
+    {
+      "route": "/blog/blog-design-systems-front-end",
+      "sameStructuredArticleAsPublishedMain": true,
+      "structuredArticleSha256": "65e9c3aa0e996b7b2b812ba7ed56a9d0b096a141ccd1e1ecce4dd6d36dc91e42",
+      "sectionCount": 6,
+      "sourceImageIds": [
+        "orkest-lead-capture",
+        "masteriyo-question-editor"
+      ],
+      "sourceFile": "site/src/content/articles-editorial-practice.json",
+      "evidenceBoundary": "Existing public artifact-led walkthrough with original retained frames and source links; no invented user research or production outcome. Publication is reused, not claimed as a new deployment."
+    },
+    {
+      "route": "/blog/design-systems-small-product-teams",
+      "sameStructuredArticleAsPublishedMain": true,
+      "structuredArticleSha256": "c4116b946ae63f50cafac2fc5d89785fd1820ec918cb1ab5981f04b05ed8dc64",
+      "sectionCount": 6,
+      "sourceImageIds": [
+        "orkest-conversion-readiness"
+      ],
+      "sourceFile": "site/src/content/articles-editorial-practice.json",
+      "evidenceBoundary": "Existing public artifact-led walkthrough with original retained frames and source links; no invented user research or production outcome. Publication is reused, not claimed as a new deployment."
+    },
+    {
+      "route": "/blog/figma-handoff-notes-for-developers",
+      "sameStructuredArticleAsPublishedMain": true,
+      "structuredArticleSha256": "d7f07c4d80db27e1a9695c55d897b2b9edad39fb57fa0af34dc800655fa9d005",
+      "sectionCount": 5,
+      "sourceImageIds": [
+        "orkest-lead-capture"
+      ],
+      "sourceFile": "site/src/content/articles-editorial.json",
+      "evidenceBoundary": "Existing public artifact-led walkthrough with original retained frames and source links; no invented user research or production outcome. Publication is reused, not claimed as a new deployment."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-11-06T00:22:08.991726+00:00",
+  "method": "Read-only Cloudflare API calls; no configuration or secrets changed.",
+  "checks": [
+    {
+      "check": "token",
+      "httpStatus": 200,
+      "success": true,
+      "errorCodes": [],
+      "tokenState": "active",
+      "visibleZoneCount": null
+    },
+    {
+      "check": "worker-deployments",
+      "httpStatus": 403,
+      "success": false,
+      "errorCodes": [
+        null
+      ],
+      "tokenState": null,
+      "visibleZoneCount": null,
+      "errorMessage": "No access to the specified resource."
+    },
+    {
+      "check": "portfolio-zone",
+      "httpStatus": 200,
+      "success": true,
+      "errorCodes": [],
+      "tokenState": null,
+      "visibleZoneCount": 0
+    }
+  ]
+}
