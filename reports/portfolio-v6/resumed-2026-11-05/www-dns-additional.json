@@ -1,0 +1,28 @@
+[
+  {
+    "type": "AAAA",
+    "status": 0,
+    "answers": [],
+    "authority": [
+      {
+        "name": "nischhalsubba.com.np.",
+        "type": 6,
+        "TTL": 1800,
+        "data": "alaric.ns.cloudflare.com. dns.cloudflare.com. 2417898607 10000 2400 604800 1800"
+      }
+    ]
+  },
+  {
+    "type": "CNAME",
+    "status": 0,
+    "answers": [],
+    "authority": [
+      {
+        "name": "nischhalsubba.com.np.",
+        "type": 6,
+        "TTL": 1800,
+        "data": "alaric.ns.cloudflare.com. dns.cloudflare.com. 2417898607 10000 2400 604800 1800"
+      }
+    ]
+  }
+]

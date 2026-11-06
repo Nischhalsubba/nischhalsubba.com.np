@@ -16,10 +16,10 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-repo-inventory;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Live build marker confirms main 8ac11e4; GitHub Cloudflare build check succeeded. Exact provider deployment time remains unverified.",
+      "evidence": "resumed-2026-11-05/production-http.json; resumed-2026-11-05/main-checks-before.json",
+      "blocker": "Correctly scoped Cloudflare account access for exact deployment record.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T02",
@@ -36,10 +36,10 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-repo-inventory;nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Live sitemap now contains exactly 54 canonical URLs, with no missing or extra routes. Historical GSC 53 record is not the current XML.",
+      "evidence": "resumed-2026-11-05/production-http.json",
+      "blocker": "Next Search Console sitemap download needs authorized property access.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T03",
@@ -53,12 +53,12 @@
       "depends_on": "T01,T02",
       "acceptance_criteria": "200+canonical+sitewide internal links verified; indexing monitored without guarantee",
       "evidence_status": "verified GSC",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -73,13 +73,13 @@
       "depends_on": "T01",
       "acceptance_criteria": "No 5xx; permanent single-hop to apex; logs saved",
       "evidence_status": "historical audit",
-      "status": "BLOCKED_SOURCE",
+      "status": "BLOCKED_PERMISSION",
       "skills_to_load": "nrs-repo-inventory;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Public DNS A/AAAA/CNAME lookups return NOERROR with no www answers; single-hop redirect cannot currently be verified. Unapplied DNS proposal recorded.",
+      "evidence": "resumed-2026-11-05/www-dns.json; resumed-2026-11-05/www-dns-additional.json; resumed-2026-11-05/www-dns-proposal.md",
+      "blocker": "Correctly scoped Cloudflare account access and approval of the concrete DNS proposal.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T05",
@@ -93,13 +93,13 @@
       "depends_on": "T01",
       "acceptance_criteria": "Permanent server redirect to canonical; no loop/404",
       "evidence_status": "source vs historical audit",
-      "status": "BLOCKED_SOURCE",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Live retired article responds 301 in one hop to the canonical blog route; no loop or 404.",
+      "evidence": "resumed-2026-11-05/production-http.json",
+      "blocker": "",
+      "confidence": "VERIFIED_DATED"
     },
     {
       "id": "T06",
@@ -113,13 +113,13 @@
       "depends_on": "",
       "acceptance_criteria": "Single owner-confirmed role, tenure and truthful geography across surfaces",
       "evidence_status": "cross-source discrepancy",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-content-and-cases;nrs-seo-page-audit",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Owner confirmed 7+ on November 5. Matched retained r\u00e9sum\u00e9 starting Aug 2018; eight roles and overlap-aware month chronology documented in tenure-proof.md. Current source/config/generators aligned. Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; tenure-proof.md; site/config/experience-evidence.json",
-      "blocker": "Tenure wording resolved. Independent external profile/issuer verification remains blocked by network/tool access; no external accounts were edited.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Owner-approved 7+ chronology retained; owned biography/location corrected to Nepal. Public Uxcel still says over five years and Biratnagar; exact external update draft recorded.",
+      "evidence": "resumed-2026-11-05/external-profile-update.md; resumed-2026-11-05/uxcel-profile-readiness.json",
+      "blocker": "External profile edits require authorized account session and specific edit approval.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T07",
@@ -133,13 +133,13 @@
       "depends_on": "T01",
       "acceptance_criteria": "Real consented test produces success and message delivery, failure/retry states correct",
       "evidence_status": "unverified",
-      "status": "BLOCKED_PERMISSION",
+      "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Real same-origin Chromium request: config has no site key, invalid contact POST returns 503 anti-spam service not configured. No test email sent and no delivery claim.",
+      "evidence": "resumed-2026-11-05/contact-browser-endpoints.json; resumed-2026-11-05/contact-configuration-plan.md",
+      "blocker": "Matching production Turnstile site key/secret, scoped Worker access and real consented delivery verification.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T08",
@@ -173,12 +173,12 @@
       "depends_on": "T06",
       "acceptance_criteria": "Name, role, niche, cases and CTA legible at 390/1440 and reduced motion",
       "evidence_status": "verified source; browser pending",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-ux-a11y;nrs-content-and-cases",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "108 route/viewport checks; 42 sampled axe/width checks; six native Lighthouse samples. Manual screen-reader, full interaction and production field evidence remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "Field measurement connector unavailable; full manual screen-reader/interaction signoff and controlled motion optimization remain open.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -253,12 +253,12 @@
       "depends_on": "T06",
       "acceptance_criteria": "Document actual component/token/handoff example and related cases",
       "evidence_status": "source review",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-repo-inventory;nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "54 final-build routes audited at desktop/mobile; substantive current content and existing intents reused. No cosmetic length rewrite.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
-      "blocker": "Live parity and independent source-image verification unavailable. See remaining acceptance criterion on this row.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -273,13 +273,13 @@
       "depends_on": "T06",
       "acceptance_criteria": "Example severity rubric, proof artifact and contact path",
       "evidence_status": "proposed",
-      "status": "CODE_DONE_NEEDS_CI",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "54 final-build routes audited at desktop/mobile; substantive current content and existing intents reused. No cosmetic length rewrite.",
-      "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
-      "blocker": "Review-branch CI and remaining live/source/manual acceptance checks are pending; see blocked-access.md.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Existing severity rubric, concrete artifact example and contact path retained; full validation and live route audit pass.",
+      "evidence": "resumed-2026-11-05/production-http.json; resumed-2026-11-05/validation-release.log",
+      "blocker": "",
+      "confidence": "VERIFIED_DATED"
     },
     {
       "id": "T15",
@@ -293,12 +293,12 @@
       "depends_on": "T06",
       "acceptance_criteria": "Wallet confirmation states and truthful design-only boundaries linked",
       "evidence_status": "proposed",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-repo-inventory;nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "54 final-build routes audited at desktop/mobile; substantive current content and existing intents reused. No cosmetic length rewrite.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
-      "blocker": "Live parity and independent source-image verification unavailable. See remaining acceptance criterion on this row.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -313,12 +313,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "12 images render; decisions and risk/recovery captions; role truth",
       "evidence_status": "repo image audit",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-content-and-cases;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -333,12 +333,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "8 images, cross-role state mapping, deny/retry copy without backend claims",
       "evidence_status": "repo image audit",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-content-and-cases;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -353,12 +353,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "Ownership/filter/conversion tradeoffs, screenshots, honest status",
       "evidence_status": "repo image audit",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-content-and-cases;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -373,12 +373,12 @@
       "depends_on": "T06",
       "acceptance_criteria": "More specific problem/decision prose with matched evidence only",
       "evidence_status": "verified GSC",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-content-and-cases;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -413,12 +413,12 @@
       "depends_on": "T10,T12,T13",
       "acceptance_criteria": "Anchor crawl map; no orphan important routes or .html internal links",
       "evidence_status": "historical Screaming Frog",
-      "status": "BLOCKED_SOURCE",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "54 final-build routes audited at desktop/mobile; substantive current content and existing intents reused. No cosmetic length rewrite.",
-      "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
-      "blocker": "Live parity and independent source-image verification unavailable. See remaining acceptance criterion on this row.",
+      "observation": "Dated live anchor graph covers all 54 canonical routes: zero orphans, zero legacy .html internal anchors and zero unmapped internal routes. Existing contextual links reused; no duplicate fix.",
+      "evidence": "resumed-2026-11-05/internal-anchor-map.json",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -433,12 +433,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "p75 mobile/desktop CWV by URL/element where sample available",
       "evidence_status": "official Cloudflare docs",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-performance-release;nrs-ux-a11y",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "108 route/viewport checks; 42 sampled axe/width checks; six native Lighthouse samples. Manual screen-reader, full interaction and production field evidence remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "Field measurement connector unavailable; full manual screen-reader/interaction signoff and controlled motion optimization remain open.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -453,12 +453,12 @@
       "depends_on": "T22",
       "acceptance_criteria": "3-run reproducible tests; LCP element/long tasks identified; no navigation regressions",
       "evidence_status": "repo verified CI lab",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-performance-release;nrs-ux-a11y",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "108 route/viewport checks; 42 sampled axe/width checks; six native Lighthouse samples. Manual screen-reader, full interaction and production field evidence remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "Field measurement connector unavailable; full manual screen-reader/interaction signoff and controlled motion optimization remain open.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -473,12 +473,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "Keyboard/reduced motion/zoom/NVDA-VoiceOver/contrast checklist signed",
       "evidence_status": "historical audit",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "108 route/viewport checks; 42 sampled axe/width checks; six native Lighthouse samples. Manual screen-reader, full interaction and production field evidence remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "Field measurement connector unavailable; full manual screen-reader/interaction signoff and controlled motion optimization remain open.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -493,13 +493,13 @@
       "depends_on": "T01,T02",
       "acceptance_criteria": "Status/metadata/canonical/schema/links/images test output saved",
       "evidence_status": "source+deployment unknown",
-      "status": "BLOCKED_SOURCE",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-performance-release;nrs-seo-page-audit",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "54 live canonical pages returned 200 with metadata, canonical and schema inventory. 108 desktop/mobile rendered-route checks captured, no page errors, overflow or broken decoded images. Contact API has its separately recorded configuration failure.",
+      "evidence": "resumed-2026-11-05/production-http.json; resumed-2026-11-05/production-browser/browser-inventory.json",
+      "blocker": "",
+      "confidence": "VERIFIED_DATED"
     },
     {
       "id": "T26",
@@ -518,7 +518,7 @@
       "batch": "F_AUTHORITY_SOCIAL",
       "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -538,7 +538,7 @@
       "batch": "F_AUTHORITY_SOCIAL",
       "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -553,12 +553,12 @@
       "depends_on": "T27",
       "acceptance_criteria": "Result URLs, format, intent, date and locale saved; no fabricated rankings",
       "evidence_status": "public web exploratory",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-search-intelligence",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -573,12 +573,12 @@
       "depends_on": "T28",
       "acceptance_criteria": "Country+source+date for every metric, gaps explicitly unknown",
       "evidence_status": "tool limitation",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-search-intelligence",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -613,12 +613,12 @@
       "depends_on": "T16,T17",
       "acceptance_criteria": "Public original examples, precise role claims, source citations",
       "evidence_status": "recommendation",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-content-and-cases;nrs-search-intelligence",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -638,7 +638,7 @@
       "batch": "F_AUTHORITY_SOCIAL",
       "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -653,12 +653,12 @@
       "depends_on": "T27",
       "acceptance_criteria": "Report screen exported or accurately marked no data; per-feature trend archived",
       "evidence_status": "Google official 2026",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-search-intelligence;nrs-seo-page-audit",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -673,12 +673,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "Server log/check confirms allowed for intended public pages, not GPTBot conflation",
       "evidence_status": "OpenAI docs",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-search-intelligence;nrs-seo-page-audit",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -698,7 +698,7 @@
       "batch": "G_RELEASE_REPORT",
       "observation": "Review artifacts and all 107 original ticket rows retained; no merge/deploy or external publication.",
       "evidence": "spec/; performance.md; blocked-access.md",
-      "blocker": "Production analytics/release access and source-image verification unavailable.",
+      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -733,13 +733,13 @@
       "depends_on": "T36",
       "acceptance_criteria": "https://zapp.today/ visibly labeled; live status checked; safe external attributes",
       "evidence_status": "source audited",
-      "status": "BLOCKED_SOURCE",
+      "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-repo-inventory;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Verified current official site and added visible safe link with accurate contribution boundary. Current-site capture rejected for third-party resource errors.",
+      "evidence": "resumed-2026-11-05/browser-qa.json",
+      "blocker": "Publish validated code and verify resulting live link.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T38",
@@ -753,13 +753,13 @@
       "depends_on": "T36",
       "acceptance_criteria": "https://designerex.com.au/ verified and linked; present contribution boundary",
       "evidence_status": "source audited",
-      "status": "BLOCKED_SOURCE",
+      "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-repo-inventory;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Verified and linked current official Designerex marketplace, with scoped team contribution; current source runtime errors prevent approving its capture.",
+      "evidence": "resumed-2026-11-05/browser-qa.json",
+      "blocker": "Publish validated code and verify resulting live link.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T39",
@@ -773,13 +773,13 @@
       "depends_on": "T36",
       "acceptance_criteria": "Vercel READY not enough; actual page visually verified then link",
       "evidence_status": "source+Vercel deployment",
-      "status": "BLOCKED_SOURCE",
+      "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-repo-inventory;nrs-media-evidence;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Public Hamro demo independently opened, captured, inspected and linked; distinguishes current demo from earlier studio work.",
+      "evidence": "resumed-2026-11-05/browser-qa.json",
+      "blocker": "Publish validated code and verify resulting live link.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T40",
@@ -793,12 +793,12 @@
       "depends_on": "T37",
       "acceptance_criteria": "Full unaltered app/website screenshot, provenance, no broken images; correct image semantics",
       "evidence_status": "third-party source checked",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-media-evidence;nrs-ux-a11y;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -813,12 +813,12 @@
       "depends_on": "T38",
       "acceptance_criteria": "Responsive screenshot with dated caption; copyright review; distinguish historical/current",
       "evidence_status": "third-party source checked",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-media-evidence;nrs-ux-a11y;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -833,13 +833,13 @@
       "depends_on": "T39",
       "acceptance_criteria": "Screenshot captured from actual verified accessible URL; if failing log and use approved local preview",
       "evidence_status": "Vercel deployment verified; render pending",
-      "status": "BLOCKED_SOURCE",
+      "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-media-evidence;nrs-ux-a11y;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Immutable public Hamro full-page and viewport originals retained with SHA, source URL and UTC. Uncropped WebP derivatives and full-original link verified at four widths.",
+      "evidence": "resumed-2026-11-05/verify-captures.cjs; resumed-2026-11-05/browser-qa.json",
+      "blocker": "Publish validated code and verify live capture delivery.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T43",
@@ -853,12 +853,12 @@
       "depends_on": "T36",
       "acceptance_criteria": "Images preserve complete frame; contain not cover; source frame ID + hash + captions",
       "evidence_status": "GitHub historical evidence",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-media-evidence;nrs-ux-a11y;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -873,13 +873,13 @@
       "depends_on": "T36",
       "acceptance_criteria": "14 rows with final tags/indexability/schema/lazy images/links and screenshots",
       "evidence_status": "raw source scanned",
-      "status": "BLOCKED_SOURCE",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-seo-page-audit;nrs-content-and-cases",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "54 final-build routes audited at desktop/mobile; substantive current content and existing intents reused. No cosmetic length rewrite.",
-      "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
-      "blocker": "Live parity and independent source-image verification unavailable. See remaining acceptance criterion on this row.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "All 14 final live case pages included in HTML/tag/schema/image/link inventory and desktop/mobile screenshot evidence; this closes audit execution, not all media replacement findings.",
+      "evidence": "resumed-2026-11-05/production-http.json; resumed-2026-11-05/production-browser/browser-inventory.json; resumed-2026-11-05/production-browser/screenshots.json",
+      "blocker": "",
+      "confidence": "VERIFIED_DATED"
     },
     {
       "id": "T45",
@@ -913,13 +913,13 @@
       "depends_on": "T01",
       "acceptance_criteria": "Live deployed SHA and full XML match current manifest; URL index eligibility tested",
       "evidence_status": "GSC Nov 4 snapshot",
-      "status": "BLOCKED_SOURCE",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-seo-page-audit;nrs-search-intelligence",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Live build marker matches main 8ac11e4; full served XML exactly matches all 54 canonical routes. All return 200 and self canonical. GSC next-download work remains in T02.",
+      "evidence": "resumed-2026-11-05/production-http.json",
+      "blocker": "",
+      "confidence": "VERIFIED_DATED"
     },
     {
       "id": "T47",
@@ -973,12 +973,12 @@
       "depends_on": "T40",
       "acceptance_criteria": "Original user-relevant article with role/year/context/caption and sourced public facts",
       "evidence_status": "proposal",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-content-and-cases;nrs-media-evidence;nrs-search-intelligence",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -993,12 +993,12 @@
       "depends_on": "T41",
       "acceptance_criteria": "No implied employment ownership of entire platform, finance claims or metrics; live refs dated",
       "evidence_status": "proposal",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-content-and-cases;nrs-media-evidence;nrs-search-intelligence",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1013,12 +1013,12 @@
       "depends_on": "T42",
       "acceptance_criteria": "Screenshots plus own code/patterns with honest results; non-duplicate content",
       "evidence_status": "proposal",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-content-and-cases;nrs-media-evidence;nrs-search-intelligence",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1033,12 +1033,12 @@
       "depends_on": "T44,T45",
       "acceptance_criteria": "Desktop/mobile captures, axe/keyboard/motion, no-asset failures, 400% zoom spot checks",
       "evidence_status": "CI history partial",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "108 route/viewport checks; 42 sampled axe/width checks; six native Lighthouse samples. Manual screen-reader, full interaction and production field evidence remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "Field measurement connector unavailable; full manual screen-reader/interaction signoff and controlled motion optimization remain open.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1053,12 +1053,12 @@
       "depends_on": "T40,T41,T42",
       "acceptance_criteria": "Unique 1200x630 previews and alt/caption/sitemap; images decode; credits recorded",
       "evidence_status": "build SEO generator exists",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-media-evidence;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation;nrs-real-image-qa",
       "batch": "G_RELEASE_REPORT",
-      "observation": "Review artifacts and all 107 original ticket rows retained; no merge/deploy or external publication.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "spec/; performance.md; blocked-access.md",
-      "blocker": "Production analytics/release access and source-image verification unavailable.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1096,9 +1096,9 @@
       "status": "BLOCKED_PERMISSION",
       "skills_to_load": "nrs-repo-inventory;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified. Owner authorized merge; main fast-forwarded to 8ac11e4. Public Cloudflare production-verification run 42022566819 completed Success for that commit; direct dashboard/API access remains denied.",
+      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; cloudflare-verification.json; merge-authorization.md",
+      "blocker": "Whole-program acceptance remains incomplete. Latest instruction requires review PRs only, without automatic merge or deployment.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1113,12 +1113,12 @@
       "depends_on": "T01;T36",
       "acceptance_criteria": "41/41 have unique relevant real-image source or source-pending issue with ownership evidence",
       "evidence_status": "Owner reference image + source inventory",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-real-image-qa;nrs-media-evidence;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1133,12 +1133,12 @@
       "depends_on": "T56",
       "acceptance_criteria": "Codex-captured original with verified URL/Figma source, UTC, hash and responsive derivatives; uploaded historical screenshot NOT mandatory final; blocked if inaccessible",
       "evidence_status": "Owner screenshot reference only; no independent live/source screenshot verified",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-media-evidence;nrs-real-image-qa;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1153,12 +1153,12 @@
       "depends_on": "T56",
       "acceptance_criteria": "No generic diagrams used as images on related cards; each meaningful real unique preview, tested CSS",
       "evidence_status": "Owner negative screenshot",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-real-image-qa;nrs-ux-a11y;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1173,12 +1173,12 @@
       "depends_on": "T56",
       "acceptance_criteria": "27 distinct relevant chosen hero images documented with page/source/rights/hash/alt; missing sources BLOCKED",
       "evidence_status": "Source inventory only, not live 27/27 done",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-real-image-qa;nrs-content-and-cases;nrs-seo-page-audit;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1193,12 +1193,12 @@
       "depends_on": "T56",
       "acceptance_criteria": "14 cards and 14 hero images linked to genuine project source; role/period/disclaimer accurate",
       "evidence_status": "Seven case source sets exist; five deferred",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-real-image-qa;nrs-media-evidence;nrs-content-and-cases;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1213,12 +1213,12 @@
       "depends_on": "T57;T59;T60",
       "acceptance_criteria": "Browser screenshots at mobile+desktop show full UI, no text clipped; image decode and lightbox pass",
       "evidence_status": "Browser not executed in this research",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-ux-a11y;nrs-performance-release;nrs-real-image-qa;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1233,12 +1233,12 @@
       "depends_on": "T56",
       "acceptance_criteria": "Object-fit:contain where full UI matters, proper aspect/renders/fallback, intrinsic dims, responsive srcset, no auto stock",
       "evidence_status": "Implementation proposal",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-ux-a11y;nrs-real-image-qa;nrs-performance-release;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1253,12 +1253,12 @@
       "depends_on": "T59;T60",
       "acceptance_criteria": "Every image links to source, capture time, role/timeframe, permissions, hash, attribution, crop policy",
       "evidence_status": "Existing figure map + new uploaded original",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1273,12 +1273,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "Independent writing guide, original example, personal experience where verified, remove boilerplate, editorial QA",
       "evidence_status": "Bishal Medium writing studied; not verified blog on bishal.cc",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-editorial-voice;nrs-content-and-cases",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1293,12 +1293,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "All 14 show context, ownership, constraints, alternatives, decisions, actual screenshots, outcome with verified limits",
       "evidence_status": "Niraj case samples reviewed publicly",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-editorial-voice;nrs-content-and-cases",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1313,12 +1313,12 @@
       "depends_on": "T64",
       "acceptance_criteria": "Each article answers distinct intent with real examples; no minimum word quota, unsupported result, citation/image/source issue",
       "evidence_status": "Raw source sampled; final output audit mandatory",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-editorial-voice;nrs-seo-page-audit;nrs-content-and-cases",
       "batch": "D_EDITORIAL_CASES",
-      "observation": "Existing 14 case bodies and 27 article intents pass editorial contract; original-source corroboration and new live-source companion posts remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "editorial-intents.json; editorial-review.md; originals-audit.json",
-      "blocker": "Independent original/live source corroboration blocked; no invented anecdotes, outcomes or screenshots.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1353,12 +1353,12 @@
       "depends_on": "T58;T59",
       "acceptance_criteria": "Distinct high-resolution real thumbnails with readable title, one clear CTA, hover/focus contrast, responsive",
       "evidence_status": "Negative screenshot provided",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-ux-a11y;nrs-real-image-qa;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "108 route/viewport checks; 42 sampled axe/width checks; six native Lighthouse samples. Manual screen-reader, full interaction and production field evidence remain incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "Field measurement connector unavailable; full manual screen-reader/interaction signoff and controlled motion optimization remain open.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1373,12 +1373,12 @@
       "depends_on": "T57;T59;T60",
       "acceptance_criteria": "OG/Twitter images encode successfully at 1200x630, feature visible authentic UI, no misleading attribution",
       "evidence_status": "Build currently generates OG artwork",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-seo-page-audit;nrs-real-image-qa;nrs-performance-release;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "54 final-build routes audited at desktop/mobile; substantive current content and existing intents reused. No cosmetic length rewrite.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
-      "blocker": "Live parity and independent source-image verification unavailable. See remaining acceptance criterion on this row.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1393,12 +1393,12 @@
       "depends_on": "T62",
       "acceptance_criteria": "Media manifest tests verify real source IDs/sha/alt, Playwright img.decode, no broken images, one per card",
       "evidence_status": "New test needed",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-performance-release;nrs-real-image-qa;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1413,12 +1413,12 @@
       "depends_on": "T01;T63",
       "acceptance_criteria": "Timestamped captures and permission/owner ledger; no current feature attribution or copying entire sites",
       "evidence_status": "Zapp/Designerex web checked; Hamro Vercel record but page not verified",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1433,12 +1433,12 @@
       "depends_on": "T69;T70",
       "acceptance_criteria": "Image source URLs crawlable; img src and srcset; descriptive accurate alt/caption; source image provenance",
       "evidence_status": "Official Google image SEO docs",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-seo-page-audit;nrs-real-image-qa;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "B_TECHNICAL_SEO",
-      "observation": "54 final-build routes audited at desktop/mobile; substantive current content and existing intents reused. No cosmetic length rewrite.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "browser-inventory.json; editorial-intents.json; screaming-frog-reconciliation.csv",
-      "blocker": "Live parity and independent source-image verification unavailable. See remaining acceptance criterion on this row.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1453,12 +1453,12 @@
       "depends_on": "T56;T57;T58;T59;T60;T70",
       "acceptance_criteria": "Every built page content image is independently sourced and listed in sitewide media inventory; block any noncompliant placement; verify 41 project/blog page assets",
       "evidence_status": "Not performed; implementation task",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-real-image-qa;nrs-editorial-voice;nrs-performance-release;nrs-autonomous-capture;nrs-media-presentation",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1473,12 +1473,12 @@
       "depends_on": "T01;T36",
       "acceptance_criteria": "Sitewide visual-media-inventory.csv, every placement classified, no hidden/unregistered content image",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1493,12 +1493,12 @@
       "depends_on": "T74",
       "acceptance_criteria": "Source candidate ledger with verified site URLs/nodes and project/role/permission checks",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; acquisition/grid-labs-local/manifest.json",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1516,10 +1516,10 @@
       "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "Review-branch CI and remaining live/source/manual acceptance checks are pending; see blocked-access.md.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Desktop/mobile source acquisition records URL, UTC, viewport, SHA and errors; rejects broken sources. Immutable-run guard verified without changing original manifest. Local-source external resources now use proxy correctly.",
+      "evidence": "resumed-2026-11-05/capture-immutability.json",
+      "blocker": "CI/release review of updated capture workflow; source-specific acquisition coverage remains separate.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T77",
@@ -1536,9 +1536,9 @@
       "status": "BLOCKED_SOURCE",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "Secure Figma file_content:read access needed for independently reacquiring exact original historical frames.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1553,12 +1553,12 @@
       "depends_on": "T76;T77",
       "acceptance_criteria": "Selection explanation per page; original screenshot subject matches article/case intent",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1573,12 +1573,12 @@
       "depends_on": "T78",
       "acceptance_criteria": "Original-to-derivative linkage, faithful pixels, responsive crop/contain, full original accessible",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1596,10 +1596,10 @@
       "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "Review-branch CI and remaining live/source/manual acceptance checks are pending; see blocked-access.md.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "On-demand immutable capture CLI, manifest-driven local renderer and repeatable unaltered resize/export recipe retained. No runtime or build-time external scraping.",
+      "evidence": "resumed-2026-11-05/capture-immutability.json; resumed-2026-11-05/export-hamro-capture.py; resumed-2026-11-05/verify-captures.cjs",
+      "blocker": "CI/release verification of code and replayable export recipe.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T81",
@@ -1613,12 +1613,12 @@
       "depends_on": "T79;T80",
       "acceptance_criteria": "Browser evidence at 320/390/768/1440; no broken/image mismatch/crop or omitted meaningful placements",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1633,12 +1633,12 @@
       "depends_on": "T76;T77",
       "acceptance_criteria": "Rights status and source/author/period caption; restricted or unknown assets held back",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1653,12 +1653,12 @@
       "depends_on": "T79;T80",
       "acceptance_criteria": "Image sizes/dimensions/srcset/alt/captions/OG coherent, field/lab speed caveated",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release;nrs-seo-page-audit",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
-      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
+      "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json; media-delivery.json; audit-media-delivery.cjs",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1673,12 +1673,12 @@
       "depends_on": "T81;T82",
       "acceptance_criteria": "Visual review board and signed/provenance statuses; source pending counted separately",
       "evidence_status": "PROPOSED_NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-media-presentation;nrs-ux-a11y;nrs-performance-release;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1696,9 +1696,9 @@
       "status": "BLOCKED_PERMISSION",
       "skills_to_load": "nrs-repo-inventory;nrs-autonomous-capture;nrs-media-evidence;nrs-real-image-qa;nrs-performance-release;nrs-seo-page-audit",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified. Owner authorized merge; main fast-forwarded to 8ac11e4. Public Cloudflare production-verification run 42022566819 completed Success for that commit; direct dashboard/API access remains denied.",
+      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; cloudflare-verification.json; merge-authorization.md",
+      "blocker": "Whole-program acceptance remains incomplete. Latest instruction requires review PRs only, without automatic merge or deployment.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1713,12 +1713,12 @@
       "depends_on": "T01",
       "acceptance_criteria": "Two screenshot sources linked to native reports or source marked TOOL_NOT_IDENTIFIED; no guessed scores",
       "evidence_status": "NOT_VERIFIABLE_FROM_UPLOAD",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-repo-inventory;nrs-audit-recovery;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1733,12 +1733,12 @@
       "depends_on": "T86",
       "acceptance_criteria": "Dated native reports and per-finding ledger, lab vs field distinguished; blocked items explicit",
       "evidence_status": "NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-audit-recovery;nrs-performance-release;nrs-seo-page-audit;nrs-ux-a11y",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "observation": "Six dated native final-build Lighthouse samples, complete per-audit observation ledger, live 54-route technical crawl and responsive axe evidence retained. Lab results explicitly separated from field data; public PSI API returned 429. Historical tiny reports are not claimed recovered.",
+      "evidence": "resumed-2026-11-05/performance.md; resumed-2026-11-05/native-performance-findings.csv; resumed-2026-11-05/production-http.json; resumed-2026-11-05/browser-qa.json; resumed-2026-11-05/pagespeed-public-api.json",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1753,12 +1753,12 @@
       "depends_on": "T87",
       "acceptance_criteria": "Each genuine issue has source/DOM proof, precise fix and evidence; suspected false positives labeled",
       "evidence_status": "NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-repo-inventory;nrs-audit-recovery;nrs-seo-page-audit;nrs-ux-a11y;nrs-performance-release",
       "batch": "E_UX_PERFORMANCE",
-      "observation": "108 route/viewport checks; 42 sampled axe/width checks; six native Lighthouse samples. Manual screen-reader, full interaction and production field evidence remain incomplete.",
-      "evidence": "accessibility.json; performance-summary.json; performance.md; browser-inventory.json",
-      "blocker": "Field measurement connector unavailable; full manual screen-reader/interaction signoff and controlled motion optimization remain open.",
+      "observation": "PR CI exposed a missing Process link in the mobile menu. Desktop section/link existed; restored mobile entry with existing icon/style and sequential numbering. Targeted existing navigation audit pending. Unchanged full navigation/browser audit now passes through every forward/reverse chapter; build/home/doc checks pass. Fresh PR CI pending.",
+      "evidence": "PR #111 evidence job 127285623527; site/src/workspace-home/index.html; resumed-2026-11-05/mobile-navigation-audit.log",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1773,12 +1773,12 @@
       "depends_on": "T87;T88",
       "acceptance_criteria": "Every native finding has verified/blocked/false-positive status, full-size evidence and direct remediation proof",
       "evidence_status": "NOT_EXECUTED",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-repo-inventory;nrs-audit-recovery;nrs-performance-release;nrs-seo-page-audit",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1796,10 +1796,10 @@
       "status": "GOOGLE_PENDING",
       "skills_to_load": "nrs-repo-inventory;nrs-search-intelligence;nrs-search-appearance",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Normal unsigned Nepal branded Google query returned automated-query challenge. Saved actual response; did not bypass or infer ranking/snippet state.",
+      "evidence": "resumed-2026-11-05/google-brand-nepal.json",
+      "blocker": "Normal accessible Google results and authorized Search Console crawl records.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T91",
@@ -1813,13 +1813,13 @@
       "depends_on": "T90",
       "acceptance_criteria": "Build/live/Google checks distinguish not deployed from cached; unique brand icon and 54-route consistency",
       "evidence_status": "SITE_SOURCE_AND_USER_SCREENSHOT_OBSERVED",
-      "status": "BLOCKED_SOURCE",
+      "status": "GOOGLE_PENDING",
       "skills_to_load": "nrs-repo-inventory;nrs-search-appearance;nrs-performance-release",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Built icon links and all PNG/ICO/SVG byte contracts verified; live root icons respond 200. Google branded query encounters an automated-query challenge, so no claim about its current favicon.",
+      "evidence": "resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/production-http.json; resumed-2026-11-05/google-brand-nepal.json",
+      "blocker": "Google-visible favicon/recrawl observation or authorized Search Console inspection.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T92",
@@ -1836,10 +1836,10 @@
       "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-search-appearance;nrs-content-and-cases;nrs-seo-page-audit",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Review-branch CI and remaining live/source/manual acceptance checks are pending; see blocked-access.md.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Current owned biography, metadata, humans.txt and profile labels now consistently use Nepal and owner-approved 7+. Historical role cities remain intact. New assertions reject stale present-city wording.",
+      "evidence": "resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/browser-qa.json",
+      "blocker": "Publish and verify the corrected current source; historical owner r\u00e9sum\u00e9 remains a dated source.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T93",
@@ -1853,12 +1853,12 @@
       "depends_on": "T92",
       "acceptance_criteria": "All tenure/ranking claims dated, accurately scoped, verifiable or qualified; no inflated claims",
       "evidence_status": "SITE_SOURCE_AND_USER_SCREENSHOT_OBSERVED",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-search-appearance;nrs-editorial-voice;nrs-content-and-cases",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Owner confirmed 7+ on November 5. Matched retained r\u00e9sum\u00e9 starting Aug 2018; eight roles and overlap-aware month chronology documented in tenure-proof.md. Current source/config/generators aligned. Local build and current source inspected; live production/Google and remote PR state unverified.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "source-owners.md; browser-inventory.json; blocked-access.md; tenure-proof.md; site/config/experience-evidence.json",
-      "blocker": "Tenure wording resolved. Independent external profile/issuer verification remains blocked by network/tool access; no external accounts were edited.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1873,12 +1873,12 @@
       "depends_on": "T90",
       "acceptance_criteria": "Owner-approved portrait has crawlable local image URL/alt/metadata; third-party images scoped as uncontrolled",
       "evidence_status": "SITE_SOURCE_AND_USER_SCREENSHOT_OBSERVED",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-search-appearance;nrs-real-image-qa;nrs-media-evidence",
       "batch": "C_MEDIA_ACQUISITION",
-      "observation": "Existing public derivatives pass hashes; 60 originals absent. 802 DOM image placements inventoried across desktop/mobile; original source/rights/relevance verification remains incomplete.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "originals-audit.json; media-placements.json; acquisition/; screenshots.json",
-      "blocker": "External source access denied; no Figma connector; missing originals; cannot approve new captures/derivatives or complete visual relevance/rights review.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1896,10 +1896,10 @@
       "status": "GOOGLE_PENDING",
       "skills_to_load": "nrs-search-appearance;nrs-search-intelligence;nrs-seo-page-audit",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
-      "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Google query challenge prevents independent AI Overview/citation observation; owned source fixes are separate evidence.",
+      "evidence": "resumed-2026-11-05/google-brand-nepal.json",
+      "blocker": "Accessible Google result with citations; generated text is Google controlled.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T96",
@@ -1916,10 +1916,10 @@
       "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-search-appearance;nrs-performance-release;nrs-repo-inventory",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Review-branch CI and remaining live/source/manual acceptance checks are pending; see blocked-access.md.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Deterministic final-artifact checks verify icon links on 54 routes, six PNG sizes, three ICO frames, SVG bytes and current bio/location; passes after full final build.",
+      "evidence": "resumed-2026-11-05/verify-identity.py; resumed-2026-11-05/validation-release.log",
+      "blocker": "CI/release verification.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T97",
@@ -1938,7 +1938,7 @@
       "batch": "F_AUTHORITY_SOCIAL",
       "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "Full acceptance remains open; specific external account/action permission must be established before execution. Merging validated repository changes is already authorized.",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -1956,10 +1956,10 @@
       "status": "GOOGLE_PENDING",
       "skills_to_load": "nrs-search-appearance;nrs-search-intelligence;nrs-audit-recovery",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
-      "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Code/build/live states tracked separately. No fabricated before/after SERP change while current Google query is challenged.",
+      "evidence": "resumed-2026-11-05/google-brand-nepal.json; resumed-2026-11-05/production-http.json",
+      "blocker": "Accessible new SERP observation and GSC evidence after release.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T99",
@@ -1973,13 +1973,13 @@
       "depends_on": "T90",
       "acceptance_criteria": "All candidates source-linked with exact URL or PROFILE_UNVERIFIED; no inferred handles",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "BLOCKED_SOURCE",
+      "status": "DONE_VERIFIED",
       "skills_to_load": "nrs-repo-inventory;nrs-social-identity;nrs-search-intelligence",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Observed Linktree native social-icon click destinations and configuration; eight public social destinations exact, four messaging/personal candidates explicitly withheld and unverified for publication. No guessed handles or messages.",
+      "evidence": "resumed-2026-11-05/linktree-click-targets.json; resumed-2026-11-05/social-profile-classification.json",
+      "blocker": "",
+      "confidence": "VERIFIED_DATED"
     },
     {
       "id": "T100",
@@ -1993,12 +1993,12 @@
       "depends_on": "T99",
       "acceptance_criteria": "Each candidate has verified owner relationship, accessibility, and public/private publication decision",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-social-identity;nrs-search-appearance;nrs-seo-page-audit",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -2013,13 +2013,13 @@
       "depends_on": "T93",
       "acceptance_criteria": "2023 category/year/issuer citation correct; numeric rank only if official source confirms",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "BLOCKED_SOURCE",
+      "status": "CODE_DONE_NEEDS_CI",
       "skills_to_load": "nrs-social-identity;nrs-content-and-cases;nrs-editorial-voice",
       "batch": "A_SOURCE_RELEASE",
-      "observation": "Local build and current source inspected; live production/Google and remote PR state unverified.",
-      "evidence": "source-owners.md; browser-inventory.json; blocked-access.md",
-      "blocker": "Production/SERP/GitHub API network access; owner chronology or issuer verification where required.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Official Uxcel 2023 row names owner, Product Designer category and TOP 10 badge. Removed unsupported third-place claims from visible copy/CMS and schema; no exact numeric rank inferred.",
+      "evidence": "resumed-2026-11-05/uxcel-visible-row.json; resumed-2026-11-05/uxcel-2023-owner.png; resumed-2026-11-05/verify-identity.py",
+      "blocker": "Publish and verify corrected claims in live HTML.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T102",
@@ -2033,13 +2033,13 @@
       "depends_on": "T101",
       "acceptance_criteria": "Every displayed award/certificate/date has exact public verifiable record or stated blocked reason",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "BLOCKED_SOURCE",
+      "status": "IN_PROGRESS",
       "skills_to_load": "nrs-social-identity;nrs-media-evidence;nrs-content-and-cases",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
-      "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
-      "confidence": "CONFIRMED_SOURCE"
+      "observation": "Five professional certificates individually verified with holder, issuer URL and date; 39 public course entries catalogued. No claim that every course detail, assessment or skill score is independently verified.",
+      "evidence": "resumed-2026-11-05/professional-credential-verification.json; resumed-2026-11-05/uxcel-public-credentials.json",
+      "blocker": "Remaining individual course/assessment/score verification is open; public research can continue.",
+      "confidence": "VERIFIED_DATED_PARTIAL"
     },
     {
       "id": "T103",
@@ -2053,12 +2053,12 @@
       "depends_on": "T100;T102",
       "acceptance_criteria": "Verified professional destinations, accessible labels, no duplicate generic icons, responsive tested",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-social-identity;nrs-ux-a11y;nrs-performance-release",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -2073,12 +2073,12 @@
       "depends_on": "T100;T103",
       "acceptance_criteria": "Final built Person sameAs contains only valid authorized accounts; schema checks pass",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-social-identity;nrs-seo-page-audit;nrs-search-appearance",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -2093,12 +2093,12 @@
       "depends_on": "T92;T93;T100",
       "acceptance_criteria": "Consistency discrepancy register distinguishes site edits from external owner-edit-only requests",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-social-identity;nrs-editorial-voice;nrs-search-intelligence",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Owner confirmed 7+ on November 5. Matched retained r\u00e9sum\u00e9 starting Aug 2018; eight roles and overlap-aware month chronology documented in tenure-proof.md. Current source/config/generators aligned. Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json; tenure-proof.md; site/config/experience-evidence.json",
-      "blocker": "Tenure wording resolved. Independent external profile/issuer verification remains blocked by network/tool access; no external accounts were edited.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -2113,12 +2113,12 @@
       "depends_on": "T101;T102;T103",
       "acceptance_criteria": "Accurate year/role, permitted issuer visuals, clear alt/caption and source URL; no invented badge",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-social-identity;nrs-media-evidence;nrs-media-presentation;nrs-real-image-qa",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     },
     {
@@ -2133,15 +2133,15 @@
       "depends_on": "T103;T104;T105;T106",
       "acceptance_criteria": "Dated verified report for each destination and Uxcel claim; no fabricated success; review PR only",
       "evidence_status": "LINKTREE_PROFILE_PUBLIC_UXCEL_HALL_OF_FAME_2023",
-      "status": "BLOCKED_SOURCE",
+      "status": "NOT_STARTED",
       "skills_to_load": "nrs-social-identity;nrs-performance-release;nrs-ux-a11y",
       "batch": "F_AUTHORITY_SOCIAL",
-      "observation": "Existing dated issuer/profile registry retained; no new ranking/profile claims added. Live account/source verification is unavailable.",
+      "observation": "Prior source work/evidence retained. Public network and GitHub access are now available; this ticket is reopened for acceptance-specific verification rather than treated as a blanket network blocker.",
       "evidence": "blocked-access.md; site/src/content/uxcel-recognition.json",
-      "blocker": "No authorized Search Console/analytics/issuer/profile connector and required public-source network access is denied.",
+      "blocker": "",
       "confidence": "CONFIRMED_SOURCE"
     }
   ],
   "updated_at": "2026-11-05",
-  "scope_note": "All 107 tickets accounted for; DONE_VERIFIED is limited to each stated local/source acceptance. Blocked tickets may have substantial verified partial work. No percentage or full-program completion claim."
+  "scope_note": "All 107 tickets tracked. Reopened stale network blockers; not-started and in-progress do not imply blocked or complete. DONE_VERIFIED applies only to stated ticket acceptance. New source changes await release verification; full-program signoff is not claimed. Latest owner instruction: no automatic merge or deploy."
 }

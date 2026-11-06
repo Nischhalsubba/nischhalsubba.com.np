@@ -9,6 +9,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const content = path.join(__dirname,'../src/content');
+const publicCaptures = require('./public-site-captures.cjs');
+const retainedImages = require('../src/content/portfolio-evidence-images.json');
+const { figure: retainedFigure } = require('./figma/curated-evidence.cjs');
 const projects = JSON.parse(fs.readFileSync(path.join(content,'portfolio-editorial.json'),'utf8')).projects;
 const work = JSON.parse(fs.readFileSync(path.join(__dirname,'../src/workspace-home/index.html'),'utf8').match(/window\.__C=(.*?);<\/script>/)[1]).work;
 const articles = fs.readdirSync(content).filter(n=>/^articles-editorial(?:-[a-z]+)?\.json$/.test(n)).flatMap(n=>JSON.parse(fs.readFileSync(path.join(content,n),'utf8')).articles);
@@ -21,16 +24,34 @@ function esc(text){return String(text).replaceAll('&','&amp;').replaceAll('<','&
  * Purpose: Find a committed preview for a destination. Inputs: route. Side effects: reads generated image manifest. Returns: image URL.
  */
 function preview(href){
+ const capture=publicCaptures.forRoute(href);
+ if(capture)return capture.variants.at(-1).src;
  const slug=href.replace(/\.html$/,'').split('/').pop();
  if(slug==='project-grid-labs')return '/assets/images/owner/grid-labs-cover.webp';
+ const image=retainedEvidence(href);
+ if(image)return image.variants.at(-1).src;
  const tile=work.find(p=>p.url.endsWith('/'+slug));
+ return tile ? tile.img : '/assets/images/owner/field-notes.svg';
+}
+/** Function contract: retainedEvidence
+ * Purpose: Reuse a published approved frame for a route, including multi-screen decision sequences.
+ * Inputs: canonical route. Side effects: none. Returns: retained provenance record or undefined.
+ */
+function retainedEvidence(href){
+ const slug=new URL(href,'https://portfolio.invalid').pathname.replace(/\.html$/,'').split('/').pop();
  const project=projects.find(p=>'project-'+p.slug===slug);const article=articles.find(p=>p.slug===slug);
- const id=project?.decisions.find(d=>d.image)?.image || article?.sections.find(s=>s.image)?.image;
- const files=fs.readdirSync(path.join(__dirname,'../dist/assets/images/evidence'));
- const match=id&&files.find(f=>f.startsWith(id+'-')&&f.endsWith('.webp'));
- if(match)return '/assets/images/evidence/'+match;
- if(tile)return tile.img;
- return '/assets/images/owner/field-notes.svg';
+ const decision=project?.decisions.find(d=>d.image||d.images?.length);
+ const id=decision?.image||decision?.images?.[0]||article?.sections.find(section=>section.image)?.image;
+ return retainedImages.find(image=>image.id===id&&image.permission==='OWNER_AUTHORIZED_REVIEW_BRANCH');
+}
+/** Function contract: cardMedia
+ * Purpose: Render a complete approved viewport/frame with responsive sources instead of a generic diagram.
+ * Inputs: route. Side effects: none. Returns: decorative preview markup, or empty text when source evidence is unavailable.
+ */
+function cardMedia(href){
+ const capture=publicCaptures.forRoute(href);if(capture)return publicCaptures.picture(capture,true);
+ const image=retainedEvidence(href);if(!image)return '';
+ return retainedFigure(image.id).match(/<img\b[^>]+>/)[0].replace(/alt="[^"]*"/,'alt=""').replace('<img ',`<img data-retained-evidence-preview="${esc(image.id)}" `);
 }
 /** Function contract: breadcrumb
  * Purpose: Render a single accessible location trail. Inputs: page title, category flags and filename. Side effects: none. Returns: navigation markup.
@@ -39,11 +60,14 @@ function breadcrumb(title,isBlog,isProject,relative){const parent=isBlog?['/blog
 /** Function contract: card
  * Purpose: Create a screenshot-led destination link. Inputs: URL, label and context. Side effects: none. Returns: anchor markup.
  */
-function card(href,label,context='Explore'){return `<a class="workspace-story-card" href="${esc(href.replace(/\.html$/,''))}"><div class="workspace-story-image"><img src="${preview(href)}" alt="" loading="lazy" decoding="async" width="640" height="400"><span aria-hidden="true">↗</span></div><div class="workspace-story-copy"><span class="mono">${esc(context)}</span><h3>${esc(label)}</h3></div></a>`;}
+function card(href,label,context='Explore'){return `<a class="workspace-story-card" href="${esc(href.replace(/\.html$/,''))}"><div class="workspace-story-image">${cardMedia(href) || `<img src="${preview(href)}" alt="" loading="lazy" decoding="async" width="640" height="400">`}<span aria-hidden="true">↗</span></div><div class="workspace-story-copy"><span class="mono">${esc(context)}</span><h3>${esc(label)}</h3></div></a>`;}
 /** Function contract: present
  * Purpose: Normalize legacy blog cards and duplicate trails; enhance related destinations. Inputs: main HTML and filename. Side effects: none. Returns: presentation markup.
  */
 function present(main,relative){
+ main=main.replace(/(<a\b[^>]*href="([^"]+)"[^>]*>)([\s\S]*?)(<\/a>)/g,/** Callback contract: Replace only archive-card preview images with approved source media. Inputs: full anchor, opening tag, route, body, closing tag. Side effects: none. Returns: unchanged or equivalent source-led card. */ (tag,opening,href,body,closing)=>{if(!/\bnrs-work-card\b/.test(opening))return tag;const media=cardMedia(href);return media?opening+body.replace(/<img\b[^>]+>/,media)+closing:tag;});
+
+ for(const capture of publicCaptures.captures){const slug=capture.route.replace('/project-','');main=main.replaceAll('/workspace-home/assets/projects/'+slug+'.svg',capture.variants.at(-1).src);}
  main=main.replaceAll('/workspace-home/assets/projects/grid-labs.svg','/assets/images/owner/grid-labs-cover.webp');
  main=main.replace(/(<a[^>]*href="\/project-grid-labs"[^>]*>[\s\S]*?<img[^>]*src=")[^"]+("[^>]*>)/g,'$1/assets/images/owner/grid-labs-cover.webp$2');
  main=main.replace(/<nav\b[^>]*class="[^"]*(?:nrs-case-breadcrumb|nrs-breadcrumbs|nrs-detail-breadcrumb)[^"]*"[^>]*>[\s\S]*?<\/nav>/g,'');

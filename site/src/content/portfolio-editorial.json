@@ -416,7 +416,12 @@
       "evaluation": [
         "Compare the customer milestone with the driver action for pickup, arrival and completion; each pair should describe the same service event.",
         "Walk through an intermediate-stop failure and delayed completion update. Check that the next action remains clear without implying settlement has occurred."
-      ]
+      ],
+      "publicReference": {
+        "url": "https://zapp.today/",
+        "label": "Visit Zapp’s current official website",
+        "note": "Current public website, checked 5 November 2026. Its presentation may differ from the customer-app design contribution described in this case."
+      }
     },
     {
       "slug": "morajaa",
@@ -777,7 +782,12 @@
       "evaluation": [
         "Ask a renter to compare two garments for occasion, size, price and availability without relying on memory.",
         "Review a long garment name, an unavailable date and a missing photograph to check whether the rental decision remains understandable."
-      ]
+      ],
+      "publicReference": {
+        "url": "https://designerex.com.au/",
+        "label": "Visit the current Designerex marketplace",
+        "note": "Current public marketplace, checked 5 November 2026. This case describes a contribution within the broader team; it does not claim ownership of the whole current platform."
+      }
     },
     {
       "slug": "splashnode",
@@ -1043,7 +1053,12 @@
       "evaluation": [
         "Ask a prospect to choose a relevant service, locate supporting work and reach contact with enough context to describe their need.",
         "Review the form using keyboard input, invalid email, submission failure and success; check persistent labels and meaningful feedback."
-      ]
+      ],
+      "publicReference": {
+        "url": "https://hamro-idea-website.vercel.app/",
+        "label": "Explore the current Hamro Idea demo",
+        "note": "Public demo, checked 5 November 2026. This current implementation is a separate reference from earlier studio work."
+      }
     },
     {
       "slug": "zakra-furniture",

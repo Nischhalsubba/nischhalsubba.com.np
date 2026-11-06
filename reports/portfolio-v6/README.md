@@ -1,6 +1,6 @@
 # Portfolio program v6 — review checkpoint
 
-This is a partial execution of the 107-ticket program, not final signoff. All original IDs and acceptance criteria are preserved in [progress.csv](progress.csv); partial work and blockers are explicit. No merge, deployment, indexing request, account edit or third-party outreach occurred.
+This is a partial execution of the 107-ticket program, not final signoff. All original IDs and acceptance criteria are preserved in [progress.csv](progress.csv); partial work and blockers are explicit. The owner subsequently authorized merging; application commit 8ac11e4 is now on main, and all seven public release checks passed. No indexing request, external account edit or third-party outreach occurred. See cloudflare-verification.json and postmerge-run-status.json.
 
 ## Source changes
 
@@ -42,3 +42,11 @@ Rollback: revert this review commit on its branch. No production migration or ex
 ## Owner-confirmed tenure follow-up
 
 The owner confirmed 7+ years. See tenure-proof.md for eight résumé roles, dates, overlap handling and source SHA256. Current source/generators are aligned, and About includes the date trail. Archived PDFs/audit evidence retain their original bytes. validation-tenure.log and verify-tenure.cjs cover this follow-up; external profile edits remain blocked.
+
+## Authorized main release and remaining source blockers
+
+Main: 8ac11e4f5b26aab642fbd81f2630ab2e840a92e1. Validation, browser, hero UX, interface polish, security, Production QA and Cloudflare production verification all completed Success. The latter is run 42022566819; it ran the verifier for ten seconds, rather than being skipped. Direct Cloudflare API/dashboard access remains blocked, but successful CI verification checks the live provider/branch/commit and critical pages. No Cloudflare API token is necessary for this observed CI conclusion; direct provider inspection would require separate access.
+
+The new media checker enumerated 973 desktop DOM/CSS/pseudo-background/responsive/social/icon placements and decoded all 231 unique local assets with no delivery failures. It complements the earlier desktop/mobile inventory; it does not certify original-source authenticity, visual relevance or rights. Grid Labs source was independently discovered and run without modification; its desktop/mobile originals are rejected for publication due to missing font/icon dependencies and five source-script failures. No broken capture was substituted into the portfolio.
+
+The environment draft additionally lists the source font/icon hosts. Apply the saved network settings to unblock source capture; Figma original access and authorized GSC/analytics remain necessary for their specific tickets. Merge/build success does not complete the remaining 107-ticket acceptance requirements. Latest evidence-only changes are saved on the review branch; they are outside deployed site assets.

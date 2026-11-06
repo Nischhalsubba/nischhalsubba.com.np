@@ -71,3 +71,7 @@ body[data-portfolio-design="workspace-inner-v1"]{isolation:isolate}.workspace-fi
 @media(max-width:1000px){.workspace-story-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.workspace-blog-feature{gap:28px}}
 @media(max-width:640px){.workspace-story-grid,.editorial-page .workspace-story-grid,.workspace-blog-feature{grid-template-columns:minmax(0,1fr)}.workspace-breadcrumb{font-size:12px}.workspace-breadcrumb [aria-current]{max-width:100%}.workspace-story-copy{padding:20px}.workspace-blog-feature{gap:24px}.workspace-story-card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){.workspace-story-card{transition:none}}
+
+/* Keep provenance readable when a current-site capture has a multi-line caption. */
+.agent-case-cover[data-site-capture] .workspace-zoom{position:static;display:inline-flex;margin:0 1rem 1rem}
+.nrs-work-card-media picture,.workspace-story-image picture{display:block;width:100%;height:100%}

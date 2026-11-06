@@ -21,13 +21,13 @@ const required = {
   'index.html': {
     canonical: `${site}/`,
     titleMustInclude: ['Nischhal Raj Subba', 'Senior Product Designer'],
-    descriptionMustInclude: ['Senior product designer', 'Kathmandu', 'SaaS'],
+    descriptionMustInclude: ['Senior product designer', 'Nepal', 'SaaS'],
     robotsMustInclude: ['index', 'follow'],
   },
   'product-design-nepal.html': {
     canonical: `${site}/product-design-nepal`,
     titleMustInclude: ['Product Designer in Nepal', 'Software Teams'],
-    descriptionMustInclude: ['Product design support from Kathmandu', 'software teams', 'build-ready handoff'],
+    descriptionMustInclude: ['Product design support from Nepal', 'software teams', 'build-ready handoff'],
     robotsMustInclude: ['index', 'follow'],
   },
   'services.html': {

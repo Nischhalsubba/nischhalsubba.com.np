@@ -23,10 +23,10 @@ const personId = `${site}/#nischhal-raj-subba`;
 const websiteId = `${site}/#website`;
 
 const coreMeta = {
-  '/': ['Nischhal Raj Subba | Senior Product Designer', 'Product designer based in Kathmandu. I work on complex SaaS, Web3, fintech and software products, from product structure and interface design to design systems and handoff.'],
+  '/': ['Nischhal Raj Subba | Senior Product Designer', 'Product designer based in Nepal. I work on complex SaaS, Web3, fintech and software products, from product structure and interface design to design systems and handoff.'],
   '/projects': ['Product Design Case Studies | Nischhal Raj Subba', 'Selected case studies showing the product problems, constraints, design decisions and evidence behind my work across SaaS, Web3, fintech and software.'],
   '/services': ['Product Design Services | Nischhal Raj Subba', 'Product design support for teams that need clearer workflows, stronger interfaces, practical design systems, UX audits or better design-to-engineering handoff.'],
-  '/about': ['About Nischhal Raj Subba | Product Designer', 'I am a product designer based in Kathmandu with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.'],
+  '/about': ['About Nischhal Raj Subba | Product Designer', 'I am a product designer based in Nepal with 7+ years across product teams, agencies and front-end collaboration. Read about my experience, approach and working style.'],
   '/contact': ['Contact Nischhal Raj Subba', 'Get in touch about senior product design roles or focused product work. Share the product, current friction, timeline and any useful links.'],
   '/privacy': ['Privacy | Nischhal Raj Subba', 'A plain-language explanation of what this portfolio collects through the contact form, how limited site measurement is used and how to request deletion.'],
   '/blog/': ['Product Design Notes | Nischhal Raj Subba', 'Notes from product design work: complex workflows, SaaS dashboards, Web3 UX, design systems, audits, responsive behavior and handoff.'],

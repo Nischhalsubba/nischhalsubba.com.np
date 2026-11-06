@@ -15,6 +15,7 @@ const site = 'https://nischhalsubba.com.np';
 const inventory = JSON.parse(fs.readFileSync(path.join(dist, 'workspace-inner/routes.json'), 'utf8'));
 const files = ['index.html', ...inventory.map(route => route.file)];
 const evidenceImages = JSON.parse(fs.readFileSync(path.join(root, 'src/content/portfolio-evidence-images.json'), 'utf8'));
+const publicCaptures = require('./public-site-captures.cjs');
 const searchMetadata = JSON.parse(fs.readFileSync(path.join(root, 'src/content/search-metadata.json'), 'utf8'));
 const fontDirectory = path.join(root, 'src/workspace-home/vendor/fonts.gstatic.com');
 const fontFiles = fs.readdirSync(fontDirectory).filter(file => file.endsWith('.ttf')).map(file => path.join(fontDirectory, file));
@@ -23,7 +24,7 @@ const person = { '@type': 'Person', '@id': site + '/#nischhal-raj-subba', name: 
 // A weekly leaderboard snapshot is not an annual award. Only verified historical recognition belongs here.
 const recognition = JSON.parse(fs.readFileSync(path.join(root, 'src/content/uxcel-recognition.json'), 'utf8'));
 person.hasCredential = recognition.certifications.map(item => ({ '@type': 'EducationalOccupationalCredential', name: `Uxcel ${item.name}`, credentialCategory: 'Professional certification', url: item.source, recognizedBy: { '@type': 'Organization', name: 'Uxcel', url: 'https://uxcel.com/' } }));
-person.award = recognition.historical.map(item => `${item.recognition} — #${item.exactPosition} ${item.category} (${item.year})`);
+person.award = recognition.historical.map(item => `${item.recognition} — ${item.exactPosition ? '#' + item.exactPosition : item.placementGroup || ''} ${item.category} (${item.year})`);
 /** Function contract: escape
  * Purpose: Encode text for XML and HTML attributes. Inputs: text. Side effects: none. Returns: escaped text.
  */
@@ -93,6 +94,10 @@ for (const file of files) {
   const slug = file.replace(/\.html$/, '').replaceAll('/', '--');
 
   const contentImages = [...html.matchAll(/data-evidence-image="([^"]+)"/g)].map(match => evidenceImages.find(image => image.id === match[1])).filter(Boolean);
+  for (const match of html.matchAll(/data-site-capture="([^"]+)"/g)) {
+    const capture = publicCaptures.captures.find(/** Callback contract: Resolve the independently captured figure. Inputs: record. Side effects: none. Returns: ID equality. */ item => item.id === match[1]);
+    if (capture) contentImages.push(capture);
+  }
   const editorialRevision = html.match(/data-editorial-revision="(\d{4}-\d{2}-\d{2})"/)?.[1];
   if (isArticle && editorialRevision) html = setMeta(html, 'property', 'article:modified_time', editorialRevision);
   const coverSrc = contentImages[0]?.socialSrc || (isProject ? html.match(/class="agent-case-cover"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/)?.[1] : null);

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "hamro-current-demo",
+    "route": "/project-hamro-idea",
+    "sourceUrl": "https://hamro-idea-website.vercel.app/",
+    "capturedAt": "2026-11-05T12:27:12.164Z",
+    "sourceViewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "sourceSha256": "69eb816ea462f083917173ad6ceb2f14adaca91466f37432b52d6fadfe2a2cf6",
+    "fullOriginalSha256": "58a5c98101d69bc22fd51631f88984815de8df31320d86cf3c7313a8b5848472",
+    "permission": "OWNER_REQUESTED_PUBLIC_DEMO_CAPTURE",
+    "roleBoundary": "Current public demo; separate from earlier studio contribution. This capture does not establish historical authorship.",
+    "alt": "Current Hamro Idea public demo showing its navigation, blue gradient hero, service positioning and project-call actions.",
+    "caption": "Current public Hamro Idea demo, independently captured on 5 November 2026. Earlier studio work is described separately in this case.",
+    "variants": [
+      {
+        "src": "/assets/images/site-captures/hamro-current-demo-69eb816ea462-640.webp",
+        "width": 640,
+        "height": 400,
+        "sha256": "514916a06a28b646a0895d1654ef14b13c00592f7aeda50feca6eda4ae20899b",
+        "bytes": 19170
+      },
+      {
+        "src": "/assets/images/site-captures/hamro-current-demo-69eb816ea462-960.webp",
+        "width": 960,
+        "height": 600,
+        "sha256": "abb4b656da09b386312e554ce11dbcc83d10d5ce3b48e62dac3d9c0e6903c421",
+        "bytes": 33312
+      },
+      {
+        "src": "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.webp",
+        "width": 1440,
+        "height": 900,
+        "sha256": "5392c373d90e323baa29d5aa5a2bb29201fa13a63730d710d85f42f9e35a16b6",
+        "bytes": 56488
+      }
+    ],
+    "socialSrc": "/assets/images/site-captures/hamro-current-demo-69eb816ea462-1440.png",
+    "fullOriginal": "/assets/images/site-captures/hamro-current-demo-full-58a5c98101d6.png",
+    "processing": "Whole viewport resized and encoded as WebP; no cropping, drawing, redaction or UI content changes. Original viewport PNG and full-page PNG retained."
+  }
+]

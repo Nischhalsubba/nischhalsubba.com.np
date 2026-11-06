@@ -32,9 +32,11 @@
       "year": 2023,
       "category": "Product Designer",
       "recognition": "Uxcel Designer Rankings / Hall of Fame",
-      "exactPosition": 3,
+      "exactPosition": null,
       "source": "https://uxcel.com/designer-rankings/past-winners",
-      "verification": "Uxcel annual ranking confirmation dated 18 January 2024 and public 2023 Hall of Fame row; supplied Top 10 badge"
+      "verification": "Independently checked issuer Hall of Fame 2023 Product Designer / UX row and Top 10 badge on 5 November 2026; the public row does not establish an exact numeric position.",
+      "placementGroup": "Top 10",
+      "verifiedAt": "2026-11-05"
     }
   ],
   "assets": [

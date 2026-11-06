@@ -1,6 +1,6 @@
 source,finding,confidence,status,evidence,remaining
 references tiny audit strips,Exact original audit product/share URLs,NEEDS_VERIFICATION,BLOCKED_SOURCE,Program gives no usable native report URL,Obtain original native reports; no OCR-inferred scores
-Screaming Frog November 5 export,54 HTML entries returned 200 with metadata,DATED_HISTORY,VERIFIED_SOURCE,screaming-frog-reconciliation.csv,Current production recrawl blocked by proxy
-Repository documentation gate,Three missing documentation contracts,CONFIRMED_SOURCE,DONE_VERIFIED,validation-baseline.log and validation-final.log,CI on review branch still needs PR API access
+Screaming Frog November 5 export,54 HTML entries returned 200 with metadata,DATED_HISTORY,VERIFIED_SOURCE,screaming-frog-reconciliation.csv,Historical export retained separately; current 54-route live parity verified in resumed-2026-11-05/production-http.json
+Repository documentation gate,Three missing documentation contracts,CONFIRMED_SOURCE,DONE_VERIFIED,validation-baseline.log and validation-final.log,Final local validation/code documentation gates pass; current release CI separately recorded.
 SEO contract parser,Apostrophes truncate quoted descriptions,CONFIRMED_SOURCE,DONE_VERIFIED,test-seo-parser.cjs,Final audit now included in npm run validate
-Google favicon screenshot,Old orange icon,USER_OBSERVED,GOOGLE_PENDING,Existing workspace-icons.cjs retained,Production bytes and Google recrawl cannot be independently checked
+Google favicon screenshot,Old orange icon,USER_OBSERVED,GOOGLE_PENDING,Existing workspace-icons.cjs retained,Production bytes/links verified; Google-visible icon and recrawl remain unverified due query challenge.

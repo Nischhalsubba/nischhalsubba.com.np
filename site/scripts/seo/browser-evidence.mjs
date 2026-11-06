@@ -20,12 +20,14 @@ const caseStudies = process.argv.includes('--case-studies');
 const routes = caseStudies ? JSON.parse(fs.readFileSync(new URL('../../src/content/portfolio-editorial.json', import.meta.url), 'utf8')).projects.map(/** Callback contract: Select each retained case route. Inputs: project metadata. Side effects: none. Returns: canonical path. */ project => '/project-' + project.slug) : process.argv.includes('--home-only') ? ['/'] : ['/', '/projects', '/project-orkest', '/services', '/blog/', '/blog/figma-handoff-notes-for-developers'];
 const failures = []; const accessibility = []; const performance = [];
 if (!process.argv.includes('--performance-only')) {
-const browser = await chromium.launch({headless:true});
+// CHROME_PATH permits system Chromium in managed environments; CI retains the pinned Playwright browser.
+const browser = await chromium.launch({headless:true,...(process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : {})});
 try {
   for (const width of [320,375,390,768,1024,1440,1920]) {
     const context = await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
     const page = await context.newPage();
     for (const route of routes) {
+      console.log('[route-audit]', width, route);
       const response = await page.goto(base+route,{waitUntil:'networkidle'});
       assert.ok(response.ok(), `${route}: HTTP ${response.status()}`);
       await page.evaluate(/** Callback contract: Wait for loaded fonts before measuring settled layout. Inputs: none. Side effects: none. Returns: font readiness. */ () => document.fonts.ready);
@@ -34,6 +36,7 @@ try {
       if (caseStudies && width === 390) {
         const chapter = page.locator('.editorial-journey a').first();
         await chapter.focus(); await page.keyboard.press('Enter');
+        await page.waitForURL(/** Callback contract: Wait for native fragment navigation before checking URL and focus. Inputs: URL. Side effects: none. Returns: expected fragment match. */ url => url.hash === '#chapter-1');
         assert.equal(new URL(page.url()).hash, '#chapter-1', 'Chapter index must activate from the keyboard');
         assert.equal(await page.locator('#chapter-1').evaluate(/** Callback contract: Check fragment focus on the chapter target. Inputs: section. Side effects: none. Returns: focus equality. */ section => section === document.activeElement), true);
       }

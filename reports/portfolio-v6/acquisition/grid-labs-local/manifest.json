@@ -1,0 +1,50 @@
+[
+  {
+    "source": "http://127.0.0.1:8008/",
+    "finalUrl": "http://127.0.0.1:8008/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "capturedAt": "2026-11-05T11:51:27.121Z",
+    "filename": "1440.png",
+    "sha256": "9ed2a1d3690fd4c074173abdf3a9116c570e6b080e22345a0a47b88517134768",
+    "status": "REJECTED_FOR_PUBLICATION_RENDER_DEPENDENCIES_BLOCKED",
+    "permission": "OWNER_REQUESTED_SOURCE_CAPTURE_NOT_PUBLICATION_SIGNOFF",
+    "role": "UNMODIFIED_LOCAL_IMPLEMENTATION_NOT_LIVE_HOSTING_SERVICE",
+    "errors": [
+      "Failed to fetch",
+      "Failed to fetch",
+      "Failed to fetch",
+      "Failed to fetch",
+      "Failed to fetch"
+    ],
+    "sourceRepository": "https://github.com/Nischhalsubba/Grid-Labs-Hosting",
+    "sourceCommit": "4b056e7a4a4ab56fd53abd6c26feb98bd2e4b668",
+    "blocker": "Five source script fetch failures (Unicons) and remote font stylesheet unavailable; original bytes retained as diagnostic evidence, not approved product media."
+  },
+  {
+    "source": "http://127.0.0.1:8008/",
+    "finalUrl": "http://127.0.0.1:8008/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "capturedAt": "2026-11-05T11:51:29.748Z",
+    "filename": "390.png",
+    "sha256": "91b38521d41cf2ce59295a06b2ad67ceb3615dfd776b3571114b70fa2cc58c17",
+    "status": "REJECTED_FOR_PUBLICATION_RENDER_DEPENDENCIES_BLOCKED",
+    "permission": "OWNER_REQUESTED_SOURCE_CAPTURE_NOT_PUBLICATION_SIGNOFF",
+    "role": "UNMODIFIED_LOCAL_IMPLEMENTATION_NOT_LIVE_HOSTING_SERVICE",
+    "errors": [
+      "Failed to fetch",
+      "Failed to fetch",
+      "Failed to fetch",
+      "Failed to fetch",
+      "Failed to fetch"
+    ],
+    "sourceRepository": "https://github.com/Nischhalsubba/Grid-Labs-Hosting",
+    "sourceCommit": "4b056e7a4a4ab56fd53abd6c26feb98bd2e4b668",
+    "blocker": "Five source script fetch failures (Unicons) and remote font stylesheet unavailable; original bytes retained as diagnostic evidence, not approved product media."
+  }
+]

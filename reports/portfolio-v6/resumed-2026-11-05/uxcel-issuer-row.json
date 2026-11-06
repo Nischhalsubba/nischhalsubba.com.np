@@ -1,0 +1,32 @@
+{
+  "source": "https://uxcel.com/designer-rankings/past-winners",
+  "scope": "Issuer public HTML row; render selection checked separately.",
+  "rows": [
+    {
+      "text": "Nischhal Raj Subba Product Designer UX 2023 ",
+      "links": [],
+      "images": [
+        {
+          "src": "https://cdn.prod.website-files.com/61f9082050036c5b7a4899f5/6746334f3d2fef7097ad151f_Tag%20new.svg",
+          "loading": "lazy",
+          "width": "96",
+          "height": "32",
+          "alt": "Winner image",
+          "class": "dr-winners-badge-img w-condition-invisible"
+        },
+        {
+          "src": "https://cdn.prod.website-files.com/61f9082050036c5b7a4899f5/674633a518da9c86f231aac4_Tag%20new.svg",
+          "loading": "lazy",
+          "width": "88",
+          "height": "32",
+          "alt": "Top image",
+          "class": "top-badge-img"
+        }
+      ],
+      "attributes": {
+        "role": "listitem",
+        "class": "dr-winners-table-item-grid visible w-dyn-item"
+      }
+    }
+  ]
+}

@@ -1,0 +1,633 @@
+{
+  "data": {
+    "buttons": [
+      {
+        "text": "",
+        "label": "Linktree"
+      },
+      {
+        "text": "",
+        "label": "Share profile"
+      },
+      {
+        "text": "",
+        "label": "Share"
+      },
+      {
+        "text": "",
+        "label": "Share"
+      },
+      {
+        "text": "Nischhal - Product Designer Facebook",
+        "label": "Nischhal - Product Designer Facebook"
+      },
+      {
+        "text": "Nischhal - Product Designer Threads",
+        "label": "Nischhal - Product Designer Threads"
+      },
+      {
+        "text": "Nischhal - Product Designer Instagram",
+        "label": "Nischhal - Product Designer Instagram"
+      },
+      {
+        "text": "Nischhal - Product Designer YouTube",
+        "label": "Nischhal - Product Designer YouTube"
+      },
+      {
+        "text": "Nischhal - Product Designer Email",
+        "label": "Nischhal - Product Designer Email"
+      },
+      {
+        "text": "Nischhal - Product Designer TikTok",
+        "label": "Nischhal - Product Designer TikTok"
+      },
+      {
+        "text": "Nischhal - Product Designer Snapchat",
+        "label": "Nischhal - Product Designer Snapchat"
+      },
+      {
+        "text": "Nischhal - Product Designer WhatsApp",
+        "label": "Nischhal - Product Designer WhatsApp"
+      },
+      {
+        "text": "Nischhal - Product Designer X",
+        "label": "Nischhal - Product Designer X"
+      },
+      {
+        "text": "Nischhal - Product Designer Bluesky",
+        "label": "Nischhal - Product Designer Bluesky"
+      },
+      {
+        "text": "Nischhal - Product Designer Telegram",
+        "label": "Nischhal - Product Designer Telegram"
+      },
+      {
+        "text": "Nischhal - Product Designer Twitch",
+        "label": "Nischhal - Product Designer Twitch"
+      },
+      {
+        "text": "Cookie Preferences",
+        "label": null
+      },
+      {
+        "text": "Explore",
+        "label": null
+      },
+      {
+        "text": "About this account",
+        "label": null
+      },
+      {
+        "text": "More from Linktree",
+        "label": null
+      },
+      {
+        "text": "",
+        "label": "Close"
+      },
+      {
+        "text": "previous",
+        "label": null
+      },
+      {
+        "text": "next",
+        "label": null
+      },
+      {
+        "text": "See all",
+        "label": null
+      },
+      {
+        "text": "",
+        "label": "Close"
+      },
+      {
+        "text": "",
+        "label": "Close"
+      },
+      {
+        "text": "Products",
+        "label": null
+      },
+      {
+        "text": "Link in bio + tools",
+        "label": null
+      },
+      {
+        "text": "Manage your social media",
+        "label": null
+      },
+      {
+        "text": "Grow and engage your audience",
+        "label": null
+      },
+      {
+        "text": "Monetize your following",
+        "label": null
+      },
+      {
+        "text": "Measure your success",
+        "label": null
+      },
+      {
+        "text": "Learn",
+        "label": null
+      },
+      {
+        "text": "Resources",
+        "label": null
+      },
+      {
+        "text": "How to use Linktree",
+        "label": null
+      },
+      {
+        "text": "Blog",
+        "label": null
+      },
+      {
+        "text": "Tools",
+        "label": null
+      },
+      {
+        "text": "Read more",
+        "label": null
+      },
+      {
+        "text": "",
+        "label": "Back"
+      },
+      {
+        "text": "",
+        "label": "Expand to full screen"
+      },
+      {
+        "text": "",
+        "label": "Close dialog"
+      },
+      {
+        "text": "Claim your Linktree",
+        "label": null
+      },
+      {
+        "text": "Sign up free",
+        "label": null
+      }
+    ],
+    "nextData": {
+      "keys": [
+        "account",
+        "theme",
+        "fontTags",
+        "isProfileVerified",
+        "hasConsentedToView",
+        "hasPagePassword",
+        "pageLockType",
+        "pageLockDescription",
+        "hasUnlockedProfile",
+        "username",
+        "pageTitle",
+        "description",
+        "socialLinks",
+        "integrations",
+        "seoSchemaClassifications",
+        "seoPrimaryVertical",
+        "localBusinesses",
+        "books",
+        "musicPlaylists",
+        "tourEvents",
+        "metaTitle",
+        "metaDescription",
+        "customAvatar",
+        "links",
+        "pinnedLinks",
+        "shopLinks",
+        "leapLink",
+        "isOwner",
+        "isLogoVisible",
+        "userAgent",
+        "stage",
+        "commerceStorefrontItems",
+        "canAccessStore",
+        "isShopPageBacked",
+        "storeStructuredDataInDocument",
+        "hasDigitalWalletConnection",
+        "profileHasAffiliateContent",
+        "affiliateLinkIds",
+        "defaultPage",
+        "environment",
+        "contentGating",
+        "messagingSmsAuthEnabled",
+        "messagingSmsAuthEnabledInternal",
+        "videoStructuredData",
+        "hasSensitiveContent",
+        "followerNotificationsEnabled",
+        "followerCapabilities",
+        "followerConsentRequirements",
+        "isPreview",
+        "isDraftSession",
+        "isConsumerPreviewModeEnabled",
+        "isBookmarkSaveIconEnabled",
+        "isFullScreenMobilePreview",
+        "statsigInitValues",
+        "isInternalEmail",
+        "seoLinkedUsernames",
+        "trustedProfiles",
+        "shouldNoIndex",
+        "dataFeedsProfileUrl",
+        "dataFeedsDerivedMetricsUrl",
+        "dataFeedsContentUrls",
+        "dataGrailContainerConfig",
+        "datagrailConsentPreferences",
+        "blogBatchIndex",
+        "latestBlogPosts",
+        "googleAdConfig",
+        "locale",
+        "i18n"
+      ],
+      "accountKeys": [
+        "id",
+        "uuid",
+        "username",
+        "pages",
+        "isActive",
+        "status",
+        "deleted",
+        "profilePictureUrl",
+        "avatarMode",
+        "avatarType",
+        "avatarShapeType",
+        "bannerImage",
+        "bannerImageAttributes",
+        "bannerVideo",
+        "bannerType",
+        "pageTitle",
+        "googleAnalyticsId",
+        "facebookPixelId",
+        "tiktokPixelId",
+        "donationsActive",
+        "causeBanner",
+        "contentWarning",
+        "description",
+        "isLogoVisible",
+        "socialLinksPosition",
+        "useSignupLink",
+        "createdAt",
+        "updatedAt",
+        "defaultProfilePage",
+        "verticals",
+        "seoPrimaryVertical",
+        "customAvatar",
+        "customAvatarVideo",
+        "customAvatarAttributes",
+        "backgroundImageAttributes",
+        "profileBadges",
+        "stickers",
+        "isVenmoEnabled",
+        "isSquareWalletEnabled",
+        "isCookieBannerEnabled",
+        "isInitialsProfileEnabled",
+        "isWhatsappNotificationsEnabled",
+        "isShareLinksEnabled",
+        "isOnlyfansSEOEnabled",
+        "linkTypesForSEO",
+        "manualTitleTag",
+        "dynamicMetaTitle",
+        "dynamicMetaDescription",
+        "tier",
+        "enableDynamicProfilePageMetadata",
+        "linkPlatforms",
+        "isAmazonAffiliateEnabled",
+        "profileLinkContentDisplayType",
+        "complementaryThemeProperties",
+        "timezone",
+        "showSignupOption",
+        "country",
+        "isReportLinktreeEnabled",
+        "isVisualLinkPreviewsEnabled",
+        "isStoreTabEnabled",
+        "isShopPageBackedTabEnabled",
+        "isMigratedShopUnification",
+        "contentTranslationsEnabled",
+        "isFetchCoMoFromLinktreeBackendEnabled",
+        "canAccessMonetizationTab",
+        "eligibleForMonetization",
+        "isMessagingEnabled",
+        "hasOptedIntoTotalFollowerCount",
+        "isSensitive",
+        "isSensitiveWithGracePeriod",
+        "isSeoNoindex",
+        "userGeneratedBio",
+        "showGeneratedBio",
+        "hasMediaKit",
+        "isDigitalWalletActive",
+        "messagingSettings",
+        "isAdsPolicyEligible",
+        "isUnclaimedAccount",
+        "socialIntegrations",
+        "connectors",
+        "affiliateTokens",
+        "ownedBy",
+        "pageMeta",
+        "integrations",
+        "links",
+        "pinnedLinks",
+        "socialLinks",
+        "socialFeeds",
+        "theme"
+      ],
+      "socialLinks": [
+        {
+          "type": "FACEBOOK",
+          "url": "https://www.facebook.com/officialnischhalsubba",
+          "position": 1
+        },
+        {
+          "type": "INSTAGRAM",
+          "url": "https://instagram.com/nischhalsubba",
+          "position": 3
+        },
+        {
+          "type": "TIKTOK",
+          "url": "https://tiktok.com/@nischhalsubba",
+          "position": 6
+        },
+        {
+          "type": "YOUTUBE",
+          "url": "https://www.youtube.com/@Nischhal",
+          "position": 4
+        },
+        {
+          "type": "WHATSAPP",
+          "url": "WITHHELD_FROM_PUBLIC_REPORT_PERSONAL_OR_MESSAGING",
+          "position": 8
+        },
+        {
+          "type": "TWITCH",
+          "url": "https://www.twitch.tv/mrsubba",
+          "position": 12
+        },
+        {
+          "type": "EMAIL_ADDRESS",
+          "url": "WITHHELD_FROM_PUBLIC_REPORT_PERSONAL_OR_MESSAGING",
+          "position": 5
+        },
+        {
+          "type": "SNAPCHAT",
+          "url": "WITHHELD_FROM_PUBLIC_REPORT_PERSONAL_OR_MESSAGING",
+          "position": 7
+        },
+        {
+          "type": "TELEGRAM",
+          "url": "WITHHELD_FROM_PUBLIC_REPORT_PERSONAL_OR_MESSAGING",
+          "position": 11
+        },
+        {
+          "type": "THREADS",
+          "url": "https://www.threads.com/@nischhalsubba",
+          "position": 2
+        },
+        {
+          "type": "X",
+          "url": "https://x.com/Nischhalsubba",
+          "position": 9
+        },
+        {
+          "type": "BLUESKY",
+          "url": "https://bsky.app/profile/nischhal.bsky.social",
+          "position": 10
+        }
+      ]
+    },
+    "socialElements": [
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer Facebook",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer Threads",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer Instagram",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer YouTube",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer TikTok",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer Snapchat",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer WhatsApp",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer Bluesky",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer Telegram",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Nischhal - Product Designer Twitch",
+        "href": null,
+        "attributes": [
+          "type",
+          "role",
+          "title",
+          "data-testid",
+          "aria-label",
+          "class"
+        ]
+      },
+      {
+        "tag": "A",
+        "label": "Instagram",
+        "href": "https://linktr.ee/link-in-bio/instagram",
+        "attributes": [
+          "href",
+          "aria-label",
+          "target",
+          "rel",
+          "class"
+        ]
+      },
+      {
+        "tag": "A",
+        "label": "TikTok",
+        "href": "https://linktr.ee/link-in-bio/tiktok",
+        "attributes": [
+          "href",
+          "aria-label",
+          "target",
+          "rel",
+          "class"
+        ]
+      },
+      {
+        "tag": "A",
+        "label": "Instagram",
+        "href": "https://linktr.ee/features/social-planner/instagram",
+        "attributes": [
+          "href",
+          "aria-label",
+          "target",
+          "rel",
+          "class"
+        ]
+      },
+      {
+        "tag": "A",
+        "label": "TikTok",
+        "href": "https://linktr.ee/features/social-planner/tiktok",
+        "attributes": [
+          "href",
+          "aria-label",
+          "target",
+          "rel",
+          "class"
+        ]
+      },
+      {
+        "tag": "A",
+        "label": "Facebook",
+        "href": "https://linktr.ee/features/social-planner/facebook",
+        "attributes": [
+          "href",
+          "aria-label",
+          "target",
+          "rel",
+          "class"
+        ]
+      },
+      {
+        "tag": "A",
+        "label": "Threads",
+        "href": "https://linktr.ee/features/social-planner/threads",
+        "attributes": [
+          "href",
+          "aria-label",
+          "target",
+          "rel",
+          "class"
+        ]
+      },
+      {
+        "tag": "A",
+        "label": "YouTube",
+        "href": "https://linktr.ee/features/social-planner/youtube-shorts",
+        "attributes": [
+          "href",
+          "aria-label",
+          "target",
+          "rel",
+          "class"
+        ]
+      }
+    ]
+  },
+  "network": [
+    {
+      "url": "https://assets.production.linktr.ee/profile--collab-theme-assets/backgroundVideoDesktop.mp4",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://sdk.snapkit.com/js/v1/create.js",
+      "status": 503
+    },
+    {
+      "url": "https://sdk.snapkit.com/js/v1/create.js",
+      "error": "net::ERR_ABORTED"
+    }
+  ]
+}
