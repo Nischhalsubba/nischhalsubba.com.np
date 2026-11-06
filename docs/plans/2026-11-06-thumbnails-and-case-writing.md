@@ -8,3 +8,9 @@ User direction: consistent, beautiful homepage thumbnails without cropping; clea
 4. Record reference findings and exact remaining blockers, open one reviewable PR, merge only after checks, and verify the Cloudflare build.
 
 Reference: https://kseniiamankovska.com/chromia, read 2026-11-06. Its sequence is brief/role, context, contribution, research, individual design decisions, outcomes and learning. The portfolio already has evidence-backed decision chapters; its context currently follows the challenge and chapter navigation. This change improves that reading order without copying prose or importing research, metrics, release status, or team ownership from the reference. Further individual prose changes must remain specific to verified project evidence.
+
+## Reference-inspired presentation refinement
+
+The user supplied a featured-project screenshot and requested similar thumbnail art direction. Keep the 16:10 geometry and original screenshots unchanged. Give projects individual soft color fields and subtle screen shadows. Present the complete Yarsha contacts/transaction and Zapp account/parcel screens as pairs. Retain a single complete screenshot for desktop projects. Use CSS composition rather than generated or repainted UI. This is a presentation refinement inside the existing selected-work canvas; navigation and the overall approved shell stay intact. Designerex source uncertainty and full-page screenshots remain explicit program gaps.
+
+Validate the existing 14-frame geometry and pairwise non-overlap, every composed screen’s decode/contain treatment, source bytes, normal/reduced motion and phone/desktop screenshots. Fix PR #121’s observed missing callback documentation before asking CI to rerun.

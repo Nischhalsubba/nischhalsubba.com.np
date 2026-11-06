@@ -1,0 +1,30 @@
+{
+  "scope": "Homepage canvas and project-index dialog only.14 frames per surface; 13 source-backed previews with 15 unaltered UI images and one text-only source-pending fallback.",
+  "reference": "User-provided screenshot of kseniiamankovska.com featured projects",
+  "choices": {
+    "composition": "Complete screenshots on CSS project-tinted backgrounds; no AI image generation, product UI redraw, image crop, perspective warp or added fake browser controls",
+    "mobilePairs": {
+      "yarsha": [
+        "yarsha-contacts",
+        "yarsha-transaction-detail"
+      ],
+      "zapp": [
+        "zapp-account-entry",
+        "zapp-parcel-details"
+      ]
+    },
+    "strongerPrimarySelections": {
+      "orkest": "orkest-lead-list",
+      "pihub": "pihub-application-status"
+    },
+    "sourcePending": "Designerex uses typographic fallback on both homepage surfaces. Historical image/source tasks remain open.",
+    "longPageBoundary": "Morajaa retains the complete long-page original. A suitably verified viewport capture remains a future improvement; no arbitrary crop is used."
+  },
+  "sourceBytes": "No original image file changed in this batch. Existing approved registry hashes and provenance remain authoritative.",
+  "validation": [
+    "Tracked code-documentation gate passes after callback contracts were added",
+    "Canvas and dialog14frame geometries, complete-image decode/contain,15sourceimages,14dialogcompositions and no canvas overlap at390/1440 in normal/reduced motion passed",
+    "Final full npm validate passed after the canvas/dialog changes; fresh PR CI required."
+  ],
+  "release": "Prototype in PR #121; not yet published"
+}

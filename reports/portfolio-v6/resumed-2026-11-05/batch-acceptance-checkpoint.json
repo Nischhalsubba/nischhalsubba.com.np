@@ -19,12 +19,12 @@
     ]
   },
   "counts": {
-    "BLOCKED_PERMISSION": 10,
+    "BLOCKED_PERMISSION": 8,
     "BLOCKED_SOURCE": 7,
     "CODE_DONE_NEEDS_CI": 1,
     "DONE_VERIFIED": 53,
     "GOOGLE_PENDING": 4,
-    "IN_PROGRESS": 32
+    "IN_PROGRESS": 34
   },
   "closures": {
     "T40": "Exact acceptance review complete: full unaltered Zapp desktop capture and original Figma app thumbnails have provenance, capture/date scope and correct semantics. The optional Facebook widget failure and rejected mobile screenshot remain explicit. This does not close version-date or independent-reacquisition tasks.",
@@ -34,5 +34,5 @@
     "T93": "Exact acceptance review complete: owner-approved7+ is supported by84overlap-aware calendar months including internship/part-time work.2024annual categories,3Nov2026Pro-member weekly snapshot and2023Top10 are separately dated/scoped. No unsupported exact2023rank is displayed."
   },
   "newRegression": "site/scripts/seo/media-evidence.cjs: all41detail+2listing routes at390/1440; HTTP200/canonical identity, decode/nonzero dimensions/alt and one image per card assertions. Integrated into the SEO evidence job with CI Chromium fallback; CI acceptance pending.",
-  "remaining": "This is not full107-ticket completion.33nonverifiedimplementation/audit tasks plus21source/permission/Google blockers remain; T70iscode-completependingCI among those33. Exact per-ticket gaps remain in progress.json."
+  "remaining": "Not full107-ticket completion:34implementation/audit tasks,1code-completeCIpending task,15source/access blockers and4Google observations remain. T55/T85no longer imply new merge permission is needed."
 }
