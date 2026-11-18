@@ -91,3 +91,7 @@ Maintain unique titles and descriptions for portfolio and article pages, semanti
 flowchart LR
     UPDATE["Content / project / UI change"] --> VERIFY["Verify claims & links"] --> BUILD["Implement"] --> REVIEW["Responsive + accessibility review"] --> SEO["Metadata / structured-data check"] --> PR["Pull request"]
 ```
+
+## Maintainer review checklist
+
+Before changing critical product behavior or public claims, use the [Portfolio publication evidence gate](docs/editorial/PUBLICATION_EVIDENCE_GATE.md) to record evidence, verification and rollback expectations.
