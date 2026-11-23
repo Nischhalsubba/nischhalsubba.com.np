@@ -15,10 +15,10 @@ const root = path.resolve(__dirname, '../..');
 const images = JSON.parse(fs.readFileSync(path.join(root, 'src/content/portfolio-evidence-images.json'), 'utf8'));
 const inventory = JSON.parse(fs.readFileSync(path.join(root, 'dist/workspace-inner/seo-inventory.json'), 'utf8'));
 assert.equal(projects.length, 14);
-assert.equal(articles.length, 27);
+assert.equal(articles.length, 30);
 assert.equal(new Set(articles.map(article => article.intent)).size, articles.length, 'Retained articles need distinct declared intents');
 assert.equal(new Set(articles.map(article => article.slug)).size, articles.length);
-assert.equal(new Set(articles.map(article => article.leadEvidence)).size, 27, 'Each article needs a distinct authentic lead source');
+assert.equal(new Set(articles.map(article => article.leadEvidence)).size, 30, 'Each article needs a distinct authentic lead source');
 const used = new Set();
 for (const data of [...projects, ...articles]) {
   const isProject = Boolean(data.decisions);
@@ -84,4 +84,4 @@ for (const data of [...projects, ...articles]) {
   }
 }
 assert.deepEqual([...used].sort(), images.map(image => image.id).sort(), 'No orphan curated assets');
-console.log(`[editorial] 14 project bodies, 27 distinct article intents, source-matched images, author/date/schema and semantic tables passed.`);
+console.log(`[editorial] 14 project bodies, 30 distinct article intents, source-matched images, author/date/schema and semantic tables passed.`);

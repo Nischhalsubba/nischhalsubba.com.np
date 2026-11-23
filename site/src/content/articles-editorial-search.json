@@ -1,0 +1,129 @@
+{
+  "articles": [
+    {
+      "slug": "figma-dev-mode-developer-handoff",
+      "updatedAt": "2026-11-23",
+      "intent": "Figma Dev Mode handoff: how to inspect a design before building",
+      "dek": "Inspect layout, component properties and version changes, then turn unresolved behavior into acceptance criteria.",
+      "leadEvidence": "orkest-lead-filter-confirmation",
+      "sections": [
+        {
+          "heading": "Inspect one task from entry to recovery",
+          "paragraphs": [
+            "Open the frame for the approved flow and select the component the engineer will implement. In the Inspect panel, check how the selected layer is laid out and which component properties it uses. Match those properties to the component in your codebase. A 16-pixel gap tells you the distance in this frame. The layout rules tell you what happens when the owner’s name wraps."
+          ],
+          "image": "orkest-lead-filters"
+        },
+        {
+          "heading": "Compare the change that affects implementation",
+          "paragraphs": [
+            "When a designer revises the frame, use Compare changes to inspect what moved between versions. If the Apply button changed, check whether only its label changed or whether it now commits a group of pending choices. The second change affects the interaction contract. Ask for the decision before implementing the button."
+          ]
+        },
+        {
+          "heading": "Write a test for the detail the inspector cannot show",
+          "paragraphs": [
+            "Take the Orkest lead filter as an example. Select an owner, apply the filter, open a lead and return to the list. Should the owner selection persist? Write the agreed behavior beside the frame. Then test the same sequence with zero matches and with an interrupted request. Those outcomes need different messages and different recovery actions."
+          ],
+          "image": "orkest-lead-filter-confirmation"
+        }
+      ],
+      "related": [
+        [
+          "/blog/figma-handoff-notes-for-developers",
+          "Write the behavior note beside the frame"
+        ],
+        [
+          "/project-orkest",
+          "See the Orkest lead workflow"
+        ],
+        [
+          "https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode-in-Figma",
+          "Figma’s guide to Dev Mode"
+        ]
+      ]
+    },
+    {
+      "slug": "how-to-choose-ux-audit-provider",
+      "updatedAt": "2026-11-23",
+      "intent": "How to choose a UX audit provider before a redesign",
+      "dek": "Compare audit proposals by asking each provider to explain one finding, its evidence and the decision it supports.",
+      "leadEvidence": "zapp-quote-review",
+      "sections": [
+        {
+          "heading": "Give each provider the same task",
+          "paragraphs": [
+            "Ask two potential providers to scope the same journey. For a delivery product, that might be getting from parcel details to an accepted quote. Tell them what you can share, who can join a walkthrough and what decision you need to make. You can now compare what each proposal would actually deliver."
+          ],
+          "image": "zapp-parcel-details"
+        },
+        {
+          "heading": "Ask to see one finding from beginning to end",
+          "paragraphs": [
+            "Request an anonymized sample. Can you see the starting state, the observed issue, who it affects and what evidence supports the recommendation? On a quote screen, an evaluator might notice that a fee is easy to miss. Establishing that it causes abandonment would require additional evidence. Ask how the provider would investigate that difference."
+          ],
+          "image": "zapp-quote-review"
+        },
+        {
+          "heading": "Compare the work your team will receive",
+          "paragraphs": [
+            "Agree on the flows and roles in scope, what access is required, who will attend the readout and whether the engagement includes a retest. Ask the provider to walk an engineer through their highest-priority finding. If the engineer can reproduce it and explain how to verify a fix, the sample has answered a more useful question than how many slides you will receive."
+          ]
+        }
+      ],
+      "related": [
+        [
+          "/ux-audit",
+          "Explore UX audit services"
+        ],
+        [
+          "/blog/when-startup-needs-ux-audit-before-redesign",
+          "Decide whether your startup needs an audit"
+        ],
+        [
+          "/project-zapp",
+          "Explore the Zapp delivery workflow"
+        ]
+      ]
+    },
+    {
+      "slug": "ux-writing-audit-checklist",
+      "updatedAt": "2026-11-23",
+      "intent": "A UX writing audit checklist for product teams",
+      "dek": "Follow a single task through labels, validation, saving and recovery to find copy that changes what people understand.",
+      "leadEvidence": "masteriyo-lesson-editor",
+      "sections": [
+        {
+          "heading": "Follow a task through its state changes",
+          "paragraphs": [
+            "Start with a course author adding a lesson. Write down what the author expects after creating, saving and publishing. Review the copy at each transition. A toast that says “Done” leaves the author guessing whether the draft is private or visible to learners."
+          ],
+          "image": "masteriyo-lesson-editor"
+        },
+        {
+          "heading": "Check the words that change a decision",
+          "paragraphs": [
+            "Read the field labels without their placeholders. Check whether the primary action names its consequence. Trigger a validation error and see whether the message identifies both the field and the correction. Return to a saved draft and check whether its status explains who can see it."
+          ],
+          "image": "masteriyo-course-details"
+        },
+        {
+          "heading": "Turn each finding into a testable edit",
+          "paragraphs": [
+            "Record the screen, current text, proposed text and condition under which the new wording is true. For example, use “Saved as a draft” only after the save succeeds. If saving fails, tell the author whether their edits remain available and what to do next. Ask someone to read the revised screen and explain what a learner can see right now."
+          ]
+        }
+      ],
+      "related": [
+        [
+          "/project-masteriyo",
+          "Inspect the Masteriyo course editor"
+        ],
+        [
+          "/blog/ux-audit-checklist-before-redesign",
+          "Review the wider UX audit checklist"
+        ]
+      ]
+    }
+  ]
+}

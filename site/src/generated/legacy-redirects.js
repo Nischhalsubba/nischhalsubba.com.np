@@ -142,4 +142,10 @@ export const LEGACY_REDIRECTS = new Map([
   ["/blog-design-systems-front-end.html", "/blog/blog-design-systems-front-end"],
   ["/blog/designing-handoffs-between-people.html", "/blog/designing-handoffs-between-people"],
   ["/blog/designing-handoffs-between-people/", "/blog/designing-handoffs-between-people"],
+  ["/blog/figma-dev-mode-developer-handoff.html", "/blog/figma-dev-mode-developer-handoff"],
+  ["/blog/figma-dev-mode-developer-handoff/", "/blog/figma-dev-mode-developer-handoff"],
+  ["/blog/how-to-choose-ux-audit-provider.html", "/blog/how-to-choose-ux-audit-provider"],
+  ["/blog/how-to-choose-ux-audit-provider/", "/blog/how-to-choose-ux-audit-provider"],
+  ["/blog/ux-writing-audit-checklist.html", "/blog/ux-writing-audit-checklist"],
+  ["/blog/ux-writing-audit-checklist/", "/blog/ux-writing-audit-checklist"],
 ]);

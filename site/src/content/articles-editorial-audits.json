@@ -196,6 +196,10 @@
         [
           "/blog/ux-audit-evidence-before-redesign",
           "Build the evidence pack"
+        ],
+        [
+          "/blog/ux-writing-audit-checklist",
+          "A UX writing audit checklist for product teams"
         ]
       ],
       "leadEvidence": "zapp-parcel-details",
@@ -390,6 +394,10 @@
         [
           "/blog/prioritize-ux-audit-findings-before-redesign",
           "Choose a repair order"
+        ],
+        [
+          "/blog/how-to-choose-ux-audit-provider",
+          "How to choose a UX audit provider before a redesign"
         ]
       ],
       "updatedAt": "2026-11-06",

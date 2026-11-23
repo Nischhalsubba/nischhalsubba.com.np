@@ -53,7 +53,10 @@
     "blog/saas-dashboard-empty-states-product-clarity.html",
     "blog/transaction-review-ux-crypto-apps.html",
     "blog/web3-wallet-connection-ux.html",
-    "blog/designing-handoffs-between-people.html"
+    "blog/designing-handoffs-between-people.html",
+    "blog/figma-dev-mode-developer-handoff.html",
+    "blog/how-to-choose-ux-audit-provider.html",
+    "blog/ux-writing-audit-checklist.html"
   ],
   "legacy": [
     "home.html",
@@ -217,6 +220,12 @@
     "/blog/web3-wallet-connection-ux/": "/blog/web3-wallet-connection-ux",
     "/blog-design-systems-front-end.html": "/blog/blog-design-systems-front-end",
     "/blog/designing-handoffs-between-people.html": "/blog/designing-handoffs-between-people",
-    "/blog/designing-handoffs-between-people/": "/blog/designing-handoffs-between-people"
+    "/blog/designing-handoffs-between-people/": "/blog/designing-handoffs-between-people",
+    "/blog/figma-dev-mode-developer-handoff.html": "/blog/figma-dev-mode-developer-handoff",
+    "/blog/figma-dev-mode-developer-handoff/": "/blog/figma-dev-mode-developer-handoff",
+    "/blog/how-to-choose-ux-audit-provider.html": "/blog/how-to-choose-ux-audit-provider",
+    "/blog/how-to-choose-ux-audit-provider/": "/blog/how-to-choose-ux-audit-provider",
+    "/blog/ux-writing-audit-checklist.html": "/blog/ux-writing-audit-checklist",
+    "/blog/ux-writing-audit-checklist/": "/blog/ux-writing-audit-checklist"
   }
 }
