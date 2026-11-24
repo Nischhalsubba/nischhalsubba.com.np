@@ -851,6 +851,12 @@
             "The explorer label must match the actual integration, and the product must know what result it can establish. The screenshot does not verify connection, signing, confirmation or recovery."
           ],
           "image": "yarsha-transaction-detail"
+        },
+        {
+          "heading": "Web3 onboarding: guide people through their first wallet-enabled task",
+          "paragraphs": [
+            "Show what users can explore before connecting a wallet. Explain which wallet and network the product supports, what the connection permits and why it is needed for the next step. After returning from a wallet prompt, restore the originating task and give the user a clear retry or exit when the request was cancelled."
+          ]
         }
       ],
       "related": [
@@ -865,9 +871,13 @@
         [
           "/project-yarsha",
           "Yarsha design evidence"
+        ],
+        [
+          "/blog/web3-messaging-app-ux",
+          "Design messaging and payment context"
         ]
       ],
-      "updatedAt": "2026-11-06",
+      "updatedAt": "2026-11-24",
       "leadEvidence": "yarsha-recipient-selection"
     }
   ]

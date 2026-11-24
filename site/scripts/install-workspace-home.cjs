@@ -14,10 +14,12 @@ const source = path.join(root, 'src/workspace-home');
 const dist = path.join(root, 'dist');
 if (!fs.existsSync(path.join(dist, 'project-yarsha.html'))) throw new Error('Build retained routes before installing the homepage.');
 fs.cpSync(source, path.join(dist, 'workspace-home'), { recursive: true });
+// Use the owner-approved current résumé for the canonical download on every page.
+fs.copyFileSync(path.join(source, 'assets/resume.pdf'), path.join(dist, 'assets/resume.pdf'));
 // These small stylesheets are required for the first frame. Inline them in their
 // original cascade position to avoid three serial requests on slow connections.
 // Resolve font URLs against their original stylesheet, not the document URL.
-let homepage = fs.readFileSync(path.join(source, 'index.html'), 'utf8').replace(
+let homepage = fs.readFileSync(path.join(source, 'index.html'), 'utf8').replaceAll('/workspace-home/assets/resume.pdf', '/assets/resume.pdf').replace(
   /<link rel="stylesheet" href="(\/workspace-home\/[^"]+\.css)">/g,
   /** Callback contract: Inline critical CSS at its original cascade position. Inputs: link markup and asset URL. Side effects: reads CSS. Returns: equivalent style element. */ (link, href) => {
     const css = fs.readFileSync(path.join(dist, href), 'utf8').replace(

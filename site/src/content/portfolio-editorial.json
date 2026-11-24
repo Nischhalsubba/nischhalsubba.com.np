@@ -169,6 +169,10 @@
         [
           "/project-orkest",
           "Related enterprise workflow work"
+        ],
+        [
+          "/blog/fintech-credit-approval-ux",
+          "Fintech credit approval UX: designing review and application states"
         ]
       ],
       "updatedAt": "2026-11-06",
@@ -294,6 +298,10 @@
         [
           "/blog/transaction-review-ux-crypto-apps",
           "Transaction review decisions"
+        ],
+        [
+          "/blog/web3-messaging-app-ux",
+          "Web3 messaging app UX: designing chat and payments together"
         ]
       ],
       "updatedAt": "2026-11-06",

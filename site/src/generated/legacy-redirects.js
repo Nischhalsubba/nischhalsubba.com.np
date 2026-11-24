@@ -148,4 +148,9 @@ export const LEGACY_REDIRECTS = new Map([
   ["/blog/how-to-choose-ux-audit-provider/", "/blog/how-to-choose-ux-audit-provider"],
   ["/blog/ux-writing-audit-checklist.html", "/blog/ux-writing-audit-checklist"],
   ["/blog/ux-writing-audit-checklist/", "/blog/ux-writing-audit-checklist"],
+  ["/blog/web3-messaging-app-ux.html", "/blog/web3-messaging-app-ux"],
+  ["/blog/web3-messaging-app-ux/", "/blog/web3-messaging-app-ux"],
+  ["/blog/fintech-credit-approval-ux.html", "/blog/fintech-credit-approval-ux"],
+  ["/blog/fintech-credit-approval-ux/", "/blog/fintech-credit-approval-ux"],
+  ["/workspace-home/assets/resume.pdf", "/assets/resume.pdf"],
 ]);

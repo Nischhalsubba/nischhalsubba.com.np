@@ -124,6 +124,94 @@
           "Review the wider UX audit checklist"
         ]
       ]
+    },
+    {
+      "slug": "web3-messaging-app-ux",
+      "dek": "A guide to preserving conversation context when a user chooses a token, reviews a recipient and confirms a payment.",
+      "leadEvidence": "yarsha-conversation",
+      "sections": [
+        {
+          "heading": "Keep the conversation as the working context",
+          "paragraphs": [
+            "A Web3 messaging app combines conversation with wallet-enabled actions. In Yarsha, the conversation and contact screens provide the starting context for transferring an asset. Design the payment flow so the person can return to the conversation and understand the result without losing their place."
+          ],
+          "image": "yarsha-conversation"
+        },
+        {
+          "heading": "Make asset selection an explicit decision",
+          "paragraphs": [
+            "Show the selected asset, network and recipient in the review step. Distinguish the amount from network fees and show whether data is still loading. If the user changes the asset or recipient, require a fresh review. For a payment UX review, ask someone to explain what will leave their wallet and who will receive it before they confirm."
+          ],
+          "image": "yarsha-token-selection"
+        },
+        {
+          "heading": "Separate wallet approval from transaction completion",
+          "paragraphs": [
+            "A wallet prompt can be declined, or a submitted transaction can remain pending. Keep those states distinct in the messaging interface and provide a way to revisit the confirmed transaction. The Yarsha design screens illustrate the interface; they do not establish network confirmation performance. Test recovery with a rejected wallet prompt and a delayed confirmation."
+          ],
+          "image": "yarsha-transaction-detail"
+        }
+      ],
+      "related": [
+        [
+          "/project-yarsha",
+          "Yarsha messaging case study"
+        ],
+        [
+          "/blog/transaction-review-ux-crypto-apps",
+          "Transaction review UX"
+        ],
+        [
+          "/web3-ux-designer",
+          "Web3 product design services"
+        ]
+      ],
+      "intent": "Web3 messaging app UX: designing chat and payments together",
+      "updatedAt": "2026-11-24"
+    },
+    {
+      "slug": "fintech-credit-approval-ux",
+      "dek": "Design creditor, investor and administrator workflows with clear ownership, decision states and permission boundaries.",
+      "leadEvidence": "pihub-admin-credit-review",
+      "sections": [
+        {
+          "heading": "Show what has actually been submitted",
+          "paragraphs": [
+            "A submitted credit application needs a meaningful status, a record of the submitted information and an explanation of the next decision. piHub illustrates an application workflow with separate review roles. A design review should check whether an applicant can distinguish an acknowledgement from a decision."
+          ],
+          "image": "pihub-credit-requests"
+        },
+        {
+          "heading": "Give reviewers a clear decision boundary",
+          "paragraphs": [
+            "An administrator reviewing a credit request needs the application context and permission to perform only the actions assigned to that role. Use separate read-only and editable views where appropriate. Confirm the decision summary before submission and document who may reverse or correct a decision."
+          ],
+          "image": "pihub-admin-credit-review"
+        },
+        {
+          "heading": "Make recovery visible in each role",
+          "paragraphs": [
+            "Specify what happens when information is missing, a review request is rejected or a system call fails. Explain who can act next, whether the applicant can correct information and where a record of that decision remains. Validate these rules with representative role-specific tasks; the portfolio screens demonstrate a design contribution, not measured lending outcomes."
+          ],
+          "image": "pihub-admin-account-review"
+        }
+      ],
+      "related": [
+        [
+          "/project-pihub",
+          "piHub fintech design case study"
+        ],
+        [
+          "/blog/role-based-saas-dashboard-ux",
+          "Role-based dashboard design"
+        ],
+        [
+          "/ux-audit",
+          "Review a complex fintech workflow"
+        ]
+      ],
+      "intent": "Fintech credit approval UX: designing review and application states",
+      "updatedAt": "2026-11-24"
     }
   ]
 }
