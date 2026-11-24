@@ -19,7 +19,7 @@ fs.copyFileSync(path.join(source, 'assets/resume.pdf'), path.join(dist, 'assets/
 // These small stylesheets are required for the first frame. Inline them in their
 // original cascade position to avoid three serial requests on slow connections.
 // Resolve font URLs against their original stylesheet, not the document URL.
-let homepage = fs.readFileSync(path.join(source, 'index.html'), 'utf8').replaceAll('/workspace-home/assets/resume.pdf', '/assets/resume.pdf').replace(
+let homepage = fs.readFileSync(path.join(source, 'index.html'), 'utf8').replace(
   /<link rel="stylesheet" href="(\/workspace-home\/[^"]+\.css)">/g,
   /** Callback contract: Inline critical CSS at its original cascade position. Inputs: link markup and asset URL. Side effects: reads CSS. Returns: equivalent style element. */ (link, href) => {
     const css = fs.readFileSync(path.join(dist, href), 'utf8').replace(
@@ -45,6 +45,7 @@ for (const filename of fs.readdirSync(path.join(dist, 'workspace-home'))) {
 }
 fs.writeFileSync(path.join(dist, 'workspace-home', runtimeName), runtime);
 homepage = homepage.replace(runtimeBlocks[0][0], `<script defer data-workspace-runtime src="${runtimeHref}" fetchpriority="low"></script>`)
+  .replaceAll('/workspace-home/assets/resume.pdf', '/assets/resume.pdf')
   .replace('</head>', `<link rel="preload" as="script" href="${runtimeHref}" fetchpriority="low">\n</head>`);
 fs.writeFileSync(path.join(dist, 'index.html'), homepage);
 // Keep historical home aliases on the approved homepage while preserving canonical route behavior.
