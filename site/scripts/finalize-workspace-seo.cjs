@@ -85,6 +85,12 @@ fs.writeFileSync(path.join(dist, 'workspace-inner/discovery.css'), '.workspace-s
 const records = [];
 for (const file of files) {
   const absolute = path.join(dist, file); let html = fs.readFileSync(absolute, 'utf8');
+  if (file === 'web3-ux-designer.html') {
+    html = html.replace('</main>', '<section class="agent-section editorial-section"><h2>Web3 messaging, payments and onboarding</h2><p>My Yarsha case study shows how messaging, recipient selection and transaction review connect in a wallet-enabled mobile product. For a design engagement, I review the complete task from entry through wallet approval, transaction status and recovery.</p><ul><li><a href="/project-yarsha">Yarsha product design case study</a></li><li><a href="/blog/web3-messaging-app-ux">Designing chat and payments together</a></li><li><a href="/blog/web3-wallet-ux-checklist">Web3 onboarding and wallet UX checklist</a></li></ul></section></main>');
+  }
+  if (file === 'website-ux-design.html') {
+    html = html.replace('</main>', '<section class="agent-section editorial-section"><h2>Website UX for software and professional services</h2><p>For a software or consulting website, I map the decisions a prospective client needs to make, organize service and sector information, and design a clear route to an enquiry. Review my Hamro Idea and Morajaa case studies for examples of website information architecture, service presentation and contact flows.</p><ul><li><a href="/project-hamro-idea">Hamro Idea website case study</a></li><li><a href="/project-morajaa">Morajaa consulting website case study</a></li><li><a href="/blog/website-ux-checklist-software-companies">Website UX checklist for software companies</a></li></ul></section></main>');
+  }
   const url = html.match(/rel="canonical" href="([^"]+)"/)?.[1]; if (!url || !url.startsWith(site)) throw new Error(`Canonical missing: ${file}`);
   const title = plain(html.match(/<title[^>]*>([\s\S]*?)<\/title>/)?.[1] || 'Nischhal Raj Subba');
   const heading = plain(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] || 'Nischhal Raj Subba');

@@ -57,7 +57,7 @@ function collect(directory) {
 collect(dist);
 const inventory = [];
 for (const file of routes) {
-  const html = fs.readFileSync(file, 'utf8');
+  const html = fs.readFileSync(file, 'utf8').replaceAll('/workspace-home/assets/resume.pdf', '/assets/resume.pdf');
   let main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0];
   if (!main) throw new Error(`Missing semantic content: ${file}`);
   // Older articles predate the shared shell; apply the same root contract to them as well.

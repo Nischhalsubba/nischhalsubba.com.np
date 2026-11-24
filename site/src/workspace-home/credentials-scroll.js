@@ -65,10 +65,11 @@ export function initCredentialScroll(section, content, track, spacer) {
    * Side effects: Disconnects observer, cancels pending paint and restores native layout.
    * Returns: Undefined.
    */
-  return function cleanup() {
+  function cleanup() {
     observer.disconnect(); cancelAnimationFrame(frame);
     removeEventListener('scroll', schedule); removeEventListener('resize', measure);
     motion.removeEventListener('change', measure);
     section.classList.remove('credential-scroll'); spacer.style.height = '';
-  };
+  }
+  return cleanup;
 }

@@ -94,10 +94,14 @@
         [
           "/blog/design-handoff-checklist-startup-product-teams",
           "Coordinate a startup handoff"
+        ],
+        [
+          "/blog/figma-dev-mode-developer-handoff",
+          "Inspect the implementation in Figma Dev Mode"
         ]
       ],
       "leadEvidence": "orkest-lead-capture",
-      "updatedAt": "2026-11-06"
+      "updatedAt": "2026-11-23"
     },
     {
       "slug": "blog-good-handoff",
@@ -473,6 +477,13 @@
             "Ask someone to find their unassigned work, add a condition, inspect a record and return. Then create a zero-result query and ask them to explain the absence. Observe where the interface forces them to remember hidden state.",
             "The success condition is not that the panel opens. It is that the person understands the active query and can revise it. Keep performance and access restrictions in the review too: a slow result and a restricted result need different explanations."
           ]
+        },
+        {
+          "heading": "What should an active filter chip say?",
+          "paragraphs": [
+            "Show both the field and its value. “Owner: Me” distinguishes an ownership filter from an author or reviewer filter. Give the remove action a specific accessible name such as “Remove Owner: Me”.",
+            "Test two chips together. Remove one using the keyboard, then check that focus moves to a remaining control, the other constraint still applies and the result count agrees with the list. When the last chip is removed, preserve unrelated sorting and search text unless the user explicitly resets those too."
+          ]
         }
       ],
       "related": [
@@ -490,7 +501,7 @@
         ]
       ],
       "leadEvidence": "orkest-lead-filters",
-      "updatedAt": "2026-11-06"
+      "updatedAt": "2026-11-23"
     },
     {
       "slug": "role-based-saas-dashboard-ux",
