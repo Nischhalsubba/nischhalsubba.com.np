@@ -1,0 +1,41 @@
+<svg width="1440" height="1000" viewBox="0 0 1440 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1440" height="1000" fill="white"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="56" y="59.5455">UXCEL / INDEPENDENT DESIGN EXERCISE</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="56" font-weight="600" letter-spacing="0em"><tspan x="56" y="136.364">SmartLock 2.0</tspan></text>
+<text fill="#546174" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="28" letter-spacing="0em"><tspan x="58" y="179.182">Workshop success criteria &#xb7; targets only</tspan></text>
+<rect x="56" y="210" width="1328" height="2" fill="#DDE2EA"/>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="26" font-weight="600" letter-spacing="0em"><tspan x="56" y="264.955">Research and decision flow</tspan></text>
+<rect x="56" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="72" y="319.545">01</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="72" y="361.5">Align</tspan></text>
+<rect x="325.6" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="341.6" y="319.545">02</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="341.6" y="361.5">Map friction</tspan></text>
+<rect x="595.2" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="611.2" y="319.545">03</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="611.2" y="361.5">Ideate</tspan></text>
+<rect x="864.8" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="880.8" y="319.545">04</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="880.8" y="361.5">Prototype</tspan></text>
+<rect x="1134.4" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="1150.4" y="319.545">05</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="1150.4" y="361.5">Validate</tspan></text>
+<rect x="56" y="450" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="76" y="486.5">Setup time</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="76" y="519.273">Target: 30% reduction relative to the baseline.</tspan></text>
+<rect x="730" y="450" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="750" y="486.5">Dashboard</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="750" y="519.273">Target: 90% intuitive rating from test participants.</tspan></text>
+<rect x="56" y="584" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="76" y="620.5">Latency</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="76" y="653.273">Target: at least three candidate solutions.</tspan></text>
+<rect x="730" y="584" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#205D8A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="750" y="620.5">Safety</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="750" y="653.273">Engineering review of access, revocation and offline states.</tspan></text>
+<text fill="#64748B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="56" y="784.273">Evidence status: source-informed analysis and proposed validation; no new participant results.</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" font-weight="600" letter-spacing="0em"><tspan x="56" y="837.273">Target chart: indexed setup time, baseline reference = 100; goal = 70</tspan></text>
+<rect x="56" y="860" width="620" height="22" rx="4" fill="#A6B4C4"/>
+<text fill="#202939" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" letter-spacing="0em"><tspan x="690" y="871.545">100 &#xb7; baseline reference</tspan></text>
+<rect x="56" y="904" width="434" height="22" rx="4" fill="#205D8A"/>
+<text fill="#202939" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" letter-spacing="0em"><tspan x="504" y="915.545">70 &#xb7; proposed target</tspan></text>
+</svg>
