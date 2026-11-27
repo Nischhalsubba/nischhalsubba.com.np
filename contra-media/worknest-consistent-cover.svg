@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200"><rect width="1600" height="1200" fill="#E4EBF7"/><text x="80" y="130" font-family="Arial, sans-serif" font-size="76" font-weight="700" fill="#274479">WorkNest</text><text x="84" y="183" font-family="Arial, sans-serif" font-size="30" fill="#274479">Customer journey &amp; SWOT · UX research</text><rect x="204" y="282" width="1192" height="834" rx="14" fill="#274479" opacity=".12"/><rect x="214" y="275" width="1172" height="826" rx="12" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="10"/><svg x="220" y="285" width="1160" height="806" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid meet">
+<rect width="1440" height="1000" fill="white"/>
+<text fill="#42659D" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="56" y="59.5455">UXCEL / INDEPENDENT DESIGN EXERCISE</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="56" font-weight="600" letter-spacing="0em"><tspan x="56" y="136.364">WorkNest</tspan></text>
+<text fill="#546174" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="28" letter-spacing="0em"><tspan x="58" y="179.182">Customer journey &#38; service blueprint</tspan></text>
+<rect x="56" y="210" width="1328" height="2" fill="#DDE2EA"/>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="26" font-weight="600" letter-spacing="0em"><tspan x="56" y="264.955">Research and decision flow</tspan></text>
+<rect x="56" y="288" width="317" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#42659D" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="72" y="319.545">01</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="72" y="361.5">Awareness</tspan></text>
+<rect x="393" y="288" width="317" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#42659D" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="409" y="319.545">02</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="409" y="361.5">Consideration</tspan></text>
+<rect x="730" y="288" width="317" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#42659D" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="746" y="319.545">03</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="746" y="361.5">Engagement</tspan></text>
+<rect x="1067" y="288" width="317" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#42659D" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="1083" y="319.545">04</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="1083" y="361.5">Advocacy</tspan></text>
+<rect x="56" y="450" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#42659D" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="76" y="486.5">Awareness</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="76" y="519.273">Location, amenities and transparent pricing.</tspan></text>
+<rect x="730" y="450" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#42659D" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="750" y="486.5">Consideration</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="750" y="519.273">Membership comparison and trial booking.</tspan></text>
+<rect x="56" y="584" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#42659D" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="76" y="620.5">Engagement</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="76" y="653.273">Live desk availability and clear confirmation.</tspan></text>
+<rect x="730" y="584" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#42659D" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="750" y="620.5">Advocacy</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="750" y="653.273">Feedback, renewal and referral opportunities.</tspan></text>
+<text fill="#64748B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="56" y="784.273">Evidence status: source-informed analysis and proposed validation; no new participant results.</tspan></text>
+</svg>
+</svg>
