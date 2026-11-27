@@ -1,0 +1,36 @@
+<svg width="1440" height="1000" viewBox="0 0 1440 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1440" height="1000" fill="white"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="56" y="59.5455">UXCEL / INDEPENDENT DESIGN EXERCISE</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="56" font-weight="600" letter-spacing="0em"><tspan x="56" y="136.364">Cartify</tspan></text>
+<text fill="#546174" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="28" letter-spacing="0em"><tspan x="58" y="179.182">Shopping journey &#38; validation priorities</tspan></text>
+<rect x="56" y="210" width="1328" height="2" fill="#DDE2EA"/>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="26" font-weight="600" letter-spacing="0em"><tspan x="56" y="264.955">Research and decision flow</tspan></text>
+<rect x="56" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="72" y="319.545">01</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="72" y="361.5">Discover</tspan></text>
+<rect x="325.6" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="341.6" y="319.545">02</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="341.6" y="361.5">Evaluate</tspan></text>
+<rect x="595.2" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="611.2" y="319.545">03</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="611.2" y="361.5">Cart</tspan></text>
+<rect x="864.8" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="880.8" y="319.545">04</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="880.8" y="361.5">Pay</tspan></text>
+<rect x="1134.4" y="288" width="249.6" height="116" rx="12" fill="#F0F3F8"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="1150.4" y="319.545">05</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="1150.4" y="361.5">Track</tspan></text>
+<rect x="56" y="450" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="76" y="486.5">Research focus</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="76" y="519.273">Confidence in price, availability and payments.</tspan></text>
+<rect x="730" y="450" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="750" y="486.5">Failure states</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="750" y="519.273">Invalid promo, stock changes, payment decline and retry.</tspan></text>
+<rect x="56" y="584" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="76" y="620.5">Proposed tasks</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="76" y="653.273">Filter products, compare totals, recover and track.</tspan></text>
+<rect x="730" y="584" width="654" height="116" rx="12" fill="#F7F8FA"/>
+<text fill="#6749A3" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="22" font-weight="600" letter-spacing="0em"><tspan x="750" y="620.5">Graph plan</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="750" y="653.273">Observed funnel and checkout error counts.</tspan></text>
+<text fill="#64748B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="56" y="784.273">Evidence status: source-informed analysis and proposed validation; no new participant results.</tspan></text>
+</svg>
