@@ -1,0 +1,31 @@
+<svg width="1440" height="1000" viewBox="0 0 1440 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1440" height="1000" fill="white"/>
+<text fill="#16756B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" font-weight="600" letter-spacing="0em"><tspan x="56" y="59.2727">MEAL DELIVERY / ANALYSIS PLAN</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="52" font-weight="600" letter-spacing="0em"><tspan x="56" y="132.409">Chart specifications</tspan></text>
+<text fill="#546174" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="24" letter-spacing="0em"><tspan x="56" y="173.227">No collected responses: charts intentionally unpopulated</tspan></text>
+<rect x="56" y="220" width="654" height="320" rx="12" fill="#F5F7F7"/>
+<text fill="#16756B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="25" font-weight="600" letter-spacing="0em"><tspan x="80" y="264.091">01 / Choice factors &#38; order problems</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="21" font-weight="600" letter-spacing="0em"><tspan x="80" y="300.136">Horizontal multi-response bars</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="80" y="335.273">Share = option selections &#xf7; respondents answering item. Totals </tspan><tspan x="80" y="359.273">may exceed 100%.</tspan></text>
+<rect x="80" y="400" width="606" height="110" rx="8" fill="white"/>
+<text fill="#64748B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="500" letter-spacing="0em"><tspan x="104" y="459.545">AWAITING RESPONSE DATA</tspan></text>
+<rect x="730" y="220" width="654" height="320" rx="12" fill="#F5F7F7"/>
+<text fill="#16756B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="25" font-weight="600" letter-spacing="0em"><tspan x="754" y="264.091">02 / Discovery effort &#38; price clarity</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="21" font-weight="600" letter-spacing="0em"><tspan x="754" y="300.136">100% stacked response bars</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="754" y="335.273">Show scale distribution by order-frequency segment; include </tspan><tspan x="754" y="359.273">group sample sizes.</tspan></text>
+<rect x="754" y="400" width="606" height="110" rx="8" fill="white"/>
+<text fill="#64748B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="500" letter-spacing="0em"><tspan x="778" y="459.545">AWAITING RESPONSE DATA</tspan></text>
+<rect x="56" y="570" width="654" height="320" rx="12" fill="#F5F7F7"/>
+<text fill="#16756B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="25" font-weight="600" letter-spacing="0em"><tspan x="80" y="614.091">03 / Abandonment &#38; priorities</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="21" font-weight="600" letter-spacing="0em"><tspan x="80" y="650.136">Categorical horizontal bars</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="80" y="685.273">Count each valid response; retain not-applicable and missing </tspan><tspan x="80" y="709.273">categories separately.</tspan></text>
+<rect x="80" y="750" width="606" height="110" rx="8" fill="white"/>
+<text fill="#64748B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="500" letter-spacing="0em"><tspan x="104" y="809.545">AWAITING RESPONSE DATA</tspan></text>
+<rect x="730" y="570" width="654" height="320" rx="12" fill="#F5F7F7"/>
+<text fill="#16756B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="25" font-weight="600" letter-spacing="0em"><tspan x="754" y="614.091">04 / Open feedback</tspan></text>
+<text fill="#172033" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="21" font-weight="600" letter-spacing="0em"><tspan x="754" y="650.136">Qualitative theme matrix</tspan></text>
+<text fill="#293447" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="754" y="685.273">Code anonymized themes; document evidence, frequency and </tspan><tspan x="754" y="709.273">exceptions.</tspan></text>
+<rect x="754" y="750" width="606" height="110" rx="8" fill="white"/>
+<text fill="#64748B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18" font-weight="500" letter-spacing="0em"><tspan x="778" y="809.545">AWAITING RESPONSE DATA</tspan></text>
+<text fill="#64748B" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" letter-spacing="0em"><tspan x="56" y="965.273">Report sample size, item denominators, missing responses, recruitment limitations and completion rate.</tspan></text>
+</svg>
